@@ -23,12 +23,7 @@ class PreviewController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         if (auth()->check()) {
             $service = app()->make(SearchService::class);

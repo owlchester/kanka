@@ -1,4 +1,4 @@
-@inject('abilities', 'App\Services\Entity\AbilityService')
+@inject('abilities', 'App\Services\Abilities\AbilityService')
 @php $entityAbilities = $abilities->campaign($campaign)->entity($entity)->abilities() @endphp
 
 <div class="print-box-abilities">

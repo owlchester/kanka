@@ -9,47 +9,22 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Relation;
 use App\Services\Entity\ConnectionService;
-use App\Services\Entity\EntityRelationService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 
 class RelationController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
-    protected $viewPath;
-
-    /** @var EntityRelationService */
-    protected EntityRelationService $service;
-
-    /** @var ConnectionService */
     protected ConnectionService $connectionService;
 
-    public function __construct(EntityRelationService $entityRelationService, ConnectionService $connectionService)
+    public function __construct(ConnectionService $connectionService)
     {
-        $this->service = $entityRelationService;
         $this->connectionService = $connectionService;
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign, Entity $entity)
     {
-        if (empty($entity->child)) {
-            abort(404);
-        }
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         $mode = request()->get('mode', null);
         if (!in_array($mode, ['map', 'table'])) {
@@ -70,13 +45,13 @@ class RelationController extends Controller
             $mode = 'table';
 
             Datagrid::layout(\App\Renderers\Layouts\Entity\Relation::class)
-                ->route('entities.relations_table', ['campaign' => $campaign, $entity, 'mode' => 'table']);
+                ->route('entities.relations_table', ['campaign' => $campaign, 'entity' => $entity, 'mode' => 'table']);
 
             $rows = $entity
                 ->allRelationships()
                 ->sort(request()->only(['o', 'k']))
                 ->paginate()
-                ->withPath(route('entities.relations_table', [$campaign, $entity, 'mode' => 'table']));
+                ->withPath(route('entities.relations_table', ['campaign' => $campaign, 'entity' => $entity, 'mode' => 'table']));
 
             $connections = $this->connectionService
                 ->entity($entity)
@@ -222,7 +197,6 @@ class RelationController extends Controller
             }
         }
 
-
         $redirect = [$campaign, $entity];
         if (!empty($mode)) {
             $redirect['mode'] = $mode;
@@ -283,37 +257,6 @@ class RelationController extends Controller
             ]));
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function map(Campaign $campaign, Entity $entity)
-    {
-        if (empty($entity->child)) {
-            abort(404);
-        }
-
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
-
-        $map = $this->service
-            ->campaign($campaign)
-            ->entity($entity)
-            ->option(request()->get('option', null))
-            ->map();
-        return response()->json(
-            $map
-        );
-    }
-
-    /**
-     * @return mixed|null
-     */
     protected function getModeOption(bool $post = false)
     {
         $mode = request()->get('mode');
@@ -324,43 +267,5 @@ class RelationController extends Controller
             return $mode;
         }
         return null;
-    }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function table(Campaign $campaign, Entity $entity)
-    {
-        if (empty($entity->child)) {
-            abort(404);
-        }
-
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Entity\Relation::class)
-            ->route('entities.relations_table', [$campaign, $entity, 'mode' => 'table']);
-
-        $rows = $entity
-            ->allRelationships()
-            ->sort(request()->only(['o', 'k']))
-            ->paginate();
-
-        $html = view('layouts.datagrid._table')
-            ->with('rows', $rows)
-            ->with('campaign', $campaign)
-            ->render();
-        $data = [
-            'success' => true,
-            'html' => $html,
-        ];
-
-        return response()->json($data);
     }
 }

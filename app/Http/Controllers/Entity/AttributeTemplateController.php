@@ -20,7 +20,7 @@ class AttributeTemplateController extends Controller
         $this->service = $service;
     }
 
-    public function apply(Campaign $campaign, Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         if (!$campaign->enabled('entity_attributes')) {
             return redirect()->route('dashboard', $campaign)->with(
@@ -43,7 +43,7 @@ class AttributeTemplateController extends Controller
         ));
     }
 
-    public function applyTemplate(ApplyAttributeTemplate $request, Campaign $campaign, Entity $entity)
+    public function process(ApplyAttributeTemplate $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
         $templateName = $this->service->apply($entity, $request->get('template_id'));

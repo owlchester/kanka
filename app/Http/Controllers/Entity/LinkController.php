@@ -13,9 +13,6 @@ use Illuminate\Support\Str;
 
 class LinkController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
     public function __construct()
@@ -23,21 +20,12 @@ class LinkController extends Controller
         $this->middleware('campaign.boosted', ['except' => 'create']);
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function index(Campaign $campaign, Entity $entity)
     {
         return redirect()
             ->route('entities.entity_assets.index', [$campaign, $entity]);
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
@@ -53,8 +41,6 @@ class LinkController extends Controller
         ));
     }
 
-    /**
-     */
     public function store(StoreEntityLink $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
@@ -69,8 +55,6 @@ class LinkController extends Controller
             ->with('success', __('entities/links.create.success', ['name' => $link->name, 'entity' => $entity->name]));
     }
 
-    /**
-     */
     public function edit(Campaign $campaign, Entity $entity, EntityLink $entityLink)
     {
         $this->authorize('update', $entity->child);
@@ -82,17 +66,12 @@ class LinkController extends Controller
         ));
     }
 
-    /**
-     * Show exists but doesn't do anything, redirect to main view
-     */
     public function show(Campaign $campaign, Entity $entity, EntityLink $entityLink)
     {
         return redirect()
             ->route('entities.entity_assets.index', [$campaign, $entity]);
     }
 
-    /**
-     */
     public function update(StoreEntityLink $request, Campaign $campaign, Entity $entity, EntityLink $entityLink)
     {
         $this->authorize('update', $entity->child);
@@ -111,8 +90,6 @@ class LinkController extends Controller
             ->with('success', __('entities/links.update.success', ['name' => $entityLink->name, 'entity' => $entity->name]));
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Entity $entity, EntityLink $entityLink)
     {
         $this->authorize('update', $entity->child);
@@ -131,16 +108,9 @@ class LinkController extends Controller
             ->with('success', __('entities/links.destroy.success', ['name' => $entityLink->name, 'entity' => $entity->name]));
     }
 
-    /**
-     */
     public function go(Campaign $campaign, Entity $entity, EntityLink $entityLink)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         if ($entityLink->entity_id !== $entity->id) {
             abort(404);

@@ -1,26 +1,21 @@
 <?php
 
-namespace App\Services\Entity;
+namespace App\Services\Abilities;
 
 use App\Facades\Mentions;
-use App\Models\Ability;
+use App\Http\Requests\ReorderAbility;
 use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
-use ChrisKonnertz\StringCalc\StringCalc;
-use Illuminate\Support\Collection;
-use App\Http\Requests\ReorderAbility;
 use Exception;
 
-class AbilityService
+class AbilityService extends BaseAbilityService
 {
     use CampaignAware;
     use EntityAware;
-
-    protected Collection|bool $attributes = false;
 
     /** @var array All the abilities of this entity, nicely prepared */
     protected array $abilities = [
@@ -72,40 +67,7 @@ class AbilityService
         return $this->abilities;
     }
 
-    /**
-     * Reset all charges
-     * @return $this
-     */
-    public function resetCharges(): self
-    {
-        $usedAbilities = $this->entity->abilities()->where('charges', '>', 0)->get();
-        /** @var Ability $ability */
-        foreach ($usedAbilities as $ability) {
-            $ability->charges = null;
-            $ability->save();
-        }
 
-        return $this;
-    }
-
-    /**
-     * Use an ability charge
-     * @param EntityAbility $entityAbility
-     * @param int $used
-     * @return bool
-     */
-    public function useCharge(EntityAbility $entityAbility, int $used): bool
-    {
-        // Check that we are not above the parent
-        if ($used > $this->parseCharges($entityAbility->ability)) {
-            return false;
-        }
-
-        $entityAbility->charges = $used;
-        $entityAbility->save();
-
-        return true;
-    }
 
     /**
      * @param EntityAbility $entityAbility
@@ -217,159 +179,5 @@ class AbilityService
             ];
         }
         return $attributes;
-    }
-
-    /**
-     * @param Ability $ability
-     * @return int|string|null
-     */
-    protected function parseCharges(Ability $ability)
-    {
-        if (empty($ability->charges)) {
-            return null;
-        }
-
-        if (is_int($ability->charges)) {
-            return $ability->charges;
-        }
-        try {
-            return $this->mapAttributes($ability->charges);
-        } catch (Exception $e) {
-            return null;
-        }
-    }
-
-    /**
-     * @param Ability $ability
-     * @return float|int|mixed
-     */
-    protected function parseEntry(Ability $ability)
-    {
-        $entry = $ability->entry();
-        try {
-            return $this->mapAttributes($entry, false);
-        } catch (Exception $e) {
-            return $entry;
-        }
-    }
-
-    /**
-     * @param string $haystack
-     * @param bool $calc
-     * @return float|int|string|null
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
-     * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
-     */
-    protected function mapAttributes(string $haystack, bool $calc = true)
-    {
-        // Replace {} with entity attributes
-        $mappedText = preg_replace_callback('`\{(.*?)\}`i', function ($matches) {
-            //dd($matches);
-            $text = $matches[1];
-            if ($this->entityAttributes()->has($text)) {
-                return $this->entityAttributes()->get($text);
-            }
-            return 0;
-        }, $haystack);
-
-        if (!$calc) {
-            return $mappedText;
-        }
-
-        $calculator = new StringCalc();
-        return $calculator->calculate($mappedText);
-    }
-
-    /**
-     * @return array|\Illuminate\Support\Collection
-     */
-    protected function entityAttributes()
-    {
-        if ($this->attributes !== false) {
-            return $this->attributes;
-        }
-
-        $this->attributes = new Collection();
-
-        /** @var Attribute $attribute */
-        foreach ($this->entity->attributes as $attribute) {
-            $this->attributes->put($attribute->name, $attribute->mappedValue());
-        }
-
-        return $this->attributes;
-    }
-
-    /**
-     * @return int
-     * @throws Exception
-     */
-    public function import(): int
-    {
-        if (!$this->entity->isCharacter()) {
-            throw new Exception('not_character');
-        }
-        /** @var Character $character */
-        $character = $this->entity->child;
-        if (empty($character->races)) {
-            throw new Exception('no_race');
-        }
-        $count = 0;
-
-        // Existing abilities
-        $abilities = $this->entity->abilities;
-        $existingIds = [];
-        foreach ($abilities as $ability) {
-            // The ability is soft deleted so we can skip it
-            // @phpstan-ignore-next-line
-            if (empty($ability) || empty($ability->ability)) {
-                continue;
-            }
-            $existingIds[] = $ability->ability_id;
-        }
-
-        foreach ($character->races()->with('entity')->get() as $race) {
-            /** @var EntityAbility[] $abilities */
-            $abilities = $race->entity->abilities;
-            $count = 0;
-            foreach ($abilities as $ability) {
-                // If it's deleted or already on this entity, skip
-                if (empty($ability->ability) || in_array($ability->ability_id, $existingIds)) {
-                    continue;
-                }
-                $new = $ability->replicate(['entity_id']);
-                $new->entity_id = $this->entity->id;
-                $new->save();
-                $count++;
-            }
-        }
-
-        return $count;
-    }
-
-    /**
-     * @param ReorderAbility $request
-     * @return bool
-     */
-    public function reorder(ReorderAbility $request): bool
-    {
-        $ids = $request->get('ability');
-
-        if (empty($ids)) {
-            return false;
-        }
-
-        $position = 1;
-        foreach ($ids as $id) {
-            /** @var EntityAbility|null $ability */
-            $ability = EntityAbility::find($id);
-            if ($ability === null || $ability->entity_id !== $this->entity->id) {
-                continue;
-            }
-
-            $ability->position = $position;
-            $ability->save();
-            $position++;
-        }
-        return true;
     }
 }

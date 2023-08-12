@@ -9,7 +9,6 @@ use App\Models\MiscModel;
 use App\Services\MultiEditingService;
 use App\Models\Post;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Entity;
 
 class PostController extends Controller
@@ -37,15 +36,7 @@ class PostController extends Controller
 
     public function show(Campaign $campaign, Entity $entity, Post $post)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            if (empty($entity->child)) {
-                abort(404);
-            }
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
         return redirect()->to($entity->url());
     }
 

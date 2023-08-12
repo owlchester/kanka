@@ -8,20 +8,10 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Inventory;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 
 class InventoryController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
-
-    /** @var string */
-    protected $transKey;
-
-    /** @var string */
-    protected $viewPath;
 
     /** @var string[]  */
     protected $fillable = [
@@ -36,23 +26,9 @@ class InventoryController extends Controller
         'copy_item_entry'
     ];
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign, Entity $entity)
     {
-        if (empty($entity->child)) {
-            abort(404);
-        }
-
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         $inventory = $entity
             ->inventories()

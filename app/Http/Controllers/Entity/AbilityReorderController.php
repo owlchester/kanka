@@ -6,21 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderAbility;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\Entity\AbilityService;
+use App\Services\Abilities\AbilityService;
+use App\Services\Abilities\ReorderService;
 
 class AbilityReorderController extends Controller
 {
     protected AbilityService $service;
+    protected ReorderService $reorderService;
 
-    public function __construct(AbilityService $abilityService)
+    public function __construct(AbilityService $abilityService, ReorderService $reorderService)
     {
         $this->service = $abilityService;
+        $this->reorderService = $reorderService;
     }
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
+
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
@@ -57,18 +56,14 @@ class AbilityReorderController extends Controller
         ));
     }
 
-    /**
-     * @param Entity $entity
-     * @param ReorderAbility $request
-     * @return mixed
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function save(Campaign $campaign, Entity $entity, ReorderAbility $request)
     {
         $this->authorize('update', $entity->child);
-        $this->service
+
+        $this->reorderService
             ->entity($entity)
             ->reorder($request);
+
         return redirect()
             ->route('entities.entity_abilities.index', [$campaign, $entity])
             ->withSuccess(__('entities/abilities.reorder.success'));

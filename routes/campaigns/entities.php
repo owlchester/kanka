@@ -52,10 +52,10 @@ Route::get('/w/{campaign}/organisations/tree', 'Crud\OrganisationController@tree
 Route::get('/w/{campaign}/families/{family}/members', 'Families\MemberController@index')->name('families.members');
 Route::get('/w/{campaign}/families/{family}/families', 'Families\FamilyController@index')->name('families.families');
 Route::get('/w/{campaign}/families/tree', 'Crud\FamilyController@tree')->name('families.tree');
-Route::get('/w/{campaign}/families/{family}/tree', [\App\Http\Controllers\Families\FamilyTreeController::class, 'index'])->name('families.family-tree');
-Route::get('/w/{campaign}/families/{family}/tree/api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'api'])->name('families.family-tree.api');
-Route::get('/w/{campaign}/families/{entity}/tree/entity-api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'entity'])->name('families.family-tree.entity-api');
-Route::post('/w/{campaign}/families/{family}/tree/api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'save'])->name('families.family-tree.api-save');
+Route::get('/w/{campaign}/families/{family}/tree', [\App\Http\Controllers\Families\TreeController::class, 'index'])->name('families.family-tree');
+Route::get('/w/{campaign}/families/{family}/tree/api', [\App\Http\Controllers\Families\Trees\ApiController::class, 'index'])->name('families.family-tree.api');
+Route::get('/w/{campaign}/families/{entity}/tree/entity-api', [\App\Http\Controllers\Families\Trees\ApiController::class, 'entity'])->name('families.family-tree.entity-api');
+Route::post('/w/{campaign}/families/{family}/tree/api', [\App\Http\Controllers\Families\Trees\ApiController::class, 'save'])->name('families.family-tree.api-save');
 
 Route::post('/w/{campaign}/families/{family}/store-member', 'Families\MemberController@store')->name('families.members.store');
 Route::get('/w/{campaign}/families/{family}/add-member', 'Families\MemberController@create')->name('families.members.create');
@@ -86,7 +86,7 @@ Route::get('/w/{campaign}/journals/{journal}/journals', 'Journals\JournalControl
 Route::get('/w/{campaign}/events/tree', 'Crud\EventController@tree')->name('events.tree');
 Route::get('/w/{campaign}/events/{event}/events', 'Events\EventController@index')->name('events.events');
 
-Route::get('/w/{campaign}/timelines/tree', 'Timelines\TimelineController@tree')->name('timelines.tree');
+Route::get('/w/{campaign}/timelines/tree', 'Crud\TimelineController@tree')->name('timelines.tree');
 Route::get('/w/{campaign}/timelines/{timeline}/timelines', 'Timelines\TimelineController@timelines')->name('timelines.timelines');
 
 // Tag menus
@@ -154,8 +154,8 @@ Route::post('/w/{campaign}/entities/{entity}/privacy', [\App\Http\Controllers\En
 Route::get('/w/{campaign}/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'edit'])->name('entities.entry.edit');
 Route::patch('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
 
-Route::get('/w/{campaign}/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
-Route::get('/w/{campaign}/entities/{entity}/relations/table', 'Entity\RelationController@table')->name('entities.relations_table');
+Route::get('/w/{campaign}/entities/{entity}/relations_map', 'Entity\Connections\MapController@index')->name('entities.relations_map');
+Route::get('/w/{campaign}/entities/{entity}/relations/table', 'Entity\Connections\TableController@index')->name('entities.relations_table');
 
 // Entity
 Route::post('/w/{campaign}/entities/{entity}/confirm-editing', 'EditingController@confirm')->name('entities.confirm-editing');
@@ -191,13 +191,12 @@ Route::post('/w/{campaign}/quick-links/reorder', [\App\Http\Controllers\QuickLin
 
 // Entity Abilities API
 Route::get('/w/{campaign}/entities/{entity}/abilities', 'Entity\AbilityController@index')->name('entities.abilities');
-Route::get('/w/{campaign}/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
-Route::get('/w/{campaign}/entities/{entity}/entity_abilities/import', 'Entity\AbilityController@import')->name('entities.entity_abilities.import');
-Route::post('/w/{campaign}/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\AbilityController@useCharge')->name('entities.entity_abilities.use');
-Route::get('/w/{campaign}/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
+Route::get('/w/{campaign}/entities/{entity}/entity_abilities/api', 'Entity\Abilities\ApiController@index')->name('entities.entity_abilities.api');
+Route::get('/w/{campaign}/entities/{entity}/entity_abilities/import', 'Entity\Abilities\ImportController@index')->name('entities.entity_abilities.import');
+Route::post('/w/{campaign}/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\Abilities\ChargeController@use')->name('entities.entity_abilities.use');
+Route::get('/w/{campaign}/entities/{entity}/entity_abilities/reset', 'Entity\Abilities\ChargeController@reset')->name('entities.entity_abilities.reset');
 
 Route::get('/w/{campaign}/entities/{entity}/entity_assets/{entity_asset}/go', 'Entity\AssetController@go')->name('entities.entity_assets.go');
-//Route::get('/w/{campaign}/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
 
 Route::get('/w/{campaign}/entities/{entity}/profile', 'Entity\ProfileController@index')
     ->name('entities.profile');
@@ -264,7 +263,6 @@ Route::post('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformContro
 
 Route::get('/w/{campaign}/entities/{entity}/tooltip', 'Entity\TooltipController@show')->name('entities.tooltip');
 
-Route::get('/w/{campaign}/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
 
 // Entity files
 Route::get('/w/{campaign}/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
@@ -274,14 +272,14 @@ Route::get('/w/{campaign}/entities/{entity}/mentions', 'Entity\MentionController
 Route::get('/w/{campaign}/entities/{entity}/inventory', 'Entity\InventoryController@index')->name('entities.inventory');
 
 // Export
-Route::get('/w/{campaign}/entities/export/{entity}', 'EntityController@export')->name('entities.export');
 Route::get('/w/{campaign}/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');
+Route::get('/w/{campaign}/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
 
 Route::get('/w/{campaign}/entities/{entity}/template', 'Entity\TemplateController@update')->name('entities.template');
 
 // Attribute template
-Route::get('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@apply')->name('entities.attributes.template');
-Route::post('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@applyTemplate')->name('entities.attributes.template');
+Route::get('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@index')->name('entities.attributes.template');
+Route::post('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@process')->name('entities.attributes.template');
 
 Route::get('/w/{campaign}/entities/{entity}/permissions', 'Entity\PermissionController@view')->name('entities.permissions');
 Route::post('/w/{campaign}/entities/{entity}/permissions', 'Entity\PermissionController@store')->name('entities.permissions');

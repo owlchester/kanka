@@ -38,16 +38,7 @@ class AttributeController extends Controller
                 ])
             );
         }
-        if (empty($entity->child)) {
-            abort(404);
-        }
-
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         if (!$entity->accessAttributes()) {
             abort(403);
@@ -83,16 +74,7 @@ class AttributeController extends Controller
                 ])
             );
         }
-        if (empty($entity->child)) {
-            abort(404);
-        }
-
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         if (!$entity->accessAttributes()) {
             abort(403);

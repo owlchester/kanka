@@ -9,7 +9,6 @@ use App\Models\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 
 class MentionController extends Controller
 {
@@ -19,15 +18,8 @@ class MentionController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        if (empty($entity->child)) {
-            abort(404);
-        }
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
+
         $options = ['campaign' => $campaign, 'entity' => $entity];
 
         Datagrid::layout(\App\Renderers\Layouts\Mention\Mention::class)

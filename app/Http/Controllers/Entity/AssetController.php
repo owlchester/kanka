@@ -16,29 +16,12 @@ use Illuminate\Support\Str;
 
 class AssetController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
-    public function __construct()
-    {
-        //$this->middleware('campaign.boosted');
-    }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign, Entity $entity)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         $assets = $entity->assets;
 
@@ -49,12 +32,6 @@ class AssetController extends Controller
         ));
     }
 
-    /**
-     * No unique "show", redirect
-     * @param Entity $entity
-     * @param EntityAsset $entityAsset
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function show(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         return redirect()->route('entities.entity_assets.index', [$campaign, $entity]);
@@ -265,12 +242,7 @@ class AssetController extends Controller
      */
     public function go(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         if ($entityAsset->entity_id !== $entity->id || !$entityAsset->isLink()) {
             abort(404);

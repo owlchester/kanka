@@ -8,43 +8,15 @@ use App\Models\Ability;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAbility;
-use App\Services\Entity\AbilityService;
 use App\Traits\GuestAuthTrait;
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AbilityController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
-    protected AbilityService $service;
-
-    /**
-     * AbilityController constructor.
-     * @param AbilityService $service
-     */
-    public function __construct(AbilityService $service)
-    {
-        $this->service = $service;
-    }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign, Entity $entity)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         $translations = [
             'all' => __('crud.visibilities.all'),
@@ -64,11 +36,6 @@ class AbilityController extends Controller
         ));
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
@@ -79,11 +46,6 @@ class AbilityController extends Controller
         ));
     }
 
-    /**
-     * @param StoreEntityAbility $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(StoreEntityAbility $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
@@ -127,22 +89,12 @@ class AbilityController extends Controller
             ->with('success', $success);
     }
 
-    /**
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function show(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         return redirect()
             ->route('entities.entity_abilities.index', [$campaign, $entity->id]);
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function edit(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
@@ -155,13 +107,6 @@ class AbilityController extends Controller
         ));
     }
 
-    /**
-     * @param StoreEntityAbility $request
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function update(StoreEntityAbility $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
@@ -180,10 +125,6 @@ class AbilityController extends Controller
             ->route('entities.entity_abilities.index', [$campaign, $entity->id]);
     }
 
-    /**
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
-     */
     public function destroy(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
@@ -200,73 +141,5 @@ class AbilityController extends Controller
 
         return redirect()
             ->route('entities.entity_abilities.index', [$campaign, $entity]);
-    }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function api(Campaign $campaign, Entity $entity)
-    {
-        return response()->json([
-            'data' => $this->service
-                ->campaign($campaign)
-                ->entity($entity)
-                ->abilities()
-        ]);
-    }
-
-    /**
-     * @param Request $request
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function useCharge(Request $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
-    {
-        $this->authorize('update', $entity->child);
-
-        return response()->json([
-            'success' => $this->service
-                ->entity($entity)
-                ->useCharge($entityAbility, (int) $request->post('used'))
-        ]);
-    }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function resetCharges(Campaign $campaign, Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-
-        $this->service
-            ->entity($entity)
-            ->resetCharges();
-
-        return redirect()->route('entities.entity_abilities.index', [$campaign, $entity]);
-    }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function import(Campaign $campaign, Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-
-        try {
-            $count = $this->service
-                ->entity($entity)
-                ->import();
-
-            return redirect()->route('entities.entity_abilities.index', [$campaign, $entity])
-                ->with('success', trans_choice('entities/abilities.import.success', $count, ['count' => $count]));
-        } catch (Exception $e) {
-            return redirect()->route('entities.entity_abilities.index', [$campaign, $entity])
-                ->with('error', __('entities/abilities.import.errors.' . $e->getMessage()));
-        }
     }
 }

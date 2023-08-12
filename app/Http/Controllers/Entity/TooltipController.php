@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 
 class TooltipController extends Controller
 {
@@ -17,13 +16,7 @@ class TooltipController extends Controller
      */
     public function show(Campaign $campaign, Entity $entity)
     {
-        if (empty($entity->child)) {
-            abort(403);
-        } elseif (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         $tags = $entity->tagsWithEntity();
         $tagClasses = [];

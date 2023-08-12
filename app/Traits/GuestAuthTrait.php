@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Models\CampaignPermission;
+use App\Models\Entity;
 use App\Models\MiscModel;
 
 trait GuestAuthTrait
@@ -15,6 +16,18 @@ trait GuestAuthTrait
             $this->authorize('view', $model);
         } else {
             $this->authorizeForGuest(CampaignPermission::ACTION_READ, $model);
+        }
+    }
+
+    public function authEntityView(Entity $entity): void
+    {
+        if (!$entity->child) {
+            abort(404);
+        }
+        if (auth()->check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
     }
 

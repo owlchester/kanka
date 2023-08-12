@@ -14,10 +14,6 @@ class PostMoveController extends Controller
 {
     protected PostService $service;
 
-    /**
-     * AbilityController constructor.
-     * @param PostService $service
-     */
     public function __construct(PostService $service)
     {
         $this->service = $service;
@@ -27,7 +23,7 @@ class PostMoveController extends Controller
      */
     public function index(Campaign $campaign, Entity $entity, Post $post)
     {
-        $this->authorize('view', $entity->child);
+        $this->authorize('update', $entity->child);
 
         return view('entities.pages.posts.move.index', compact(
             'entity',
