@@ -109,7 +109,7 @@ class Campaign extends MiscModel
 
     public function getRouteKeyName()
     {
-        return Domain::isApi() ? 'id' : 'slug';
+        return 'slug';
     }
 
     /**
@@ -608,5 +608,10 @@ class Campaign extends MiscModel
         $key = 'modules.' . $type . '.i';
         $val = Arr::get($this->settings, $key);
         return $val;
+    }
+
+    public function hasVanity(): bool
+    {
+        return $this->slug != $this->id;
     }
 }

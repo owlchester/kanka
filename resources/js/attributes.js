@@ -191,7 +191,7 @@ function initLiveAttributes() {
 
                 }).fail(function (result) {
                     //alert('error! check console logs');
-                    console.error('live-edit-error', result);
+                    //console.error('live-edit-error', result);
 
                     liveEditModal.find('.modal-content').html('');
                     liveEditModal.modal('hide');

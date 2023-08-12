@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Crud;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteCampaign;
 use App\Http\Requests\StoreCampaign;
+use App\Http\Requests\UpdateCampaign;
 use App\Models\Campaign;
 use App\Services\Campaign\DeletionService;
 use App\Services\CampaignService;
@@ -119,7 +120,7 @@ class CampaignController extends Controller
         ]);
     }
 
-    public function update(StoreCampaign $request, Campaign $campaign)
+    public function update(UpdateCampaign $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
 
@@ -137,6 +138,10 @@ class CampaignController extends Controller
         // Same mumbo jumbo for module settings...
         if (!empty($campaign->settings['modules'])) {
             $data['settings']['modules'] = $campaign->settings['modules'];
+        }
+
+        if ($request->filled('vanity') && $campaign->premium()) {
+            $data['slug'] = $request->post('vanity');
         }
 
         $campaign->update($data);

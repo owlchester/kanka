@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Facades\Domain;
 use App\Facades\Identity;
 use App\Models\Campaign;
 use Carbon\Carbon;
@@ -65,7 +66,8 @@ trait CampaignScopes
      */
     public function scopeSlug(Builder $query, string $slug): Builder
     {
-        return $query->where($this->getTable() . '.slug', '=', $slug);
+        $key = is_numeric($slug) ? 'id' : 'slug';
+        return $query->where($this->getTable() . '.' . $key, '=', $slug);
     }
 
     /**

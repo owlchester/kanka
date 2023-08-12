@@ -163,3 +163,6 @@ Route::get('/w/{campaign}/history', [\App\Http\Controllers\HistoryController::cl
 
 Route::get('/w/{campaign}/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'index'])->name('bragi');
 Route::post('/w/{campaign}/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'generate'])->name('bragi.generate');
+
+
+Route::post('/w/{campaign}/vanity-validate', [\App\Http\Controllers\Calendars\Api\VanityController::class, 'index'])->name('campaign.vanity-validate');
