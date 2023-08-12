@@ -76,7 +76,7 @@ class TimelineController extends CrudController
     {
         $this->authCheck($timeline);
 
-        $options = ['timeline' => $timeline];
+        $options = ['campaign' => $campaign, 'timeline' => $timeline];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $timeline->id;

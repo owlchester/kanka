@@ -29,7 +29,7 @@ class CampaignSuperBoosted
                     'error' => 'This feature is reserved to premium campaign.'
                 ]);
             }
-            return redirect()->route('dashboard')->withErrors(__('campaigns.errors.premium'));
+            return redirect()->route('dashboard', $campaign)->withErrors(__('campaigns.errors.premium'));
         }
 
         return $next($request);

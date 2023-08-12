@@ -48,7 +48,7 @@ class DashboardHeaderController extends Controller
         $campaign->update($request->only('excerpt'));
 
         return redirect()
-            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
+            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : [$campaign])
             ->with('success', __('campaigns/dashboard-header.edit.success'));
     }
 }

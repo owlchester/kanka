@@ -86,7 +86,7 @@ class MapController extends CrudController
     {
         $this->authCheck($map);
 
-        $options = [$campaign, 'map' => $map];
+        $options = ['campaign' => $campaign, 'map' => $map];
         $base = 'descendants';
         if (request()->has('map_id')) {
             $options['map_id'] = $map->id;
@@ -129,11 +129,11 @@ class MapController extends CrudController
         if ($map->isChunked()) {
             if ($map->chunkingError()) {
                 return redirect()
-                    ->route('maps.show', [$campaign, $map->id])
+                    ->route('maps.show', [$campaign, $map])
                 ;
             } elseif (!$map->chunkingReady()) {
                 return redirect()
-                    ->route('maps.show', [$campaign, $map->id])
+                    ->route('maps.show', [$campaign, $map])
                 ;
             }
         }

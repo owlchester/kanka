@@ -28,9 +28,7 @@ class MentionController extends Controller
         } else {
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
-        $options = ['entity' => $entity];
-
-        $ajax = request()->ajax();
+        $options = ['campaign' => $campaign, 'entity' => $entity];
 
         Datagrid::layout(\App\Renderers\Layouts\Mention\Mention::class)
             ->route('entities.mentions', $options);

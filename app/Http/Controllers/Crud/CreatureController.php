@@ -70,7 +70,7 @@ class CreatureController extends CrudController
     {
         $this->authCheck($creature);
 
-        $options = ['creature' => $creature];
+        $options = ['campaign' => $campaign, 'creature' => $creature];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $creature->id;

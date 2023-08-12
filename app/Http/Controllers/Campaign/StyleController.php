@@ -67,7 +67,7 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         if ($campaign->styles()->count() >= self::MAX_THEMES) {
-            return redirect()->route('campaign_styles.index')
+            return redirect()->route('campaign_styles.index', $campaign)
                 ->with('error', __('campaigns/styles.errors.max_reached', ['max' => self::MAX_THEMES]));
         }
 
@@ -104,7 +104,7 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         if ($campaignStyle->isTheme()) {
-            return redirect()->route('campaign_styles.builder');
+            return redirect()->route('campaign_styles.builder', $campaign);
         }
 
         $style = $campaignStyle;
@@ -177,7 +177,7 @@ class StyleController extends Controller
         $models = request()->get('model');
         if (!in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
             return redirect()
-                ->route('campaign_styles.index');
+                ->route('campaign_styles.index', $campaign);
         }
 
         $count = 0;

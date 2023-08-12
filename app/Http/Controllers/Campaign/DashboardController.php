@@ -65,11 +65,8 @@ class DashboardController extends Controller
 
         $dashboard = $this->service->campaign($campaign)->create($request);
 
-        //if (!empty($dashboard)) {
         return redirect()->route('dashboard.setup', [$campaign, 'dashboard' => $dashboard->id])
             ->with('success', __('dashboard.dashboards.create.success', ['name' => $dashboard->name]));
-        /*}
-        return redirect()->route('campaign_dashboards.create');*/
     }
 
     public function edit(Campaign $campaign, CampaignDashboard $campaignDashboard)

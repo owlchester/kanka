@@ -33,7 +33,7 @@ class TimelineEraController extends Controller
     {
         $this->authorize('update', $timeline);
 
-        $options = ['timeline' => $timeline->id];
+        $options = ['campaign' => $campaign, 'timeline' => $timeline->id];
         $model = $timeline;
 
         Datagrid::layout(\App\Renderers\Layouts\Timeline\Era::class)
@@ -51,7 +51,7 @@ class TimelineEraController extends Controller
     }
     public function show(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
-        return redirect()->route('timelines.show', $timeline);
+        return redirect()->to($timeline->getLink());
     }
 
     /**
@@ -120,7 +120,6 @@ class TimelineEraController extends Controller
             compact('campaign', 'timeline', 'ajax', 'model', 'from')
         );
     }
-
     /**
      * @param StoreTimelineEra $request
      * @param Timeline $timeline
@@ -150,12 +149,6 @@ class TimelineEraController extends Controller
             ->withSuccess(__('timelines/eras.edit.success', ['name' => $timelineEra->name]));
     }
 
-    /**
-     * @param Timeline $timeline
-     * @param TimelineEra $timelineEra
-     * @return mixed
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function destroy(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('update', $timeline);
@@ -174,13 +167,6 @@ class TimelineEraController extends Controller
             ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
     }
 
-
-    /**
-     * @param Request $request
-     * @param Timeline $timeline
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function bulk(Request $request, Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('update', $timeline);
@@ -191,7 +177,7 @@ class TimelineEraController extends Controller
         }
 
         /*if ($action === 'edit') {
-            return $this->bulkBatch(route('timelines.eras.bulk', ['timeline' => $timeline]), '_timeline-era', $models);
+            return $this->bulkBatch(route('timelines.eras.bulk', [$campaign, 'timeline' => $timeline]), '_timeline-era', $models);
         }*/
 
         $count = $this->bulkProcess($request, TimelineEra::class);
@@ -202,8 +188,6 @@ class TimelineEraController extends Controller
         ;
     }
 
-    /**
-     */
     public function positionList(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('view', $timeline);

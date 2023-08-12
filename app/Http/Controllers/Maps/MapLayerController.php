@@ -25,7 +25,7 @@ class MapLayerController extends Controller
     {
         $this->authorize('update', $map);
 
-        $options = ['map' => $map->id];
+        $options = ['campaign' => $campaign, 'map' => $map->id];
         $model = $map;
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Layer::class)
@@ -44,7 +44,7 @@ class MapLayerController extends Controller
 
     public function show(Campaign $campaign, Map $map)
     {
-        return redirect()->route('maps.show', $map);
+        return redirect()->route('maps.show', [$campaign, $map]);
     }
 
     /**

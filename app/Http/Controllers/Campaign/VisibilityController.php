@@ -58,13 +58,13 @@ class VisibilityController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function bulk()
+    public function bulk(Campaign $campaign)
     {
         $action = request()->get('action');
         $models = request()->get('model');
         if (!in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
             return redirect()
-                ->route('campaign_styles.index');
+                ->route('campaign_styles.index', $campaign);
         }
 
         $count = 0;
@@ -90,12 +90,12 @@ class VisibilityController extends Controller
         CampaignCache::clearStyles();
 
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', trans_choice('campaigns/styles.bulks.' . $action, $count, ['count' => $count]))
         ;
     }
 
-    public function reorder(ReorderStyles $request)
+    public function reorder(ReorderStyles $request, Campaign $campaign)
     {
         $order = 1;
         $ids = $request->get('style');
@@ -113,7 +113,7 @@ class VisibilityController extends Controller
 
         $order--;
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]))
         ;
     }

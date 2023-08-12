@@ -70,7 +70,7 @@ class RelationController extends Controller
             $mode = 'table';
 
             Datagrid::layout(\App\Renderers\Layouts\Entity\Relation::class)
-                ->route('entities.relations_table', [$entity, 'mode' => 'table']);
+                ->route('entities.relations_table', ['campaign' => $campaign, $entity, 'mode' => 'table']);
 
             $rows = $entity
                 ->allRelationships()

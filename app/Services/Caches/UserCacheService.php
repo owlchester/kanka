@@ -12,10 +12,8 @@ class UserCacheService extends BaseCache
     use CampaignCache;
     use RoleCache;
 
-
     /**
      * Get the username
-     * Todo: why isn't this a left join?
      * @param int $userId the user id
      * @return string
      */

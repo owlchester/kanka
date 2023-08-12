@@ -219,7 +219,7 @@ class ReminderController extends Controller
         $next = request()->post('next', '0');
         if ($next == 'calendars.events') {
             return redirect()
-                ->route('calendars.events', $entityEvent->calendar)
+                ->route('calendars.events', [$campaign, $entityEvent->calendar])
                 ->with('success', $success);
         } elseif ($next == 'entity.events') {
             return redirect()

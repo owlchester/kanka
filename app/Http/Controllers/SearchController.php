@@ -70,7 +70,7 @@ class SearchController extends Controller
 
         // Found just one result?
         if ($resultCount == 1 && $found instanceof MiscModel) {
-            return redirect()->route($found->entity->pluralType() . '.show', $found);
+            return redirect()->route($found->entity->pluralType() . '.show', [$campaign, $found]);
         }
 
         return view('search.index', compact(

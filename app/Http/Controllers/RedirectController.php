@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 
 class RedirectController extends Controller
 {
-    private $entity;
+    private EntityService $entity;
 
     /**
      * Create a new controller instance.
@@ -26,7 +27,7 @@ class RedirectController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function index(Request $request)
+    public function index(Request $request, Campaign $campaign)
     {
         $mapper = [
             'character' => 'characters',
@@ -57,9 +58,9 @@ class RedirectController extends Controller
         $modelClass = new $allowed[$what]();
         $model = $modelClass->where('name', 'like', "%{$name}%")->first();
         if ($model) {
-            return redirect()->route($what . '.show', $model->id);
+            return redirect()->route($what . '.show', [$campaign, $model]);
         }
 
-        return redirect()->route($what . '.create', ['name' => $name]);
+        return redirect()->route($what . '.create', [$campaign, 'name' => $name]);
     }
 }

@@ -40,7 +40,7 @@ class MapMarkerController extends Controller
     {
         $this->authorize('update', $map);
 
-        $options = ['map' => $map->id];
+        $options = ['campaign' => $campaign, 'map' => $map->id];
         $model = $map;
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Marker::class)
@@ -294,7 +294,7 @@ class MapMarkerController extends Controller
         }
 
         if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.markers.bulk', ['map' => $map]), '_map-marker', $models, $map);
+            return $this->bulkBatch(route('maps.markers.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-marker', $models, $map);
         }
 
         $count = $this->bulkProcess($request, MapMarker::class);

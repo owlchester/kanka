@@ -159,7 +159,7 @@ class CalendarController extends CrudController
     {
         $this->authCheck($calendar);
 
-        $options = ['calendar' => $calendar];
+        $options = [$campaign, 'calendar' => $calendar];
         $after = $before = false;
         if (request()->has('before_id')) {
             $options['before_id'] = 1;

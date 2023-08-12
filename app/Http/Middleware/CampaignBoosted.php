@@ -30,7 +30,7 @@ class CampaignBoosted
                     'error' => 'This feature is reserved to boosted campaigns.'
                 ]);
             }
-            return redirect()->route('dashboard')->withErrors(__('crud.errors.boosted_campaigns', ['boosted' => __('concept.premium-campaigns')]));
+            return redirect()->route('dashboard', $campaign)->withErrors(__('crud.errors.boosted_campaigns', ['boosted' => __('concept.premium-campaigns')]));
         }
 
         return $next($request);

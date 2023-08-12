@@ -49,7 +49,7 @@ class ThemeBuilderController extends Controller
         CampaignCache::clearStyles();
 
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/builder.success'));
     }
 
@@ -61,13 +61,13 @@ class ThemeBuilderController extends Controller
         $theme = $campaign->styles()->theme()->first();
         if (empty($theme)) {
             return redirect()
-                ->route('campaign_styles.index');
+                ->route('campaign_styles.index', $campaign);
         }
         $theme->delete();
         CampaignCache::clearStyles();
 
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/builder.reset'));
     }
 
