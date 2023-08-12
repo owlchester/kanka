@@ -25,8 +25,7 @@ class AbilityController extends CrudController
      */
     protected $model = \App\Models\Ability::class;
 
-    /** @var string Filter */
-    protected $filter = AbilityFilter::class;
+    protected string $filter = AbilityFilter::class;
 
     /**
      * Store a newly created resource in storage.

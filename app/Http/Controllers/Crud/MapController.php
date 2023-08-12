@@ -26,7 +26,7 @@ class MapController extends CrudController
     protected $model = \App\Models\Map::class;
 
     /** @var string Filter */
-    protected $filter = MapFilter::class;
+    protected string $filter = MapFilter::class;
 
 
     /**

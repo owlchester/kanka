@@ -24,7 +24,7 @@ class RaceController extends CrudController
     protected $model = \App\Models\Race::class;
 
     /** @var string Filter */
-    protected $filter = RaceFilter::class;
+    protected string $filter = RaceFilter::class;
 
     /**
      * @param StoreRace $request

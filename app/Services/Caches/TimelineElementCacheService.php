@@ -3,11 +3,14 @@
 namespace App\Services\Caches;
 
 use App\Models\TimelineElement;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class TimelineElementCacheService extends BaseCache
 {
+    use CampaignAware;
+
     /**
      * @return array
      */

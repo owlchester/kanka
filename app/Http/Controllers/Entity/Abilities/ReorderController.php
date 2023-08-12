@@ -3,41 +3,69 @@
 namespace App\Http\Controllers\Entity\Abilities;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReorderAbility;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\EntityAbility;
+use App\Services\Abilities\AbilityService;
 use App\Services\Abilities\ReorderService;
-use Illuminate\Http\Request;
 
 class ReorderController extends Controller
 {
-    protected ReorderService $service;
+    protected AbilityService $service;
+    protected ReorderService $reorderService;
 
-    public function __construct(ReorderService $chargeService)
+    public function __construct(AbilityService $abilityService, ReorderService $reorderService)
     {
-        $this->service = $chargeService;
+        $this->service = $abilityService;
+        $this->reorderService = $reorderService;
     }
 
-    public function use(Request $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
+    public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
-        return response()->json([
-            'success' => $this->service
-                ->entity($entity)
-                ->ability($entityAbility)
-                ->use((int) $request->post('used'))
-        ]);
+        $abilities = $entity->abilities()
+            ->select('entity_abilities.*')
+            ->with(['ability',
+                // entity
+                'ability.entity', 'ability.entity.image', 'ability.entity.attributes',
+                // parent
+                'ability.ability', 'ability.ability.entity'
+            ])
+            ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
+            ->defaultOrder()
+            ->get();
+
+        $parents = [];
+        foreach ($abilities as $ability) {
+            // Missing permission to view the ability
+            if (empty($ability->ability)) {
+                continue;
+            }
+            if (array_key_exists($ability->ability->ability_id, $parents)) {
+                $parents[$ability->ability->ability_id][] = $ability;
+            } else {
+                $parents[$ability->ability->ability_id] = [$ability];
+            }
+        }
+
+        return view('entities.pages.abilities.reorder.index', compact(
+            'campaign',
+            'entity',
+            'parents'
+        ));
     }
 
-    public function reset(Campaign $campaign, Entity $entity)
+    public function save(Campaign $campaign, Entity $entity, ReorderAbility $request)
     {
         $this->authorize('update', $entity->child);
 
-        $this->service
+        $this->reorderService
             ->entity($entity)
-            ->reset();
+            ->reorder($request);
 
-        return redirect()->route('entities.entity_abilities.index', [$campaign, $entity]);
+        return redirect()
+            ->route('entities.entity_abilities.index', [$campaign, $entity])
+            ->withSuccess(__('entities/abilities.reorder.success'));
     }
 }

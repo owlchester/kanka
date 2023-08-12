@@ -32,7 +32,7 @@ class RelationController extends CrudController
     protected string $sanitizer = '';
 
     /** @var string  */
-    protected $filter = RelationFilter::class;
+    protected string $filter = RelationFilter::class;
 
     public string $titleKey;
 

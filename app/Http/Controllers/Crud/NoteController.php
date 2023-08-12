@@ -24,7 +24,7 @@ class NoteController extends CrudController
     protected $model = \App\Models\Note::class;
 
     /** @var string Filter */
-    protected $filter = NoteFilter::class;
+    protected string $filter = NoteFilter::class;
 
     /**
      * @param StoreNote $request

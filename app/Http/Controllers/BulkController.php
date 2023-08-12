@@ -235,6 +235,7 @@ class BulkController extends Controller
         $entities = $this->bulkService->export();
         $entityType = $this->entity;
         $name = $this->entity;
+        $campaign = $this->campaign;
 
         return $pdf
             ->loadView('cruds.export', compact('campaign', 'entityType', 'entities', 'name'))

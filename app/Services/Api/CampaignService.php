@@ -110,7 +110,7 @@ class CampaignService
 
     protected function campaignsMeta(): void
     {
-        /** @var $paginator LengthAwarePaginator */
+        /** @var LengthAwarePaginator $paginator */
         $paginator = $this->data['campaigns']->resource;
         $this->data['pagination'] = [
             'per_page' => $paginator->perPage(),
@@ -118,7 +118,6 @@ class CampaignService
             'total_pages' => $paginator->total(),
             'next' => $paginator->nextPageUrl(),
             'previous' => $paginator->previousPageUrl(),
-
         ];
     }
 }

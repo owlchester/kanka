@@ -69,7 +69,7 @@ class Inventory extends Model
 
     /**
      * List of recently used positions for the form suggestions
-     * @return mixed
+     * @return Builder
      */
     public function scopePositionList(Builder $builder, Campaign $campaign): Builder
     {

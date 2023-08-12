@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Http\Requests\UpdateModuleName;
 use App\Models\EntityType;
+use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Str;
 use Exception;
@@ -11,7 +12,7 @@ use Exception;
 class ModuleEditService
 {
     use CampaignAware;
-
+    use PurifiableTrait;
 
     public function update(UpdateModuleName $request, EntityType $entityType): self
     {

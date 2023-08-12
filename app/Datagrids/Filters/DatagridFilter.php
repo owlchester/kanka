@@ -23,6 +23,10 @@ abstract class DatagridFilter
     /** @var array Filters to be rendered */
     protected array $filters = [];
 
+    public function build()
+    {
+    }
+
     /**
      * Get the filters
      * @return array

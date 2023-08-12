@@ -11,7 +11,8 @@ class VoteService
         $data = [];
 
         $votes = CommunityVote::published()
-            ->orderBy('visible_at', 'DESC');
+            ->orderBy('visible_at', 'DESC')
+            ->paginate(15);
         foreach ($votes as $vote) {
             $data[] = [
 

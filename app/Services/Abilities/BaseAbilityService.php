@@ -4,12 +4,15 @@ namespace App\Services\Abilities;
 
 use App\Models\Ability;
 use App\Models\Attribute;
+use App\Traits\EntityAware;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Exception;
 use Illuminate\Support\Collection;
 
 abstract class BaseAbilityService
 {
+    use EntityAware;
+
     protected Collection $attributes;
 
     /**

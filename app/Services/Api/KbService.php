@@ -11,8 +11,8 @@ class KbService
     {
         $data = [];
 
-        /** @var FaqCategory $category */
         $categories = FaqCategory::visible()->ordered()->with(['faqs'])->get();
+        /** @var FaqCategory $category */
         foreach ($categories as $category) {
             $questions = [];
 

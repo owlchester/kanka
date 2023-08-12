@@ -103,7 +103,6 @@ class CampaignBoostController extends Controller
             $this->notificationService
                 ->campaign($campaign)
                 ->notify(
-                    $campaign,
                     'premium.add',
                     'rocket',
                     'maroon',
@@ -171,7 +170,6 @@ class CampaignBoostController extends Controller
             $this->notificationService
                 ->campaign($campaign)
                 ->notify(
-                    $campaign,
                     'boost.superboost',
                     'rocket',
                     'maroon',

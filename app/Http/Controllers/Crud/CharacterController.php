@@ -25,7 +25,7 @@ class CharacterController extends CrudController
     /**
      * @var string
      */
-    protected $filter = CharacterFilter::class;
+    protected string $filter = CharacterFilter::class;
 
     public function store(StoreCharacter $request, Campaign $campaign)
     {

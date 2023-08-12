@@ -4,13 +4,26 @@ namespace App\Services\Caches;
 
 use App\Services\Caches\Traits\User\CampaignCache;
 use App\Services\Caches\Traits\User\RoleCache;
+use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserCacheService extends BaseCache
 {
+    use CampaignAware;
+    use UserAware;
     use CampaignCache;
     use RoleCache;
+
+    /**
+     * EntityCacheService constructor.
+     */
+    public function __construct()
+    {
+        $this->user = Auth::check() ? Auth::user() : null;
+    }
 
     /**
      * Get the username

@@ -20,7 +20,7 @@ class DiceRollResultController extends CrudController
     protected $model = \App\Models\DiceRollResult::class;
 
     /** @var string Filter */
-    protected $filter = DiceRollResult::class;
+    protected string $filter = DiceRollResult::class;
 
     protected string $forceMode = 'table';
 

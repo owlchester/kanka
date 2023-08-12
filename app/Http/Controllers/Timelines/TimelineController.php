@@ -24,7 +24,7 @@ class TimelineController extends CrudController
     protected $model = \App\Models\Timeline::class;
 
     /** @var string */
-    protected $filter = TimelineFilter::class;
+    protected string $filter = TimelineFilter::class;
 
     protected $module = 'timelines';
 

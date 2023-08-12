@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Str;
 use Exception;
@@ -10,7 +9,6 @@ use Exception;
 class ModuleService
 {
     use CampaignAware;
-    use PurifiableTrait;
 
     protected array $cache = [];
 

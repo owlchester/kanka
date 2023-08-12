@@ -32,6 +32,7 @@ class FamilyController extends Controller
             ->route('families.families', $options)
         ;
 
+        // @phpstan-ignore-next-line
         $this->rows = $family
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])

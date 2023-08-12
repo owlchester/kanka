@@ -25,7 +25,7 @@ class DiceRollController extends CrudController
     protected $model = \App\Models\DiceRoll::class;
 
     /** @var string Filter */
-    protected $filter = DiceRollFilter::class;
+    protected string $filter = DiceRollFilter::class;
 
     /** @var string  */
     protected string $datagridActions = DeprecatedDatagridActions::class;

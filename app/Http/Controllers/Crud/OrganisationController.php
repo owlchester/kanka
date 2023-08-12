@@ -24,7 +24,7 @@ class OrganisationController extends CrudController
     protected $model = \App\Models\Organisation::class;
 
     /** @var string Filter */
-    protected $filter = OrganisationFilter::class;
+    protected string $filter = OrganisationFilter::class;
 
     /**
      * Store a newly created resource in storage.

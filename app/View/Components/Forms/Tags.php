@@ -10,6 +10,7 @@ use Illuminate\View\Component;
 class Tags extends Component
 {
     public string $id;
+    public Campaign $campaign;
     public bool $allowNew;
     public bool $allowClear;
     public bool $enableAuto;

@@ -24,7 +24,7 @@ class EventController extends CrudController
     protected $model = \App\Models\Event::class;
 
     /** @var string Filter */
-    protected $filter = EventFilter::class;
+    protected string $filter = EventFilter::class;
 
     public function store(StoreEvent $request, Campaign $campaign)
     {

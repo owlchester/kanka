@@ -10,6 +10,8 @@ use App\Services\Caches\Traits\Campaign\RoleCache;
 use App\Services\Caches\Traits\Campaign\SettingCache;
 use App\Services\Caches\Traits\Campaign\StyleCache;
 use App\Services\Caches\Traits\Campaign\ThemeCache;
+use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Str;
 
 /**
@@ -24,6 +26,8 @@ class CampaignCacheService extends BaseCache
     use SettingCache;
     use StyleCache;
     use ThemeCache;
+    use CampaignAware;
+    use UserAware;
 
     /**
      * Count the number of entities in a campaign, skipping the permission engine.

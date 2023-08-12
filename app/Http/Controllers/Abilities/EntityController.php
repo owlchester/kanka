@@ -27,7 +27,6 @@ class EntityController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
             ->route('abilites.entities', $options);
 
-        // @phpstan-ignore-next-line
         $this->rows = $ability
             ->entities()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
@@ -42,8 +41,6 @@ class EntityController extends Controller
             ->subview('abilites.entities', $ability);
     }
 
-    /**
-     */
     public function create(Campaign $campaign, Ability $ability)
     {
         $this->authorize('update', $ability);
@@ -59,8 +56,6 @@ class EntityController extends Controller
         ]);
     }
 
-    /**
-     */
     public function store(StoreAbilityEntity $request, Campaign $campaign, Ability $ability)
     {
         $this->authorize('update', $ability);

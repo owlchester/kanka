@@ -24,7 +24,7 @@ class CreatureController extends CrudController
     protected $model = \App\Models\Creature::class;
 
     /** @var string Filter */
-    protected $filter = CreatureFilter::class;
+    protected string $filter = CreatureFilter::class;
 
     /**
      * @param StoreCreature $request

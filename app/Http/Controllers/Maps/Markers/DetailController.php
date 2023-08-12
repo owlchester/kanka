@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapMarker;
+use App\Traits\GuestAuthTrait;
 
 class DetailController extends Controller
 {
+    use GuestAuthTrait;
+
     public function index(Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
         if (auth()->check()) {

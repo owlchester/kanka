@@ -3,11 +3,14 @@
 namespace App\Services\Caches;
 
 use App\Models\MapMarker;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class MapMarkerCacheService extends BaseCache
 {
+    use CampaignAware;
+
     /**
      * @return array
      */

@@ -25,7 +25,7 @@ class QuestController extends CrudController
     protected $model = \App\Models\Quest::class;
 
     /** @var string Filter */
-    protected $filter = QuestFilter::class;
+    protected string $filter = QuestFilter::class;
 
     /**
      */

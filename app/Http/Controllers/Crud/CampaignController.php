@@ -40,10 +40,6 @@ class CampaignController extends Controller
         $this->deletionService = $deletionService;
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function show(Campaign $campaign)
     {
         return view($this->view . '.show', compact('campaign'));

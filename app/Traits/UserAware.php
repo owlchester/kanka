@@ -10,9 +10,10 @@ use Illuminate\Contracts\Auth\Authenticatable;
  */
 trait UserAware
 {
-    public Authenticatable|User|null $user;
+    /** @var User|null */
+    public User|null $user;
 
-    public function user(Authenticatable|User $user): self
+    public function user(User $user): self
     {
         $this->user = $user;
         return $this;

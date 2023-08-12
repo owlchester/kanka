@@ -47,7 +47,8 @@ class CrudController extends Controller
 
     /** @var array */
     protected array $filters = [];
-    protected $filter;
+
+    protected string $filter;
 
     /** @var FilterService */
     protected $filterService;
@@ -129,7 +130,7 @@ class CrudController extends Controller
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
         $filters = $this->filters;
-        /** @var DatagridFilter $filter */
+        /** @var DatagridFilter|null $filter */
         $filter = !empty($this->filter) ? new $this->filter() : null;
         if (!empty($filter)) {
             $filter->campaign($this->campaign)->build();

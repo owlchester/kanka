@@ -16,8 +16,7 @@ class AttributeTemplateController extends CrudController
 
     protected $model = \App\Models\AttributeTemplate::class;
 
-    /** @var string */
-    protected $filter = AttributeTemplateFilter::class;
+    protected string $filter = AttributeTemplateFilter::class;
 
     protected function getNavActions(): CrudController
     {

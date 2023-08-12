@@ -120,10 +120,10 @@ class InviteService
 
         // If the user was following the campaign, remove it
         if ($campaign->isFollowing()) {
-            $this->campaignFollowService->remove(
-                $campaign,
-                $this->user
-            );
+            $this->campaignFollowService
+                ->campaign($campaign)
+                ->user($this->user)
+                ->remove();
         }
 
         // Notify all admins of the campaign

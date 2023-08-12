@@ -43,7 +43,7 @@ trait TreeControllerTrait
         $name = $this->view;
         $filters = $this->filters;
         $filterService = $this->filterService;
-        /** @var DatagridFilter $filter */
+        /** @var DatagridFilter|null $filter */
         $filter = !empty($this->filter) ? new $this->filter() : null;
         if (!empty($filter)) {
             $filter->campaign($this->campaign)->build();

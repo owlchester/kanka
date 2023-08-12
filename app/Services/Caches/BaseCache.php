@@ -2,9 +2,6 @@
 
 namespace App\Services\Caches;
 
-use App\Traits\CampaignAware;
-use App\Traits\UserAware;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
@@ -14,17 +11,6 @@ use Illuminate\Support\Facades\Log;
  */
 abstract class BaseCache
 {
-    use CampaignAware;
-    use UserAware;
-
-    /**
-     * EntityCacheService constructor.
-     */
-    public function __construct()
-    {
-        $this->user = Auth::check() ? Auth::user() : null;
-    }
-
     /**
      * Wrapper for the cache forget method
      * @param string $key

@@ -125,7 +125,7 @@ class CampaignObserver
         ]);
         $setting->save();
 
-        $campaign->slug = $campaign->id;
+        $campaign->slug = (string) $campaign->id;
         $campaign->saveQuietly();
 
         UserCache::clearCampaigns();

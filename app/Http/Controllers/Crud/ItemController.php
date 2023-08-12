@@ -24,7 +24,7 @@ class ItemController extends CrudController
     protected $model = \App\Models\Item::class;
 
     /** @var string Filter */
-    protected $filter = ItemFilter::class;
+    protected string $filter = ItemFilter::class;
 
     /**
      * Store a newly created resource in storage.

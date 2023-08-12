@@ -24,7 +24,7 @@ class TagController extends CrudController
     protected $model = \App\Models\Tag::class;
 
     /** @var string Filter */
-    protected $filter = TagFilter::class;
+    protected string $filter = TagFilter::class;
 
     /**
      * Constructor

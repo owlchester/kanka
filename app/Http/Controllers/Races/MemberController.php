@@ -34,7 +34,6 @@ class MemberController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Race\Character::class)
             ->route('races.characters', $options);
 
-        // @phpstan-ignore-next-line
         $this->rows = $race
             ->{$relation}()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])

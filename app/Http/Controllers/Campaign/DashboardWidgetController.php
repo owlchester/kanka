@@ -138,13 +138,6 @@ class DashboardWidgetController extends Controller
             ->with('success', __('dashboard.widgets.update.success'));
     }
 
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param CampaignDashboardWidget $campaignDashboardWidget
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function destroy(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('dashboard', $campaign);

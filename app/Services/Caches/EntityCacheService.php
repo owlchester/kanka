@@ -4,6 +4,7 @@ namespace App\Services\Caches;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 
 /**
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Cache;
  */
 class EntityCacheService extends BaseCache
 {
+    use CampaignAware;
+
     /**
      * In-memory entity cache
      * @var array

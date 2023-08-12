@@ -27,7 +27,7 @@ class JournalController extends CrudController
     protected $model = \App\Models\Journal::class;
 
     /** @var string Filter */
-    protected $filter = JournalFilter::class;
+    protected string $filter = JournalFilter::class;
 
     /**
      * Store a newly created resource in storage.

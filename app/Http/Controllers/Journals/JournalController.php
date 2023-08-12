@@ -31,7 +31,6 @@ class JournalController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Journal\Journal::class)
             ->route('journals.journals', $options);
 
-        // @phpstan-ignore-next-line
         $this->rows = $journal
             ->allJournals()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])

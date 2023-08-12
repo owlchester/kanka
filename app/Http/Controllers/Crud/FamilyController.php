@@ -26,7 +26,7 @@ class FamilyController extends CrudController
     protected $model = \App\Models\Family::class;
 
     /** @var string Filter */
-    protected $filter = FamilyFilter::class;
+    protected string $filter = FamilyFilter::class;
 
     public function store(StoreFamily $request, Campaign $campaign)
     {

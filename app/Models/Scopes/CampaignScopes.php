@@ -23,6 +23,7 @@ use Illuminate\Support\Arr;
  * @method static self|Builder open()
  * @method static self|Builder unboosted()
  * @method static self|Builder hidden()
+ * @method static self|Builder slug(string $slug)
  */
 trait CampaignScopes
 {
@@ -34,12 +35,12 @@ trait CampaignScopes
     public function scopeAcl(Builder $query, string $slug): Builder
     {
         if (auth()->guest()) {
-            return $query->public()->slug($slug);
+            return $this->public()->slug($slug);
         }
 
         // If we are impersonating, that gives us only a single choice
         if (Identity::isImpersonating()) {
-            return $query
+            return $this
                 ->slug($slug)
                 // Use ID and not slug to avoid shenanigans when updating the slug
                 ->where($this->getTable() . '.id', Identity::getCampaignId());

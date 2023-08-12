@@ -10,8 +10,8 @@ class ConversationMessageResource extends JsonResource
 {
     public function toArray($request)
     {
-        /** @var ConversationMessage $resource */
         $campaign = CampaignLocalization::getCampaign();
+        /** @var ConversationMessage $resource */
         $resource = $this->resource;
         return [
             'id' => $resource->id,

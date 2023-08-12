@@ -13,11 +13,6 @@ class DashboardController extends Controller
      */
     public function index(Campaign $campaign)
     {
-        // If the user isn't viewing specific campaign and has no campaigns, get them to create their first campaign
-        if (empty($campaign) && (auth()->check() && !auth()->user()->hasCampaigns())) {
-            return redirect()->route('start');
-        }
-
         // Determine the user's dashboard
         $requestedDashboard = request()->get('dashboard');
         if ($requestedDashboard == 'default') {

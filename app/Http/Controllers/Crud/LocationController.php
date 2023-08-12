@@ -24,7 +24,7 @@ class LocationController extends CrudController
     protected $model = \App\Models\Location::class;
 
     /** @var string Filter */
-    protected $filter = LocationFilter::class;
+    protected string $filter = LocationFilter::class;
 
     /**
      * Store a newly created resource in storage.
