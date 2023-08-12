@@ -57,7 +57,7 @@ trait CampaignScopes
                 return $sub
                     ->public()
                     ->orWhereNotNull('cu.user_id');
-        });
+            });
     }
 
     /**

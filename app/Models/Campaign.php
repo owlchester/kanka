@@ -6,7 +6,6 @@ use App\Facades\CampaignCache;
 use App\Facades\Domain;
 use App\Facades\Img;
 use App\Facades\Mentions;
-use App\Models\Concerns\Acl;
 use App\Models\Concerns\Boosted;
 use App\Models\Concerns\CampaignLimit;
 use App\Models\Concerns\LastSync;
