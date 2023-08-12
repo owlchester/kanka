@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Campaign;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignInvite;
 use App\Models\Campaign;
 use App\Models\CampaignInvite;
 
-class CampaignInviteController extends Controller
+class InviteController extends Controller
 {
     /**
      * Create a new controller instance.

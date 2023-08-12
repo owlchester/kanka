@@ -41,20 +41,23 @@ class MapMarkerController extends Controller
         $this->authorize('update', $map);
 
         $options = ['campaign' => $campaign, 'map' => $map->id];
-        $model = $map;
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Marker::class)
             ->route('maps.map_markers.index', $options);
-        $rows = $map
+        $this->rows = $map
             ->markers()
             ->sort(request()->only(['o', 'k']), ['id' => 'desc'])
             ->with(['map'])
             ->paginate(15);
         if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax($rows, $campaign);
+            return $this->campaign($campaign)->datagridAjax();
         }
 
-        return view('maps.markers.index', compact('campaign', 'rows', 'model'));
+        return view('maps.markers.index')
+            ->with('campaign', $campaign)
+            ->with('rows', $this->rows)
+            ->with('model', $map)
+        ;
     }
 
     public function show(Campaign $campaign, Map $map)

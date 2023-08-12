@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 class Inventory extends Model
 {
     use VisibilityIDTrait;
+
     /**
      * Fillable fields
      */

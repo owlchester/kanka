@@ -26,20 +26,23 @@ class MapLayerController extends Controller
         $this->authorize('update', $map);
 
         $options = ['campaign' => $campaign, 'map' => $map->id];
-        $model = $map;
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Layer::class)
             ->route('maps.map_layers.index', $options);
-        $rows = $map
+        $this->rows = $map
             ->layers()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
             ->with(['map'])
             ->paginate(15);
         if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax($rows);
+            return $this->campaign($campaign)->datagridAjax();
         }
 
-        return view('maps.layers.index', compact('campaign', 'rows', 'model'));
+        return view('maps.layers.index')
+            ->with('campaign', $campaign)
+            ->with('model', $map)
+            ->with('rows', $this->rows)
+        ;
     }
 
     public function show(Campaign $campaign, Map $map)

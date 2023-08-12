@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\JournalFilter;
-use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreJournal;
 use App\Models\Campaign;
@@ -16,8 +15,6 @@ class JournalController extends CrudController
      * Tree / Nested Mode
      */
     use TreeControllerTrait;
-
-    protected $treeControllerParentKey = 'journal_id';
 
     /**
      * @var string
@@ -70,41 +67,5 @@ class JournalController extends CrudController
     public function destroy(Campaign $campaign, Journal $journal)
     {
         return $this->campaign($campaign)->crudDestroy($journal);
-    }
-
-    /**
-     * @param Journal $journal
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function journals(Campaign $campaign, Journal $journal)
-    {
-        $this->authCheck($journal);
-
-        $options = ['campaign' => $campaign, 'journal' => $journal];
-        $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $journal->id;
-            $filters['journal_id'] = $journal->id;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Journal\Journal::class)
-            ->route('journals.journals', $options);
-
-        $this->rows = $journal
-            ->allJournals()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
-            ->with(['entity', 'character'])
-            ->paginate();
-
-        // Ajax Datagrid
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->campaign($campaign)
-            ->menuView($journal, 'journals');
     }
 }

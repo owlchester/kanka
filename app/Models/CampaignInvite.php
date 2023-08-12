@@ -36,8 +36,7 @@ class CampaignInvite extends MiscModel
      */
     public function campaign()
     {
-        return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id')
-            ->withInvisible();
+        return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
 
     /**

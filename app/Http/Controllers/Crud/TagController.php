@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\TagFilter;
-use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTag;
-use App\Http\Requests\StoreTagEntity;
 use App\Models\Campaign;
 use App\Models\Tag;
 use App\Traits\TreeControllerTrait;
@@ -75,112 +73,5 @@ class TagController extends CrudController
     public function destroy(Campaign $campaign, Tag $tag)
     {
         return $this->campaign($campaign)->crudDestroy($tag);
-    }
-
-    /**
-     * @param Tag $tag
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function tags(Campaign $campaign, Tag $tag)
-    {
-        $this->authCheck($tag);
-
-        $options = ['campaign' => $campaign, 'tag' => $tag];
-        $filters = [];
-        if (request()->has('tag_id')) {
-            $options['tag_id'] = $tag->id;
-            $filters['tag_id'] = $tag->id;
-        }
-        Datagrid::layout(\App\Renderers\Layouts\Tag\Tag::class)
-            ->route('tags.tags', $options);
-
-        // @phpstan-ignore-next-line
-        $this->rows = $tag
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
-            ->with(['entity', 'entity.tags', 'entity.image', 'tag', 'tag.entity'])
-            ->paginate();
-
-        // Ajax Datagrid
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-        return $this
-            ->campaign($campaign)
-            ->menuView($tag, 'tags');
-    }
-
-    /**
-     * @param Tag $tag
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function children(Campaign $campaign, Tag $tag)
-    {
-        $this->authCheck($tag);
-
-        $options = ['campaign' => $campaign, 'tag' => $tag];
-        $base = 'allChildren';
-        if (request()->has('tag_id')) {
-            $options['tag_id'] = $tag->id;
-            $base = 'entities';
-        }
-        Datagrid::layout(\App\Renderers\Layouts\Tag\Entity::class)
-            ->route('tags.children', $options);
-
-        $this->rows = $tag
-            ->{$base}()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with(['image', 'tags'])
-            ->paginate(15);
-
-        // Ajax Datagrid
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->menuView($tag, 'children');
-    }
-
-    /**
-     * @param Tag $tag
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function entityAdd(Campaign $campaign, Tag $tag)
-    {
-        $this->authorize('update', $tag);
-        $formOptions = ['tags.entity-add.save', 'tag' => $tag];
-        if (request()->has('from-children')) {
-            $formOptions['from-children'] = true;
-        }
-
-        return view('tags.entities.create', [
-            'campaign' => $campaign,
-            'model' => $tag,
-            'formOptions' => $formOptions
-        ]);
-    }
-
-    /**
-     * @param StoreTagEntity $request
-     * @param Tag $tag
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function entityStore(StoreTagEntity $request, Campaign $campaign, Tag $tag)
-    {
-        $this->authorize('update', $tag);
-        $redirectUrlOptions = ['campaign' => $campaign, 'tag' => $tag];
-        if (request()->has('from-children')) {
-            $redirectUrlOptions['tag_id'] = $tag->id;
-        }
-
-        $tag->attachEntity($request->only('entity_id'));
-        return redirect()->route('tags.show', $redirectUrlOptions)
-            ->with('success', trans('tags.children.create.success', ['name' => $tag->name]));
     }
 }

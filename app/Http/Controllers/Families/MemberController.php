@@ -6,7 +6,6 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCharacterFamily;
 use App\Models\Campaign;
-use App\Models\CampaignPermission;
 use App\Models\Family;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
@@ -20,27 +19,9 @@ class MemberController extends Controller
     use HasDatagrid;
     use HasSubview;
 
-    /**
-     * @var string
-     */
-    protected string $view = 'families.members';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
-
     public function index(Campaign $campaign, Family $family)
     {
-        if (auth()->check()) {
-            $this->authorize('view', $family);
-        } else {
-            $this->authorizeForGuest(CampaignPermission::ACTION_READ, $family, $family->entity->type_id);
-        }
+        $this->campaign($campaign)->authView($family);
 
         $options = ['campaign' => $campaign, 'family' => $family];
         $filters = [];

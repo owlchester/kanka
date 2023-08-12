@@ -18,9 +18,10 @@ trait TooltipTrait
      */
     public function tooltipedLink(string $name = null, bool $escape = true, string $data = null): string
     {
+        $campaign = CampaignLocalization::getCampaign();
         $displayName = !empty($name) ? ($escape ? e($name) : $name) : e($this->name);
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->id . '"' .
-            'data-url="' . route('entities.tooltip', [$this->campaign_id, $this->id]) . '" href="' . $this->url() . '" ' . $data . '>' .
+            'data-url="' . route('entities.tooltip', [$campaign, $this->id]) . '" href="' . $this->url() . '" ' . $data . '>' .
             $displayName .
             '</a>';
     }

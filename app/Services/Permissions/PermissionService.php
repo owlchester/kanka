@@ -211,7 +211,7 @@ class PermissionService
         $this->loadedPermissions = true;
 
         // Valid user: load their roles
-        if ($this->user) {
+        if ($this->hasUser()) {
             $this->loadRoles();
             $this->loadUserPermissions();
         }

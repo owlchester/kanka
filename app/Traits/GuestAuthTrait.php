@@ -4,10 +4,20 @@ namespace App\Traits;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
+use App\Models\CampaignPermission;
 use App\Models\MiscModel;
 
 trait GuestAuthTrait
 {
+    public function authView(MiscModel $model): void
+    {
+        if (auth()->check()) {
+            $this->authorize('view', $model);
+        } else {
+            $this->authorizeForGuest(CampaignPermission::ACTION_READ, $model, $model->entity->type_id);
+        }
+    }
+
     /**
      * Secondary Authentication for Guest users
      * @param int $action
@@ -59,4 +69,5 @@ trait GuestAuthTrait
             abort(403);
         }
     }
+
 }

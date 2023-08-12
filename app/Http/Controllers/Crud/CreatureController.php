@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\CreatureFilter;
-use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreCreature;
 use App\Models\Campaign;
@@ -62,38 +61,5 @@ class CreatureController extends CrudController
     public function destroy(Campaign $campaign, Creature $creature)
     {
         return $this->campaign($campaign)->crudDestroy($creature);
-    }
-
-    /**
-     */
-    public function creatures(Campaign $campaign, Creature $creature)
-    {
-        $this->authCheck($creature);
-
-        $options = ['campaign' => $campaign, 'creature' => $creature];
-        $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $creature->id;
-            $filters['creature_id'] = $creature->id;
-        }
-        Datagrid::layout(\App\Renderers\Layouts\Creature\Creature::class)
-            ->route('creatures.creatures', $options);
-
-        // @phpstan-ignore-next-line
-        $this->rows = $creature
-            ->descendants()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
-            ->with(['entity'])
-            ->paginate(15);
-
-        // Ajax Datagrid
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->campaign($campaign)
-            ->menuView($creature, 'creatures');
     }
 }

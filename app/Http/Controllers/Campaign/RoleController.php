@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Campaign;
 
-use App\Facades\EntitySetup;
-use App\Models\Campaign;
 use App\Facades\Datagrid;
-use App\Services\PermissionService;
-use App\Models\CampaignRole;
+use App\Facades\EntitySetup;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignRole;
+use App\Models\Campaign;
+use App\Models\CampaignRole;
+use App\Services\PermissionService;
 use Illuminate\Http\Request;
 
-class CampaignRoleController extends Controller
+class RoleController extends Controller
 {
     protected string $view = 'campaigns.roles';
 

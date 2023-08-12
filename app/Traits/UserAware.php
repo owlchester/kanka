@@ -3,22 +3,23 @@
 namespace App\Traits;
 
 use App\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 /**
  * Trait for user aware services
  */
 trait UserAware
 {
-    /** @var null|User user model */
-    public $user;
+    public Authenticatable|User|null $user;
 
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
+    public function user(Authenticatable|User $user): self
     {
         $this->user = $user;
         return $this;
+    }
+
+    public function hasUser(): bool
+    {
+        return !empty($this->user);
     }
 }

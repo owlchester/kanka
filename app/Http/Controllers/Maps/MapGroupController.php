@@ -27,20 +27,23 @@ class MapGroupController extends Controller
         $this->authorize('update', $map);
 
         $options = ['map' => $map->id];
-        $model = $map;
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Group::class)
             ->route('maps.map_groups.index', $options);
-        $rows = $map
+        $this->rows = $map
             ->groups()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
             ->with(['map'])
             ->paginate(15);
         if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax($rows);
+            return $this->campaign($campaign)->datagridAjax();
         }
 
-        return view('maps.groups.index', compact('campaign', 'rows', 'model'));
+        return view('maps.groups.index')
+            ->with('rows', $this->rows)
+            ->with('campaign', $campaign)
+            ->with('model', $map)
+        ;
     }
 
     public function show(Campaign $campaign, Map $map)

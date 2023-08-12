@@ -6,7 +6,6 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrganisationMember;
 use App\Models\Campaign;
-use App\Models\CampaignPermission;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Traits\CampaignAware;
@@ -26,24 +25,9 @@ class MemberController extends Controller
      */
     protected string $view = 'organisations.members';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign.member');
-    }
-
     public function index(Campaign $campaign, Organisation $organisation)
     {
-        if (auth()->check()) {
-            $this->authorize('view', $organisation);
-        } else {
-            $this->authorizeForGuest(CampaignPermission::ACTION_READ, $organisation, $organisation->entity->type_id);
-        }
+        $this->campaign($campaign)->authView($organisation);
 
         $options = ['campaign' => $campaign, 'organisation' => $organisation];
         $base = 'members';
@@ -69,7 +53,6 @@ class MemberController extends Controller
             ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
             ->paginate(15);
 
-        // Ajax Datagrid
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();
         }

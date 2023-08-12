@@ -208,6 +208,21 @@ class Item extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function entities()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Entity',
+            'App\Models\Inventory',
+            'item_id',
+            'id',
+            'id',
+            'entity_id'
+        );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function items()
     {
         return $this->hasMany('App\Models\Item', 'item_id', 'id');

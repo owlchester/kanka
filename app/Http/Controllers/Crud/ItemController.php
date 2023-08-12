@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\ItemFilter;
-use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreItem;
 use App\Models\Campaign;
@@ -65,36 +64,5 @@ class ItemController extends CrudController
     public function destroy(Campaign $campaign, Item $item)
     {
         return $this->campaign($campaign)->crudDestroy($item);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function inventories(Campaign $campaign, Item $item)
-    {
-        return $this->campaign($campaign)->menuView($item, 'inventories');
-    }
-
-    /**
-     * @param Item $item
-     */
-    public function items(Campaign $campaign, Item $item)
-    {
-        $this->authCheck($item);
-
-        $options = ['campaign' => $campaign, 'item' => $item];
-        $filters = [];
-
-        Datagrid::layout(\App\Renderers\Layouts\Item\Item::class)
-            ->route('items.items', $options);
-
-        $this->rows = $item
-            ->items()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
-            ->with(['entity', 'entity.image'])
-            ->paginate(15);
-
-        return $this->campaign($campaign)->datagridAjax();
     }
 }

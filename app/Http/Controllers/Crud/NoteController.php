@@ -13,8 +13,6 @@ class NoteController extends CrudController
 {
     use TreeControllerTrait;
 
-    protected $treeControllerParentKey = 'note_id';
-
     /**
      * @var string
      */

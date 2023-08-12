@@ -32,7 +32,7 @@ class MentionController extends Controller
 
         Datagrid::layout(\App\Renderers\Layouts\Mention\Mention::class)
             ->route('entities.mentions', $options);
-        $rows = $entity
+        $this->rows = $entity
             ->targetMentions()
             ->datagridElements(request()->only(['o', 'k']))
             ->with([
@@ -89,9 +89,10 @@ class MentionController extends Controller
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax($rows);
+            return $this->campaign($campaign)->datagridAjax();
         }
 
+        $rows = $this->rows;
         return view('entities.pages.mentions.mentions', compact(
             'entity',
             'rows',

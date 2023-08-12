@@ -4,36 +4,33 @@ namespace App\Services;
 
 use App\Models\Campaign;
 use App\Models\CampaignFollower;
+use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use App\User;
 
 class CampaignFollowService
 {
-    /**
-     * Update a user's following of a campaign.
-     * @param Campaign $campaign
-     * @param User $user
-     * @return bool If true, the user is following the campaign
-     */
-    public function update(Campaign $campaign, User $user): bool
-    {
-        if ($campaign->isFollowing()) {
-            return ! ($this->remove($campaign, $user));
-        }
-        return (bool) ($this->add($campaign, $user));
-    }
+    use UserAware;
+    use CampaignAware;
 
     /**
-     * @param Campaign $campaign
-     * @param User $user
-     * @return bool
-     * @throws \Exception
+     * Update a user's following of a campaign.
+     * @return bool If true, the user is following the campaign
      */
-    public function remove(Campaign $campaign, User $user): bool
+    public function update(): bool
+    {
+        if ($this->campaign->isFollowing()) {
+            return !$this->remove();
+        }
+        return $this->add();
+    }
+
+    public function remove(): bool
     {
         /** @var CampaignFollower|null $follow */
         $follow = CampaignFollower::where([
-            'campaign_id' => $campaign->id,
-            'user_id' => $user->id
+            'campaign_id' => $this->campaign->id,
+            'user_id' => $this->user->id
         ])->first();
 
         if (empty($follow)) {
@@ -43,16 +40,11 @@ class CampaignFollowService
         return true;
     }
 
-    /**
-     * @param Campaign $campaign
-     * @param User $user
-     * @return bool
-     */
-    public function add(Campaign $campaign, User $user): bool
+    public function add(): bool
     {
         $follow = new CampaignFollower();
-        $follow->campaign_id = $campaign->id;
-        $follow->user_id = $user->id;
+        $follow->campaign_id = $this->campaign->id;
+        $follow->user_id = $this->user->id;
         return $follow->save();
     }
 }

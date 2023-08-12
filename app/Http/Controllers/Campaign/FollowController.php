@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Campaign;
 
+use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\CampaignFollowService;
 
-class CampaignFollowController extends Controller
+class FollowController extends Controller
 {
     protected CampaignFollowService $service;
 
@@ -15,15 +16,15 @@ class CampaignFollowController extends Controller
         $this->service = $service;
     }
 
-    /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function update(Campaign $campaign)
     {
         $this->authorize('follow', $campaign);
 
         return response()->json([
-            'following' => $this->service->update($campaign, auth()->user())
+            'following' => $this->service
+                ->campaign($campaign)
+                ->user(auth()->user())
+                ->update()
         ]);
     }
 }

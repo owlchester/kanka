@@ -34,20 +34,23 @@ class TimelineEraController extends Controller
         $this->authorize('update', $timeline);
 
         $options = ['campaign' => $campaign, 'timeline' => $timeline->id];
-        $model = $timeline;
 
         Datagrid::layout(\App\Renderers\Layouts\Timeline\Era::class)
             ->route('timelines.timeline_eras.index', $options);
-        $rows = $timeline
+        $this->rows = $timeline
             ->eras()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
             ->with(['timeline'])
             ->paginate(15);
         if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax($rows);
+            return $this->campaign($campaign)->datagridAjax();
         }
 
-        return view('timelines.eras.index', compact('campaign', 'rows', 'model'));
+        return view('timelines.eras.index')
+            ->with('rows', $this->rows)
+            ->with('campaign', $campaign)
+            ->with('model', $timeline)
+        ;
     }
     public function show(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {

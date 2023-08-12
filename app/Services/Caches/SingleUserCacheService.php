@@ -2,6 +2,7 @@
 
 namespace App\Services\Caches;
 
+use App\Traits\UserAware;
 use App\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -12,17 +13,7 @@ use Illuminate\Support\Facades\Log;
  */
 class SingleUserCacheService
 {
-    protected User $user;
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
+    use UserAware;
 
     public function entitiesCreatedCount(): int
     {

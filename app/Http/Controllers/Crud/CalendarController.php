@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\CalendarFilter;
-use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
-use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Sanitizers\CalendarSanitizer;
-use App\Services\CalendarService;
 use App\Traits\TreeControllerTrait;
 use App\Http\Requests\ValidateReminderLength;
 use App\Services\LengthValidatorService;
@@ -26,7 +23,6 @@ class CalendarController extends CrudController
     protected string $route = 'calendars';
     protected $module = 'calendars';
 
-    protected CalendarService $calendarService;
     protected LengthValidatorService $lengthValidatorService;
 
     /** @var string */
@@ -39,12 +35,10 @@ class CalendarController extends CrudController
 
     /**
      * CalendarController constructor.
-     * @param CalendarService $calendarService
      */
-    public function __construct(CalendarService $calendarService, LengthValidatorService $lengthValidatorService)
+    public function __construct(LengthValidatorService $lengthValidatorService)
     {
         parent::__construct();
-        $this->calendarService = $calendarService;
         $this->lengthValidatorService = $lengthValidatorService;
     }
 
@@ -88,54 +82,6 @@ class CalendarController extends CrudController
         return $this->campaign($campaign)->crudDestroy($calendar);
     }
 
-    public function event(Campaign $campaign, Calendar $calendar)
-    {
-        $this->authorize('update', $calendar);
-
-        $date = request()->get('date');
-        list($year, $month, $day) = explode('-', $date);
-        if (str_starts_with($date, '-')) {
-            list($year, $month, $day) = explode('-', trim($date, '-'));
-            $year = "-{$year}";
-        }
-
-        return view('calendars.events.create', compact(
-            'campaign',
-            'calendar',
-            'day',
-            'month',
-            'year',
-        ));
-    }
-
-    /**
-     */
-    public function eventStore(AddCalendarEvent $request, Campaign $campaign, Calendar $calendar)
-    {
-        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
-        if (request()->ajax()) {
-            return response()->json(['success' => true]);
-        }
-
-        // We need to handle negative year dates (start with -)
-        $link = $this->calendarService->addEvent($calendar, $request->all());
-
-        $routeOptions = [$campaign, $calendar->id, 'year' => request()->post('year')];
-        if ($request->has('layout')) {
-            $routeOptions['layout'] = $request->get('layout');
-        } else {
-            $routeOptions['month'] = request()->post('month');
-        }
-
-        if ($link !== false) {
-            return redirect()->route($this->route . '.show', $routeOptions)
-                ->with('success', __('calendars.event.success', ['event' => $link->entity->name]));
-        }
-
-        return redirect()->route($this->route . '.show', $routeOptions)
-            ->with('success', __('calendars.event.create.success'));
-    }
-
     /**
      */
     public function monthList(Campaign $campaign, Calendar $calendar)
@@ -149,48 +95,6 @@ class CalendarController extends CrudController
             ],
             'recurring' => $calendar->recurringOptions(true),
         ]);
-    }
-
-    /**
-     */
-    public function events(Campaign $campaign, Calendar $calendar)
-    {
-        $this->authCheck($calendar);
-
-        $options = [$campaign, 'calendar' => $calendar];
-        $after = $before = false;
-        if (request()->has('before_id')) {
-            $options['before_id'] = 1;
-            $before = true;
-        } elseif (request()->has('after_id')) {
-            $options['after_id'] = 1;
-            $after = true;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Calendar\Reminder::class)
-            ->route('calendars.events', $options)
-            ->permissions(!(auth()->check() && auth()->user()->can('update', $calendar)));
-
-        $rows = $calendar->calendarEvents();
-        if ($after) {
-            $rows->after($calendar);
-        } elseif ($before) {
-            $rows->before($calendar);
-        }
-
-        $this->rows = $rows
-            ->with(['entity', 'calendar', 'entity.image'])
-            ->has('entity')
-            ->sort(request()->only(['o', 'k']))
-            ->paginate();
-
-        if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
-        }
-
-        return $this
-            ->campaign($campaign)
-            ->menuView($calendar, 'events');
     }
 
     /**

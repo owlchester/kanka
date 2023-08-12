@@ -19,29 +19,9 @@ class FamilyController extends Controller
     use HasDatagrid;
     use HasSubview;
 
-    /**
-     * @var string
-     */
-    protected string $view = 'families.members';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('campaign.member');
-    }
-
     public function index(Campaign $campaign, Family $family)
     {
-        if (auth()->check()) {
-            $this->authorize('view', $family);
-        } else {
-            $this->authorizeForGuest(CampaignPermission::ACTION_READ, $family, $family->entity->type_id);
-        }
+        $this->campaign($campaign)->authView($family);
 
         $options = ['campaign' => $campaign, 'family' => $family];
         $filters = [];
@@ -60,10 +40,10 @@ class FamilyController extends Controller
             ->with(['location', 'location.entity', 'entity', 'entity.tags'])
             ->paginate(15);
 
-        // Ajax Datagrid
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();
         }
+
         return $this
             ->campaign($campaign)
             ->subview('families.families', $family);

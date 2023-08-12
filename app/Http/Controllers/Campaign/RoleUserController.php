@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Campaign;
 
 use App\Exceptions\TranslatableException;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCampaignRoleUser;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
-use App\Http\Requests\StoreCampaignRoleUser;
 use App\Models\CampaignRoleUser;
 use App\Services\Campaign\MemberService;
 
-class CampaignRoleUserController extends Controller
+class RoleUserController extends Controller
 {
     protected string $view = 'campaigns.roles.users';
 

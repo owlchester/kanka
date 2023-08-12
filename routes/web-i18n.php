@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\Crud\CampaignController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\StartController;

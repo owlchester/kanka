@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Campaign;
 
+use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 
-class CampaignUserController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.

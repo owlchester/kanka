@@ -72,8 +72,6 @@ trait TreeControllerTrait
             ->distinct();
 
         /** @var Tag $model **/
-        //$parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ?
-        //        $this->treeControllerParentKey : $singularModel . '_id');
         $parentKey = $model->getParentIdName();
         $parent = null;
         if (request()->has('parent_id')) {

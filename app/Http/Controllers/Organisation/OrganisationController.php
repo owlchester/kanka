@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Organisation;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Models\CampaignPermission;
 use App\Models\Organisation;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
+use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 
 class OrganisationController extends Controller
@@ -16,14 +16,11 @@ class OrganisationController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
     use HasDatagrid;
+    use HasSubview;
 
     public function organisations(Campaign $campaign, Organisation $organisation)
     {
-        if (auth()->check()) {
-            $this->authorize('view', $organisation);
-        } else {
-            $this->authorizeForGuest(CampaignPermission::ACTION_READ, $organisation, $organisation->entity->type_id);
-        }
+        $this->campaign($campaign)->authView($organisation);
 
         $options = ['campaign' => $campaign, 'organisation' => $organisation];
         $filters = [];
@@ -51,6 +48,7 @@ class OrganisationController extends Controller
         }
 
         return $this
-            ->menuView($organisation, 'organisations');
+            ->campaign($campaign)
+            ->subview('organisations.organisations', $organisation);
     }
 }

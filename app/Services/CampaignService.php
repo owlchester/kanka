@@ -12,11 +12,6 @@ use Exception;
 class CampaignService
 {
     /**
-     * @var integer
-     */
-    protected $id;
-
-    /**
      * The user's current Campaign
      * @var Campaign|bool
      */
@@ -24,7 +19,7 @@ class CampaignService
 
     protected NotificationService $notificationService;
 
-    public function __construct(Campaign $campaignModel, NotificationService $notificationService)
+    public function __construct(NotificationService $notificationService)
     {
         $this->notificationService = $notificationService;
     }
@@ -141,18 +136,6 @@ class CampaignService
             // Need to create a new campaign
             session()->forget('campaign_id');
         }
-    }
-
-    /**
-     * Shorthand to determine if a campaign has an entity enabled or not
-     *
-     * @param string $entity
-     * @return bool
-     */
-    public function enabled(string $entity = '')
-    {
-        dd('when is this called');
-        return $this->campaign()->enabled($entity);
     }
 
     /**

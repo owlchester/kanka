@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
-use App\Models\Campaign;
-use App\Http\Requests\StoreCampaign;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteCampaign;
+use App\Http\Requests\StoreCampaign;
+use App\Models\Campaign;
 use App\Services\Campaign\DeletionService;
-use App\Services\Campaign\LeaveService;
-use App\Services\MultiEditingService;
 use App\Services\CampaignService;
 use App\Services\EntityService;
-use App\Services\StarterService;
+use App\Services\MultiEditingService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -44,7 +43,7 @@ class CampaignController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index(Campaign $campaign)
+    public function show(Campaign $campaign)
     {
         return view($this->view . '.show', compact('campaign'));
     }
@@ -95,11 +94,6 @@ class CampaignController extends Controller
 
         return redirect()->route('dashboard', $campaign)
             ->with('success', __($this->view . '.create.success'));
-    }
-
-    public function show(Campaign $campaign)
-    {
-        return view($this->view . '.show', compact('campaign'));
     }
 
     public function edit(Campaign $campaign)
