@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
 use App\Facades\UserCache;
