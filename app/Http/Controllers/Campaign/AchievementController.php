@@ -10,7 +10,7 @@ use App\Services\Campaign\StatService;
  * Class StatController
  * @package App\Http\Controllers\Campaign
  */
-class StatController extends Controller
+class AchievementController extends Controller
 {
     protected StatService $service;
 

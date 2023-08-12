@@ -29,8 +29,6 @@ class QuestController extends Controller
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
-
-        $ajax = request()->ajax();
         $quests = $entity
             ->quests()
             ->with(['quest', 'quest.entity'])
@@ -38,7 +36,6 @@ class QuestController extends Controller
             ->paginate();
 
         return view('entities.pages.quests.index', compact(
-            'ajax',
             'entity',
             'quests',
         ));

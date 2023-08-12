@@ -75,9 +75,8 @@ class CampaignRoleController extends Controller
                 ->with('campaign', $campaign)
                 ->with('name', 'campaign_roles');
         }
-        $ajax = request()->ajax();
 
-        return view($this->view . '.create', ['campaign' => $campaign, 'model' => $campaign, 'ajax' => $ajax]);
+        return view($this->view . '.create', ['campaign' => $campaign, 'model' => $campaign]);
     }
 
     /**
@@ -93,9 +92,8 @@ class CampaignRoleController extends Controller
                 ->with('campaign', $campaign)
                 ->with('name', 'campaign_roles');
         }
-        $ajax = request()->ajax();
 
-        return view($this->view . '.create', ['campaign' => $campaign, 'model' => $campaign, 'ajax' => $ajax, 'roleId' => $campaignRole->id]);
+        return view($this->view . '.create', ['campaign' => $campaign, 'model' => $campaign, 'roleId' => $campaignRole->id]);
     }
 
     /**

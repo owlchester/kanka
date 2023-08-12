@@ -92,7 +92,6 @@ class CalendarController extends CrudController
     {
         $this->authorize('update', $calendar);
 
-        $ajax = request()->ajax();
         $date = request()->get('date');
         list($year, $month, $day) = explode('-', $date);
         if (str_starts_with($date, '-')) {
@@ -106,7 +105,6 @@ class CalendarController extends CrudController
             'day',
             'month',
             'year',
-            'ajax',
         ));
     }
 

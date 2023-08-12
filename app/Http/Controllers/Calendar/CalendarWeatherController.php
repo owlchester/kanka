@@ -42,7 +42,6 @@ class CalendarWeatherController extends Controller
     {
         $this->authorize('update', $calendar);
 
-        $ajax = request()->ajax();
         $date = request()->get('date');
         list($year, $month, $day) = explode('-', $date);
         if (str_starts_with($date, '-')) {
@@ -58,7 +57,6 @@ class CalendarWeatherController extends Controller
             'day',
             'month',
             'year',
-            'ajax',
             'weather'
         ));
     }

@@ -43,7 +43,7 @@
                         </div>
                     </td>
                     <td class=" max-w-30 !align-middle">
-                        <a class="block break-all truncate" href="{{ route('users.profile', $relation->user_id) }}" target="_blank">
+                        <a class="block break-all truncate" href="{{ route('users.profile', [$campaign, $relation->user_id]) }}" target="_blank">
                             {{ $relation->user->name }}
                         </a>
                         @if ($relation->user->isBanned())
@@ -107,7 +107,7 @@
                                             <a href="#" class="text-red" title="{{ __('crud.remove') }}"
                                                data-toggle="dialog-ajax"
                                                data-target="member-dialog"
-                                               data-url="{{ route('campaign_users.delete', $campaign, $relation->id) }}"
+                                               data-url="{{ route('campaign_users.delete', [$campaign, $relation->id]) }}"
                                             >
                                                 <x-icon class="trash"></x-icon>
                                                 {{ __('campaigns.members.actions.remove') }}

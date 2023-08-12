@@ -445,7 +445,6 @@ class CrudController extends Controller
             'campaign' => $this->campaign,
             'model' => $model,
             'name' => $this->view,
-            'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && auth()->user()->can('permission', $model),
             'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity) && $this->campaign->enabled('entity_attributes'),
             'tabBoosted' => $this->tabBoosted,

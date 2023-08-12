@@ -9,6 +9,7 @@ use App\Services\AttributeService;
 use App\Services\BulkService;
 use App\Services\EntityService;
 use App\Traits\BulkControllerTrait;
+use App\Traits\CampaignAware;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ use Illuminate\Support\Str;
 
 class BulkController extends Controller
 {
+    use CampaignAware;
     use BulkControllerTrait;
 
     protected BulkService $bulkService;
@@ -61,7 +63,7 @@ class BulkController extends Controller
             } elseif ($action === 'export') {
                 return $this->export();
             } elseif ($action === 'print') {
-                return $this->print();
+                return $this->campaign($campaign)->print();
             } elseif ($action === 'permissions') {
                 return $this->permissions();
             } elseif ($action === 'copy-campaign') {
@@ -198,6 +200,7 @@ class BulkController extends Controller
         $entities = $this->bulkService->export();
 
         return view('entities.pages.print.print-bulk')
+            ->with('campaign', $this->campaign)
             ->with('entities', $entities)
             ->with('printing', true)
         ;
@@ -234,7 +237,7 @@ class BulkController extends Controller
         $name = $this->entity;
 
         return $pdf
-            ->loadView('cruds.export', compact('entityType', 'entities', 'name'))
+            ->loadView('cruds.export', compact('campaign', 'entityType', 'entities', 'name'))
             ->download('kanka ' . $this->entity . ' export.pdf');
     }
 

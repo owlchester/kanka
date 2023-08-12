@@ -62,12 +62,11 @@ class TimelineEraController extends Controller
     public function create(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('update', $timeline);
-        $ajax = request()->ajax();
         $from = request()->get('from') == 'view' ? 'view' : null;
 
         return view(
             'timelines.eras.create',
-            compact('campaign', 'timeline', 'ajax', 'from')
+            compact('campaign', 'timeline', 'from')
         );
     }
 
@@ -111,13 +110,12 @@ class TimelineEraController extends Controller
     {
         $this->authorize('update', $timeline);
 
-        $ajax = request()->ajax();
         $model = $timelineEra;
         $from = request()->get('from') == 'view' ? 'view' : null;
 
         return view(
             'timelines.eras.edit',
-            compact('campaign', 'timeline', 'ajax', 'model', 'from')
+            compact('campaign', 'timeline', 'model', 'from')
         );
     }
     /**

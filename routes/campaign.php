@@ -217,7 +217,7 @@ Route::post('/w/{campaign}/recovery', 'Campaign\RecoveryController@recover')->na
 
 
 // Stats
-Route::get('/w/{campaign}/stats', 'Campaign\StatController@index')->name('stats');
+Route::get('/w/{campaign}/achievements', 'Campaign\AchievementController@index')->name('stats');
 
 // User search
 Route::get('/w/{campaign}/users/search', 'CampaignUserController@search')->name('users.find');
@@ -460,13 +460,13 @@ Route::get('/w/{campaign}/entities/{entity}/preview', 'Entity\PreviewController@
 
 // The campaign management sub pages
 Route::get('/w/{campaign}/overview', 'CampaignController@index')->name('overview');
-Route::get('/w/{campaign}/modules', 'CampaignSettingController@index')->name('campaign.modules');
-Route::post('/w/{campaign}/modules/toggle/{module?}', 'CampaignSettingController@toggle')->name('campaign.modules.toggle');
+Route::get('/w/{campaign}/modules', 'Campaign\ModuleController@index')->name('campaign.modules');
+Route::post('/w/{campaign}/modules/toggle/{module?}', 'Campaign\ModuleController@toggle')->name('campaign.modules.toggle');
 Route::get('/w/{campaign}/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-theme');
 Route::post('/w/{campaign}/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');
 Route::get('/w/{campaign}/campaign-export', 'Campaign\ExportController@index')->name('campaign.export');
 Route::post('/w/{campaign}/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
-Route::get('/w/{campaign}/campaign.styles', [\App\Http\Controllers\CampaignController::class, 'css'])->name('campaign.css');
+Route::get('/w/{campaign}/campaign.styles', [\App\Http\Controllers\Campaign\CssController::class, 'index'])->name('campaign.css');
 Route::get('/w/{campaign}/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 Route::get('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');

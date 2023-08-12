@@ -9,16 +9,8 @@ use Illuminate\Http\Request;
 
 class ExportController extends Controller
 {
-    /**
-     * @var ExportService
-     */
-    protected $service;
+    protected ExportService $service;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct(ExportService $exportService)
     {
         $this->middleware('auth');
@@ -30,6 +22,7 @@ class ExportController extends Controller
      */
     public function index(Campaign $campaign)
     {
+        $this->authorize('setting', $campaign);
         return view('campaigns.export', compact('campaign'));
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignCache;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\DeleteCampaign;
@@ -12,10 +11,8 @@ use App\Services\MultiEditingService;
 use App\Services\CampaignService;
 use App\Services\EntityService;
 use App\Services\StarterService;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
@@ -28,23 +25,19 @@ class CampaignController extends Controller
 
     protected CampaignService $campaignService;
     protected EntityService $entityService;
-    protected StarterService $starterService;
     protected DeletionService $deletionService;
-    protected LeaveService $leaveService;
 
     /**
      * Create a new controller instance.
      *
      * CampaignController constructor.
      */
-    public function __construct(CampaignService $campaignService, EntityService $entityService, StarterService $starterService, DeletionService $deletionService, LeaveService $leaveService)
+    public function __construct(CampaignService $campaignService, EntityService $entityService, DeletionService $deletionService)
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'css']]);
         $this->campaignService = $campaignService;
         $this->entityService = $entityService;
-        $this->starterService = $starterService;
         $this->deletionService = $deletionService;
-        $this->leaveService = $leaveService;
     }
 
     /**
@@ -124,7 +117,12 @@ class CampaignController extends Controller
                 $editingService->edit();
             }
         }
-        return view($this->view . '.edit', ['campaign' => $campaign, 'model' => $campaign, 'start' => false, 'editingUsers' => $editingUsers]);
+        return view($this->view . '.edit', [
+            'campaign' => $campaign,
+            'model' => $campaign,
+            'start' => false,
+            'editingUsers' => $editingUsers
+        ]);
     }
 
     public function update(StoreCampaign $request, Campaign $campaign)
@@ -149,7 +147,6 @@ class CampaignController extends Controller
 
         $campaign->update($data);
 
-
         /** @var MultiEditingService $editingService */
         $editingService = app()->make(MultiEditingService::class);
         $editingService->model($campaign)
@@ -171,9 +168,6 @@ class CampaignController extends Controller
             ->with('success', __($this->view . '.edit.success'));
     }
 
-    /**
-     * @param DeleteCampaign $request
-     */
     public function destroy(DeleteCampaign $request, Campaign $campaign)
     {
         $this->authorize('delete', $campaign);
@@ -184,43 +178,5 @@ class CampaignController extends Controller
             ->delete();
 
         return redirect()->route('home');
-    }
-
-    /**
-     * Leave a campaign
-     */
-    public function leave(Campaign $campaign)
-    {
-        $this->authorize('leave', $campaign);
-
-        try {
-            $this->leaveService
-                ->campaign($campaign)
-                ->user(auth()->user())
-                ->leave();
-            return redirect()->route('home');
-        } catch (Exception $e) {
-            return redirect()->route('overview', $campaign)->withErrors($e->getMessage());
-        }
-    }
-
-    /**
-     * Get the campaign css
-     * @return Response
-     */
-    public function css(Campaign $campaign)
-    {
-        $css = null;
-        if ($campaign->boosted()) {
-            $css = CampaignCache::styles();
-        }
-
-        $response = \Illuminate\Support\Facades\Response::make($css);
-        $response->header('Content-Type', 'text/css');
-        $response->header('Expires', Carbon::now()->addMonth()->toDateTimeString());
-        $month = 2592000;
-        $response->header('Cache-Control', 'public, max_age=' . $month);
-
-        return $response;
     }
 }

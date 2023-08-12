@@ -58,12 +58,11 @@ class ConversationController extends CrudController
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $conversation);
         }
         $name = $this->view;
-        $ajax = request()->ajax();
         $model = $conversation;
 
         return view(
             'cruds.show',
-            compact('campaign', 'model', 'name', 'ajax')
+            compact('campaign', 'model', 'name')
         );
     }
 

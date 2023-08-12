@@ -30,12 +30,10 @@ class CharacterRaceController extends Controller
     public function create(Campaign $campaign, Race $race)
     {
         $this->authorize('update', $race);
-        $ajax = request()->ajax();
 
         return view($this->view . '.create', [
             'campaign' => $campaign,
             'model' => $race,
-            'ajax' => $ajax
         ]);
     }
 

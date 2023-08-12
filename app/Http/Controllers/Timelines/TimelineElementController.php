@@ -59,14 +59,13 @@ class TimelineElementController extends Controller
     {
         $this->authorize('update', $timeline);
 
-        $ajax = request()->ajax();
         $eraId = $request->get('era_id');
         $position = $request->get('position', 1);
         $era = TimelineEra::findOrFail($eraId);
 
         return view(
             'timelines.elements.create',
-            compact('campaign', 'timeline', 'ajax', 'eraId', 'position', 'era')
+            compact('campaign', 'timeline', 'eraId', 'position', 'era')
         );
     }
 
@@ -119,11 +118,9 @@ class TimelineElementController extends Controller
             }
         }
 
-        $ajax = request()->ajax();
-
         return view(
             'timelines.elements.edit',
-            compact('timeline', 'campaign', 'ajax', 'model', 'editingUsers')
+            compact('timeline', 'campaign', 'model', 'editingUsers')
         );
     }
 
