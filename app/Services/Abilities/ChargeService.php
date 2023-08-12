@@ -11,8 +11,8 @@ use App\Traits\UserAware;
 class ChargeService extends BaseAbilityService
 {
     use CampaignAware;
-    use UserAware;
     use EntityAware;
+    use UserAware;
 
     protected EntityAbility $ability;
 

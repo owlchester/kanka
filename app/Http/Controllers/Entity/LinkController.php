@@ -8,7 +8,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityLink;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class LinkController extends Controller

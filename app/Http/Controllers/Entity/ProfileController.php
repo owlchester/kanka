@@ -7,7 +7,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {

@@ -8,7 +8,6 @@ use App\Models\Entity;
 use App\Services\Entity\PreviewService;
 use App\Services\SearchService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 
 class PreviewController extends Controller
 {
