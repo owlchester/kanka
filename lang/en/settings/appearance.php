@@ -39,7 +39,7 @@ return [
         'advanced-mentions'     => 'When editing texts, control if mentions are rendered as the entity\'s name, or as the advanced mention.',
         'campaign-order'        => 'Change the order in which campaigns are listed in the campaign switcher.',
         'date-format'           => 'When available, control the format in which to display real world dates.',
-        'default-nested'        => 'Control how lists which support nesting to be displayed by default.',
+        'default-nested'        => 'Control how lists which support nesting are displayed by default.',
         'editor'                => 'Using the legacy text editor (TinyMCE) doesn\'t support mentions on mobile devices, campaign galleries or other advanced features.',
         'entity-explore'        => 'Control the way in which entity lists are displayed on campaigns.',
         'new-entity-workflow'   => 'Control which interface you are taken to after creating a new entity.',

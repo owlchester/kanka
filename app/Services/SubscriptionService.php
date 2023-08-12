@@ -523,7 +523,7 @@ class SubscriptionService
                     'green'
                 )
             );
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->user->notify(
                 new Header(
                     'subscriptions.charge_fail',

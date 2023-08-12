@@ -59,10 +59,7 @@ $loadedElements = [];
             $position = $element->position + 1;
             $loadedElements[] = $element;
         @endphp
-        @if(!empty($element->entity_id) && empty($element->entity->child))
-            @continue
-        @endif
-        @include('timelines._element')
+        @includeWhen($element->visible(), 'timelines._element')
     @endforeach
     </ul>
 

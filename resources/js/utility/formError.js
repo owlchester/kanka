@@ -35,6 +35,8 @@ window.formErrorHandler = function(err, form) {
             foundAllErrors = false;
             logs.push(errors[i][0]);
         }
+
+        window.showToast(errors[i][0], 'toast-error');
     });
 
     // If not all error fields could be found, show a generic error message on top of the form.
@@ -49,7 +51,7 @@ window.formErrorHandler = function(err, form) {
     }
 
     // No tabs? Try no further
-    if ($(this).find('.tab-content').length === 0) {
+    if ($(form).find('.tab-content').length === 0) {
         return;
     }
 
@@ -60,10 +62,11 @@ window.formErrorHandler = function(err, form) {
     if (!firstItemDom[0]) {
         return;
     }
-    firstItemDom[0].scrollIntoView({ behavior: 'smooth' });
     $('.tab-content .active').removeClass('active');
     $('.nav-tabs li.active').removeClass('active');
     let firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
     firstPane.addClass('active');
     $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
+
+    firstItemDom[0].scrollIntoView({ behavior: 'smooth' });
 }

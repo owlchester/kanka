@@ -1,3 +1,4 @@
+<?php /** @var \App\User $user */?>
 @php
 $cols = 1;
 $colClass = 'lg:grid-cols-1';
@@ -102,7 +103,7 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
         @endif
     @endif
 
-    @if ($user->hasPaymentMethod())
+    @if ($user->hasDefaultPaymentMethod())
         <div class="{{ $box }}">
             <div class="text-xl text-center">
                 @php $method = $user->defaultPaymentMethod(); @endphp

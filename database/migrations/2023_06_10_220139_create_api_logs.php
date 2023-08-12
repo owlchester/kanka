@@ -10,7 +10,7 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        if (!env('DB_LOGS_DATABASE', false)) {
+        if (!config('logging.api')) {
             return;
         }
         Schema::connection('logs')->create('api_logs', function (Blueprint $table) {
@@ -29,7 +29,7 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        if (!env('DB_LOGS_DATABASE', false)) {
+        if (!config('logging.api')) {
             return;
         }
         Schema::connection('logs')->dropIfExists('api_logs');

@@ -224,7 +224,9 @@ class Location extends MiscModel
         };
 
         $table = new Character();
-        return Character::whereIn($table->getTable() . '.location_id', $locationIds)->with('location');
+        return Character::whereIn($table->getTable() . '.location_id', $locationIds)
+            ->with('location')
+            ->has('entity');
     }
 
     /**

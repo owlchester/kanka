@@ -38,7 +38,7 @@
         </ul>
     </div>
     @if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
-        <button type="button" class="btn2 btn-ghost" data-toggle="modal" data-target="#hidden-attributes">
+        <button type="button" class="btn2 btn-ghost" data-toggle="dialog" data-target="hidden-attributes">
             <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
             {{ __('entities/attributes.actions.show_hidden') }}
         </button>
@@ -83,23 +83,13 @@
 @section('modals')
     @parent
     @if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
-    <div class="modal fade" id="hidden-attributes" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content bg-base-100 rounded-2xl text-center">
-                    <div class="modal-body">
-                        <x-dialog.close />
-                        <h4 class="modal-title md-5" id="clickModalLabel">{{ __('entities/attributes.show.hidden') }}</h4>
-                        <p class="mt-5">
-                            @foreach ($entity->attributes()->ordered()->get() as $attribute)
-                                @if ($attribute->is_hidden)
-                                    @include('cruds.forms.attributes._hidden_attribute')
-                                @endif
-                            @endforeach
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <x-dialog id="hidden-attributes" :title="__('entities/attributes.show.hidden')" :full="true">
+            @foreach ($entity->attributes()->ordered()->get() as $attribute)
+                @if ($attribute->is_hidden)
+                    @include('cruds.forms.attributes._hidden_attribute')
+                @endif
+            @endforeach
+        </x-dialog>
     @endif
     <x-dialog id="attributes-delete-all-confirm" :title="__('crud.delete_modal.title')">
         <p>
