@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use App\User;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 /**
  * Trait for user aware services

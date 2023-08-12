@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\DB;
 class UserCacheService extends BaseCache
 {
     use CampaignAware;
-    use UserAware;
     use CampaignCache;
     use RoleCache;
+    use UserAware;
 
     /**
      * EntityCacheService constructor.

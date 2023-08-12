@@ -20,13 +20,13 @@ use Illuminate\Support\Str;
  */
 class CampaignCacheService extends BaseCache
 {
+    use CampaignAware;
     use DashboardCache;
     use MemberCache;
     use RoleCache;
     use SettingCache;
     use StyleCache;
     use ThemeCache;
-    use CampaignAware;
     use UserAware;
 
     /**
