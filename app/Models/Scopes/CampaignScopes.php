@@ -2,9 +2,11 @@
 
 namespace App\Models\Scopes;
 
+use App\Facades\Identity;
 use App\Models\Campaign;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Arr;
 
 /**
@@ -24,6 +26,48 @@ use Illuminate\Support\Arr;
  */
 trait CampaignScopes
 {
+    /**
+     * We bind the campaign model on the slug in the url, so we need to ensure
+     * that the user can only access valid campaigns. This means for either
+     * public campaigns, or campaigns that the user is a member of.
+     */
+    public function scopeAcl(Builder $query, string $slug): Builder
+    {
+        if (auth()->guest()) {
+            return $query->public()->slug($slug);
+        }
+
+        // If we are impersonating, that gives us only a single choice
+        if (Identity::isImpersonating()) {
+            return $query
+                ->slug($slug)
+                // Use ID and not slug to avoid shenanigans when updating the slug
+                ->where($this->getTable() . '.id', Identity::getCampaignId());
+        }
+
+        // Limit to the campaigns the user is in
+        return $this
+            ->select($this->getTable() . '.*')
+            ->leftJoin('campaign_user as cu', function (JoinClause $sub) {
+                return $sub->on('cu.campaign_id', $this->getTable() . '.id')
+                    ->where('cu.user_id', auth()->user()->id);
+            })
+            ->slug($slug)
+            ->where(function ($sub) {
+                return $sub
+                    ->public()
+                    ->orWhereNotNull('cu.user_id');
+        });
+    }
+
+    /**
+     *
+     */
+    public function scopeSlug(Builder $query, string $slug): Builder
+    {
+        return $query->where($this->getTable() . '.slug', '=', $slug);
+    }
+
     /**
      * @param Builder $query
      * @param int $visibility

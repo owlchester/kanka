@@ -35,9 +35,7 @@ class CacheServiceProvider extends ServiceProvider
         });
         $this->app->singleton(CampaignCacheService::class, function () {
             $service = new CampaignCacheService();
-            dump('cc');
             if (CampaignLocalization::hasCampaign()) {
-                dump('ca');
                 $service->campaign(CampaignLocalization::getCampaign());
             }
             return $service;
@@ -45,9 +43,7 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->singleton(UserCacheService::class, function () {
 
             $service = new UserCacheService();
-            dump('uu');
             if (CampaignLocalization::hasCampaign()) {
-                dump('ua');
                 $service->campaign(CampaignLocalization::getCampaign());
             }
             return $service;

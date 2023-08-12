@@ -34,8 +34,12 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        Route::model('campaign', Campaign::class);
         Route::model('plugin', Plugin::class);
+
+        // This is important, ensures only campaigns the user has access get injected in the route model binding.
+        Route::bind('campaign', function (string $value) {
+            return Campaign::acl($value)->firstOrFail();
+        });
     }
 
     /**

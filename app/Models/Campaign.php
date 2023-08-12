@@ -62,7 +62,6 @@ use Illuminate\Support\Collection;
  */
 class Campaign extends MiscModel
 {
-    use Acl;
     use Boosted;
     use CampaignLimit;
     use CampaignRelations;
