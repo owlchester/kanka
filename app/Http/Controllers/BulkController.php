@@ -44,7 +44,7 @@ class BulkController extends Controller
     /**
      * @param BulkRequest $request
      */
-    public function process(BulkRequest $request, Campaign $campaign)
+    public function index(BulkRequest $request, Campaign $campaign)
     {
         $this->request = $request;
         $this->entity = $request->get('entity');

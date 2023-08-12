@@ -14,7 +14,7 @@ trait GuestAuthTrait
         if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
-            $this->authorizeForGuest(CampaignPermission::ACTION_READ, $model, $model->entity->type_id);
+            $this->authorizeForGuest(CampaignPermission::ACTION_READ, $model);
         }
     }
 

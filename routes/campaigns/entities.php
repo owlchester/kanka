@@ -101,7 +101,7 @@ Route::get('/w/{campaign}/tags/{tag}/entity-add', 'Tags\ChildController@create')
 Route::post('/w/{campaign}/tags/{tag}/entity-add', 'Tags\ChildController@store')->name('tags.entity-add.save');
 
 // Multi-delete for cruds
-Route::post('/w/{campaign}/bulk/process', 'BulkController@process')->name('bulk.process');
+Route::post('/w/{campaign}/bulk/process', 'BulkController@index')->name('bulk.process');
 Route::get('/w/{campaign}/bulk/modal', 'BulkController@modal')->name('bulk.modal');
 
 Route::get('/w/{campaign}/notes/tree', 'Crud\NoteController@tree')->name('notes.tree');
@@ -283,8 +283,8 @@ Route::get('/w/{campaign}/entities/{entity}/template', 'Entity\TemplateControlle
 Route::get('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@apply')->name('entities.attributes.template');
 Route::post('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@applyTemplate')->name('entities.attributes.template');
 
-Route::get('/w/{campaign}/entities/{entity}/permissions', 'PermissionController@view')->name('entities.permissions');
-Route::post('/w/{campaign}/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
+Route::get('/w/{campaign}/entities/{entity}/permissions', 'Entity\PermissionController@view')->name('entities.permissions');
+Route::post('/w/{campaign}/entities/{entity}/permissions', 'Entity\PermissionController@store')->name('entities.permissions');
 
 
 Route::get('/w/{campaign}/entities/{entity}/preview', 'Entity\PreviewController@index')->name('entities.preview');

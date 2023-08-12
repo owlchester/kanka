@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\PrivacyService;
 
@@ -35,6 +36,7 @@ class PrivacyController extends Controller
         $visibility = $this->service->entity($entity)->visibilities();
 
         return view('entities.pages.privacy.index')
+            ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('visibility', $visibility)
             ->with('model', $entity->child)
@@ -45,7 +47,7 @@ class PrivacyController extends Controller
      * Toggle an entity's privacy setting
      * @param Entity $entity
      */
-    public function toggle(Entity $entity)
+    public function toggle(Campaign $campaign, Entity $entity)
     {
         $this->authorize('privacy', $entity);
 
