@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Facades\Module;
-use App\Models\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 
