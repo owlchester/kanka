@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\FrontCache;
-use App\Http\Requests\FilterPublicCampaignRequest;
-use App\Models\Campaign;
 use App\Services\ReferralService;
-use Carbon\Carbon;
 
 class FrontController extends Controller
 {
