@@ -71,7 +71,7 @@
             <div class="grow text-xs text-gray-500">
                 {!! __('auth.register.tos', [
     'terms' => link_to('https://kanka.io/terms-and-conditions', __('front.terms.title'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
-    'privacy' => link_to('https://kanka.io/privacy-policy', __('front.menu.privacy'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
+    'privacy' => link_to('https://kanka.io/privacy-policy', __('footer.privacy'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
     ]) !!}
             </div>
             <div class="flex-none">

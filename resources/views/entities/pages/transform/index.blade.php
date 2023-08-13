@@ -21,7 +21,7 @@
 
                 <a href="https://docs.kanka.io/en/latest/guides/transform.html" target="_blank" class="block mb-5">
                     <i class="fa-solid fa-external-link" aria-hidden="true"></i>
-                    {{ __('crud.helpers.learn_more', ['documentation' => __('front.menu.documentation')]) }}
+                    {{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}
                 </a>
                 <div class="field-target">
                     <label>{{ __('entities/transform.fields.target') }}</label>

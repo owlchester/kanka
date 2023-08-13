@@ -209,7 +209,7 @@ class NavigationService
                 'url' => config('marketplace.url') . '/content-packs',
                 'number' => number_format($counts[3]),
             ],
-            'title' => __('front.menu.marketplace'),
+            'title' => __('footer.marketplace'),
             'explore' => [
                 'url' => config('marketplace.url'),
                 'text' => __('maps.actions.explore'),

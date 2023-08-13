@@ -20,7 +20,7 @@
                 <ul class="list-none m-0 p-0">
                     <li class="px-0 py-1 text-sm">
                         <a href="https://kanka.io/features">
-                            {{ __('front.menu.features') }}
+                            {{ __('footer.features') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
@@ -30,12 +30,12 @@
                     </li>
                     <li class="px-0 py-1 text-sm">
                         <a href="https://kanka.io/pricing">
-                            {{ __('front.menu.pricing') }}
+                            {{ __('footer.pricing') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
                         <a href="https://marketplace.kanka.io" target="_blank">
-                            {{ __('front.menu.marketplace') }}
+                            {{ __('footer.marketplace') }}
                         </a>
                     </li>
                 </ul>
@@ -47,12 +47,12 @@
                 <ul class="list-none m-0 p-0">
                     <li class="px-0 py-1 text-sm">
                         <a href="https://kanka.io/kb">
-                            {{ __('front.menu.kb') }}
+                            {{ __('footer.kb') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
                         <a href="//docs.kanka.io/en/latest/index.html" target="_blank">
-                            {{ __('front.menu.documentation') }}
+                            {{ __('footer.documentation') }}
                         </a>
                     </li>
                     @if(config('app.admin'))
@@ -87,12 +87,12 @@
 
             <div class="cell text-center truncate mb-1">
                 <h5 class="text-uppercase m-0 mb-1">
-                    {{ __('front.footer.headings.community') }}
+                    {{ __('footer.community') }}
                 </h5>
                 <ul class="list-none m-0 p-0">
                     <li class="px-0 py-1 text-sm">
                         <a href="https://kanka.io/campaigns">
-                            {{ __('front.menu.campaigns') }}
+                            {{ __('footer.public-campaigns') }}
                         </a>
                     </li>
                     @if(config('app.admin'))
@@ -122,12 +122,12 @@
                 <ul class="list-none m-0 p-0">
                     <li class="px-0 py-1 text-sm">
                         <a href="https://kanka.io/about">
-                            {{ __('front.menu.about') }}
+                            {{ __('footer.about') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
                         <a href="https://kanka.io/contact">
-                            {{ __('front.menu.contact') }}
+                            {{ __('footer.contact') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
@@ -194,7 +194,7 @@
             </div>
         </div>
         <div class="footer-copyright text-xs text-center">
-            Kanka v{{ config('app.version') }} - {!! __('front.footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }} ({{ gethostname() }})
+            Kanka v{{ config('app.version') }} - {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }} ({{ gethostname() }})
         </div>
     </div>
 </footer>

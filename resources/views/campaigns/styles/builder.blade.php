@@ -13,7 +13,7 @@
         <x-alert type="info">
             <p class="m-0">
                 {!! __('campaigns/builder.help', [
-                'docs' => link_to('https://docs.kanka.io/en/latest/features/campaigns/theme-builder.html', __('front.menu.documentation', ['target' => '_blank']))
+                'docs' => link_to('https://docs.kanka.io/en/latest/features/campaigns/theme-builder.html', __('footer.documentation', ['target' => '_blank']))
             ]) !!}
         </x-alert>
 

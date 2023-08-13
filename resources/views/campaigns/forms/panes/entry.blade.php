@@ -17,7 +17,7 @@
                 <p class="help-block">{!! __('campaigns/vanity.helper', [
     'default' => '<code>w/' . (isset($model) ? $model->id : 123456) . '</code>',
     'example' => '<code>w/exandria-unlimited</code>',
-    'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('front.menu.documentation', ['target' => '_blank']))
+    'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('footer.documentation', ['target' => '_blank']))
     ]) !!}</p>
 
                 <input type="text" maxlength="45" name="vanity" class="form-control" data-url="{{ route('campaign.vanity-validate', $model) }}" value="{{ old('vanity') }}"/>
@@ -32,7 +32,7 @@
                 <p class="help-block">{!! __('campaigns/vanity.helper', [
     'default' => '<code>w/' . (isset($model) ? $model->id : 123456) . '</code>',
     'example' => '<code>w/exandria-unlimited</code>',
-    'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('front.menu.documentation', ['target' => '_blank']))
+    'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('footer.documentation', ['target' => '_blank']))
     ]) !!}</p>
 
                 <input type="text" maxlength="45" name="" class="form-control" readonly="readonly" />

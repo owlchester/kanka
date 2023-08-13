@@ -135,15 +135,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'features') nav-active @endif" href="https://kanka.io/features">{{ __('front.menu.features') }}</a>
+                    <a class="nav-link @if(!empty($active) && $active == 'features') nav-active @endif" href="https://kanka.io/features">{{ __('footer.features') }}</a>
                 </li>
                 @if(config('services.stripe.enabled'))
                 <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="https://kanka.io/pricing">{{ __('front.menu.pricing') }}</a>
+                    <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="https://kanka.io/pricing">{{ __('footer.pricing') }}</a>
                 </li>
                 @endif
                 <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'public-campaigns') nav-active @endif" href="https://kanka.io/campaigns">{{ __('front.menu.campaigns') }}</a>
+                    <a class="nav-link @if(!empty($active) && $active == 'public-campaigns') nav-active @endif" href="https://kanka.io/campaigns">{{ __('footer.public-campaigns') }}</a>
                 </li>
             </ul>
 

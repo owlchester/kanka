@@ -16,18 +16,18 @@
 
                 <ul class="list-unstyled">
                     <li>
-                        <a href="https://kanka.io/features">{{ __('front.menu.features') }}</a>
+                        <a href="https://kanka.io/features">{{ __('footer.features') }}</a>
                     </li>
                     @if (config('services.stripe.enabled'))
                     <li>
                         <a href="https://kanka.io/premium">{{ __('footer.premium') }}</a>
                     </li>
                     <li>
-                        <a href="https://kanka.io/pricing">{{ __('front.menu.pricing') }}</a>
+                        <a href="https://kanka.io/pricing">{{ __('footer.pricing') }}</a>
                     </li>@endif
 
                     <li>
-                        <a href="https://marketplace.kanka.io" target="_blank">{{ __('front.menu.marketplace') }}</a>
+                        <a href="https://marketplace.kanka.io" target="_blank">{{ __('footer.marketplace') }}</a>
                     </li>
                 </ul>
             </div>
@@ -38,10 +38,10 @@
                 </div>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="https://kanka.io/kb">{{ __('front.menu.kb') }}</a>
+                        <a href="https://kanka.io/kb">{{ __('footer.kb') }}</a>
                     </li>
                     <li>
-                        <a href="//docs.kanka.io/en/latest/index.html" target="_blank">{{ __('front.menu.documentation') }}</a>
+                        <a href="//docs.kanka.io/en/latest/index.html" target="_blank">{{ __('footer.documentation') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('larecipe.index') }}" target="_blank">{{ __('front.features.api.link') }}</a>
@@ -56,18 +56,18 @@
                         <a href="https://status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
                     </li>
                     <li>
-                        <a href="https://kanka.io/newsletter">{{ __('front.menu.newsletter') }}</a>
+                        <a href="https://kanka.io/newsletter">{{ __('footer.newsletter') }}</a>
                     </li>
                 </ul>
             </div>
 
             <div class="col-6 col-sm text-truncate mb-2">
                 <div class="section mb-2 text-uppcercase">
-                    {{ __('front.footer.headings.community') }}
+                    {{ __('footer.community') }}
                 </div>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="https://kanka.io/campaigns">{{ __('front.menu.campaigns') }}</a>
+                        <a href="https://kanka.io/campaigns">{{ __('footer.public-campaigns') }}</a>
                     </li>
                     <li>
                         <a href="https://kanka.io/community-votes">{{ __('front/community-votes.title') }}</a>
@@ -84,10 +84,10 @@
                 </div>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="https://kanka.io/about">{{ __('front.menu.about') }}</a>
+                        <a href="https://kanka.io/about">{{ __('footer.about') }}</a>
                     </li>
                     <li>
-                        <a href="https://kanka.io/contact">{{ __('front.menu.contact') }}</a>
+                        <a href="https://kanka.io/contact">{{ __('footer.contact') }}</a>
                     </li>
                     <li>
                         <a href="https://kanka.io/press-kit">{{ __('footer.press-kit') }}</a>
@@ -136,7 +136,7 @@
             @endif
         </div>
         <div class="footer-copyright text-center">
-            Kanka {!! __('front.footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
+            Kanka {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
         </div>
     </div>
 </footer>

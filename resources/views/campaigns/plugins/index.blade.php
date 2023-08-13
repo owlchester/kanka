@@ -18,7 +18,7 @@
     @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
 @else
     <x-cta :campaign="$campaign">
-        <p>{!! __('campaigns/plugins.pitch', ['marketplace' => link_to(config('marketplace.url'), __('front.menu.marketplace'), null, ['target' => '_blank'])]) !!}</p>
+        <p>{!! __('campaigns/plugins.pitch', ['marketplace' => link_to(config('marketplace.url'), __('footer.marketplace'), null, ['target' => '_blank'])]) !!}</p>
     </x-cta>
 @endif
 

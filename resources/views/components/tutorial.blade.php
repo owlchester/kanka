@@ -7,7 +7,7 @@
 
     @if (!empty($doc))
         <p>
-            {!!  __('crud.helpers.learn_more', ['documentation' => link_to($doc, '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front.menu.documentation'), ['target' => '_blank'], null, false)])!!}
+            {!!  __('crud.helpers.learn_more', ['documentation' => link_to($doc, '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation'), ['target' => '_blank'], null, false)])!!}
         </p>
     @endif
 </div>
