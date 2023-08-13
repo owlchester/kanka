@@ -7,8 +7,8 @@
     'title' => __('entities/quests.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('entities.quests')
     ],
     'mainTitle' => false,
@@ -29,7 +29,7 @@
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
+                Breadcrumb::entity($entity)->list(),
                 __('entities.quests')
             ]
         ])

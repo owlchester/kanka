@@ -4,8 +4,8 @@
     'title' => __('entities/logs.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => $entity->url(), 'label' => $entity->name]
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
     ]
 ])
 @section('content')

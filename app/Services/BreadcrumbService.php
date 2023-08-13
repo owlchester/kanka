@@ -2,11 +2,15 @@
 
 namespace App\Services;
 
+use App\Facades\Module;
+use App\Models\Entity;
 use App\Traits\CampaignAware;
+use App\Traits\EntityAware;
 
 class BreadcrumbService
 {
     use CampaignAware;
+    use EntityAware;
 
     /**
      * @param string $name
@@ -27,5 +31,22 @@ class BreadcrumbService
         }
 
         return $entityIndexRoute;
+    }
+
+    public function list(): array
+    {
+        $fallback = __('entities.' . $this->entity->pluralType());
+        return [
+            'url' => $this->index($this->entity->pluralType()),
+            'label' => Module::plural($this->entity->typeId(), $fallback)
+        ];
+    }
+
+    public function show(): array
+    {
+        return [
+            'url' => route('entities.show', [$this->campaign, $this->entity]),
+            'label' => $this->entity->name
+        ];
     }
 }

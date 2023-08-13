@@ -2,8 +2,8 @@
     'title' => __('entities/notes.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => $entity->url(), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('entities/notes.actions.add')
     ]
 ])

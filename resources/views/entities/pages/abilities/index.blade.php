@@ -30,7 +30,7 @@
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
+                Breadcrumb::entity($entity)->list(),
                 \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities'))
             ]
         ])

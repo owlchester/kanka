@@ -3,8 +3,8 @@
     'title' => __('entities/files.update.title', ['entity' => $entity->name, 'file' => $entityAsset->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         ['url' => route('entities.entity_assets.index', [$campaign, $entity]), 'label' => __('crud.tabs.assets')],
     ]
 ])

@@ -2,8 +2,8 @@
     'title' => __('entities/story.update.title', ['entity' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('crud.tabs.story'),
         __('crud.edit')
     ],

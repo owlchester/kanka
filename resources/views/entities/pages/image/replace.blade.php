@@ -3,8 +3,8 @@
     'title' => trans('entities/image.replace.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('entities/image.replace.breadcrumb')
     ],
     'mainTitle' => false,

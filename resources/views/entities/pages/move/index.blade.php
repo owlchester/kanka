@@ -1,8 +1,8 @@
 @extends('layouts.app', [
     'title' => __('entities/move.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => route($entity->pluralType() . '.show', [$campaign, $entity->entity_id]), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('crud.actions.move'),
     ]
 ])

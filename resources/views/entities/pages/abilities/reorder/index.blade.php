@@ -17,7 +17,7 @@
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
+                Breadcrumb::entity($entity)->list(),
                 __('crud.tabs.abilities'),
                 __('entities/abilities.show.reorder')
             ]

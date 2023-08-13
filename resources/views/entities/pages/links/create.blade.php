@@ -2,8 +2,8 @@
     'title' => __('entities/links.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         ['url' => route('entities.entity_assets.index', [$campaign, $entity->id]), 'label' => trans('crud.tabs.assets')],
     ]
 ])
