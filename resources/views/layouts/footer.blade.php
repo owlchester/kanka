@@ -19,24 +19,22 @@
 
                 <ul class="list-none m-0 p-0">
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.features') }}">
+                        <a href="https://kanka.io/features">
                             {{ __('front.menu.features') }}
                         </a>
                     </li>
-                    @if (config('services.stripe.enabled'))
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.premium') }}">
+                        <a href="https://kanka.io/premium">
                             {{ __('footer.premium') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.pricing') }}">
+                        <a href="https://kanka.io/pricing">
                             {{ __('front.menu.pricing') }}
                         </a>
                     </li>
-                    @endif
                     <li class="px-0 py-1 text-sm">
-                        <a href="//marketplace.kanka.io" target="_blank">
+                        <a href="https://marketplace.kanka.io" target="_blank">
                             {{ __('front.menu.marketplace') }}
                         </a>
                     </li>
@@ -47,11 +45,11 @@
                     {{ __('footer.resources') }}
                 </h5>
                 <ul class="list-none m-0 p-0">
-                    @if(config('app.admin'))<li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.faqs.index') }}">
+                    <li class="px-0 py-1 text-sm">
+                        <a href="https://kanka.io/kb">
                             {{ __('front.menu.kb') }}
                         </a>
-                    </li>@endif
+                    </li>
                     <li class="px-0 py-1 text-sm">
                         <a href="//docs.kanka.io/en/latest/index.html" target="_blank">
                             {{ __('front.menu.documentation') }}
@@ -64,27 +62,26 @@
                         </a>
                     </li>@endif
                     <li class="px-0 py-1 text-sm">
-                        <a href="//blog.kanka.io/category/news" target="_blank">
+                        <a href="https://blog.kanka.io/category/news" target="_blank">
                             {{ __('footer.whats-new') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="//blog.kanka.io" target="_blank">
+                        <a href="https://blog.kanka.io" target="_blank">
                             {{ __('footer.blog') }}
                         </a>
                     </li>
 
-                    @if (config('services.stripe.enabled'))
                     <li class="px-0 py-1 text-sm">
-                        <a href="//status.kanka.io" target="_blank">
+                        <a href="https://status.kanka.io" target="_blank">
                             {{ __('footer.status') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.newsletter') }}">
+                        <a href="https://kanka.io/newsletter">
                             {{ __('front.menu.newsletter') }}
                         </a>
-                    </li>@endif
+                    </li>
                 </ul>
             </div>
 
@@ -94,31 +91,24 @@
                 </h5>
                 <ul class="list-none m-0 p-0">
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.public_campaigns') }}">
+                        <a href="https://kanka.io/campaigns">
                             {{ __('front.menu.campaigns') }}
                         </a>
                     </li>
                     @if(config('app.admin'))
                         <li class="px-0 py-1 text-sm">
-                            <a href="{{ route('community-votes.index') }}">
+                            <a href="https://kanka.io/community-votes">
                                 {{ __('front/community-votes.title') }}
                             </a>
                         </li>
                     @endif
-                    @if(config('app.admin'))
-                        <li class="px-0 py-1 text-sm">
-                            <a href="{{ route('community-events.index') }}">
-                                {{ __('front/community-events.title') }}
-                            </a>
-                        </li>
-                        <li class="px-0 py-1 text-sm">
-                            <a href="{{ route('front.hall-of-fame') }}">
-                                {{ __('front/hall-of-fame.title') }}
-                            </a>
-                        </li>
-                    @endif
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
+                        <a href="https://kanka.io/hall-of-fame">
+                            {{ __('front/hall-of-fame.title') }}
+                        </a>
+                    </li>
+                    <li class="px-0 py-1 text-sm">
+                        <a href="https://kanka.io/go/discord" target="discord" title="Discord" rel="noreferrer">
                             Discord
                         </a>
                     </li>
@@ -131,32 +121,32 @@
                 </h5>
                 <ul class="list-none m-0 p-0">
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.about') }}">
+                        <a href="https://kanka.io/about">
                             {{ __('front.menu.about') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.contact') }}">
+                        <a href="https://kanka.io/contact">
                             {{ __('front.menu.contact') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.press-kit') }}">
+                        <a href="https://kanka.io/press-kit">
                             {{ __('footer.press-kit') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.security') }}">
+                        <a href="https://kanka.io/security">
                             {{ __('footer.security') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.privacy') }}">
+                        <a href="https://kanka.io/privacy-policy">
                             {{ __('footer.privacy') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.terms') }}">
+                        <a href="https://kanka.io/terms-and-conditions">
                             {{ __('footer.terms') }}
                         </a>
                     </li>
@@ -170,40 +160,30 @@
             </div>
 
             <div class="socials py-2 text-xl">
-                <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer" class="mr-1">
+                <a href="https://kanka.io/go/discord" target="discord" title="Discord" rel="noreferrer" class="mr-1">
                     <i class="fa-brands fa-discord" aria-hidden="true" aria-label="Discord"></i>
                     <span class="sr-only">Discord</span>
                 </a>
-                @if (config('social.facebook'))
-                <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer" class="mr-1">
+                <a href="https://kanka.io/go/facebook" target="facebook" title="Facebook" rel="noreferrer" class="mr-1">
                     <i class="fa-brands fa-facebook" aria-hidden="true" aria-label="Kanka Facebook"></i>
                     <span class="sr-only">Facebook</span>
                 </a>
-                @endif
-                @if (config('social.instagram'))
-                <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer" class="mr-1">
+                <a href="https://kanka.io/go/instagram" target="instagram" title="Instagram" rel="noreferrer" class="mr-1">
                     <i class="fa-brands fa-instagram" aria-hidden="true" aria-label="Kanka Instagram"></i>
                     <span class="sr-only">Instagram</span>
                 </a>
-                @endif
-                @if (config('social.youtube'))
-                <a href="{{ config('social.youtube') }}" target="youtube" title="Youtube" rel="noreferrer" class="mr-1">
+                <a href="https://kanka.io/go/youtube" target="youtube" title="Youtube" rel="noreferrer" class="mr-1">
                     <i class="fa-brands fa-youtube" aria-hidden="true" aria-label="Kanka Youtube"></i>
                     <span class="sr-only">Youtube</span>
                 </a>
-                @endif
-                @if (config('social.reddit'))
-                <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer" class="mr-1">
+                <a href="https://kanka.io/go/reddit" target="reddit" title="Reddit" rel="noreferrer" class="mr-1">
                     <i class="fa-brands fa-reddit" aria-hidden="true" aria-label="Kanka Subreddit"></i>
                     <span class="sr-only">Reddit</span>
                 </a>
-                @endif
-                @if (config('social.twitter'))
-                <a href="{{ config('social.twitter') }}" target="twitter" title="Twitter" rel="noreferrer">
+                <a href="https://kanka.io/go/twitter" target="twitter" title="Twitter" rel="noreferrer">
                     <i class="fa-brands fa-twitter" aria-hidden="true" aria-label="Kanka Twitter"></i>
                     <span class="sr-only">Twitter</span>
                 </a>
-                @endif
             </div>
 
             <div id="language-switcher" class="language-switcher block text-lg py-2">

@@ -138,7 +138,7 @@
         'textes' => [
             __('campaigns.members.help'),
             (auth()->check() && auth()->user()->isAdmin() ? __('campaigns.members.helpers.admin', [
-        'link' => link_to_route('front.faqs.index', __('front.menu.kb'), null, ['target' => '_blank']),
+        'link' => link_to('https://kanka.io/kb', __('front.menu.kb'), null, ['target' => '_blank']),
         'button' => '<code><i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i> ' . __('campaigns.members.actions.switch') . '</code>']) : null),
         ]
     ])

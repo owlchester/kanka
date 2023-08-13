@@ -100,7 +100,7 @@
 <div id="top"></div>
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="{{ (auth()->check() ? route('front.home') : route('home')) }}">
+        <a class="navbar-brand" href="{{ route('home') }}">
             <img class="d-none d-lg-block" src="https://th.kanka.io/9A5OXYFaNh3wm-l2A3YNeevJa-M=/95x32/smart/src/app/logos/text-white.png" title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
             <img class="d-xl-none d-lg-none" src="https://th.kanka.io/3LB2TZQKyA9dDlXx5PsHaxvqzhk=/95x32/smart/src/app/logos/text-blue.png" title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
         </a>
@@ -135,71 +135,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'features') nav-active @endif" href="{{ route("front.features") }}">{{ __('front.menu.features') }}</a>
+                    <a class="nav-link @if(!empty($active) && $active == 'features') nav-active @endif" href="https://kanka.io/features">{{ __('front.menu.features') }}</a>
                 </li>
                 @if(config('services.stripe.enabled'))
                 <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
+                    <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="https://kanka.io/pricing">{{ __('front.menu.pricing') }}</a>
                 </li>
                 @endif
                 <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'public-campaigns') nav-active @endif" href="{{ route("front.public_campaigns") }}">{{ __('front.menu.campaigns') }}</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropLocale" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <x-icon class="fa-solid fa-language"></x-icon>
-                        {{ LaravelLocalization::getCurrentLocaleNative() }} <span class="caret"></span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropLocale">
-                        @php $locale = 'en-US'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            US English
-                        </a>
-                        @php $locale = 'en'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            UK English
-                        </a>
-                        @php $locale = 'pt-BR'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Português do Brasil
-                        </a>
-                        @php $locale = 'de'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Deutsch
-                        </a>
-                        @php $locale = 'fr'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Français
-                        </a>
-                        @php $locale = 'es'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Español
-                        </a>
-
-                        <div class="dropdown-divider"></div>
-
-                        @php $locale = 'it'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Italiano
-                        </a>
-                        @php $locale = 'ru'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Pусский
-                        </a>
-                        @php $locale = 'pl'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Polska
-                        </a>
-                        @php $locale = 'nl'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Nederlands
-                        </a>
-                        @php $locale = 'sk'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Slovenský
-                        </a>
-                    </div>
+                    <a class="nav-link @if(!empty($active) && $active == 'public-campaigns') nav-active @endif" href="https://kanka.io/campaigns">{{ __('front.menu.campaigns') }}</a>
                 </li>
             </ul>
 

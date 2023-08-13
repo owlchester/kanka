@@ -393,13 +393,7 @@ class CrudController extends Controller
      */
     public function crudShow(Model|MiscModel $model)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $model);
-        } else {
-            /** @var MiscModel $model */
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
-        }
+        $this->authView($model);
         $name = $this->view;
         $campaign = $this->campaign;
         // @phpstan-ignore-next-line
@@ -645,11 +639,7 @@ class CrudController extends Controller
         if ($this->alreadyAuthChecked) {
             return;
         }
-        if (auth()->check()) {
-            $this->authorize('view', $model);
-        } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
-        }
+        $this->authView($model);
         $this->alreadyAuthChecked = true;
     }
 

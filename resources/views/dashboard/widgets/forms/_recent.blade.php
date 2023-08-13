@@ -74,7 +74,7 @@
                         @include('dashboard.widgets.forms._related')
                     @else
                         <p class="help-block">{!! __('dashboard.widgets.advanced_options_boosted', [
-                    'boosted_campaign' => link_to_route('front.pricing', __('concept.boosted-campaign'), '#boost', ['target' => '_blank'])
+                    'boosted_campaign' => link_to('https://kanka.io/pricing', __('concept.boosted-campaign'), '#boost', ['target' => '_blank'])
                 ]) !!}</p>
                     @endif
                 </div>

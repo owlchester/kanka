@@ -21,26 +21,26 @@
 
     <div class=""></div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.boosters', 3 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 3 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
     </div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.boosters', 6 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 6 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
     </div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.boosters', 10 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 10 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
     </div>
 
 @else
 
     <div class=""></div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.premium', 1 . ' ' . __('concept.premium-campaign'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 1 . ' ' . __('concept.premium-campaign'), '', ['target' => '_blank']) !!}
     </div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.premium', 3 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 3 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
     </div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.premium', 7 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 7 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
     </div>
 
 @endif
@@ -58,9 +58,9 @@
 
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
 
 
     <div class=""></div>

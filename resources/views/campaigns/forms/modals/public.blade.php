@@ -7,7 +7,7 @@
 
     <x-alert type="info">
         <p>{!! __('campaigns/public.helpers.main', [
-    'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank']),
+    'public-campaigns' => link_to('https://kanka.io/campaigns', __('front.menu.campaigns'), null, ['target' => '_blank']),
     'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), $campaign, ['target' => '_blank'])
 ]) !!}</p>
         <p>

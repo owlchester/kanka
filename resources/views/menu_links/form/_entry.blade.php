@@ -51,7 +51,7 @@ if (isset($model)) {
             </p>
             @else
                 <p class="help-block">
-                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
+                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
                 </p>
             @endsubscriber
 
@@ -76,7 +76,7 @@ if (isset($model)) {
                 </p>
             @else
                 <p class="help-block">
-                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
+                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
                 </p>
             @endsubscriber
         @endif
@@ -98,7 +98,7 @@ if (isset($model)) {
                 </p>
             @else
                 <p class="help-block">
-                    {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
+                    {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
                 </p>
             @endsubscriber
         @endif

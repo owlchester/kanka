@@ -63,7 +63,7 @@
     <ul class="">
         <li class="mb-2">
             {!! __('dashboards/widgets/welcome.endings.1', [
-    'kb' => link_to_route('front.faqs.index', __('front.menu.kb')),
+    'kb' => link_to('https://kanka.io/kb', __('front.menu.kb')),
     'documentation' => link_to('https://docs.kanka.io', __('front.menu.documentation'))
 ]) !!}
         </li>
@@ -74,7 +74,7 @@
         </li>
         <li class="mb-2">
             {!! __('dashboards/widgets/welcome.endings.3', [
-    'public-campaigns' => link_to(route('front.public_campaigns'), __('front.menu.campaigns'))
+    'public-campaigns' => link_to('https://kanka.io/campaigns', __('front.menu.campaigns'))
 ]) !!}
         </li>
         <li class="mb-2">

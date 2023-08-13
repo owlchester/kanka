@@ -19,7 +19,7 @@
 
     <p><b>{{ __('emails/welcome.2023.basics.title') }}</b></p>
     <p>{!! __('emails/welcome.2023.basics.text_1', [
-        'kb' => link_to_route('front.faqs.index', __('front.menu.kb')),
+        'kb' => link_to('https://kanka.io/kb', __('front.menu.kb')),
         'doc' => link_to('https://docs.kanka.io/en/latest/index.html', __('front.menu.documentation')),
     ]) !!}</p>
 

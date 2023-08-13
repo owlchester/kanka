@@ -58,7 +58,7 @@
         @else
             <x-alert type="warning">
                 {!! __('entities/image.focus.unboosted', [
-        'boosted-campaigns' => link_to_route('front.pricing', __('concept.premium-campaigns'), ['#premium'])
+        'boosted-campaigns' => link_to('https://kanka.io/pricing', __('concept.premium-campaigns'), ['#premium'])
     ]) !!}
             </x-alert>
             <a href="{{ $model->getLink() }}">

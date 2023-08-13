@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <p>{!! __('settings/premium.pitch.more', ['premium' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}</p>
+        <p>{!! __('settings/premium.pitch.more', ['premium' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}</p>
 
     </x-box>
 

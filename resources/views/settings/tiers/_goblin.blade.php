@@ -21,7 +21,7 @@
         <div class="">{{ __('front.features.patreon.default_image') }}</div>
         <div class=""><i class="fa-solid fa-check-circle"></i></div>
 
-        <div class="">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.title'))]) !!}</div>
+        <div class="">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to('https://kanka.io/hall-of-fame', __('front/hall-of-fame.title'))]) !!}</div>
         <div class=""><i class="fa-solid fa-check-circle"></i></div>
 
         <div class="">{{ __('front.features.patreon.api_calls') }}</div>

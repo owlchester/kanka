@@ -96,7 +96,7 @@
                 </div>
             </div>
         </div>
-        <p>{!! __('settings/boosters.pitch.more', ['boosters' => link_to_route('front.boosters', __('footer.boosters'))]) !!}</p>
+        <p>{!! __('settings/boosters.pitch.more', ['boosters' => link_to('https://kanka.io/premium', __('footer.boosters'))]) !!}</p>
 
     </x-box>
 

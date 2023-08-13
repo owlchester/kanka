@@ -57,26 +57,26 @@
                 </div>
                     <div class="col-md-3 mt-md-5 text-center profile-pledge">
                     @if ($user->isElemental())
-                        <a href="{{ route('front.hall-of-fame') }}">
+                        <a href="https://kanka.io/hall-of-fame">
                             <img src="https://th.kanka.io/auu1F0KxCXOalmPB9I_FY4E3Ag8=/150x150/smart/src/app/tiers/elemental.png"
                                  class="profile-subscriber" title="Elemental" />
                         </a>
                         <div class="text-uppercase">Elemental</div>
                     @elseif ($user->isWyvern())
-                        <a href="{{ route('front.hall-of-fame') }}">
+                        <a href="https://kanka.io/hall-of-fame">
                             <img src="https://th.kanka.io/ua5Q1aTly0Z0vx7GCN_qPQ5i650=/150x150/smart/src/app/tiers/wyvern.png"
                                 class="profile-subscriber mb-2" title="Wyvern" />
                         </a>
                         <div class="text-uppercase">Wyvern</div>
 
                     @elseif ($user->isOwlbear())
-                        <a href="{{ route('front.hall-of-fame') }}">
+                        <a href="https://kanka.io/hall-of-fame">
                         <img src="https://th.kanka.io/gC3TXbW4neasqwZzH9lcTixg7Lo=/150x150/smart/src/app/tiers/owlbear.png"
                                  class="profile-subscriber mb-2" title="Owlbear" />
                         </a>
                         <div class="text-uppercase">Owlbear</div>
                     @elseif ($user->hasRole('admin'))
-                        <a href="{{ route('front.about') }}">
+                        <a href="https://kanka.io/about">
                             <img src="https://th.kanka.io/BJcn1N6rdxAoCPVtYyGHB7s5VO0=/150x150/smart/src/app/logos/icon.png"
                                  class="profile-subscriber no-transform mb-2" title="Kanka Team" />
                         </a>

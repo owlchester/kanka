@@ -15,7 +15,7 @@
 
     <p class="help-block">
     {!! __('attributes/templates.pitch', [
-'boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaigns')),
+'boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaigns')),
 'marketplace' => link_to(config('marketplace.url') . '/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
 ]) !!}
     </p>

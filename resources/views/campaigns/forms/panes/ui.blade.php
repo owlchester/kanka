@@ -21,11 +21,11 @@ if (!isset($model) || !$model->boosted()) {
     </h4>
     @if (isset($model) && $model->boosted())
         <p class="help-block">
-            {!! __('campaigns.helpers.premium', ['settings' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}
+            {!! __('campaigns.helpers.premium', ['settings' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
         </p>
     @else
         <p class="help-block">
-            {!! __('campaigns.helpers.premium', ['settings' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}
+            {!! __('campaigns.helpers.premium', ['settings' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
         </p>
     @endif
 

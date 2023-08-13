@@ -51,12 +51,7 @@ class ConversationController extends CrudController
      */
     public function show(Campaign $campaign, Conversation $conversation)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $conversation);
-        } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $conversation);
-        }
+        $this->authView($conversation);
         $name = $this->view;
         $model = $conversation;
 

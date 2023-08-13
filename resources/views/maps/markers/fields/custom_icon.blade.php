@@ -22,7 +22,7 @@
         </p>
     @else
         <p class="help-block">
-            <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.premium', __('concept.boosted-campaign'))]) !!}
+            <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to('https://kanka.io/premium', __('concept.boosted-campaign'))]) !!}
         </p>
         @endsubscriber
     @endif

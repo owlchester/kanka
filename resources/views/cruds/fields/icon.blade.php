@@ -28,7 +28,7 @@ $required = !isset($bulk);
         </p>
     @else
         <p class="help-block">
-            {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}
+            {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
         </p>
         @endsubscriber
     @endif

@@ -48,14 +48,7 @@ class ReminderController extends Controller
      */
     public function index(Campaign $campaign, Entity $entity)
     {
-        if (empty($entity->child)) {
-            abort(404);
-        }
-        if (auth()->check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child, $entity->typeId());
-        }
+        $this->authEntityView($entity);
         $reminders = $entity
             ->events()
             ->has('calendar')

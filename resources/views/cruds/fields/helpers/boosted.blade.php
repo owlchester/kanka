@@ -8,7 +8,7 @@
     }
 @endphp
 <x-alert type="info">
-    {!! __($key, ['boosted-campaign' => link_to_route('front.pricing', __('concept.boosted-campaign'), $pricingOptions)]) !!}
+    {!! __($key, ['boosted-campaign' => link_to('https://kanka.io/pricing', __('concept.boosted-campaign'), $pricingOptions)]) !!}
 </x-alert>
     <?php return; ?>
 @endif
@@ -22,5 +22,5 @@
     }
 @endphp
 <x-alert type="info">
-    {!! __($key, ['boosted-campaign' => link_to_route('front.pricing', __('concept.premium-campaign'), $pricingOptions)]) !!}
+    {!! __($key, ['boosted-campaign' => link_to('https://kanka.io/pricing', __('concept.premium-campaign'), $pricingOptions)]) !!}
 </x-alert>
