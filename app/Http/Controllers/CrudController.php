@@ -393,10 +393,10 @@ class CrudController extends Controller
      */
     public function crudShow(Model|MiscModel $model)
     {
+        /** @var MiscModel $model */
         $this->authView($model);
         $name = $this->view;
         $campaign = $this->campaign;
-        // @phpstan-ignore-next-line
         $entity_type_id = $model->entityTypeId();
 
         // Fix for models without an entity

@@ -106,10 +106,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain($domain)->middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
             ->prefix(LaravelLocalization::setLocale())
             ->namespace($this->namespace)
-            ->group(base_path('routes/front-i18n.php'));
-
-        Route::domain($domain)->middleware(['web'])
-            ->namespace($this->namespace)
             ->group(base_path('routes/front.php'));
 
         return $this;
