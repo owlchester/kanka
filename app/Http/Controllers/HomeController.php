@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\Domain;
-use App\Facades\FrontCache;
 use App\Models\Campaign;
 use App\Services\ReferralService;
 
