@@ -1,51 +1,35 @@
-<?php /** @var \App\Models\Campaign $campaign */
-$width = $featured ? 350 : 200;
-?>
-<div class="campaign-container @if($campaign->boosted()) campaign-boosted @endif">
-    <a class="campaign @if(!$featured) small-campaign @endif " href="{{ route('dashboard', $campaign) }}" title="{!! $campaign->name !!}">
-        <div class="campaign-image campaign-placeholder"  @if ($campaign->image) style="background-image: url('{{ $campaign->thumbnail($width, 200) }}')" @endif>
+<?php /** @var \App\Models\Campaign $campaign */?>
+<a class="flex flex-col gap-5 text-left w-72" href="{{ route('dashboard', $campaign) }}" title="{!! $campaign->name !!}">
 
+    <img src="{{ $campaign->image ? $campaign->thumbnail(320, 240) : 'https://th.kanka.io/zzKcBpijSBvm4rPWdzRpI82pTNQ=/320x240/smart/src/app/backgrounds/mountain-background-medium.jpg' }}" alt="{{ $campaign->name }}" class="w-80 h-60">
+
+    <div class="flex flex-col gap-2">
+        <div class="flex gap-2">
+            <h3 class="grow">{!! $campaign->name !!}</h3>
         </div>
-        <div class="bottom">
-            <h4 class="campaign-title mb-1">
-                <div class="float-right">
-                    @if ($campaign->is_open)
-                        <i class="fa-solid fa-door-open" title="{{ __('campaigns/submissions.helpers.filter-helper') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                    @endif
-                    @if ($campaign->boosted())
-                        <i class="fa-solid fa-rocket" title="{{ __('front.campaigns.public.filters.is-premium') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                    @endif
-                </div>
-                {!! $campaign->name !!}
-            </h4>
 
-            @if ($campaign->is_featured && !empty($campaign->featured_reason))
-                <p class="font-weight-light text-muted featured-winner mb-1">
-                    {!! $campaign->featured_reason !!}
-                </p>
+        <div class="flex flex-wrap gap-6 text-sm">
+
+            <span class="" title="{{ __('campaigns.fields.entity_count') }}" data-toggle="tooltip">
+                <x-icon class="pencil"></x-icon>
+                {{ number_format($campaign->visible_entity_count) }}
+            </span>
+            <span class="" title="{{ __('campaigns.fields.followers') }}" data-toggle="tooltip">
+                <x-icon class="fa-solid fa-eye"></x-icon>
+                {{ number_format($campaign->follower) }}
+            </span>
+            @if ($campaign->locale)
+                <span class="" title="{{ __('languages.codes.' . $campaign->locale) }}" data-toggle="tooltip">
+                    <x-icon class="fa-solid fa-language"></x-icon>
+                    {{ $campaign->locale }}
+                </span>
             @endif
-            <div class="labels text-muted">
-                <span class="mr-3" title="{{ __('campaigns.fields.entity_count') }}" data-toggle="tooltip">
-                    <x-icon class="pencil"></x-icon>
-                    {{ number_format($campaign->visible_entity_count) }}
+            @if (!empty($campaign->system))
+                <span class="" title="{{ __('campaigns.fields.system') }}" data-toggle="tooltip">
+                    <x-icon class="cog"></x-icon>
+                    {{ $campaign->system }}
                 </span>
-                <span class="mr-3" title="{{ __('campaigns.fields.followers') }}" data-toggle="tooltip">
-                    <x-icon class="fa-solid fa-eye"></x-icon>
-                    {{ number_format($campaign->follower) }}
-                </span>
-                @if ($campaign->locale)
-                    <span class="mr-3" title="{{ __('languages.codes.' . $campaign->locale) }}" data-toggle="tooltip">
-                        <x-icon class="fa-solid fa-language"></x-icon>
-                        {{ $campaign->locale }}
-                    </span>
-                @endif
-                @if (!empty($campaign->system))
-                    <span class="mr-3" title="{{ __('campaigns.fields.system') }}" data-toggle="tooltip">
-                        <x-icon class="cog"></x-icon>
-                        {{ $campaign->system }}
-                    </span>
-                @endif
-            </div>
+            @endif
         </div>
-    </a>
-</div>
+    </div>
+</a>

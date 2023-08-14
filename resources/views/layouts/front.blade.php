@@ -74,152 +74,31 @@
 @endif
 
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="//code.jquery.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
 
     @vite('resources/sass/front.scss')
 
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></noscript>
-    @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppin">
 
     @yield('styles')
 </head>
 
-<body id="page-top" class="@if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif">
+<body id="page-top" class="">
 @include('layouts.tracking.fallback')
 <noscript id="deferred-styles">
 </noscript>
 
-<a href="#main-content" class="skip-nav-link" tabindex="0">
-    {{ __('crud.navigation.skip_to_content') }}
-</a>
 <div id="top"></div>
-<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">
-            <img class="d-none d-lg-block" src="https://th.kanka.io/9A5OXYFaNh3wm-l2A3YNeevJa-M=/95x32/smart/src/app/logos/text-white.png" title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
-            <img class="d-xl-none d-lg-none" src="https://th.kanka.io/3LB2TZQKyA9dDlXx5PsHaxvqzhk=/95x32/smart/src/app/logos/text-blue.png" title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
-        </a>
+@include('layouts.front.nav')
 
-        <ul class="navbar-buttons ml-auto d-none d-sm-flex d-lg-none">
-            @auth
-                <li>
-                    <a href="{{ route('home') }}" class="btn btn-default">
-                        {{ __('front.menu.dashboard') }}
-                    </a>
-                </li>
-            @else
-                <li>
-                    <a href="{{ route('login') }}" class="btn btn-default">
-                        {{ __('front.menu.login') }}
-                    </a>
-                </li>
-                @if(config('auth.register_enabled'))
-                <li class="">
-                    <a href="{{ route('register') }}" class="btn btn-primary">
-                        {{ __('front.menu.register_free') }}
-                    </a>
-                </li>
-                @endif
-            @endauth
-        </ul>
-
-        <button class="navbar-toggler navbar-toggler-right ml-3" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'features') nav-active @endif" href="https://kanka.io/features">{{ __('footer.features') }}</a>
-                </li>
-                @if(config('services.stripe.enabled'))
-                <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="https://kanka.io/pricing">{{ __('footer.pricing') }}</a>
-                </li>
-                @endif
-                <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'public-campaigns') nav-active @endif" href="https://kanka.io/campaigns">{{ __('footer.public-campaigns') }}</a>
-                </li>
-            </ul>
-
-
-            <div class="d-md-none">
-                @auth
-                    <a href="{{ route('home') }}" class="btn btn-outline-primary">
-                        {{ __('front.menu.dashboard') }}
-                    </a>
-                @else
-                    <a href="{{ route('login') }}" class="btn btn-outline-primary">
-                        {{ __('front.menu.login') }}
-                    </a>
-                    @if(config('auth.register_enabled'))
-                    <a href="{{ route('register') }}" class="btn btn-primary text-white">
-                        {{ __('front.menu.register_free') }}
-                    </a>
-                    @endif
-                @endauth
-            </div>
-        </div>
-
-        <ul class="navbar-buttons ml-auto d-none d-lg-flex">
-            @auth
-                <li>
-                    <a href="{{ route('home') }}" class="btn btn-default text-white">
-                        {{ __('front.menu.dashboard') }}
-                    </a>
-                </li>
-            @else
-                <li>
-                    <a href="{{ route('login') }}" class="btn btn-default text-white">
-                        {{ __('front.menu.login') }}
-                    </a>
-                </li>
-                @if(config('auth.register_enabled'))
-                    <li class="">
-                        <a href="{{ route('register') }}" class="btn btn-primary text-white">
-                            {{ __('front.menu.register_free') }}
-                        </a>
-                    </li>
-                @endif
-            @endauth
-        </ul>
-    </div>
-</nav>
-
-<div id="main-content"></div>
-@yield('content')
-
+    @yield('content')
 @include('front.footer')
 
-<!-- Bootstrap core JavaScript -->
-<script
-        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-        crossorigin="anonymous"></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
-
 @vite('resources/js/front.js')
-@vite('resources/js/cookieconsent.js')
 @if (config('fontawesome.kit'))
 <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
-<script>
-    function init() {
-        var vidDefer = document.getElementsByTagName('iframe');
-        for (var i=0; i<vidDefer.length; i++) {
-            if(vidDefer[i].getAttribute('data-src')) {
-                vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
-            } } }
-    window.onload = init;
-</script>
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 @include('layouts.tracking.tracking', ['frontLayout' => true, 'noads' => true])
 @yield('scripts')

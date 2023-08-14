@@ -17,127 +17,119 @@
 @endsection
 
 @section('content')
-    <header class="masthead reduced-masthead" id="about">
-        <div class="container h-100">
-            <div class="row h-100 my-auto">
-                <div class="col-md-9">
-                    <div class="header-content mb-4">
-                        <h1 class="mb-3">{!! $user->displayName() !!}</h1>
-                        @if ($user->isBanned())
-                            <x-alert type="warning">
-                                {{__('users/profile.fields.banned')}}
-                            </x-alert>
-                        @endif
-                        @if (!empty($user->profile['bio']))
-                            <p class="mb-5 text-justify">
-                                {!! nl2br($user->profile['bio']) !!}
-                            </p>
-                        @endif
+    <section class="bg-purple text-white gap-16">
+        <div class="px-6 py-20 lg:max-w-7xl mx-auto flex flex-col gap-8">
+            <div class="flex gap-10">
+                <div class="grow flex flex-col gap-3">
+                    <h1 class="">{!! $user->displayName() !!}</h1>
+                    @if ($user->isBanned())
+                        <x-alert type="warning">
+                            {{__('users/profile.fields.banned')}}
+                        </x-alert>
+                    @endif
+                    @if (!empty($user->profile['bio']))
+                        <p class="text-light">
+                            {!! nl2br($user->profile['bio']) !!}
+                        </p>
+                    @endif
 
-                        @if ($discord = $user->discord())
-                            <span class="mr-5" title="Discord" data-toggle="tooltip">
-                            <x-icon class="fa-brands fa-discord"></x-icon> {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }}
-                            </span>
-                        @endif
+                    <div class="flex flex-wrap gap-3">
+                    @if ($discord = $user->discord())
+                        <span class="btn-round rounded-full" title="Discord" data-toggle="tooltip">
+                        <x-icon class="fa-brands fa-discord"></x-icon> {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }}
+                        </span>
+                    @endif
 
-                        @if ($user->hasPlugins())
-                            <a class="mr-5" href="{{ config('marketplace.url') . '/profiles/' . $user->id }}" title="Marketplace" data-toggle="tooltip" target="_blank">
-                                <x-icon class="fa-solid fa-shop"></x-icon>
-                                {{ __('footer.marketplace') }}
-                            </a>
-                        @endif
+                    @if ($user->hasPlugins())
+                        <a class="btn-round rounded-full" href="{{ config('marketplace.url') . '/profiles/' . $user->id }}" title="Marketplace" data-toggle="tooltip" target="_blank">
+                            <x-icon class="fa-solid fa-shop"></x-icon>
+                            {{ __('footer.marketplace') }}
+                        </a>
+                    @endif
 
-                        @if (auth()->check() && !\App\Facades\Identity::isImpersonating() && auth()->user()->id === $user->id)
-                            <a href="{{ route('settings.profile') }}" target="_blank" title="{{ __('crud.edit') }}" data-toggle="tooltip">
-                                <x-icon class="pencil"></x-icon>
-                                {{ __('settings.profile.actions.update_profile') }}
-                            </a>
-                        @endif
+                    @if (auth()->check() && !\App\Facades\Identity::isImpersonating() && auth()->user()->id === $user->id)
+                        <a href="{{ route('settings.profile') }}" class="btn-round rounded-full" target="_blank" title="{{ __('crud.edit') }}" data-toggle="tooltip">
+                            <x-icon class="pencil"></x-icon>
+                            {{ __('settings.profile.actions.update_profile') }}
+                        </a>
+                    @endif
                     </div>
                 </div>
-                    <div class="col-md-3 mt-md-5 text-center profile-pledge">
+                <div class="w-60 profile-pledge flex flex-col items-center justify-center gap-3">
                     @if ($user->isElemental())
                         <a href="https://kanka.io/hall-of-fame">
                             <img src="https://th.kanka.io/auu1F0KxCXOalmPB9I_FY4E3Ag8=/150x150/smart/src/app/tiers/elemental.png"
                                  class="profile-subscriber" title="Elemental" />
                         </a>
-                        <div class="text-uppercase">Elemental</div>
+                        <div class="text-uppercase text-md">Elemental</div>
                     @elseif ($user->isWyvern())
                         <a href="https://kanka.io/hall-of-fame">
                             <img src="https://th.kanka.io/ua5Q1aTly0Z0vx7GCN_qPQ5i650=/150x150/smart/src/app/tiers/wyvern.png"
-                                class="profile-subscriber mb-2" title="Wyvern" />
+                                class="profile-subscriber" title="Wyvern" />
                         </a>
-                        <div class="text-uppercase">Wyvern</div>
+                        <div class="text-uppercase text-md">Wyvern</div>
 
                     @elseif ($user->isOwlbear())
                         <a href="https://kanka.io/hall-of-fame">
                         <img src="https://th.kanka.io/gC3TXbW4neasqwZzH9lcTixg7Lo=/150x150/smart/src/app/tiers/owlbear.png"
-                                 class="profile-subscriber mb-2" title="Owlbear" />
+                                 class="profile-subscriber" title="Owlbear" />
                         </a>
-                        <div class="text-uppercase">Owlbear</div>
+                        <div class="text-uppercase text-md">Owlbear</div>
                     @elseif ($user->hasRole('admin'))
                         <a href="https://kanka.io/about">
                             <img src="https://th.kanka.io/BJcn1N6rdxAoCPVtYyGHB7s5VO0=/150x150/smart/src/app/logos/icon.png"
-                                 class="profile-subscriber no-transform mb-2" title="Kanka Team" />
+                                 class="profile-subscriber" title="Kanka Team" />
                         </a>
-                        <div class="text-uppercase lead">
+                        <div class="text-uppercase text-md text-center">
                             Kanka Team
                         </div>
                     @else
                         <img src="https://th.kanka.io/m4UFnMHPEFuUvSOdk1uJ65MkSTs=/150x150/smart/src/app/tiers/kobold.png"
                                  class="profile-subscriber" title="Kobold" />
-                        <div class="text-uppercase">Kobold</div>
+                        <div class="text-uppercase  text-md">Kobold</div>
                     @endif
-                    </div>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <section class="profile pt-5" id="profile">
-        <div class="container">
-            <div class="section-body">
+    <section class="lg:max-w-7xl lg:mx-auto flex flex-col gap-10 lg:gap-10 py-10 lg:py-12 px-4 xl:px-0 text-dark" id="profile">
 
-                <div class="row">
-                    <div class="col-md-9">
-                        @if (!$campaigns->isEmpty())
-                            <h1>{{ __('users/profile.fields.public_campaigns') }}</h1>
+        <div class="flex gap-10 w-full">
+            <div class="grow">
+                @if (!$campaigns->isEmpty())
+                    <h1>{{ __('users/profile.fields.public_campaigns') }}</h1>
 
-                            <div class="row">
-                                @foreach ($campaigns as $campaign)
-                                    <div class="col-xl-6 col-12">
-                                        @include('front._campaign', ['campaign' => $campaign, 'featured' => false])
-                                    </div>
-                                @endforeach
+                    <div class="row">
+                        @foreach ($campaigns as $campaign)
+                            <div class="col-xl-6 col-12">
+                                @include('front._campaign', ['campaign' => $campaign, 'featured' => false])
                             </div>
-                        @endif
+                        @endforeach
                     </div>
-                    <div class="col-md-3">
+                @endif
+            </div>
+            <div class="w-60 flex flex-col gap-10">
+                <div class="flex flex-col text-center">
+                    <p>
+                        {!! __('users/profile.fields.member_since', ['date' => '</p><p class="mb-3 text-light">' . $user->created_at->format('M d, Y')]) !!}
+                    </p>
 
-                        <div class="card mb-5">
-                            <div class="card-body mx-auto text-center">
-                                    <p>
-                                        {!! __('users/profile.fields.member_since', ['date' => '<br />' . $user->created_at->format('M d, Y')]) !!}
-                                    </p>
+                    @if ($user->subscribed('kanka'))
+                        <p>
+                            {!! __('users/profile.fields.subscriber_since', ['date' => '</p><p class="mb-3 text-light">' . $user->subscription('kanka')->created_at->format('M d, Y')]) !!}
+                        </p>
+                    @endif
 
-                                    @if ($user->subscribed('kanka'))
-                                        <p>
-                                            {!! __('users/profile.fields.subscriber_since', ['date' => '<br />' . $user->subscription('kanka')->created_at->format('M d, Y')]) !!}
-                                        </p>
-                                    @endif
-
-                                    <p>
-                                        {!! __('users/profile.fields.entities_created', [
-    'count' => '<br />' . $user->createdEntitiesCount(),
-    'help' => '<i class="fa-solid fa-question-circle" title="' . __('users/profile.helpers.entities_created') . '" data-toggle="tooltip"></i>',
-    ]) !!}</p>
-                            </div>
-                        </div>
-
-
-                        @includeWhen($user->hasAchievements(), 'users._badges')
-                    </div>
+                    <p>
+                        {!! __('users/profile.fields.entities_created', [
+'count' => '</p><p class="text-light mb-3">' . $user->createdEntitiesCount(),
+'help' => '<i class="fa-solid fa-question-circle" title="' . __('users/profile.helpers.entities_created') . '"></i>',
+]) !!}</p>
                 </div>
 
+
+                @includeWhen($user->hasAchievements(), 'users._badges')
             </div>
         </div>
     </section>

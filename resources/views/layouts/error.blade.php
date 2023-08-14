@@ -30,10 +30,8 @@
     <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
-
-    <!-- Bootstrap core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppin">
 
 </head>
 
@@ -46,134 +44,46 @@
 </noscript>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="{{ (auth()->check() ? route('front.home') : route('home')) }}">
-            <img class="d-none d-lg-block" src="{{ Img::crop(95, 32)->new()->url('app/logos/text-white.png') }}" title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
-            <img class="d-xl-none d-lg-none" src="{{ Img::crop(95, 32)->new()->url('app/logos/text-blue.png') }}" title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
-        </a>
-
-
-        <button class="navbar-toggler navbar-toggler-right ml-3" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-
-        @if ($error !== 503)
-        <ul class="navbar-buttons ml-auto d-none d-lg-flex">
-            @auth
-            @else
-                <li>
-                    <a href="{{ route('login') }}" class="btn btn-default text-white">
-                        {{ __('front.menu.login') }}
-                    </a>
-                </li>
-                @if(config('auth.register_enabled'))
-                    <li>
-                        <a href="{{ route('register') }}" class="btn btn-primary text-white">
-                            {{ __('front.menu.register') }}
-                        </a>
-                    </li>
-                @endif
-            @endauth
-        </ul>
+@include('layouts.front.nav', ['minimal' => $error === 503])
+<section class="bg-purple text-white gap-16" id="error-{{ $error }}">
+    <div class="px-6 py-20 lg:max-w-7xl mx-auto text-center flex flex-col gap-8">
+        <h2>{{ __('errors.' . $error . '.title') }}</h2>
+        @if (is_array(__('errors.' . $error . '.body')))
+            @foreach (__('errors.' . $error . '.body') as $text)
+                <p class="lg:max-w-2xl mx-auto text-center">{{ $text }}</p>
+            @endforeach
+        @else
+            <p class="lg:max-w-2xl mx-auto text-center">{{ __('errors.' . $error . '.body') }}</p>
         @endif
+
+        <p class="lg:max-w-2xl mx-auto text-center">
+            {!! __('errors.footer', [
+    'discord' => link_to(config('social.discord'), 'Discord', ['class' => 'link-light']),
+    'email' => link_to('mailto:' . config('app.email'), config('app.email'),  ['class' => 'link-light'])]) !!}
+        </p>
     </div>
-</nav>
+</section>
 
-<section class="error" id="error-{{ $error }}">
-    <div class="container">
-        <div class="section-body mt-5">
-
-            <div class="row">
-                <div class="col-12 col-sm-6">
-                    <h1 class="display-4" id="{{ $error }}">{{ __('errors.' . $error . '.title') }}</h1>
-
-                    @if (is_array(__('errors.' . $error . '.body')))
-                        @foreach (__('errors.' . $error . '.body') as $text)
-                            <p class="lead">{{ $text }}</p>
-                        @endforeach
-                    @else
-                        <p class="lead">{{ __('errors.' . $error . '.body') }}</p>
-                    @endif
-
-                    <p class="lead">{!! __('errors.footer', [
-    'discord' => link_to(config('social.discord'), 'Discord'),
-     'email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}</p>
-
-                    @if ($error !== 503 && auth()->check())
-                        <p class="lead mb-2">Go back to one of your campaigns</p>
-                        <div class="list-group">
-                            <?php /** @var \App\Models\Campaign $campaign */?>
-                        @foreach (auth()->user()->campaigns as $campaign)
-                            <a href="{{ route('dashboard', $campaign) }}" class="list-group-item list-group-item-action">
-                                {!! $campaign->name !!}
-                            </a>
-                        @endforeach
-                        </div>
-                    @else
-
-                    @endif
-                </div>
-                <div class="col-12 col-sm-6">
-                    <img src="/images/svgs/{{ $error }}.svg" alt="Error {{ $error }} image" />
-                </div>
-            </div>
+<section class="lg:max-w-7xl mx-auto flex flex-col gap-10 lg:gap-10 py-10 lg:py-12 px-4 xl:px-0 text-dark text-center" >
+    @if ($error !== 503 && auth()->check())
+        <p class="">Go back to one of your campaigns</p>
+        <div class="flex flex-wrap justify-center items-center gap-10">
+            <?php /** @var \App\Models\Campaign $campaign */?>
+        @foreach (auth()->user()->campaigns as $campaign)
+            <a href="{{ route('dashboard', $campaign) }}" class="btn-round rounded flex gap-2 items-center">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                {!! $campaign->name !!}
+            </a>
+        @endforeach
         </div>
-
-    </div>
+    @endif
 </section>
 
 <div id="main-content"></div>
 @yield('content')
 
 @includeWhen(Route::has('home'), 'front.footer')
-
-<!-- Bootstrap core JavaScript -->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
-<script>
-    WebFont.load({
-        google: {
-            families: ['Lato', 'Catamaran:100,200,300,400,500,600,700,800,900']
-        }
-    });
-    var loadDeferredStyles = function() {
-        var addStylesNode = document.getElementById("deferred-styles");
-        var replacement = document.createElement("div");
-        replacement.innerHTML = addStylesNode.textContent;
-        document.body.appendChild(replacement);
-        addStylesNode.parentElement.removeChild(addStylesNode);
-    };
-    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-        webkitRequestAnimationFrame || msRequestAnimationFrame;
-    if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-    else window.addEventListener('load', loadDeferredStyles);
-</script>
-
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-<script>
-    window.addEventListener("load", function(){
-        window.cookieconsent.initialise({
-            "palette": {
-                "popup": {
-                    "background": "#0E2231"
-                },
-                "button": {
-                    "background": "#2e8893"
-                }
-            },
-            "theme": "classic",
-            "content": {
-                "message": "{{ __('front.cookie.message') }}",
-                "dismiss": "{{ __('front.cookie.dismiss') }}",
-                "link": "{{ __('front.cookie.link') }}"
-            }
-        })});
-</script>
+@vite('resources/js/front.js')
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif

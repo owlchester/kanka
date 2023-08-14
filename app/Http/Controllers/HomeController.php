@@ -26,21 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->guest()) {
-            if (Domain::isApp()) {
-                return redirect()->route('login');
-            }
-            return $this->front();
+            return redirect()->route('login');
         }
         return $this->back();
-    }
-
-    /**
-     */
-    protected function front()
-    {
-        $campaigns = FrontCache::featured();
-        return view('front.home')
-            ->with('campaigns', $campaigns);
     }
 
     /**

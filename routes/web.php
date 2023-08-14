@@ -25,4 +25,3 @@ Route::get('/_ccapi/country', [\App\Http\Controllers\CookieConsentController::cl
     ->name('cookieconsent.country');
 
 Route::get('/frontend-prepare', [\App\Http\Controllers\FrontendPrepareController::class, 'index']);
-Route::feeds();

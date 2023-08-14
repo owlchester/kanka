@@ -28,8 +28,6 @@ class LocaleChange
         if (
             $request->is(
                 'subscription-api/*',
-                'feeds/*',
-                '*/sitemap.xml',
                 'oauth/*'
             )
         ) {

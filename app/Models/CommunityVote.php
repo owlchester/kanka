@@ -9,8 +9,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Spatie\Feed\Feedable;
-use Spatie\Feed\FeedItem;
 
 /**
  * Class CommunityVote
@@ -28,7 +26,7 @@ use Spatie\Feed\FeedItem;
  * @property Collection $ballots
  * @property string $link
  */
-class CommunityVote extends Model implements Feedable
+class CommunityVote extends Model
 {
     use CommunityVoteScopes;
 
@@ -154,40 +152,5 @@ class CommunityVote extends Model implements Feedable
             }
         }
         return $this->cachedResults;
-    }
-
-    /**
-     * RSS feed item
-     * @return FeedItem
-     */
-    public function toFeedItem(): FeedItem
-    {
-        return FeedItem::create()
-            ->id((string) $this->id)
-            ->title($this->name)
-            ->summary($this->excerpt)
-            ->updated($this->updated_at)
-            ->link($this->link)
-            ->authorName(config('app.name'))
-            ->authorEmail(config('app.email'))
-        ;
-    }
-
-    /**
-     * link attribute
-     * @return string
-     */
-    public function getLinkAttribute()
-    {
-        return route('community-votes.show', $this);
-    }
-
-    /**
-     * RSS items
-     * @return mixed
-     */
-    public function getFeedItems()
-    {
-        return CommunityVote::visible()->orderBy('published_at', 'DESC')->get();
     }
 }
