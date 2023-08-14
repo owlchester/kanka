@@ -14,7 +14,7 @@
 Nearly all models in Kanka are based on the concept of entities. A character is an entity, but because of historical choices, there are two actual models.
 A `character` is a singular model and endpoint, and a character has both an `id` and an `entity_id` value. The `id` identifies the character against all other **characters**, while the `entity_id` identifies the character against all other **entities**. This can be confusing at first, but should not be an issue with the help of this documentation.
 
-> {warning} Please note that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{id}`. For example, if an endpoint is listed as `characters`, you should use `kanka.io/api/{{version}}/campaigns/{id}/characters`.
+> {warning} Please note that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{id}`. For example, if an endpoint is listed as `characters`, you should use `api.kanka.io/{{version}}/campaigns/{id}/characters`.
 
 Some common entities include:
 

@@ -33,8 +33,6 @@ class CampaignResource extends JsonResource
         $campaign = $this->resource;
 
         $url = route('dashboard', $campaign);
-        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
-        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
         $apiViewUrl = 'campaigns.show';
 
         $data = [

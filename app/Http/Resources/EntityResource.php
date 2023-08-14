@@ -50,8 +50,6 @@ class EntityResource extends JsonResource
         $entity = $this->resource;
 
         $url = $entity->url();
-        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
-        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
         $apiViewUrl = 'campaigns.' . $entity->pluralType() . '.show';
 
         $data = [
@@ -148,8 +146,6 @@ class EntityResource extends JsonResource
         $boosted = $campaign->boosted();
 
         $url = $misc->getLink();
-        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
-        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
         $apiViewUrl = 'campaigns.' . $misc->entity->pluralType() . '.show';
 
         $merged = [

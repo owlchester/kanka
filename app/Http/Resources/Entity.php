@@ -23,8 +23,6 @@ class Entity extends EntityChild
         }
 
         $url = $model->url();
-        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
-        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
         $apiViewUrl = 'campaigns.' . $model->pluralType() . '.show';
 
         return [

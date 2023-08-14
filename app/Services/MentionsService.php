@@ -385,9 +385,8 @@ class MentionsService
 
                 // If this request is through the API, we need to inject the language in the url
                 if (request()->is('api/*') || Domain::isApi()) {
-                    $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
-                    $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
-                    $dataUrl = Str::replaceFirst('campaign/', $lang . '/campaign/', $dataUrl);
+                    $url = Str::replaceFirst('/campaign/', '/w/', $url);
+                    $dataUrl = Str::replaceFirst('/w/', '/w/', $dataUrl);
                 }
 
                 // Add tags as a class

@@ -12,7 +12,7 @@
 
 You can get a list of all items of an entity's inventory by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |
