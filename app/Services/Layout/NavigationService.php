@@ -2,6 +2,7 @@
 
 namespace App\Services\Layout;
 
+use App\Facades\Domain;
 use App\Facades\Identity;
 use App\Facades\MarketplaceCache;
 use App\Facades\PostCache;
@@ -125,7 +126,7 @@ class NavigationService
 
         $data['urls'] = [
             'new' => route('start'),
-            'follow' => route('front.public_campaigns'),
+            'follow' => Domain::toFront('campaigns'),
             'reorder' => route('settings.appearance', ['highlight' => 'campaign-switcher']),
         ];
         $data['texts'] = [
