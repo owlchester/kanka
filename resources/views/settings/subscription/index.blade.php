@@ -17,8 +17,8 @@
 
     <p class="text-lg">
         {!! __('subscription.benefits.main', [
-            'more' => link_to('https://kanka.io/pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank']),
-            'boosters' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'), '', ['target' => '_blank']),
+            'more' => link_to(Domain::toFront('pricing'), __('subscription.benefits.more'), '#paid-features'),
+            'boosters' => link_to(Domain::toFront('premium'), __('concept.premium-campaigns')),
             'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
         ]) !!}
     </p>

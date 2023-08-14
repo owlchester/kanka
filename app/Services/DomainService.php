@@ -45,4 +45,9 @@ class DomainService
     {
         return config('domains.api');
     }
+
+    public function toFront(string $page): string
+    {
+        return '//' . $this->front() . '/' . $page;
+    }
 }

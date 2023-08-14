@@ -3,13 +3,13 @@
         <img src="https://th.kanka.io/d4ZF6X-TrBX2HwsAYM_fNo8W2PA=/103x103/smart/src/app/logos/logo.png" title="Kanka logo" alt="Kanka" />
     </a>
     <div class="gap-8 lg:gap-12 items-center grow hidden lg:flex">
-        <a href="https://kanka.io/features" class="link text-nav">
+        <a href="{{ config('domains.front') }}/features" class="link text-nav">
             {{ __('footer.features') }}
         </a>
-        <a href="https://kanka.io/pricing" class="link text-nav">
+        <a href="{{ config('domains.front') }}/pricing" class="link text-nav">
             {{ __('footer.pricing') }}
         </a>
-        <a href="https://kanka.io/campaigns" class="link text-nav">
+        <a href="{{ config('domains.front') }}/campaigns" class="link text-nav">
             {{ __('footer.public-campaigns') }}
         </a>
     </div>
