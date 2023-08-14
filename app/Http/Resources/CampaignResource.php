@@ -7,7 +7,6 @@ use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
 class CampaignResource extends JsonResource

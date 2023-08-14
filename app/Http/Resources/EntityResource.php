@@ -9,7 +9,6 @@ use App\Models\Item;
 use App\Models\MiscModel;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 class EntityResource extends JsonResource
 {
