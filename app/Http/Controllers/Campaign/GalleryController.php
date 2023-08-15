@@ -175,8 +175,9 @@ class GalleryController extends Controller
         }
         $params['campaign'] = $campaign;
 
+        $key = $image->isFolder() ? 'folder' : 'success';
         return redirect()->route('campaign.gallery.index', $params)
-            ->with('success', __('campaigns/gallery.update.success'));
+            ->with('success', __('campaigns/gallery.update.' . $key));
     }
 
     /**
@@ -188,10 +189,15 @@ class GalleryController extends Controller
     {
         $this->authorize('gallery', $campaign);
 
+        $options = [$campaign];
         $image->delete();
+        if ($image->folder_id) {
+            $options['folder_id'] = $image->folder_id;
+        }
 
-        return redirect()->route('campaign.gallery.index', $campaign)
-            ->with('success', __('campaigns/gallery.destroy.success', ['name' => $image->name]));
+        $key = $image->isFolder() ? 'folder' : 'success';
+        return redirect()->route('campaign.gallery.index', $options)
+            ->with('success', __('campaigns/gallery.destroy.' . $key, ['name' => $image->name]));
     }
 
     /**
@@ -208,11 +214,10 @@ class GalleryController extends Controller
             ->campaign($campaign)
             ->createFolder($request);
 
-        $params = [];
+        $params = [$campaign];
         if (!empty($folder->folder_id)) {
-            $params = ['folder_id' => $folder->folder_id];
+            $params['folder_id'] = $folder->folder_id;
         }
-        $params['campaign'] = $campaign;
 
         return redirect()
             ->route('campaign.gallery.index', $params);

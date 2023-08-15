@@ -79,7 +79,7 @@ $imageCount = 0;
                     </x-badge>
                 </div>
 
-                {!! Form::model($image, ['route' => ['images.update', $campaign, $image], 'method' => 'PUT', 'class' => '']) !!}
+                {!! Form::model($image, ['route' => ['images.update', $campaign, $image], 'method' => 'PUT', 'class' => 'flex flex-col gap-5']) !!}
 
                 <div class="field-name">
                     <label for="name" class="control-label required">{{ __('crud.fields.name') }}</label>

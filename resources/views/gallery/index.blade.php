@@ -37,6 +37,9 @@ if ($folder) {
                 <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
             </button>
         @endif
+        <button class="btn2 btn-sm btn-error" style="display: none" id="bulk-delete" data-toggle="dialog" data-target="bulk-destroy-dialog">
+            <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
+        </button>
     </div>
 
     <div class="search">
@@ -86,6 +89,19 @@ if ($folder) {
 
     {{ $images->appends(!empty($folder) ? ['folder_id' => $folder->id] : [])->onEachSide(0)->links() }}
 
+
+
+    <input type="hidden" id="gallery-config" data-max="{{ ini_get('max_file_uploads') }}" data-error="{{ __('campaigns/gallery.errors.max', ['count' => ini_get('max_file_uploads')]) }}" />
+@endsection
+
+@section('scripts')
+    @parent
+    @vite('resources/js/story.js')
+    @vite('resources/js/gallery.js')
+@endsection
+
+@section('modals')
+    @parent
     <div class="modal fade" id="modal-new-folder" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content bg-base-100">
@@ -105,8 +121,8 @@ if ($folder) {
                 <div class="modal-footer">
                     <button type="button" class="btn2 btn-sm" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button type="submit" class="btn2 btn-sm btn-primary">
-                    {{ __('crud.create') }}
-                </button>
+                        {{ __('crud.create') }}
+                    </button>
                 </div>
             </div>
             @if(!empty($folder))
@@ -116,11 +132,16 @@ if ($folder) {
         </div>
     </div>
 
-    <input type="hidden" id="gallery-config" data-max="{{ ini_get('max_file_uploads') }}" data-error="{{ __('campaigns/gallery.errors.max', ['count' => ini_get('max_file_uploads')]) }}" />
-@endsection
+    <form method="POST" action="{{ route('campaign.gallery.bulk.delete', [$campaign]) }}" id="gallery-bulk">
+    <x-dialog id="bulk-destroy-dialog" title="{{ __('crud.delete_modal.title') }}">
+        <p class="max-w-md">{{ __('campaigns/gallery.bulk.destroy.confirm') }}</p>
 
-@section('scripts')
-    @parent
-    @vite('resources/js/story.js')
-    @vite('resources/js/gallery.js')
+        <x-dialog.footer dialog="1">
+            <button class="btn2 btn-error" id="">{{ __('crud.delete_modal.confirm') }}</button>
+        </x-dialog.footer>
+    </x-dialog>
+    @if ($folder)
+        <input type="hidden" name="folder_id" value="{{ $folder->id }}">
+    @endif
+    </form>
 @endsection

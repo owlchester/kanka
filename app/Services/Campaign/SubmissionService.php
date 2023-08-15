@@ -90,7 +90,7 @@ class SubmissionService
         $this->notificationService
             ->campaign($this->campaign)
             ->notify(
-                'campaign.application.new',
+                'application.new',
                 'door-open',
                 'yellow',
                 [

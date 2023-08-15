@@ -418,7 +418,7 @@ class SidebarService
      * @param int $segment
      * @return string
      */
-    public function settings(string $menu, int $segment = 3): string
+    public function settings(string $menu, int $segment = 2): string
     {
         $current = request()->segment($segment);
         if ($current == $menu) {

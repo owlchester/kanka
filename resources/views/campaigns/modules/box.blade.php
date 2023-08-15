@@ -30,11 +30,11 @@ $enabled = $campaign->enabled($module);
     <x-box css="box-module overflow-hidden flex flex-wrap flex-col select-none {{ $enabled ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $module }}" :padding="false">
         <div class="header p-2 bg-gray-600 flex items-center gap-2 ">
             <i class="flex-0 text-lg {{ $icon }}" aria-hidden="true"></i>
-            <h3 class="text-lg m-0 grow text-white">
+            <h3 class="text-lg m-0 grow break-all text-white">
                 {!! $moduleName !!}
             </h3>
             @if (isset($id) && !isset($deprecated))
-                <a href="#"
+                <button
                     class="text-white hover:shadow-sm text-xl transition-all hover:rotate-45"
                     data-toggle="dialog-ajax"
                     data-url="{{ route('modules.edit', [$campaign, $id]) }}"
@@ -44,7 +44,7 @@ $enabled = $campaign->enabled($module);
                         <span class="sr-only">
                         {{ __('campaigns/modules.actions.customise') }}
                     </span>
-                </a>
+                </button>
             @endif
         </div>
         <div class="grow flex flex-wrap flex-col">

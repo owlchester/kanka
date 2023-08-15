@@ -24,7 +24,7 @@
             <passport-authorized-clients></passport-authorized-clients>
 
         @if (request()->has('clients'))
-            <div class="col-span-2">
+            <div>
             <passport-clients></passport-clients>
             </div>
         @endif

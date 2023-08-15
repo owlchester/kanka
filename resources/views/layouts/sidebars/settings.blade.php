@@ -75,14 +75,14 @@
                     @endif
 
                     @if (config('services.stripe.enabled'))
-                        <li class="{{ $sidebar->settings('payment-method', 4) }} subsection">
+                        <li class="{{ $sidebar->settings('payment-method', 3) }} subsection">
                             <x-sidebar.element
                                 :url="route('billing.payment-method')"
                                 icon="fa-solid fa-credit-card"
                                 :text="__('billing/menu.payment-method')"
                             ></x-sidebar.element>
                         </li>
-                        <li class="{{ $sidebar->settings('history', 4) }} subsection">
+                        <li class="{{ $sidebar->settings('history', 3) }} subsection">
                             <x-sidebar.element
                                 :url="route('billing.history')"
                                 icon="fa-solid fa-receipt"
