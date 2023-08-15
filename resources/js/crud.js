@@ -243,7 +243,7 @@ function registerEntityCalendarModal() {
             return;
         }
         // Load month list
-        loadCalendarDates(entityCalendarField.val());    
+        loadCalendarDates(entityCalendarField.val());
     });
 
     //var defaultCalendarId = entityCalendarAdd.data('default-calendar');
@@ -258,14 +258,14 @@ function registerEntityCalendarModal() {
             return;
         }
         let url = $(this).data('url').replace('/0/', '/' + entityCalendarField.val() + '/')
-    
+
         let params = {
             day: entityCalendarDayField.val(),
             month: entityCalendarMonthField.val(),
             year: entityCalendarYearField.val(),
             length: $(this).val(),
         }
-    
+
         $.ajax(url, {data: params}).done(function (data) {
             if (data.overflow == true) {
                 $('.length-warning').show();
@@ -397,7 +397,6 @@ function calendarHideSubform() {
     $('input[name="calendar_month"]').val(null);
     $('input[name="calendar_year"]').val(null);
     $('input[name="calendar_id"]').val(null);
-    console.log('finished?');
 }
 
 /**
@@ -455,7 +454,8 @@ function registerFormMaintenance() {
                 data: $(this).serialize(),
                 context: this,
             };
-            if ($(this).find('input[type="file"]').length > 0) {
+            // If the form has files (ignoring the summernote one), include it
+            if ($(this).find('input[type="file"]').not('.note-image-input').length > 0) {
                 let formData = new FormData(this);
                 ajaxData = {
                     url: $(this).attr('action'),
@@ -638,8 +638,7 @@ function registerDynamicRowDelete() {
         if ($(this).data('init') === 1) {
             return;
         }
-        $(this).data('init', 1);
-        $(this).on('click', function (e) {
+        $(this).data('init', 1).on('click', function (e) {
             e.preventDefault();
             $(this).closest('.parent-delete-row').remove();
         }).on('keydown', function (e) {
