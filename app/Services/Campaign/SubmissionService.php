@@ -17,8 +17,8 @@ use Exception;
 class SubmissionService
 {
     use CampaignAware;
-    use UserAware;
     use PurifiableTrait;
+    use UserAware;
 
     protected CampaignSubmission $submission;
 
