@@ -39,13 +39,12 @@ class HomeController extends Controller
         }
 
         // Otherwise, redirect to the last campaign the user has
-        $last = auth()->user()->last_campaign_id;
-        if (!empty($last)) {
-            $campaign = Campaign::find($last);
-            if ($campaign) {
-                return redirect()->route('dashboard', $campaign);
-            }
+        /** @var Campaign|null $last */
+        $last = auth()->user()->lastCampaign;
+        if ($last) {
+            return redirect()->route('dashboard', $last);
         }
+
         // No valid last campaign? Let's redirect to the last campaign the user had
         $campaigns = auth()->user()->campaigns;
         foreach ($campaigns as $campaign) {
