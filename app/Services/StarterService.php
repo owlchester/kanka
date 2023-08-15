@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\CharacterCache;
+use App\Facades\EntityCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
@@ -14,8 +16,7 @@ class StarterService
 {
     use UserAware;
 
-    /** @var Campaign */
-    protected $campaign;
+    protected Campaign $campaign;
 
 
     /**
@@ -48,6 +49,8 @@ class StarterService
     public function generateBoilerplate(Campaign $campaign)
     {
         CampaignLocalization::forceCampaign($campaign);
+        EntityCache::campaign($campaign);
+        CharacterCache::campaign($campaign);
         $this->campaign = $campaign;
 
         // Generate locations

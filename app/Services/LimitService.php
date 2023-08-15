@@ -29,7 +29,7 @@ class LimitService
     {
         // Default for Owlbears and legacy Goblins/Kobolds, or members of a campaign
         $size = 8192;
-        if (!$this->user->isSubscriber() && !$this->campaign->boosted()) {
+        if (!$this->user->isSubscriber() && (!isset($this->campaign) || !$this->campaign->boosted())) {
             $min = config('limits.filesize.image');
             if ($this->map) {
                 $min = 3072;

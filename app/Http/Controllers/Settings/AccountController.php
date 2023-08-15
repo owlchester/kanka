@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Facades\Domain;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteSettingsAccount;
 use App\Http\Requests\StoreSettingsAccount;
@@ -94,6 +95,6 @@ class AccountController extends Controller
         $this->deletionService
             ->user($request->user())
             ->delete();
-        return redirect()->route('front.goodbye', ['deleted' => true]);
+        return redirect()->to(Domain::toFront('goodbye') . '?deleted=true');
     }
 }

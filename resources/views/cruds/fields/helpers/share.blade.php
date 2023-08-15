@@ -17,5 +17,5 @@
         @endif
     @endif
 @else
-    <a href="{{ route('front.pricing') }}">{{ __('callouts.subscribe.pitch-image', ['max' => $max]) }}</a>
+    <a href="{{ \App\Facades\Domain::toFront('pricing') }}">{{ __('callouts.subscribe.pitch-image', ['max' => $max]) }}</a>
 @endif
