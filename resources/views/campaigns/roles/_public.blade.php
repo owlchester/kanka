@@ -13,7 +13,7 @@ $permission->role($role);
             <i class="fa-solid fa-user-secret"></i> {{ __('campaigns/roles.actions.status', ['status' => $campaign->isPublic() ? __('campaigns.visibilities.public') : __('campaigns.visibilities.private')]) }}
         </a>
 
-        <button class="btn2 btn-sm" data-toggle="dialog"
+        <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                 data-target="public-help">
             <x-icon class="question"></x-icon>
             {!! __('campaigns.members.actions.help') !!}

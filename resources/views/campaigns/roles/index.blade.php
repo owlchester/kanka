@@ -2,7 +2,7 @@
     <h3 class="m-0 inline-block grow">
         {{ __('campaigns.show.tabs.roles') }} <span class="text-sm">({{ $roles->total() }} / @if ($limit = $campaign->roleLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
     </h3>
-    <button class="btn2 btn-sm" data-toggle="dialog"
+    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
             data-target="roles-help">
         <x-icon class="question"></x-icon>
         {{ __('campaigns.members.actions.help') }}

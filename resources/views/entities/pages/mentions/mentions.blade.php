@@ -11,8 +11,8 @@
 
 
 @section('entity-header-actions')
-        <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
-            <button class="btn2 btn-sm" data-toggle="dialog"
+        <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
+            <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                     data-target="dialog-help">
                 <x-icon class="question"></x-icon>
                 {{ __('campaigns.members.actions.help') }}

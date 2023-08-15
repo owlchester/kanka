@@ -23,7 +23,7 @@
                 </h3>
 
                 @if ($campaign->boosted())
-                    <button class="btn2 btn-sm pull-right" data-toggle="dialog"
+                    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                             data-target="sidebar-help">
                         <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}

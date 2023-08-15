@@ -22,7 +22,7 @@ use App\Facades\Datagrid ?>
                     {{ __('campaigns.show.tabs.styles') }}
                 </h3>
                 @if ($campaign->boosted())
-                    <button class="btn2 btn-sm pull-right ml-1" data-toggle="dialog"
+                    <button class="btn2 btn-sm btn-ghost ml-1" data-toggle="dialog"
                             data-target="theming-help">
                         <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}

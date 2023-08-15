@@ -17,7 +17,7 @@
         </div>
         <div class="grow max-w-7xl">
             <h3 class="mt-0">
-                <button class="btn2 btn-sm pull-right" data-toggle="dialog"
+                <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                         data-target="export-help">
                     <x-icon class="question"></x-icon>
                     {{ __('campaigns.members.actions.help') }}

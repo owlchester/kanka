@@ -21,7 +21,7 @@
                     {{ __('campaigns.show.tabs.default-images') }}
                 </h3>
                 @if ($campaign->boosted())
-                    <button class="btn2 btn-sm" data-toggle="dialog"
+                    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                             data-target="default-images-help">
                         <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}
