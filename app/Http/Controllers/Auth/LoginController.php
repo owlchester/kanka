@@ -26,12 +26,6 @@ class LoginController extends Controller
 
     public UserAuthenticatedService $userAuthService;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -61,5 +55,10 @@ class LoginController extends Controller
     {
         $response = $this->userAuthService->authenticated($user);
         return $response;
+    }
+
+    protected function redirectTo(Request $request): string
+    {
+        return route('home');
     }
 }
