@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Visibility extends Model
 {
-
     /**
      * Visibility strings for old tables that haven't been migrated
      */

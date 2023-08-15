@@ -5,7 +5,6 @@ namespace App\Services\Families;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\FamilyTree;
-use App\Models\Visibility;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Str;
 
