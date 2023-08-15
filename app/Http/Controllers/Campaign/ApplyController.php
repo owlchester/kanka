@@ -10,8 +10,7 @@ use App\Services\Campaign\SubmissionService;
 
 class ApplyController extends Controller
 {
-    /** @var SubmissionService */
-    protected $service;
+    protected SubmissionService $service;
 
     public function __construct(SubmissionService $service)
     {
@@ -19,10 +18,6 @@ class ApplyController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign)
     {
         $this->authorize('apply', $campaign);
@@ -35,11 +30,6 @@ class ApplyController extends Controller
         ;
     }
 
-    /**
-     * @param StoreCampaignApplication $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function save(StoreCampaignApplication $request, Campaign $campaign)
     {
         $this->authorize('apply', $campaign);
@@ -50,17 +40,17 @@ class ApplyController extends Controller
             $submission->update(['text' => $request->get('application')]);
             $success = __('campaigns/submissions.apply.success.update');
         } else {
-            $submission = new CampaignSubmission();
-            $submission->text = $request->get('application');
-            $submission->user_id = auth()->user()->id;
-            $submission->campaign_id = $campaign->id;
-            $submission->save();
-            $success = __('campaigns/submissions.apply.success.apply');
+            $this->service
+                ->user(auth()->user())
+                ->campaign($campaign)
+                ->apply($request->get('application'));
 
-            $this->service->campaign($campaign)->notifyAdmins();
+            $success = __('campaigns/submissions.apply.success.apply');
         }
 
-        return redirect()->route('dashboard', $campaign)->with('success', $success);
+        return redirect()
+            ->route('dashboard', $campaign)
+            ->with('success', $success);
     }
 
     public function remove(Campaign $campaign)
@@ -72,6 +62,8 @@ class ApplyController extends Controller
         if (!empty($submission)) {
             $submission->delete();
         }
-        return redirect()->route('dashboard', $campaign)->with('success', __('campaigns/submissions.apply.success.remove'));
+        return redirect()
+            ->route('dashboard', $campaign)
+            ->with('success', __('campaigns/submissions.apply.success.remove'));
     }
 }

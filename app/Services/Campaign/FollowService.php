@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Campaign;
 
-use App\Models\Campaign;
 use App\Models\CampaignFollower;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\User;
 
-class CampaignFollowService
+class FollowService
 {
     use CampaignAware;
     use UserAware;

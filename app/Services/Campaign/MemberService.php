@@ -17,7 +17,6 @@ class MemberService
     use CampaignAware;
     use UserAware;
 
-    /** @var CampaignRole */
     protected CampaignRole $campaignRole;
 
     /** @var CampaignRoleUser|null */

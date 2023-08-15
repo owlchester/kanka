@@ -7,13 +7,13 @@
 
 
 @section('content')
-    {!! Form::open(['route' => ['campaign.apply.save', $campaign], 'method'=>'POST']) !!}
-        <div class="modal-header">
-            <x-dialog.close />
-            <h4>{!! __('campaigns/submissions.apply.title', ['name' => $campaign->name]) !!}</h4>
-        </div>
 
-    <div class="modal-body">
+    <x-dialog.header>
+        {!! __('campaigns/submissions.apply.title', ['name' => $campaign->name]) !!}
+    </x-dialog.header>
+    <article>
+        {!! Form::open(['route' => ['campaign.apply.save', $campaign], 'method'=>'POST', 'class' => 'max-w-xl']) !!}
+
         @include('partials.errors')
 
         <p class="help-block">{{ __('campaigns/submissions.apply.help') }}</p>
@@ -25,20 +25,24 @@
                 'placeholder' => __('campaigns/submissions.placeholders.note')
             ]) !!}
         </div>
-    </div>
 
-    <div class="modal-footer">
-        <button class="btn2 btn-primary">{{ empty($submission) ? __('campaigns/submissions.apply.apply') : __('crud.update') }}</button>
-        @includeWhen(!request()->ajax(), 'partials.or_cancel')
+
+        <x-dialog.footer>
+
+            @if($submission)
+                <x-button.delete-confirm target="#delete-submission" />
+            @endif
+
+            <x-buttons.confirm type="primary">
+                <x-icon class="save"></x-icon>
+                {{ empty($submission) ? __('campaigns/submissions.apply.apply') : __('crud.update') }}
+            </x-buttons.confirm>
+        </x-dialog.footer>
         {!! Form::close() !!}
 
         @if($submission)
-            <x-button.delete-confirm target="#delete-submission" />
+            {!! Form::open(['method' => 'DELETE','route' => ['campaign.apply.remove', $campaign], 'style '=> 'display:inline', 'id' => 'delete-submission']) !!}
+            {!! Form::close() !!}
         @endif
-    </div>
-
-    @if($submission)
-        {!! Form::open(['method' => 'DELETE','route' => ['campaign.apply.remove', $campaign], 'style '=> 'display:inline', 'id' => 'delete-submission']) !!}
-        {!! Form::close() !!}
-    @endif
+    </article>
 @endsection

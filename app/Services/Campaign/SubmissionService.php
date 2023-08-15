@@ -10,31 +10,48 @@ use App\Models\CampaignUser;
 use App\Notifications\Header;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
+use Exception;
 
 class SubmissionService
 {
     use CampaignAware;
+    use UserAware;
     use PurifiableTrait;
 
+    protected CampaignSubmission $submission;
 
-    /** @var CampaignSubmission */
-    protected $submission;
+    protected NotificationService $notificationService;
 
-    /**
-     * @param CampaignSubmission $submission
-     * @return $this
-     */
+    public function __construct(NotificationService $notificationService)
+    {
+        $this->notificationService = $notificationService;
+    }
+
     public function submission(CampaignSubmission $submission): self
     {
         $this->submission = $submission;
         return $this;
     }
 
+    public function apply(string $reason = null): self
+    {
+        $submission = new CampaignSubmission();
+        $submission->text = $reason;
+        $submission->user_id = $this->user->id;
+        $submission->campaign_id = $this->campaign->id;
+        $submission->save();
+
+        $this->notify();
+
+        return $this;
+    }
+
     /**
      * @param array $data
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     public function process(array $data): string
     {
@@ -66,12 +83,13 @@ class SubmissionService
         return $return;
     }
 
-    public function notifyAdmins(): self
+    public function notify(): self
     {
         // Notify the admins of a new application
         // Notify all admins
-        foreach ($this->campaign->admins() as $user) {
-            $user->notify(new Header(
+        $this->notificationService
+            ->campaign($this->campaign)
+            ->notify(
                 'campaign.application.new',
                 'door-open',
                 'yellow',
@@ -79,8 +97,7 @@ class SubmissionService
                     'link' => route('campaign_submissions.index', $this->campaign),
                     'campaign' => $this->campaign->name
                 ]
-            ));
-        }
+            );
 
         return $this;
     }

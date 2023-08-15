@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Users;
 
 use Carbon\Carbon;
 use Exception;
 
-class UserDateService
+class DateService
 {
     /**
      * Default format is MMMM d, Y

@@ -25,8 +25,8 @@
                     @can('apply', $campaign)
                         <button id="campaign-apply" class="btn2 btn-sm" data-id="{{ $campaign->id }}"
                                 data-url="{{ route('campaign.apply', $campaign) }}"
-                                data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
-                                data-target="#large-modal"
+                                data-toggle="dialog-ajax" title="{{ __('dashboard.helpers.join') }}"
+                                data-target="apply-dialog"
                                 data-placement="bottom"
                         >
                             <i class="fa-solid fa-door-open"></i> {{ __('dashboard.actions.join') }}

@@ -2,30 +2,31 @@
 
 namespace App\Services;
 
+use App\Exceptions\RequireLoginException;
 use App\Facades\UserCache;
 use App\Models\Campaign;
-use App\Models\CampaignUser;
-use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
 use App\Models\CampaignRoleUser;
+use App\Models\CampaignUser;
 use App\Models\UserLog;
 use App\Notifications\Header;
+use App\Services\Campaign\FollowService;
 use App\Traits\UserAware;
-use Illuminate\Support\Facades\Session;
 use Exception;
+use Illuminate\Support\Facades\Session;
 
 class InviteService
 {
     use UserAware;
 
-    public CampaignFollowService $campaignFollowService;
+    public FollowService $campaignFollowService;
 
 
     /**
      * InviteService constructor.
-     * @param CampaignFollowService $campaignFollowService
+     * @param FollowService $campaignFollowService
      */
-    public function __construct(CampaignFollowService $campaignFollowService)
+    public function __construct(FollowService $campaignFollowService)
     {
         $this->campaignFollowService = $campaignFollowService;
     }

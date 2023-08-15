@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Models\CampaignUser;
 use App\Models\UserLog;
@@ -31,15 +32,6 @@ class LeaveService
         if (empty($member)) {
             throw new Exception(__('campaigns.leave.error'));
         }
-        // Delete user from roles.
-        // Todo: don't we have this on the user themselves?
-        /*foreach ($this->campaign->roles as $role) {
-            foreach ($role->users as $user) {
-                if ($user->user_id == $this->user->id) {
-                    $user->delete();
-                }
-            }
-        }*/
 
         // Delete the member
         $member->delete();
@@ -59,7 +51,9 @@ class LeaveService
             );
 
         // Clear cache
-        UserCache::clearCampaigns();
+        UserCache::user($this->user)->clearCampaigns();
+        CampaignCache::campaign($this->campaign)->clearRoles()->clearAdmins();
+
         $this->user->log(UserLog::TYPE_CAMPAIGN_LEAVE);
     }
 }

@@ -19,8 +19,6 @@ Route::post(
 )->name('cashier.webhook');
 ;
 
-Route::get('/{locale}/sitemap.xml', 'Front\SitemapController@language')->name('front.sitemap');
-
 Route::get('/_ccapi/country', [\App\Http\Controllers\CookieConsentController::class, 'index'])
     ->name('cookieconsent.country');
 

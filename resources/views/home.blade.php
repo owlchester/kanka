@@ -103,3 +103,9 @@ use App\Enums\Widget;
         'resources/sass/map-v3.scss'
     ])
 @endsection
+
+@section('modals')
+    @can('apply', $campaign)
+    <x-dialog id="apply-dialog" title="Loading"></x-dialog>
+    @endif
+@endsection
