@@ -44,7 +44,6 @@ class EntityNote extends Model
 {
     use Acl;
     use Blameable;
-    /** Traits */
     use Paginatable;
     use VisibilityIDTrait;
 

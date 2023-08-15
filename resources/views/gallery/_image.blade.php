@@ -12,7 +12,7 @@
             <x-icon class="fa-regular fa-folder text-4xl"></x-icon>
             <div class="text-base overflow-hidden text-center px-2">
 
-                @if ($image->visibility_id != \App\Models\Visibility::VISIBILITY_ALL)
+                @if ($image->visibility_id != \App\Enums\Visibility::All)
                     {!! $image->visibilityIcon() !!}
                 @endif
                 {{ $image->name }}
@@ -20,7 +20,7 @@
         </div>
     @else
         @if ($image->isFont())
-            <div class="block grow w-full flex flex-col justify-center items-center gap-2">
+            <div class="grow w-full flex flex-col justify-center items-center gap-2">
                 <x-icon class="fa-regular fa-file text-4xl"></x-icon>
             </div>
         @else

@@ -3,6 +3,7 @@
  * @var \App\Models\CampaignDashboardWidget $widget
  */ ?>
 @php
+use App\Enums\Widget;
     $position = 0;
     $seoTitle = (!empty($dashboard) ? $dashboard->name : __('sidebar.dashboard')) .  ' - ' . $campaign->name;
     $row = 0;
@@ -32,13 +33,13 @@
     <div class="dashboard-widgets">
         <div class="row">
         @foreach ($widgets as $widget)
-            @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
+            @if($widget->widget == Widget::Campaign)
                 @include('dashboard.widgets._campaign')
                 @continue;
             @endif
-            <?php if (!in_array($widget->widget, \App\Models\CampaignDashboardWidget::WIDGET_VISIBLE) && empty($widget->entity)):
+            <?php if (!in_array($widget->widget, Widget::visibile()) && empty($widget->entity)):
                 continue;
-            elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_PREVIEW && !$widget->entity):
+            elseif ($widget->widget == Widget::Preview && !$widget->entity):
                 continue;
             elseif (!$widget->visible()):
                 continue;

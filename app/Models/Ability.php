@@ -228,7 +228,7 @@ class Ability extends MiscModel
         $entityAbility = EntityAbility::create([
             'ability_id' => $this->id,
             'entity_id' => $entityId,
-            'visibility_id' => Arr::get($request, 'visibility_id', Visibility::VISIBILITY_ALL),
+            'visibility_id' => Arr::get($request, 'visibility_id', \App\Enums\Visibility::All),
         ]);
 
         return $entityAbility !== false;

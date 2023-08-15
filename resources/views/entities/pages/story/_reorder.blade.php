@@ -3,6 +3,7 @@
  * @var \App\Models\Post[]|\Illuminate\Support\Collection $posts
  * @var \App\Models\Post $first
  */
+use App\Enums\Visibility;
 $hasEntry = false;
 
 $posts = $entity->posts()->ordered()->get();
@@ -45,29 +46,8 @@ if ($firstPost && $firstPost->position >= 0) {
                 </div>
 
                 <div class="self-end">
-@php
-$options = [];
-$options[\App\Models\Visibility::VISIBILITY_ALL] = __('crud.visibilities.all');
-
-if (auth()->user()->isAdmin()) {
-    $options[\App\Models\Visibility::VISIBILITY_ADMIN] = __('crud.visibilities.admin');
-    $options[\App\Models\Visibility::VISIBILITY_MEMBERS] = __('crud.visibilities.members');
-}
-if ($note->created_by == auth()->user()->id) {
-    $options[\App\Models\Visibility::VISIBILITY_SELF] = __('crud.visibilities.self');
-    $options[\App\Models\Visibility::VISIBILITY_ADMIN_SELF] = __('crud.visibilities.admin-self');
-}
-
-// If it's a visibility self & admin and we're not the creator, we can't change this
-if ($note->visibility_id === \App\Models\Visibility::VISIBILITY_ADMIN_SELF && $note->created_by !== auth()->user()->id) {
-    $options = [\App\Models\Visibility::VISIBILITY_ADMIN_SELF => __('crud.visibilities.admin-self')];
-}
-elseif ($note->visibility_id === \App\Models\Visibility::VISIBILITY_SELF && $note->created_by !== auth()->user()->id) {
-    $options = [\App\Models\Visibility::VISIBILITY_SELF => __('crud.visibilities.self')];
-}
-@endphp
                     <select name="posts[{{ $note->id }}][visibility_id]" class="form-control">
-                        @foreach ($options as $key => $value)
+                        @foreach ($note->visibilityOptions() as $key => $value)
                             <option value="{{ $key }}" @if ($key == $note->visibility_id) selected="selected" @endif>
                                 {{ $value }}
                             </option>

@@ -493,16 +493,16 @@ class Campaign extends MiscModel
         $visibility = $this->default_visibility;
 
         if ($visibility == 'admin') {
-            return Visibility::VISIBILITY_ADMIN;
+            return \App\Enums\Visibility::Admin->value;
         } elseif ($visibility == 'admin-self') {
-            return Visibility::VISIBILITY_ADMIN_SELF;
+            return (int) \App\Enums\Visibility::AdminSelf->value;
         } elseif ($visibility == 'members') {
-            return Visibility::VISIBILITY_MEMBERS;
+            return (int) \App\Enums\Visibility::Member->value;
         } elseif ($visibility == 'self') {
-            return Visibility::VISIBILITY_SELF;
+            return (int) \App\Enums\Visibility::Self->value;
         }
 
-        return Visibility::VISIBILITY_ALL;
+        return (int) \App\Enums\Visibility::All->value;
     }
 
     /**

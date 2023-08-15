@@ -2,10 +2,10 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\Visibility;
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\StoreImageFocus;
 use App\Models\Image;
-use App\Models\Visibility;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
@@ -97,7 +97,7 @@ class GalleryService
         $this->image->update([
             'name' => Arr::get($options, 'name'),
             'folder_id' => Arr::get($options, 'folder_id', null),
-            'visibility_id' => Arr::get($options, 'visibility_id', Visibility::VISIBILITY_ALL),
+            'visibility_id' => Arr::get($options, 'visibility_id', Visibility::All),
         ]);
 
         return $this->image;
