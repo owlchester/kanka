@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GalleryBulkDelete;
 use App\Models\Campaign;
 use App\Services\Campaign\Gallery\BulkService;
-use Illuminate\Http\Client\Request;
 
 class BulkController extends Controller
 {
