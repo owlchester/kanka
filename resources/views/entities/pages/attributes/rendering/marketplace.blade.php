@@ -2,6 +2,8 @@
 /**
  * @var \App\Models\Plugin $plugin
  * @var \App\Models\Attribute $attribute
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\MiscModel $model
  */
 ?>
 

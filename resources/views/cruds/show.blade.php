@@ -1,5 +1,6 @@
 <?php /** @var \App\Models\MiscModel $model */?>
 
+
 @php
 $headerImage = true;
 @endphp

@@ -18,9 +18,9 @@ if ($layout && !empty($campaign)) {
 @if (!empty($template))
     @include($template->view())
 @elseif (!empty($marketplaceTemplate))
-    @include('cruds.attributes.marketplace_template', ['plugin' => $marketplaceTemplate])
+    @include('entities.pages.attributes.rendering.marketplace', ['plugin' => $marketplaceTemplate])
 @else
-    @include('entities.pages.attributes._attributes', [
+    @include('entities.pages.attributes.rendering.default', [
         'attributes' => $entity->attributes()->with('entity')->ordered()->get()
     ])
 @endif
