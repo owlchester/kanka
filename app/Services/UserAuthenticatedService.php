@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Campaign;
-use App\Models\CampaignUser;
 use App\User;
 
 class UserAuthenticatedService

@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Campaign;
-use App\Models\CampaignUser;
 use App\Models\Entity;
 use App\Services\Campaign\NotificationService;
 use App\User;

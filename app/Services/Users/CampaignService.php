@@ -8,8 +8,8 @@ use App\Traits\UserAware;
 
 class CampaignService
 {
-    use UserAware;
     use CampaignAware;
+    use UserAware;
 
     /**
      * Set a campaign as the user's "current" campaign
