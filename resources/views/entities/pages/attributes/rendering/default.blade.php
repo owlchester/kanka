@@ -1,16 +1,12 @@
 <?php /** @var \App\Models\Attribute $attribute */?>
 
 @if ($attributes->count() === 0)
-    <div class="help-block">
-        {!! __('entities/attributes.helpers.setup', [
-    'manage' => '<span class="badge select-none">' . __('entities/attributes.actions.manage') .  '</span>'
-]) !!}
-    </div>
     @php return @endphp
 @endif
 @php
 $inSection = false;
 @endphp
+<x-box css="box-entity-attributes">
 <dl class="dl-horizontal">
 @foreach ($attributes as $attribute)
     @if ($attribute->isSection())
@@ -74,3 +70,4 @@ $inSection = false;
 @else
     </dl>
 @endif
+</x-box>

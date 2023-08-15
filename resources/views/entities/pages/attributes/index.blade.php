@@ -42,9 +42,14 @@
         ])
 
         <div class="entity-main-block">
-            <x-box css="box-entity-attributes">
+            <x-tutorial code="attributes" doc="https://docs.kanka.io/en/latest/features/attributes.html">
+                <p>{!! __('entities/attributes.tutorial', [
+    'hp' => '<code>HP</code>',
+    'str' => '<code>STR</code>',
+    'pop' => '<code>Population</code>',
+]) !!}</p>
+            </x-tutorial>
                 @include('entities.pages.attributes.render')
-            </x-box>
         </div>
 
         <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', [$campaign, $entity]) }}" />

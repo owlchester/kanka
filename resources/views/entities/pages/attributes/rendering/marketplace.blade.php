@@ -13,9 +13,11 @@
     </x-alert>
 @endif
 
-<div class="marketplace-template-{{ $plugin->plugin->uuid }}">
-    {!! $plugin->version->content(isset($entity) ? $entity : $model->entity) !!}
-</div>
+<x-box css="box-entity-attributes">
+    <div class="marketplace-template-{{ $plugin->plugin->uuid }}">
+        {!! $plugin->version->content(isset($entity) ? $entity : $model->entity) !!}
+    </div>
+</x-box>
 
 @section('styles')
     @parent

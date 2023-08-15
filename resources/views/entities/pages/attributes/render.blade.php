@@ -16,7 +16,9 @@ if ($layout && !empty($campaign)) {
 ?>
 
 @if (!empty($template))
-    @include($template->view())
+    <x-box css="box-entity-attributes">
+        @include($template->view())
+    </x-box>
 @elseif (!empty($marketplaceTemplate))
     @include('entities.pages.attributes.rendering.marketplace', ['plugin' => $marketplaceTemplate])
 @else
