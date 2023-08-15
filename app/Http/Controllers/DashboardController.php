@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Widget;
 use App\Facades\Dashboard;
 use App\Facades\DataLayer;
 use App\Models\Campaign;
@@ -52,7 +53,7 @@ class DashboardController extends Controller
     {
         /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
-        if ($widget->widget != CampaignDashboardWidget::WIDGET_RECENT) {
+        if ($widget->widget != Widget::Recent) {
             return response()->json([
                 'success' => true
             ]);
@@ -75,7 +76,7 @@ class DashboardController extends Controller
     {
         /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
-        if ($widget->widget != CampaignDashboardWidget::WIDGET_UNMENTIONED) {
+        if ($widget->widget != Widget::UNMENTIONED) {
             return response()->json([
                 'success' => true
             ]);

@@ -13,13 +13,4 @@ enum Widget: String
     case Campaign = 'campaign';
     case Welcome = 'welcome';
 
-    public static function visibile(): array
-    {
-        return [
-            Widget::Recent,
-            Widget::Random,
-            Widget::Header,
-            Widget::Welcome,
-        ];
-    }
 }

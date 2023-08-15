@@ -38,26 +38,6 @@ class CampaignDashboardWidget extends Model
     use LastSync;
     use Taggable;
 
-    /**
-     * Widget Constants
-     */
-    public const WIDGET_PREVIEW = 'preview';
-    public const WIDGET_RECENT = 'recent';
-    public const WIDGET_CALENDAR = 'calendar';
-    public const WIDGET_UNMENTIONED = 'unmentioned';
-    public const WIDGET_RANDOM = 'random';
-    public const WIDGET_HEADER = 'header';
-    public const WIDGET_CAMPAIGN = 'campaign';
-    public const WIDGET_WELCOME = 'welcome';
-
-    // Widgets that are automatically visible on the dashboard
-    public const WIDGET_VISIBLE = [
-        Widget::Recent,
-        Widget::Random,
-        Widget::Header,
-        Widget::Welcome,
-    ];
-
     /** @var string[]  */
     protected $fillable = [
         'campaign_id',

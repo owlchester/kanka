@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\Widget;
 use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
@@ -113,7 +114,7 @@ class StarterService
         // Note for the dashboard
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
-            'widget' => CampaignDashboardWidget::WIDGET_WELCOME,
+            'widget' => Widget::Welcome->value,
             'width' => 6, // half
             'position' => 1,
         ]);
@@ -122,7 +123,7 @@ class StarterService
         // Recent widget
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
-            'widget' => CampaignDashboardWidget::WIDGET_RECENT,
+            'widget' => Widget::Recent->value,
             'width' => 0,
             'position' => 2,
         ]);

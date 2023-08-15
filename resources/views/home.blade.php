@@ -37,7 +37,12 @@ use App\Enums\Widget;
                 @include('dashboard.widgets._campaign')
                 @continue;
             @endif
-            <?php if (!in_array($widget->widget, Widget::visibile()) && empty($widget->entity)):
+            <?php if (!in_array($widget->widget, [
+                        Widget::Recent->value,
+                        Widget::Random->value,
+                        Widget::Header->value,
+                        Widget::Welcome->value
+                    ]) && empty($widget->entity)):
                 continue;
             elseif ($widget->widget == Widget::Preview && !$widget->entity):
                 continue;

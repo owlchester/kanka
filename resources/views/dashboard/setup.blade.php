@@ -7,6 +7,7 @@
 ])
 
 @php
+use App\Enums\Widget;
 $widgetClass = 'widget relative rounded text-xl text-center h-40 overflow-hidden shadow-xs hover:shadow-md cursor-pointer bg-box' ;
 $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-center h-full';
 $newWidgetListClass = 'btn2 btn-full';
@@ -178,7 +179,7 @@ $newWidgetListClass = 'btn2 btn-full';
                 {{ __('dashboard.setup.widgets.calendar') }}
             </a>
 
-            <a href="#" class="{{ $newWidgetListClass }}" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
+            <a href="#" class="{{ $newWidgetListClass }}" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => Widget::Header->value, 'dashboard' => $dashboard]) }}">
                 <x-icon class="fa-solid fa-heading"></x-icon>
                 {{ __('dashboard.setup.widgets.header') }}
             </a>

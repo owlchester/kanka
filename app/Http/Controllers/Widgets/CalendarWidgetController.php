@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use App\Enums\Widget;
 
 class CalendarWidgetController extends Controller
 {
@@ -15,7 +16,7 @@ class CalendarWidgetController extends Controller
      */
     public function add(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        if ($campaignDashboardWidget->widget != CampaignDashboardWidget::WIDGET_CALENDAR) {
+        if ($campaignDashboardWidget->widget != Widget::Calendar) {
             return response()->json([
                 'success' => false
             ]);
@@ -36,7 +37,7 @@ class CalendarWidgetController extends Controller
      */
     public function sub(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        if ($campaignDashboardWidget->widget != CampaignDashboardWidget::WIDGET_CALENDAR) {
+        if ($campaignDashboardWidget->widget != Widget::Calendar) {
             return response()->json([
                 'success' => false
             ]);
@@ -58,7 +59,7 @@ class CalendarWidgetController extends Controller
      */
     public function render(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        if ($campaignDashboardWidget->widget != CampaignDashboardWidget::WIDGET_CALENDAR) {
+        if ($campaignDashboardWidget->widget != Widget::Calendar) {
             return response()->json([
                 'success' => false
             ]);
