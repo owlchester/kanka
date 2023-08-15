@@ -370,7 +370,7 @@ class SidebarService
      * @param string $class
      * @return string
      */
-    public function active($menu = '', string $class = 'active'): string
+    public function active(string $menu = '', string $class = 'active'): string
     {
         if (empty($this->rules[$menu])) {
             return '';
@@ -381,15 +381,15 @@ class SidebarService
         }
 
         foreach ($this->rules[$menu] as $rule) {
-            if (request()->segment(4) == $rule) {
+            if (request()->segment(3) == $rule) {
                 return " {$class}";
             }
         }
 
         // Entities? It's complicated
-        if (request()->segment(4) == 'entities') {
-            /** @var Entity $entity */
-            $entity = request()->route('entity');
+        /** @var Entity|null $entity */
+        $entity = request()->route('entity');
+        if ($entity) {
             if ($entity->pluralType() == $menu) {
                 return " {$class}";
             }
@@ -432,7 +432,7 @@ class SidebarService
      * @param string $css
      * @return null|string
      */
-    public function open($menu = '', $css = 'menu-open')
+    public function open(string $menu = '', $css = 'menu-open')
     {
         if (empty($this->rules[$menu])) {
             return null;
@@ -454,7 +454,7 @@ class SidebarService
     {
         $key = $this->cacheKey();
         if (!$this->withDisabled && Cache::has($key)) {
-            //return Cache::get($key);
+            return Cache::get($key);
         }
         $layout = [];
         foreach ($this->customLayout() as $name => $children) {

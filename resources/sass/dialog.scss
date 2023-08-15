@@ -1,5 +1,4 @@
 .dialog {
-
     display: grid;
     max-inline-size: min(90vw, 450px);
     max-block-size: min(70vh, 100%);
@@ -54,15 +53,15 @@
     }
 }
 .dialog:not([open]) {
-  pointer-events: none;
-  opacity: 0;
+    pointer-events: none;
+    opacity: 0;
 }
 
 .dialog::backdrop {
-  backdrop-filter: blur(1px);
-  transition: backdrop-filter .5s ease;
+    backdrop-filter: blur(1px);
+    transition: backdrop-filter .5s ease;
 }
 
 html:has(dialog[open]) {
-  overflow: hidden;
+    overflow: hidden;
 }

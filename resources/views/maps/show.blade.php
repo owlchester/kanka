@@ -4,7 +4,7 @@
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
+            Breadcrumb::entity($model->entity)->list(),
             null
         ]
     ])

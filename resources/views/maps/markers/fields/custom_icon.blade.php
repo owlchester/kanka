@@ -2,7 +2,7 @@
     <label>{{ __('maps/markers.fields.custom_icon') }}</label>
     {!! Form::text(
         $fieldname ?? 'custom_icon',
-        \App\Facades\FormCopy::field('custom_icon')->string(),
+        \App\Facades\FormCopy::field($fieldname ?? 'custom_icon')->string(),
         ['class' => 'form-control',
         'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-aura"']),
         'list' => 'map-marker-icon-list',

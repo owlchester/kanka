@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <form method="POST" action="{{ route('presets.store', $presetType) }}">
+    <form method="POST" action="{{ route('presets.store', [$campaign, $presetType]) }}">
         <x-box>
             @include('presets.forms._' . $presetType->code)
             <x-dialog.footer>

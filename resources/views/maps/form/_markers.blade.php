@@ -161,7 +161,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content bg-base-100">
                 <div class="modal-header">
-                    <x-dialog.close />
+                    <x-dialog.close :modal="true" />
                     <h4>
                         {{ __('maps/markers.create.title', ['name' => $model->name]) }}
                     </h4>

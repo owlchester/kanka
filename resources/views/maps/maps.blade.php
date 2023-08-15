@@ -11,7 +11,7 @@
 
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+    <div class="header-buttons flex gap-2 items-center justify-end">
         @if (request()->has('map_id'))
             <a href="{{ route('maps.maps', [$campaign, $model, '#map-maps']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
@@ -33,7 +33,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('maps'), 'label' => $plural],
+                Breadcrumb::entity($model->entity)->list(),
                 $plural
             ]
         ])

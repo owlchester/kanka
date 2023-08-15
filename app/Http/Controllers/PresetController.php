@@ -16,11 +16,12 @@ class PresetController extends Controller
         $this->middleware('campaign.member');
     }
 
-    public function index(PresetType $presetType)
+    public function index(Campaign $campaign, PresetType $presetType)
     {
         $presets = Preset::inType($presetType->id)->orderBy('name')->get();
 
         return view('presets.list')
+            ->with('campaign', $campaign)
             ->with('presets', $presets)
             ->with('presetType', $presetType)
             ->with('from', request()->get('from'))
@@ -55,6 +56,10 @@ class PresetController extends Controller
         $preset = $preset->create($data);
 
         list($route, $params) = $this->parseFrom($request);
+        if (!is_array($params)) {
+            $params = [$params];
+        }
+        $params['campaign'] = $campaign;
 
         return redirect()
             ->route($route, $params)
@@ -82,6 +87,9 @@ class PresetController extends Controller
         $preset->update($data);
 
         list($route, $params) = $this->parseFrom($request);
+        if (!is_array($params)) {
+            $params = [$params];
+        }
         $params['campaign'] = $campaign;
 
         return redirect()
@@ -95,6 +103,9 @@ class PresetController extends Controller
         $preset->delete();
 
         list($route, $params) = $this->parseFrom($request);
+        if (!is_array($params)) {
+            $params = [$params];
+        }
         $params['campaign'] = $campaign;
 
         return redirect()
