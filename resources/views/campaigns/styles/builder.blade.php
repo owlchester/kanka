@@ -1,7 +1,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('campaigns/builder.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign_styles.index'), 'label' => __('campaigns.show.tabs.styles')],
+        ['url' => route('campaign_styles.index', $campaign), 'label' => __('campaigns.show.tabs.styles')],
         __('campaigns/builder.title')
     ],
     'mainTitle' => '',

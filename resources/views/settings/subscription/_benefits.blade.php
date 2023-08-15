@@ -70,9 +70,9 @@
 
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
 
 
     <div class=""></div>

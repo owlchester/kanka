@@ -37,15 +37,15 @@
 
             <div class="flex flex-col gap-3 text-sm">
                 <span class="block text-nav uppercase">{{ __('footer.community') }}</span>
-                <a href="{{ config('domains.front') }}/campaigns">{{ __('footer.public-campaigns') }}</a>
-                <a href="{{ config('domains.front') }}/community-votes">{{ __('front/community-votes.title') }}</a>
-                <a href="{{ config('domains.front') }}/hall-of-fame">{{ __('front/hall-of-fame.title') }}</a>
+                <a href="{{ \App\Facades\Domain::toFront('campaigns') }}">{{ __('footer.public-campaigns') }}</a>
+                <a href="{{ \App\Facades\Domain::toFront('votes') }}">{{ __('front/community-votes.title') }}</a>
+                <a href="{{ \App\Facades\Domain::toFront('hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
             </div>
 
             <div class="flex flex-col gap-3 text-sm">
                 <span class="block text-nav uppercase">{{ __('footer.company') }}</span>
-                <a href="{{ config('domains.front') }}/about">{{ __('footer.about') }}</a>
-                <a href="{{ config('domains.front') }}/contact">{{ __('footer.contact') }}</a>
+                <a href="{{ \App\Facades\Domain::toFront('about') }}">{{ __('footer.about') }}</a>
+                <a href="{{ \App\Facades\Domain::toFront('contact') }}">{{ __('footer.contact') }}</a>
                 <a href="{{ config('domains.front') }}/press-kit">{{ __('footer.press-kit') }}</a>
                 <a href="{{ config('domains.front') }}/security">{{ __('footer.security') }}</a>
                 <a href="{{ config('domains.front') }}/privacy-policy">{{ __('footer.privacy') }}</a>
