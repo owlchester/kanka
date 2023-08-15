@@ -52,7 +52,6 @@ class CouponService
             }
 
             // Check restrictions
-            // @phpstan-ignore-next-line
             if ($promo->restrictions) {
                 // Some promos are only for first time subscribers
                 // @phpstan-ignore-next-line

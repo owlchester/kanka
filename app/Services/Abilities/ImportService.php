@@ -31,7 +31,6 @@ class ImportService
         $existingIds = [];
         foreach ($abilities as $ability) {
             // The ability is soft deleted so we can skip it
-            // @phpstan-ignore-next-line
             if (empty($ability) || empty($ability->ability)) {
                 continue;
             }

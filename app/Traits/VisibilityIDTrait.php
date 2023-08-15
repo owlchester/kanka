@@ -13,7 +13,7 @@ use App\Models\Scopes\VisibilityIDScope;
  *
  * @package App\Traits
  *
- * @property string|int|null $visibility_id
+ * @property string|int|Visibility|null $visibility_id
  */
 trait VisibilityIDTrait
 {
@@ -40,22 +40,22 @@ trait VisibilityIDTrait
     public function visibilityIcon(string $extra = null): string
     {
         $class = $title = '';
-        if ($this->visibility_id == Visibility::All) {
+        if ($this->visibility_id === Visibility::All) {
             if ($this->skipAllIcon) {
                 return '';
             }
             $class = 'fa-solid fa-eye';
             $title = __('crud.visibilities.all');
-        } elseif ($this->visibility_id == Visibility::Admin) {
+        } elseif ($this->visibility_id === Visibility::Admin) {
             $class = 'fa-solid fa-lock';
             $title = __('crud.visibilities.admin');
-        } elseif ($this->visibility_id == Visibility::Self) {
+        } elseif ($this->visibility_id === Visibility::Self) {
             $class = 'fa-solid fa-user-secret';
             $title = __('crud.visibilities.self');
-        } elseif ($this->visibility_id == Visibility::AdminSelf) {
+        } elseif ($this->visibility_id === Visibility::AdminSelf) {
             $class = 'fa-solid fa-user-lock';
             $title = __('crud.visibilities.admin-self');
-        } elseif ($this->visibility_id == Visibility::Member) {
+        } elseif ($this->visibility_id === Visibility::Member) {
             $class = 'fa-solid fa-users';
             $title = __('crud.visibilities.members');
         }
