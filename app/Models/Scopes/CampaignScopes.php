@@ -23,7 +23,8 @@ use Illuminate\Support\Arr;
  * @method static self|Builder open()
  * @method static self|Builder unboosted()
  * @method static self|Builder hidden()
- * @method static self|Builder slug(string $slug)
+ * @method static self|Builder slug(string|int $slug)
+ * @method static self|Builder acl(string|int $slug)
  */
 trait CampaignScopes
 {
@@ -32,7 +33,7 @@ trait CampaignScopes
      * that the user can only access valid campaigns. This means for either
      * public campaigns, or campaigns that the user is a member of.
      */
-    public function scopeAcl(Builder $query, string $slug): Builder
+    public function scopeAcl(Builder $query, string|int $slug): Builder
     {
         if (auth()->guest()) {
             return $this->public()->slug($slug);
@@ -62,9 +63,11 @@ trait CampaignScopes
     }
 
     /**
-     *
+     * Filter on a campaign's ID or slug. Since slugs always require at least one letter,
+     * we can have this is_numeric logic to differentiate between the two. We also need
+     * this for the APIs, as those work on the ID and not the slug.
      */
-    public function scopeSlug(Builder $query, string $slug): Builder
+    public function scopeSlug(Builder $query, string|int $slug): Builder
     {
         $key = is_numeric($slug) ? 'id' : 'slug';
         return $query->where($this->getTable() . '.' . $key, '=', $slug);

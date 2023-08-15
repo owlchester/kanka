@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Campaign;
 
 use App\Models\Campaign;
 
@@ -9,7 +9,7 @@ use App\Models\Campaign;
  * To keep the code clean, avoid this, as it's available in every controller and on every model as a
  * campaign_id property.
  */
-class CampaignLocalization
+class LocalisationService
 {
     /** @var Campaign|null The current campaign contact */
     protected Campaign|null $campaign;

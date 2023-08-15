@@ -15,34 +15,30 @@ use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
+use App\Services\Users\CampaignService;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class CampaignObserver
 {
-    /**
-     * Purify trait
-     */
     use PurifiableTrait;
 
     /**
      * Service used to build the map of the entity
-     * @var EntityMappingService
      */
     protected EntityMappingService $entityMappingService;
 
-    /**
-     * CharacterObserver constructor.
-     * @param EntityMappingService $entityMappingService
-     */
-    public function __construct(EntityMappingService $entityMappingService)
+    protected CampaignService $campaignService;
+
+    public function __construct(EntityMappingService $entityMappingService, CampaignService $campaignService)
     {
         $this->entityMappingService = $entityMappingService;
+        $this->campaignService = $campaignService;
     }
 
     /**
-     * @param Campaign $campaign
+     *
      */
     public function saving(Campaign $campaign)
     {
@@ -90,10 +86,10 @@ class CampaignObserver
         $role->save();
 
         // Make sure we save the last campaign id to avoid infinite loops
-        /** @var User $user */
-        $user = auth()->user();
-        $user->last_campaign_id = $campaign->id;
-        $user->save();
+        $this->campaignService
+            ->user(auth()->user())
+            ->campaign($campaign)
+            ->set();
 
         $role = CampaignRole::create([
             'campaign_id' => $campaign->id,

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Facades\CampaignLocalization;
 use App\Facades\Domain;
 use App\Http\Controllers\Api\v1\HealthController;
+use App\Http\Middleware\LastCampaign;
 use App\Models\Campaign;
 use App\Models\Plugin;
 use Illuminate\Support\Facades\Route;
@@ -120,17 +121,17 @@ class RouteServiceProvider extends ServiceProvider
     {
         $domain = Domain::isApi() ? Domain::app() : null;
         Route::domain($domain)
-            ->middleware(['web'])
+            ->middleware(['web', LastCampaign::class])
             ->namespace($this->namespace)
             ->group(base_path('routes/campaigns/campaign.php'));
 
         Route::domain($domain)
-            ->middleware(['web'])
+            ->middleware(['web', LastCampaign::class])
             ->namespace($this->namespace)
             ->group(base_path('routes/campaigns/entities.php'));
 
         Route::domain($domain)
-            ->middleware(['web'])
+            ->middleware(['web', LastCampaign::class])
             ->namespace($this->namespace)
             ->group(base_path('routes/campaigns/search.php'));
         return $this;

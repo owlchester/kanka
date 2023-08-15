@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\FullSetup;
+use App\Http\Middleware\LastCampaign;
 use App\Http\Middleware\PasswordConfirm;
 use App\Http\Middleware\Tracking;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
