@@ -5,7 +5,7 @@
     <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
             data-target="roles-help">
         <x-icon class="question"></x-icon>
-        {{ __('campaigns.members.actions.help') }}
+        {{ __('crud.actions.help') }}
     </button>
     @if (auth()->user()->can('update', $campaign))
         <a href="{{ route('campaign_roles.create', $campaign) }}" class="btn2 btn-primary btn-sm"

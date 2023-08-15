@@ -21,11 +21,10 @@
                     {{ __('campaigns.show.tabs.default-images') }}
                 </h3>
                 @if ($campaign->boosted())
-                    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
-                            data-target="default-images-help">
+                    <a href="https://docs.kanka.io/en/latest/features/campaigns/default-thumbnails.html" class="btn2 btn-sm btn-ghost" target="_blank">
                         <x-icon class="question"></x-icon>
-                        {{ __('campaigns.members.actions.help') }}
-                    </button>
+                        {{ __('crud.actions.help') }}
+                    </a>
 
                     <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
                        data-toggle="ajax-modal" data-target="#entity-modal"
@@ -81,12 +80,4 @@
             @endif
         </div>
     </div>
-@endsection
-
-
-@section('modals')
-    @parent
-    <x-dialog id="default-images-help" :title="__('campaigns.show.tabs.default-images')">
-        <p>{{ __('campaigns/default-images.helper') }}</p>
-    </x-dialog>
 @endsection

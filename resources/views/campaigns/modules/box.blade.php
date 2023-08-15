@@ -13,7 +13,7 @@ $enabled = $campaign->enabled($module);
     <x-box css="box-warning flex flex-wrap flex-col" id="{{ $module }}">
         <div class="header p-2 bg-gray-600 flex items-center gap-2">
             <i class="flex-0 text-lg {{ $icon }}" aria-hidden="true"></i>
-            <h3 class="text-lg m-0 grow text-white">
+            <h3 class="text-lg m-0 grow text-white ">
                 {!! $moduleName !!}
             </h3>
         </div>
@@ -28,7 +28,7 @@ $enabled = $campaign->enabled($module);
     </x-box>
 @else
     <x-box css="box-module overflow-hidden flex flex-wrap flex-col select-none {{ $enabled ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $module }}" :padding="false">
-        <div class="header p-2 bg-gray-600 flex items-center gap-2">
+        <div class="header p-2 bg-gray-600 flex items-center gap-2 ">
             <i class="flex-0 text-lg {{ $icon }}" aria-hidden="true"></i>
             <h3 class="text-lg m-0 grow text-white">
                 {!! $moduleName !!}

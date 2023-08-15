@@ -27,7 +27,7 @@ use \Illuminate\Support\Arr;
                     <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                                  data-target="stats-help">
                         <x-icon class="question"></x-icon>
-                        {{ __('campaigns.members.actions.help') }}
+                        {{ __('crud.actions.help') }}
                     </button>
                 @endif
             </div>

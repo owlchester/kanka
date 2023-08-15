@@ -15,7 +15,7 @@
             <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                     data-target="dialog-help">
                 <x-icon class="question"></x-icon>
-                {{ __('campaigns.members.actions.help') }}
+                {{ __('crud.actions.help') }}
             </button>
         </div>
 @endsection

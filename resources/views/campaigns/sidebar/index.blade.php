@@ -23,11 +23,10 @@
                 </h3>
 
                 @if ($campaign->boosted())
-                    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
-                            data-target="sidebar-help">
+                    <a class="btn2 btn-sm btn-ghost" href="https://docs.kanka.io/en/latest/features/campaigns/sidebar.html" target="_blank">
                         <x-icon class="question"></x-icon>
-                        {{ __('campaigns.members.actions.help') }}
-                    </button>
+                        {{ __('crud.actions.help') }}
+                    </a>
               @endif
             </div>
 
@@ -145,15 +144,4 @@
             {!! Form::close() !!}
         </div>
     </x-dialog>
-
-
-    @include('partials.helper-modal', [
-        'id' => 'sidebar-help',
-        'title' => __('campaigns.show.tabs.sidebar'),
-        'textes' => [
-            __('campaigns/sidebar.helpers.setup', ['reset' => '<strong>' . __('campaigns/sidebar.actions.reset') . '</strong>']),
-            __('campaigns/sidebar.helpers.icons', [
-                'link' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank'])
-            ])
-    ]])
 @endsection

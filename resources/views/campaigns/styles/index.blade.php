@@ -25,7 +25,7 @@ use App\Facades\Datagrid ?>
                     <button class="btn2 btn-sm btn-ghost ml-1" data-toggle="dialog"
                             data-target="theming-help">
                         <x-icon class="question"></x-icon>
-                        {{ __('campaigns.members.actions.help') }}
+                        {{ __('crud.actions.help') }}
                     </button>
                     <a href="#" data-url="{{ route('campaign-theme', $campaign) }}" data-target="campaign-theme" data-toggle="dialog-ajax" class="btn2 btn-sm pull-right ml-1">
                         <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}

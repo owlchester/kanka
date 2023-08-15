@@ -28,7 +28,7 @@
             <div class="flex gap-2 items-center mb-5">
                 <h3 class="m-0 grow">{{ __('crud.permissions.title') }}</h3>
                 <button class="btn2 btn-sm" data-target="permission-modal" data-toggle="dialog">
-                    <x-icon class="question"></x-icon> {{ __('campaigns.members.actions.help') }}
+                    <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
                 </button>
             </div>
             <x-box>

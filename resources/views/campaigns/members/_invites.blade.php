@@ -13,7 +13,7 @@
         </h3>
         <button class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="invite-help">
             <x-icon class="question" />
-            <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>
+            {{ __('crud.actions.help') }}
         </button>
 
         <a href="{{ route('campaign_invites.create', $campaign) }}" class="btn2 btn-primary btn-sm"

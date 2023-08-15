@@ -9,11 +9,10 @@
     <h3 class="m-0 inline-block grow">
         {{ __('campaigns.show.tabs.members') }} <span class="text-sm">({{ $users->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
     </h3>
-    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
-            data-target="members-help">
+    <a href="https://docs.kanka.io/en/latest/features/campaigns/members.html" class="btn2 btn-sm btn-ghost" target="_blank">
         <x-icon class="question"></x-icon>
-        {{ __('campaigns.members.actions.help') }}
-    </button>
+        {{ __('crud.actions.help') }}
+    </a>
 </div>
 
 @if (!$campaign->canHaveMoreMembers())
@@ -132,16 +131,6 @@
 
 @section('modals')
     @parent
-    @include('partials.helper-modal', [
-        'id' => 'members-help',
-        'title' => __('campaigns.show.tabs.members'),
-        'textes' => [
-            __('campaigns.members.help'),
-            (auth()->check() && auth()->user()->isAdmin() ? __('campaigns.members.helpers.admin', [
-        'link' => link_to('https://kanka.io/kb', __('footer.kb'), null, ['target' => '_blank']),
-        'button' => '<code><i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i> ' . __('campaigns.members.actions.switch') . '</code>']) : null),
-        ]
-    ])
 
     <x-dialog id="member-dialog" :loading="true"></x-dialog>
 
