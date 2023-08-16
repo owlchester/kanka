@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Calendars;
 
+use App\Exceptions\TranslatableException;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCalendarEvent;
@@ -12,6 +13,7 @@ use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
+use Exception;
 
 class EventController extends Controller
 {
@@ -94,22 +96,32 @@ class EventController extends Controller
             return response()->json(['success' => true]);
         }
 
-        // We need to handle negative year dates (start with -)
-        $link = $this->service->addEvent($calendar, $request->all());
-
-        $routeOptions = [$campaign, $calendar->entity, 'year' => request()->post('year')];
+        $routeOptions = [$campaign, $calendar->entity, 'year' => $request->post('year')];
         if ($request->has('layout')) {
             $routeOptions['layout'] = $request->get('layout');
         } else {
-            $routeOptions['month'] = request()->post('month');
+            $routeOptions['month'] = $request->post('month');
         }
 
-        if ($link !== false) {
+        // We need to handle negative year dates (start with -)
+        try {
+            $link = $this->service
+                ->calendar($calendar)
+                ->addEvent($request->all());
+
+            if ($link !== false) {
+                return redirect()->route('entities.show', $routeOptions)
+                    ->with('success', __('calendars.event.success', ['event' => $link->entity->name]));
+            }
+
             return redirect()->route('entities.show', $routeOptions)
-                ->with('success', __('calendars.event.success', ['event' => $link->entity->name]));
+                ->with('success', __('calendars.event.create.success'));
+        } catch (TranslatableException $e) {
+            return redirect()
+                ->route('entities.show', $routeOptions)
+                ->with('error', __('crud.bulk.errors.general', ['hint' => $e->getTranslatedMessage()]));
+        } catch (Exception $e) {
+            return redirect()->route('entities.show', $routeOptions);
         }
-
-        return redirect()->route('entities.show', $routeOptions)
-            ->with('success', __('calendars.event.create.success'));
     }
 }

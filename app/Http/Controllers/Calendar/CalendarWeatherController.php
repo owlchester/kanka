@@ -1,10 +1,4 @@
 <?php
-/**
- * Description of
- *
- * @author Ilestis
- * 20/01/2020
- */
 
 namespace App\Http\Controllers\Calendar;
 
@@ -19,10 +13,6 @@ class CalendarWeatherController extends Controller
 {
     protected CalendarService $calendarService;
 
-    /**
-     * CalendarWeatherController constructor.
-     * @param CalendarService $calendarService
-     */
     public function __construct(CalendarService $calendarService)
     {
         $this->calendarService = $calendarService;
@@ -30,14 +20,9 @@ class CalendarWeatherController extends Controller
 
     public function index(Campaign $campaign, Calendar $calendar)
     {
-        return redirect()->to($calendar->getLink());
+        return redirect()->route('entities.show', [$campaign, $calendar->entity]);
     }
 
-    /**
-     * @param Calendar $calendar
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function create(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('update', $calendar);
@@ -61,16 +46,13 @@ class CalendarWeatherController extends Controller
         ));
     }
 
-    /**
-     * @param AddCalendarWeather $request
-     * @param Calendar $calendar
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function store(AddCalendarWeather $request, Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('update', $calendar);
-        $weather = $this->calendarService->saveWeather($calendar, $request);
+
+        $weather = $this->calendarService
+            ->calendar($calendar)
+            ->saveWeather($request);
 
         $routeOptions = [$campaign, $calendar->entity, 'year' => $weather->year, 'month' => $weather->month];
         if ($request->has('layout')) {
@@ -84,7 +66,10 @@ class CalendarWeatherController extends Controller
     {
         $this->authorize('update', $calendar);
 
-        $weather = $this->calendarService->saveWeather($calendar, $request);
+        $weather = $this->calendarService
+            ->calendar($calendar)
+            ->saveWeather($request);
+
         $routeOptions = [$campaign, $calendar->entity, 'year' => $weather->year, 'month' => $weather->month];
         if ($request->has('layout')) {
             $routeOptions['layout'] = $request->get('layout');
@@ -94,12 +79,6 @@ class CalendarWeatherController extends Controller
             ->with('success', __('calendars/weather.edit.success'));
     }
 
-    /**
-     * @param Calendar $calendar
-     * @param CalendarWeather $calendarWeather
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function destroy(Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {
         $this->authorize('update', $calendar);
