@@ -2,8 +2,6 @@
 
 namespace App\Services\Entity;
 
-use App\Facades\CampaignLocalization;
-use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use App\Observers\PurifiableTrait;
@@ -14,8 +12,8 @@ use Illuminate\Support\Str;
 class NewService
 {
     use CampaignAware;
-    use UserAware;
     use PurifiableTrait;
+    use UserAware;
 
     protected array $tags;
 
@@ -53,10 +51,10 @@ class NewService
 
     protected function private(): bool
     {
-        if ($this->user->isAdmin() && $this->campaign->entity_visibility) {
-            return true;
-        }
-        return false;
+        return (bool) ($this->user->isAdmin() && $this->campaign->entity_visibility)
+
+
+        ;
     }
 
 
