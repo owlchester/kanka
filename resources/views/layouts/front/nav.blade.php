@@ -20,9 +20,11 @@
             <a href="{{ route('login') }}" class="btn-login transition-all duration-200">
                 {{ __('front.menu.login') }}
             </a>
+            @if (config('auth.register_enabled'))
             <a href="{{ route('register') }}" class="btn-register transition-all duration-200">
                 {{ __('front.menu.register') }}
             </a>
+            @endif
         @else
             <a href="{{ route('home') }}" class="btn-register transition-all duration-200">
                 {{ __('front.menu.dashboard') }}
@@ -64,9 +66,11 @@
                         <a href="{{ route('login') }}" class="btn-login transition-all duration-200">
                             {{ __('front.menu.login') }}
                         </a>
+                        @if (config('auth.register_enabled'))
                         <a href="{{ route('register') }}" class="btn-register transition-all duration-200">
                             {{ __('front.menu.register') }}
                         </a>
+                        @endif
                     @else
                         <a href="{{ route('home') }}" class="btn-register transition-all duration-200">
                             {{ __('front.menu.dashboard') }}
