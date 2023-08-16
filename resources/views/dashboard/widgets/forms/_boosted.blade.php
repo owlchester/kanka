@@ -10,7 +10,7 @@
             {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
         </a>
         @else
-            <a href="{{ route('front.premium') }}" target="_blank" class="btn2 bg-boost text-white btn-sm">
+            <a href="{{ \App\Facades\Domain::toFront('premium') }}" target="_blank" class="btn2 bg-boost text-white btn-sm">
                 {!! __('callouts.premium.learn-more') !!}
             </a>
         @endif

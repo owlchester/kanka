@@ -27,7 +27,7 @@ class ExportController extends Controller
     }
 
     /**
-     * Dispatch the campaign export jobs and have the user wait a bit
+     * Dispatch the campaign export jobs and have the user wait for a bit
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -43,7 +43,7 @@ class ExportController extends Controller
         $this->service
             ->campaign($campaign)
             ->user($request->user())
-            ->export();
+            ->queue();
 
         return response()->json(['success' => __('campaigns/export.success')]);
     }

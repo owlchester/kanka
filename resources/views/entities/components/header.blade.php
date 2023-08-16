@@ -326,7 +326,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             </a>
             @else
                 <p class="mb-2">{{ __('callouts.booster.limitation') }}</p>
-                <a href="{{ route('front.premium') }}" class="btn bg-boost text-white btn-block mb-2">
+                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" class="btn bg-boost text-white btn-block mb-2">
                     {!! __('callouts.premium.learn-more') !!}
                 </a>
             @endif

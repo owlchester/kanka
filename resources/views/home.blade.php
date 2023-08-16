@@ -33,18 +33,18 @@ use App\Enums\Widget;
     <div class="dashboard-widgets">
         <div class="row">
         @foreach ($widgets as $widget)
-            @if($widget->widget == Widget::Campaign)
+            @if($widget->widget === Widget::Campaign)
                 @include('dashboard.widgets._campaign')
                 @continue;
             @endif
-            <?php if (!in_array($widget->widget, [
+            <?php if (!in_array($widget->widget->value, [
                         Widget::Recent->value,
                         Widget::Random->value,
                         Widget::Header->value,
                         Widget::Welcome->value
                     ]) && empty($widget->entity)):
                 continue;
-            elseif ($widget->widget == Widget::Preview && !$widget->entity):
+            elseif ($widget->widget === Widget::Preview && !$widget->entity):
                 continue;
             elseif (!$widget->visible()):
                 continue;

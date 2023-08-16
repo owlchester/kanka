@@ -8,7 +8,7 @@
 {{ __('emails/welcome.2023.basics.title') }}
 
 {!! __('emails/welcome.2023.basics.text_1', [
-    'kb' => __('footer.kb') . ' (' . route('front.faqs.index') . ')',
+    'kb' => __('footer.kb') . ' (' . \App\Facades\Domain::toFront('kb') . ')',
     'doc' => __('footer.documentation') . ' (https://docs.kanka.io/en/latest/index.html)',
 ]) !!}
 

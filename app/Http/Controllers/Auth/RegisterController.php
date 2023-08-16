@@ -66,7 +66,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    protected function redirectTo(Request $request): string
+    protected function redirectTo(): string
     {
         return route('home');
     }
