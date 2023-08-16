@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\TemplateService;
-use App\Services\EntityService;
 
 class TemplateController extends Controller
 {

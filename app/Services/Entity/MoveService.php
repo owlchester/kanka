@@ -23,9 +23,9 @@ use Illuminate\Support\Str;
 
 class MoveService
 {
-    use EntityAware;
     use CampaignAware;
     use CanFixTree;
+    use EntityAware;
     use UserAware;
 
 

@@ -8,7 +8,6 @@ use App\Http\Requests\MoveEntityRequest;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\MoveService;
-use App\Services\EntityService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 

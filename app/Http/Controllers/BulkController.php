@@ -13,8 +13,6 @@ use App\Traits\BulkControllerTrait;
 use App\Traits\CampaignAware;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class BulkController extends Controller
 {

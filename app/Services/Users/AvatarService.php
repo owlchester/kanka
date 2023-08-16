@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Storage;
 
 class AvatarService
 {
-    use UserAware;
     use RequestAware;
+    use UserAware;
 
     public function upload(): void
     {

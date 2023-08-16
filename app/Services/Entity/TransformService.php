@@ -4,16 +4,13 @@ namespace App\Services\Entity;
 
 use App\Models\CampaignPermission;
 use App\Models\Character;
-use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\Family;
-use App\Models\Item;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
-use App\Models\Race;
 use App\Traits\CanFixTree;
 use App\Traits\EntityAware;
 use Illuminate\Support\Facades\Storage;
@@ -22,8 +19,8 @@ use Exception;
 
 class TransformService
 {
-    use EntityAware;
     use CanFixTree;
+    use EntityAware;
 
     protected MiscModel $child;
     protected MiscModel $new;

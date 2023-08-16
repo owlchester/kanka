@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Exceptions\EntityFileException;
 use App\Http\Requests\StoreEntityAsset;
-use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;

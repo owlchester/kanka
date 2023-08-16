@@ -20,7 +20,6 @@ use App\Models\Race;
 use App\Models\Tag;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
-use App\Traits\CanFixTree;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use App\Facades\CampaignLocalization;

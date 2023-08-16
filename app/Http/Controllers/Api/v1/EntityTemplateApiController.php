@@ -6,7 +6,6 @@ use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\TemplateService;
-use App\Services\EntityService;
 use Illuminate\Support\Facades\DB;
 
 class EntityTemplateApiController extends ApiController
