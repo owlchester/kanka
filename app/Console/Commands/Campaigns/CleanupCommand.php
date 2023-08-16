@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Campaigns;
 
 use App\Services\Campaign\PurgeService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class CleanupCampaigns extends Command
+class CleanupCommand extends Command
 {
     /**
      * The name and signature of the console command.

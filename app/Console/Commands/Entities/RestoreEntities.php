@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Entities;
 
 use App\Models\Entity;
 use Illuminate\Console\Command;
@@ -14,7 +14,7 @@ class RestoreEntities extends Command
      *
      * @var string
      */
-    protected $signature = 'entity:restore';
+    protected $signature = 'entities:restore';
 
     /**
      * The console command description.
@@ -50,7 +50,7 @@ class RestoreEntities extends Command
         $blocks = 5000;
         $count = 0;
 
-        for ($i = 0; $i <= $max; $i+=$blocks) {
+        for ($i = 0; $i <= $max; $i += $blocks) {
             $entities = Entity::select('entity_id')->where('type', $type)
                 ->doesnthave($type)
                 ->take($blocks)

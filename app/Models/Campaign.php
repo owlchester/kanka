@@ -25,7 +25,6 @@ use Illuminate\Support\Collection;
  * @property string $locale
  * @property string $entry
  * @property string $image
- * @property string|null $export_path
  * @property Carbon|string $export_date
  * @property int $visibility_id
  * @property bool $entity_visibility
@@ -84,7 +83,6 @@ class Campaign extends MiscModel
         'entry',
         'excerpt',
         'image',
-        'export_path',
         'export_date',
         'visibility_id',
         'entity_visibility',

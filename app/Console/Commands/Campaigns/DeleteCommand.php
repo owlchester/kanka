@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Campaigns;
 
 use App\Jobs\Campaigns\Delete;
 use App\Models\Campaign;
 use Illuminate\Console\Command;
 
-class CampaignDelete extends Command
+class DeleteCommand extends Command
 {
     /**
      * The name and signature of the console command.

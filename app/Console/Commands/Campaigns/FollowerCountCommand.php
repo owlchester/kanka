@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Campaigns;
 
 use App\Models\Campaign;
 use Illuminate\Console\Command;
 
-class CampaignFollowerCount extends Command
+class FollowerCountCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'campaign:followers';
+    protected $signature = 'campaigns:followers';
 
     /**
      * The console command description.

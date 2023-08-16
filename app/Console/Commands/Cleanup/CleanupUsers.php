@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Cleanup;
 
 use App\Services\Users\PurgeService;
 use Carbon\Carbon;

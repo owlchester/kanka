@@ -36,8 +36,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Location extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;

@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\CampaignBoost;
 use App\Models\Pledge;
+use App\Models\Role;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\DiscordService;
@@ -13,7 +14,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Role;
 
 class SubscriptionEndJob implements ShouldQueue
 {
@@ -62,7 +62,7 @@ class SubscriptionEndJob implements ShouldQueue
         $user->saveQuietly();
 
         // Cleanup the campaign boosts
-        $boostService = app()->make('App\Services\CampaignBoostService');
+        $boostService = app()->make('App\Services\Campaign\BoostService');
         $unboostedCampaigns = [];
         /** @var CampaignBoost $boost */
         foreach ($user->boosts()->with(['campaign'])->get() as $boost) {

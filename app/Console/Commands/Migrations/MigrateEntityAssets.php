@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Migrations;
 
 use App\Models\EntityAsset;
 use App\Models\EntityFile;
@@ -14,7 +14,7 @@ class MigrateEntityAssets extends Command
      *
      * @var string
      */
-    protected $signature = 'entity:assets';
+    protected $signature = 'entities:assets';
 
     /**
      * The console command description.

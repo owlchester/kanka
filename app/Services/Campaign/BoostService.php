@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Campaign;
 
 use App\Exceptions\Campaign\AlreadyBoostedException;
 use App\Exceptions\Campaign\ExhaustedBoostsException;
@@ -8,11 +8,11 @@ use App\Exceptions\Campaign\ExhaustedSuperboostsException;
 use App\Exceptions\TranslatableException;
 use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\CampaignBoost;
+use App\Models\UserLog;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\Models\UserLog;
 
-class CampaignBoostService
+class BoostService
 {
     use CampaignAware;
     use UserAware;
@@ -188,7 +188,8 @@ class CampaignBoostService
             'maroon',
             [
                 'user' => $this->user->name,
-                'campaign' => $this->campaign->name
+                'campaign' => $this->campaign->name,
+                'link' => route('dashboard', $this->campaign)
             ]
         );
 

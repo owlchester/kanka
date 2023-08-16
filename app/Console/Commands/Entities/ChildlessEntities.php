@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Entities;
 
 use App\Models\Entity;
 use Illuminate\Console\Command;

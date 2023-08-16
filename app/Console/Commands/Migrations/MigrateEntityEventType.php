@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Migrations;
 
 use App\Models\EntityEvent;
 use App\Models\EntityEventType;

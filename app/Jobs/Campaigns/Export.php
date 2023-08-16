@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Jobs\Campaigns\Exports;
+namespace App\Jobs\Campaigns;
 
+use App\Jobs\FileCleanup;
 use App\Models\Campaign;
-use App\Services\Campaign\Exports\ExportService;
-use App\Services\EntityService;
+use App\Services\Campaign\ExportService;
 use App\User;
 use Exception;
 use Illuminate\Bus\Queueable;
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class Entities implements ShouldQueue
+class Export implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -31,17 +31,18 @@ class Entities implements ShouldQueue
 
     protected int $userId;
 
-    protected EntityService $entity;
+    protected bool $assets;
 
     /**
      * CampaignExport constructor.
      * @param Campaign $campaign
      * @param User $user
      */
-    public function __construct(Campaign $campaign, User $user)
+    public function __construct(Campaign $campaign, User $user, bool $assets = false)
     {
         $this->campaignId = $campaign->id;
         $this->userId = $user->id;
+        $this->assets = $assets;
     }
 
     /**
@@ -67,12 +68,13 @@ class Entities implements ShouldQueue
         $service
             ->user($user)
             ->campaign($campaign)
+            ->assets($this->assets)
             ->export();
 
         // Don't delete in "sync" mode as there is no delay.
         $queue = config('queue.default');
         if ($queue !== 'sync') {
-            EntitiesCleanup::dispatch($service->exportPath())->delay(now()->addMinutes(60));
+            FileCleanup::dispatch($service->exportPath())->delay(now()->addMinutes(60));
         }
 
         return 1;
@@ -103,6 +105,7 @@ class Entities implements ShouldQueue
         $service
             ->user($user)
             ->campaign($campaign)
+            ->assets($this->assets)
             ->fail();
 
         // Sentry will handle the rest

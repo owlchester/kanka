@@ -81,7 +81,7 @@ class UserEventSubscriber
             // Let's create their first campaign for them
             $campaign = $this->starterService
                 ->user($event->user)
-                ->createCampaign();
+                ->create();
             session()->remove('first_login');
             $this->campaignService
                 ->user($event->user)

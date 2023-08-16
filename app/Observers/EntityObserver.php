@@ -17,20 +17,11 @@ use Stevebauman\Purify\Facades\Purify;
 
 class EntityObserver
 {
-    /**
-     * Purify trait
-     */
     use PurifiableTrait;
 
-    /**
-     * @var PermissionService
-     */
-    protected $permissionService;
+    protected PermissionService $permissionService;
 
-    /**
-     * @var AttributeService
-     */
-    protected $attributeService;
+    protected AttributeService $attributeService;
 
     /**
      * @var bool

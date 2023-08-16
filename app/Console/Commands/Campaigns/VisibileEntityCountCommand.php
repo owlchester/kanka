@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Campaigns;
 
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
@@ -9,14 +9,14 @@ use App\Models\Entity;
 use App\Models\JobLog;
 use Illuminate\Console\Command;
 
-class CampaignVisibileEntityCount extends Command
+class VisibileEntityCountCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'campaign:public';
+    protected $signature = 'campaigns:public';
 
     /**
      * The console command description.

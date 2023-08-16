@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs\Campaigns\Exports;
+namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
 
-class EntitiesCleanup implements ShouldQueue
+class FileCleanup implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -20,8 +20,6 @@ class EntitiesCleanup implements ShouldQueue
 
     /**
      * Create a new job instance.
-     *
-     * @return void
      */
     public function __construct(string $path)
     {
@@ -30,10 +28,8 @@ class EntitiesCleanup implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         if (Storage::exists($this->path)) {
             Storage::delete($this->path);

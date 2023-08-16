@@ -12,7 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class HideCampaign implements ShouldQueue
+class Hide implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
