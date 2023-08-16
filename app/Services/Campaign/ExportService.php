@@ -2,8 +2,8 @@
 
 namespace App\Services\Campaign;
 
-use App\Jobs\CampaignAssetExport;
-use App\Jobs\CampaignExport;
+use App\Jobs\Campaigns\Exports\Asset;
+use App\Jobs\Campaigns\Exports\Entities;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 
@@ -21,8 +21,8 @@ class ExportService
         $this->campaign->export_date = date('Y-m-d');
         $this->campaign->saveQuietly();
 
-        CampaignExport::dispatch($this->campaign, $this->user);
-        CampaignAssetExport::dispatch($this->campaign, $this->user);
+        Entities::dispatch($this->campaign, $this->user);
+        Asset::dispatch($this->campaign, $this->user);
 
         return $this;
     }

@@ -2,25 +2,14 @@
 
 namespace App\Services;
 
+use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\Campaign\NotificationService;
-use App\User;
 use Exception;
 
 class CampaignService
 {
-    /**
-     * The user's current Campaign
-     */
     protected Campaign $campaign;
-
-    protected NotificationService $notificationService;
-
-    public function __construct(NotificationService $notificationService)
-    {
-        $this->notificationService = $notificationService;
-    }
 
     public function campaign()
     {
@@ -48,17 +37,16 @@ class CampaignService
             $key = 'hidden';
         }
 
-        $this->notificationService
-            ->campaign($campaign)
-            ->notify(
-                $key,
-                $icon,
-                $colour,
-                [
-                    'campaign' => $campaign->name,
-                    'link' => $campaign->getMiddlewareLink()
-                ]
-            );
+        NotifyAdmins::dispatch(
+            $campaign,
+            $key,
+            $icon,
+            $colour,
+            [
+                'campaign' => $campaign->name,
+                'link' => route('dashboard', $campaign)
+            ]
+        );
     }
 
     /**
@@ -73,17 +61,17 @@ class CampaignService
         $icon = 'eye-slash';
         $key = 'removed-image';
 
-        $this->notificationService
-            ->campaign($campaign)
-            ->notify(
-                $key,
-                $icon,
-                $colour,
-                [
-                    'entity' => $entity->name,
-                    'link' => $entity->url(),
-                ]
-            );
+
+        NotifyAdmins::dispatch(
+            $campaign,
+            $key,
+            $icon,
+            $colour,
+            [
+                'entity' => $entity->name,
+                'link' => $entity->url(),
+            ]
+        );
     }
 
     /**

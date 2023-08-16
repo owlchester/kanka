@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\Campaigns\Delete;
 use App\Models\Campaign;
-use App\Jobs\CampaignDeleteJob;
 use Illuminate\Console\Command;
 
 class CampaignDelete extends Command
@@ -42,7 +42,7 @@ class CampaignDelete extends Command
         $campaignId = $this->argument('campaign');
         $campaign = Campaign::where('id', $campaignId)->first();
         if ($campaign) {
-            CampaignDeleteJob::dispatch($campaign);
+            Delete::dispatch($campaign);
             $this->info('Queued campaign #' . $campaignId . ' for deletion');
         } else {
             $this->info('Invalid campaign ID');

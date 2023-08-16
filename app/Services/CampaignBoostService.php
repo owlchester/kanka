@@ -6,10 +6,10 @@ use App\Exceptions\Campaign\AlreadyBoostedException;
 use App\Exceptions\Campaign\ExhaustedBoostsException;
 use App\Exceptions\Campaign\ExhaustedSuperboostsException;
 use App\Exceptions\TranslatableException;
+use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\CampaignBoost;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\User;
 use App\Models\UserLog;
 
 class CampaignBoostService
@@ -17,7 +17,6 @@ class CampaignBoostService
     use CampaignAware;
     use UserAware;
 
-    /** @var string */
     protected string $action;
 
     /** @var bool If updating an existing boost to a superboost */
@@ -79,6 +78,9 @@ class CampaignBoostService
         }
         $this->campaign->boost_count = $this->campaign->boosts()->count();
         $this->campaign->saveQuietly();
+
+        $key = $this->action === 'superboost' ? 'boost.superboost' : 'boost.add';
+        $this->notify($key);
     }
 
     public function premium(): void
@@ -100,6 +102,8 @@ class CampaignBoostService
         }
         $this->campaign->boost_count = $this->campaign->boosts()->count();
         $this->campaign->saveQuietly();
+
+        $this->notify('premium.add');
     }
 
     /**
@@ -122,6 +126,9 @@ class CampaignBoostService
 
         $this->campaign->boost_count = $this->campaign->boosts()->count();
         $this->campaign->saveQuietly();
+
+        $key = $this->user->hasBoosterNomenclature() ? 'boost.remove' : 'premium.remove';
+        $this->notify($key);
 
         return $this;
     }
@@ -165,5 +172,26 @@ class CampaignBoostService
                 ->campaign($boost->campaign)
                 ->unboost($boost);
         }
+    }
+
+    /**
+     * Dispatch a job to notify all campaign admins
+     * @param string $key
+     * @return $this
+     */
+    protected function notify(string $key): self
+    {
+        NotifyAdmins::dispatch(
+            $this->campaign,
+            $key,
+            'rocket',
+            'maroon',
+            [
+                'user' => $this->user->name,
+                'campaign' => $this->campaign->name
+            ]
+        );
+
+        return $this;
     }
 }

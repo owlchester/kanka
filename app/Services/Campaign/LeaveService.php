@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
+use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\CampaignUser;
 use App\Models\UserLog;
 use App\Traits\CampaignAware;
@@ -14,14 +15,6 @@ class LeaveService
 {
     use CampaignAware;
     use UserAware;
-
-    protected NotificationService $notificationService;
-
-    public function __construct(
-        NotificationService $notificationService
-    ) {
-        $this->notificationService = $notificationService;
-    }
 
     public function leave(): void
     {
@@ -37,18 +30,17 @@ class LeaveService
         $member->delete();
 
         // Notify admins
-        $this->notificationService
-            ->campaign($this->campaign)
-            ->notify(
-                'leave',
-                'user',
-                'yellow',
-                [
-                    'user' => $this->user->name,
-                    'campaign' => $this->campaign->name,
-                    'link' => route('dashboard', $this->campaign),
-                ]
-            );
+        NotifyAdmins::dispatch(
+            $this->campaign,
+            'leave',
+            'user',
+            'yellow',
+            [
+                'user' => $this->user->name,
+                'campaign' => $this->campaign->name,
+                'link' => route('dashboard', $this->campaign),
+            ]
+        );
 
         // Clear cache
         UserCache::user($this->user)->clearCampaigns();

@@ -1,26 +1,22 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Campaigns;
 
 use App\Models\Campaign;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
-class CampaignExportCleanup implements ShouldQueue
+class Delete implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var Campaign
-     */
-    protected $campaign;
+    protected int $campaign;
 
     /**
      * Create a new job instance.
@@ -29,7 +25,7 @@ class CampaignExportCleanup implements ShouldQueue
      */
     public function __construct(Campaign $campaign)
     {
-        $this->campaign = $campaign;
+        $this->campaign = $campaign->id;
     }
 
     /**
@@ -39,8 +35,11 @@ class CampaignExportCleanup implements ShouldQueue
      */
     public function handle()
     {
-        if (Storage::exists($this->campaign->export_path)) {
-            Storage::delete($this->campaign->export_path);
+        /** @var Campaign|null $campaign */
+        $campaign = Campaign::find($this->campaign);
+        if (!$campaign) {
+            return;
         }
+        $campaign->delete();
     }
 }

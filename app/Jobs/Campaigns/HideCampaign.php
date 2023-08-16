@@ -19,10 +19,9 @@ class HideCampaign implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /** @var int */
     protected int $campaign;
 
-    /**queue
+    /**
      * Create a new job instance.
      *
      * @return void

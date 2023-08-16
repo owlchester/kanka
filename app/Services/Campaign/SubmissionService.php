@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
+use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
@@ -22,13 +23,6 @@ class SubmissionService
 
     protected CampaignSubmission $submission;
 
-    protected NotificationService $notificationService;
-
-    public function __construct(NotificationService $notificationService)
-    {
-        $this->notificationService = $notificationService;
-    }
-
     public function submission(CampaignSubmission $submission): self
     {
         $this->submission = $submission;
@@ -43,7 +37,16 @@ class SubmissionService
         $submission->campaign_id = $this->campaign->id;
         $submission->save();
 
-        $this->notify();
+        NotifyAdmins::dispatch(
+            $this->campaign,
+            'application.new',
+            'door-open',
+            'yellow',
+            [
+                'link' => route('campaign_submissions.index', $this->campaign),
+                'campaign' => $this->campaign->name
+            ]
+        );
 
         return $this;
     }
@@ -81,25 +84,6 @@ class SubmissionService
         $this->submission->delete();
 
         return $return;
-    }
-
-    public function notify(): self
-    {
-        // Notify the admins of a new application
-        // Notify all admins
-        $this->notificationService
-            ->campaign($this->campaign)
-            ->notify(
-                'application.new',
-                'door-open',
-                'yellow',
-                [
-                    'link' => route('campaign_submissions.index', $this->campaign),
-                    'campaign' => $this->campaign->name
-                ]
-            );
-
-        return $this;
     }
 
     /**
