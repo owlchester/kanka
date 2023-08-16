@@ -28,6 +28,7 @@ use App\Models\Timeline;
 use App\Models\TimelineEra;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
+use App\Traits\CanFixTree;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,7 @@ class EntityService
 {
     use CampaignAware;
     use PurifiableTrait;
+    use CanFixTree;
 
     /** @var array List of entity types */
     protected array $entities = [];
@@ -54,14 +56,6 @@ class EntityService
     /** @var bool|array */
     protected bool|array $cachedTags = false;
 
-    /** @var array|string[] Popular entity types */
-    protected array $popularEntityTypes = [
-        'characters',
-        'locations',
-        'races',
-        'items',
-        'organisations',
-    ];
 
     protected Campaign $targetCampaign;
 
@@ -129,43 +123,6 @@ class EntityService
     }
 
     /**
-     * Get labelled entities
-     *
-     * @param bool $singular
-     * @param array $ignore
-     * @param bool $includeNull
-     * @return array
-     */
-    public function labelledEntities(bool $singular = true, array $ignore = [], bool $includeNull = false): array
-    {
-        $labels = [];
-        if ($includeNull) {
-            $labels = ['' => ''];
-        }
-
-        foreach ($this->entities() as $entity => $class) {
-            if (auth()->check() && auth()->user()->can('create', $class)) {
-                /** @var MiscModel|mixed $misc */
-                $misc = new $class();
-                if ($singular) {
-                    $labels[$entity] = Module::singular($misc->entityTypeId(), __('entities.' . $this->singular($entity)));
-                } else {
-                    $labels[$entity] = Module::plural($misc->entityTypeId(), __('entities.' . $entity));
-                }
-            }
-        }
-
-        // Removed options
-        if (!empty($ignore)) {
-            foreach ($ignore as $unset) {
-                unset($labels[$unset]);
-            }
-        }
-
-        return $labels;
-    }
-
-    /**
      * @param string $entity
      * @return string
      */
@@ -194,19 +151,6 @@ class EntityService
             $request['campaign'],
             Arr::get($request, 'copy', false)
         );
-    }
-
-    /**
-     * Transform an entity into another type
-     * @param Entity $entity
-     * @param string $entityType
-     * @param MiscModel|null $misc
-     * @return Entity
-     * @throws \Exception
-     */
-    public function transform(Entity $entity, string $entityType, MiscModel $misc = null): Entity
-    {
-        return $this->moveType($entity, $entityType, $misc);
     }
 
     /**
@@ -390,159 +334,7 @@ class EntityService
         return $success;
     }
 
-    /**
-     * @param Entity $entity
-     * @param string $target
-     * @param MiscModel|null $misc
-     * @return Entity
-     * @throws \Exception
-     */
-    protected function moveType(Entity $entity, string $target, MiscModel $misc = null)
-    {
-        // Create new model
-        if (!isset($this->entities[$target])) {
-            throw new \Exception("Unknown target '{$target}' for transforming entity");
-        }
 
-        /** @var MiscModel $new */
-        $new = new $this->entities[$target]();
-        /** @var MiscModel $old */
-        $old = $misc;
-        if (empty($misc)) {
-            $old = $entity->child;
-        }
-
-        // Move attributes
-        $oldAttributes = $old->getAttributes();
-        unset($oldAttributes['id']);
-
-        $fillable = $new->getFillable();
-        foreach ($oldAttributes as $attribute => $value) {
-            if (in_array($attribute, $fillable)) {
-                $new->{$attribute} = $value;
-            }
-        }
-
-        // Special import for location parent_location_id
-        /** @var Location $old */
-        /** @var Item $new */
-        if (in_array('location_id', $fillable) && empty($new->location_id) && !empty($old->parent_location_id)) {
-            $new->location_id = $old->getParentId();
-        }
-        /** @var Item $old */
-        /** @var Location $new */
-        if (in_array('parent_location_id', $fillable) && empty($new->parent_location_id) && !empty($old->location_id)) {
-            $new->setParentId($old->location_id);
-        }
-
-        /** @var Race|Creature $old */
-        /** @var Creature|Race $new */
-        $raceID = config('entities.ids.race');
-        $creatureID = config('entities.ids.creature');
-
-        if (in_array($old->entityTypeId(), [$raceID, $creatureID]) && !in_array($new->entityTypeId(), [$raceID, $creatureID]) && !empty($old->locations()->first())) {
-            if (in_array('location_id', $fillable)) {
-                /** @var Character $new */
-                $new->location_id = $old->locations()->first()->id;
-            } elseif (in_array('parent_location_id', $fillable)) {
-                // Todo: fix crash when location is empty
-                $new->setParentId($old->locations()->first()->id);
-            }
-        }
-
-        // Copy file
-        if (!empty($new->image)) {
-            $newPath = str_replace($old->getTable(), $new->getTable(), $old->image);
-            $new->image = $newPath;
-            if (!Storage::exists($newPath)) {
-                Storage::copy($old->image, $newPath);
-            }
-        }
-
-        //Remove tags if converting to tag, since tags can't have tags.
-        if ($new->entityTypeId() === config('entities.ids.tag')) {
-            $entity->tags()->detach();
-        }
-
-        //Delete non compatible posts.
-        EntityNote::where('entity_id', $entity->id)
-            ->leftJoin('post_layouts', 'entity_notes.layout_id', '=', 'post_layouts.id')
-            ->whereNotNull('post_layouts.entity_type_id')
-            ->delete();
-
-        $this->fixTree($new);
-
-        // Finally, we can save. Should be all good.
-        $new->campaign_id = $old->campaign_id;
-        $new->saveQuietly();
-
-        // If switching from an organisation to a family, we need to move the members?
-        /** @var Organisation|Family $old */
-        /** @var Family|Organisation $new */
-        if (
-            $old->entityTypeId() == config('entities.ids.organisation') &&
-            $new->entityTypeId() == config('entities.ids.family')
-        ) {
-            foreach ($old->members as $member) {
-                $member->delete();
-                $new->members()->attach($member->character_id);
-            }
-        } elseif (
-            $old->entityTypeId() == config('entities.ids.family') &&
-            $new->entityTypeId() == config('entities.ids.organisation')
-        ) {
-            foreach ($old->members as $character) {
-                $orgMember = new OrganisationMember();
-                $orgMember->character_id = $character->id;
-                $orgMember->organisation_id = $new->id;
-                $orgMember->role = '';
-                $orgMember->save();
-                $old->members()->detach($character->id);
-            }
-        } else {
-            // Remove members when they aren't characters
-            /** @var Family $old */
-            if (isset($old->members)) {
-                foreach ($old->members as $member) {
-                    // We make sure this isn't a character, because a family has members which are
-                    // directly characters while orgs have members which are an in between entity.
-                    if (!$member instanceof Character) {
-                        $member->delete();
-                    }
-                }
-            }
-        }
-        // Remove a character from conversations
-        /** @var Character $old */
-        if ($old->entityTypeId() === config('entities.ids.character')) {
-            foreach ($old->conversationParticipants as $conPar) {
-                $conPar->delete();
-            }
-        }
-
-        $this->moveLocations($old, $new);
-
-        // Update entity to its new type. We don't use a new entity to keep all mentions, attributes and
-        // other related elements attached.
-        $entity->type_id = $new->entityTypeID();
-        $entity->entity_id = $new->id;
-        $entity->cleanCache()->save();
-
-        // Delete old, this will take care of pictures and stuff. We detach the
-        // entity to avoid the softDelete affecting it and causing duplicate
-        // entities in the db. ForceDelete the MiscModel for img cleanup.
-        $old->entity = null;
-
-        // Change the permission's misc_id to be the new one
-        CampaignPermission::where('entity_id', $entity->id)
-            ->where('misc_id', $old->id)
-            ->update(['misc_id' => $new->id]);
-
-        // Force delete the old entity to avoid it creating weird issues in the db by being soft deleted.
-        $old->forceDelete();
-
-        return $entity;
-    }
 
     /**
      * @param string $name
@@ -575,21 +367,6 @@ class EntityService
     public function getClass(string $entity)
     {
         return Arr::get($this->entities, $entity, false);
-    }
-
-    /**
-     * Get an entity object string based on the entity type
-     * @param string $class
-     * @return string|false
-     */
-    public function getName(string $class): string|false
-    {
-        $flipped = array_flip($this->entities);
-        if (!Arr::has($flipped, $class)) {
-            return false;
-        }
-        $name = Arr::get($flipped, $class);
-        return Str::singular($name);
     }
 
     /**
@@ -653,36 +430,6 @@ class EntityService
         }
 
         return $ids;
-    }
-
-    /**
-     * From a link to an entity, get the entity ID
-     * @param string $url
-     */
-    /*public function extractEntityIdFromUrl(string $url): int
-    {
-        // Strip stuff we don't want based on known urls
-        $url = Str::after($url, config('app.url') . '/');
-
-        // Remove language
-        $url = Str::after(trim($url, '/'), '/');
-
-        // left with characters/123 or entities/13223
-        if (Str::startsWith($url, 'entities')) {
-            // Easy peasy-ish
-        }
-    }*/
-
-    /**
-     * Toggle the entity's template status
-     * @param Entity $entity
-     * @return Entity
-     */
-    public function toggleTemplate(Entity $entity): Entity
-    {
-        $entity->is_template = !$entity->is_template;
-        $entity->save();
-        return $entity;
     }
 
     /**
@@ -777,87 +524,5 @@ class EntityService
             $model->entity->tags()->attach($allTags);
         }
         return $model;
-    }
-
-    /**
-     * For entities with multiple locations, they can sometimes be moved around
-     * @param MiscModel $old
-     * @param MiscModel $new
-     * @return void|bool
-     */
-    protected function moveLocations(MiscModel $old, MiscModel $new)
-    {
-        /** @var Race|Creature $old */
-        /** @var Creature|Race $new */
-        $raceID = config('entities.ids.race');
-        $creatureID = config('entities.ids.creature');
-
-        //If the entity is switched from one location to multiple locations
-        if (!in_array($old->entityTypeId(), [$raceID, $creatureID]) && in_array($new->entityTypeId(), [$raceID, $creatureID])) {
-            if (in_array('parent_location_id', $old->getFillable()) && !empty($old->parent_location_id)) {
-                $new->locations()->attach($old->parent_location_id);
-            } elseif (in_array('location_id', $old->getFillable()) && !empty($old->location_id)) {
-                $new->locations()->attach($old->location_id);
-            }
-            return false;
-        }
-
-        if (
-            !in_array($old->entityTypeId(), [$raceID, $creatureID]) ||
-            !in_array($new->entityTypeId(), [$raceID, $creatureID])
-        ) {
-            if (property_exists($old, 'locations')) {
-                $old->locations()->sync([]);
-            }
-            return false;
-        }
-
-        foreach ($old->locations as $loc) {
-            $new->locations()->attach($loc->id);
-        }
-        $old->locations()->sync([]);
-    }
-
-    public function popularEntityTypes(): array
-    {
-        return $this->popularEntityTypes;
-    }
-
-    /**
-     * When transforming or moving an entity, we need to fix its tree
-     * @param MiscModel $model
-     * @return void
-     */
-    protected function fixTree(MiscModel $model): void
-    {
-        /** @var Location $model */
-        // When transforming to a nested model, we need to recalculate the tree bounds to
-        // place it correctly in the overall campaign tree.
-        if (!method_exists($model, 'recalculateTreeBounds')) {
-            // If it's not nested with a full tree, but still has a parent id, set that to null
-            if (method_exists($model, 'getParentIdName')) {
-                $model->{$model->getParentIdName()} = null;
-            }
-            return;
-        }
-        $isLocationWithParent = in_array('parent_location_id', $model->getFillable()) && !empty($model->getParentId());
-        // If it's not a location or the parent location is empty, force the parent to be properly empty
-        if (!$isLocationWithParent) {
-            /** @var Location $model */
-            $model->setParentId(null);
-        }
-        $model->{$model->getRgtName()} = 0;
-        $model->{$model->getLftName()} = 0;
-        if ($model->exists) {
-            $model->exists = false;
-            $model->recalculateTreeBounds();
-            $model->exists = true;
-        } else {
-            $model->recalculateTreeBounds();
-        }
-        // For a location with a parent, place it inside the tree
-        if ($isLocationWithParent) {
-            $model->forcePendingAction();
-        }
     }
 }

@@ -2,21 +2,15 @@
 
 namespace App\Services\Users;
 
+use App\Traits\RequestAware;
 use App\Traits\UserAware;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AvatarService
 {
     use UserAware;
+    use RequestAware;
 
-    protected Request $request;
-
-    public function request(Request $request): self
-    {
-        $this->request = $request;
-        return $this;
-    }
     public function upload(): void
     {
         $this->cleanup();

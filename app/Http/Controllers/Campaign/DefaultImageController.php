@@ -7,21 +7,21 @@ use App\Http\Requests\Campaigns\DefaultImageDestroy;
 use App\Http\Requests\Campaigns\DefaultImageStore;
 use App\Models\Campaign;
 use App\Services\Campaign\DefaultImageService;
-use App\Services\EntityService;
+use App\Services\Entity\TypeService;
 
 class DefaultImageController extends Controller
 {
     protected DefaultImageService $service;
 
-    protected EntityService $entityService;
+    protected TypeService $typeService;
 
-    public function __construct(EntityService $entityService, DefaultImageService $service)
+    public function __construct(TypeService $typeService, DefaultImageService $service)
     {
         $this->middleware('auth');
         $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
-        $this->entityService = $entityService;
+        $this->typeService = $typeService;
     }
 
     /**
@@ -46,9 +46,11 @@ class DefaultImageController extends Controller
 
         $ignore = $campaign->existingDefaultImages();
         $ignore = array_merge($ignore, ['relations', 'menu_links']);
-        $entities = $this
-            ->entityService
-            ->labelledEntities(false, $ignore);
+        $entities = $this->typeService
+            ->exclude($ignore)
+            ->plural()
+            ->labelled()
+        ;
 
         return view('campaigns.default-images.create', compact(
             'campaign',

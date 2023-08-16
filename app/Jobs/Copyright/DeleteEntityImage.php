@@ -3,7 +3,7 @@
 namespace App\Jobs\Copyright;
 
 use App\Models\Campaign;
-use App\Services\CampaignService;
+use App\Services\Campaign\Notifications\ImageRemoveService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -63,11 +63,11 @@ class DeleteEntityImage implements ShouldQueue
             // Entity was deleted
             return;
         }
-        /** @var CampaignService $service */
-        $service = app()->make(\App\Services\CampaignService::class);
+        /** @var ImageRemoveService $service */
+        $service = app()->make(ImageRemoveService::class);
         $campaign = Campaign::find($entity->campaign_id);
 
-        $service->removedImage($campaign, $entity);
+        $service->campaign($campaign)->entity($entity)->notify();
         $child = $entity->child;
 
         if ($campaign->superboosted() && $entity->image && $field == 'image') {

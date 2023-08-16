@@ -7,6 +7,7 @@ use App\Exceptions\TranslatableException;
 use App\Models\Relation;
 use App\Models\Tag;
 use App\Services\Entity\TagService;
+use App\Services\Entity\TransformService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use App\Models\MiscModel;
@@ -19,6 +20,8 @@ class BulkService
     protected EntityService $entityService;
 
     protected PermissionService $permissionService;
+
+    protected TransformService $transformService;
 
     /** @var string Entity name */
     protected string $entityName;
@@ -37,10 +40,11 @@ class BulkService
      * @param EntityService $entityService
      * @param PermissionService $permissionService
      */
-    public function __construct(EntityService $entityService, PermissionService $permissionService)
+    public function __construct(EntityService $entityService, PermissionService $permissionService, TransformService $transformService)
     {
         $this->entityService = $entityService;
         $this->permissionService = $permissionService;
+        $this->transformService = $transformService;
     }
 
     /**
@@ -175,7 +179,9 @@ class BulkService
         }
 
         // Validate the type
-        $validTypes = $this->entityService->entities(['menu_links', 'relations']);
+        $validTypes = config('entities.classes');
+        unset($validTypes['menu_link']);
+        unset($validTypes['relation']);
         if (!isset($validTypes[$type])) {
             throw new TranslatableException('entities/transform.bulk.errors.unknown_type');
         }
@@ -184,7 +190,9 @@ class BulkService
         foreach ($this->ids as $id) {
             $entity = $model->findOrFail($id);
             if (auth()->user()->can('update', $entity)) {
-                $this->entityService->transform($entity->entity, $type, $entity);
+                $this->transformService
+                    ->child($entity)
+                    ->transform($type);
                 $this->count++;
             }
         }

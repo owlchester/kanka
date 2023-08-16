@@ -9,6 +9,7 @@ use App\Models\MiscModel;
 use App\Models\Entity;
 use App\Models\Tag;
 use App\Models\Post;
+use App\Services\Entity\PopularService;
 use App\Services\Entity\TagService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
@@ -18,12 +19,14 @@ class EntityCreatorController extends Controller
 {
     protected EntityService $entityService;
     protected Campaign $campaign;
+    protected PopularService $popularService;
 
-    public function __construct(EntityService $entityService)
+    public function __construct(EntityService $entityService, PopularService $popularService)
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
         $this->entityService = $entityService;
+        $this->popularService = $popularService;
     }
 
     /**
@@ -38,7 +41,7 @@ class EntityCreatorController extends Controller
             'campaign' => $campaign,
             'entities' => $entities,
             'types' => $orderedEntityTypes,
-            'popular' => $this->entityService->popularEntityTypes(),
+            'popular' => $this->popularService->get(),
         ]);
     }
 
@@ -195,7 +198,7 @@ class EntityCreatorController extends Controller
             'entities' => $entities,
             'types' => $orderedEntityTypes,
             'new' => $success,
-            'popular' => $this->entityService->popularEntityTypes(),
+            'popular' => $this->popularService->get(),
         ]);
     }
 

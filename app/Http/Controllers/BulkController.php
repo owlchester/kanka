@@ -7,6 +7,7 @@ use App\Http\Requests\BulkRequest;
 use App\Models\Campaign;
 use App\Services\AttributeService;
 use App\Services\BulkService;
+use App\Services\Entity\TypeService;
 use App\Services\EntityService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\CampaignAware;
@@ -24,6 +25,8 @@ class BulkController extends Controller
 
     protected EntityService $entityService;
 
+    protected TypeService $typeService;
+
     protected BulkRequest $request;
 
     protected array $routeParams = [];
@@ -35,10 +38,11 @@ class BulkController extends Controller
      * BulkController constructor.
      * @param BulkService $bulkService
      */
-    public function __construct(BulkService $bulkService, EntityService $entityService)
+    public function __construct(BulkService $bulkService, EntityService $entityService, TypeService $typeService)
     {
         $this->bulkService = $bulkService;
         $this->entityService = $entityService;
+        $this->typeService = $typeService;
     }
 
     /**
@@ -108,8 +112,10 @@ class BulkController extends Controller
             $service = app()->make('App\Services\AttributeService');
             $templates = $service->campaign($campaign)->templateList();
         } elseif (request()->get('view') === 'transform') {
-            $entities = $this->entityService
-                ->labelledEntities(true, [Str::plural($type), 'menu_links', 'relations'], true);
+            $entities = $this->typeService
+                ->exclude([$type, 'menu_link', 'relation'])
+                ->withNull()
+                ->labelled();
             $entities[''] = __('entities/transform.fields.select_one');
         }
 

@@ -7,10 +7,6 @@ use DiceCalc\Calc;
 
 class DiceRollerService
 {
-    /**
-     * @param DiceRoll $diceRoll
-     * @return mixed
-     */
     public function roll(DiceRoll $diceRoll)
     {
         // Switch character attributes with the values

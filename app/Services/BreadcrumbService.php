@@ -17,7 +17,7 @@ class BreadcrumbService
      */
     public function index(string $name): string
     {
-        // Determine the "mode" for logged in users who prefer the old table view
+        // Determine the "mode" for logged-in users who prefer the old table view
         $params = auth()->check() && auth()->user()->entityExplore === '1' ? ['m' => 'table'] : [];
         $params['campaign'] = $this->campaign;
 

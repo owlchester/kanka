@@ -8,16 +8,12 @@ use App\Models\Plugin;
 use App\Traits\CampaignAware;
 use Exception;
 
-class CampaignPluginService
+class PluginService
 {
     use CampaignAware;
 
     protected Plugin $plugin;
 
-    /**
-     * @param Plugin $plugin
-     * @return $this
-     */
     public function plugin(Plugin $plugin): self
     {
         $this->plugin = $plugin;
@@ -47,11 +43,7 @@ class CampaignPluginService
         return false;
     }
 
-    /**
-     * @return bool
-     * @throws \Exception
-     */
-    public function remove()
+    public function remove(): bool
     {
         // Find the campaign plugin
         $plugin = $this->campaignPlugin();

@@ -27,4 +27,28 @@ return [
         'menu_link' => 19,
         'creature' => 20,
     ],
+
+    'classes' => [
+        'ability' => 'App\Models\Ability',
+        'character' => 'App\Models\Character',
+        'calendar' => 'App\Models\Calendar',
+        'conversation' => 'App\Models\Conversation',
+        'creature' => 'App\Models\Creature',
+        'event' => 'App\Models\Event',
+        'family' => 'App\Models\Family',
+        'item' => 'App\Models\Item',
+        'journal' => 'App\Models\Journal',
+        'location' => 'App\Models\Location',
+        'map' => 'App\Models\Map',
+        'note' => 'App\Models\Note',
+        'organisation' => 'App\Models\Organisation',
+        'quest' => 'App\Models\Quest',
+        'race' => 'App\Models\Race',
+        'tag' => 'App\Models\Tag',
+        'timeline' => 'App\Models\Timeline',
+        'attribute_template' => 'App\Models\AttributeTemplate',
+        'dice_roll' => 'App\Models\DiceRoll',
+        'menu_link' => 'App\Models\MenuLink',
+        'relation' => 'App\Models\Relation',
+    ]
 ];
