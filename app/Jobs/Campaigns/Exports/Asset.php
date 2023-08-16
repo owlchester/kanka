@@ -2,9 +2,7 @@
 
 namespace App\Jobs\Campaigns\Exports;
 
-use App\Facades\CampaignCache;
 use App\Models\Campaign;
-use App\Models\MiscModel;
 use App\Notifications\Header;
 use App\Services\Campaign\Exports\ExportService;
 use App\Services\EntityService;
@@ -13,12 +11,8 @@ use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Http\File;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use ZipArchive;
 
 class Asset implements ShouldQueue
 {

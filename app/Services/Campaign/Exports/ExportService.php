@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Exports;
 
 use App\Facades\CampaignCache;
-use App\Models\MiscModel;
 use App\Notifications\Header;
 use App\Services\EntityService;
 use App\Traits\CampaignAware;

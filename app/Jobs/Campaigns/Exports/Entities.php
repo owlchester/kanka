@@ -3,7 +3,6 @@
 namespace App\Jobs\Campaigns\Exports;
 
 use App\Models\Campaign;
-use App\Notifications\Header;
 use App\Services\Campaign\Exports\ExportService;
 use App\Services\EntityService;
 use App\User;

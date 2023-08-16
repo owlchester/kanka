@@ -2,10 +2,8 @@
 
 namespace App\Jobs\Campaigns;
 
-use App\Observers\CampaignObserver;
 use App\Models\Campaign;
 use App\Services\Campaign\NotificationService;
-use App\Services\CampaignService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
