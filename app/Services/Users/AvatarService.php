@@ -2,7 +2,6 @@
 
 namespace App\Services\Users;
 
-use App\Services\ImageService;
 use App\Traits\UserAware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -41,7 +40,7 @@ class AvatarService
         $file = $this->request->file('avatar');
         $filename = uniqid();
         if ($extension = $file->guessExtension()) {
-            $filename .= '.'.$extension;
+            $filename .= '.' . $extension;
         }
         return $filename;
     }
