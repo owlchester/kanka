@@ -20,10 +20,6 @@ class TransformController extends Controller
     protected TransformService $transformService;
     protected TypeService $typeService;
 
-    /**
-     * AbilityController constructor.
-     * @param EntityService $service
-     */
     public function __construct(EntityService $service, TransformService $transformService, TypeService $typeService)
     {
         $this->service = $service;
@@ -38,6 +34,7 @@ class TransformController extends Controller
 
         $entities = $this->typeService
             ->campaign($campaign)
+            // @phpstan-ignore-next-line
             ->exclude([$entity->type(), 'menu_link', 'relation'])
             ->labelled();
 
@@ -52,12 +49,6 @@ class TransformController extends Controller
         ));
     }
 
-    /**
-     * @param TransformEntityRequest $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function transform(TransformEntityRequest $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('move', $entity->child);

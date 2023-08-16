@@ -70,28 +70,26 @@ class TransformService
     protected function location(): self
     {
         // Special import for location parent_location_id
-        /** @var Location $this->child */
-        /** @var Item $new */
         if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && !empty($this->child->parent_location_id)) {
+            // @phpstan-ignore-next-line
             $this->new->location_id = $this->child->getParentId();
         }
-        /** @var Item $this->child */
-        /** @var Location $new */
         if (in_array('parent_location_id', $this->fillable) && empty($this->new->parent_location_id) && !empty($this->child->location_id)) {
+            // @phpstan-ignore-next-line
             $this->new->setParentId($this->child->location_id);
         }
 
-        /** @var Race|Creature $old */
-        /** @var Creature|Race $new */
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
 
+        // @phpstan-ignore-next-line
         if (in_array($this->child->entityTypeId(), [$raceID, $creatureID]) && !in_array($this->new->entityTypeId(), [$raceID, $creatureID]) && !empty($this->child->locations()->first())) {
             if (in_array('location_id', $this->fillable)) {
-                /** @var Character $this->new */
+                // @phpstan-ignore-next-line
                 $this->new->location_id = $this->child->locations()->first()->id;
             } elseif (in_array('parent_location_id', $this->fillable)) {
                 // Todo: fix crash when location is empty
+                // @phpstan-ignore-next-line
                 $this->new->setParentId($this->child->locations()->first()->id);
             }
         }
@@ -104,16 +102,16 @@ class TransformService
      */
     protected function locations(): self
     {
-        /** @var Race|Creature $old */
-        /** @var Creature|Race $new */
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
 
         //If the entity is switched from one location to multiple locations
         if (!in_array($this->child->entityTypeId(), [$raceID, $creatureID]) && in_array($this->new->entityTypeId(), [$raceID, $creatureID])) {
             if (in_array('parent_location_id', $this->child->getFillable()) && !empty($this->child->parent_location_id)) {
+                // @phpstan-ignore-next-line
                 $this->new->locations()->attach($this->child->parent_location_id);
             } elseif (in_array('location_id', $this->child->getFillable()) && !empty($this->child->location_id)) {
+                // @phpstan-ignore-next-line
                 $this->new->locations()->attach($this->child->location_id);
             }
             return $this;
@@ -124,14 +122,18 @@ class TransformService
             !in_array($this->new->entityTypeId(), [$raceID, $creatureID])
         ) {
             if (property_exists($this->child, 'locations')) {
+                // @phpstan-ignore-next-line
                 $this->child->locations()->sync([]);
             }
             return $this;
         }
 
+        // @phpstan-ignore-next-line
         foreach ($this->child->locations as $loc) {
+            // @phpstan-ignore-next-line
             $this->new->locations()->attach($loc->id);
         }
+        // @phpstan-ignore-next-line
         $this->child->locations()->sync([]);
         return $this;
     }
@@ -203,31 +205,32 @@ class TransformService
      */
     protected function members(): self
     {
-        /** @var Organisation|Family $this->child */
-        /** @var Family|Organisation $new */
         if (
             $this->child->entityTypeId() == config('entities.ids.organisation') &&
             $this->new->entityTypeId() == config('entities.ids.family')
         ) {
+            // @phpstan-ignore-next-line
             foreach ($this->child->members as $member) {
                 $member->delete();
+                // @phpstan-ignore-next-line
                 $this->new->members()->attach($member->character_id);
             }
         } elseif (
             $this->child->entityTypeId() == config('entities.ids.family') &&
             $this->new->entityTypeId() == config('entities.ids.organisation')
         ) {
+            // @phpstan-ignore-next-line
             foreach ($this->child->members as $character) {
                 $orgMember = new OrganisationMember();
                 $orgMember->character_id = $character->id;
                 $orgMember->organisation_id = $this->new->id;
                 $orgMember->role = '';
                 $orgMember->save();
+                // @phpstan-ignore-next-line
                 $this->child->members()->detach($character->id);
             }
         } else {
             // Remove members when they aren't characters
-            /** @var Family $old */
             if (isset($this->child->members)) {
                 foreach ($this->child->members as $member) {
                     // We make sure this isn't a character, because a family has members which are
@@ -247,10 +250,10 @@ class TransformService
      */
     protected function participants(): self
     {
-        /** @var Character $old */
         if ($this->child->entityTypeId() != config('entities.ids.character')) {
             return $this;
         }
+        // @phpstan-ignore-next-line
         foreach ($this->child->conversationParticipants as $conPar) {
             $conPar->delete();
         }
