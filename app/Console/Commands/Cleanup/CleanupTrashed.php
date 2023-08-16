@@ -3,8 +3,8 @@
 namespace App\Console\Commands\Cleanup;
 
 use App\Models\Entity;
-use App\Models\JobLog;
 use App\Services\RecoveryService;
+use App\Traits\HasJobLog;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Console\Command;
@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 class CleanupTrashed extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      *
@@ -79,14 +81,7 @@ class CleanupTrashed extends Command
         $this->info('Deleted ' . $this->service->count() . ' trashed entities.');
         $log .= '<br />' . 'Deleted ' . $this->service->count() . ' trashed entities.';
 
-        if (!config('app.log_jobs')) {
-            return 0;
-        }
-
-        JobLog::create([
-            'name' => $this->signature,
-            'result' => $log,
-        ]);
+        $this->log($log);
 
         return 0;
     }

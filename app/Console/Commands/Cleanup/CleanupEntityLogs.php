@@ -3,13 +3,15 @@
 namespace App\Console\Commands\Cleanup;
 
 use App\Models\EntityLog;
-use App\Models\JobLog;
+use App\Traits\HasJobLog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
 class CleanupEntityLogs extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      *
@@ -66,15 +68,7 @@ class CleanupEntityLogs extends Command
             });
         $log = "Cleaned up {$this->count} entity logs.";
         $this->info($log);
-
-        if (!config('app.log_jobs')) {
-            return 0;
-        }
-
-        JobLog::create([
-            'name' => $this->signature,
-            'result' => $log,
-        ]);
+        $this->log($log);
 
         return 0;
     }

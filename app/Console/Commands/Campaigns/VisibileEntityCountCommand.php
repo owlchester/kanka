@@ -6,11 +6,13 @@ use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
-use App\Models\JobLog;
+use App\Traits\HasJobLog;
 use Illuminate\Console\Command;
 
 class VisibileEntityCountCommand extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      *
@@ -59,12 +61,7 @@ class VisibileEntityCountCommand extends Command
         });
         $log = "Updated {$this->count} public campaigns.";
         $this->info($log);
-        if (config('app.log_jobs')) {
-            JobLog::create([
-                'name' => $this->signature,
-                'result' => $log,
-            ]);
-        }
+        $this->log($log);
     }
 
     /**

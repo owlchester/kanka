@@ -31,7 +31,6 @@ class StarterService
             'excerpt' => '',
             'ui_settings' => ['nested' => true]
         ];
-        /** @var Campaign $campaign */
         $this->campaign = Campaign::create($data);
         $this->populate();
 

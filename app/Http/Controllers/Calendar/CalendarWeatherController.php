@@ -34,7 +34,9 @@ class CalendarWeatherController extends Controller
             $year = '-' . $year;
         }
 
-        $weather = $this->calendarService->findWeather($calendar, (int) $year, (int) $month, (int) $day);
+        $weather = $this->calendarService
+            ->calendar($calendar)
+            ->findWeather((int) $year, (int) $month, (int) $day);
 
         return view('calendars.weather.' . (!empty($weather) ? 'edit' : 'create'), compact(
             'calendar',

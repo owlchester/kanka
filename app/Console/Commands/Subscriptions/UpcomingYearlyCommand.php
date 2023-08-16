@@ -4,13 +4,15 @@ namespace App\Console\Commands\Subscriptions;
 
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Models\UserLog;
-use App\Models\JobLog;
+use App\Traits\HasJobLog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Laravel\Cashier\Subscription;
 
 class UpcomingYearlyCommand extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      *
@@ -91,14 +93,7 @@ class UpcomingYearlyCommand extends Command
         $this->info('Notified ' . $count . ' users.');
         $log .= '<br />' . 'Notified ' . $count . ' users.';
 
-        if (!config('app.log_jobs')) {
-            return 0;
-        }
-
-        JobLog::create([
-            'name' => $this->signature,
-            'result' => $log,
-        ]);
+        $this->log($log);
 
         return 0;
     }

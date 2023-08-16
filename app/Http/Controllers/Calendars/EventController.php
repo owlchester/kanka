@@ -109,13 +109,8 @@ class EventController extends Controller
                 ->calendar($calendar)
                 ->addEvent($request->all());
 
-            if ($link !== false) {
-                return redirect()->route('entities.show', $routeOptions)
-                    ->with('success', __('calendars.event.success', ['event' => $link->entity->name]));
-            }
-
             return redirect()->route('entities.show', $routeOptions)
-                ->with('success', __('calendars.event.create.success'));
+                    ->with('success', __('calendars.event.success', ['event' => $link->entity->name]));
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('entities.show', $routeOptions)
