@@ -71,7 +71,7 @@ class BulkController extends Controller
             } elseif ($action === 'permissions') {
                 return $this->permissions();
             } elseif ($action === 'copy-campaign') {
-                return $this->copyToCampaign();
+                return $this->copyToCampaign($campaign);
             } elseif ($action === 'transform') {
                 return $this->transform();
             } elseif ($action === 'templates') {
@@ -168,20 +168,21 @@ class BulkController extends Controller
             ->with('success_raw', trans_choice('entities/transform.bulk.success', $count, ['count' => $count, 'type' => __('entities.' . $target)]));
     }
 
-    protected function copyToCampaign()
+    protected function copyToCampaign(Campaign $campaign)
     {
         $models = $this->models();
         $campaignId = $this->request->get('campaign');
-        $campaign = Auth::user()->campaigns()->where('campaign_id', $campaignId)->first();
 
         $count = $this
             ->bulkService
+            ->campaign($campaign)
             ->entities($models)
-            ->copyToCampaign($campaign->id);
+            ->copyToCampaign($campaignId);
 
+        $target = Campaign::findOrFail($campaignId);
         return redirect()
             ->back()
-            ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $campaign->name]));
+            ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $target->name]));
     }
 
     protected function permissions()

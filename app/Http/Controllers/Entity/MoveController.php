@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MoveEntityRequest;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Services\Entity\MoveService;
 use App\Services\EntityService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
@@ -18,13 +19,9 @@ class MoveController extends Controller
      */
     use GuestAuthTrait;
 
-    protected EntityService $service;
+    protected MoveService $service;
 
-    /**
-     * AbilityController constructor.
-     * @param EntityService $service
-     */
-    public function __construct(EntityService $service)
+    public function __construct(MoveService $service)
     {
         $this->service = $service;
     }
@@ -38,7 +35,7 @@ class MoveController extends Controller
     {
         $this->authorize('view', $entity->child);
 
-        $campaigns = Auth::user()->moveCampaignList();
+        $campaigns = auth()->user()->moveCampaignList();
         $campaigns[0] = __('entities/move.fields.select_one');
 
         return view('entities.pages.move.index', compact(
@@ -58,15 +55,21 @@ class MoveController extends Controller
     {
         $this->authorize('view', $entity->child);
 
+        $copied = $request->filled('copy');
         try {
             $this->service
-                ->move($entity, $request->only('campaign', 'copy'));
-
-            $copied = $this->service->copied();
+                ->entity($entity)
+                ->campaign($campaign)
+                ->user($request->user())
+                ->to($request->get('campaign'))
+                ->copy($copied)
+                ->validate()
+                ->process()
+            ;
 
             return redirect()
                 ->route($entity->pluralType() . '.index', $campaign)
-                ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => $this->service->targetCampaign()->name]));
+                ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => $this->service->target()->name]));
         } catch (TranslatableException $ex) {
             return redirect()
                 ->to($entity->url())
