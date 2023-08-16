@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\Widget;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class StoreCampaignDashboardWidget extends FormRequest
 {
@@ -24,7 +26,7 @@ class StoreCampaignDashboardWidget extends FormRequest
     public function rules()
     {
         return [
-            'widget' => 'required',
+            'widget' => ['required', new Enum(Widget::class)],
             'entity_id' => 'nullable|exists:entities,id',
             'dashboard_id' => 'nullable|exists:campaign_dashboards,id',
             'config.order' => 'nullable|in:name_asc,name_desc,oldest',
