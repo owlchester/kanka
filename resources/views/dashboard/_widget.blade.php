@@ -19,7 +19,7 @@ if ($widget->conf('entity')) {
 
 
 <div class="col-span-{{ $widget->colSize() }}">
-    <div class="{{ $widgetClass }} cursor-pointer {{ !empty($background) ? 'p-5' : null }} widget-{{ $widget->widget }} cover-background {{ $widget->widget ===  Widget::Header ? 'h-auto' : null }}"
+    <div class="{{ $widgetClass }} cursor-pointer {{ !empty($background) ? 'p-5' : null }} widget-{{ $widget->widget->value }} cover-background {{ $widget->widget ===  Widget::Header ? 'h-auto' : null }}"
     @if($widget->widget == Widget::Campaign)
          data-toggle="ajax-modal"
          data-target="#large-modal"
@@ -42,7 +42,7 @@ if ($widget->conf('entity')) {
             @if ($widget->widget != Widget::Header)
                 <span class="block text-2xl">
                      {!! $widget->widgetIcon() !!}
-                    {{ __('dashboard.setup.widgets.' . $widget->widget) }}
+                    {{ __('dashboard.setup.widgets.' . $widget->widget->value) }}
                 </span>
             @endif
 

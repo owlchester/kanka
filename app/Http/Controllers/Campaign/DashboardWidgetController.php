@@ -110,7 +110,7 @@ class DashboardWidgetController extends Controller
         return view('dashboard.widgets.forms.edit', [
             'campaign' => $campaign,
             'model' => $campaignDashboardWidget,
-            'widget' => $campaignDashboardWidget->widget,
+            'widget' => $campaignDashboardWidget->widget->value,
             'entities' => $entities,
             'dashboards' => $dashboards,
         ]);

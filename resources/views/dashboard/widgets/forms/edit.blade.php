@@ -12,7 +12,7 @@
 @include('partials.forms.form', [
     'dialog' => true,
     'mode' => 'edit',
-    'title' => __('dashboard.setup.widgets.' . $model->widget),
+    'title' => __('dashboard.setup.widgets.' . $model->widget->value),
     'titleIcon' => $model->widgetIcon(),
     'content' => 'dashboard.widgets.forms._' . $widget,
     'deleteID' => '#delete-form-widget-' . $model->id,

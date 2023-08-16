@@ -56,8 +56,8 @@ use App\Enums\Widget;
                 @php $position = 0; $row++; @endphp
             @endif
                 <div class="col-md-{{ $widget->colSize() }}">
-                    <div class="widget widget-{{ $widget->widget }}">
-                        @include('dashboard.widgets._' . $widget->widget)
+                    <div class="widget widget-{{ $widget->widget->value }}">
+                        @include('dashboard.widgets._' . $widget->widget->value)
                     </div>
                 </div>
 

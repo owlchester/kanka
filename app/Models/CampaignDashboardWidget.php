@@ -21,7 +21,7 @@ use App\Enums\Widget;
  * @property integer $campaign_id
  * @property integer $entity_id
  * @property int $dashboard_id
- * @property string $widget
+ * @property Widget $widget
  * @property array $config
  * @property integer $width
  * @property integer $position
@@ -51,6 +51,7 @@ class CampaignDashboardWidget extends Model
 
     protected $casts = [
         'config' => 'array',
+        'widget' => Widget::class,
     ];
 
     /**
