@@ -13,7 +13,6 @@ use App\Services\Entity\TagService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
 use Illuminate\Support\Str;
-use Stevebauman\Purify\Facades\Purify;
 
 class EntityObserver
 {

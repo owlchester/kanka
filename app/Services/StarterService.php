@@ -6,7 +6,6 @@ use App\Enums\Widget;
 use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
-use App\Jobs\Campaigns\Populate;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
@@ -15,12 +14,11 @@ use App\Observers\CharacterObserver;
 use App\Observers\LocationObserver;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Exception;
 
 class StarterService
 {
-    use UserAware;
     use CampaignAware;
+    use UserAware;
 
     /**
      * Create a new campaign for the user when they register their account
