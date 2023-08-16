@@ -517,7 +517,7 @@ class CrudController extends Controller
 
             session()->flash('success_raw', $success);
 
-            $options = [$this->campaign, $model];
+            $options = [];
             if (request()->has('redirect')) {
                 $redirect = explode('&', request()->get('redirect'));
                 foreach ($redirect as $option) {
@@ -526,8 +526,9 @@ class CrudController extends Controller
                 }
             }
             if ($model->entity) {
-                $route = route('entities.show', $options + [$model->entity]);
+                $route = route('entities.show', $options + [$this->campaign, $model->entity]);
             } else {
+                $options = [$this->campaign, $model] + $options;
                 $route = route($this->view . '.show', $options + [$model]);
             }
             if ($request->has('submit-new')) {

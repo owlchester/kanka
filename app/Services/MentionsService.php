@@ -12,6 +12,7 @@ use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Quest;
+use App\Services\Entity\NewService;
 use App\Services\TOC\TocSlugify;
 use App\Traits\CampaignAware;
 use App\Traits\MentionTrait;
@@ -60,7 +61,6 @@ class MentionsService
     /** @var string Class used to inject and strip advanced mention name helpers */
     public const ADVANCED_MENTION_CLASS = 'advanced-mention-name';
 
-    /** @var EntityService */
     protected EntityService $entityService;
 
     /** @var bool When false, parsing field:entry won't render mentions */
@@ -71,9 +71,10 @@ class MentionsService
 
     protected MarkupFixer $markupFixer;
 
+    protected NewService $newService;
+
     /**
      * Mentions Service constructor
-     * @param EntityService $entityService
      */
     public function __construct(EntityService $entityService)
     {
@@ -679,7 +680,7 @@ class MentionsService
     }
 
     /**
-     * Pre fetch the attributes of the entity
+     * Pre-fetch the attributes of the entity
      */
     protected function prepareAttributes()
     {
@@ -822,7 +823,15 @@ class MentionsService
         /** @var MiscModel $newMisc */
         $newMisc = new $types[$type]();
 
-        $new = $this->entityService->makeNewMentionEntity($newMisc, $name);
+        if (!isset($this->newService)) {
+            $this->newService = app()->make(NewService::class);
+        }
+
+        $new = $this->newService
+            ->campaign($this->campaign)
+            ->user(auth()->user())
+            ->model($newMisc)
+            ->create($name);
         $this->newEntityMentions[$key] = $new->entity->id;
         $this->createdNewEntities = true;
 

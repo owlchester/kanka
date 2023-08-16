@@ -18,7 +18,6 @@ use App\Models\Organisation;
 use App\Models\Quest;
 use App\Models\Race;
 use App\Models\Tag;
-use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +27,6 @@ use Illuminate\Support\Str;
 class EntityService
 {
     use CampaignAware;
-    use PurifiableTrait;
 
     /** @var array List of entity types */
     protected array $entities = [];
@@ -36,8 +34,6 @@ class EntityService
     /** @var bool|array */
     protected bool|array $cachedNewEntityTypes = false;
 
-    /** @var bool|array */
-    protected bool|array $cachedTags = false;
 
     /**
      * EntityService constructor.
@@ -144,7 +140,7 @@ class EntityService
      * @param array $except
      * @return array
      */
-    public function getEnabledEntities(Campaign $campaign, $except = [])
+    public function getEnabledEntities(Campaign $campaign, array $except = [])
     {
         $entityTypes = [];
         foreach ($this->entities() as $element => $class) {
@@ -159,10 +155,11 @@ class EntityService
     }
 
     /**
+     * @param bool $singular
      * @param array $except
      * @return array
      */
-    public function getEnabledEntitiesSorted(bool $singular = true, $except = []): array
+    public function getEnabledEntitiesSorted(bool $singular = true, array $except = []): array
     {
         $entityTypes = [];
         foreach ($this->entities() as $element => $class) {
@@ -240,58 +237,5 @@ class EntityService
         }
 
         return $this->cachedNewEntityTypes = $entities;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAutoApplyTags(): array
-    {
-        if ($this->cachedTags !== false) {
-            return $this->cachedTags;
-        }
-        $allTags = [];
-        $tags = \App\Models\Tag::autoApplied()->with('entity')->get();
-        foreach ($tags as $tag) {
-            if ($tag->entity !== null) {
-                array_push($allTags, $tag->id);
-            }
-        }
-
-        return $this->cachedTags = $allTags;
-    }
-
-    /**
-     * @param MiscModel $model
-     * @param string $name
-     * @return MiscModel
-     */
-    public function makeNewMentionEntity(MiscModel $model, string $name)
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        $defaultPrivate = false;
-        if (auth()->user()->isAdmin() && $campaign->entity_visibility) {
-            $defaultPrivate = true;
-        }
-        // Force tags to be readable and removable from strip_tags
-        $name = Str::replace(['&lt;', '&gt;'], ['<', '>'], $name);
-        $model->name = $this->purify(trim(strip_tags($name)));
-        $model->slug = Str::slug($model->name, '');
-        $model->is_private = $defaultPrivate;
-        $model->campaign_id = $campaign->id;
-
-        // If the modal is a tree, it needs to be placed in its own bounds
-        if (method_exists($model, 'makeRoot')) {
-            // @phpstan-ignore-next-line
-            $model->recalculateTreeBounds();
-        }
-
-        $model->saveQuietly();
-        $model->createEntity();
-        if (!$model->entity->isTag()) {
-            $allTags = $this->getAutoApplyTags();
-            $model->entity->tags()->attach($allTags);
-        }
-        return $model;
     }
 }
