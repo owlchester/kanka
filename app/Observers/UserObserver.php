@@ -11,7 +11,6 @@ use App\Services\ImageService;
 use App\User;
 use Exception;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserObserver
@@ -54,10 +53,6 @@ class UserObserver
                 $user->profile = $profile;
             }
         }
-
-        // Handle image. Let's use a service for this.
-        $folderno = (int) floor($user->id / 1000);
-        ImageService::handle($user, $user->getTable() . '/' . $folderno, 'avatar');
     }
 
     /**

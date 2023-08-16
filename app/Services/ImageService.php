@@ -15,6 +15,9 @@ use Intervention\Image\Facades\Image;
 use enshrined\svgSanitize\Sanitizer;
 use Exception;
 
+/**
+ * This should be a proper laravel facade 🥲
+ */
 class ImageService
 {
     /**
@@ -24,13 +27,6 @@ class ImageService
      */
     public static function handle(MiscModel|Map|Model $model, string $folder = '', string $field = 'image')
     {
-        // A user can create entities and tags dynamically when creating or updating another entity, so make sure
-        // the loop is only called when sending the data for this specific entity type
-        // @phpstan-ignore-next-line
-        if ($model->saveImageObserver === false) {
-            return;
-        }
-
         // Remove the old image
         if (request()->post('remove-' . $field) == '1') {
             self::cleanup($model, $field);
