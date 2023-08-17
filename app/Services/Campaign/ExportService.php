@@ -5,7 +5,6 @@ namespace App\Services\Campaign;
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
 use App\Notifications\Header;
-use App\Services\EntityService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
