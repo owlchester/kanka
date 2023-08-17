@@ -60,7 +60,7 @@ class Location extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'parentLocation.name',
     ];
 

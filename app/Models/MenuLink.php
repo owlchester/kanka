@@ -116,7 +116,7 @@ class MenuLink extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    public $sortableColumns = [
+    public array $sortableColumns = [
         'position',
         'menu',
         'tab',

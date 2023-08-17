@@ -7,7 +7,7 @@
 ])
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+    <div class="header-buttons flex gap-2 items-center justify-end">
         @if (!request()->has('before_id'))
             <a href="{{ route('calendars.events', [$campaign, $model, 'before_id' => 1]) }}" class="btn2 btn-sm">
                 {{ __('calendars.events.filters.show_before') }}

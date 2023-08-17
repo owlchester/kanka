@@ -69,7 +69,7 @@ class Item extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'price',
         'size',
         'location.name',

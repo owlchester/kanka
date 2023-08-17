@@ -52,7 +52,7 @@ class Family extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'family.name',
         'location.name',
     ];

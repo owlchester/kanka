@@ -7,7 +7,7 @@
 ])
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+    <div class="header-buttons flex gap-2 items-center justify-end">
         @if (request()->has('parent_id'))
             <a href="{{ route('locations.locations', [$campaign, $model]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />

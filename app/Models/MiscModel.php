@@ -57,10 +57,8 @@ abstract class MiscModel extends Model
     use SourceCopiable;
     use SubEntityScopes;
 
-    /**
-     * @var bool|Entity Performance based entity
-     */
-    protected $cachedEntity = false;
+    /** @var Entity Performance based entity */
+    protected Entity $cachedEntity;
 
     /**
      * @var string Entity type
@@ -68,15 +66,10 @@ abstract class MiscModel extends Model
     protected $entityType;
 
     /**
-     * @var string Entity image path
-     */
-    public $entityImagePath;
-
-    /**
      * Fields that can be ordered on
      * @var array
      */
-    protected $sortableColumns = [];
+    protected array $sortableColumns = [];
 
     /**
      * Explicit fields for filtering.
@@ -115,18 +108,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Create a short name for the interface
-     * @return mixed|string
-     */
-    public function shortName()
-    {
-        if (mb_strlen($this->name) > 30) {
-            return '<span title="' . e($this->name) . '">' . mb_substr(e($this->name), 0, 28) . '...</span>';
-        }
-        return $this->name;
-    }
-
-    /**
      * Get the thumbnail (or default image) of an entity
      * @param int $width If 0, get the full-sized version
      * @param int|null $height
@@ -135,7 +116,7 @@ abstract class MiscModel extends Model
      */
     public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
     {
-        $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
+        $entity = $this->cachedEntity ?? $this->entity;
         if (empty($this->$field) || $entity->$field) {
             return $this->getImageFallback($width);
         }
@@ -171,13 +152,8 @@ abstract class MiscModel extends Model
     {
         // Campaign could have something set up
         $campaign = CampaignLocalization::getCampaign();
-        // If campaign is empty, we might be calling the api/campaigns of the user.
-        if (empty($campaign) && $this instanceof Campaign) {
-            CampaignCache::campaign($this);
-            $campaign = $this;
-        }
 
-        $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
+        $entity = $this->cachedEntity ?? $this->entity;
         if ($campaign->superboosted() && !empty($entity->image)) {
             return $entity->image->getUrl($size, $size);
         } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
@@ -229,8 +205,8 @@ abstract class MiscModel extends Model
         }
         try {
             $campaign = CampaignLocalization::getCampaign();
-            if ($action === 'show') {
-                return route('entities.show', [$campaign, $this->entity]);
+            if (in_array($action, ['show', 'update'])) {
+                return route('entities.' . $action, [$campaign, $this->entity]);
             }
             return route($this->entity->pluralType() . '.' . $action, [$campaign, $this->id]);
         } catch (Exception $e) {

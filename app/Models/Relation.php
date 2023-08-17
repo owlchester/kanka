@@ -76,7 +76,7 @@ class Relation extends Model
      * Fields that can be sorted on
      * @var array
      */
-    public $sortableColumns = [
+    public array $sortableColumns = [
         'owner_id',
         'target_id',
         'relation',

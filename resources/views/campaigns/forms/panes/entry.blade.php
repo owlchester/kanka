@@ -1,3 +1,4 @@
+@php /** @var \App\Models\Campaign $model */ @endphp
 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
     <x-grid type="1/1">
         <div class="field-name required">

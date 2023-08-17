@@ -17,7 +17,7 @@ class MentionsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(MentionsService::class, function () {
-            $service = new MentionsService(new EntityService());
+            $service = new MentionsService();
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }

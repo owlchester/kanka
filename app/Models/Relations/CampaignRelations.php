@@ -370,6 +370,14 @@ trait CampaignRelations
     }
 
     /**
+     * @return mixed
+     */
+    public function invites()
+    {
+        return $this->hasMany('App\Models\CampaignInvite');
+    }
+
+    /**
      *
      */
     public function genres()

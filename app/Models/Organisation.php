@@ -67,7 +67,7 @@ class Organisation extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'organisation.name',
         'location.name',
         'is_defunct',

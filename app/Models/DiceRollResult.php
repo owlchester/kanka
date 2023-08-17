@@ -24,7 +24,7 @@ class DiceRollResult extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'diceRoll.name',
         'character.name',
         'user.name',

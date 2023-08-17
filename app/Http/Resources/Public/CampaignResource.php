@@ -22,6 +22,7 @@ class CampaignResource extends JsonResource
             'entities' => number_format($campaign->visible_entity_count),
             'locale' => $campaign->locale,
             'system' => $campaign->system,
+            'is_open' => $campaign->isOpen(),
         ];
     }
 }

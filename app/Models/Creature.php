@@ -53,7 +53,7 @@ class Creature extends MiscModel
      */
     protected $entityType = 'creature';
 
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'creature.name',
     ];
 

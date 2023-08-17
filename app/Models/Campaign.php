@@ -12,6 +12,7 @@ use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -57,7 +58,7 @@ use Illuminate\Support\Collection;
  * @property bool $hide_history
  *
  */
-class Campaign extends MiscModel
+class Campaign extends Model
 {
     use Boosted;
     use CampaignLimit;
@@ -110,15 +111,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
-     * @return bool
-     */
-    public function hasPermissions(): bool
-    {
-        return $this->roles()->count() > 1;
-    }
-
-    /**
      * Does the campaign has a preview text that can be displayed
      * @return bool
      */
@@ -156,22 +148,6 @@ class Campaign extends MiscModel
         }
 
         return $members;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function invites()
-    {
-        return $this->hasMany('App\Models\CampaignInvite');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function unusedInvites()
-    {
-        return $this->invites()->where('is_active', true);
     }
 
     /**
@@ -213,20 +189,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return int
-     */
-    public function role()
-    {
-        $member = $this->members()
-            ->where('user_id', auth()->user()->id)
-            ->first();
-        if ($member) {
-            return $member->role;
-        }
-        return 0;
-    }
-
-    /**
      * Determine if a campaign has a module enabled or not
      *
      * @param string $module
@@ -240,15 +202,6 @@ class Campaign extends MiscModel
 
         $settings = CampaignCache::settings();
         return (bool) $settings->$module;
-    }
-
-    /**
-     * "Fake" campaign link for notifications, instead of tracking the campaign id in the notification.
-     * @return string
-     */
-    public function getMiddlewareLink(): string
-    {
-        return 'campaign/' . $this->id;
     }
 
     /**
@@ -284,22 +237,6 @@ class Campaign extends MiscModel
     public function isOpen(): bool
     {
         return $this->is_open;
-    }
-
-    /**
-     * Determine if a campaign is featured or was featured in the past
-     * @param bool $past
-     * @return bool
-     */
-    public function isFeatured(bool $past = false): bool
-    {
-        return (bool) $this->is_featured && (
-            empty($this->featured_until) || (
-                $past ?
-                    $this->featured_until->isBefore(Carbon::today()) :
-                    $this->featured_until->isAfter(Carbon::today())
-            )
-        );
     }
 
     /**

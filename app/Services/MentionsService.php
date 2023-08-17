@@ -816,10 +816,6 @@ class MentionsService
         /** @var MiscModel $newMisc */
         $newMisc = new $types[$type]();
 
-        if (!isset($this->newService)) {
-            $this->newService = app()->make(NewService::class);
-        }
-
         $new = $this->newService
             ->campaign($this->campaign)
             ->user(auth()->user())

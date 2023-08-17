@@ -33,7 +33,8 @@ class UserController extends Controller
             ->paginate();
 
         $invitations = $campaign
-            ->unusedInvites()
+            ->invites()
+            ->where('is_active', true)
             ->with('role')
             ->paginate();
 
