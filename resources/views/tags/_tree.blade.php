@@ -40,22 +40,22 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-tag" title="' . __('tags.fields.is_auto_applied') . '" data-toggle="tooltip"></i>',
+            'label' => '<i class="fa-solid fa-tag" data-title="' . __('tags.fields.is_auto_applied') . '" data-toggle="tooltip"></i>',
             'field' => 'is_auto_applied',
             'render' => function($model) {
                 if ($model->isAutoApplied()) {
-                    return '<i class="fa-solid fa-tag" title="' . __('tags.fields.is_auto_applied') . '" data-toggle="tooltip"></i>';
+                    return '<i class="fa-solid fa-tag" data-title="' . __('tags.fields.is_auto_applied') . '" data-toggle="tooltip"></i>';
                 }
                 return '';
             },
             'class' => 'icon'
         ],
         [
-            'label' => '<i class="fa-solid fa-eye" title="' . __('tags.fields.is_hidden') . '" data-toggle="tooltip"></i>',
+            'label' => '<i class="fa-solid fa-eye" data-title="' . __('tags.fields.is_hidden') . '" data-toggle="tooltip"></i>',
             'field' => 'is_hidden',
             'render' => function($model) {
                 if ($model->isHidden()) {
-                    return '<i class="fa-solid fa-eye-slash" title="' . __('tags.fields.is_hidden') . '" data-toggle="tooltip"></i>';
+                    return '<i class="fa-solid fa-eye-slash" data-title="' . __('tags.fields.is_hidden') . '" data-toggle="tooltip"></i>';
                 }
                 return '';
             },

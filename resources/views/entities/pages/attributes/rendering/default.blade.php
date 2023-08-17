@@ -30,7 +30,7 @@ $inSection = false;
         @continue
     @endif
         <dt>
-            <span title="{attribute:{{ $attribute->id }}}" data-toggle="tooltip"
+            <span data-title="{attribute:{{ $attribute->id }}}" data-toggle="tooltip"
                   data-clipboard="{attribute:{{ $attribute->id }}}" data-toast="{{ __('crud.alerts.copy_attribute') }}">
                 {!! $attribute->name() !!}
             </span>
@@ -58,7 +58,7 @@ $inSection = false;
             @endif
 
             @if(\App\Facades\Attributes::isLoop($attribute->name))
-                <i class="fa-solid fa-warning" title="{{ __('entities/attributes.errors.loop') }}" data-toggle="tooltip"></i>
+                <i class="fa-solid fa-warning" data-title="{{ __('entities/attributes.errors.loop') }}" data-toggle="tooltip"></i>
             @endif
         </dd>
 @endforeach

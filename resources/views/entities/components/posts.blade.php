@@ -78,7 +78,7 @@ $postCount = 0;
 @can('post', [$model, 'add'])
     <div class="mb-5 text-center row-add-note-button">
         <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-accent btn-sm btn-new-post"
-           data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
+           data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">
             <x-icon class="plus"></x-icon>
             {{ __('crud.actions.new_post') }}
         </a>

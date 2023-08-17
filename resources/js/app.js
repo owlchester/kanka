@@ -88,8 +88,8 @@ function initSpectrum() {
  * Register the tooltip and tooltip-ajax helper
  */
 function initTooltips() {
-    $('[data-toggle="tooltip"]').tooltip();
-    window.ajaxTooltip();
+    /*$('[data-toggle="tooltip"]').tooltip();
+    window.ajaxTooltip();*/
 }
 
 
@@ -381,3 +381,4 @@ import './utility/formError';
 //import './navigation');
 import './header';
 //import './ads');
+import './utility/tippy';

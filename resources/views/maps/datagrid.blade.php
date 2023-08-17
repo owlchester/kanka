@@ -13,7 +13,7 @@
         'name',
         'type',
         [
-            'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" title="' . __('maps.actions.explore') . '"></i>',
+            'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '"></i>',
             'render' => function($model) {
                 return $model->exploreLink();
             },

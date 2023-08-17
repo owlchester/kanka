@@ -35,7 +35,7 @@
 
                     <div class="flex flex-wrap gap-3">
                     @if ($discord = $user->discord())
-                        <span class="btn-round rounded-full" title="Discord" data-toggle="tooltip">
+                        <span class="btn-round rounded-full" data-title="Discord" data-toggle="tooltip">
                         <x-icon class="fa-brands fa-discord"></x-icon> {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }}
                         </span>
                     @endif
@@ -48,7 +48,7 @@
                     @endif
 
                     @if (auth()->check() && !\App\Facades\Identity::isImpersonating() && auth()->user()->id === $user->id)
-                        <a href="{{ route('settings.profile') }}" class="btn-round rounded-full" target="_blank" title="{{ __('crud.edit') }}" data-toggle="tooltip">
+                        <a href="{{ route('settings.profile') }}" class="btn-round rounded-full" target="_blank" data-title="{{ __('crud.edit') }}" data-toggle="tooltip">
                             <x-icon class="pencil"></x-icon>
                             {{ __('settings.profile.actions.update_profile') }}
                         </a>

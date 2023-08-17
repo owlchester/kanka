@@ -23,7 +23,7 @@
     <div class="field-length">
         <label>
             {{ __('calendars.fields.length') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.event_length') }}"></i>
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('calendars.hints.event_length') }}"></i>
         </label>
         {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'class' => 'form-control', 'maxlength' => 1, 'data-url' => route('calendars.event-length', [$campaign, 'calendar' => 0])]) !!}
 

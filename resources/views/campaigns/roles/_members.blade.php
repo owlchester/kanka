@@ -38,7 +38,7 @@
                     <a href="#" class="btn2 btn-error btn-outline btn-sm delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}"
                        data-target="#delete-confirm" data-delete-target="campaign-role-member-{{ $relation->id }}"
                        title="{{ __('crud.remove') }}">
-                        <i class="fa-solid fa-user-slash" aria-hidden="true" data-toggle="tooltip" title="{{ __('campaigns.roles.users.actions.remove_user') }}"></i>
+                        <i class="fa-solid fa-user-slash" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns.roles.users.actions.remove_user') }}"></i>
                     </a>
                 @endcan
 

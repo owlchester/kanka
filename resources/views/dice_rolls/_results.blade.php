@@ -29,7 +29,7 @@
             <td class="text-right">
                 @can('delete', $model)
                 {!! Form::open(['method' => 'DELETE','route' => ['dice_rolls.destroy_roll', $campaign, $model, $relation->id],'style'=>'display:inline']) !!}
-                <button class="btn2 btn-xs btn-error btn-outline" title="{{ __('crud.remove') }}" data-toggle="tooltip">
+                <button class="btn2 btn-xs btn-error btn-outline" data-title="{{ __('crud.remove') }}" data-toggle="tooltip">
                     <x-icon class="trash"></x-icon>
                 </button>
                 {!! Form::close() !!}

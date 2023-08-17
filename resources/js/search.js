@@ -62,7 +62,7 @@ function initLiveSearch() {
                 ''
             ],
             suggestion: function (data) {
-                return '<a href="' + data.url + '" class="list-group-item" title="' + data.tooltip +
+                return '<a href="' + data.url + '" class="list-group-item" data-title="' + data.tooltip +
                     '" data-toggle="tooltip">' +
                     data.image + data.name + ' (' + data.type + ')</a>'
                 ;

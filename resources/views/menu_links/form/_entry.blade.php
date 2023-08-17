@@ -61,7 +61,7 @@ if (isset($model)) {
     <div class="field-position">
         <label class="control-label">
             {{ __('menu_links.fields.position') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{!! __('entities/links.helpers.parent') !!}" data-toggle="tooltip"></i>
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{!! __('entities/links.helpers.parent') !!}" data-toggle="tooltip"></i>
         </label>
         @if ($campaign->boosted())
             {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'menu_links' : $model->parent), ['class' => 'form-control']) }}
@@ -84,7 +84,7 @@ if (isset($model)) {
     <div class="field-class">
         <label for="config[class]">
             {{ __('dashboard.widgets.fields.class') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('dashboard.widgets.helpers.class') }}"></i>
         </label>
         @if ($campaign->boosted())
             {!! Form::text('css', null, ['class' => 'form-control', 'id' => 'config[class]', 'maxlength' => 45]) !!}
@@ -108,7 +108,7 @@ if (isset($model)) {
         {!! Form::hidden('is_active', 0) !!}
             <label>
                 {!! __('menu_links.fields.active') !!}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('menu_links.helpers.active') }}"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('menu_links.helpers.active') }}"></i>
             </label>
 
         <div class="checkbox my-1">

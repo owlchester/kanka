@@ -30,26 +30,26 @@
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <div class="flex items-center gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-primary" data-toggle="tooltip" title="Click me to change the colour" data-target="p"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-primary" data-toggle="tooltip" data-title="Click me to change the colour" data-target="p"></div>
                         Primary
                     </div>
                     <div class="flex items-center gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-secondary" data-toggle="tooltip" title="Click me to change the colour" data-target="s"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-secondary" data-toggle="tooltip" data-title="Click me to change the colour" data-target="s"></div>
                         Secondary
                     </div>
                     <div class="flex items-center gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-accent" data-toggle="tooltip" title="Click me to change the colour" data-target="a"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-accent" data-toggle="tooltip" data-title="Click me to change the colour" data-target="a"></div>
                         Accent
                     </div>
                     <div class="flex gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-neutral" data-toggle="tooltip" title="Click me to change the colour" data-target="n"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-neutral" data-toggle="tooltip" data-title="Click me to change the colour" data-target="n"></div>
                         <div class="break-words">
                             <p class="m-0">Neutral </p>
                             <p class="help-block m-0">Used for tooltips, default tags and calendar weather.</p>
                         </div>
                     </div>
                     <div class="flex gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-base-100" data-toggle="tooltip" title="Click me to change the colour" data-target="b"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-base-100" data-toggle="tooltip" data-title="Click me to change the colour" data-target="b"></div>
                         <div class="break-words">
                             <p class="m-0">Content </p>
                             <p class="help-block m-0">Used for menus, boxes, panels, forms. Its contrast is used as the main text colour.</p>
@@ -58,27 +58,27 @@
                 </div>
                 <div>
                     <div class="flex items-center gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-info" data-toggle="tooltip" title="Click me to change the colour" id="picker-info" data-target="in"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-info" data-toggle="tooltip" data-title="Click me to change the colour" id="picker-info" data-target="in"></div>
                         Information alert
                     </div>
                     <div class="flex items-center gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-success" data-toggle="tooltip" title="Click me to change the colour" data-target="su"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-success" data-toggle="tooltip" data-title="Click me to change the colour" data-target="su"></div>
                         Success alert
                     </div>
                     <div class="flex items-center gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-warning" data-toggle="tooltip" title="Click me to change the colour" data-target="wa"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-warning" data-toggle="tooltip" data-title="Click me to change the colour" data-target="wa"></div>
                         Warning alert
                     </div>
                     <div class="flex items-center gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-error" data-toggle="tooltip" title="Click me to change the colour" data-target="er"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-error" data-toggle="tooltip" data-title="Click me to change the colour" data-target="er"></div>
                         Error alert
                     </div>
                     <div class="flex items-center gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-wrapper" data-toggle="tooltip" title="Click me to change the colour" data-target="w"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-wrapper" data-toggle="tooltip" data-title="Click me to change the colour" data-target="w"></div>
                         Main background colour
                     </div>
                     <div class="flex items-center gap-2 mb-5">
-                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-sidebar" data-toggle="tooltip" title="Click me to change the colour" data-target="si"></div>
+                        <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-sidebar" data-toggle="tooltip" data-title="Click me to change the colour" data-target="si"></div>
                         Campaign sidebar
                     </div>
                 </div>

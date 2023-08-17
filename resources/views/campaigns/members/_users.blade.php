@@ -46,7 +46,7 @@
                             {{ $relation->user->name }}
                         </a>
                         @if ($relation->user->isBanned())
-                            <i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" title = "{{ __('campaigns.members.fields.banned') }}"></i>
+                            <i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" data-title = "{{ __('campaigns.members.fields.banned') }}"></i>
                         @endif
                     </td>
                     <td class="!align-middle">
@@ -76,12 +76,12 @@
                     </td>
                     <td class="!align-middle hidden-xs hidden-md">
                         @if (!empty($relation->created_at))
-                            <span title="{{ $relation->created_at }} UTC" data-toggle="tooltip">{{ $relation->created_at->diffForHumans() }}</span>
+                            <span data-title="{{ $relation->created_at }} UTC" data-toggle="tooltip">{{ $relation->created_at->diffForHumans() }}</span>
                         @endif
                     </td>
                     <td class="!align-middle hidden-xs hidden-md">
                         @if ($relation->user->has_last_login_sharing && !empty($relation->user->last_login_at))
-                            <span title="{{ $relation->user->last_login_at }} UTC" data-toggle="tooltip">{{ $relation->user->last_login_at->diffForHumans() }}</span>
+                            <span data-title="{{ $relation->user->last_login_at }} UTC" data-toggle="tooltip">{{ $relation->user->last_login_at->diffForHumans() }}</span>
                         @endif
                     </td>
                     <td class="!align-middle text-right">
@@ -94,7 +94,7 @@
                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                     @can('switch', $relation)
                                         <li>
-                                            <a href="{{ route('identity.switch', [$campaign, $relation]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
+                                            <a href="{{ route('identity.switch', [$campaign, $relation]) }}" data-title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
                                                 <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
                                                 {{ __('campaigns.members.actions.switch') }}
                                             </a>

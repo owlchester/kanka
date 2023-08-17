@@ -16,7 +16,7 @@
                                 data-follow="{{ __('dashboard.actions.follow') }}"
                                 data-unfollow="{{ __('dashboard.actions.unfollow') }}"
                                 data-url="{{ route('campaign.follow', $campaign) }}"
-                                data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
+                                data-toggle="tooltip" data-title="{{ __('dashboard.helpers.follow') }}"
                                 data-placement="bottom"
                         >
                             <i class="fa-solid fa-star"></i> <span id="campaign-follow-text"></span>
@@ -25,7 +25,7 @@
                     @can('apply', $campaign)
                         <button id="campaign-apply" class="btn2 btn-sm" data-id="{{ $campaign->id }}"
                                 data-url="{{ route('campaign.apply', $campaign) }}"
-                                data-toggle="dialog-ajax" title="{{ __('dashboard.helpers.join') }}"
+                                data-toggle="dialog-ajax" data-title="{{ __('dashboard.helpers.join') }}"
                                 data-target="apply-dialog"
                                 data-placement="bottom"
                         >

@@ -12,6 +12,9 @@
 // RPG awesome
 @import "rpg-awesome/css/rpg-awesome.min.css";
 
+@import 'tippy.js/animations/scale.css';
+@import 'tippy.js/dist/tippy.css';
+
 .note-hint-group {
     .note-hint-item {
         min-width: 200px;

@@ -27,7 +27,7 @@ $conversation = $entity->child;
                     <i class="fa-solid fa-lock pull-right" title="{{ __('crud.is_private') }}" aria-hidden="true"></i>
                 @endif
 
-                <span class="pull-right" data-toggle="tooltip" title="{{ __('conversations.tabs.participants') }}">
+                <span class="pull-right" data-toggle="tooltip" data-title="{{ __('conversations.tabs.participants') }}">
                     <x-badge>
                         <x-icon class="fa-solid fa-users"></x-icon>
                         {{ $conversation->participants()->count() }}

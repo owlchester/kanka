@@ -96,7 +96,7 @@ $hasAttributeFilters = false;
                 <div class="flex items-center gap-2 md:gap-5">
                     <div class="grow flex gap-2 items-center">
                         <a href="#" class="flex-none btn2 btn-sm flex gap-2 items-center"
-                           @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false" @else disabled @endif data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
+                           @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false" @else disabled @endif data-toggle="tooltip" data-title="{{ __('crud.filters.copy_helper') }}">
                             <i class="fa-solid fa-clipboard" aria-hidden="true"></i>
                             <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
                             <span class="visible md:hidden">{{ __('crud.filters.mobile.copy') }}</span>

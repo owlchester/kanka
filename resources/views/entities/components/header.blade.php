@@ -126,19 +126,19 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                     {!! $model->name !!}
                 </h1>
                 @if ($model instanceof \App\Models\Character && $model->isDead())
-                    <span class="entity-name-icon entity-char-dead cursor-pointer text-2xl" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}">
+                    <span class="entity-name-icon entity-char-dead cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_dead') }}">
                         <x-icon class="ra ra-skull entity-icons"></x-icon>
                         <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                     </span>
                 @endif
                 @if ($model instanceof \App\Models\Quest && $model->isCompleted())
-                    <span class="entity-name-icon entity-quest-complete cursor-pointer text-2xl" data-toggle="tooltip" title="{{ __('quests.fields.is_completed') }}">
+                    <span class="entity-name-icon entity-quest-complete cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
                         <x-icon class="fa-solid fa-check-circle entity-icons"></x-icon>
                         <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
                     </span>
                 @endif
                 @if ($model instanceof \App\Models\Organisation && $model->isDefunct())
-                    <span class="entity-name-icon entity-org-defunct cursor-pointer text-2xl" data-toggle="tooltip" title="{{ __('organisations.hints.is_defunct') }}">
+                    <span class="entity-name-icon entity-org-defunct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('organisations.hints.is_defunct') }}">
                         <x-icon class="fa-solid fa-shop-slash entity-icons "></x-icon>
                         <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
                     </span>
@@ -146,13 +146,13 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
 
                 @if (auth()->check() && auth()->user()->isAdmin())
                     <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', [$campaign, $model->entity]) }}" data-target="quick-privacy" aria-haspopup="dialog">
-                            <i class="fa-solid fa-lock entity-icons text-2xl" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                            <i class="fa-solid fa-lock-open entity-icons text-2xl" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <i class="fa-solid fa-lock entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <i class="fa-solid fa-lock-open entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                             <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                         </span>
                 @endif
                 <div class="dropdown entity-actions">
-                    <span role="button" tabindex="0" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
+                    <span role="button" tabindex="0" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
                         <i class="fa-solid fa-cog entity-icons cursor-pointer text-2xl transition-all hover:rotate-45" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                     </span>
@@ -161,9 +161,9 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                             <li>
                                 <a href="{{ route($entity->pluralType() . '.edit', [$campaign, $model->id]) }}" data-keyboard="edit">
                                     <x-icon class="pencil"></x-icon>
-                                    {{ __('crud.edit') }}
+                                    <span class="grow">{{ __('crud.edit') }}</span>
 
-                                    <span class="keyboard-shortcut pull-right" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>E</code>']) !!}" data-html="true">E</span>
+                                    <span class="keyboard-shortcut"  title="{!! __('crud.keyboard-shortcut', ['code' => '[E]']) !!}" data-html="true">E</span>
                                 </a>
                             </li>
                         @endcan
@@ -201,7 +201,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                     </li>
                                 @endcan
                                 <li>
-                                    <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toggle="tooltip"
+                                    <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toggle="tooltip"
                                        data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toast="{{ __('crud.alerts.copy_mention') }}">
                                         <x-icon class="fa-solid fa-link"></x-icon>
                                         {{ __('crud.actions.copy_mention') }}

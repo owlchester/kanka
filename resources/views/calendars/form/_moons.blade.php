@@ -6,7 +6,7 @@
     <div class="">{{ __('crud.fields.colour') }}</div>
     <div class="">
         {{ __('calendars.parameters.moon.offset') }}
-        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-placement="left" data-toggle="tooltip" title="{{ __('calendars.helpers.moon_offset') }}"></i>
+        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-placement="left" data-toggle="tooltip" data-title="{{ __('calendars.helpers.moon_offset') }}"></i>
     </div>
 </div>
 <?php

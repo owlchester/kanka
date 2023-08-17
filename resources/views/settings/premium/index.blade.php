@@ -87,7 +87,7 @@
         {{ __('settings/premium.ready.title') }}
 
         @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
-            <div class="badge bg-boost border-0 badge-lg flex gap-1 ml-3" data-toggle="tooltip" title="{{ __('settings/premium.ready.available') }}">
+            <div class="badge bg-boost border-0 badge-lg flex gap-1 ml-3" data-toggle="tooltip" data-title="{{ __('settings/premium.ready.available') }}">
                 <x-icon class="premium"></x-icon>
                 {{ auth()->user()->availableBoosts() }}
             </div>

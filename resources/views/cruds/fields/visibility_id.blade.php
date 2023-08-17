@@ -40,7 +40,7 @@ $visibilityUniqueID = uniqid('visibility_');
     <label for="{{ $visibilityUniqueID }}">
         {{ __('crud.fields.visibility') }}
         <a href="//docs.kanka.io/en/latest/advanced/visibility.html" target="_blank">
-            <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('visibilities.tooltip') }}"></i>
+            <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-title="{{ __('visibilities.tooltip') }}"></i>
         </a>
     </label>
     {{ Form::select('visibility_id', $options, empty($model) ? (isset($bulk) ? null : $campaign->defaultVisibilityID()) : $model->visibility_id, ['class' => 'form-control', 'id' => $visibilityUniqueID]) }}

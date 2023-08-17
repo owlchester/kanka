@@ -50,7 +50,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <span title="{{ $log->created_at }} UTC" data-toggle="tooltip">
+                                    <span data-title="{{ $log->created_at }} UTC" data-toggle="tooltip">
                                         {{ $log->created_at->diffForHumans() }}
                                     </span>
                                 </td>

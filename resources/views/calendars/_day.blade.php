@@ -62,7 +62,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
             @endif
             @if (!empty($day['moons']))
                 @foreach ($day['moons'] as $moon)
-                    <i class="moon {{ $moon['class'] }} text-{{ \Illuminate\Support\Arr::get($moon, 'colour', 'grey') }}" title="{{ __('calendars.show.moon_' . $moon['type'], ['moon' => $moon['name']]) }}" data-toggle="tooltip"></i>
+                    <i class="moon {{ $moon['class'] }} text-{{ \Illuminate\Support\Arr::get($moon, 'colour', 'grey') }}" data-title="{{ __('calendars.show.moon_' . $moon['type'], ['moon' => $moon['name']]) }}" data-toggle="tooltip"></i>
                 @endforeach
             @endif
             @if (!empty($day['season']))
@@ -73,7 +73,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
 
             <p class="text-left mb-0">
                 @if (!empty($day['weather']))
-                    <div class="weather block w-full weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" title="{!! $day['weather']->tooltip() !!}">
+                    <div class="weather block w-full weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" data-title="{!! $day['weather']->tooltip() !!}">
                         <i class="fa-solid fa-{{ $day['weather']->weather }}"></i>
                         {{ $day['weather']->weatherName() }}
                     </div>

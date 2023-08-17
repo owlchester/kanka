@@ -3,7 +3,7 @@
     @if (!empty($label))
         <label>{{ \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')) }}
             @if(!empty($helper))
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}" aria-hidden="true"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ $helper }}" aria-hidden="true"></i>
             @endif
         </label>
     @endif

@@ -16,11 +16,11 @@
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </button>
         @if ($mode == 'map' || (empty($mode) && $campaign->boosted()))
-            <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
+            <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table']) }}" class="btn2 btn-sm" data-toggle="tooltip" data-title="{{ __('entities/relations.actions.mode-table') }}">
                 <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
             </a>
         @else
-            <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'map']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
+            <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'map']) }}" class="btn2 btn-sm" data-toggle="tooltip" data-title="{{ __('entities/relations.actions.mode-map') }}">
                 <x-icon class="map"></x-icon>
             </a>
         @endif

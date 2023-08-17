@@ -39,7 +39,7 @@
                     <label>
                         {{ __('dashboard.widgets.recent.filters') }}
                         <a href="//docs.kanka.io/en/latest/guides/dashboard.html" target="_blank">
-                            <i class="fa-solid fa-question-circle" title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <i class="fa-solid fa-question-circle" data-title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         </a>
 
                     </label>
@@ -60,7 +60,7 @@
                             {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null)) !!}
 
                             {{ __('dashboard.widgets.recent.singular') }}
-                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('dashboard.widgets.recent.help') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('dashboard.widgets.recent.help') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         </label>
                     </div>
                     <p class="help-block hidden-md hidden-lg">

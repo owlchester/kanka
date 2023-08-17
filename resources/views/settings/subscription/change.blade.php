@@ -29,7 +29,7 @@
             <div class="join mb-5">
                 <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control join-item" data-url="{{ route('subscription.check-coupon') }}" />
 
-                <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline join-item" title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
+                <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline join-item" data-title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
                     <i class="fa-solid fa-check check"></i>
                     <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
                 </button>

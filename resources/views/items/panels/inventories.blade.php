@@ -15,7 +15,7 @@
                 </td>
                 <td>
                     @if ($inventory->entity->is_private)
-                        <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                        <i class="fa-solid fa-lock" data-title="{{ __('crud.is_private') }}" data-toggle="tooltip" aria-hidden="true"></i>
                     @endif
                     {!! $inventory->entity->tooltipedLink() !!}
                 </td>

@@ -23,7 +23,7 @@
             <div class="flex mb-1">
                 <div class="flex-1 font-bold text-uppercase">{{ $log->prompt }}</div>
                 <div class="text-right flex-none">
-                    <span class="text-xs" data-toggle="tooltip" title="{{ $log->created_at }} UTC">{{ $log->created_at->diffForHumans() }}</span>
+                    <span class="text-xs" data-toggle="tooltip" data-title="{{ $log->created_at }} UTC">{{ $log->created_at->diffForHumans() }}</span>
                 </div>
             </div>
             <div class="col-span-2 break-all text-justify">{!! $log->result !!}</div>

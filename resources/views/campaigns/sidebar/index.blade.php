@@ -89,7 +89,7 @@
                                         <span class="text-muted text-sm hidden md:!inline grow flex-no-wrap">(
                                             {{ $child['label'] ?? __($child['label_key']) }}
                                             @if (\Illuminate\Support\Arr::get($child, 'disabled') === true)
-                                                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" title="{{ __('campaigns.modules.permission-disabled') }}"></i>
+                                                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}"></i>
                                             @endif
                                             )
                                         </span>

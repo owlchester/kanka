@@ -54,7 +54,7 @@ $enabled = $campaign->enabled($module);
                 </p>
                 @if (isset($deprecated))
                 <div class="text-center text-sm mt-2">
-                        <span data-toggle="tooltip" title="{{ __('campaigns.settings.deprecated.help') }}">
+                        <span data-toggle="tooltip" data-title="{{ __('campaigns.settings.deprecated.help') }}">
                             <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
                             {{ __('campaigns.settings.deprecated.title') }}
                         </span>

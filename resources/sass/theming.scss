@@ -251,7 +251,7 @@ hr {
 
 /** Dropdown menus **/
 
-.dropdown-menu {
+.dropdown-menu, .dropdown-elements {
     background: hsl(var(--b1)/var(--tw-bg-opacity, 1));
     --tw-bg-opacity: 1;
     border: 0;

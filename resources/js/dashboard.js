@@ -209,7 +209,7 @@ function initDashboardCalendars()
                 var widget = $(this).data('widget');
                 $('#widget-body-' + widget).find('.widget-loading').hide();
                 $('#widget-body-' + widget).find('.widget-body').html(data).show();
-                $('[data-toggle="tooltip"]').tooltip();
+                /*$('[data-toggle="tooltip"]').tooltip();*/
                 window.ajaxTooltip();
                 initDashboardCalendars();
             }
@@ -279,7 +279,7 @@ function renderWidget(widget)
         widget.find('.widget-loading').hide();
         widget.find('.widget-body').html(res).show();
 
-        $('[data-toggle="tooltip"]').tooltip();
+        /*$('[data-toggle="tooltip"]').tooltip();*/
         window.ajaxTooltip();
         ajaxModal();
         initDashboardCalendars();

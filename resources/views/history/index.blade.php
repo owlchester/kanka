@@ -86,7 +86,7 @@
                         @endif
                         <div class="text-xs text-muted flex-end text-right">
                             @if ($superboosted)
-                                <span data-toggle="tooltip" title="{{ $log->created_at }} UTC">
+                                <span data-toggle="tooltip" data-title="{{ $log->created_at }} UTC">
                                     {{ $log->created_at->diffForHumans() }}
                                 </span>
                             @else

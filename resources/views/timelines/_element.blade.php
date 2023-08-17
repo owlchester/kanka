@@ -21,7 +21,7 @@
                         <span class="text-muted">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
                     @endif
                     @if($element->entity && $element->entity->is_private)
-                        <i class="fa-solid fa-lock" title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                        <i class="fa-solid fa-lock" data-title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" aria-hidden="true"></i>
                     @endif
                 </h3>
                 <div class="flex items-center gap-2 ">
@@ -49,14 +49,14 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#" title="[timeline:{{ $timeline->entity->id }}|anchor:timeline-element-{{ $element->id }}]" data-toggle="tooltip"
+                                    <a href="#" data-title="[timeline:{{ $timeline->entity->id }}|anchor:timeline-element-{{ $element->id }}]" data-toggle="tooltip"
                                        data-clipboard="[timeline:{{ $timeline->entity->id }}|anchor:timeline-element-{{ $element->id }}]" data-toast="{{ __('timelines/elements.copy_mention.success') }}">
                                         <i class="fa-solid fa-link" aria-hidden="true"></i> {{ __('entities/notes.copy_mention.copy') }}
                                     </a>
                                 </li>
                                 @php $mentionName = $element->mentionName() @endphp
                                 <li>
-                                    <a href="#" title="[timeline:{{ $timeline->entity->id }}|anchor:timeline-element-{{ $element->id }}]|{{ $mentionName }}" data-toggle="tooltip"
+                                    <a href="#" data-title="[timeline:{{ $timeline->entity->id }}|anchor:timeline-element-{{ $element->id }}]|{{ $mentionName }}" data-toggle="tooltip"
                                        data-clipboard="[timeline:{{ $timeline->entity->id }}|anchor:timeline-element-{{ $element->id }}|{{ $mentionName }}]" data-toast="{{ __('timelines/elements.copy_mention.success') }}">
                                         <i class="fa-solid fa-link" aria-hidden="true"></i> {{ __('timelines/elements.copy_mention.copy_with_name') }}
                                     </a>

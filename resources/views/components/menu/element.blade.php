@@ -12,7 +12,7 @@
         {!! $slot !!}
     </a>
     @if (!empty($button))
-        <a href="{{ $button['url'] }}" class="icon py-2 px-2 text-inherit" @if(!empty($button['tooltip'])) title="{{ $button['tooltip'] }}" data-toggle="tooltip" @endif>
+        <a href="{{ $button['url'] }}" class="icon py-2 px-2 text-inherit" @if(!empty($button['tooltip'])) data-title="{{ $button['tooltip'] }}" data-toggle="tooltip" @endif>
             <i class="{{ $button['icon'] }}" aria-hidden="true"></i>
             <span class="sr-only">{{ !empty($button['tooltip']) ? $button['tooltip'] : 'Helper icon' }}</span>
         </a>

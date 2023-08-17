@@ -27,7 +27,7 @@
                 <span class="flex-grow hidden-xs">
                     {{ __('crud.create') }}
                 </span>
-                <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true" data-placement="bottom" >N</span>
+                <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true" data-placement="bottom" >N</span>
             </a>
         </div>
         @endif

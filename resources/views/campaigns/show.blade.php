@@ -64,9 +64,9 @@
                 <div class="help-block text-right italic text-xs">
                     @if (!empty($campaign->created_at) && !empty($campaign->updated_at))
                     {!! __('crud.history.created_date_clean', [
-                        'date' => '<span data-toggle="tooltip" title="' . $campaign->created_at . ' UTC' . '">' . $campaign->created_at->diffForHumans() . '</span>'
+                        'date' => '<span data-toggle="tooltip" data-title="' . $campaign->created_at . ' UTC' . '">' . $campaign->created_at->diffForHumans() . '</span>'
                     ]) !!}. {!! __('crud.history.updated_date_clean', [
-                        'date' => '<span data-toggle="tooltip" title="' . $campaign->updated_at . ' UTC' . '">' . $campaign->updated_at->diffForHumans() . '</span>'
+                        'date' => '<span data-toggle="tooltip" data-title="' . $campaign->updated_at . ' UTC' . '">' . $campaign->updated_at->diffForHumans() . '</span>'
                     ]) !!}
                     @endif
                 </div>

@@ -14,28 +14,28 @@ $sizeOptions = [
 <div class="nav-tabs-custom">
     <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
         <li role="presentation" @if($activeTab == 1) class="active" @endif>
-            <a href="#marker-pin" data-nohash="true" data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.marker') }}">
+            <a href="#marker-pin" data-nohash="true" data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.marker') }}">
                 <x-icon class="fa-solid fa-2x fa-map-pin"></x-icon>
                 <br />
                 {{ __('maps/markers.tabs.marker') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 2) class="active" @endif>
-            <a href="#marker-label" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.label') }}">
+            <a href="#marker-label" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.label') }}">
                 <x-icon class="fa-solid fa-2x fa-font"></x-icon>
                 <br />
                 {{ __('maps/markers.tabs.label') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 3) class="active" @endif>
-            <a href="#marker-circle" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.circle') }}">
+            <a href="#marker-circle" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.circle') }}">
                 <x-icon class="fa-regular fa-2x fa-circle"></x-icon>
                 <br />
                 {{ __('maps/markers.tabs.circle') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 5) class="active" @endif>
-            <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.polygon') }}">
+            <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.polygon') }}">
                 <x-icon class="fa-solid fa-2x fa-draw-polygon"></x-icon>
                 <br />
                 {{ __('maps/markers.tabs.polygon') }}

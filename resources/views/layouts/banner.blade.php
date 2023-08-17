@@ -4,8 +4,6 @@
             <a href="{{ route('settings.subscription') }}">
                 {!! __('banners.kanka4years', ['code' => '<code>KANKA5YEAR</code>']) !!}
             </a>
-
-            <button type="button" class="float-right text-xl" data-dismiss="alert" aria-hidden="true" id="banner-notification-dismiss" data-url="{{ route('settings.banner', ['code' => '5yearpromo']) }}">×</button>
         </span>
     </div>
 @endif
