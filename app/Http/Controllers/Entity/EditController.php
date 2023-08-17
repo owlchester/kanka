@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\Services\MultiEditingService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
