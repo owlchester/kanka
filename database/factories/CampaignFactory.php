@@ -26,9 +26,11 @@ class CampaignFactory extends Factory
             'entry' => '<p>' . fake()->text(500) . '<p>',
             'excerpt' => fake()->text(100),
             'ui_settings' => ['nested' => true],
-            'is_featured' => false,
             'entity_visibility' => fake()->boolean(),
             'entity_personality_visibility' => fake()->boolean(),
+            'visible_entity_count' => fake()->numberBetween(5, 100),
+            'is_featured' => false,
+            'boost_count' => 0,
         ];
     }
 }

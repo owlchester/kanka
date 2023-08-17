@@ -2,13 +2,13 @@
 
 namespace Tests;
 
+use App\Facades\EntityCache;
 use App\Models\Campaign;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Models\Creature;
 use App\Facades\CampaignLocalization;
 use Laravel\Passport\Passport;
-use Mcamara\LaravelLocalization\LaravelLocalization;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -46,10 +46,12 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
-    public function withCampaign(): self
+    public function withCampaign(array $extra = []): self
     {
-        $campaign = Campaign::factory()->create();
+        $campaign = Campaign::factory()->create($extra);
         CampaignLocalization::forceCampaign($campaign);
+
+        EntityCache::campaign($campaign);
 
         // If doing a player run, add it to the player role
         if ($this->isPlayer) {
