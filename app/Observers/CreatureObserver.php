@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\MiscModel;
 use App\Models\Creature;
 use App\Observers\Concerns\HasLocations;
 

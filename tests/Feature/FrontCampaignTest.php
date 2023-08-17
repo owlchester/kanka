@@ -86,4 +86,3 @@ it('filtering locale GET')
     ->assertStatus(200)
     ->assertJsonCount(1, 'campaigns');
 ;
-

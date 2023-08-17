@@ -1,6 +1,5 @@
 <?php
 
-use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -52,4 +51,3 @@ function something()
 {
     // ..
 }
-

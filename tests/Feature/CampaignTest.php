@@ -1,12 +1,12 @@
 <?php
 
-it ('campaigns POST invalid')
+it('campaigns POST invalid')
     ->asUser()
     ->postJson('/api/1.0/campaigns', [])
     ->assertStatus(422)
 ;
 
-it ('campaigns POST valid')
+it('campaigns POST valid')
     ->asUser()
     ->postJson('/api/1.0/campaigns', [
         'name' => fake()->name(),
@@ -35,7 +35,7 @@ it('campaigns GET')
     ])
 ;
 
-it ('campaign GET')
+it('campaign GET')
     ->asUser()
     ->withCampaign()
     ->get('/api/1.0/campaigns/1')
