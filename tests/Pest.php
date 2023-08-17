@@ -1,5 +1,10 @@
 <?php
 
+use App\User;
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,7 +16,11 @@
 |
 */
 
-// uses(Tests\TestCase::class)->in('Feature');
+uses(
+    TestCase::class,
+    //DatabaseMigrations::class,
+    RefreshDatabase::class,
+)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +52,4 @@ function something()
 {
     // ..
 }
+

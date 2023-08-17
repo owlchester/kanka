@@ -54,6 +54,7 @@ class CampaignResource extends JsonResource
             'follower' => $campaign->follower,
             'boosted' => $campaign->boosted(),
             'superboosted' => $campaign->superboosted(),
+            'premium' => $campaign->premium(),
             'is_hidden' => (bool) $campaign->is_hidden,
 
             'urls' => [

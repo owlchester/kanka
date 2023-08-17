@@ -20,6 +20,7 @@ use App\Models\UserLog;
 use App\Models\UserSetting;
 use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -65,6 +66,7 @@ class User extends \Illuminate\Foundation\Auth\User
 {
     use Billable;
     use HasApiTokens;
+    use HasFactory;
     use LastSync;
     use Notifiable;
     use Tutorial;
@@ -398,6 +400,9 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function log(int $type): self
     {
+        if (!config('logging.enabled')) {
+            return $this;
+        }
         UserLog::create([
             'user_id' => $this->id,
             'type_id' => $type,

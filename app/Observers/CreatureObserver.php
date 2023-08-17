@@ -22,14 +22,6 @@ class CreatureObserver extends MiscObserver
     }
 
     /**
-     * @param MiscModel $model
-     */
-    public function saved(MiscModel $model)
-    {
-        parent::saved($model);
-    }
-
-    /**
      * @param Creature $creature
      */
     public function deleting(Creature $creature)

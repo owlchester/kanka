@@ -12,6 +12,7 @@ use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
@@ -64,6 +65,7 @@ class Campaign extends Model
     use CampaignLimit;
     use CampaignRelations;
     use CampaignScopes;
+    use HasFactory;
     use LastSync;
 
     /**

@@ -233,8 +233,7 @@ class EntityObserver
     public function saveBoosted(Entity $entity): void
     {
         // No changed for non-boosted campaigns
-        $campaign = CampaignLocalization::getCampaign();
-        if (!$campaign->boosted()) {
+        if (!$entity->campaign->boosted()) {
             return;
         }
 
@@ -247,7 +246,7 @@ class EntityObserver
         ImageService::entity($entity, 'campaign/' . $entity->campaign_id, 'header_image');
 
         // Superboosted image gallery selection
-        if ($campaign->superboosted()) {
+        if ($entity->campaign->superboosted()) {
             if (request()->has('entity_image_uuid')) {
                 $entity->image_uuid = request()->get('entity_image_uuid');
             } else {
