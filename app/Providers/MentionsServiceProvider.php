@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Facades\CampaignLocalization;
-use App\Services\EntityService;
 use App\Services\MentionsService;
 use Illuminate\Support\ServiceProvider;
 
