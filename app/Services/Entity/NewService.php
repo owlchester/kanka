@@ -2,7 +2,19 @@
 
 namespace App\Services\Entity;
 
+use App\Models\Ability;
+use App\Models\Character;
+use App\Models\Creature;
+use App\Models\Event;
+use App\Models\Family;
+use App\Models\Item;
+use App\Models\Journal;
+use App\Models\Location;
 use App\Models\MiscModel;
+use App\Models\Note;
+use App\Models\Organisation;
+use App\Models\Quest;
+use App\Models\Race;
 use App\Models\Tag;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
@@ -17,12 +29,39 @@ class NewService
 
     protected array $tags;
 
+    protected array $available;
+
     protected MiscModel $model;
 
     public function model(MiscModel $miscModel): self
     {
         $this->model = $miscModel;
         return $this;
+    }
+
+    /**
+     * Get a list of available entity types the user can create
+     * @return array
+     */
+    public function available(): array
+    {
+        if (isset($this->available)) {
+            return $this->available;
+        }
+
+        if (!auth()->check()) {
+            return $this->available = [];
+        }
+
+        $newTypes = $this->preset();
+        $entities = [];
+        foreach ($newTypes as $type => $class) {
+            if ($this->campaign->enabled(Str::plural($type)) && auth()->user()->can('create', $class)) {
+                $entities[$type] = $class;
+            }
+        }
+
+        return $this->available = $entities;
     }
 
     public function create(string $name): MiscModel
@@ -51,10 +90,7 @@ class NewService
 
     protected function private(): bool
     {
-        return (bool) ($this->user->isAdmin() && $this->campaign->entity_visibility)
-
-
-        ;
+        return (bool) ($this->user->isAdmin() && $this->campaign->entity_visibility);
     }
 
 
@@ -70,5 +106,24 @@ class NewService
         }
 
         return $this->tags;
+    }
+
+    protected function preset(): array
+    {
+        return [
+            'character' => Character::class,
+            'location' => Location::class,
+            'creature' => Creature::class,
+            'race' => Race::class,
+            'item' => Item::class,
+            'note' => Note::class,
+            'family' => Family::class,
+            'organisation' => Organisation::class,
+            'event' => Event::class,
+            'journal' => Journal::class,
+            'ability' => Ability::class,
+            'quest' => Quest::class,
+            'tag' => Tag::class,
+        ];
     }
 }

@@ -44,11 +44,6 @@ class BulkService
     /** @var int Total entities that were updated */
     protected int $count = 0;
 
-    /**
-     * BulkService constructor.
-     * @param EntityService $entityService
-     * @param PermissionService $permissionService
-     */
     public function __construct(
         EntityService $entityService,
         PermissionService $permissionService,

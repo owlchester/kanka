@@ -19,8 +19,6 @@ class ExportService
     use CampaignAware;
     use UserAware;
 
-    protected EntityService $entityService;
-
     protected string $exportPath;
 
     protected ZipArchive $archive;
@@ -30,11 +28,6 @@ class ExportService
     protected bool $assets = false;
 
     protected int $files = 0;
-
-    public function __construct(EntityService $entityService)
-    {
-        $this->entityService = $entityService;
-    }
 
     public function exportPath(): string
     {
@@ -111,7 +104,8 @@ class ExportService
         if ($this->assets) {
             $entityWith = ['entity'];
         }
-        foreach ($this->entityService->entities() as $entity => $class) {
+        $entities = config('entities.classes-plural');
+        foreach ($entities as $entity => $class) {
             if (!$this->campaign->enabled($entity) || !method_exists($class, 'export')) {
                 continue;
             }

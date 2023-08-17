@@ -8,7 +8,6 @@ use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
 use App\Models\Campaign;
 use App\Services\Campaign\DeletionService;
-use App\Services\EntityService;
 use App\Services\MultiEditingService;
 use Exception;
 use Illuminate\Support\Arr;
@@ -18,7 +17,6 @@ class CampaignController extends Controller
 {
     protected string $view = 'campaigns';
 
-    protected EntityService $entityService;
     protected DeletionService $deletionService;
 
     /**
@@ -26,10 +24,9 @@ class CampaignController extends Controller
      *
      * CampaignController constructor.
      */
-    public function __construct(EntityService $entityService, DeletionService $deletionService)
+    public function __construct(DeletionService $deletionService)
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'css']]);
-        $this->entityService = $entityService;
         $this->deletionService = $deletionService;
     }
 

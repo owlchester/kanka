@@ -214,7 +214,7 @@ class EntityCreatorController extends Controller
         $ignoredTypes = [
             'menu_links'
         ];
-        foreach ($this->entityService->entities($ignoredTypes) as $name => $class) {
+        foreach ($this->entityService->exclude($ignoredTypes)->entities() as $name => $class) {
             if ($this->campaign->enabled($name)) {
                 if (auth()->user()->can('create', $class)) {
                     $entities[$name] = $class;

@@ -49,7 +49,7 @@ class SearchController extends Controller
         $filters = null;
         $found = null;
 
-        foreach ($this->entity->entities(['menu_links']) as $element => $class) {
+        foreach ($this->entity->exclude(['menu_links'])->entities() as $element => $class) {
             if (!$campaign->enabled($element)) {
                 continue;
             }

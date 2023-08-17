@@ -8,6 +8,7 @@ use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\MiscModel;
+use App\Services\Entity\NewService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Str;
@@ -26,8 +27,9 @@ class SearchService
     /** @var int Amount of results (sql limit) */
     protected int $limit = 10;
 
-    /** @var EntityService */
     protected EntityService $entityService;
+
+    protected NewService $newService;
 
     /** @var array List of excluded entity types */
     protected array $excludedTypes = [];
@@ -53,13 +55,10 @@ class SearchService
      */
     protected bool $new = false;
 
-    /**
-     * SearchService constructor.
-     * @param EntityService $entityService
-     */
-    public function __construct(EntityService $entityService)
+    public function __construct(EntityService $entityService, NewService $newService)
     {
         $this->entityService = $entityService;
+        $this->newService = $newService;
     }
 
     /**
@@ -375,7 +374,8 @@ class SearchService
     {
         $options = [];
         $term = str_replace('_', ' ', $this->term);
-        foreach ($this->entityService->newEntityTypes() as $type => $class) {
+        $available = $this->newService->campaign($this->campaign)->available();
+        foreach ($available as $type => $class) {
             /** @var MiscModel $misc */
             $misc = new $class();
             $label = __('entities.new.' . $type);

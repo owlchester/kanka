@@ -3,37 +3,21 @@
 namespace App\Services;
 
 use App\Facades\Module;
-use App\Models\Ability;
 use App\Models\Campaign;
-use App\Models\Character;
-use App\Models\Creature;
-use App\Models\Event;
-use App\Models\Family;
-use App\Models\Item;
-use App\Models\Journal;
-use App\Models\Location;
 use App\Models\MiscModel;
-use App\Models\Note;
-use App\Models\Organisation;
-use App\Models\Quest;
-use App\Models\Race;
-use App\Models\Tag;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use App\Facades\CampaignLocalization;
-use Illuminate\Support\Str;
 
 class EntityService
 {
     use CampaignAware;
 
     /** @var array List of entity types */
-    protected array $entities = [];
+    protected array $entities;
 
-    /** @var bool|array */
-    protected bool|array $cachedNewEntityTypes = false;
-
+    protected array $exclude = [];
 
     /**
      * EntityService constructor.
@@ -65,22 +49,27 @@ class EntityService
         ];
     }
 
+    public function exclude(array $exclude): self
+    {
+        $this->exclude = $exclude;
+        return $this;
+    }
     /**
      * Get the entities
-     * @param array $excluded
      * @return array
      */
-    public function entities(array $excluded = []): array
+    public function entities(): array
     {
-        if (empty($excluded)) {
+        if (empty($this->excluded)) {
             return $this->entities;
         }
 
         $entities = [];
         foreach ($this->entities as $name => $class) {
-            if (!in_array($name, $excluded)) {
-                $entities[$name] = $class;
+            if (in_array($name, $this->excluded)) {
+                continue;
             }
+            $entities[$name] = $class;
         }
         return $entities;
     }
@@ -196,46 +185,5 @@ class EntityService
         }
 
         return $ids;
-    }
-
-    /**
-     * @return array
-     */
-    public function newEntityTypes(): array
-    {
-        if ($this->cachedNewEntityTypes !== false) {
-            return $this->cachedNewEntityTypes;
-        }
-
-        if (!auth()->check()) {
-            return $this->cachedNewEntityTypes = [];
-        }
-
-        // Save and keep the current campaign before updating the entity
-        $campaign = CampaignLocalization::getCampaign();
-
-        $newTypes = [
-            'character' => Character::class,
-            'location' => Location::class,
-            'creature' => Creature::class,
-            'race' => Race::class,
-            'item' => Item::class,
-            'note' => Note::class,
-            'family' => Family::class,
-            'organisation' => Organisation::class,
-            'event' => Event::class,
-            'journal' => Journal::class,
-            'ability' => Ability::class,
-            'quest' => Quest::class,
-            'tag' => Tag::class,
-        ];
-        $entities = [];
-        foreach ($newTypes as $type => $class) {
-            if ($campaign->enabled(Str::plural($type)) && auth()->user()->can('create', $class)) {
-                $entities[$type] = $class;
-            }
-        }
-
-        return $this->cachedNewEntityTypes = $entities;
     }
 }

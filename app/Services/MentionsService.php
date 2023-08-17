@@ -61,8 +61,6 @@ class MentionsService
     /** @var string Class used to inject and strip advanced mention name helpers */
     public const ADVANCED_MENTION_CLASS = 'advanced-mention-name';
 
-    protected EntityService $entityService;
-
     /** @var bool When false, parsing field:entry won't render mentions */
     protected bool $enableEntryField = true;
 
@@ -72,14 +70,6 @@ class MentionsService
     protected MarkupFixer $markupFixer;
 
     protected NewService $newService;
-
-    /**
-     * Mentions Service constructor
-     */
-    public function __construct(EntityService $entityService)
-    {
-        $this->entityService = $entityService;
-    }
 
     /**
      * Map the mentions in an entity
@@ -806,7 +796,10 @@ class MentionsService
             return $name;
         }
 
-        $types = $this->entityService->newEntityTypes();
+        if (!isset($this->newService)) {
+            $this->newService = app()->make(NewService::class);
+        }
+        $types = $this->newService->campaign($this->campaign)->available();
 
         // Invalid type
         if (!isset($types[$type])) {

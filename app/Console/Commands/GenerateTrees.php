@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Services\EntityService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Console\Command;
@@ -14,7 +13,7 @@ class GenerateTrees extends Command
      *
      * @var string
      */
-    protected $signature = 'trees {models=all,timelines,journals}';
+    protected $signature = 'trees {models=all,timeline,journal}';
 
     /**
      * The console command description.
@@ -22,15 +21,6 @@ class GenerateTrees extends Command
      * @var string
      */
     protected $description = 'Create the trees';
-
-    /** @var EntityService */
-    protected $service;
-
-    public function __construct(EntityService $service)
-    {
-        $this->service = $service;
-        parent::__construct();
-    }
 
     /**
      * Execute the console command.
@@ -46,8 +36,9 @@ class GenerateTrees extends Command
             return 1;
         }
 
+        $classes = config('entities.classes');
         foreach ($models as $model) {
-            $class = $this->service->getClass($model);
+            $class = new $classes[$model]();
             if ($class === false || !method_exists($class, 'recalculateTreeBounds')) {
                 $this->warn('Skipping ' . $model);
                 continue;
@@ -63,11 +54,10 @@ class GenerateTrees extends Command
      */
     protected function fixAll(): void
     {
-        $models = $this->service->entities();
+        $models = config('entities.classes');
         foreach ($models as $model => $class) {
             $new = new $class();
             try {
-                $parentTreeField = $new->getParentIdName();
                 $this->info("Fixing {$model}");
                 $class::fixTree();
             } catch (Exception $e) {

@@ -8,7 +8,6 @@ use App\Models\Campaign;
 use App\Services\AttributeService;
 use App\Services\BulkService;
 use App\Services\Entity\TypeService;
-use App\Services\EntityService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\CampaignAware;
 use Exception;
@@ -21,8 +20,6 @@ class BulkController extends Controller
 
     protected BulkService $bulkService;
 
-    protected EntityService $entityService;
-
     protected TypeService $typeService;
 
     protected BulkRequest $request;
@@ -32,14 +29,9 @@ class BulkController extends Controller
     /** @var null|string */
     protected null|string $entity = null;
 
-    /**
-     * BulkController constructor.
-     * @param BulkService $bulkService
-     */
-    public function __construct(BulkService $bulkService, EntityService $entityService, TypeService $typeService)
+    public function __construct(BulkService $bulkService, TypeService $typeService)
     {
         $this->bulkService = $bulkService;
-        $this->entityService = $entityService;
         $this->typeService = $typeService;
     }
 
@@ -131,8 +123,8 @@ class BulkController extends Controller
      */
     protected function batch()
     {
-        $entityClass = $this->entityService->getClass($this->entity);
-        $entityObj = new $entityClass();
+        $classes = config('entities.classes-plural');
+        $entityObj = new $classes[$this->entity]();
         $langFile = $this->entity === 'relations' ? 'entities/relations.bulk.success.' : 'crud.bulk.success.';
         $models = $this->models();
 
