@@ -55,7 +55,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-xl-8">
-                        <a href="https://kanka-users-assets.s3.amazonaws.com/app/features/dashboard-hd.jpg" target="_blank">
+                        <a href="https://d3a4xjr8r2ldhu.cloudfront.net/app/features/dashboard-hd.jpg" target="_blank">
                             <img alt="Kanka dashboard" src="{{ Img::crop(825, 464)->new()->url('app/features/dashboard-crop-hd.jpg') }}" class="img-fluid shadow mb-2 rounded d-none d-lg-block" loading="lazy" >
                             <img alt="Kanka dashboard" src="{{ Img::crop(540, 303)->new()->url('app/features/dashboard-crop-hd.jpg') }}" class="d-lg-none img-fluid shadow mb-2 rounded" loading="lazy" >
                         </a>

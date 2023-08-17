@@ -173,10 +173,10 @@ trait Picture
 
             if (auth()->check() && auth()->user()->isGoblin()) {
                 // Goblins and above have nicer icons
-                return asset('/images/defaults/subscribers/' . $this->pluralType() . '.jpeg');
+                return '/images/defaults/subscribers/' . $this->pluralType() . '.jpeg';
             }
             $this->hasNoImage = true;
-            return asset('/images/defaults/' . $this->pluralType() . '_thumb.jpg');
+            return '/images/defaults/' . $this->pluralType() . '_thumb.jpg';
         }
 
         if (!empty($focus)) {

@@ -235,18 +235,23 @@
     "isEntry": true,
     "src": "resources/js/timeline.js"
   },
+  "resources/js/vendor-final.js": {
+    "file": "assets/vendor-final-1230e4cf.js",
+    "isEntry": true,
+    "src": "resources/js/vendor-final.js"
+  },
   "resources/sass/abilities.scss": {
     "file": "assets/abilities-883611b4.css",
     "isEntry": true,
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-1c1e4b1c.css",
+    "file": "assets/app-e087539e.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-a3d31d9a.css",
+    "file": "assets/auth-69b7019e.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -316,7 +321,7 @@
     "src": "resources/sass/tinymce.scss"
   },
   "resources/sass/vendor.scss": {
-    "file": "assets/vendor-228be7d1.css",
+    "file": "assets/vendor-e349c960.css",
     "isEntry": true,
     "src": "resources/sass/vendor.scss"
   }

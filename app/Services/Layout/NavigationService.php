@@ -55,7 +55,7 @@ class NavigationService
                 'tier' => $this->user->pledge,
                 // @phpstan-ignore-next-line
                 'created' => __('users/profile.fields.subscriber_since', ['date' => $this->user->subscription('kanka')->created_at->format('M d, Y')]),
-                'image' => 'https://kanka-user-assets.s3.amazonaws.com/app/tiers/' . mb_strtolower($this->user->pledge) . '-325.png',
+                'image' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/' . mb_strtolower($this->user->pledge) . '-325.png',
                 'boosters' => __('settings/boosters.available', [
                     'amount' => $this->user->availableBoosts(),
                     'total' => $this->user->maxBoosts()

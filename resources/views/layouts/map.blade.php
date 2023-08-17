@@ -149,8 +149,7 @@ $specificTheme = null;
     <!-- Modal -->
     @includeWhen(auth()->check(), 'layouts.modals.delete')
 
-<script src="/js/vendor.js"></script>
-@vite(['resources/js/app.js', 'resources/js/cookieconsent.js'])
+@vite(['resources/js/vendor-final.js', 'resources/js/app.js', 'resources/js/cookieconsent.js'])
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif

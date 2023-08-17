@@ -155,12 +155,16 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Get the original image url (for prod: aws link)
+     * Get the original image url (for prod: aws cloudfront)
      * @param string $field
      * @return mixed
      */
     public function getOriginalImageUrl(string $field = 'image')
     {
+        $cloudfront = config('filesystems.disks.cloudfront.url');
+        if ($cloudfront) {
+            return Storage::disk('cloudfront')->url($this->$field);
+        }
         return Storage::url($this->$field);
     }
 
@@ -185,11 +189,11 @@ abstract class MiscModel extends Model
             return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {
             // Goblins and above have nicer icons
-            return asset('/images/defaults/patreon/' . $this->getTable() . '_thumb.png');
+            return '/images/defaults/patreon/' . $this->getTable() . '_thumb.png';
         }
 
         // Default fallback
-        return asset('/images/defaults/' . $this->getTable() . '_thumb.jpg');
+        return '/images/defaults/' . $this->getTable() . '_thumb.jpg';
     }
 
     /**

@@ -142,7 +142,7 @@
                     </a>
                 </div>
                 <div class="col-12 col-xl-9">
-                    <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/dashboard-hd.jpg" target="_blank">
+                    <a href="https://d3a4xjr8r2ldhu.cloudfront.net/app/features/dashboard-hd.jpg" target="_blank">
                         <img alt="Kanka dashboard" src="{{ Img::crop(825, 464)->new()->url('app/features/dashboard-crop-hd.jpg') }}" class="img-fluid shadow mb-2 rounded d-none d-lg-block" loading="lazy" >
                         <img alt="Kanka dashboard" src="{{ Img::crop(540, 303)->new()->url('app/features/dashboard-crop-hd.jpg') }}" class="d-lg-none img-fluid shadow mb-2 rounded" loading="lazy" >
                     </a>
@@ -189,7 +189,7 @@
                     </p>
                 </div>
                 <div class="col-12 col-md-6">
-                    <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/adam-morley-hd.jpg" target="_blank">
+                    <a href="https://d3a4xjr8r2ldhu.cloudfront.net/app/features/adam-morley-hd.jpg" target="_blank">
                         <img src="{{ Img::crop(540, 337)->new()->url('app/features/adam-morley-hd.jpg') }}" alt="entity overview" class="img-fluid shadow mb-2 rounded" loading="lazy" />
                     </a>
                 </div>
@@ -197,7 +197,7 @@
 
             <div class="row mt-5" id="inventory">
                 <div class="col-12 col-md-6">
-                    <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/sarah-inventory-hd.jpg" target="_blank">
+                    <a href="https://d3a4xjr8r2ldhu.cloudfront.net/app/features/sarah-inventory-hd.jpg" target="_blank">
 
                         <img src="{{ Img::crop(540, 225)->new()->url('app/features/sarah-inventory-hd.jpg') }}" alt="entity inventory" class="img-fluid shadow mb-2" loading="lazy" />
                     </a>
@@ -222,7 +222,7 @@
                         {{ __('front/features.abilities.description') }}
                     </p>
 
-                    <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/ludwig-abilities-hd.jpg" target="_blank">
+                    <a href="https://d3a4xjr8r2ldhu.cloudfront.net/app/features/ludwig-abilities-hd.jpg" target="_blank">
                         <img src="{{ Img::crop(540, 304)->new()->url('app/features/ludwig-abilities-hd.jpg') }}"
                              alt="entity abilities" class="img-fluid shadow mb-2 rounded" loading="lazy" />
                     </a>
@@ -237,7 +237,7 @@
                         {!! __('front/features.attributes.secondary', ['marketplace' => link_to('https://marketplace.kanka.io/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])]) !!}
                     </p>
 
-                    <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/attribute-holder-attributes-hd.jpg" target="_blank">
+                    <a href="https://d3a4xjr8r2ldhu.cloudfront.net/app/features/attribute-holder-attributes-hd.jpg" target="_blank">
                         <img src="{{ Img::crop(540, 350)->new()->url('app/features/attribute-holder-attributes-hd.jpg') }}" alt="entity attributes" class="img-fluid shadow mb-2" loading="lazy" />
                     </a>
 
@@ -254,14 +254,14 @@
                     <p class="text-muted">
                         {{ __('front/features.journals.description') }}
                     </p>
-                    <img src="https://kanka-user-assets.s3.amazonaws.com/app/features/kanka-journals.jpg" alt="kanka journals" class="img-fluid shadow mb-2 rounded" loading="lazy" />
+                    <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/features/kanka-journals.jpg" alt="kanka journals" class="img-fluid shadow mb-2 rounded" loading="lazy" />
                 </div>
                 <div class="col-12 col-md-6" id="quests">
                     <h3>{{ __('front/features.quests.title') }}</h3>
                     <p class="text-muted">
                         {{ __('front/features.quests.description') }}
                     </p>
-                    <img src="https://kanka-user-assets.s3.amazonaws.com/app/features/kanka-quest.jpg" alt="kanka quest" class="img-fluid shadow mb-2 rounded" loading="lazy" />
+                    <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/features/kanka-quest.jpg" alt="kanka quest" class="img-fluid shadow mb-2 rounded" loading="lazy" />
                 </div>
             </div>
         </div>
@@ -351,7 +351,7 @@
                         {{ __('front.features.learn_more_about') }}
                     </a>
 
-                    <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/map-hd.jpg" target="_blank">
+                    <a href="https://d3a4xjr8r2ldhu.cloudfront.net/app/features/map-hd.jpg" target="_blank">
                     <img src="{{ Img::crop(540, 225)->new()->url('app/features/map-hd.jpg') }}" alt="kanka map" class="img-fluid shadow mb-2 mt-2 rounded" loading="lazy" />
                     </a>
 

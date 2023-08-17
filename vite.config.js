@@ -72,6 +72,8 @@ export default defineConfig({
             'resources/sass/tinymce.scss',
             'resources/sass/freyja/freyja.scss',
             'resources/sass/print/print.scss',
+
+            'resources/js/vendor-final.js',
         ]),
         vue({
             template: {
