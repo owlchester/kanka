@@ -157,8 +157,10 @@ class RecoveryService
 
             // Clean up the parent and tree to avoid the nested plugin to delete every child
             $child->$parentField = null;
-            $child->_lft = null; // @phpstan-ignore-line
-            $child->_rgt = null; // @phpstan-ignore-line
+            if (method_exists($child, 'getRgtName')) {
+                $child->_lft = null; // @phpstan-ignore-line
+                $child->_rgt = null; // @phpstan-ignore-line
+            }
 
             $child->timestamps = false;
             $child->saveQuietly();
