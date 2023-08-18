@@ -43,7 +43,7 @@ export default defineConfig({
             'resources/js/dashboard.js',
             'resources/js/front.js',
             'resources/js/settings.js',
-            'resources/js/timeline.js',
+            //'resources/js/timeline.js',
             'resources/js/profile.js',
             'resources/js/cookieconsent.js',
             'resources/js/relations.js',

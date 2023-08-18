@@ -42,7 +42,7 @@
                         </div>
                     </td>
                     <td class=" max-w-30 !align-middle">
-                        <a class="block break-all truncate" href="{{ route('users.profile', [$campaign, $relation->user_id]) }}" target="_blank">
+                        <a class="block break-all truncate" href="{{ route('users.profile', [$relation->user]) }}" target="_blank">
                             {{ $relation->user->name }}
                         </a>
                         @if ($relation->user->isBanned())

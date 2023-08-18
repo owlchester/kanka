@@ -16,6 +16,9 @@
                     <div class="flex items-center gap-5 text-3xl flex-wrap">
                         @include('layouts._socials')
                     </div>
+
+                    @include('layouts._lang-switcher')
+
                     <div class="text-xs">
                         Kanka v{{ config('app.version') }} - {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}  - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }} ({{ gethostname() }})
                     </div>
@@ -65,6 +68,8 @@
                 <div class="flex justify-center gap-5 text-3xl">
                     @include('layouts._socials')
                 </div>
+
+                @include('layouts._lang-switcher')
 
                 <div class="text-center text-sm">
                     Kanka v{{ config('app.version') }} - {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }} ({{ gethostname() }})

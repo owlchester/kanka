@@ -10,16 +10,16 @@ const initAjaxTooltips = () => {
     elementsAjax.forEach(e => {
         tippy(e, {
             theme: 'kanka',
-            placement: e.getAttribute('data-direction') ?? 'bottom',
+            placement: e.dataset.direction ?? 'bottom',
             allowHTML: true,
             content: '<i class="fa-solid fa-spin fa-spinner" aria-hidden="true" aria-label="loading..." />',
             arrow: true,
             onShow(instance) {
-                let id = e.getAttribute('data-id');
+                let id = e.dataset.id;
                 if (id && id in entityTooltips) {
                     return entityTooltips[id];
                 }
-                fetch(e.getAttribute('data-url'))
+                fetch(e.dataset.url)
                     .then((response) => response.json())
                     .then((json) => {
                         instance.setContent(json[0]);
@@ -39,10 +39,10 @@ const initTooltips = () => {
 
     elements.forEach(e => {
         tippy(e, {
-            content: e.getAttribute('data-title') ?? e.title,
+            content: e.dataset.title ?? e.title,
             theme: 'kanka',
-            placement: e.getAttribute('data-direction') ?? 'bottom',
-            allowHTML: e.getAttribute('data-html') ?? false,
+            placement: e.dataset.direction ?? 'bottom',
+            allowHTML: e.dataset.html ?? false,
             arrow: true,
         });
     });
@@ -57,7 +57,7 @@ const initDropdowns = () => {
         tippy(e, {
             content: '<ul class="dropdown-elements flex flex-col m-0 p-0 shadow-sm">' + content.innerHTML + '</ul>',
             theme: 'kanka-dropdown',
-            placement: e.getAttribute('data-direction') ?? 'bottom',
+            placement: e.dataset.direction ?? 'bottom',
             allowHTML: true,
             arrow: true,
             interactive: true,

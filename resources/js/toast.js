@@ -43,4 +43,4 @@ window.handleExploreMapClick = function (ev) {
     $('#marker-latitude').val(lat);
     $('#marker-longitude').val(lng);
     $('#marker-modal').modal('show');
-}
+};

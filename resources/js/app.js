@@ -6,14 +6,9 @@ import dynamicMentions from "./mention";
 
 
 $(document).ready(function() {
-
-    // Inject the isMobile variable into the window. We don't want ALL of the javascript
-    // for mobiles, namely the tooltip tool.
-    window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
-    if (!window.kankaIsMobile.matches) {
-        initTooltips();
-    }
-
+    // console.debug("# # # # # # # # # # # # # # # # # # # # #\n" +
+    //     "# Kanka assets are running in vite mode #\n" +
+    //     "# # # # # # # # # # # # # # # # # # # # #");
     initPageHeight();
 
     window.initForeignSelect();
@@ -41,9 +36,8 @@ $(document).ready(function() {
     initAjaxPagination();
     initDynamicDelete();
     initImageRemoval();
-    initDialogs();
-    initSidebarHelper();
     initFeedbackButtons();
+    window.initDialogs();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -53,13 +47,12 @@ $(document).ready(function() {
         window.initForeignSelect();
         window.initTags(); // Need this for the abilities popup on entities
         initAjaxPagination();
-        initTooltips();
         initSpectrum();
         initDynamicDelete();
         initImageRemoval();
         deleteConfirm();
         initFeedbackButtons();
-        initDialogs();
+        window.initDialogs();
     });
 });
 
@@ -82,14 +75,6 @@ function initSpectrum() {
             appendTo: $(this).data('append-to') ?? null,
         });
     });
-}
-
-/**
- * Register the tooltip and tooltip-ajax helper
- */
-function initTooltips() {
-    /*$('[data-toggle="tooltip"]').tooltip();
-    window.ajaxTooltip();*/
 }
 
 
@@ -170,13 +155,14 @@ function initImageRemoval() {
 function initAjaxPagination() {
     $('.pagination-ajax-links a').on('click', function(e) {
         e.preventDefault();
-        var paginationAjaxBody = $('.pagination-ajax-body');
-        paginationAjaxBody.find('.loading').show();
+        let paginationAjaxBody = $('.pagination-ajax-body');
+        paginationAjaxBody.find('.modal-loading').show();
         paginationAjaxBody.find('.pagination-ajax-content').hide();
 
-        $.ajax(
-            $(this).attr('href')
-        ).done(function (res) {
+        $.ajax({
+                url: $(this).attr('href'),
+                context: this,
+        }).done(function (res) {
             paginationAjaxBody.parent().html(res);
             initAjaxPagination();
         });
@@ -223,75 +209,7 @@ function initSubmenuSwitcher() {
 }
 
 
-function initDialogs() {
-    $('[data-toggle="dialog"]').click(function (e) {
-        e.preventDefault();
 
-        let target = $(this).data('target');
-        target = document.getElementById(target);
-        target.removeAttribute('open');
-        target.showModal();
-
-        target.addEventListener('click', function (event) {
-            let rect = target.getBoundingClientRect();
-            let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-                rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
-            if (!isInDialog && event.target.tagName === 'DIALOG') {
-                target.close();
-            }
-        });
-    });
-    $('[data-toggle="dialog-ajax"]').click(function (e) {
-        e.preventDefault();
-
-        let target = $(this).data('target');
-        let url = $(this).data('url');
-        target = document.getElementById(target);
-        target.removeAttribute('open');
-        target.showModal();
-
-        target.addEventListener('click', function (event) {
-            let rect = target.getBoundingClientRect();
-            let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-                rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
-            if (!isInDialog && event.target.tagName === 'DIALOG') {
-                target.close();
-            }
-        });
-
-        $.ajax({
-            url: url
-        }).done(function (success) {
-            $(target).html(success).show();
-            $(document).trigger('shown.bs.modal'); // Get tooltips to re-generate
-
-            $('.btn-manage-perm').click(function (e) {
-                e.preventDefault();
-                target.close();
-                let permTarget = $(this).data('target');
-                $(permTarget).click();
-            });
-
-            // We should move this to a custom event handler?
-            $('#quick-privacy-select').change(function () {
-                let toggleUrl = $(this).data('url');
-
-                $.ajax({
-                    url: toggleUrl,
-                    type: 'POST'
-                }).done( function (success) {
-                    window.showToast(success.toast);
-                    if (!success.status) {
-                        $('body').addClass('kanka-entity-private');
-                    } else {
-                        $('body').removeClass('kanka-entity-private');
-                    }
-                    //target.close();
-                });
-            });
-        });
-    });
-}
 
 /**
  * AdminLTE legacy. The CSS is a bit weird, for small pages we need to force a min-height
@@ -333,22 +251,36 @@ function heighestValue(numbers) {
     return max;
 }
 
-function initSidebarHelper() {
-    $('.campaign-head[data-toggle="popover"]').popover();
-}
-
 /**
  * When clicking on these buttons, adds a "loading" spinner to indicate that something is happening
  */
 const initFeedbackButtons = () => {
-    $.each($('.btn-feedback'), function () {
-        if ($(this).data('feedback') === 1) {
+    document.querySelectorAll('.btn-feedback').forEach((el) => {
+        let feedback = el.dataset.feedback;
+        if (feedback) {
             return;
         }
+        el.dataset.feedback = 1;
+        el.addEventListener('click', (e) => {
+            e.target.classList.add('loading');
+        }, false);
+    });
 
-        $(this).data('feedback', 1);
-        $(this).on('click', function () {
-            $(this).addClass('loading');
+    // We should move this to a custom event handler?
+    $('#quick-privacy-select').change(function () {
+        let toggleUrl = $(this).data('url');
+
+        $.ajax({
+            url: toggleUrl,
+            type: 'POST'
+        }).done( function (success) {
+            window.showToast(success.toast);
+            if (!success.status) {
+                $('body').addClass('kanka-entity-private');
+            } else {
+                $('body').removeClass('kanka-entity-private');
+            }
+            //target.close();
         });
     });
 };
@@ -373,9 +305,10 @@ import './clipboard';
 import './toast';
 import './sidebar';
 import './banner';
-import './timeline';
+//import './timeline';
 import './utility/sortable';
 import './utility/formError';
+import './utility/dialog';
 
 // VueJS elements
 //import './navigation');

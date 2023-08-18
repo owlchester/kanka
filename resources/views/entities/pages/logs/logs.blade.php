@@ -1,5 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
- * @var \App\Models\EntityLog $log */?>
+ * @var \App\Models\EntityLog $log
+ * @var \App\Models\EntityLog[]|\Illuminate\Pagination\LengthAwarePaginator $logs */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/logs.show.title', ['name' => $entity->name]),
     'description' => '',
@@ -19,7 +20,7 @@
     @endif
     <div class="pagination-ajax-body">
         <div class="modal-body !p-0">
-            <div class="loading text-center text-xl" style="display: none">
+            <div class="modal-loading text-center text-xl p-5" style="display: none">
                 <x-icon class="load" />
             </div>
             <div class="pagination-ajax-content">
