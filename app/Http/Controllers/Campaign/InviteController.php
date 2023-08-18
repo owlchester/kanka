@@ -48,13 +48,20 @@ class InviteController extends Controller
 
     /**
      * Save the new invitation link to the database
-     * @param StoreCampaignInvite $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreCampaignInvite $request, Campaign $campaign)
     {
         $this->authorize('invite', $campaign);
+        if ($request->ajax()) {
+            return response()->json();
+        }
+
+        if (!$campaign->canHaveMoreMembers()) {
+            return view('cruds.forms.limit')
+                ->with('campaign', $campaign)
+                ->with('key', 'members')
+                ->with('name', 'campaign_roles');
+        }
 
         $data = $request->only('role_id', 'validity');
         $data['campaign_id'] = $campaign->id;

@@ -9,12 +9,13 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['campaign_roles.store', $campaign], 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
+    {!! Form::open(['route' => ['campaign_roles.store', $campaign], 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
 
     @include('partials.forms.form', [
             'title' => __('campaigns.roles.create.title'),
             'content' => 'campaigns.roles._form',
-            'save' => __('campaigns.roles.actions.add')
+            'save' => __('campaigns.roles.actions.add'),
+            'dialog' => true,
         ])
 
     {!! Form::close() !!}

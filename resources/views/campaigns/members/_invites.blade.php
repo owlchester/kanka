@@ -17,7 +17,7 @@
         </button>
 
         <a href="{{ route('campaign_invites.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-            data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create', $campaign) }}">
+            data-toggle="dialog-ajax" data-target="new-invite" data-url="{{ route('campaign_invites.create', $campaign) }}">
             <x-icon class="fa-solid fa-user-plus" />
             <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
         </a>
@@ -88,6 +88,7 @@
 
 
 @section('modals')
+    <x-dialog id="new-invite" :loading="true" />
     @parent
     @include('partials.helper-modal', [
         'id' => 'invite-help',

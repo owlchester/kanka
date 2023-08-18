@@ -27,18 +27,20 @@
         <div class="grow">
             <div class="flex gap-2 items-center mb-5">
                 <h3 class="m-0 grow">{{ __('crud.permissions.title') }}</h3>
-                <button class="btn2 btn-sm" data-target="permission-modal" data-toggle="dialog">
+                <button class="btn2 btn-sm btn-ghost" data-target="permission-modal" data-toggle="dialog">
                     <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
                 </button>
             </div>
+            @if (!$role->isAdmin())
+                <x-alert type="info">
+                    <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<code>' . $role->name . '</code>']) !!}</p>
+                </x-alert>
+            @else
+                <x-alert type="info">
+                    <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<code>' . $role->name . '</code>']) !!} </p>
+                </x-alert>
+            @endif
             <x-box>
-                @if (!$role->isAdmin())
-                    <p class="help-block">
-                        {!! __('campaigns.roles.hints.role_permissions', ['name' => '<strong>' . $role->name . '</strong>']) !!}
-                    </p>
-                @else
-                    <p class="help-block">{!! __('campaigns.roles.hints.role_admin', ['name' => '<code>' . $role->name . '</code>']) !!} </p>
-                @endif
                 @can('permission', $role)
                 {{ Form::open(['route' => ['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role], 'data-shortcut' => '1']) }}
                         <div class="w-full overflow-y-auto">

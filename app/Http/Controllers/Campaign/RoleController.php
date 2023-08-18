@@ -104,14 +104,18 @@ class RoleController extends Controller
      */
     public function store(StoreCampaignRole $request, Campaign $campaign)
     {
+        $this->authorize('create', CampaignRole::class);
+        if ($request->ajax()) {
+            return response()->json();
+        }
         if (!$campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
                 ->with('campaign', $campaign)
                 ->with('name', 'campaign_roles');
         }
-        $this->authorize('create', CampaignRole::class);
-        $role = CampaignRole::create($request->all());
+        $data = $request->all() + ['campaign_id' => $campaign->id];
+        $role = CampaignRole::create($data);
         if ($request->has('duplicate') && $request->get('duplicate') != 0) {
             $this->service->role($role)->duplicate($request->get('role_id'));
         }
@@ -168,7 +172,7 @@ class RoleController extends Controller
     {
         $this->authorize('update', $campaignRole);
 
-        $campaignRole->update($request->all());
+        $campaignRole->update($request->only('name'));
         return redirect()->route('campaign_roles.index', $campaign)
             ->with('success_raw', __($this->view . '.edit.success', ['name' => $campaignRole->name]));
     }

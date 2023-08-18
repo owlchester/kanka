@@ -15,9 +15,11 @@
         @if (isset($actions))
             @includeWhen(!empty($actions), $actions)
         @else
-            <button class="btn2 btn-primary">
-                {{ $submit ?? __('crud.save') }}
-            </button>
+            <div class="submit-group">
+                <button class="btn2 btn-primary">
+                    {{ $submit ?? __('crud.save') }}
+                </button>
+            </div>
         @endif
     </x-dialog.footer>
 </article>

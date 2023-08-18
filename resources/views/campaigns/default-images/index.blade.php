@@ -27,7 +27,7 @@
                     </a>
 
                     <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-                       data-toggle="ajax-modal" data-target="#entity-modal"
+                       data-toggle="dialog-ajax" data-target="new-thumbnail"
                        data-url="{{ route('campaign.default-images.create', $campaign) }}">
                         <x-icon class="plus"></x-icon>
                         {{ __('campaigns/default-images.actions.add') }}
@@ -38,7 +38,7 @@
                     @if (empty($campaign->defaultImages()))
                         <x-box>
                             <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary"
-                               data-toggle="ajax-modal" data-target="#entity-modal"
+                               data-toggle="dialog-ajax" data-target="new-thumbnail"
                                data-url="{{ route('campaign.default-images.create', $campaign) }}">
                                 <x-icon class="plus"></x-icon>
                                 {{ __('campaigns/default-images.actions.add') }}
@@ -80,4 +80,9 @@
             @endif
         </div>
     </div>
+@endsection
+
+@section('modals')
+    @parent
+    <x-dialog id="new-thumbnail" :loading="true" />
 @endsection

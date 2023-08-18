@@ -19,7 +19,7 @@
     @can('user', $role)
         <a href="{{ route('campaign_roles.campaign_role_users.create', [$campaign, 'campaign_role' => $role]) }}"
            class="btn2 btn-primary btn-block"
-           data-toggle="ajax-modal" data-target="#entity-modal"
+           data-toggle="dialog-ajax" data-target="new-member"
            data-url="{{ route('campaign_roles.campaign_role_users.create', [$campaign, 'campaign_role' => $role]) }}">
             <x-icon class="plus"></x-icon>
             {{ __('campaigns.roles.users.actions.add') }}
@@ -37,8 +37,8 @@
                 @can('delete', [$relation, $role])
                     <a href="#" class="btn2 btn-error btn-outline btn-sm delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}"
                        data-target="#delete-confirm" data-delete-target="campaign-role-member-{{ $relation->id }}"
-                       title="{{ __('crud.remove') }}">
-                        <i class="fa-solid fa-user-slash" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns.roles.users.actions.remove_user') }}"></i>
+                       title="{{ __('campaigns.roles.users.actions.remove_user') }}">
+                        <x-icon class="fa-solid fa-user-slash" />
                     </a>
                 @endcan
 
@@ -54,6 +54,7 @@
 
 @section('modals')
     @parent
+    <x-dialog id="new-member" :loading="true" />
     @foreach ($members as $relation)
         @can('delete', [$relation, $role])
         {!! Form::open([

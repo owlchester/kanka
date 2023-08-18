@@ -14,8 +14,8 @@
     @include('partials.forms.form', [
             'title' => __('campaigns.roles.edit.title', ['name' => $role->name]),
             'content' => 'campaigns.roles._form',
-            'submit' => __('campaigns.roles.actions.rename')
+            'submit' => __('campaigns.roles.actions.rename'),
+            'dialog' => true,
         ])
-    {!! Form::hidden('campaign_id', $model->id) !!}
     {!! Form::close() !!}
 @endsection

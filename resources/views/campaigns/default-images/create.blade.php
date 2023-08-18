@@ -11,10 +11,12 @@
         'route' => ['campaign.default-images.store', $campaign],
         'method' => 'POST',
         'enctype' => 'multipart/form-data',
+        'class' => 'ajax-subform'
     ]) !!}
     @include('partials.forms.form', [
         'title' => __('campaigns/default-images.create.title', ['name' => $campaign->name]),
         'content' => 'campaigns.default-images._form',
+        'dialog' => true
     ])
 
     {!! Form::close() !!}

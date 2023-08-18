@@ -9,7 +9,7 @@
     </button>
     @if (auth()->user()->can('update', $campaign))
         <a href="{{ route('campaign_roles.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-           data-toggle="ajax-modal" data-target="#entity-modal"
+           data-toggle="dialog-ajax" data-target="role-dialog"
            data-url="{{ route('campaign_roles.create', $campaign) }}"
         >
             <x-icon class="plus"></x-icon>
@@ -51,4 +51,5 @@
             __('campaigns.roles.helper.4'),
         ]
     ])
+    <x-dialog id="role-dialog" :loading="true" />
 @endsection

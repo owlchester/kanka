@@ -66,6 +66,9 @@ class DefaultImageController extends Controller
     public function store(DefaultImageStore $request, Campaign $campaign)
     {
         $this->authorize('recover', $campaign);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         if ($this->service->campaign($campaign)->type($request->post('entity_type'))->save($request)) {
             return redirect()->route('campaign.default-images', $campaign)
