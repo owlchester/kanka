@@ -103,35 +103,37 @@
         </div>
     </div>
 
-    <x-grid id="post-perm-user-template">
-        <div class="join">
-            <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
-            <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control join-item" />
-        </div>
+    <div class="hidden">
+        <x-grid id="post-perm-user-template">
+            <div class="join">
+                <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control join-item" />
+            </div>
 
-        <div class="flex items-center gap-2">
-            {!! Form::select('perm_user_perm[]', $permissions, null, [
-                'class' => 'form-control grow'
-            ]) !!}
-            <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
-                <x-icon class="trash"></x-icon>
-            </button>
+            <div class="flex items-center gap-2">
+                {!! Form::select('perm_user_perm[]', $permissions, null, [
+                    'class' => 'form-control grow'
+                ]) !!}
+                <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
+                    <x-icon class="trash"></x-icon>
+                </button>
+            </div>
+            <input type="hidden" name="perm_user[]" value="$SELECTEDID$" />
+        </x-grid>
+        <x-grid id="post-perm-role-template">
+            <div class="join">
+                <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
+                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control join-item" />
+            </div>
+            <div class="flex items-center gap-2">
+                {!! Form::select('perm_role_perm[]', $permissions, null, [
+                    'class' => 'form-control grow'
+                ]) !!}
+                <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
+                    <x-icon class="trash"></x-icon>
+                </button>
+            </div>
+            <input type="hidden" name="perm_role[]" value="$SELECTEDID$" />
+        </x-grid>
         </div>
-        <input type="hidden" name="perm_user[]" value="$SELECTEDID$" />
-    </x-grid>
-    <x-grid id="post-perm-role-template">
-        <div class="join">
-            <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
-            <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control join-item" />
-        </div>
-        <div class="flex items-center gap-2">
-            {!! Form::select('perm_role_perm[]', $permissions, null, [
-                'class' => 'form-control grow'
-            ]) !!}
-            <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
-                <x-icon class="trash"></x-icon>
-            </button>
-        </div>
-        <input type="hidden" name="perm_role[]" value="$SELECTEDID$" />
-    </x-grid>
 @endsection
