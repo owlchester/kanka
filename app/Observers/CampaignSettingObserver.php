@@ -12,6 +12,6 @@ class CampaignSettingObserver
 {
     public function saved()
     {
-        CampaignCache::clearSettings();
+        CampaignCache::clear();
     }
 }

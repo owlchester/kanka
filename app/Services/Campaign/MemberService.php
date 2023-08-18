@@ -55,7 +55,7 @@ class MemberService
 
         // Admin role being switched? Forget the cache
         if ($campaignRole->isAdmin()) {
-            CampaignCache::campaign($campaignRole->campaign)->clearAdmins();
+            CampaignCache::campaign($campaignRole->campaign)->clear();
         }
 
         // Deleting an existing role

@@ -2,33 +2,31 @@
 
 namespace App\Services\Caches\Traits\Campaign;
 
-use Illuminate\Support\Collection;
-
 trait RoleCache
 {
-    public function roles(): Collection
+    // Used to cache the whole roles as objects in the cache, just for the public role permission.
+    // There are better ways to handle this!
+
+    public function publicPermissions(): array
     {
-        $key = $this->rolesKey();
-        if ($this->has($key)) {
-            return $this->get($key);
-        }
-
-        $data = $this->campaign->roles;
-
-        $this->forever($key, $data);
-        return $data;
+        return $this->primary()->get('public-permissions');
     }
 
-    public function clearRoles(): self
+    /**
+     * Build a list of dashboards setup for the campaign
+     * @return array[]
+     */
+    public function adminRole(): array
     {
-        $this->forget(
-            $this->rolesKey()
-        );
-        return $this;
+        return $this->primary()->get('admin-role');
     }
 
-    protected function rolesKey(): string
+    protected function formatAdminRole(): array
     {
-        return 'campaign_' . $this->campaign->id . '_roles';
+        $role = $this->campaign->roles->where('is_admin', 1)->first();
+        return [
+            'id' => $role->id,
+            'name' => $role->name
+        ];
     }
 }

@@ -37,7 +37,7 @@ class ImageObserver
         Storage::disk(config('images.disk'))
             ->delete($image->path);
 
-        CampaignCache::clearDefaultImages();
+        CampaignCache::clear();
     }
 
     /**
@@ -45,6 +45,6 @@ class ImageObserver
      */
     public function saved(Image $image)
     {
-        CampaignCache::clearDefaultImages();
+        CampaignCache::clear();
     }
 }

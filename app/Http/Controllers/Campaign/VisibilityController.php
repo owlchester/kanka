@@ -87,7 +87,7 @@ class VisibilityController extends Controller
                 $count++;
             }
         }
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
@@ -109,7 +109,7 @@ class VisibilityController extends Controller
             $style->update();
             $order++;
         }
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         $order--;
         return redirect()

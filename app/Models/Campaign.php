@@ -175,7 +175,11 @@ class Campaign extends Model
      */
     public function adminCount(): int
     {
-        return count(CampaignCache::campaign($this)->admins());
+        return $this->roles()
+            ->admin()
+            ->first()
+            ->users
+            ->count();
     }
 
     /**
@@ -187,7 +191,7 @@ class Campaign extends Model
         if (empty($user)) {
             $user = auth()->user();
         }
-        return CampaignCache::members()->where('user_id', $user->id)->count() == 1;
+        return CampaignCache::members()->where('id', $user->id)->count() == 1;
     }
 
     /**
@@ -202,8 +206,7 @@ class Campaign extends Model
             $module = 'entity_attributes';
         }
 
-        $settings = CampaignCache::settings();
-        return (bool) $settings->$module;
+        return (bool) CampaignCache::settings()->get($module);
     }
 
     /**

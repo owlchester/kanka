@@ -4,6 +4,7 @@ namespace App\Models\Scopes;
 
 use App\Facades\Identity;
 use App\Models\Campaign;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\JoinClause;
@@ -25,6 +26,7 @@ use Illuminate\Support\Arr;
  * @method static self|Builder hidden()
  * @method static self|Builder slug(string|int $slug)
  * @method static self|Builder acl(string|int $slug)
+ * @method static self|Builder userOrdered(User $user)
  */
 trait CampaignScopes
 {
@@ -242,5 +244,29 @@ trait CampaignScopes
     public function scopeHidden(Builder $query, int $hidden = 1): Builder
     {
         return $query->where(['is_hidden' => $hidden]);
+    }
+
+    public function scopeUserOrdered(Builder $query, User $user): Builder
+    {
+        switch ($user->campaignSwitcherOrderBy) {
+            case 'alphabetical':
+                $query->orderBy('name', 'asc');
+                break;
+            case 'r_alphabetical':
+                $query->orderBy('name', 'desc');
+                break;
+            case 'date_joined':
+                // @phpstan-ignore-next-line
+                $query->withPivot('created_at')->orderBy('pivot_created_at', 'asc');
+                break;
+            case 'r_date_joined':
+                // @phpstan-ignore-next-line
+                $query->withPivot('created_at')->orderBy('pivot_created_at', 'desc');
+                break;
+            case 'r_date_created':
+                $query->orderBy('created_at', 'desc');
+                break;
+        }
+        return $query;
     }
 }

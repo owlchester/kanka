@@ -59,9 +59,6 @@ class DefaultImageController extends Controller
     }
 
     /**
-     * @param DefaultImageStore $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(DefaultImageStore $request, Campaign $campaign)
     {

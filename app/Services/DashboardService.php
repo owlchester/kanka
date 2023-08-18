@@ -88,7 +88,7 @@ class DashboardService
         $roles = UserCache::roles();
         $dashboards = [];
         foreach ($roles as $role) {
-            $key = 'role_' . $role->id;
+            $key = 'role_' . $role['id'];
             if (!isset($available[$key])) {
                 continue;
             }
@@ -153,7 +153,7 @@ class DashboardService
             ]);
         }
 
-        CampaignCache::clearDashboards();
+        CampaignCache::clear();
 
         return $dashboard;
     }
@@ -211,7 +211,7 @@ class DashboardService
             $role->delete();
         }
 
-        CampaignCache::clearDashboards();
+        CampaignCache::clear();
 
         return $this->dashboard;
     }
@@ -255,13 +255,13 @@ class DashboardService
         // Member of the campaign, check dashboards for roles of them
         $roles = UserCache::roles();
         foreach ($roles as $role) {
-            $key = 'role_' . $role->id;
+            $key = 'role_' . $role['id'];
             if (!isset($available[$key])) {
                 continue;
             }
-            foreach ($available[$key] as $role) {
-                if ($role->is_default) {
-                    return $role->dashboard;
+            foreach ($available[$key] as $r) {
+                if ($r->is_default) {
+                    return $r->dashboard;
                 }
             }
         }
@@ -295,7 +295,7 @@ class DashboardService
 
         $roles = UserCache::roles();
         foreach ($roles as $role) {
-            $key = 'role_' . $role->id;
+            $key = 'role_' . $role['id'];
             if (empty($available[$key])) {
                 continue;
             }

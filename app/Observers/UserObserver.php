@@ -129,8 +129,7 @@ class UserObserver
         //Log::info('Deleted user', ['user' => $user->id]);
         UserCache::user($user)
             ->clearName()
-            ->clearCampaigns()
-            ->clearRoles()
+            ->clear()
         ;
 
         // If the user was subscribed to the newsletter, unsubscribe them

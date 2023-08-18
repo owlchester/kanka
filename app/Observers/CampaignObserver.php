@@ -128,7 +128,7 @@ class CampaignObserver
         $campaign->slug = (string) $campaign->id;
         $campaign->saveQuietly();
 
-        UserCache::clearCampaigns();
+        UserCache::clear();
 
         auth()->user()->log(UserLog::TYPE_CAMPAIGN_NEW);
     }
@@ -147,14 +147,14 @@ class CampaignObserver
         $this->saveRpgSystems($campaign);
 
         foreach ($campaign->members()->with('user')->get() as $member) {
-            UserCache::user($member->user)->clearCampaigns();
+            UserCache::user($member->user)->clear();
         }
 
         // Whenever a campaign is changed, clear the cache for followers.
         // This can be for the name, image, public status etc which needs to be reflected
         // in the user's sidebar.
         foreach ($campaign->followers as $follow) {
-            UserCache::user($follow)->clearFollows();
+            UserCache::user($follow)->clear();
         }
     }
 
@@ -164,7 +164,7 @@ class CampaignObserver
     public function deleted(Campaign $campaign)
     {
         ImageService::cleanup($campaign);
-        UserCache::clearCampaigns();
+        UserCache::clear();
     }
 
     /**

@@ -2,9 +2,7 @@
 
 namespace App\Services\Permissions;
 
-use App\Facades\CampaignCache;
 use App\Facades\UserCache;
-use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
@@ -236,16 +234,17 @@ class PermissionService
         }
         $this->loadedRoles = 0;
 
-        $roles = UserCache::user($this->user)->roles()->where('campaign_id', $this->campaign->id);
+        $roles = UserCache::user($this->user)->roles();
+
         $roleIDs = [];
         foreach ($roles as $role) {
             $this->loadedRoles++;
             // If one of the roles is an admin, we don't need to figure any more stuff, we're good.
-            if ($role->is_admin) {
+            if ($role['is_admin']) {
                 $this->admin = true;
                 return $this;
             }
-            $roleIDs[] = $role->id;
+            $roleIDs[] = $role['id'];
         }
         $this->parseRoles($roleIDs);
 
@@ -254,12 +253,11 @@ class PermissionService
     }
 
     /**
-     * Load public role permissions as a fall back for non-members of the campaign.
+     * Load public role permissions as a fall-back for non-members of the campaign.
      */
     protected function loadPublicRole(): void
     {
-        // Go and get the Public role from the cache.
-        $publicRole = CampaignCache::campaign($this->campaign)
+        $publicRole = $this->campaign
             ->roles()
             ->where('is_public', true)
             ->first();
@@ -287,7 +285,6 @@ class PermissionService
     protected function parseRoles(array $roleIDs): void
     {
         // Loop through the permissions of the role to get any blanket _read permissions on entities
-        $permissions =
         $permissions = \App\Facades\RolePermission::rolesPermissions($roleIDs);
         //CampaignPermission::whereIn('campaign_role_id', $roleIDs)->get();
         foreach ($permissions as $permission) {
@@ -301,7 +298,7 @@ class PermissionService
      */
     protected function parseRolePermission(CampaignPermission $permission)
     {
-        // Only test permissions who's action is being requested
+        // Only test permissions whose action is being requested
         if (!$permission->isAction($this->action)) {
             return;
         }

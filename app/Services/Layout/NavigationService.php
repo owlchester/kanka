@@ -4,6 +4,7 @@ namespace App\Services\Layout;
 
 use App\Facades\Domain;
 use App\Facades\Identity;
+use App\Facades\Img;
 use App\Facades\MarketplaceCache;
 use App\Facades\PostCache;
 use App\Facades\UserCache;
@@ -104,23 +105,22 @@ class NavigationService
 
         $campaigns = $this->user->campaigns;
         $member = 0;
-        /** @var Campaign $campaign */
         foreach (UserCache::campaigns() as $campaign) {
             $data['member'][] = [
-                'name' => $campaign->name,
-                'is_boosted' => $campaign->boosted(),
-                'image' => $campaign->thumbnail(100, 100),
-                'url' => route('dashboard', $campaign),
+                'name' => $campaign['name'],
+                'is_boosted' => $campaign['boosted'],
+                'image' => $campaign['image'] ? Img::crop(100, 100)->url($campaign['image']) : null,
+                'url' => $campaign['route'],
             ];
             $member++;
         }
 
         foreach (UserCache::follows() as $campaign) {
             $data['following'][] = [
-                'name' => $campaign->name,
-                'is_boosted' => $campaign->boosted(),
-                'image' => $campaign->thumbnail(100, 100),
-                'url' => route('dashboard', $campaign),
+                'name' => $campaign['name'],
+                'is_boosted' => $campaign['boosted'],
+                'image' => $campaign['image'] ? Img::crop(100, 100)->url($campaign['image']) : null,
+                'url' => $campaign['route'],
             ];
         }
 

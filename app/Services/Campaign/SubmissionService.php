@@ -128,10 +128,10 @@ class SubmissionService
 
 
         // Update the campaign members cache when a user was added
-        CampaignCache::campaign($this->campaign)->clearMembers();
+        CampaignCache::campaign($this->campaign)->clear();
 
         // Clear the user's campaign cache
-        UserCache::user($this->submission->user)->clearCampaigns();
+        UserCache::user($this->submission->user)->clear();
 
 
         return $this;

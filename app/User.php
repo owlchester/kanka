@@ -389,8 +389,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function campaignRoleIDs(int $campaignID): array
     {
-        $roles = UserCache::roles()->where('campaign_id', $campaignID);
-        return $roles->pluck('id')->toArray();
+        return UserCache::roles()->pluck('id')->toArray();
     }
 
     /**

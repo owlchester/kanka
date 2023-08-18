@@ -43,8 +43,8 @@ class LeaveService
         );
 
         // Clear cache
-        UserCache::user($this->user)->clearCampaigns();
-        CampaignCache::campaign($this->campaign)->clearRoles()->clearAdmins();
+        UserCache::user($this->user)->clear();
+        CampaignCache::campaign($this->campaign)->clear();
 
         $this->user->log(UserLog::TYPE_CAMPAIGN_LEAVE);
     }

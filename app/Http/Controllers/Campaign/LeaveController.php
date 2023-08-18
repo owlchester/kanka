@@ -16,11 +16,17 @@ class LeaveController extends Controller
     public function __construct(LeaveService $leaveService, CampaignService $campaignService)
     {
         $this->middleware('auth');
+        $this->middleware('campaign.member');
         $this->leaveService = $leaveService;
         $this->campaignService = $campaignService;
     }
 
     public function index(Campaign $campaign)
+    {
+        return view('campaigns.leave')->with('campaign', $campaign);
+    }
+
+    public function process(Campaign $campaign)
     {
         $this->authorize('leave', $campaign);
 

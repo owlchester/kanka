@@ -95,7 +95,7 @@ class DashboardController extends Controller
         $this->authorize('dashboard', $campaign);
 
         $campaignDashboard->delete();
-        CampaignCache::clearDashboards();
+        CampaignCache::clear();
 
         return redirect()->route('dashboard.setup', $campaign)
             ->with('success', __('dashboard.dashboards.delete.success', ['name' => $campaignDashboard->name]));

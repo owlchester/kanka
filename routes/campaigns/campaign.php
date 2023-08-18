@@ -78,7 +78,8 @@ Route::resources([
 
     '/w/{campaign}/images' => 'Campaign\GalleryController',
 ]);
-Route::get('/w/{campaign}/leave', 'Campaign\LeaveController@index')->name('campaigns.leave');
+Route::get('/w/{campaign}/leave', 'Campaign\LeaveController@index')->name('campaign.leave');
+Route::post('/w/{campaign}/leave-for-real', 'Campaign\LeaveController@process')->name('campaigns.leave-process');
 
 // Campaign CRUD
 Route::get('/w/{campaign}/edit', [\App\Http\Controllers\Crud\CampaignController::class, 'edit'])->name('campaigns.edit');

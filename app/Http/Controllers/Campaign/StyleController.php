@@ -87,7 +87,7 @@ class StyleController extends Controller
         $style = new CampaignStyle($request->only('name', 'content', 'is_enabled'));
         $style->campaign_id = $campaign->id;
         $style->save();
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         if ($request->has('submit-update')) {
             return redirect()
@@ -116,7 +116,7 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         $campaignStyle->update($request->only('name', 'content', 'is_enabled'));
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         if ($request->has('submit-update')) {
             return redirect()
@@ -133,7 +133,7 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         $campaignStyle->delete();
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
@@ -200,7 +200,7 @@ class StyleController extends Controller
                 $count++;
             }
         }
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
@@ -222,7 +222,7 @@ class StyleController extends Controller
             $style->update();
             $order++;
         }
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         $order--;
         return redirect()

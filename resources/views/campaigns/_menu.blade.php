@@ -24,7 +24,7 @@ if (auth()->check()) {
             <i class="fa-solid fa-edit" aria-hidden=true"></i> '. __('campaigns.show.actions.edit') .'</a>';
     }
     if ($campaign->userIsMember()) {
-    $buttons[] = '<button type="button" class="btn2 btn-warning btn-block" data-toggle="dialog" data-target="leave-confirm">
+    $buttons[] = '<button type="button" class="btn2 btn-warning btn-block" data-toggle="dialog-ajax" data-target="leave-confirm" data-url="' . route('campaign.leave', $campaign) . '">
             <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i> ' . __('campaigns.show.actions.leave') . '
         </button>';
     }
@@ -225,32 +225,7 @@ if (auth()->check()) {
 @section('modals')
     @parent
 
-    @if (auth()->check() && $campaign->userIsMember())
-        <x-dialog id="leave-confirm" :title="__('campaigns.leave.title')">
-            @if(auth()->user()->can('leave', $campaign))
-                <p class="">
-                {!! __('campaigns.leave.confirm', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}
-                </p>
-                <div class="grid grid-cols-2 gap-2 w-full">
-                    <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
-                        {{ __('crud.cancel') }}
-                    </x-buttons.confirm>
-                    {!! Form::open(['method' => 'GET', 'route' => ['campaigns.leave', [$campaign, $campaign->id]], 'class' => 'w-full']) !!}
-                    <x-buttons.confirm type="danger" outline="true" full="true">
-                        <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
-                        {{ __('campaigns.leave.confirm-button') }}
-                    </x-buttons.confirm>
-                    {!! Form::close() !!}
-                </div>
-            @else
-                <p class="mt-5">{{ __('campaigns.leave.no-admin-left') }}</p>
-                <a href="{{ route('campaign_users.index', $campaign) }}" class="btn2">
-                    {{ __('campaigns.leave.fix') }}
-                </a>
-            @endif
-        </x-dialog>
-    </div>
-    @endif
+    <x-dialog id="leave-confirm" :loading="true" />
 
     @if (auth()->check() && auth()->user()->can('roles', $campaign))
         <x-dialog id="campaign-delete-confirm" :title="__('campaigns.destroy.title')">

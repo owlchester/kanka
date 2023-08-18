@@ -6,29 +6,19 @@ use Illuminate\Support\Collection;
 
 trait MemberCache
 {
-    public function members(): Collection|null
+    public function members(): Collection
     {
-        $key = $this->membersKey();
-        if ($this->has($key)) {
-            return $this->get($key);
+        return new Collection($this->primary()->get('members'));
+    }
+
+    protected function formatMembers(): array
+    {
+        $data = [];
+        foreach ($this->campaign->members as $member) {
+            $data[] = [
+                'id' => $member->id,
+            ];
         }
-
-        $data = $this->campaign->members;
-
-        $this->forever($key, $data);
         return $data;
-    }
-
-    public function clearMembers(): self
-    {
-        $this->forget(
-            $this->membersKey()
-        );
-        return $this;
-    }
-
-    protected function membersKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_members';
     }
 }

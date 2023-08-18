@@ -97,11 +97,6 @@ class RoleController extends Controller
         return view($this->view . '.create', ['campaign' => $campaign, 'model' => $campaign, 'roleId' => $campaignRole->id]);
     }
 
-    /**
-     * @param StoreCampaignRole $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function store(StoreCampaignRole $request, Campaign $campaign)
     {
         $this->authorize('create', CampaignRole::class);
@@ -123,11 +118,6 @@ class RoleController extends Controller
             ->with('success_raw', __($this->view . '.create.success', ['name' => $role->name]));
     }
 
-    /**
-     * @param CampaignRole $campaignRole
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function show(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('view', $campaignRole);
@@ -146,11 +136,6 @@ class RoleController extends Controller
         ]);
     }
 
-    /**
-     * @param CampaignRole $campaignRole
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function edit(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('update', $campaignRole);
@@ -162,12 +147,6 @@ class RoleController extends Controller
         ]);
     }
 
-    /**
-     * @param StoreCampaignRole $request
-     * @param CampaignRole $campaignRole
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function update(StoreCampaignRole $request, Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('update', $campaignRole);
@@ -177,11 +156,6 @@ class RoleController extends Controller
             ->with('success_raw', __($this->view . '.edit.success', ['name' => $campaignRole->name]));
     }
 
-    /**
-     * @param CampaignRole $campaignRole
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function destroy(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('delete', $campaignRole);

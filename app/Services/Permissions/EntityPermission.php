@@ -216,28 +216,23 @@ class EntityPermission
             $this->roles = false;
             // If we have a user, get the user's role for this campaign
             if ($user) {
-                $this->roles = UserCache::user($user)
-                    ->roles()
-                    ->where('campaign_id', $campaign->id);
+                $this->roles = UserCache::user($user)->roles();
             }
 
             // If we don't have a user, or our user has no specified role yet, use the public role.
             if ($this->roles === false || $this->roles->count() == 0) {
                 // Use the campaign's public role
-                $this->roles = CampaignCache::campaign($campaign)
-                    ->roles()
-                    ->where('is_public', true);
+                $this->roles = $campaign->roles()->where('is_public', true)->get();
             }
 
             // Save all the role ids. If one of them is an admin, stop there.
             $this->roleIds = [];
-            /** @var CampaignRole $role */
             foreach ($this->roles as $role) {
-                if ($role->is_admin) {
+                if ($role['is_admin']) {
                     $this->roleIds = true;
                     return true;
                 }
-                $this->roleIds[] = $role->id;
+                $this->roleIds[] = $role['id'];
             }
         }
 
@@ -306,7 +301,7 @@ class EntityPermission
         $campaignRoleIDs = [];
         /** @var CampaignRole $role */
         foreach ($this->roles as $role) {
-            $campaignRoleIDs[] = $role->id;
+            $campaignRoleIDs[] = $role['id'];
         }
         //dump('roles');
         if (!empty($campaignRoleIDs)) {

@@ -157,7 +157,7 @@ abstract class MiscModel extends Model
         if ($campaign->superboosted() && !empty($entity->image)) {
             return $entity->image->getUrl($size, $size);
         } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
-            return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
+            return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {
             // Goblins and above have nicer icons
             return asset('/images/defaults/patreon/' . $this->getTable() . '_thumb.png');
