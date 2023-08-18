@@ -2,7 +2,6 @@
 
 namespace App\Services\Caches\Traits\User;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 trait CampaignCache

@@ -2,7 +2,6 @@
 
 namespace App\Services\Caches\Traits;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 trait PrimaryCache
