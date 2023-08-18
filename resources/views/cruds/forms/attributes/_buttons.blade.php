@@ -10,7 +10,7 @@
         <ul class="dropdown-menu" role="menu">
             <li>
                 <a href="#" class="add_attribute" data-template="#checkbox_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                    <i class="fa-solid fa-check"></i> {{ __('entities/attributes.types.checkbox') }}
+                    <x-icon class="check" /> {{ __('entities/attributes.types.checkbox') }}
                 </a>
             </li>
             <li>

@@ -20,26 +20,26 @@ $weekNumber = 1;
     @if (!$renderer->isYearlyLayout())
     <div class="join">
         <a href="{{ $renderer->previous() }}" class="btn2 join-item btn-sm" data-shortcut="previous" data-title="{{ $renderer->previous(true) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" data-toggle="tooltip">
-            <i class="fa-solid fa-angle-left"></i>
+            <x-icon class="fa-solid fa-chevron-left" />
         </a>
         <div class="btn2 join-item btn-sm btn-disabled" disabled>
             {!! $renderer->currentMonthName() !!}
         </div>
         <a href="{{ $renderer->next() }}" class="btn2 join-item btn-sm" data-shortcut="next" data-title="{{ $renderer->next(true) }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" data-toggle="tooltip">
-            <i class="fa-solid fa-angle-right"></i>
+            <x-icon class="fa-solid fa-chevron-right" />
         </a>
     </div>
     @endif
     <div class="join">
         <a href="{{ $renderer->linkToYear(false) }}" class="btn2 join-item btn-sm" @if ($renderer->isYearlyLayout()) data-shortcut="previous" data-title="{{ $renderer->titleToYear(false) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear(false) }}" @endif data-toggle="tooltip">
-            <i class="fa-solid fa-angle-left"></i>
+            <x-icon class="fa-solid fa-chevron-left" />
         </a>
         <div data-toggle="modal" data-target="#calendar-year-switcher" title="{{ __('calendars.modals.switcher.title') }}"
              class="btn2 join-item btn-sm">
             {!! $renderer->currentYearName() !!}
         </div>
         <a href="{{ $renderer->linkToYear() }}" class="btn2 join-item btn-sm" @if ($renderer->isYearlyLayout()) data-shortcut="next" data-title="{{ $renderer->titleToYear() }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear() }}" @endif data-toggle="tooltip">
-            <i class="fa-solid fa-angle-right"></i>
+            <x-icon class="fa-solid fa-chevron-right" />
         </a>
     </div>
 

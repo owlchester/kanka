@@ -21,7 +21,7 @@
                 </div>
             </x-grid>
             <x-buttons.confirm type="primary" full="true">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <x-icon class="check" />
                 {{ __('campaigns/submissions.actions.accept') }}
             </x-buttons.confirm>
         @else

@@ -28,6 +28,3 @@
         </div>
     </div>
 </div>
-<div class="submit-animation" style="display: none;">
-    <button class="btn2 btn-primary" disabled><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i></button>
-</div>

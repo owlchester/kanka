@@ -41,7 +41,8 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                             <a href="{{ route('calendars.calendar_weather.create', $routeOptions) }}" data-toggle="ajax-modal"
                                data-target="#entity-modal" data-url="{{ route('calendars.calendar_weather.create', $routeOptions) }}"
                                class="" data-date="{{ $day['date'] }}">
-                                <i class="fa-solid fa-snowflake"></i> {{ __('calendars.actions.' .  (!empty($day['weather']) ? 'update_weather' : 'add_weather')) }}
+                                <x-icon class="fa-solid fa-snowflake" />
+                                {{ __('calendars.actions.' .  (!empty($day['weather']) ? 'update_weather' : 'add_weather')) }}
                             </a>
                         </li>
 
@@ -50,7 +51,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                             <li>
                                 <a href="{{ route('calendars.today', $routeOptions) }}"
                                    class="" data-date="{{ $day['date'] }}">
-                                    <i class="fa-solid fa-check"></i> {{ __('calendars.actions.set_today') }}
+                                    <x-icon class="check" /> {{ __('calendars.actions.set_today') }}
                                 </a>
                             </li>
                         @endif

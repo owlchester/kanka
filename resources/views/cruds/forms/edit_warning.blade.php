@@ -32,8 +32,8 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="modal-body modal-spinner-body text-center" style="display: none">
-                <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+            <div class="modal-body modal-spinner-body text-center text-lg" style="display: none">
+                <x-icon class="load"></x-icon>
             </div>
             <div class="flex gap-2 items-center p-4">
                 <div class="grow">

@@ -29,8 +29,8 @@ $options = [
 {!! Form::close() !!}
 
 <x-box css="box box-solid box-entity-relations box-entity-relations-explorer">
-    <div class="loading text-center" id="spinner">
-        <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
+    <div class="loading text-center text-xg" id="spinner">
+        <x-icon class="load" />
     </div>
     <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$campaign, $entity, 'option' => $option]) }}"></div>
 </x-box>

@@ -1,7 +1,7 @@
 @if (!empty($datagridUrl))
     <x-box css="text-center datagrid-onload" href="{!! $datagridUrl !!}">
         <table class="table table-hover" data-render="datagrid2"></table>
-        <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+        <x-icon class="load" />
     </x-box>
 <?php return; ?>
 @endif
@@ -35,8 +35,8 @@
     </tbody>
     <tfoot style="display: none">
     <tr>
-        <th class="text-center">
-            <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+        <th class="text-center text-lg">
+            <x-icon class="load" />
         </th>
     </tr>
     </tfoot>

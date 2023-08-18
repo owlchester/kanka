@@ -185,6 +185,9 @@ button.dropdown-item {
     margin: 0;
 }
 
+button.loading {
+    cursor: wait;
+}
 .loading, .loading:hover {
     pointer-events: none;
 }

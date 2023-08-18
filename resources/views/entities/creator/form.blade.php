@@ -104,8 +104,8 @@
             </div>
         @endif
     </div>
-    <div class="quick-creator-loading p-8 text-center" style="display: none">
-        <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+    <div class="quick-creator-loading p-8 text-center text-lg" style="display: none">
+        <x-icon class="load" />
     </div>
 </div>
 

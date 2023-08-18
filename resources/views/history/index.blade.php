@@ -40,7 +40,7 @@
                 </div>
             @endif
             <div class="flex-none filters-loading" style="display: none">
-                <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                <x-icon class="load" />
             </div>
         </div>
         {!! Form::close() !!}

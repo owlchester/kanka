@@ -158,7 +158,7 @@ $sizeOptions = [
 
             <div class="marker-preset-list rounded">
                 <div class="text-center">
-                    <i class="fa-solid fa-spin fa-spinner"></i>
+                    <x-icon class="load" />
                 </div>
             </div>
 

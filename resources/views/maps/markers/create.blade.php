@@ -53,7 +53,6 @@
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     @vite([
         'resources/js/location/map-v3.js',
-        'resources/js/ajax-subforms.js'
     ])
     @if (!request()->ajax() && !empty($source))
         @include('maps._setup', ['single' => true, 'model' => $source])

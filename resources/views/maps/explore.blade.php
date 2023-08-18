@@ -105,9 +105,7 @@
             window.handleExploreMapClick(ev);
         });
     @endcan
-
     </script>
-    @vite(['resources/js/ajax-subforms.js'])
     <script type="text/javascript">
         @if (!empty($map->grid))
             // Leaflet grid
@@ -204,7 +202,7 @@
                 <x-dialog.close />
             </div>
             <div class="modal-body bg-base-100" id="map-marker-modal-content">
-                <i class="fa-solid fa-spinner fa-spin spinner"></i>
+                <x-icon class="load" />
                 <div class="content p-0"></div>
             </div>
         </div>
@@ -263,9 +261,6 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        <div class="submit-animation" style="display: none;">
-                            <button class="btn2 btn-primary btn-sm" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
 @if ($model->tag)
     <div class="entity-header-sub pull-left">
         <span data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
-        <i class="fa-solid fa-tag" aria-hidden="true"></i>
+        <x-icon class="fa-solid fa-tag" />
         {!! $model->tag->tooltipedLink() !!}
         </span>
     </div>

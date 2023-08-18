@@ -79,9 +79,5 @@
             __('campaigns/submissions.helpers.modal')
     ]])
 
-    <x-dialog id="submission-dialog" title="{{ __('Loading') }}">
-        <div class="p-5 text-center">
-            <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
-        </div>
-    </x-dialog>
+    <x-dialog id="submission-dialog" loading="true" />
 @endsection

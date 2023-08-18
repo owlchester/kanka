@@ -30,9 +30,6 @@
                 <div class="submit-group">
                     <button class="btn2 btn-primary">{{ __('crud.save') }}</button>
                 </div>
-                <div class="submit-animation" style="display: none;">
-                    <button class="btn2 btn-primary" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
-                </div>
             </div>
         </x-dialog.footer>
     </x-box>
@@ -42,7 +39,3 @@
     {!! Form::close() !!}
 @endsection
 
-@section('scripts')
-    @parent
-    @vite(['resources/js/ajax-subforms.js'])
-@endsection

@@ -12,7 +12,7 @@ if (!empty($id)) {
 <li class="@if ($dropType == $type) disabled @endif">
     @if ($dropType == $type)
         <a href="#">
-            <i class="fa-solid fa-check" aria-hidden="true"></i>
+            <x-icon class="check" />
             {!! $trans !!}
         </a>
     @else

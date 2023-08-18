@@ -96,7 +96,7 @@ if (!empty($oldCalendarID)) {
         </div>
         <div class="entity-calendar-loading" style="display: none">
             <p class="text-center">
-                <i class="fa-solid fa-spin fa-spinner"></i>
+                <x-icon class="load" />
             </p>
         </div>
     </div>

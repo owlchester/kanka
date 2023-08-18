@@ -46,45 +46,45 @@
 @endif
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.no_ads') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.no_ads') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.no_ads') }}</div>
 
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.discord') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.discord') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.discord') }}</div>
 
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
 
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.nice_image') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.nice_image') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.nice_image') }}</div>
 
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
-
-
-    <div class=""></div>
-    <div class=""></div>
-    <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.vote_influence') }}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
 
 
     <div class=""></div>
     <div class=""></div>
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.feature_influence') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.vote_influence') }}</div>
+
+
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.feature_influence') }}</div>
 
 
     <div class="">

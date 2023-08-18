@@ -32,7 +32,6 @@
     <script src="/js/vendor/leaflet/leaflet.editable.js"></script>
     @vite([
         'resources/js/location/map-v3.js',
-        'resources/js/ajax-subforms.js'
     ])
 
     <script type="text/javascript">

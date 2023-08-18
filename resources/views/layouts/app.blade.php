@@ -145,8 +145,8 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
         <div class="modal-dialog" role="document">
             <div class="modal-content bg-base-100 rounded-2xl"></div>
             <div class="modal-spinner" style="display: none">
-                <div class="modal-body text-center">
-                    <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+                <div class="modal-body text-center text-lg">
+                    <x-icon class="load" />
                 </div>
             </div>
         </div>

@@ -17,6 +17,6 @@
         <div class="">10 mb</div>
 
         <div class="">{!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}</div>
-        <div class=""><i class="fa-solid fa-check-circle"></i></div>
+        <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
     </div>
 

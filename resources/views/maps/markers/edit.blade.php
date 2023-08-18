@@ -47,11 +47,6 @@
                         @include('partials.footer_cancel', ['ajax' => null])
                     </div>
                 </div>
-                <div class="submit-animation" style="display: none;">
-                    <button class="btn2 btn-primary btn-sm" disabled>
-                        <i class="fa-solid fa-spinner fa-spin"></i>
-                    </button>
-                </div>
             </x-box.footer>
             {!! Form::close() !!}
             @endif
@@ -78,7 +73,6 @@
     <script src="/js/vendor/leaflet/leaflet.editable.js"></script>
     @vite([
         'resources/js/location/map-v3.js',
-        'resources/js/ajax-subforms.js'
     ])
 
     @include('maps._setup', ['single' => true, 'editable' => true])

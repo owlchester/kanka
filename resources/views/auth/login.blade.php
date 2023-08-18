@@ -82,21 +82,21 @@
         <div class="flex flex-col gap-2">
             @if(config('services.facebook.client_id'))
             <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="rounded border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_facebook') }}">
-                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                <x-icon class="fa-brands fa-facebook-f" />
                 Facebook
             </a>
             @endif
 
             @if(config('services.google.client_id'))
             <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="rounded border border-red-400 text-red-400 hover:text-white hover:bg-red-400 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_google') }}">
-                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <x-icon class="fa-brands fa-google" />
                 Google
             </a>
             @endif
 
             @if(config('services.twitter.client_id'))
             <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="rounded border border-blue-300 text-blue-300 hover:text-white hover:bg-blue-300 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_twitter') }}">
-                <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                <x-icon class="fa-brands fa-twitter" />
                 Twitter
             </a>
             @endif

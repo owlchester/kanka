@@ -77,8 +77,8 @@ if ($folder) {
 
 
     <div class="gallery">
-        <div id="gallery-loader" class="text-center" style="display: none">
-            <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
+        <div id="gallery-loader" class="text-center text-xl" style="display: none">
+            <x-icon class="load" />
         </div>
         <div id="gallery-content">
             <ul id="gallery-images" class="m-0 p-0 list-none flex gap-2 md:gap-5 flex-wrap">

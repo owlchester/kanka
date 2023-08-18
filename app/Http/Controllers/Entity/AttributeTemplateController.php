@@ -46,8 +46,10 @@ class AttributeTemplateController extends Controller
     public function process(ApplyAttributeTemplate $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
         $templateName = $this->service->apply($entity, $request->get('template_id'));
-
         if (!$templateName) {
             return redirect()->back()->with('error', __('entities/attributes.template.error'));
         }

@@ -25,7 +25,7 @@
                    data-url="{{ route('campaign_submissions.edit', [$campaign, $submission->id, 'action' => 'approve']) }}"
                    data-target="submission-dialog"
                    title="{{ __('campaigns/submissions.actions.accept') }}">
-                    <i class="fa-solid fa-check" aria-hidden="true"></i>
+                    <x-icon class="check" />
                     <span class="sr-only">{{ __('campaigns/submissions.actions.accept') }}</span>
                 </a>
             </div>

@@ -130,8 +130,8 @@ $specificTheme = null;
 
                     <!-- When clicking on a marker, this menu pops up -->
                     <div id="sidebar-marker"></div>
-                    <div class="spinner text-center" style="display: none; margin-top: 10px;">
-                        <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+                    <div class="spinner text-center text-lg" style="display: none; margin-top: 10px;">
+                        <x-icon class="load" />
                     </div>
                 </div>
 
@@ -171,8 +171,8 @@ $specificTheme = null;
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-base-100 rounded-2xl"></div>
         <div class="modal-spinner" style="display: none">
-            <div class="modal-body text-center">
-                <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+            <div class="modal-body text-center text-lg">
+                <x-icon class="load" />
             </div>
         </div>
     </div>

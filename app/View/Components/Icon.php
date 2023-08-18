@@ -48,15 +48,18 @@ class Icon extends Component
     {
         return match ($class) {
             'map' => 'fa-regular fa-map',
+            'check' => 'fa-solid fa-check',
             'trash' => 'fa-regular fa-trash-can',
             'plus' => 'fa-solid fa-plus',
             'question' => 'fa-solid fa-question-circle',
             'save' => 'fa-solid fa-save',
             'pencil' => 'fa-solid fa-pencil',
             'cog' => 'fa-solid fa-cog',
+            'copy' => 'fa-solid fa-copy',
             'edit' => 'fa-solid fa-edit',
             'premium' => 'fa-solid fa-rocket',
             'filter' => 'fa-solid fa-filter',
+            'load' => 'fa-solid fa-spinner fa-spin',
             default => $class,
         };
     }

@@ -42,8 +42,3 @@
         @include('entities.components.pins')
     </div>
 </div>
-
-@section('scripts')
-    @parent
-    @vite(['resources/js/ajax-subforms.js'])
-@endsection

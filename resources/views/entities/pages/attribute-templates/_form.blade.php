@@ -6,11 +6,11 @@
             <h4 class="modal-title">{{ __('entities/attributes.template.title', ['name' => $entity->name]) }}</h4>
         </div>
     @endif
-    {!! Form::open(['route' => ['entities.attributes.template', [$campaign, $entity->id]], 'method'=>'POST', 'data-shortcut' => '1']) !!}
+    {!! Form::open(['route' => ['entities.attributes.template', [$campaign, $entity->id]], 'method'=>'POST', 'data-shortcut' => '1', 'class' => 'ajax-subform']) !!}
     {{ csrf_field() }}
     <div class="field-template required">
         <label>{{ __('entities/attributes.fields.template') }}</label>
-        {!! Form::select('template_id', $templates, null, ['placeholder' => __('entities/attributes.placeholders.template'), 'class' => 'form-control']) !!}
+        {!! Form::select('template_id', $templates, null, ['placeholder' => __('entities/attributes.placeholders.template'), 'class' => 'form-control', 'required']) !!}
     </div>
 
     <p class="help-block">

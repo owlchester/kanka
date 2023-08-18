@@ -71,7 +71,7 @@
                             </td>
                             <td>
                                 @if($element->quest->is_completed)
-                                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                                    <x-icon class="fa-solid fa-check-circle" />
                                 @endif
                             </td>
                         </tr>

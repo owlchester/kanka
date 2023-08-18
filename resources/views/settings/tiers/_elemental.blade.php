@@ -15,24 +15,24 @@
         <div class="">{{ __('front.features.patreon.upload_limit_map') }}</div>
         <div class="">10 mb</div>
         <div class="">{!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}</div>
-        <div class=""><i class="fa-solid fa-check-circle"></i></div>
+        <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
         <div class="">{{ __('front.features.patreon.default_image') }}</div>
-        <div class=""><i class="fa-solid fa-check-circle"></i></div>
+        <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
         <div class="">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to('https://kanka.io/hall-of-fame', __('front/hall-of-fame.title'))]) !!}</div>
-        <div class=""><i class="fa-solid fa-check-circle"></i></div>
+        <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
         <div class="">{{ __('front.features.patreon.api_calls') }}</div>
-        <div class=""><i class="fa-solid fa-check-circle"></i></div>
+        <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
         <div class="">{{ __('front.features.patreon.pagination') }}</div>
-        <div class=""><i class="fa-solid fa-check-circle"></i></div>
+        <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
         <div class="">{{ __('front.features.patreon.monthly_vote') }}</div>
-        <div class=""><i class="fa-solid fa-check-circle"></i></div>
+        <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
         <div class="">{{ __('front.features.patreon.boosts') }}</div>
         <div class="">10</div>
 
 
         <div class="">{{ __('front.features.patreon.curation') }}</div>
-        <div class=""><i class="fa-solid fa-check-circle"></i></div>
+        <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
         <div class="">{{ __('front.features.patreon.impact') }}</div>
-        <div class=""><i class="fa-solid fa-check-circle"></i></div>
+        <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
     </div>
 
