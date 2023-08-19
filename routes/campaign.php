@@ -468,8 +468,8 @@ Route::get('/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-
 Route::post('/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');
 Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaign.export');
 Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
-Route::get('/campaign.styles', [\App\Http\Controllers\CampaignController::class, 'css'])->name('campaign.css');
-Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
+Route::get('/campaign-{ts}.styles', [\App\Http\Controllers\CampaignController::class, 'css'])->name('campaign.css');
+Route::get('/campaign_plugin-{ts}.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 Route::get('/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');
 

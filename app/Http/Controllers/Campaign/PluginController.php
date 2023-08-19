@@ -151,8 +151,9 @@ class PluginController extends Controller
 
         $response = \Illuminate\Support\Facades\Response::make($themes);
         $response->header('Content-Type', 'text/css');
-        $response->header('Expires', Carbon::now()->addMonth()->toDateTimeString());
+        //$response->header('Expires', Carbon::now()->addMonth()->toDateTimeString());
         $month = 2592000;
+        $response->setLastModified($campaign->updated_at->toDateTime());
         $response->header('Cache-Control', 'public, max_age=' . $month);
 
         return $response;
