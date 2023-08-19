@@ -58,7 +58,7 @@ $specificTheme = null;
     @vite([
     'resources/sass/print/print.scss',
     ])
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
 </head>
 
 <body class="@if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif  @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
@@ -96,11 +96,10 @@ $specificTheme = null;
 
     </div>
 
-@if (config('fontawesome.kit'))
-    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
-@endif
-    <script src="/js/vendor.js" defer></script>
-    @vite(['resources/js/app.js'])
+    @if (config('fontawesome.kit'))
+        <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
+    @endif
+    @vite(['resources/js/vendor-final.js', 'resources/js/app.js'])
     @yield('scripts')
 </body>
 </html>

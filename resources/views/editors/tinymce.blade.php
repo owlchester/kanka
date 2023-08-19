@@ -1,6 +1,6 @@
 @section('scripts')
     @parent
-    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ '/js/tinymce/tinymce.min.js' }}"></script>
     <script>
         var advancedRequest = false;
         var editor_config = {

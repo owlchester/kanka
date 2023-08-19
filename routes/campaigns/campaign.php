@@ -136,8 +136,8 @@ Route::get('/w/{campaign}/campaign-theme', 'Campaign\StyleController@theme')->na
 Route::post('/w/{campaign}/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');
 Route::get('/w/{campaign}/campaign-export', 'Campaign\ExportController@index')->name('campaign.export');
 Route::post('/w/{campaign}/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
-Route::get('/w/{campaign}/campaign.styles', [\App\Http\Controllers\Campaign\CssController::class, 'index'])->name('campaign.css');
-Route::get('/w/{campaign}/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
+Route::get('/w/{campaign}/campaign-{ts}.styles', [\App\Http\Controllers\Campaign\CssController::class, 'index'])->name('campaign.css');
+Route::get('/w/{campaign}/campaign_plugin-{ts}.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 Route::get('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');
 

@@ -11,14 +11,14 @@
     <meta property="og:site_name" content="{{ config('app.site_name') }}">
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://kanka-user-assets.s3.amazonaws.com/app/front/preview-background.png" />
+    <meta name="twitter:image" content="https://d3a4xjr8r2ldhu.cloudfront.net/app/front/preview-background.png" />
     <meta name="twitter:image:alt" content="{{ config('app.name') }} showcase of a character view" />
 @if(config('services.facebook.client_id'))  <meta property="fb:app_id" content="{{ config('services.facebook.client_id') }}" />@endif
 
     @yield('og')
 @if(config('app.admin'))
     @if (!isset($ogImage) || !$ogImage)
-    <meta property="og:image" content="https://kanka-users-assets.s3.amazonaws.com/app/front/preview-background.png" />
+    <meta property="og:image" content="https://d3a4xjr8r2ldhu.cloudfront.net/app/front/preview-background.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1920" />
     <meta property="og:image:height" content="1024" />

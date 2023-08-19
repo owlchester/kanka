@@ -15,7 +15,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{!! $seoTitle !!} - {{ config('app.name', 'Kanka') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=5' name='viewport'>
     <meta property="og:title" content="{!! $seoTitle !!} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 @if (isset($canonical))
@@ -39,8 +39,17 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
-    <!-- Styles -->
-    <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
+    @if (config('app.asset_url'))
+        <link rel="dns-prefetch" href="{{ config('app.asset_url') }}">
+    @endif
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+
+    @if (config('app.asset_url'))
+        <link href="{{ config('app.asset_url') }}/vendor/bootstrap/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
+    @else
+        <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
+    @endif
     @vite([
         'resources/sass/vendor.scss',
         'resources/sass/app.scss',
@@ -65,7 +74,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
         @endif
     @endif
     @includeWhen(!empty($campaign), 'layouts._theme')
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses($entity ?? null) }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
@@ -168,8 +177,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
-    <script src="/js/vendor.js" defer></script>
-    @vite(['resources/js/app.js', 'resources/js/cookieconsent.js'])
+    @vite(['resources/js/vendor-final.js', 'resources/js/app.js', 'resources/js/cookieconsent.js'])
     @yield('scripts')
 
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')

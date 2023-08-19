@@ -91,8 +91,8 @@ use App\Enums\Widget;
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-    <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
-    <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
 @endsection
 
 @section('styles')

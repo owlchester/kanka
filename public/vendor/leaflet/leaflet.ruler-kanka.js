@@ -170,27 +170,6 @@
             };
 
             return;
-            var f1 = this._clickedLatLong.lat, l1 = this._clickedLatLong.lng, f2 = this._movingLatLong.lat, l2 = this._movingLatLong.lng;
-            var toRadian = Math.PI / 180;
-            // haversine formula
-            // bearing
-            var deltaL = (l2 - l1)*toRadian;
-            var deltaF = (f2 - f1)*toRadian;
-            var y = Math.sin(deltaL) * Math.cos(f2*toRadian);
-            var x = Math.cos(f1*toRadian)*Math.sin(f2*toRadian) - Math.sin(f1*toRadian)*Math.cos(f2*toRadian)*Math.cos((l2-l1)*toRadian);
-
-            console.log('Map Ruler', y, x);
-            var brng = Math.atan2(y, x)*((this.options.angleUnit.factor ? this.options.angleUnit.factor/2 : 180)/Math.PI);
-            brng += brng < 0 ? (this.options.angleUnit.factor ? this.options.angleUnit.factor : 360) : 0;
-            // distance
-            // New calculations by mapping the Earth-based standard to the relative points of the default Map CRS system - cc 05032018
-            var pt1 = L.CRS.EPSG3857.latLngToPoint(this._clickedLatLong, this._maxZoom); // point 1 where clicked at max zoom level - cc 05032018
-            var pt2 = L.CRS.EPSG3857.latLngToPoint(this._movingLatLong, this._maxZoom); // point 2 where clicked at max zoom level - cc 05032018
-            var distance = pt1.distanceTo(pt2)*(this.options.lengthUnit.factor ? this.options.lengthUnit.factor : 1)/this._maxZoom;  // sets distance and multiplies based on factor in options  - cc 05032018
-            this._result = {
-                Bearing: brng,
-                Distance: distance
-            };
         },
         _closePath: function() {
             this._map.removeLayer(this._tempLine);

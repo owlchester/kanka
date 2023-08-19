@@ -22,7 +22,7 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
 
             {{ __('entities/pins.title') }}
-            <a href="//docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank">
+            <a href="//docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank" aria-label="Open docs about profile sidebare">
                 <x-icon class="fa-solid fa-question-circle pull-right"></x-icon>
             </a>
         </div>

@@ -60,7 +60,7 @@ trait VisibilityIDTrait
             $title = __('crud.visibilities.members');
         }
 
-        return '<i class="' . rtrim($class . ' ' . $extra) . '" title="' . $title . '" data-toggle="tooltip" aria-hiden="true"></i>';
+        return '<i class="' . rtrim($class . ' ' . $extra) . '" title="' . $title . '" data-toggle="tooltip" aria-hidden="true"></i>';
     }
 
     /**

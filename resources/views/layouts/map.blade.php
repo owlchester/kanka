@@ -148,23 +148,22 @@ $specificTheme = null;
     <!-- Modal -->
     @includeWhen(auth()->check(), 'layouts.modals.delete')
 
-<script src="/js/vendor.js"></script>
-@vite(['resources/js/app.js', 'resources/js/cookieconsent.js'])
+@vite(['resources/js/vendor-final.js', 'resources/js/app.js', 'resources/js/cookieconsent.js'])
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-<script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
-<script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
-<script src="/js/vendor/leaflet/leaflet.zoomcss.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
 @if ($map->isReal())
-<script src="/js/vendor/leaflet/leaflet.ruler.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.ruler.js"></script>
 @else
-    <script src="/js/vendor/leaflet/leaflet.ruler-kanka.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.ruler-kanka.js"></script>
 @endif
-<script src="/js/vendor/leaflet/leaflet.path.drag.js"></script>
-<script src="/js/vendor/leaflet/leaflet.editable.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
 
 <!-- Default modal used throughout the app -->
 <div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">

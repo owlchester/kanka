@@ -53,7 +53,6 @@ export default defineConfig({
             'resources/js/family-tree-vue.js',
             'resources/js/campaigns/theme-builder.js',
 
-
             'resources/sass/vendor.scss',
             'resources/sass/app.scss',
             'resources/sass/abilities.scss',
@@ -71,6 +70,8 @@ export default defineConfig({
             'resources/sass/tinymce.scss',
             'resources/sass/freyja/freyja.scss',
             'resources/sass/print/print.scss',
+
+            'resources/js/vendor-final.js',
         ]),
         vue({
             template: {

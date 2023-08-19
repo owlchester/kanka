@@ -29,6 +29,8 @@
     <div class="map map-explore" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
 
     </div>
+
+    <input type="hidden" id="ticker-config" data-timeout="20000" data-url="{{ route('maps.ticker', [$map, $campaign]) }}" data-ts="{{ \Carbon\Carbon::now() }}" />
 @endsection
 
 @section('scripts')
@@ -114,40 +116,6 @@
                 {{ $line[3] }}]], {color: 'grey', opacity: 0.5}).addTo(map{{ $map->id }});
             @endforeach
         @endif
-
-        // Map ticker to update markers every 20 seconds
-        var tickerTimeout = 20000;
-        var tickerUrl = '{{ route('maps.ticker', [$campaign, $map]) }}';
-        var tickerTs = '{{ \Carbon\Carbon::now() }}';
-        $(document).ready(function() {
-            setTimeout(mapTicker, tickerTimeout);
-            // setTimeout(mapRedraw(), 1000);
-        });
-
-        function mapTicker() {
-            $.ajax(tickerUrl + '?ts=' + tickerTs)
-                .done(function(data) {
-                    if (!data) {
-                        return;
-                    }
-                    tickerTs = data.ts;
-                    for (var id in data.markers) {
-                        let changedMarker = data.markers[id];
-                        //console.log('moving', 'marker' + changedMarker.id, changedMarker);
-                        window['marker' + changedMarker.id].setLatLng({
-                            lon: changedMarker.longitude,
-                            lat: changedMarker.latitude
-                        }).update();
-                    }
-                    setTimeout(mapTicker, tickerTimeout);
-                });
-        }
-        //
-        // function mapRedraw() {
-        //     console.log('redraw');
-        //     window.map.invalidateSize(true);
-        // }
-
     </script>
 @endsection
 

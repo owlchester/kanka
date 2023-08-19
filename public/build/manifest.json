@@ -187,7 +187,7 @@
     "src": "resources/js/history.js"
   },
   "resources/js/location/map-v3.js": {
-    "file": "assets/map-v3-bd0e62be.js",
+    "file": "assets/map-v3-2bf6e515.js",
     "imports": [
       "_delete-confirm-63bc2c61.js"
     ],
@@ -222,18 +222,23 @@
     "isEntry": true,
     "src": "resources/js/subscription.js"
   },
+  "resources/js/vendor-final.js": {
+    "file": "assets/vendor-final-1230e4cf.js",
+    "isEntry": true,
+    "src": "resources/js/vendor-final.js"
+  },
   "resources/sass/abilities.scss": {
     "file": "assets/abilities-883611b4.css",
     "isEntry": true,
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-949a6e82.css",
+    "file": "assets/app-94c956cb.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-7eb31411.css",
+    "file": "assets/auth-e4dce1b1.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -258,12 +263,12 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-8c5a928a.css",
+    "file": "assets/front-489671d3.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
   "resources/sass/map-v3.scss": {
-    "file": "assets/map-v3-a97cd757.css",
+    "file": "assets/map-v3-3a1bc91b.css",
     "isEntry": true,
     "src": "resources/sass/map-v3.scss"
   },
