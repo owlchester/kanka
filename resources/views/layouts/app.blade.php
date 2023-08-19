@@ -40,11 +40,13 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
-    <!-- Styles -->
-    <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
     @if (config('app.asset_url'))
         <link rel="dns-prefetch" href="{{ config('app.asset_url') }}">
     @endif
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+
+    <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
     @vite([
         'resources/sass/vendor.scss',
         'resources/sass/app.scss',
