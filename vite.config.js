@@ -54,7 +54,6 @@ export default defineConfig({
             'resources/js/family-tree-vue.js',
             'resources/js/campaigns/theme-builder.js',
 
-
             'resources/sass/vendor.scss',
             'resources/sass/app.scss',
             'resources/sass/abilities.scss',
