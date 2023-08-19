@@ -59,7 +59,7 @@ $specificTheme = null;
     @vite([
     'resources/sass/print/print.scss',
     ])
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
 </head>
 
 <body class="@if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif  @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
