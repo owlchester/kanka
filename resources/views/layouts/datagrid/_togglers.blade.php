@@ -1,10 +1,10 @@
 @if ($mode === 'grid')
     <div class="dropdown">
-        <a class="dropdown-toggle btn2" data-toggle="dropdown" aria-expanded="false">
+        <a role="button" tabindex="0" class="dropdown-toggle btn2" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="toggler-submenu" aria-label="Order by">
             <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true" data-tree="escape"></i>
             <span class="sr-only">Order by</span>
         </a>
-        <ul class="dropdown-menu min-w-0" role="menu">
+        <ul class="dropdown-menu min-w-0" role="menu" id="toggler-submenu">
             @foreach ($model->datagridSortableColumns() as $field => $translation)
                 @php
                     $options = ['m' => $mode, 'order' => $field];

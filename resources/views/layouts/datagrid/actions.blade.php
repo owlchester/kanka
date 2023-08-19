@@ -2,11 +2,11 @@
     @php return; @endphp
 @endif
 <div class="dropdown">
-    <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+    <a role="button" class="dropdown-toggle cursor-pointer" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape" aria-haspopup="menu" aria-controls="actions-submenu" aria-label="{{ __('crud.actions.actions') }}">
         <i class="fa-solid fa-ellipsis-v" data-tree="escape"></i>
         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+    <ul class="dropdown-menu dropdown-menu-right" role="menu" id="actions-submenu">
         @foreach ($actions as $action)
             <li>
                 @if ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT)

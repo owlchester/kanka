@@ -42,6 +42,9 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
     <!-- Styles -->
     <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
+    @if (config('app.asset_url'))
+        <link rel="dns-prefetch" href="{{ config('app.asset_url') }}">
+    @endif
     @vite([
         'resources/sass/vendor.scss',
         'resources/sass/app.scss',
