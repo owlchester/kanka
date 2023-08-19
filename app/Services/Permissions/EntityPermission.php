@@ -2,7 +2,6 @@
 
 namespace App\Services\Permissions;
 
-use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;

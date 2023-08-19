@@ -14,10 +14,10 @@ trait SettingCache
     protected function formatSettings(): array
     {
         $settings = $this->campaign->setting->toArray();
-        unset($settings['id']);
-        unset($settings['campaign_id']);
-        unset($settings['created_at']);
-        unset($settings['updated_at']);
+        unset($settings['id'], $settings['campaign_id'], $settings['created_at'], $settings['updated_at']);
+
+
+
         return $settings;
     }
 }
