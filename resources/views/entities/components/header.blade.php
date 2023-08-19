@@ -61,7 +61,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
             @endif
 
             @if (!isset($printing))
-            <a class="entity-image cover-background visible-xs" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePathMobile }}');"></a>
+            <a class="entity-image cover-background visible-xs" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePathMobile }}');" aria-label="Open original image"></a>
             @endif
             <div class="cursor-pointer dropdown-toggle hidden-xs print-none" data-toggle="dropdown" aria-expanded="false">
                 <picture>
