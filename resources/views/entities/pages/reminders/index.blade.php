@@ -18,7 +18,7 @@
                 <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
             </a>
             <a href="{{ route('entities.entity_events.create', [$campaign, $entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
-               class="btn2 btn-sm btn-accent" data-toggle="ajax-modal" data-target="#entity-modal"
+               class="btn2 btn-sm btn-accent" data-toggle="dialog" data-target="primary-dialog"
                data-url="{{ route('entities.entity_events.create', [$campaign, $entity, 'next' => 'entity.events']) }}">
                 <x-icon class="plus"></x-icon> {{ __('entities/events.show.actions.add') }}
             </a>

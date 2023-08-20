@@ -18,6 +18,7 @@
         'title' => __('characters.organisations.create.title'),
         'content' => 'characters.organisations._form',
         'submit' => __('crud.add'),
+        'dialog' => true,
     ])
 
     {!! Form::hidden('character_id', $model->id) !!}

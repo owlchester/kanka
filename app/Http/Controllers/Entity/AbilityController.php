@@ -49,6 +49,9 @@ class AbilityController extends Controller
     public function store(StoreEntityAbility $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only(['abilities', 'ability_id', 'visibility_id']);
         $data['entity_id'] = $entity->id;
@@ -110,6 +113,9 @@ class AbilityController extends Controller
     public function update(StoreEntityAbility $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only(['ability_id', 'visibility_id', 'note']);
 

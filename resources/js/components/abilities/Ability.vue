@@ -75,15 +75,11 @@
                 <div v-if="details && hasAttribute">
                     <dl class="dl-horizontal">
                         <div v-for="att in ability.attributes">
-                            <div v-if="att.type == 'section'" class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">{{ att.name}}</h4>
-                                </div>
-                            </div>
+                            <h4 v-if="att.type == 'section'" class="font-bold text-center" v-html="att.name"></h4>
                             <div v-else>
                                 <dt>{{ att.name}}</dt>
                                 <dd v-if="att.type == 'checkbox'">
-                                    <i v-if="att.value == 1" class="fa-solid fa-check"></i>
+                                    <i v-if="att.value == 1" class="fa-solid fa-check" aria-hidden="true"></i>
                                 </dd>
                                 <dd v-else v-html="att.value"></dd>
                             </div>
@@ -148,10 +144,7 @@
                 this.emitter.emit('delete_ability', ability);
             },
             updateAbility: function(ability) {
-                axios.get(ability.actions.edit).then(response => {
-                  $('#entity-modal').find('.modal-content').html(response.data);
-                  $('#entity-modal').modal();
-                });
+                window.openDialog('abilities-dialog', ability.actions.edit);
             },
             showAbility: function(ability) {
                 window.open(ability.actions.view, "_blank");

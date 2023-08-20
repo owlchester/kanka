@@ -24,8 +24,8 @@ class EntityController extends Controller
         $this->campaign($campaign)->authView($ability);
 
         $options = ['campaign' => $campaign, 'ability' => $ability];
-        Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
-            ->route('abilites.entities', $options);
+        Datagrid::layout(\App\Renderers\Layouts\Ability\Entity::class)
+            ->route('abilities.entities', $options);
 
         $this->rows = $ability
             ->entities()
@@ -38,7 +38,7 @@ class EntityController extends Controller
 
         return $this
             ->campaign($campaign)
-            ->subview('abilites.entities', $ability);
+            ->subview('abilities.entities', $ability);
     }
 
     public function create(Campaign $campaign, Ability $ability)
@@ -66,6 +66,6 @@ class EntityController extends Controller
 
         $ability->attachEntity($request->only('entity_id', 'visibility_id'));
         return redirect()->route('abilities.entities', [$campaign, 'ability' => $ability->id])
-            ->with('success', trans('abilities.children.create.success', ['name' => $ability->name]));
+            ->with('success', __('abilities.children.create.success', ['name' => $ability->name]));
     }
 }

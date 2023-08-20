@@ -10,16 +10,11 @@
     ]
 ])
 @section('content')
+    <form class="pagination-ajax-body max-w-2xl">
     @if (request()->ajax())
-        <div class="modal-header">
-            <x-dialog.close :modal="true" />
-            <h4 class="modal-title">
-                {{ $entity->name }}
-            </h4>
-        </div>
+        <x-dialog.header>{{ $entity->name }}</x-dialog.header>
     @endif
-    <div class="pagination-ajax-body">
-        <div class="modal-body !p-0">
+        <article>
             <div class="modal-loading text-center text-xl p-5" style="display: none">
                 <x-icon class="load" />
             </div>
@@ -51,7 +46,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <span data-title="{{ $log->created_at }} UTC" data-toggle="tooltip">
+                                    <span data-title="{{ $log->created_at }} UTC" data-toggle="tooltip" class="text-xs">
                                         {{ $log->created_at->diffForHumans() }}
                                     </span>
                                 </td>
@@ -111,12 +106,12 @@
                     {{ $logs->onEachSide(0)->links() }}
                 @endif
             </div>
-        </div>
+        </article>
 
         @if (request()->ajax() && $logs->hasPages())
-            <div class="modal-footer pagination-ajax-links">
+            <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3 pagination-ajax-links">
                 {{ $logs->onEachSide(0)->links() }}
-            </div>
+            </footer>
         @endif
-    </div>
+    </form>
 @endsection

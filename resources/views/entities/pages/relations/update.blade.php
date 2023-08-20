@@ -10,12 +10,13 @@
 ])
 
 @section('content')
-    {!! Form::model($relation, ['route' => ['entities.relations.update', $campaign, $entity->id, $relation], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+    {!! Form::model($relation, ['route' => ['entities.relations.update', $campaign, $entity->id, $relation], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
 
     @include('partials.forms.form', [
         'title' => __('entities/relations.update.title', ['name' => $entity->name]),
         'content' => 'entities.pages.relations._form',
-        'deleteID' => '#delete-relation-' . $relation->id
+        'deleteID' => '#delete-relation-' . $relation->id,
+        'dialog' => true,
     ])
 
     @if(!empty($from))

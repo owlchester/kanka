@@ -49,3 +49,8 @@
     </div>
 
 @endsection
+
+@section('modals')
+    @parent
+    <x-dialog id="abilities-dialog" :loading="true" />
+@endsection

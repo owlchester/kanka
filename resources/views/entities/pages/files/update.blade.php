@@ -10,12 +10,13 @@
 ])
 
 @section('content')
-    {!! Form::model($entityAsset, ['route' => ['entities.entity_assets.update', $campaign, $entity->id, $entityAsset], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+    {!! Form::model($entityAsset, ['route' => ['entities.entity_assets.update', $campaign, $entity->id, $entityAsset], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
 
     @include('partials.forms.form', [
         'title' => $entityAsset->name,
         'content' => 'entities.pages.files._form',
-        'deleteID' => '#delete-file-' . $entityAsset->id
+        'deleteID' => '#delete-file-' . $entityAsset->id,
+        'dialog' => true,
     ])
 
     {!! Form::close() !!}

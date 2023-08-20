@@ -1,27 +1,13 @@
-
-<div class="modal-body">
-    @if (request()->ajax())
-        <div class="text-center mb-5">
-            <x-dialog.close :modal="true"/>
-            <h4 class="modal-title">{{ __('entities/attributes.template.title', ['name' => $entity->name]) }}</h4>
-        </div>
-    @endif
-    {!! Form::open(['route' => ['entities.attributes.template', [$campaign, $entity->id]], 'method'=>'POST', 'data-shortcut' => '1', 'class' => 'ajax-subform']) !!}
-    {{ csrf_field() }}
+<x-grid type="1/1">
     <div class="field-template required">
         <label>{{ __('entities/attributes.fields.template') }}</label>
         {!! Form::select('template_id', $templates, null, ['placeholder' => __('entities/attributes.placeholders.template'), 'class' => 'form-control', 'required']) !!}
     </div>
 
     <p class="help-block">
-    {!! __('attributes/templates.pitch', [
-'boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaigns')),
-'marketplace' => link_to(config('marketplace.url') . '/attribute-templates', __('footer.marketplace'), ['target' => '_blank'])
-]) !!}
+        {!! __('attributes/templates.pitch', [
+    'boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaigns')),
+    'marketplace' => link_to(config('marketplace.url') . '/attribute-templates', __('footer.marketplace'), ['target' => '_blank'])
+    ]) !!}
     </p>
-    <x-dialog.footer :modal="true">
-
-        @include('entities.pages.attribute-templates._actions')
-    </x-dialog.footer>
-    {!! Form::close() !!}
-</div>
+</x-grid>

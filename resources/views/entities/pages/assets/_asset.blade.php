@@ -9,3 +9,8 @@
     </div>
 </div>
 
+
+@section('modals')
+    @parent
+    <x-dialog id="asset-update-dialog" :loading="true" />
+@endsection

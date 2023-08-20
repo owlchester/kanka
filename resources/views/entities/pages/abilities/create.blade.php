@@ -12,12 +12,14 @@
     {!! Form::open([
         'route' => ['entities.entity_abilities.store', $campaign, $entity],
         'method'=>'POST',
-        'data-shortcut' => 1
+        'data-shortcut' => 1,
+        'class' => 'ajax-subform',
     ]) !!}
 
     @include('partials.forms.form', [
         'title' => __('entities/abilities.create.title', ['name' => $entity->name]),
         'content' => 'entities.pages.abilities._form',
+        'dialog' => true,
     ])
 
     {!! Form::close() !!}

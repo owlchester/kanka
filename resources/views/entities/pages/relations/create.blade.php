@@ -10,11 +10,12 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['entities.relations.store', $campaign, $entity->id], 'method' => 'POST', 'data-shortcut' => 1]) !!}
+    {!! Form::open(['route' => ['entities.relations.store', $campaign, $entity->id], 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
 
     @include('partials.forms.form', [
             'title' => __('entities/relations.create.title', ['name' => $entity->name]),
             'content' => 'entities.pages.relations._form',
+            'dialog' => true,
         ])
 
     {!! Form::hidden('entity_id', $entity->id) !!}

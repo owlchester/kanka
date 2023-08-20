@@ -9,11 +9,12 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['entities.entity_assets.store', $campaign, $entity], 'method'=>'POST', 'data-shortcut' => 1]) !!}
+    {!! Form::open(['route' => ['entities.entity_assets.store', $campaign, $entity], 'method'=>'POST', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
 
     @include('partials.forms.form', [
             'title' => __('entities/links.create.title', ['name' => $entity->name]),
             'content' => 'entities.pages.links._form',
+            'dialog' => true,
         ])
     {!! Form::close() !!}
 @endsection

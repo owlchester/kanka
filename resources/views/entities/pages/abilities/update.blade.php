@@ -13,13 +13,15 @@
     {!! Form::model($ability, [
         'route' => ['entities.entity_abilities.update', $campaign, $entity->id, $ability],
         'method' => 'PATCH',
-        'data-shortcut' => 1
+        'data-shortcut' => 1,
+        'class' => 'ajax-subform',
     ]) !!}
 
     @include('partials.forms.form', [
             'title' => __('entities/abilities.update.title', ['name' => $entity->name]),
             'content' => 'entities.pages.abilities._edit_form',
             'deleteID' => '#delete-ability-' . $ability->id,
+        'dialog' => true,
         ])
     {!! Form::close() !!}
 

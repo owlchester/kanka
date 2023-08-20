@@ -7,14 +7,14 @@
         'preset' => !empty($relation) && $relation->target ? $relation->target : null,
         'label' => __('entities/relations.fields.target'),
         'placeholder' => __('entities/relations.placeholders.target'),
-        'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+        'dropdownParent' => request()->ajax() ? '#connection-dialog' : null,
         'allowClear' => false,
     ])
     <div class="field-relation required">
         <label>{{ __('entities/relations.fields.relation') }}</label>
         {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191, 'required']) !!}
     </div>
-    @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#entity-modal'] : [])
+    @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#connection-dialog'] : [])
     @include('cruds.fields.attitude')
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))

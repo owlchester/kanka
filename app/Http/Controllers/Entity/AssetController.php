@@ -55,6 +55,9 @@ class AssetController extends Controller
     public function store(StoreEntityAsset $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = [];
         $type = '';
@@ -128,6 +131,9 @@ class AssetController extends Controller
     public function update(StoreEntityAsset $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $type = 'files';
         if ($entityAsset->isAlias()) {

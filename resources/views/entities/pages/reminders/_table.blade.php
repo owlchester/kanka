@@ -62,7 +62,7 @@
             <td class="text-right">
                 @can('events', $relation->calendar)
                     <a href="{{ route('entities.entity_events.edit', [$campaign, $relation->entity, $relation->id, 'next' => 'entity.events']) }}"
-                    data-toggle="ajax-modal" data-url="{{ route('entities.entity_events.edit', [$campaign, $relation->entity, $relation->id, 'next' => 'entity.events']) }}" data-target="#entity-modal">
+                    data-toggle="dialog" data-url="{{ route('entities.entity_events.edit', [$campaign, $relation->entity, $relation->id, 'next' => 'entity.events']) }}" data-target="primary-dialog">
                         <x-icon class="edit"></x-icon>
                     </a>
                 @endcan

@@ -10,7 +10,7 @@
     @can('update', $model)
         <div class="header-buttons inline-block pull-right ml-auto">
             <a href="{{ route('abilities.entity-add', [$campaign, $model]) }}" class="btn2 btn-accent btn-sm"
-               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('abilities.entity-add', [$campaign, $model]) }}">
+               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('abilities.entity-add', [$campaign, $model]) }}">
                 <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('abilities.children.actions.add') }}</span>
             </a>
         </div>

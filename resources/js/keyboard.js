@@ -7,6 +7,10 @@ $(document).ready(function() {
     });
     initKeyboardShortcuts();
     initPasting();
+
+    $(document).on('shown.bs.modal', () => {
+        initPasting();
+    });
 });
 
 function initKeyboardShortcuts() {
@@ -108,7 +112,7 @@ function setFormAction(action) {
  * Strip HTML from fontAwesome or RPGAwesome and just keep the class to make people's lives
  * easier.
  */
-function initPasting() {
+const initPasting = () => {
     $('input[data-paste="fontawesome"]').on('paste', function(e) {
         e.preventDefault();
         let text;

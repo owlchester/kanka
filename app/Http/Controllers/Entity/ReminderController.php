@@ -90,6 +90,7 @@ class ReminderController extends Controller
         $route = $this->route;
         $parent = explode('.', $this->view)[0];
         $next = request()->get('next', null);
+        $calendars = Calendar::get();
 
         return view('calendars.events.create_from_entity', compact(
             'campaign',
@@ -98,7 +99,8 @@ class ReminderController extends Controller
             'route',
             'parent',
             'next',
-            'entity'
+            'entity',
+            'calendars',
         ));
     }
 

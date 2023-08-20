@@ -41,7 +41,7 @@ if (isset($model)) {
                 {!! __('entities/links.helpers.icon', [
                     'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
                     'rpgawesome' => link_to('https://nagoshiashumari.github.io/Rpg-Awesome/', 'RPGAwesome', ['target' => '_blank']),
-                    'docs' => link_to('https://docs.kanka.io/en/latest/features/campaigns/sidebar.html#what-fonts-are-available', __('footer.documentation', ['target' => '_blank']))
+                    'docs' => link_to('https://docs.kanka.io/en/latest/articles/available-icons.html', __('footer.documentation', ['target' => '_blank']))
                 ]) !!}
             </p>
         @else

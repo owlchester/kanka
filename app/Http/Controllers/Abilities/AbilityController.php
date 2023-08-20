@@ -29,7 +29,7 @@ class AbilityController extends Controller
             $filters['ability_id'] = $ability->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
-            ->route('abilites.abilites', $options);
+            ->route('abilities.abilities', $options);
 
         // @phpstan-ignore-next-line
         $this->rows = $ability
@@ -46,6 +46,6 @@ class AbilityController extends Controller
 
         return $this
             ->campaign($campaign)
-            ->subview('abilites.abilites', $ability);
+            ->subview('abilities.abilities', $ability);
     }
 }

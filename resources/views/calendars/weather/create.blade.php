@@ -14,6 +14,7 @@
     @include('partials.forms.form', [
         'title' => __('calendars/weather.create.title', ['name' => $calendar->name]),
         'content' => 'calendars.weather._form',
+        'dialog' => true,
     ])
 
     {!! Form::hidden('year', $year) !!}

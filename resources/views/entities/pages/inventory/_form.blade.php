@@ -7,7 +7,7 @@
         @include('cruds.fields.item', [
             'preset' => (!empty($inventory) && $inventory->item ? $inventory->item: false),
             'allowNew' => false,
-            'dropdownParent' => request()->ajax() ? '#entity-modal' : null
+            'dropdownParent' => request()->ajax() ? '#inventory-dialog' : null
         ])
     </div>
     <div class="field-name required ">

@@ -1,10 +1,8 @@
 <?php
-$calendars = \App\Models\Calendar::get();
 $onlyOneCalendar = count($calendars) == 1;
 ?>
 {{ csrf_field() }}
-
-<div id="entity-calendar-modal-form">
+<div id="entity-calendar-modal-form w-full">
     <div class="field-calendar entity-calendar-selector">
         <x-forms.foreign
             :campaign="$campaign"
@@ -14,7 +12,7 @@ $onlyOneCalendar = count($calendars) == 1;
             :allowClear="true"
             :route="route('calendars.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
             :selected="$onlyOneCalendar ? $calendars->first() : null"
-            :dropdownParent="request()->ajax() ? '#entity-modal' : null"
+            :dropdownParent="$dropdownParent ?? (request()->ajax() ? '#entity-modal' : null)"
             :entityTypeID="config('entities.ids.calendar')">
         </x-forms.foreign>
     </div>
@@ -22,7 +20,7 @@ $onlyOneCalendar = count($calendars) == 1;
 
 
 <div class="entity-calendar-subform" style="{{ $onlyOneCalendar ? '' : 'display: none;' }}">
-    @include('calendars.events._subform', ['colourAppendTo' => '#entity-modal'])
+    @include('calendars.events._subform', ['colourAppendTo' => $dropdownParent ?? '#entity-modal'])
 </div>
 
 <div class="entity-calendar-loading" style="display: none">

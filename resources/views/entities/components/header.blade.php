@@ -78,7 +78,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="{{ route('entities.image.replace', [$campaign, $model->entity]) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.image.replace', [$campaign, $model->entity]) }}">
+                    <a href="{{ route('entities.image.replace', [$campaign, $model->entity]) }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.image.replace', [$campaign, $model->entity]) }}">
                         {{ __('entities/image.actions.replace_image') }}
                     </a>
                 </li>
@@ -223,7 +223,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                 <li class="divider"></li>
                                     @can('update', $model)
                                         <li>
-                                            <a href="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}">
+                                            <a href="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}">
                                                 <x-icon class="fa-solid fa-people-arrows"></x-icon>
                                                 {{ __('entities/relations.create.new_title') }}
                                             </a>

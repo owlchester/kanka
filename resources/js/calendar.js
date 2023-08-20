@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 function initCalendarEventBlock() {
     $('.calendar-event-block').each(function() {
-        if ($(this).data('toggle') !== 'ajax-modal' && $(this).data('url')) {
+        if ($(this).data('toggle') !== 'dialog' && $(this).data('url')) {
             $(this).click(function () {
                 window.location = $(this).data('url');
             });

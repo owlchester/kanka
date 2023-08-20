@@ -15,9 +15,9 @@
     @include('partials.forms.form', [
         'title' => __('calendars/weather.edit.title'),
         'content' => 'calendars.weather._form',
-        'deleteID' => '#delete-weather-' . $weather->id
+        'deleteID' => '#delete-weather-' . $weather->id,
+        'dialog' => true,
     ])
-
 
     {!! Form::hidden('year', $weather->year) !!}
     {!! Form::hidden('month', $weather->month) !!}

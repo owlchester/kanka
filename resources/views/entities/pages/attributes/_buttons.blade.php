@@ -1,4 +1,4 @@
-<a class="btn2 btn-sm" href="{{ route('entities.attributes.template', [$campaign, $entity]) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', [$campaign, $entity]) }}">
+<a class="btn2 btn-sm" href="{{ route('entities.attributes.template', [$campaign, $entity]) }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.attributes.template', [$campaign, $entity]) }}">
     <i class="fa-solid fa-copy" aria-hidden="true"></i>
     {{ __('entities/attributes.actions.apply_template') }}
 </a>

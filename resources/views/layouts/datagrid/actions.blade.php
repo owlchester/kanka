@@ -27,6 +27,14 @@
                         <x-icon class="pencil"></x-icon>
                         {{ __('crud.edit') }}
                     </a>
+                @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT_DIALOG)
+                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params + ['campaign' => $campaign]) : ['campaign' => $campaign, $model]) }}"
+                       data-toggle="dialog" data-target="edit-dialog"
+                       data-url="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params + [$campaign]) : [$campaign, $model]) }}"
+                    >
+                        <x-icon class="pencil"></x-icon>
+                        {{ __('crud.edit') }}
+                    </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_DELETE)
                     <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{!! method_exists($model, 'deleteName') ? $model->deleteName() : $model->name !!}"
                        data-target="#delete-confirm" data-delete-target="delete-form-{{ $model->id }}"

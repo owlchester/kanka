@@ -168,6 +168,8 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
         </div>
     </div>
 
+    <x-dialog id="primary-dialog" :loading="true" />
+
     @includeWhen(auth()->check(), 'layouts.modals.delete')
 
     @yield('modals')

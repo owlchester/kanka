@@ -313,26 +313,16 @@ hr {
 
 }
 
-/** Boxes, Panels, Timelines **/
-:root {
-
-  --box-header-background: transparent;
-
-  --popover-border: rgba(0, 0, 0, 0.2);
-  --popover-header-background: #f7f7f7;
-}
-
-
 /**
  * All of the boxes follow a similar design in our themes
  */
-.box, .panel, .timeline-item, .popover {
+.box, .panel, .timeline-item {
     border: var(--box-border, none);
     --tw-background-opacity: 1;
     background-color: var(--box-background, hsl(var(--b1)/1));
 
     .box-header, .panel-heading, .timeline-header {
-        background-color: var(--box-header-background);
+        background-color: var(--box-header-background, transparent);
         color: var(--box-header-text);
     }
 
@@ -351,15 +341,6 @@ hr {
 .panel-default > .panel-heading {
     --tw-border-opacity: 0.1;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
-}
-.popover {
-    border: 1px solid var(--popover-border);
-
-    .popover-title {
-        --tw-border-opacity: 0.2;
-        border-color: hsl(var(--bc)/var(--tw-border-opacity));
-        background-color: var(--popover-header-background);
-    }
 }
 blockquote {
     --tw-border-opacity: 1;

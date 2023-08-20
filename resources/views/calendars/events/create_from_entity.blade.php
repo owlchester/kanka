@@ -14,37 +14,16 @@
         'method' => 'POST',
         'route' => ['entities.entity_events.store', $campaign, $entity->id],
         'data-shortcut' => 1,
-        'class' => 'ajax-validation',
+        'class' => 'ajax-subform',
         'data-maintenance' => 1,
     ]) !!}
 
-    @if (request()->ajax())
-        <div class="modal-body">
-
-            @include('partials.errors')
-
-            @include('calendars.events._entity_form')
-
-            <x-dialog.footer :modal="true">
-                <button class="btn2 btn-primary" id="calendar-event-submit">
-                    <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-                    <span>{{ __('crud.save') }}</span>
-                </button>
-            </x-dialog.footer>
-        </div>
-    @else
-        <x-box>
-            @include('partials.errors')
-            @include('calendars.events._entity_form')
-
-            <x-dialog.footer>
-                <button class="btn2 btn-primary" id="calendar-event-submit">
-                    <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-                    <span>{{ __('crud.save') }}</span>
-                </button>
-            </x-dialog.footer>
-        </x-box>
-    @endif
+    @include('partials.forms.form', [
+        'title' => __('calendars.event.create.title', ['name' => $entity->name]),
+        'content' => 'calendars.events._entity_form',
+        'dialog' => true,
+        'dropdownParent' => '#primary-dialog'
+    ])
 
     {!! Form::hidden('entity_id', $entity->id) !!}
     @if (!empty($next))

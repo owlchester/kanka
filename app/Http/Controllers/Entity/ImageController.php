@@ -77,6 +77,9 @@ class ImageController extends Controller
     public function update(UpdateEntityImage $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $oldImage = $entity->child->image;
         $oldBoostedImage = $entity->image_uuid;

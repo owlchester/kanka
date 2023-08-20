@@ -51,6 +51,9 @@ class CalendarWeatherController extends Controller
     public function store(AddCalendarWeather $request, Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('update', $calendar);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $weather = $this->calendarService
             ->calendar($calendar)
@@ -67,6 +70,9 @@ class CalendarWeatherController extends Controller
     public function update(AddCalendarWeather $request, Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {
         $this->authorize('update', $calendar);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $weather = $this->calendarService
             ->calendar($calendar)

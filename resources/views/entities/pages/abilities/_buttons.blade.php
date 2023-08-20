@@ -16,7 +16,7 @@
     </a>
 @endif
 <a href="{{ route('entities.entity_abilities.create', [$campaign, $entity]) }}" class="btn2 btn-sm btn-accent"
-    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_abilities.create', [$campaign, $entity]) }}">
+    data-toggle="dialog" data-target="abilities-dialog" data-url="{{ route('entities.entity_abilities.create', [$campaign, $entity]) }}">
     <x-icon class="plus"></x-icon>
     <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>
     <span class="visible-xs visible-sm">{{ __('crud.add') }}</span>

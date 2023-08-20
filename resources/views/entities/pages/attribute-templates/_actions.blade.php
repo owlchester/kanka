@@ -8,7 +8,7 @@
             <button type="button" class="btn2 join-item btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <ul class="dropdown-menu dropdown-menu-right dropdown-menu-top" role="menu">
                 <li>
                     <a href="#" class="dropdown-item form-submit-actions">
                     {{ __('crud.actions.apply') }}

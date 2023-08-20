@@ -9,12 +9,13 @@
 ])
 
 @section('content')
-    {!! Form::model($inventory, ['route' => ['entities.inventories.update', $campaign, $entity->id, $inventory], 'method' => 'PATCH', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+    {!! Form::model($inventory, ['route' => ['entities.inventories.update', $campaign, $entity->id, $inventory], 'method' => 'PATCH', 'data-shortcut' => 1, 'data-maintenance' => 1, 'class' => 'ajax-subform']) !!}
 
     @include('partials.forms.form', [
         'title' => __('entities/inventories.update.title', ['name' => $entity->name]),
         'content' => 'entities.pages.inventory._form',
-        'deleteID' => '#delete-inventory-' . $inventory->id
+        'deleteID' => '#delete-inventory-' . $inventory->id,
+        'dialog' => true,
     ])
 
     {!! Form::hidden('entity_id', $entity->id) !!}

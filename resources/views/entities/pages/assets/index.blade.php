@@ -44,3 +44,8 @@
         </div>
     </div>
 @endsection
+
+@section('modals')
+    @parent
+    <x-dialog id="asset-dialog" :loading="true" />
+@endsection
