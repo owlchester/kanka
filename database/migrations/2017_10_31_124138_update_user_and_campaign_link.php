@@ -22,8 +22,6 @@ class UpdateUserAndCampaignLink extends Migration
 
             $table->string('locale', 5)->default('en');
 
-            $table->unsignedInteger('welcome_campaign_id')->nullable();
-
             $table->string('patreon_pledge', 10)->null();
 
             $table->unsignedSmallInteger('default_pagination')->notNull()->default('15');

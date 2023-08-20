@@ -23,17 +23,18 @@ class CreateOrganisation extends Migration
             $table->integer('campaign_id')->unsigned()->notNull();
             $table->integer('location_id')->unsigned()->nullable();
             $table->unsignedInteger('organisation_id')->nullable();
+
+            $table->longText('entry')->nullable();
+
             $table->unsignedInteger('_lft')->default(0);
             $table->unsignedInteger('_rgt')->default(0);
 
-            // Overview
-            $table->longText('entry')->nullable();
-
+            $table->boolean('is_private')->default(false);
+            $table->boolean('is_defunct')->default(0);
             $table->timestamps();
 
-            // Privacy
-            $table->boolean('is_private')->default(false);
             $table->index(['is_private']);
+            $table->index('is_defunct');
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');

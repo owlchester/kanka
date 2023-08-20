@@ -19,7 +19,6 @@ class CreateAttributeTemplate extends Migration
             $table->integer('campaign_id')->unsigned()->notNull();
             $table->unsignedInteger('attribute_template_id')->nullable();
 
-
             $table->string('slug');
             $table->string('name')->notNull();
             $table->boolean('is_private')->default(false)->notNull();

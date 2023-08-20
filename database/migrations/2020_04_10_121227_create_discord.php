@@ -20,6 +20,8 @@ class CreateDiscord extends Migration
             $table->string('access_token');
             $table->string('refresh_token');
             $table->dateTime('expires_at');
+            $table->string('identifier', 45)->nullable();
+            $table->text('settings')->nullable();
 
             $table->timestamps();
 

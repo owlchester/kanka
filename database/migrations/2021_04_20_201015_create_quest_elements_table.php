@@ -18,7 +18,8 @@ class CreateQuestElementsTable extends Migration
             $table->timestamps();
 
             $table->integer('quest_id')->unsigned();
-            $table->integer('entity_id')->unsigned();
+            $table->integer('entity_id')->unsigned()->nullable();
+            $table->string('name', 100)->nullable();
             $table->integer('created_by')->unsigned()->nullable();
 
             $table->string('role', 191)->nullable();

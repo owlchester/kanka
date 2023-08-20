@@ -23,6 +23,7 @@ class CreateCalendarWeather extends Migration
             $table->string('wind', 45)->nullable();
             $table->string('effect', 45)->nullable();
             $table->string('name', 40)->nullable();
+            $table->string('visibility', 10)->default('all');
 
             $table->unsignedMediumInteger('day');
             $table->unsignedMediumInteger('month');

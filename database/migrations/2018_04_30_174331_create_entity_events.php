@@ -24,11 +24,16 @@ class CreateEntityEvents extends Migration
             $table->string('colour', 12);
 
             $table->string('visibility', 10)->default('all');
+            $table->unsignedMediumInteger('day');
+            $table->unsignedMediumInteger('month');
+            $table->integer('year');
+
 
             $table->timestamps();
 
             $table->index(['date', 'is_recurring']);
             $table->index(['visibility']);
+            $table->index(['day', 'month', 'year']);
 
             // Foreign
             $table->foreign('calendar_id')->references('id')->on('calendars')->onDelete('cascade');

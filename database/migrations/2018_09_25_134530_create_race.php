@@ -18,8 +18,10 @@ class CreateRace extends Migration
         Schema::create('races', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('campaign_id');
-            $table->unsignedInteger('race_id')->nullable();
             $table->string('name', 191);
+            $table->unsignedInteger('race_id')->nullable();
+            $table->unsignedInteger('_lft')->default(0);
+            $table->unsignedInteger('_rgt')->default(0);
             $table->string('image', 255)->nullable();
             $table->string('type', 45)->nullable();
             $table->string('slug')->nullable();
@@ -31,6 +33,7 @@ class CreateRace extends Migration
             $table->unsignedInteger('updated_by')->nullable();
 
             $table->index(['name', 'type', 'is_private']);
+            $table->index(['_lft', '_rgt', 'race_id']);
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');

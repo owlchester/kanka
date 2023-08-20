@@ -19,6 +19,7 @@ class CreateTimelinesTable extends Migration
         Schema::create('timelines', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('campaign_id');
+            $table->unsignedInteger('timeline_id')->nullable();
 
             $table->string('name');
             $table->string('slug');
@@ -31,6 +32,8 @@ class CreateTimelinesTable extends Migration
             $table->longText('entry')->nullable();
 
             $table->boolean('revert_order')->default(false);
+            $table->unsignedInteger('_lft')->default(0);
+            $table->unsignedInteger('_rgt')->default(0);
 
             $table->timestamps();
             $table->softDeletes();
@@ -38,9 +41,11 @@ class CreateTimelinesTable extends Migration
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('calendar_id')->references('id')->on('calendars')->onDelete('set null');
+            $table->foreign('timeline_id')->references('id')->on('timelines')->onDelete('set null');
 
             // Index
             $table->index(['name', 'slug', 'type']);
+            $table->index(['_lft', '_rgt']);
         });
 
         Schema::create('timeline_eras', function (Blueprint $table) {
