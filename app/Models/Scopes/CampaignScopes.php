@@ -160,7 +160,7 @@ trait CampaignScopes
     }
 
     /**
-     * @param Builder|Campaign $query
+     * @param Builder $query
      * @param array $options
      * @return Builder
      */

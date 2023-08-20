@@ -7,7 +7,10 @@ use App\Http\Resources\Public\CampaignResource;
 use App\Models\Campaign;
 use App\Services\GenreService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class CampaignService
 {
@@ -96,16 +99,46 @@ class CampaignService
     protected function campaigns(): self
     {
         $this->data['campaigns'] = [];
-        $campaigns = Campaign::public()
-            ->front((int) $this->request->get('sort_field_name'))
-            ->featured(false)
-            ->filterPublic($this->request->only(['language', 'system', 'is_boosted', 'is_open', 'genre']))
-            ->paginate();
-        $this->data['campaigns'] = CampaignResource::collection($campaigns);
+
+        if ($this->isDefaultRequest()) {
+            $this->data['campaigns'] = $this->cachedCampaigns();
+        } else {
+            $campaigns = Campaign::public()
+                ->front((int)$this->request->get('sort_field_name'))
+                ->featured(false)
+                ->filterPublic($this->request->only(['language', 'system', 'is_boosted', 'is_open', 'genre']))
+                ->paginate();
+            $this->data['campaigns'] = CampaignResource::collection($campaigns);
+        }
 
         $this->campaignsMeta();
 
         return $this;
+    }
+    protected function isDefaultRequest(): bool
+    {
+        return !$this->request->anyFilled('sort_field_name', 'language', 'system', 'is_boosted', 'is_open', 'genre');
+    }
+
+    /**
+     * Cache the first page of campaigns with no filters for a day
+     */
+    protected function cachedCampaigns(int $hours = 24): AnonymousResourceCollection
+    {
+        $cacheKey = 'public-campaigns-page-1';
+        if (cache()->has($cacheKey)) {
+            return cache()->get($cacheKey);
+        }
+        $campaigns = Campaign::public()
+            ->front()
+            ->featured(false)
+            ->filterPublic([])
+            ->paginate();
+        $cached = CampaignResource::collection($campaigns);
+
+        Log::info('Create new cache', ['key' => $cacheKey, 'hours' => $hours]);
+        cache()->put($cacheKey, $cached, $hours * 60 * 60);
+        return $cached;
     }
 
     protected function campaignsMeta(): void
