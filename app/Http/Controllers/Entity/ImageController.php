@@ -68,12 +68,6 @@ class ImageController extends Controller
             ->with('model', $entity->child);
     }
 
-    /**
-     * @param UpdateEntityImage $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function update(UpdateEntityImage $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);

@@ -35,9 +35,6 @@ class MenuLinkController extends CrudController
     public function __construct()
     {
         parent::__construct();
-        $this->filters = [
-            'name',
-        ];
     }
 
     protected function getNavActions(): CrudController

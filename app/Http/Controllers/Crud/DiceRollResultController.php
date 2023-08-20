@@ -46,7 +46,6 @@ class DiceRollResultController extends CrudController
         $name = $this->view;
         $langKey = $name;
         $actions = $this->navActions;
-        $filters = $this->filters;
         $filterService = $this->filterService;
         $datagridActions = new NoDatagridActions();
 
@@ -71,7 +70,6 @@ class DiceRollResultController extends CrudController
             'actions',
             'route',
             'filter',
-            'filters',
             'filterService',
             'filteredCount',
             'unfilteredCount',

@@ -41,7 +41,6 @@ trait TreeControllerTrait
             ->model($model)
             ->make($this->view . 'tree');
         $name = $this->view;
-        $filters = $this->filters;
         $filterService = $this->filterService;
         /** @var DatagridFilter|null $filter */
         $filter = !empty($this->filter) ? new $this->filter() : null;
@@ -141,7 +140,6 @@ trait TreeControllerTrait
             'model',
             'actions',
             'filter',
-            'filters',
             'filterService',
             'filteredCount',
             'unfilteredCount',
