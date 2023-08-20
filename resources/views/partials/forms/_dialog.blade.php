@@ -7,7 +7,6 @@
 <article class="max-w-2xl">
     @include('partials.errors')
     @include($content)
-
 </article>
 <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3">
     <menu class="flex flex-wrap gap-3 ps-0 ms-0">

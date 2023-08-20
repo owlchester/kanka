@@ -45,9 +45,6 @@ class CrudController extends Controller
     /** @var MiscModel|Model|string|null */
     protected $model = null;
 
-    /** @var array */
-    protected array $filters = [];
-
     protected string $filter;
 
     /** @var FilterService */
@@ -64,9 +61,6 @@ class CrudController extends Controller
 
     /** @var bool If the boosted tab and pane is enabled or not */
     protected bool $tabBoosted = true;
-
-    /** @var bool Control if the form is "horizontal" (css class) */
-    protected bool $horizontalForm = false;
 
     /** @var array List of navigation actions on top of the datagrids */
     protected array $navActions = [];
@@ -129,7 +123,6 @@ class CrudController extends Controller
             ->make($this->view);
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
-        $filters = $this->filters;
         /** @var DatagridFilter|null $filter */
         $filter = !empty($this->filter) ? new $this->filter() : null;
         if (!empty($filter)) {
@@ -212,7 +205,6 @@ class CrudController extends Controller
             'model',
             'actions',
             'filter',
-            'filters',
             'filterService',
             'filteredCount',
             'unfilteredCount',
@@ -278,7 +270,6 @@ class CrudController extends Controller
         $params['tabBoosted'] = $this->tabBoosted;
         $params['entityAttributeTemplates'] = $templates;
         $params['entityType'] = $model->getEntityType();
-        $params['horizontalForm'] = $this->horizontalForm;
         $params['title'] = __($this->view . '.create.title');
 
         // Custom module names shenanigans
@@ -449,7 +440,6 @@ class CrudController extends Controller
             'tabBoosted' => $this->tabBoosted,
             'tabCopy' => $this->tabCopy,
             'entityType' => $model->getEntityType(),
-            'horizontalForm' => $this->horizontalForm,
             'editingUsers' => $editingUsers,
             'entityTypeId' => $model->entityTypeId()
         ];

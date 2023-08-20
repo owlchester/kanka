@@ -158,8 +158,8 @@ Route::post('/w/{campaign}/entities/{entity}/privacy', [\App\Http\Controllers\En
 Route::get('/w/{campaign}/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'edit'])->name('entities.entry.edit');
 Route::patch('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
 
-Route::get('/w/{campaign}/entities/{entity}/relations_map', 'Entity\Connections\MapController@index')->name('entities.relations_map');
-Route::get('/w/{campaign}/entities/{entity}/relations/table', 'Entity\Connections\TableController@index')->name('entities.relations_table');
+Route::get('/w/{campaign}/entities/{entity}/connection/map', 'Entity\Connections\MapController@index')->name('entities.relations_map');
+Route::get('/w/{campaign}/entities/{entity}/connection/table', 'Entity\Connections\TableController@index')->name('entities.relations_table');
 
 // Entity
 Route::post('/w/{campaign}/entities/{entity}/confirm-editing', 'EditingController@confirm')->name('entities.confirm-editing');
@@ -204,6 +204,10 @@ Route::get('/w/{campaign}/entities/{entity}/entity_assets/{entity_asset}/go', 'E
 
 Route::get('/w/{campaign}/entities/{entity}/profile', 'Entity\ProfileController@index')
     ->name('entities.profile');
+
+
+Route::get('/w/{campaign}/entity_types/{entity_type}/filter-form', [\App\Http\Controllers\Filters\FormController::class, 'index'])->name('filters.form');
+Route::get('/w/{campaign}/connection/filter-form', [\App\Http\Controllers\Filters\FormController::class, 'connection'])->name('filters.form-connection');
 
 //Route::get('/w/{campaign}/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([

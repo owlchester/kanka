@@ -61,7 +61,6 @@ class RelationController extends CrudController
         $params['tabBoosted'] = false;
         $params['entityAttributeTemplates'] = [];
         $params['entityType'] = $model->getEntityType();
-        $params['horizontalForm'] = $this->horizontalForm;
         $params['source'] = null;
         $params['langKey'] = $this->langKey;
 
@@ -161,7 +160,6 @@ class RelationController extends CrudController
             'source' => null,
             'tabCopy' => false,
             'entityType' => $relation->getEntityType(),
-            'horizontalForm' => $this->horizontalForm,
             'langKey' => $this->langKey,
         ];
 
