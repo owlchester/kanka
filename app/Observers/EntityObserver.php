@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
 use App\Models\CampaignPermission;
@@ -13,24 +12,14 @@ use App\Services\Entity\TagService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
 use Illuminate\Support\Str;
-use Stevebauman\Purify\Facades\Purify;
 
 class EntityObserver
 {
-    /**
-     * Purify trait
-     */
     use PurifiableTrait;
 
-    /**
-     * @var PermissionService
-     */
-    protected $permissionService;
+    protected PermissionService $permissionService;
 
-    /**
-     * @var AttributeService
-     */
-    protected $attributeService;
+    protected AttributeService $attributeService;
 
     /**
      * @var bool
@@ -243,8 +232,7 @@ class EntityObserver
     public function saveBoosted(Entity $entity): void
     {
         // No changed for non-boosted campaigns
-        $campaign = CampaignLocalization::getCampaign();
-        if (!$campaign->boosted()) {
+        if (!$entity->campaign->boosted()) {
             return;
         }
 
@@ -257,7 +245,7 @@ class EntityObserver
         ImageService::entity($entity, 'campaign/' . $entity->campaign_id, 'header_image');
 
         // Superboosted image gallery selection
-        if ($campaign->superboosted()) {
+        if ($entity->campaign->superboosted()) {
             if (request()->has('entity_image_uuid')) {
                 $entity->image_uuid = request()->get('entity_image_uuid');
             } else {

@@ -2,12 +2,14 @@
 
 namespace App\Console\Commands;
 
+use App\Traits\HasJobLog;
 use Illuminate\Console\Command;
 use App\Services\Users\UserLogService;
-use App\Models\JobLog;
 
 class AnonymiseUserLogs extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      *
@@ -45,15 +47,7 @@ class AnonymiseUserLogs extends Command
 
         $log = "Cleaned up user logs PII.";
         $this->info($log);
-
-        if (!config('app.log_jobs')) {
-            return 0;
-        }
-
-        JobLog::create([
-            'name' => $this->signature,
-            'result' => $log,
-        ]);
+        $this->log($log);
         return 0;
     }
 }

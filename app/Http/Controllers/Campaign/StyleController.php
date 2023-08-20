@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderStyles;
 use App\Http\Requests\StoreCampaignStyle;
 use App\Http\Requests\StoreCampaignTheme;
+use App\Models\Campaign;
 use App\Models\CampaignStyle;
 
 class StyleController extends Controller
@@ -30,9 +30,8 @@ class StyleController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
         $styles = $campaign->styles()
             ->sort(request()->only(['o', 'k']))
@@ -42,8 +41,8 @@ class StyleController extends Controller
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $styles)->render();
-            $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->render();
+            $html = view('layouts.datagrid._table')->with('rows', $styles)->with('campaign', $campaign)->render();
+            $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->with('campaign', $campaign)->render();
             return response()->json([
                 'success' => true,
                 'html' => $html,
@@ -57,19 +56,18 @@ class StyleController extends Controller
         return view('campaigns.styles.index', compact('campaign', 'styles', 'theme', 'reorderStyles'));
     }
 
-    public function show(CampaignStyle $campaignStyle)
+    public function show(Campaign $campaign, CampaignStyle $campaignStyle)
     {
         return redirect()
-            ->route('campaign_styles.index');
+            ->route('campaign_styles.index', $campaign);
     }
 
-    public function create()
+    public function create(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         if ($campaign->styles()->count() >= self::MAX_THEMES) {
-            return redirect()->route('campaign_styles.index')
+            return redirect()->route('campaign_styles.index', $campaign)
                 ->with('error', __('campaigns/styles.errors.max_reached', ['max' => self::MAX_THEMES]));
         }
 
@@ -77,78 +75,73 @@ class StyleController extends Controller
         return view('campaigns.styles.create', compact('campaign', 'theme'));
     }
 
-    public function store(StoreCampaignStyle $request)
+    public function store(StoreCampaignStyle $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         if ($campaign->styles()->count() >= self::MAX_THEMES) {
-            return redirect()->route('campaign_styles.index')
+            return redirect()->route('campaign_styles.index', $campaign)
                 ->with('error', __('campaigns/styles.errors.max_reached', ['max' => self::MAX_THEMES]));
         }
 
         $style = new CampaignStyle($request->only('name', 'content', 'is_enabled'));
         $style->campaign_id = $campaign->id;
         $style->save();
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->route('campaign_styles.edit', [$style])
+                ->route('campaign_styles.edit', [$campaign, $style])
                 ->with('success', __('campaigns/styles.create.success', ['name' => $style->name]));
         }
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/styles.create.success'));
     }
 
-    public function edit(CampaignStyle $campaignStyle)
+    public function edit(Campaign $campaign, CampaignStyle $campaignStyle)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         if ($campaignStyle->isTheme()) {
-            return redirect()->route('campaign_styles.builder');
+            return redirect()->route('campaign_styles.builder', $campaign);
         }
 
         $style = $campaignStyle;
         return view('campaigns.styles.edit', compact('campaign', 'style'));
     }
 
-    public function update(StoreCampaignStyle $request, CampaignStyle $campaignStyle)
+    public function update(StoreCampaignStyle $request, Campaign $campaign, CampaignStyle $campaignStyle)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $campaignStyle->update($request->only('name', 'content', 'is_enabled'));
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->route('campaign_styles.edit', [$campaignStyle])
+                ->route('campaign_styles.edit', [$campaign, $campaignStyle])
                 ->with('success', __('campaigns/styles.update.success', ['name' => $campaignStyle->name]));
         }
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/styles.update.success', ['name' => $campaignStyle->name]));
     }
 
-    public function destroy(CampaignStyle $campaignStyle)
+    public function destroy(Campaign $campaign, CampaignStyle $campaignStyle)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $campaignStyle->delete();
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/styles.delete.success', ['name' => $campaignStyle->name]));
     }
 
-    public function theme()
+    public function theme(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $themes = [null => __('campaigns.themes.none')];
@@ -159,9 +152,8 @@ class StyleController extends Controller
         return view('campaigns.styles.theme', compact('campaign', 'themes'));
     }
 
-    public function themeSave(StoreCampaignTheme $request)
+    public function themeSave(StoreCampaignTheme $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $campaign->update([
@@ -169,7 +161,7 @@ class StyleController extends Controller
         ]);
 
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/styles.theme.success'))
         ;
     }
@@ -179,13 +171,13 @@ class StyleController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function bulk()
+    public function bulk(Campaign $campaign)
     {
         $action = request()->get('action');
         $models = request()->get('model');
         if (!in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
             return redirect()
-                ->route('campaign_styles.index');
+                ->route('campaign_styles.index', $campaign);
         }
 
         $count = 0;
@@ -208,15 +200,15 @@ class StyleController extends Controller
                 $count++;
             }
         }
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', trans_choice('campaigns/styles.bulks.' . $action, $count, ['count' => $count]))
         ;
     }
 
-    public function reorder(ReorderStyles $request)
+    public function reorder(ReorderStyles $request, Campaign $campaign)
     {
         $order = 1;
         $ids = $request->get('style');
@@ -230,11 +222,11 @@ class StyleController extends Controller
             $style->update();
             $order++;
         }
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         $order--;
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]))
         ;
     }

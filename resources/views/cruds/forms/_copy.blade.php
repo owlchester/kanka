@@ -30,7 +30,7 @@
         {{ __('crud.fields.copy_permissions') }}
     </label>
 </div>
-@if ($campaignService->campaign()->boosted())
+@if ($campaign->boosted())
     <div class="field-copy-links">
         {!! Form::hidden('copy_source_links', null) !!}
         <label>{!! Form::checkbox('copy_source_links', 1, request()->filled('template')) !!}

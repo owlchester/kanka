@@ -48,8 +48,7 @@ use Illuminate\Support\Str;
 abstract class MiscModel extends Model
 {
     use HasFilters;
-    use LastSync
-    ;
+    use LastSync;
     use Orderable;
     use Paginatable;
     use Searchable;
@@ -58,10 +57,8 @@ abstract class MiscModel extends Model
     use SourceCopiable;
     use SubEntityScopes;
 
-    /**
-     * @var bool|Entity Performance based entity
-     */
-    protected $cachedEntity = false;
+    /** @var Entity Performance based entity */
+    protected Entity $cachedEntity;
 
     /**
      * @var string Entity type
@@ -69,15 +66,10 @@ abstract class MiscModel extends Model
     protected $entityType;
 
     /**
-     * @var string Entity image path
-     */
-    public $entityImagePath;
-
-    /**
      * Fields that can be ordered on
      * @var array
      */
-    protected $sortableColumns = [];
+    protected array $sortableColumns = [];
 
     /**
      * Explicit fields for filtering.
@@ -116,18 +108,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Create a short name for the interface
-     * @return mixed|string
-     */
-    public function shortName()
-    {
-        if (mb_strlen($this->name) > 30) {
-            return '<span title="' . e($this->name) . '">' . mb_substr(e($this->name), 0, 28) . '...</span>';
-        }
-        return $this->name;
-    }
-
-    /**
      * Get the thumbnail (or default image) of an entity
      * @param int $width If 0, get the full-sized version
      * @param int|null $height
@@ -136,7 +116,7 @@ abstract class MiscModel extends Model
      */
     public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
     {
-        $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
+        $entity = $this->cachedEntity ?? $this->entity;
         if (empty($this->$field) || $entity->$field) {
             return $this->getImageFallback($width);
         }
@@ -155,12 +135,16 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Get the original image url (for prod: aws link)
+     * Get the original image url (for prod: aws cloudfront)
      * @param string $field
      * @return mixed
      */
     public function getOriginalImageUrl(string $field = 'image')
     {
+        $cloudfront = config('filesystems.disks.cloudfront.url');
+        if ($cloudfront) {
+            return Storage::disk('cloudfront')->url($this->$field);
+        }
         return Storage::url($this->$field);
     }
 
@@ -172,24 +156,19 @@ abstract class MiscModel extends Model
     {
         // Campaign could have something set up
         $campaign = CampaignLocalization::getCampaign();
-        // If campaign is empty, we might be calling the api/campaigns of the user.
-        if (empty($campaign) && $this instanceof Campaign) {
-            CampaignCache::campaign($this);
-            $campaign = $this;
-        }
 
-        $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
+        $entity = $this->cachedEntity ?? $this->entity;
         if ($campaign->superboosted() && !empty($entity->image)) {
             return $entity->image->getUrl($size, $size);
         } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
-            return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
+            return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {
             // Goblins and above have nicer icons
-            return asset('/images/defaults/patreon/' . $this->getTable() . '_thumb.png');
+            return '/images/defaults/patreon/' . $this->getTable() . '_thumb.png';
         }
 
         // Default fallback
-        return asset('/images/defaults/' . $this->getTable() . '_thumb.jpg');
+        return '/images/defaults/' . $this->getTable() . '_thumb.jpg';
     }
 
     /**
@@ -219,17 +198,21 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @param string $route = 'show'
+     * @param string $action = 'show'
      * @return string
      * @throws Exception
      */
-    public function getLink(string $route = 'show'): string
+    public function getLink(string $action = 'show'): string
     {
         if (empty($this->entity)) {
             return '#';
         }
         try {
-            return route($this->entity->pluralType() . '.' . $route, $this->id);
+            $campaign = CampaignLocalization::getCampaign();
+            if (in_array($action, ['show', 'update'])) {
+                return route('entities.' . $action, [$campaign, $this->entity]);
+            }
+            return route($this->entity->pluralType() . '.' . $action, [$campaign, $this->id]);
         } catch (Exception $e) {
             return '#';
         }
@@ -273,9 +256,10 @@ abstract class MiscModel extends Model
 
         $items['first']['story'] = [
             'name' => 'crud.tabs.story',
-            'route' => $this->entity->pluralType() . '.show',
+            'route' => 'entities.show',
+            'entity' => true,
             'button' => auth()->check() && auth()->user()->can('update', $this) ? [
-                'url' => route('entities.story.reorder', $this->entity->id),
+                'url' => route('entities.story.reorder', [$campaign, $this->entity->id]),
                 'icon' => 'fa-solid fa-cog',
                 'tooltip' => __('entities/story.reorder.icon_tooltip'),
             ] : null,
@@ -447,8 +431,9 @@ abstract class MiscModel extends Model
             return e($this->name);
         }
 
+        $campaign = CampaignLocalization::getCampaign();
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
-            'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
+            'data-url="' . route('entities.tooltip', [$campaign, $this->entity->id]) . '" href="' .
             $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : $this->name) .
         '</a>';
@@ -553,14 +538,14 @@ abstract class MiscModel extends Model
         // Relations & Inventory
         if (!isset($this->hasRelations)) {
             $actions[] = '<li>
-                <a href="' . route('entities.relations.index', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="relations">
+                <a href="' . route('entities.relations.index', [$campaign, $this->entity]) . '" class="dropdown-item datagrid-dropdown-item" data-name="relations">
                     <i class="fa-solid fa-users" aria-hidden="true"></i> ' . __('crud.tabs.connections') . '
                 </a>
             </li>';
 
             if ($campaign->enabled('inventories')) {
                 $actions[] = '<li>
-                <a href="' . route('entities.inventory', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="inventory">
+                <a href="' . route('entities.inventory', [$campaign, $this->entity]) . '" class="dropdown-item datagrid-dropdown-item" data-name="inventory">
                     <i class="ra ra-round-bottom-flask" aria-hidden="true"></i> ' . __('crud.tabs.inventory') . '
                 </a>
             </li>';

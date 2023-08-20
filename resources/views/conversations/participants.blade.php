@@ -1,12 +1,11 @@
 @extends('layouts.ajax', [
     'title' => __('conversations.participants.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => route('conversations.index'), 'label' => __('entities.conversations')],
-        ['url' => route('conversations.show', $model->id), 'label' => $model->name],
+        ['url' => route('conversations.index', $campaign), 'label' => __('entities.conversations')],
+        ['url' => route('conversations.show', [$campaign, $model->id]), 'label' => $model->name],
         __('crud.update'),
     ]
 ])
-<?php $campaign = CampaignLocalization::getCampaign(); ?>
 
 @section('content')
     <div class="modal-header">
@@ -18,14 +17,14 @@
             @foreach ($model->participants as $participant)
                 @if ($participant->isMember() || (auth()->check() && auth()->user()->can('view', $participant->entity())))
                     @can('update', $model)
-                        {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $model, $participant], 'class'=>'flex gap-2 mb-2']) !!}
+                        {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $campaign, $model, $participant], 'class'=>'flex gap-2 mb-2']) !!}
                     @endcan
 
                     <div class="grow">
                     @if ($participant->isMember())
                         {{ $participant->entity()->name }}
                     @else
-                        <a href="{{ route('characters.show', $participant->entity()) }}">{{ $participant->entity()->name }}</a>
+                        <a href="{{ route('characters.show', [$campaign, $participant->entity()]) }}">{{ $participant->entity()->name }}</a>
                     @endif
                     </div>
 
@@ -44,7 +43,7 @@
             @include('partials.errors')
             <?php $memberList = $campaign->membersList($model->participantsList(false)); ?>
             @if($model->forCharacters() || count($memberList) > 0)
-            {!! Form::open(['route' => ['conversations.conversation_participants.store', $model], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
+            {!! Form::open(['route' => ['conversations.conversation_participants.store', $campaign, $model], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
             <div class="flex gap-2 items-center">
                 <div class="grow">
                     @if ($model->forCharacters())

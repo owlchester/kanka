@@ -1,6 +1,4 @@
-@if (
-    (isset($campaign) && $campaign instanceof \App\Models\Campaign && !$campaign->enabled('items')) ||
-    (isset($campaignService) && !$campaignService->enabled('items')))
+@if (isset($campaign) && $campaign instanceof \App\Models\Campaign && !$campaign->enabled('items'))
     <?php return ?>
 @endif
 
@@ -16,6 +14,7 @@
 @endif
 
 <x-forms.foreign
+    :campaign="$campaign"
     name="item_id"
     key="item"
     entityType="items"
@@ -23,7 +22,7 @@
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('items.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route('items.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Item::class"
     :selected="$preset"
     :helper="$helper ?? null"

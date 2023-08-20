@@ -5,12 +5,10 @@
     ];
     if (isset($campaign) && $campaign instanceof \App\Models\Campaign) {
     $pricingOptions['callback'] = $campaign->id;
-    } elseif (isset($campaign) && $campaign instanceof \App\Services\CampaignService) {
-    $pricingOptions['callback'] = $campaignService->campaign()->id;
     }
     @endphp
     <x-alert type="info">
-        {!! __($key, ['superboosted-campaign' => link_to_route('front.pricing', __('concept.superboosted-campaign'), $pricingOptions)]) !!}
+        {!! __($key, ['superboosted-campaign' => link_to(config('domains.front') . '/pricing', __('concept.superboosted-campaign'), $pricingOptions)]) !!}
     </x-alert>
     <?php return; ?>
 @endif
@@ -21,10 +19,8 @@
     ];
     if (isset($campaign) && $campaign instanceof \App\Models\Campaign) {
         $pricingOptions['callback'] = $campaign->id;
-    } elseif (isset($campaign) && $campaign instanceof \App\Services\CampaignService) {
-        $pricingOptions['callback'] = $campaignService->campaign()->id;
     }
 @endphp
 <x-alert type="info">
-    {!! __($key, ['superboosted-campaign' => link_to_route('front.pricing', __('concept.premium-campaign'), $pricingOptions)]) !!}
+    {!! __($key, ['superboosted-campaign' => link_to('https://' . config('domains.front') . '/pricing', __('concept.premium-campaign'), $pricingOptions)]) !!}
 </x-alert>

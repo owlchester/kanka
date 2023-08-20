@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -30,7 +31,7 @@ class StoreDiceRoll extends FormRequest
             'name' => 'required|max:191',
             'parameters' => 'required|max:191',
             'character_id', 'integer|exists:character,id',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
         ];
 
         if (request()->has('quick-creator')) {

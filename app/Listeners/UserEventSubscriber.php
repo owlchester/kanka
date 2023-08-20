@@ -4,9 +4,9 @@ namespace App\Listeners;
 
 use App\Models\UserFlag;
 use App\Models\UserLog;
-use App\Services\CampaignService;
 use App\Services\InviteService;
 use App\Services\StarterService;
+use App\Services\Users\CampaignService;
 use App\User;
 use Carbon\Carbon;
 use Exception;
@@ -16,45 +16,46 @@ use Exception;
  */
 class UserEventSubscriber
 {
-    /** @var InviteService */
-    public InviteService $inviteService;
+    protected InviteService $inviteService;
 
-    /** @var StarterService */
-    public StarterService $starterService;
+    protected StarterService $starterService;
+
+    protected CampaignService $campaignService;
 
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct(InviteService $inviteService, StarterService $starterService)
-    {
+    public function __construct(
+        InviteService $inviteService,
+        StarterService $starterService,
+        CampaignService $campaignService
+    ) {
         $this->inviteService = $inviteService;
         $this->starterService = $starterService;
+        $this->campaignService = $campaignService;
     }
 
     /**
      * Handle user login events.
      */
-    public function onUserLogin($event)
+    public function onUserLogin($event): bool
     {
         // Log the user's login
         if (!$event->user) {
             dd('Error OSL-010');
         }
 
-        $default = UserLog::TYPE_LOGIN;
-        if (auth()->viaRemember()) {
-            $default = UserLog::TYPE_AUTOLOGIN;
-        }
-        $userLogType = session()->get('kanka.userLog', $default);
+        $action = auth()->viaRemember() ? UserLog::TYPE_AUTOLOGIN : UserLog::TYPE_LOGIN;
+        $userLogType = session()->get('kanka.userLog', $action);
         if ($event->user->isBanned()) {
             $userLogType = session()->get('kanka.userLog', UserLog::TYPE_BANNED_LOGIN);
         }
         $event->user->log($userLogType);
 
         session()->remove('kanka.userLog');
-        $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
+        $event->user->updateQuietly(['last_login_at' => Carbon::now()]);
 
         // Delete any flags to auto-delete the account based on inactivity
         UserFlag::where('user_id', $event->user->id)
@@ -67,7 +68,10 @@ class UserEventSubscriber
                 $campaign = $this->inviteService
                     ->user($event->user)
                     ->useToken(session()->get('invite_token'));
-                CampaignService::switchCampaign($campaign);
+                $this->campaignService
+                    ->user($event->user)
+                    ->campaign($campaign)
+                    ->set();
                 return true;
             } catch (Exception $e) {
                 // Silence errors here
@@ -77,14 +81,15 @@ class UserEventSubscriber
             // Let's create their first campaign for them
             $campaign = $this->starterService
                 ->user($event->user)
-                ->createCampaign();
+                ->create();
             session()->remove('first_login');
-            CampaignService::switchCampaign($campaign);
+            $this->campaignService
+                ->user($event->user)
+                ->campaign($campaign)
+                ->set();
             return true;
         }
 
-        // We want to register in the session a campaign_id
-        CampaignService::switchToLast($event->user);
         return true;
     }
 

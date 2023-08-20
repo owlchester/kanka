@@ -1,5 +1,4 @@
 @inject('attributeService', 'App\Services\AttributeService')
-@inject('campaignService', 'App\Services\CampaignService')
 
 <div class="entity-grid">
 

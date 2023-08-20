@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('events'))
+@if (!$campaign->enabled('events'))
     <?php return ?>
 @endif
 
@@ -12,13 +12,14 @@ if (isset($model) && $model->event) {
 @endphp
 
 <x-forms.foreign
+    :campaign="$campaign"
     name="event_id"
     key="event"
     entityType="events"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('events.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route('events.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Event::class"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"

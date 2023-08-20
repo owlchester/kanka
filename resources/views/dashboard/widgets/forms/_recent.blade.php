@@ -5,9 +5,9 @@
         'unmentioned' => __('dashboard.widgets.recent.advanced_filters.unmentioned'),
         'mentionless' => __('dashboard.widgets.recent.advanced_filters.mentionless'),
     ];
-    $boosted = $campaignService->campaign()->boosted();
+    $boosted = $campaign->boosted();
     $entityTypes = ['' => 'All'];
-    $entities = $entityService->campaign($campaignService->campaign())->getEnabledEntitiesSorted(false);
+    $entities = $entityService->campaign($campaign)->getEnabledEntitiesSorted(false);
     $entityTypes = array_merge($entityTypes, $entities);
 @endphp
 
@@ -39,7 +39,7 @@
                     <label>
                         {{ __('dashboard.widgets.recent.filters') }}
                         <a href="//docs.kanka.io/en/latest/guides/dashboard.html" target="_blank">
-                            <i class="fa-solid fa-question-circle" title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <i class="fa-solid fa-question-circle" data-title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         </a>
 
                     </label>
@@ -60,7 +60,7 @@
                             {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null)) !!}
 
                             {{ __('dashboard.widgets.recent.singular') }}
-                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('dashboard.widgets.recent.help') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('dashboard.widgets.recent.help') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         </label>
                     </div>
                     <p class="help-block hidden-md hidden-lg">
@@ -69,12 +69,12 @@
                 </div>
 
                 <div class="col-span-2 collapse !visible {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
-                    @if($campaignService->campaign()->boosted())
+                    @if($campaign->boosted())
                         @include('dashboard.widgets.forms._header_select')
                         @include('dashboard.widgets.forms._related')
                     @else
                         <p class="help-block">{!! __('dashboard.widgets.advanced_options_boosted', [
-                    'boosted_campaign' => link_to_route('front.pricing', __('concept.boosted-campaign'), '#boost', ['target' => '_blank'])
+                    'boosted_campaign' => link_to('https://' . config('domains.front') . '/pricing', __('concept.boosted-campaign'), '#boost', ['target' => '_blank'])
                 ]) !!}</p>
                     @endif
                 </div>

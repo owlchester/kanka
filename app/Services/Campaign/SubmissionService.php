@@ -4,37 +4,57 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
+use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Notifications\Header;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
+use Exception;
 
 class SubmissionService
 {
     use CampaignAware;
     use PurifiableTrait;
+    use UserAware;
 
+    protected CampaignSubmission $submission;
 
-    /** @var CampaignSubmission */
-    protected $submission;
-
-    /**
-     * @param CampaignSubmission $submission
-     * @return $this
-     */
     public function submission(CampaignSubmission $submission): self
     {
         $this->submission = $submission;
         return $this;
     }
 
+    public function apply(string $reason = null): self
+    {
+        $submission = new CampaignSubmission();
+        $submission->text = $reason;
+        $submission->user_id = $this->user->id;
+        $submission->campaign_id = $this->campaign->id;
+        $submission->save();
+
+        NotifyAdmins::dispatch(
+            $this->campaign,
+            'application.new',
+            'door-open',
+            'yellow',
+            [
+                'link' => route('campaign_submissions.index', $this->campaign),
+                'campaign' => $this->campaign->name
+            ]
+        );
+
+        return $this;
+    }
+
     /**
      * @param array $data
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     public function process(array $data): string
     {
@@ -64,25 +84,6 @@ class SubmissionService
         $this->submission->delete();
 
         return $return;
-    }
-
-    public function notifyAdmins(): self
-    {
-        // Notify the admins of a new application
-        // Notify all admins
-        foreach ($this->campaign->admins() as $user) {
-            $user->notify(new Header(
-                'campaign.application.new',
-                'door-open',
-                'yellow',
-                [
-                    'link' => route('campaign_submissions.index'),
-                    'campaign' => $this->campaign->name
-                ]
-            ));
-        }
-
-        return $this;
     }
 
     /**
@@ -120,17 +121,17 @@ class SubmissionService
                     [
                         'campaign' => $this->campaign->name,
                         'reason'   => $message,
-                        'link' => route('dashboard'),
+                        'link' => route('dashboard', $this->campaign),
                     ]
                 )
             );
 
 
         // Update the campaign members cache when a user was added
-        CampaignCache::campaign($this->campaign)->clearMembers();
+        CampaignCache::campaign($this->campaign)->clear();
 
         // Clear the user's campaign cache
-        UserCache::user($this->submission->user)->clearCampaigns();
+        UserCache::user($this->submission->user)->clear();
 
 
         return $this;

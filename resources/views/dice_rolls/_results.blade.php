@@ -3,7 +3,7 @@
 <div class="flex gap-2 mb-2 items-center">
     <h4 class="grow">{{ __('dice_rolls.index.actions.results') }}</h4>
     @can('roll', $model)
-        <a href="{{ route('dice_rolls.roll', ['dice_roll' => $model]) }}" class="btn2 btn-sm btn-accent">
+        <a href="{{ route('dice_rolls.roll', [$campaign, 'dice_roll' => $model]) }}" class="btn2 btn-sm btn-accent">
             <x-icon class="plus"></x-icon> {{ __('dice_rolls.results.actions.add') }}
         </a>
     @endcan
@@ -28,8 +28,8 @@
             <td>{{ $relation->updated_at->diffForHumans() }}</td>
             <td class="text-right">
                 @can('delete', $model)
-                {!! Form::open(['method' => 'DELETE','route' => ['dice_rolls.destroy_roll', $model, $relation->id],'style'=>'display:inline']) !!}
-                <button class="btn2 btn-xs btn-error btn-outline" title="{{ __('crud.remove') }}" data-toggle="tooltip">
+                {!! Form::open(['method' => 'DELETE','route' => ['dice_rolls.destroy_roll', $campaign, $model, $relation->id],'style'=>'display:inline']) !!}
+                <button class="btn2 btn-xs btn-error btn-outline" data-title="{{ __('crud.remove') }}" data-toggle="tooltip">
                     <x-icon class="trash"></x-icon>
                 </button>
                 {!! Form::close() !!}

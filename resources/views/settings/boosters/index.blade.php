@@ -96,7 +96,7 @@
                 </div>
             </div>
         </div>
-        <p>{!! __('settings/boosters.pitch.more', ['boosters' => link_to_route('front.boosters', __('footer.boosters'))]) !!}</p>
+        <p>{!! __('settings/boosters.pitch.more', ['boosters' => link_to('https://kanka.io/premium', __('footer.boosters'))]) !!}</p>
 
     </x-box>
 
@@ -105,7 +105,7 @@
         {{ __('settings/boosters.ready.title') }}
 
         @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
-            <div class="badge bg-boost flex gap-1 badge-lg ml-2" data-toggle="tooltip" title="{{ __('settings/boosters.ready.available') }}">
+            <div class="badge bg-boost flex gap-1 badge-lg ml-2" data-toggle="tooltip" data-title="{{ __('settings/boosters.ready.available') }}">
                 <x-icon class="premium"></x-icon>
                 {{ auth()->user()->availableBoosts() }}
             </div>

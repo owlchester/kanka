@@ -1,13 +1,12 @@
 @extends('layouts.app', [
     'title' => $titleKey ?? __('entities.' . $langKey),
-    'seoTitle' => $titleKey ?? __('entities.' . $langKey) . ' - ' . CampaignLocalization::getCampaign()->name,
+    'seoTitle' => $titleKey ?? __('entities.' . $langKey) . ' - ' . $campaign->name,
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($name), 'label' => $titleKey ?? __('entities.' . $langKey)],
     ],
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header')
     <div class="flex items-center mb-2">
@@ -31,7 +30,7 @@
         </div>
     @else
     <div class="mb-3 flex flex-stretch gap-2 items-center">
-        @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index')])
+        @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
         @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index'])
     </div>
     @endif
@@ -41,7 +40,7 @@
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['nested' => true, 'sub' => 'tree'])
     @else
-        {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
+        {!! Form::open(['url' => route('bulk.process', $campaign), 'method' => 'POST']) !!}
         <x-box :padding="false">
             <div class="table-responsive">
                 @include($name . '._tree')
@@ -70,7 +69,7 @@
 
     @endif
 
-    <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.tree') }}">
+    <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.tree', $campaign) }}">
 @endsection
 
 @section('modals')

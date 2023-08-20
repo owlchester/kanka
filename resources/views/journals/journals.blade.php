@@ -9,15 +9,15 @@
 ])
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+    <div class="header-buttons flex gap-2 items-center justify-end">
         @if (request()->has('parent_id'))
-            <a href="{{ route('journals.journals', [$model]) }}" class="btn2 btn-sm">
+            <a href="{{ route('journals.journals', [$campaign, $model]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
                 ({{ $model->allJournals()->count() }})
             </a>
         @else
-            <a href="{{ route('journals.journals', [$model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
+            <a href="{{ route('journals.journals', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->journals()->count() }})

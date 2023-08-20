@@ -2,6 +2,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->models($models)
     ->columns([
@@ -24,7 +25,7 @@
         ],
         [
             'label' => __('entities.families'),
-            'visible' => $campaignService->enabled('families'),
+            'visible' => $campaign->enabled('families'),
             'disableSort' => true,
             'render' => function($model) {
                 $families = [];
@@ -36,11 +37,11 @@
         ],
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => __('entities.races'),
-            'visible' => $campaignService->enabled('races'),
+            'visible' => $campaign->enabled('races'),
             'disableSort' => true,
             'render' => function($model) {
                 $races = [];
@@ -62,7 +63,6 @@
         'route' => 'characters.index',
         'baseRoute' => 'characters',
         'trans' => 'characters.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}
 

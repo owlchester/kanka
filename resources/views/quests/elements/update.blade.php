@@ -3,16 +3,15 @@
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('quests'), 'label' => \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests'))],
         ['url' => $quest->getLink(), 'label' => $quest->name],
-        ['url' => route('quests.quest_elements.index', $quest->id), 'label' => __('quests.show.tabs.elements')],
+        ['url' => route('quests.quest_elements.index', [$campaign, $quest->id]), 'label' => __('quests.show.tabs.elements')],
         __('crud.update'),
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     {!! Form::model($model, [
         'method' => 'PATCH',
-        'route' => ['quests.quest_elements.update', $quest, $model->id],
+        'route' => ['quests.quest_elements.update', $campaign, $quest, $model->id],
         'data-shortcut' => 1,
         'data-maintenance' => 1,
     ]) !!}
@@ -50,8 +49,8 @@
         </x-dialog.footer>
     </x-box>
     {!! Form::close() !!}
-    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('quest-elements.keep-alive', $model->id) }}" />
+    @if(!empty($model) && $campaign->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('quest-elements.keep-alive', [$campaign, $model->id]) }}" />
     @endif
 @endsection
 

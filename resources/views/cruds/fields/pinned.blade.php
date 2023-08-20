@@ -8,7 +8,7 @@
     <label>
         {{ __('crud.fields.is_star') }}
         <a href="https://docs.kanka.io/en/latest/features/profile-sidebar/how-to-pin-elements.html" target="_blank">
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('crud.hints.is_star') }}" data-toggle="tooltip" aria-hidden="true"></i>
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('crud.hints.is_star') }}" data-toggle="tooltip" aria-hidden="true"></i>
             <span class="sr-only">{{ __('pins.learn-more') }}</span>
         </a>
     </label>

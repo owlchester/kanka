@@ -10,9 +10,16 @@ return [
         'save'          => 'Save',
     ],
     'breadcrumb'    => 'Gallery',
+    'bulk'          => [
+        'destroy' => [
+            'confirm' => 'Are you sure you want to permanently remove the selected elements? This action cannot be undone.',
+            'success' => '{0}No files removed.|{1]One file removed.|{2,*} :count files removed.',
+        ],
+    ],
     'cta'           => 'Manage and reuse images throughout the campaign.',
     'destroy'       => [
-        'success'   => 'Image :name deleted.',
+        'folder'    => 'Folder :name deleted.',
+        'success'   => 'File :name deleted.',
     ],
     'errors'        => [
         'max'           => 'Please only select up to :count files at a time.',
@@ -41,8 +48,8 @@ return [
     ],
     'title'         => 'Campaign :campaign Gallery',
     'update'        => [
-        'success'   => 'Image modified.',
-        'title'     => 'Image details',
+        'success'   => 'File modified.',
+        'folder'    => 'Folder modified.',
     ],
     'uploader'      => [
         'add'           => 'Add new',

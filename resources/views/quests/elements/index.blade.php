@@ -7,7 +7,6 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
     @include('quests.elements._buttons')

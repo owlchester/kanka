@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\EntityMention $mention */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/mentions.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => false,
@@ -9,14 +9,13 @@
     'bodyClass' => 'entity-mentions'
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
-        <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
-            <button class="btn2 btn-sm" data-toggle="dialog"
+        <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
+            <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                     data-target="dialog-help">
                 <x-icon class="question"></x-icon>
-                {{ __('campaigns.members.actions.help') }}
+                {{ __('crud.actions.help') }}
             </button>
         </div>
 @endsection
@@ -30,7 +29,7 @@
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
+                Breadcrumb::entity($entity)->list(),
                 __('crud.tabs.mentions')
             ]
         ])

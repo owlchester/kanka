@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <p>{!! __('settings/premium.pitch.more', ['premium' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}</p>
+        <p>{!! __('settings/premium.pitch.more', ['premium' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}</p>
 
     </x-box>
 
@@ -87,7 +87,7 @@
         {{ __('settings/premium.ready.title') }}
 
         @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
-            <div class="badge bg-boost border-0 badge-lg flex gap-1 ml-3" data-toggle="tooltip" title="{{ __('settings/premium.ready.available') }}">
+            <div class="badge bg-boost border-0 badge-lg flex gap-1 ml-3" data-toggle="tooltip" data-title="{{ __('settings/premium.ready.available') }}">
                 <x-icon class="premium"></x-icon>
                 {{ auth()->user()->availableBoosts() }}
             </div>
@@ -106,8 +106,8 @@
         @foreach ($premiums as $premium)
             @include('settings.boosters._campaign', ['campaign' => $premium->campaign])
         @endforeach
-        @foreach ($campaigns as $campaign)
-            @include('settings.boosters._campaign')
+        @foreach ($campaigns as $userCampaign)
+            @include('settings.boosters._campaign', ['campaign' => $userCampaign])
         @endforeach
     </div>
 

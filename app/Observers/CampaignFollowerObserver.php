@@ -12,7 +12,7 @@ class CampaignFollowerObserver
      */
     public function created(CampaignFollower $campaignFollower)
     {
-        UserCache::clearFollows();
+        UserCache::clear();
         $campaignFollower->campaign->follower++;
         $campaignFollower->campaign->save();
     }
@@ -22,7 +22,7 @@ class CampaignFollowerObserver
      */
     public function deleted(CampaignFollower $campaignFollower)
     {
-        UserCache::clearFollows();
+        UserCache::clear();
         $campaignFollower->campaign->follower--;
         $campaignFollower->campaign->save();
     }

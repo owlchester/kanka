@@ -1,6 +1,6 @@
 @section('scripts')
     @parent
-    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ '/js/tinymce/tinymce.min.js' }}"></script>
     <script>
         var advancedRequest = false;
         var editor_config = {
@@ -69,7 +69,7 @@
                     }
                     else if (item.url) {
                         if (item.tooltip) {
-                            var str = '<a href="' + item.url + '" title="' + item.tooltip.replace(/["]/g, '\'') + '" data-toggle="tooltip" data-html="true" >' + item.fullname + '</a>';
+                            var str = '<a href="' + item.url + '" data-title="' + item.tooltip.replace(/["]/g, '\'') + '" data-toggle="tooltip" data-html="true" >' + item.fullname + '</a>';
                             return str;
                         }
                         return '<a href="' + item.url + '">' + item.fullname + '</a>';

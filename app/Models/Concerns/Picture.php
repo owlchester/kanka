@@ -79,7 +79,7 @@ trait Picture
             $campaign = CampaignLocalization::getCampaign();
             if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
                 return Img::crop($this->avatarWidth, $this->avatarHeight)
-                    ->url(CampaignCache::defaultImages()[$this->type()]['path']);
+                    ->url(CampaignCache::defaultImages());
             }
 
             if (auth()->check() && auth()->user()->isGoblin()) {
@@ -168,15 +168,15 @@ trait Picture
                 return Img::crop($this->avatarWidth, $this->avatarHeight)->url($this->image->path);
             } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
                 // Fallback, boosted default image?
-                return Img::crop($this->avatarWidth, $this->avatarHeight)->url(CampaignCache::defaultImages()[$this->type()]['path']);
+                return Img::crop($this->avatarWidth, $this->avatarHeight)->url(CampaignCache::defaultImages()[$this->type()]);
             }
 
             if (auth()->check() && auth()->user()->isGoblin()) {
                 // Goblins and above have nicer icons
-                return asset('/images/defaults/subscribers/' . $this->pluralType() . '.jpeg');
+                return '/images/defaults/subscribers/' . $this->pluralType() . '.jpeg';
             }
             $this->hasNoImage = true;
-            return asset('/images/defaults/' . $this->pluralType() . '_thumb.jpg');
+            return '/images/defaults/' . $this->pluralType() . '_thumb.jpg';
         }
 
         if (!empty($focus)) {

@@ -23,7 +23,7 @@ class CreateCampaign extends Migration
             $table->string('slug');
             $table->string('locale', 5)->nullable();
 
-            $table->string('image', 255)->nullable();
+            $table->string('image', 191)->nullable();
             $table->longText('entry')->nullable();
             $table->text('excerpt')->nullable();
 

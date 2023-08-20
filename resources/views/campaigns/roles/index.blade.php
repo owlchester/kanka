@@ -2,15 +2,15 @@
     <h3 class="m-0 inline-block grow">
         {{ __('campaigns.show.tabs.roles') }} <span class="text-sm">({{ $roles->total() }} / @if ($limit = $campaign->roleLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
     </h3>
-    <button class="btn2 btn-sm" data-toggle="dialog"
+    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
             data-target="roles-help">
         <x-icon class="question"></x-icon>
-        {{ __('campaigns.members.actions.help') }}
+        {{ __('crud.actions.help') }}
     </button>
     @if (auth()->user()->can('update', $campaign))
-        <a href="{{ route('campaign_roles.create') }}" class="btn2 btn-primary btn-sm"
-           data-toggle="ajax-modal" data-target="#entity-modal"
-           data-url="{{ route('campaign_roles.create') }}"
+        <a href="{{ route('campaign_roles.create', $campaign) }}" class="btn2 btn-primary btn-sm"
+           data-toggle="dialog-ajax" data-target="role-dialog"
+           data-url="{{ route('campaign_roles.create', $campaign) }}"
         >
             <x-icon class="plus"></x-icon>
             {{ __('campaigns.roles.actions.add') }}
@@ -21,7 +21,7 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\CampaignRole $plugin
  */?>
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_roles.bulk']) !!} @endif
+    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_roles.bulk', $campaign]]) !!} @endif
     <div id="datagrid-parent">
         @include('layouts.datagrid._table', ['responsive' => true])
     </div>
@@ -42,7 +42,7 @@
                 'admin' => link_to_route(
                     'campaigns.campaign_roles.admin',
                     \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
-                    null,
+                    $campaign,
                     ['target' => '_blank']
                 )
             ]),
@@ -51,4 +51,5 @@
             __('campaigns.roles.helper.4'),
         ]
     ])
+    <x-dialog id="role-dialog" :loading="true" />
 @endsection

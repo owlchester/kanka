@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 function initCalendarEventBlock() {
     $('.calendar-event-block').each(function() {
-        if ($(this).data('toggle') !== 'ajax-modal' && $(this).data('url')) {
+        if ($(this).data('toggle') !== 'dialog' && $(this).data('url')) {
             $(this).click(function () {
                 window.location = $(this).data('url');
             });
@@ -65,46 +65,17 @@ function initCalendarEventModal() {
 
         $('#calendar-event-submit').toggle();
     });
-
-    /*$('form.ajax-validation').unbind('submit').on('submit', function (e) {
-        reminderForm = $(this);
-        if (reminderFormValid) {
-            return true;
-        }
-
-        e.preventDefault();
-
-        $(this).find('.btn-success')
-            .prop('disabled', true)
-            .addClass('loading');
-
-        let formData = new FormData(this);
-
-        $.ajax({
-            url: $(this).attr('action'),
-            method: $(this).attr('method'),
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            context: this,
-        }).done(function () {
-            // If the validation succeeded, we can really submit the form
-            reminderFormValid = true;
-            reminderForm.submit();
-        }).fail(function (err) {
-            window.formErrorHandler(err, this);
-        });
-
-        return false;
-    });*/
 }
 
 /**
  * Register keyboard shortcuts for previous/next view
  */
 function registerKeyboardShortcuts() {
+    if ($('[data-shortcut="previous"]').length === 0) {
+        return;
+    }
     $(document).bind('keydown', function(e) {
+        // Ctrl + <- for previous, Ctrl + -> for next
         if ((e.ctrlKey || e.metaKey) && e.which === 37) {
             $('[data-shortcut="previous"]').addClass('loading')[0].click();
         } else if ((e.ctrlKey || e.metaKey) && e.which === 39) {

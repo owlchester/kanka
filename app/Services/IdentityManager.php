@@ -4,13 +4,15 @@ namespace App\Services;
 
 use App\Models\CampaignUser;
 use App\Models\UserLog;
+use App\Traits\CampaignAware;
 use App\User;
 use Exception;
 use Illuminate\Foundation\Application;
-use App\Facades\CampaignLocalization;
 
 class IdentityManager
 {
+    use CampaignAware;
+
     /**
      * @var Application
      */
@@ -35,7 +37,7 @@ class IdentityManager
         try {
             // Save the current user in the session to know we have limitation on the current user.
             session()->put($this->getSessionKey(), $this->app['auth']->user()->id);
-            session()->put($this->getSessionCampaignKey(), CampaignLocalization::getCampaign()->id);
+            session()->put($this->getSessionCampaignKey(), $this->campaign->id);
 
             // Log this action
             auth()->user()->log(UserLog::TYPE_USER_SWITCH);

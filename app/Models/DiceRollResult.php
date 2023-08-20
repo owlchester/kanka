@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\HasFilters;
 
 /**
@@ -25,7 +24,7 @@ class DiceRollResult extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'diceRoll.name',
         'character.name',
         'user.name',
@@ -52,9 +51,7 @@ class DiceRollResult extends MiscModel
     {
         // When exporting in console, we don't have this so don't use it
         if (!app()->runningInConsole()) {
-            return parent::newQuery()->whereHas('diceRoll', function ($query) {
-                $query->where('campaign_id', CampaignLocalization::getCampaign()->id);
-            });
+            return parent::newQuery()->has('diceRoll');
         }
         return parent::newQuery();
     }

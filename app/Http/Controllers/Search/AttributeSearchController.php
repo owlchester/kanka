@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class AttributeSearchController extends Controller
         $this->middleware('campaign.member');
     }
 
-    public function index(Request $request, Entity $entity)
+    public function index(Request $request, Campaign $campaign, Entity $entity)
     {
         $attributes = $entity->attributes()
             ->where('name', 'LIKE', '%' . $request->get('q') . '%')

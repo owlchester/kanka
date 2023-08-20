@@ -31,12 +31,10 @@ class PermissionService
 
     /**
      * Permissions setup on the campaign
-     * @var bool|array
      */
-    private $basePermissions = false;
+    private array $basePermissions;
 
-    /** @var bool|array  */
-    protected $cachedPermissions = false;
+    protected array $cachedPermissions;
 
     /**
      * Set the entity type
@@ -467,7 +465,7 @@ class PermissionService
      */
     public function entityPermissions(Entity $entity): array
     {
-        if (!empty($this->cachedPermissions)) {
+        if (isset($this->cachedPermissions)) {
             return $this->cachedPermissions;
         }
 
@@ -487,7 +485,7 @@ class PermissionService
      */
     protected function clearEntityPermissions(): self
     {
-        $this->cachedPermissions = false;
+        unset($this->cachedPermissions);
         return $this;
     }
 
@@ -503,7 +501,7 @@ class PermissionService
             return false;
         }
 
-        if ($this->basePermissions === false) {
+        if (!isset($this->basePermissions)) {
             $this->basePermissions = [
                 'roles' => [],
                 'users' => []
@@ -567,6 +565,9 @@ class PermissionService
      */
     public function selected(string $type, int $user, int $action): string
     {
+        if (!isset($this->cachedPermissions)) {
+            return 'inherit';
+        }
         $value = Arr::get($this->cachedPermissions, $type . '.' . $user . '.' . $action, null);
         if ($value === null) {
             return 'inherit';

@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('locations'))
+@if (!$campaign->enabled('locations'))
     <?php return ?>
 @endif
 
@@ -11,13 +11,14 @@
     }
 @endphp
     <x-forms.foreign
+        :campaign="$campaign"
         :name="isset($isParent) ? 'parent_location_id' : 'location_id'"
         key="location"
         entityType="locations"
         :allowNew="$allowNew ?? true"
         :allowClear="$allowClear ?? true"
         :parent="$isParent ?? false"
-        :route="route('locations.find', isset($model) ? ['exclude' => $model->id] : null)"
+        :route="route('locations.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
         :class="\App\Models\Location::class"
         :selected="$preset"
         :dropdownParent="$dropdownParent ?? null"

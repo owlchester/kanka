@@ -12,7 +12,7 @@
                 <a class="btn2 btn-error "
                     href="#"
                     data-toggle="dialog-ajax"
-                    data-url="{{ route('campaign_submissions.edit', [$submission->id, 'action' => 'reject']) }}"
+                    data-url="{{ route('campaign_submissions.edit', [$campaign, $submission->id, 'action' => 'reject']) }}"
                     data-target="submission-dialog"
                     title="{{ __('campaigns/submissions.actions.reject') }}">
                     <i class="fa-solid fa-times" aria-hidden="true"></i>
@@ -22,10 +22,10 @@
                 <a class="btn2 btn-primary"
                    href="#"
                    data-toggle="dialog-ajax"
-                   data-url="{{ route('campaign_submissions.edit', [$submission->id, 'action' => 'approve']) }}"
+                   data-url="{{ route('campaign_submissions.edit', [$campaign, $submission->id, 'action' => 'approve']) }}"
                    data-target="submission-dialog"
                    title="{{ __('campaigns/submissions.actions.accept') }}">
-                    <i class="fa-solid fa-check" aria-hidden="true"></i>
+                    <x-icon class="check" />
                     <span class="sr-only">{{ __('campaigns/submissions.actions.accept') }}</span>
                 </a>
             </div>

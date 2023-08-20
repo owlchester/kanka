@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\StorePreset;
+use App\Models\Campaign;
 use App\Models\Preset;
 use App\Models\PresetType;
 use Illuminate\Http\Request;
@@ -16,37 +16,37 @@ class PresetController extends Controller
         $this->middleware('campaign.member');
     }
 
-    public function index(PresetType $presetType)
+    public function index(Campaign $campaign, PresetType $presetType)
     {
         $presets = Preset::inType($presetType->id)->orderBy('name')->get();
 
         return view('presets.list')
+            ->with('campaign', $campaign)
             ->with('presets', $presets)
             ->with('presetType', $presetType)
             ->with('from', request()->get('from'))
         ;
     }
 
-    public function show(PresetType $presetType, Preset $preset)
+    public function show(Campaign $campaign, PresetType $presetType, Preset $preset)
     {
         return response()
             ->json(['preset' => $preset->config]);
     }
 
-    public function create(PresetType $presetType)
+    public function create(Campaign $campaign, PresetType $presetType)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('mapPresets', $campaign);
 
         $from = request()->get('from', 'dashboard');
         return view('presets.forms.create')
+            ->with('campaign', $campaign)
             ->with('presetType', $presetType)
             ->with('from', $from);
     }
 
-    public function store(StorePreset $request, PresetType $presetType)
+    public function store(StorePreset $request, Campaign $campaign, PresetType $presetType)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('mapPresets', $campaign);
 
         $data = $request->only('name', 'config', 'visibility_id');
@@ -56,48 +56,57 @@ class PresetController extends Controller
         $preset = $preset->create($data);
 
         list($route, $params) = $this->parseFrom($request);
+        if (!is_array($params)) {
+            $params = [$params];
+        }
+        $params['campaign'] = $campaign;
 
         return redirect()
             ->route($route, $params)
             ->with('success', __('presets.create.success', ['name' => $preset->name]));
     }
 
-    public function edit(PresetType $presetType, Preset $preset)
+    public function edit(Campaign $campaign, PresetType $presetType, Preset $preset)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('mapPresets', $campaign);
 
         $from = request()->get('from', 'dashboard');
         return view('presets.forms.edit')
+            ->with('campaign', $campaign)
             ->with('presetType', $presetType)
             ->with('preset', $preset)
             ->with('from', $from)
         ;
     }
 
-    public function update(StorePreset $request, PresetType $presetType, Preset $preset)
+    public function update(StorePreset $request, Campaign $campaign, PresetType $presetType, Preset $preset)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('mapPresets', $campaign);
 
         $data = $request->only('name', 'config', 'visibility_id');
         $preset->update($data);
 
         list($route, $params) = $this->parseFrom($request);
+        if (!is_array($params)) {
+            $params = [$params];
+        }
+        $params['campaign'] = $campaign;
 
         return redirect()
             ->route($route, $params)
             ->with('success', __('presets.edit.success', ['name' => $preset->name]));
     }
 
-    public function destroy(Request $request, PresetType $presetType, Preset $preset)
+    public function destroy(Request $request, Campaign $campaign, PresetType $presetType, Preset $preset)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('mapPresets', $campaign);
-
         $preset->delete();
 
         list($route, $params) = $this->parseFrom($request);
+        if (!is_array($params)) {
+            $params = [$params];
+        }
+        $params['campaign'] = $campaign;
 
         return redirect()
             ->route($route, $params)

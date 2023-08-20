@@ -5,8 +5,8 @@
     <p>
         {!! __('dashboards/widgets/welcome.intros.1', [
 'user' => auth()->check() ? '<strong>' . auth()->user()->name . '</strong>' : __('crud.users.unknown'),
-'characters' => link_to_route('characters.index', __('entities.characters')),
-'locations' => link_to_route('locations.index', __('entities.locations')),
+'characters' => link_to_route('characters.index', __('entities.characters'), [$campaign]),
+'locations' => link_to_route('locations.index', __('entities.locations'), [$campaign]),
 ]) !!}
     </p>
 
@@ -63,8 +63,8 @@
     <ul class="">
         <li class="mb-2">
             {!! __('dashboards/widgets/welcome.endings.1', [
-    'kb' => link_to_route('front.faqs.index', __('front.menu.kb')),
-    'documentation' => link_to('https://docs.kanka.io', __('front.menu.documentation'))
+    'kb' => link_to('https://kanka.io/kb', __('footer.kb')),
+    'documentation' => link_to('https://docs.kanka.io', __('footer.documentation'))
 ]) !!}
         </li>
         <li class="mb-2">
@@ -74,7 +74,7 @@
         </li>
         <li class="mb-2">
             {!! __('dashboards/widgets/welcome.endings.3', [
-    'public-campaigns' => link_to(route('front.public_campaigns'), __('front.menu.campaigns'))
+    'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'))
 ]) !!}
         </li>
         <li class="mb-2">

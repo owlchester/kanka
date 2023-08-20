@@ -24,7 +24,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
             </div>
             <div class="{{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
-                {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live')]) !!}
+                {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live', $campaign)]) !!}
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
@@ -59,7 +59,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
             </div>
             <div class="{{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
-                {!! Form::textarea('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 3, 'data-remote' => route('search.live')]) !!}
+                {!! Form::textarea('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 3, 'data-remote' => route('search.live', $campaign)]) !!}
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}

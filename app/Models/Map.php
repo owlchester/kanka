@@ -266,8 +266,6 @@ class Map extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $items['second']['maps'] = [
             'name' => Module::plural($this->entityTypeId(), 'entities.maps'),
             'route' => 'maps.maps',
@@ -659,7 +657,8 @@ class Map extends MiscModel
                     __('maps.tooltips.chunking.running') . '"></i>';
             }
         }
-        return '<a href="' . route('maps.explore', $this->id) . '" target="_blank" ' .
+        $campaign = CampaignLocalization::getCampaign();
+        return '<a href="' . route('maps.explore', [$campaign, $this->id]) . '" target="_blank" ' .
             'data-toggle="tooltip" title="' . __('maps.actions.explore') . '">' .
             '<i class="fa-solid fa-map" data-tree="escape"></i>' .
             '</a>';
@@ -764,17 +763,17 @@ class Map extends MiscModel
         if (auth()->check() && auth()->user()->can('update', $this)) {
             $newActions[] = '<li class="divider"></li>';
             $newActions[] = '<li>
-                <a href="' . route('maps.map_layers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="layers">
+                <a href="' . route('maps.map_layers.index', [$campaign, $this]) . '" class="dropdown-item datagrid-dropdown-item" data-name="layers">
                     <i class="fa-solid fa-layer-group" aria-hidden="true"></i> ' . __('maps.panels.layers') . '
                 </a>
             </li>';
             $newActions[] = '<li>
-                <a href="' . route('maps.map_groups.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="groups">
+                <a href="' . route('maps.map_groups.index', [$campaign, $this]) . '" class="dropdown-item datagrid-dropdown-item" data-name="groups">
                     <i class="fa-solid fa-map-signs" aria-hidden="true"></i> ' . __('maps.panels.groups') . '
                 </a>
             </li>';
             $newActions[] = '<li>
-                <a href="' . route('maps.map_markers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="markers">
+                <a href="' . route('maps.map_markers.index', [$campaign, $this]) . '" class="dropdown-item datagrid-dropdown-item" data-name="markers">
                     <i class="fa-solid fa-map-pin" aria-hidden="true"></i> ' . __('maps.panels.markers') . '
                 </a>
             </li>';

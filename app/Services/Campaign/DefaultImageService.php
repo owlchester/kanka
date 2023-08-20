@@ -67,7 +67,7 @@ class DefaultImageService
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
-        CampaignCache::clearDefaultImages();
+        CampaignCache::clear();
 
         return true;
     }
@@ -94,7 +94,7 @@ class DefaultImageService
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
-        CampaignCache::clearDefaultImages();
+        CampaignCache::clear();
 
         return true;
     }

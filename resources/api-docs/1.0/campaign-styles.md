@@ -13,7 +13,7 @@
 
 You can get a list of all the campaign styles of a campaign by using the following endpoint. Note that this feature is reserved to boosted campaigns.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |

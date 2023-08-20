@@ -212,6 +212,9 @@ trait UserSetting
     public function resetTutorials(): self
     {
         $settings = $this->settings;
+        if (!is_array($settings)) {
+            return $this;
+        }
 
         foreach ($settings as $key => $setting) {
             if (str_starts_with($key, 'tutorial_')) {

@@ -3,7 +3,7 @@
     {{ __('campaigns/styles.reorder.title') }}
 </h3>
 {!! Form::open([
-    'route' => ['campaign_styles.reorder-save'],
+    'route' => ['campaign_styles.reorder-save', $campaign],
     'method' => 'POST',
 ]) !!}
 <div class="box-entity-story-reorder">
@@ -18,7 +18,7 @@
                     {!! $style->name !!}
                 </div>
                 <div class="self-end">
-                    @if ($style->is_enabled) <i class="fa-solid fa-check-circle"></i>@endif
+                    @if ($style->is_enabled) <x-icon class="fa-solid fa-check-circle" />@endif
                 </div>
             </div>
         @endforeach

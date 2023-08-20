@@ -94,10 +94,7 @@
     </div>
 
 @yield('modals')
-
-    <!-- Scripts -->
-    <script src="/js/vendor.js" defer></script>
-    @vite('resources/js/app.js')
+    @vite(['resources/js/vendor-final.js', 'resources/js/app.js'])
     @yield('scripts')
 </body>
 </html>

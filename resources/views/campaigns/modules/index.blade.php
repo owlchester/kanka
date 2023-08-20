@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.settings') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.settings')
     ],
     'canonical' => true,
@@ -25,17 +25,17 @@
                     {{ __('campaigns.show.tabs.settings') }}
                 </h3>
 
+                <a href="//docs.kanka.io/en/latest/features/campaigns/modules.html"
+                   target="_blank" class="btn2 btn-sm btn-ghost">
+                    <x-icon class="question"></x-icon>
+                    {!! __('crud.actions.help') !!}
+                </a>
                 @if ($canReset)
                     <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
                         <i class="fa-solid fa-eraser" aria-hidden="true"></i>
                         {{ __('crud.actions.reset') }}
                     </a>
                 @endif
-                <a href="//docs.kanka.io/en/latest/features/campaigns/modules.html"
-                   target="_blank" class="btn2 btn-sm">
-                    <x-icon class="question"></x-icon>
-                    {!! __('campaigns.members.actions.help') !!}
-                </a>
             </div>
 
             <x-tutorial code="campaign_modules">
@@ -134,6 +134,7 @@
                 'method' => 'DELETE',
                 'route' => [
                     'modules.reset',
+                    $campaign
                 ]
             ]) !!}
             <x-buttons.confirm type="danger" full="true" outline="true">

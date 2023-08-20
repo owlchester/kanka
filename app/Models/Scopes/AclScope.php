@@ -8,15 +8,15 @@ use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\MiscModel;
-use App\Models\Visibility;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
+use App\Enums\Visibility;
 
 class AclScope implements Scope
 {
     /**
-     * All of the extensions to be added to the builder.
+     * All the extensions to be added to the builder.
      *
      * @var array
      */
@@ -192,7 +192,7 @@ class AclScope implements Scope
         $table = $model->getTable();
         // Guest, or not part of the campaign either, just get the all visibility
         if (auth()->guest() || !$campaign->userIsMember()) {
-            return $query->where($table . '.visibility_id', Visibility::VISIBILITY_ALL);
+            return $query->where($table . '.visibility_id', Visibility::All);
         }
 
         Permissions::campaign($campaign);
@@ -203,15 +203,15 @@ class AclScope implements Scope
             ->withoutGlobalScope(VisibilityIDScope::class)
             ->where(function ($sub) use ($table) {
                 $visibilities = Permissions::isAdmin()
-                    ? [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_ADMIN,
-                        Visibility::VISIBILITY_ADMIN_SELF, Visibility::VISIBILITY_MEMBERS]
-                    : [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_MEMBERS];
+                    ? [Visibility::All, Visibility::Admin,
+                        Visibility::AdminSelf, Visibility::Member]
+                    : [Visibility::All, Visibility::Member];
                 $sub
                     ->where(function ($self) use ($table) {
                         $self
                             ->whereIn($table . '.visibility_id', [
-                                Visibility::VISIBILITY_SELF,
-                                Visibility::VISIBILITY_ADMIN_SELF,
+                                Visibility::Self,
+                                Visibility::AdminSelf,
                             ])
                             ->where($table . '.created_by', auth()->user()->id);
                     })

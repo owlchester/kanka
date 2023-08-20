@@ -1,9 +1,8 @@
 <?php /**
  * @var \App\Models\Character $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
-@if (!$campaignService->enabled('locations') || empty($model->location))
+@if (!$campaign->enabled('locations') || empty($model->location))
     <?php return ?>
 @endif
 

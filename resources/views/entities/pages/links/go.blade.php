@@ -3,14 +3,13 @@
 @extends('layouts.app', [
     'title' => __('entities/links.go.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('crud.tabs.links')
     ],
     'mainTitle' => false,
     'miscModel' => $entity->child,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     <div class="max-w-4xl m-5">

@@ -1,21 +1,21 @@
 @extends('layouts.app', [
     'title' => __('entities/move.title', ['name' => $post->name]),
     'breadcrumbs' => [
-        ['url' => route($entity->pluralType() . '.index'), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => route($entity->pluralType() . '.show', [$entity->entity_id]), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('crud.actions.move'),
     ]
 ])
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['posts.move', $entity->id, $post->id], 'method' => 'POST']) !!}
+    {!! Form::open(['route' => ['posts.move', $campaign, $entity->id, $post->id], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
     <x-box>
         <div class="field-entity mb-5">
             <label>{{ __('entities/notes.move.entity') }}</label>
-            <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations') }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
+            <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations', $campaign) }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
         </div>
         <div class="field-copy form-check">
             <label>{!! Form::checkbox('copy', 1, true) !!}

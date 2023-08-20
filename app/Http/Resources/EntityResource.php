@@ -9,7 +9,6 @@ use App\Models\Item;
 use App\Models\MiscModel;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 class EntityResource extends JsonResource
 {
@@ -50,8 +49,6 @@ class EntityResource extends JsonResource
         $entity = $this->resource;
 
         $url = $entity->url();
-        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
-        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
         $apiViewUrl = 'campaigns.' . $entity->pluralType() . '.show';
 
         $data = [
@@ -74,7 +71,6 @@ class EntityResource extends JsonResource
             'created_by' => $entity->created_by,
             'updated_at' => $entity->updated_at,
             'updated_by' => $entity->updated_by,
-
 
             'urls' => [
                 'view' => $url,
@@ -149,8 +145,6 @@ class EntityResource extends JsonResource
         $boosted = $campaign->boosted();
 
         $url = $misc->getLink();
-        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
-        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
         $apiViewUrl = 'campaigns.' . $misc->entity->pluralType() . '.show';
 
         $merged = [

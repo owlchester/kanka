@@ -116,7 +116,7 @@ class MenuLink extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    public $sortableColumns = [
+    public array $sortableColumns = [
         'position',
         'menu',
         'tab',
@@ -177,10 +177,12 @@ class MenuLink extends MiscModel
     /**
      * @return array
      */
-    public function getRouteParams()
+    public function getRouteParams(bool $entity): array
     {
+        $campaign = CampaignLocalization::getCampaign();
         $parameters = [
-            $this->target->entity_id,
+            $campaign,
+            $entity ? $this->target : $this->target->entity_id,
             'quick-link' => $this->id
         ];
 
@@ -202,14 +204,15 @@ class MenuLink extends MiscModel
      */
     public function getRoute(): string
     {
+        $campaign = CampaignLocalization::getCampaign();
         if ($this->dashboard) {
             $dashboard = $this->dashboard_id;
             if (Arr::get($this->options, 'default_dashboard') === '1') {
                 $dashboard = 'default';
             }
-            return route('dashboard', ['dashboard' => $dashboard, 'quick-link' => $this->id]);
+            return route('dashboard', [$campaign, 'dashboard' => $dashboard, 'quick-link' => $this->id]);
         } elseif ($this->isRandom()) {
-            return route('menu_links.random', $this->id);
+            return route('menu_links.random', [$campaign, $this->id]);
         }
         return !empty($this->entity_id) ? $this->getEntityRoute() : $this->getIndexRoute();
     }
@@ -220,16 +223,19 @@ class MenuLink extends MiscModel
      */
     protected function getEntityRoute(): string
     {
+        $campaign = CampaignLocalization::getCampaign();
         $plural = $this->target->pluralType();
         if (empty($plural)) {
             return '';
         }
-        $route = $plural . '.show';
+        $route = 'entities.show';
+        $entity = true;
         if (!empty($this->menu)) {
             $menuRoute = $this->target->pluralType() . '.' . $this->menu;
+            $entity = false;
 
             // Inventories use a different url buildup
-            $routeOptions = [$this->target->id, 'quick-link' => $this->id];
+            $routeOptions = [$campaign, $this->target->id, 'quick-link' => $this->id];
             if ($this->menu === 'inventory') {
                 return route('entities.inventory', $routeOptions);
             } elseif ($this->menu === 'relations') {
@@ -248,7 +254,7 @@ class MenuLink extends MiscModel
             }
         }
 
-        return route($route, $this->getRouteParams());
+        return route($route, $this->getRouteParams($entity));
     }
 
     /**
@@ -265,7 +271,8 @@ class MenuLink extends MiscModel
             $routeName = Str::plural($this->type) . '.index';
         }
         try {
-            return route($routeName, $filters);
+            $campaign = CampaignLocalization::getCampaign();
+            return route($routeName, [$campaign, $filters]);
         } catch (Exception $e) {
             return '/invalid';
         }
@@ -278,7 +285,8 @@ class MenuLink extends MiscModel
      */
     public function getLink(string $route = 'show'): string
     {
-        return route('menu_links.' . $route, $this->id);
+        $campaign = CampaignLocalization::getCampaign();
+        return route('menu_links.' . $route, [$campaign, $this->id]);
     }
 
     /**
@@ -362,7 +370,7 @@ class MenuLink extends MiscModel
             return null;
         }
 
-        return $entity->url('show');
+        return $entity->url();
     }
 
     /**

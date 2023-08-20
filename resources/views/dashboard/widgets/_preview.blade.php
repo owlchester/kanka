@@ -61,7 +61,7 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
             @include('dashboard.widgets.previews._relations')
             @include('dashboard.widgets.previews._attributes')
         @elseif ($widget->conf('full') === '2')
-            <iframe src="{{ route('entities.attributes-dashboard', [$model->entity]) }}" class="entity-attributes w-full"></iframe>
+            <iframe src="{{ route('entities.attributes-dashboard', [$campaign, $model->entity]) }}" class="entity-attributes w-full"></iframe>
         @else
         <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
 

@@ -3,50 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\TranslatableException;
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\BulkRequest;
+use App\Models\Campaign;
 use App\Services\AttributeService;
 use App\Services\BulkService;
-use App\Services\EntityService;
+use App\Services\Entity\TypeService;
 use App\Traits\BulkControllerTrait;
+use App\Traits\CampaignAware;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class BulkController extends Controller
 {
     use BulkControllerTrait;
+    use CampaignAware;
 
-    /** @var BulkService */
-    protected $bulkService;
+    protected BulkService $bulkService;
 
-    /** @var EntityService */
-    protected $entityService;
+    protected TypeService $typeService;
 
-    /** @var BulkRequest */
-    protected $request;
+    protected BulkRequest $request;
 
-    /** @var array */
-    protected $routeParams = [];
+    protected array $routeParams = [];
 
     /** @var null|string */
     protected null|string $entity = null;
 
-    /**
-     * BulkController constructor.
-     * @param BulkService $bulkService
-     */
-    public function __construct(BulkService $bulkService, EntityService $entityService)
+    public function __construct(BulkService $bulkService, TypeService $typeService)
     {
         $this->bulkService = $bulkService;
-        $this->entityService = $entityService;
+        $this->typeService = $typeService;
     }
 
     /**
      * @param BulkRequest $request
      */
-    public function process(BulkRequest $request)
+    public function index(BulkRequest $request, Campaign $campaign)
     {
         $this->request = $request;
         $this->entity = $request->get('entity');
@@ -65,11 +57,11 @@ class BulkController extends Controller
             } elseif ($action === 'export') {
                 return $this->export();
             } elseif ($action === 'print') {
-                return $this->print();
+                return $this->campaign($campaign)->print();
             } elseif ($action === 'permissions') {
                 return $this->permissions();
             } elseif ($action === 'copy-campaign') {
-                return $this->copyToCampaign();
+                return $this->copyToCampaign($campaign);
             } elseif ($action === 'transform') {
                 return $this->transform();
             } elseif ($action === 'templates') {
@@ -95,7 +87,7 @@ class BulkController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function modal(Request $request)
+    public function modal(Request $request, Campaign $campaign)
     {
         if (!$request->has('view') || !in_array($request->get('view'), ['permissions', 'copy_campaign', 'templates', 'transform'])) {
             return response()->json(['error' => 'invalid view']);
@@ -106,17 +98,17 @@ class BulkController extends Controller
         $entities = null;
 
         if (request()->get('view') == 'templates') {
-            $campaign = CampaignLocalization::getCampaign();
             /** @var AttributeService $service */
             $service = app()->make('App\Services\AttributeService');
-            $templates = $service->campaign(CampaignLocalization::getCampaign())->templateList();
+            $templates = $service->campaign($campaign)->templateList();
         } elseif (request()->get('view') === 'transform') {
-            $entities = $this->entityService
-                ->labelledEntities(true, [Str::plural($type), 'menu_links', 'relations'], true);
+            $entities = $this->typeService
+                ->exclude([$type, 'menu_link', 'relation'])
+                ->withNull()
+                ->labelled();
             $entities[''] = __('entities/transform.fields.select_one');
         }
 
-        $campaign = CampaignLocalization::getCampaign();
         return view('cruds.datagrids.bulks.modals._' . $request->get('view'), compact(
             'campaign',
             'templates',
@@ -131,8 +123,8 @@ class BulkController extends Controller
      */
     protected function batch()
     {
-        $entityClass = $this->entityService->getClass($this->entity);
-        $entityObj = new $entityClass();
+        $classes = config('entities.classes-plural');
+        $entityObj = new $classes[$this->entity]();
         $langFile = $this->entity === 'relations' ? 'entities/relations.bulk.success.' : 'crud.bulk.success.';
         $models = $this->models();
 
@@ -166,20 +158,21 @@ class BulkController extends Controller
             ->with('success_raw', trans_choice('entities/transform.bulk.success', $count, ['count' => $count, 'type' => __('entities.' . $target)]));
     }
 
-    protected function copyToCampaign()
+    protected function copyToCampaign(Campaign $campaign)
     {
         $models = $this->models();
         $campaignId = $this->request->get('campaign');
-        $campaign = Auth::user()->campaigns()->where('campaign_id', $campaignId)->first();
 
         $count = $this
             ->bulkService
+            ->campaign($campaign)
             ->entities($models)
-            ->copyToCampaign($campaign->id);
+            ->copyToCampaign($campaignId);
 
+        $target = Campaign::findOrFail($campaignId);
         return redirect()
             ->back()
-            ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $campaign->name]));
+            ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $target->name]));
     }
 
     protected function permissions()
@@ -204,6 +197,7 @@ class BulkController extends Controller
         $entities = $this->bulkService->export();
 
         return view('entities.pages.print.print-bulk')
+            ->with('campaign', $this->campaign)
             ->with('entities', $entities)
             ->with('printing', true)
         ;
@@ -238,9 +232,10 @@ class BulkController extends Controller
         $entities = $this->bulkService->export();
         $entityType = $this->entity;
         $name = $this->entity;
+        $campaign = $this->campaign;
 
         return $pdf
-            ->loadView('cruds.export', compact('entityType', 'entities', 'name'))
+            ->loadView('cruds.export', compact('campaign', 'entityType', 'entities', 'name'))
             ->download('kanka ' . $this->entity . ' export.pdf');
     }
 

@@ -27,7 +27,7 @@ $statuses = [
         <div class="flex flex-wrap md:flex-no-wrap items-start gap-2 md:gap-4 mb-2 member-row">
             <div class="">
                 <select name="organisations[{{ $organisation->id }}]" class="form-control select2" style="width: 100%"
-                    data-url="{{ route('organisations.find') }}"
+                    data-url="{{ route('organisations.find', $campaign) }}"
                     data-placeholder="{{ __('crud.placeholders.organisation') }}"
                     data-language="{{ LaravelLocalization::getCurrentLocale() }}"
                     data-allow-clear="false"
@@ -83,7 +83,7 @@ $statuses = [
         <div class="flex flex-wrap md:flex-no-wrap items-start gap-2 md:gap-4 mb-2 member-row">
             <div class="">
                 <select name="organisations[]" class="form-control tmp-org" style="width: 100%"
-                        data-url="{{ route('organisations.find') }}"
+                        data-url="{{ route('organisations.find', $campaign) }}"
                         data-placeholder="{{ __('crud.placeholders.organisation') }}"
                         data-language="{{ LaravelLocalization::getCurrentLocale() }}"
                 >

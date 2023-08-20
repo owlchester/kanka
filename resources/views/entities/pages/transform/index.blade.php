@@ -1,8 +1,8 @@
 @extends('layouts.app', [
     'title' => __('entities/transform.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => $entity->url(), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('crud.actions.transform'),
     ]
 ])
@@ -10,7 +10,7 @@
 @section('content')
     @include('partials.errors')
 
-    {!! Form::open(['route' => ['entities.transform', $entity->id], 'method' => 'POST']) !!}
+    {!! Form::open(['route' => ['entities.transform', $campaign, $entity->id], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
         <div class="max-w-3xl">
@@ -21,7 +21,7 @@
 
                 <a href="https://docs.kanka.io/en/latest/guides/transform.html" target="_blank" class="block mb-5">
                     <i class="fa-solid fa-external-link" aria-hidden="true"></i>
-                    {{ __('crud.helpers.learn_more', ['documentation' => __('front.menu.documentation')]) }}
+                    {{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}
                 </a>
                 <div class="field-target">
                     <label>{{ __('entities/transform.fields.target') }}</label>

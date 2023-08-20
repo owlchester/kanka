@@ -7,7 +7,7 @@ class ConversationFilter extends DatagridFilter
     /**
      * Filters available for conversations
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')

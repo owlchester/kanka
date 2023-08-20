@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('quests'))
+@if (!$campaign->enabled('quests'))
     <?php return ?>
 @endif
 
@@ -12,13 +12,14 @@ if (isset($model) && $model->quest) {
 @endphp
 
 <x-forms.foreign
+    :campaign="$campaign"
     name="quest_id"
     key="quest"
     entityType="quests"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('quests.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route('quests.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Quest::class"
     :selected="$preset"
     :helper="$helper ?? null"

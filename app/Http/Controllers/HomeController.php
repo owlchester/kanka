@@ -2,76 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\FrontCache;
 use App\Models\Campaign;
-use App\Facades\CampaignLocalization;
-use App\Services\ReferralService;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(ReferralService $referralService)
-    {
-        $this->middleware('auth', ['only' => ['back']]);
-        $referralService->validate(request());
-    }
-
-    /**
-     * Show the application dashboard.
-     */
     public function index()
     {
         if (auth()->guest()) {
-            return $this->front();
+            return redirect()->route('login');
         }
         return $this->back();
     }
 
     /**
-     */
-    protected function front()
-    {
-        $campaigns = FrontCache::featured();
-        return view('front.home')
-            ->with('campaigns', $campaigns);
-    }
-
-    /**
+     * When a user hits /, or logs in, figure out where to take them.
+     * Last campaign? Any campaign? Create a new campaign?
      */
     protected function back()
     {
-        $campaignId = session()->get('campaign_id');
-        if (empty($campaignId) || !auth()->user()->hasCampaigns()) {
-            return redirect()->route('start');
-        }
-
-        // Redirect to real dashboard
-        $campaign = CampaignLocalization::getCampaign();
-        if ($campaign) {
-            return redirect()->route('home');
-        }
-
-        // Otherwise, redirect to the last campaign the user has
+        // Go to the user's last campaign, if any
         $last = auth()->user()->last_campaign_id;
         if (!empty($last)) {
-            $campaign = Campaign::find($last);
-            if ($campaign) {
-                CampaignLocalization::setCampaign($campaign->id);
-                return redirect()->to(CampaignLocalization::getUrl($campaign->id));
+            /** @var Campaign|null $lastCampaign */
+            $lastCampaign = Campaign::acl($last)->first();
+            if ($lastCampaign) {
+                return redirect()->route('dashboard', $last);
             }
         }
+
         // No valid last campaign? Let's redirect to the last campaign the user had
         $campaigns = auth()->user()->campaigns;
         foreach ($campaigns as $campaign) {
-            CampaignLocalization::setCampaign($campaign->id);
-            return redirect()->to(CampaignLocalization::getUrl($campaign->id));
+            return redirect()->route('dashboard', $campaign);
         }
 
-        // No campaign? Ok, go to start.
+        // No campaign? Ask the user to create one
         return redirect()->route('start');
     }
 }

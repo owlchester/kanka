@@ -5,7 +5,7 @@
     <div class="campaign-header-content p-2">
         <div class="campaign-content">
             <div class="campaign-head flex gap-2">
-                <a href="{{ route('campaign') }}" title="{!! $campaign->name !!}" class="grow campaign-title text-2xl m-0 p-0">
+                <a href="{{ route('overview', $campaign) }}" title="{!! $campaign->name !!}" class="grow campaign-title text-2xl m-0 p-0">
                     {!! $campaign->name !!}
                 </a>
                 <div class="flex gap-2 action-bar">
@@ -15,8 +15,8 @@
                                 data-following="{{ $campaign->isFollowing() ? true : false }}"
                                 data-follow="{{ __('dashboard.actions.follow') }}"
                                 data-unfollow="{{ __('dashboard.actions.unfollow') }}"
-                                data-url="{{ route('campaign.follow') }}"
-                                data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
+                                data-url="{{ route('campaign.follow', $campaign) }}"
+                                data-toggle="tooltip" data-title="{{ __('dashboard.helpers.follow') }}"
                                 data-placement="bottom"
                         >
                             <i class="fa-solid fa-star"></i> <span id="campaign-follow-text"></span>
@@ -24,9 +24,9 @@
                     @endcan
                     @can('apply', $campaign)
                         <button id="campaign-apply" class="btn2 btn-sm" data-id="{{ $campaign->id }}"
-                                data-url="{{ route('campaign.apply') }}"
-                                data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
-                                data-target="#large-modal"
+                                data-url="{{ route('campaign.apply', $campaign) }}"
+                                data-toggle="dialog-ajax" data-title="{{ __('dashboard.helpers.join') }}"
+                                data-target="apply-dialog"
                                 data-placement="bottom"
                         >
                             <i class="fa-solid fa-door-open"></i> {{ __('dashboard.actions.join') }}
@@ -42,7 +42,7 @@
                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                     @if (!empty($dashboard))
                                         <li>
-                                            <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
+                                            <a href="{{ route('dashboard', [$campaign, 'dashboard' => 'default']) }}">
                                                 {{ __('dashboard.dashboards.default.title')}}
                                             </a>
                                         </li>
@@ -52,7 +52,7 @@
                                             @continue
                                         @endif
                                         <li>
-                                            <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
+                                            <a href="{{ route('dashboard', [$campaign, 'dashboard' => $dash->id]) }}">
                                                 {!! $dash->name !!}
                                             </a>
                                         </li>
@@ -61,7 +61,7 @@
                                     @can('dashboard', $campaign)
                                         <li class="divider"></li>
                                         <li>
-                                            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
+                                            <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}">
                                                 {{ __('dashboard.settings.title') }}
                                             </a>
                                         </li>
@@ -70,7 +70,7 @@
                             </div>
                         @else
                             @can('dashboard', $campaign)
-                            <a href="{{ route('dashboard.setup') }}" class="btn2" title="{{ __('dashboard.settings.title') }}">
+                            <a href="{{ route('dashboard.setup', $campaign) }}" class="btn2" title="{{ __('dashboard.settings.title') }}">
                                 <i class="fa-solid fa-th-large"></i>
                             </a>
                             @endcan
@@ -85,7 +85,7 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             @if (!empty($dashboard))
                                 <li>
-                                    <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
+                                    <a href="{{ route('dashboard', [$campaign, 'dashboard' => 'default']) }}">
                                         <i class="fa-solid fa-th-large"></i> {{ __('dashboard.dashboards.default.title')}}
                                     </a>
                                 </li>
@@ -95,35 +95,35 @@
                                     @continue
                                 @endif
                                 <li>
-                                    <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
+                                    <a href="{{ route('dashboard', [$campaign, 'dashboard' => $dash->id]) }}">
                                         <i class="fa-solid fa-th-large"></i> {!! $dash->name !!}
                                     </a>
                                 </li>
                             @endforeach
                             <li>
-                                <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" title="{{ __('dashboard.settings.title') }}">
+                                <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" title="{{ __('dashboard.settings.title') }}">
                                     <x-icon class="cog"></x-icon> {{ __('dashboard.settings.title') }}
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="{{ route('campaigns.edit') }}">
+                                <a href="{{ route('campaigns.edit', $campaign) }}">
                                     <x-icon class="pencil"></x-icon> {{ __('campaigns.show.actions.edit') }}
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="{{ route('campaign_users.index') }}"  title="{{ __('campaigns.show.tabs.members') }}">
+                                <a href="{{ route('campaign_users.index', $campaign) }}"  title="{{ __('campaigns.show.tabs.members') }}">
                                     <x-icon class="fa-solid fa-user"></x-icon> {{ __('campaigns.show.tabs.members') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('campaign_roles.index') }}" title="{{  __('campaigns.show.tabs.roles') }}">
+                                <a href="{{ route('campaign_roles.index', $campaign) }}" title="{{  __('campaigns.show.tabs.roles') }}">
                                     <x-icon class="fa-solid fa-user-tag"></x-icon> {{ __('campaigns.show.tabs.roles') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('campaign.modules') }}" title="{{ __('campaigns.show.tabs.settings') }}">
+                                <a href="{{ route('campaign.modules', $campaign) }}" title="{{ __('campaigns.show.tabs.settings') }}">
                                     <x-icon class="fa-solid fa-th-large"></x-icon> {{ __('campaigns.show.tabs.settings') }}
                                 </a>
                             </li>

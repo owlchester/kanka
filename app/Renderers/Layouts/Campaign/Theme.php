@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
+use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Layout;
 
 class Theme extends Layout
@@ -24,7 +25,8 @@ class Theme extends Layout
                 'key' => 'name',
                 'label' => 'campaigns/styles.fields.name',
                 'render' => function ($model) {
-                    return link_to_route('campaign_styles.edit', $model->name, $model);
+                    $campaign = CampaignLocalization::getCampaign();
+                    return link_to_route('campaign_styles.edit', $model->name, [$campaign, $model]);
                 },
             ],
             'length' => [

@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\Campaigns\GalleryImageFolderStore;
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\Campaigns\GalleryImageUpdate;
+use App\Models\Campaign;
 use App\Models\Image;
 use App\Services\Campaign\GalleryService;
 use Illuminate\Support\Arr;
 
 class GalleryController extends Controller
 {
-    /** @var GalleryService */
     protected GalleryService $service;
 
     public function __construct(GalleryService $service)
@@ -26,9 +25,8 @@ class GalleryController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
         if (!$campaign->superboosted()) {
@@ -50,9 +48,8 @@ class GalleryController extends Controller
         return view('gallery.index', compact('campaign', 'images', 'folder'));
     }
 
-    public function search()
+    public function search(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
         $name = trim(request()->get('q', null));
@@ -62,7 +59,8 @@ class GalleryController extends Controller
             ->get();
 
         return view('gallery.images', compact(
-            'images'
+            'images',
+            'campaign',
         ));
     }
 
@@ -72,9 +70,8 @@ class GalleryController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(GalleryImageStore $request)
+    public function store(GalleryImageStore $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
         $images = $this->service
@@ -83,12 +80,16 @@ class GalleryController extends Controller
 
         $body = [];
         foreach ($images as $image) {
-            $body[] = view('gallery._image')->with('image', $image)->render();
+            $body[] = view('gallery._image')
+                ->with('campaign', $campaign)
+                ->with('image', $image)
+                ->render();
         }
 
         return response()->json([
             'success' => true,
-            'images' => $body
+            'images' => $body,
+            'campaign' => $campaign,
         ]);
     }
 
@@ -98,9 +99,8 @@ class GalleryController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function ajaxUpload(GalleryImageStore $request)
+    public function ajaxUpload(GalleryImageStore $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
         $images = $this->service
@@ -116,14 +116,13 @@ class GalleryController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Image $image)
+    public function edit(Campaign $campaign, Image $image)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
         $folders = $this->service->campaign($campaign)->folderList();
 
-        return view('gallery.edit', compact('image', 'folders'));
+        return view('gallery.edit', compact('image', 'folders', 'campaign'));
     }
 
     /**
@@ -132,9 +131,8 @@ class GalleryController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function saveFocus(StoreImageFocus $request, Image $image)
+    public function saveFocus(StoreImageFocus $request, Campaign $campaign, Image $image)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
         $added = $this->service
@@ -142,12 +140,12 @@ class GalleryController extends Controller
             ->image($image)
             ->saveFocusPoint($request);
 
-        $params = null;
+        $params = [];
         if (!empty($image->folder_id)) {
             $params = ['folder_id' => $image->folder_id];
         }
 
-        return redirect()->route('campaign.gallery.index', $params)
+        return redirect()->route('campaign.gallery.index', [$campaign] + $params)
             ->with('success', __('campaigns/gallery.focus.' . ($added ? 'updated' : 'removed')));
     }
 
@@ -157,9 +155,8 @@ class GalleryController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(GalleryImageUpdate $request, Image $image)
+    public function update(GalleryImageUpdate $request, Campaign $campaign, Image $image)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
         $originalFolderID = $image->folder_id;
@@ -168,7 +165,7 @@ class GalleryController extends Controller
             ->image($image)
             ->update($request->only('name', 'folder_id', 'visibility_id'));
 
-        $params = null;
+        $params = [];
         if ($image->is_folder) {
             $params = ['folder_id' => $image->id];
         } elseif ($originalFolderID != $image->folder_id) {
@@ -176,9 +173,11 @@ class GalleryController extends Controller
         } elseif (!empty($image->folder_id)) {
             $params = ['folder_id' => $image->folder_id];
         }
+        $params['campaign'] = $campaign;
 
+        $key = $image->isFolder() ? 'folder' : 'success';
         return redirect()->route('campaign.gallery.index', $params)
-            ->with('success', __('campaigns/gallery.update.success'));
+            ->with('success', __('campaigns/gallery.update.' . $key));
     }
 
     /**
@@ -186,15 +185,19 @@ class GalleryController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Image $image)
+    public function destroy(Campaign $campaign, Image $image)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
+        $options = [$campaign];
         $image->delete();
+        if ($image->folder_id) {
+            $options['folder_id'] = $image->folder_id;
+        }
 
-        return redirect()->route('campaign.gallery.index')
-            ->with('success', __('campaigns/gallery.destroy.success', ['name' => $image->name]));
+        $key = $image->isFolder() ? 'folder' : 'success';
+        return redirect()->route('campaign.gallery.index', $options)
+            ->with('success', __('campaigns/gallery.destroy.' . $key, ['name' => $image->name]));
     }
 
     /**
@@ -203,18 +206,17 @@ class GalleryController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function folder(GalleryImageFolderStore $request)
+    public function folder(GalleryImageFolderStore $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
         $folder = $this->service
             ->campaign($campaign)
             ->createFolder($request);
 
-        $params = null;
+        $params = [$campaign];
         if (!empty($folder->folder_id)) {
-            $params = ['folder_id' => $folder->folder_id];
+            $params['folder_id'] = $folder->folder_id;
         }
 
         return redirect()

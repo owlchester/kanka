@@ -7,7 +7,7 @@
     <?php return; ?>
 @endif
 {!! Form::open([
-        'route' => ['timelines.reorder-save', $timeline],
+        'route' => ['timelines.reorder-save', $campaign, $timeline],
         'method' => 'POST',
     ]) !!}
 <div class="max-w-4xl box-entity-story-reorder">

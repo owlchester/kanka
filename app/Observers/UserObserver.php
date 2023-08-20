@@ -11,7 +11,6 @@ use App\Services\ImageService;
 use App\User;
 use Exception;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserObserver
@@ -54,10 +53,6 @@ class UserObserver
                 $user->profile = $profile;
             }
         }
-
-        // Handle image. Let's use a service for this.
-        $folderno = (int) floor($user->id / 1000);
-        ImageService::handle($user, $user->getTable() . '/' . $folderno, 'avatar');
     }
 
     /**
@@ -106,7 +101,9 @@ class UserObserver
      */
     public function created(User $user)
     {
-        WelcomeEmailJob::dispatch($user, app()->getLocale());
+        if (!app()->environment('testing')) {
+            WelcomeEmailJob::dispatch($user, app()->getLocale());
+        }
         session()->put('user_registered', true);
 
         if (request()->filled('newsletter')) {
@@ -132,8 +129,7 @@ class UserObserver
         //Log::info('Deleted user', ['user' => $user->id]);
         UserCache::user($user)
             ->clearName()
-            ->clearCampaigns()
-            ->clearRoles()
+            ->clear()
         ;
 
         // If the user was subscribed to the newsletter, unsubscribe them

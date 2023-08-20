@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Concerns\SortableTrait;
@@ -248,12 +249,13 @@ class EntityMention extends Model
      */
     public function getLink(): string
     {
+        $campaign = CampaignLocalization::getCampaign();
         if ($this->isQuestElement()) {
-            return route('quests.quest_elements.index', [$this->entity->entity_id, '#quest-element-' . $this->quest_element_id]);
+            return route('quests.quest_elements.index', [$campaign, $this->entity->entity_id, '#quest-element-' . $this->quest_element_id]);
         } elseif ($this->isTimelineElement()) {
-            return route('timelines.show', [$this->entity->entity_id, '#timeline-element-' . $this->timeline_element_id]);
+            return route('entities.show', [$campaign, $this->entity, '#timeline-element-' . $this->timeline_element_id]);
         } elseif ($this->isPost()) {
-            return route($this->post->entity->pluralType() . '.show', [$this->entity->entity_id, '#post-' . $this->entity_note_id]);
+            return route('entities.show', [$campaign, $this->entity, '#post-' . $this->entity_note_id]);
         }
         return '#';
     }
@@ -307,7 +309,7 @@ class EntityMention extends Model
             return $this->entity->tooltipedLink();
         } elseif ($this->isCampaign()) {
             return '<a class="name" href="' .
-                route('campaign') . '">' .
+                route('overview', $campaign) . '">' .
                 $this->campaign->name .
                 '</a>';
         }

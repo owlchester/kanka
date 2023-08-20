@@ -19,7 +19,7 @@ if (count($models) === 0) {
         <br class="clear-both" />
     </li>
     @else
-    <li class="mb-2 pinned-relation" data-target="{{ $relation->target_id }}" data-relation="{{ $relation->target->name }}" data-visibility="{{ $relation->visibility }}">
+    <li class="mb-2 pinned-relation" data-target="{{ $relation->target_id }}" data-relation="{{ $relation->target->name }}" data-visibility="{{ $relation->visibility_id }}">
         <strong>
             {{ $relation->relation }}
         </strong>

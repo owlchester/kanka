@@ -2,7 +2,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.default-images') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.default-images')
     ],
     'mainTitle' => false,
@@ -21,15 +21,14 @@
                     {{ __('campaigns.show.tabs.default-images') }}
                 </h3>
                 @if ($campaign->boosted())
-                    <button class="btn2 btn-sm" data-toggle="dialog"
-                            data-target="default-images-help">
+                    <a href="https://docs.kanka.io/en/latest/features/campaigns/default-thumbnails.html" class="btn2 btn-sm btn-ghost" target="_blank">
                         <x-icon class="question"></x-icon>
-                        {{ __('campaigns.members.actions.help') }}
-                    </button>
+                        {{ __('crud.actions.help') }}
+                    </a>
 
-                    <a href="{{ route('campaign.default-images.create') }}" class="btn2 btn-primary btn-sm"
-                       data-toggle="ajax-modal" data-target="#entity-modal"
-                       data-url="{{ route('campaign.default-images.create') }}">
+                    <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
+                       data-toggle="dialog-ajax" data-target="new-thumbnail"
+                       data-url="{{ route('campaign.default-images.create', $campaign) }}">
                         <x-icon class="plus"></x-icon>
                         {{ __('campaigns/default-images.actions.add') }}
                     </a>
@@ -38,9 +37,9 @@
             @if ($campaign->boosted())
                     @if (empty($campaign->defaultImages()))
                         <x-box>
-                            <a href="{{ route('campaign.default-images.create') }}" class="btn2 btn-primary"
-                               data-toggle="ajax-modal" data-target="#entity-modal"
-                               data-url="{{ route('campaign.default-images.create') }}">
+                            <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary"
+                               data-toggle="dialog-ajax" data-target="new-thumbnail"
+                               data-url="{{ route('campaign.default-images.create', $campaign) }}">
                                 <x-icon class="plus"></x-icon>
                                 {{ __('campaigns/default-images.actions.add') }}
                             </a>
@@ -62,6 +61,7 @@
                                             'method' => 'DELETE',
                                             'route' => [
                                                 'campaign.default-images.delete',
+                                                $campaign
                                             ],
                                             'class' => 'hidden',
                                             'id' => 'delete-thumb-' . $image['uuid']
@@ -82,10 +82,7 @@
     </div>
 @endsection
 
-
 @section('modals')
     @parent
-    <x-dialog id="default-images-help" :title="__('campaigns.show.tabs.default-images')">
-        <p>{{ __('campaigns/default-images.helper') }}</p>
-    </x-dialog>
+    <x-dialog id="new-thumbnail" :loading="true" />
 @endsection

@@ -3,11 +3,14 @@
 namespace App\Renderers\Layouts\Columns;
 
 use App\Renderers\Layouts\Layout;
+use App\Traits\CampaignAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 class Action extends Column
 {
+    use CampaignAware;
+
     /** @var array Available actions to render */
     protected $actions = [];
 
@@ -25,7 +28,7 @@ class Action extends Column
 
         // Validate actions?
         foreach ($this->config as $action) {
-            if (in_array($action, [Layout::ACTION_EDIT, Layout::ACTION_EDIT_AJAX, Layout::ACTION_COPY])) {
+            if (in_array($action, [Layout::ACTION_EDIT, Layout::ACTION_EDIT_AJAX, Layout::ACTION_COPY, Layout::ACTION_EDIT_DIALOG])) {
                 if (!$permissions) {
                     $this->actions[] = $action;
                 } elseif (auth()->user()->can('update', $this->model)) {
@@ -60,6 +63,7 @@ class Action extends Column
             ->with('actions', $this->actions)
             ->with('model', $this->model)
             ->with('params', $this->params)
+            ->with('campaign', $this->campaign)
             ->render()
         ;
         return $html;

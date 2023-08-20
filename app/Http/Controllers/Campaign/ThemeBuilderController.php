@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\StoreTheme;
+use App\Models\Campaign;
 use App\Models\CampaignStyle;
 use App\Services\Campaign\ThemeBuilderService;
 
@@ -29,9 +29,8 @@ class ThemeBuilderController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $style = CampaignStyle::theme()->first();
@@ -39,38 +38,36 @@ class ThemeBuilderController extends Controller
         return view('campaigns.styles.builder', compact('campaign', 'config'));
     }
 
-    public function save(StoreTheme $request)
+    public function save(StoreTheme $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $this->themeBuilderService
             ->campaign($campaign)
             ->save($request->get('config'));
 
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/builder.success'));
     }
 
 
-    public function reset()
+    public function reset(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $theme = $campaign->styles()->theme()->first();
         if (empty($theme)) {
             return redirect()
-                ->route('campaign_styles.index');
+                ->route('campaign_styles.index', $campaign);
         }
         $theme->delete();
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/builder.reset'));
     }
 

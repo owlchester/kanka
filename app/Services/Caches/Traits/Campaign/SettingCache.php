@@ -2,32 +2,22 @@
 
 namespace App\Services\Caches\Traits\Campaign;
 
-use App\Models\CampaignSetting;
+use Illuminate\Support\Collection;
 
 trait SettingCache
 {
-    public function settings(): CampaignSetting
+    public function settings(): Collection
     {
-        $key = $this->settingsKey();
-        if ($this->has($key)) {
-            return $this->get($key);
-        }
-
-        $data = $this->campaign->setting;
-        $this->forever($key, $data);
-        return $data;
+        return new Collection($this->primary()->get('modules'));
     }
 
-    public function clearSettings(): self
+    protected function formatSettings(): array
     {
-        $this->forget(
-            $this->settingsKey()
-        );
-        return $this;
-    }
+        $settings = $this->campaign->setting->toArray();
+        unset($settings['id'], $settings['campaign_id'], $settings['created_at'], $settings['updated_at']);
 
-    protected function settingsKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_settings';
+
+
+        return $settings;
     }
 }

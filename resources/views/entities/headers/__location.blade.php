@@ -1,9 +1,8 @@
 <?php /**
  * @var \App\Models\MiscModel $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
-@if ($campaignService->enabled('locations') && $model->location)
+@if ($campaign->enabled('locations') && $model->location)
     <div class="entity-header-sub pull-left">
         <x-icon :class="\App\Facades\Module::icon(config('entities.ids.location'), 'ra ra-tower')" :tooltip="\App\Facades\Module::singular(config('entities.ids.location'), __('entities.location'))"></x-icon>
 

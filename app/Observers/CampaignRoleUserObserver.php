@@ -15,7 +15,7 @@ class CampaignRoleUserObserver
     public function created(CampaignRoleUser $campaignRoleUser)
     {
         CampaignRoleUserJob::dispatch($campaignRoleUser, true);
-        UserCache::user($campaignRoleUser->user)->clearRoles();
+        UserCache::user($campaignRoleUser->user)->clear();
     }
 
     /**
@@ -24,7 +24,7 @@ class CampaignRoleUserObserver
     public function deleted(CampaignRoleUser $campaignRoleUser)
     {
         CampaignRoleUserJob::dispatch($campaignRoleUser, false);
-        UserCache::user($campaignRoleUser->user)->clearRoles();
-        CampaignCache::campaign($campaignRoleUser->campaignRole->campaign)->clearAdmins();
+        UserCache::user($campaignRoleUser->user)->clear();
+        CampaignCache::campaign($campaignRoleUser->campaignRole->campaign)->clear();
     }
 }

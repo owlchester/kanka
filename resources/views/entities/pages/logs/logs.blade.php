@@ -1,26 +1,22 @@
 <?php /** @var \App\Models\Entity $entity
- * @var \App\Models\EntityLog $log */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+ * @var \App\Models\EntityLog $log
+ * @var \App\Models\EntityLog[]|\Illuminate\Pagination\LengthAwarePaginator $logs */?>
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/logs.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => $entity->url(), 'label' => $entity->name]
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
     ]
 ])
 @section('content')
-    @if ($ajax)
-        <div class="modal-header">
-            <x-dialog.close :modal="true" />
-            <h4 class="modal-title">
-                {{ $entity->name }}
-            </h4>
-        </div>
+    <form class="pagination-ajax-body max-w-2xl">
+    @if (request()->ajax())
+        <x-dialog.header>{{ $entity->name }}</x-dialog.header>
     @endif
-    <div class="pagination-ajax-body">
-        <div class="modal-body !p-0">
-            <div class="loading text-center" style="display: none">
-                <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
+        <article>
+            <div class="modal-loading text-center text-xl p-5" style="display: none">
+                <x-icon class="load" />
             </div>
             <div class="pagination-ajax-content">
                 <table class="table table-hover break-all">
@@ -50,7 +46,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <span title="{{ $log->created_at }} UTC" data-toggle="tooltip">
+                                    <span data-title="{{ $log->created_at }} UTC" data-toggle="tooltip" class="text-xs">
                                         {{ $log->created_at->diffForHumans() }}
                                     </span>
                                 </td>
@@ -96,7 +92,7 @@
                                     {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
                                 </a>
                             @else
-                                <a href="{{ route('front.premium') }}" class="btn bg-boost text-white">
+                                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" class="btn bg-boost text-white">
                                     {!! __('callouts.premium.learn-more') !!}
                                 </a>
                             @endif
@@ -106,16 +102,16 @@
                     </tbody>
                 </table>
 
-                @if (!$ajax)
+                @if (!request()->ajax())
                     {{ $logs->onEachSide(0)->links() }}
                 @endif
             </div>
-        </div>
+        </article>
 
-        @if ($ajax && $logs->hasPages())
-            <div class="modal-footer pagination-ajax-links">
+        @if (request()->ajax() && $logs->hasPages())
+            <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3 pagination-ajax-links">
                 {{ $logs->onEachSide(0)->links() }}
-            </div>
+            </footer>
         @endif
-    </div>
+    </form>
 @endsection

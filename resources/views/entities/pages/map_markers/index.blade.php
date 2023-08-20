@@ -3,12 +3,12 @@
  * @var \App\Models\Entity $entity
  * @var \App\Models\TimelineElement $element
  */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/map-points.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('crud.tabs.map-points')
     ],
     'mainTitle' => false,
@@ -16,7 +16,6 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-map-markers'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])

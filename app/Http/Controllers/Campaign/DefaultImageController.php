@@ -2,37 +2,34 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\DefaultImageDestroy;
 use App\Http\Requests\Campaigns\DefaultImageStore;
+use App\Models\Campaign;
 use App\Services\Campaign\DefaultImageService;
-use App\Services\EntityService;
+use App\Services\Entity\TypeService;
 
 class DefaultImageController extends Controller
 {
-    /** @var DefaultImageService */
-    protected $service;
+    protected DefaultImageService $service;
 
-    /** @var EntityService */
-    protected $entityService;
+    protected TypeService $typeService;
 
-    public function __construct(EntityService $entityService, DefaultImageService $service)
+    public function __construct(TypeService $typeService, DefaultImageService $service)
     {
         $this->middleware('auth');
         $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
-        $this->entityService = $entityService;
+        $this->typeService = $typeService;
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
 
@@ -43,43 +40,41 @@ class DefaultImageController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create()
+    public function create(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
-        $ajax = request()->ajax();
 
         $ignore = $campaign->existingDefaultImages();
         $ignore = array_merge($ignore, ['relations', 'menu_links']);
-        $entities = $this
-            ->entityService
-            ->labelledEntities(false, $ignore);
+        $entities = $this->typeService
+            ->exclude($ignore)
+            ->plural()
+            ->labelled()
+        ;
 
         return view('campaigns.default-images.create', compact(
             'campaign',
-            'ajax',
             'entities'
         ));
     }
 
     /**
-     * @param DefaultImageStore $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(DefaultImageStore $request)
+    public function store(DefaultImageStore $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         if ($this->service->campaign($campaign)->type($request->post('entity_type'))->save($request)) {
-            return redirect()->route('campaign.default-images')
+            return redirect()->route('campaign.default-images', $campaign)
                 ->with(
                     'success',
                     __('campaigns/default-images.create.success', ['type' => __('entities.' . $request->post('entity_type'))])
                 );
         }
-        return redirect()->route('campaign.default-images')
+        return redirect()->route('campaign.default-images', $campaign)
             ->with(
                 'error',
                 __('campaigns/default-images.create.error', ['type' => __('entities.' . $request->post('entity_type'))])
@@ -91,13 +86,12 @@ class DefaultImageController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(DefaultImageDestroy $request)
+    public function destroy(DefaultImageDestroy $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
         $this->service->campaign($campaign)->type($request->post('entity_type'))->destroy();
 
-        return redirect()->route('campaign.default-images')
+        return redirect()->route('campaign.default-images', $campaign)
             ->with(
                 'success',
                 __('campaigns/default-images.destroy.success', ['type' => __('entities.' . $request->post('entity_type'))])

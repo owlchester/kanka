@@ -2,7 +2,9 @@
 
 namespace App\Traits;
 
+use App\Datagrids\Filters\DatagridFilter;
 use App\Facades\Module;
+use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -17,13 +19,14 @@ trait TreeControllerTrait
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function tree(Request $request)
+    public function tree(Request $request, Campaign $campaign)
     {
+        $this->campaign = $campaign;
         if (!$this->moduleEnabled()) {
-            return redirect()->route('dashboard')->with(
+            return redirect()->route('dashboard', $this->campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), [$this->campaign, '#' . $this->module]),
                 ])
             );
         }
@@ -38,9 +41,12 @@ trait TreeControllerTrait
             ->model($model)
             ->make($this->view . 'tree');
         $name = $this->view;
-        $filters = $this->filters;
         $filterService = $this->filterService;
+        /** @var DatagridFilter|null $filter */
         $filter = !empty($this->filter) ? new $this->filter() : null;
+        if (!empty($filter)) {
+            $filter->campaign($this->campaign)->build();
+        }
         $langKey = $this->langKey ?? $name;
         $templates = $this->loadTemplates($model);
 
@@ -52,7 +58,7 @@ trait TreeControllerTrait
 
         if ($mode === 'table') {
             $this->addNavAction(
-                route($this->route . '.index', ['m' => 'table']),
+                route($this->route . '.index', [$this->campaign, 'm' => 'table']),
                 '<i class="fa-solid fa-list" aria-hidden="true"></i> ' . __('entities.' . $this->view)
             );
         }
@@ -65,8 +71,6 @@ trait TreeControllerTrait
             ->distinct();
 
         /** @var Tag $model **/
-        //$parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ?
-        //        $this->treeControllerParentKey : $singularModel . '_id');
         $parentKey = $model->getParentIdName();
         $parent = null;
         if (request()->has('parent_id')) {
@@ -77,13 +81,13 @@ trait TreeControllerTrait
                 if (!empty($parent) && !empty($parent->child)) {
                     // Go back to previous parent
                     $this->addNavAction(
-                        route($this->route . '.tree', ['parent_id' => $parent->child->id]),
+                        route($this->route . '.tree', [$campaign, 'parent_id' => $parent->child->id]),
                         '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . $parent->child->name
                     );
                 } else {
                     // Go back to first level
                     $this->addNavAction(
-                        route($this->route . '.tree'),
+                        route($this->route . '.tree', $campaign),
                         '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . __('crud.actions.back')
                     );
                 }
@@ -108,6 +112,7 @@ trait TreeControllerTrait
         // If the current page is higher than the max amount of pages, redirect the user
         if ((int) request()->get('page', 1) > $models->lastPage()) {
             return redirect()->route($this->route . '.tree', [
+                $campaign,
                 'page' => $models->lastPage(),
                 'order' => request()->get('order')
             ]);
@@ -117,6 +122,7 @@ trait TreeControllerTrait
         $datagridActions = new $this->datagridActions();
         $bulk = $this->bulkModel();
         $actions = $this->navActions;
+        $campaign = $this->campaign;
 
         $entityTypeId = $model->entityTypeId();
         if (!empty($this->titleKey)) {
@@ -127,13 +133,13 @@ trait TreeControllerTrait
         $singular = Module::singular($entityTypeId, __('entities.' . \Illuminate\Support\Str::singular($route)));
 
         return view('cruds.tree', compact(
+            'campaign',
             'models',
             'name',
             'langKey',
             'model',
             'actions',
             'filter',
-            'filters',
             'filterService',
             'filteredCount',
             'unfilteredCount',

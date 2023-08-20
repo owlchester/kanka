@@ -3,12 +3,14 @@
 namespace App\Console\Commands;
 
 use App\Models\Calendar;
-use App\Models\JobLog;
+use App\Traits\HasJobLog;
 use Exception;
 use Illuminate\Console\Command;
 
 class CalendarAdvancer extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      *
@@ -68,15 +70,7 @@ class CalendarAdvancer extends Command
             $log .= '<br />' . 'Errors for ' . count($this->errors) . ' calendars.';
             $log .= '<br />' . implode(', ', array_keys($this->errors));
         }
-
-        if (!config('app.log_jobs')) {
-            return 0;
-        }
-
-        JobLog::create([
-            'name' => $this->signature,
-            'result' => $log,
-        ]);
+        $this->log($log);
 
         return 0;
     }

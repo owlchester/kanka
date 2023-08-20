@@ -10,13 +10,13 @@
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
         ['url' => $map->entity->url(), 'label' => $map->name],
-        ['url' => route('maps.map_layers.index', [$map]), 'label' => __('maps.panels.layers')],
+        ['url' => route('maps.map_layers.index', [$campaign, $map]), 'label' => __('maps.panels.layers')],
         __('maps/layers.create.title')
     ]
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['maps.map_layers.store', $map], 'method' => 'POST', 'id' => 'map-layer-form', 'enctype' => 'multipart/form-data', 'data-maintenance' => 1]) !!}
+    {!! Form::open(['route' => ['maps.map_layers.store', $campaign, $map], 'method' => 'POST', 'id' => 'map-layer-form', 'enctype' => 'multipart/form-data', 'data-maintenance' => 1]) !!}
 
         <x-box>
 

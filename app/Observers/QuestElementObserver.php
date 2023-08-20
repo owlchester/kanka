@@ -2,10 +2,10 @@
 
 namespace App\Observers;
 
+use App\Enums\Visibility;
 use App\Facades\Mentions;
 use App\Facades\QuestCache;
 use App\Models\QuestElement;
-use App\Models\Visibility;
 use App\Services\EntityMappingService;
 
 class QuestElementObserver
@@ -41,7 +41,7 @@ class QuestElementObserver
         $questElement->name = $this->purify($questElement->name);
 
         if (empty($questElement->visibility_id)) {
-            $questElement->visibility_id = Visibility::VISIBILITY_ALL;
+            $questElement->visibility_id = Visibility::All;
         }
     }
 

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Attribute;
+use App\Traits\CampaignAware;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -10,6 +11,8 @@ use Exception;
 
 class AttributeMentionService
 {
+    use CampaignAware;
+
     protected array $loadedAttributes = [];
     protected mixed $loadedEntity = null;
     protected Collection|null $calculatedAttributes = null;

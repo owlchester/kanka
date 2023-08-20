@@ -9,6 +9,7 @@ $(document).ready(function() {
     registerCampaignExport();
     registerRoles();
     registerCampaignThemes();
+    registerVanityUrl();
 });
 
 /**
@@ -186,5 +187,42 @@ function registerCampaignThemes() {
         $('form .submit-group .btn').prop('disabled', false);
 
         return false;
+    });
+}
+
+function registerVanityUrl() {
+    $('input[name="vanity"]').focusout(function (e) {
+        let vanity = $(this).val();
+        let errBlock = $('#vanity-error');
+        let successBlock = $('#vanity-success');
+        let loading = $('#vanity-loading');
+        errBlock.html('').hide();
+        successBlock.hide();
+        if (!vanity) {
+            return;
+        }
+
+        loading.show();
+        let data = {};
+        data.vanity = vanity;
+        $.post({
+            url: $(this).data('url'),
+            method: 'POST',
+            context: this,
+            data: data
+        }).done(function (res) {
+            $(this).val(res.vanity);
+            successBlock.find('code').html(res.vanity);
+            successBlock.show();
+            errBlock.hide();
+            loading.hide();
+        }).fail(function (err) {
+            //console.error(err);
+            let errorString = '';
+            err.responseJSON.errors.vanity.forEach(error => errorString += error + ' ');
+            errBlock.html(errorString).show();
+            successBlock.hide();
+            loading.hide();
+        });
     });
 }

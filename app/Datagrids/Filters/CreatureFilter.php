@@ -9,7 +9,7 @@ class CreatureFilter extends DatagridFilter
     /**
      * Filters available for races
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -18,7 +18,7 @@ class CreatureFilter extends DatagridFilter
                 'field' => 'creature_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('creatures.find'),
+                'route' => route('creatures.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Creature::class,
             ])

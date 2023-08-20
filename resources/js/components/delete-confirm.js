@@ -1,7 +1,7 @@
 export default function deleteConfirm() {
     // Delete confirm dialog
     $.each($('.delete-confirm'), function () {
-        $(this).click(function (e) {
+        $(this).click(function () {
             let name = $(this).data('name');
             let target = $(this).data('delete-target');
             let targetModal = $(this).data('target');

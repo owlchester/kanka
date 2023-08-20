@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class StoreSettingsProfile extends FormRequest
 {
@@ -24,7 +23,6 @@ class StoreSettingsProfile extends FormRequest
      */
     public function rules()
     {
-        $user = Auth::user();
         $rules = [
             'name' => 'required|string|min:2',
             'newsletter' => 'boolean',

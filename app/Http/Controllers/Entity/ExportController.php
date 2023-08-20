@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\ExportService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ExportController
@@ -14,55 +14,28 @@ use Illuminate\Support\Facades\Auth;
  */
 class ExportController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
-    /** @var ExportService */
-    protected $service;
+    protected ExportService $service;
 
-    /**
-     * ExportController constructor.
-     * @param ExportService $service
-     */
     public function __construct(ExportService $service)
     {
         $this->service = $service;
     }
 
-    /**
-     * @param Entity $entity
-     * @return Resource
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function json(Entity $entity)
+    public function json(Campaign $campaign, Entity $entity)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         return $this->service->entity($entity)->json();
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function html(Entity $entity)
+    public function html(Campaign $campaign, Entity $entity)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         return view('entities.pages.print.print')
+            ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('model', $entity->child)
             ->with('name', $entity->pluralType())

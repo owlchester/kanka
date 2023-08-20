@@ -4,26 +4,14 @@ namespace App\Services;
 
 use App\Exceptions\EntityFileException;
 use App\Http\Requests\StoreEntityAsset;
-use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Traits\CampaignAware;
+use App\Traits\EntityAware;
 
 class EntityFileService
 {
     use CampaignAware;
-
-    /** @var Entity */
-    protected $entity;
-
-    /**
-     * @param Entity $entity
-     * @return $this
-     */
-    public function entity(Entity $entity): self
-    {
-        $this->entity = $entity;
-        return $this;
-    }
+    use EntityAware;
 
     /**
      * @param StoreEntityAsset $request

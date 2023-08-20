@@ -5,7 +5,7 @@
 @endif
 
 <x-sidebar.profile>
-    @if ($campaignService->enabled('locations') && !$model->locations->isEmpty())
+    @if ($campaign->enabled('locations') && !$model->locations->isEmpty())
         <div class="element profile-location">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')) !!}

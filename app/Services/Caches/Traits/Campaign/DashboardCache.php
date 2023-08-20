@@ -11,11 +11,11 @@ trait DashboardCache
      */
     public function dashboards(): array
     {
-        $cacheKey = $this->dashboardsKey();
-        if ($this->has($cacheKey)) {
-            return (array) $this->get($cacheKey);
-        }
+        return $this->primary()->get('dashboards');
+    }
 
+    protected function formatDashboards(): array
+    {
         $available = [
             'admin' => [],
             'public' => [],
@@ -37,21 +37,6 @@ trait DashboardCache
             }
             $available[$key] = $dashboards;
         }
-
-        $this->forever($cacheKey, $available);
-        return (array) $available;
-    }
-
-    public function clearDashboards(): self
-    {
-        $this->forget(
-            $this->dashboardsKey()
-        );
-        return $this;
-    }
-
-    protected function dashboardsKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_dashboards';
+        return $available;
     }
 }

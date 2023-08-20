@@ -3,7 +3,7 @@
 ?>
 @extends('layouts.app', [
     'title' => __('history.title'),
-    'breadcrumbs' => [['url' => route('history.index'), 'label' => __('history.title')]],
+    'breadcrumbs' => [['url' => route('history.index', $campaign), 'label' => __('history.title')]],
     'bodyClass' => 'campaign-history',
     'mainTitle' => false,
 ])
@@ -21,7 +21,7 @@
 
 
     @if ($superboosted)
-        {!! Form::open(['method' => 'GET', 'route' => 'history.index', 'class' => 'history-filters']) !!}
+        {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters']) !!}
         <div class="flex items-center flex-row-reverse mb-5 gap-2">
             <div class="flex-none">
                 {!! Form::select('action', $actions, $action, ['class' => 'form-control']) !!}
@@ -36,11 +36,11 @@
             </div>
             @if (count($filters) > 0)
                 <div class="flex-none">
-                    <a href="{{ route('history.index') }}" role="button" class="btn2 btn-sm">{{ __('crud.actions.reset') }}</a>
+                    <a href="{{ route('history.index', $campaign) }}" role="button" class="btn2 btn-sm">{{ __('crud.actions.reset') }}</a>
                 </div>
             @endif
             <div class="flex-none filters-loading" style="display: none">
-                <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                <x-icon class="load" />
             </div>
         </div>
         {!! Form::close() !!}
@@ -86,7 +86,7 @@
                         @endif
                         <div class="text-xs text-muted flex-end text-right">
                             @if ($superboosted)
-                                <span data-toggle="tooltip" title="{{ $log->created_at }} UTC">
+                                <span data-toggle="tooltip" data-title="{{ $log->created_at }} UTC">
                                     {{ $log->created_at->diffForHumans() }}
                                 </span>
                             @else

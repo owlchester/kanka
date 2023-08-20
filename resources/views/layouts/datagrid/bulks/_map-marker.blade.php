@@ -1,6 +1,5 @@
 <?php
 /** @var \App\Models\MapMarker $model */
-$campaign = \App\Facades\CampaignLocalization::getCampaign();
 
 $iconOptions = [
     '' => null,

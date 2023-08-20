@@ -40,6 +40,9 @@ return [
             'success'   => 'Reminder updated.',
             'title'     => 'Update Reminder for :name',
         ],
+        'errors'    => [
+            'invalid_entity'    => 'Invalid entity selection'
+        ],
         'helpers'   => [
             'add'               => 'Add an existing event to this calendar.',
             'new'               => 'Or create a new event by simply providing a name.',

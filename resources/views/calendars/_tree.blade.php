@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->nested()
     ->service($filterService)
     ->models($models)
@@ -22,14 +23,14 @@
         /*[
             'field' => 'calendar_id',
             'label' => trans('calendars.fields.calendar'),
-            'visible' => $campaignService->enabled('calendars'),
+            'visible' => $campaign->enabled('calendars'),
             'render' => function($model) {
                 return $model->calendar ? $model->calendar->tooltipedLink() : null;
             },
         ],*/
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.calendar'), __('entities.calendars')),
-            'visible' => $campaignService->enabled('calendars'),
+            'visible' => $campaign->enabled('calendars'),
             'render' => function($model) {
                 return $model->calendars->count();
             },

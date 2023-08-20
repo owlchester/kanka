@@ -80,7 +80,7 @@ class Organisation extends Layout
     public function actions(): array
     {
         return [
-            self::ACTION_EDIT_AJAX,
+            self::ACTION_EDIT_DIALOG,
             self::ACTION_DELETE
         ];
     }

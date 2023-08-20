@@ -14,8 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class DiceRoll extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use SoftDeletes;
 
@@ -40,7 +39,7 @@ class DiceRoll extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'parameters',
         'character.name',
     ];

@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Facades\Domain;
 use App\Services\PaginationService;
 
 trait Paginatable
@@ -26,11 +27,11 @@ trait Paginatable
         // Currently exporting single or bulk? Rise limit to 100.
         // @phpstan-ignore-next-line
         $request = request()->route()->getAction();
-        if (!empty($request['as']) && in_array($request['as'], ['entities.export', 'bulk.process'])) {
+        if (!empty($request['as']) && in_array($request['as'], ['bulk.process'])) {
             return 100;
         }
 
-        if (request()->is('api/*')) {
+        if (request()->is('api/*') || Domain::isApi()) {
             $this->pageSizeMinimum = 45;
         }
 

@@ -76,7 +76,7 @@ class Relation extends Model
      * Fields that can be sorted on
      * @var array
      */
-    public $sortableColumns = [
+    public array $sortableColumns = [
         'owner_id',
         'target_id',
         'relation',
@@ -237,7 +237,7 @@ class Relation extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->owner_id, $this->id, 'mode' => 'table'];
+        return $options + ['entity' => $this->owner_id, 'relation' => $this->id, 'mode' => 'table'];
     }
     public function actionDeleteConfirmOptions(): string
     {

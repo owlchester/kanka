@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Facades\Domain;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -68,7 +69,7 @@ class Handler extends ExceptionHandler
                 'message' => $exception->getMessage(),
                 //'retry' => $exception->retryAfter
             ], 200);
-        } elseif ($request->is('api/*')) {
+        } elseif ($request->is('api/*') || Domain::isApi()) {
             // API error handling
             return $this->handleApiErrors($exception);
         }
@@ -84,10 +85,10 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        return $request->is('api/*')
+        return $request->is('api/*') || Domain::isApi()
             ? response()->json([
                 'message' => 'Unauthenticated (missing the authorization token in the request headers, or the token is invalid).',
-                'documentation' => 'https://kanka.io/api-docs/1.0/setup#authentication'
+                'documentation' => 'https://app.kanka.io/api-docs/1.0/setup#authentication'
             ], 401)
             : redirect()->guest(route('login'));
     }
@@ -137,11 +138,11 @@ class Handler extends ExceptionHandler
             return response()
                 ->json([
                     'code' => 401,
-                    'error' => 'Invalid authentication token. Make sure you copy-pasted it correctly, or try using a new one at https://kanka.io/en-US/settings/api.',
+                    'error' => 'Invalid authentication token. Make sure you copy-pasted it correctly, or try using a new one at https://app.kanka.io/settings/api.',
                 ], 401);
         }
 
-        $limit = app()->isProduction() ? 100 : 250;
+        $limit = app()->isProduction() ? 100 : 500;
         return response()
             ->json([
                 'code' => 500,

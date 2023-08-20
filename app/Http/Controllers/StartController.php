@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class StartController extends Controller
 {
-    /**
-     * @var string
-     */
     protected string $view = 'campaigns';
 
     /**
@@ -59,10 +56,7 @@ class StartController extends Controller
         $options = $request->all();
         $options['entry'] = '';
         $options['excerpt'] = '';
-        $campaign = Campaign::create($options);
-
-        $user = auth()->user();
-        $user->save();
+        Campaign::create($options);
 
         if ($first) {
             return redirect()->route('home');

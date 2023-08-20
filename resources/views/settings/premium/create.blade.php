@@ -38,7 +38,7 @@
             </p>
 
             <div class="text-center my-5">
-                <a href="{{ route('front.premium') }}" target="_blank" class="btn bg-boost text-white rounded-full px-8 mr-5">
+                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" target="_blank" class="btn bg-boost text-white rounded-full px-8 mr-5">
                     {!! __('callouts.premium.learn-more') !!}
                 </a>
                 <a href="{{ route('settings.subscription') }}" class="btn bg-boost text-white rounded-full px-8">

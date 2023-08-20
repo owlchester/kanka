@@ -2,7 +2,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns/sidebar.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.sidebar')
     ],
     'mainTitle' => false,
@@ -23,11 +23,10 @@
                 </h3>
 
                 @if ($campaign->boosted())
-                    <button class="btn2 btn-sm pull-right" data-toggle="dialog"
-                            data-target="sidebar-help">
+                    <a class="btn2 btn-sm btn-ghost" href="https://docs.kanka.io/en/latest/features/campaigns/sidebar.html" target="_blank">
                         <x-icon class="question"></x-icon>
-                        {{ __('campaigns.members.actions.help') }}
-                    </button>
+                        {{ __('crud.actions.help') }}
+                    </a>
               @endif
             </div>
 
@@ -43,7 +42,7 @@
                     </p>
                 </x-tutorial>
                 {!! Form::open([
-                    'route' => 'campaign-sidebar-save',
+                    'route' => ['campaign-sidebar-save', $campaign],
                     'method' => 'POST',
                     'class' => 'sidebar-setup form-inline form-mobile-inline',
                     'data-shortcut' => 1
@@ -90,7 +89,7 @@
                                         <span class="text-muted text-sm hidden md:!inline grow flex-no-wrap">(
                                             {{ $child['label'] ?? __($child['label_key']) }}
                                             @if (\Illuminate\Support\Arr::get($child, 'disabled') === true)
-                                                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" title="{{ __('campaigns.modules.permission-disabled') }}"></i>
+                                                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}"></i>
                                             @endif
                                             )
                                         </span>
@@ -136,6 +135,7 @@
                 'method' => 'DELETE',
                 'route' => [
                     'campaign-sidebar-reset',
+                    $campaign
                 ]
             ]) !!}
                 <x-buttons.confirm type="danger" full="true" outline="true">
@@ -144,15 +144,4 @@
             {!! Form::close() !!}
         </div>
     </x-dialog>
-
-
-    @include('partials.helper-modal', [
-        'id' => 'sidebar-help',
-        'title' => __('campaigns.show.tabs.sidebar'),
-        'textes' => [
-            __('campaigns/sidebar.helpers.setup', ['reset' => '<strong>' . __('campaigns/sidebar.actions.reset') . '</strong>']),
-            __('campaigns/sidebar.helpers.icons', [
-                'link' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank'])
-            ])
-    ]])
 @endsection

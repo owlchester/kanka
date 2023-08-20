@@ -3,7 +3,7 @@
     {{ __('maps/groups.reorder.title') }}
 </h3>
 {!! Form::open([
-    'route' => ['maps.groups.reorder-save', 'map' => $model],
+    'route' => ['maps.groups.reorder-save', $campaign, 'map' => $model],
     'method' => 'POST',
 ]) !!}
     <div class="box-entity-story-reorder">

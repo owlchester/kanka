@@ -4,7 +4,9 @@ namespace App\Http\Middleware;
 
 use App\User;
 use Closure;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -26,8 +28,6 @@ class LocaleChange
         if (
             $request->is(
                 'subscription-api/*',
-                'feeds/*',
-                '*/sitemap.xml',
                 'oauth/*'
             )
         ) {
@@ -39,47 +39,52 @@ class LocaleChange
             return $next($request);
         }
 
-        // If it's a logged in user, we might go change their settings
-        $locale = LaravelLocalization::getCurrentLocale();
+        $locale = $this->currentLocale();
+        LaravelLocalization::setLocale($locale);
 
-        if (auth()->check()) {
-            $change = $request->query('updateLocale');
-            $to = $request->url();
-            // Trying to access a no longer supported language, redirect
-            if (in_array($locale, $this->disabledLangs)) {
-                $locale = 'en';
-                $change = true;
-                $to = $this->fallbackUrl();
-            }
-            /** @var User $user */
-            $user = auth()->user();
-            if (!empty($change)) {
-                // Changing locale, save the new one
-                $user->updateQuietly(['locale' => $locale]);
-                return redirect()->to($to);
-            } elseif ($user->locale != $locale) {
-                // If the locale is empty, we need to set it.
-                if (empty($user->locale)) {
-                    $user->locale = $locale;
-                    $user->saveQuietly();
-                } elseif (in_array($user->locale, $this->disabledLangs)) {
-                    $user->locale = 'en';
-                    $user->saveQuietly();
-                }
-                // Redirect to the user's normal locale
-                $targetUrl = LaravelLocalization::getLocalizedURL($user->locale);
-                // Because the request comes from the frontend machines and the https is stripped,
-                if (config('app.force_https') && !Str::startsWith('https', $targetUrl)) {
-                    $targetUrl = Str::replaceFirst('http://', 'https://', $targetUrl);
-                }
-                return redirect()->to($targetUrl);
-            }
-        } elseif (in_array($locale, $this->disabledLangs)) {
-            // Permanent redirection to the home page
-            return redirect($this->fallbackUrl(), 301);
+        $new = $request->get('lang');
+        if (!empty($new) && $this->valid($new)) {
+            return $this->update($request, $new);
         }
 
         return $next($request);
+    }
+
+    protected function currentLocale(): string
+    {
+        if (auth()->check()) {
+            return auth()->user()->locale;
+        }
+
+        // Unlogged users can change language, we keep it in a cookie
+        $locale = Cookie::get('kanka_locale');
+        return !empty($locale) && $this->valid($locale) ? $locale : 'en-US';
+    }
+
+    protected function update(Request $request, string $locale): RedirectResponse
+    {
+        if (auth()->check()) {
+            /** @var User $user */
+            $user = auth()->user();
+            $user->locale = $locale;
+            $user->saveQuietly();
+            return redirect()->to($request->path());
+        } else {
+            return redirect()->to($request->path())->withCookie(
+                Cookie::make('kanka_locale', $locale)
+            );
+        }
+    }
+
+    protected function valid(string $locale): bool
+    {
+        $locales = LaravelLocalization::getSupportedLocales();
+        if (!in_array($locale, array_keys($locales))) {
+            return false;
+        }
+
+        // Remove old
+        return !in_array($locale, $this->disabledLangs);
     }
 
     protected function fallbackUrl(): string

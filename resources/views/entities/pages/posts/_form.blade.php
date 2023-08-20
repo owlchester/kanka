@@ -10,9 +10,8 @@ $permissions = [
     1 => __('crud.edit'),
     2 => __('crud.permissions.actions.bulk.deny')
 ];
-$currentCampaign = \App\Facades\CampaignLocalization::getCampaign();
 $defaultCollapsed = null;
-if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
+if (!isset($model) && !empty($campaign->ui_settings['post_collapsed'])) {
     $defaultCollapsed = 1;
 }
 if (isset($model)) {
@@ -59,7 +58,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 <div class="field-layout" @if(isset($hideLayout)) style="display: none" @endif>
                     {!! Form::select('layout_id', $layoutOptions, isset($model) ? $model->layout_id : '',['class' => 'form-control', 'id' => 'post-layout-selector']) !!}
                     <div id="post-layout-subform" style="display: none">
-                        @includeWhen(!$currentCampaign->superboosted(), 'entities.pages.posts._boosted')
+                        @includeWhen(!$campaign->superboosted(), 'entities.pages.posts._boosted')
                     </div>
                 </div>
                 @if (isset($layoutHelper))
@@ -97,13 +96,13 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 <div class="field-class">
                     <label for="config[class]">
                         {{ __('dashboard.widgets.fields.class') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('dashboard.widgets.helpers.class') }}"></i>
                     </label>
-                    {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
+                    {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$campaign->boosted() ? 'disabled' : null]) !!}
                     <p class="help-block visible-xs visible-sm">
                         {{ __('dashboard.widgets.helpers.class') }}
                     </p>
-                    @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
+                    @includeWhen(!$campaign->boosted(), 'entities.pages.posts._boosted')
                 </div>
             </x-grid>
         </div>

@@ -51,7 +51,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
     @if($marker->entity->isLocation() && !$marker->entity->child->maps->isEmpty())
         <div class="marker-explore-links text-center m-3">
             @foreach ($marker->entity->child->maps as $map)
-                <a href="{{ route('maps.explore', $map) }}" class="btn2 btn-block btn-primary btn-sm" target="_blank">
+                <a href="{{ route('maps.explore', [$campaign, $map]) }}" class="btn2 btn-block btn-primary btn-sm" target="_blank">
                     <x-icon class="map"></x-icon>
                     {{ __('maps.actions.explore') }} {!! $map->name !!}
                 </a>
@@ -74,7 +74,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
 @can('update', $marker->map)
     <div class="marker-actions text-center">
         <div class="join">
-            <a href="{{ route('maps.map_markers.edit', [$marker->map, $marker, 'from' => 'explore']) }}" class="btn2 btn-primary btn-sm join-item">
+            <a href="{{ route('maps.map_markers.edit', [$campaign, $marker->map, $marker, 'from' => 'explore']) }}" class="btn2 btn-primary btn-sm join-item">
                 <x-icon class="fa-solid fa-map-pin"></x-icon>
                 {{ __('maps/markers.actions.update') }}
             </a>
@@ -84,6 +84,6 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
         </div>
     </div>
 
-    {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $marker->map_id, $marker->id, 'from' => 'map'], 'style' => 'display:inline', 'id' => 'delete-marker-confirm-form-' . $marker->id]) !!}
+    {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $campaign, $marker->map, $marker, 'from' => 'map'], 'style' => 'display:inline', 'id' => 'delete-marker-confirm-form-' . $marker->id]) !!}
     {!! Form::close() !!}
 @endcan

@@ -18,14 +18,14 @@
             @if (auth()->check())
                 {!! $post->visibilityIcon('') !!}
                 <div class="dropdown">
-                    <a class="dropdown-toggle btn2 btn-ghost btn-sm" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+                    <a role="button" class="dropdown-toggle btn2 btn-ghost btn-sm" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                         <x-icon class="fa-solid fa-ellipsis-v"></x-icon>
                         <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                         @can('post', [$model, 'edit', $post])
                         <li>
-                            <a href="{{ route('entities.posts.edit', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
+                            <a href="{{ route('entities.posts.edit', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
                                 <x-icon class="edit"></x-icon>
                                 {{ __('crud.edit') }}
                             </a>
@@ -33,14 +33,14 @@
                         @endcan
                         @if (!isset($more))
                         <li>
-                            <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toggle="tooltip"
+                            <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
                                 <x-icon class="fa-solid fa-link"></x-icon>
                                 {{ __('entities/notes.copy_mention.copy') }}
                             </a>
                         </li>
                         <li>
-                            <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toggle="tooltip"
+                            <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
                                 <x-icon class="fa-solid fa-link"></x-icon>
                                 {{ __('entities/notes.copy_mention.copy_with_name') }}
@@ -49,14 +49,14 @@
                         @endif
                         @if(auth()->user()->isAdmin())
                         <li>
-                            <a href="{{ route('posts.move', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
+                            <a href="{{ route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
                                 <x-icon class="fa-solid fa-arrows-left-right"></x-icon> {{ __('entities/notes.move.move') }}
                             </a>
                         </li>
                         @endif
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ route('entities.story.reorder', ['entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
+                            <a href="{{ route('entities.story.reorder', [$campaign, 'entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
                                 <x-icon class="fa-solid fa-arrows-v"></x-icon>
                                 {{ __('entities/story.reorder.icon_tooltip') }}
                             </a>
@@ -97,7 +97,7 @@
         <x-box css="box-entity-attributes">
             @include('entities.pages.attributes.render', ['isPost' => true])
         </x-box>
-        <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', $entity) }}" />
+        <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', [$campaign, $entity]) }}" />
     @elseif ($post->layout?->code == 'abilities')
         @php
         $translations = [
@@ -128,7 +128,7 @@
         @include('quests.elements._elements', ['elements' => $elements])
     @elseif ($post->layout?->code == 'location_characters')
         @php
-            $options = ['location' => $entity->child];
+            $options = [$campaign, 'location' => $entity->child];
 
             Datagrid::layout(\App\Renderers\Layouts\Location\Character::class)
                 ->route('locations.characters', $options);

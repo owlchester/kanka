@@ -3,7 +3,6 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\MiscModel $miscModel
  */
-$campaign = CampaignLocalization::getCampaign();
 $themeOverride = request()->get('_theme', 'base');
 $specificTheme = null;
 ?><!DOCTYPE html>
@@ -59,7 +58,7 @@ $specificTheme = null;
     @vite([
     'resources/sass/print/print.scss',
     ])
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
 </head>
 
 <body class="@if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif  @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
@@ -87,14 +86,7 @@ $specificTheme = null;
             <section class="content">
                 @include('partials.success')
 
-@if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
-                <p class="text-center text-muted">
-                    {!! __('misc.ads.remove_v2', [
-    'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
-    'boosting' => link_to_route('front.pricing', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
-    ]) !!}
-                </p>
-@endif
+                @include('partials.ads.top')
 
                 @yield('entity-actions')
                 @yield('entity-header')
@@ -104,11 +96,10 @@ $specificTheme = null;
 
     </div>
 
-@if (config('fontawesome.kit'))
-    <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
-@endif
-    <script src="/js/vendor.js" defer></script>
-    @vite(['resources/js/app.js'])
+    @if (config('fontawesome.kit'))
+        <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
+    @endif
+    @vite(['resources/js/vendor-final.js', 'resources/js/app.js'])
     @yield('scripts')
 </body>
 </html>

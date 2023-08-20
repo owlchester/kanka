@@ -7,20 +7,15 @@ use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Route;
 
 class CampaignResource extends JsonResource
 {
     use ApiSync;
 
-    /**
-     * @var bool
-     */
     protected $withMentions = false;
 
-    /**
-     * @return $this
-     */
-    public function withMentions()
+    public function withMentions(): self
     {
         $this->withMentions = true;
         return $this;
@@ -31,13 +26,17 @@ class CampaignResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         /** @var Campaign $campaign */
         $campaign = $this->resource;
 
+        $url = route('dashboard', $campaign);
+        $apiViewUrl = 'campaigns.show';
+
         $data = [
             'id' => $campaign->id,
+            'slug' => $campaign->slug,
             'name' => $campaign->name,
             'locale' => $campaign->locale,
             'entry' => $campaign->entry,
@@ -55,7 +54,13 @@ class CampaignResource extends JsonResource
             'follower' => $campaign->follower,
             'boosted' => $campaign->boosted(),
             'superboosted' => $campaign->superboosted(),
-            'is_hidden' => (bool) $campaign->is_hidden
+            'premium' => $campaign->premium(),
+            'is_hidden' => (bool) $campaign->is_hidden,
+
+            'urls' => [
+                'view' => $url,
+                'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$campaign]) : null,
+            ]
         ];
 
         CampaignCache::campaign($campaign)->user(auth()->user());

@@ -2,22 +2,24 @@
     'title' => trans('entities/abilities.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => $entity->url(), 'label' => $entity->name],
-        ['url' => route('entities.entity_abilities.index', $entity->id), 'label' => trans('crud.tabs.ability')],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
+        ['url' => route('entities.entity_abilities.index', [$campaign, $entity]), 'label' => trans('crud.tabs.ability')],
     ]
 ])
 
 @section('content')
     {!! Form::open([
-        'route' => ['entities.entity_abilities.store', $entity],
+        'route' => ['entities.entity_abilities.store', $campaign, $entity],
         'method'=>'POST',
-        'data-shortcut' => 1
+        'data-shortcut' => 1,
+        'class' => 'ajax-subform',
     ]) !!}
 
     @include('partials.forms.form', [
         'title' => __('entities/abilities.create.title', ['name' => $entity->name]),
         'content' => 'entities.pages.abilities._form',
+        'dialog' => true,
     ])
 
     {!! Form::close() !!}

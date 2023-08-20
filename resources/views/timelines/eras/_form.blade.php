@@ -1,7 +1,7 @@
 <x-grid>
     <div class="field-name required">
         <label>{{ __('crud.fields.name') }}</label>
-        {!! Form::text('name', null, ['placeholder' => __('timelines/eras.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+        {!! Form::text('name', null, ['placeholder' => __('timelines/eras.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required']) !!}
     </div>
 
     <div class="field-abbrev">

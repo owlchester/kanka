@@ -6,14 +6,11 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
-
-
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons inline-block pull-right ml-auto">
-            <a href="{{ route('abilities.entity-add', $model) }}" class="btn2 btn-accent btn-sm"
-               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('abilities.entity-add', $model) }}">
+            <a href="{{ route('abilities.entity-add', [$campaign, $model]) }}" class="btn2 btn-accent btn-sm"
+               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('abilities.entity-add', [$campaign, $model]) }}">
                 <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('abilities.children.actions.add') }}</span>
             </a>
         </div>

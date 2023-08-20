@@ -12,7 +12,6 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-story-reorder'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')
@@ -23,7 +22,7 @@
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
+                Breadcrumb::entity($entity)->list(),
                 __('entities/story.reorder.panel_title')
             ]
         ])

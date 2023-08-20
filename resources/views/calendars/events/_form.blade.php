@@ -1,3 +1,10 @@
+
+@if (!empty($from))
+    <x-alert type="warning">
+        {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
+    </x-alert>
+@endif
+
 {{ csrf_field() }}
 @if (empty($entityEvent))
     <x-grid id="calendar-event-first">
@@ -12,9 +19,9 @@
         </span>
     </x-grid>
 @else
-    <div class="mb-5">
-        @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id', 'dropdownParent' => '#entity-modal', 'allowClear' => false])
-    </div>
+    <x-grid type="1/1">
+        @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id', 'dropdownParent' => $dropdownParent ?? '#entity-modal', 'allowClear' => false])
+    </x-grid>
 @endif
 
 <div id="calendar-event-subform" style="{{ empty($entityEvent) ? 'display:none' : null }}">
@@ -22,7 +29,7 @@
         <div class="flex gap-2 md:gap-4 mb-2 md:mb-4 items-center">
             <div class="grow calendar-existing-event-field">
                 @include('cruds.fields.entity', [
-                    'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+                    'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#entity-modal' : null),
                     'required' => true
                 ])
             </div>

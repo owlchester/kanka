@@ -2,29 +2,37 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateModuleName;
+use App\Models\Campaign;
 use App\Models\EntityType;
-use App\Services\Campaign\ModuleService;
+use App\Services\Campaign\ModuleEditService;
 use App\Services\SidebarService;
-use Illuminate\Support\Str;
+use Exception;
 
 class ModuleController extends Controller
 {
     protected SidebarService $sidebarService;
-    protected ModuleService $moduleService;
+    protected ModuleEditService $moduleService;
 
-    public function __construct(SidebarService $sidebarService, ModuleService $moduleService)
+    public function __construct(SidebarService $sidebarService, ModuleEditService $moduleEditService)
     {
         $this->middleware('auth');
         $this->sidebarService = $sidebarService;
-        $this->moduleService = $moduleService;
+        $this->moduleService = $moduleEditService;
     }
 
-    public function edit(EntityType $entityType)
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('setting', $campaign);
+
+        return view('campaigns.modules.index')
+            ->with('campaign', $campaign)
+            ->with('canReset', true);
+    }
+
+    public function edit(Campaign $campaign, EntityType $entityType)
+    {
         $this->authorize('setting', $campaign);
 
         if (!$campaign->boosted()) {
@@ -45,9 +53,8 @@ class ModuleController extends Controller
         ;
     }
 
-    public function update(UpdateModuleName $request, EntityType $entityType)
+    public function update(UpdateModuleName $request, Campaign $campaign, EntityType $entityType)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
         if (!$campaign->boosted()) {
@@ -59,32 +66,49 @@ class ModuleController extends Controller
             ->campaign($campaign)
             ->update($request, $entityType);
 
-        return redirect()->route('campaign.modules')
+        return redirect()->route('campaign.modules', $campaign)
             ->with('success', __('campaigns/modules.rename.success'));
     }
 
-    public function reset()
+    public function reset(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
-        $settings = $campaign->settings;
-        unset($settings['modules']);
-        foreach ($settings as $name => $val) {
-            if (Str::startsWith($name, 'modules.')) {
-                unset($settings[$name]);
-            }
-        }
-        $campaign->settings = $settings;
-        $campaign->save();
-
+        $this->moduleService
+            ->campaign($campaign)
+            ->reset();
 
         $this->sidebarService
             ->campaign($campaign)
             ->clearCache();
 
         return redirect()
-            ->route('campaign.modules')
+            ->route('campaign.modules', $campaign)
             ->with('success', __('campaigns/modules.reset.success'));
+    }
+
+
+    /**
+     * Toggle a module in the campaign's settings
+     */
+    public function toggle(Campaign $campaign, string $module)
+    {
+        $this->authorize('setting', $campaign);
+
+        try {
+            $status = $this->moduleService
+                ->campaign($campaign)
+                ->toggle($module);
+
+            return response()->json([
+                'success' => true,
+                'status' => $campaign->setting->{$module},
+                'toast' => __('campaigns.settings.' . ($status ? 'enabled' : 'disabled'), ['module' => __('entities.' . $module)])
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false
+            ]);
+        }
     }
 }

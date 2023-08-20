@@ -13,7 +13,7 @@
             <ul>
                 @foreach ($templates as $template)
                     <li>
-                        <a href="{{ route($type . '.create', ['copy' => $template->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $type }}">
+                        <a href="{{ route($type . '.create', [$campaign, 'copy' => $template->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $type }}">
                             {{ $template->name  }}
                         </a>
                     </li>
@@ -22,7 +22,7 @@
         @endif
     </div>
 
-    <div class="quick-creator-loading p-8 text-center" style="display: none">
-        <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+    <div class="quick-creator-loading p-8 text-center text-lg" style="display: none">
+        <x-icon class="load" />
     </div>
 </div>

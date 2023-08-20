@@ -4,9 +4,14 @@ namespace App\Services;
 
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
+use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\Relation;
 use App\Models\Tag;
+use App\Services\Entity\MoveService;
 use App\Services\Entity\TagService;
+use App\Services\Entity\TransformService;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use App\Models\MiscModel;
@@ -16,15 +21,16 @@ use Stevebauman\Purify\Facades\Purify;
 
 class BulkService
 {
-    /**
-     * @var EntityService
-     */
+    use CampaignAware;
+
     protected EntityService $entityService;
 
-    /**
-     * @var PermissionService
-     */
     protected PermissionService $permissionService;
+
+    protected TransformService $transformService;
+
+    protected MoveService $moveService;
+
 
     /** @var string Entity name */
     protected string $entityName;
@@ -38,15 +44,16 @@ class BulkService
     /** @var int Total entities that were updated */
     protected int $count = 0;
 
-    /**
-     * BulkService constructor.
-     * @param EntityService $entityService
-     * @param PermissionService $permissionService
-     */
-    public function __construct(EntityService $entityService, PermissionService $permissionService)
-    {
+    public function __construct(
+        EntityService $entityService,
+        PermissionService $permissionService,
+        TransformService $transformService,
+        MoveService $moveService
+    ) {
         $this->entityService = $entityService;
         $this->permissionService = $permissionService;
+        $this->transformService = $transformService;
+        $this->moveService = $moveService;
     }
 
     /**
@@ -152,17 +159,21 @@ class BulkService
             throw new TranslatableException('crud.move.errors.unknown_campaign');
         }
 
-        $options = [
-            'campaign' => $campaignId,
-            'copy' => 'on'
-        ];
+        $this->moveService
+            ->campaign($this->campaign)
+            ->copy(true)
+            ->to($campaign);
 
-        foreach ($this->ids as $id) {
-            $entity = $model->findOrFail($id);
-            if (auth()->user()->can('update', $entity)) {
-                if ($this->entityService->move($entity->entity, $options)) {
-                    $this->count++;
-                }
+        $entities = $model->whereIn('id', $this->ids)->get();
+        foreach ($entities as $entity) {
+            if (!auth()->user()->can('update', $entity)) {
+                continue;
+            }
+            if (empty($entity->entity)) {
+                dd(CampaignLocalization::getCampaign());
+            }
+            if ($this->moveService->entity($entity->entity)->process()) {
+                $this->count++;
             }
         }
 
@@ -181,7 +192,9 @@ class BulkService
         }
 
         // Validate the type
-        $validTypes = $this->entityService->entities(['menu_links', 'relations']);
+        $validTypes = config('entities.classes');
+        unset($validTypes['menu_link'], $validTypes['relation']);
+
         if (!isset($validTypes[$type])) {
             throw new TranslatableException('entities/transform.bulk.errors.unknown_type');
         }
@@ -190,7 +203,9 @@ class BulkService
         foreach ($this->ids as $id) {
             $entity = $model->findOrFail($id);
             if (auth()->user()->can('update', $entity)) {
-                $this->entityService->transform($entity->entity, $type, $entity);
+                $this->transformService
+                    ->child($entity)
+                    ->transform($type);
                 $this->count++;
             }
         }

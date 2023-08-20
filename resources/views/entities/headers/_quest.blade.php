@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Quest $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->quest)

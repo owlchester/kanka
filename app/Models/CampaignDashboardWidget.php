@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use App\Enums\Widget;
 
 /**
  * Class CampaignDashboardWidget
@@ -20,7 +21,7 @@ use Illuminate\Support\Str;
  * @property integer $campaign_id
  * @property integer $entity_id
  * @property int $dashboard_id
- * @property string $widget
+ * @property Widget $widget
  * @property array $config
  * @property integer $width
  * @property integer $position
@@ -37,27 +38,6 @@ class CampaignDashboardWidget extends Model
     use LastSync;
     use Taggable;
 
-    /**
-     * Widget Constants
-     */
-    public const WIDGET_PREVIEW = 'preview';
-    public const WIDGET_RECENT = 'recent';
-    public const WIDGET_CALENDAR = 'calendar';
-    public const WIDGET_UNMENTIONED = 'unmentioned';
-    public const WIDGET_RANDOM = 'random';
-    public const WIDGET_HEADER = 'header';
-    public const WIDGET_CAMPAIGN = 'campaign';
-    public const WIDGET_WELCOME = 'welcome';
-
-    // Widgets that are automatically visible on the dashboard
-    public const WIDGET_VISIBLE = [
-        self::WIDGET_RECENT,
-        self::WIDGET_UNMENTIONED,
-        self::WIDGET_RANDOM,
-        self::WIDGET_HEADER,
-        self::WIDGET_WELCOME,
-    ];
-
     /** @var string[]  */
     protected $fillable = [
         'campaign_id',
@@ -71,6 +51,7 @@ class CampaignDashboardWidget extends Model
 
     protected $casts = [
         'config' => 'array',
+        'widget' => Widget::class,
     ];
 
     /**
@@ -121,14 +102,14 @@ class CampaignDashboardWidget extends Model
      */
     public function colSize(): int
     {
-        if ($this->widget == self::WIDGET_CAMPAIGN) {
+        if ($this->widget == Widget::Campaign) {
             return 12;
         }
         if (!empty($this->width)) {
             return $this->width;
         }
-        return ($this->widget == self::WIDGET_PREVIEW || $this->widget == self::WIDGET_RANDOM ||
-            ($this->widget == self::WIDGET_RECENT && $this->conf('singular')))
+        return ($this->widget == Widget::Preview || $this->widget == Widget::Random ||
+            ($this->widget == Widget::Recent && $this->conf('singular')))
             ? 4 : 6;
     }
 
@@ -200,10 +181,10 @@ class CampaignDashboardWidget extends Model
         if ($this->conf('attributes') != '1') {
             return false;
         }
-        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT, self::WIDGET_RANDOM])) {
+        if (!in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
             return false;
         }
-        if ($this->widget == self::WIDGET_RECENT) {
+        if ($this->widget == Widget::Recent) {
             return true;
         }
 
@@ -218,10 +199,10 @@ class CampaignDashboardWidget extends Model
         if ($this->conf('relations') != '1') {
             return false;
         }
-        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT, self::WIDGET_RANDOM])) {
+        if (!in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
             return false;
         }
-        if ($this->widget == self::WIDGET_RECENT) {
+        if ($this->widget == Widget::Recent) {
             return true;
         }
 
@@ -238,7 +219,7 @@ class CampaignDashboardWidget extends Model
         if ($this->conf('members') !== '1') {
             return false;
         }
-        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT, self::WIDGET_RANDOM])) {
+        if (!in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
             return false;
         }
         $types = [
@@ -411,17 +392,17 @@ class CampaignDashboardWidget extends Model
     public function widgetIcon(): string
     {
         $icon = null;
-        if ($this->widget === self::WIDGET_RECENT) {
+        if ($this->widget === Widget::Recent) {
             $icon = 'fa-solid fa-list';
-        } elseif ($this->widget === self::WIDGET_HEADER) {
+        } elseif ($this->widget === Widget::Header) {
             $icon = 'fa-solid fa-heading';
-        } elseif ($this->widget === self::WIDGET_PREVIEW) {
+        } elseif ($this->widget === Widget::Preview) {
             $icon = 'fa-solid fa-align-justify';
-        } elseif ($this->widget === self::WIDGET_CALENDAR) {
+        } elseif ($this->widget === Widget::Calendar) {
             $icon = 'ra ra-moon-sun';
-        } elseif ($this->widget === self::WIDGET_RANDOM) {
+        } elseif ($this->widget === Widget::Random) {
             $icon = 'fa-solid fa-dice-d20';
-        } elseif ($this->widget === self::WIDGET_CAMPAIGN) {
+        } elseif ($this->widget === Widget::Campaign) {
             $icon = 'fa-solid fa-th-list';
         }
 

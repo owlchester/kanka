@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -138,7 +139,7 @@ class TimelineEra extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->timeline_id, $this->id];
+        return $options + [$this->timeline_id, $this->id];
     }
 
     /**
@@ -147,7 +148,8 @@ class TimelineEra extends Model
      */
     public function getLink(): string
     {
-        return route('timelines.timeline_eras.edit', ['timeline' => $this->timeline_id, $this->id]);
+        $campaign = CampaignLocalization::getCampaign();
+        return route('timelines.timeline_eras.edit', [$campaign, 'timeline' => $this->timeline_id, $this->id]);
     }
 
     /**

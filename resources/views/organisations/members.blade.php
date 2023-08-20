@@ -5,7 +5,6 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     @include('partials.errors')

@@ -96,7 +96,7 @@ trait SubEntityScopes
         }
 
         $campaign = CampaignLocalization::getCampaign();
-        if ($campaign->superboosted()) {
+        if ($campaign && $campaign->superboosted()) {
             $relations[] = 'entity.header';
             $relations[] = 'entity.image';
         }

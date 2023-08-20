@@ -35,8 +35,8 @@ $hasOthers = false;
         @endforeach
     </ul>
 </div>
-<a href="#" class="btn2 btn-disabled datagrid-spinner" style="display:none">
-    <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+<a href="#" class="btn2 btn-disabled datagrid-spinner text-lg" style="display:none">
+    <x-icon class="load" />
 </a>
 <input type="hidden" name="action" value="" />
 

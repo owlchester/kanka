@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->models($models)
     ->columns([
@@ -26,6 +27,5 @@
         'route' => 'calendars.index',
         'baseRoute' => 'calendars',
         'trans' => 'calendars.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

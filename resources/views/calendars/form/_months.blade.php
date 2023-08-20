@@ -8,7 +8,7 @@
     <div class="">{{ __('calendars.parameters.month.name') }}</div>
     <div class="">{{ __('calendars.parameters.month.length') }}</div>
     <div class="">{{ __('calendars.parameters.month.alias') }}</div>
-    <div class="">{{ __('calendars.parameters.month.type') }} <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('calendars.helpers.month_type') }}"></i></div>
+    <div class="">{{ __('calendars.parameters.month.type') }} <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-title="{{ __('calendars.helpers.month_type') }}"></i></div>
 </div>
 <?php
 $months = [];

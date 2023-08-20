@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\Plugin;
-use App\Services\Campaign\CampaignPluginService;
+use App\Services\Campaign\PluginService;
 use App\Services\Plugins\ImporterService;
 use Carbon\Carbon;
 use Exception;
@@ -16,10 +16,10 @@ use Illuminate\Http\Request;
 
 class PluginController extends Controller
 {
-    protected CampaignPluginService $service;
+    protected PluginService $service;
     protected ImporterService $importerService;
 
-    public function __construct(CampaignPluginService $service, ImporterService $importerService)
+    public function __construct(PluginService $service, ImporterService $importerService)
     {
         $this->middleware('auth', ['except' => ['css', 'index']]);
         $this->middleware('campaign.boosted', ['except' => 'index']);
@@ -33,9 +33,8 @@ class PluginController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         Datagrid::layout(\App\Renderers\Layouts\Campaign\Plugin::class);
 
 
@@ -61,8 +60,8 @@ class PluginController extends Controller
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $rows)->render();
-            $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->render();
+            $html = view('layouts.datagrid._table')->with('rows', $rows)->with('campaign', $campaign)->render();
+            $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->with('campaign', $campaign)->render();
             return response()->json([
                 'success' => true,
                 'html' => $html,
@@ -78,14 +77,13 @@ class PluginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function enable(Plugin $plugin)
+    public function enable(Campaign $campaign, Plugin $plugin)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
         $this->service->campaign($campaign)->plugin($plugin)->enable();
 
-        return redirect()->route('campaign_plugins.index')
+        return redirect()->route('campaign_plugins.index', $campaign)
             ->with(
                 'success',
                 __('campaigns/plugins.enabled.success', ['plugin' => $plugin->name])
@@ -97,14 +95,13 @@ class PluginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function disable(Plugin $plugin)
+    public function disable(Campaign $campaign, Plugin $plugin)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
         $this->service->campaign($campaign)->plugin($plugin)->disable();
 
-        return redirect()->route('campaign_plugins.index')
+        return redirect()->route('campaign_plugins.index', $campaign)
             ->with(
                 'success',
                 __('campaigns/plugins.disabled.success', ['plugin' => $plugin->name])
@@ -118,21 +115,20 @@ class PluginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Plugin $plugin)
+    public function delete(Request $request, Campaign $campaign, Plugin $plugin)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
         try {
             $this->service->campaign($campaign)->plugin($plugin)->remove();
 
-            return redirect()->route('campaign_plugins.index')
+            return redirect()->route('campaign_plugins.index', $campaign)
                 ->with(
                     'success',
                     __('campaigns/plugins.destroy.success', ['plugin' => $plugin->name])
                 );
         } catch (Exception $e) {
-            return redirect()->route('campaign_plugins.index')
+            return redirect()->route('campaign_plugins.index', $campaign)
                 ->with(
                     'error',
                     $e->getMessage()
@@ -143,16 +139,15 @@ class PluginController extends Controller
     /**
      * @return \Illuminate\Http\Response
      */
-    public function css()
+    public function css(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $themes = CampaignCache::themes();
 
         $response = \Illuminate\Support\Facades\Response::make($themes);
         $response->header('Content-Type', 'text/css');
-        $response->header('Expires', Carbon::now()->addMonth()->toDateTimeString());
-        $month = 2592000;
+        //$response->header('Expires', Carbon::now()->addMonth()->toDateTimeString());
+        $month = 31536000;
+        $response->setLastModified($campaign->updated_at->toDateTime());
         $response->header('Cache-Control', 'public, max_age=' . $month);
 
         return $response;
@@ -163,12 +158,10 @@ class PluginController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function updateInfo(Plugin $plugin)
+    public function updateInfo(Campaign $campaign, Plugin $plugin)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
-        $ajax = request()->ajax();
         $versions = $plugin
             ->versions()
             ->publishedVersions($plugin->created_by)
@@ -177,7 +170,7 @@ class PluginController extends Controller
 
         $plugin = $campaign->plugins->where('id', $plugin->id)->first();
 
-        return view('campaigns.plugins.info', compact('plugin', 'ajax', 'versions'));
+        return view('campaigns.plugins.info', compact('plugin', 'campaign', 'versions'));
     }
 
     /**
@@ -185,22 +178,20 @@ class PluginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Plugin $plugin)
+    public function update(Campaign $campaign, Plugin $plugin)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
         $this->service->plugin($plugin)->campaign($campaign)->update();
-        return redirect()->route('campaign_plugins.index')
+        return redirect()->route('campaign_plugins.index', $campaign)
             ->with(
                 'success',
                 __('campaigns/plugins.update.success', ['plugin' => $plugin->name])
             );
     }
 
-    public function confirmImport(Plugin $plugin)
+    public function confirmImport(Campaign $campaign, Plugin $plugin)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
         $version = CampaignPlugin::where('campaign_id', $campaign->id)
@@ -209,6 +200,7 @@ class PluginController extends Controller
 
         return view('campaigns.plugins.confirm')
             ->with('plugin', $plugin)
+            ->with('campaign', $campaign)
             ->with('version', $version)
         ;
     }
@@ -218,9 +210,8 @@ class PluginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function import(Request $request, Plugin $plugin)
+    public function import(Request $request, Campaign $campaign, Plugin $plugin)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
         try {
@@ -230,7 +221,7 @@ class PluginController extends Controller
                 ->options($request->only(['force_private', 'only_new']))
                 ->import();
 
-            return redirect()->route('campaign_plugins.index')
+            return redirect()->route('campaign_plugins.index', $campaign)
                 ->with(
                     'success',
                     trans_choice('campaigns/plugins.import.success', $count, ['plugin' => $plugin->name, 'count' => $count])
@@ -240,7 +231,7 @@ class PluginController extends Controller
                 ->with('plugin_only_new', $request->get('only_new'))
             ;
         } catch (Exception $e) {
-            return redirect()->route('campaign_plugins.index')
+            return redirect()->route('campaign_plugins.index', $campaign)
                 ->withError(__('campaigns/plugins.import.errors.' . $e->getMessage(), ['plugin' => $plugin->name]));
         }
     }
@@ -251,16 +242,15 @@ class PluginController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function bulk()
+    public function bulk(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
         $action = request()->get('action');
         $models = request()->get('model');
         if (!in_array($action, ['enable', 'disable', 'update', 'delete']) || empty($models)) {
             return redirect()
-                ->route('campaign_plugins.index');
+                ->route('campaign_plugins.index', $campaign);
         }
 
         $this->service->campaign($campaign);
@@ -291,7 +281,7 @@ class PluginController extends Controller
         CampaignCache::clearTheme();
 
         return redirect()
-            ->route('campaign_plugins.index')
+            ->route('campaign_plugins.index', $campaign)
             ->with('success', trans_choice('campaigns/plugins.bulks.' . $action, $count, ['count' => $count]))
         ;
     }

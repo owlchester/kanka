@@ -8,7 +8,7 @@
             <button type="button" class="btn2 join-item btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <ul class="dropdown-menu dropdown-menu-right dropdown-menu-top" role="menu">
                 <li>
                     <a href="#" class="dropdown-item form-submit-actions">
                     {{ __('crud.actions.apply') }}
@@ -27,7 +27,4 @@
             </ul>
         </div>
     </div>
-</div>
-<div class="submit-animation" style="display: none;">
-    <button class="btn2 btn-primary" disabled><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i></button>
 </div>

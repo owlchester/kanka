@@ -4,7 +4,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.applications') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.applications')
     ],
     'mainTitle' => false,
@@ -23,13 +23,13 @@
                 <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.applications') }}
                 </h3>
-                <button class="btn2 btn-sm" data-toggle="dialog"
+                <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                         data-target="submissions-help">
                     <x-icon class="question"></x-icon>
-                    {{ __('campaigns.members.actions.help') }}
+                    {{ __('crud.actions.help') }}
                 </button>
 
-                <a href="#" data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-sm">
+                <a href="#" data-url="{{ route('campaign-applications', $campaign) }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-sm">
                     <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
                     {{ __('campaigns/submissions.actions.applications', ['status' => ($campaign->isOpen() ? __('campaigns/submissions.statuses.open') : __('campaigns/submissions.statuses.closed'))]) }}
                 </a>
@@ -40,7 +40,7 @@
                     <x-alert type="warning">
                         <p>{!! __('campaigns/submissions.helpers.not_open') !!}</p>
                         <p>
-                            <button data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-outline">
+                            <button data-url="{{ route('campaign-applications', $campaign) }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-outline">
                                 <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
                                 {{ __('campaigns/submissions.actions.change') }}
                             </button>
@@ -51,7 +51,7 @@
                         <x-alert type="warning">
                             <p>{{ __('campaigns/submissions.helpers.open_not_public') }}</p>
                             @if (auth()->user()->can('update', $campaign))
-                            <a href="{{ route('campaigns.edit', ['#tab_form-public']) }}" class="btn2 btn-warning">
+                            <a href="{{ route('campaigns.edit', [$campaign, '#tab_form-public']) }}" class="btn2 btn-warning">
                                 {{ __('crud.fix-this-issue') }}
                             </a>
                             @endif
@@ -79,9 +79,5 @@
             __('campaigns/submissions.helpers.modal')
     ]])
 
-    <x-dialog id="submission-dialog" title="{{ __('Loading') }}">
-        <div class="p-5 text-center">
-            <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
-        </div>
-    </x-dialog>
+    <x-dialog id="submission-dialog" loading="true" />
 @endsection

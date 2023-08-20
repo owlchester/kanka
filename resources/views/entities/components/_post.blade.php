@@ -21,14 +21,14 @@
                 @if (auth()->check())
                     {!! $post->visibilityIcon('btn-box-tool') !!}
 
-                    <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+                    <a role="button" class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                         <x-icon class="fa-solid fa-ellipsis-v"></x-icon>
                         <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                         @can('post', [$model, 'edit', $post])
                         <li>
-                            <a href="{{ route('entities.posts.edit', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
+                            <a href="{{ route('entities.posts.edit', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
                                 <x-icon class="edit"></x-icon>
                                 {{ __('crud.edit') }}
                             </a>
@@ -36,14 +36,14 @@
                         @endcan
                         @if (!isset($more))
                         <li>
-                            <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toggle="tooltip"
+                            <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
                                 <x-icon class="fa-solid fa-link"></x-icon>
                                 {{ __('entities/notes.copy_mention.copy') }}
                             </a>
                         </li>
                         <li>
-                            <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toggle="tooltip"
+                            <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
                                 <x-icon class="fa-solid fa-link"></x-icon>
                                 {{ __('entities/notes.copy_mention.copy_with_name') }}
@@ -52,14 +52,14 @@
                         @endif
                         @if(auth()->user()->isAdmin())
                         <li>
-                            <a href="{{ route('posts.move', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
+                            <a href="{{ route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
                                 <x-icon class="fa-solid fa-arrows-left-right"></x-icon> {{ __('entities/notes.move.move') }}
                             </a>
                         </li>
                         @endif
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ route('entities.story.reorder', ['entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
+                            <a href="{{ route('entities.story.reorder', [$campaign, 'entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
                                 <x-icon class="fa-solid fa-arrows-v"></x-icon>
                                 {{ __('entities/story.reorder.icon_tooltip') }}
                             </a>
@@ -84,13 +84,13 @@
 
 
             <div class="post-footer entity-note-footer text-right text-muted text-xs ">
-                <span class="post-footer-element post-created entity-note-footer-element entity-note-created" title="{{ __('entities/notes.footer.created', [
+                <span class="post-footer-element post-created entity-note-footer-element entity-note-created" data-title="{{ __('entities/notes.footer.created', [
     'user' => $post->created_by ? e(\App\Facades\UserCache::name($post->created_by)) : __('crud.users.unknown'),
     'date' => $post->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
                     {{ $post->created_at->isoFormat('MMMM Do, Y') }}
                 </span>
                     @if ($post->updated_at->greaterThan($post->created_at))
-                        <span class="post-footer-element post-updated entity-note-footer-element entity-note-updated" title="{{ __('entities/notes.footer.updated', [
+                        <span class="post-footer-element post-updated entity-note-footer-element entity-note-updated" data-title="{{ __('entities/notes.footer.updated', [
     'user' => $post->updated_by ? e(\App\Facades\UserCache::name($post->updated_by)) : __('crud.users.unknown'),
     'date' => $post->updated_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
                     {{ $post->updated_at->isoFormat('MMMM Do, Y') }}

@@ -4,12 +4,12 @@
         $baseRoute = request()->url() . '?' . (!empty($allMembers) ? 'all_members=1&' : (isset($filter) ? $filter : null));
     @endphp
     <div class="dropdown">
-        <a class="dropdown-toggle btn2 btn-sm" data-toggle="dropdown" aria-expanded="false">
+        <a role="button" class="dropdown-toggle btn2 btn-sm" data-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true" data-tree="escape"></i>
             <span class="sr-only">Order by</span>
         </a>
         <ul class="dropdown-menu min-w-0" role="menu">
-            @foreach ($datagridSorter->options(\App\Facades\CampaignLocalization::getCampaign()) as $key => $val)
+            @foreach ($datagridSorter->options($campaign) as $key => $val)
                 @if ($key === 'today')
                     <li class="dropdown-item" @if ($datagridSorter->isSelected($key)) active @endif>
                         <a href="{{ $baseRoute . $datagridSorter->fieldname() . '=' . $key . $datagridSorter->direction() }}">

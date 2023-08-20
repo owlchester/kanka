@@ -8,12 +8,11 @@
     'miscModel' => $model,
     'bodyClass' => 'entity-profile'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('entity-header-actions')
     @can('update', $model)
-        <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
+        <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
             <a href="{{ $model->getLink('edit') }}" class="btn2 btn-accent btn-sm">
                 {{ __('entities/profile.actions.edit_profile') }}
             </a>
@@ -31,7 +30,7 @@
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
+                Breadcrumb::entity($entity)->list(),
                 __('crud.tabs.profile')
             ]
         ])

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
@@ -63,7 +62,7 @@ class Ability extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'ability.name',
     ];
 
@@ -179,8 +178,6 @@ class Ability extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $items['second']['abilities'] = [
             'name' => Module::plural($this->entityTypeId(), 'entities.abilities'),
             'route' => 'abilities.abilities',
@@ -231,7 +228,7 @@ class Ability extends MiscModel
         $entityAbility = EntityAbility::create([
             'ability_id' => $this->id,
             'entity_id' => $entityId,
-            'visibility_id' => Arr::get($request, 'visibility_id', Visibility::VISIBILITY_ALL),
+            'visibility_id' => Arr::get($request, 'visibility_id', \App\Enums\Visibility::All),
         ]);
 
         return $entityAbility !== false;

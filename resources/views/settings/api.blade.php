@@ -13,7 +13,7 @@
     <div id="api" class="mb-5">
         <p class="text-lg">
             {{ __('settings.api.helper') }}
-            <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" class="" target="_blank">
+            <a href="{{ route('larecipe.index') }}" class="" target="_blank">
                 <i class="fa-solid fa-external-link-square" aria-hidden="true"></i>
                 {{ __('front.features.api.link') }}
             </a>.
@@ -24,7 +24,7 @@
             <passport-authorized-clients></passport-authorized-clients>
 
         @if (request()->has('clients'))
-            <div class="col-span-2">
+            <div>
             <passport-clients></passport-clients>
             </div>
         @endif

@@ -1,23 +1,27 @@
-$(window).ready(function () {
-    initBannerPromoDismiss();
-});
+/**
+ * We sometimes run promotions or warnings at the top of pages. This allows the user to dismiss them
+ */
+const initBannerPromoDismiss = () => {
+    document.querySelectorAll('.banner-notification-dismiss')
+        .forEach((el) => {
+       el.addEventListener('click', dismissPromo, false);
+    });
+};
 
+function dismissPromo(e) {
+    e.preventDefault();
 
-function initBannerPromoDismiss()
-{
-    $('.banner-notification-dismiss').click(function (e) {
-        e.preventDefault();
-        $.post({
-            url: $(this).data('url'),
-            method: 'POST',
-            context: this,
-        }).done(function() {
-            // We can either have bootstrap handle the dismiss, or do it ourselves
-            let target = $(this).data('dismiss');
+    axios.post(this.dataset.url)
+        .then(() => {
+            let target = this.dataset.dismiss;
             if (!target) {
                 return;
             }
-            $(this).closest('.' + target).fadeOut();
+            let el = document.querySelector(target);
+            if (!el) {
+                return;
+            }
+            el.classList.add('hidden');
         });
-    });
 }
+initBannerPromoDismiss();

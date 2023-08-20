@@ -2,13 +2,13 @@
 
 namespace App\Renderers;
 
-use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Columns\Action;
 use App\Renderers\Layouts\Columns\Column;
 use App\Renderers\Layouts\Columns\Checkbox;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Header;
 use App\Renderers\Layouts\Layout;
+use App\Traits\CampaignAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
@@ -16,33 +16,27 @@ use Closure;
 
 class DatagridRenderer2
 {
+    use CampaignAware;
+
     /** @var Layout */
     protected $layout;
 
     /** @var array  */
-    protected $deleteForms = [];
+    protected array $deleteForms = [];
 
     /** @var array Action params for the edit/delete */
-    protected $actionParams = [];
+    protected array $actionParams = [];
 
     /** @var bool If permissions are checked or not. If false, assume we are admin. */
-    protected $permissions = true;
+    protected bool $permissions = true;
 
     protected $routeName = null;
-    protected $routeOptions = [];
+    protected array $routeOptions = [];
 
     /** @var bool|array */
     protected $bulks = false;
 
-    /** @var \App\Models\Campaign */
-    protected $campaign;
-
     protected Closure $highlight;
-
-    public function __construct()
-    {
-        $this->campaign = CampaignLocalization::getCampaign();
-    }
 
     /**
      * @param string|Layout $layout
@@ -105,16 +99,17 @@ class DatagridRenderer2
     {
         $headers = [];
 
+        $header = null;
         if ($this->hasBulks()) {
-            $headers[] = new Header('bulk');
+            $headers[] = (new Header('bulk'))->campaign($this->campaign);
         }
 
         foreach ($this->layout->visibleColumns() as $key => $col) {
-            $headers[] = new Header($col);
+            $headers[] = (new Header($col))->campaign($this->campaign);
         }
 
         if ($this->hasActions()) {
-            $headers[] = new Header([]);
+            $headers[] = (new Header([]))->campaign($this->campaign);
         }
 
         return $headers;
@@ -137,6 +132,7 @@ class DatagridRenderer2
         if ($this->hasActions() && auth()->check()) {
             $action = new Action($model, $this->layout->actions(), $this->permissions);
             $action->params($this->actionParams);
+            $action->campaign($this->campaign);
             if ($action->hasDelete()) {
                 $this->deleteForms[] = $model;
             }

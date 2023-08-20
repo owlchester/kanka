@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
@@ -64,7 +63,7 @@ class Tag extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'tag.name',
         'colour',
         'is_auto_applied',
@@ -246,8 +245,6 @@ class Tag extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $count = $this->descendants->count();
         if ($count > 0) {
             $items['second']['tags'] = [

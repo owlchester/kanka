@@ -3,7 +3,6 @@
 * @var \App\Models\Map $map
 */
 ?>
-@inject('campaignService', 'App\Services\CampaignService')
 
 @extends('layouts.map', [
     'title' => $map->name,
@@ -30,6 +29,8 @@
     <div class="map map-explore" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
 
     </div>
+
+    <input type="hidden" id="ticker-config" data-timeout="20000" data-url="{{ route('maps.ticker', [$map, $campaign]) }}" data-ts="{{ \Carbon\Carbon::now() }}" />
 @endsection
 
 @section('scripts')
@@ -106,9 +107,7 @@
             window.handleExploreMapClick(ev);
         });
     @endcan
-
     </script>
-    @vite(['resources/js/ajax-subforms.js'])
     <script type="text/javascript">
         @if (!empty($map->grid))
             // Leaflet grid
@@ -117,40 +116,6 @@
                 {{ $line[3] }}]], {color: 'grey', opacity: 0.5}).addTo(map{{ $map->id }});
             @endforeach
         @endif
-
-        // Map ticker to update markers every 20 seconds
-        var tickerTimeout = 20000;
-        var tickerUrl = '{{ route('maps.ticker', $map) }}';
-        var tickerTs = '{{ \Carbon\Carbon::now() }}';
-        $(document).ready(function() {
-            setTimeout(mapTicker, tickerTimeout);
-            // setTimeout(mapRedraw(), 1000);
-        });
-
-        function mapTicker() {
-            $.ajax(tickerUrl + '?ts=' + tickerTs)
-                .done(function(data) {
-                    if (!data) {
-                        return;
-                    }
-                    tickerTs = data.ts;
-                    for (var id in data.markers) {
-                        let changedMarker = data.markers[id];
-                        //console.log('moving', 'marker' + changedMarker.id, changedMarker);
-                        window['marker' + changedMarker.id].setLatLng({
-                            lon: changedMarker.longitude,
-                            lat: changedMarker.latitude
-                        }).update();
-                    }
-                    setTimeout(mapTicker, tickerTimeout);
-                });
-        }
-        //
-        // function mapRedraw() {
-        //     console.log('redraw');
-        //     window.map.invalidateSize(true);
-        // }
-
     </script>
 @endsection
 
@@ -205,7 +170,7 @@
                 <x-dialog.close />
             </div>
             <div class="modal-body bg-base-100" id="map-marker-modal-content">
-                <i class="fa-solid fa-spinner fa-spin spinner"></i>
+                <x-icon class="load" />
                 <div class="content p-0"></div>
             </div>
         </div>
@@ -216,7 +181,7 @@
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content bg-base-100">
-                {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
+                {!! Form::open(['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
                     <div class="modal-header">
                         <x-dialog.close :modal="true" />
                         <h4 class="modal-title">
@@ -264,9 +229,6 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        <div class="submit-animation" style="display: none;">
-                            <button class="btn2 btn-primary btn-sm" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                         </div>
                     </div>
                 </div>

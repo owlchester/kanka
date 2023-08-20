@@ -1,7 +1,7 @@
 @inject('entityService', 'App\Services\EntityService')
 <?php
 $entityTypes = ['' => ''];
-$entities = $entityService->campaign($campaignService->campaign())->getEnabledEntitiesSorted(false);
+$entities = $entityService->campaign($campaign)->getEnabledEntitiesSorted(false);
 $entityTypes = array_merge($entityTypes, $entities);
 ?>
 <p class="help-block">{!! __('menu_links.helpers.type', [

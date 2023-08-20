@@ -7,7 +7,7 @@
         @include('cruds.fields.item', [
             'preset' => (!empty($inventory) && $inventory->item ? $inventory->item: false),
             'allowNew' => false,
-            'dropdownParent' => request()->ajax() ? '#entity-modal' : null
+            'dropdownParent' => request()->ajax() ? '#inventory-dialog' : null
         ])
     </div>
     <div class="field-name required ">
@@ -38,7 +38,7 @@
 
         <div class="hidden">
             <datalist id="position-list">
-                @foreach (\App\Models\Inventory::positionList() as $name)
+                @foreach (\App\Models\Inventory::positionList($campaign)->pluck('position')->all() as $name)
                     <option value="{{ e($name) }}">{{ e($name) }}</option>
                 @endforeach
             </datalist>
@@ -55,7 +55,7 @@
             {!! Form::hidden('copy_item_entry', 0) !!}
             {!! Form::checkbox('copy_item_entry') !!}
             {{ __('entities/inventories.fields.copy_entity_entry') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/inventories.helpers.copy_entity_entry') }}" data-toggle="tooltip"></i>
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('entities/inventories.helpers.copy_entity_entry') }}" data-toggle="tooltip"></i>
         </label>
         <p class="help-block visible-xs visible-sm">
             {{ __('entities/inventories.helpers.copy_entity_entry') }}

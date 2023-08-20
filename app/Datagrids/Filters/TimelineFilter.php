@@ -10,7 +10,7 @@ class TimelineFilter extends DatagridFilter
     /**
      * Filters available for timelines
      */
-    public function __construct()
+    public function build()
     {
         $name = Module::singular(config('entities.ids.timeline'));
         $placeholder = __('crud.placeholders.timeline');
@@ -24,7 +24,7 @@ class TimelineFilter extends DatagridFilter
                 'field' => 'timeline_id',
                 'label' => Module::singular(config('entities.ids.timeline'), __('entities.timeline')),
                 'type' => 'select2',
-                'route' => route('timelines.find'),
+                'route' => route('timelines.find', $this->campaign),
                 'placeholder' =>  $placeholder,
                 'model' => Timeline::class,
             ])

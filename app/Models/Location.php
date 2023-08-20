@@ -36,8 +36,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Location extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
@@ -61,7 +60,7 @@ class Location extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'parentLocation.name',
     ];
 

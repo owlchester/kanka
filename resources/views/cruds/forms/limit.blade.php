@@ -6,7 +6,6 @@
     ]
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     <x-cta :campaign="$campaign" image="0">

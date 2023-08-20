@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
@@ -70,7 +69,7 @@ class Item extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'price',
         'size',
         'location.name',
@@ -207,6 +206,21 @@ class Item extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function entities()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Entity',
+            'App\Models\Inventory',
+            'item_id',
+            'id',
+            'id',
+            'entity_id'
+        );
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function items()
@@ -235,8 +249,6 @@ class Item extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $inventoryCount = $this->inventories()->with('item')->has('entity')->count();
         if ($inventoryCount > 0) {
             $items['second']['inventories'] = [

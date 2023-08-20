@@ -1,6 +1,3 @@
-<?php
-$currentCampaign = CampaignLocalization::getCampaign();
-?>
 <header id="header" class="fixed top-0 h-12 w-full bg-navbar bg-base-100 z-[900]">
     <nav class="flex gap-2 justify-center items-center h-full">
         <div class="ml-1 flex-none flex md:w-sidebar justify-items items-center toggle-and-search">
@@ -11,26 +8,26 @@ $currentCampaign = CampaignLocalization::getCampaign();
             ></nav-toggler>
         @endif
 
-        @if (!empty($currentCampaign))
+        @if (!empty($campaign))
             <nav-search
-                api_lookup="{{ route('search.live') }}"
-                api_recent="{{ route('search.recent') }}"
+                api_lookup="{{ route('search.live', $campaign) }}"
+                api_recent="{{ route('search.recent', $campaign) }}"
                 placeholder="{{ __('search.placeholder') }}"
                 keyboard_tooltip="{!! __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) !!}"
             ></nav-search>
         @endif
         </div>
 
-        @if (auth()->check() && !empty($currentCampaign) && $currentCampaign->userIsMember() && (!isset($qq) || $qq))
+        @if (auth()->check() && !empty($campaign) && $campaign->userIsMember() && (!isset($qq) || $qq))
         <div class="flex-none">
             <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="bottom"></span>
-            <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button btn2 btn-primary btn-sm"
+            <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button btn2 btn-primary btn-sm"
             tabindex="4">
                 <i class="flex-none fa-solid fa-plus ml-1" aria-hidden="true" ></i>
                 <span class="flex-grow hidden-xs">
                     {{ __('crud.create') }}
                 </span>
-                <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true" data-placement="bottom" >N</span>
+                <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true" data-placement="bottom" >N</span>
             </a>
         </div>
         @endif
@@ -56,7 +53,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                         fetch="{{ route('notifications.refresh') }}"
                         initials="{{ auth()->user()->initials() }}"
                         avatar="{{ auth()->user()->getAvatarUrl(36) }}"
-                        campaign_id="{{ !empty($currentCampaign) ? $currentCampaign->id : null }}"
+                        campaign_id="{{ !empty($campaign) ? $campaign->id : null }}"
                         :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
                         :pro="{{ config('fontawesome.kit') !== false ? 'true' : 'false' }}"
                     ></nav-switcher>

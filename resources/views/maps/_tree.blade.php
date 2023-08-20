@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->nested()
     ->service($filterService)
     ->models($models)
@@ -13,7 +14,7 @@
         'name',
         'type',
         [
-            'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" title="' . __('maps.actions.explore') . '"></i>',
+            'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '"></i>',
             'render' => function($model) {
                 return $model->exploreLink();
             },
@@ -21,7 +22,7 @@
         ],
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps')),
@@ -38,7 +39,6 @@
         'route' => 'maps.tree',
         'baseRoute' => 'maps',
         'trans' => 'maps.fields.',
-        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

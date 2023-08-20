@@ -3,12 +3,12 @@
  * @var \App\Models\Entity $entity
  * @var \App\Models\QuestElement $element
  */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/quests.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('entities.quests')
     ],
     'mainTitle' => false,
@@ -16,7 +16,6 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-quests'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
@@ -30,7 +29,7 @@
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
+                Breadcrumb::entity($entity)->list(),
                 __('entities.quests')
             ]
         ])
@@ -59,7 +58,7 @@
                     @foreach ($quests as $element)
                         <tr>
                             <td>
-                                <a class="entity-image cover-background" style="background-image: url('{{ $element->quest->thumbnail() }}');" title="{{ $element->quest->name }}" href="{{ route('quests.show', $element->quest_id) }}"></a>
+                                <a class="entity-image cover-background" style="background-image: url('{{ $element->quest->thumbnail() }}');" title="{{ $element->quest->name }}" href="{{ route('quests.show', [$campaign, $element->quest]) }}"></a>
                             </td>
                             <td>
                                 {!! $element->quest->tooltipedLink() !!}
@@ -72,7 +71,7 @@
                             </td>
                             <td>
                                 @if($element->quest->is_completed)
-                                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                                    <x-icon class="fa-solid fa-check-circle" />
                                 @endif
                             </td>
                         </tr>

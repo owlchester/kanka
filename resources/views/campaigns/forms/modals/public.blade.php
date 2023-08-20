@@ -3,12 +3,12 @@
 </x-dialog.header>
 <article class="text-left max-w-2xl">
 
-{!! Form::model($campaign, ['route' => 'campaign-visibility.save', 'method' => 'POST']) !!}
+{!! Form::model($campaign, ['route' => ['campaign-visibility.save', $campaign], 'method' => 'POST']) !!}
 
     <x-alert type="info">
         <p>{!! __('campaigns/public.helpers.main', [
-    'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank']),
-    'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), null, ['target' => '_blank'])
+    'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), null, ['target' => '_blank']),
+    'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), $campaign, ['target' => '_blank'])
 ]) !!}</p>
         <p>
             <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>

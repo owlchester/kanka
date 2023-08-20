@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns/recovery.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.recovery')
     ],
     'mainTitle' => false,
@@ -19,10 +19,10 @@
                 <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.recovery') }}
                 </h3>
-                <button class="btn2 btn-sm" data-toggle="dialog"
+                <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                         data-target="recovery-help">
                     <x-icon class="question"></x-icon>
-                    {{ __('campaigns.members.actions.help') }}
+                    {{ __('crud.actions.help') }}
                 </button>
             </div>
             @if (session()->get('boosted-pitch'))
@@ -30,7 +30,7 @@
                 </x-cta>
             @endif
 
-            @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'recovery.save']) !!} @endif
+            @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['recovery.save', $campaign]]) !!} @endif
             <div id="datagrid-parent">
                 @include('layouts.datagrid._table')
             </div>

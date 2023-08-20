@@ -4,11 +4,14 @@ namespace App\Renderers\Layouts;
 
 use App\Facades\Datagrid;
 use App\Renderers\Layouts\Columns\Standard;
+use App\Traits\CampaignAware;
 use Exception;
 use Illuminate\Support\Arr;
 
 class Header
 {
+    use CampaignAware;
+
     /** @var array|string */
     protected $data;
 
@@ -100,13 +103,14 @@ class Header
     {
         $route = Datagrid::routeName();
         $options = [
+            'campaign' => $this->campaign,
             'k' => $this->data['key'],
             'o' => 'asc'
         ];
         if ($this->orderField == $this->data['key']) {
             // Already desc? we want to reset
             if ($this->orderDir == 'desc') {
-                $options = [];
+                $options = ['campaign' => $this->campaign];
             } else {
                 $options['o'] = 'desc';
             }

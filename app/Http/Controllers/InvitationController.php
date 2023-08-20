@@ -3,33 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\RequireLoginException;
-use App\Services\CampaignService;
 use App\Services\InviteService;
-use App\Facades\CampaignLocalization;
 use App\User;
 use Exception;
 
 class InvitationController extends Controller
 {
-    /**
-     * @var CampaignService
-     */
-    public $campaignService;
-
-    /**
-     * @var InviteService
-     */
-    public $inviteService;
+    protected InviteService $inviteService;
+    protected \App\Services\Users\CampaignService $campaignService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CampaignService $campaignService, InviteService $inviteService)
+    public function __construct(InviteService $inviteService, \App\Services\Users\CampaignService $campaignService)
     {
-        $this->campaignService = $campaignService;
         $this->inviteService = $inviteService;
+        $this->campaignService = $campaignService;
     }
 
     /**
@@ -45,7 +36,10 @@ class InvitationController extends Controller
             }
             $campaign = $this->inviteService
                 ->useToken($token);
-            CampaignService::switchCampaign($campaign);
+            $this->campaignService
+                ->user(auth()->user())
+                ->campaign($campaign)
+                ->set();
             return redirect()->to('/');
         } catch (RequireLoginException $e) {
             return redirect()->route('login')->with('info', $e->getMessage());
@@ -58,9 +52,8 @@ class InvitationController extends Controller
             if (!$campaign) {
                 return redirect()->route('start')->withError($e->getMessage());
             }
-            CampaignLocalization::setCampaign($campaign->id);
             return redirect()
-                ->to(CampaignLocalization::getUrl($campaign->id))
+                ->route('dashboard', $campaign)
                 ->withError($e->getMessage());
         }
     }

@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->models($models)
     ->columns([
@@ -23,7 +24,7 @@
             'field' => 'quest.name',
             'render' => function($model) {
                 if ($model->quest) {
-                    return '<a href="' . route('quests.show', $model->quest->id) . '">' . e($model->quest->name) . '</a>';
+                    return '<a href="' . route('quests.show', [$campaign, $model->quest->id]) . '">' . e($model->quest->name) . '</a>';
                 }
             }
         ],
@@ -52,6 +53,5 @@
         'route' => 'quests.index',
         'baseRoute' => 'quests',
         'trans' => 'quests.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

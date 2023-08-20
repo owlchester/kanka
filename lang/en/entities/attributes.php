@@ -81,6 +81,7 @@ return [
         'unlock'    => 'Attribute unlocked',
         'unpin'     => 'Attribute unpinned',
     ],
+    'tutorial'      => 'Attributes are little bits of information attached to an entity. For example, a character might have an :hp and :str stat, while a location might have a :pop one. This can easily be tracked with attributes.',
     'types'         => [
         'attribute' => 'Attribute',
         'block'     => 'Block',

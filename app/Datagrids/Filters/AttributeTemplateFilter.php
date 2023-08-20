@@ -9,7 +9,7 @@ class AttributeTemplateFilter extends DatagridFilter
     /**
      * Filters available for attribute templates
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -17,7 +17,7 @@ class AttributeTemplateFilter extends DatagridFilter
                 'field' => 'attribute_template_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('attribute_templates.find'),
+                'route' => route('attribute_templates.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => AttributeTemplate::class,
             ])

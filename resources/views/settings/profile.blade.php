@@ -27,7 +27,7 @@
                     {!! Form::text('settings[marketplace_name]', null, ['class' => 'rounded border p-2 w-full', 'maxlength' => 32]) !!}
                     <p class="help-block">
                         {!! __('profiles.helpers.profile-name', [
-'marketplace' => link_to(config('marketplace.url'), __('front.menu.marketplace'), ['target' => '_blank']),
+'marketplace' => link_to(config('marketplace.url'), __('footer.marketplace'), ['target' => '_blank']),
 'profile' => link_to_route('users.profile', __('profiles.settings.helpers.profile'), $user, ['target' => '_blank'])]) !!}
                     </p>
                 </div>
@@ -57,7 +57,7 @@
                             {!! Form::hidden('settings[hide_subscription]', 0) !!}
                             {!! Form::checkbox('settings[hide_subscription]', 1) !!}
                             {!! __('profiles.fields.hide_subscription', [
-'hall_of_fame' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.title'), null, ['target' => '_blank'])
+'hall_of_fame' => link_to('https://kanka.io/hall-of-fame', __('front/hall-of-fame.title'), null, ['target' => '_blank'])
 ]) !!}</label>
                     </div>
                 @endif

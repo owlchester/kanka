@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\MapMarker;
@@ -28,7 +29,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function locations(Request $request)
+    public function locations(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -39,10 +40,10 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function characters(Request $request)
+    public function characters(Request $request, Campaign $campaign)
     {
         if ($request->has('with_family')) {
-            return $this->familyCharacters($request);
+            return $this->familyCharacters($request, $campaign);
         }
         $term = trim($request->q);
         return $this->buildSearchResults($term, \App\Models\Character::class);
@@ -52,7 +53,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    protected function familyCharacters(Request $request)
+    protected function familyCharacters(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
 
@@ -89,7 +90,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function families(Request $request)
+    public function families(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -100,7 +101,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function items(Request $request)
+    public function items(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         return $this->buildSearchResults($term, \App\Models\Item::class);
@@ -110,7 +111,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function organisations(Request $request)
+    public function organisations(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -121,7 +122,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function events(Request $request)
+    public function events(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -132,7 +133,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function quests(Request $request)
+    public function quests(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -143,7 +144,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function calendars(Request $request)
+    public function calendars(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -154,7 +155,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function timelines(Request $request)
+    public function timelines(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -165,7 +166,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function tags(Request $request)
+    public function tags(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -176,7 +177,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function diceRolls(Request $request)
+    public function diceRolls(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         return $this->buildSearchResults($term, \App\Models\DiceRoll::class);
@@ -186,7 +187,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function conversations(Request $request)
+    public function conversations(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         return $this->buildSearchResults($term, \App\Models\Conversation::class);
@@ -196,7 +197,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function races(Request $request)
+    public function races(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -207,7 +208,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function creatures(Request $request)
+    public function creatures(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -218,7 +219,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function maps(Request $request)
+    public function maps(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -229,7 +230,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function markers(Request $request)
+    public function markers(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         //parent map_id allowed for the marker (limits search to the markers of the map only)
@@ -272,7 +273,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function notes(Request $request)
+    public function notes(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -283,7 +284,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function journals(Request $request)
+    public function journals(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
@@ -294,7 +295,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function abilities(Request $request)
+    public function abilities(Request $request, Campaign $campaign)
     {
         $term = trim($request->get('q', null));
         $exclude = [];
@@ -312,7 +313,7 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function attributeTemplates(Request $request)
+    public function attributeTemplates(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];

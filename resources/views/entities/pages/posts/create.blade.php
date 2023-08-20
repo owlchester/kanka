@@ -2,16 +2,15 @@
     'title' => __('entities/notes.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => $entity->url(), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('entities/notes.actions.add')
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
     {!! Form::open([
-        'route' => ['entities.posts.store', $entity->id],
+        'route' => ['entities.posts.store', $campaign, $entity->id],
         'method'=>'POST',
         'data-shortcut' => '1',
         'id' => 'entity-form',

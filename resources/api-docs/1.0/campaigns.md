@@ -14,11 +14,11 @@
 
 You can get a list of all the campaigns the user has access to using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/`. For example, `campaigns` becomes `kanka.io/api/{{version}}/campaigns`.
+> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/`. For example, `campaigns` becomes `api.kanka.io/{{version}}/campaigns`.
 
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI         | Headers |
+| :- |:------------|  :-  |
 | GET | `campaigns` | Default |
 
 ### Results
@@ -55,8 +55,8 @@ You can get a list of all the campaigns the user has access to using the followi
         }
     ],
     "links": {
-        "first": "https://kanka.io/api/{{version}}/campaigns?page=1",
-        "last": "https://kanka.io/api/{{version}}/campaigns?page=1",
+        "first": "https://api.kanka.io/{{version}}/campaigns?page=1",
+        "last": "https://api.kanka.io/{{version}}/campaigns?page=1",
         "prev": null,
         "next": null
     },
@@ -64,7 +64,7 @@ You can get a list of all the campaigns the user has access to using the followi
         "current_page": 1,
         "from": 1,
         "last_page": 1,
-        "path": "http://kanka.io/api/{{version}}/campaigns",
+        "path": "http://api.kanka.io/{{version}}/campaigns",
         "per_page": 15,
         "to": 3,
         "total": 3

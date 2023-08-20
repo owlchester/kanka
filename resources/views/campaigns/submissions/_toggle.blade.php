@@ -2,7 +2,7 @@
     {{ __('campaigns/submissions.actions.accept') }}
 </x-dialog.header>
 <article>
-    {!! Form::model($campaign, ['route' => 'campaign-applications.save', 'method' => 'POST', 'class' => 'text-left w-full max-w-lg']) !!}
+    {!! Form::model($campaign, ['route' => ['campaign-applications.save', $campaign], 'method' => 'POST', 'class' => 'text-left w-full max-w-lg']) !!}
 
     <div class="field-status required">
         <label for="status">

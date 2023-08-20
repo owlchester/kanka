@@ -5,15 +5,14 @@
         __('crud.create'),
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
 {!! Form::open([
     'method' => 'POST',
     'enctype' => 'multipart/form-data',
-    'route' => [$name . '.store'],
+    'route' => [$name . '.store', $campaign],
     'data-shortcut' => '1',
-    'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null),
+    'class' => 'entity-form',
     'id' => 'entity-form',
     'data-max-fields' => ini_get('max_input_vars'),
     'data-unload' => 1,
@@ -27,7 +26,7 @@
     <div class="nav-tabs-custom">
         <div class="flex gap-2 items-center ">
             <div class="grow overflow-x-auto">
-                <ul class="nav-tabs flex inline-flex items-stretch w-full" role="tablist">
+                <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                     <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
 
                     @includeIf($name . '.form._tabs', ['source' => $source])

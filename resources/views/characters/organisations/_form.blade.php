@@ -1,3 +1,4 @@
+<x-grid type="1/1">
 @php
 $options = [
 '' => __('organisations.members.pinned.none'),
@@ -56,11 +57,12 @@ $fromOrg = request()->get('from') === 'org';
 <div class="field-org-pinned">
     <label>
         {{ __('organisations.members.fields.pinned') }}
-        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
+        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('organisations.members.helpers.pinned') }}"></i>
     </label>
     {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
 </div>
 
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])
+</x-grid>
 
 

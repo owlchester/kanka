@@ -49,20 +49,20 @@
             <td>{{ $relation->comment }}</td>
             <td>
                 @if ($relation->is_recurring)
-                    <i class="fa-solid fa-redo" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                    <i class="fa-solid fa-redo" data-title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip" aria-hidden="true"></i>
                 @endif
                 @if ($relation->isBirth())
-                    <i class="fa-solid fa-birthday-cake" title="{{ __('entities/events.types.birth') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                    <i class="fa-solid fa-birthday-cake" data-title="{{ __('entities/events.types.birth') }}" data-toggle="tooltip" aria-hidden="true"></i>
                 @elseif ($relation->isDeath())
-                    <i class="fa-solid fa-skull" title="{{ __('entities/events.types.death') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                    <i class="fa-solid fa-skull" data-title="{{ __('entities/events.types.death') }}" data-toggle="tooltip" aria-hidden="true"></i>
                 @elseif ($relation->isFounded())
-                    <i class="fa-solid fa-building-columns" title="{{ __('entities/events.types.founded') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                    <i class="fa-solid fa-building-columns" data-title="{{ __('entities/events.types.founded') }}" data-toggle="tooltip" aria-hidden="true"></i>
                 @endif
             </td>
             <td class="text-right">
                 @can('events', $relation->calendar)
-                    <a href="{{ route('entities.entity_events.edit', [$relation->entity, $relation->id, 'next' => 'entity.events']) }}"
-                    data-toggle="ajax-modal" data-url="{{ route('entities.entity_events.edit', [$relation->entity, $relation->id, 'next' => 'entity.events']) }}" data-target="#entity-modal">
+                    <a href="{{ route('entities.entity_events.edit', [$campaign, $relation->entity, $relation->id, 'next' => 'entity.events']) }}"
+                    data-toggle="dialog" data-url="{{ route('entities.entity_events.edit', [$campaign, $relation->entity, $relation->id, 'next' => 'entity.events']) }}" data-target="primary-dialog">
                         <x-icon class="edit"></x-icon>
                     </a>
                 @endcan

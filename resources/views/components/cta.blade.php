@@ -39,7 +39,7 @@
                         </a>
                     @endif
                 @else
-                    <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-lg btn-block">
+                    <a href="https://kanka.io/premium" target="_blank" class="btn bg-boost text-white btn-lg btn-block">
                         {!! __('callouts.booster.learn-more') !!}
                     </a>
                 @endif
@@ -67,7 +67,7 @@
                     {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
                 </a>
             @else
-                <a href="{{ route('front.premium') }}" class="btn bg-boost text-white btn-lg btn-block">
+                <a href="https://kanka.io/premium" class="btn bg-boost text-white btn-lg btn-block">
                     {!! __('callouts.premium.learn-more') !!}
                 </a>
             @endif

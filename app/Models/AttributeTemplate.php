@@ -56,10 +56,6 @@ class AttributeTemplate extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
-        'attributeTemplate.name',
-        'entity_type_id',
-    ];
 
     /**
      * Fields that can be set to null (foreign keys)

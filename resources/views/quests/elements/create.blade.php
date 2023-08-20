@@ -3,16 +3,15 @@
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('quests'), 'label' => \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests'))],
         ['url' => $quest->getLink(), 'label' => $quest->name],
-        ['url' => route('quests.quest_elements.index', $quest->id), 'label' => __('quests.show.tabs.elements')],
+        ['url' => route('quests.quest_elements.index', [$campaign, $quest->id]), 'label' => __('quests.show.tabs.elements')],
         __('crud.create'),
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')
     {!! Form::open([
-        'route' => ['quests.quest_elements.store', $quest->id],
+        'route' => ['quests.quest_elements.store', $campaign, $quest->id],
         'method'=>'POST',
         'data-shortcut' => 1,
         'data-maintenance' => 1,

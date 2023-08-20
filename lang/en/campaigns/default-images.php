@@ -13,5 +13,4 @@ return [
     'destroy'           => [
         'success'   => 'Default thumbnail for :type removed.',
     ],
-    'helper'            => 'Set custom default thumbnail for entity types of the campaign. These will be shown in the various lists, but not on the entity itself.',
 ];

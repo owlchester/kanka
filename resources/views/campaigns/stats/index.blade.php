@@ -4,7 +4,7 @@ use \Illuminate\Support\Arr;
 @extends('layouts.app', [
     'title' => __('campaigns/stats.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.achievements')
     ],
     'mainTitle' => false,
@@ -24,10 +24,10 @@ use \Illuminate\Support\Arr;
                 </h3>
 
                 @if ($campaign->superboosted())
-                    <button class="btn2 btn-sm pull-right" data-toggle="dialog"
+                    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                                  data-target="stats-help">
                         <x-icon class="question"></x-icon>
-                        {{ __('campaigns.members.actions.help') }}
+                        {{ __('crud.actions.help') }}
                     </button>
                 @endif
             </div>
@@ -38,7 +38,7 @@ use \Illuminate\Support\Arr;
             @else
 
             @foreach ($stats as $key => $stat)
-                <div class="shadow-xs h-24 block w-full overflow-hidden rounded mb-4 flex align-center items-stretch level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-base-200 text-base-content @elseif ($stat['level'] == 5) bg-warning text-warning-content @else bg-primary text-primary-content @endif">
+                <div class="shadow-xs h-24 w-full overflow-hidden rounded mb-4 flex align-center items-stretch level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-base-200 text-base-content @elseif ($stat['level'] == 5) bg-warning text-warning-content @else bg-primary text-primary-content @endif">
                     <div class="flex items-center justify-center flex-none bg-slate-800/20 text-4xl w-20">
                         <i class="{{ $stat['icon'] }}"></i><br />
                     </div>

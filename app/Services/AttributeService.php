@@ -241,11 +241,11 @@ class AttributeService
         }
 
         // Kanka templates - deprecated as of 1.30
-//        $key = __('attributes/templates.list.kanka');
-//        foreach (config('attribute-templates.templates') as $code => $class) {
-//            $template = new $class();
-//            $templates[$key][$code] = $template->name();
-//        }
+        //        $key = __('attributes/templates.list.kanka');
+        //        foreach (config('attribute-templates.templates') as $code => $class) {
+        //            $template = new $class();
+        //            $templates[$key][$code] = $template->name();
+        //        }
 
         // If the campaign isn't boosted, or the marketplace isn't enable, end here
         if (!$this->campaign->boosted() || !config('marketplace.enabled')) {

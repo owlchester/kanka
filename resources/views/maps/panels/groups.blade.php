@@ -8,7 +8,7 @@
     {{ __('maps.panels.groups') }}
 </h3>
 <div id="map-groups" class="mb-5">
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.groups.bulk', 'map' => $model]]) !!} @endif
+    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.groups.bulk', $campaign, 'map' => $model]]) !!} @endif
     <div id="datagrid-parent">
         @include('layouts.datagrid._table', ['responsive' => true])
     </div>

@@ -2,7 +2,7 @@
     {{ __('maps/layers.reorder.title') }}
 </h3>
 {!! Form::open([
-    'route' => ['maps.layers.reorder-save', 'map' => $model],
+    'route' => ['maps.layers.reorder-save', $campaign, 'map' => $model],
     'method' => 'POST',
 ]) !!}
     <div class="box-entity-story-reorder">

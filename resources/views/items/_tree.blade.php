@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->nested()
     ->service($filterService)
     ->models($models)
@@ -27,12 +28,12 @@
         ],
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'type' => 'character',
             'label' => __('items.fields.character'),
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
         ],
         [
             'type' => 'is_private',

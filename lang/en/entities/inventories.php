@@ -38,4 +38,5 @@ return [
         'success'   => 'Item :item updated for :entity.',
         'title'     => 'Update an item on :name',
     ],
+    'tutorial'      => 'Keep track of what an entity processes with by adding items to its inventory.'
 ];

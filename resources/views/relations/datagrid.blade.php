@@ -2,6 +2,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->models($models)
     ->columns([
@@ -65,7 +66,6 @@
         'route' => 'relations.index',
         'baseRoute' => 'relations',
         'trans' => 'relations.fields.',
-        'campaignService' => $campaignService,
         'disableEntity' => true,
     ]
 ) !!}

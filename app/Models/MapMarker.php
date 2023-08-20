@@ -295,6 +295,7 @@ class MapMarker extends Model
         }
 
         $body = null;
+        $campaign = CampaignLocalization::getCampaign();
         if (!empty($this->entity)) {
             if (!empty($this->name)) { // Name is set, include link to the entity
                 $url = $this->entity->url();
@@ -324,15 +325,15 @@ class MapMarker extends Model
             </div>`)
                 ' . $this->tooltipPopup . '
             .on(`click`, function (ev) {
-                window.markerDetails(`' . route('maps.markers.details', [$this->map_id, $this->id]) . '`)
+                window.markerDetails(`' . route('maps.markers.details', [$campaign, $this->map_id, $this->id]) . '`)
             })';
         }
 
         $editButton = $copyButton = $deleteButton = '';
         if (auth()->check()) {
             if (auth()->user()->can('update', $this)) {
-                $editButton = '<a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.edit') . '</a>';
-                $copyButton = '<a href="' . route('maps.map_markers.create', [$this->map_id, 'source' => $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.actions.copy') . '</a>';
+                $editButton = '<a href="' . route('maps.map_markers.edit', [$campaign, $this->map_id, $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.edit') . '</a>';
+                $copyButton = '<a href="' . route('maps.map_markers.create', [$campaign, $this->map_id, 'source' => $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.actions.copy') . '</a>';
             }
             if (auth()->user()->can('delete', $this)) {
                 $deleteButton = '<a href="#" class="btn2 btn-xs btn-error delete-confirm" data-toggle="modal" data-name="' .
@@ -380,6 +381,7 @@ class MapMarker extends Model
 
         // Exploring and moving? Update through ajax
         if ($this->isExploring() && $this->is_draggable) {
+            $campaign = CampaignLocalization::getCampaign();
             return '.on(`dragstart`, function() {
                 this.closePopup();
             })
@@ -388,7 +390,7 @@ class MapMarker extends Model
                 var coordinates = marker' . $this->id . '.getLatLng();
                 console.log(`dragend`, coordinates);
                 $.ajax({
-                    url: `' . route('maps.markers.move', [$this->map_id, $this->id]) . '`,
+                    url: `' . route('maps.markers.move', [$campaign, $this->map_id, $this->id]) . '`,
                     type: `post`,
                     data: {latitude: coordinates.lat.toFixed(3), longitude: coordinates.lng.toFixed(3)}
                 }).done(function (data) {
@@ -666,11 +668,11 @@ class MapMarker extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->map_id, $this->id];
+        return $options + [$this->map_id, $this->id];
     }
     public function routeCopyParams(array $options = []): array
     {
-        return [$this->map_id, 'source' => $this->id];
+        return $options + [$this->map_id, 'source' => $this->id];
     }
     /**
      * Patch an entity from the datagrid2 batch editing
@@ -691,7 +693,8 @@ class MapMarker extends Model
      */
     public function getLink(): string
     {
-        return route('maps.map_markers.edit', ['map' => $this->map_id, $this->id]);
+        $campaign = CampaignLocalization::getCampaign();
+        return route('maps.map_markers.edit', [$campaign, 'map' => $this->map_id, $this->id]);
     }
 
     /**

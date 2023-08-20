@@ -6,6 +6,8 @@ var galleryForm;
 var maxFiles;
 var maxError;
 
+let bulkDelete, bulkForm;
+
 $(document).ready(function() {
     initGallery();
     initUploader();
@@ -16,6 +18,8 @@ function initGallery() {
     loader = $('#gallery-loader');
     gallery = $('#gallery-images');
     search = $('#gallery-search');
+    bulkDelete = $('#bulk-delete');
+    bulkForm = $('form#gallery-bulk');
 
     galleryForm = document.getElementById('gallery-form');
 
@@ -80,6 +84,39 @@ function initGallery() {
     galleryForm.ondragleave = (e) => {
         galleryForm.classList.remove('drop-shadow', 'dropping');
     };
+
+    bulkForm.submit(function (e) {
+        e.preventDefault();
+
+        var data = new FormData();
+        $.each($('li[data-selected="1"]'), function (i) {
+            data.append('file[]', $(this).data('id'));
+        });
+
+        let folder = $('input[name="folder_id"]');
+        if (folder) {
+            data.append('folder_id', folder.val());
+        }
+
+        $.ajax({
+            url: $(this).attr('action'),
+            method: 'POST',
+            context: this,
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false
+        }).done(function(res) {
+            $('li[data-selected="1"]').remove();
+            let target = document.getElementById('bulk-destroy-dialog');
+            target.close();
+
+            window.showToast(res.toast);
+            return false;
+        });
+
+        return false;
+    });
 
 }
 
@@ -189,7 +226,20 @@ const uploadFiles = (data) => {
 function registerEvents() {
     $('#gallery-images li')
         .unbind('click')
-        .on('click', function () {
+        .on('click', function (e) {
+            if (e.shiftKey) {
+                if (!$(this).data('id')) {
+                    return;
+                }
+                $(this).toggleClass('border-2 border-blue-500');
+                if ($(this).attr('data-selected') === '1') {
+                    $(this).attr('data-selected', '');
+                } else {
+                    $(this).attr('data-selected', 1);
+                }
+                registerShift();
+                return;
+            }
             let folder = $(this).data('folder');
             if (folder) {
                 window.location = folder;
@@ -204,3 +254,11 @@ function registerEvents() {
             });
     });
 }
+const registerShift = () => {
+    let selected = $('li[data-selected="1"]');
+    if (selected.length === 0) {
+        bulkDelete.hide();
+    } else {
+        bulkDelete.show();
+    }
+};

@@ -114,12 +114,12 @@ $role = \App\Facades\CampaignCache::adminRole();
                 <hr>
                 {!! Form::hidden('is_personality_visible', 0) !!}
                 <div class="field-personality-visible checkbox">
-                    <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? FormCopy::field('is_personality_visible')->boolean() : !CampaignLocalization::getCampaign()->entity_personality_visibility))) !!}
+                    <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? FormCopy::field('is_personality_visible')->boolean() : !$campaign->entity_personality_visibility))) !!}
                         {{ __('characters.fields.is_personality_visible') }}
                     </label>
                     <p class="help-block">
                         {!! __('characters.hints.is_personality_visible', [
-        'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), null, ['target' => '_blank'])
+        'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
 ]) !!}
                     </p>
                 </div>

@@ -1,7 +1,7 @@
 @if(isset($character))
     @php
         Datagrid::layout(\App\Renderers\Layouts\Character\Organisation::class)
-                    ->route('characters.organisations', [$character]);
+                    ->route('characters.organisations', [$campaign, $character]);
 
         $rows = $character
             ->organisationMemberships()
@@ -16,5 +16,7 @@
 </div>
 
 @section('modals')
+    @parent
     @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms(), 'params' => []])
+    <x-dialog id="edit-dialog" :loading="true" />
 @endsection

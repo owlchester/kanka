@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
-use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
@@ -55,7 +54,7 @@ class Race extends MiscModel
      */
     protected $entityType = 'race';
 
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'race.name',
     ];
 
@@ -221,10 +220,8 @@ class Race extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $count = $this->descendants()->count();
-        if ($campaign->enabled('races') && $count > 0) {
+        if ($count > 0) {
             $items['second']['races'] = [
                 'name' => Module::plural($this->entityTypeId(), 'entities.races'),
                 'route' => 'races.races',

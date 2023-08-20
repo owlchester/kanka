@@ -32,7 +32,7 @@
             <input type="hidden" name="client_id" value="{{ $client->id }}">
             <input type="hidden" name="auth_token" value="{{ $authToken }}">
             <button type="submit" class="btn2 btn-primary btn-approve btn-block">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <x-icon class="check" />
                 Authorize
             </button>
         </form>

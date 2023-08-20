@@ -20,10 +20,10 @@ class ApiLogMiddleware
         $campaign = $request->route('campaign');
 
         if (null === $campaign) {
-            ApiLog::log();
+            ApiLog::request($request)->log();
             return $next($request);
         }
-        ApiLog::campaign($campaign)->log();
+        ApiLog::request($request)->campaign($campaign)->log();
         return $next($request);
     }
 }

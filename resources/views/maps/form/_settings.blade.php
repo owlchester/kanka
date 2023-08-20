@@ -122,7 +122,7 @@ if (isset($model) && $model->isChunked()) {
     <div class="field-distance-measure">
         <label>
             {{ __('maps.fields.distance_measure') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2')}}"></i>
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2')}}"></i>
         </label>
         {!! Form::number(
         'config[distance_measure]',
@@ -208,7 +208,7 @@ if (isset($model) && $model->isChunked()) {
                         :label="__('maps.fields.center_marker')"
                         :placeholder="__('maps.placeholders.center_marker')"
                         :allowClear="true"
-                        :route="route('markers.find', ['include' => $model->id])"
+                        :route="route('markers.find', [$campaign, 'include' => $model->id])"
                         :selected="$preset">
                     </x-forms.foreign>
                     @else

@@ -3,6 +3,7 @@
  * @var \App\Models\CampaignDashboardWidget $widget
  */ ?>
 @php
+use App\Enums\Widget;
     $position = 0;
     $seoTitle = (!empty($dashboard) ? $dashboard->name : __('sidebar.dashboard')) .  ' - ' . $campaign->name;
     $row = 0;
@@ -32,13 +33,18 @@
     <div class="dashboard-widgets">
         <div class="row">
         @foreach ($widgets as $widget)
-            @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
+            @if($widget->widget === Widget::Campaign)
                 @include('dashboard.widgets._campaign')
                 @continue;
             @endif
-            <?php if (!in_array($widget->widget, \App\Models\CampaignDashboardWidget::WIDGET_VISIBLE) && empty($widget->entity)):
+            <?php if (!in_array($widget->widget->value, [
+                        Widget::Recent->value,
+                        Widget::Random->value,
+                        Widget::Header->value,
+                        Widget::Welcome->value
+                    ]) && empty($widget->entity)):
                 continue;
-            elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_PREVIEW && !$widget->entity):
+            elseif ($widget->widget === Widget::Preview && !$widget->entity):
                 continue;
             elseif (!$widget->visible()):
                 continue;
@@ -50,8 +56,8 @@
                 @php $position = 0; $row++; @endphp
             @endif
                 <div class="col-md-{{ $widget->colSize() }}">
-                    <div class="widget widget-{{ $widget->widget }}">
-                        @include('dashboard.widgets._' . $widget->widget)
+                    <div class="widget widget-{{ $widget->widget->value }}">
+                        @include('dashboard.widgets._' . $widget->widget->value)
                     </div>
                 </div>
 
@@ -62,7 +68,7 @@
 
     @can('update', $campaign)
         <div class="text-center mt-6">
-            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn2 btn-lg btn-primary" title="{{ __('dashboard.settings.title') }}">
+            <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-lg btn-primary" title="{{ __('dashboard.settings.title') }}">
                 <x-icon class="cog"></x-icon>
                 {{ __('dashboard.settings.title') }}
             </a>
@@ -85,8 +91,8 @@
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-    <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
-    <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
 @endsection
 
 @section('styles')
@@ -96,4 +102,10 @@
         'resources/sass/dashboard.scss',
         'resources/sass/map-v3.scss'
     ])
+@endsection
+
+@section('modals')
+    @can('apply', $campaign)
+    <x-dialog id="apply-dialog" title="Loading"></x-dialog>
+    @endif
 @endsection

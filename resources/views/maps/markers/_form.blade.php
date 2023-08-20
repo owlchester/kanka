@@ -14,35 +14,35 @@ $sizeOptions = [
 <div class="nav-tabs-custom">
     <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
         <li role="presentation" @if($activeTab == 1) class="active" @endif>
-            <a href="#marker-pin" data-nohash="true" data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.marker') }}">
+            <a href="#marker-pin" data-nohash="true" data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.marker') }}">
                 <x-icon class="fa-solid fa-2x fa-map-pin"></x-icon>
                 <br />
                 {{ __('maps/markers.tabs.marker') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 2) class="active" @endif>
-            <a href="#marker-label" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.label') }}">
+            <a href="#marker-label" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.label') }}">
                 <x-icon class="fa-solid fa-2x fa-font"></x-icon>
                 <br />
                 {{ __('maps/markers.tabs.label') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 3) class="active" @endif>
-            <a href="#marker-circle" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.circle') }}">
+            <a href="#marker-circle" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.circle') }}">
                 <x-icon class="fa-regular fa-2x fa-circle"></x-icon>
                 <br />
                 {{ __('maps/markers.tabs.circle') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 5) class="active" @endif>
-            <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.polygon') }}">
+            <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.polygon') }}">
                 <x-icon class="fa-solid fa-2x fa-draw-polygon"></x-icon>
                 <br />
                 {{ __('maps/markers.tabs.polygon') }}
             </a>
         </li>
         <li role="presentation">
-            <a href="#presets" data-nohash="true" class="text-center" data-presets="{{ route('preset_types.presets.index', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}">
+            <a href="#presets" data-nohash="true" class="text-center" data-presets="{{ route('preset_types.presets.index', [$campaign, 'preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}">
                 <x-icon class="fa-solid fa-2x fa-wand-magic-sparkles"></x-icon>
                 <br />
                 {{ __('maps/markers.tabs.preset') }}
@@ -91,7 +91,7 @@ $sizeOptions = [
                     <div class="flex">
                         <div class="grow">
                             <label>{{ __('maps/markers.fields.custom_shape') }}</label>
-                            @if ($campaignService->campaign()->boosted())
+                            @if ($campaign->boosted())
                                 @if(isset($model))
                                     <p class="help-block mb-0">
                                         {{ __('maps/markers.helpers.polygon.edit') }}
@@ -119,7 +119,7 @@ $sizeOptions = [
                     @endif
                         {!! Form::textarea('custom_shape', \App\Facades\FormCopy::field('custom_shape')->string(), ['class' => 'form-control', 'rows' => 2, 'placeholder' => __('maps/markers.placeholders.custom_shape')]) !!}
                     @else
-                        <x-cta :campaign="$campaignService->campaign()" image="0">
+                        <x-cta :campaign="$campaign" image="0">
                             <p>{{ __('maps/markers.pitches.poly') }}</p>
                         </x-cta>
                         </div>
@@ -158,12 +158,12 @@ $sizeOptions = [
 
             <div class="marker-preset-list rounded">
                 <div class="text-center">
-                    <i class="fa-solid fa-spin fa-spinner"></i>
+                    <x-icon class="load" />
                 </div>
             </div>
 
-            @can('mapPresets', $campaignService->campaign())
-                <a href="{{ route('preset_types.presets.create', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}" class="btn2 btn-primary btn-sm">
+            @can('mapPresets', $campaign)
+                <a href="{{ route('preset_types.presets.create', [$campaign, 'preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}" class="btn2 btn-primary btn-sm">
                     {{ __('presets.actions.create') }}
                 </a>
             @endcan

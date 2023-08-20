@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
+use App\Enums\Widget;
 use App\Facades\Dashboard;
 use App\Facades\DataLayer;
+use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     /**
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        // If the user isn't viewing specific campaign and has no campaigns, get them to create their first campaign
-        $campaign = CampaignLocalization::getCampaign();
-        if (empty($campaign) && (Auth::check() && !Auth::user()->hasCampaigns())) {
-            return redirect()->route('start');
-        }
-
         // Determine the user's dashboard
         $requestedDashboard = request()->get('dashboard');
         if ($requestedDashboard == 'default') {
@@ -41,6 +35,7 @@ class DashboardController extends Controller
             $welcome = true;
         }
 
+
         return view('home', compact(
             'campaign',
             'widgets',
@@ -54,12 +49,11 @@ class DashboardController extends Controller
     /**
      * @param int $id
      */
-    public function recent($id)
+    public function recent(Campaign $campaign, $id)
     {
         /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
-        $campaign = CampaignLocalization::getCampaign();
-        if ($widget->widget != CampaignDashboardWidget::WIDGET_RECENT) {
+        if ($widget->widget != Widget::Recent) {
             return response()->json([
                 'success' => true
             ]);
@@ -68,6 +62,7 @@ class DashboardController extends Controller
         $entities = $widget->entities();
 
         return view('dashboard.widgets._recent_list')
+            ->with('campaign', $campaign)
             ->with('entities', $entities)
             ->with('widget', $widget)
             ->with('campaign', $campaign)
@@ -77,12 +72,11 @@ class DashboardController extends Controller
     /**
      * @param int $id
      */
-    public function unmentioned($id)
+    public function unmentioned(Campaign $campaign, $id)
     {
         /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
-        $campaign = CampaignLocalization::getCampaign();
-        if ($widget->widget != CampaignDashboardWidget::WIDGET_UNMENTIONED) {
+        if ($widget->widget != Widget::UNMENTIONED) {
             return response()->json([
                 'success' => true
             ]);
@@ -95,6 +89,7 @@ class DashboardController extends Controller
             ->paginate(10);
 
         return view('dashboard.widgets._recent_list')
+            ->with('campaign', $campaign)
             ->with('entities', $entities)
             ->with('widget', $widget)
             ->with('campaign', $campaign)

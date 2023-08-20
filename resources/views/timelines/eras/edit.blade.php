@@ -13,11 +13,10 @@
         __('timelines/eras.edit.title', ['name' => $model->name])
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
     @include('partials.errors')
     {!! Form::model($model, [
-        'route' => ['timelines.timeline_eras.update', 'timeline' => $timeline, 'timeline_era' => $model],
+        'route' => ['timelines.timeline_eras.update', $campaign, 'timeline' => $timeline, 'timeline_era' => $model],
         'method' => 'PATCH',
         'id' => 'timeline-era-form',
         'class' => 'ajax-subform',
@@ -31,9 +30,6 @@
                 <div class="submit-group">
                     <button class="btn2 btn-primary">{{ __('crud.save') }}</button>
                 </div>
-                <div class="submit-animation" style="display: none;">
-                    <button class="btn2 btn-primary" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
-                </div>
             </div>
         </x-dialog.footer>
     </x-box>
@@ -43,7 +39,3 @@
     {!! Form::close() !!}
 @endsection
 
-@section('scripts')
-    @parent
-    @vite(['resources/js/ajax-subforms.js'])
-@endsection

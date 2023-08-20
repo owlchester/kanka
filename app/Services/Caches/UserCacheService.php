@@ -2,20 +2,40 @@
 
 namespace App\Services\Caches;
 
+use App\Models\Campaign;
+use App\Models\CampaignRole;
+use App\Services\Caches\Traits\PrimaryCache;
 use App\Services\Caches\Traits\User\CampaignCache;
 use App\Services\Caches\Traits\User\RoleCache;
+use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserCacheService extends BaseCache
 {
+    use CampaignAware;
     use CampaignCache;
+    use PrimaryCache;
     use RoleCache;
+    use UserAware;
 
+    public function user(User $user): self
+    {
+        $this->user = $user;
+        unset($this->primary);
+        return $this;
+    }
+
+    public function __construct()
+    {
+        // Move this to cache service provider?
+        $this->user = Auth::check() ? Auth::user() : null;
+    }
 
     /**
      * Get the username
-     * Todo: why isn't this a left join?
      * @param int $userId the user id
      * @return string
      */
@@ -65,5 +85,68 @@ class UserCacheService extends BaseCache
     protected function nameKey(int $userId): string
     {
         return 'user_' . $userId . '_name';
+    }
+
+    protected function primaryData(): array
+    {
+        // Prepare the data.
+        $data = [
+            'campaigns' => [],
+            'follows' => [],
+            'roles' => [],
+        ];
+
+        /** @var Campaign $campaign */
+        foreach ($this->user->campaigns()->userOrdered($this->user)->get() as $campaign) {
+            $data['campaigns'][] = $this->formatCampaign($campaign);
+        }
+
+        /** @var Campaign $campaign */
+        foreach ($this->user->following()->public()->userOrdered($this->user)->get() as $campaign) {
+            $data['follows'][] = $this->formatCampaign($campaign);
+        }
+
+        // Track the user's admin roles
+        foreach ($this->user->campaignRoles as $role) {
+            $data['roles'][$role->campaign_id][] = $this->formatRole($role);
+        }
+
+        return $data;
+    }
+
+    /**
+     * Format the campaign for the cache
+     * @param Campaign $campaign
+     * @return array
+     */
+    protected function formatCampaign(Campaign $campaign): array
+    {
+        return [
+            'id' => $campaign->id,
+            'name' => $campaign->name,
+            'route' => route('dashboard', $campaign),
+            'image' => $campaign->image,
+            'boosted' => $campaign->boosted()
+        ];
+    }
+
+    /**
+     * Format the role for the cache
+     * @param CampaignRole $role
+     * @return array
+     */
+    protected function formatRole(CampaignRole $role): array
+    {
+        return [
+            'id' => $role->id,
+            'name' => $role->name,
+            'is_admin' => $role->isAdmin(),
+            'is_public' => $role->isPublic(),
+        ];
+    }
+
+    protected function primaryKey(): string
+    {
+        return 'user_' . $this->user->id;
     }
 }

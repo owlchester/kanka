@@ -2,7 +2,9 @@
 
 namespace App\Services\Layout;
 
+use App\Facades\Domain;
 use App\Facades\Identity;
+use App\Facades\Img;
 use App\Facades\MarketplaceCache;
 use App\Facades\PostCache;
 use App\Facades\UserCache;
@@ -40,9 +42,12 @@ class NavigationService
         if (Identity::isImpersonating()) {
             $data['is_impersonating'] = true;
 
-            \App\Facades\CampaignLocalization::setCampaign(Identity::getCampaignId());
-            $returnUrl = route('identity.back');
-            $campaignUrl = 'campaign/' . Identity::getCampaignId();
+            // Get the campaign linked to the impersonation
+            $campaign = Campaign::findOrFail(Identity::getCampaignId());
+
+            //\App\Facades\CampaignLocalization::setCampaign(Identity::getCampaignId());
+            $returnUrl = route('identity.back', $campaign);
+            $campaignUrl = 'campaign/' . $campaign->id;
             $returnUrl = str_replace('campaign/navigation', $campaignUrl, $returnUrl);
             $data['return'] = [
                 'url' => $returnUrl,
@@ -55,7 +60,7 @@ class NavigationService
                 'tier' => $this->user->pledge,
                 // @phpstan-ignore-next-line
                 'created' => __('users/profile.fields.subscriber_since', ['date' => $this->user->subscription('kanka')->created_at->format('M d, Y')]),
-                'image' => 'https://kanka-user-assets.s3.amazonaws.com/app/tiers/' . mb_strtolower($this->user->pledge) . '-325.png',
+                'image' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/' . mb_strtolower($this->user->pledge) . '-325.png',
                 'boosters' => __('settings/boosters.available', [
                     'amount' => $this->user->availableBoosts(),
                     'total' => $this->user->maxBoosts()
@@ -100,29 +105,28 @@ class NavigationService
 
         $campaigns = $this->user->campaigns;
         $member = 0;
-        /** @var Campaign $campaign */
         foreach (UserCache::campaigns() as $campaign) {
             $data['member'][] = [
-                'name' => $campaign->name,
-                'is_boosted' => $campaign->boosted(),
-                'image' => $campaign->thumbnail(100, 100),
-                'url' => url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()),
+                'name' => $campaign['name'],
+                'is_boosted' => $campaign['boosted'],
+                'image' => $campaign['image'] ? Img::crop(100, 100)->url($campaign['image']) : null,
+                'url' => $campaign['route'],
             ];
             $member++;
         }
 
         foreach (UserCache::follows() as $campaign) {
             $data['following'][] = [
-                'name' => $campaign->name,
-                'is_boosted' => $campaign->boosted(),
-                'image' => $campaign->thumbnail(100, 100),
-                'url' => url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()),
+                'name' => $campaign['name'],
+                'is_boosted' => $campaign['boosted'],
+                'image' => $campaign['image'] ? Img::crop(100, 100)->url($campaign['image']) : null,
+                'url' => $campaign['route'],
             ];
         }
 
         $data['urls'] = [
             'new' => route('start'),
-            'follow' => route('front.public_campaigns'),
+            'follow' => Domain::toFront('campaigns'),
             'reorder' => route('settings.appearance', ['highlight' => 'campaign-switcher']),
         ];
         $data['texts'] = [
@@ -206,7 +210,7 @@ class NavigationService
                 'url' => config('marketplace.url') . '/content-packs',
                 'number' => number_format($counts[3]),
             ],
-            'title' => __('front.menu.marketplace'),
+            'title' => __('footer.marketplace'),
             'explore' => [
                 'url' => config('marketplace.url'),
                 'text' => __('maps.actions.explore'),

@@ -28,14 +28,7 @@ trait StyleCache
 
     public function stylesTimestamp(): int
     {
-        $key = $this->stylesTsKey();
-        if ($this->has($key)) {
-            return (int) $this->get($key);
-        }
-
-        $ts = time();
-        $this->forever($key, $ts);
-        return (int) $ts;
+        return (int) $this->primary()->get('time');
     }
 
     public function clearStyles(): self
@@ -43,19 +36,11 @@ trait StyleCache
         $this->forget(
             $this->stylesKey()
         );
-        $this->forget(
-            $this->stylesTsKey()
-        );
         return $this;
     }
 
     protected function stylesKey(): string
     {
         return 'campaign_' . $this->campaign->id . '_styles';
-    }
-
-    protected function stylesTsKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_styles_ts';
     }
 }

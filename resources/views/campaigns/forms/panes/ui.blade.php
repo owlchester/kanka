@@ -21,11 +21,11 @@ if (!isset($model) || !$model->boosted()) {
     </h4>
     @if (isset($model) && $model->boosted())
         <p class="help-block">
-            {!! __('campaigns.helpers.premium', ['settings' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}
+            {!! __('campaigns.helpers.premium', ['settings' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
         </p>
     @else
         <p class="help-block">
-            {!! __('campaigns.helpers.premium', ['settings' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}
+            {!! __('campaigns.helpers.premium', ['settings' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
         </p>
     @endif
 
@@ -98,7 +98,7 @@ if (!isset($model) || !$model->boosted()) {
         <div class="field-connections">
             <label>
                 {{ __('campaigns.ui.fields.connections') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.connections') }}"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('campaigns.ui.helpers.connections') }}"></i>
 
             </label>
             {!! Form::select('ui_settings[connections]', [0 => __('campaigns.ui.connections.explorer'), 1 => __('campaigns.ui.connections.list')], null, ['class' => 'form-control']) !!}
@@ -108,7 +108,7 @@ if (!isset($model) || !$model->boosted()) {
         <div class="field-connections-mode">
             <label>
                 {{ __('campaigns.ui.fields.connections_mode') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.connections_mode') }}"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('campaigns.ui.helpers.connections_mode') }}"></i>
 
             </label>
             {!! Form::select('ui_settings[connections_mode]', [0 => __('campaigns.ui.collapsed.default'), 1 => __('entities/relations.options.only_relations'), 2 => __('entities/relations.options.related'), 3 => __('entities/relations.options.mentions')], null, ['class' => 'form-control']) !!}
@@ -126,7 +126,7 @@ if (!isset($model) || !$model->boosted()) {
         <div class="field-post-collapsed">
             <label>
                 {{ __('campaigns.ui.fields.post_collapsed') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.post_collapsed') }}"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('campaigns.ui.helpers.post_collapsed') }}"></i>
             </label>
             {!! Form::select('ui_settings[post_collapsed]', [0 => __('campaigns.ui.collapsed.default'), 1 => __('campaigns.ui.collapsed.collapsed')], null, ['class' => 'form-control']) !!}
             <p class="help-block visible-xs visible-sm">{{ __('campaigns.ui.helpers.post_collapsed') }}</p>

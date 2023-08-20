@@ -47,7 +47,7 @@ if ($attribute->isSection()) {
                 'placeholder' => __('entities/attributes.placeholders.value'),
                 'class' => 'form-control kanka-mentions',
                 'rows' => 4,
-                'data-remote' => route('search.live'),
+                'data-remote' => route('search.live', $campaign),
                 'aria-label' => __('entities/attributes.fields.value')
             ]) !!}
         @elseif ($attribute->isSection())
@@ -62,7 +62,7 @@ if ($attribute->isSection()) {
                 'placeholder' => __('entities/attributes.placeholders.value'),
                 'class' => 'form-control kanka-mentions',
                 'maxlength' => 191,
-                'data-remote' => route('search.live'),
+                'data-remote' => route('search.live', $campaign),
                 'aria-label' => __('entities/attributes.labels.value')
             ]) !!}
         @endif

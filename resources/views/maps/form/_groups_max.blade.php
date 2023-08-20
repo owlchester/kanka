@@ -2,9 +2,9 @@
     'title' => __('maps/groups.create.title', ['name' => $map->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('maps.index'), 'label' => __('entities.maps')],
+        ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations'))],
         ['url' => $map->entity->url('show'), 'label' => $map->name],
-        ['url' => route('maps.map_groups.index', [$map]), 'label' => __('maps.panels.groups')],
+        ['url' => route('maps.map_groups.index', [$campaign, $map]), 'label' => __('maps.panels.groups')],
         __('maps/groups.create.title')
     ]
 ])

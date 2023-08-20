@@ -1,7 +1,6 @@
 <?php /**
  * @var \App\Models\Map $map
  */
-$campaign = CampaignLocalization::getCampaign();
 $themeOverride = request()->get('_theme');
 $specificTheme = null;
 ?><!DOCTYPE html>
@@ -87,7 +86,7 @@ $specificTheme = null;
                         <div class="marker-actions text-center">
                             @can('update', $map)
                                 <div class="join">
-                                    <a href="{{ route('maps.edit', [$map]) }}" class="btn2 btn-primary btn-sm join-item">
+                                    <a href="{{ route('maps.edit', [$campaign, $map]) }}" class="btn2 btn-primary btn-sm join-item">
                                         <x-icon class="map"></x-icon> {{ __('maps.actions.edit') }}
                                     </a>
                                     <div class="dropdown">
@@ -96,17 +95,17 @@ $specificTheme = null;
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                             <li>
-                                                <a href="{{ route('maps.map_layers.index', [$map]) }}" class="dropdown-item">
+                                                <a href="{{ route('maps.map_layers.index', [$campaign, $map]) }}" class="dropdown-item">
                                                     <x-icon class="fa-solid fa-layer-group"></x-icon> {{ __('maps.panels.layers') }}
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('maps.map_groups.index', [$map]) }}" class="dropdown-item">
+                                                <a href="{{ route('maps.map_groups.index', [$campaign, $map]) }}" class="dropdown-item">
                                                     <x-icon class="fa-solid fa-map-signs"></x-icon> {{ __('maps.panels.groups') }}
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('maps.map_markers.index', [$map]) }}" class="dropdown-item">
+                                                <a href="{{ route('maps.map_markers.index', [$campaign, $map]) }}" class="dropdown-item">
                                                     <x-icon class="fa-solid fa-map-pin"></x-icon> {{ __('maps.panels.markers') }}
                                                 </a>
                                             </li>
@@ -131,8 +130,8 @@ $specificTheme = null;
 
                     <!-- When clicking on a marker, this menu pops up -->
                     <div id="sidebar-marker"></div>
-                    <div class="spinner text-center" style="display: none; margin-top: 10px;">
-                        <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+                    <div class="spinner text-center text-lg" style="display: none; margin-top: 10px;">
+                        <x-icon class="load" />
                     </div>
                 </div>
 
@@ -149,31 +148,30 @@ $specificTheme = null;
     <!-- Modal -->
     @includeWhen(auth()->check(), 'layouts.modals.delete')
 
-<script src="/js/vendor.js"></script>
-@vite(['resources/js/app.js', 'resources/js/cookieconsent.js'])
+@vite(['resources/js/vendor-final.js', 'resources/js/app.js', 'resources/js/cookieconsent.js'])
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-<script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
-<script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
-<script src="/js/vendor/leaflet/leaflet.zoomcss.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
 @if ($map->isReal())
-<script src="/js/vendor/leaflet/leaflet.ruler.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.ruler.js"></script>
 @else
-    <script src="/js/vendor/leaflet/leaflet.ruler-kanka.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.ruler-kanka.js"></script>
 @endif
-<script src="/js/vendor/leaflet/leaflet.path.drag.js"></script>
-<script src="/js/vendor/leaflet/leaflet.editable.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
 
 <!-- Default modal used throughout the app -->
 <div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-base-100 rounded-2xl"></div>
         <div class="modal-spinner" style="display: none">
-            <div class="modal-body text-center">
-                <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+            <div class="modal-body text-center text-lg">
+                <x-icon class="load" />
             </div>
         </div>
     </div>

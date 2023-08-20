@@ -1,18 +1,18 @@
 <?php
     if ($model instanceof \App\Models\EntityNote) {
-        $url = route('posts.confirm-editing', ['post' => $model, 'entity' => $entity]);
+        $url = route('posts.confirm-editing', [$campaign, 'post' => $model, 'entity' => $entity]);
         $key = 'entities/notes.warning.editing.description';
     } elseif ($model instanceof \App\Models\Campaign) {
         $url = route('campaigns.confirm-editing', $model);
         $key = 'campaigns.warning.editing.description';
     } elseif ($model instanceof \App\Models\TimelineElement) {
-        $url = route('timeline-elements.confirm-editing', $model);
+        $url = route('timeline-elements.confirm-editing', [$campaign, $model]);
         $key = 'timelines/elements.warning.editing.description';
     } elseif ($model instanceof \App\Models\QuestElement) {
-        $url = route('quest-elements.confirm-editing', $model);
+        $url = route('quest-elements.confirm-editing', [$campaign, $model]);
         $key = 'quests.elements.warning.editing.description';
     } else {
-        $url = route('entities.confirm-editing', $model->entity);
+        $url = route('entities.confirm-editing', [$campaign, $model->entity]);
         $key = 'entities/story.warning.editing.description';
     }
 ?>
@@ -32,8 +32,8 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="modal-body modal-spinner-body text-center" style="display: none">
-                <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+            <div class="modal-body modal-spinner-body text-center text-lg" style="display: none">
+                <x-icon class="load"></x-icon>
             </div>
             <div class="flex gap-2 items-center p-4">
                 <div class="grow">

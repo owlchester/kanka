@@ -1,8 +1,6 @@
 $(document).ready(function() {
     window.initTags = function() {
         $.each($('.form-tags'), function () {
-            let dropdownParent = $(this).data('dropdown-parent');
-
             if ($(this).hasClass("select2-hidden-accessible")) {
                 return;
             }
@@ -10,7 +8,7 @@ $(document).ready(function() {
             $(this).select2({
                 tags: $(this).data('allow-new'),
                 allowClear: $(this).data('allow-clear'),
-                dropdownParent: dropdownParent || '',
+                dropdownParent: $(this).data('dropdown-parent') || '',
                 minimumInputLength: 0,
                 ajax: {
                     quietMillis: 500,

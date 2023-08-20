@@ -1,14 +1,14 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('campaigns/styles.create.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign_styles.index'), 'label' => __('campaigns.show.tabs.styles')]
+        ['url' => route('campaign_styles.index', $campaign), 'label' => __('campaigns.show.tabs.styles')]
     ]
 ])
 
 @section('content')
 
     {!! Form::open([
-        'route' => ['campaign_styles.store'],
+        'route' => ['campaign_styles.store', $campaign],
         'method' => 'POST',
         'data-shortcut' => 1,
         'id' => 'campaign-style',
@@ -21,7 +21,7 @@
         @if (!$theme)
         <x-alert type="info">
             <p>{!! __('campaigns/builder.pitch') !!}</p>
-            <a href="{{ route('campaign_styles.builder') }}" class="btn2 btn-primary">
+            <a href="{{ route('campaign_styles.builder', $campaign) }}" class="btn2 btn-primary">
                 {{ __('campaigns/builder.pitch-go') }}
             </a>
         </x-alert>
@@ -91,19 +91,19 @@
 
 @section('scripts')
     @parent
-    <script src="/vendor/codemirror/lib/codemirror.js"></script>
-    <script src="/vendor/codemirror/mode/css/css.js"></script>
-    <script src="/vendor/codemirror/addon/hint/show-hint.js"></script>
-    <script src="/vendor/codemirror/addon/hint/css-hint.js"></script>
-    <script src="/vendor/codemirror/addon/search/search.js"></script>
-    <script src="/vendor/codemirror/addon/search/searchcursor.js"></script>
-    <script src="/vendor/codemirror/addon/dialog/dialog.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/codemirror/lib/codemirror.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/codemirror/mode/css/css.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/codemirror/addon/hint/show-hint.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/codemirror/addon/hint/css-hint.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/codemirror/addon/search/search.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/codemirror/addon/search/searchcursor.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/codemirror/addon/dialog/dialog.js"></script>
 @endsection
 
 @section('styles')
     @parent
-    <link rel="stylesheet" href="/vendor/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="/vendor/codemirror/addon/hint/show-hint.css">
-    <link rel="stylesheet" href="/vendor/codemirror/addon/dialog/dialog.css">
-    <link rel="stylesheet" href="/vendor/codemirror/theme/dracula.css">
+    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/codemirror/addon/hint/show-hint.css">
+    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/codemirror/addon/dialog/dialog.css">
+    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/codemirror/theme/dracula.css">
 @endsection

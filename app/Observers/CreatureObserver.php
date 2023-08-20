@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\MiscModel;
 use App\Models\Creature;
 use App\Observers\Concerns\HasLocations;
 
@@ -19,14 +18,6 @@ class CreatureObserver extends MiscObserver
             return;
         }
         $this->saveLocations($creature);
-    }
-
-    /**
-     * @param MiscModel $model
-     */
-    public function saved(MiscModel $model)
-    {
-        parent::saved($model);
     }
 
     /**

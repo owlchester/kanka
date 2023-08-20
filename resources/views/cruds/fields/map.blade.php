@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('maps'))
+@if (!$campaign->enabled('maps'))
     <?php return ?>
 @endif
 
@@ -12,13 +12,14 @@ if (isset($model) && $model->map) {
 @endphp
 
 <x-forms.foreign
+    :campaign="$campaign"
     name="map_id"
     key="map"
     entityType="maps"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('maps.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route('maps.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Map::class"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"

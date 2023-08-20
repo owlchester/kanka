@@ -70,13 +70,13 @@
         <div class="flex gap-2">
             <div class="grow text-xs text-gray-500">
                 {!! __('auth.register.tos', [
-    'terms' => link_to_route('front.terms', __('front.terms.title'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
-    'privacy' => link_to_route('front.privacy', __('front.menu.privacy'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
+    'terms' => link_to('https://kanka.io/terms-and-conditions', __('front.terms.title'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
+    'privacy' => link_to('https://kanka.io/privacy-policy', __('footer.privacy'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
     ]) !!}
             </div>
             <div class="flex-none">
                 <div id="btn-wait" class="rounded border border-gray-200 px-6 py-2 bg-gray-200 disabled" style="display: none;">
-                    <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                    <x-icon class="load" />
                 </div>
 
                 <button id="btn-save" type="submit" class="rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all  hover:shadow-xs hover:bg-blue-500 hover:text-white">
@@ -93,21 +93,21 @@
         <div class="flex flex-col gap-2">
             @if(config('services.facebook.client_id'))
                 <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="rounded border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.register.register_with_facebook') }}">
-                    <i class="fa-brands fa-facebook-f mb-1" aria-hidden="true"></i>
+                    <x-icon class="fa-brands fa-facebook-f" />
                     Facebook
                 </a>
             @endif
 
             @if(config('services.google.client_id'))
                 <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="rounded border border-red-400 text-red-400 hover:text-white hover:bg-red-400 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.register.register_with_google') }}">
-                    <i class="fa-brands fa-google" aria-hidden="true"></i>
+                    <x-icon class="fa-brands fa-google" />
                     Google
                 </a>
             @endif
 
             @if(config('services.twitter.client_id'))
                 <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="rounded border border-blue-300 text-blue-300 hover:text-white hover:bg-blue-300 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.register.register_with_twitter') }}">
-                    <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                    <x-icon class="fa-brands fa-twitter" />
                     Twitter
                 </a>
             @endif

@@ -12,6 +12,8 @@ use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -25,7 +27,6 @@ use Illuminate\Support\Collection;
  * @property string $locale
  * @property string $entry
  * @property string $image
- * @property string|null $export_path
  * @property Carbon|string $export_date
  * @property int $visibility_id
  * @property bool $entity_visibility
@@ -58,12 +59,13 @@ use Illuminate\Support\Collection;
  * @property bool $hide_history
  *
  */
-class Campaign extends MiscModel
+class Campaign extends Model
 {
     use Boosted;
     use CampaignLimit;
     use CampaignRelations;
     use CampaignScopes;
+    use HasFactory;
     use LastSync;
 
     /**
@@ -84,7 +86,6 @@ class Campaign extends MiscModel
         'entry',
         'excerpt',
         'image',
-        'export_path',
         'export_date',
         'visibility_id',
         'entity_visibility',
@@ -106,13 +107,9 @@ class Campaign extends MiscModel
         'export_date' => 'date',
     ];
 
-    /**
-     * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
-     * @return bool
-     */
-    public function hasPermissions(): bool
+    public function getRouteKeyName()
     {
-        return $this->roles()->count() > 1;
+        return 'slug';
     }
 
     /**
@@ -156,22 +153,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return mixed
-     */
-    public function invites()
-    {
-        return $this->hasMany('App\Models\CampaignInvite');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function unusedInvites()
-    {
-        return $this->invites()->where('is_active', true);
-    }
-
-    /**
      * Get a list of users who are admins of the campaign
      * @return User[]|array|Collection
      */
@@ -194,7 +175,11 @@ class Campaign extends MiscModel
      */
     public function adminCount(): int
     {
-        return count(CampaignCache::campaign($this)->admins());
+        return $this->roles()
+            ->admin()
+            ->first()
+            ->users
+            ->count();
     }
 
     /**
@@ -206,21 +191,7 @@ class Campaign extends MiscModel
         if (empty($user)) {
             $user = auth()->user();
         }
-        return CampaignCache::members()->where('user_id', $user->id)->count() == 1;
-    }
-
-    /**
-     * @return int
-     */
-    public function role()
-    {
-        $member = $this->members()
-            ->where('user_id', auth()->user()->id)
-            ->first();
-        if ($member) {
-            return $member->role;
-        }
-        return 0;
+        return CampaignCache::members()->where('id', $user->id)->count() == 1;
     }
 
     /**
@@ -235,16 +206,7 @@ class Campaign extends MiscModel
             $module = 'entity_attributes';
         }
 
-        $settings = CampaignCache::settings();
-        return (bool) $settings->$module;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMiddlewareLink(): string
-    {
-        return 'campaign/' . $this->id;
+        return (bool) CampaignCache::settings()->get($module);
     }
 
     /**
@@ -280,22 +242,6 @@ class Campaign extends MiscModel
     public function isOpen(): bool
     {
         return $this->is_open;
-    }
-
-    /**
-     * Determine if a campaign is featured or was featured in the past
-     * @param bool $past
-     * @return bool
-     */
-    public function isFeatured(bool $past = false): bool
-    {
-        return (bool) $this->is_featured && (
-            empty($this->featured_until) || (
-                $past ?
-                    $this->featured_until->isBefore(Carbon::today()) :
-                    $this->featured_until->isAfter(Carbon::today())
-            )
-        );
     }
 
     /**
@@ -487,16 +433,16 @@ class Campaign extends MiscModel
         $visibility = $this->default_visibility;
 
         if ($visibility == 'admin') {
-            return Visibility::VISIBILITY_ADMIN;
+            return \App\Enums\Visibility::Admin->value;
         } elseif ($visibility == 'admin-self') {
-            return Visibility::VISIBILITY_ADMIN_SELF;
+            return (int) \App\Enums\Visibility::AdminSelf->value;
         } elseif ($visibility == 'members') {
-            return Visibility::VISIBILITY_MEMBERS;
+            return (int) \App\Enums\Visibility::Member->value;
         } elseif ($visibility == 'self') {
-            return Visibility::VISIBILITY_SELF;
+            return (int) \App\Enums\Visibility::Self->value;
         }
 
-        return Visibility::VISIBILITY_ALL;
+        return (int) \App\Enums\Visibility::All->value;
     }
 
     /**
@@ -601,5 +547,10 @@ class Campaign extends MiscModel
         $key = 'modules.' . $type . '.i';
         $val = Arr::get($this->settings, $key);
         return $val;
+    }
+
+    public function hasVanity(): bool
+    {
+        return $this->slug != $this->id;
     }
 }

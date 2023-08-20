@@ -15,7 +15,7 @@
         <li>Regain access to all your changes, exactly the way you left them</li>
         <li>Ad free experience</li>
         <li>Increased upload size</li>
-        <li><a href="{{ route('front.pricing') }}">And way more</a></li>
+        <li><a href="{{ \App\Facades\Domain::toFront('pricing')  }}">And way more</a></li>
     </ul>
 
     <p>This email serves as confirmation that you have cancelled the renewal of your <strong>{{ $user->pledge }}</strong> subscription on Kanka. You will continue to have access to your subscription bonuses until <strong>{{ $user->subscription('kanka')?->ends_at->isoFormat('MMMM D, Y') }}</strong>.

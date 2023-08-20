@@ -61,8 +61,7 @@ class AppearanceController extends Controller
 
         //refresh user campaigns in cache if order by has changed
         if ($request->has('campaign_switcher_order_by')) {
-            \App\Facades\UserCache::clearCampaigns();
-            \App\Facades\UserCache::clearFollows();
+            \App\Facades\UserCache::clear();
         }
 
         if ($request->filled('from')) {

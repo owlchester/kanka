@@ -1,5 +1,4 @@
 {{ csrf_field() }}
-@inject('campaignService', 'App\Services\CampaignService')
 <x-grid>
     <div class="field-name required">
         <label>{{ __('entities/links.fields.name') }}</label>

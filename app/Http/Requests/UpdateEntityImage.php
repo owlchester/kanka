@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateEntityImage extends FormRequest
@@ -24,9 +25,9 @@ class UpdateEntityImage extends FormRequest
     public function rules()
     {
         $rules = [
-            'image' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
-            'image_url' => 'nullable|url',
-            'entity_image_uuid' => 'nullable|exists:images,id',
+            'image' => 'required_without_all:image_url,entity_image_uuid|mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
+            'image_url' => 'required_without_all:image,entity_image_uuid|url',
+            'entity_image_uuid' => 'required_without_all:image_url,image|exists:images,id',
         ];
 
         return $rules;

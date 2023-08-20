@@ -8,7 +8,7 @@
 
 <div class="field-note mb-5">
     <div class="pull-right hidden-xs">
-        <i class="fa-solid fa-question-circle" aria-hidden="true" title="{!! __('entities/abilities.helpers.note', [
+        <i class="fa-solid fa-question-circle" aria-hidden="true" data-title="{!! __('entities/abilities.helpers.note', [
     'code' => '<code>[character:4096]</code>',
     'attr' => '<code>{Strength}</code>'
 ]) !!}" data-toggle="tooltip" data-html="true" data-placement="left"></i>

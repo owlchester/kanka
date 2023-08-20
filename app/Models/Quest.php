@@ -71,7 +71,7 @@ class Quest extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'date',
         'instigator.name',
         'is_completed',

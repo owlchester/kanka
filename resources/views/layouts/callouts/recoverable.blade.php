@@ -5,7 +5,7 @@
     </strong><br />
 
     {!! __('crud.delete_modal.recoverable', [
-'boosted-campaign' => link_to_route('front.pricing', __('concept.premium-campaign'), '#premium'),
+'boosted-campaign' => link_to(Domain::toFront('pricing'), __('concept.premium-campaign'), '#premium'),
 'day' => config('entities.hard_delete')
 ])!!}
 </p>

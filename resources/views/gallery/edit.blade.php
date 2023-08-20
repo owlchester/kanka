@@ -79,7 +79,7 @@ $imageCount = 0;
                     </x-badge>
                 </div>
 
-                {!! Form::model($image, ['route' => ['images.update', $image], 'method' => 'PUT', 'class' => '']) !!}
+                {!! Form::model($image, ['route' => ['images.update', $campaign, $image], 'method' => 'PUT', 'class' => 'flex flex-col gap-5']) !!}
 
                 <div class="field-name">
                     <label for="name" class="control-label required">{{ __('crud.fields.name') }}</label>
@@ -125,18 +125,18 @@ $imageCount = 0;
             <p class="help-block">{{ __('entities/image.focus.helper') }}</p>
             <div class="focus-selector max-h-96 relative mb-2 overflow-auto">
                 <div class="focus absolute text-white cursor-pointer text-3xl" style="@if(empty($image->focus_x))display: none; @else left: {{ $image->focus_x }}px; top: {{ $image->focus_y }}px; @endif">
-                    <i class="fa-regular fa-bullseye fa-2x hover:text-red" aria-hidden="true"></i>
+                    <x-icon class="fa-regular fa-bullseye fa-2x hover:text-red" />
                 </div>
                 <img class="focus-image max-w-none" src="{{ $image->getImagePath(0) }}" alt="img" />
             </div>
             <div class="grid grid-cols-2 gap-2 w-full items-center mb-5">
                 <div>
-                    {!! Form::model($image, ['route' => ['campaign.gallery.save-focus', $image], 'method' => 'POST']) !!}
+                    {!! Form::model($image, ['route' => ['campaign.gallery.save-focus', $campaign, $image], 'method' => 'POST']) !!}
                         <input type="submit" class="btn2 btn-error btn-outline btn-sm" value="{{ __('campaigns/gallery.actions.reset_focus') }}">
                     {!! Form::close() !!}
                 </div>
                 <div class="text-right">
-                {!! Form::model($image, ['route' => ['campaign.gallery.save-focus', $image], 'method' => 'POST']) !!}
+                {!! Form::model($image, ['route' => ['campaign.gallery.save-focus', $campaign, $image], 'method' => 'POST']) !!}
                     {!! Form::hidden('focus_x', null) !!}
                     {!! Form::hidden('focus_y', null) !!}
                     <input type="submit" class="btn2 btn-primary btn-sm" value="{{ __('entities/image.actions.save_focus') }}">
@@ -150,6 +150,6 @@ $imageCount = 0;
 </div>
 
 @if(!$image->isFolder() || $image->hasNoFolders())
-    {!! Form::open(['method' => 'DELETE','route' => ['images.destroy', $image->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
+    {!! Form::open(['method' => 'DELETE','route' => ['images.destroy', $campaign, $image->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
     {!! Form::close() !!}
 @endif

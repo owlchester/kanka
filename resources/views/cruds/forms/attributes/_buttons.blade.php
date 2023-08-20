@@ -10,7 +10,7 @@
         <ul class="dropdown-menu" role="menu">
             <li>
                 <a href="#" class="add_attribute" data-template="#checkbox_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                    <i class="fa-solid fa-check"></i> {{ __('entities/attributes.types.checkbox') }}
+                    <x-icon class="check" /> {{ __('entities/attributes.types.checkbox') }}
                 </a>
             </li>
             <li>
@@ -75,7 +75,7 @@
             {{ __('entities/attributes.fields.is_private') }}
         </label>
         <p class="help-block">{!! __('entities/attributes.hints.is_private2', [
-    'admin-role' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), null, ['target' => '_blank'])
+    'admin-role' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
     ]) !!}</p>
     </div>
 @endif

@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->models($models)
     ->columns([
@@ -34,12 +35,12 @@
         ],
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => __('items.fields.character'),
             'type' => 'character',
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
         ],
         [
             'type' => 'is_private',
@@ -49,6 +50,5 @@
         'route' => 'items.index',
         'baseRoute' => 'items',
         'trans' => 'items.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

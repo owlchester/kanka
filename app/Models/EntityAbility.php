@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Traits\VisibilityIDTrait;
 use Carbon\Carbon;
@@ -71,23 +70,6 @@ class EntityAbility extends Model
     public function creator()
     {
         return $this->belongsTo('App\User', 'created_by');
-    }
-
-    /**
-     * List of recently used positions for the form suggestions
-     * @return mixed
-     */
-    public static function positionList()
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        return self::groupBy('a.type')
-            ->leftJoin('entities as e', 'e.id', 'inventories.entity_id')
-            ->leftJoin('abilities as a', 'a.id', 'inventories.ability_id')
-            ->where('e.campaign_id', $campaign->id)
-            ->orderBy('a.type', 'ASC')
-            ->limit(20)
-            ->pluck('a.type')
-            ->all();
     }
 
     /**

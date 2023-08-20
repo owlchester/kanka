@@ -20,6 +20,7 @@ use App\Models\UserLog;
 use App\Models\UserSetting;
 use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -34,6 +35,7 @@ use App\Models\Concerns\LastSync;
  * @property int $id
  * @property string $name
  * @property string $email
+ * @property string $locale
  * @property integer|null $last_campaign_id
  * @property string|null $avatar
  * @property string $provider
@@ -64,6 +66,7 @@ class User extends \Illuminate\Foundation\Auth\User
 {
     use Billable;
     use HasApiTokens;
+    use HasFactory;
     use LastSync;
     use Notifiable;
     use Tutorial;
@@ -139,18 +142,6 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Change the current campaign (when creating a new one)
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function setCurrentCampaign(Campaign $campaign): self
-    {
-        self::$currentCampaign = $campaign;
-        return $this;
-    }
-
-
-    /**
      * Get the other campaigns of the user
      * @param bool $hasEmpty
      * @return array
@@ -192,7 +183,7 @@ class User extends \Illuminate\Foundation\Auth\User
         $roleLinks = [];
         foreach ($roles as $role) {
             if (auth()->user()->isAdmin()) {
-                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, [$role->id]);
+                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, [$this->campaign, $role->id]);
             } else {
                 $roleLinks[] = $role->name;
             }
@@ -237,54 +228,6 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Get max file size of user
-     * @param bool $readable
-     * @return string|int
-     */
-    public function maxUploadSize(bool $readable = false): string|int
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
-            $min = config('limits.filesize.image');
-            return $readable ? $min . 'MB' : ($min * 1024);
-        } elseif ($this->isElemental()) {
-            // Anders gets higher upload sizes until we handle this in the db.
-            if ($this->id === 34122) {
-                return $readable ? '100MB' : 102400;
-            }
-            return $readable ? '25MB' : 25600;
-        } elseif ($this->isWyvern()) {
-            return $readable ? '15MB' : 15360;
-        }
-        // Allow kobolds and goblins to have the Owlbear sizes
-        return $readable ? '8MB' : 8192;
-    }
-
-    /**
-     * Determine the max upload size for a map
-     * @param bool $readable
-     * @return string|int
-     */
-    public function mapUploadSize(bool $readable = false): string|int
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        // Not a subscriber and not in a boosted campaign get the default
-        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
-            return $readable ? '3MB' : 3072;
-        } elseif ($this->isElemental()) {
-            // Anders gets higher upload sizes until we handle this in the db.
-            if ($this->id === 34122) {
-                return $readable ? '100MB' : 102400;
-            }
-            return $readable ? '50MB' : 51200;
-        } elseif ($this->isWyvern()) {
-            return $readable ? '20mb' : 20480;
-        }
-        // We allow Kobolds and Goblins to have 10MB
-        return $readable ? '10MB' : 10240;
-    }
-
-    /**
      * Determine if a user is a subscriber
      * @return bool
      */
@@ -317,12 +260,10 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isElemental(): bool
     {
-        if (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL) {
-            return true;
-        }
-        // We check the campaign and roles for 61105 because of a special Elemental subscriber.
-        $campaign = CampaignLocalization::getCampaign(false);
-        return (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
+        return (bool) (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL)
+
+
+        ;
     }
 
     /**
@@ -369,22 +310,6 @@ class User extends \Illuminate\Foundation\Auth\User
     public function billedInEur(): bool
     {
         return $this->currency() === 'eur';
-    }
-
-    /**
-     * Determine if ads should be shown for the user or campaign
-     * @return bool
-     */
-    public function showAds(): bool
-    {
-        // Patrons and subs don't have ads
-        if ($this->isSubscriber()) {
-            return false;
-        }
-
-        // Campaigns that are boosted don't either
-        $campaign = CampaignLocalization::getCampaign(false);
-        return !empty($campaign) && !$campaign->boosted();
     }
 
     /**
@@ -464,8 +389,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function campaignRoleIDs(int $campaignID): array
     {
-        $roles = UserCache::roles()->where('campaign_id', $campaignID);
-        return $roles->pluck('id')->toArray();
+        return UserCache::roles()->pluck('id')->toArray();
     }
 
     /**
@@ -475,6 +399,9 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function log(int $type): self
     {
+        if (!config('logging.enabled')) {
+            return $this;
+        }
         UserLog::create([
             'user_id' => $this->id,
             'type_id' => $type,

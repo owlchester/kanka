@@ -22,8 +22,7 @@ class SyncUserRoles extends Command
      */
     protected $description = 'Sync a user\'s discord roles.';
 
-    /** @var DiscordService */
-    protected $service;
+    protected DiscordService $service;
 
     /**
      * Create a new command instance.

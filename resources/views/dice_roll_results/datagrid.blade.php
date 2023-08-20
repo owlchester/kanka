@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->models($models)
     ->columns([
@@ -14,13 +15,13 @@
             'label' => __('entities.dice_roll'),
             'field' => 'diceRoll.name',
             'render' => function($model) {
-                return '<a href="' . route('dice_rolls.show', $model->dice_roll_id) . '">' . e($model->diceRoll->name) . '</a>';
+                return '<a href="' . route('dice_rolls.show', [$campaign, $model->dice_roll_id]) . '">' . e($model->diceRoll->name) . '</a>';
             }
         ],
         [
             'label' => __('entities.character'),
             'field' => 'diceRoll.character.name',
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 if ($model->diceRoll->character) {
                     return $model->diceRoll->character->tooltipedLink();
@@ -49,7 +50,6 @@
         'route' => 'dice_roll_results.index',
         'baseRoute' => 'dice_roll_results',
         'trans' => 'dice_rolls.fields.',
-        'campaignService' => $campaignService,
         'disableEntity' => true,
     ]
 ) !!}

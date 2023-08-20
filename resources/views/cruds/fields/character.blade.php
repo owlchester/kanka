@@ -1,4 +1,4 @@
-@if ((isset($campaign) && !$campaign->enabled('characters')) || (isset($campaignService) && !$campaignService->enabled('characters')))
+@if (isset($campaign) && !$campaign->enabled('characters'))
     @php return @endphp
 @endif
 
@@ -14,6 +14,7 @@
 @endif
 
 <x-forms.foreign
+    :campaign="$campaign"
     :name="$name ?? 'character_id'"
     key="character"
     entityType="characters"
@@ -22,7 +23,7 @@
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route($route ?? 'characters.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route($route ?? 'characters.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Character::class"
     :selected="$preset"
     :helper="$helper ?? null"

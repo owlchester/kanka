@@ -9,7 +9,7 @@
 <article class="text-left max-w-2xl">
     @include('partials.errors')
 
-    {!! Form::open(['url' => route('campaign_plugins.import', $plugin), 'method' => 'POST', 'class' => 'w-full']) !!}
+    {!! Form::open(['url' => route('campaign_plugins.import', [$campaign, $plugin]), 'method' => 'POST', 'class' => 'w-full']) !!}
     <p>{{ __('campaigns/plugins.import.helper', [
     'count' => $version->version->entities()->count(),
     'plugin' => $plugin->name

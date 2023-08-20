@@ -69,6 +69,7 @@ TEXT
         'superboosted'                      => 'Superboosted by',
         'system'                            => 'System',
         'theme'                             => 'Theme',
+        'vanity'                            => 'Vantity URL',
         'visibility'                        => 'Visibility',
     ],
     'following'                         => 'Following',
@@ -151,7 +152,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Help',
             'remove'        => 'Remove from campaign',
             'switch'        => 'View campaign as user',
             'switch-back'   => 'Back to my user',
@@ -171,9 +171,7 @@ TEXT
             'role'          => 'Role',
             'roles'         => 'Roles',
         ],
-        'help'                  => 'Campaigns can have an unlimited amount of members in them.',
         'helpers'               => [
-            'admin' => 'As a member of the campaign\'s admin role, you can invite new users, remove inactive one, and change their permissions. To test the permissions of a member, use the :button button. You can read more about this feature in the :link.',
             'switch'=> 'View the campaign as this user',
         ],
         'impersonating'         => [

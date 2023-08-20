@@ -6,7 +6,7 @@
     @endif
 </x-dialog.header>
 <article>
-    {!! Form::model($submission, ['method' => 'PATCH', 'route' => ['campaign_submissions.update', $submission->id], 'data-shortcut' => 1, 'class' => 'entity-form w-full max-w-lg text-left']) !!}
+    {!! Form::model($submission, ['method' => 'PATCH', 'route' => ['campaign_submissions.update', $campaign, $submission->id], 'data-shortcut' => 1, 'class' => 'entity-form w-full max-w-lg text-left']) !!}
         @if($action === 'approve')
             <p>{{ __('campaigns/submissions.update.approve') }}</p>
 
@@ -21,7 +21,7 @@
                 </div>
             </x-grid>
             <x-buttons.confirm type="primary" full="true">
-                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                <x-icon class="check" />
                 {{ __('campaigns/submissions.actions.accept') }}
             </x-buttons.confirm>
         @else

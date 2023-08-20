@@ -9,6 +9,8 @@ let markerModal, markerModalContent, markerModalTitle;
 let eraseTempPolygonBtn;
 let polygonStrokeWeight, polygonStrokeColour, polygonStrokeOpacity, polygonColour, polygonOpacity;
 
+let tickerTimeout, tickerUrl, tickerTs;
+
 $(document).ready(function() {
 
     window.map.invalidateSize();
@@ -99,6 +101,7 @@ function initMapExplore()
         });
     };
 
+    initTicker();
     initLegend();
 }
 
@@ -159,8 +162,36 @@ function handleCloseMarker()
     });
 }
 
-function initLegend()
-{
+const initTicker = () => {
+    let config = $('#ticker-config');
+    tickerTimeout = config.data('timeout');
+    tickerUrl = config.data('url');
+    tickerTs = config.data('ts');
+    $(document).ready(function() {
+        setTimeout(mapTicker, tickerTimeout);
+    });
+};
+
+const mapTicker = () => {
+    $.ajax(tickerUrl + '?ts=' + tickerTs)
+        .done(function(data) {
+            if (!data) {
+                return;
+            }
+            tickerTs = data.ts;
+            for (let id in data.markers) {
+                let changedMarker = data.markers[id];
+                //console.log('moving', 'marker' + changedMarker.id, changedMarker);
+                window['marker' + changedMarker.id].setLatLng({
+                    lon: changedMarker.longitude,
+                    lat: changedMarker.latitude
+                }).update();
+            }
+            setTimeout(mapTicker, tickerTimeout);
+        });
+};
+
+const initLegend = () => {
     $('.map-legend-marker').click(function (ev) {
         ev.preventDefault();
         window.map.panTo(L.latLng($(this).data('lat'), $(this).data('lng')));
@@ -170,7 +201,8 @@ function initLegend()
     $('a.sidebar-toggle').click(function () {
         invalidateMapOnSidebar();
     });
-}
+};
+
 function invalidateMapOnSidebar() {
     setTimeout(() => {
         // Invalidate the map size when the sidebar is rendered/hidden

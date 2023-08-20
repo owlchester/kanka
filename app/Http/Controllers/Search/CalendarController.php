@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers\Search;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
-use Response;
 
 class CalendarController extends Controller
 {
-    /**
-     * @var SearchService
-     */
-    protected $search;
+    protected SearchService $search;
 
     /**
      * LiveController constructor.
@@ -24,12 +20,11 @@ class CalendarController extends Controller
         $this->search = $searchService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
+        $term = trim($request->get('q'));
 
-        return Response::json(
+        return response()->json(
             $this->search
                 ->term($term)
                 ->campaign($campaign)
@@ -41,12 +36,11 @@ class CalendarController extends Controller
     /**
      * Live Search
      */
-    public function months(Request $request)
+    public function months(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
+        $term = trim($request->get('q'));
 
-        return Response::json(
+        return response()->json(
             $this->search
                 ->term($term)
                 ->campaign($campaign)

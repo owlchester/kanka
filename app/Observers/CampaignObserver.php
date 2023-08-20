@@ -15,34 +15,30 @@ use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
+use App\Services\Users\CampaignService;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class CampaignObserver
 {
-    /**
-     * Purify trait
-     */
     use PurifiableTrait;
 
     /**
      * Service used to build the map of the entity
-     * @var EntityMappingService
      */
     protected EntityMappingService $entityMappingService;
 
-    /**
-     * CharacterObserver constructor.
-     * @param EntityMappingService $entityMappingService
-     */
-    public function __construct(EntityMappingService $entityMappingService)
+    protected CampaignService $campaignService;
+
+    public function __construct(EntityMappingService $entityMappingService, CampaignService $campaignService)
     {
         $this->entityMappingService = $entityMappingService;
+        $this->campaignService = $campaignService;
     }
 
     /**
-     * @param Campaign $campaign
+     *
      */
     public function saving(Campaign $campaign)
     {
@@ -51,7 +47,7 @@ class CampaignObserver
         $campaign->entry = $this->purify(Mentions::codify($campaign->entry));
         $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
 
-        $campaign->slug = Str::slug($campaign->name, '');
+        //$campaign->slug = Str::slug($campaign->name, '');
         $campaign->updated_by = auth()->user()->id;
 
         if (request()->has('is_public')) {
@@ -76,6 +72,10 @@ class CampaignObserver
     public function creating(Campaign $campaign)
     {
         $campaign->created_by = auth()->user()->id;
+        //$campaign->is_featured = false;
+        $campaign->entity_visibility = false;
+        $campaign->entity_personality_visibility = false;
+        $campaign->follower = 0;
     }
 
     /**
@@ -90,10 +90,10 @@ class CampaignObserver
         $role->save();
 
         // Make sure we save the last campaign id to avoid infinite loops
-        /** @var User $user */
-        $user = auth()->user();
-        $user->last_campaign_id = $campaign->id;
-        $user->save();
+        $this->campaignService
+            ->user(auth()->user())
+            ->campaign($campaign)
+            ->set();
 
         $role = CampaignRole::create([
             'campaign_id' => $campaign->id,
@@ -125,7 +125,10 @@ class CampaignObserver
         ]);
         $setting->save();
 
-        UserCache::clearCampaigns();
+        $campaign->slug = (string) $campaign->id;
+        $campaign->saveQuietly();
+
+        UserCache::clear();
 
         auth()->user()->log(UserLog::TYPE_CAMPAIGN_NEW);
     }
@@ -144,14 +147,14 @@ class CampaignObserver
         $this->saveRpgSystems($campaign);
 
         foreach ($campaign->members()->with('user')->get() as $member) {
-            UserCache::user($member->user)->clearCampaigns();
+            UserCache::user($member->user)->clear();
         }
 
         // Whenever a campaign is changed, clear the cache for followers.
         // This can be for the name, image, public status etc which needs to be reflected
         // in the user's sidebar.
         foreach ($campaign->followers as $follow) {
-            UserCache::user($follow)->clearFollows();
+            UserCache::user($follow)->clear();
         }
     }
 
@@ -161,7 +164,7 @@ class CampaignObserver
     public function deleted(Campaign $campaign)
     {
         ImageService::cleanup($campaign);
-        UserCache::clearCampaigns();
+        UserCache::clear();
     }
 
     /**

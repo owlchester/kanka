@@ -8,7 +8,7 @@
         <th>{{ __('entities/inventories.fields.qty') }}</th>
         @if (auth()->check())
             <th>
-                <i class="fa-solid fa-user-lock" title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                <i class="fa-solid fa-user-lock" data-title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip" aria-hidden="true"></i>
                 <span class="sr-only">{{ __('crud.fields.visibility') }}</span>
             </th>
             <th><br /></th>
@@ -32,7 +32,7 @@
         <tr class="collapse !visible inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }} in">
             <td style="width: 50px">
                 @if ($item->is_equipped)
-                    <i class="fa-solid fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                    <i class="fa-solid fa-check" data-title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip" aria-hidden="true"></i>
                     <span class="sr-only">{{ __('entities/inventories.fields.is_equipped') }}</span>
                 @endif
             </td>
@@ -59,10 +59,10 @@
                 </td>
                 @can('inventory', $entity->child)
                     <td class="text-right">
-                        <a href="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
+                        <a href="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
                            class="btn2 btn-outline btn-xs"
-                           data-toggle="ajax-modal" data-target="#entity-modal"
-                           data-url="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
+                           data-toggle="dialog" data-target="inventory-dialog"
+                           data-url="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
                            title="{{ __('crud.edit') }}">
                             <x-icon class="edit"></x-icon> {{ __('crud.edit') }}
                         </a>

@@ -27,7 +27,7 @@ class SubscriptionEndService
         $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
             ->where(function ($sub) {
                 $sub->where('stripe_id', 'like', 'sofort_%')
-                ->orWhere('stripe_id', 'like', 'giropay_%');
+                    ->orWhere('stripe_id', 'like', 'giropay_%');
             })
             ->where('stripe_status', 'active')
             ->whereDate('ends_at', '<', Carbon::today()->toDateString())

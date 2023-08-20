@@ -1,6 +1,7 @@
 <div class="grid gap-2 md:gap-4 grid-cols-4">
     <div class="col-span-3">
         <x-forms.tags
+            :campaign="$campaign"
             label=""
             allowClear="true"
             :options="$value"

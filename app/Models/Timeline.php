@@ -50,7 +50,7 @@ class Timeline extends MiscModel
      * Fields that can be sorted on
      * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'calendar.name',
         'timeline.name',
     ];

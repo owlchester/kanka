@@ -12,7 +12,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         @endif
      </div>
     <div class="grow">
-        <a class="name inline-block font-bold text-lg" href="{{ url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()) }}">
+        <a class="name inline-block font-bold text-lg" href="{{ route('dashboard', $campaign) }}">
             {!! \Illuminate\Support\Str::limit($campaign->name, 28) !!}
         </a>
 

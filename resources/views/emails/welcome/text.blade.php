@@ -8,8 +8,8 @@
 {{ __('emails/welcome.2023.basics.title') }}
 
 {!! __('emails/welcome.2023.basics.text_1', [
-    'kb' => __('front.menu.kb') . ' (' . route('front.faqs.index') . ')',
-    'doc' => __('front.menu.documentation') . ' (https://docs.kanka.io/en/latest/index.html)',
+    'kb' => __('footer.kb') . ' (' . \App\Facades\Domain::toFront('kb') . ')',
+    'doc' => __('footer.documentation') . ' (https://docs.kanka.io/en/latest/index.html)',
 ]) !!}
 
 {{ __('emails/welcome.2023.chat.title') }}

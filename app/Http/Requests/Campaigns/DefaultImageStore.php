@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Campaigns;
 
+use App\Facades\Limit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DefaultImageStore extends FormRequest
@@ -25,7 +26,7 @@ class DefaultImageStore extends FormRequest
     {
         $rules = [
             'entity_type' => 'required',
-            'default_entity_image' => 'required|mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'default_entity_image' => 'required|mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
         ];
         return $rules;
     }

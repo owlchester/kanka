@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->nested()
     ->service($filterService)
     ->models($models)
@@ -38,7 +39,6 @@
         'route' => 'creatures.tree',
         'baseRoute' => 'creatures',
         'trans' => 'creatures.fields.',
-        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

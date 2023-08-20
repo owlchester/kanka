@@ -14,7 +14,7 @@ $translations = json_encode([
     @can('update', $model)
         <div class="header-buttons inline-block  flex gap-2 items-center justify-end">
             <a class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#entity-modal"
-                    data-url="{{ route('conversations.conversation_participants.index', $model) }}">
+                    data-url="{{ route('conversations.conversation_participants.index', [$campaign, $model]) }}">
                 <x-icon class="fa-solid fa-users"></x-icon>
                 {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}
             </a>
@@ -25,8 +25,8 @@ $translations = json_encode([
                 </a>
             @endcan
             @can('post', [$model, 'add'])
-                <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn2 btn-accent btn-sm btn-new-post"
-                   data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
+                <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn2 btn-accent btn-sm btn-new-post"
+                   data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">
                     <x-icon class="plus"></x-icon> {{ __('crud.actions.new_post') }}
                 </a>
             @endcan
@@ -54,11 +54,11 @@ $translations = json_encode([
         <div class="box-conversation" id="conversation">
             <conversation
                     id="{{ $model->id }}"
-                    api="{{ route('conversations.conversation_messages.index', $model) }}"
+                    api="{{ route('conversations.conversation_messages.index', [$campaign, $model]) }}"
                     target="{{ $model->forCharacters() ? 'character' : 'user'}}"
                     :targets="{{ $model->jsonParticipants() }}"
                     :disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
-                    send="{{ route('conversations.conversation_messages.store', $model) }}"
+                    send="{{ route('conversations.conversation_messages.store', [$campaign, $model]) }}"
                     trans="{{ $translations }}"
             >
             </conversation>

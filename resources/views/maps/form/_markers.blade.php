@@ -26,13 +26,12 @@
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-    <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
-    <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
-    <script src="/js/vendor/leaflet/leaflet.path.drag.js"></script>
-    <script src="/js/vendor/leaflet/leaflet.editable.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
     @vite([
         'resources/js/location/map-v3.js',
-        'resources/js/ajax-subforms.js'
     ])
 
     <script type="text/javascript">
@@ -104,7 +103,7 @@
     @parent
     <!-- Deletion forms -->
     @foreach ($model->markers as $marker)
-        {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $model, $marker], 'style ' => 'display:inline', 'id' => 'delete-form-marker-' . $marker->id]) !!}
+        {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $campaign, $model, $marker], 'style ' => 'display:inline', 'id' => 'delete-form-marker-' . $marker->id]) !!}
         {!! Form::close() !!}
     @endforeach
 @endsection
@@ -150,7 +149,7 @@
 @section('modals')
     @parent
     {!! Form::open([
-        'route' => ['maps.map_markers.store', $model],
+        'route' => ['maps.map_markers.store', $campaign, $model],
         'method' => 'POST',
         //'enctype' => 'multipart/form-data',
         //'id' => 'map-marker-new-form'
@@ -161,7 +160,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content bg-base-100">
                 <div class="modal-header">
-                    <x-dialog.close />
+                    <x-dialog.close :modal="true" />
                     <h4>
                         {{ __('maps/markers.create.title', ['name' => $model->name]) }}
                     </h4>

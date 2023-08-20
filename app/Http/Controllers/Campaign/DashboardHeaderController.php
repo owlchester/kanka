@@ -18,7 +18,6 @@ class DashboardHeaderController extends Controller
     public function edit(Campaign $campaign, ?CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('update', $campaign);
-        $ajax = request()->ajax();
 
         if (!empty($campaignDashboardWidget) && !empty($campaignDashboardWidget->campaign_id)) {
             if ($campaignDashboardWidget->campaign_id != $campaign->id) {
@@ -30,7 +29,6 @@ class DashboardHeaderController extends Controller
 
         return view('campaigns.forms.dashboard-header.edit')
             ->with('model', $campaign)
-            ->with('ajax', $ajax)
             ->with('widget', $campaignDashboardWidget);
     }
 
@@ -48,7 +46,7 @@ class DashboardHeaderController extends Controller
         $campaign->update($request->only('excerpt'));
 
         return redirect()
-            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
+            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : [$campaign])
             ->with('success', __('campaigns/dashboard-header.edit.success'));
     }
 }

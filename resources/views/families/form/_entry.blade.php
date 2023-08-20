@@ -9,7 +9,7 @@
 
     @include('cruds.fields.entry2')
 
-    @if ($campaignService->enabled('characters'))
+    @if ($campaign->enabled('characters'))
         <div class="field-members">
             <input type="hidden" name="sync_family_members" value="1">
             @include('components.form.family_members', ['options' => [

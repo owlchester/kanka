@@ -53,7 +53,7 @@ class EntityLink implements Rule
 
         // Check that the campaign is public
         $campaign = Campaign::where('id', $segments[2])->first();
-        if (empty($campaign) || $campaign->is_private) {
+        if (empty($campaign) || !$campaign->isPublic()) {
             return false;
         }
 

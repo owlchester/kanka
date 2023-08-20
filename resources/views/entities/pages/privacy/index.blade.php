@@ -7,7 +7,6 @@
     'mainTitle' => false,
     'miscModel' => $model,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     <header>
@@ -23,7 +22,7 @@
         <div>
             <div class="field-visibility">
                 <label for="privacy">{{ __('entities/permissions.quick.field') }}</label>
-                <select name="privacy" id="quick-privacy-select" class="form-control" data-url="{{ route('entities.quick-privacy.toggle', $entity) }}">
+                <select name="privacy" id="quick-privacy-select" class="form-control" data-url="{{ route('entities.quick-privacy.toggle', [$campaign, $entity]) }}">
                     <option value="0">{{ __('entities/permissions.quick.options.visible') }}</option>
                     <option value="1" @if ($entity->is_private) selected="selected" @endif>{{ __('entities/permissions.quick.options.private') }}</option>
                 </select>

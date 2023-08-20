@@ -2,7 +2,7 @@
     @if (!empty($label))
         <label>{!! __($label) !!}
             @if(!empty($helper))
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}" aria-hidden="true"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ $helper }}" aria-hidden="true"></i>
             @endif
         </label>
     @endif
@@ -12,7 +12,7 @@
     @endif
 
     <select name="{{ $name }}" id="{{ $id }}"
-            class="form-control select2 w-full join-item "
+            class="form-control select2 join-item"
             style="width: 100%"
             data-url="{{ $route }}"
             data-placeholder="{!! $placeholder ?? __('crud.placeholders.parent') !!}"
@@ -27,7 +27,7 @@
     </select>
 
     @if ($canNew)
-            <a class="quick-creator-subform btn2 join-item btn-primary btn-outline btn-sm" data-url="{{ route('entity-creator.form', ['type' => $entityType, 'origin' => 'entity-form', 'target' => $id]) }}">
+            <a class="quick-creator-subform btn2 join-item btn-primary btn-outline btn-sm" data-url="{{ route('entity-creator.form', [$campaign, 'type' => $entityType, 'origin' => 'entity-form', 'target' => $id]) }}">
                 <x-icon class="plus"></x-icon>
                 <span class="sr-only">{{ __('crud.create') }}</span>
             </a>

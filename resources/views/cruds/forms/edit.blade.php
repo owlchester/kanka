@@ -4,22 +4,21 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('crud.titles.editing', ['name' => $model->name])  . ' - ' . __('entities.' . $name),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => \App\Facades\Module::plural($entityTypeId, __('entities.' . $name))],
-        ['url' => $model->getLink(), 'label' => $model->name],
+        Breadcrumb::entity($entity ?? $model->entity)->list(),
+        Breadcrumb::show(),
         __('crud.edit'),
     ],
     'mainTitle' => false,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
 {!! Form::model($model, [
     'method' => 'PATCH',
     'enctype' => 'multipart/form-data',
-    'route' => [$name . '.update', $model->id],
+    'route' => [$name . '.update', [$campaign, $model->id]],
     'data-shortcut' => '1',
     'data-max-fields' => ini_get('max_input_vars'),
-    'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null),
+    'class' => 'entity-form',
     'id' => 'entity-form',
     'data-maintenance' => 1,
     'data-unload' => 1,
@@ -79,8 +78,8 @@
     </div>
 
 
-    @if(!empty($model->entity) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', $model->entity->id) }}" />
+    @if(!empty($model->entity) && $campaign->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', [$campaign, $model->entity->id]) }}" />
     @endif
 @endsection
 

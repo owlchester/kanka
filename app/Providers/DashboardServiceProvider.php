@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\CampaignLocalization;
 use App\Services\DashboardService;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +16,11 @@ class DashboardServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(DashboardService::class, function () {
-            return new DashboardService();
+            $service = new DashboardService();
+            if (CampaignLocalization::hasCampaign()) {
+                $service->campaign(CampaignLocalization::getCampaign());
+            }
+            return $service;
         });
 
         $this->app->alias(DashboardService::class, 'dashboard');

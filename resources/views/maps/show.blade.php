@@ -4,7 +4,7 @@
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
+            Breadcrumb::entity($model->entity)->list(),
             null
         ]
     ])
@@ -26,7 +26,7 @@
                     </x-alert>
                 @else
                 <p>
-                    <a href="{{ route('maps.explore', $model) }}" class="btn2 btn-block btn-primary" target="_blank">
+                    <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="btn2 btn-block btn-primary" target="_blank">
                         <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
                     </a>
                 </p>

@@ -21,89 +21,89 @@
 
     <div class=""></div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.boosters', 3 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 3 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
     </div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.boosters', 6 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 6 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
     </div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.boosters', 10 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 10 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
     </div>
 
 @else
 
     <div class=""></div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.premium', 1 . ' ' . __('concept.premium-campaign'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 1 . ' ' . __('concept.premium-campaign'), '', ['target' => '_blank']) !!}
     </div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.premium', 3 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 3 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
     </div>
     <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
-        {!! link_to_route('front.premium', 7 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
+        {!! link_to('https://kanka.io/premium', 7 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
     </div>
 
 @endif
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.no_ads') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.no_ads') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.no_ads') }}</div>
 
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.discord') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.discord') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.discord') }}</div>
 
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
 
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.nice_image') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.nice_image') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.nice_image') }}</div>
 
 
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
-    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
-
-
-    <div class=""></div>
-    <div class=""></div>
-    <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.vote_influence') }}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><x-icon class="check" /> {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
 
 
     <div class=""></div>
     <div class=""></div>
     <div class=""></div>
-    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.feature_influence') }}</div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.vote_influence') }}</div>
+
+
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""><x-icon class="check" /> {{ __('tiers.features.feature_influence') }}</div>
 
 
     <div class="">
-        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+        <a href="{{ route('larecipe.index') }}" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 30]) }}
         </a>
     </div>
     <div class="">
-        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+        <a href="{{ route('larecipe.index') }}" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 90]) }}
         </a>
     </div>
     <div class="">
-        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+        <a href="{{ route('larecipe.index') }}" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 90]) }}
         </a>
     </div>
     <div class="">
-        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+        <a href="{{ route('larecipe.index') }}" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 90]) }}
         </a>
     </div>

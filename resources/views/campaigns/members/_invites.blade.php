@@ -13,11 +13,11 @@
         </h3>
         <button class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="invite-help">
             <x-icon class="question" />
-            <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>
+            {{ __('crud.actions.help') }}
         </button>
 
-        <a href="{{ route('campaign_invites.create') }}" class="btn2 btn-primary btn-sm"
-            data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create') }}">
+        <a href="{{ route('campaign_invites.create', $campaign) }}" class="btn2 btn-primary btn-sm"
+            data-toggle="dialog-ajax" data-target="new-invite" data-url="{{ route('campaign_invites.create', $campaign) }}">
             <x-icon class="fa-solid fa-user-plus" />
             <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
         </a>
@@ -40,11 +40,11 @@
                     @foreach ($invitations as $relation)
                         <tr>
                             <td>
-                                <a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">
+                                <a href="{{ route('campaigns.join', [$campaign, 'token' => $relation->token]) }}">
                                     {{ substr($relation->token, 0, 6) . '...' }}
                                 </a>
-                                <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
-                                    <x-icon class="fa-solid fa-copy" />
+                                <a href="#" data-title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', [$campaign, 'token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
+                                    <i class="fa-solid fa-copy" aria-hidden="true"></i>
                                     <span class="sr-only">{{ __('Copy') }}</span>
                                 </a>
                             </td>
@@ -53,14 +53,14 @@
                             </td>
                             <td>{{ $relation->role ? $relation->role->name : null }}</td>
                             <td class="hidden-xs hidden-md">
-                                <span title="{{ $relation->created_at }}+00:00" data-toggle="tooltip">
+                                <span data-title="{{ $relation->created_at }}+00:00" data-toggle="tooltip">
                                     {{ $relation->created_at->diffForHumans() }}
                                 </span>
                             </td>
                             <td class="text-right">
                                 <x-button.delete-confirm size="sm" target="#delete-invite-{{ $relation->id}}" />
                                 {!! Form::open(['method' => 'DELETE',
-                                    'route' => ['campaign_invites.destroy', $relation->id],
+                                    'route' => ['campaign_invites.destroy', $campaign, $relation->id],
                                     'style'=>'display:inline',
                                     'id' => 'delete-invite-' . $relation->id])
                                 !!}
@@ -88,6 +88,7 @@
 
 
 @section('modals')
+    <x-dialog id="new-invite" :loading="true" />
     @parent
     @include('partials.helper-modal', [
         'id' => 'invite-help',
@@ -96,7 +97,7 @@
             __('campaigns.members.invite.description'),
             __('campaigns.members.invite.more', [
                         'link' =>
-                            '<a href="' . route('campaign_roles.index') . '">'
+                            '<a href="' . route('campaign_roles.index', $campaign) . '">'
                             . __('campaigns.members.invite.roles_page') . '</a>'
                     ])
         ]
