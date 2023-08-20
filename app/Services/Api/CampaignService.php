@@ -9,7 +9,6 @@ use App\Services\GenreService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
 class CampaignService
@@ -85,6 +84,9 @@ class CampaignService
         return $this;
     }
 
+    /**
+     * Build a list of featured campaigns
+     */
     protected function featured(): self
     {
 
@@ -96,6 +98,9 @@ class CampaignService
         return $this;
     }
 
+    /**
+     * Build a list of public campaigns
+     */
     protected function campaigns(): self
     {
         $this->data['campaigns'] = [];
@@ -115,6 +120,10 @@ class CampaignService
 
         return $this;
     }
+
+    /**
+     * Determine if the request comes with any filters
+     */
     protected function isDefaultRequest(): bool
     {
         return !$this->request->anyFilled('sort_field_name', 'language', 'system', 'is_boosted', 'is_open', 'genre');
@@ -141,6 +150,9 @@ class CampaignService
         return $cached;
     }
 
+    /**
+     * Add some pagination data to the response
+     */
     protected function campaignsMeta(): void
     {
         /** @var LengthAwarePaginator $paginator */
