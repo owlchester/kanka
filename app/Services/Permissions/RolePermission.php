@@ -13,14 +13,11 @@ class RolePermission
      */
     protected $app;
 
-    /**
-     * @var CampaignRole
-     */
-    protected $role;
+    protected CampaignRole $role;
 
     /** @var array */
-    protected $permissions = [];
-    protected $rolesPermissions = [];
+    protected array $permissions = [];
+    protected array $rolesPermissions = [];
 
     /**
      *

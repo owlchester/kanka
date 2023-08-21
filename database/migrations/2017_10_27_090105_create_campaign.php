@@ -34,10 +34,10 @@ class CreateCampaign extends Migration
             $table->date('export_date')->nullable();
 
             $table->string('visibility', 7)->default('private');
-            $table->boolean('is_featured')->defaultValue(false);
-            $table->boolean('entity_visibility')->defaultValue(false);
+            $table->boolean('is_featured')->default(false);
+            $table->boolean('entity_visibility')->default(false);
             $table->unsignedInteger('visible_entity_count')->default(0);
-            $table->boolean('entity_personality_visibility')->defaultValue(true);
+            $table->boolean('entity_personality_visibility')->default(true);
 
             $table->text('settings')->nullable();
             $table->text('default_images')->nullable();

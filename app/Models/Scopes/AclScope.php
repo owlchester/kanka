@@ -63,7 +63,7 @@ class AclScope implements Scope
     {
         // No permission engine on console for the time being. In the future, we might want
         // to build a system to limit exposing private stuff on a campaign export.
-        if (app()->runningInConsole()) {
+        if (app()->runningInConsole() && !app()->environment('testing')) {
             return $query;
         }
 
@@ -77,6 +77,9 @@ class AclScope implements Scope
             ->action(CampaignPermission::ACTION_READ);
         if (auth()->check()) {
             Permissions::user(auth()->user());
+        }
+        if ($model instanceof MiscModel) {
+            Permissions::entityTypeID($model->entityTypeId());
         }
 
         if (Permissions::isAdmin()) {
@@ -167,7 +170,7 @@ class AclScope implements Scope
             $query->whereNotIn($table . '.' . $primaryKey, $denied);
         }
 
-        return $query;
+        return $query->private(false);
     }
 
     /**

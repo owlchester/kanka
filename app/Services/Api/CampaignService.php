@@ -135,7 +135,7 @@ class CampaignService
     protected function cachedCampaigns(int $hours = 24): AnonymousResourceCollection
     {
         $cacheKey = 'public-campaigns-page-1';
-        if (cache()->has($cacheKey)) {
+        if (!app()->environment('testing') && cache()->has($cacheKey)) {
             return cache()->get($cacheKey);
         }
         $campaigns = Campaign::public()

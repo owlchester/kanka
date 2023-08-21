@@ -72,6 +72,6 @@ abstract class BaseCache
      */
     protected function has(string $key): bool
     {
-        return Cache::has($key);
+        return Cache::has($key) && !app()->environment('testing');
     }
 }

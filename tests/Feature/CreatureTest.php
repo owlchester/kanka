@@ -82,7 +82,7 @@ it('DELETES a creature')
 ;
 
 
-it('DELETES am invalid creature')
+it('DELETES an invalid creature')
     ->asUser()
     ->withCampaign()
     ->withCreatures()
@@ -90,10 +90,20 @@ it('DELETES am invalid creature')
     ->assertStatus(404)
 ;
 
-it('can\'t GET a private creature as a player')
+it('can GET a creature as a player')
+    ->asUser()
+    ->withCampaign()
+    ->withCreatures()
     ->asPlayer()
+    ->get('/api/1.0/campaigns/1/creatures/1')
+    ->assertStatus(200)
+;
+
+it('can\'t GET a private creature as a player')
+    ->asUser()
     ->withCampaign()
     ->withCreatures(['is_private' => true])
-    ->delete('/api/1.0/campaigns/1/creatures/1')
-    ->assertStatus(403)
+    ->asPlayer()
+    ->get('/api/1.0/campaigns/1/creatures/1?aaa=1')
+    ->assertStatus(404)
 ;

@@ -26,25 +26,32 @@ class PermissionService
     protected $deniedIds = [];
     protected $allowedModels = [];
     protected $deniedModels = [];
-    protected $loadedPermissions = false;
+    protected bool $loadedPermissions = false;
 
     /** @var array Permissions for posts */
     protected $allowedPostIDs = [];
     protected $deniedPostIDs = [];
     protected $loadedPosts = false;
 
-    protected $loadedRoles = false;
-    protected $admin = false;
+    protected int $loadedRoles;
+    protected bool $admin = false;
 
     protected $granted = false;
 
     /** @var null|int the entity type if provided to limit queries */
     protected $entityType = null;
+    protected int $entityTypeID;
 
     public function isAdmin(): bool
     {
         $this->loadPermissions();
         return $this->admin;
+    }
+
+    public function entityTypeID(int $id): self
+    {
+        $this->entityTypeID = $id;
+        return $this;
     }
 
     /**
@@ -64,7 +71,7 @@ class PermissionService
         $this->entityTypes = [];
         $this->entityTypesIds = [];
         $this->deniedIds = [];
-        $this->loadedRoles = false;
+        unset($this->loadedRoles);
         $this->admin = false;
         return $this;
     }
@@ -223,13 +230,21 @@ class PermissionService
         return $this;
     }
 
+    public function reset(): self
+    {
+        $this->loadedPermissions = false;
+        unset($this->loadedRoles);
+        $this->admin = false;
+        return $this;
+    }
+
     /**
      * Load the user's roles
      * @return $this
      */
     protected function loadRoles(): self
     {
-        if ($this->loadedRoles !== false) {
+        if (isset($this->loadedRoles)) {
             return $this;
         }
         $this->loadedRoles = 0;
@@ -286,6 +301,7 @@ class PermissionService
     {
         // Loop through the permissions of the role to get any blanket _read permissions on entities
         $permissions = \App\Facades\RolePermission::rolesPermissions($roleIDs);
+        //dump($permissions);
         //CampaignPermission::whereIn('campaign_role_id', $roleIDs)->get();
         foreach ($permissions as $permission) {
             $this->parseRolePermission($permission);
@@ -303,6 +319,9 @@ class PermissionService
             return;
         }
         if (!empty($this->entityType) && $permission->entity_type_id !== $this->entityType) {
+            return;
+        }
+        if (isset($this->entityTypeID) && !empty($permission->entity_type_id) && $permission->entity_type_id !== $this->entityTypeID) {
             return;
         }
 

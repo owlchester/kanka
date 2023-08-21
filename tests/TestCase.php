@@ -2,7 +2,10 @@
 
 namespace Tests;
 
+use App\Facades\CampaignCache;
 use App\Facades\EntityCache;
+use App\Facades\Permissions;
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
@@ -34,15 +37,25 @@ abstract class TestCase extends BaseTestCase
 
     public function asPlayer(): self
     {
-        // ID 1 will be the admin of the campaign
-        \App\User::factory()->create();
-
+        $user2 =  \App\User::factory()->create();
         Passport::actingAs(
-            \App\User::factory()->create(),
+            $user2,
             ['*']
         );
 
         $this->isPlayer = true;
+        CampaignUser::create([
+            'campaign_id' => 1,
+            'user_id' => $user2->id,
+        ]);
+
+        CampaignRoleUser::create([
+            'campaign_role_id' => 3,
+            'user_id' => $user2->id,
+        ]);
+
+        Permissions::reset();
+
         return $this;
     }
 
@@ -52,19 +65,9 @@ abstract class TestCase extends BaseTestCase
         CampaignLocalization::forceCampaign($campaign);
 
         EntityCache::campaign($campaign);
+        CampaignCache::campaign($campaign);
+        UserCache::campaign($campaign);
 
-        // If doing a player run, add it to the player role
-        if ($this->isPlayer) {
-            CampaignUser::create([
-                'campaign_id' => 1,
-                'user_id' => 2,
-            ]);
-
-            CampaignRoleUser::create([
-                'campaign_role_id' => 2,
-                'user_id' => 2,
-            ]);
-        }
         return $this;
     }
 
