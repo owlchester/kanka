@@ -19,7 +19,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('quests'), 'label' => \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests'))],
+                Breadcrumb::entity($model->entity)->list(),
                 __('quests.show.tabs.elements')
             ]
         ])

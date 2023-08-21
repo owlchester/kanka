@@ -33,8 +33,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('calendars'), 'label' => \App\Facades\Module::plural(config('entities.ids.calendar'), __('entities.calendars'))],
-                null
+                Breadcrumb::entity($model->entity)->list(),
             ]
         ])
 

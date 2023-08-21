@@ -2,8 +2,7 @@
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index('creatures'), 'label' => \App\Facades\Module::plural(config('entities.ids.creature'), __('entities.creatures'))],
-            null
+            Breadcrumb::entity($model->entity)->list(),
         ]
     ])
 

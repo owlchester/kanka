@@ -7,8 +7,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('maps/groups.create.title', ['name' => $map->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
-        ['url' => $map->entity->url(), 'label' => $map->name],
+        Breadcrumb::entity($map->entity)->list(),
+        Breadcrumb::show($map),
         ['url' => route('maps.map_groups.index', [$campaign, $map]), 'label' => __('maps.panels.groups')],
         __('maps/groups.create.title')
     ]

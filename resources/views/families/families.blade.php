@@ -31,7 +31,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('families'), 'label' => $plural],
+                Breadcrumb::entity($model->entity)->list(),
                 $plural
             ]
         ])

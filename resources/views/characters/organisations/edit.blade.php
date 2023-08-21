@@ -1,8 +1,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => trans('characters.organisations.edit.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('characters'), 'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters'))],
-        ['url' => $model->getLink(), 'label' => $model->name]
+        Breadcrumb::entity($model->entity)->list(),
+        Breadcrumb::show($model)
     ]
 ])
 

@@ -8,8 +8,8 @@
     'title' => __('timelines/elements.edit.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
-        ['url' => $timeline->entity->url(), 'label' => $timeline->name],
+        Breadcrumb::entity($timeline->entity)->list(),
+        Breadcrumb::show($timeline),
         __('timelines/elements.edit.title', ['name' => $model->name])
     ]
 ])

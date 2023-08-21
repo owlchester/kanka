@@ -20,7 +20,7 @@ $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('e
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('characters'), 'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters'))],
+                Breadcrumb::entity($model->entity)->list(),
                 $plural
             ]
         ])

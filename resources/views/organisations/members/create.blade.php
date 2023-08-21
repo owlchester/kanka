@@ -2,8 +2,8 @@
     'title' => __('organisations.members.create.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('organisations'), 'label' => \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations'))],
-        ['url' => $model->getLink(), 'label' => $model->name]
+        Breadcrumb::entity($model->entity)->list(),
+        Breadcrumb::show($model)
     ]
 ])
 

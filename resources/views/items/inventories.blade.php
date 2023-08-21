@@ -13,7 +13,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('items'), 'label' => \App\Facades\Module::plural(config('entities.ids.item'), __('entities.items'))],
+                Breadcrumb::entity($model->entity)->list(),
                 __('items.show.tabs.inventories')
             ]
         ])

@@ -12,7 +12,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('families'), 'label' => \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families'))],
+                Breadcrumb::entity($model->entity)->list(),
                 null
             ]
         ])

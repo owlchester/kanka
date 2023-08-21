@@ -25,7 +25,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('abilities'), 'label' => \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities'))],
+                Breadcrumb::entity($model->entity)->list(),
                 __('abilities.show.tabs.entities')
             ]
         ])

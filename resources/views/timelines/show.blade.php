@@ -25,8 +25,7 @@
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
-            null
+            Breadcrumb::entity($model->entity)->list()
         ],
         'entityHeaderActions' => 'entity-header-actions-override',
     ])

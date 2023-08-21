@@ -2,8 +2,8 @@
     'title' => __('families.members.create.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('families'), 'label' => __('entities.families')],
-        ['url' => route('families.show', [$campaign, $model->id]), 'label' => $model->name]
+        Breadcrumb::entity($model->entity)->list(),
+        Breadcrumb::show($model)
     ]
 ])
 

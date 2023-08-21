@@ -1,8 +1,8 @@
 @extends('layouts.app', [
     'title' => __('tags.transfer.title', ['name' => $tag->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($tag->entity->pluralType()), 'label' => \App\Facades\Module::plural($tag->entity->typeId(), __('entities.' . $tag->entity->pluralType()))],
-        ['url' => route($tag->entity->pluralType() . '.show', [$campaign, $tag->entity->entity_id]), 'label' => $tag->name],
+        Breadcrumb::entity($tag->entity)->list(),
+        Breadcrumb::show($tag),
         __('tags.transfer.transfer'),
     ]
 ])

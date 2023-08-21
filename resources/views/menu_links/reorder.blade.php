@@ -4,7 +4,7 @@
     'title' => __('menu_links.reorder.title'),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('menu_links'), 'label' => __('entities.menu_links')],
+        Breadcrumb::entity($model->entity)->list(),
         __('menu_links.reorder.title')
     ],
     'mainTitle' => false,

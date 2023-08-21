@@ -4,7 +4,7 @@
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index('notes'), 'label' => \App\Facades\Module::plural(config('entities.ids.note'), __('entities.notes'))],
+            Breadcrumb::entity($model->entity)->list(),
             null
         ]
     ])

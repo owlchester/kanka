@@ -3,7 +3,7 @@
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index($name), 'label' => \App\Facades\Module::plural($model->entityTypeId(), __('entities.' . $name))],
+            Breadcrumb::entity($model->entity)->list(),
             null
         ]
     ])

@@ -6,8 +6,8 @@
         __('crud.tabs.reminders'),
         __('crud.update'),
     ] : [
-        ['url' => route('calendars.index', $campaign), 'label' => __('entities.calendars')],
-        ['url' => $entityEvent->calendar->getLink(), 'label' => $entityEvent->calendar->name],
+        Breadcrumb::entity($entityEvent->calendar->entity)->list(),
+        Breadcrumb::show($entityEvent->calendar),
         __('crud.tabs.reminders'),
         __('crud.update'),
     ],
@@ -17,8 +17,9 @@
     {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $campaign, $entity->id, $entityEvent->id], 'data-shortcut' => '1', 'class' => 'ajax-subform', 'data-maintenance' => 1]) !!}
 
     @include('partials.forms.form', [
-        'title' => __('calendars.event.create.title', ['name' => $entity->name]),
+        'title' => __('calendars.event.edit.title', ['name' => $entity->name]),
         'content' => 'calendars.events._form',
+        'deleteID' => '#delete-reminder-' . $entityEvent->id,
         'dialog' => true,
         'dropdownParent' => '#primary-dialog',
         'colourAppendTo' => '#primary-dialog',

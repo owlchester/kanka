@@ -2,7 +2,7 @@
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index($name), 'label' => __('entities.attribute_templates')],
+            Breadcrumb::entity($model->entity)->list(),
             null
         ]
     ])

@@ -1,8 +1,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('characters.organisations.create.title'),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('characters'), 'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters'))],
-        ['url' => $model->getLink(), 'label' => $model->name],
+        Breadcrumb::entity($model->entity)->list(),
+        Breadcrumb::show($model),
         \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations'))
     ],
 ])

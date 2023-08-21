@@ -8,8 +8,8 @@
     'title' => __('timelines/eras.create.title', ['name' => $timeline->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
-        ['url' => $timeline->entity->url(), 'label' => $timeline->name],
+        Breadcrumb::entity($timeline->entity)->list(),
+        Breadcrumb::show($timeline),
         __('timelines/eras.create.title')
     ]
 ])

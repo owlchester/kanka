@@ -2,8 +2,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars/weather.edit.title'),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('calendars'), 'label' => \App\Facades\Module::plural(config('entities.ids.calendar'), __('entities.calendars'))],
-        ['url' => $weather->calendar->getLink(), 'label' => $weather->calendar->name],
+        Breadcrumb::entity($weather->calendar->entity)->list(),
+        Breadcrumb::show($weather->calendar),
         __('calendars.show.tabs.weather'),
         __('crud.update'),
     ],

@@ -3,8 +3,7 @@
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index('tags'), 'label' => \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags'))],
-            null
+            Breadcrumb::entity($model->entity)->list(),
         ]
     ])
 

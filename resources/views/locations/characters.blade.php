@@ -35,7 +35,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('locations'), 'label' => \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations'))],
+                Breadcrumb::entity($model->entity)->list(),
                 \App\Facades\Module::plural(config('entities.ids.character'), __('entities.locations'))
             ]
         ])

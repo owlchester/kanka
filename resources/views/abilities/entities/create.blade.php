@@ -2,8 +2,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('abilities.children.create.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('abilities'), 'label' => __('entities.abilities')],
-        ['url' => route('abilities.show', [$campaign, $model->id]), 'label' => $model->name]
+        Breadcrumb::entity($model->entity)->list(),
+        Breadcrumb::show($model),
     ]
 ])
 

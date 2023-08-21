@@ -16,7 +16,7 @@
         @include('entities.components.header', [
             'model' => $timeline,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
+                Breadcrumb::entity($timeline->entity)->list(),
                 __('crud.actions.reorder')
             ]
         ])

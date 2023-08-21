@@ -40,8 +40,7 @@ $translations = json_encode([
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index($name), 'label' => __('entities.conversations')],
-            null
+            Breadcrumb::entity($model->entity)->list(),
         ],
         'entityHeaderActions' => 'entity-header-actions-override',
     ])
