@@ -3,9 +3,11 @@
 namespace App\Services;
 
 use App\Enums\Widget;
+use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
@@ -32,6 +34,9 @@ class StarterService
             'ui_settings' => ['nested' => true]
         ];
         $this->campaign = Campaign::create($data);
+        CampaignCache::campaign($this->campaign);
+        UserCache::campaign($this->campaign);
+
         $this->populate();
 
         return $this->campaign;
