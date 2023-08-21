@@ -34,7 +34,7 @@ class CreateAbilitiesTable extends Migration
 
             // Overview
             $table->longText('entry')->nullable();
-
+            $table->string('charges', 120)->nullable();
             $table->timestamps();
 
             // Foreign

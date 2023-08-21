@@ -16,7 +16,7 @@ class UpdateCalendarsAliases extends Migration
         Schema::table('calendars', function (Blueprint $table) {
             $table->text('month_aliases')->nullable();
             $table->text('week_names')->nullable();
-            $table->tinyInteger('reset')->nullable();
+            $table->string('reset', 5)->nullable();
             $table->boolean('is_incrementing')->default(false);
             $table->index(['is_incrementing']);
         });

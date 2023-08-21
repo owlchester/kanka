@@ -51,14 +51,20 @@ class CreateOrganisation extends Migration
             $table->integer('character_id')->unsigned()->notNull();
             $table->string('role', 45)->nullable();
             $table->boolean('is_private')->default(false);
+
+            $table->unsignedInteger('parent_id')->nullable();
+            $table->unsignedTinyInteger('pin_id')->nullable();
+            $table->unsignedTinyInteger('status_id')->default(0);
             $table->timestamps();
 
             // Foreign
             $table->foreign('organisation_id')->references('id')->on('organisations')->cascadeOnDelete();
             $table->foreign('character_id')->references('id')->on('characters')->cascadeOnDelete();
+            $table->foreign('parent_id')->references('id')->on('organisation_member')->nullOnDelete();
 
             // Index
             $table->index(['is_private', 'role']);
+            $table->index('pin_id');
         });
     }
 

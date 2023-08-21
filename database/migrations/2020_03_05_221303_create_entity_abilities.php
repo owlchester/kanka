@@ -21,6 +21,7 @@ class CreateEntityAbilities extends Migration
             $table->unsignedTinyInteger('position')->default(0);
             $table->string('visibility', 10)->default('all');
             $table->text('note')->nullable();
+            $table->tinyInteger('charges')->nullable();
             $table->timestamps();
 
             // If we delete the entity or target, remove mentions
