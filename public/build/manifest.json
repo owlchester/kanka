@@ -49,7 +49,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-9c9c61eb.js",
+    "file": "assets/abilities-9caefbf9.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
@@ -75,7 +75,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-903e9c03.js",
+    "file": "assets/app-a4982c2b.js",
     "imports": [
       "_delete-confirm-63bc2c61.js",
       "_mention-5d95822d.js",
@@ -133,7 +133,7 @@
     "src": "resources/js/cookieconsent.js"
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-9a8db14a.js",
+    "file": "assets/dashboard-9485974c.js",
     "imports": [
       "_ajax-modal-1230002e.js",
       "_sortable.esm-be94e56d.js"
@@ -200,7 +200,7 @@
     "src": "resources/js/profile.js"
   },
   "resources/js/relations.js": {
-    "file": "assets/relations-0f4ff6d3.js",
+    "file": "assets/relations-b1ed9805.js",
     "imports": [
       "__commonjsHelpers-725317a4.js"
     ],
@@ -233,12 +233,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-94c956cb.css",
+    "file": "assets/app-850794e8.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-e4dce1b1.css",
+    "file": "assets/auth-4a75cde4.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -263,7 +263,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-489671d3.css",
+    "file": "assets/front-2cd5ed2f.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
