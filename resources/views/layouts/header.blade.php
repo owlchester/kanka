@@ -20,7 +20,6 @@
 
         @if (auth()->check() && !empty($campaign) && $campaign->userIsMember() && (!isset($qq) || $qq))
         <div class="flex-none">
-            <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="bottom"></span>
             <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button btn2 btn-primary btn-sm"
             tabindex="4">
                 <i class="flex-none fa-solid fa-plus ml-1" aria-hidden="true" ></i>

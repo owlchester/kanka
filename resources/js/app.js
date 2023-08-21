@@ -6,9 +6,6 @@ import dynamicMentions from "./mention";
 
 
 $(document).ready(function() {
-    // console.debug("# # # # # # # # # # # # # # # # # # # # #\n" +
-    //     "# Kanka assets are running in vite mode #\n" +
-    //     "# # # # # # # # # # # # # # # # # # # # #");
     initPageHeight();
 
     window.initForeignSelect();

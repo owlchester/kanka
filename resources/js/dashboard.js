@@ -1,5 +1,6 @@
 import ajaxModal from "./components/ajax-modal";
 import Sortable from "sortablejs";
+import tippy from "tippy.js";
 
 /**
  * Dashboard
@@ -287,13 +288,28 @@ function renderWidget(widget)
 }
 
 function initWelcomePulse() {
-    $('[data-pulse]').on('click', function (e) {
-        e.preventDefault();
-        let target = $(this).data('pulse');
-        let content = $(this).data('content');
-        $(target).popover('show', {content: content, placement: 'top'});
-        setTimeout(function () {
-            $(target).popover('hide');
-        }, 1500);
+    document.querySelectorAll('[data-pulse]').forEach((el) => {
+        el.addEventListener('click', clickWelcomePulse);
     });
+}
+
+function clickWelcomePulse(e) {
+    e.preventDefault();
+    let target = document.querySelector(this.dataset.pulse);
+    let content = this.dataset.content;
+
+    window.showTooltip(target, {
+        content: content,
+        theme: 'kanka',
+        placement: 'bottom',
+        allowHTML: true,
+        arrow: true,
+        interactive: true,
+        trigger: 'manual',
+    });
+
+    /*$(target).popover('show', {content: content, placement: 'top'});
+    setTimeout(function () {
+        $(target).popover('hide');
+    }, 1500);*/
 }

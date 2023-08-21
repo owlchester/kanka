@@ -60,13 +60,13 @@ class EntityService
      */
     public function entities(): array
     {
-        if (empty($this->excluded)) {
+        if (empty($this->exclude)) {
             return $this->entities;
         }
 
         $entities = [];
         foreach ($this->entities as $name => $class) {
-            if (in_array($name, $this->excluded)) {
+            if (in_array($name, $this->exclude)) {
                 continue;
             }
             $entities[$name] = $class;

@@ -66,6 +66,14 @@ const initDropdowns = () => {
     });
 };
 
+const showTooltip = (el, options) => {
+    let tooltip = tippy(el, options);
+    tooltip.show();
+};
+
 initTooltips()
 initAjaxTooltips()
 initDropdowns()
+
+window.ajaxTooltip = initAjaxTooltips;
+window.showTooltip = showTooltip;

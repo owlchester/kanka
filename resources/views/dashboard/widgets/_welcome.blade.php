@@ -12,7 +12,7 @@
 
     <p>
         {!! __('dashboards/widgets/welcome.intros.2', [
-            'new-entity' => '<a class="btn2 btn-primary btn-xs" href="#" tabindex="0" role="button" data-pulse="#qq-sidebar-btn">
+            'new-entity' => '<a class="btn2 btn-primary btn-xs" href="#" tabindex="0" role="button" data-pulse=".quick-creator-button" data-content="' . __('dashboards/widgets/welcome.focus.text') . '">
                 <i class="fa-solid fa-plus" aria-hidden="true"></i> ' . __('sidebar.new-entity') . '
             </a>',
             'letter' => '<kbd>N</kbd>',

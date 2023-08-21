@@ -27,7 +27,7 @@ function entityTooltip() {
     return title;
 }
 
-window.ajaxTooltip = function() {
+/*window.ajaxTooltip = function() {*/
     /*$('[data-toggle="tooltip-ajax"]').tooltip({
         title: entityTooltip,
         delay: 500,
@@ -44,4 +44,4 @@ window.ajaxTooltip = function() {
     $('[data-toggle="tooltip-ajax"]').click(function () {
         $(this).tooltip('hide');
     });*/
-};
+/*};*/
