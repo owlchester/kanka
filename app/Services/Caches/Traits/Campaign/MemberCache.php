@@ -16,7 +16,7 @@ trait MemberCache
         $data = [];
         foreach ($this->campaign->members as $member) {
             $data[] = [
-                'id' => $member->id,
+                'id' => $member->user_id,
             ];
         }
         return $data;

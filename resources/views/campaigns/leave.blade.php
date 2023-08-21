@@ -11,7 +11,7 @@
             <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
                 {{ __('crud.cancel') }}
             </x-buttons.confirm>
-            {!! Form::open(['method' => 'POST', 'route' => ['campaigns.leave-process', [$campaign, $campaign->id]], 'class' => 'w-full']) !!}
+            {!! Form::open(['method' => 'POST', 'route' => ['campaign.leave-process', [$campaign, $campaign->id]], 'class' => 'w-full']) !!}
             <x-buttons.confirm type="danger" outline="true" full="true">
                 <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
                 {{ __('campaigns.leave.confirm-button') }}
