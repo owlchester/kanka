@@ -139,6 +139,7 @@ services:
             - thumbor
 networks:
     sail:
+        name: sail
         driver: bridge
 volumes:
     sail-mariadb:
