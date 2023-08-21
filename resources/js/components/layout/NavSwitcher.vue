@@ -1,7 +1,7 @@
 <template>
     <div class="nav-switcher flex items-center justify-center h-12">
         <div class="campaigns inline cursor-pointer text-center px-3 text-2xl" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
-            <i v-bind:class="campaignIcon()" aria-hidden="true"></i>
+            <GridSvg :size="7" />
             <span class="sr-only">Campaigns</span>
         </div>
         <div class="profile inline cursor-pointer text-center uppercase pt-1" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
@@ -21,25 +21,25 @@
         <div class="" v-else>
             <div class="header flex">
                 <div :class="blockClass(view_campaigns)" v-on:click="openCampaigns()" tabindex="0" role="button" aria-label="Campaign list">
-                    <div class="full flex items-center" v-if="view_campaigns">
-                        <div class="flex-none mr-4 text-2xl">
-                            <i  v-bind:class="campaignIcon()" aria-hidden="true"></i>
+                    <div class="full flex items-center gap-4" v-if="view_campaigns">
+                        <div class="flex-none">
+                            <GridSvg :size="6" />
                         </div>
                         <div class="flex-grow">
                             <div class="font-bold">{{ campaigns.texts.campaigns }}</div>
                             <div>{{campaigns.texts.count }}</div>
                         </div>
                     </div>
-                    <div class="flex items-center justify-center h-full text-2xl" :title="campaigns.texts.campaigns" v-else>
-                        <i  v-bind:class="campaignIcon()" aria-hidden="true"></i>
+                    <div class="flex items-center justify-center h-full" :title="campaigns.texts.campaigns" v-else>
+                        <GridSvg :size="6" />
                     </div>
                 </div>
                 <div :class="blockClass(view_profile)" v-on:click="openProfile()" tabindex="0" role="button" aria-label="Profile pane">
-                    <div class="full flex items-center" v-if="view_profile">
-                        <div class="flex-none mr-4 profile-box rounded-lg p-2 text-center uppercase font-bold" v-if="showInitials()">
+                    <div class="full flex items-center gap-4" v-if="view_profile">
+                        <div class="flex-none profile-box rounded-lg p-2 text-center uppercase font-bold" v-if="showInitials()">
                             {{ initials }}
                         </div>
-                        <div class="flex-none mr-4 w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
+                        <div class="flex-none w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
 
                         <div class="flex-grow">
                             <div class="font-bold">{{ profile.name }}</div>
@@ -236,6 +236,7 @@ import Campaign from './Campaign.vue';
 import Notification from './Notification.vue';
 import Release from './Release.vue';
 import vClickOutside from "click-outside-vue3"
+import GridSvg from "../icons/GridSvg.vue";
 
 export default {
 
@@ -270,13 +271,10 @@ export default {
         has_alerts: {
             type: Boolean,
         },
-        /* Bool to define if using the fontawesome pro or free license */
-        pro: {
-            type: Boolean,
-        }
     },
 
     components: {
+        GridSvg,
         Campaign,
         Notification,
         Release,
@@ -425,9 +423,6 @@ export default {
         profilePictureUrl: function() {
             return 'url(' + this.avatar + ')'
         },
-        campaignIcon: function() {
-            return this.pro ? 'fa-solid fa-grid' : 'fa-solid fa-grip';
-        }
     },
     mounted() {
         this.emitter.on('read_release', (release) => {

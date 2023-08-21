@@ -55,7 +55,6 @@
                         avatar="{{ auth()->user()->getAvatarUrl(36) }}"
                         campaign_id="{{ !empty($campaign) ? $campaign->id : null }}"
                         :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
-                        :pro="{{ config('fontawesome.kit') !== false ? 'true' : 'false' }}"
                     ></nav-switcher>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                         {{ csrf_field() }}
