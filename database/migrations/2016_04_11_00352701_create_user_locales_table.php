@@ -16,6 +16,7 @@ class CreateUserLocalesTable extends Migration
             $table->increments('id');
             $table->integer('user_id', false, true);
             $table->text('locales')->nullable();
+            $table->text('tutorial')->nullable();
             $table->index(['user_id'], 'ix_ltm_user_locales_user_id');
             $table->timestamps();
         });
