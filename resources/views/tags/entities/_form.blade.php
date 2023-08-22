@@ -4,7 +4,8 @@
     @include('cruds.fields.entity', [
         'placeholder' => __('entities/relations.placeholders.target'),
         'preset' => false,
-        'route' => 'search.tag-children'
+        'route' => 'search.tag-children',
+        'dropdownParent' => '#entity-modal'
     ])
 </div>
 
