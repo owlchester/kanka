@@ -34,7 +34,7 @@ class MoveController extends Controller
     {
         $this->authorize('view', $entity->child);
 
-        $campaigns = auth()->user()->moveCampaignList();
+        $campaigns = auth()->user()->moveCampaignList($campaign);
         $campaigns[0] = __('entities/move.fields.select_one');
 
         return view('entities.pages.move.index', compact(

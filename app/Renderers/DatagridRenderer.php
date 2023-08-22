@@ -3,6 +3,7 @@
 namespace App\Renderers;
 
 use App\Facades\Module;
+use App\Facades\UserCache;
 use App\Models\Entity;
 use App\Models\Journal;
 use App\Models\Location;
@@ -176,7 +177,7 @@ class DatagridRenderer
                 );
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
-                if (!$this->user || !$this->user->isAdmin()) {
+                if (!$this->user || !UserCache::user($this->user)->admin()) {
                     return null;
                 }
                 $html = $this->route(
@@ -399,7 +400,7 @@ class DatagridRenderer
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private
-                if (!$this->user || !$this->user->isAdmin()) {
+                if (!$this->user || !UserCache::user($this->user)->admin()) {
                     return null;
                 }
                 $content = $model->is_private ?

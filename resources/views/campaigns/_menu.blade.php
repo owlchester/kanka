@@ -87,7 +87,7 @@ if (auth()->check()) {
                             <x-menu.element
                                 :active="!empty($active) && $active === 'submissions'"
                                 :route="route('campaign_submissions.index', $campaign)"
-                                :badge="$campaign->submissions()->count()"
+                                :badge="\App\Facades\CampaignCache::applicationsCount()"
                             >
                                 {{ __('campaigns.show.tabs.applications') }}
                             </x-menu.element>

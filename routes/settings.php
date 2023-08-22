@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
 Route::get('/profile', [ProfileController::class, 'index'])->name('settings.profile');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('settings.profile');
-Route::patch('/reset-tutorials', [ProfileController::class, 'resetTutorials'])->name('settings.reset-tutorials');
 Route::patch('/billing-info', [ProfileController::class, 'saveBillingInfo'])->name('settings.billing-info');
 
 Route::get('/boosters', [BoostController::class, 'index'])->name('settings.boost');
@@ -101,6 +100,8 @@ Route::post('/marketplace', 'Settings\MarketplaceController@save')
 //    ->name('settings.tutorial.disable');
 //Route::get('/tutorial/reset', 'Settings\TutorialController@reset')
 //    ->name('settings.tutorial.reset');
+Route::post('/tutorials/{code}/dismiss', [\App\Http\Controllers\Settings\TutorialController::class, 'dismiss'])->name('tutorials.dismiss');
+Route::patch('/tutorials/reset', [\App\Http\Controllers\Settings\TutorialController::class, 'reset'])->name('tutorials.reset');
 
 // Campaign boosters
 Route::resources([

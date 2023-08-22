@@ -1,6 +1,6 @@
 
-<div class="alert p-4 alert-info tutorial mb-5 rounded">
-    <button type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none banner-notification-dismiss float-right" data-dismiss="tutorial" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => $code, 'type' => 'tutorial']) }}">
+<div class="alert p-4 alert-info tutorial mb-5 rounded" id="{{ $id }}">
+    <button type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none float-right" data-dismiss="tutorial" data-target="#{{ $id }}" aria-hidden="true" data-url="{{ route('tutorials.dismiss', ['code' => $code]) }}">
         <x-icon class="fa-regular fa-circle-xmark" tooltip="1" title="{{ __('crud.delete_modal.close') }}" />
     </button>
     {!! $slot !!}

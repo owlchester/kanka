@@ -37,6 +37,8 @@ class SubmissionService
         $submission->campaign_id = $this->campaign->id;
         $submission->save();
 
+        CampaignCache::campaign($this->campaign)->clear();
+
         NotifyAdmins::dispatch(
             $this->campaign,
             'application.new',
@@ -82,6 +84,7 @@ class SubmissionService
         }
 
         $this->submission->delete();
+        CampaignCache::campaign($this->campaign)->clear();
 
         return $return;
     }

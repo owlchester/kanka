@@ -170,7 +170,7 @@ class AclScope implements Scope
             $query->whereNotIn($table . '.' . $primaryKey, $denied);
         }
 
-        return $query->private(false);
+        return $query->private(false); // @phpstan-ignore-line
     }
 
     /**

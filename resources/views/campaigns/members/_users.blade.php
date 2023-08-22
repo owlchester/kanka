@@ -50,7 +50,7 @@
                         @endif
                     </td>
                     <td class="!align-middle">
-                        {!! $relation->user->rolesList($campaign->id) !!}
+                        {!! $relation->user->rolesList($campaign) !!}
                         @can('update', $relation)
                             <i role="button" tabindex="0" class="fa-solid fa-plus-circle cursor-pointer" title="{{ __('campaigns.members.manage_roles') }}" data-toggle="dialog" data-target="member-roles-{{ $relation->id  }}"></i>
 

@@ -12,14 +12,14 @@ trait CampaignCache
     public function campaigns(): Collection
     {
         return new Collection(
-            $this->primary()->get('campaigns')
+            $this->primary($this->user->id)->get('campaigns')
         );
     }
 
     public function follows(): Collection
     {
         return new Collection(
-            $this->primary()->get('follows')
+            $this->primary($this->user->id)->get('follows')
         );
     }
 }

@@ -28,7 +28,7 @@ trait StyleCache
 
     public function stylesTimestamp(): int
     {
-        return (int) $this->primary()->get('time');
+        return (int) $this->primary($this->campaign->id)->get('time');
     }
 
     public function clearStyles(): self

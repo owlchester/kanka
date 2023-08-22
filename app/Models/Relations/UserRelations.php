@@ -16,6 +16,7 @@ use App\Models\Referral;
 use App\Models\Role;
 use App\Models\UserApp;
 use App\Models\UserFlag;
+use App\Models\Users\Tutorial;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
@@ -36,6 +37,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Collection|CampaignPermission[] $permissions
  * @property PasswordSecurity|null $passwordSecurity
  * @property Collection|UserFlag[] $flags
+ * @property Collection|Tutorial[] $tutorials
  */
 trait UserRelations
 {
@@ -180,10 +182,14 @@ trait UserRelations
 
     /**
      * List of the user's flags
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function flags()
     {
         return $this->hasMany(UserFlag::class, 'user_id', 'id');
+    }
+
+    public function tutorials()
+    {
+        return $this->hasMany(Tutorial::class);
     }
 }

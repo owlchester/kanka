@@ -117,7 +117,7 @@ class CampaignPolicy
      */
     public function setting(User $user, Campaign $campaign): bool
     {
-        return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
+        return UserCache::user($user)->admin();
     }
 
     /**
@@ -127,7 +127,7 @@ class CampaignPolicy
      */
     public function recover(User $user, Campaign $campaign): bool
     {
-        return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
+        return UserCache::user($user)->admin();
     }
 
     /**

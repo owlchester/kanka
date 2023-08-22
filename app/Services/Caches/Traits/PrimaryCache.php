@@ -9,23 +9,23 @@ trait PrimaryCache
     /**
      * Cached primary data
      */
-    protected Collection $primary;
+    protected array $primary = [];
 
-    protected function primary(): Collection
+    protected function primary(int $cache): Collection
     {
-        if (isset($this->primary)) {
-            return $this->primary;
+        if (isset($this->primary[$cache])) {
+            return $this->primary[$cache];
         }
 
         $key = $this->primaryKey();
         if ($this->has($key)) {
-            return $this->primary = new Collection($this->get($key));
+            return $this->primary[$cache] = new Collection($this->get($key));
         }
 
         $data = $this->primaryData();
 
         $this->forever($key, $data);
-        return $this->primary = new Collection($data);
+        return $this->primary[$cache] = new Collection($data);
     }
 
     /**
@@ -39,14 +39,15 @@ trait PrimaryCache
 
     /**
      * Some data needs to load "after the init", which can be done with this append function.
-     * @param string $key
+     * @param int $key
+     * @param string $property
      * @param mixed $data
      * @return mixed
      */
-    protected function append(string $key, mixed $data): mixed
+    protected function append(int $key, string $property, mixed $data): mixed
     {
-        $this->primary[$key] = $data;
-        $this->forever($this->primaryKey(), $this->primary);
+        $this->primary[$key][$property] = $data;
+        $this->forever($this->primaryKey(), $this->primary[$key]);
         return $data;
     }
 }

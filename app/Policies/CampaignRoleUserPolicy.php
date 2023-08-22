@@ -14,19 +14,19 @@ class CampaignRoleUserPolicy
     use AdminPolicyTrait;
     use HandlesAuthorization;
 
-    public function view(User $user): bool
+    public function view(User $user, CampaignRoleUser $campaignRoleUser, Campaign $campaign): bool
     {
-        return UserCache::user($user)->admin();
+        return $campaignRoleUser->campaignRole->campaign_id === $campaign->id && UserCache::user($user)->admin();
     }
 
     public function create(User $user, Campaign $campaign): bool
     {
-        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
+        return $this->isAdmin($user);
     }
 
     public function update(User $user, CampaignRoleUser $campaignRoleUser): bool
     {
-        return $user->campaign->id == $campaignRoleUser->campaign->id && $this->isAdmin($user);
+        return $this->isAdmin($user);
     }
 
     public function delete(User $user): bool

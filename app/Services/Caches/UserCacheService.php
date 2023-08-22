@@ -7,6 +7,7 @@ use App\Models\CampaignRole;
 use App\Services\Caches\Traits\PrimaryCache;
 use App\Services\Caches\Traits\User\CampaignCache;
 use App\Services\Caches\Traits\User\RoleCache;
+use App\Services\Caches\Traits\User\TutorialCache;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use App\User;
@@ -19,12 +20,12 @@ class UserCacheService extends BaseCache
     use CampaignCache;
     use PrimaryCache;
     use RoleCache;
+    use TutorialCache;
     use UserAware;
 
     public function user(User $user): self
     {
         $this->user = $user;
-        unset($this->primary);
         return $this;
     }
 
@@ -94,6 +95,7 @@ class UserCacheService extends BaseCache
             'campaigns' => [],
             'follows' => [],
             'roles' => [],
+            'tutorials' => [],
         ];
 
         /** @var Campaign $campaign */
@@ -110,6 +112,8 @@ class UserCacheService extends BaseCache
         foreach ($this->user->campaignRoles as $role) {
             $data['roles'][$role->campaign_id][] = $this->formatRole($role);
         }
+
+        $data['tutorials'] = $this->prepareTutorials();
 
         return $data;
     }

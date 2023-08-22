@@ -8,7 +8,7 @@ trait MemberCache
 {
     public function members(): Collection
     {
-        return new Collection($this->primary()->get('members'));
+        return new Collection($this->primary($this->campaign->id)->get('members'));
     }
 
     protected function formatMembers(): array

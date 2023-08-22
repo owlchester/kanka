@@ -84,7 +84,7 @@
         </div>
     {!! Form::close() !!}
     @if (!app()->isProduction())
-        {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.reset-tutorials']]) !!}
+        {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['tutorials.reset']]) !!}
         <div class="flex gap-2 my-5">
             <h1 class="m-0 grow">
                 Reset Tutorials

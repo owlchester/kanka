@@ -5,19 +5,18 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReadBanner;
 use App\Models\AppRelease;
+use App\Services\TutorialService;
 use Illuminate\Support\Collection;
 use Stevebauman\Purify\Facades\Purify;
 
 class ReleaseController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected TutorialService $tutorialService;
+
+    public function __construct(TutorialService $tutorialService)
     {
         $this->middleware(['auth', 'identity']);
+        $this->tutorialService = $tutorialService;
     }
 
     /**
@@ -54,11 +53,12 @@ class ReleaseController extends Controller
         // Figure out if this is a banner, or tutorial we are hiding from the user
         $section = 'banner_';
         if ($request->get('type') === 'tutorial') {
-            $section = 'tutorial_';
+            // Old code
+        } else {
+            $settings->put($section . $code, true);
+            $user->settings = $settings;
+            $user->save();
         }
-        $settings->put($section . $code, true);
-        $user->settings = $settings;
-        $user->save();
 
         return response()->json([
             'success' => true

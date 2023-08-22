@@ -110,7 +110,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 </p>
             </div>
 
-        @if (auth()->user()->isAdmin())
+        @if (\App\Facades\UserCache::user(auth()->user())->admin())
                 <hr>
                 {!! Form::hidden('is_personality_visible', 0) !!}
                 <div class="field-personality-visible checkbox">

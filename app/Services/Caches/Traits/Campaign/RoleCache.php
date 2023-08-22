@@ -9,7 +9,7 @@ trait RoleCache
 
     public function publicPermissions(): array
     {
-        return $this->primary()->get('public-permissions');
+        return $this->primary($this->campaign->id)->get('public-permissions');
     }
 
     /**
@@ -18,7 +18,7 @@ trait RoleCache
      */
     public function adminRole(): array
     {
-        return $this->primary()->get('admin-role');
+        return $this->primary($this->campaign->id)->get('admin-role');
     }
 
     protected function formatAdminRole(): array
