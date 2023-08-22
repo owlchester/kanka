@@ -10,8 +10,7 @@ use App\Services\RecoveryService;
 
 class EntityRecoveryApiController extends ApiController
 {
-    /** @var RecoveryService */
-    protected $service;
+    protected RecoveryService $service;
 
     public function __construct(RecoveryService $service)
     {

@@ -201,6 +201,10 @@ Notice the new array objects `attributes`, `entity_files`, `entity_events`, `pos
 
 You can view the recoverable deleted entities on the `/recovery` endpoint
 
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `recovery` | Default |
+
 ### Result
 
 ```json
@@ -261,20 +265,14 @@ You can view the recoverable deleted entities on the `/recovery` endpoint
 
 You can post an array with the ids of the entities you want to recover to the `/recover` endpoint to undo the deletion (this is a boosted/premium only feature).
 
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `recover` | Default |
+
 | Parameter | Type | Description
 | :- | :- | :- |
 | `entities` | `array` | The ids of the entities to recover. |
 
-### Examples
-
-| Method | Body | Headers |
-| :- |   :-   |  :-  |
-| POST | `"entities": [2,132,10]` | Default |
-
 ### Result
 
-```json
-{
-    "success": "Succesfully recovered deleted entities"
-}
-```
+> {success} Code 200 with JSON.
