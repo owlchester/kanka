@@ -23,9 +23,6 @@ class CreateDiscord extends Migration
             $table->string('identifier', 45)->nullable();
             $table->text('settings')->nullable();
 
-            $table->string('identifier', 45)->nullable();
-            $table->text('settings')->nullable();
-
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
