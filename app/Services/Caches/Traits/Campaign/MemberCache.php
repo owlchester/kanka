@@ -3,7 +3,6 @@
 namespace App\Services\Caches\Traits\Campaign;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 
 trait MemberCache
 {

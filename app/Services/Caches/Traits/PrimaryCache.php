@@ -2,7 +2,6 @@
 
 namespace App\Services\Caches\Traits;
 
-use App\Services\Caches\UserCacheService;
 use Illuminate\Support\Collection;
 
 trait PrimaryCache

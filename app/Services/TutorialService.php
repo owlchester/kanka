@@ -5,8 +5,6 @@ namespace App\Services;
 use App\Facades\UserCache;
 use App\Models\Users\Tutorial;
 use App\Traits\UserAware;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Arr;
 
 class TutorialService
 {

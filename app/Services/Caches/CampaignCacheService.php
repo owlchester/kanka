@@ -14,7 +14,6 @@ use App\Services\Caches\Traits\Campaign\ThumbnailCache;
 use App\Services\Caches\Traits\PrimaryCache;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Collection;
 
 /**
  * Class CampaignCacheService
@@ -22,6 +21,7 @@ use Illuminate\Support\Collection;
  */
 class CampaignCacheService extends BaseCache
 {
+    use ApplicationCache;
     use CampaignAware;
     use DashboardCache;
     use MemberCache;
@@ -32,7 +32,6 @@ class CampaignCacheService extends BaseCache
     use ThemeCache;
     use ThumbnailCache;
     use UserAware;
-    use ApplicationCache;
 
     /**
      * Count the number of entities in a campaign, skipping the permission engine.
