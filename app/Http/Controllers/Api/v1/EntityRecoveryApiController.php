@@ -36,8 +36,6 @@ class EntityRecoveryApiController extends ApiController
     /**
      * @param Request $request
      * @param Campaign $campaign
-     * @param Entity $character
-     * @return EntityResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function recover(Request $request, Campaign $campaign)
