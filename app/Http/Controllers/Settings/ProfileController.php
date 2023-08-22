@@ -68,21 +68,4 @@ class ProfileController extends Controller
             ->route('billing.payment-method')
             ->with('success', trans('settings.profile.success'));
     }
-
-    /**
-     * @param request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function resetTutorials(Request $request)
-    {
-        /** @var User $user */
-        $user = $request->user();
-
-        $user->resetTutorials()
-            ->update();
-
-        return redirect()
-            ->route('settings.profile')
-            ->with('success', trans('settings.profile.success'));
-    }
 }

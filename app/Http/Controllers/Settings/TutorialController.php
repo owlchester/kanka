@@ -7,55 +7,34 @@ use App\Services\TutorialService;
 
 class TutorialController extends Controller
 {
-    /** @var TutorialService */
-    protected $service;
+    protected TutorialService $service;
 
-    /**
-     * @param TutorialService $service
-     */
     public function __construct(TutorialService $service)
     {
         $this->middleware(['auth', 'identity']);
         $this->service = $service;
     }
 
-    /**
-     * @param string $key
-     * @param string|null $next
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Throwable
-     */
-    public function done(string $key, string $next = null)
-    {
-        return $this->service
-            ->user(auth()->user())
-            ->done($key, $next);
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function disable()
-    {
-        $this->service
-            ->user(auth()->user())
-            ->disable();
-
-        return response()
-            ->json([
-                'success' => true,
-            ]);
-    }
-
-    /**
-     * @return void
-     */
     public function reset()
     {
+        if (app()->isProduction()) {
+            abort(404);
+        }
         $this->service
             ->user(auth()->user())
             ->reset();
 
-        //return redirect()->route('home');
+        return redirect()->route('settings.profile')
+            ->with('success', __('Tutorials reset'));
+    }
+
+    public function dismiss(string $code)
+    {
+        $length = mb_strlen($code);
+        $this->service
+            ->user(auth()->user())
+            ->track($code);
+
+        return response()->json(['success', true]);
     }
 }

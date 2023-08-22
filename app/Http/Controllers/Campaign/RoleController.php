@@ -120,7 +120,7 @@ class RoleController extends Controller
 
     public function show(Campaign $campaign, CampaignRole $campaignRole)
     {
-        $this->authorize('view', $campaignRole);
+        $this->authorize('view', [$campaignRole, $campaign]);
 
         // @phpstan-ignore-next-line
         $members = $campaignRole
@@ -138,6 +138,7 @@ class RoleController extends Controller
 
     public function edit(Campaign $campaign, CampaignRole $campaignRole)
     {
+        $this->authorize('view', [$campaignRole, $campaign]);
         $this->authorize('update', $campaignRole);
 
         return view($this->view . '.edit', [
@@ -149,6 +150,7 @@ class RoleController extends Controller
 
     public function update(StoreCampaignRole $request, Campaign $campaign, CampaignRole $campaignRole)
     {
+        $this->authorize('view', [$campaignRole, $campaign]);
         $this->authorize('update', $campaignRole);
 
         $campaignRole->update($request->only('name'));
@@ -158,6 +160,7 @@ class RoleController extends Controller
 
     public function destroy(Campaign $campaign, CampaignRole $campaignRole)
     {
+        $this->authorize('view', [$campaignRole, $campaign]);
         $this->authorize('delete', $campaignRole);
         $campaignRole->delete();
 
@@ -173,6 +176,7 @@ class RoleController extends Controller
      */
     public function savePermissions(Request $request, Campaign $campaign, CampaignRole $campaignRole)
     {
+        $this->authorize('view', [$campaignRole, $campaign]);
         $this->authorize('update', $campaignRole);
 
         $campaignRole->savePermissions($request->post('permissions', []));
@@ -245,6 +249,7 @@ class RoleController extends Controller
      */
     public function toggle(Campaign $campaign, CampaignRole $campaignRole, int $entityType, int $action)
     {
+        $this->authorize('view', [$campaignRole, $campaign]);
         $this->authorize('update', $campaignRole);
 
         if (!$campaignRole->is_public) {

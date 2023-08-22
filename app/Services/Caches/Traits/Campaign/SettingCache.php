@@ -8,7 +8,7 @@ trait SettingCache
 {
     public function settings(): Collection
     {
-        return new Collection($this->primary()->get('modules'));
+        return new Collection($this->primary($this->campaign->id)->get('modules'));
     }
 
     protected function formatSettings(): array

@@ -21,6 +21,6 @@ class CampaignPluginPolicy
      */
     public function enable(User $user, CampaignPlugin $campaignPlugin)
     {
-        return $user->campaign->id == $campaignPlugin->campaign_id && $this->isAdmin($user);
+        return $this->isAdmin($user);
     }
 }

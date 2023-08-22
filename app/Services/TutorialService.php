@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Facades\UserCache;
+use App\Models\Users\Tutorial;
 use App\Traits\UserAware;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
@@ -10,56 +12,57 @@ class TutorialService
 {
     use UserAware;
 
-    protected $workflows = [
-        'dashboard_1' => [
-            'highlight' => '.subsection.section-characters a',
-        ],
-        'character_1' => [
-            'highlight' => 'a.btn-new-entity'
-        ]
+    protected array $tutorials = [
+        'campaign_modules',
+        'public_permissions',
+        'sidebar_reorder',
+        'pagination',
+        'abilities',
+        'attributes',
+        'inventory',
+        'events',
+        'history',
+        'map_markers',
+        'map_groups',
+        'map_layers',
     ];
 
-    /**
-     * @return $this
-     */
-    public function disable(): self
-    {
-        $this->user
-            ->doneTutorial('disabled');
-        return $this;
-    }
 
     /**
+     * Reset all the dismissed tutorials for the user
      * @return $this
      */
     public function reset(): self
     {
         $this->user
-            ->resetTutorial();
+            ->tutorials()
+            ->delete();
+
+        UserCache::user($this->user)->clear();
         return $this;
     }
 
-    /**
-     * @param string $key
-     * @param string|null $next
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Throwable
-     */
-    public function done(string $key, string $next = null): JsonResponse
+    public function track(string $code): self
     {
-        $this->user
-            ->doneTutorial($key);
-
-        if (empty($next) || !view()->exists('tutorials.' . $next)) {
-            $highlight = Arr::get($this->workflows, $key . '.highlight');
-            return response()->json(['success' => true, 'close' => true, 'highlight' => $highlight]);
+        if (UserCache::dismissedTutorial($code)) {
+            return $this;
+        }
+        if (!$this->valid($code)) {
+            return $this;
         }
 
-        $html = view('tutorials.' . $next)->render();
-        return response()
-            ->json([
-                'success' => true,
-                'html' => $html
-            ]);
+        $tutorial = new Tutorial();
+        $tutorial->user_id = $this->user->id;
+        $tutorial->code = $code;
+        $tutorial->save();
+
+        UserCache::clear();
+
+        return $this;
+    }
+
+    protected function valid(string $code): bool
+    {
+        return in_array($code, $this->tutorials);
     }
 }

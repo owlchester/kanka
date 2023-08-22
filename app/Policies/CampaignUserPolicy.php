@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Facades\Identity;
 use App\Facades\UserCache;
+use App\Models\Campaign;
 use App\Models\CampaignRoleUser;
 use App\Traits\AdminPolicyTrait;
 use App\User;
@@ -15,16 +16,18 @@ class CampaignUserPolicy
     use AdminPolicyTrait;
     use HandlesAuthorization;
 
+    public function view(User $user, CampaignUser $campaignUser, Campaign $campaign): bool
+    {
+        return $campaignUser->campaign_id === $campaign->id && UserCache::user($user)->admin();
+    }
     public function update(User $user, CampaignUser $campaignUser): bool
     {
         // Don't allow updating if we are currently impersonating
         if (Identity::isImpersonating()) {
             return false;
         }
-        if ($user->campaign->id !== $campaignUser->campaign_id) {
-            return false;
-        }
 
+        // If user isn't in admin
         if (!UserCache::user($user)->admin()) {
             return false;
         }
@@ -33,6 +36,7 @@ class CampaignUserPolicy
             return false;
         }
 
+        // User isn't an admin, easy peasy
         if (!$campaignUser->user->isAdmin()) {
             return true;
         }
@@ -54,8 +58,8 @@ class CampaignUserPolicy
         if (Identity::isImpersonating()) {
             return false;
         }
-        return $user->campaign->id == $campaignUser->campaign_id
-            && $user->isAdmin() && !$campaignUser->user->isAdmin()
+        return UserCache::user($user)->admin()
+            && !$campaignUser->user->isAdmin()
             && !$campaignUser->user->isBanned()
         ;
     }

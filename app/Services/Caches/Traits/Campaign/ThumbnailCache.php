@@ -12,14 +12,14 @@ trait ThumbnailCache
      */
     public function defaultImages(): array
     {
-        $data = $this->primary()->get('thumbnails', null);
+        $data = $this->primary($this->campaign->id)->get('thumbnails', null);
         // Since thumbnails come from the db, we need to load them _after_ permissions/campaign roles have been loaded.
         // It's an extra back and forth with redis on the first init of a clear cache
         if (is_array($data)) {
             return $data;
         }
 
-        return $this->append('thumbnails', $this->formatThumbnails());
+        return $this->append($this->campaign->id, 'thumbnails', $this->formatThumbnails());
     }
 
     protected function formatThumbnails(): array

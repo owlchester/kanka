@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\UserCache;
 use App\Models\Ability;
 use App\Models\Character;
 use App\Models\Creature;
@@ -90,7 +91,7 @@ class NewService
 
     protected function private(): bool
     {
-        return (bool) ($this->user->isAdmin() && $this->campaign->entity_visibility);
+        return (bool) (UserCache::user($this->user)->admin() && $this->campaign->entity_visibility);
     }
 
 

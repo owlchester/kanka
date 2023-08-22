@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\User;
@@ -16,16 +17,16 @@ class EntityPolicy
         if ($entity->exists === false) {
             return true;
         }
-        return !$entity->is_attributes_private || $user && $user->isAdmin();
+        return !$entity->is_attributes_private || $user && UserCache::user($user)->admin();
     }
 
     public function privacy(User $user): bool
     {
-        return $user->isAdmin();
+        return UserCache::user($user)->admin();
     }
 
     public function history(?User $user, Entity $entity, Campaign $campaign): bool
     {
-        return ($user && $user->isAdmin()) || !($campaign->boosted() && $campaign->hide_history);
+        return ($user && UserCache::user($user)->admin()) || !($campaign->boosted() && $campaign->hide_history);
     }
 }

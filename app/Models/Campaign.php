@@ -191,6 +191,7 @@ class Campaign extends Model
         if (empty($user)) {
             $user = auth()->user();
         }
+
         return CampaignCache::members()->where('id', $user->id)->count() == 1;
     }
 

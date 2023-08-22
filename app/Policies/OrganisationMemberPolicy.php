@@ -28,7 +28,7 @@ class OrganisationMemberPolicy
      */
     public function update(User $user, $entity)
     {
-        if (auth()->guest() || $entity->organisation->campaign_id != $user->campaign->id) {
+        if (auth()->guest()) {
             return false;
         }
         return auth()->user()->can('update', $entity->organisation) ||
@@ -45,7 +45,7 @@ class OrganisationMemberPolicy
      */
     public function delete(User $user, $entity)
     {
-        if (auth()->guest() || $entity->organisation->campaign_id != $user->campaign->id) {
+        if (auth()->guest()) {
             return false;
         }
         return auth()->user()->can('delete', $entity->organisation) ||

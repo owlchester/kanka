@@ -35,7 +35,7 @@ trait RoleCache
      */
     public function roles(): Collection
     {
-        $roles = $this->primary()->get('roles');
+        $roles = $this->primary($this->user->id)->get('roles');
         foreach ($roles as $campaignId => $campaignRoles) {
             if ($campaignId !== $this->campaign->id) {
                 continue;

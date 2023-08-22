@@ -3,6 +3,7 @@
 namespace App\Services\Caches;
 
 use App\Models\Campaign;
+use App\Services\Caches\Traits\Campaign\ApplicationCache;
 use App\Services\Caches\Traits\Campaign\DashboardCache;
 use App\Services\Caches\Traits\Campaign\MemberCache;
 use App\Services\Caches\Traits\Campaign\RoleCache;
@@ -31,8 +32,7 @@ class CampaignCacheService extends BaseCache
     use ThemeCache;
     use ThumbnailCache;
     use UserAware;
-
-    protected Collection $primary;
+    use ApplicationCache;
 
     /**
      * Count the number of entities in a campaign, skipping the permission engine.
@@ -76,7 +76,6 @@ class CampaignCacheService extends BaseCache
         return $data;
     }
 
-
     protected function primaryData(): array
     {
         return [
@@ -84,6 +83,7 @@ class CampaignCacheService extends BaseCache
             'dashboards' => $this->formatDashboards(),
             'members' => $this->formatMembers(),
             'admin-role' => $this->formatAdminRole(),
+            'applications' => $this->formatApplications(),
             'time' => time(),
         ];
     }

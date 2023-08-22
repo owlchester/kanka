@@ -11,7 +11,7 @@ trait DashboardCache
      */
     public function dashboards(): array
     {
-        return $this->primary()->get('dashboards');
+        return $this->primary($this->campaign->id)->get('dashboards');
     }
 
     protected function formatDashboards(): array

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Exceptions\TranslatableException;
+use App\Facades\UserCache;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignRoleUser;
 use App\Models\Campaign;
@@ -88,6 +89,7 @@ class RoleUserController extends Controller
     public function destroy(Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
         $this->authorize('roles', $campaign);
+        $this->authorize('view', [$campaignRoleUser, $campaign]);
         $this->authorize('delete', [$campaignRoleUser, $campaignRole]);
 
         try {

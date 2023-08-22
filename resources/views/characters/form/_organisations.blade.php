@@ -1,4 +1,3 @@
-
 <?php
 /**
  * @var \App\Models\OrganisationMember $organisation
@@ -7,7 +6,7 @@
 $organisations = isset($model) ?
     $model->organisationMemberships()->with('organisation')->has('organisation')->orderBy('role', 'ASC')->get() :
     FormCopy::characterOrganisation();
-$isAdmin = Auth::user()->isAdmin();
+$isAdmin = UserCache::user(auth()->user())->admin();
 
 $singular = App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation'));
 $options = [

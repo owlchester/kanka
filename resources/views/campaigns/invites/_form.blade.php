@@ -15,6 +15,6 @@ $usages = [
     </div>
     <div class="field-role required">
         <label>{{ __('campaigns.invites.fields.role') }}</label>
-        {!! Form::select('role_id', auth()->user()->campaign->roles()->where(['is_public' => false, 'is_admin' => false])->pluck('name', 'id'), null, ['class' => 'select form-control']) !!}
+        {!! Form::select('role_id', $campaign->roles()->where(['is_public' => false, 'is_admin' => false])->pluck('name', 'id'), null, ['class' => 'select form-control']) !!}
     </div>
 </x-grid>

@@ -11,7 +11,6 @@ use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
-use App\Models\Concerns\Tutorial;
 use App\Models\Concerns\UserBoosters;
 use App\Models\Concerns\UserTokens;
 use App\Models\Pledge;
@@ -69,15 +68,11 @@ class User extends \Illuminate\Foundation\Auth\User
     use HasFactory;
     use LastSync;
     use Notifiable;
-    use Tutorial;
     use UserBoosters;
     use UserRelations;
     use UserScope;
     use UserSetting;
     use UserTokens;
-
-
-    protected static $currentCampaign = false;
 
     /**
      * The attributes that are mass assignable.
@@ -119,7 +114,6 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     protected $casts = [
         'settings' => 'array',
-        'tutorial' => 'array',
         'profile' => 'array',
         'card_expires_at' => 'datetime',
         'last_login_at' => 'date',
@@ -127,29 +121,12 @@ class User extends \Illuminate\Foundation\Auth\User
     ];
 
     /**
-     * Get the user's campaign.
-     * This is the equivalent of calling user->campaign or user->getCampaign
-     * @return Campaign|null
-     */
-    public function getCampaignAttribute()
-    {
-        // We use a dirty static system because relying on the last_campaign_id doesn't work when two sessions
-        // are active form the same user.
-        if (self::$currentCampaign === false) {
-            self::$currentCampaign = CampaignLocalization::getCampaign();
-        }
-        return self::$currentCampaign;
-    }
-
-    /**
      * Get the other campaigns of the user
-     * @param bool $hasEmpty
-     * @return array
      */
-    public function moveCampaignList(bool $hasEmpty = true): array
+    public function moveCampaignList(Campaign $campaign, bool $hasEmpty = true): array
     {
         $campaigns = $hasEmpty ? [0 => ''] : [];
-        foreach ($this->campaigns()->whereNotIn('campaign_id', [$this->campaign->id])->get() as $campaign) {
+        foreach ($this->campaigns()->whereNotIn('campaign_id', [$campaign->id])->get() as $campaign) {
             $campaigns[$campaign->id] = $campaign->name;
         }
         return $campaigns;
@@ -169,21 +146,16 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * @param int|null $campaignId
-     * @return string
+     * List of roles a user has in a campaign
      */
-    public function rolesList(int $campaignId = null): string
+    public function rolesList(Campaign $campaign): string
     {
-        if ($campaignId === null && !empty($this->campaign)) {
-            $campaignId = $this->campaign->id;
-        }
-
         /** @var CampaignRole[] $roles */
-        $roles = $this->campaignRoles->where('campaign_id', $campaignId);
+        $roles = $this->campaignRoles->where('campaign_id', $campaign->id);
         $roleLinks = [];
         foreach ($roles as $role) {
             if (auth()->user()->isAdmin()) {
-                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, [$this->campaign, $role->id]);
+                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, [$campaign, $role->id]);
             } else {
                 $roleLinks[] = $role->name;
             }
@@ -191,12 +163,12 @@ class User extends \Illuminate\Foundation\Auth\User
         return (string) implode(', ', $roleLinks);
     }
 
-    public function hasCampaignRole(int $roleId)
+    /**
+     * Determine if a user has a specific role
+     */
+    public function hasCampaignRole(int $roleId): bool
     {
-        $campaignId = $this->campaign->id;
-        $roleIds = $this->campaignRoles->where('campaign_id', $campaignId)->pluck('id')->toArray();
-
-        return in_array($roleId, $roleIds);
+        return $this->campaignRoles->where('id', $roleId)->count() > 0;
     }
 
     /**
@@ -204,7 +176,8 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isAdmin(): bool
     {
-        return UserCache::user($this)->campaign($this->campaign)->admin();
+        $campaign = CampaignLocalization::getCampaign();
+        return UserCache::user($this)->campaign($campaign)->admin();
     }
 
     /**
