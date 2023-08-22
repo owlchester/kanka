@@ -1,3 +1,4 @@
+@inject ('reminderService', 'App\Services\Calendars\ReminderService')
 <?php
 /**
  * @var \App\Models\CampaignDashboardWidget $widget
@@ -5,15 +6,17 @@
  * @var \App\Models\Calendar $calendar
  * @var \App\Models\EntityEvent $event
  * @var \App\Models\EntityEvent $reminder
+ * @var \App\Models\EntityEvent $event
+ * @var \App\Services\Calendars\ReminderService $reminderService
  */
 $entity = $widget->entity;
 if (empty($entity)) {
     return;
 }
-$calendar = $entity->child;
+$calendar = $calendar ?? $entity->child;
 
-$upcomingEvents = $calendar->upcomingReminders();
-$previousEvents = $calendar->pastReminders();
+$upcomingEvents = $reminderService->calendar($calendar)->upcoming();
+$previousEvents = $reminderService->past();
 //$previousEvents = new \Illuminate\Support\Collection();
 
 // Get the current day's weather effect.
@@ -24,7 +27,6 @@ $weather = $calendar->calendarWeather()
     ->first();
 
 
-/** @var \App\Models\EntityEvent $event */
 ?>
 <div class="current-date text-center text-2xl flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)

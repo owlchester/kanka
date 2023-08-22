@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Relations\CalendarRelations;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Exception;
@@ -10,7 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
@@ -31,15 +31,12 @@ use Illuminate\Support\Str;
  * @property string $suffix
  * @property int $calendar_id
  * @property array $parameters
- *
- * @property EntityEvent[] $calendarEvents
- * @property CalendarWeather[] $calendarWeather
- * @property Calendar|null $calendar
+ * @property bool $skip_year_zero
  */
 class Calendar extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
+    use CalendarRelations;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
@@ -85,42 +82,23 @@ class Calendar extends MiscModel
         'parameters' => 'array'
     ];
 
-    /** @var bool|array */
-    protected $loadedMonths = false;
+    protected array $loadedMonths;
 
-    /** @var bool|array */
-    protected $loadedWeekdays = false;
+    protected array $loadedWeekdays;
 
-    /** @var bool|array */
-    protected $loadedYears = false;
+    protected array $loadedYears;
 
-    /** @var bool|array */
-    protected $loadedSeasons = false;
+    protected array $loadedSeasons;
 
-    /** @var bool|array */
-    protected $loadedMoons = false;
+    protected array $loadedMoons;
 
-    /** @var bool|array */
-    protected $loadedWeeks = false;
+    protected array $loadedWeeks;
 
-    /** @var bool|array */
-    protected $loadedMonthAliases = false;
+    protected array $loadedMonthAliases;
 
-    /**
-     * Entity type
-     * @var string
-     */
     protected $entityType = 'calendar';
 
-    /**
-     * @var bool|array
-     */
-    protected $cachedCurrentDate = false;
-
-    /**
-     * @var bool|Collection
-     */
-    protected $cachedRecurringEvents = false;
+    protected array $cachedCurrentDate;
 
     /**
      * @param Builder $query
@@ -145,101 +123,12 @@ class Calendar extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function campaign()
-    {
-        return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function calendarEvents()
-    {
-        return $this->hasMany(EntityEvent::class, 'calendar_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function calendarWeather()
-    {
-        return $this->hasMany(CalendarWeather::class, 'calendar_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function calendar()
-    {
-        return $this->belongsTo(Calendar::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function calendars()
-    {
-        return $this->hasMany(Calendar::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function children()
-    {
-        return $this->hasMany(Calendar::class);
-    }
-
-    /**
      * Only select used fields in datagrids
      * @return array
      */
     public function datagridSelectFields(): array
     {
         return ['calendar_id', 'date'];
-    }
-
-    /**
-     * @param int $take
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
-     */
-    public function dashboardEvents(string $operator = '=', int $take = 5, bool $recurring = false)
-    {
-        $order = $operator == '<' ? 'DESC' : 'ASC';
-        $query = $this->calendarEvents()
-            ->with(['entity', 'calendar'])
-            ->has('entity')
-            ->where(function ($sub) use ($operator, $recurring) {
-                // Recurring events
-                if ($recurring) {
-                    $sub->orWhere(function ($subsub) {
-                        $subsub
-                            ->where('is_recurring', true)
-                            // We want recurring events that will start in the future, just in case. Limit it to +2
-                            // years to avoid performance drop
-                            ->where('year', '<=', $this->currentYear() + 2)
-                            ->where(function ($datesub) {
-                                $datesub->whereNull('recurring_until')
-                                    ->orWhereRaw("recurring_until >= '" . $this->currentYear() . "'");
-                            });
-                    });
-                } else {
-                    $sub->where('year', $operator, $this->currentYear());
-                    $sub->where('is_recurring', false);
-                    //$sub->whereRaw("date(`date`) $operator '" . $this->date . "'");
-                }
-            })
-            ->orderBy('year', $order)
-            ->orderBy('month', $order)
-            ->orderBy('day', $order);
-
-        if (!empty($take)) {
-            $query->take($take);
-        }
-
-        return $query->get();
     }
 
     public function getParentIdName(): string
@@ -249,11 +138,10 @@ class Calendar extends MiscModel
 
     /**
      * Get the months decoded from the json into a usable array
-     * @return array
      */
-    public function months()
+    public function months(): array
     {
-        if ($this->loadedMonths !== false) {
+        if (isset($this->loadedMonths)) {
             return $this->loadedMonths;
         }
         return (array) $this->loadedMonths = !empty($this->months) ?
@@ -262,11 +150,10 @@ class Calendar extends MiscModel
 
     /**
      * Get the weekdays
-     * @return null|array
      */
-    public function weekdays()
+    public function weekdays(): array
     {
-        if ($this->loadedWeekdays === false) {
+        if (!isset($this->loadedWeekdays)) {
             $this->loadedWeekdays = [];
             if (!empty($this->months)) {
                 $this->loadedWeekdays = json_decode(strip_tags($this->weekdays), true);
@@ -277,11 +164,10 @@ class Calendar extends MiscModel
 
     /**
      * Get the weekdays
-     * @return null|array
      */
-    public function years()
+    public function years(): array
     {
-        if ($this->loadedYears === false) {
+        if (!isset($this->loadedYears)) {
             $this->loadedYears = [];
             if (!empty($this->years)) {
                 $this->loadedYears = json_decode(strip_tags($this->years), true);
@@ -291,58 +177,54 @@ class Calendar extends MiscModel
     }
 
     /**
-     * Get the moons
-     * @return null|array
+     * Get the calendar's moons
      */
-    public function moons()
+    public function moons(): array
     {
-        if ($this->loadedMoons === false) {
+        if (!isset($this->loadedMoons)) {
             $this->loadedMoons = json_decode(empty($this->moons) ? '[]' : strip_tags($this->moons), true);
         }
         return $this->loadedMoons;
     }
 
     /**
-     * Get the seasons
-     * @return null|array
+     * Get the calendar's seasons
      */
-    public function seasons()
+    public function seasons(): array
     {
-        if ($this->loadedSeasons === false) {
+        if (!isset($this->loadedSeasons)) {
             $this->loadedSeasons = json_decode(empty($this->seasons) ? '[]' : strip_tags($this->seasons), true);
         }
         return $this->loadedSeasons;
     }
 
     /**
-     * Get the weeks
-     * @return null|array
+     * Get the calendar's weeks
      */
-    public function weeks()
+    public function weeks(): array
     {
-        if ($this->loadedWeeks === false) {
+        if (!isset($this->loadedWeeks)) {
             $this->loadedWeeks = json_decode(empty($this->week_names) ? '[]' : strip_tags($this->week_names), true);
         }
         return $this->loadedWeeks;
     }
 
     /**
-     * Get the month aliases
-     * @return null|array
+     * Get the calendar's month aliases
      */
-    public function monthAliases()
+    public function monthAliases(): array
     {
-        if ($this->loadedMonthAliases === false) {
-            $this->loadedMonthAliases = json_decode(empty($this->month_aliases) ? '[]' : strip_tags($this->month_aliases), true);
+        if (!isset($this->loadedMonthAliases)) {
+            $this->loadedMonthAliases = json_decode(empty($this->month_aliases) ? '[]' :
+                strip_tags($this->month_aliases), true);
         }
         return $this->loadedMonthAliases;
     }
 
     /**
-     * @param string $value
      * @return mixed
      */
-    public function currentDate($value)
+    public function currentDate(string $value = null): mixed
     {
         // If we have no date saved at all, skip this part. This happens when an entity was changed to the calendar
         // type and most fields are missing.
@@ -389,9 +271,8 @@ class Calendar extends MiscModel
 
     /**
      * Get the calendar's nice date
-     * @return mixed|string
      */
-    public function niceDate($date = null)
+    public function niceDate($date = null): string
     {
         if (empty($date)) {
             $date = $this->date;
@@ -419,7 +300,6 @@ class Calendar extends MiscModel
 
     /**
      * Get a list of months for select fields
-     * @return array
      */
     public function monthList(): array
     {
@@ -434,7 +314,6 @@ class Calendar extends MiscModel
 
     /**
      * Get the length as a data-property for each of the calendar's months
-     * @return array
      */
     public function monthDataProperties(): array
     {
@@ -449,8 +328,6 @@ class Calendar extends MiscModel
 
     /**
      * Build the list of days for a month
-     * @param int|null $month
-     * @return array
      */
     public function dayList(int $month = null): array
     {
@@ -476,82 +353,19 @@ class Calendar extends MiscModel
             $child->delete();
         }
 
-        return parent::detach();
+        parent::detach();
     }
 
     /**
-     * Add a day to the calendar's current date
-     * @return bool
+     * Determine if the calendar is missing months of weekdays to be rendered successfully
      */
-    public function addDay()
-    {
-        $segments = explode('-', ltrim($this->date, '-'));
-        $year = ($this->date[0] == '-' ? '-' : null) . $segments[0];
-        $month = $segments[1] ?? 1;
-        $day = false;
-
-        // Day is longer than month max length?
-        $months = $this->months();
-
-        if (!empty($segments[2])) {
-            $day = ((int) $segments[2]) + 1;
-            if ($day > $months[$month - 1]['length']) {
-                $day = 1;
-                $month++;
-            }
-        } else {
-            $month++;
-        }
-
-        // Reset month and increment year
-        if ($month > count($months)) {
-            $month = 1;
-            $year++;
-        }
-
-        if (!$this->hasYearZero() && $year == 0) {
-            $year++;
-        }
-        $this->date = $year . '-' . $month . ($day !== false ? '-' . $day : null);
-        return $this->save();
-    }
-
-    /**
-     * Substract one day from the calendar's current date
-     * @return bool
-     */
-    public function subDay()
-    {
-        list($year, $month, $day) = $this->dateArray();
-
-        $day--;
-        $months = $this->months();
-        if ($day < 1) {
-            $month--;
-            if ($month < 1) {
-                $month = count($months);
-                $year--;
-            }
-            $day = $months[$month - 1]['length'];
-        }
-
-        if (!$this->hasYearZero() && $year == 0) {
-            $year--;
-        }
-        $this->date = $year . '-' . $month . '-' . $day;
-        return $this->save();
-    }
-
-    /**
-     * @return bool
-     */
-    public function missingDetails()
+    public function missingDetails(): bool
     {
         return count($this->months()) < 1 || count($this->weekdays()) < 2;
     }
 
     /**
-     * @return array
+     *
      */
     public function menuItems(array $items = []): array
     {
@@ -580,7 +394,7 @@ class Calendar extends MiscModel
      */
     protected function cacheCurrentDate(): array
     {
-        if ($this->cachedCurrentDate !== false) {
+        if (isset($this->cachedCurrentDate)) {
             return $this->cachedCurrentDate;
         }
 
@@ -596,9 +410,8 @@ class Calendar extends MiscModel
 
     /**
      * Get the date as an array
-     * @return array
      */
-    protected function dateArray(string $date = null): array
+    public function dateArray(string $date = null): array
     {
         if (empty($date)) {
             $date = $this->date;
@@ -613,8 +426,8 @@ class Calendar extends MiscModel
 
         return [
             $isNegativeYear ? '-' . $date[0] : $date[0],
-            $date[1],
-            $date[2]
+            max($date[1], 1),
+            max($date[2], 2)
         ];
     }
 
@@ -653,216 +466,7 @@ class Calendar extends MiscModel
     }
 
     /**
-     * @param int $needle the number of elements analyzed
-     * @return Collection
-     */
-    public function upcomingEvents(int $needle = 10): Collection
-    {
-        $upcomingEvents = new Collection();
-
-        $currentYear = $this->currentYear();
-        $currentMonth = $this->currentMonth();
-        $currentDay = $this->currentDay();
-
-        // Loop through reminders occurring on this year, and sort them out in upcoming and past.
-        // Todo: only take a few close to the current date?
-        foreach ($this->recurringEvents() as $reminder) {
-            if ($reminder->isPast($this)) {
-                continue;
-            }
-            $upcomingEvents->push($reminder);
-        }
-
-        // If we need more upcoming events, get some
-        if ($upcomingEvents->count() < $needle) {
-            $upcomingSingleEvents = $this->dashboardEvents('>');
-            foreach ($upcomingSingleEvents as $reminder) {
-                $upcomingEvents->push($reminder);
-            }
-        }
-
-        // Get the recurring events separately to make sure we always have 5 real "upcoming" events that mix recurring and single
-        $upcomingRecurringEvents = $this->dashboardEvents('>=', $needle, true);
-        foreach ($upcomingRecurringEvents as $event) {
-            // Recurring events can be forever, so check that's best
-            $until = !empty($event->recurring_until) ? min($event->recurring_until, $currentYear + 5) : $currentYear + 5;
-            for ($y = $currentYear; $y < $until; $y++) {
-                if ($y <= $currentYear && ($event->month < $this->currentMonth() || ($event->month == $currentMonth && $event->day < $currentDay))) {
-                    continue;
-                }
-                // Make a copy to change the date
-                $e = clone($event);
-                $e->year = $y;
-                $upcomingEvents->push($e);
-            }
-        }
-        // Order the upcoming events by date
-        $upcomingEvents = $upcomingEvents->sortBy(function ($reminder) {
-            return [$reminder->year, $reminder->month, $reminder->day];
-        });
-
-        return $upcomingEvents;
-    }
-
-    /**
-     * Look at events to calculate the most upcoming events for the calendar
-     * dashboard widget.
-     * @param int $needle
-     * @return Collection
-     */
-    public function upcomingReminders(int $needle = 10): Collection
-    {
-        $reminders = $this->calendarEvents()
-            ->with(['entity'])
-            ->has('entity')
-            ->where(function ($primary) {
-                $primary->where(function ($sub) {
-                    $sub->where(function ($recurring) {
-                        $recurring
-                            ->where('is_recurring', true)
-                            ->whereIn('recurring_periodicity', ['year', 'month'])
-                            ->where(function ($recurringuntil) {
-                                $recurringuntil
-                                    ->whereNull('recurring_until')
-                                    // Events that end in the future are fine, they could be reoccuring on this month
-                                    ->orWhere('recurring_until', '>=', $this->currentYear());
-                            });
-                    });
-                })
-                    ->orWhere(function ($ondate) {
-                        // Not recurring
-                        $ondate
-                            ->where('is_recurring', false)
-                            ->where(function ($date) {
-                                // An event that happens before this year
-                                $date
-                                    ->where('year', '>', $this->currentYear())
-                                    ->orWhere(function ($subdate) {
-                                        // An event that happens this year but after this month
-                                        $subdate
-                                            ->where('year', $this->currentYear())
-                                            ->where('month', '>', $this->currentMonth());
-                                    })
-                                    ->orWhere(function ($subdate) {
-                                        // An event that happens this year after this year
-                                        $subdate
-                                            ->where('year', $this->currentYear())
-                                            ->where('month', $this->currentMonth())
-                                            ->where('day', '>=', $this->currentDay());
-                                    });
-                            });
-                    });
-            })
-            // Skip events that were on months which no longer exist
-            ->where('month', '<=', count($this->months()))
-            ->orderBy('year', 'asc')
-            ->orderBy('month', 'asc')
-            ->orderBy('day', 'asc')
-            ->take($needle)
-            ->get();
-
-
-        // Order the past events in descending date to get the closest ones to the current date first
-        return $reminders->sortBy(function ($reminder) {
-            // For some reason, when using with(calendar), it loads the wrong ids?
-            $reminder->calendar = $this;
-            return $reminder->nextUpcomingOccurrence(
-                $this->currentYear(),
-                $this->currentMonth(),
-                $this->currentDay(),
-                $this->months(),
-                $this->daysInYear()
-            );
-        });
-    }
-
-    /**
-     * Look at events to calculate the most recently occuring events for the calendar
-     * dashboard widget.
-     * @param int $needle
-     * @return Collection
-     */
-    public function pastReminders(int $needle = 10): Collection
-    {
-        $reminders = $this->calendarEvents()
-            ->with(['entity'])
-            ->has('entity')
-            ->where(function ($primary) {
-                $primary->where(function ($sub) {
-                    $sub->where(function ($recurring) {
-                        $recurring
-                            ->where('is_recurring', true)
-                            ->whereIn('recurring_periodicity', ['year', 'month'])
-                            ->where(function ($recurringuntil) {
-                                $recurringuntil
-                                    ->whereNull('recurring_until')
-                                    // Events that end in the future are fine, they could be reoccuring on this month
-                                    ->orWhere('recurring_until', '>=', $this->currentYear());
-                            })
-                            ->where('year', '<=', $this->currentYear());
-                    });
-                })
-                    ->orWhere(function ($ondate) {
-                        // Not recurring
-                        $ondate
-                            ->where('is_recurring', false)
-                            ->where(function ($date) {
-                                // An event that happens before this year
-                                $date
-                                    ->where('year', '<', $this->currentYear())
-                                    ->orWhere(function ($subdate) {
-                                        // An event that happens this year but before this month
-                                        $subdate
-                                            ->where('year', $this->currentYear())
-                                            ->where('month', '<', $this->currentMonth());
-                                    })
-                                    ->orWhere(function ($subdate) {
-                                        // An event that happens this year but before this day
-                                        $subdate
-                                            ->where('year', $this->currentYear())
-                                            ->where('month', $this->currentMonth())
-                                            ->where('day', '<', $this->currentDay());
-                                    });
-                            });
-                    });
-            })
-            // Skip events that were on months which no longer exist
-            ->where('month', '<=', count($this->months()))
-            ->orderBy('year', 'desc')
-            ->orderBy('month', 'desc')
-            ->orderBy('day', 'desc')
-            ->take($needle)
-            ->get();
-
-        // Order the past events in descending date to get the closest ones to the current date first
-        return $reminders->sortBy(function ($reminder) {
-            // For some reason, when using with(calendar), it loads the wrong ids?
-            $reminder->calendar = $this;
-            return $reminder->mostRecentOccurrence(
-                $this->currentYear(),
-                $this->currentMonth(),
-                $this->currentDay(),
-                $this->months(),
-                $this->daysInYear()
-            );
-        });
-    }
-
-    /**
-     * @return bool|\Illuminate\Database\Eloquent\Collection|Collection
-     */
-    protected function recurringEvents()
-    {
-        if ($this->cachedRecurringEvents !== false) {
-            return $this->cachedRecurringEvents;
-        }
-
-        return $this->cachedRecurringEvents = $this->dashboardEvents('=', 0);
-    }
-
-    /**
      * Get the number of days in a year
-     * @return int
      */
     public function daysInYear(): int
     {
@@ -875,7 +479,6 @@ class Calendar extends MiscModel
 
     /**
      * Default calendar layout
-     * @return string
      */
     public function defaultLayout(): string
     {
@@ -883,11 +486,11 @@ class Calendar extends MiscModel
     }
 
     /**
-     * @return bool
+     * Determine if the calendar defaults to a yearly layout
      */
     public function yearlyLayout(): bool
     {
-        return !empty($this->parameters['layout']) && $this->parameters['layout'] === 'yearly';
+        return Arr::get($this->parameters, 'layout') === 'yearly';
     }
 
     /**

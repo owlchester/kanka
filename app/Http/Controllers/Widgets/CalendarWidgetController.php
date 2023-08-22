@@ -7,13 +7,20 @@ use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Enums\Widget;
+use App\Services\Calendars\AdvancerService;
+use App\Services\Calendars\ReminderService;
 
 class CalendarWidgetController extends Controller
 {
-    /**
-     * @param CampaignDashboardWidget $campaignDashboardWidget
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     */
+    protected AdvancerService $service;
+    protected ReminderService $reminderService;
+
+    public function __construct(AdvancerService $advancerService, ReminderService $reminderService)
+    {
+        $this->service = $advancerService;
+        $this->reminderService = $reminderService;
+    }
+
     public function add(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         if ($campaignDashboardWidget->widget != Widget::Calendar) {
@@ -24,17 +31,14 @@ class CalendarWidgetController extends Controller
 
         /** @var Calendar $calendar */
         $calendar = $campaignDashboardWidget->entity->child;
-        $calendar->addDay();
+        $this->service->calendar($calendar)->advance();
 
         return view('dashboard.widgets.calendar.body')
             ->with('widget', $campaignDashboardWidget)
+            ->with('calendar', $calendar)
             ->with('campaign', $campaign);
     }
 
-    /**
-     * @param CampaignDashboardWidget $campaignDashboardWidget
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     */
     public function sub(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         if ($campaignDashboardWidget->widget != Widget::Calendar) {
@@ -45,18 +49,14 @@ class CalendarWidgetController extends Controller
 
         /** @var Calendar $calendar */
         $calendar = $campaignDashboardWidget->entity->child;
-        $calendar->subDay();
+        $this->service->calendar($calendar)->retreat();
 
         return view('dashboard.widgets.calendar.body')
             ->with('widget', $campaignDashboardWidget)
+            ->with('calendar', $calendar)
             ->with('campaign', $campaign);
     }
 
-    /**
-     * Render a calendar widget
-     * @param CampaignDashboardWidget $campaignDashboardWidget
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
-     */
     public function render(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         if ($campaignDashboardWidget->widget != Widget::Calendar) {
