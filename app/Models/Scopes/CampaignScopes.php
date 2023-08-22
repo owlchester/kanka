@@ -200,9 +200,9 @@ trait CampaignScopes
 
         $open = Arr::get($options, 'is_open');
         if ($open === '1') {
-            $query->open();
+            $query->open();// @phpstan-ignore-line
         } elseif ($open === '0') {
-            $query->open(false);
+            $query->open(false);// @phpstan-ignore-line
         }
 
         $featured = Arr::get($options, 'featured_until');
