@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\Domain;
-use App\Facades\Limit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RecoverEntity extends FormRequest

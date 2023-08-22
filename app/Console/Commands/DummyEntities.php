@@ -85,7 +85,7 @@ class DummyEntities extends Command
         EntityCache::campaign($campaign);
         CharacterCache::campaign($campaign);
         QuestCache::campaign($campaign);
-        
+
         $this->loadObservers($campaign);
 
         //Generate Characters Abilities and Locations

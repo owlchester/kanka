@@ -6,10 +6,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Resources\EntityResource as Resource;
 use App\Http\Requests\RecoverEntity as Request;
-use Illuminate\Support\Facades\DB;
 use App\Services\RecoveryService;
-
-
 
 class EntityRecoveryApiController extends ApiController
 {
@@ -46,7 +43,7 @@ class EntityRecoveryApiController extends ApiController
     public function recover(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        
+
         if (!$campaign->boosted()) {
             return response()->json(null, 204);
         }
