@@ -12,7 +12,7 @@
     </li>
 @endforeach
 @foreach ($model->entity->pinnedAliases as $asset)
-    <li class="pinned-asset mb-2" data-asset="{{ \Illuminate\Support\Str::slug($asset->name) }}" data-target="{{ $asset->id }}">
+    <li class="pinned-asset mb-2" data-asset="{{ \Illuminate\Support\Str::slug($asset->name) }}" data-target="{{ $asset->id }}" data-visibility="{{ $asset->visibility_id }}">
         <strong>
             {{ __('entities/assets.actions.alias') }}
         </strong>

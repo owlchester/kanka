@@ -27,6 +27,8 @@ class CreateAbilitiesTable extends Migration
             $table->unsignedInteger('ability_id')->nullable();
             $table->boolean('is_private')->default(false);
 
+            $table->string('charges', 120)->nullable();
+
             // Tree
             $table->unsignedInteger('_lft')->default(0);
             $table->unsignedInteger('_rgt')->default(0);

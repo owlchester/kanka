@@ -24,17 +24,21 @@ class CreateEvents extends Migration
 
             $table->integer('campaign_id')->unsigned()->notNull();
             $table->integer('location_id')->unsigned()->nullable();
+            $table->unsignedInteger('event_id')->nullable();
 
-            // Overview
             $table->longText('entry')->nullable();
 
+            $table->unsignedInteger('_lft')->default(0);
+            $table->unsignedInteger('_rgt')->default(0);
             $table->timestamps();
 
             // Foreign
-            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->cascadeOnDelete();
+            $table->foreign('event_id')->references('id')->on('events')->nullOnDelete();
 
             // Index
             $table->index(['name', 'slug', 'type', 'date', 'is_private']);
+            $table->index(['_lft', '_rgt']);
         });
     }
 

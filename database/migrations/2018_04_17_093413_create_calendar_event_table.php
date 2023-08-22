@@ -19,6 +19,8 @@ class CreateCalendarEventTable extends Migration
             $table->integer('event_id')->unsigned();
             $table->string('date');
             $table->string('colour')->nullable();
+            $table->smallInteger('length')->default(1);
+            $table->string('recurring_until', 12)->nullable();
             $table->timestamps();
 
             $table->index('date');

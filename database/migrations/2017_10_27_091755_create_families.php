@@ -21,6 +21,10 @@ class CreateFamilies extends Migration
             $table->string('slug');
             $table->integer('campaign_id')->unsigned()->notNull();
 
+            $table->integer('family_id')->unsigned()->nullable();
+            $table->unsignedInteger('_lft')->default(0);
+            $table->unsignedInteger('_rgt')->default(0);
+
             $table->string('type', 45)->nullable();
             $table->longText('entry')->nullable();
 
@@ -30,8 +34,11 @@ class CreateFamilies extends Migration
             $table->boolean('is_private')->default(false);
             $table->index(['is_private']);
 
+            $table->index(['_lft', '_rgt', 'family_id']);
+
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('family_id')->references('id')->on('families')->onDelete('set null');
 
             // Indexes
             $table->index(['name', 'slug']);

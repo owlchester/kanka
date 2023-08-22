@@ -18,6 +18,10 @@ class CreateCalendarTable extends Migration
             $table->increments('id');
             $table->integer('campaign_id')->unsigned()->nullable();
             $table->string('name')->notNull();
+
+            $table->unsignedInteger('calendar_id')->nullable();
+
+
             $table->string('slug')->nullable();
             $table->string('type', 45)->nullable();
             $table->longText('entry')->nullable();
@@ -42,6 +46,8 @@ class CreateCalendarTable extends Migration
             $table->tinyInteger('leap_year_offset')->unsigned()->nullable();
             $table->tinyInteger('leap_year_start')->unsigned()->nullable();
 
+            $table->unsignedTinyInteger('start_offset')->nullable()->default(0);
+            $table->string('reset', 5)->nullable()->change();
 
             $table->timestamps();
 
@@ -50,6 +56,8 @@ class CreateCalendarTable extends Migration
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+
+            $table->foreign('calendar_id')->references('id')->on('calendars')->onDelete('set null');
         });
 
         Schema::table('campaign_settings', function (Blueprint $table) {

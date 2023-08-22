@@ -17,6 +17,7 @@ class CreateQuests extends Migration
             $table->increments('id');
             $table->integer('campaign_id')->unsigned()->nullable();
             $table->integer('quest_id')->unsigned()->nullable();
+            $table->integer('character_id')->unsigned()->nullable();
             $table->string('name')->notNull();
             $table->string('slug')->nullable();
             $table->string('type', 45)->nullable();
@@ -24,6 +25,7 @@ class CreateQuests extends Migration
             $table->string('image', 255)->nullable();
             $table->boolean('is_private')->default(false)->notNull();
             $table->date('date')->nullable();
+            $table->boolean('is_completed')->default(false);
 
             $table->timestamps();
 
@@ -33,6 +35,7 @@ class CreateQuests extends Migration
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('quest_id')->references('id')->on('quests')->onDelete('set null');
+            $table->foreign('character_id')->references('id')->on('characters')->onDelete('set null');
         });
 
         Schema::table('campaign_settings', function (Blueprint $table) {
