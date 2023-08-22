@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\Entity;
 use App\Http\Resources\EntityResource as Resource;
 use App\Http\Requests\RecoverEntity as Request;
 use App\Services\RecoveryService;
