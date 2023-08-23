@@ -4,6 +4,7 @@ namespace App\Http\Requests\Campaigns;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 
 class GalleryImageUpdate extends FormRequest
 {
@@ -25,6 +26,11 @@ class GalleryImageUpdate extends FormRequest
     public function rules()
     {
         $rules = [
+            'images.*' => [
+                'required',
+                File::types(['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2']),
+                'max:' . auth()->user()->maxUploadSize()
+            ],
             'name' => 'required|max:45',
             'folder_id' => [
                 'nullable',
