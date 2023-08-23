@@ -40,7 +40,7 @@ class GalleryService
         return $this;
     }
 
-    public function usedQuota(): string
+    public function usedQuota(): float
     {
         if (isset($this->quota)) {
             return $this->quota;

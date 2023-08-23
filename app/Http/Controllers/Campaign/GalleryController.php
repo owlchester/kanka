@@ -203,9 +203,6 @@ class GalleryController extends Controller
 
     /**
      * Create a new folder
-     * @param GalleryImageFolderStore $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function folder(GalleryImageFolderStore $request, Campaign $campaign)
     {
