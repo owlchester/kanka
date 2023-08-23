@@ -25,5 +25,11 @@ return [
      */
     'filesize' => [
         'image' => env('APP_IMAGE_SIZE_MB', 1),
+    ],
+
+    'gallery' => [
+        'standard' => 50 * 1024,
+        'premium' => 5 * 1024 * 1024,
+        'premium' => 20 * 1024,
     ]
 ];

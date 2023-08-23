@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Campaigns;
 
 use App\Facades\Limit;
+use App\Rules\GallerySize;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
@@ -31,7 +32,8 @@ class GalleryImageStore extends FormRequest
             'file.*' => [
                 'required',
                 File::types(['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2']),
-                'max:' . Limit::upload()
+                'max:' . Limit::upload(),
+                new GallerySize(),
             ],
             'folder_id' => [
                 'nullable',

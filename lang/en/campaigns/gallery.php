@@ -24,6 +24,7 @@ return [
     'errors'        => [
         'max'           => 'Please only select up to :count files at a time.',
         'permissions'   => 'Your campaign roles are missing the :permission permission to be allowed to upload images to the campaign gallery.',
+        'storage'       => 'The campaign doesn\'t have enough storage space to upload the selected image(s). Available storage space: :available.',
     ],
     'fields'        => [
         'created_by'            => 'Uploaded by',

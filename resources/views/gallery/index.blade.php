@@ -2,6 +2,7 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\Image $image
  * @var \App\Models\Image $folder
+ * @var \App\Services\Campaign\GalleryService $galleryService
  */
 
 $breadcrumbs[] = ['url' => route('campaign.gallery.index', $campaign), 'label' => __('campaigns/gallery.breadcrumb')];
@@ -23,29 +24,49 @@ if ($folder) {
 ])
 
 @section('content')
-<div class="flex items-center gap-2">
-    <div class="grow">
-        <button class="btn2 btn-primary btn-sm" data-toggle="collapse" data-target="#uploader">
-            <x-icon class="fa-solid fa-upload"></x-icon> {{ __('campaigns/gallery.uploader.add') }}
-        </button>
-        <button class="btn2 btn-sm" data-toggle="dialog" data-target="new-folder">
-            <x-icon class="fa-solid fa-folder"></x-icon> {{ __('campaigns/gallery.uploader.new_folder') }}
-        </button>
+    <div class="flex flex-col gap-2 mb-5">
+        <div class="flex items-center gap-2">
+            <x-icon class="fa-solid fa-cloud" />
+            <div class="grow text-lg">Storage</div>
+            <div class="">
+                <span id="storage-used">{{ $galleryService->human($galleryService->usedSpace()) }}</span> of
+                <span id="storage-total">{{ $galleryService->human($galleryService->totalSpace()) }}</span>
+            </div>
+            @if ($campaign->boosted())
+                <a href="{{ \App\Facades\Domain::toFront('pricing') }}" class="btn2 btn-accent btn-sm">
+                    Upgrade
+                </a>
+            @endif
+        </div>
+        <div class="bg-base-300 w-full h-2 overflow-hidden rounded" data-title="{{ $galleryService->usedQuota() }}%" data-toggle="tooltip">
+            <div class="{{ $galleryService->usedBarClasses() }}" style="width: {{ $galleryService->usedQuota() }}%" id="storage-progress"></div>
+        </div>
+    </div>
+    <div class="hidden bg-green-500 bg-orange-400 bg-red-500" title="Needed for tailwind"></div>
 
-        @if(!empty($folder))
-            <button class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', [$campaign, $folder]) }}">
-                <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
+    <div class="flex items-center gap-2">
+        <div class="grow">
+            <button class="btn2 btn-primary btn-sm" data-toggle="collapse" data-target="#uploader">
+                <x-icon class="fa-solid fa-upload"></x-icon> {{ __('campaigns/gallery.uploader.add') }}
             </button>
-        @endif
-        <button class="btn2 btn-sm btn-error" style="display: none" id="bulk-delete" data-toggle="dialog" data-target="bulk-destroy-dialog">
-            <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-        </button>
-    </div>
+            <button class="btn2 btn-sm" data-toggle="dialog" data-target="new-folder">
+                <x-icon class="fa-solid fa-folder"></x-icon> {{ __('campaigns/gallery.uploader.new_folder') }}
+            </button>
 
-    <div class="search">
-        <input type="text" class="form-control" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('campaign.gallery.search', $campaign) }}" />
+            @if(!empty($folder))
+                <button class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', [$campaign, $folder]) }}">
+                    <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
+                </button>
+            @endif
+            <button class="btn2 btn-sm btn-error" style="display: none" id="bulk-delete" data-toggle="dialog" data-target="bulk-destroy-dialog">
+                <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
+            </button>
+        </div>
+
+        <div class="search">
+            <input type="text" class="form-control" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('campaign.gallery.search', $campaign) }}" />
+        </div>
     </div>
-</div>
 
     <form id="gallery-form" method="post" action="{{ route('images.store', $campaign) }}" enctype="multipart/form-data" class="file-upload-form mb-5">
         {{ csrf_field() }}
