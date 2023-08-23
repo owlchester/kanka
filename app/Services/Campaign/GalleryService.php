@@ -11,6 +11,7 @@ use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class GalleryService
@@ -67,7 +68,13 @@ class GalleryService
         if (isset($this->used)) {
             return $this->used;
         }
-        return $this->used = Image::sum('size');
+        $key = $this->cacheKey();
+        if (Cache::has($key)) {
+            return $this->used = Cache()->get($key);
+        }
+        $this->used = Image::sum('size');
+        Cache::put($key, $this->used, 24 * 3600);
+        return $this->used;
     }
 
     /**
@@ -148,6 +155,7 @@ class GalleryService
             $images[] = $image;
         }
 
+        $this->clearCache();
         return $images;
     }
 
@@ -234,5 +242,23 @@ class GalleryService
             $this->folders[$subfolder->id] = str_repeat('-', $level) . ' ' . $subfolder->name;
             $this->loopSubfolder($subfolder, $level + 1);
         }
+    }
+
+    protected function cacheKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_gallery';
+    }
+
+    public function delete(): self
+    {
+        $this->image->delete();
+        $this->clearCache();
+        return $this;
+    }
+
+    protected function clearCache(): self
+    {
+        Cache::forget($this->cacheKey());
+        return $this;
     }
 }
