@@ -20,13 +20,12 @@ class SearchController extends Controller
      *
      * @return void
      */
-    public function __construct(EntityService $entityService)
+    public function __construct(EntityService $entityService, FilterService $filterService)
     {
-        //$this->middleware('auth');
         $this->middleware('campaign.member');
 
         $this->entity = $entityService;
-        $this->filterService = new FilterService();
+        $this->filterService = $filterService;
     }
 
     /**
@@ -39,7 +38,9 @@ class SearchController extends Controller
         $term = $request->get('q');
         if (empty($term) || !is_string($term)) {
             return view('search.index')
-                ->with('results', []);
+                ->with('results', [])
+                ->with('campaign', $campaign)
+                ;
         }
         $term = trim($term);
         $results = [];
@@ -80,6 +81,7 @@ class SearchController extends Controller
             'results',
             'active',
             'filterService'
-        ));
+        ))
+            ->with('campaign', $campaign);
     }
 }

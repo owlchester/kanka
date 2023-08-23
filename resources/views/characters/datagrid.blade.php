@@ -65,14 +65,3 @@
         'trans' => 'characters.fields.',
     ]
 ) !!}
-
-
-@tutorial('character_1')
-@include('tutorials.modal', [
-    'key' => 'character_1',
-    'title' => 'characters.character_1.title',
-    'contents' => [
-        'characters.character_1.first'
-    ],
-])
-@endtutorial
