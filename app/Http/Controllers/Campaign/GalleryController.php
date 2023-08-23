@@ -209,6 +209,9 @@ class GalleryController extends Controller
     public function folder(GalleryImageFolderStore $request, Campaign $campaign)
     {
         $this->authorize('gallery', $campaign);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $folder = $this->service
             ->campaign($campaign)

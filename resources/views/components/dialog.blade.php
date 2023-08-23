@@ -20,4 +20,9 @@
         @endif
         {{ $slot }}
     </article>
+    @if (isset($footer))
+        <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3">
+        @include($footer)
+        </footer>
+    @endif
 </dialog>

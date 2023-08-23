@@ -23,6 +23,9 @@ class GalleryFolderController extends Controller
     public function store(GalleryImageFolderStore $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $folder = $this->service
             ->campaign($campaign)

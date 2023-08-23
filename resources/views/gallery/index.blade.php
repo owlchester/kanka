@@ -23,12 +23,12 @@ if ($folder) {
 ])
 
 @section('content')
-<div class="flex items-center gap-2 mb-2">
+<div class="flex items-center gap-2">
     <div class="grow">
         <button class="btn2 btn-primary btn-sm" data-toggle="collapse" data-target="#uploader">
             <x-icon class="fa-solid fa-upload"></x-icon> {{ __('campaigns/gallery.uploader.add') }}
         </button>
-        <button class="btn2 btn-sm" data-toggle="modal" data-target="#modal-new-folder">
+        <button class="btn2 btn-sm" data-toggle="dialog" data-target="new-folder">
             <x-icon class="fa-solid fa-folder"></x-icon> {{ __('campaigns/gallery.uploader.new_folder') }}
         </button>
 
@@ -102,35 +102,33 @@ if ($folder) {
 
 @section('modals')
     @parent
-    <div class="modal fade" id="modal-new-folder" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100">
-                {!! Form::open(['route' => ['campaign.gallery.folder', $campaign], 'method' => 'POST']) !!}
-                <div class="modal-header">
-                    <x-dialog.close />
-                    <h4 class="modal-title" id="myModalLabel">{{ __('campaigns/gallery.new_folder.title') }}</h4>
+    <x-dialog id="new-folder" title="{{ __('campaigns/gallery.new_folder.title') }}">
+        {!! Form::open(['route' => ['campaign.gallery.folder', $campaign], 'method' => 'POST', 'class' => 'ajax-subform']) !!}
+            <x-grid type="1/1">
+                <div class="field-name">
+                    <label>{{ __('campaigns/gallery.fields.name') }}</label>
+                    {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100, 'required']) !!}
                 </div>
-                <div class="modal-body">
-                    <div class="field-name">
-                        <label>{{ __('campaigns/gallery.fields.name') }}</label>
-                        {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
-                    </div>
 
-                    @include('cruds.fields.visibility_id', ['model' => null])
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn2 btn-sm" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="submit" class="btn2 btn-sm btn-primary">
+                @include('cruds.fields.visibility_id', ['model' => null])
+            </x-grid>
+            <div class="flex flex-wrap gap-3 justify-between items-start my-5">
+                <menu class="flex flex-wrap gap-3 ps-0 ms-0">
+                    <button autofocus type="button" class="btn2 btn-ghost btn-full" onclick="this.closest('dialog').close('close')">
+                        {{ __('crud.cancel') }}
+                    </button>
+                </menu>
+                <menu class="flex flex-wrap gap-3 ps-0">
+                    <button type="submit" class="btn2 btn-primary">
                         {{ __('crud.create') }}
                     </button>
-                </div>
+                </menu>
             </div>
-            @if(!empty($folder))
-                {!! Form::hidden('folder_id', $folder->id) !!}
-            @endif
-            {!! Form::close() !!}
-        </div>
-    </div>
+        @if(!empty($folder))
+            {!! Form::hidden('folder_id', $folder->id) !!}
+        @endif
+        {!! Form::close() !!}
+    </x-dialog>
 
     <form method="POST" action="{{ route('campaign.gallery.bulk.delete', [$campaign]) }}" id="gallery-bulk">
     <x-dialog id="bulk-destroy-dialog" title="{{ __('crud.delete_modal.title') }}">
