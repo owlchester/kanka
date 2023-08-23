@@ -20,8 +20,7 @@ class GalleryController extends Controller
     public function __construct(GalleryService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.superboosted', ['except' => 'index']);
-
+        $this->middleware('campaign.member');
         $this->service = $service;
     }
 
@@ -29,10 +28,10 @@ class GalleryController extends Controller
     {
         $this->authorize('gallery', $campaign);
 
-        if (!$campaign->superboosted()) {
+        /*if (!$campaign->superboosted()) {
             return view('gallery.unsuperboosted')
                 ->with('campaign', $campaign);
-        }
+        }*/
 
         $folder = null;
         $folderId = request()->get('folder_id');
@@ -45,7 +44,8 @@ class GalleryController extends Controller
             ->defaultOrder()
             ->paginate(50);
 
-        return view('gallery.index', compact('campaign', 'images', 'folder'));
+        return view('gallery.index', compact('campaign', 'images', 'folder'))
+            ->with('galleryService', $this->service->campaign($campaign)->user(auth()->user()));
     }
 
     public function search(Campaign $campaign)
@@ -90,6 +90,7 @@ class GalleryController extends Controller
             'success' => true,
             'images' => $body,
             'campaign' => $campaign,
+            'storage' => $this->service->storageInfo(),
         ]);
     }
 

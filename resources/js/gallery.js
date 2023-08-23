@@ -207,7 +207,7 @@ const uploadFiles = (data) => {
                         gallery.prepend(image);
                     }
                 });
-
+                updateStorage(res.data.storage);
                 registerEvents();
             }
         })
@@ -216,6 +216,12 @@ const uploadFiles = (data) => {
 
             if (err.response && err.response.data.message) {
                 fileError.text(err.response.data.message).fadeToggle();
+
+                let errors = err.response.data.errors;
+                let errorKeys = Object.keys(errors);
+                errorKeys.forEach(k => {
+                    window.showToast(errors[k], 'toast-error');
+                });
             }
 
             registerEvents();
@@ -261,4 +267,13 @@ const registerShift = () => {
     } else {
         bulkDelete.show();
     }
+};
+
+const updateStorage = (storage) => {
+    let progress = document.getElementById('storage-progress');
+    progress.style.width = storage.percentage + '%';
+    progress.className = storage.progress;
+
+    let used = document.getElementById('storage-used');
+    used.innerHTML = storage.used;
 };
