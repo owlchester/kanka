@@ -72,6 +72,3 @@ $tooltipTags = implode(', ', $tooltipTags);
     @endif
 </div>
 
-<hr />
-@include('cruds.fields.entity_image')
-

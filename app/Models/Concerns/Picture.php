@@ -141,7 +141,7 @@ trait Picture
             // No valid attached child
             if (!$child) {
                 //$avatar = '';
-            } elseif ($campaign->superboosted() && $this->image) {
+            } elseif ($this->image) {
                 $avatar = $this->image->path;
                 if (!empty($this->image->focus_x) && !empty($this->image->focus_y)) {
                     $focus = [$this->image->focus_x, $this->image->focus_y];
@@ -164,7 +164,7 @@ trait Picture
         // If the image is empty, look if the user has a nice picture
         if (empty($avatar)) {
             // Superboosted and with image?
-            if ($campaign->superboosted() && $this->image) {
+            if ($this->image) {
                 return Img::crop($this->avatarWidth, $this->avatarHeight)->url($this->image->path);
             } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
                 // Fallback, boosted default image?

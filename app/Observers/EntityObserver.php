@@ -231,8 +231,16 @@ class EntityObserver
      */
     public function saveBoosted(Entity $entity): void
     {
+        // Gallery is now available to all
+        if (request()->has('entity_image_uuid')) {
+            $entity->image_uuid = request()->get('entity_image_uuid');
+        } else {
+            $entity->image_uuid = null;
+        }
+
         // No changed for non-boosted campaigns
         if (!$entity->campaign->boosted()) {
+            $entity->save();
             return;
         }
 
@@ -246,11 +254,6 @@ class EntityObserver
 
         // Superboosted image gallery selection
         if ($entity->campaign->superboosted()) {
-            if (request()->has('entity_image_uuid')) {
-                $entity->image_uuid = request()->get('entity_image_uuid');
-            } else {
-                $entity->image_uuid = null;
-            }
             if (request()->has('entity_header_uuid')) {
                 $entity->header_uuid = request()->get('entity_header_uuid');
             } else {
