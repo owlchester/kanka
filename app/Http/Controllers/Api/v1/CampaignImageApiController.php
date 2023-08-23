@@ -60,6 +60,9 @@ class CampaignImageApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
+        if (empty($request->file('file'))) {
+            return abort(422);
+        }
         $images = $this->service
             ->campaign($campaign)
             ->store($request);
@@ -77,7 +80,7 @@ class CampaignImageApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
-        $image->update($request->all());
+        $image->update($request->only('name', 'folder_id'));
 
         return new Resource($image);
     }
