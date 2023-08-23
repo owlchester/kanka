@@ -38,8 +38,8 @@ if ($folder) {
                 </a>
             @endif
         </div>
-        <div class="bg-base-300 w-full h-2 overflow-hidden rounded transition-all duration-300" data-title="{{ $galleryService->usedQuota() }}%" data-toggle="tooltip">
-            <div class="{{ $galleryService->usedBarClasses() }}" style="width: {{ $galleryService->usedQuota() }}%" id="storage-progress"></div>
+        <div class="bg-base-300 w-full h-2 overflow-hidden rounded transition-all duration-300">
+            <div class="{{ $galleryService->usedBarClasses() }}" style="width: {{ $galleryService->usedQuota() }}%" id="storage-progress" data-title="{{ $galleryService->usedQuota() }}%" data-toggle="tooltip"></div>
         </div>
     </div>
     <div class="hidden bg-green-500 bg-orange-400 bg-red-500" title="Needed for tailwind"></div>
