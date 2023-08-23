@@ -32,7 +32,7 @@ if ($folder) {
                 <span id="storage-used">{{ $galleryService->human($galleryService->usedSpace()) }}</span> of
                 <span id="storage-total">{{ $galleryService->human($galleryService->totalSpace()) }}</span>
             </div>
-            @if ($campaign->boosted())
+            @if (!$campaign->boosted())
                 <a href="{{ \App\Facades\Domain::toFront('pricing') }}" class="btn2 btn-accent btn-sm">
                     Upgrade
                 </a>
