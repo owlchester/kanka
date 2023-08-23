@@ -67,11 +67,11 @@
                         </x-cta>
                     </div>
                     <x-alert type="error" id="campaign-imageupload-error" :hidden="true"></x-alert>
-                    <x-alert type="error" id="campaign-imageupload-permission" :hidden="true"></x-alert>
+                    <x-alert type="error" id="campaign-imageupload-permission" :hidden="true">
                         {!! __('campaigns/gallery.errors.permissions', [
     'permission' => '<code>' . __('campaigns.roles.permissions.actions.gallery') . '</code>']
     ) !!}
-                    </p>
+                    </x-alert>
                 </div>
             </div>
         </div>
