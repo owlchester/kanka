@@ -5,9 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Blameable;
 use App\Models\Scopes\EntityEventScopes;
 use Exception;
-use Illuminate\Database\Eloquent\Builder;
 use App\Models\Concerns\SortableTrait;
-use App\Traits\OrderableTrait;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Support\Str;
 

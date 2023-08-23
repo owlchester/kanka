@@ -3,7 +3,6 @@
 namespace App\Renderers\Layouts\Entity;
 
 use App\Models\EntityEvent;
-use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
 class Reminder extends Layout
@@ -26,7 +25,7 @@ class Reminder extends Layout
                 'key' => 'date',
                 'label' => 'events.fields.date',
                 'render' => function (EntityEvent $reminder) {
-                    $params = '?year=' . $reminder->year .'&month=' . $reminder->month;
+                    $params = '?year=' . $reminder->year . '&month=' . $reminder->month;
                     return '<a href="' . $reminder->calendar->getLink() . $params . '">' . $reminder->readableDate() . '</a>';
                 }
             ],
@@ -56,8 +55,8 @@ class Reminder extends Layout
                         return '<i class="fa-solid fa-skull" data-title="' . __('entities/events.types.death') . '" data-toggle="tooltip" aria-hidden="true"></i>';
                     } elseif ($reminder->isFounded()) {
                         return '<i class="fa-solid fa-building-columns" data-title="' . __('entities/events.types.founded') . '" data-toggle="tooltip" aria-hidden="true" ></i>';
-                        }
-                    },
+                    }
+                },
             ],
         ];
 
