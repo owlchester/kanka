@@ -22,7 +22,7 @@ $permissionService->campaign($campaign);
 </p>
 
 <div id="crud_permissions" class="flex flex-col gap-3">
-    <div class="hidden md:grid grid-cols-5 gap-2">
+    <div class="hidden md:grid md:grid-cols-5 gap-2">
         <div class="w-40 ">
             <strong>{{ __('crud.permissions.fields.role') }}</strong>
         </div>
@@ -45,8 +45,8 @@ $permissionService->campaign($campaign);
         </div>
     </div>
     @foreach ($campaign->roles()->withoutAdmin()->get() as $role)
-        <div class="grid grid-cols-5 gap-2 items-center">
-            <div class="w-40 ">{{ $role->name }}</div>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-2 items-center">
+            <div class="w-40 col-span-2 md:col-span-1  ">{{ $role->name }}</div>
             <div class="">
                 <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</label>
                 <div class="join w-full">
@@ -104,6 +104,10 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                 </div>
+            @else
+                <div></div>
+                <div></div>
+                <div></div>
             @endif
         </div>
     @endforeach
@@ -136,8 +140,8 @@ $permissionService->campaign($campaign);
             </div>
         </div>
         @foreach ($permissionService->users() as $member)
-            <div class="grid grid-cols-5 gap-2">
-                <div class="flex flex-wrap items-center gap-2">
+            <div class="grid grid-cols-2 md:grid-cols-5 md: gap-2">
+                <div class="col-span-2 md:col-span-1 flex flex-wrap items-center gap-2">
                     <div class="flex-none">
                         <div class="entity-image cover-background" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
                         </div>
@@ -156,7 +160,7 @@ $permissionService->campaign($campaign);
                     @endcan
                 @endif
                 </div>
-                <div class="text-center">
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_READ ."]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_READ), [
@@ -172,7 +176,7 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                 </div>
-                <div class="text-center">
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.edit') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_EDIT), [
@@ -188,7 +192,7 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                 </div>
-                <div class="text-center">
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.delete') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_DELETE . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_DELETE), [
@@ -204,7 +208,7 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                 </div>
-                <div class="text-center">
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('entities.posts') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_POSTS), [
