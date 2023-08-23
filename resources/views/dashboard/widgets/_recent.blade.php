@@ -20,8 +20,8 @@ if (($widget->conf('singular'))) {
 }
 ?>
 <div class="panel panel-default {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading">
-        <h3 class="panel-title">
+    <div class="panel-heading px-4 py-2">
+        <h3 class="panel-title m-0">
             @if (!empty($widget->conf('text')))
                 {{ $widget->conf('text') }}
             @else
@@ -40,10 +40,10 @@ if (($widget->conf('singular'))) {
         </h3>
     </div>
     @if (!empty($widget->conf('singular')))
-    <div class="panel-body widget-recent-body">
+    <div class="panel-body p-4 widget-recent-body">
         @include('dashboard.widgets._recent_singular', ['entities' => $entities])
     @else
-    <div class="panel-body widget-recent-list overflow-auto max-h-[400px]">
+    <div class="panel-body p-4 widget-recent-list overflow-auto max-h-[400px]">
         @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
     @endif
     </div>

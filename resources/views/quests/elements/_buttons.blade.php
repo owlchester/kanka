@@ -5,7 +5,7 @@
 
         <a href="{{ route('quests.quest_elements.create', [$campaign, $model]) }}" class="btn2 btn-sm btn-accent">
             <x-icon class="plus"></x-icon>
-            <span class="hidden-xs hidden-sm">{{ __('quests.show.actions.add_element') }}</span>
+            <span class="hidden md:inline">{{ __('quests.show.actions.add_element') }}</span>
         </a>
     </div>
 @endcan

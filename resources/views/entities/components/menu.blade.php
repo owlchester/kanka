@@ -1,6 +1,6 @@
 <?php use \Illuminate\Support\Arr; ?>
 @php $modelMenuItems = $model->menuItems(); @endphp
-<div class="hidden-xs">
+<div class="hidden md:block">
 @foreach ($modelMenuItems as $section => $menuItems)
     <x-box css="entity-menu{{ $section }}" :padding="0">
         <x-menu>
@@ -23,7 +23,7 @@
 </div>
 
 @php $firstBlock = true @endphp
-<div class="hidden-md hidden-lg hidden-sm" id="sm-a">
+<div class="md:hidden" id="sm-a">
     <div class="mb-2">
         <select name="menu-switcher" class="form-control submenu-switcher">
             @foreach ($modelMenuItems as $section => $menuItems)

@@ -59,7 +59,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                 </div>
             @endif
             @if ($day['day'] == 1 && !empty($showMonth))
-            <span class="hidden-xs hidden-sm">{{ $day['month'] }}</span>
+            <span class="hidden md:inline">{{ $day['month'] }}</span>
             @endif
             @if (!empty($day['moons']))
                 @foreach ($day['moons'] as $moon)
@@ -90,7 +90,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                             @endif
                             >
                             @if (!empty($event->entity->child->image))
-                            <a href="{{ $event->entity->url() }}" class="hidden-xs hidden-sm entity-image !w-7 !h-7 pull-left mr-1 cover-background inline-block" style="background-image: url('{{ $event->entity->avatarSize(40)->avatarV2() }}');"></a>
+                            <a href="{{ $event->entity->url() }}" class="hidden md:inline-block entity-image !w-7 !h-7 pull-left mr-1 cover-background" style="background-image: url('{{ $event->entity->avatarSize(40)->avatarV2() }}');"></a>
                             @endif
                             <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->entity]) }}" class="block">
                                 {{ $event->entity->name }}

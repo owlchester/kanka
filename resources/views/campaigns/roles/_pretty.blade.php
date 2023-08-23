@@ -31,7 +31,7 @@ $first = true;
             @if (!$campaign->enabled($permission->entityTypePlural($entity)))
                 <div class="inline" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
                     <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
-                    <span class="hidden-sm hidden-md hidden-lg text-sm inline">{{ __('campaigns.modules.permission-disabled') }}</span>
+                    <span class="inline sm:hidden text-sm">{{ __('campaigns.modules.permission-disabled') }}</span>
                 </div>
             @endif
         </div>

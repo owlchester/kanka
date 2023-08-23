@@ -23,7 +23,6 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     @vite([
         'resources/sass/vendor.scss',
         'resources/sass/app.scss',
-        'resources/sass/freyja/freyja.scss'
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @yield('styles')

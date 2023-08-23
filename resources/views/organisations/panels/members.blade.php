@@ -29,7 +29,7 @@ $all = $model->allMembers()->has('character')->count();
         @if (!$allMembers)
             <a href="{{ route('organisations.show', [$campaign, $model, 'all' => true, '#organisation-members']) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i>
-                <span class="hidden-xs hidden-sm">
+                <span class="hidden md:inline">
                     {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
                 </span>
                 <span class="visible-xs-inline visible-sm-inline">
@@ -40,7 +40,7 @@ $all = $model->allMembers()->has('character')->count();
             <a href="{{ route('organisations.show', [$campaign, $model, '#organisation-members']) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i>
 
-                <span class="hidden-xs hidden-sm">
+                <span class="hidden md:inline">
                     {{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}
                 </span>
                 <span class="visible-xs-inline visible-sm-inline">
@@ -52,7 +52,7 @@ $all = $model->allMembers()->has('character')->count();
         @can('member', $model)
             <a href="{{ route('organisations.organisation_members.create', [$campaign, 'organisation' => $model->id]) }}" class="btn2 btn-primary btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', [$campaign, $model->id]) }}">
-                <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
+                <x-icon class="plus"></x-icon> <span class="hidden md:inline">{{ __('organisations.members.actions.add') }}</span>
             </a>
         @endcan
     </div>

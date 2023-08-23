@@ -63,7 +63,7 @@
                             <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('dashboard.widgets.recent.help') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         </label>
                     </div>
-                    <p class="help-block hidden-md hidden-lg">
+                    <p class="help-block md:hidden">
                         {{ __('dashboard.widgets.recent.help') }}
                     </p>
                 </div>

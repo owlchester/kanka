@@ -9,22 +9,22 @@ $model = $entity->child;
 <div class="panel panel-default widget-preview {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <div
     @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image)
-        class="panel-heading panel-heading-entity"
+        class="panel-heading px-4 py-2 panel-heading-entity"
         style="background-image: url('{{ $entity->thumbnail(1200, 400, 'header_image') }}')"
     @elseif ($widget->conf('entity-header') && $campaign->superboosted() && $widget->entity->header)
-        class="panel-heading panel-heading-entity"
+        class="panel-heading px-4 py-2 panel-heading-entity"
         style="background-image: url('{{ Img::crop(1200, 400)->url($widget->entity->header->path) }}')"
     @elseif ($entity->child->image)
-        class="panel-heading panel-heading-entity"
+        class="panel-heading px-4 py-2 panel-heading-entity"
         style="background-image: url('{{ $entity->child->thumbnail(400) }}')"
     @elseif($campaign->superboosted() && !empty($entity->image))
-        class="panel-heading panel-heading-entity"
+        class="panel-heading px-4 py-2 panel-heading-entity"
         style="background-image: url('{{ Img::crop(1200, 400)->url($entity->image->path) }}')"
     @else
-        class="panel-heading"
+        class="panel-heading px-4 py-2"
     @endif
     >
-        <h3 class="panel-title">
+        <h3 class="panel-title m-0">
             <a href="{{ $model->getLink() }}">
                 @if ($model->is_private)
                     <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}" aria-hidden="true"></i>
@@ -44,7 +44,7 @@ $model = $entity->child;
 
         </h3>
     </div>
-    <div class="panel-body @if ($widget->conf('full') === '2') !p-0 @endif">
+    <div class="panel-body @if($widget->conf('full') === '2') p-0 @else p-4 @endif">
         @if ($widget->conf('full') === '1')
             @if ($campaign->enabled('characters') && !empty($model->character))
             <dl class="dl-horizontal">

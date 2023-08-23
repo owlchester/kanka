@@ -16,13 +16,13 @@
         @if (request()->has('tag_id'))
             <a href="{{ route('tags.tags', [$campaign, $model, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                <span class="hidden md:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->descendants()->count() }})
             </a>
         @else
             <a href="{{ route('tags.tags', [$campaign, $model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                <span class="hidden md:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->tags()->count() }})
             </a>
         @endif

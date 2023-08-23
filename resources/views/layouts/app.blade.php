@@ -53,7 +53,6 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     @vite([
         'resources/sass/vendor.scss',
         'resources/sass/app.scss',
-        'resources/sass/freyja/freyja.scss'
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @yield('styles')
@@ -98,7 +97,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
             @include('layouts.banner')
 
             @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))
-                <section class="content-header">
+                <section class="content-header p-4 pb-0">
                     @includeWhen(!isset($breadcrumbs) || $breadcrumbs !== false, 'layouts._breadcrumbs')
                     @if (!view()->hasSection('entity-header'))
                         @if (isset($mainTitle))
@@ -114,7 +113,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
             @yield('content-header')
 
-            <section class="content" role="main">
+            <section class="content mx-auto p-4" role="main">
                 @if (isset($sidebar) && $sidebar === 'settings') <div class="max-w-4xl"> @endif
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
                     <div class=" alert p-4 rounded alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5 mb-5">
@@ -135,7 +134,6 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                 @endif
                 @include('partials.success')
 
-                @yield('entity-actions')
                 @yield('entity-header')
                 @yield('content')
 
