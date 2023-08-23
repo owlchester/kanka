@@ -4,7 +4,6 @@ namespace App\Services\Calendars;
 
 use App\Models\Calendar;
 use App\Models\EntityEvent;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class ReminderService
