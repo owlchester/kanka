@@ -22,7 +22,7 @@
         'title' => __('calendars.event.create.title', ['name' => $entity->name]),
         'content' => 'calendars.events._entity_form',
         'dialog' => true,
-        'dropdownParent' => '#primary-dialog'
+        'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
     ])
 
     {!! Form::hidden('entity_id', $entity->id) !!}

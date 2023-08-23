@@ -15,7 +15,7 @@ if (!empty($era)) {
 
     <div class="field-era col-span-2 required">
         <label>{{ __('timelines/elements.fields.era') }}</label>
-        {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => 'form-control', 'id' => 'era-form-add']) !!}
+        {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => 'form-control', 'id' => 'element-era-id']) !!}
     </div>
 
     <div class="field-name mb-0">

@@ -2,21 +2,23 @@
 $onlyOneCalendar = count($calendars) == 1;
 ?>
 {{ csrf_field() }}
-<div id="entity-calendar-modal-form w-full">
-    <div class="field-calendar entity-calendar-selector">
-        <x-forms.foreign
-            :campaign="$campaign"
-            name="calendar_id"
-            key="calendar"
-            :allowNew="false"
-            :allowClear="true"
-            :route="route('calendars.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
-            :selected="$onlyOneCalendar ? $calendars->first() : null"
-            :dropdownParent="$dropdownParent ?? (request()->ajax() ? '#entity-modal' : null)"
-            :entityTypeID="config('entities.ids.calendar')">
-        </x-forms.foreign>
+<x-grid type="1/1">
+    <div id="entity-calendar-modal-form w-full">
+        <div class="field-calendar entity-calendar-selector w-full">
+            <x-forms.foreign
+                :campaign="$campaign"
+                name="calendar_id"
+                key="calendar"
+                :allowNew="false"
+                :allowClear="true"
+                :route="route('calendars.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+                :selected="$onlyOneCalendar ? $calendars->first() : null"
+                :dropdownParent="$dropdownParent ?? (request()->ajax() ? '#entity-modal' : null)"
+                :entityTypeID="config('entities.ids.calendar')">
+            </x-forms.foreign>
+        </div>
     </div>
-</div>
+</x-grid>
 
 
 <div class="entity-calendar-subform" style="{{ $onlyOneCalendar ? '' : 'display: none;' }}">

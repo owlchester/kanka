@@ -12,12 +12,9 @@ var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
 var entityCalendarModalForm;
 
-var oldEra;
-
 var entityName;
 
 $(document).ready(function () {
-
     registerDynamicRows();
 
     ajaxModal();
@@ -32,7 +29,6 @@ $(document).ready(function () {
 
     registerFormSubmitAnimation();
     registerEntityCalendarForm();
-    registerEraForm();
     registerFormMaintenance();
     registerEntityCalendarModal();
     registerModalLoad();
@@ -277,32 +273,13 @@ function registerEntityCalendarModal() {
 }
 
 
-function registerEraForm() {
-    if ($('#era-form-add').length === 0) {
-        return;
-    }
-    entityCalendarAdd = $('#era-form-add');
-    let eraField = $('[name="era_id"]');
 
-    oldEra = eraField.val();
-    if (entityCalendarField.val()) {
-        loadTimelineEra(eraField.val());
-    }
-
-    if (eraField.length === 1) {
-        eraField.on('change', function () {
-            // Load era list
-            let positionField = $('select[name="position"]');
-            loadTimelineEra(eraField.val());
-        });
-    }
-}
 
 /**
  *
  * @param calendarID
  */
-function loadCalendarDates(calendarID) {
+const loadCalendarDates = (calendarID) => {
     entityCalendarLoading.show();
 
     calendarID = parseInt(calendarID);
@@ -340,10 +317,11 @@ function loadCalendarDates(calendarID) {
             //entityCalendarDayField.val(data.current.day);
             entityCalendarYearField.val(data.current.year);
 
-            $('select[name="calendar_recurring_periodicity"] option').remove();
+            // Put new options
+            $('select.reminder-periodicity option').remove();
             $.each(data.recurring, function (key, value) {
                 //console.log('moon', key, value);
-                $('select[name="calendar_recurring_periodicity"]').append('<option value="' + key + '">' + value + '</option>');
+                $('select.reminder-periodicity').append('<option value="' + key + '">' + value + '</option>');
             });
 
             $('input[name="length"]').val(1);
@@ -355,36 +333,8 @@ function loadCalendarDates(calendarID) {
 
             initSpectrum();
         });
-}
+};
 
-
-/**
- *
- * @param calendarID
- */
-function loadTimelineEra(eraID) {
-    eraID = parseInt(eraID);
-    var url = $('input[name="era-data-url"]').data('url').replace('/0/', '/' + eraID + '/');
-    var oldPosition = $('input[name="oldPosition"]').data('url');
-    $.ajax(url)
-        .done(function (data) {
-            let eraField = $('select[name="position"]');
-            eraField.html('');
-            let id = 1;
-            $.each(data.positions, function (i) {
-                let position = data.positions[i];
-                let selected = ' selected="selected"';
-
-                if (oldPosition && !i && (oldEra == eraID)) {
-                    eraField.append('<option value="" data-length="' + position.length + '" ' + selected + '>' + position + '</option>');
-                }
-                if (i) {
-                    eraField.append('<option value="' + id + '" data-length="' + position.length + '" ' + selected + '>' + position + '</option>');
-                }
-                id++;
-            });
-        });
-}
 
 /**
  *

@@ -50,22 +50,19 @@
             <x-tutorial code="events" doc="https://docs.kanka.io/en/latest/features/reminders.html">
                 <p>{{ __('entities/events.helpers.no_events_v2') }}</p>
             </x-tutorial>
-            <div class="mb-5"></div>
 
-            @if ($reminders->count() > 0)
-                <x-box css="box-entity-reminders" :padding="false">
-                    <div class="table-responsive">
-                    @include('entities.pages.reminders._table')
-                    </div>
-                </x-box>
-
-                @if ($reminders->hasPages())
-                    <div class="text-right">
-                        {{ $reminders->fragment('tab_calendars')->links() }}
-                    </div>
-                @endif
+            @if ($rows->count() > 0)
+                <div id="datagrid-parent" class="table-responsive">
+                    @include('layouts.datagrid._table')
+                </div>
             @endif
         </div>
     </div>
 
+@endsection
+
+@section('modals')
+    @parent
+    <x-dialog id="edit-dialog" :loading="true" />
+    @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms(), 'params' => []])
 @endsection

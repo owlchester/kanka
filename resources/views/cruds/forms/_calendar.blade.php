@@ -90,7 +90,7 @@ if (!empty($oldCalendarID)) {
                 </div>
                 <div class="field-recurring-periodicity">
                     <label>{{ __('calendars.fields.recurring_periodicity') }}</label>
-                     {!! Form::select('calendar_recurring_periodicity', (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : [])), null, ['class' => 'form-control']) !!}
+                     {!! Form::select('calendar_recurring_periodicity', (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : [])), null, ['class' => 'form-control reminder-periodicity']) !!}
                 </div>
             </div>
         </div>

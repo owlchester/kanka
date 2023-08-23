@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\UpdateCalendarEvent;
@@ -10,12 +11,18 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Services\CalendarService;
+use App\Traits\CampaignAware;
+use App\Traits\Controllers\HasDatagrid;
+use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Str;
 
 class ReminderController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
+    use HasDatagrid;
+    use HasSubview;
 
     /**
      * @var string
@@ -25,14 +32,8 @@ class ReminderController extends Controller
 
     protected CalendarService $calendarService;
 
-    /**
-     * @var string
-     */
     protected $model = \App\Models\EntityEvent::class;
 
-    /**
-     * CalendarController constructor.
-     */
     public function __construct(CalendarService $calendarService)
     {
         //parent::__construct();
@@ -40,34 +41,34 @@ class ReminderController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
-        $reminders = $entity
+        $this->campaign($campaign)->authEntityView($entity);
+
+        $options = ['campaign' => $campaign, 'entity' => $entity];
+        Datagrid::layout(\App\Renderers\Layouts\Entity\Reminder::class)
+            ->route('entities.entity_events.index', $options);
+
+        $this->rows = $entity
             ->events()
             ->has('calendar')
             ->has('calendar.entity')
             ->with(['calendar', 'calendar.entity', 'entity'])
-            ->ordered(request()->get('order'), 'events/date')
             ->paginate();
 
-        return view('entities.pages.reminders.index', compact(
-            'campaign',
-            'entity',
-            'reminders'
-        ));
+        if (request()->ajax()) {
+            return $this->campaign($campaign)->datagridAjax();
+        }
+
+        return view('entities.pages.reminders.index')
+            ->with('campaign', $campaign)
+            ->with('entity', $entity)
+            ->with('rows', $this->rows)
+        ;
     }
 
     /**
-     * @param Entity $entity
-     * @param EntityEvent $entityEvent
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function show(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
@@ -76,11 +77,6 @@ class ReminderController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function create(Campaign $campaign, Entity $entity)
     {

@@ -1,5 +1,5 @@
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
-var reminderFormValid = false, reminderForm;
+
 $(document).ready(function() {
     // View
     calendarYearSwitcher = $('#calendar-year-switcher');

@@ -67,6 +67,7 @@ class Marker extends Layout
             self::ACTION_DELETE,
         ];
     }
+
     public function bulks(): array
     {
         return [

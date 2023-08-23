@@ -51,7 +51,7 @@ $fieldOptions['data-append-to'] = $colourAppendTo;
         <label>
             {{ __('calendars.fields.is_recurring') }}
         </label>
-        {!! Form::select('recurring_periodicity', (isset($calendar) ? $calendar->recurringOptions() : []), (isset($entityEvent) && $entityEvent->is_recurring ? $entityEvent->recurring_periodicity : ''), ['class' => 'form-control']) !!}
+        {!! Form::select('recurring_periodicity', (isset($calendar) ? $calendar->recurringOptions() : []), (isset($entityEvent) && $entityEvent->is_recurring ? $entityEvent->recurring_periodicity : ''), ['class' => 'form-control reminder-periodicity']) !!}
     </div>
     <div class="field-recurring-until">
         <div style="@if (!isset($entityEvent) || !$entityEvent->is_recurring) display:none @endif" id="add_event_recurring_until">

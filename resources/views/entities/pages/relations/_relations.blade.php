@@ -31,12 +31,6 @@
 @section('modals')
     @parent
     <x-dialog id="edit-dialog" :loading="true" />
-@endsection
-
-
-@section('modals')
-    @parent
-
     @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms(), 'params' => []])
 @endsection
 

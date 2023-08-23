@@ -668,11 +668,11 @@ class MapMarker extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return $options + [$this->map_id, $this->id];
+        return $options + ['map' => $this->map_id, 'map_marker' => $this->id];
     }
     public function routeCopyParams(array $options = []): array
     {
-        return $options + [$this->map_id, 'source' => $this->id];
+        return $options + ['map' => $this->map_id, 'source' => $this->id];
     }
     /**
      * Patch an entity from the datagrid2 batch editing

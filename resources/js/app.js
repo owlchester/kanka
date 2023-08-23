@@ -302,7 +302,7 @@ import './clipboard';
 import './toast';
 import './sidebar';
 import './banner';
-//import './timeline';
+import './timelines';
 import './utility/sortable';
 import './utility/formError';
 import './utility/dialog';

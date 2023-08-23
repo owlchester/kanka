@@ -139,7 +139,7 @@ class TimelineEra extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return $options + [$this->timeline_id, $this->id];
+        return $options + ['timeline' => $this->timeline_id, 'timeline_era' => $this->id];
     }
 
     /**
