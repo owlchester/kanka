@@ -48,7 +48,7 @@ if (isset($model) && $model->isChunked()) {
         [
         'placeholder' => 5,
         'class' => 'form-control',
-        'min' => 0,
+        'min' => 1,
         'max' => Map::MAX_ZOOM,
         ]
         ) !!}
