@@ -395,7 +395,7 @@ function uploadImage($summernote, file) {
     }
 
     let formData = new FormData();
-    formData.append("file", file);
+    formData.append("file[]", file);
     formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
     $.ajax({
         url: summernoteConfig.data('gallery-upload'),
