@@ -38,7 +38,7 @@ if ($folder) {
                 </a>
             @endif
         </div>
-        <div class="bg-base-300 w-full h-2 overflow-hidden rounded" data-title="{{ $galleryService->usedQuota() }}%" data-toggle="tooltip">
+        <div class="bg-base-300 w-full h-2 overflow-hidden rounded transition-all duration-300" data-title="{{ $galleryService->usedQuota() }}%" data-toggle="tooltip">
             <div class="{{ $galleryService->usedBarClasses() }}" style="width: {{ $galleryService->usedQuota() }}%" id="storage-progress"></div>
         </div>
     </div>

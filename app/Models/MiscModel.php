@@ -158,7 +158,7 @@ abstract class MiscModel extends Model
         $campaign = CampaignLocalization::getCampaign();
 
         $entity = $this->cachedEntity ?? $this->entity;
-        if ($campaign->superboosted() && !empty($entity->image)) {
+        if (!empty($entity->image)) {
             return $entity->image->getUrl($size, $size);
         } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
             return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]);

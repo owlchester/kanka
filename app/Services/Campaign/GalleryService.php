@@ -49,7 +49,7 @@ class GalleryService
 
     public function usedBarClasses(): string
     {
-        $classes = 'h-2 ';
+        $classes = 'h-2 transition-all duration-300 ';
         if ($this->usedQuota() < 50) {
             return $classes . 'bg-green-500';
         } elseif ($this->usedQuota() < 80) {

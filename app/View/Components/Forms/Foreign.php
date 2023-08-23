@@ -116,7 +116,7 @@ class Foreign extends Component
             }
         } else {
             if (empty($this->label)) {
-                $this->label = __('crud.users.unknown');
+                $this->label = '';
             }
             if (empty($this->placeholder)) {
                 $this->placeholder = '';
