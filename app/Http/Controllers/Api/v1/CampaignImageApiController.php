@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\Campaigns\GalleryImageUpdate;
 use App\Models\Campaign;
 use App\Models\Image;
-use App\Http\Requests\Campaigns\GalleryImageStore as Request;
 use App\Http\Resources\ImageResource as Resource;
 use App\Services\Campaign\GalleryService;
 use Illuminate\Support\Arr;
@@ -51,12 +51,12 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @param Request $request
+     * @param GalleryImageStore $request
      * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Request $request, Campaign $campaign)
+    public function store(GalleryImageStore $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);

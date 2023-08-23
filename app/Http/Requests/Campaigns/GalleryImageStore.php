@@ -27,8 +27,8 @@ class GalleryImageStore extends FormRequest
     {
         //opentype,ttf,woff,woff2 not working for some reason.
         $rules = [
+            'file' => 'required|array',
             'file.*' => [
-                'required',
                 File::types(['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2']),
                 'max:' . auth()->user()->maxUploadSize()
             ],

@@ -101,10 +101,11 @@ To create a image, use the following endpoint.
 
 ### Body
 
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
+| Parameter   | Type | Detail |
+|:------------|   :-   |  :-  |
 | `folder_id` | `integer` | The image's folder id |
-| `file` | `stream` | Stream to file uploaded |
+| `file[]`    | `stream` | Stream to file uploaded |
+| `file[]`    | `stream` | Stream to file uploaded |
 
 
 ### Results
