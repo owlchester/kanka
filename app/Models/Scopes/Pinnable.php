@@ -24,6 +24,6 @@ trait Pinnable
 
     public function isPinned(): bool
     {
-        return $this->is_pinned;
+        return (bool) $this->is_pinned;
     }
 }
