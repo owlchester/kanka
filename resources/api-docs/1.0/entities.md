@@ -7,6 +7,9 @@
 - [Single Entity](#entity)
 - [Filtering Entities](#filtering-entities)
 - [Related Entities](#related-entities)
+- [Deleted Entities](#deleted-entities)
+- [Recover Deleted Entities](#recover-entities)
+
 
 <a name="entities"></a>
 ## Entities
@@ -192,3 +195,84 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
 ```
 
 Notice the new array objects `attributes`, `entity_files`, `entity_events`, `posts`, `entity_abilities` and `relations`.
+
+<a name="deleted-entities"></a>
+## Deleted Entities
+
+You can view the recoverable deleted entities on the `/recovery` endpoint
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `recovery` | Default |
+
+### Result
+
+```json
+{
+ "data": [
+        {
+            "id": 2,
+            "name": "Thaelia",
+            "type": "location",
+            "type_id": 3,
+            "child_id": 2,
+            "tags": [],
+            "is_private": false,
+            "is_template": false,
+            "campaign_id": 1,
+            "is_attributes_private": false,
+            "tooltip": null,
+            "header_image": null,
+            "image_uuid": null,
+            "created_at": "2023-08-22T20:01:48.000000Z",
+            "created_by": null,
+            "updated_at": "2023-08-22T23:19:07.000000Z",
+            "updated_by": 1,
+            "urls": {
+                "view": "http://app.kanka.test:8081/w/1/entities/2",
+                "api": "http://api.kanka.test:8081/1.0/campaigns/1/locations/2"
+            }
+        },
+        {
+            "id": 23,
+            "name": "Middle Earth",
+            "type": "location",
+            "type_id": 3,
+            "child_id": 16,
+            "tags": [],
+            "is_private": false,
+            "is_template": false,
+            "campaign_id": 1,
+            "is_attributes_private": false,
+            "tooltip": null,
+            "header_image": null,
+            "image_uuid": null,
+            "created_at": "2023-08-22T20:22:21.000000Z",
+            "created_by": null,
+            "updated_at": "2023-08-22T23:19:07.000000Z",
+            "updated_by": null,
+            "urls": {
+                "view": "http://app.kanka.test:8081/w/1/entities/23",
+                "api": "http://api.kanka.test:8081/1.0/campaigns/1/locations/16"
+            }
+        }
+    ],
+}
+```
+
+<a name="recover-entities"></a>
+## Recover Deleted Entities
+
+You can post an array with the ids of the entities you want to recover to the `/recover` endpoint to undo the deletion (this is a boosted/premium only feature).
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `recover` | Default |
+
+| Parameter | Type | Description
+| :- | :- | :- |
+| `entities` | `array` | The ids of the entities to recover. |
+
+### Result
+
+> {success} Code 200 with JSON.

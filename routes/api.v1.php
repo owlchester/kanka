@@ -95,5 +95,8 @@ Route::get('entity-types', [\App\Http\Controllers\Api\v1\EntityTypeApiController
 Route::get('visibilities', [\App\Http\Controllers\Api\v1\VisibilityController::class, 'index']);
 Route::get('post-layouts', [\App\Http\Controllers\Api\v1\PostLayoutApiController::class, 'index']);
 
+Route::get('campaigns/{campaign}/recovery', [\App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'index']);
+Route::post('campaigns/{campaign}/recover', [\App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'recover']);
+
 Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
 Route::get('version', function () { return config('app.version'); });

@@ -37,6 +37,10 @@ use App\Observers\CalendarObserver;
 use App\Observers\RelationObserver;
 use App\Facades\CampaignLocalization;
 use App\Models\EntityAbility;
+use App\Facades\CampaignCache;
+use App\Facades\CharacterCache;
+use App\Facades\EntityCache;
+use App\Facades\QuestCache;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Console\Command;
@@ -76,6 +80,11 @@ class DummyEntities extends Command
     {
         $campaignId = (int) $this->argument('campaign');
         $campaign = Campaign::findOrFail($campaignId);
+
+        CampaignCache::campaign($campaign);
+        EntityCache::campaign($campaign);
+        CharacterCache::campaign($campaign);
+        QuestCache::campaign($campaign);
 
         $this->loadObservers($campaign);
 
