@@ -45,7 +45,7 @@ class GalleryController extends Controller
             ->paginate(50);
 
         return view('gallery.index', compact('campaign', 'images', 'folder'))
-            ->with('galleryService', $this->service->campaign($campaign)->user(auth()->user()));
+            ->with('galleryService', $this->service->campaign($campaign));
     }
 
     public function search(Campaign $campaign)
@@ -76,6 +76,7 @@ class GalleryController extends Controller
 
         $images = $this->service
             ->campaign($campaign)
+            ->user(auth()->user())
             ->store($request);
 
         $body = [];
@@ -106,6 +107,7 @@ class GalleryController extends Controller
 
         $images = $this->service
             ->campaign($campaign)
+            ->user(auth()->user())
             ->store($request);
         $image = Arr::first($images);
 
@@ -139,6 +141,7 @@ class GalleryController extends Controller
         $added = $this->service
             ->campaign($campaign)
             ->image($image)
+            ->user(auth()->user())
             ->saveFocusPoint($request);
 
         $params = [];
@@ -213,6 +216,7 @@ class GalleryController extends Controller
 
         $folder = $this->service
             ->campaign($campaign)
+            ->user(auth()->user())
             ->createFolder($request);
 
         $params = [$campaign];

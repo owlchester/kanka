@@ -136,7 +136,7 @@ class GalleryService
 
             $image = new Image();
             $image->campaign_id = $this->campaign->id;
-            $image->created_by = $request->user()->id;
+            $image->created_by = $this->user->id;
             $image->id = Str::uuid()->toString();
             $image->ext = $source->extension();
             $image->size = (int) ceil($source->getSize() / 1024); // kb
@@ -203,7 +203,7 @@ class GalleryService
         $folder->name = $this->purify($request->post('name'));
         $folder->folder_id = $request->post('folder_id');
         $folder->is_folder = true;
-        $folder->created_by = $request->user()->id;
+        $folder->created_by = $this->user->id;
         $folder->visibility_id = (int) $request->post('visibility_id');
         $folder->save();
 
