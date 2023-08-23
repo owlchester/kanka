@@ -321,7 +321,7 @@
     "src": "resources/sass/tinymce.scss"
   },
   "resources/sass/vendor.scss": {
-    "file": "assets/vendor-e349c960.css",
+    "file": "assets/vendor-228be7d1.css",
     "isEntry": true,
     "src": "resources/sass/vendor.scss"
   }
