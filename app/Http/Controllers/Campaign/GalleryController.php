@@ -191,10 +191,10 @@ class GalleryController extends Controller
         $this->authorize('gallery', $campaign);
 
         $options = [$campaign];
-        $image->delete();
         if ($image->folder_id) {
             $options['folder_id'] = $image->folder_id;
         }
+        $this->service->campaign($campaign)->image($image)->delete();
 
         $key = $image->isFolder() ? 'folder' : 'success';
         return redirect()->route('campaign.gallery.index', $options)

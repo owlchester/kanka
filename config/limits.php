@@ -28,8 +28,8 @@ return [
     ],
 
     'gallery' => [
-        'standard' => 20 * 1024,
+        'standard' => 50 * 1024,
         'premium' => 2 * 1024 * 1024,
-        'premium' => 20 * 1024,
+        //'premium' => 20 * 1024,
     ]
 ];
