@@ -50,7 +50,7 @@ $statuses = [
     <div class="field-pinned">
         <label>
             {{ __('organisations.members.fields.pinned') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('organisations.members.helpers.pinned') }}"></i>
+            <x-helpers.tooltip :title="__('organisations.members.helpers.pinned')" />
         </label>
         {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
     </div>

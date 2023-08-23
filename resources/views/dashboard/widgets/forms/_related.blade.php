@@ -5,7 +5,7 @@
         <label>
             {!! Form::checkbox('config[attributes]', 1, (!empty($model) ? $model->conf('attributes') : null), ['id' => 'config-attributes', 'disabled' => !$boosted ? 'disabled' : null]) !!}
             {{ __('dashboard.widgets.recent.show_attributes') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('dashboard.widgets.recent.helpers.show_attributes') }}" aria-hidden="true"></i>
+            <x-helpers.tooltip :title="__('dashboard.widgets.recent.helpers.show_attributes')" />
         </label>
     </div>
     <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.show_attributes') }}</p>
@@ -17,7 +17,7 @@
         <label>
             {!! Form::checkbox('config[relations]', 1, (!empty($model) ? $model->conf('relations') : null), ['id' => 'config-relations', 'disabled' => !$boosted ? 'disabled' : null]) !!}
             {{ __('dashboard.widgets.recent.show_relations') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('dashboard.widgets.recent.helpers.show_relations') }}" aria-hidden="true"></i>
+            <x-helpers.tooltip :title="__('dashboard.widgets.recent.helpers.show_relations')" />
         </label>
     </div>
     <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.show_relations') }}</p>
@@ -29,7 +29,7 @@
         <label>
             {!! Form::checkbox('config[members]', 1, (!empty($model) ? $model->conf('members') : null), ['id' => 'config-members', 'disabled' => !$boosted ? 'disabled' : null]) !!}
             {{ __('dashboard.widgets.recent.show_members') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('dashboard.widgets.recent.helpers.show_members') }}" aria-hidden="true"></i>
+            <x-helpers.tooltip :title="__('dashboard.widgets.recent.helpers.show_members')" />
         </label>
     </div>
     <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.show_members') }}</p>

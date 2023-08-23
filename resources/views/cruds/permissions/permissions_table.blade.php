@@ -26,22 +26,22 @@ $permissionService->campaign($campaign);
         <div class="col-sm-4">
             <strong>{{ __('crud.permissions.fields.role') }}</strong>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm text-center">
+        <div class="col-sm-2 hidden md:block text-center">
             <i class="fa-solid fa-eye visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.read') }}"></i>
             <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.read') }}</strong></span>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm text-center">
+        <div class="col-sm-2 hidden md:block text-center">
             <i class="fa-solid fa-edit visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.edit') }}"></i>
             <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.edit') }}</strong></span>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm text-center">
+        <div class="col-sm-2 hidden md:block text-center">
             <i class="fa-solid fa-trash visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.delete') }}"></i>
             <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm text-center">
+        <div class="col-sm-2 text-center">
             <i class="fa-solid fa-sticky-note visible-xs visible-sm" aria-hidden="true" title="{{ __('entities.posts') }}"></i>
             <span class="hidden md:inline"><strong>{{ __('entities.posts') }}</strong></span>
-            <i class="fa-solid fa-question-circle flex justify-center bg-base-200 p-2" data-toggle="tooltip" data-placement="bottom" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
+            <i class="fa-solid fa-question-circle flex justify-center" data-toggle="tooltip" data-placement="bottom" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
         </div>
     </div>
     @foreach ($campaign->roles()->withoutAdmin()->get() as $role)
@@ -120,19 +120,19 @@ $permissionService->campaign($campaign);
         <div class="row mb-5">
             <div class="col-sm-4"><strong>{{ __('crud.permissions.fields.member') }}</strong></div>
 
-            <div class="col-sm-2 hidden-xs hidden-xm text-center">
+            <div class="col-sm-2 hidden md:block text-center">
                 <i class="fa-solid fa-eye visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.read') }}"></i>
                 <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.read') }}</strong></span>
             </div>
-            <div class="col-sm-2 hidden-xs hidden-xm text-center">
+            <div class="col-sm-2 hidden md:block text-center">
                 <i class="fa-solid fa-edit visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.edit') }}"></i>
                 <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.edit') }}</strong></span>
             </div>
-            <div class="col-sm-2 hidden-xs hidden-xm text-center">
+            <div class="col-sm-2 hidden md:block text-center">
                 <i class="fa-solid fa-trash visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.delete') }}"></i>
                 <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
             </div>
-            <div class="col-sm-2 hidden-xs hidden-xm text-center">
+            <div class="col-sm-2 hidden md:block text-center">
                 <i class="fa-solid fa-sticky-note visible-xs visible-sm" aria-hidden="true" title="{{ __('entities.posts') }}"></i>
                 <span class="hidden md:inline"><strong>{{ __('entities.posts') }}</strong></span>
                 <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-placement="bottom" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>

@@ -104,7 +104,6 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                         @else
                             <h1 class="truncate m-0 text-lg">
                                 {!! $title ?? "Page Title" !!}
-                                <span class="text-sm text-green-500 hidden-xs hidden-sm">{{ $description ?? null }}</span>
                             </h1>
                         @endif
                     @endif

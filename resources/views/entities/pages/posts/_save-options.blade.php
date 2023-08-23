@@ -9,7 +9,7 @@
             <li>
                 <a href="#" class="form-submit-actions flex">
                     <span class="flex-grow">{{ __('crud.save') }}</span>
-                    <span class="keyboard-shortcut flex-none ml-2 hidden-xs">CTRL+S</span>
+                    <span class="keyboard-shortcut flex-none ml-2 hidden sm:inline">CTRL+S</span>
                 </a>
             </li>
             <li>
@@ -20,7 +20,7 @@
             <li>
                 <a href="#" class="form-submit-actions flex" data-action="submit-update">
                     <span class="flex-grow">{{ __('crud.save_and_update') }}</span>
-                    <span class="keyboard-shortcut flex-none ml-2 hidden-xs">CTRL+SHIFT+S</span>
+                    <span class="keyboard-shortcut flex-none ml-2 hidden sm:inline">CTRL+SHIFT+S</span>
                 </a>
             </li>
         </ul>

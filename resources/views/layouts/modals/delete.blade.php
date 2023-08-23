@@ -17,7 +17,7 @@
                     <label>
                         <input type="checkbox" id="delete-confirm-mirror-checkbox" name="delete-mirror">
                         {{ __('entities/relations.delete_mirrored.option') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('entities/relations.delete_mirrored.helper') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                        <x-helpers.tooltip :title="__('entities/relations.delete_mirrored.helper')" />
                     </label>
                     <p class="help-block visible-xs visible-sm">
                         {{ __('entities/relations.delete_mirrored.helper') }}

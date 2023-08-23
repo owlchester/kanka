@@ -2,7 +2,7 @@
     @if (!empty($label))
         <label>{!! __($label) !!}
             @if(!empty($helper))
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ $helper }}" aria-hidden="true"></i>
+                <x-helpers.tooltip :title="$helper" />
             @endif
         </label>
     @endif

@@ -22,7 +22,7 @@
         <label class="" data-toggle="collapse" data-target="#two-way-relation">
             {!! Form::checkbox('two_way') !!}
             {{ __('entities/relations.fields.two_way') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('entities/relations.hints.two_way') }}" data-toggle="tooltip" aria-hidden="true"></i>
+            <x-helpers.tooltip :title="__('entities/relations.hints.two_way')" />
         </label>
         <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.two_way') }}</p>
     </div>
@@ -30,7 +30,7 @@
         <div class="collapse !visible" id="two-way-relation">
             <label>
                 {!! __('entities/relations.fields.target_relation') !!}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('entities/relations.hints.target_relation') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                <x-helpers.tooltip :title="__('entities/relations.hints.target_relation')" />
             </label>
             {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
             <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.target_relation') }}</p>
