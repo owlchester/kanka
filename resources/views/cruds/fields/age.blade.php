@@ -1,5 +1,7 @@
-<div class="field-age">
-    <label>{{ __($trans . '.fields.age') }}</label>
+<x-forms.field
+    field="age"
+    :label="__($trans . '.fields.age')"
+    :helper="isset($bulk) && $bulk ? __('crud.bulk.age.helper') : null">
     {!! Form::text(
         'age',
         FormCopy::field('name')->string(),
@@ -9,10 +11,4 @@
             'maxlength' => 9
         ]
     ) !!}
-
-    @if (isset($bulk) && $bulk)
-        <span class="help-block">
-            {{ __('crud.bulk.age.helper') }}
-        </span>
-    @endif
-</div>
+</x-forms.field>

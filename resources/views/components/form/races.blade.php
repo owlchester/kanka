@@ -27,19 +27,22 @@ if ($quickCreator) {
     $quickCreator = auth()->user()->can('create', new \App\Models\Race());
 }
 ?>
-<label>{{ \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) }}</label>
+<x-forms.field
+    field="races"
+    :label="\App\Facades\Module::plural(config('entities.ids.race'), __('entities.races'))">
 
-@if ($quickCreator)<div class="join w-full">@endif
+    @if ($quickCreator)<div class="join w-full">@endif
 
-<select multiple="multiple" name="races[]" class="form-control select2 join-item" data-tags="true" style="width: 100%" data-url="{{ route('races.find', $campaign) }}" data-allow-clear="true" data-allow-new="false" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
-    @foreach ($selectedOption as $key => $val)
-        <option value="{{ $key }}" selected="selected">{{ $val }}</option>
-    @endforeach
-</select>
+    <select multiple="multiple" name="races[]" class="form-control select2 join-item" data-tags="true" style="width: 100%" data-url="{{ route('races.find', $campaign) }}" data-allow-clear="true" data-allow-new="false" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
+        @foreach ($selectedOption as $key => $val)
+            <option value="{{ $key }}" selected="selected">{{ $val }}</option>
+        @endforeach
+    </select>
 
-@if ($quickCreator)
-        <a class="quick-creator-subform btn2 join-item btn-primary btn-outline" data-url="{{ route('entity-creator.form', [$campaign, 'type' => 'races', 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}">
-            <span class="fa-solid fa-plus"></span>
-        </a>
-    </div>
-@endif
+    @if ($quickCreator)
+            <a class="quick-creator-subform btn2 join-item btn-primary btn-outline" data-url="{{ route('entity-creator.form', [$campaign, 'type' => 'races', 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}">
+                <span class="fa-solid fa-plus"></span>
+            </a>
+        </div>
+    @endif
+</x-forms.field>

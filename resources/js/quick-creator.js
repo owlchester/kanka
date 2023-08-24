@@ -167,7 +167,7 @@ function quickCreatorSubformHandler() {
                 errorKeys.forEach(function (i) {
                     let errorSelector = $('#entity-creator-form [name="' + i + '"]');
                     if (errorSelector.length > 0) {
-                        errorSelector.addClass('border-red-500').parent().append('<div class="text-error">' + errors[i][0] + '</div>');
+                        errorSelector.addClass('input-error').parent().append('<div class="text-error">' + errors[i][0] + '</div>');
                     } else {
                         foundAllErrors = false;
                     }

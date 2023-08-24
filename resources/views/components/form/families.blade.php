@@ -27,7 +27,10 @@ if ($quickCreator) {
     $quickCreator = auth()->user()->can('create', new \App\Models\Family());
 }
 ?>
-<label>{!! \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')) !!}</label>
+
+<x-forms.field
+    field="families"
+    :label="\App\Facades\Module::plural(config('entities.ids.family'), __('entities.families'))">
 
 @if ($quickCreator)<div class="join w-full">@endif
 
@@ -43,3 +46,5 @@ if ($quickCreator) {
         </a>
     </div>
 @endif
+</x-forms.field>
+

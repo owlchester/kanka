@@ -43,6 +43,7 @@ const initTooltips = () => {
             theme: 'kanka',
             placement: e.dataset.direction ?? 'bottom',
             allowHTML: e.dataset.html ?? false,
+            appendTo: e.dataset.append ?? '',
             arrow: true,
         });
     });
@@ -75,5 +76,6 @@ initTooltips()
 initAjaxTooltips()
 initDropdowns()
 
+window.initTooltips = initTooltips;
 window.ajaxTooltip = initAjaxTooltips;
 window.showTooltip = showTooltip;

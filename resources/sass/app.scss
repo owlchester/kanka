@@ -69,6 +69,12 @@ tr.tr-hover {
     background-color: #a35831 !important;
 }
 
+.field {
+    > input, > select {
+        padding: 0.4rem 0.8rem;
+    }
+}
+
 
 // Attributes in entities and text area
 .attribute, .note-editing-area > .attribute {
@@ -220,6 +226,11 @@ ol, ul {
     td {
         vertical-align: middle !important;
     }
+}
+
+.input-error {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--er)/var(--tw-border-opacity));
 }
 
 /*ul.pagination {

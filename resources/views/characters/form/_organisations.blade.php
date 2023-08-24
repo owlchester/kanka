@@ -78,7 +78,7 @@ $statuses = [
 
 @section('modals')
     @parent
-    <div id="template_organisation" style="display: none">
+    <template id="template_organisation">
         <div class="flex flex-wrap md:flex-no-wrap items-start gap-2 md:gap-4 mb-2 member-row">
             <div class="">
                 <select name="organisations[]" class="form-control tmp-org" style="width: 100%"
@@ -118,6 +118,6 @@ $statuses = [
                 </span>
             </div>
         </div>
-    </div>
+    </template>
 @endsection
 

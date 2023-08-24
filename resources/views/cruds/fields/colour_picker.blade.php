@@ -8,8 +8,8 @@ if (isset($dropdownParent)) {
 }
 
 @endphp
-
-<div class="field-colour">
-    <label class="block w-full">{{ __('crud.fields.colour') }}</label>
+<x-forms.field
+    field="colour"
+    :label="__('crud.fields.colour')">
     {!! Form::text('colour', null, $fieldOptions ) !!}
-</div>
+</x-forms.field>

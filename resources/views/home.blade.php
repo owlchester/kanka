@@ -96,7 +96,4 @@ use App\Enums\Widget;
     @can('apply', $campaign)
     <x-dialog id="apply-dialog" title="Loading"></x-dialog>
     @endif
-    <template>
-        <div class="md:col-span-1 md:col-span-2 md:col-span-3 md:col-span-4 md:col-span-5 md:col-span-6 md:col-span-7 md:col-span-8 md:col-span-9 md:col-span-10 md:col-span-11 md:col-span-12" title="Needed for TW"></div>
-    </template>
 @endsection

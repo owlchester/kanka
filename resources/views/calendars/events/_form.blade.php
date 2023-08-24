@@ -34,10 +34,11 @@
                 ])
             </div>
             <div class="grow calendar-new-event-field">
-                <div class="field-name">
-                    <label>{{ __('crud.fields.name') }}</label>
+                <x-forms.field
+                    field="name"
+                    :label="__('crud.fields.name')">
                     {!! Form::text('name', null, ['placeholder' => __('crud.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                </x-forms.field>
             </div>
             <div class="">
                 <a href="#" id="calendar-event-switch" class="btn2 btn-sm">
