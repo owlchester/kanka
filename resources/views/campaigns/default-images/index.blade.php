@@ -15,8 +15,8 @@
         <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'default-images'])
         </div>
-        <div class="grow max-w-4xl">
-            <div class="flex gap-2 mb-5 items-center">
+        <div class="grow max-w-4xl flex flex-col gap-5">
+            <div class="flex gap-2 items-center">
                 <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.default-images') }}
                 </h3>
@@ -45,7 +45,7 @@
                             </a>
                         </x-box>
                     @endif
-                    <div class="grid grid-cols-1 gap-4 xl:grid-cols-2 md:gap-5">
+                    <div class="grid grid-cols-2 sm:grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
 
                         @foreach ($campaign->defaultImages() as $image)
                             <div class="rounded overflow-hidden border flex gap-2 items-center bg-box">
