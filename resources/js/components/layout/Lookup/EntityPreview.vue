@@ -1,6 +1,6 @@
 <template>
     <div class="entity-header p-3 bg-entity-focus">
-        <div class="block w-full flex items-center">
+        <div class="w-full flex items-center">
 
             <a class="text-2xl font-extrabold entity-name" v-bind:href="entity.link" :title="entity.name">
               {{ entity.name }}

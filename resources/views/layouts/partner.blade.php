@@ -21,7 +21,7 @@
 </head>
 <body class="">
 @include('layouts.tracking.fallback')
-    <div id="app" class="wrapper">
+    <div id="app" class="wrapper h-full relative overflow-x-hidden overflow-y-auto mt-12">
         <!-- Sidebar -->
         @include('layouts.partner.sidebar')
 
@@ -86,8 +86,8 @@
                     <p>{!! __('crud.delete_modal.description_v2', ['tag' => '<b><span id="target-name"></span></b>']) !!}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger delete-confirm-submit"><span class="fa-solid fa-trash" aria-hidden="true"></span> {{ __('crud.delete_modal.delete') }}</button>
+                    <button type="button" class="btn2 btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                    <button type="button" class="btn2 btn-danger delete-confirm-submit"><span class="fa-solid fa-trash" aria-hidden="true"></span> {{ __('crud.delete_modal.delete') }}</button>
                 </div>
             </div>
         </div>

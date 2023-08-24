@@ -211,7 +211,7 @@
                         <input id="accountholder-name"  name="accountholder-name" class="form-control mb-5">
 
                         <div class="text-center">
-                            <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                            <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                 <span>{{ __('settings.subscription.actions.subscribe') }}</span>
                                 <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                             </button>
@@ -246,7 +246,7 @@
                                 {!! __('settings.subscription.helpers.paypal_v3', ['email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}
                             </p>
                             <div class="text-center">
-                                <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                                <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                     <span>{{ __('settings.subscription.actions.subscribe') }}</span>
                                     <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                                 </button>

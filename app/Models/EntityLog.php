@@ -136,15 +136,15 @@ class EntityLog extends Model
     public function actionBackground(): string
     {
         if ($this->action == self::ACTION_CREATE || $this->action == self::ACTION_CREATE_POST) {
-            return 'bg-green';
+            return 'bg-green-300';
         } elseif ($this->action == self::ACTION_UPDATE || $this->action == self::ACTION_UPDATE_POST) {
-            return 'bg-blue';
+            return 'bg-blue-200';
         } elseif ($this->action == self::ACTION_REORDER_POST) {
-            return 'bg-yellow';
+            return 'bg-yellow-300';
         } elseif ($this->action == self::ACTION_DELETE || $this->action == self::ACTION_DELETE_POST) {
-            return 'bg-red';
+            return 'bg-red-300';
         } elseif ($this->action == self::ACTION_RESTORE) {
-            return 'bg-orange';
+            return 'bg-orange-300';
         }
         return 'bg-gray';
     }

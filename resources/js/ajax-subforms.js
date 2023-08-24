@@ -56,7 +56,7 @@ function initSubforms() {
 const displayErrors = (form, error) => {
     //console.debug('error', err);
     // Reset any error fields
-    form.find('.input-error').removeClass('input-error');
+    form.find('.border-red-500').removeClass('border-red-500');
     form.find('.text-error').remove();
 
     // If we have a 503 error status, let's assume it's from cloudflare and help the user
@@ -82,7 +82,7 @@ const displayErrors = (form, error) => {
         let errorSelector = $('[name="' + i + '"]');
         //console.log('error field', '[name="' + i + '"]');
         if (errorSelector.length > 0) {
-            form.find('[name="' + i + '"]').addClass('input-error')
+            form.find('[name="' + i + '"]').addClass('border-red-500')
                 .parent()
                 .append('<div class="text-error">' + errors[i][0] + '</div>');
         } else {

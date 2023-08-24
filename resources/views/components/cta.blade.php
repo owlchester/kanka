@@ -1,4 +1,4 @@
-<div class="grid gap-5 grid-cols-1 @if ($image) lg:grid-cols-2 booster-block mb-5 @endif">
+<div class="grid gap-5 grid-cols-1 @if ($image) lg:grid-cols-2 mb-5 @endif">
     <div class="max-w-2xl p-5 rounded text-center mb-5 text-base border-boost border-1 border-solid bg-box shadow-xs flex flex-col gap-1">
 
         @if (!$minimal)
@@ -75,7 +75,7 @@
         @endif
     </div>
     @if ($image)
-        <div class="">
+        <div class="max-w-2xl">
             @include('partials.images.boosted-image')
         </div>
     @endif
