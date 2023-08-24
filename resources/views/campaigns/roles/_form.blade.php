@@ -9,7 +9,7 @@
             <label>
                 {!! Form::checkbox('duplicate', 1) !!}
                 {{ __('campaigns.roles.fields.copy_permissions') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-title="{{ __('calendars.hints.skip_year_zero') }}" data-toggle="tooltip"></i>
+                <x-helpers.tooltip :title="__('calendars.hints.skip_year_zero')" />
             </label>
             <p class="help-block visible-xs visible-sm">{{ __('campaigns.roles.helper.permissions_helper') }}</p>
         </div>

@@ -32,10 +32,10 @@
                     @foreach ($logs as $log)
                         @if ($log->action < 7 || $log->post)
                             <tr>
-                                <td>
+                                <td class="break-words">
                                     {{ __('entities/logs.actions.' . $log->actionCode(), ['post' => $log->post?->name]) }}
                                 </td>
-                                <td>@if ($log->user)
+                                <td class="">@if ($log->user)
                                         {!! link_to_route('users.profile', $log->user->name, $log->user, ['target' => '_blank']) !!}
                                     @else
                                         {{  __('crud.history.unknown') }}
@@ -55,13 +55,13 @@
                                         @if(!empty($log->changes))
                                             <a href="#log-{{ $log->id }}" data-toggle="collapse">
                                                 <i class="fa-solid fa-scroll" aria-hidden="true"></i>
-                                                <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
+                                                <span class="hidden md:inline">{{ __('entities/logs.actions.view') }}</span>
                                             </a>
                                         @endif
                                     @else
                                     <a href="#log-cta" data-toggle="collapse">
                                         <i class="fa-solid fa-scroll" aria-hidden="true"></i>
-                                        <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
+                                        <span class="hidden md:inline">{{ __('entities/logs.actions.view') }}</span>
                                     </a>
                                     @endif
                                 </td>

@@ -8,7 +8,7 @@
     <div class="field-template mb-5">
         <label for="template_id">
             {{ __('entities.attribute_template') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('crud.hints.attribute_template') }}"></i>
+            <x-helpers.tooltip :title="__('crud.hints.attribute_template')" />
         </label>
         {!! Form::select('template_id', $attributeTemplates, null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'form-control', 'id' => 'template_id']) !!}
 

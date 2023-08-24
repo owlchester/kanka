@@ -62,7 +62,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             @if (!isset($printing))
             <a class="entity-image cover-background visible-xs" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePathMobile }}');" aria-label="Open original image"></a>
             @endif
-            <div class="cursor-pointer dropdown-toggle hidden-xs print-none" data-toggle="dropdown" aria-expanded="false">
+            <div class="cursor-pointer dropdown-toggle hidden sm:block print-none" data-toggle="dropdown" aria-expanded="false">
                 <picture>
                     <source media="(min-width:766px)" srcset="{{ $imagePathXL }}">
                     <img src="{{ $imagePath }}" alt="{{ $model->name }}" style="width:auto;">

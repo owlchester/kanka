@@ -75,7 +75,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-868807ca.js",
+    "file": "assets/app-da75c3a5.js",
     "imports": [
       "_delete-confirm-63bc2c61.js",
       "_mention-5d95822d.js",
@@ -233,12 +233,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-850794e8.css",
+    "file": "assets/app-33e81df2.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-4a75cde4.css",
+    "file": "assets/auth-19427c59.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -263,7 +263,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-2cd5ed2f.css",
+    "file": "assets/front-f49ab902.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },

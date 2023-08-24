@@ -122,7 +122,7 @@ if (isset($model) && $model->isChunked()) {
     <div class="field-distance-measure">
         <label>
             {{ __('maps.fields.distance_measure') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2')}}"></i>
+            <x-helpers.tooltip :title="__('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2')" />
         </label>
         {!! Form::number(
         'config[distance_measure]',

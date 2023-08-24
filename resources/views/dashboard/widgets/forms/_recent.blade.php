@@ -60,10 +60,10 @@
                             {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null)) !!}
 
                             {{ __('dashboard.widgets.recent.singular') }}
-                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('dashboard.widgets.recent.help') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <x-helpers.tooltip :title="__('dashboard.widgets.recent.help')" />
                         </label>
                     </div>
-                    <p class="help-block hidden-md hidden-lg">
+                    <p class="help-block md:hidden">
                         {{ __('dashboard.widgets.recent.help') }}
                     </p>
                 </div>

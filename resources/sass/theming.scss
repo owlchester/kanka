@@ -345,6 +345,10 @@ hr {
 blockquote {
     --tw-border-opacity: 1;
     border-color: hsl(var(--b3)/var(--tw-border-opacity));
+    padding: 0.6rem 1.1rem;
+    font-size: 1.1rem;
+    border-left-sytle: solid;
+    border-left-width: 0.25rem;
 }
 
 

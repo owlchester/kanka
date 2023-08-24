@@ -21,33 +21,33 @@ $permissionService->campaign($campaign);
     ]) !!}
 </p>
 
-<div id="crud_permissions">
-    <div class="row mb-5">
-        <div class="col-sm-4">
+<div id="crud_permissions" class="flex flex-col gap-3">
+    <div class="hidden md:grid md:grid-cols-5 gap-2">
+        <div class="w-40 ">
             <strong>{{ __('crud.permissions.fields.role') }}</strong>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm text-center">
+        <div class="">
             <i class="fa-solid fa-eye visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.read') }}"></i>
-            <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.read') }}</strong></span>
+            <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.read') }}</strong></span>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm text-center">
+        <div class="">
             <i class="fa-solid fa-edit visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.edit') }}"></i>
-            <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.edit') }}</strong></span>
+            <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.edit') }}</strong></span>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm text-center">
+        <div class="">
             <i class="fa-solid fa-trash visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.delete') }}"></i>
-            <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
+            <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
         </div>
-        <div class="col-sm-2 hidden-xs hidden-xm text-center">
+        <div class="">
             <i class="fa-solid fa-sticky-note visible-xs visible-sm" aria-hidden="true" title="{{ __('entities.posts') }}"></i>
-            <span class="hidden-xs hidden-sm"><strong>{{ __('entities.posts') }}</strong></span>
-            <i class="fa-solid fa-question-circle flex justify-center bg-base-200 p-2" data-toggle="tooltip" data-placement="bottom" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
+            <span class="hidden md:inline"><strong>{{ __('entities.posts') }}</strong></span>
+            <i class="fa-solid fa-question-circle flex justify-center" data-toggle="tooltip" data-placement="bottom" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
         </div>
     </div>
     @foreach ($campaign->roles()->withoutAdmin()->get() as $role)
-        <div class="row mb-5">
-            <div class="col-sm-4">{{ $role->name }}</div>
-            <div class="text-center col-sm-2">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-2 items-center">
+            <div class="w-40 col-span-2 md:col-span-1  ">{{ $role->name }}</div>
+            <div class="">
                 <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</label>
                 <div class="join w-full">
                 {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_READ . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_READ), [
@@ -61,8 +61,8 @@ $permissionService->campaign($campaign);
                 @endif
                 </div>
             </div>
-            @if (!$role->is_public)
-                <div class="col-sm-2 text-center">
+            @if (!$role->isPublic())
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.edit') }}</label>
                     <div class="join w-full">
                         {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_EDIT), [
@@ -76,7 +76,7 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.delete') }}</label>
                     <div class="join w-full">
                         {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_DELETE ."]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_DELETE), [
@@ -90,7 +90,7 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('entities.posts') }}</label>
                     <div class="join w-full">
                         {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_POSTS), [
@@ -104,6 +104,10 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                 </div>
+            @else
+                <div></div>
+                <div></div>
+                <div></div>
             @endif
         </div>
     @endforeach
@@ -112,56 +116,51 @@ $permissionService->campaign($campaign);
         <p class="help-block">{{ __('crud.permissions.too_many_members', ['number' => 10]) }}</p>
         <input type="hidden" name="permissions_too_many" value="1" />
     @else
-        <div class="row mb-5">
-            <div class="col-sm-12">
-                <hr />
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col-sm-4"><strong>{{ __('crud.permissions.fields.member') }}</strong></div>
+        <hr />
 
-            <div class="col-sm-2 hidden-xs hidden-xm text-center">
+        <div class="hidden md:grid grid-cols-5 gap-2 justify-center">
+            <div class=""><strong>{{ __('crud.permissions.fields.member') }}</strong></div>
+
+            <div class="">
                 <i class="fa-solid fa-eye visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.read') }}"></i>
-                <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.read') }}</strong></span>
+                <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.read') }}</strong></span>
             </div>
-            <div class="col-sm-2 hidden-xs hidden-xm text-center">
+            <div class="">
                 <i class="fa-solid fa-edit visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.edit') }}"></i>
-                <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.edit') }}</strong></span>
+                <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.edit') }}</strong></span>
             </div>
-            <div class="col-sm-2 hidden-xs hidden-xm text-center">
+            <div class="">
                 <i class="fa-solid fa-trash visible-xs visible-sm" aria-hidden="true" title="{{ __('crud.permissions.actions.delete') }}"></i>
-                <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
+                <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
             </div>
-            <div class="col-sm-2 hidden-xs hidden-xm text-center">
+            <div class="">
                 <i class="fa-solid fa-sticky-note visible-xs visible-sm" aria-hidden="true" title="{{ __('entities.posts') }}"></i>
-                <span class="hidden-xs hidden-sm"><strong>{{ __('entities.posts') }}</strong></span>
+                <span class="hidden md:inline"><strong>{{ __('entities.posts') }}</strong></span>
                 <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-placement="bottom" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
             </div>
         </div>
         @foreach ($permissionService->users() as $member)
-            <div class="row mb-5">
-                <div class="col-sm-4">
-                    <div class="flex items-center gap-2">
-                        <div class="flex-none">
-                            <div class="entity-image cover-background" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
-                            </div>
+            <div class="grid grid-cols-2 md:grid-cols-5 md: gap-2">
+                <div class="col-span-2 md:col-span-1 flex flex-wrap items-center gap-2">
+                    <div class="flex-none">
+                        <div class="entity-image cover-background" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
                         </div>
-                        <div class="flex-grow truncate">
-                            {{ $member->user->name }}
-                        </div>
-                    @if (isset($entity))
-                        @can('switch', $member)
-                            <div class="flex-none">
-                                <a class="btn2 btn-outline btn-accent btn-xs btn-view-as" href="{{ route('identity.switch-entity', [$campaign, $member, $entity]) }}" data-title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
-                                    <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
-                                    {{ __('campaigns.members.actions.switch-entity') }}
-                                </a>
-                            </div>
-                        @endcan
-                    @endif
                     </div>
+                    <div class="truncate">
+                        {{ $member->user->name }}
+                    </div>
+                @if (isset($entity))
+                    @can('switch', $member)
+                        <div class="grow">
+                            <a class="btn2 btn-outline btn-accent btn-xs btn-view-as" href="{{ route('identity.switch-entity', [$campaign, $member, $entity]) }}" data-title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
+                                <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
+                                {{ __('campaigns.members.actions.switch-entity') }}
+                            </a>
+                        </div>
+                    @endcan
+                @endif
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_READ ."]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_READ), [
@@ -177,7 +176,7 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.edit') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_EDIT), [
@@ -193,7 +192,7 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.delete') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_DELETE . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_DELETE), [
@@ -209,7 +208,7 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="">
                     <label class="visible-xs-inline visible-sm-inline">{{ __('entities.posts') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_POSTS), [

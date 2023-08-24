@@ -6,7 +6,7 @@
             <label>
                 {!! Form::checkbox('skip_year_zero', 1, !empty($model) ? $model->skip_year_zero : 0) !!}
                 {{ __('calendars.fields.skip_year_zero') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-title="{{ __('calendars.hints.skip_year_zero') }}" data-toggle="tooltip"></i>
+                <x-helpers.tooltip :title="__('calendars.hints.skip_year_zero')" />
             </label>
             <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.skip_year_zero') }}</p>
         </div>
@@ -14,7 +14,7 @@
         <div class="field-start-offset">
             <label>
                 {{ __('calendars.fields.start_offset') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('calendars.helpers.start_offset') }}"></i>
+                <x-helpers.tooltip :title="__('calendars.helpers.start_offset')" />
             </label>
             {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset')->string(0), ['class' => 'form-control']) !!}
             <p class="help-block visible-xs visible-sm">{{ __('calendars.helpers.start_offset') }}</p>
@@ -25,7 +25,7 @@
         <div class="field-reset">
             <label>
                 {{ __('calendars.fields.reset') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('calendars.hints.reset') }}"></i>
+                <x-helpers.tooltip :title="__('calendars.hints.reset')" />
             </label>
             {!! Form::select('reset', __('calendars.options.resets'), null, ['class' => 'form-control']) !!}
             <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.reset') }}</p>
@@ -44,7 +44,7 @@
             {!! Form::hidden('is_incrementing', 0) !!}
             <label>{!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
                 {{ __('calendars.fields.is_incrementing') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('calendars.hints.is_incrementing') }}"></i>
+                <x-helpers.tooltip :title="__('calendars.hints.is_incrementing')" />
             </label>
             <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.is_incrementing') }}</p>
         </div>
@@ -54,7 +54,7 @@
         <div class="field-layout">
             <label>
                 {{ __('calendars.fields.default_layout') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('calendars.helpers.default_layout') }}"></i>
+                <x-helpers.tooltip :title="__('calendars.helpers.default_layout')" />
             </label>
             {!! Form::select('parameters[layout]', ['' => __('calendars.layouts.monthly'), 'yearly' => __('calendars.layouts.yearly')], null, ['class' => 'form-control'])!!}
             <p class="help-block visible-xs visible-sm">

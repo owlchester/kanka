@@ -40,7 +40,7 @@ class SearchController extends Controller
             return view('search.index')
                 ->with('results', [])
                 ->with('campaign', $campaign)
-                ;
+            ;
         }
         $term = trim($term);
         $results = [];

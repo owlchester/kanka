@@ -25,10 +25,6 @@
     <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
-    @if (request()->has('bs'))
-    <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    @endif
-
     @vite('resources/sass/auth.scss')
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
 </head>

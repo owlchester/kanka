@@ -19,7 +19,7 @@
         <a href="{{ route('campaign_invites.create', $campaign) }}" class="btn2 btn-primary btn-sm"
             data-toggle="dialog-ajax" data-target="new-invite" data-url="{{ route('campaign_invites.create', $campaign) }}">
             <x-icon class="fa-solid fa-user-plus" />
-            <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
+            <span class="hidden lg:inline">{{ __('campaigns.invites.actions.link') }}</span>
         </a>
     </div>
 
@@ -30,9 +30,9 @@
                     <thead>
                         <tr>
                             <th>{{ __('campaigns.invites.fields.token') }}</th>
-                            <th class="hidden-xs hidden-sm">{{ __('campaigns.invites.fields.usage') }}</th>
+                            <th class="hidden md:inline">{{ __('campaigns.invites.fields.usage') }}</th>
                             <th>{{ __('campaigns.invites.fields.role') }}</th>
-                            <th class="hidden-xs hidden-md">{{ __('campaigns.invites.fields.created') }}</th>
+                            <th class="hidden md:inline">{{ __('campaigns.invites.fields.created') }}</th>
                             <th class="text-right"></th>
                         </tr>
                     </thead>
@@ -48,11 +48,11 @@
                                     <span class="sr-only">{{ __('Copy') }}</span>
                                 </a>
                             </td>
-                            <td class="hidden-xs hidden-sm">
+                            <td class="hidden md:inline">
                                 {{ $relation->validity !== null ? $relation->validity : __('campaigns.invites.unlimited_validity') }}
                             </td>
                             <td>{{ $relation->role ? $relation->role->name : null }}</td>
-                            <td class="hidden-xs hidden-md">
+                            <td class="hidden md:inline">
                                 <span data-title="{{ $relation->created_at }}+00:00" data-toggle="tooltip">
                                     {{ $relation->created_at->diffForHumans() }}
                                 </span>

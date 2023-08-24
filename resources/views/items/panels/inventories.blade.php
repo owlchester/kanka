@@ -4,8 +4,8 @@
         <tbody><tr>
             <th class="avatar w-12"><br /></th>
             <th>{{ __('crud.fields.entity') }}</th>
-            <th class="hidden-sm">{{ __('entities/inventories.fields.amount') }}</th>
-            <th class="hidden-sm">{{ __('entities/inventories.fields.position') }}</th>
+            <th class="hidden md:block">{{ __('entities/inventories.fields.amount') }}</th>
+            <th class="hidden md:block">{{ __('entities/inventories.fields.position') }}</th>
         </tr>
         @foreach ($r as $inventory)
             @if ($inventory->entity->child)
@@ -19,8 +19,8 @@
                     @endif
                     {!! $inventory->entity->tooltipedLink() !!}
                 </td>
-                <td class="hidden-sm">{{ $inventory->amount }}</td>
-                <td class="hidden-sm">{{ $inventory->position }}</td>
+                <td class="hidden md:block">{{ $inventory->amount }}</td>
+                <td class="hidden md:block">{{ $inventory->position }}</td>
             </tr>
             @endif
         @endforeach
