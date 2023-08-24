@@ -12,8 +12,8 @@ use App\Traits\Controllers\HasDatagrid;
 
 class UserController extends Controller
 {
-    use HasDatagrid;
     use CampaignAware;
+    use HasDatagrid;
 
     /**
      * Create a new controller instance.
