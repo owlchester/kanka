@@ -43,5 +43,5 @@ $visibilityUniqueID = uniqid('visibility_');
             <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-title="{{ __('visibilities.tooltip') }}"></i>
         </a>
     </label>
-    {{ Form::select('visibility_id', $options, empty($model) ? (isset($bulk) ? null : $campaign->defaultVisibilityID()) : $model->visibility_id, ['class' => 'form-control', 'id' => $visibilityUniqueID]) }}
+    {{ Form::select('visibility_id', $options, empty($model) ? (isset($bulk) ? null : $campaign->defaultVisibilityID()) : ($model->visibility_id instanceof Visibility ? $model->visibility_id->value : $model->visibility_id), ['class' => 'form-control', 'id' => $visibilityUniqueID]) }}
 </div>

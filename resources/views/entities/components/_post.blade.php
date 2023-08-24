@@ -6,56 +6,59 @@
 * @var \Illuminate\Database\Eloquent\Collection $pinnedNotes
 */
 ?>
-<div class="post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
-    <div class="box box-solid post entity-note" id="post-{{ $post->id }}">
-        <div class="box-header with-border">
-            <h3 class="box-title cursor-pointer element-toggle {{ $post->collapsed() ? "collapsed" : null }}" data-toggle="collapse" data-target="#post-body-{{ $post->id }}" data-short="post-toggle-{{ $post->id }}" >
-                <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
-                <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
-                {{ $post->name  }}
-                @if (app()->environment('local'))
-                    <sup>({{ $post->position }})</sup>
-                @endif
-            </h3>
-            <div class="box-tools">
-                @if (auth()->check())
-                    {!! $post->visibilityIcon('btn-box-tool') !!}
+<div class="flex flex-col gap-2 post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
+    <div class="post-header flex gap-1 md:gap-2 items-center ">
+        <div class="flex-none">
+            <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
+            <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
+        </div>
+        <h4 class="post-title grow cursor-pointer element-toggle {{ $post->collapsed() ? "collapsed" : null }}" data-toggle="collapse" data-target="#post-body-{{ $post->id }}" data-short="post-toggle-{{ $post->id }}" >
 
+            {{ $post->name  }}
+            @if (app()->environment('local'))
+                <sup>({{ $post->position }})</sup>
+            @endif
+        </h4>
+        <div class="flex-none flex gap-1 items-center">
+            @if (auth()->check())
+                {!! $post->visibilityIcon('btn-box-tool') !!}
+
+                <div class="dropdown">
                     <a role="button" class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                         <x-icon class="fa-solid fa-ellipsis-v"></x-icon>
                         <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                         @can('post', [$model, 'edit', $post])
-                        <li>
-                            <a href="{{ route('entities.posts.edit', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
-                                <x-icon class="edit"></x-icon>
-                                {{ __('crud.edit') }}
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('entities.posts.edit', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
+                                    <x-icon class="edit"></x-icon>
+                                    {{ __('crud.edit') }}
+                                </a>
+                            </li>
                         @endcan
                         @if (!isset($more))
-                        <li>
-                            <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toggle="tooltip"
-                               data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
-                                <x-icon class="fa-solid fa-link"></x-icon>
-                                {{ __('entities/notes.copy_mention.copy') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toggle="tooltip"
-                               data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
-                                <x-icon class="fa-solid fa-link"></x-icon>
-                                {{ __('entities/notes.copy_mention.copy_with_name') }}
-                            </a>
-                        </li>
+                            <li>
+                                <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toggle="tooltip"
+                                   data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
+                                    <x-icon class="fa-solid fa-link"></x-icon>
+                                    {{ __('entities/notes.copy_mention.copy') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toggle="tooltip"
+                                   data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
+                                    <x-icon class="fa-solid fa-link"></x-icon>
+                                    {{ __('entities/notes.copy_mention.copy_with_name') }}
+                                </a>
+                            </li>
                         @endif
                         @if(auth()->user()->isAdmin())
-                        <li>
-                            <a href="{{ route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
-                                <x-icon class="fa-solid fa-arrows-left-right"></x-icon> {{ __('entities/notes.move.move') }}
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
+                                    <x-icon class="fa-solid fa-arrows-left-right"></x-icon> {{ __('entities/notes.move.move') }}
+                                </a>
+                            </li>
                         @endif
                         <li class="divider"></li>
                         <li>
@@ -65,9 +68,11 @@
                             </a>
                         </li>
                     </ul>
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
+    </div>
+    <div class="bg-box rounded p-4 post entity-note" id="post-{{ $post->id }}">
         <div class="entity-content box-body collapse !visible @if(!$post->collapsed()) in @endif" id="post-body-{{ $post->id }}">
             <div class="post-details mb-2 entity-note-details">
 
