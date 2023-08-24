@@ -6,8 +6,6 @@ use App\Http\Controllers\Api\v1\ApiController;
 use App\Models\Campaign;
 use App\Models\Calendar;
 use App\Services\Calendars\AdvancerService;
-use App\Http\Requests\StoreCalendar as Request;
-use App\Http\Resources\CalendarResource as Resource;
 
 class AdvancerApiController extends ApiController
 {
@@ -19,10 +17,9 @@ class AdvancerApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Calendar $calendar
-     * @return Resource
+     * @return \Illuminate\Http\JsonResponse
      */
     public function advance(Campaign $campaign, Calendar $calendar)
     {
@@ -34,10 +31,9 @@ class AdvancerApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Calendar $calendar
-     * @return Resource
+     * @return \Illuminate\Http\JsonResponse
      */
     public function retreat(Campaign $campaign, Calendar $calendar)
     {
