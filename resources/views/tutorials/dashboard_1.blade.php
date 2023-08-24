@@ -11,7 +11,7 @@
 @endsection
 
 @section('footer')
-    <button class="btn2 btn-accent pull-left" data-tutorial="disable" data-url="{{ route('settings.tutorial.disable') }}">
+    <button class="btn2 btn-accent pull-left" data-tutorial="disable" data-url="{{ route('settings.tutorial.dismiss') }}">
         {{ __('tutorials/actions.disable') }}
     </button>
     <button class="btn2 btn-ghost" data-tutorial="close">

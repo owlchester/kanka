@@ -12,7 +12,6 @@ class ImageSearchController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
-        $this->middleware('campaign.boosted');
     }
 
     /**

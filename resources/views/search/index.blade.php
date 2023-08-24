@@ -6,7 +6,7 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => 'search', 'method' => 'GET']) !!}
+    {!! Form::open(['route' => ['search', $campaign], 'method' => 'GET']) !!}
         <x-box>
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ request()->get('q') }}">

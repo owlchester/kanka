@@ -395,7 +395,7 @@ function uploadImage($summernote, file) {
     }
 
     let formData = new FormData();
-    formData.append("file", file);
+    formData.append("file[]", file);
     formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
     $.ajax({
         url: summernoteConfig.data('gallery-upload'),
@@ -415,21 +415,16 @@ function uploadImage($summernote, file) {
             //console.log(textStatus + " " + errorThrown);
             //console.log(jqXHR);
             let error = $('#campaign-imageupload-error');
-            let boosted = $('#campaign-imageupload-boosted');
             let permission = $('#campaign-imageupload-permission');
 
             error.hide();
-            boosted.hide();
             permission.hide();
 
             if (jqXHR.status === 422) {
                 error.text(buildErrors(jqXHR.responseJSON.errors)).show();
             } else if (jqXHR.status === 403) {
                 permission.show();
-            } else {
-                boosted.show();
             }
-            //$('#superboosted-error').text(buildErrors(jqXHR.responseJSON.errors));
             modal.modal();
         }
     });

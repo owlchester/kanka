@@ -82,14 +82,13 @@ class ImageController extends Controller
             []
         );
 
-        if ($entity->campaign->superboosted()) {
-            if (request()->has('entity_image_uuid')) {
-                $entity->image_uuid = request()->get('entity_image_uuid');
-            } else {
-                $entity->image_uuid = null;
-            }
-            $entity->save();
+        if (request()->has('entity_image_uuid')) {
+            $entity->image_uuid = request()->get('entity_image_uuid');
+        } else {
+            $entity->image_uuid = null;
         }
+        $entity->save();
+
 
         $resetFocus = false;
         if ($oldImage != $entity->child->image || $oldBoostedImage != $request->get('entity_image_uuid')) {

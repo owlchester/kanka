@@ -1,7 +1,4 @@
-<label>
-    {{ __('fields.gallery-image.title') }}
-</label>
-@if ($campaign->superboosted())
+
     @php
     $preset = null;
     if (isset($model) && $model->entity && $model->entity->image_uuid) {
