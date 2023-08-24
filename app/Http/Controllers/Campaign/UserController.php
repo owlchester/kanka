@@ -6,9 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
+use App\Facades\Datagrid;
+use App\Traits\CampaignAware;
+use App\Traits\Controllers\HasDatagrid;
 
 class UserController extends Controller
 {
+    use CampaignAware;
+    use HasDatagrid;
+
     /**
      * Create a new controller instance.
      *
@@ -27,8 +33,9 @@ class UserController extends Controller
     {
         $this->authorize('members', $campaign);
 
-        $users = $campaign
+        $this->rows = $campaign
             ->members()
+            ->sort(request()->only(['o', 'k']), ['id' => 'desc'])
             ->with(['user', 'campaign', 'user.campaignRoles', 'user.campaignRoleUser'])
             ->paginate();
 
@@ -39,11 +46,17 @@ class UserController extends Controller
             ->paginate();
 
         $roles = $campaign->roles->where('is_public', false)->all();
+
+        Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignUser::class);
+        if (request()->ajax()) {
+            return $this->campaign($campaign)->datagridAjax();
+        }
+
         return view('campaigns.members.index', [
             'campaign' => $campaign,
             'roles' => $roles,
-            'users' => $users,
-            'invitations' => $invitations
+            'invitations' => $invitations,
+            'rows' => $this->rows,
         ]);
     }
 

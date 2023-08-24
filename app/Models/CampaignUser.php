@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Paginatable;
 use App\User;
 use Carbon\Carbon;
+use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -24,8 +25,11 @@ use Illuminate\Database\Eloquent\Builder;
 class CampaignUser extends Pivot
 {
     use Paginatable;
+    use SortableTrait;
 
     public $table = 'campaign_user';
+
+    protected $sortable = ['user.name', 'created_at', 'last_login'];
 
     /** @var string[]  */
     protected $fillable = ['user_id', 'campaign_id'];
