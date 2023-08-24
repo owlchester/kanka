@@ -1,8 +1,9 @@
 <?php
 $required = !isset($bulk);
 ?>
-<div class="field-icon">
-    <label>{{ __('entities/links.fields.icon') }}</label>
+<x-forms.field
+    field="icon"
+    :label="__('entities/links.fields.icon')">
     @if($campaign->boosted())
 
         {!! Form::text(
@@ -15,7 +16,7 @@ $required = !isset($bulk);
                 'maxlength' => 45
             ]
         ) !!}
-        <p class="help-block">
+        <p class="help-block m-0">
             {!! __('entities/links.helpers.icon', [
                 'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
                 'rpgawesome' => link_to('https://nagoshiashumari.github.io/Rpg-Awesome/', 'RPGAwesome', ['target' => '_blank']),
@@ -33,4 +34,4 @@ $required = !isset($bulk);
         </p>
         @endsubscriber
     @endif
-</div>
+</x-forms.field>

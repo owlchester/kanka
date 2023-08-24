@@ -1,5 +1,5 @@
 <x-forms.field
-    field="title"
+    field="{{ $key }}"
     :required="$required"
     :label="__($label)"
     :helper="$helper"
