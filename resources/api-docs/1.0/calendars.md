@@ -8,6 +8,8 @@ month_length# Calendars
 - [Update a Calendar](#update-calendar)
 - [Delete a Calendar](#delete-calendar)
 - [Reminders](#reminders)
+- [Advance Date](#advance)
+- [Retreat Date](#retreat)
 - [Weather](#weather)
 
 <a name="all-calendars"></a>
@@ -364,6 +366,32 @@ You can get a list of all the reminders of a calendar by using the following end
         },
 }
 ```
+
+<a name="advance"></a>
+## Advance Date
+
+You can advance the date of the calendar by one day using the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `calendars/{calendar.id}/advance` | Default |
+
+### Results
+
+> {success} Code 200 with JSON.
+
+<a name="retreat"></a>
+## Retreat Date
+
+You can turn back the date of the calendar by one day using the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `calendars/{calendar.id}/retreat` | Default |
+
+### Results
+
+> {success} Code 200 with JSON.
 
 <a name="weather"></a>
 ## Weather
