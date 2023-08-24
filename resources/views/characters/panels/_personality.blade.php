@@ -3,15 +3,18 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
 ?>
 
 @if (((auth()->check() && auth()->user()->can('personality', $model)) || $model->is_personality_visible) && count($traits) > 0)
-    <div class="box box-solid character-personalities">
-        <div class="box-header with-border">
-            <h3 class="box-title cursor-pointer element-toggle" data-toggle="collapse" data-target="#character-personality-body" data-short="character-personality-toggle">
-                <i class="fa-solid fa-chevron-up icon-show"></i>
-                <i class="fa-solid fa-chevron-down icon-hide"></i>
-                {{ __('characters.sections.personality') }}
-            </h3>
+
+    <div class="flex flex-col gap-3 post-block character-personalities">
+        <div class="post-header flex gap-1 md:gap-2 items-center">
+            <div class="flex gap-2 items-center grow cursor-pointer" data-toggle="collapse" data-target="#character-personality-body">
+                <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
+                <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
+                <h3 class="post-title grow m-0"  >
+                    {{ __('characters.sections.personality') }}
+                </h3>
+            </div>
             @if(auth()->check() && auth()->user()->can('personality', $model))
-                <div class="box-tools">
+                <div class="flex-none">
                     @if (!$model->is_personality_visible)
                         <i class="fa-solid fa-lock btn-box-tool" data-title="{{ __('characters.hints.personality_not_visible') }}" data-toggle="tooltip"></i>
                     @else
@@ -20,13 +23,17 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                 </div>
             @endif
         </div>
-        <div class="box-body collapse !visible in" id="character-personality-body">
-        @foreach ($traits as $trait)
-            <p class="entity-trait-{{ \Illuminate\Support\Str::slug($trait->name) }}">
-                <b>{{ $trait->name }}</b><br />
-                {!! nl2br(\App\Facades\Mentions::mapAny($trait, 'entry')) !!}
-            </p>
-        @endforeach
+        <div class="bg-box rounded" id="character-personality">
+            <div class="entity-content box-body collapse !visible in" id="character-personality-body">
+                <div class="p-4">
+                    @foreach ($traits as $trait)
+                        <p class="entity-trait-{{ \Illuminate\Support\Str::slug($trait->name) }}">
+                            <b>{{ $trait->name }}</b><br />
+                            {!! nl2br(\App\Facades\Mentions::mapAny($trait, 'entry')) !!}
+                        </p>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 @endif

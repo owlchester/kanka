@@ -6,15 +6,15 @@
 * @var \Illuminate\Database\Eloquent\Collection $pinnedNotes
 */
 ?>
-<div class="post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif mb-5" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
-    <div class="flex gap-2 mb-2 items-center">
+<div class="flex flex-col gap-2 post-block post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
+    <div class="flex gap-2 items-center">
         <h3 class="grow m-0" >
             {{ $post->name  }}
             @if (app()->environment('local'))
                 <sup class="text-xs">({{ $post->position }})</sup>
             @endif
         </h3>
-        <div class="post-buttons flex items-center gap-2 flex-wrap justify-end">
+        <div class="post-buttons flex items-center gap-1 flex-wrap justify-end">
             @if (auth()->check())
                 {!! $post->visibilityIcon('') !!}
                 <div class="dropdown">

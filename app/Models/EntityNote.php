@@ -64,7 +64,8 @@ class EntityNote extends Model
 
     /** @var array<string, string>  */
     public $casts = [
-        'settings' => 'array'
+        'settings' => 'array',
+        'visibility_id' => \App\Enums\Visibility::class,
     ];
 
     /**

@@ -1,3 +1,4 @@
+<div class="flex flex-col gap-5">
 @php
 /**
  * @var \App\Models\MiscModel $model
@@ -27,7 +28,7 @@ $postCount = 0;
 
 
 @if($wrapper)
-<div class="entity-posts entity-notes">
+<div class="entity-posts entity-notes flex flex-col gap-5">
 @endif
     @foreach ($pinnedPosts as $post)
         @if ($post->layout_id && isset($printing) && $printing === true)
@@ -54,7 +55,7 @@ $postCount = 0;
     @endif
 
     @if ($pinnedPosts->currentPage() < $pinnedPosts->lastPage())
-        <div class="text-center mb-5">
+        <div class="text-center">
             @if (auth()->check())
             <a href="#" class="btn2  btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$campaign, $entity, 'page' => $pinnedPosts->currentPage() + 1]) }}">
                 <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> {{ __('entities/story.actions.load_more') }}
@@ -85,3 +86,4 @@ $postCount = 0;
     </div>
 @endcan
 @endif
+</div>

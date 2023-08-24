@@ -55,6 +55,7 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
                 :allowClear="true"
                 :route="route('images.find', $campaign)"
                 :placeholder="__('fields.gallery.placeholder')"
+                :dropdownParent="$dropdownParent ?? null"
                 :selected="$preset">
             </x-forms.foreign>
             @if (!empty($model->entity) && !empty($model->entity->image_uuid) && empty($model->entity->image))

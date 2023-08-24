@@ -33,6 +33,3 @@
     @if (!empty($model->entity) && !empty($model->entity->image_uuid) && empty($model->entity->image))
         <input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" />
     @endif
-@else
-    @include('cruds.fields.helpers.superboosted', ['key' => 'fields.gallery-image.boosted-description'])
-@endif
