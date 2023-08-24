@@ -11,7 +11,6 @@ use App\Http\Resources\CalendarResource as Resource;
 
 class AdvancerApiController extends ApiController
 {
-
     protected AdvancerService $service;
 
     public function __construct(AdvancerService $service)
