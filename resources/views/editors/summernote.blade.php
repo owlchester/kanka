@@ -45,8 +45,8 @@
         data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
 @if (isset($name) && $name == 'characters')        data-bragi="{{ route('bragi', $campaign) }}"@endif
 @if(isset($campaign) && $campaign !== null)
-        data-gallery="{{ $campaign->superboosted() ? route('campaign.gallery.summernote', $campaign) : null }}"
-    @if($campaign->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload', $campaign) }}" @endif
+        data-gallery="{{ route('campaign.gallery.summernote', $campaign) }}"
+        data-gallery-upload="{{ route('campaign.gallery.ajax-upload', $campaign) }}"
 @endif
 @if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', [$campaign, $model->entity]) }}"
 @elseif (!empty($entity))        data-attributes="{{ route('search.attributes', [$campaign, $entity]) }}"
@@ -59,19 +59,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content bg-base-100 rounded-2xl">
                 <div class="modal-body text-center">
-                    <div id="campaign-imageupload-boosted">
-                        <x-dialog.close />
-
-                        <x-cta :campaign="$campaign" image="0" superboost="1">
-                            <p>{{ __('campaigns/gallery.pitch') }}</p>
-                        </x-cta>
-                    </div>
                     <x-alert type="error" id="campaign-imageupload-error" :hidden="true"></x-alert>
-                    <x-alert type="error" id="campaign-imageupload-permission" :hidden="true"></x-alert>
+                    <x-alert type="error" id="campaign-imageupload-permission" :hidden="true">
                         {!! __('campaigns/gallery.errors.permissions', [
     'permission' => '<code>' . __('campaigns.roles.permissions.actions.gallery') . '</code>']
     ) !!}
-                    </p>
+                    </x-alert>
                 </div>
             </div>
         </div>

@@ -20,8 +20,7 @@ class GalleryController extends Controller
     public function __construct(GalleryService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.superboosted', ['except' => 'index']);
-
+        $this->middleware('campaign.member');
         $this->service = $service;
     }
 
@@ -29,10 +28,10 @@ class GalleryController extends Controller
     {
         $this->authorize('gallery', $campaign);
 
-        if (!$campaign->superboosted()) {
+        /*if (!$campaign->superboosted()) {
             return view('gallery.unsuperboosted')
                 ->with('campaign', $campaign);
-        }
+        }*/
 
         $folder = null;
         $folderId = request()->get('folder_id');
@@ -45,7 +44,8 @@ class GalleryController extends Controller
             ->defaultOrder()
             ->paginate(50);
 
-        return view('gallery.index', compact('campaign', 'images', 'folder'));
+        return view('gallery.index', compact('campaign', 'images', 'folder'))
+            ->with('galleryService', $this->service->campaign($campaign));
     }
 
     public function search(Campaign $campaign)
@@ -76,6 +76,7 @@ class GalleryController extends Controller
 
         $images = $this->service
             ->campaign($campaign)
+            ->user(auth()->user())
             ->store($request);
 
         $body = [];
@@ -90,6 +91,7 @@ class GalleryController extends Controller
             'success' => true,
             'images' => $body,
             'campaign' => $campaign,
+            'storage' => $this->service->storageInfo(),
         ]);
     }
 
@@ -105,6 +107,7 @@ class GalleryController extends Controller
 
         $images = $this->service
             ->campaign($campaign)
+            ->user(auth()->user())
             ->store($request);
         $image = Arr::first($images);
 
@@ -138,6 +141,7 @@ class GalleryController extends Controller
         $added = $this->service
             ->campaign($campaign)
             ->image($image)
+            ->user(auth()->user())
             ->saveFocusPoint($request);
 
         $params = [];
@@ -190,10 +194,10 @@ class GalleryController extends Controller
         $this->authorize('gallery', $campaign);
 
         $options = [$campaign];
-        $image->delete();
         if ($image->folder_id) {
             $options['folder_id'] = $image->folder_id;
         }
+        $this->service->campaign($campaign)->image($image)->delete();
 
         $key = $image->isFolder() ? 'folder' : 'success';
         return redirect()->route('campaign.gallery.index', $options)
@@ -202,9 +206,6 @@ class GalleryController extends Controller
 
     /**
      * Create a new folder
-     * @param GalleryImageFolderStore $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function folder(GalleryImageFolderStore $request, Campaign $campaign)
     {
@@ -215,6 +216,7 @@ class GalleryController extends Controller
 
         $folder = $this->service
             ->campaign($campaign)
+            ->user(auth()->user())
             ->createFolder($request);
 
         $params = [$campaign];
