@@ -24,7 +24,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class CampaignUser extends Pivot
 {
-    use Paginatable, SortableTrait;
+    use Paginatable;
+    use SortableTrait;
 
     public $table = 'campaign_user';
 

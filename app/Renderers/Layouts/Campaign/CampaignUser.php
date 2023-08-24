@@ -4,7 +4,6 @@ namespace App\Renderers\Layouts\Campaign;
 
 use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Layout;
-use App\Renderers\Layouts\Columns\Standard;
 
 class CampaignUser extends Layout
 {
@@ -27,10 +26,10 @@ class CampaignUser extends Layout
                 'label' => 'campaigns.members.fields.name',
                 'render' => function ($model) {
                     $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
-                if ($model->user->isBanned()) {
-                    $html .= '<i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" data-title = "' . __('campaigns.members.fields.banned') . '"></i>';
+                    if ($model->user->isBanned()) {
+                        $html .= '<i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" data-title = "' . __('campaigns.members.fields.banned') . '"></i>';
 
-                }
+                    }
                     return $html;
                 },
             ],
@@ -40,7 +39,7 @@ class CampaignUser extends Layout
                 'render' => function ($model) {
                     $campaign = CampaignLocalization::getCampaign();
                     $html = $model->user->rolesList($campaign);
-                    if(auth()->user()->can('update', $model)){
+                    if(auth()->user()->can('update', $model)) {
                         $html .= ' <i href="' . route('campaign.members.roles', [$campaign, $model->id]) . '" class="fa-solid fa-plus-circle cursor-pointer"
                             data-toggle="dialog-ajax" data-target="new-invite" data-url="' . route('campaign.members.roles', [$campaign, $model->id]) . '">
                         </i>';

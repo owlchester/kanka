@@ -41,7 +41,7 @@ class UserController extends Controller
             ->paginate();
 
         $roles = $campaign->roles->where('is_public', false)->all();
-    
+
         Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignUser::class);
         $rows = $users;
         if (request()->ajax()) {
