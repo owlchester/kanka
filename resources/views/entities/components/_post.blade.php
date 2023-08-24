@@ -6,25 +6,25 @@
 * @var \Illuminate\Database\Eloquent\Collection $pinnedNotes
 */
 ?>
-<div class="flex flex-col gap-2 post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
-    <div class="post-header flex gap-1 md:gap-2 items-center ">
-        <div class="flex-none">
+<div class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif {{ $post->collapsed() ? "collapsed" : null }}" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
+    <div class="post-header flex gap-1 md:gap-2 items-center">
+        <div class="flex gap-2 items-center grow cursor-pointer"  data-toggle="collapse" data-target="#post-body-{{ $post->id }}">
             <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
             <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
-        </div>
-        <h4 class="post-title grow cursor-pointer element-toggle {{ $post->collapsed() ? "collapsed" : null }}" data-toggle="collapse" data-target="#post-body-{{ $post->id }}" data-short="post-toggle-{{ $post->id }}" >
+            <h3 class="post-title grow m-0 {{ $post->collapsed() ? "collapsed" : null }}"  >
+                {{ $post->name  }}
+                @if (app()->environment('local'))
+                    <sup class="text-xs">({{ $post->position }})</sup>
+                @endif
+            </h3>
 
-            {{ $post->name  }}
-            @if (app()->environment('local'))
-                <sup>({{ $post->position }})</sup>
-            @endif
-        </h4>
+        </div>
         <div class="flex-none flex gap-1 items-center">
             @if (auth()->check())
                 {!! $post->visibilityIcon('btn-box-tool') !!}
 
                 <div class="dropdown">
-                    <a role="button" class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+                    <a role="button" class="dropdown-toggle btn2 btn-ghost btn-sm" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                         <x-icon class="fa-solid fa-ellipsis-v"></x-icon>
                         <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                     </a>
@@ -72,35 +72,37 @@
             @endif
         </div>
     </div>
-    <div class="bg-box rounded p-4 post entity-note" id="post-{{ $post->id }}">
+    <div class="bg-box rounded post entity-note" id="post-{{ $post->id }}">
         <div class="entity-content box-body collapse !visible @if(!$post->collapsed()) in @endif" id="post-body-{{ $post->id }}">
-            <div class="post-details mb-2 entity-note-details">
+            <div class="flex flex-col gap-2 p-4">
+                <div class="post-details mb-2 entity-note-details">
 
-                @if ($post->location)
-                <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
-                <x-icon :class="\App\Facades\Module::icon(config('entities.ids.location'), 'ra ra-tower')"></x-icon>
-                    {!! $post->location->tooltipedLink() !!}
-                </span>
-                @endif
-            </div>
-            <div class="entity-note-body post-body">
-                {!! $post->entry() !!}
-            </div>
+                    @if ($post->location)
+                    <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
+                    <x-icon :class="\App\Facades\Module::icon(config('entities.ids.location'), 'ra ra-tower')"></x-icon>
+                        {!! $post->location->tooltipedLink() !!}
+                    </span>
+                    @endif
+                </div>
+                <div class="entity-note-body post-body">
+                    {!! $post->entry() !!}
+                </div>
 
 
-            <div class="post-footer entity-note-footer text-right text-muted text-xs ">
-                <span class="post-footer-element post-created entity-note-footer-element entity-note-created" data-title="{{ __('entities/notes.footer.created', [
-    'user' => $post->created_by ? e(\App\Facades\UserCache::name($post->created_by)) : __('crud.users.unknown'),
-    'date' => $post->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
-                    {{ $post->created_at->isoFormat('MMMM Do, Y') }}
-                </span>
-                    @if ($post->updated_at->greaterThan($post->created_at))
-                        <span class="post-footer-element post-updated entity-note-footer-element entity-note-updated" data-title="{{ __('entities/notes.footer.updated', [
-    'user' => $post->updated_by ? e(\App\Facades\UserCache::name($post->updated_by)) : __('crud.users.unknown'),
-    'date' => $post->updated_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
-                    {{ $post->updated_at->isoFormat('MMMM Do, Y') }}
-                </span>
-                @endif
+                <div class="post-footer entity-note-footer text-right text-muted text-xs ">
+                    <span class="post-footer-element post-created entity-note-footer-element entity-note-created" data-title="{{ __('entities/notes.footer.created', [
+        'user' => $post->created_by ? e(\App\Facades\UserCache::name($post->created_by)) : __('crud.users.unknown'),
+        'date' => $post->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
+                        {{ $post->created_at->isoFormat('MMMM Do, Y') }}
+                    </span>
+                        @if ($post->updated_at->greaterThan($post->created_at))
+                            <span class="post-footer-element post-updated entity-note-footer-element entity-note-updated" data-title="{{ __('entities/notes.footer.updated', [
+        'user' => $post->updated_by ? e(\App\Facades\UserCache::name($post->updated_by)) : __('crud.users.unknown'),
+        'date' => $post->updated_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
+                        {{ $post->updated_at->isoFormat('MMMM Do, Y') }}
+                    </span>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

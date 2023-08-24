@@ -3,23 +3,27 @@ $appearances = $model->characterTraits()->appearance()->orderBy('default_order')
 ?>
 
 @if (count($appearances) > 0)
-    <div class="box box-solid character-appearances">
-        <div class="box-header with-border">
-            <h3 class="box-title cursor-pointer element-toggle" data-toggle="collapse" data-target="#character-appearance-body" data-short="character-appearance-toggle">
-                <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
-                <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
-                {{ __('characters.sections.appearance') }}
-            </h3>
+    <div class="flex flex-col gap-3 post-block post-block character-appearances">
+        <div class="post-header flex gap-1 md:gap-2 items-center">
+            <div class="flex gap-2 items-center grow cursor-pointer" data-toggle="collapse" data-target="#character-appearance-body">
+                <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
+                <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
+                <h3 class="post-title grow m-0"  >
+                    {{ __('characters.sections.appearance') }}
+                </h3>
+            </div>
         </div>
-        <div class="box-body collapse !visible in" id="character-appearance-body">
-            <x-grid>
+        <div class="bg-box rounded" id="character-appearance">
+            <div class="entity-content box-body collapse !visible in" id="character-appearance-body">
+                <x-grid css="p-4">
         @foreach ($appearances as $trait)
                 <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}">
                     <b>{{ $trait->name }}</b><br />
                     {{ $trait->entry }}
                 </p>
         @endforeach
-            </x-grid>
+                </x-grid>
+            </div>
         </div>
     </div>
 @endif

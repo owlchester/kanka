@@ -142,7 +142,7 @@
     "src": "resources/js/dashboard.js"
   },
   "resources/js/editors/summernote.js": {
-    "file": "assets/summernote-0d2ce461.js",
+    "file": "assets/summernote-91f0579e.js",
     "isEntry": true,
     "src": "resources/js/editors/summernote.js"
   },
@@ -173,7 +173,7 @@
     "src": "resources/js/front.js"
   },
   "resources/js/gallery.js": {
-    "file": "assets/gallery-62b521ce.js",
+    "file": "assets/gallery-0ad73be6.js",
     "imports": [
       "_index-0b481a1e.js",
       "__commonjsHelpers-725317a4.js"
@@ -233,12 +233,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-33e81df2.css",
+    "file": "assets/app-5ac27beb.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-19427c59.css",
+    "file": "assets/auth-9123e68a.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -263,7 +263,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-f49ab902.css",
+    "file": "assets/front-dc177ed5.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
