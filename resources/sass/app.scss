@@ -26,14 +26,9 @@
 
 .content {
     min-height: 250px;
-    padding: 15px;
-    margin-right: auto;
-    margin-left: auto;
 }
 
 .content-header {
-    padding: 15px 15px 0 15px;
-
     .breadcrumb {
         background: transparent;
 
@@ -365,3 +360,5 @@ ul.entity-menu {
 @import "colour";
 
 @import 'cookieconsent/build/cookieconsent.min.css';
+
+@import 'freyja/freyja';

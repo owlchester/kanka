@@ -14,13 +14,13 @@
         @if (request()->has('parent_id'))
             <a href="{{ route('locations.characters', [$campaign, $model]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                <span class="hidden md:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->allCharacters()->count() }})
             </a>
         @else
             <a href="{{ route('locations.characters', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                <span class="hidden md:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->characters()->count() }})
             </a>
         @endif

@@ -10,8 +10,8 @@ $map = $entity->child;
 
 @if(empty($map->image))
     <div class="panel panel-default widget-preview {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
-        <div class="panel-heading">
-            <h3 class="panel-title">
+        <div class="panel-heading px-4 py-2">
+            <h3 class="panel-title m-0">
                 <a href="{{ $map->getLink() }}">
                     @if ($map->is_private)
                         <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
@@ -27,7 +27,7 @@ $map = $entity->child;
                 </a>
             </h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body p-4">
             <p class="help-block">{{ __('maps.errors.dashboard.missing') }}</p>
         </div>
     </div>

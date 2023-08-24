@@ -5,7 +5,7 @@
         <div class="field-excerpt">
             <label>
                 {{ __('campaigns.fields.excerpt') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('campaigns.helpers.excerpt') }}" data-toggle="tooltip" data-placement="bottom"></i>
+                <x-helpers.tooltip :title="__('campaigns.helpers.excerpt')" />
             </label>
             {!! Form::textarea('excerptForEdition', null, ['class' => 'form-control html-editor', 'id' => 'excerpt', 'name' => 'excerpt']) !!}
             <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.excerpt') }}</p>
@@ -14,7 +14,7 @@
         <div class="field-header">
             <label for="header_image">
                 {{ __('campaigns.fields.header_image') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('campaigns.helpers.header_image') }}" data-toggle="tooltip"></i>
+                <x-helpers.tooltip :title="__('campaigns.helpers.header_image')" />
             </label>
             <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.header_image') }}</p>
             {!! Form::hidden('remove-header_image') !!}

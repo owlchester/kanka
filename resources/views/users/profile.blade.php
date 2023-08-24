@@ -100,9 +100,9 @@
                 @if (!$campaigns->isEmpty())
                     <h1>{{ __('users/profile.fields.public_campaigns') }}</h1>
 
-                    <div class="row">
+                    <div class="flex gap-5 flex-wrap">
                         @foreach ($campaigns as $campaign)
-                            <div class="col-xl-6 col-12">
+                            <div class="">
                                 @include('front._campaign', ['campaign' => $campaign, 'featured' => false])
                             </div>
                         @endforeach

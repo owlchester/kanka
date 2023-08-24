@@ -55,7 +55,7 @@
             {!! Form::hidden('copy_item_entry', 0) !!}
             {!! Form::checkbox('copy_item_entry') !!}
             {{ __('entities/inventories.fields.copy_entity_entry') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-title="{{ __('entities/inventories.helpers.copy_entity_entry') }}" data-toggle="tooltip"></i>
+            <x-helpers.tooltip :title="__('entities/inventories.helpers.copy_entity_entry')" />
         </label>
         <p class="help-block visible-xs visible-sm">
             {{ __('entities/inventories.helpers.copy_entity_entry') }}

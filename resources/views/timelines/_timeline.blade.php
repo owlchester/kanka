@@ -69,7 +69,7 @@ $loadedElements = [];
                 title="{{ __('crud.create') }}"
             >
                 <x-icon class="plus"></x-icon>
-                <span class="hidden-xs inline">{!! __('timelines.actions.add_element', ['era' => $era->name]) !!}</span>
+                <span class="hidden lg:inline">{!! __('timelines.actions.add_element', ['era' => $era->name]) !!}</span>
             </a>
         </div>
     @endcan

@@ -1,7 +1,7 @@
 .join {
     display: inline-flex;
     align-items: stretch;
-    border-radius: var(--rounded-btn,.5rem);
+    border-radius: var(--rounded-btn, .5rem);
 
     .join-item:first-child:not(:last-child), :first-child:not(:last-child) .join-item {
         border-top-right-radius: 0;

@@ -21,7 +21,7 @@
             @can('update', $model)
                 <a href="{{ route('entities.logs', [$campaign, $model->entity]) }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.logs', [$campaign, $model->entity]) }}" title="{{ __('crud.history.view') }}" class="print-none">
                     <x-icon class="fa-solid fa-history" />
-                    <span class="hidden-xs hidden-sm">{{ __('crud.history.view') }}</span>
+                    <span class="hidden md:inline">{{ __('crud.history.view') }}</span>
                 </a>
             @endcan
         @else

@@ -34,7 +34,6 @@ $specificTheme = null;
     @vite([
         'resources/sass/vendor.scss',
         'resources/sass/app.scss',
-        'resources/sass/freyja/freyja.scss',
         'resources/sass/map-v3.scss',
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif

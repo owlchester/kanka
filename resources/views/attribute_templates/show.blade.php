@@ -15,12 +15,12 @@
                 <p class="text-right">
                     <a class="btn2 btn-sm btn" href="{{ route('entities.attributes.template', [$campaign, $model->entity]) }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.attributes.template', [$campaign, $model->entity]) }}">
                         <x-icon class="copy" />
-                        <span class="hidden-xs hidden-sm">{{ __('entities/attributes.actions.apply_template') }}</span>
+                        <span class="hidden md:inline">{{ __('entities/attributes.actions.apply_template') }}</span>
                     </a>
 
                     <a href="{{ route('entities.attributes.edit', [$campaign, 'entity' => $model->entity]) }}" class="btn2 btn-sm btn-accent">
                         <x-icon class="fa-solid fa-list" />
-                        <span class="hidden-xs hidden-sm">{{ __('entities/attributes.actions.manage') }}</span>
+                        <span class="hidden md:inline">{{ __('entities/attributes.actions.manage') }}</span>
                     </a>
                 </p>
             @endcan

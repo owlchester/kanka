@@ -1,16 +1,14 @@
 @extends('layouts.app', [
     'title' => $titleKey ?? __('entities.' . $langKey),
     'seoTitle' => $titleKey ?? __('entities.' . $langKey) . ' - ' . $campaign->name,
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => $titleKey ?? __('entities.' . $langKey)],
-    ],
+    'breadcrumbs' => false,
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,
 ])
 
 @section('entity-header')
     <div class="flex items-center mb-2">
-        <h1 class="grow m-0">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
+        <h1 class="grow m-0 text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex-none flex gap-2">
             @include('layouts.datagrid._togglers', ['route' => 'tree'])
             @include('cruds.lists._actions')

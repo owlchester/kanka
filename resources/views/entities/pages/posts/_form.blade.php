@@ -96,7 +96,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 <div class="field-class">
                     <label for="config[class]">
                         {{ __('dashboard.widgets.fields.class') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+                        <x-helpers.tooltip :title="__('dashboard.widgets.helpers.class')" />
                     </label>
                     {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$campaign->boosted() ? 'disabled' : null]) !!}
                     <p class="help-block visible-xs visible-sm">

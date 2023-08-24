@@ -10,7 +10,7 @@
                 @keydown.esc="escape()"
                 :placeholder="placeholder"
             />
-            <span class="form-control-feedback hidden-xs hidden-sm">
+            <span class="form-control-feedback hidden md:inline">
                 <span class="flex-none keyboard-shortcut py-1" id="lookup-kb-shortcut" data-toggle="tooltip" v-bind:data-title="keyboard_tooltip" data-html="true" data-placement="bottom" >K</span>
             </span>
         </div>

@@ -6,7 +6,7 @@
     <div class="field-theme">
         <label>
             {{ __('campaigns.fields.theme') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" data-title="{{ __('campaigns.helpers.theme') }}"></i>
+            <x-helpers.tooltip :title="__('campaigns.helpers.theme')"/>
         </label>
 
         {!! Form::select(

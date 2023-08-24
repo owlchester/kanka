@@ -1,7 +1,7 @@
 <div class="join">
     <a href="{{ route($route . '.create', $campaign) }}" class="btn2 btn-primary join-item btn-new-entity" data-entity-type="{{ $name }}" aria-label="Create {!! $singular !!}">
         <x-icon class="plus"></x-icon>
-        <span class="hidden-xs hidden-sm">{!! $singular !!}</span>
+        <span class="hidden md:inline">{!! $singular !!}</span>
     </a>
     @if(!in_array($name, ['menu_links', 'relations']))
         <div class="dropdown">

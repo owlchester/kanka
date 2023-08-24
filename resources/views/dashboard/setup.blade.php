@@ -44,13 +44,13 @@ $newWidgetListClass = 'btn2 btn-full';
                      data-url="{{ route('campaign_dashboards.create', $campaign) }}"
                    >
                     <x-icon class="plus"></x-icon>
-                    <span class="hidden-xs">{{ __('dashboard.dashboards.actions.new') }}</span>
+                    <span class="hidden sm:inline">{{ __('dashboard.dashboards.actions.new') }}</span>
                 </a>
 
                 @if(!$dashboards->isEmpty() || !empty($dashboard))
                     <div class="dropdown">
                         <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <span class="hidden-xs">{{ __('dashboard.dashboards.actions.switch') }}</span>
+                            <span class="hidden sm:inline">{{ __('dashboard.dashboards.actions.switch') }}</span>
                             <span class="visible-xs-inline">
                                 <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
                             </span> <span class="caret"></span>
