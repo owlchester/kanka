@@ -16,7 +16,27 @@
             @include('campaigns._menu', ['active' => 'users'])
         </div>
         <div class="grow max-w-7xl">
-            @include('campaigns.members._users')
+
+            <div class="flex gap-2 items-center mb-5">
+                <h3 class="m-0 inline-block grow">
+                    {{ __('campaigns.show.tabs.members') }} <span class="text-sm">({{ $users->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
+                </h3>
+                <a href="https://docs.kanka.io/en/latest/features/campaigns/members.html" class="btn2 btn-sm btn-ghost" target="_blank">
+                    <x-icon class="question"></x-icon>
+                    {{ __('crud.actions.help') }}
+                </a>
+            </div>
+
+            @if (!$campaign->canHaveMoreMembers())
+                <x-cta :campaign="$campaign" image="0" minimal="1">
+                    <p>{{ __('campaigns/limits.members') }}</p>
+                </x-cta>
+            @endif
+            @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_roles.bulk', $campaign]]) !!} @endif
+                <div id="datagrid-parent">
+                    @include('layouts.datagrid._table', ['responsive' => true])
+                </div>
+            @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
 
             @include('campaigns.members._invites')
         </div>

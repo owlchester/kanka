@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
+use App\Facades\Datagrid;
 
 class UserController extends Controller
 {
@@ -29,6 +30,7 @@ class UserController extends Controller
 
         $users = $campaign
             ->members()
+            ->sort(request()->only(['o', 'k']), ['id' => 'desc'])
             ->with(['user', 'campaign', 'user.campaignRoles', 'user.campaignRoleUser'])
             ->paginate();
 
@@ -39,11 +41,19 @@ class UserController extends Controller
             ->paginate();
 
         $roles = $campaign->roles->where('is_public', false)->all();
+    
+        Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignUser::class);
+        $rows = $users;
+        if (request()->ajax()) {
+            return $this->datagridAjax($rows);
+        }
+
         return view('campaigns.members.index', [
             'campaign' => $campaign,
             'roles' => $roles,
             'users' => $users,
-            'invitations' => $invitations
+            'invitations' => $invitations,
+            'rows' => $rows,
         ]);
     }
 
@@ -86,5 +96,27 @@ class UserController extends Controller
         }
 
         return response()->json($results);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function datagridAjax($rows)
+    {
+        $html = view('layouts.datagrid._table')
+            ->with('rows', $rows)
+            ->render();
+        $deletes = view('layouts.datagrid.delete-forms')
+            ->with('models', Datagrid::deleteForms())
+            ->with('params', Datagrid::getActionParams())
+            ->render();
+
+        $data = [
+            'success' => true,
+            'html' => $html,
+            'deletes' => $deletes,
+        ];
+
+        return response()->json($data);
     }
 }
