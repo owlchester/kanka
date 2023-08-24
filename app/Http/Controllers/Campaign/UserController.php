@@ -7,9 +7,14 @@ use App\Models\Campaign;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 use App\Facades\Datagrid;
+use App\Traits\CampaignAware;
+use App\Traits\Controllers\HasDatagrid;
 
 class UserController extends Controller
 {
+    use HasDatagrid;
+    use CampaignAware;
+
     /**
      * Create a new controller instance.
      *
@@ -28,7 +33,7 @@ class UserController extends Controller
     {
         $this->authorize('members', $campaign);
 
-        $users = $campaign
+        $this->rows = $campaign
             ->members()
             ->sort(request()->only(['o', 'k']), ['id' => 'desc'])
             ->with(['user', 'campaign', 'user.campaignRoles', 'user.campaignRoleUser'])
@@ -43,17 +48,15 @@ class UserController extends Controller
         $roles = $campaign->roles->where('is_public', false)->all();
 
         Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignUser::class);
-        $rows = $users;
         if (request()->ajax()) {
-            return $this->datagridAjax($rows);
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return view('campaigns.members.index', [
             'campaign' => $campaign,
             'roles' => $roles,
-            'users' => $users,
             'invitations' => $invitations,
-            'rows' => $rows,
+            'rows' => $this->rows,
         ]);
     }
 
@@ -96,27 +99,5 @@ class UserController extends Controller
         }
 
         return response()->json($results);
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function datagridAjax($rows)
-    {
-        $html = view('layouts.datagrid._table')
-            ->with('rows', $rows)
-            ->render();
-        $deletes = view('layouts.datagrid.delete-forms')
-            ->with('models', Datagrid::deleteForms())
-            ->with('params', Datagrid::getActionParams())
-            ->render();
-
-        $data = [
-            'success' => true,
-            'html' => $html,
-            'deletes' => $deletes,
-        ];
-
-        return response()->json($data);
     }
 }

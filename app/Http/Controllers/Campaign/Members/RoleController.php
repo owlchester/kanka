@@ -26,24 +26,11 @@ class RoleController extends Controller
     {
         $this->authorize('members', $campaign);
 
-        $users = $campaign
-            ->members()
-            ->sort(request()->only(['o', 'k']), ['id' => 'desc'])
-            ->with(['user', 'campaign', 'user.campaignRoles', 'user.campaignRoleUser'])
-            ->paginate();
-
-        $invitations = $campaign
-            ->invites()
-            ->where('is_active', true)
-            ->with('role')
-            ->paginate();
-
         $roles = $campaign->roles->where('is_public', false)->all();
         return view('campaigns.members.update', [
             'campaign' => $campaign,
             'roles' => $roles,
             'campaignUser' => $campaignUser,
-            'invitations' => $invitations,
         ]);
     }
 
