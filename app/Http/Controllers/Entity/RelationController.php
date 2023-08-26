@@ -102,11 +102,6 @@ class RelationController extends Controller
         ));
     }
 
-    /**
-     * @param StoreRelation $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(StoreRelation $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
