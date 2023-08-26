@@ -6,7 +6,7 @@
     <div class="entity-header-sub pull-left">
         @if($model->journal)
         <span data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip" class="mr-2">
-            <x-icon class="ra ra-quill-ink"></x-icon>
+            <x-icon :class="config('entities.icons.journal')"></x-icon>
             {!! $model->journal->tooltipedLink() !!}
         </span>
         @endif

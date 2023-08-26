@@ -14,7 +14,7 @@
         'name',
         'type',
         [
-            'label' => '<i class="ra ra-fire-symbol" title="' . __('abilities.fields.abilities') . '"></i>',
+            'label' => '<i class="' . config('entities.icons.ability') . '" title="' . __('abilities.fields.abilities') . '"></i>',
             'render' => function($model) {
                 return $model->abilities->count();
             },

@@ -10,7 +10,7 @@
 </a>
 @if ($entity->isCharacter())
     <a href="{{ route('entities.entity_abilities.import', [$campaign, $entity, 'from' => 'race']) }}" class="btn2 btn-sm">
-        <x-icon class="ra ra-wyvern"></x-icon>
+        <x-icon :class="config('entities.icons.race')"></x-icon>
         <span class="hidden md:inline">{{ __('entities/abilities.actions.import_from_race') }}</span>
         <span class="md:hidden">{{ __('entities/abilities.actions.import_from_race_mobile') }}</span>
     </a>

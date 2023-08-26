@@ -3,7 +3,7 @@
     @include('entities.creator.selection._main', [
         'singular' => 'character',
         'plural' => 'characters',
-        'icon' => 'fa-solid fa-user',
+        'icon' => config('entities.icons.character'),
         'id' => config('entities.ids.character'),
     ])
     @include('entities.creator.selection._full', ['key' => 'characters'])

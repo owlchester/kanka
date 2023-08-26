@@ -3,6 +3,6 @@
     @include('entities.creator.selection._main', [
         'singular' => 'post',
         'plural' => 'posts',
-        'icon' => 'fa-solid fa-pen'
+        'icon' => 'fa-duotone fa-pen'
     ])
 </div>

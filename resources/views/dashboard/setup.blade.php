@@ -175,7 +175,7 @@ $newWidgetListClass = 'btn2 btn-full';
                 {{ __('dashboard.setup.widgets.preview') }}
             </a>
             <a  href="#" class="{{ $newWidgetListClass }}" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'calendar', 'dashboard' => $dashboard]) }}">
-                <x-icon class="ra ra-moon-sun"></x-icon>
+                <x-icon :class="config('entities.icons.calendar')"></x-icon>
                 {{ __('dashboard.setup.widgets.calendar') }}
             </a>
 

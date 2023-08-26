@@ -26,7 +26,7 @@ if (!empty($oldCalendarID)) {
 
     <a href="#" id="entity-calendar-form-add" class="btn2 btn-sm"
        style="<?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "display: none" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}">
-        <x-icon class="ra ra-moon-sun"></x-icon>
+        <x-icon :class="config('entities.icons.calendar')"></x-icon>
         {{ __('crud.forms.actions.calendar') }}
     </a>
 

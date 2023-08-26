@@ -181,7 +181,7 @@ class SidebarService
                 'fixed' => true,
             ],
             'menu_links' => [
-                'icon' => 'fa-duotone fa-bookmark',
+                'icon' => config('entities.icons.menu_link'),
                 'label' => 'entities.menu_links',
                 'fixed' => true,
             ],
@@ -193,62 +193,62 @@ class SidebarService
                 'fixed' => true,
             ],
             'characters' => [
-                'icon' => 'fa-duotone fa-user',
+                'icon' => config('entities.icons.character'),
                 'label' => 'entities.characters',
                 'mode' => true,
                 'type_id' => config('entities.ids.character')
             ],
             'locations' => [
-                'icon' => 'fa-duotone fa-circle-location-arrow',
+                'icon' => config('entities.icons.location'),
                 'label' => 'entities.locations',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.location')
             ],
             'maps' => [
-                'icon' => 'fa-duotone fa-map',
+                'icon' => config('entities.icons.map'),
                 'label' => 'entities.maps',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.map')
             ],
             'organisations' => [
-                'icon' => 'fa-duotone fa-screen-users',
+                'icon' => config('entities.icons.organisation'),
                 'label' => 'entities.organisations',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.organisation')
             ],
             'families' => [
-                'icon' => 'fa-duotone fa-family',
+                'icon' => config('entities.icons.family'),
                 'label' => 'entities.families',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.family')
             ],
             'calendars' => [
-                'icon' => 'fa-duotone fa-calendar',
+                'icon' => config('entities.icons.calendar'),
                 'label' => 'entities.calendars',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.calendar')
             ],
             'timelines' => [
-                'icon' => 'fa-duotone fa-hourglass-half',
+                'icon' => config('entities.icons.timeline'),
                 'label' => 'entities.timelines',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.timeline')
             ],
             'races' => [
-                'icon' => 'fa-duotone fa-person-fairy',
+                'icon' => config('entities.icons.race'),
                 'label' => 'entities.races',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.race')
             ],
             'creatures' => [
-                'icon' => 'fa-duotone fa-snake',
+                'icon' => config('entities.icons.creature'),
                 'label' => 'entities.creatures',
                 'tree' => true,
                 'mode' => true,
@@ -261,42 +261,42 @@ class SidebarService
                 'fixed' => true,
             ],
             'quests' => [
-                'icon' => 'fa-duotone fa-sign-hanging',
+                'icon' => config('entities.icons.quest'),
                 'label' => 'entities.quests',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.quest')
             ],
             'journals' => [
-                'icon' => 'fa-duotone fa-books',
+                'icon' => config('entities.icons.journal'),
                 'label' => 'entities.journals',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.journal')
             ],
             'items' => [
-                'icon' => 'fa-duotone fa-gem',
+                'icon' => config('entities.icons.item'),
                 'label' => 'entities.items',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.item')
             ],
             'events' => [
-                'icon' => 'fa-duotone fa-cake-candles',
+                'icon' => config('entities.icons.event'),
                 'label' => 'entities.events',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.event')
             ],
             'abilities' => [
-                'icon' => 'fa-duotone fa-fire',
+                'icon' => config('entities.icons.ability'),
                 'label' => 'entities.abilities',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.ability')
             ],
             'notes' => [
-                'icon' => 'fa-duotone fa-book-open',
+                'icon' => config('entities.icons.note'),
                 'label' => 'entities.notes',
                 'tree' => true,
                 'mode' => true,
@@ -310,22 +310,22 @@ class SidebarService
                 'fixed' => true,
             ],
             'tags' => [
-                'icon' => 'fa-duotone fa-tags',
+                'icon' => config('entities.icons.tag'),
                 'label' => 'entities.tags',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.tag')
             ],
             'conversations' => [
-                'icon' => 'fa-duotone fa-comments',
+                'icon' => config('entities.icons.conversation'),
                 'label' => 'entities.conversations',
             ],
             'dice_rolls' => [
-                'icon' => 'fa-duotone fa-dice',
+                'icon' => config('entities.icons.dice_roll'),
                 'label' => 'entities.dice_rolls',
             ],
             'relations' => [
-                'icon' => 'fa-duotone fa-people-arrows',
+                'icon' => 'fa-duotone fa-link',
                 'label' => 'sidebar.relations',
                 'perm' => 'relations',
                 'module' => false,
@@ -338,7 +338,7 @@ class SidebarService
                 'module' => false,
             ],
             'attribute_templates' => [
-                'icon' => 'fa-duotone fa-file-export',
+                'icon' => config('entities.icons.attribute_template'),
                 'label' => 'entities.attribute_templates',
             ],
             /*'search' => [

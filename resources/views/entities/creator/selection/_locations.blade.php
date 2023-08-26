@@ -3,7 +3,7 @@
     @include('entities.creator.selection._main', [
         'singular' => 'location',
         'plural' => 'locations',
-        'icon' => 'ra ra-tower',
+        'icon' => config('entities.icons.location'),
         'id' => config('entities.ids.location'),
     ])
 

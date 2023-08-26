@@ -27,7 +27,7 @@
            v-bind:href="entity.location.link"
            :data-tag="entity.id"
         >
-            <i class="ra ra-tower" aria-hidden="true" aria-label="Location"></i>
+            <i class="fa-duotone circle-location-arrow" aria-hidden="true" aria-label="Location"></i>
             {{ entity.location.name }}
         </a>
         <a

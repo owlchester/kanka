@@ -5,7 +5,7 @@
 @if ($model->item)
     <div class="entity-header-sub pull-left">
         <span>
-            <x-icon class="ra ra-gem-pendant" :title="__('crud.fields.parent')"></x-icon>
+            <x-icon :class="config('entities.icons.item')" :title="__('crud.fields.parent')"></x-icon>
         {!! $model->item->tooltipedLink() !!}
         </span>
     </div>
