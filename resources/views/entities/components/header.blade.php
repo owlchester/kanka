@@ -107,7 +107,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
     <div class="entity-header-text flex flex-col">
         <div class="entity-texts">
             @if (!empty($breadcrumb))
-                <ol class="entity-breadcrumb text-xs mb-2 p-0">
+                <ol class="entity-breadcrumb text-sm mb-2 p-0">
                     @foreach ($breadcrumb as $bcdata)
                         <li class="inline-block">
                         @if (is_array($bcdata))

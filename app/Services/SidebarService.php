@@ -174,81 +174,81 @@ class SidebarService
     {
         $this->elements = [
             'dashboard' => [
-                'icon' => 'fa-solid fa-th-large',
+                'icon' => 'fa-duotone fa-house',
                 'label' => 'sidebar.dashboard',
                 'module' => false,
                 'route' => 'dashboard',
                 'fixed' => true,
             ],
             'menu_links' => [
-                'icon' => 'fa-solid fa-star',
+                'icon' => 'fa-duotone fa-bookmark',
                 'label' => 'entities.menu_links',
                 'fixed' => true,
             ],
             'campaigns' => [
-                'icon' => 'fa-solid fa-globe',
+                'icon' => 'fa-duotone fa-mountains',
                 'label' => 'sidebar.world',
                 'module' => false,
                 'route' => 'overview',
                 'fixed' => true,
             ],
             'characters' => [
-                'icon' => 'fa-solid fa-user',
+                'icon' => 'fa-duotone fa-user',
                 'label' => 'entities.characters',
                 'mode' => true,
                 'type_id' => config('entities.ids.character')
             ],
             'locations' => [
-                'icon' => 'ra ra-tower',
+                'icon' => 'fa-duotone fa-circle-location-arrow',
                 'label' => 'entities.locations',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.location')
             ],
             'maps' => [
-                'icon' => 'fa-solid fa-map',
+                'icon' => 'fa-duotone fa-map',
                 'label' => 'entities.maps',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.map')
             ],
             'organisations' => [
-                'icon' => 'ra ra-hood',
+                'icon' => 'fa-duotone fa-screen-users',
                 'label' => 'entities.organisations',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.organisation')
             ],
             'families' => [
-                'icon' => 'ra ra-double-team',
+                'icon' => 'fa-duotone fa-family',
                 'label' => 'entities.families',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.family')
             ],
             'calendars' => [
-                'icon' => 'fa-solid fa-calendar',
+                'icon' => 'fa-duotone fa-calendar',
                 'label' => 'entities.calendars',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.calendar')
             ],
             'timelines' => [
-                'icon' => 'fa-solid fa-hourglass-half',
+                'icon' => 'fa-duotone fa-hourglass-half',
                 'label' => 'entities.timelines',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.timeline')
             ],
             'races' => [
-                'icon' => 'ra ra-wyvern',
+                'icon' => 'fa-duotone fa-person-fairy',
                 'label' => 'entities.races',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.race')
             ],
             'creatures' => [
-                'icon' => 'ra ra-raven',
+                'icon' => 'fa-duotone fa-snake',
                 'label' => 'entities.creatures',
                 'tree' => true,
                 'mode' => true,
@@ -261,84 +261,84 @@ class SidebarService
                 'fixed' => true,
             ],
             'quests' => [
-                'icon' => 'ra ra-wooden-sign',
+                'icon' => 'fa-duotone fa-sign-hanging',
                 'label' => 'entities.quests',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.quest')
             ],
             'journals' => [
-                'icon' => 'ra ra-quill-ink',
+                'icon' => 'fa-duotone fa-books',
                 'label' => 'entities.journals',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.journal')
             ],
             'items' => [
-                'icon' => 'ra ra-gem-pendant',
+                'icon' => 'fa-duotone fa-gem',
                 'label' => 'entities.items',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.item')
             ],
             'events' => [
-                'icon' => 'fa-solid fa-bolt',
+                'icon' => 'fa-duotone fa-cake-candles',
                 'label' => 'entities.events',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.event')
             ],
             'abilities' => [
-                'icon' => 'ra ra-fire-symbol',
+                'icon' => 'fa-duotone fa-fire',
                 'label' => 'entities.abilities',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.ability')
             ],
             'notes' => [
-                'icon' => 'fa-solid fa-book-open',
+                'icon' => 'fa-duotone fa-book-open',
                 'label' => 'entities.notes',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.note')
             ],
             'other' => [
-                'icon' => 'fa-solid fa-cubes',
+                'icon' => 'fa-duotone fa-database',
                 'label' => 'sidebar.other',
                 'module' => false,
                 'route' => false,
                 'fixed' => true,
             ],
             'tags' => [
-                'icon' => 'fa-solid fa-tags',
+                'icon' => 'fa-duotone fa-tags',
                 'label' => 'entities.tags',
                 'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.tag')
             ],
             'conversations' => [
-                'icon' => 'fa-solid fa-comment',
+                'icon' => 'fa-duotone fa-comments',
                 'label' => 'entities.conversations',
             ],
             'dice_rolls' => [
-                'icon' => 'ra ra-dice-five',
+                'icon' => 'fa-duotone fa-dice',
                 'label' => 'entities.dice_rolls',
             ],
             'relations' => [
-                'icon' => 'fa-solid fa-people-arrows',
+                'icon' => 'fa-duotone fa-people-arrows',
                 'label' => 'sidebar.relations',
                 'perm' => 'relations',
                 'module' => false,
             ],
             'gallery' => [
-                'icon' => 'fa-solid fa-images',
+                'icon' => 'fa-duotone fa-images',
                 'label' => 'sidebar.gallery',
                 'route' => 'campaign.gallery.index',
                 'perm' => 'gallery',
                 'module' => false,
             ],
             'attribute_templates' => [
-                'icon' => 'fa-solid fa-copy',
+                'icon' => 'fa-duotone fa-file-export',
                 'label' => 'entities.attribute_templates',
             ],
             /*'search' => [
@@ -348,7 +348,7 @@ class SidebarService
             'route' => 'search',
         ],*/
             'history' => [
-                'icon' => 'fa-solid fa-clock-rotate-left',
+                'icon' => 'fa-duotone fa-clock-rotate-left',
                 'label' => 'history.title',
                 'perm' => true,
                 'module' => false,

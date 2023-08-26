@@ -27,7 +27,7 @@
         </section>
 
         <section class="sidebar pb-14" style="height: auto">
-            <ul class="sidebar-menu overflow-hidden whitespace-no-wrap m-0 p-0 list-none">
+            <ul class="sidebar-menu overflow-hidden whitespace-no-wrap m-0 p-0 list-none text-sm">
                 @foreach ($sidebar->campaign($campaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
                         @includeWhen($campaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])

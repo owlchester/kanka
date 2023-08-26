@@ -12,6 +12,7 @@ const initAjaxTooltips = () => {
             theme: 'kanka',
             placement: e.dataset.direction ?? 'bottom',
             allowHTML: true,
+            delay: 500,
             content: '<i class="fa-solid fa-spin fa-spinner" aria-hidden="true" aria-label="loading..." />',
             arrow: true,
             onShow(instance) {
@@ -43,7 +44,7 @@ const initTooltips = () => {
             theme: 'kanka',
             placement: e.dataset.direction ?? 'bottom',
             allowHTML: e.dataset.html ?? false,
-            appendTo: e.dataset.append ?? '',
+            appendTo: e.dataset.append ?? e,
             arrow: true,
         });
     });

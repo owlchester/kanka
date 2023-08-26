@@ -15,11 +15,22 @@ $entities = $widget->entities($offset);
 if (($widget->conf('singular'))) {
     $entityString = !empty($entityType) ? (!$widget->conf('singular') ? $entityType : $moduleService->singular($entityType, 'entities.' . Str::plural($entityType))) : null;
 
+    if ($entities->count() > 0) {
+        $entity = $entities[0];
+        if ($entity->child) {
+            ?>
+            @include('dashboard.widgets._preview', [
+    'entity' => $entity,
+    'model' => $entity->child,
+])
+            <?php
+            return;
+        }
+    }
 } else {
     $entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType : $moduleService->plural($entityType, 'entities.' . Str::plural($entityType))) : null;
 }
 ?>
-
 <x-box padding="0" css="widget-list {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <h4 class="text-lg mb-3 px-4 pt-4">
         @if (!empty($widget->conf('text')))
@@ -43,7 +54,7 @@ if (($widget->conf('singular'))) {
         @include('dashboard.widgets._recent_singular', ['entities' => $entities])
     </div>
     @else
-    <div class="panel-body widget-recent-list overflow-auto max-h-[400px]">
+    <div class="widget-recent-list overflow-auto max-h-[400px]">
         @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
     </div>
     @endif
