@@ -415,7 +415,7 @@ class DatagridRenderer
                     $content = link_to_route(
                         'entities.show',
                         $reminder->readableDate(),
-                        [$reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
+                        [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
                     );
                 }
             } else {
