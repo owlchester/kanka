@@ -24,9 +24,9 @@
     </x-grid>
 @endif
 
-<div id="calendar-event-subform" style="{{ empty($entityEvent) ? 'display:none' : null }}">
+<div id="calendar-event-subform" class="flex flex-col gap-5" style="{{ empty($entityEvent) ? 'display:none' : null }}">
     @if (empty($entityEvent))
-        <div class="flex gap-2 md:gap-4 mb-2 md:mb-4 items-center">
+        <div class="flex gap-2 md:gap-4 items-center">
             <div class="grow calendar-existing-event-field">
                 @include('cruds.fields.entity', [
                     'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#entity-modal' : null),
@@ -40,7 +40,7 @@
                     {!! Form::text('name', null, ['placeholder' => __('crud.placeholders.name'), 'maxlength' => 191]) !!}
                 </x-forms.field>
             </div>
-            <div class="">
+            <div class="self-end">
                 <a href="#" id="calendar-event-switch" class="btn2 btn-sm">
                     {{ __('calendars.event.actions.switch') }}
                 </a>

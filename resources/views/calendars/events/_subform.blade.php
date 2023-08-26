@@ -19,8 +19,8 @@
     </x-forms.field>
 </x-grid>
 <x-grid>
-    <div class="field-comment col-span-2">
-        <label>{{ __('calendars.fields.comment') }}</label>
+    <div class="field field-comment col-span-2 flex flex-col gap-1">
+        <label class="m-0">{{ __('calendars.fields.comment') }}</label>
         {!! Form::text('comment', null, ['placeholder' => __('calendars.placeholders.comment'), 'maxlength' => 191]) !!}
     </div>
 
@@ -35,19 +35,7 @@
         </p>
     </x-forms.field>
 
-    <x-forms.field
-        field="colour"
-        :label="__('calendars.fields.colour')">
-@php
-$fieldOptions = [
-    'maxlength' => 7
-];
-if (isset($colourAppendTo) && request()->ajax()) {
-$fieldOptions['data-append-to'] = $colourAppendTo;
-}
-@endphp
-        {!! Form::text('colour', (!empty($entityEvent) ? null : '#cccccc'), $fieldOptions ) !!}
-    </x-forms.field>
+    @include('cruds.fields.colour_picker', ['default' => (!empty($entityEvent) ? null : '#cccccc')])
 
     <x-forms.field
         field="recurring"

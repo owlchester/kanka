@@ -53,51 +53,62 @@ if (!empty($oldCalendarID)) {
 
         <div class="entity-calendar-subform" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
             <div class="grid gap-2 md:gap-4 md:grid-cols-3">
-                <div class="field-year">
-                    <label>{{ __('calendars.fields.year') }}</label>
-                    {!! Form::number('calendar_year', FormCopy::field('calendar_year')->string(), ['class' => 'form-control']) !!}
-                </div>
+                <x-forms.field
+                    field="year"
+                    :label="__('calendars.fields.year')">
+                    {!! Form::number(
+                        'calendar_year',
+                        FormCopy::field('calendar_year')->string(),
+                        ['class' => '']
+                    ) !!}
+                </x-forms.field>
 
-                <div class="field-month">
-                    <label>{{ __('calendars.fields.month') }}</label>
+                <x-forms.field
+                    field="month"
+                    :label="__('calendars.fields.month')">
                     {!! Form::select(
                         'calendar_month',
                         (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])),
                         FormCopy::field('calendar_month')->string(),
-                        ['class' => 'form-control'],
+                        ['class' => ''],
                         (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthDataProperties(): (!empty($calendar) ? $calendar->monthDataProperties() : []))
-                        ) !!}
-                </div>
+                    ) !!}
+                </x-forms.field>
 
-                <div class="field-day">
-                    <label>{{ __('calendars.fields.day') }}</label>
+                <x-forms.field
+                    field="day"
+                    :label="__('calendars.fields.day')">
                     {!! Form::select(
-                            'calendar_day',
-                            (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->dayList($model->calendarReminder()->month) : (!empty($calendar) ? $calendar->dayList() : [])),
-                            FormCopy::field('calendar_day')->string(),
-                            ['class' => 'form-control']
-                        ) !!}
-                </div>
+                        'calendar_day',
+                        (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->dayList($model->calendarReminder()->month) : (!empty($calendar) ? $calendar->dayList() : [])),
+                        FormCopy::field('calendar_day')->string(),
+                        ['class' => '']
+                    ) !!}
+                </x-forms.field>
 
-                <div class="field-length">
-                    <label>{{ __('calendars.fields.length') }}</label>
-                    {!! Form::number('calendar_length', FormCopy::field('calendar_length')->string(), ['class' => 'form-control']) !!}
-                </div>
+                <x-forms.field
+                    field="length"
+                    :label="__('calendars.fields.length')">
+                    {!! Form::number('calendar_length', FormCopy::field('calendar_length')->string(), ['class' => '']) !!}
+                </x-forms.field>
 
-                <div class="field-colour">
-                    <label>{{ __('calendars.fields.colour') }}</label><br />
-                    {!! Form::text('calendar_colour', FormCopy::field('calendar_colour')->string(), ['class' => 'form-control spectrum', 'maxlength' => 7]) !!}
-                </div>
-                <div class="field-recurring-periodicity">
-                    <label>{{ __('calendars.fields.recurring_periodicity') }}</label>
-                     {!! Form::select('calendar_recurring_periodicity', (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : [])), null, ['class' => 'form-control reminder-periodicity']) !!}
-                </div>
+                <x-forms.field
+                    field="colour"
+                    :label="__('crud.fields.colour')">
+                    <span>
+                    {!! Form::text('calendar_colour', FormCopy::field('calendar_colour')->string(), ['class' => ' spectrum', 'maxlength' => 7]) !!}
+                    </span>
+                </x-forms.field>
+
+                <x-forms.field
+                    field="periodicity"
+                    :label="__('calendars.fields.recurring_periodicity')">
+                     {!! Form::select('calendar_recurring_periodicity', (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : [])), null, ['class' => 'reminder-periodicity']) !!}
+                </x-forms.field>
             </div>
         </div>
-        <div class="entity-calendar-loading" style="display: none">
-            <p class="text-center">
-                <x-icon class="load" />
-            </p>
+        <div class="entity-calendar-loading text-center p-4" style="display: none">
+            <x-icon class="load" />
         </div>
     </div>
 

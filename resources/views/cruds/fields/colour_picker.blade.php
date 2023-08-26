@@ -1,6 +1,6 @@
 @php
 $fieldOptions = [
-    'class' => 'form-control spectrum',
+    'class' => 'spectrum',
     'maxlength' => 7
 ];
 if (isset($dropdownParent)) {
@@ -11,5 +11,7 @@ if (isset($dropdownParent)) {
 <x-forms.field
     field="colour"
     :label="__('crud.fields.colour')">
-    {!! Form::text('colour', null, $fieldOptions ) !!}
+    <span>
+    {!! Form::text('colour', $default ?? null, $fieldOptions ) !!}
+    </span>
 </x-forms.field>
