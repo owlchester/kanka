@@ -8,7 +8,7 @@
     <label>
         {{ __('crud.fields.is_star') }}
         <a href="https://docs.kanka.io/en/latest/features/profile-sidebar/how-to-pin-elements.html" target="_blank">
-            <x-helpers.tooltip :title="__('crud.hints.is_star') }}" />
+            <x-helpers.tooltip :title="__('crud.hints.is_star')" />
             <span class="sr-only">{{ __('pins.learn-more') }}</span>
         </a>
     </label>

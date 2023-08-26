@@ -168,6 +168,8 @@ Route::post('/w/{campaign}/entities/{entity}/keep-alive', 'EditingController@kee
 // Posts
 Route::post('/w/{campaign}/editing/posts/{entity}/{post}/confirm-editing', 'EditingController@confirmPost')->name('posts.confirm-editing');
 Route::post('/w/{campaign}/editing/posts/{entity}/{post}/keep-alive', 'EditingController@keepAlivePost')->name('posts.keep-alive');
+Route::get('/w/{campaign}/posts/{entity}/{post}/visibility', [\App\Http\Controllers\Entity\Posts\VisibilityController::class, 'index'])->name('posts.edit.visibility');
+Route::post('/w/{campaign}/posts/{entity}/{post}/visibility/update', [\App\Http\Controllers\Entity\Posts\VisibilityController::class, 'update'])->name('posts.update.visibility');
 
 // Quest Elements
 Route::post('/w/{campaign}/editing/quest-elements/{quest_element}/confirm-editing', 'EditingController@confirmQuestElement')->name('quest-elements.confirm-editing');
