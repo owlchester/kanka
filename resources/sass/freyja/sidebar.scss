@@ -1,5 +1,5 @@
 :root {
-    --sidebar-width: 280px;
+    --sidebar-width: 240px;
 }
 
 .content-wrapper {
@@ -43,7 +43,6 @@
                 --tw-text-opacity: 1;
                 color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));
                 letter-spacing: 1.5px;
-                text-transform: uppercase;
             }
 
             a {

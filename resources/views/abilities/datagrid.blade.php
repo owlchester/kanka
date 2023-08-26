@@ -22,7 +22,7 @@
             }
         ],
         [
-            'label' => '<i class="' . config('entities.icons.ability') . '" title="' . __('abilities.fields.abilities') . '"></i>',
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('ability') . '" title="' . __('entities.abilities') . '"></i>',
             'render' => function($model) {
                 return $model->abilities->count();
             },

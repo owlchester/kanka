@@ -27,7 +27,7 @@
         </section>
 
         <section class="sidebar pb-14" style="height: auto">
-            <ul class="sidebar-menu overflow-hidden whitespace-no-wrap m-0 p-0 list-none text-sm">
+            <div class="sidebar-menu overflow-hidden whitespace-no-wrap flex flex-col gap-1">
                 @foreach ($sidebar->campaign($campaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
                         @includeWhen($campaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])
@@ -77,7 +77,7 @@
                         @includeWhen($sidebar->hasQuickLinks($name), 'layouts.sidebars._quick-links', ['links' => $sidebar->quickLinks($name)])
                     </li>
                 @endforeach
-            </ul>
+            </div>
 
             @include('partials.ads.sidebar')
         </section>

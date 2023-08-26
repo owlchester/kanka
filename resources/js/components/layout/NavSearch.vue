@@ -25,11 +25,11 @@
                         {{ texts.hint}}
                     </p>
                 </div>
-                <div class="grow">
-                    <div class="search-results mb-2" v-if="show_results">
-                        <div class="text-sm uppercase mb-2 my-2 mx-1">{{ texts.results }}</div>
+                <div class="grow flex flex-col gap-5 p-2">
+                    <div class="search-results flex flex-col gap-2" v-if="show_results">
+                        <div class="text-sm uppercase">{{ texts.results }}</div>
 
-                        <div class="italic m-2" v-if="results.length === 0">
+                        <div class="text-neutral-content text-sm" v-if="results.length === 0">
                             {{ texts.empty_results }}
                         </div>
                         <LookupEntity v-else v-for="entity in results"
@@ -38,8 +38,8 @@
                         </LookupEntity>
                     </div>
 
-                    <div class="recent-searches" v-if="recent.length > 0">
-                        <div class="text-sm uppercase my-2 mx-1">{{ texts.recents }}</div>
+                    <div class="recent-searches flex flex-col gap-2" v-if="recent.length > 0">
+                        <div class="text-sm uppercase ">{{ texts.recents }}</div>
 
                         <LookupEntity v-for="entity in recent"
                                       :entity="entity"

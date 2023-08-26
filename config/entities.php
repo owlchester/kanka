@@ -94,8 +94,8 @@ return [
         'attribute_template' => 'fa-duotone fa-file-export',
         'ability' => 'fa-duotone fa-fire',
         'map' => 'fa-duotone fa-map',
-        'timeline' => 'fa-duotone fa-hourglass-half',
+        'timeline' => 'fa-duotone fa-list-timeline',
         'menu_link' => 'fa-duotone fa-bookmark',
-        'creature' => 'fa-duotone fa-snake',
+        'creature' => 'fa-duotone fa-deer',
     ]
 ];

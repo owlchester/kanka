@@ -48,7 +48,7 @@ $permissionService->campaign($campaign);
         <div class="grid grid-cols-2 md:grid-cols-5 gap-2 items-center">
             <div class="w-40 col-span-2 md:col-span-1  ">{{ $role->name }}</div>
             <div class="">
-                <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</label>
+                <label class="inline md:hidden">{{ __('crud.permissions.actions.read') }}</label>
                 <div class="join w-full">
                 {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_READ . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_READ), [
                     'class' => 'form-control join-item',
@@ -63,7 +63,7 @@ $permissionService->campaign($campaign);
             </div>
             @if (!$role->isPublic())
                 <div class="">
-                    <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.edit') }}</label>
+                    <label class="inline md:hidden">{{ __('crud.permissions.actions.edit') }}</label>
                     <div class="join w-full">
                         {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_EDIT), [
                                 'class' => 'form-control join-item',
@@ -77,7 +77,7 @@ $permissionService->campaign($campaign);
                     </div>
                 </div>
                 <div class="">
-                    <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.delete') }}</label>
+                    <label class="inline md:hidden">{{ __('crud.permissions.actions.delete') }}</label>
                     <div class="join w-full">
                         {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_DELETE ."]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_DELETE), [
                             'class' => 'form-control join-item',
@@ -91,7 +91,7 @@ $permissionService->campaign($campaign);
                     </div>
                 </div>
                 <div class="">
-                    <label class="visible-xs-inline visible-sm-inline">{{ __('entities.posts') }}</label>
+                    <label class="inline md:hidden">{{ __('entities.posts') }}</label>
                     <div class="join w-full">
                         {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_POSTS), [
                                 'class' => 'form-control join-item',
@@ -161,7 +161,7 @@ $permissionService->campaign($campaign);
                 @endif
                 </div>
                 <div class="">
-                    <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</label>
+                    <label class="inline md:hidden">{{ __('crud.permissions.actions.read') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_READ ."]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_READ), [
                             'class' => 'form-control join-item',
@@ -177,7 +177,7 @@ $permissionService->campaign($campaign);
                     </div>
                 </div>
                 <div class="">
-                    <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.edit') }}</label>
+                    <label class="inline md:hidden">{{ __('crud.permissions.actions.edit') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_EDIT), [
                                 'class' => 'form-control join-item',
@@ -193,7 +193,7 @@ $permissionService->campaign($campaign);
                     </div>
                 </div>
                 <div class="">
-                    <label class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.delete') }}</label>
+                    <label class="inline md:hidden">{{ __('crud.permissions.actions.delete') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_DELETE . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_DELETE), [
                                 'class' => 'form-control join-item',
@@ -209,7 +209,7 @@ $permissionService->campaign($campaign);
                     </div>
                 </div>
                 <div class="">
-                    <label class="visible-xs-inline visible-sm-inline">{{ __('entities.posts') }}</label>
+                    <label class="inline md:hidden">{{ __('entities.posts') }}</label>
                     <div class="join w-full">
                         {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_POSTS), [
                                 'class' => 'form-control join-item',

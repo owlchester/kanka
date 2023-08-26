@@ -73,9 +73,9 @@ class PreviewService
     protected function image(): mixed
     {
         if ($this->entity->child->image) {
-            return $this->entity->child->thumbnail(250);
+            return $this->entity->child->thumbnail(276);
         } elseif ($this->campaign->superboosted() && $this->entity->image) {
-            return Img::crop(250, 250)->url($this->entity->image->path);
+            return Img::crop(276, 276)->url($this->entity->image->path);
         }
         return null;
     }

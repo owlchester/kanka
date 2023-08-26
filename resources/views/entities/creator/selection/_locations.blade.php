@@ -3,7 +3,6 @@
     @include('entities.creator.selection._main', [
         'singular' => 'location',
         'plural' => 'locations',
-        'icon' => config('entities.icons.location'),
         'id' => config('entities.ids.location'),
     ])
 

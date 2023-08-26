@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center gap-1 mb-1 cursor-pointer hover:bg-base-200 rounded p-1 w-full"
+    <div class="flex justify-center gap-1 cursor-pointer hover:bg-base-200 rounded w-full"
          v-bind:data-id="entity.id"
          v-on:click="preview(entity)">
         <div class="flex-none">

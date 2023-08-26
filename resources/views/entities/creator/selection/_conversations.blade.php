@@ -3,7 +3,6 @@
     @include('entities.creator.selection._main', [
         'singular' => 'conversation',
         'plural' => 'conversations',
-        'icon' => config('entities.icons.conversation'),
         'id' => config('entities.ids.conversation'),
     ])
     @include('entities.creator.selection._full', ['key' => 'conversations'])

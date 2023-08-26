@@ -3,7 +3,6 @@
     @include('entities.creator.selection._main', [
         'singular' => 'family',
         'plural' => 'families',
-        'icon' => config('entities.icons.family'),
         'id' => config('entities.ids.family'),
     ])
 

@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class Icon extends Component
@@ -18,13 +19,20 @@ class Icon extends Component
      * Create a new component instance.
      */
     public function __construct(
-        string $class,
+        string $class = null,
+        string $entity = null,
         string $tooltip = null,
         string $title = null,
         string $link = null,
         string $size = null,
     ) {
-        $this->class = $this->map($class);
+        if (empty($class) && !empty($entity)) {
+            $this->class = $this->mapEntity($entity);
+        } elseif (!empty($class)) {
+            $this->class = $this->map($class);
+        } else {
+            $this->class = '';
+        }
         $this->tooltip = $tooltip;
         $this->title = $title;
         $this->link = $link;
@@ -62,5 +70,19 @@ class Icon extends Component
             'load' => 'fa-solid fa-spinner fa-spin',
             default => $class,
         };
+    }
+
+    /**
+     * Get the icon class based on the entity type
+     * @param string $entity
+     * @return string
+     */
+    protected function mapEntity(string $entity): string
+    {
+        $class = config('entities.icons.' . $entity);
+        if (config('fontawesome.kit')) {
+            return $class;
+        }
+        return Str::replace('fa-duotone', 'fa-solid', $class);
     }
 }

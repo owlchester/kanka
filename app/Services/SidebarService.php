@@ -140,16 +140,18 @@ class SidebarService
             'maps',
             'organisations',
             'families',
-            'calendars',
-            'timelines',
             'creatures',
             'races',
+        ],
+        'time' => [
+            'calendars',
+            'timelines',
+            'events',
         ],
         'campaign' => [
             'quests',
             'journals',
             'items',
-            'events',
             'abilities',
         ],
         'notes' => null,
@@ -255,9 +257,9 @@ class SidebarService
                 'type_id' => config('entities.ids.creature')
             ],
             'campaign' => [
-                'icon' => 'fa-solid fa-globe',
-                'label' => 'sidebar.campaign',
-                'route' => 'overview',
+                'icon' => 'fa-duotone fa-book',
+                'label' => 'sidebar.game',
+                'route' => false,
                 'fixed' => true,
             ],
             'quests' => [
@@ -309,6 +311,13 @@ class SidebarService
                 'route' => false,
                 'fixed' => true,
             ],
+            'time' => [
+                'icon' => 'fa-duotone fa-hourglass',
+                'label' => 'sidebar.time',
+                'module' => false,
+                'route' => false,
+                'fixed' => true,
+            ],
             'tags' => [
                 'icon' => config('entities.icons.tag'),
                 'label' => 'entities.tags',
@@ -356,7 +365,6 @@ class SidebarService
         ];
     }
 
-    /** @var bool */
     protected bool $withDisabled = false;
 
     public function withDisabled(): self

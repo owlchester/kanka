@@ -10,7 +10,8 @@ class Element extends Component
 {
     public string $text;
     public string $icon;
-    public string|null $url;
+    public ?string $url;
+    public ?string $class;
 
     /**
      * Create a new component instance.
@@ -19,10 +20,12 @@ class Element extends Component
         string $icon,
         string $text,
         string $url = null,
+        string $class = null,
     ) {
         $this->text = $text;
         $this->icon = $icon;
         $this->url = $url;
+        $this->class = $class;
     }
 
     /**

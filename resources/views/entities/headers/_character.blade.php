@@ -8,7 +8,7 @@
 
 <div class="entity-header-sub entity-header-line">
     <div class="entity-header-sub-element">
-        <x-icon :class="\App\Facades\Module::icon(config('entities.ids.location'), config('entities.icons.location'))" :tooltip="\App\Facades\Module::singular(config('entities.ids.location'), __('entities.location'))"></x-icon>
+        <x-icon entity="character" />
 
         @if ($model->location->parentLocation)
             {!! __('crud.fields.locations', [
