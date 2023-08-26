@@ -7,7 +7,7 @@ $datagridOptions = [
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 
-<div class="flex gap-2 mb-2 items-center">
+<div class="flex gap-2 items-center">
     <h3 class="grow m-0">
         {!! \App\Facades\Module::plural(config('entities.ids.item'), __('entities.items')) !!}
     </h3>

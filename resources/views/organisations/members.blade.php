@@ -7,22 +7,11 @@
 
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                null
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'members'])
-
-        <div class="entity-main-block">
-            @include('organisations.panels.members')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => '',
+        'breadcrumb' => '',
+        'view' => 'organisations.panels.members',
+        'entity' => $model->entity,
+    ])
 @endsection
 

@@ -20,34 +20,14 @@
     @endcan
 @endsection
 
-
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities'))
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'abilities',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block flex flex-col gap-5">
-            <x-tutorial code="abilities" doc="https://docs.kanka.io/en/latest/entities/abilities.html">
-                <p>{{ __('entities/abilities.show.helper') }}</p>
-            </x-tutorial>
-            @include('entities.pages.abilities._abilities')
-        </div>
-    </div>
-
+    @include('entities.pages.subpage', [
+        'active' => 'abilities',
+        'breadcrumb' => __('crud.tabs.abilities'),
+        'view' => 'entities.pages.abilities.render',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection
 
 @section('modals')

@@ -26,18 +26,10 @@
 @endsection
 
 @section('content')
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                __('maps.panels.markers')
-            ]
-        ])
-        @include('entities.components.menu_v2', ['active' => 'markers'])
-        <div class="entity-main-block flex flex-col gap-5">
-            @include('maps.form._markers', ['source' => null])
-            @include('maps.panels.markers')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'markers',
+        'breadcrumb' => __('maps.panels.markers'),
+        'view' => 'maps.panels.markers',
+        'entity' => $model->entity,
+    ])
 @endsection

@@ -21,28 +21,13 @@
 @endsection
 
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                __('crud.tabs.assets')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'assets',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block">
-            @include('entities.pages.assets._asset')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'assets',
+        'breadcrumb' => __('crud.tabs.assets'),
+        'view' => 'entities.pages.assets._assets',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection
 
 @section('modals')

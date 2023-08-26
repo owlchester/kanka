@@ -29,20 +29,10 @@
 @endsection
 
 @section('content')
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                $plural
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'maps'])
-
-        <div class="entity-main-block">
-            @include('maps.panels.maps')
-        </div>
-    </div>
-
+    @include('entities.pages.subpage', [
+        'active' => 'maps',
+        'breadcrumb' => $plural,
+        'view' => 'maps.panels.maps',
+        'entity' => $model->entity,
+    ])
 @endsection

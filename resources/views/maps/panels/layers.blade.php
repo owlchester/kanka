@@ -4,10 +4,10 @@
     </p>
 </x-tutorial>
 
-<h3 class="">
+<h3 class="m-0">
     {{ __('maps.panels.layers') }}
 </h3>
-<div class="mb-5" id="map-layers">
+<div class="" id="map-layers">
     @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.layers.bulk', $campaign, 'map' => $model]]) !!} @endif
 
     <div id="datagrid-parent">
@@ -16,6 +16,8 @@
     @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
 
 </div>
+
+@includeWhen($rows->count() > 1, 'maps.layers._reorder')
 
 @section('modals')
     @parent

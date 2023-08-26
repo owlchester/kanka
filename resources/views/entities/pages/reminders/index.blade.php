@@ -28,41 +28,12 @@
 
 
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                __('crud.tabs.reminders')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'reminders',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block flex flex-col gap-5">
-            <x-tutorial code="events" doc="https://docs.kanka.io/en/latest/features/reminders.html">
-                <p>{{ __('entities/events.helpers.no_events_v2') }}</p>
-            </x-tutorial>
-
-            @if ($rows->count() > 0)
-                <div id="datagrid-parent" class="table-responsive">
-                    @include('layouts.datagrid._table')
-                </div>
-            @endif
-        </div>
-    </div>
-
+    @include('entities.pages.subpage', [
+        'active' => 'reminders',
+        'breadcrumb' => __('crud.tabs.reminders'),
+        'view' => 'entities.pages.reminders._list',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection
 
-@section('modals')
-    @parent
-    <x-dialog id="edit-dialog" :loading="true" />
-    @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms(), 'params' => []])
-@endsection

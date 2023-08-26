@@ -8,7 +8,7 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
     $forceShow = true;
 }
 @endphp
-<div class="entity-sidebar grid grid-cols-2 md:flex md:flex-col gap-5 items-stretch">
+<div class="entity-sidebar relative grid grid-cols-2 md:flex md:flex-col gap-5 items-stretch md:w-48 flex-none">
 
     @if ($forceShow || $model->entity->hasPins())
         @ads('profile')
@@ -16,7 +16,7 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
             <div class="vm-placement" data-id="{{ config('tracking.venatus.profile') }}"></div>
         </div>
         @endads
-        <div class="sidebar-section-box entity-pins overflow-hidden flex flex-col gap-2 {{ $model->entity->hasPins() ? '' : 'entity-empty-pin' }}">
+        <div class="col-span-2 sidebar-section-box entity-pins overflow-hidden flex flex-col gap-2 {{ $model->entity->hasPins() ? '' : 'entity-empty-pin' }}">
             <div class="sidebar-section-title cursor-pointer text-lg user-select border-b" data-toggle="collapse" data-target="#sidebar-pinned-elements">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true" style="display: none"></i>
                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>

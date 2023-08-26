@@ -23,35 +23,11 @@
 
 
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                __('crud.tabs.attributes')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'attributes',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block flex flex-col gap-5">
-            <x-tutorial code="attributes" doc="https://docs.kanka.io/en/latest/features/attributes.html">
-                <p>{!! __('entities/attributes.tutorial', [
-    'hp' => '<code>HP</code>',
-    'str' => '<code>STR</code>',
-    'pop' => '<code>Population</code>',
-]) !!}</p>
-            </x-tutorial>
-                @include('entities.pages.attributes.render')
-        </div>
-
-        <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', [$campaign, $entity]) }}" />
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'attributes',
+        'breadcrumb' => __('crud.tabs.attributes'),
+        'view' => 'entities.pages.attributes.main',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection

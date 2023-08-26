@@ -27,20 +27,10 @@
 @endsection
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'events'])
-
-        <div class="entity-main-block">
-            @include('calendars.panels.events')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'events',
+        'breadcrumb' => __('entities.entities'),
+        'view' => 'calendars.panels.events',
+        'entity' => $model->entity,
+    ])
 @endsection

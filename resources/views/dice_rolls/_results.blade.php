@@ -1,6 +1,6 @@
 <?php $r = $model->diceRollResults()->with('creator')->orderBy('created_at', 'DESC')->paginate(); ?>
 
-<div class="flex gap-2 mb-2 items-center">
+<div class="flex gap-2 items-center">
     <h4 class="grow">{{ __('dice_rolls.index.actions.results') }}</h4>
     @can('roll', $model)
         <a href="{{ route('dice_rolls.roll', [$campaign, 'dice_roll' => $model]) }}" class="btn2 btn-sm btn-accent">

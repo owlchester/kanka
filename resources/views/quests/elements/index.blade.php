@@ -13,21 +13,10 @@
 @endsection
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                __('quests.show.tabs.elements')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'elements'])
-
-        <div class="entity-main-block">
-            @include('quests.elements._elements')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => '',
+        'breadcrumb' => __('quests.show.tabs.elements'),
+        'view' => 'quests.elements._elements',
+        'entity' => $model->entity,
+    ])
 @endsection

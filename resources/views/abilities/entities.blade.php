@@ -19,21 +19,10 @@
 
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                __('abilities.show.tabs.entities')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'entities'])
-
-        <div class="entity-main-block">
-            @include('abilities.panels.entities')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'entities',
+        'breadcrumb' => __('abilities.show.tabs.entities'),
+        'view' => 'abilities.panels.entities',
+        'entity' => $model->entity,
+    ])
 @endsection

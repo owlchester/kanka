@@ -25,21 +25,10 @@
     $plural = \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families'));
 @endphp
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                $plural
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'families'])
-
-        <div class="entity-main-block">
-            @include('families.panels.families')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'families',
+        'breadcrumb' => $plural,
+        'view' => 'families.panels.families',
+        'entity' => $model->entity,
+    ])
 @endsection

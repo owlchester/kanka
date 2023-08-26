@@ -24,30 +24,11 @@
 
 
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                __('crud.tabs.inventory')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'inventory',
-            'model' => $entity->child,
-        ])
-        <div class="entity-main-block flex flex-col gap-5">
-
-            <x-tutorial code="inventory" doc="https://docs.kanka.io/en/latest/features/inventory.html">
-                <p>{{ __('entities/inventories.tutorial') }}</p>
-            </x-tutorial>
-            @include('entities.pages.inventory._table')
-        </div>
-    </div>
-
+    @include('entities.pages.subpage', [
+        'active' => 'inventory',
+        'breadcrumb' => __('crud.tabs.inventory'),
+        'view' => 'entities.pages.inventory.render',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection

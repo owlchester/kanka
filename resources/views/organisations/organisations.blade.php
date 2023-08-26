@@ -28,21 +28,10 @@
     $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations'));
 @endphp
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                $plural
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'organisations'])
-
-        <div class="entity-main-block">
-            @include('organisations.panels.organisations')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'organisations',
+        'breadcrumb' => $plural,
+        'view' => 'organisations.panels.organisations',
+        'entity' => $model->entity,
+    ])
 @endsection

@@ -31,31 +31,14 @@
 
 
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
 
-    <div class="entity-grid">
-
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                __('crud.tabs.connections')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'relations',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block flex flex-col gap-5">
-
-            @includeWhen($mode == 'map' || (empty($mode) && $campaign->boosted()), 'entities.pages.relations._map')
-            @includeWhen($mode == 'table' || (empty($mode) && !$campaign->boosted()), 'entities.pages.relations._relations')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'relations',
+        'breadcrumb' => __('crud.tabs.connections'),
+        'view' => 'entities.pages.relations.render',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection
 
 

@@ -4,16 +4,19 @@
     </p>
 </x-tutorial>
 
-<h3 class="">
+<h3 class="m-0">
     {{ __('maps.panels.groups') }}
 </h3>
-<div id="map-groups" class="mb-5">
+
+<div id="map-groups" class="">
     @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.groups.bulk', $campaign, 'map' => $model]]) !!} @endif
     <div id="datagrid-parent">
         @include('layouts.datagrid._table', ['responsive' => true])
     </div>
     @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
 </div>
+
+@includeWhen($rows->count() > 1, 'maps.groups._reorder')
 
 @section('modals')
     @parent

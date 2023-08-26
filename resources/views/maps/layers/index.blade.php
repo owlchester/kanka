@@ -32,18 +32,10 @@
 @endsection
 
 @section('content')
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                __('maps.panels.layers')
-            ]
-        ])
-        @include('entities.components.menu_v2', ['active' => 'layers'])
-        <div class="entity-main-block flex flex-col gap-5">
-            @include('maps.panels.layers')
-            @includeWhen($rows->count() > 1, 'maps.layers._reorder')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'layers',
+        'breadcrumb' => __('maps.panels.layers'),
+        'view' => 'maps.panels.layers',
+        'entity' => $model->entity,
+    ])
 @endsection

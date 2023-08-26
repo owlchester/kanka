@@ -20,20 +20,10 @@
 @endsection
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                __('timelines.fields.eras')
-            ]
-        ])
-        @include('entities.components.menu_v2', ['active' => 'eras'])
-        <div class="entity-main-block flex flex-col gap-5">
-            @include('timelines.panels.eras')
-            @includeWhen(false && $rows->count() > 1, 'timelines.eras._reorder')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'eras',
+        'breadcrumb' => __('timelines.fields.eras'),
+        'view' => 'timelines.panels.eras',
+        'entity' => $model->entity,
+    ])
 @endsection
