@@ -32,12 +32,10 @@
 
     @include('entities.components.menu_v2', ['active' => 'story'])
 
-    <div class="entity-story-block">
+    <div class="entity-story-block flex flex-col gap-5">
         @include('entities.components.posts', ['withEntry' => true])
         @include('timelines._timeline', ['timeline' => $model])
     </div>
 
-    <div class="entity-sidebar">
-        @include('entities.components.pins')
-    </div>
+    @include('entities.components.pins')
 </div>

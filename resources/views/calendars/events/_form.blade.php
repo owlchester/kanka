@@ -37,7 +37,7 @@
                 <x-forms.field
                     field="name"
                     :label="__('crud.fields.name')">
-                    {!! Form::text('name', null, ['placeholder' => __('crud.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('name', null, ['placeholder' => __('crud.placeholders.name'), 'maxlength' => 191]) !!}
                 </x-forms.field>
             </div>
             <div class="">

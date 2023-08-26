@@ -5,25 +5,30 @@
     @include('cruds.fields.type', ['base' => \App\Models\Calendar::class, 'trans' => 'calendars'])
 
     <div class="current grid grid-cols-3 gap-2">
-        <div class="field-year">
-            <label>{{ __('calendars.fields.current_year') }}</label>
-            {!! Form::number('current_year', !empty($model) ? $model->currentDate('year') : (isset($source) ? $source->currentDate('year') : null), ['class' => 'form-control']) !!}
-        </div>
-        <div class="field-month">
-            <label>{{ __('calendars.fields.current_month') }}</label>
-            {!! Form::number('current_month', !empty($model) ? $model->currentDate('month') : (isset($source) ? $source->currentDate('month') : null), ['class' => 'form-control', 'min' => 1]) !!}
-        </div>
 
-        <div class="field-day">
-            <label>{{ __('calendars.fields.current_day') }}</label>
-            {!! Form::number('current_day', !empty($model) ? $model->currentDate('date') : (isset($source) ? $source->currentDate('date') : null), ['class' => 'form-control', 'min' => 1]) !!}
-        </div>
+        <x-forms.field
+            field="year"
+            :label="__('calendars.fields.current_year')">
+            {!! Form::number('current_year', !empty($model) ? $model->currentDate('year') : (isset($source) ? $source->currentDate('year') : null)) !!}
+        </x-forms.field>
+        <x-forms.field
+            field="month"
+            :label="__('calendars.fields.current_month')">
+            {!! Form::number('current_month', !empty($model) ? $model->currentDate('month') : (isset($source) ? $source->currentDate('month') : null)) !!}
+        </x-forms.field>
+        <x-forms.field
+            field="day"
+            :label="__('calendars.fields.current_day')">
+            {!! Form::number('current_day', !empty($model) ? $model->currentDate('date') : (isset($source) ? $source->currentDate('date') : null)) !!}
+        </x-forms.field>
+
     </div>
 
-    <div class="field-suffix suffix">
-        <label>{{ __('calendars.fields.suffix') }}</label>
-        {!! Form::text('suffix', FormCopy::field('suffix')->string(), ['placeholder' => __('calendars.placeholders.suffix'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-    </div>
+    <x-forms.field
+        field="suffix"
+        :label="__('calendars.fields.suffix')">
+        {!! Form::text('suffix', FormCopy::field('suffix')->string(), ['placeholder' => __('calendars.placeholders.suffix'), 'maxlength' => 45]) !!}
+    </x-forms.field>
 
     @include('cruds.fields.entry2')
 

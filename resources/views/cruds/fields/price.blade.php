@@ -6,7 +6,6 @@
         FormCopy::field('price')->string(),
         [
             'placeholder' => __($trans . '.placeholders.price'),
-            'class' => 'form-control',
             'maxlength' => 191
         ]
     ) !!}

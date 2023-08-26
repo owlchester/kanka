@@ -14,7 +14,5 @@
         @include('tags.panels.children', ['onload' => true])
     </div>
 
-    <div class="entity-sidebar">
-        @include('entities.components.pins')
-    </div>
+    @include('entities.components.pins')
 </div>

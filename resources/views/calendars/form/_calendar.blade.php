@@ -1,6 +1,7 @@
 <?php /** @var \App\Models\Calendar $model */?>
 <x-grid>
     <div class="flex gap-5 flex-col">
+
         <div class="field-skip-zero checkbox">
             {!! Form::hidden('skip_year_zero', 0) !!}
             <label>
@@ -11,25 +12,23 @@
             <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.skip_year_zero') }}</p>
         </div>
 
-        <div class="field-start-offset">
-            <label>
-                {{ __('calendars.fields.start_offset') }}
-                <x-helpers.tooltip :title="__('calendars.helpers.start_offset')" />
-            </label>
-            {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset')->string(0), ['class' => 'form-control']) !!}
-            <p class="help-block visible-xs visible-sm">{{ __('calendars.helpers.start_offset') }}</p>
-        </div>
+        <x-forms.field
+            field="start-offset"
+            :label="__('calendars.fields.start_offset')"
+            :tooltip="true"
+            :helper="__('calendars.helpers.start_offset')">
+            {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset')->string(0)) !!}
+        </x-forms.field>
 
         <hr class="m-0" />
 
-        <div class="field-reset">
-            <label>
-                {{ __('calendars.fields.reset') }}
-                <x-helpers.tooltip :title="__('calendars.hints.reset')" />
-            </label>
-            {!! Form::select('reset', __('calendars.options.resets'), null, ['class' => 'form-control']) !!}
-            <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.reset') }}</p>
-        </div>
+        <x-forms.field
+            field="reset"
+            :label="__('calendars.fields.reset')"
+            :tooltip="true"
+            :helper="__('calendars.helpers.reset')">
+            {!! Form::select('reset', __('calendars.options.resets')) !!}
+        </x-forms.field>
 
         <hr class="m-0" />
 
@@ -51,18 +50,16 @@
 
         <hr class="m-0" />
 
-        <div class="field-layout">
-            <label>
-                {{ __('calendars.fields.default_layout') }}
-                <x-helpers.tooltip :title="__('calendars.helpers.default_layout')" />
-            </label>
-            {!! Form::select('parameters[layout]', ['' => __('calendars.layouts.monthly'), 'yearly' => __('calendars.layouts.yearly')], null, ['class' => 'form-control'])!!}
-            <p class="help-block visible-xs visible-sm">
-                {{ __('calendars.helpers.default_layout') }}
-            </p>
-        </div>
+        <x-forms.field
+            field="layout"
+            :label="__('calendars.fields.default_layout')"
+            :tooltip="true"
+            :helper="__('calendars.helpers.default_layout')">
+            {!! Form::select('parameters[layout]', ['' => __('calendars.layouts.monthly'), 'yearly' => __('calendars.layouts.yearly')])!!}
+        </x-forms.field>
 
         <hr class="m-0" />
+
         @include('cruds.fields.format')
     </div>
     <div class="flex gap-5 flex-col">

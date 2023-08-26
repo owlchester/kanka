@@ -13,6 +13,7 @@ class Field extends Component
     public bool $required;
     public bool $tooltip;
     public ?string $helper;
+    public ?string $link;
     /**
      * Create a new component instance.
      */
@@ -22,12 +23,14 @@ class Field extends Component
         bool $required = false,
         bool $tooltip = false,
         string $helper = null,
+        string $link = null,
     ) {
         $this->field = $field;
         $this->label = $label;
         $this->required = $required;
         $this->tooltip = $tooltip;
         $this->helper = $helper;
+        $this->link = $link;
     }
 
     /**

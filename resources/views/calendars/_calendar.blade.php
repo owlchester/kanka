@@ -14,7 +14,7 @@ $weekNumber = 1;
 @inject('colours', 'App\Services\ColourService')
 <?php $canEdit = auth()->check() && auth()->user()->can('update', $model) ?>
 {{ $renderer->campaign($campaign)->setCalendar($model) }}
-<div class="calendar-toolbar flex gap-2 items-center mb-5">
+<div class="calendar-toolbar flex gap-2 items-center">
     {{ $renderer->todayButton() }}
 
     @if (!$renderer->isYearlyLayout())
@@ -30,7 +30,7 @@ $weekNumber = 1;
         </a>
     </div>
     @endif
-    <div class="join">
+    <div class="join grow">
         <a href="{{ $renderer->linkToYear(false) }}" class="btn2 join-item btn-sm" @if ($renderer->isYearlyLayout()) data-shortcut="previous" data-title="{{ $renderer->titleToYear(false) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear(false) }}" @endif data-toggle="tooltip">
             <x-icon class="fa-solid fa-chevron-left" />
         </a>
@@ -43,17 +43,15 @@ $weekNumber = 1;
         </a>
     </div>
 
-    <div class="grow text-right">
-        <div class="join">
-            <a href="{{ route('calendars.show', [$campaign, $model, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}"
-               class="btn2 join-item btn-sm  <?=($renderer->isYearlyLayout() ? 'btn-disabled" disabled="disabled' : null)?>">
-                {{ __('calendars.layouts.year') }}
-            </a>
-            <a href="{{ route('calendars.show', array_merge([$campaign, $model, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [])) }}"
-               class="btn2 join-item btn-sm <?=(!$renderer->isYearlyLayout() ? ' btn-disabled" disabled="disabled' : null)?>">
-                {{ __('calendars.layouts.month') }}
-            </a>
-        </div>
+    <div class="join">
+        <a href="{{ route('calendars.show', [$campaign, $model, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}"
+           class="btn2 join-item btn-sm  <?=($renderer->isYearlyLayout() ? 'btn-disabled" disabled="disabled' : null)?>">
+            {{ __('calendars.layouts.year') }}
+        </a>
+        <a href="{{ route('calendars.show', array_merge([$campaign, $model, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [])) }}"
+           class="btn2 join-item btn-sm <?=(!$renderer->isYearlyLayout() ? ' btn-disabled" disabled="disabled' : null)?>">
+            {{ __('calendars.layouts.month') }}
+        </a>
     </div>
     <div class="month-alias help-block m-0">{!! $renderer->monthAlias() !!}</div>
 </div>
@@ -120,7 +118,7 @@ $weekNumber = 1;
                     {!! Form::open(['route' => ['calendars.show', $campaign, $model], 'method' => 'GET']) !!}
                     <div class="field-year">
                         <label>{{ __('calendars.fields.year') }}</label>
-                        {!! Form::number('year', null, ['class' => 'form-control', 'placeholder' => e($renderer->currentYear())]) !!}
+                        {!! Form::number('year', null, ['placeholder' => e($renderer->currentYear())]) !!}
                     </div>
                     @if ($renderer->isYearlyLayout() && !$model->yearlyLayout())
                         <input type="hidden" name="layout" value="year">

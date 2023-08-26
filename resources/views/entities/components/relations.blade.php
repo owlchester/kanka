@@ -12,22 +12,20 @@ if (count($models) === 0) {
 ?>
 @foreach ($models as $relation)
     @if(!empty($previousRelation) && $previousRelation == $relation->relation)
-    <li class="mb-2 pinned-relation relation-repeat" data-relation="{{ $relation->target->name }}" data-target="{{ $relation->target_id }}" data-visibility="{{ $relation->visibility_id }}">
-        <span class="pull-right">
+    <div class="pinned-relation relation-repeat" data-relation="{{ $relation->target->name }}" data-target="{{ $relation->target_id }}" data-visibility="{{ $relation->visibility_id }}">
+        <div class="text-right">
             {!! $relation->target->tooltipedLink() !!}
-        </span>
-        <br class="clear-both" />
-    </li>
+        </div>
+    </div>
     @else
-    <li class="mb-2 pinned-relation" data-target="{{ $relation->target_id }}" data-relation="{{ $relation->target->name }}" data-visibility="{{ $relation->visibility_id }}">
-        <strong>
+    <div class="pinned-relation flex gap-2" data-target="{{ $relation->target_id }}" data-relation="{{ $relation->target->name }}" data-visibility="{{ $relation->visibility_id }}">
+        <strong class="flex-none">
             {{ $relation->relation }}
         </strong>
-        <span class="pull-right">
+        <span class="grow text-right">
             {!! $relation->target->tooltipedLink() !!}
         </span>
-        <br class="clear-both" />
-    </li>
+    </div>
 @php $previousRelation = $relation->relation @endphp
     @endif
 @endforeach

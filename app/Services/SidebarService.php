@@ -147,10 +147,10 @@ class SidebarService
             'calendars',
             'timelines',
             'events',
-        ],
-        'campaign' => [
-            'quests',
             'journals',
+        ],
+        'game' => [
+            'quests',
             'items',
             'abilities',
         ],
@@ -256,7 +256,7 @@ class SidebarService
                 'mode' => true,
                 'type_id' => config('entities.ids.creature')
             ],
-            'campaign' => [
+            'game' => [
                 'icon' => 'fa-duotone fa-book',
                 'label' => 'sidebar.game',
                 'route' => false,

@@ -13,7 +13,5 @@
         @includeWhen($model->quests()->has('quest')->count() > 0, 'quests.panels.quests')
     </div>
 
-    <div class="entity-sidebar">
-        @include('entities.components.pins')
-    </div>
+    @include('entities.components.pins')
 </div>

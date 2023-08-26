@@ -31,7 +31,7 @@
             ]
         ])
         @include('entities.components.menu_v2', ['active' => 'eras'])
-        <div class="entity-main-block">
+        <div class="entity-main-block flex flex-col gap-5">
             @include('timelines.panels.eras')
             @includeWhen(false && $rows->count() > 1, 'timelines.eras._reorder')
         </div>

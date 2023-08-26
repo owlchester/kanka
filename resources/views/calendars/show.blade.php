@@ -42,11 +42,11 @@ if (!empty($redirect)) {
 
     @include('entities.components.menu_v2', ['active' => 'story', 'withPins'])
 
-    <div class="entity-main-block">
+    <div class="entity-main-block flex flex-col gap-5">
 
         @include('entities.components.entry')
         @include('calendars._calendar')
-        @include('entities.components.posts')
+        @includeWhen($model->entity->posts()->count() > 0, 'entities.components.posts')
 
         @include('entities.pages.logs.history')
     </div>

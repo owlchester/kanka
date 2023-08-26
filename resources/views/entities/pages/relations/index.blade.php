@@ -50,7 +50,7 @@
             'model' => $entity->child,
         ])
 
-        <div class="entity-main-block">
+        <div class="entity-main-block flex flex-col gap-5">
 
             @includeWhen($mode == 'map' || (empty($mode) && $campaign->boosted()), 'entities.pages.relations._map')
             @includeWhen($mode == 'table' || (empty($mode) && !$campaign->boosted()), 'entities.pages.relations._relations')

@@ -35,7 +35,7 @@
             ]
         ])
         @include('entities.components.menu_v2', ['active' => 'markers'])
-        <div class="entity-main-block flex flex-col">
+        <div class="entity-main-block flex flex-col gap-5">
             @include('maps.form._markers', ['source' => null])
             @include('maps.panels.markers')
         </div>

@@ -14,7 +14,5 @@
         @includeWhen($model->items()->has('item')->count() > 0, 'items.panels.items')
     </div>
 
-    <div class="entity-sidebar">
-        @include('entities.components.pins')
-    </div>
+    @include('entities.components.pins')
 </div>

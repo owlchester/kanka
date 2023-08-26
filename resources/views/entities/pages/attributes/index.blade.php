@@ -41,7 +41,7 @@
             'model' => $entity->child,
         ])
 
-        <div class="entity-main-block">
+        <div class="entity-main-block flex flex-col gap-5">
             <x-tutorial code="attributes" doc="https://docs.kanka.io/en/latest/features/attributes.html">
                 <p>{!! __('entities/attributes.tutorial', [
     'hp' => '<code>HP</code>',

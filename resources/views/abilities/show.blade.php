@@ -19,9 +19,7 @@
         @includeWhen($model->abilities()->has('ability')->count() > 0, 'abilities.panels.abilities', ['onload' => true])
     </div>
 
-    <div class="entity-sidebar">
-        @include('entities.components.pins')
-    </div>
+    @include('entities.components.pins')
 </div>
 
 

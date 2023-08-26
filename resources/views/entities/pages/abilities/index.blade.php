@@ -40,7 +40,7 @@
             'model' => $entity->child,
         ])
 
-        <div class="entity-main-block">
+        <div class="entity-main-block flex flex-col gap-5">
             <x-tutorial code="abilities" doc="https://docs.kanka.io/en/latest/entities/abilities.html">
                 <p>{{ __('entities/abilities.show.helper') }}</p>
             </x-tutorial>

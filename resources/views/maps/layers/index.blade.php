@@ -41,7 +41,7 @@
             ]
         ])
         @include('entities.components.menu_v2', ['active' => 'layers'])
-        <div class="entity-main-block">
+        <div class="entity-main-block flex flex-col gap-5">
             @include('maps.panels.layers')
             @includeWhen($rows->count() > 1, 'maps.layers._reorder')
         </div>

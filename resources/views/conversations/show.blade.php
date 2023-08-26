@@ -47,29 +47,27 @@ $translations = json_encode([
 
     @include('entities.components.menu_v2', ['active' => 'story'])
 
-<div class="entity-story-block">
+    <div class="entity-story-block">
 
-    <x-box>
-        <div class="box-conversation" id="conversation">
-            <conversation
-                    id="{{ $model->id }}"
-                    api="{{ route('conversations.conversation_messages.index', [$campaign, $model]) }}"
-                    target="{{ $model->forCharacters() ? 'character' : 'user'}}"
-                    :targets="{{ $model->jsonParticipants() }}"
-                    :disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
-                    send="{{ route('conversations.conversation_messages.store', [$campaign, $model]) }}"
-                    trans="{{ $translations }}"
-            >
-            </conversation>
-        </div>
-    </x-box>
+        <x-box>
+            <div class="box-conversation" id="conversation">
+                <conversation
+                        id="{{ $model->id }}"
+                        api="{{ route('conversations.conversation_messages.index', [$campaign, $model]) }}"
+                        target="{{ $model->forCharacters() ? 'character' : 'user'}}"
+                        :targets="{{ $model->jsonParticipants() }}"
+                        :disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
+                        send="{{ route('conversations.conversation_messages.store', [$campaign, $model]) }}"
+                        trans="{{ $translations }}"
+                >
+                </conversation>
+            </div>
+        </x-box>
 
-    @include('entities.components.posts')
-</div>
+        @include('entities.components.posts')
+    </div>
 
-<div class="entity-sidebar">
-@include('entities.components.pins')
-</div>
+    @include('entities.components.pins')
 </div>
 
 @section('scripts')
