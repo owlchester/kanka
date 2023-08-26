@@ -1,25 +1,19 @@
-<?php
-/** @var \App\Models\MiscModel $entityTypeListModel */
-$entityTypeListModel = new $base;
-?>
-<div class="field-gender">
-    <label>{{ __($trans . '.fields.sex') }}</label>
+<x-forms.field
+    field="sex"
+    :label="__('characters.fields.sex')">
     {!! Form::text(
         'sex',
         FormCopy::field('sex')->string(),
         [
-            'placeholder' => __($trans . '.placeholders.sex'),
-            'class' => 'form-control',
+            'placeholder' => __('characters.placeholders.sex'),
             'maxlength' => 45,
-            'list' => 'entity-gender-list-' . $trans,
+            'list' => 'entity-gender-list',
             'autocomplete' => 'off'
         ]
     ) !!}
-</div>
-<div class="hidden">
-    <datalist id="entity-gender-list-<?=$trans?>">
+    <datalist id="entity-gender-list">
         @foreach (\App\Facades\CharacterCache::genderSuggestion() as $gender)
             <option value="{{ $gender }}">{{ $gender }}</option>
         @endforeach
     </datalist>
-</div>
+</x-forms.field>

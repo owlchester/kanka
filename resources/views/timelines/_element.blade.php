@@ -9,7 +9,7 @@
     {!! $element->htmlIcon() !!}
 
     <div class="timeline-item p-0 relative rounded-sm mt-0 ml-16 mr-4">
-        <x-box css="flex gap-2 flex-col p-2" :padding="0">
+        <x-box css="flex gap-2 flex-col p-2 mb-5" :padding="0">
             <div class="timeline-item-head flex gap-2 items-center">
                 <h3 class="m-0 grow cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }} !visible text-base" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
 
@@ -40,8 +40,8 @@
                                         <x-icon class="edit"></x-icon> {{ __('crud.edit') }}
                                     </a>
                                 </li>
-                                <li class="text-red">
-                                    <a href="#" class="delete-confirm" data-toggle="modal" data-name="{{ $element->elementName() }}"
+                                <li class="">
+                                    <a href="#" class="delete-confirm text-error" data-toggle="modal" data-name="{{ $element->elementName() }}"
                                        data-target="#delete-confirm" data-delete-target="delete-form-timeline-element-{{ $element->id }}"
                                        title="{{ __('crud.remove') }}">
                                         <x-icon class="trash"></x-icon> {{ __('crud.remove') }}

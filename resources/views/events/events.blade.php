@@ -28,22 +28,11 @@
 @endsection
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                $plural
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'events'])
-
-        <div class="entity-main-block">
-            @include('events.panels.events')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'events',
+        'breadcrumb' => $plural,
+        'view' => 'events.panels.events',
+        'entity' => $model->entity,
+    ])
 @endsection
 

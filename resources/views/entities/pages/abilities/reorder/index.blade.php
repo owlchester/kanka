@@ -8,28 +8,12 @@
     'bodyClass' => 'entity-abilities'
 ])
 
-
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                __('crud.tabs.abilities'),
-                __('entities/abilities.show.reorder')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'abilities',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block">
-            @includeWhen(!empty($parents), 'entities.pages.abilities.reorder._reorder')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'abilities',
+        'breadcrumb' => __('crud.tabs.abilities'),
+        'view' => 'entities.pages.abilities.reorder._reorder',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection

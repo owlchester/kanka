@@ -1,17 +1,17 @@
 @php /** @var \App\Models\Campaign $model */ @endphp
 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
     <x-grid type="1/1">
-        <div class="field-name required">
-            <label>
-                {{ __('campaigns.fields.name') }}
-            </label>
-            {!! Form::text('name', null, ['placeholder' => __('campaigns.placeholders.name'), 'class' => 'form-control', 'required', 'maxlength' => 191]) !!}
-            <p class="help-block">{{ __('campaigns.helpers.name') }}</p>
-        </div>
+        <x-forms.field
+            field="name"
+            :required="true"
+            :label="__('campaigns.fields.name')"
+            :helper="__('campaigns.helpers.name')">
+            {!! Form::text('name', null, ['placeholder' => __('campaigns.placeholders.name'), 'required', 'maxlength' => 191]) !!}
+        </x-forms.field>
 
-        <div class="field-vanity">
-            <label>{{ __('campaigns.fields.vanity') }}</label>
-
+        <x-forms.field
+            field="vanity"
+            :label="__('campaigns.fields.vanity')">
             @if (isset($model) && $model->hasVanity())
                 <p class="help-block">{!! __('campaigns/vanity.set', ['vanity' => '<code>' . $model->slug . '</code>']) !!}</p>
             @elseif(isset($model) && $model->premium())
@@ -38,12 +38,13 @@
 
                 <input type="text" maxlength="45" name="" class="form-control" readonly="readonly" />
             @endif
-        </div>
+        </x-forms.field>
 
-        <div class="field-entry">
-            <label>{{ __('campaigns.fields.description') }}</label>
+        <x-forms.field
+            field="entry"
+            :label="__('campaigns.fields.description')">
             {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
-        </div>
+        </x-forms.field>
 
         @include('cruds.fields.image', ['campaignImage' => true, 'imageLabel' => 'campaigns.fields.image'])
     </x-grid>

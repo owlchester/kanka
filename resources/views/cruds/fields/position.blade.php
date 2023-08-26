@@ -1,8 +1,7 @@
 <?php
-?>
-<div class="field-position">
-    <label>{{ __($trans . '.fields.position') }}</label>
+?><x-forms.field
+    field="position"
+    :label="__($trans . '.fields.position')"
+    :helper="__($trans . '.helpers.position')">
     {!! Form::number('position', FormCopy::field('position')->string(), ['class' => 'form-control', 'maxlength' => 1]) !!}
-
-    <p class="help-block">{{ __($trans . '.helpers.position') }}</p>
-</div>
+</x-forms.field>

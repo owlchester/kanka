@@ -15,25 +15,10 @@
 
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                __('entities/story.reorder.panel_title')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'story',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block">
-            @include('entities.pages.story._reorder')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'story',
+        'breadcrumb' => __('entities/story.reorder.panel_title'),
+        'view' => 'entities.pages.story._reorder',
+        'entity' => $entity,
+    ])
 @endsection

@@ -7,13 +7,14 @@
     @include('partials.modals.close')
 
     @include('entities.creator.header.header')
-    <div class="quick-creator-body">
+    <div class="quick-creator-body flex flex-col gap-5">
 
         @includeWhen(!empty($success), 'entities.creator._created')
 
-        <div class="field-name required mb-5">
-            <label>{{ __('crud.fields.name') }}</label>
-
+        <x-forms.field
+            field="name"
+            :required="true"
+            :label="__('crud.fields.name')">
             @if ($mode === 'bulk')
             {!! Form::textarea('name', null, [
                 'placeholder' => __('entities.creator.bulk_names'),
@@ -40,13 +41,13 @@
                 {{ __('entities.creator.duplicate') }}<br />
                 <span class="duplicate-entities"></span>
             </x-alert>
-        </div>
+        </x-forms.field>
 
         <a href="#" class="qq-action-more text-uppercase cursor-pointer text-sm" style="{{ $singularType === 'post' ? 'display: none' : null }}">
             <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
             {{ __('entities.creator.actions.more') }}
         </a>
-        <div class="qq-more-fields" style="{{ $singularType !== 'post' ? 'display: none' : null }}">
+        <div class="qq-more-fields flex flex-col gap-5" style="{{ $singularType !== 'post' ? 'display: none' : null }}">
             @php $allowNew = false; $dropdownParent = '#entity-modal';@endphp
             @include('entities.creator.forms.' . $singularType)
 

@@ -25,7 +25,7 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
     $previewThumbnail = $model->thumbnail(120);
 }
 ?>
-<div class="field-image">
+<div class="field field-image">
     <div class="@if (!empty($imageRequired) && $imageRequired) required @endif">
         <label>{{ __($label) }}</label>
         {!! Form::hidden('remove-image') !!}
@@ -33,11 +33,11 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
 
     <div class="flex gap-2">
         <div class="grow flex flex-col gap-2">
-            <div class="image-file">
-                {!! Form::file('image', array('class' => 'image form-control')) !!}
+            <div class="image-file field">
+                {!! Form::file('image', ['class' => 'image w-full  ']) !!}
             </div>
-            <div class="image-url">
-                {!! Form::text('image_url', ((!empty($source) && $source->image) ? $source->getOriginalImageUrl() : ''), ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
+            <div class="image-url field">
+                {!! Form::text('image_url', ((!empty($source) && $source->image) ? $source->getOriginalImageUrl() : ''), ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full']) !!}
             </div>
 
             @php

@@ -1,14 +1,16 @@
 <?php
 $required = !isset($bulk);
 ?>
-<div class="field-name @if ($required) required @endif">
-    <label>{{ __('crud.fields.name') }}</label>
+
+<x-forms.field
+    field="name"
+    :label="__('crud.fields.name')"
+    :required="$required">
     {!! Form::text(
         'name',
         null,
         [
             'placeholder' => __('crud.placeholders.name'),
-            'class' => 'form-control',
             'maxlength' => 191,
             'data-live' => route('search.live', $campaign),
             'data-type' => \Illuminate\Support\Str::singular($trans),
@@ -17,7 +19,7 @@ $required = !isset($bulk);
         ]
     ) !!}
 
-    <p class="text-yellow duplicate-entity-warning collapse out !visible">
+    <p class="text-warning-content duplicate-entity-warning collapse out !visible">
         {{ __('entities.creator.duplicate') }}<br /><span id="duplicate-entities"></span>
     </p>
-</div>
+</x-forms.field>

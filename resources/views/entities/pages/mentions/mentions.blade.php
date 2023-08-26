@@ -21,28 +21,13 @@
 @endsection
 
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                __('crud.tabs.mentions')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'mentions',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block">
-            @include('entities.pages.mentions.render')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'mentions',
+        'breadcrumb' => __('crud.tabs.mentions'),
+        'view' => 'entities.pages.mentions.render',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection
 
 

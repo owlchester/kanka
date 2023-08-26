@@ -13,21 +13,6 @@
 
 @import "theming";
 
-// Surrounds the whole body
-.wrapper {
-    background: none;
-    height: 100%;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
-    // AdminLTE wants this but it becomes weird with the min-height computed on firefox
-    //overflow: unset !important;
-}
-
-.content {
-    min-height: 250px;
-}
-
 .content-header {
     .breadcrumb {
         background: transparent;
@@ -75,12 +60,6 @@ tr.tr-hover {
     }
 }
 
-.input-error {
-    border: 1px inset red;
-}
-
-
-
 .bg-pink {
     color: #fff !important;
     background-color: #ebbde9 !important;
@@ -88,6 +67,12 @@ tr.tr-hover {
 .bg-brown {
     color: #fff !important;
     background-color: #a35831 !important;
+}
+
+.field {
+    > input, > select {
+        padding: 0.4rem 0.8rem;
+    }
 }
 
 
@@ -144,9 +129,6 @@ button.dropdown-item {
 
 // UX
 .skip-nav-link {
-    border-radius: 0 0 0.25rem 0.25rem;
-    background-color: white;
-    color: blue;
     transform: translateY(-120%);
     transition: transform 325ms ease-in;
     z-index: 1040;
@@ -157,12 +139,6 @@ button.dropdown-item {
     }
 }
 
-
-.booster-block {
-    .booster-callout, img {
-        max-width: 480px;
-    }
-}
 .bg-boost {
     background-color: hsl(var(--kanka-boost-accent)/1);
     --b1: var(--kanka-boost-accent);
@@ -245,42 +221,28 @@ ol, ul {
     display: flow-root;
 }
 
+/** Old DatagridRenderer **/
 .table-entities {
     td {
         vertical-align: middle !important;
     }
 }
 
-ul.pagination {
-    margin: 0;
-    padding: 0;
+.input-error {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--er)/var(--tw-border-opacity));
 }
 
+/*ul.pagination {
+    margin: 0;
+    padding: 0;
+}*/
+
 ul.entity-menu {
-    /*display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    font-size: .875rem;
-    line-height: 1.25rem;
-    padding: .5rem;*/
-
     li {
-        /*position: relative;
-        display: flex;
-        flex-shrink: 0;
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-items: stretch;*/
-
         a {
-            /*user-select: none;
-            gap: .5rem;
-            padding: .5rem 1rem;
-            transition: all 0.3s;
-            border-radius: 0.5rem;*/
 
             &:hover {
-                cursor: pointer;
                 background-color: hsl(var(--bc)/.1);
             }
         }
@@ -327,6 +289,7 @@ ul.entity-menu {
     text-shadow: 0 1px rgb(0 0 0/var(--glass-text-shadow-opacity,5%));
 }
 
+@import "typography";
 @import "alerts";
 @import "buttons";
 @import "badge";
@@ -358,7 +321,7 @@ ul.entity-menu {
 @import "print/general";
 @import "toast";
 @import "colour";
-
-@import 'cookieconsent/build/cookieconsent.min.css';
+@import "dl";
 
 @import 'freyja/freyja';
+@import 'cookieconsent/build/cookieconsent.min.css';

@@ -1,11 +1,9 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Relation $relation
  */?>
-<div class="flex gap-2">
-    <h3 class="grow box-title">
-        {{ __('sidebar.relations') }}
-    </h3>
-</div>
+<h3 class="m-0">
+    {{ __('sidebar.relations') }}
+</h3>
 <x-box css="box-entity-relations box-entity-relations-table" id="entity-relations-table" :padding="$rows->count() === 0">
     @if ($rows->count() === 0)
         <p class="help-block">

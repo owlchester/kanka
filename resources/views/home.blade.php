@@ -30,8 +30,7 @@ use App\Enums\Widget;
 
     @include('partials.ads.top')
 
-    <div class="dashboard-widgets">
-        <div class="row">
+    <div class="dashboard-widgets grid grid-cols-12 gap-2 md:gap-5">
         @foreach ($widgets as $widget)
             @if($widget->widget === Widget::Campaign)
                 @include('dashboard.widgets._campaign')
@@ -49,21 +48,10 @@ use App\Enums\Widget;
             elseif (!$widget->visible()):
                 continue;
             endif; ?>
-            @if ($position + $widget->colSize() > 12)
+                <div class="col-span-12 md:col-span-{{ $widget->colSize() }} widget widget-{{ $widget->widget->value }}" id="widget-col-{{ $widget->id }}">
+                    @include('dashboard.widgets._' . $widget->widget->value)
                 </div>
-                @includeWhen($row % 3 === 0 || $row === 0, 'partials.ads.inline')
-                <div class="row">
-                @php $position = 0; $row++; @endphp
-            @endif
-                <div class="col-md-{{ $widget->colSize() }}">
-                    <div class="widget widget-{{ $widget->widget->value }}">
-                        @include('dashboard.widgets._' . $widget->widget->value)
-                    </div>
-                </div>
-
-            <?php $position += $widget->colSize(); ?>
         @endforeach
-        </div>
     </div>
 
     @can('update', $campaign)

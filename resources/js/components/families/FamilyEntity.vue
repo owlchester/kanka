@@ -19,7 +19,7 @@
                     </span>
                 </a>
                 <span v-bind:class="cssClasses()" v-if="node.isUnknown">
-                    <i>{{ fields('unknown') }}</i>                            
+                    <i>{{ fields('unknown') }}</i>
                 </span>
 
                 <span class="text-xs" v-if="!isEditing && false">
@@ -62,7 +62,7 @@ export default {
 
     methods: {
         boxClasses() {
-            let css = 'family-node-entity rounded-2xl px-2 flex items-center absolute inline-block overflow-hidden ' +
+            let css = 'family-node-entity rounded-2xl px-2 flex items-center absolute overflow-hidden ' +
                 'text-base leading-none ft-col-' + this.column + ' ft-row-' + this.row;
             if (this.isRelation) {
                 css += ' family-node-entity-relation';
@@ -72,7 +72,7 @@ export default {
             }
             if (this.entity) {
                 if (this.entity.is_dead) {
-                    css += ' character-dead';    
+                    css += ' character-dead';
                 }
                 this.entity.tags.forEach(function (tag) {
                     css += ' ' + tag;

@@ -30,7 +30,7 @@
                 @endif
                     <h3 class="">
                         {{ __('entities.' . $element) }}
-                        <span class="badge bg-blue">{{ count($values) }}</span>
+                        <span class="badge bg-blue-500">{{ count($values) }}</span>
                     </h3>
                     <x-box>
                         @include($element . '.datagrid', ['models' => $values])

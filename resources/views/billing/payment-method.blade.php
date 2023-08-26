@@ -37,7 +37,7 @@
         @else
             <div class="field-currency mb-5">
                 <label>{{ __('settings.subscription.fields.currency') }}</label>
-                {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], auth()->user()->currency(), ['class' => 'form-control']) !!}
+                {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], auth()->user()->currency(), []) !!}
             </div>
             <div class="text-right">
                 <x-buttons.confirm type="primary" outline="true">

@@ -1,0 +1,21 @@
+.dl-horizontal dd:after,.dl-horizontal dd:before {
+    display: table;
+    content: " "
+}
+.dl-horizontal dd:after {
+    clear: both
+}
+@media (min-width:768px) {
+    .dl-horizontal dt {
+        float: left;
+        width: 160px;
+        clear: left;
+        text-align: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
+    .dl-horizontal dd {
+        margin-left: 180px
+    }
+}

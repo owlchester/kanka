@@ -1,4 +1,4 @@
-<li class="relative w-full flex items-stretch items-center rounded overflow-hidden @if ($active) active @endif ">
+<li class="relative w-full flex items-center rounded overflow-hidden  @if ($active) active @endif ">
     <a href="{{ $route }}" class="block max-h-14 grow select-none gap-2 py-2 px-2 transition-all duration-150 cursor-pointer truncate text-inherit"
         @if (!empty($ajax)) data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ $ajax }}" @endif
         @if (!empty($id)) id="{{ $id }}" @endif

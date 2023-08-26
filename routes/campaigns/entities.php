@@ -235,7 +235,7 @@ Route::resources([
     '/w/{campaign}/organisations.organisation_members' => 'Organisation\MemberController',
     '/w/{campaign}/notes' => 'Crud\NoteController',
     '/w/{campaign}/quests' => 'Crud\QuestController',
-    '/w/{campaign}/quests.quest_elements' => 'Quest\ElementController',
+    '/w/{campaign}/quests.quest_elements' => 'Quests\ElementController',
     '/w/{campaign}/tags' => 'Crud\TagController',
     '/w/{campaign}/timelines' => 'Crud\TimelineController',
     '/w/{campaign}/timelines.timeline_eras' => 'Timelines\TimelineEraController',

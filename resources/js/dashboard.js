@@ -1,14 +1,13 @@
 import ajaxModal from "./components/ajax-modal";
 import Sortable from "sortablejs";
-import tippy from "tippy.js";
 
 /**
  * Dashboard
  */
-var newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
+let newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
 
-var btnAddWidget;
-var modalContentButtons, modalContentTarget, modalContentSpinner;
+let btnAddWidget;
+let modalContentButtons, modalContentTarget, modalContentSpinner;
 
 var widgetVisible = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
@@ -20,8 +19,8 @@ var widgetVisible = new IntersectionObserver(function(entries) {
 
 $(document).ready(function() {
 
-    if ($('.widget-render').length > 0) {
-        document.querySelectorAll('.widget-render').forEach((i) => {
+    if ($('[data-render]').length > 0) {
+        document.querySelectorAll('[data-render]').forEach((i) => {
             if (i) {
                 widgetVisible.observe(i);
             }
@@ -32,30 +31,16 @@ $(document).ready(function() {
         e.preventDefault();
 
         var preview = $('#widget-preview-body-' + $(this).data('widget'));
-        if (preview.hasClass('preview')) {
-            preview.removeClass('preview').addClass('full');
+        if (preview.hasClass('max-h-52')) {
+            preview.removeClass('max-h-52');
             $(this).html('<i class="fa-solid fa-chevron-up"></i>');
+            $(this).parent().find('.gradient-to-base-100').hide();
         } else {
-            preview.removeClass('full').addClass('preview');
+            preview.addClass('max-h-52');
             $(this).html('<i class="fa-solid fa-chevron-down"></i>');
+            $(this).parent().find('.gradient-to-base-100').show();
         }
 
-    });
-
-    $('[data-release="remove"]').click(function() {
-        $.post({
-            url: $(this).data('url'),
-            method: 'POST',
-            context: this,
-        }).done(function() {
-            $(this).closest('.box').fadeOut("normal", function () {
-                $(this).remove();
-
-                if ($('.dashboard-releases .box').length === 0) {
-                    $('.dashboard-releases').remove();
-                }
-            });
-        });
     });
 
     if ($('.campaign-dashboard-widgets').length === 1) {
@@ -194,11 +179,11 @@ function initDashboardCalendars()
     $('.widget-calendar-switch').unbind('click').click(function(e) {
         e.preventDefault();
 
-        var url = $(this).data('url'),
+        let url = $(this).data('url'),
             widget = $(this).data('widget');
 
-        $('#widget-body-' + widget).find('.widget-body').hide();
-        $('#widget-body-' + widget).find('.widget-loading').show();
+        $('#widget-body-' + widget).hide();
+        $('#widget-loading-' + widget).show();
 
         $.ajax({
             url: url,
@@ -207,9 +192,9 @@ function initDashboardCalendars()
         }).done(function(data) {
             if (data) {
                 // Redirect page
-                var widget = $(this).data('widget');
-                $('#widget-body-' + widget).find('.widget-loading').hide();
-                $('#widget-body-' + widget).find('.widget-body').html(data).show();
+                let widget = $(this).data('widget');
+                $('#widget-loading-' + widget).hide();
+                $('#widget-body-' + widget).html(data).show();
                 /*$('[data-toggle="tooltip"]').tooltip();*/
                 window.ajaxTooltip();
                 initDashboardCalendars();
@@ -275,10 +260,12 @@ function renderWidget(widget)
 {
     widget = $(widget);
     $.ajax({
-        url: widget.data('url'),
+        url: widget.data('render'),
+        context: this,
     }).done(function (res) {
-        widget.find('.widget-loading').hide();
-        widget.find('.widget-body').html(res).show();
+        let id = widget.data('id');
+        $('#widget-loading-' + id).hide();
+        $('#widget-body-' + id).html(res).show();
 
         /*$('[data-toggle="tooltip"]').tooltip();*/
         window.ajaxTooltip();

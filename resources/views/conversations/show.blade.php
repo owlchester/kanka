@@ -35,7 +35,7 @@ $translations = json_encode([
 @endsection
 
 
-<div class="entity-grid">
+<div class="entity-grid flex flex-col gap-5">
 
     @include('entities.components.header', [
         'model' => $model,
@@ -45,31 +45,30 @@ $translations = json_encode([
         'entityHeaderActions' => 'entity-header-actions-override',
     ])
 
-    @include('entities.components.menu_v2', ['active' => 'story'])
+    <div class="entity-body flex flex-col md:flex-row gap-5 px-4">
+        @include('entities.components.menu_v2', ['active' => 'story'])
 
-<div class="entity-story-block">
+        <div class="entity-main-block grow flex flex-col gap-5">
+            <x-box>
+                <div class="box-conversation" id="conversation">
+                    <conversation
+                            id="{{ $model->id }}"
+                            api="{{ route('conversations.conversation_messages.index', [$campaign, $model]) }}"
+                            target="{{ $model->forCharacters() ? 'character' : 'user'}}"
+                            :targets="{{ $model->jsonParticipants() }}"
+                            :disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
+                            send="{{ route('conversations.conversation_messages.store', [$campaign, $model]) }}"
+                            trans="{{ $translations }}"
+                    >
+                    </conversation>
+                </div>
+            </x-box>
 
-    <x-box>
-        <div class="box-conversation" id="conversation">
-            <conversation
-                    id="{{ $model->id }}"
-                    api="{{ route('conversations.conversation_messages.index', [$campaign, $model]) }}"
-                    target="{{ $model->forCharacters() ? 'character' : 'user'}}"
-                    :targets="{{ $model->jsonParticipants() }}"
-                    :disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
-                    send="{{ route('conversations.conversation_messages.store', [$campaign, $model]) }}"
-                    trans="{{ $translations }}"
-            >
-            </conversation>
+            @include('entities.components.posts')
         </div>
-    </x-box>
 
-    @include('entities.components.posts')
-</div>
-
-<div class="entity-sidebar">
-@include('entities.components.pins')
-</div>
+        @include('entities.components.pins')
+    </div>
 </div>
 
 @section('scripts')

@@ -1,6 +1,6 @@
 <template>
     <div class="entity-header p-3 bg-entity-focus">
-        <div class="block w-full flex items-center">
+        <div class="w-full flex items-center">
 
             <a class="text-2xl font-extrabold entity-name" v-bind:href="entity.link" :title="entity.name">
               {{ entity.name }}
@@ -27,7 +27,7 @@
            v-bind:href="entity.location.link"
            :data-tag="entity.id"
         >
-            <i class="ra ra-tower" aria-hidden="true" aria-label="Location"></i>
+            <i class="fa-duotone circle-location-arrow" aria-hidden="true" aria-label="Location"></i>
             {{ entity.location.name }}
         </a>
         <a

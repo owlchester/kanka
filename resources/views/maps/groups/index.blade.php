@@ -32,18 +32,11 @@
 @endsection
 
 @section('content')
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                __('maps.panels.groups')
-            ]
-        ])
-        @include('entities.components.menu_v2', ['active' => 'groups'])
-        <div class="entity-main-block">
-            @include('maps.panels.groups')
-            @includeWhen($rows->count() > 1, 'maps.groups._reorder')
-        </div>
-    </div>
+
+    @include('entities.pages.subpage', [
+        'active' => 'groups',
+        'breadcrumb' => __('maps.panels.groups'),
+        'view' => 'maps.panels.groups',
+        'entity' => $model->entity,
+    ])
 @endsection

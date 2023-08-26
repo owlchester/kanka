@@ -28,21 +28,10 @@
     $plural = \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races'));
 @endphp
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                $plural
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'races'])
-
-        <div class="entity-main-block">
-            @include('races.panels.races')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'races',
+        'breadcrumb' => $plural,
+        'view' => 'races.panels.races',
+        'entity' => $model->entity,
+    ])
 @endsection

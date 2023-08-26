@@ -5,9 +5,9 @@
 @if ($model->ability)
     <div class="entity-header-sub pull-left">
         @if($model->ability)
-        <span class="mr-2">
-        <i class="ra ra-fire-symbol" data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip" aria-hidden="true" ></i>
-        {!! $model->ability->tooltipedLink() !!}
+        <span data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
+            <x-icon entity="ability" />
+            {!! $model->ability->tooltipedLink() !!}
         </span>
         @endif
     </div>

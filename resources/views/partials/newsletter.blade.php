@@ -7,7 +7,7 @@
         </h3>
         <div class="text-muted mb-2">{{ __('front/newsletter.headline', ['kanka' => config('app.name')]) }}</div>
 
-        <a class="btn btn-light" data-toggle="collapse" href="#newsletter-collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn2 btn-ghost" data-toggle="collapse" href="#newsletter-collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
             {{ __('front/newsletter.actions.learn_more') }}
         </a>
 
@@ -60,7 +60,7 @@
                             <div class="col-sm-2"></div>
                             <div class="col-sm-10">
                                 <div class="clear">
-                                    <input type="submit" value="{{ __('front/newsletter.actions.subscribe') }}" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary">
+                                    <input type="submit" value="{{ __('front/newsletter.actions.subscribe') }}" name="subscribe" id="mc-embedded-subscribe" class="btn2 btn-primary">
                                 </div>
                             </div>
                         </div>

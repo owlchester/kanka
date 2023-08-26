@@ -4,13 +4,12 @@
  * @var \App\Models\CampaignDashboard $dashboard
  */
 ?>
-<div class="field-entity required">
-    <label for="config-entity">
-        {{ __('dashboard.dashboards.fields.name') }}
-    </label>
+<x-forms.field
+    field="name"
+    :required="true"
+    :label="__('dashboard.dashboards.fields.name')">
     {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('dashboard.dashboards.placeholders.name')]) !!}
-</div>
-
+</x-forms.field>
 
 <table class="table table-hover">
     <thead>

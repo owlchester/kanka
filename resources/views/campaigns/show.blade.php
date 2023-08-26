@@ -24,7 +24,7 @@
         <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'campaign'])
         </div>
-        <div class="grow max-w-7xl">
+        <div class="grow flex flex-col gap-5 max-w-7xl">
             @can('update', $campaign)
                 @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
                     <x-alert type="warning">
@@ -37,7 +37,7 @@
 
             @include('campaigns._overview')
 
-            <div class="flex gap-2 mb-2 items-center">
+            <div class="flex gap-2 items-center">
                 <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.fields.entry') }}
                 </h3>
@@ -48,27 +48,29 @@
                     </a>
                 @endcan
             </div>
-            <x-box>
-                @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry()))
-                    <a href="{{ route('campaigns.edit', $campaign) }}">
-                        {{ __('campaigns.helpers.no_entry') }}
-                    </a>
-                @else
-                <div class="entity-content">
-                    {!! $campaign->entry() !!}
-                </div>
-                @endif
-            </x-box>
-
-            <div class="entity-modification-history">
-                <div class="help-block text-right italic text-xs">
-                    @if (!empty($campaign->created_at) && !empty($campaign->updated_at))
-                    {!! __('crud.history.created_date_clean', [
-                        'date' => '<span data-toggle="tooltip" data-title="' . $campaign->created_at . ' UTC' . '">' . $campaign->created_at->diffForHumans() . '</span>'
-                    ]) !!}. {!! __('crud.history.updated_date_clean', [
-                        'date' => '<span data-toggle="tooltip" data-title="' . $campaign->updated_at . ' UTC' . '">' . $campaign->updated_at->diffForHumans() . '</span>'
-                    ]) !!}
+            <div class="flex flex-col">
+                <x-box>
+                    @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry()))
+                        <a href="{{ route('campaigns.edit', $campaign) }}">
+                            {{ __('campaigns.helpers.no_entry') }}
+                        </a>
+                    @else
+                    <div class="entity-content">
+                        {!! $campaign->entry() !!}
+                    </div>
                     @endif
+                </x-box>
+
+                <div class="entity-modification-history">
+                    <div class="help-block text-right italic text-xs">
+                        @if (!empty($campaign->created_at) && !empty($campaign->updated_at))
+                        {!! __('crud.history.created_date_clean', [
+                            'date' => '<span data-toggle="tooltip" data-title="' . $campaign->created_at . ' UTC' . '">' . $campaign->created_at->diffForHumans() . '</span>'
+                        ]) !!}. {!! __('crud.history.updated_date_clean', [
+                            'date' => '<span data-toggle="tooltip" data-title="' . $campaign->updated_at . ' UTC' . '">' . $campaign->updated_at->diffForHumans() . '</span>'
+                        ]) !!}
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

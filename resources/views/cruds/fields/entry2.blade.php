@@ -1,10 +1,9 @@
 <?php
 $old = old('entry');
 ?>
-
-<div class="md:col-span-2 entry">
+<div class="field-entry md:col-span-2 entry flex flex-col gap-1">
     <div class="flex gap-2 items-center">
-        <label class="grow">
+        <label class="grow m-0">
             {{ __('crud.fields.entry') }}
         </label>
 

@@ -27,12 +27,12 @@
     @if (session('sub_value'))
         <div class="text-center">
             <p>
-                <a  href="{{ route('settings.premium') }}" class="btn btn-primary btn-lg mr-4" target="blank">
+                <a  href="{{ route('settings.premium') }}" class="btn2 btn-primary btn-lg mr-4" target="blank">
                     <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
                     {{ __('settings/premium.ready.title') }}
                 </a>
                 @if (!$user->discord())
-                    <a  href="{{ route('settings.apps') }}" class="btn btn-primary btn-lg ml-4" target="blank">
+                    <a  href="{{ route('settings.apps') }}" class="btn2 btn-primary btn-lg ml-4" target="blank">
                         <i class="fa-brands fa-discord mr-1" aria-hidden="true"></i>
                         {{ __('settings.apps.discord.unlock') }}
                     </a>

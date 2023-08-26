@@ -140,7 +140,6 @@ $sizeOptions = [
                 <div class="field-opacity">
                     <label for="stroke-opacity">{{ __('maps/markers.fields.polygon_style.stroke-opacity') }}</label>
                     {!! Form::number('polygon_style[stroke-opacity]', \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string(), [
-                    'class' => 'form-control',
                     'maxlength' => 3,
                     'step' => 10,
                     'max' => 100,

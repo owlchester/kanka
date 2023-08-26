@@ -28,7 +28,8 @@ $weather = $calendar->calendarWeather()
 
 
 ?>
-<div class="current-date text-center text-2xl flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
+<x-grid>
+<div class="col-span-2 current-date text-center text-xl flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
         <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" data-title="{{ __('dashboard.widgets.calendar.actions.previous') }}" role="button">
             <i class="fa-solid fa-chevron-circle-left" aria-hidden="true"></i>
@@ -47,7 +48,7 @@ $weather = $calendar->calendarWeather()
 </div>
 
 @if ($weather)
-    <div class="text-center">
+    <div class="col-span-2 text-center">
         <div class="weather weather-{{ $weather->weather }}" data-html="true" data-toggle="tooltip" data-title="{!! $weather->tooltip() !!}">
             <i class="fa-solid fa-{{ $weather->weather }}"></i>
             {{ $weather->weatherName() }}
@@ -55,9 +56,8 @@ $weather = $calendar->calendarWeather()
     </div>
 @endif
 
-<x-grid>
     @if ($previousEvents->isNotEmpty())
-        <div class="">
+        <div class="@if ($upcomingEvents->isEmpty()) col-span-2 @endif">
             <div class="text-lg mb-2">
                 {{ __('dashboard.widgets.calendar.previous_events') }}
                 <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" data-title="{{ __('helpers.calendar-widget.info') }}">
@@ -74,7 +74,7 @@ $weather = $calendar->calendarWeather()
     @endif
 
     @if ($upcomingEvents->isNotEmpty())
-        <div class="">
+        <div class="@if ($previousEvents->isEmpty()) col-span-2 @endif">
             <div class="text-lg mb-2">
                 {{ __('dashboard.widgets.calendar.upcoming_events') }}
                 <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" data-title="{{ __('helpers.calendar-widget.info') }}">

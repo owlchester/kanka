@@ -3,7 +3,6 @@
     @include('entities.creator.selection._main', [
         'singular' => 'organisation',
         'plural' => 'organisations',
-        'icon' => 'ra ra-hood',
         'id' => config('entities.ids.organisation'),
     ])
 

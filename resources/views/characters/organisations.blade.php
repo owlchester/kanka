@@ -14,21 +14,10 @@ $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('e
 @endsection
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                $plural
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'organisations'])
-
-        <div class="entity-main-block">
-            @include('characters.panels.organisations')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'organisations',
+        'breadcrumb' => $plural,
+        'view' => 'organisations.panels.organisations',
+        'entity' => $model->entity,
+    ])
 @endsection

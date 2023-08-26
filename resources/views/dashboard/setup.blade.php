@@ -50,8 +50,8 @@ $newWidgetListClass = 'btn2 btn-full';
                 @if(!$dashboards->isEmpty() || !empty($dashboard))
                     <div class="dropdown">
                         <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <span class="hidden sm:inline">{{ __('dashboard.dashboards.actions.switch') }}</span>
-                            <span class="visible-xs-inline">
+                            <span class="hidden md:inline">{{ __('dashboard.dashboards.actions.switch') }}</span>
+                            <span class="inline md:hidden">
                                 <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
                             </span> <span class="caret"></span>
                         </button>
@@ -175,7 +175,7 @@ $newWidgetListClass = 'btn2 btn-full';
                 {{ __('dashboard.setup.widgets.preview') }}
             </a>
             <a  href="#" class="{{ $newWidgetListClass }}" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'calendar', 'dashboard' => $dashboard]) }}">
-                <x-icon class="ra ra-moon-sun"></x-icon>
+                <x-icon entity="calendar" />
                 {{ __('dashboard.setup.widgets.calendar') }}
             </a>
 

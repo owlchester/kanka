@@ -9,38 +9,19 @@ $map = $entity->child;
 
 
 @if(empty($map->image))
-    <div class="panel panel-default widget-preview {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
-        <div class="panel-heading px-4 py-2">
-            <h3 class="panel-title m-0">
-                <a href="{{ $map->getLink() }}">
-                    @if ($map->is_private)
-                        <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
-                    @endif
-
-                    @if(!empty($customName))
-                        {{ $customName }}
-                    @elseif (!empty($widget->conf('text')))
-                        {{ $widget->conf('text') }}
-                    @else
-                        {!! $entity->name !!}
-                    @endif
-                </a>
-            </h3>
-        </div>
-        <div class="panel-body p-4">
-            <p class="help-block">{{ __('maps.errors.dashboard.missing') }}</p>
-        </div>
-    </div>
+    <x-alert type="warning">
+        <a href="{{ $entity->url() }}">{!! $entity->name !!}</a>
+        <p class="help-block">{{ __('maps.errors.dashboard.missing') }}</p>
+    </x-alert>
     @php return @endphp
 @endif
 
-<div class="panel panel-default widget-preview widget-map" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-body p-0">
-        <div class="map map-dashboard" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
-            <a href="{{ route('maps.explore', [$campaign, $map]) }}" target="_blank" class="btn2 btn-primary btn-xs btn-map-explore z-[820] absolute bottom-3 right-3">
-                <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
-            </a>
-        </div>
+<div class="widget-preview widget-map" id="dashboard-widget-{{ $widget->id }}">
+    <div class="map map-dashboard" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
+        <a href="{{ route('maps.explore', [$campaign, $map]) }}" target="_blank" class="btn2 btn-primary btn-xs btn-map-explore z-[820] absolute bottom-3 right-3">
+            <x-icon class="map" />
+            {{ __('maps.actions.explore') }}
+        </a>
     </div>
 </div>
 
