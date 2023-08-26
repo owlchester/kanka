@@ -7,7 +7,7 @@
 ])
 
 @section('entity-header')
-    <div class="flex items-center mb-2">
+    <div class="flex items-center">
         <h1 class="grow m-0 text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex-none flex gap-2">
             @includeWhen($route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
@@ -20,13 +20,14 @@
 @section('content')
     @include('partials.errors')
 
+    <div class="flex flex-col gap-5">
     @if (auth()->guest())
         <div class="text-muted grow">
             <i class="fa-solid fa-filter" aria-hidden="true"></i>
             {{ __('filters.helpers.guest') }}
         </div>
     @else
-    <div class="mb-3 flex flex-stretch gap-2 items-center">
+    <div class="flex flex-stretch gap-2 items-center">
         @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
         @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
     </div>
@@ -38,13 +39,12 @@
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['sub' => 'index'])
     @else
-        {!! Form::open(['url' => route('bulk.process', $campaign), 'method' => 'POST']) !!}
+        {!! Form::open(['url' => route('bulk.process', $campaign), 'method' => 'POST', 'class' => 'flex flex-col gap-5']) !!}
         <x-box :padding="false" >
             <div class="table-responsive">
                 @include($name . '.datagrid')
             </div>
         </x-box>
-
 
         @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'index'])
         @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
@@ -67,6 +67,7 @@
             {!! Form::close() !!}
 
     @endif
+    </div>
 @endsection
 
 @section('modals')
