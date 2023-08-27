@@ -473,6 +473,9 @@ class PluginVersion extends Model
 
         // Add any missing attributes to be accessible in blade
         foreach ($this->templateAttributes as $name => $val) {
+            if (isset($data[$name])) {
+                continue;
+            }
             $data[$name] = $val;
         }
 
