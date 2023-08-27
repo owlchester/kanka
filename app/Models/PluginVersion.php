@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
 use Carbon\Carbon;
 use Exception;
@@ -537,7 +538,7 @@ class PluginVersion extends Model
                 'entry' => $abi->ability->entry(),
                 'charges' => $abi->ability->charges,
                 'used_charges' => $abi->charges,
-                'thumb' => '<img src="' . $abi->ability->entity->avatarSize(40)->avatarV2($abi->ability) . '" class="ability-thumb"></i>',
+                'thumb' => '<img src="' . Avatar::entity($abi->ability->entity)->child($abi->ability)->size(40)->thumbnail() . '" class="ability-thumb"></i>',
                 'link' => link_to($abi->ability->getLink(), $abi->ability->name, ['class' => 'ability-link']),
                 'tags' => $tags,
                 'parent' => $parent,

@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Copyright;
 
+use App\Facades\Avatar;
 use App\Models\Campaign;
 use App\Services\Campaign\Notifications\ImageRemoveService;
 use Illuminate\Bus\Queueable;
@@ -85,8 +86,6 @@ class DeleteEntityImage implements ShouldQueue
         }
 
         // Whenever an entity is updated, we always want to re-calculate the cached image.
-        if (method_exists($entity, 'clearAvatarCache')) {
-            $entity->clearAvatarCache();
-        }
+        Avatar::entity($entity)->forget();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
@@ -95,11 +96,11 @@ class EntityResource extends JsonResource
                 $data['child'] = 'Invalid child, please contact Jay on Discord with the following: EntityResource for #' . $entity->id;
             } else {
                 $campaign = CampaignLocalization::getCampaign();
-                $image = $campaign->superboosted() && !empty($entity->image);
+                $image = !empty($entity->image);
                 $data['child'] = [
                     'image' => $image ? $entity->image->path : $entity->child->image,
-                    'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : $entity->fullsize()->avatarV2(),
-                    'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatarSize(40)->avatarV2(),
+                    'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : Avatar::entity($entity)->child($entity->child)->original(),
+                    'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : Avatar::entity($entity)->child($entity->child)->size(40)->thumbnail(),
                     'has_custom_image' => $image || !empty($entity->child->image),
                 ];
 

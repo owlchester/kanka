@@ -53,19 +53,3 @@ if (!empty($redirect)) {
     </div>
 </div>
 
-<!-- We need this for tailwind to include the definitions -->
-<template id="moon-colours">
-    <div class="text-blue-500"></div>
-    <div class="text-orange-900"></div>
-    <div class="text-green-500"></div>
-    <div class="text-blue-300"></div>
-    <div class="text-pink-800"></div>
-    <div class="text-blue-900"></div>
-    <div class="text-orange-500"></div>
-    <div class="text-pink-500"></div>
-    <div class="text-purple-500"></div>
-    <div class="text-red-500"></div>
-    <div class="text-teal-500"></div>
-    <div class="text-yellow-500"></div>
-    <div class="text-gray-500"></div>
-</template>

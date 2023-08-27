@@ -812,7 +812,7 @@ class CalendarRenderer
     {
         return $calendar->calendarEvents()
             ->has('entity')
-            ->with(['entity', 'entity.tags'])
+            ->with(['entity', 'entity.tags', 'entity.image'])
             ->where(function ($query) {
                 $query
                     // Where it's the current year , or current year and current month

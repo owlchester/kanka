@@ -24,6 +24,7 @@ return [
     'presets'           => 'Presets',
     'relations'         => 'Connections',
     'search'            => 'Search...',
+    'settings'          => 'Settings',
     'time'              => 'Time tracking',
     'world'             => 'World',
 ];

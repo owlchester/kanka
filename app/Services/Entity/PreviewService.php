@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\Avatar;
 use App\Facades\Img;
 use App\Facades\Module;
 use App\Models\Attribute;
@@ -153,7 +154,7 @@ class PreviewService
                 'id' => $relation->target->id,
                 'name' => $relation->target->name,
                 'type' => $relation->relation,
-                'image' => $relation->target->avatarSize(64)->avatarV2(),
+                'image' => Avatar::entity($relation->target)->size(64)->thumbnail(),
                 'link' => $relation->target->url(),
             ];
 

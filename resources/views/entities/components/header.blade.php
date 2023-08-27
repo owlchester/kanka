@@ -1,5 +1,6 @@
 <?php
 /**
+ * @var \App\Models\Campaign $campaign
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  * @var \App\Models\Tag $tag
@@ -10,17 +11,11 @@ if (!isset($entity)) {
 }
 
 $imageUrl = $imagePath = $headerImageUrl = $imagePathXL = $imagePathMobile = null;
-if ($model->image) {
-    $imageUrl = $model->getOriginalImageUrl();
-    $imagePath = $model->thumbnail(170);
-    $imagePathXL = $model->thumbnail(400);
-    $imagePathMobile = $model->thumbnail(100);
-} elseif ($campaign->superboosted() && !empty($entity) && $entity->image) {
-    $imageUrl = $entity->image->getUrl();
-    $imagePath = $entity->image->getUrl(170, 170);
-    $imagePathXL = $entity->image->getUrl(400, 400);
-    $imagePathMobile = $entity->image->getUrl(100, 100);
-}
+$imageUrl = Avatar::entity($entity ?? $model->entity)->child($model)->original();
+$imagePath = Avatar::entity($entity ?? $model->entity)->child($model)->size(170)->thumbnail();
+$imagePathXL = Avatar::entity($entity ?? $model->entity)->child($model)->size(400)->thumbnail();
+$imagePathMobile = Avatar::entity($entity ?? $model->entity)->child($model)->size(100)->thumbnail();
+
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();
 

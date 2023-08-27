@@ -12,7 +12,7 @@
                 <div class="flex p-4 gap-2 items-center border-b h-20 {{ $element->colourClass() }}">
                     @if ($element->entity)
                         <div class="widget-user-image">
-                            <img class="flex-none entity-image rounded-full pull-left" src="{{ $element->entity->avatarSize(40)->avatarV2() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
+                            <img class="flex-none entity-image rounded-full pull-left" src="{{ Avatar::entity($element->entity)->cached()->size(40)->thumbnail() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
                         </div>
                     @endif
 

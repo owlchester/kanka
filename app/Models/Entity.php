@@ -63,7 +63,6 @@ class Entity extends Model
     use EntityType;
     use LastSync;
     use Paginatable;
-    use Picture;
     use Searchable;
     use SoftDeletes;
     use SortableTrait;

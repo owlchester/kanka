@@ -3,6 +3,7 @@
 namespace App\Services\Campaign;
 
 use App\Enums\Visibility;
+use App\Facades\Avatar;
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\StoreImageFocus;
 use App\Models\Image;
@@ -170,7 +171,7 @@ class GalleryService
         $this->image->save();
 
         foreach ($this->image->inEntities() as $entity) {
-            $entity->clearAvatarCache();
+            Avatar::entity($entity)->forget();
         }
 
         return $request->filled('focus_x');

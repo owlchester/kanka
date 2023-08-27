@@ -1,13 +1,12 @@
 @extends('layouts.app', [
     'title' => __('quests.elements.create.title', ['name' => $quest->name]),
     'breadcrumbs' => [
-        Breadcrumb::entity($model->entity)->list(),
+        Breadcrumb::entity($quest->entity)->list(),
         Breadcrumb::show($quest),
         ['url' => route('quests.quest_elements.index', [$campaign, $quest->id]), 'label' => __('quests.show.tabs.elements')],
         __('crud.create'),
     ]
 ])
-
 
 @section('content')
     {!! Form::open([

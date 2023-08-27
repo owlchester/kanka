@@ -2,6 +2,7 @@
 
 namespace App\Services\Families;
 
+use App\Facades\Avatar;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\FamilyTree;
@@ -166,7 +167,7 @@ class FamilyTreeService
             'id' => $entity->id,
             'name' => $entity->name,
             'url' => $entity->url(),
-            'thumb' => $entity->avatarSize(40)->avatarV2(),
+            'thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
             'is_dead' => (bool)$entity->character->is_dead,
             'tags' => $tags,
         ];

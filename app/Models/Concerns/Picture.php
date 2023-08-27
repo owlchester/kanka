@@ -41,6 +41,7 @@ trait Picture
      */
     public function avatar(bool $thumb = false, string $field = 'image')
     {
+        dd('deprecated Picture::avatar() call');
         $size = $thumb ? '_thumb' : ($this->avatarWidth != 40 ? '_mid' : null);
         $avatar = Cache::get($this->avatarCacheKey($field, $size), false);
         if ($avatar === false) {

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\Avatar;
 use App\Facades\Mentions;
 use App\Facades\Module;
 use App\Models\Calendar;
@@ -431,7 +432,7 @@ class SearchService
             'id' => $entity->id,
             'name' => $entity->name,
             'is_private' => $entity->is_private,
-            'image' => $entity->avatarSize(64)->avatarV2(),
+            'image' => Avatar::entity($entity)->size(64)->thumbnail(),
             'link' => $entity->url(),
             // @phpstan-ignore-next-line
             'type' => Module::singular($entity->typeId(), __('entities.' . $entity->type())),

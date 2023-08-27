@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Facades\Avatar;
 use App\Models\Entity;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -57,9 +58,7 @@ class EntityUpdatedJob implements ShouldQueue
         }
 
         // Whenever an entity is updated, we always want to re-calculate the cached image.
-        if (method_exists($entity, 'clearAvatarCache')) {
-            $entity->clearAvatarCache();
-        }
+        Avatar::entity($entity)->forget();
     }
 
     public function failure()

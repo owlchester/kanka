@@ -24,6 +24,7 @@ use App\Enums\Widget;
 @endsection
 
 @section('content')
+    <div class="max-w-7xl mx-auto">
     @if (empty($dashboard))
         @include('dashboard.widgets._campaign')
     @endif
@@ -71,6 +72,7 @@ use App\Enums\Widget;
             </x-alert>
         @endif
     @endcan
+    </div>
 @endsection
 
 @section('scripts')

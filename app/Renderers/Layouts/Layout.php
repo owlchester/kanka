@@ -4,7 +4,7 @@ namespace App\Renderers\Layouts;
 
 abstract class Layout
 {
-    public const ONLY_DESKTOP = 'hidden-xs hidden-sm';
+    public const ONLY_DESKTOP = 'hidden md:block';
 
     public const ACTION_EDIT = 'edit';
     public const ACTION_EDIT_AJAX = 'edit-ajax';

@@ -134,7 +134,7 @@ class SidebarService
     protected $layout = [
         'dashboard' => null,
         'menu_links' => null,
-        'campaigns' => [ //world
+        'world' => [ //world
             'characters',
             'locations',
             'maps',
@@ -160,10 +160,11 @@ class SidebarService
             'conversations',
             'dice_rolls',
             'relations',
-            'gallery',
             'attribute_templates',
-            'history',
         ],
+        'gallery' => null,
+        'history' => null,
+        'campaign' => null,
         //'search' => null,
     ];
 
@@ -187,12 +188,12 @@ class SidebarService
                 'label' => 'entities.menu_links',
                 'fixed' => true,
             ],
-            'campaigns' => [
+            'world' => [
                 'icon' => 'fa-duotone fa-mountains',
                 'label' => 'sidebar.world',
                 'module' => false,
-                'route' => 'overview',
                 'fixed' => true,
+                'route' => false,
             ],
             'characters' => [
                 'icon' => config('entities.icons.character'),
@@ -350,6 +351,13 @@ class SidebarService
                 'icon' => config('entities.icons.attribute_template'),
                 'label' => 'entities.attribute_templates',
             ],
+            'campaign' => [
+                'icon' => 'fa-duotone fa-cog',
+                'label' => 'sidebar.settings',
+                'module' => false,
+                'fixed' => true,
+                'route' => 'overview',
+            ],
             /*'search' => [
             'icon' => 'fa fa-search',
             'label' => 'Search...',
@@ -361,6 +369,7 @@ class SidebarService
                 'label' => 'history.title',
                 'perm' => true,
                 'module' => false,
+                'fixed' => true,
             ],
         ];
     }
