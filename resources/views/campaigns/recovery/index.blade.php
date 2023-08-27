@@ -1,7 +1,6 @@
 @extends('layouts.app', [
     'title' => __('campaigns/recovery.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.recovery')
     ],
     'mainTitle' => false,
@@ -13,7 +12,7 @@
     <div class="flex gap-5 flex-col max-w-7xl">
         @include('partials.errors')
         <div class="flex gap-2 items-center">
-            <h3 class="m-0 inline-block grow">
+            <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.recovery') }}
             </h3>
             <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"

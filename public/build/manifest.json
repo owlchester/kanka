@@ -233,12 +233,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-346a33a9.css",
+    "file": "assets/app-4a3720ee.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-e8bc1906.css",
+    "file": "assets/auth-bf833f03.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -263,7 +263,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-5a51f462.css",
+    "file": "assets/front-9f599046.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },

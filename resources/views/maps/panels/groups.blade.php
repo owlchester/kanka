@@ -4,7 +4,7 @@
     </p>
 </x-tutorial>
 
-<h3 class="m-0">
+<h3 class="">
     {{ __('maps.panels.groups') }}
 </h3>
 

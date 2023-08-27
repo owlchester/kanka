@@ -11,7 +11,7 @@
     <div class="timeline-item p-0 relative rounded-sm mt-0 ml-16 mr-4">
         <x-box css="flex gap-2 flex-col p-2 mb-5" :padding="0">
             <div class="timeline-item-head flex gap-2 items-center">
-                <h3 class="m-0 grow cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }} !visible text-base" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
+                <h3 class="grow cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }} !visible text-base" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
 
                     <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
                     <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
@@ -24,7 +24,7 @@
                         <i class="fa-solid fa-lock" data-title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" aria-hidden="true"></i>
                     @endif
                 </h3>
-                <div class="flex items-center gap-2 ">
+                <div class="flex-none flex items-center gap-2 ">
                     @if (auth()->check()) {!! $element->visibilityIcon('btn-box-tool') !!}@endif
 
                     @can('update', $timeline)

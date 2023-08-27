@@ -40,7 +40,7 @@
             ])
 
             <div class="entity-main-block grow flex flex-col gap-5">
-                <h3 class="m-0">
+                <h3 class="">
                     {{ __('entities/quests.title', ['name' => $entity->name]) }}
                 </h3>
                 <x-box css="box-entity-quests">

@@ -11,7 +11,7 @@
 >
     @if (!empty($image))
         <div
-            class="widget-image cover-background bg-center aspect-video"
+            class="widget-image cover-background bg-center aspect-video rounded-t "
             style="background-image: url('{{ $image }}');"
         ></div>
     @endif

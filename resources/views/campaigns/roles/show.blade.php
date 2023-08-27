@@ -6,11 +6,11 @@
 @extends('layouts.app', [
     'title' => __('campaigns/roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
     'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         ['url' => route('campaign_roles.index', $campaign), 'label' => __('campaigns.show.tabs.roles')],
         $role->name,
     ],
     'mainTitle' => false,
+    'sidebar' => 'campaign',
 ])
 
 @section('content')
@@ -26,7 +26,7 @@
         </div>
         <div class="grow">
             <div class="flex gap-2 items-center mb-5">
-                <h3 class="m-0 grow">{{ __('crud.permissions.title') }}</h3>
+                <h3 class="grow">{{ __('crud.permissions.title') }}</h3>
                 <button class="btn2 btn-sm btn-ghost" data-target="permission-modal" data-toggle="dialog">
                     <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
                 </button>

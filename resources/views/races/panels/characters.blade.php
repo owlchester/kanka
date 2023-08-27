@@ -18,10 +18,10 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 
 <div class="flex gap-2 items-center mb-2">
-    <h3 class="grow m-0">
+    <h3 class="grow">
         {!! \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')) !!}
     </h3>
-    <div>
+    <div class="flex-none flex gap-1">
         <a href="#" class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="help-modal">
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </a>

@@ -33,7 +33,7 @@
             @include('campaigns._overview')
 
             <div class="flex gap-2 items-center">
-                <h3 class="m-0 inline-block grow">
+                <h3 class="inline-block grow">
                     {!! $campaign->name !!}
                 </h3>
                 <div class="flex-none gap-1">

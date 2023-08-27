@@ -1,7 +1,6 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.members') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.members')
     ],
     'canonical' => true,
@@ -14,7 +13,7 @@
     @include('partials.errors')
     <div class="flex gap-5 flex-col max-w-7xl">
         <div class="flex gap-2 items-center">
-            <h3 class="m-0 inline-block grow">
+            <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.members') }} <span class="text-sm">({{ $rows->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
             </h3>
             <a href="https://docs.kanka.io/en/latest/features/campaigns/members.html" class="btn2 btn-sm btn-ghost" target="_blank">

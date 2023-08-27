@@ -54,7 +54,7 @@ if ($widget->conf('entity')) {
 
             @if ($widget->widget == Widget::Header)
                 @if (!empty($widget->conf('text')))
-                    <h3 class="m-0">{{ $widget->conf('text') }}</h3>
+                    <h3 class="">{{ $widget->conf('text') }}</h3>
                 @endif
             @elseif (!empty($widget->conf('text')))
                 <span class="text-xs" title="{{ __('dashboard.widgets.fields.name') }}">

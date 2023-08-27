@@ -1,4 +1,4 @@
-<div class="grid mb-2 gap-4 md:mb-4 w-full
+<div class="grid gap-4 w-full
 @if ($type === '3/4') grid-cols-4
 @elseif ($type === '3/3') md:grid-cols-3
 @elseif ($type === '1/1') grid-cols-1

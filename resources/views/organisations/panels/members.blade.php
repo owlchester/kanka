@@ -22,7 +22,7 @@ $direct = $model->members()->has('character')->count();
 $all = $model->allMembers()->has('character')->count();
 ?>
 <div class="flex gap-2 items-center mb-2">
-    <h3 class="m-0 grow">
+    <h3 class="grow">
         {{ __('organisations.fields.members') }}
     </h3>
     <div class="flex-none flex gap-1 flex-wrap">

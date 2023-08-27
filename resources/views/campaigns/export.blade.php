@@ -1,7 +1,6 @@
 @extends('layouts.app', [
     'title' => __('campaigns/export.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.export')
     ],
     'canonical' => true,
@@ -15,7 +14,7 @@
         @include('partials.errors')
 
         <div class="flex gap-2 items-center">
-            <h3 class="mt-0 grow">
+            <h3 class="grow">
                 {{ __('campaigns/export.title') }}
             </h3>
             <a href="https://docs.kanka.io/en/latest/features/campaigns/export.html" target="_blank" class="btn2 btn-sm btn-ghost">

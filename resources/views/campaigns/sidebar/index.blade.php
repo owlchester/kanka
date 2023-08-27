@@ -2,7 +2,6 @@
 @extends('layouts.app', [
     'title' => __('campaigns/sidebar.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.sidebar')
     ],
     'mainTitle' => false,
@@ -15,7 +14,7 @@
         @include('partials.errors')
 
         <div class="flex gap-2 items-center">
-            <h3 class="m-0 inline-block grow">
+            <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.sidebar') }}
             </h3>
 

@@ -3,7 +3,6 @@ use App\Facades\Datagrid ?>
 @extends('layouts.app', [
     'title' => __('campaigns/styles.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.styles')
     ],
     'mainTitle' => false,
@@ -15,7 +14,7 @@ use App\Facades\Datagrid ?>
 
     <div class="flex gap-5 flex-col max-w-7xl">
         <div class="flex gap-2 items-center flex-wrap">
-            <h3 class="m-0 inline-block grow">
+            <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.styles') }}
             </h3>
             @if ($campaign->boosted())

@@ -117,7 +117,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             </ol>
         @endif
         <div class="entity-name-header flex gap-3 items-center">
-            <h1 class="entity-name text-lg md:text-4xl m-0 break-all">
+            <h1 class="entity-name text-lg md:text-4xl break-all">
                 {!! $model->name !!}
             </h1>
             @if ($model instanceof \App\Models\Character && $model->isDead())

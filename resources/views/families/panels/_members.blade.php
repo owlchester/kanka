@@ -16,7 +16,7 @@ if (request()->has('family_id')) {
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 <div class="flex gap-2 items-center mb-2">
-    <h3 class="grow m-0">
+    <h3 class="grow ">
         {{ __('families.show.tabs.members') }}
     </h3>
     <div class="flex gap-2 overflow-auto">

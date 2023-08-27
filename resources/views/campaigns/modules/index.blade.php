@@ -1,7 +1,6 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.modules') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.modules')
     ],
     'canonical' => true,
@@ -18,7 +17,7 @@
     <div class="grow max-w-7xl flex flex-col gap-5" id="campaign-modules">
 
         <div class="flex gap-2 items-center">
-            <h3 class="m-0 inline-block grow">
+            <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.modules') }}
             </h3>
 

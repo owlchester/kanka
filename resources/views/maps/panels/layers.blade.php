@@ -4,7 +4,7 @@
     </p>
 </x-tutorial>
 
-<h3 class="m-0">
+<h3 class="">
     {{ __('maps.panels.layers') }}
 </h3>
 <div class="" id="map-layers">

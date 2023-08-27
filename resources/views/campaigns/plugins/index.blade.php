@@ -2,7 +2,7 @@
  * @var \App\Models\Plugin $plugin
  */?>
 <div class="flex gap-2 items-center">
-    <h3 class="m-0 inline-block grow">
+    <h3 class="inline-block grow">
         {{ __('campaigns.show.tabs.plugins') }}
     </h3>
     <a href="{{ config('marketplace.url') }}" target="_blank" class="btn2 btn-primary">

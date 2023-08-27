@@ -9,7 +9,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             <div class="flex gap-2 items-center grow cursor-pointer" data-toggle="collapse" data-target="#character-personality-body">
                 <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
                 <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
-                <h3 class="post-title grow m-0"  >
+                <h3 class="post-title grow"  >
                     {{ __('characters.sections.personality') }}
                 </h3>
             </div>

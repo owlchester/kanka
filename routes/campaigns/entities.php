@@ -156,7 +156,7 @@ Route::post('/w/{campaign}/entities/{entity}/privacy', [\App\Http\Controllers\En
 
 // Entity update entry
 Route::get('/w/{campaign}/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'edit'])->name('entities.entry.edit');
-Route::patch('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
+Route::patch('w/{campaign}/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
 
 Route::get('/w/{campaign}/entities/{entity}/connection/map', 'Entity\Connections\MapController@index')->name('entities.relations_map');
 Route::get('/w/{campaign}/entities/{entity}/connection/table', 'Entity\Connections\TableController@index')->name('entities.relations_table');

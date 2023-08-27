@@ -4,17 +4,18 @@
  * @var \App\Models\CampaignRoleUser[]|\Illuminate\Pagination\LengthAwarePaginator $members
  */
 ?>
-<h3 class="mb-5">
+<div class="flex flex-col gap-5">
+
+<h3 class="">
     {{ __('campaigns.roles.members') }}
 </h3>
 
-<div class="flex flex-col gap-2">
-
     @if ($members->isEmpty())
         <x-alert type="info">
-            <div class="mb-5">{{__('campaigns.roles.hints.empty_role')}}</div>
+            <div class="">{{__('campaigns.roles.hints.empty_role')}}</div>
         </x-alert>
     @endif
+
 
     @can('user', $role)
         <a href="{{ route('campaign_roles.campaign_role_users.create', [$campaign, 'campaign_role' => $role]) }}"

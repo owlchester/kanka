@@ -20,10 +20,10 @@ abstract class MiscObserver
     use Copiable;
     use PurifiableTrait;
 
-    /** @var EntityMappingService Service to build the mention "map" of the entity */
+    /**Service to build the mention "map" of the entity */
     protected EntityMappingService $entityMappingService;
 
-    /** @var LogService Service for logging changes to an entity */
+    /** Service for logging changes to an entity */
     protected LogService $logService;
 
     public function __construct(EntityMappingService $entityMappingService, LogService $logService)

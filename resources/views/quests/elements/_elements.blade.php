@@ -17,7 +17,7 @@
                     @endif
 
                     <div class="grow">
-                        <h3 class="widget-user-username m-0 text-2xl ">
+                        <h3 class="widget-user-username text-2xl ">
                             @if($element->entity)
                                 @if ($element->entity->is_private)
                                     <i class="fa-solid fa-lock" aria-hidden="true" aria-label="{{ __('crud.is_private') }}" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>

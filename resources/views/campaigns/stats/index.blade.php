@@ -4,7 +4,6 @@ use \Illuminate\Support\Arr;
 @extends('layouts.app', [
     'title' => __('campaigns/stats.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.achievements')
     ],
     'mainTitle' => false,
@@ -16,7 +15,7 @@ use \Illuminate\Support\Arr;
 
     <div class="flex gap-5 flex-col max-w-7xl achievements">
         <div class="flex gap-2 items-center">
-            <h3 class="m-0 inline-block grow">
+            <h3 class="inline-block grow">
             {{ __('campaigns.show.tabs.achievements') }}
             </h3>
 

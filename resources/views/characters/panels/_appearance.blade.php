@@ -8,7 +8,7 @@ $appearances = $model->characterTraits()->appearance()->orderBy('default_order')
             <div class="flex gap-2 items-center grow cursor-pointer" data-toggle="collapse" data-target="#character-appearance-body">
                 <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
                 <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
-                <h3 class="post-title grow m-0"  >
+                <h3 class="post-title grow"  >
                     {{ __('characters.sections.appearance') }}
                 </h3>
             </div>

@@ -2,7 +2,6 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.default-images') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.default-images')
     ],
     'mainTitle' => false,
@@ -14,7 +13,7 @@
     <div class="flex gap-5 flex-col max-w-4xl">
         @include('partials.errors')
         <div class="flex gap-2 items-center">
-            <h3 class="m-0 inline-block grow">
+            <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.default-images') }}
             </h3>
             @if ($campaign->boosted())

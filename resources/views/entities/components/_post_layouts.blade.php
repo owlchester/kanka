@@ -8,7 +8,7 @@
 ?>
 <div class="flex flex-col gap-2 post-block post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
     <div class="flex gap-2 items-center">
-        <h3 class="grow m-0" >
+        <h3 class="grow" >
             {{ $post->name  }}
             @if (app()->environment('local'))
                 <sup class="text-xs">({{ $post->position }})</sup>

@@ -1,18 +1,23 @@
 {{ csrf_field() }}
-<div class="field-name required">
-    <label>{{ trans('campaigns.roles.fields.name') }}</label>
-    {!! Form::text('name', null, ['placeholder' => trans('campaigns.roles.placeholders.name'), 'class' => 'form-control', 'maxlength' => 45, 'required']) !!}
-    @if (isset($roleId))
-        <div class="field-duplicate-role checkbox">
-            {!! Form::hidden('role_id', $roleId) !!}
-            {!! Form::hidden('duplicate', 0) !!}
-            <label>
-                {!! Form::checkbox('duplicate', 1) !!}
-                {{ __('campaigns.roles.fields.copy_permissions') }}
-                <x-helpers.tooltip :title="__('calendars.hints.skip_year_zero')" />
-            </label>
-            <p class="help-block visible-xs visible-sm">{{ __('campaigns.roles.helper.permissions_helper') }}</p>
-        </div>
-    @endif
-</div>
+<x-grid type="1/1">
+<x-forms.field
+    field="name"
+    :required="true"
+    :label="__('campaigns.roles.fields.name')"
+    >
+    {!! Form::text('name', null, ['placeholder' => trans('campaigns.roles.placeholders.name'), 'class' => '', 'maxlength' => 45, 'required']) !!}
+</x-forms.field>
+@if (isset($roleId))
+    <x-forms.field
+        field="duplicate"
+        :label="__('campaigns.roles.fields.copy_permissions')">
+        {!! Form::hidden('role_id', $roleId) !!}
+        {!! Form::hidden('duplicate', 0) !!}
+        <label class="font-normal">
+            {!! Form::checkbox('duplicate', 1, null, ['id' => 'duplicate']) !!}
+            {{ __('campaigns.roles.helper.permissions_helper') }}
+        </label>
+    </x-forms.field>
+@endif
+</x-grid>
 

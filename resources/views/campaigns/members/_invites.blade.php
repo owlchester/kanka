@@ -8,7 +8,7 @@
 @if (auth()->user()->can('invite', $campaign))
 
     <div class="flex gap-2 items-center">
-        <h3 class="m-0 inline-block grow">
+        <h3 class="inline-block grow">
             {{ __('campaigns.members.invite.title') }}
         </h3>
         <button class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="invite-help">

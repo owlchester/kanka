@@ -3,7 +3,7 @@
     'method' => 'POST',
 ]) !!}
 <div class="flex flex-col gap-5">
-    <h3 class="m-0">
+    <h3 class="">
         {{ __('campaigns/styles.reorder.title') }}
     </h3>
     <div class="box-entity-story-reorder">

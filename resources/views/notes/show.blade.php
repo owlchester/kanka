@@ -16,7 +16,7 @@
             @include('entities.components.posts', ['withEntry' => true])
 
             @if(!$model->notes->isEmpty())
-                <h3 class="m-0">
+                <h3 class="">
                     {!! \App\Facades\Module::plural(config('entities.ids.note'), __('entities.notes')) !!}
                 </h3>
                 <x-box>

@@ -1,7 +1,6 @@
 @extends('layouts.app', [
     'title' => trans('campaigns.roles.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         trans('campaigns.show.tabs.roles')
     ],
     'canonical' => true,
