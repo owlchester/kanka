@@ -266,5 +266,4 @@ class CampaignObserver
             $campaign->genres()->detach(array_keys($existing));
         }
     }
-
 }

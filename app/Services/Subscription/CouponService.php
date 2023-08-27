@@ -70,7 +70,7 @@ class CouponService
                 'coupon' => $promo->coupon->id,
                 'discount' => __('settings.subscription.coupon.percent_off', ['percent' => $promo->coupon->percent_off]),
             ];
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
     }

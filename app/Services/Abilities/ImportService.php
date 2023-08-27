@@ -10,6 +10,7 @@ use Exception;
 class ImportService
 {
     use EntityAware;
+
     /**
      * @return int
      * @throws Exception

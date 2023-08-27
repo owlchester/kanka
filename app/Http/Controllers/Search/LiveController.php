@@ -68,7 +68,6 @@ class LiveController extends Controller
     {
         $recent = [];
         if (auth()->check()) {
-
             $recent = $this->search
                 ->campaign($campaign)
                 ->user(auth()->user())

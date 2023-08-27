@@ -104,7 +104,7 @@ Route::get('/w/{campaign}/campaign-roles/{campaign_role}/duplicate', 'Campaign\R
 
 
 // Marketplace plugin route
-if(config('marketplace.enabled')) {
+if (config('marketplace.enabled')) {
     Route::get('/w/{campaign}/plugins', 'Campaign\PluginController@index')->name('campaign_plugins.index');
     Route::delete('/w/{campaign}/plugins/{plugin}/delete', 'Campaign\PluginController@delete')->name('campaign_plugins.destroy');
     Route::get('/w/{campaign}/plugins/{plugin}/enable', 'Campaign\PluginController@enable')->name('campaign_plugins.enable');

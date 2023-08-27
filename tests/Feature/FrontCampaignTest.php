@@ -1,6 +1,5 @@
 <?php
 
-
 it('setup GET')
     ->asUser()
     ->withCampaign(['visibility_id' => \App\Models\Campaign::VISIBILITY_PUBLIC, 'is_featured' => true])

@@ -70,5 +70,4 @@ class ThemeBuilderController extends Controller
             ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/builder.reset'));
     }
-
 }

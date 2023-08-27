@@ -119,7 +119,7 @@ class CampaignPermission extends Model
     public function entityId()
     {
         $segments = $this->segments();
-        return $segments[count($segments)-1];
+        return $segments[count($segments) - 1];
     }
 
     /**
@@ -128,7 +128,7 @@ class CampaignPermission extends Model
     public function action()
     {
         $segments = $this->segments();
-        $segment = count($segments)-(empty($this->entity_id) ? 1 : 2);
+        $segment = count($segments) - (empty($this->entity_id) ? 1 : 2);
         if (!isset($segments[$segment])) {
             return null;
         }
@@ -142,7 +142,7 @@ class CampaignPermission extends Model
     public function targetsEntity()
     {
         $segments = $this->segments();
-        return is_numeric($segments[count($segments)-1]);
+        return is_numeric($segments[count($segments) - 1]);
     }
 
     public function type()

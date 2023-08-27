@@ -82,5 +82,4 @@ trait GuestAuthTrait
             abort(403);
         }
     }
-
 }

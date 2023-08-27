@@ -299,7 +299,6 @@ class EntityMappingService
         if ($model instanceof EntityNote) {
             $mention->post_id = $model->id;
             $mention->entity_id = $model->entity_id;
-
         } else {
             $mention->entity_id = $model->id;
         }

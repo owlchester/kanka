@@ -31,6 +31,7 @@ class EntityAsset extends Model
     use EntityAssetScopes;
     use Pinnable;
     use VisibilityIDTrait;
+
     public const TYPE_FILE = 1;
     public const TYPE_LINK = 2;
     public const TYPE_ALIAS = 3;

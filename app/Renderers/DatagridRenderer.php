@@ -216,7 +216,7 @@ class DatagridRenderer
             }
         }
 
-        return "<th class='dg-" .$type . " " . ($class ?? null) . "'>{$html}</th>\n";
+        return "<th class='dg-" . $type . " " . ($class ?? null) . "'>{$html}</th>\n";
     }
 
     /**
@@ -283,7 +283,7 @@ class DatagridRenderer
 
         // Render an empty row
         if ($rows == 0) {
-            $html .= '<tr><td colspan="' . (count($this->columns)+2) . '"><i>'
+            $html .= '<tr><td colspan="' . (count($this->columns) + 2) . '"><i>'
                 . __('crud.datagrid.empty') . '</i></td>';
         }
         return $html;
@@ -543,5 +543,4 @@ class DatagridRenderer
         $this->nestedFilter = $key;
         return $this;
     }
-
 }

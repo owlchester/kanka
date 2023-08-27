@@ -85,7 +85,7 @@ class PreviewService
     {
         $attributes = [];
         /** @var Attribute $attr */
-        foreach($this->entity->starredAttributes() as $attr) {
+        foreach ($this->entity->starredAttributes() as $attr) {
             if ($attr->isCheckbox()) {
                 $val = __('general.no');
                 if ($attr->value) {

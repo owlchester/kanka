@@ -93,7 +93,7 @@ class Relation extends Model
      * @param string $order
      * @return Builder
      */
-    public function scopeOrdered(Builder$query, $order = 'asc'): Builder
+    public function scopeOrdered(Builder $query, $order = 'asc'): Builder
     {
         return $query
             ->orderBy('relation', $order)

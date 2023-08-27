@@ -406,8 +406,10 @@ class Character extends MiscModel
     public function showProfileInfo(): bool
     {
         // Test text fields first
-        if (!empty($this->type) || !empty($this->age) || !empty($this->sex)
-            || !empty($this->pronouns)) {
+        if (
+            !empty($this->type) || !empty($this->age) || !empty($this->sex)
+            || !empty($this->pronouns)
+        ) {
             return true;
         }
         if (!$this->races->isEmpty() || !$this->families->isEmpty()) {

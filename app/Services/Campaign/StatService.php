@@ -145,7 +145,7 @@ class StatService
         $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
         foreach ($targets as $target) {
             if ($amount > $target) {
-                $level ++;
+                $level++;
             }
         }
 

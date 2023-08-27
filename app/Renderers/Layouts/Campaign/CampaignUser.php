@@ -28,7 +28,6 @@ class CampaignUser extends Layout
                     $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
                     if ($model->user->isBanned()) {
                         $html .= '<i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" data-title = "' . __('campaigns.members.fields.banned') . '"></i>';
-
                     }
                     return $html;
                 },
@@ -39,7 +38,7 @@ class CampaignUser extends Layout
                 'render' => function ($model) {
                     $campaign = CampaignLocalization::getCampaign();
                     $html = $model->user->rolesList($campaign);
-                    if(auth()->user()->can('update', $model)) {
+                    if (auth()->user()->can('update', $model)) {
                         $html .= ' <i href="' . route('campaign.members.roles', [$campaign, $model->id]) . '" class="fa-solid fa-plus-circle cursor-pointer"
                             data-toggle="dialog-ajax" data-target="new-invite" data-url="' . route('campaign.members.roles', [$campaign, $model->id]) . '">
                         </i>';
@@ -66,7 +65,6 @@ class CampaignUser extends Layout
                     $html = '';
                     if ($model->user->has_last_login_sharing && !empty($model->user->last_login_at)) {
                         $html = '<span data-title="' . $model->user->last_login_at . 'UTC" data-toggle="tooltip">' . $model->user->last_login_at->diffForHumans() . '</span>';
-
                     }
                     return $html;
                 },

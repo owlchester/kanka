@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of the Calendar Weather Observer
  *
