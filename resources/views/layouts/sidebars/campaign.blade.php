@@ -4,7 +4,7 @@
     @include('layouts.sidebars._campaign')
 
     <section class="sidebar pb-14" style="height: auto">
-        <ul class="sidebar-menu overflow-hidden whitespace-no-wrap flex flex-col gap-1 list-none m-0 p-0">
+        <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0">
             <li class="px-2 section-dashboard">
                 <x-sidebar.element
                     :url="route('home', [$campaign])"
