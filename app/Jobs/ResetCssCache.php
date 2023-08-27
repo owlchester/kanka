@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class ResetCssCache implements ShouldQueue
@@ -37,7 +38,12 @@ class ResetCssCache implements ShouldQueue
      */
     public function handle()
     {
-        cache()->clear('campaign_' . $this->campaign . '_theme');
-        Log::info('Campaign #' . $this->campaign . ' cleared css cache (job)');
+        $campaign = Campaign::find($this->campaign);
+        if (empty($campaign)) {
+            return;
+        }
+        Cache::forget('campaign_' . $campaign->id . '_theme');
+        $campaign->touchSilently();
+        Log::info('Campaign #' . $campaign->id . ' cleared css cache (job)');
     }
 }
