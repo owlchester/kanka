@@ -33,6 +33,7 @@ $enabled = $campaign->enabled($module);
             <h3 class="text-lg m-0 grow break-all text-white">
                 {!! $moduleName !!}
             </h3>
+            @can('update', $campaign)
             @if (isset($id) && !isset($deprecated))
                 <button
                     class="text-white hover:shadow-sm text-xl transition-all hover:rotate-45"
@@ -46,6 +47,7 @@ $enabled = $campaign->enabled($module);
                     </span>
                 </button>
             @endif
+            @endcan
         </div>
         <div class="grow flex flex-wrap flex-col">
             <div class="body p-4 pb-2 grow">
@@ -62,7 +64,7 @@ $enabled = $campaign->enabled($module);
                     </div>
                 @endif
             </div>
-
+            @can('update', $campaign)
             <div class="footer text-center my-4">
                 <label class="toggle">
                     <input type="checkbox" name="enabled" data-url="{{ route('campaign.modules.toggle', [$campaign, 'module' => $module]) }}" @if ($enabled) checked="checked" @endif>
@@ -70,6 +72,7 @@ $enabled = $campaign->enabled($module);
                     <span class="sr-only">Check to enable the {{ $module }} module</span>
                 </label>
             </div>
+            @endcan
         </div>
     </x-box>
 @endif

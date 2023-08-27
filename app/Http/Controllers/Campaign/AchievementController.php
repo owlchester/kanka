@@ -16,15 +16,11 @@ class AchievementController extends Controller
 
     public function __construct(StatService $service)
     {
-        $this->middleware('auth');
-
         $this->service = $service;
     }
 
     public function index(Campaign $campaign)
     {
-        $this->authorize('stats', $campaign);
-
         $stats = $this->service->campaign($campaign)->stats();
 
         return view('campaigns.stats.index', compact('campaign', 'stats'));

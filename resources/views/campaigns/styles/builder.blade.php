@@ -5,6 +5,7 @@
         __('campaigns/builder.title')
     ],
     'mainTitle' => '',
+    'sidebar' => 'campaign',
 ])
 
 @section('content')

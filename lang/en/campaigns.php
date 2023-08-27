@@ -17,7 +17,7 @@ TEXT
         'title'                 => 'New Campaign',
     ],
     'destroy'                           => [
-        'action'            => 'Delete campaign',
+        'action'            => 'Delete',
         'confirm'           => 'Are you sure you want to delete :campaign? This action is permanent and can\'t be recovered.',
         'confirm-button'    => 'Permanently delete the campaign',
         'helper-v2'         => 'This campaign can\'t be deleted while there are other members in it. Remove the other members first and try again.',
@@ -390,8 +390,8 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'edit'  => 'Edit Campaign',
-            'leave' => 'Leave campaign',
+            'edit'  => 'Edit',
+            'leave' => 'Leave',
         ],
         'menus'     => [
             'configuration'     => 'Configuration',
@@ -409,9 +409,11 @@ TEXT
             'plugins'           => 'Plugins',
             'recovery'          => 'Recovery',
             'roles'             => 'Roles',
-            'settings'          => 'Modules',
-            'sidebar'           => 'Sidebar setup',
+            'modules'           => 'Modules',
+            'sidebar'           => 'Sidebar',
             'styles'            => 'Theming',
+            'customisation'     => 'Customisation',
+            'management'        => 'Management',
         ],
         'title'     => 'Overview - :name',
     ],

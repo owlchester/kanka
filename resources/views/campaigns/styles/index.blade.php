@@ -7,57 +7,53 @@ use App\Facades\Datagrid ?>
         __('campaigns.show.tabs.styles')
     ],
     'mainTitle' => false,
+    'sidebar' => 'campaign',
 ])
 
 @section('content')
     @include('partials.errors')
 
-    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
-        <div class="lg:flex-none lg:w-60">
-            @include('campaigns._menu', ['active' => 'styles'])
-        </div>
-        <div class="grow max-w-7xl">
-            <div class="flex gap-2 mb-5 items-center flex-wrap">
-                <h3 class="m-0 inline-block grow">
-                    {{ __('campaigns.show.tabs.styles') }}
-                </h3>
-                @if ($campaign->boosted())
-                    <button class="btn2 btn-sm btn-ghost ml-1" data-toggle="dialog"
-                            data-target="theming-help">
-                        <x-icon class="question"></x-icon>
-                        {{ __('crud.actions.help') }}
-                    </button>
-                    <a href="#" data-url="{{ route('campaign-theme', $campaign) }}" data-target="campaign-theme" data-toggle="dialog-ajax" class="btn2 btn-sm pull-right ml-1">
-                        <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
-                    </a>
+    <div class="flex gap-5 flex-col max-w-7xl">
+        <div class="flex gap-2 items-center flex-wrap">
+            <h3 class="m-0 inline-block grow">
+                {{ __('campaigns.show.tabs.styles') }}
+            </h3>
+            @if ($campaign->boosted())
+                <button class="btn2 btn-sm btn-ghost ml-1" data-toggle="dialog"
+                        data-target="theming-help">
+                    <x-icon class="question"></x-icon>
+                    {{ __('crud.actions.help') }}
+                </button>
+                <a href="#" data-url="{{ route('campaign-theme', $campaign) }}" data-target="campaign-theme" data-toggle="dialog-ajax" class="btn2 btn-sm pull-right ml-1">
+                    <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
+                </a>
 
-                    <a href="{{ route('campaign_styles.create', $campaign) }}" class="btn2 btn-primary btn-sm pull-right ml-1">
-                        <x-icon class="plus"></x-icon> {{ __('campaigns/styles.actions.new') }}
-                    </a>
-                @endif
-            </div>
-            @if (!$campaign->boosted())
-                <x-cta :campaign="$campaign">
-                    <p>{!! __('campaigns/styles.pitch') !!}</p>
-                </x-cta>
-            @else
-                @if ($styles->count() === 0)
-                    <x-box>
-                        <p class="help-block">
-                            {!! __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]) !!}
-                        </p>
-                    </x-box>
-                @else
-                    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_styles.bulk', $campaign]]) !!} @endif
-                    <div id="datagrid-parent" class="mb-5">
-                        @include('layouts.datagrid._table', ['rows' => $styles])
-                    </div>
-                    @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
-                @endif
-
-                @includeWhen(!$reorderStyles->isEmpty(), 'campaigns.styles._reorder')
+                <a href="{{ route('campaign_styles.create', $campaign) }}" class="btn2 btn-primary btn-sm pull-right ml-1">
+                    <x-icon class="plus"></x-icon> {{ __('campaigns/styles.actions.new') }}
+                </a>
             @endif
         </div>
+        @if (!$campaign->boosted())
+            <x-cta :campaign="$campaign">
+                <p>{!! __('campaigns/styles.pitch') !!}</p>
+            </x-cta>
+        @else
+            @if ($styles->count() === 0)
+                <x-box>
+                    <p class="help-block">
+                        {!! __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]) !!}
+                    </p>
+                </x-box>
+            @else
+                @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_styles.bulk', $campaign]]) !!} @endif
+                <div id="datagrid-parent" class="mb-5">
+                    @include('layouts.datagrid._table', ['rows' => $styles])
+                </div>
+                @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+            @endif
+
+            @includeWhen(!$reorderStyles->isEmpty(), 'campaigns.styles._reorder')
+        @endif
     </div>
 @endsection
 

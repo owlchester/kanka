@@ -2,7 +2,8 @@
     'title' => __('campaigns/styles.update.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaign_styles.index', $campaign), 'label' => __('campaigns.show.tabs.styles')]
-    ]
+    ],
+    'sidebar' => 'campaign',
 ])
 
 @section('content')

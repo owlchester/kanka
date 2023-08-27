@@ -429,6 +429,14 @@ class SidebarService
         return 'active';
     }
 
+    public function activeCampaign(string $menu): string|null
+    {
+        if (request()->segment(3) == $menu) {
+            return " active";
+        }
+        return null;
+    }
+
     /**
      * Settings menu active
      * @param string $menu

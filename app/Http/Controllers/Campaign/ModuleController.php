@@ -17,15 +17,12 @@ class ModuleController extends Controller
 
     public function __construct(SidebarService $sidebarService, ModuleEditService $moduleEditService)
     {
-        $this->middleware('auth');
         $this->sidebarService = $sidebarService;
         $this->moduleService = $moduleEditService;
     }
 
     public function index(Campaign $campaign)
     {
-        $this->authorize('setting', $campaign);
-
         return view('campaigns.modules.index')
             ->with('campaign', $campaign)
             ->with('canReset', true);

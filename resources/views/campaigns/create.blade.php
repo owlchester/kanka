@@ -2,7 +2,8 @@
     'title' => __('campaigns.create.title'),
     'breadcrumbs' => false,
     'skipBannerAd' => true,
-    'startUI' => $start
+    'startUI' => $start,
+    'sidebar' => 'campaign',
 ])
 
 @section('fullpage-form')

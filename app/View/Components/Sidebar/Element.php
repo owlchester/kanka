@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 class Element extends Component
 {
     public string $text;
-    public string $icon;
+    public ?string $icon;
     public ?string $url;
     public ?string $class;
 
@@ -17,8 +17,8 @@ class Element extends Component
      * Create a new component instance.
      */
     public function __construct(
-        string $icon,
         string $text,
+        string $icon = null,
         string $url = null,
         string $class = null,
     ) {

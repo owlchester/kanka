@@ -17,8 +17,6 @@ class DefaultImageController extends Controller
 
     public function __construct(TypeService $typeService, DefaultImageService $service)
     {
-        $this->middleware('auth');
-        $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
         $this->typeService = $typeService;
@@ -30,9 +28,6 @@ class DefaultImageController extends Controller
      */
     public function index(Campaign $campaign)
     {
-        $this->authorize('recover', $campaign);
-
-
         return view('campaigns.default-images.index', compact('campaign'));
     }
 

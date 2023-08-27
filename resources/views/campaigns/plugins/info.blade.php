@@ -6,6 +6,7 @@
         __('campaigns/plugins.info.title', ['plugin' => $plugin->name]),
     ],
     'canonical' => true,
+    'sidebar' => 'campaign',
 ])
 
 

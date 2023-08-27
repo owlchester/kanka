@@ -2,7 +2,7 @@
 /** @var \App\Models\CampaignSubmission[] $submissions */
 ?>
 
-<div class="grid grid-cols-1 xl:grid-cols-2 gap-2 xl:gap-5">
+<div class="grid grid-cols-2 xl:grid-cols-4 gap-2 xl:gap-5">
     @foreach($submissions as $submission)
         <x-box>
             <h4 class="text-lg">{{ $submission->user->name }}</h4>

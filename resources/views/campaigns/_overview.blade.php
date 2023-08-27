@@ -64,6 +64,32 @@ $boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-
             </div>
         </div>
     @endif
+
+@if (auth()->check() && auth()->user()->hasBoosterNomenclature() && !$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost))
+    <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boosts.edit', [$boost]) }}" class="btn2 bg-boost text-white">
+        <div class="flex flex-col gap-3">
+        <x-icon class="premium" size="fa-2x" />
+        {{ __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) }}
+        </div>
+    </a>
+@endif
+@if (!$campaign->boosted())
+    @if (auth()->check() && auth()->user()->hasBoosterNomenclature()) {
+    <a href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}" class="btn2 bg-boost text-white">
+        <div class="flex flex-col gap-3">
+        <x-icon class="premium" size="fa-2x" />
+        {{ __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) }}
+        </div>
+    </a>
+    @else
+    <a href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" class="btn2 bg-boost text-white">
+        <div class="flex flex-col gap-3">
+        <x-icon class="premium" size="fa-2x" />
+        {{  __('settings/premium.actions.unlock') }}
+        </div>
+    </a>
+    @endif
+@endif
 </div>
 
 @section('modals')

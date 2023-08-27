@@ -1,4 +1,4 @@
-<div class="flex gap-2 mb-5 items-center">
+<div class="flex gap-2 items-center">
     <h3 class="m-0 inline-block grow">
         {{ __('campaigns.show.tabs.roles') }} <span class="text-sm">({{ $roles->total() }} / @if ($limit = $campaign->roleLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
     </h3>

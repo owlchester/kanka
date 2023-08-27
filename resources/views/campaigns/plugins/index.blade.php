@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Plugin $plugin
  */?>
-<div class="flex gap-2 items-center mb-5">
+<div class="flex gap-2 items-center">
     <h3 class="m-0 inline-block grow">
         {{ __('campaigns.show.tabs.plugins') }}
     </h3>
