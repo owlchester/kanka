@@ -10,7 +10,6 @@ use App\Models\Journal;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Models\Relation;
-use App\Renderers\Layouts\Layout;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
 use App\User;

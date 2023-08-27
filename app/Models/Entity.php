@@ -10,7 +10,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
-use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\EntityType;
