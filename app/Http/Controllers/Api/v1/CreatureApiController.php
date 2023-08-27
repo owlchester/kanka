@@ -10,7 +10,6 @@ use App\Http\Resources\CreatureResource as Resource;
 class CreatureApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -27,8 +26,6 @@ class CreatureApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Creature $creature
      * @return Resource
      */
     public function show(Campaign $campaign, Creature $creature)
@@ -39,8 +36,6 @@ class CreatureApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -57,9 +52,6 @@ class CreatureApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Creature $creature
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Creature $creature)
@@ -73,8 +65,6 @@ class CreatureApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Creature $creature
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

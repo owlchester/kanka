@@ -39,10 +39,6 @@ trait PrimaryCache
 
     /**
      * Some data needs to load "after the init", which can be done with this append function.
-     * @param int $key
-     * @param string $property
-     * @param mixed $data
-     * @return mixed
      */
     protected function append(int $key, string $property, mixed $data): mixed
     {

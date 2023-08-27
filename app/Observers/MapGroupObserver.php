@@ -13,7 +13,6 @@ class MapGroupObserver
     use ReorderTrait;
 
     /**
-     * @param MapGroup $mapGroup
      */
     public function saving(MapGroup $mapGroup)
     {
@@ -30,7 +29,6 @@ class MapGroupObserver
     }
 
     /**
-     * @param MapGroup $mapGroup
      */
     public function deleted(MapGroup $mapGroup)
     {
@@ -38,7 +36,6 @@ class MapGroupObserver
     }
 
     /**
-     * @param MapGroup $mapGroup
      */
     public function saved(MapGroup $mapGroup)
     {

@@ -14,7 +14,6 @@ class AbilityController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'abilities';
     protected string $route = 'abilities';

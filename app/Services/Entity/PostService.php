@@ -56,7 +56,6 @@ class PostService
     /**
      * Move the post to another entity
      *
-     * @return Post
      */
     protected function move(): Post
     {

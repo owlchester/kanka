@@ -22,8 +22,6 @@ class EntityType extends Model
     ];
 
     /**
-     * @param Builder $query
-     * @return mixed
      */
     public function scopeEnabled(Builder $query)
     {
@@ -34,7 +32,6 @@ class EntityType extends Model
 
     /**
      * Get the class model of the entity type
-     * @return mixed
      */
     public function getClass()
     {
@@ -44,7 +41,6 @@ class EntityType extends Model
 
     /**
      * Get the translated name of the entity
-     * @return string
      */
     public function name(): string
     {
@@ -52,7 +48,6 @@ class EntityType extends Model
     }
 
     /**
-     * @return string
      */
     public function getNameAttribute(): string
     {

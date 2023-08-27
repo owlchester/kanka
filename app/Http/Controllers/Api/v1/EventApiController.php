@@ -10,7 +10,6 @@ use App\Http\Resources\EventResource as Resource;
 class EventApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -26,8 +25,6 @@ class EventApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Event $event
      * @return Resource
      */
     public function show(Campaign $campaign, Event $event)
@@ -38,8 +35,6 @@ class EventApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -56,9 +51,6 @@ class EventApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Event $event
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Event $event)
@@ -72,8 +64,6 @@ class EventApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Event $event
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

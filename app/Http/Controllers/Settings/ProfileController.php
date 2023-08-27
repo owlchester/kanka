@@ -25,7 +25,6 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Request $request)
@@ -35,7 +34,6 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param StoreSettingsProfile $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreSettingsProfile $request)

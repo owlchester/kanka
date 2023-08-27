@@ -58,7 +58,6 @@ class Location extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'parentLocation.name',
@@ -94,8 +93,6 @@ class Location extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -127,7 +124,6 @@ class Location extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -323,7 +319,6 @@ class Location extends MiscModel
 
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -359,7 +354,6 @@ class Location extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -368,7 +362,6 @@ class Location extends MiscModel
 
     /**
      * If the profile is shown
-     * @return bool
      */
     public function showProfileInfo(): bool
     {

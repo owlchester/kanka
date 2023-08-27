@@ -20,7 +20,6 @@ class DatalayerService
     protected bool $newCancelledSubcriber = false;
 
     /**
-     * @return string
      */
     public function base(): string
     {
@@ -49,7 +48,6 @@ class DatalayerService
     }
 
     /**
-     * @return string
      */
     public function userGroup(): string
     {
@@ -74,7 +72,6 @@ class DatalayerService
     }
 
     /**
-     * @return bool
      */
     public function groupB(): bool
     {
@@ -82,8 +79,6 @@ class DatalayerService
     }
 
     /**
-     * @param string $key
-     * @param mixed $value
      * @return $this
      */
     public function add(string $key, mixed $value): self
@@ -93,7 +88,6 @@ class DatalayerService
     }
 
     /**
-     * @return string
      */
     protected function route(): string
     {

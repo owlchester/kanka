@@ -48,7 +48,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns  = ['name'];
 
@@ -116,8 +115,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedSelect(Builder $query): Builder
     {
@@ -127,8 +124,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -148,7 +143,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Apply a template to an entity
-     * @param Entity $entity
      * @param int $startingOrder
      * @return int
      */
@@ -219,7 +213,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -229,7 +222,6 @@ class AttributeTemplate extends MiscModel
     /**
      * Determine if the attribute templates has visible (to show on the entity creation _attributes tab) attributes
      * @param array $names
-     * @return bool
      */
     public function hasVisibleAttributes($names = []): bool
     {
@@ -256,7 +248,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {

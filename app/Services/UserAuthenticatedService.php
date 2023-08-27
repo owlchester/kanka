@@ -7,7 +7,6 @@ use App\User;
 class UserAuthenticatedService
 {
     /**
-     * @param User $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function authenticated(User $user)

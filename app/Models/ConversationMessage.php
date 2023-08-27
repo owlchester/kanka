@@ -111,7 +111,6 @@ class ConversationMessage extends MiscModel
         return null;
     }
     /**
-     * @return int|null
      */
     public function authorID(): int|null
     {
@@ -124,7 +123,6 @@ class ConversationMessage extends MiscModel
     }
 
     /**
-     * @param Builder $query
      * @param null|int $oldestId
      * @param null|int $newestId
      */
@@ -142,7 +140,6 @@ class ConversationMessage extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function isMine(): bool
     {

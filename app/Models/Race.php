@@ -101,8 +101,6 @@ class Race extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -128,10 +126,6 @@ class Race extends MiscModel
     }
     /**
      * Filter on races in specific locations
-     * @param Builder $query
-     * @param int|null $race
-     * @param FilterOption $filter
-     * @return Builder
      */
     public function scopeLocation(Builder $query, int|null $race, FilterOption $filter): Builder
     {
@@ -166,7 +160,6 @@ class Race extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {

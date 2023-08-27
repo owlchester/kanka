@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 class MarketplaceCacheService extends BaseCache
 {
     /**
-     * @return array
      */
     public function counts(): array
     {
@@ -51,7 +50,6 @@ class MarketplaceCacheService extends BaseCache
 
     /**
      * Type suggestion cache key
-     * @return string
      */
     protected function countKey(): string
     {

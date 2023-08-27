@@ -16,7 +16,6 @@ class DefaultImageService
     protected string $type;
 
     /**
-     * @param string $type
      * @return $this
      */
     public function type(string $type): self
@@ -26,8 +25,6 @@ class DefaultImageService
     }
 
     /**
-     * @param Request $request
-     * @return bool
      */
     public function save(Request $request): bool
     {
@@ -74,7 +71,6 @@ class DefaultImageService
 
     /**
      * Remove a default image
-     * @return bool
      */
     public function destroy(): bool
     {

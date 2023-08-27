@@ -61,7 +61,6 @@ class UserController extends Controller
     }
 
     /**
-     * @param CampaignUser $campaignUser
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -75,7 +74,6 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

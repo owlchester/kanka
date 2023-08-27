@@ -16,7 +16,6 @@ class Standard extends Column
     public const DATE = 'date';
 
     /**
-     * @return string
      */
     public function __toString(): string
     {
@@ -40,8 +39,6 @@ class Standard extends Column
 
     /**
      * If this is a defined view
-     * @param string $render
-     * @return bool
      */
     protected function defined(string $render): bool
     {
@@ -57,9 +54,6 @@ class Standard extends Column
 
     /**
      * Render a defined view
-     * @param string $view
-     * @param array|null $extra
-     * @return string
      */
     protected function view(string $view, array $extra = null): string
     {

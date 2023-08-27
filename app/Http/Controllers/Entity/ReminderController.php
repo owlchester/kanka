@@ -25,7 +25,6 @@ class ReminderController extends Controller
     use HasSubview;
 
     /**
-     * @var string
      */
     protected string $view = 'entity_event';
     protected string $route = 'entity_event';

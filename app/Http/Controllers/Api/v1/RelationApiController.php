@@ -8,7 +8,6 @@ use App\Http\Resources\RelationResource as Resource;
 class RelationApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

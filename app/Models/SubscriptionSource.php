@@ -35,7 +35,6 @@ class SubscriptionSource extends Model
     ];
 
     /**
-     * @return string
      */
     public function currency(): string
     {
@@ -51,7 +50,6 @@ class SubscriptionSource extends Model
     }
 
     /**
-     * @return string
      */
     public function plan(): string
     {

@@ -43,7 +43,6 @@ class VisibileEntityCountCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return void
      */
     public function handle(): void
     {
@@ -65,7 +64,6 @@ class VisibileEntityCountCommand extends Command
     }
 
     /**
-     * @param Campaign $campaign
      * @return int number of public entities
      */
     protected function campaignCount(Campaign $campaign): int

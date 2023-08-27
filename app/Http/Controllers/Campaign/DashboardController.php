@@ -55,7 +55,6 @@ class DashboardController extends Controller
     }
 
     /**
-     * @param StoreCampaignDashboard $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

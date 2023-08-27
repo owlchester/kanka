@@ -8,8 +8,6 @@ class ColourService
 
     /**
      * Get a contrasting colour, either black or white depending on the provided colour
-     * @param string $colour
-     * @return string
      */
     public function contrastBW(string $colour): string
     {

@@ -10,7 +10,6 @@ class EntityAssetObserver
     use PurifiableTrait;
 
     /**
-     * @param EntityAsset $entityAsset
      * @return void
      */
     public function saving(EntityAsset $entityAsset)
@@ -19,7 +18,6 @@ class EntityAssetObserver
     }
 
     /**
-     * @param EntityAsset $entityAsset
      * @return void
      */
     public function saved(EntityAsset $entityAsset)
@@ -30,7 +28,6 @@ class EntityAssetObserver
     }
 
     /**
-     * @param EntityAsset $entityAsset
      * @return void
      */
     public function deleting(EntityAsset $entityAsset)
@@ -41,7 +38,6 @@ class EntityAssetObserver
     }
 
     /**
-     * @param EntityAsset $entityAsset
      * @return void
      */
     public function deleted(EntityAsset $entityAsset)

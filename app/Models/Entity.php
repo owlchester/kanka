@@ -175,7 +175,6 @@ class Entity extends Model
 
     /**
      * Preview of the entity with mapped mentions. For map markers
-     * @return string
      */
     public function mappedPreview(): string
     {
@@ -196,7 +195,6 @@ class Entity extends Model
 
 
     /**
-     * @param string $action
      * @return string
      */
     public function url(string $action = 'show', array $options = [])
@@ -217,7 +215,6 @@ class Entity extends Model
 
     /**
      * Get the plural name of the entity for routes
-     * @return string
      */
     public function pluralType(): string
     {
@@ -230,7 +227,6 @@ class Entity extends Model
 
     /**
      * Get the entity's type id
-     * @return mixed
      */
     public function typeId()
     {
@@ -245,7 +241,6 @@ class Entity extends Model
 
     /**
      * @param array|int $types
-     * @return bool
      */
     public function isType($types): bool
     {
@@ -257,7 +252,6 @@ class Entity extends Model
     }
 
     /**
-     * @return string
      */
     public function type(): string
     {
@@ -278,8 +272,6 @@ class Entity extends Model
     /**
      * Get the image (or default image) of an entity
      * @param int $width = 200
-     * @param int|null $height
-     * @return string
      */
     public function thumbnail(int $width = 400, int $height = null, $field = 'header_image'): string
     {
@@ -292,7 +284,6 @@ class Entity extends Model
 
     /**
      * If an entity has entity files
-     * @return bool
      */
     public function hasFiles(): bool
     {
@@ -301,7 +292,6 @@ class Entity extends Model
 
     /**
      * Touch a model (update the timestamps) without any observers/events
-     * @return mixed
      */
     public function touchSilently()
     {
@@ -331,8 +321,6 @@ class Entity extends Model
     }*/
 
     /**
-     * @param bool $superboosted
-     * @return bool
      */
     public function hasHeaderImage(bool $superboosted = false): bool
     {
@@ -345,7 +333,6 @@ class Entity extends Model
 
     /**
      * Determine if an entity has an image that can be shown
-     * @return bool
      */
     public function hasImage(bool $boosted = false): bool
     {
@@ -359,10 +346,6 @@ class Entity extends Model
 
     /**
      * Get the entity's image url (local or gallery)
-     * @param bool $boosted
-     * @param int $width
-     * @param int $height
-     * @return string
      */
     public function getEntityImageUrl(bool $boosted = false, int $width = 200, int $height = 200): string
     {
@@ -373,7 +356,6 @@ class Entity extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasLinks(): bool
     {
@@ -381,8 +363,6 @@ class Entity extends Model
     }
 
     /**
-     * @param bool $superboosted
-     * @return string
      */
     public function getHeaderUrl(bool $superboosted = false): string
     {
@@ -402,7 +382,6 @@ class Entity extends Model
     }
 
     /**
-     * @return bool
      */
     public function accessAttributes(): bool
     {
@@ -420,7 +399,6 @@ class Entity extends Model
 
     /**
      * Count the number of mentions this entity has
-     * @return int
      */
     public function mentionsCount(): int
     {
@@ -431,7 +409,6 @@ class Entity extends Model
 
     /**
      * Determine if an entity has pinned elements to display
-     * @return bool
      */
     public function hasPins(): bool
     {

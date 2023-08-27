@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class ImgService
 {
-    /** @var string  */
+    /**  */
     protected string $crop = '';
 
     /** @var bool If true, running locally with docker/minio */
@@ -25,7 +25,7 @@ class ImgService
     /** @var string s3 url */
     protected string $s3;
 
-    /** @var bool */
+    /**  */
     protected bool $enabled;
 
     protected ?int $focusX;
@@ -56,7 +56,6 @@ class ImgService
     }
 
     /**
-     * @param int $width
      * @param int $height
      * @return $this
      */
@@ -72,8 +71,6 @@ class ImgService
     }
 
     /**
-     * @param int $x
-     * @param int $y
      * @return $this
      */
     public function focus(int $x, int $y): self
@@ -104,7 +101,6 @@ class ImgService
     }
 
     /**
-     * @param string|null $base
      * @return $this
      */
     public function base(string|null $base = 'user'): self
@@ -122,8 +118,6 @@ class ImgService
     }
 
     /**
-     * @param string $img
-     * @return string
      */
     public function url(string $img): string
     {
@@ -167,8 +161,6 @@ class ImgService
     }
 
     /**
-     * @param string $url
-     * @return string
      */
     protected function sign(string $url): string
     {

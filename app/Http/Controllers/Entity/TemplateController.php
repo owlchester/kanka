@@ -24,7 +24,6 @@ class TemplateController extends Controller
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Campaign $campaign, Entity $entity)

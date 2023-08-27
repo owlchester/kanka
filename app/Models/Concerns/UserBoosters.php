@@ -14,7 +14,6 @@ trait UserBoosters
 {
     /**
      * Determine if a user has access to campaign boosters to boost a campaign
-     * @return bool
      */
     public function hasBoosters(): bool
     {
@@ -24,7 +23,6 @@ trait UserBoosters
 
     /**
      * Get available boosts for the user
-     * @return int
      */
     public function availableBoosts(): int
     {
@@ -33,7 +31,6 @@ trait UserBoosters
 
     /**
      * Get amount of campaigns the user is boosting
-     * @return int
      */
     public function boosting(): int
     {
@@ -45,7 +42,6 @@ trait UserBoosters
 
     /**
      * Get max number of boosts a user can give
-     * @return int
      */
     public function maxBoosts(): int
     {

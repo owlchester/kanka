@@ -8,7 +8,6 @@ use Carbon\Carbon;
 class PostCacheService extends BaseCache
 {
     /**
-     * @return mixed
      */
     public function latest()
     {
@@ -32,7 +31,6 @@ class PostCacheService extends BaseCache
     }
 
     /**
-     * @return bool
      */
     public function clearLatest(): bool
     {

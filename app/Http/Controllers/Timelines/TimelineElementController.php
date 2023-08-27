@@ -34,7 +34,6 @@ class TimelineElementController extends Controller
 
     /**
      * TimelineElementController constructor.
-     * @param TimelineService $timelineService
      */
     public function __construct(TimelineService $timelineService)
     {
@@ -51,7 +50,6 @@ class TimelineElementController extends Controller
     }
 
     /**
-     * @param Timeline $timeline
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -70,9 +68,6 @@ class TimelineElementController extends Controller
     }
 
     /**
-     * @param Timeline $timeline
-     * @param StoreTimelineElement $request
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Campaign $campaign, Timeline $timeline, StoreTimelineElement $request)
@@ -96,8 +91,6 @@ class TimelineElementController extends Controller
     }
 
     /**
-     * @param Timeline $timeline
-     * @param TimelineElement $timelineElement
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -125,10 +118,6 @@ class TimelineElementController extends Controller
     }
 
     /**
-     * @param StoreTimelineElement $request
-     * @param Timeline $timeline
-     * @param TimelineElement $timelineElement
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreTimelineElement $request, Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
@@ -166,9 +155,6 @@ class TimelineElementController extends Controller
     }
 
     /**
-     * @param Timeline $timeline
-     * @param TimelineElement $timelineElement
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)

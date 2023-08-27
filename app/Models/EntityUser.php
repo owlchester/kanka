@@ -80,7 +80,6 @@ class EntityUser extends Pivot
 
     /**
      * Automatically prune old elements from the db
-     * @return Builder
      */
     public function prunable(): Builder
     {

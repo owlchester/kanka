@@ -19,7 +19,6 @@ class TranslatableException extends Exception
     public $options = [];
 
     /**
-     * @return string
      */
     public function getTranslatedMessage(): string
     {
@@ -27,7 +26,6 @@ class TranslatableException extends Exception
     }
 
     /**
-     * @param array $options
      * @return $this
      */
     public function setOptions(array $options)

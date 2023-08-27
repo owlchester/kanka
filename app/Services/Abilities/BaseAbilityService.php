@@ -16,7 +16,6 @@ abstract class BaseAbilityService
     protected Collection $attributes;
 
     /**
-     * @param Ability $ability
      * @return int|string|null
      */
     protected function parseCharges(Ability $ability)
@@ -36,7 +35,6 @@ abstract class BaseAbilityService
     }
 
     /**
-     * @param Ability $ability
      * @return float|int|mixed
      */
     protected function parseEntry(Ability $ability)
@@ -50,8 +48,6 @@ abstract class BaseAbilityService
     }
 
     /**
-     * @param string $haystack
-     * @param bool $calc
      * @return float|int|string|null
      * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
      * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException

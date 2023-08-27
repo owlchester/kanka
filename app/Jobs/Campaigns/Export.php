@@ -35,8 +35,6 @@ class Export implements ShouldQueue
 
     /**
      * CampaignExport constructor.
-     * @param Campaign $campaign
-     * @param User $user
      */
     public function __construct(Campaign $campaign, User $user, bool $assets = false)
     {

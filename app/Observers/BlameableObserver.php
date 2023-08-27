@@ -8,7 +8,6 @@ use Illuminate\Support\Arr;
 class BlameableObserver
 {
     /**
-     * @param Model $model
      */
     public function creating(Model $model): void
     {
@@ -20,7 +19,6 @@ class BlameableObserver
     }
 
     /**
-     * @param Model $model
      */
     public function updating(Model $model): void
     {
@@ -32,7 +30,6 @@ class BlameableObserver
     }
 
     /**
-     * @param Model $model
      */
     public function deleting(Model $model): void
     {

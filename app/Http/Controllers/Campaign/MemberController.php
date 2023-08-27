@@ -28,8 +28,6 @@ class MemberController extends Controller
 
     /**
      * Switch to another member
-     * @param CampaignUser $campaignUser
-     * @param Entity|null $entity
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -65,8 +63,6 @@ class MemberController extends Controller
     }
 
     /**
-     * @param CampaignUser $campaignUser
-     * @param CampaignRole $campaignRole
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

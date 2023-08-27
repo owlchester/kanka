@@ -13,8 +13,6 @@ class PayPalService
     use UserAware;
 
     /**
-     * @param string $pledge
-     * @return mixed
      */
     public function process(string $pledge): mixed
     {
@@ -58,7 +56,6 @@ class PayPalService
     }
 
     /**
-     * @param string $pledge
      */
     public function subscribe(string $pledge): void
     {

@@ -58,7 +58,6 @@ class TimelineEraController extends Controller
     }
 
     /**
-     * @param Timeline $timeline
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -74,9 +73,6 @@ class TimelineEraController extends Controller
     }
 
     /**
-     * @param Timeline $timeline
-     * @param StoreTimelineEra $request
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Campaign $campaign, Timeline $timeline, StoreTimelineEra $request)
@@ -104,8 +100,6 @@ class TimelineEraController extends Controller
     }
 
     /**
-     * @param Timeline $timeline
-     * @param TimelineEra $timelineEra
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -122,10 +116,6 @@ class TimelineEraController extends Controller
         );
     }
     /**
-     * @param StoreTimelineEra $request
-     * @param Timeline $timeline
-     * @param TimelineEra $timelineEra
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreTimelineEra $request, Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)

@@ -31,7 +31,6 @@ class QuickLinkController extends Controller
     }
 
     /**
-     * @param ReorderMenuLinks $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

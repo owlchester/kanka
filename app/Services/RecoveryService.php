@@ -21,8 +21,6 @@ class RecoveryService
     protected int $count = 0;
 
     /**
-     * @param array $ids
-     * @return int
      */
     public function recover(array $ids): int
     {
@@ -64,7 +62,6 @@ class RecoveryService
     }
 
     /**
-     * @return int
      */
     public function count(): int
     {
@@ -73,7 +70,6 @@ class RecoveryService
 
     /**
      * Restore an entity and it's child
-     * @param int $id
      * @return bool if the restore worked
      */
     protected function entity(int $id): bool
@@ -98,7 +94,6 @@ class RecoveryService
     }
 
     /**
-     * @param Entity $entity
      * @throws \Exception
      */
     public function trash(Entity $entity)
@@ -118,7 +113,6 @@ class RecoveryService
     }
 
     /**
-     * @param Entity $entity
      * @param MiscModel|Location|null $child
      * @throws \Exception
      */

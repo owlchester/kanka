@@ -33,7 +33,6 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
      */
     public function saving(MiscModel $model)
     {
@@ -71,7 +70,6 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
      */
     public function saved(MiscModel $model)
     {
@@ -100,7 +98,6 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
      */
     public function created(MiscModel $model)
     {
@@ -111,7 +108,6 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
      */
     public function deleted(MiscModel $model)
     {
@@ -130,7 +126,6 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
      */
     public function updated(MiscModel $model)
     {
@@ -159,7 +154,6 @@ abstract class MiscObserver
 
     /**
      * When saving an entity, we can to update our mentions if they have been changed
-     * @param Entity $entity
      */
     protected function syncMentions(MiscModel $model, Entity $entity)
     {
@@ -174,7 +168,6 @@ abstract class MiscObserver
 
     /**
      * @param MiscModel|Location $model
-     * @param string $field
      */
     protected function cleanupTree(MiscModel $model, string $field = 'parent_id')
     {

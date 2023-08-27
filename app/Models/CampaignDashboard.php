@@ -41,8 +41,6 @@ class CampaignDashboard extends Model
     }
 
     /**
-     * @param Builder $builder
-     * @param CampaignDashboard|null $campaignDashboard
      * @return Builder
      */
     public function scopeExclude(Builder $builder, CampaignDashboard $campaignDashboard = null)
@@ -56,9 +54,6 @@ class CampaignDashboard extends Model
 
     /**
      * Check if a campaign role is set up
-     * @param CampaignRole $role
-     * @param bool $default
-     * @return bool
      */
     public function permission(CampaignRole $role, bool $default = false): bool
     {

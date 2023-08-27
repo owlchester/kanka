@@ -30,7 +30,6 @@ class SearchController extends Controller
 
     /**
      * Old deprecated search page
-     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function search(Request $request, Campaign $campaign)

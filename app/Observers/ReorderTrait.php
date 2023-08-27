@@ -15,7 +15,6 @@ use App\Models\TimelineElement;
 trait ReorderTrait
 {
     /**
-     * @param mixed $model
      */
     public function reorder(mixed $model)
     {

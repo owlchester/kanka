@@ -14,7 +14,6 @@ class LocationController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'locations';
     protected string $route = 'locations';

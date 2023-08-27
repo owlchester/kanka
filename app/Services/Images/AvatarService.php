@@ -81,7 +81,6 @@ class AvatarService
 
     /**
      * Get the full url of the original images
-     * @return string
      */
     public function original(): string
     {

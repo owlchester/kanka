@@ -50,7 +50,6 @@ class Family extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'family.name',
@@ -107,8 +106,6 @@ class Family extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -140,10 +137,6 @@ class Family extends MiscModel
 
     /**
      * Filter for family with specific member
-     * @param Builder $query
-     * @param string|null $value
-     * @param FilterOption $filter
-     * @return Builder
      */
     public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
     {
@@ -175,7 +168,6 @@ class Family extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -221,7 +213,6 @@ class Family extends MiscModel
 
     /**
      * All members of a family and descendants
-     * @return mixed
      */
     public function allMembers()
     {
@@ -258,7 +249,6 @@ class Family extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -280,7 +270,6 @@ class Family extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -289,7 +278,6 @@ class Family extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {

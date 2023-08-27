@@ -53,7 +53,6 @@ class CommunityVote extends Model
 
     /**
      * Get the vote status as a string
-     * @return string
      */
     public function status(): string
     {
@@ -74,7 +73,6 @@ class CommunityVote extends Model
 
 
     /**
-     * @return string
      */
     public function getSlug(): string
     {
@@ -83,7 +81,6 @@ class CommunityVote extends Model
 
     /**
      * Get the options as an array expression
-     * @return array
      */
     public function options(): array
     {
@@ -100,7 +97,6 @@ class CommunityVote extends Model
     }
 
     /**
-     * @return int
      */
     public function ballotWidth(string $option): int
     {
@@ -108,7 +104,6 @@ class CommunityVote extends Model
     }
 
     /**
-     * @return bool
      */
     public function isVoting(): bool
     {
@@ -117,7 +112,6 @@ class CommunityVote extends Model
 
     /**
      * Returns if a user casted a ballot for this vote
-     * @return bool
      */
     public function votedFor(string $option): bool
     {
@@ -132,7 +126,6 @@ class CommunityVote extends Model
     }
 
     /**
-     * @return array
      */
     public function voteStats(): array
     {

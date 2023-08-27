@@ -11,7 +11,6 @@ use App\Http\Resources\TimelineEraResource as Resource;
 class TimelineEraApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -23,8 +22,6 @@ class TimelineEraApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param TimelineEra $timelineEra
      * @return Resource
      */
     public function show(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
@@ -35,9 +32,6 @@ class TimelineEraApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Timeline $timeline
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -50,10 +44,6 @@ class TimelineEraApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Timeline $timeline
-     * @param TimelineEra $timelineEra
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -71,10 +61,6 @@ class TimelineEraApiController extends ApiController
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param Campaign $campaign
-     * @param Timeline $timeline
-     * @param TimelineEra $timelineEra
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

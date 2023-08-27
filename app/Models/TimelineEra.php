@@ -78,7 +78,6 @@ class TimelineEra extends Model
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeOrdered(Builder $query)
@@ -91,7 +90,6 @@ class TimelineEra extends Model
     }
 
     /**
-     * @return bool
      */
     public function collapsed(): bool
     {
@@ -100,7 +98,6 @@ class TimelineEra extends Model
 
     /**
      * Get the age header of the era
-     * @return string
      */
     public function ages(): string
     {
@@ -122,7 +119,6 @@ class TimelineEra extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasEntity(): bool
     {
@@ -131,7 +127,6 @@ class TimelineEra extends Model
 
     /**
      * Functions for the datagrid2
-     * @return string
      */
     public function url(string $where): string
     {
@@ -144,7 +139,6 @@ class TimelineEra extends Model
 
     /**
      * Override the get link
-     * @return string
      */
     public function getLink(): string
     {
@@ -154,8 +148,6 @@ class TimelineEra extends Model
 
     /**
      * Override the tooltiped link for the datagrid
-     * @param string|null $displayName
-     * @return string
      */
     public function tooltipedLink(string $displayName = null): string
     {
@@ -165,7 +157,6 @@ class TimelineEra extends Model
     }
 
     /**
-     * @return mixed
      */
     public function getEntryForEditionAttribute()
     {

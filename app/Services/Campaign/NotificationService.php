@@ -10,10 +10,6 @@ class NotificationService
     use CampaignAware;
 
     /**
-     * @param string $key
-     * @param string $icon
-     * @param string $colour
-     * @param array $params
      */
     public function notify(string $key, string $icon, string $colour, array $params = []): void
     {

@@ -17,7 +17,6 @@ class TroubleshootingService
 
     /**
      * Generate a list of campaigns the user is an admin of
-     * @return array
      */
     public function campaigns(): array
     {
@@ -33,7 +32,6 @@ class TroubleshootingService
 
     /**
      * Generate a unique token for the kanka team to join a campaign
-     * @return AdminInvite
      * @throws TranslatableException
      */
     public function generate(): AdminInvite

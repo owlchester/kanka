@@ -14,7 +14,6 @@ class CouponService
     protected string $code;
 
     /**
-     * @param string $code
      * @return $this
      */
     public function code(string $code): self
@@ -24,7 +23,6 @@ class CouponService
     }
 
     /**
-     * @return array
      */
     public function check(): array
     {
@@ -76,8 +74,6 @@ class CouponService
     }
 
     /**
-     * @param mixed $error
-     * @return array
      */
     protected function error(mixed $error): array
     {

@@ -26,7 +26,7 @@ class BulkController extends Controller
 
     protected array $routeParams = [];
 
-    /** @var null|string */
+    /**  */
     protected null|string $entity = null;
 
     public function __construct(BulkService $bulkService, TypeService $typeService)
@@ -36,7 +36,6 @@ class BulkController extends Controller
     }
 
     /**
-     * @param BulkRequest $request
      */
     public function index(BulkRequest $request, Campaign $campaign)
     {
@@ -84,7 +83,6 @@ class BulkController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
     public function modal(Request $request, Campaign $campaign)
@@ -240,7 +238,6 @@ class BulkController extends Controller
     }
 
     /**
-     * @return string
      */
     protected function indexRoute(): string
     {

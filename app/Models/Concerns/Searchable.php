@@ -12,9 +12,6 @@ trait Searchable
     /**
      * Scope a query to only include users of a given type.
      *
-     * @param Builder $query
-     * @param string|null $term
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeSearch(Builder $query, string $term = null): Builder
     {
@@ -31,7 +28,6 @@ trait Searchable
     }
 
     /**
-     * @return bool
      */
     public function hasSearchableFields(): bool
     {

@@ -8,8 +8,6 @@ use App\Models\MenuLink;
 class MenuLinkService
 {
     /**
-     * @param ReorderMenuLinks $request
-     * @return bool
      */
     public function reorder(ReorderMenuLinks $request): bool
     {

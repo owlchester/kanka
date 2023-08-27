@@ -13,7 +13,6 @@ class RandomService
     protected mixed $value;
     /**
      * Rewrite an attribute if it's a random value
-     * @param int $type
      * @param string $value
      * @return array[string, string]
      */
@@ -45,7 +44,6 @@ class RandomService
 
     /**
      * Split an attribute by comma, selecting a value from the list
-     * @return array
      */
     protected function fromList(): array
     {
@@ -69,7 +67,6 @@ class RandomService
 
     /**
      * Fine a value between a range
-     * @return array
      */
     protected function fromRange(): array
     {

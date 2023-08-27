@@ -11,7 +11,6 @@ use App\Http\Resources\OrganisationMemberResource as Resource;
 class OrganisationMemberApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -23,8 +22,6 @@ class OrganisationMemberApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param OrganisationMember $organisationMember
      * @return Resource
      */
     public function show(Campaign $campaign, Organisation $organisation, OrganisationMember $organisationMember)
@@ -35,9 +32,6 @@ class OrganisationMemberApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Organisation $organisation
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -50,10 +44,6 @@ class OrganisationMemberApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Organisation $organisation
-     * @param OrganisationMember $organisationMember
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -71,10 +61,6 @@ class OrganisationMemberApiController extends ApiController
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param Campaign $campaign
-     * @param Organisation $organisation
-     * @param OrganisationMember $organisationMember
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

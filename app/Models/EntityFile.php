@@ -43,7 +43,6 @@ class EntityFile extends Model
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns = [
         'name'
@@ -58,7 +57,6 @@ class EntityFile extends Model
     }
 
     /**
-     * @return bool
      */
     public function isImage(): bool
     {
@@ -66,7 +64,6 @@ class EntityFile extends Model
     }
 
     /**
-     * @return string
      */
     public function imageUrl(): string
     {

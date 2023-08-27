@@ -17,7 +17,6 @@ class SidebarService
 
     /**
      * List of the campaign's quick links
-     * @var array
      */
     protected array $quickLinks = [];
 
@@ -383,9 +382,6 @@ class SidebarService
     }
 
     /**
-     * @param string $menu
-     * @param string $class
-     * @return string
      */
     public function active(string $menu = '', string $class = 'active'): string
     {
@@ -416,8 +412,6 @@ class SidebarService
     }
 
     /**
-     * @param MenuLink $menuLink
-     * @return string
      */
     public function activeMenuLink(MenuLink $menuLink): string
     {
@@ -439,9 +433,6 @@ class SidebarService
 
     /**
      * Settings menu active
-     * @param string $menu
-     * @param int $segment
-     * @return string
      */
     public function settings(string $menu, int $segment = 2): string
     {
@@ -453,7 +444,6 @@ class SidebarService
     }
 
     /**
-     * @param string $menu
      * @param string $css
      * @return null|string
      */
@@ -473,7 +463,6 @@ class SidebarService
 
     /**
      * Generate an array of the sidebar elements
-     * @return array
      */
     public function layout(): array
     {
@@ -540,7 +529,6 @@ class SidebarService
 
     /**
      * Save the new config into the database, somehow.
-     * @param array $data
      */
     public function save(array $data)
     {
@@ -684,8 +672,6 @@ class SidebarService
 
     /**
      * Load custom element setup for boosted campaigns
-     * @param string $key
-     * @return array
      */
     protected function customElement(string $key): array
     {
@@ -723,7 +709,6 @@ class SidebarService
     }
 
     /**
-     * @return string
      */
     protected function cacheKey(): string
     {
@@ -732,7 +717,6 @@ class SidebarService
 
     /**
      * Available parents for placing a quick link
-     * @return array
      */
     public function availableParents(): array
     {
@@ -745,7 +729,6 @@ class SidebarService
 
     /**
      * Prepare the quick links by figuring out where they will be rendered
-     * @return void
      */
     public function prepareQuickLinks(): void
     {
@@ -769,8 +752,6 @@ class SidebarService
 
     /**
      * Get the quick links for a specified section/parent
-     * @param string|null $parent
-     * @return array
      */
     public function quickLinks(string $parent = null): array
     {
@@ -782,8 +763,6 @@ class SidebarService
 
     /**
      * Determine if a section has quick links in it
-     * @param string $parent
-     * @return bool
      */
     public function hasQuickLinks(string $parent): bool
     {

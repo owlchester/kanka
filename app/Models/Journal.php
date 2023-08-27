@@ -63,7 +63,6 @@ class Journal extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'date',
@@ -96,8 +95,6 @@ class Journal extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -133,7 +130,6 @@ class Journal extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -141,7 +137,6 @@ class Journal extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -206,7 +201,6 @@ class Journal extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -233,7 +227,6 @@ class Journal extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -266,7 +259,6 @@ class Journal extends MiscModel
 
     /**
      * Grid mode sortable fields
-     * @return array
      */
     public function datagridSortableColumns(): array
     {

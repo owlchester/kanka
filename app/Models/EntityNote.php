@@ -120,7 +120,6 @@ class EntityNote extends Model
 
     /**
      * Copy an entity note to another target
-     * @param Entity $target
      * @return Post|EntityNote
      */
     public function copyTo(Entity $target)
@@ -141,7 +140,6 @@ class EntityNote extends Model
     }
 
     /**
-     * @return mixed
      */
     public function entry()
     {
@@ -157,7 +155,6 @@ class EntityNote extends Model
     }*/
 
     /**
-     * @return mixed
      */
     public function getEntryForEditionAttribute()
     {
@@ -166,7 +163,6 @@ class EntityNote extends Model
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeOrdered(Builder $query)
@@ -176,7 +172,6 @@ class EntityNote extends Model
     }
 
     /**
-     * @return bool
      */
     public function collapsed(): bool
     {
@@ -184,7 +179,6 @@ class EntityNote extends Model
     }
 
     /**
-     * @return mixed
      */
     public function editingUsers()
     {

@@ -24,8 +24,6 @@ class CharacterObserver extends MiscObserver
     }
 
     /**
-     * @param Character $character
-     * @param string $trait
      * @return $this
      */
     protected function saveTraits(Character $character, string $trait = 'personality'): self
@@ -74,7 +72,6 @@ class CharacterObserver extends MiscObserver
 
     /**
      * Save a character's organisations
-     * @param Character $character
      * @throws \Exception
      */
     protected function saveOrganisations(Character $character): self
@@ -161,7 +158,6 @@ class CharacterObserver extends MiscObserver
     }
 
     /**
-     * @param Character $character
      */
     protected function saveRaces(Character $character): self
     {
@@ -215,7 +211,6 @@ class CharacterObserver extends MiscObserver
     }
 
     /**
-     * @param Character $character
      */
     protected function saveFamilies(Character $character): self
     {
@@ -271,7 +266,6 @@ class CharacterObserver extends MiscObserver
     }
 
     /**
-     * @param MiscModel|Character $model
      */
     public function saved(MiscModel|Character $model)
     {

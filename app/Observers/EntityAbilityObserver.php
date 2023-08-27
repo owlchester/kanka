@@ -17,7 +17,6 @@ class EntityAbilityObserver
     }
 
     /**
-     * @param EntityAbility $entityAbility
      */
     public function saved(EntityAbility $entityAbility)
     {
@@ -55,7 +54,6 @@ class EntityAbilityObserver
     }
 
     /**
-     * @param EntityAbility $entityAbility
      */
     public function deleted(EntityAbility $entityAbility)
     {

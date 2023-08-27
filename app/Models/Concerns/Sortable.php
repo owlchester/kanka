@@ -5,7 +5,6 @@ namespace App\Models\Concerns;
 trait Sortable
 {
     /**
-     * @return array
      */
     public function sortableColumns(): array
     {
@@ -13,7 +12,6 @@ trait Sortable
     }
 
     /**
-     * @return array
      */
     protected function customSortableColumns(): array
     {

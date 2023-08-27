@@ -66,7 +66,6 @@ class DashboardWidgetController extends Controller
     }
 
     /**
-     * @param StoreCampaignDashboardWidget $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -84,7 +83,6 @@ class DashboardWidgetController extends Controller
     }
 
     /**
-     * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return \Illuminate\Http\RedirectResponse
      */
     public function show(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
@@ -93,7 +91,6 @@ class DashboardWidgetController extends Controller
     }
 
     /**
-     * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -117,8 +114,6 @@ class DashboardWidgetController extends Controller
     }
 
     /**
-     * @param StoreCampaignDashboardWidget $request
-     * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -150,7 +145,6 @@ class DashboardWidgetController extends Controller
 
     /**
      * Get a list of available entities
-     * @return array
      */
     private function buildEntities(Campaign $campaign): array
     {

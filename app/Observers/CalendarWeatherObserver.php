@@ -16,7 +16,6 @@ class CalendarWeatherObserver
     use PurifiableTrait;
 
     /**
-     * @param CalendarWeather $model
      */
     public function saving(CalendarWeather $model)
     {

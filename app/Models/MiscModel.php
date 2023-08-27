@@ -67,7 +67,6 @@ abstract class MiscModel extends Model
 
     /**
      * Fields that can be ordered on
-     * @var array
      */
     protected array $sortableColumns = [];
 
@@ -110,8 +109,6 @@ abstract class MiscModel extends Model
     /**
      * Get the thumbnail (or default image) of an entity
      * @param int $width If 0, get the full-sized version
-     * @param int|null $height
-     * @param string $field
      * @return string
      */
     public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
@@ -136,8 +133,6 @@ abstract class MiscModel extends Model
 
     /**
      * Get the original image url (for prod: aws cloudfront)
-     * @param string $field
-     * @return mixed
      */
     public function getOriginalImageUrl(string $field = 'image')
     {
@@ -150,7 +145,6 @@ abstract class MiscModel extends Model
 
     /**
      * Get the image fallback image
-     * @return string
      */
     protected function getImageFallback(int $size = 40): string
     {
@@ -182,7 +176,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasEntity(): bool
     {
@@ -199,7 +192,6 @@ abstract class MiscModel extends Model
 
     /**
      * @param string $action = 'show'
-     * @return string
      * @throws Exception
      */
     public function getLink(string $action = 'show'): string
@@ -234,7 +226,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasEntry(): bool
     {
@@ -247,8 +238,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @param array $items
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -388,7 +377,6 @@ abstract class MiscModel extends Model
     /**
      * List of types as suggestions for the type field
      * @param int $take = 20
-     * @return array
      */
     public function entityTypeSuggestion(int $take = 20): array
     {
@@ -403,7 +391,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return mixed
      */
     public function entry()
     {
@@ -411,7 +398,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return mixed
      */
     public function getEntryForEditionAttribute()
     {
@@ -422,8 +408,6 @@ abstract class MiscModel extends Model
     /**
      * Get the entity link with ajax tooltip.
      * When coming from an entity first, call this method on the entity. It avoids some back and worth.
-     * @param null|string $displayName
-     * @return string
      */
     public function tooltipedLink(string $displayName = null): string
     {
@@ -464,7 +448,6 @@ abstract class MiscModel extends Model
 
     /**
      * Create the model's Entity
-     * @return Entity
      */
     public function createEntity(): Entity
     {
@@ -481,7 +464,6 @@ abstract class MiscModel extends Model
 
     /**
      * Touch a model (update the timestamps) without any observers/events
-     * @return mixed
      */
     public function touchSilently()
     {
@@ -508,7 +490,6 @@ abstract class MiscModel extends Model
 
     /**
      * Parse the entity object to the child to avoid multiple db calls
-     * @param Entity $entity
      * @return $this
      */
     public function withEntity(Entity $entity): self
@@ -519,7 +500,6 @@ abstract class MiscModel extends Model
 
     /**
      * Copy related elements to new target. Override this in individual models (ex maps)
-     * @param MiscModel $target
      */
     public function copyRelatedToTarget(MiscModel $target)
     {
@@ -527,7 +507,6 @@ abstract class MiscModel extends Model
 
     /**
      * Available datagrid actions
-     * @param Campaign $campaign
      * @return string[]
      * @throws Exception
      */
@@ -569,7 +548,6 @@ abstract class MiscModel extends Model
 
     /**
      * Generate the entity's body css classes
-     * @return string
      */
     public function bodyClasses(?Entity $entity = null): string
     {
@@ -618,7 +596,6 @@ abstract class MiscModel extends Model
 
     /**
      * To be overwritten by the model instance
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -627,7 +604,6 @@ abstract class MiscModel extends Model
 
     /**
      * Row classes for entities
-     * @return string
      */
     public function rowClasses(): string
     {
@@ -639,7 +615,6 @@ abstract class MiscModel extends Model
 
     /**
      * Boilerplate
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -648,7 +623,6 @@ abstract class MiscModel extends Model
 
     /**
      * Boilerplate for sortable columns in the datagrid dropdowns
-     * @return array
      */
     public function datagridSortableColumns(): array
     {

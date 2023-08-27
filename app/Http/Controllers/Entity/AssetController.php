@@ -186,7 +186,6 @@ class AssetController extends Controller
 
     /**
      * Create a new file
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     protected function createFile(Campaign $campaign, Entity $entity)
@@ -205,7 +204,6 @@ class AssetController extends Controller
 
     /**
      * Create a new link
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     protected function createLink(Campaign $campaign, Entity $entity)
@@ -223,7 +221,6 @@ class AssetController extends Controller
 
     /**
      * Create a new alias
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     protected function createAlias(Campaign $campaign, Entity $entity)
@@ -241,8 +238,6 @@ class AssetController extends Controller
 
 
     /**
-     * @param Entity $entity
-     * @param EntityAsset $entityAsset
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

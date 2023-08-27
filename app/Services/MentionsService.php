@@ -73,9 +73,6 @@ class MentionsService
 
     /**
      * Map the mentions in an entity
-     * @param MiscModel $model
-     * @param string $field
-     * @return string
      */
     public function map(MiscModel $model, string $field = 'entry'): string
     {
@@ -85,8 +82,6 @@ class MentionsService
 
     /**
      * Map a string
-     * @param string|null $text
-     * @return string
      */
     public function mapText(string $text = null): string
     {
@@ -96,9 +91,6 @@ class MentionsService
 
     /**
      * Map the mentions in an entity's tooltip (boosted feature)
-     * @param Entity $entity
-     * @param string $field
-     * @return string
      */
     public function mapEntity(Entity $entity, string $field = 'tooltip'): string
     {
@@ -108,7 +100,6 @@ class MentionsService
 
     /**
      * Map the mentions in a post
-     * @param Post|EntityNote $post
      * @return string|string[]|null
      */
     public function mapPost(Post|EntityNote $post)
@@ -119,8 +110,6 @@ class MentionsService
 
     /**
      * Map the mentions in any model
-     * @param Model $model
-     * @param string $field
      * @return string|string[]|null
      */
     public function mapAny(Model $model, string $field = 'entry')
@@ -131,7 +120,6 @@ class MentionsService
 
     /**
      * Map the mentions in an attribute
-     * @param Attribute $attribute
      * @return string|string[]|null
      */
     public function mapAttribute(Attribute $attribute, string $text = null)
@@ -159,7 +147,6 @@ class MentionsService
 
     /**
      * If new entities were created from the mentions
-     * @return bool
      */
     public function hasNewEntities(): bool
     {
@@ -169,9 +156,6 @@ class MentionsService
     /**
      * Parse a model's text for editing (transform mentions into advanced mentions, normal
      * mentions visually, etc)
-     * @param Model $model
-     * @param string $field
-     * @return string
      */
     public function parseForEdit(Model $model, string $field = 'entry'): string
     {
@@ -179,9 +163,6 @@ class MentionsService
     }
 
     /**
-     * @param Model $model
-     * @param string $field
-     * @return string
      */
     protected function editEntity(Model $model, string $field): string
     {
@@ -192,8 +173,6 @@ class MentionsService
 
     /**
      * Replace span mentions into [entity:123] blocks
-     * @param string|null $text
-     * @return string
      */
     public function codify(string|null $text): string
     {
@@ -262,8 +241,6 @@ class MentionsService
 
     /**
      * Parse an entity and create the advanced mention helper bubble
-     * @param string $name
-     * @return string
      */
     public function advancedMentionHelper(string $name): string
     {
@@ -503,7 +480,6 @@ class MentionsService
     }
 
     /**
-     * @return string
      */
     protected function replaceForEdit(): string
     {
@@ -607,8 +583,6 @@ class MentionsService
     }
 
     /**
-     * @param int $id
-     * @return Entity|null
      */
     protected function entity(int $id): Entity|null
     {
@@ -620,8 +594,6 @@ class MentionsService
     }
 
     /**
-     * @param int $id
-     * @return EntityAsset|null
      */
     protected function alias(int $id): EntityAsset|null
     {
@@ -633,8 +605,6 @@ class MentionsService
     }
 
     /**
-     * @param int $id
-     * @return Attribute|null
      */
     protected function attribute(int $id): Attribute|null
     {
@@ -694,8 +664,6 @@ class MentionsService
 
     /**
      * Validate the entity type that was inserted in the mention block
-     * @param string $type
-     * @return bool
      */
     protected function validEntityType(string $type): bool
     {
@@ -704,7 +672,6 @@ class MentionsService
 
     /**
      * List of valid entity types
-     * @return array
      */
     protected function validEntityTypes(): array
     {
@@ -786,9 +753,6 @@ class MentionsService
 
     /**
      * Replace new entity mentions with entities.
-     * @param string $type
-     * @param string $name
-     * @return string
      */
     protected function newEntityMention(string $type, string $name): string
     {
@@ -829,7 +793,6 @@ class MentionsService
 
     /**
      * Protect from rendering future field:entry mentions to avoid endless loops
-     * @return void
      */
     protected function lockEntryRendering(): void
     {
@@ -838,7 +801,6 @@ class MentionsService
 
     /**
      * Re-enable rendering field:entry mentions
-     * @return void
      */
     protected function unlockEntryRendering(): void
     {
@@ -847,8 +809,6 @@ class MentionsService
 
     /**
      * Extract html attributes from a link if it's a Kanka "mention" from the text editor
-     * @param string $html
-     * @return array
      */
     protected function linkAttributes(string $html): array
     {

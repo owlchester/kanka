@@ -7,7 +7,6 @@ use App\Models\CampaignDashboardWidget;
 class CampaignDashboardWidgetObserver
 {
     /**
-     * @param CampaignDashboardWidget $model
      */
     public function creating(CampaignDashboardWidget $model)
     {

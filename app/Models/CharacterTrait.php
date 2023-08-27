@@ -45,8 +45,6 @@ class CharacterTrait extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePersonality(Builder $query): Builder
     {
@@ -54,8 +52,6 @@ class CharacterTrait extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeAppearance(Builder $query): Builder
     {

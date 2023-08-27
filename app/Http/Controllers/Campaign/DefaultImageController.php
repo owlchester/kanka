@@ -77,7 +77,6 @@ class DefaultImageController extends Controller
     }
 
     /**
-     * @param DefaultImageDestroy $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

@@ -28,7 +28,6 @@ class QuestObserver extends MiscObserver
     }
 
     /**
-     * @param MiscModel $model
      */
     public function created(MiscModel $model)
     {

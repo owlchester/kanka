@@ -92,7 +92,6 @@ trait EntityRelations
 
     /**
      * Call $entity->entityAttributes to avoid multiple calls to the db
-     * @return mixed
      */
     public function entityAttributes()
     {
@@ -341,7 +340,6 @@ trait EntityRelations
     }
 
     /**
-     * @return mixed
      */
     public function allRelationships()
     {
@@ -483,7 +481,6 @@ trait EntityRelations
     }
 
     /**
-     * @return mixed
      */
     public function mapMarkers()
     {
@@ -537,7 +534,6 @@ trait EntityRelations
     }
 
     /**
-     * @return mixed
      */
     public function starredAttributes()
     {
@@ -545,7 +541,6 @@ trait EntityRelations
     }
 
     /**
-     * @return mixed
      */
     public function pinnedRelations()
     {
@@ -557,7 +552,6 @@ trait EntityRelations
     }
 
     /**
-     * @return mixed
      */
     public function editingUsers()
     {

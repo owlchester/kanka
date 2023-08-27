@@ -14,7 +14,6 @@ class TagController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'tags';
     protected string $route = 'tags';

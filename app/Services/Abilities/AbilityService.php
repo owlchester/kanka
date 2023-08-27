@@ -25,7 +25,6 @@ class AbilityService extends BaseAbilityService
     protected array $abilityIds = [];
 
     /**
-     * @return array
      */
     public function abilities(): array
     {
@@ -67,7 +66,6 @@ class AbilityService extends BaseAbilityService
 
 
     /**
-     * @param EntityAbility $entityAbility
      */
     protected function add(EntityAbility $entityAbility): void
     {
@@ -104,8 +102,6 @@ class AbilityService extends BaseAbilityService
     }
 
     /**
-     * @param EntityAbility $entityAbility
-     * @return array
      */
     protected function format(EntityAbility $entityAbility): array
     {
@@ -160,8 +156,6 @@ class AbilityService extends BaseAbilityService
     }
 
     /**
-     * @param Entity $entity
-     * @return array
      */
     protected function attributes(Entity $entity): array
     {

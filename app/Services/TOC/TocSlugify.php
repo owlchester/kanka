@@ -24,7 +24,6 @@ class TocSlugify implements SlugifyInterface
     /**
      * Constructor
      *
-     * @param SlugifyInterface|null $slugify
      */
     public function __construct(?SlugifyInterface $slugify = null)
     {
@@ -37,7 +36,6 @@ class TocSlugify implements SlugifyInterface
      *
      * @param string $string
      * @param null $options
-     * @return string
      */
     public function slugify($string, $options = null): string
     {

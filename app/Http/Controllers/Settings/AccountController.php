@@ -36,7 +36,6 @@ class AccountController extends Controller
     }
 
     /**
-     * @param StoreSettingsAccount $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function password(StoreSettingsAccount $request)
@@ -50,7 +49,6 @@ class AccountController extends Controller
     }
 
     /**
-     * @param StoreSettingsAccountEmail $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function email(StoreSettingsAccountEmail $request)
@@ -64,7 +62,6 @@ class AccountController extends Controller
     }
 
     /**
-     * @param StoreSettingsAccountSocial $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function social(StoreSettingsAccountSocial $request)
@@ -87,7 +84,6 @@ class AccountController extends Controller
     }
 
     /**
-     * @param DeleteSettingsAccount $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(DeleteSettingsAccount $request)

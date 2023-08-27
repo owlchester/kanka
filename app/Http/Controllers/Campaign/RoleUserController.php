@@ -35,7 +35,6 @@ class RoleUserController extends Controller
     }
 
     /**
-     * @param CampaignRole $campaignRole
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -48,8 +47,6 @@ class RoleUserController extends Controller
     }
 
     /**
-     * @param StoreCampaignRoleUser $request
-     * @param CampaignRole $campaignRole
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -69,8 +66,6 @@ class RoleUserController extends Controller
     }
 
     /**
-     * @param CampaignRole $campaignRole
-     * @param CampaignRoleUser $campaignRoleUser
      * @return \Illuminate\Http\RedirectResponse
      */
     public function show(Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
@@ -80,8 +75,6 @@ class RoleUserController extends Controller
     }
 
     /**
-     * @param CampaignRole $campaignRole
-     * @param CampaignRoleUser $campaignRoleUser
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

@@ -37,7 +37,6 @@ class FilterService
     protected Model|MiscModel|Location $model;
 
     /**
-     * @param Request $request
      * @return $this
      */
     public function request(Request $request): self
@@ -48,7 +47,6 @@ class FilterService
         return $this;
     }
     /**
-     * @param array $data
      * @return $this
      */
     public function options(array $data): self
@@ -58,7 +56,6 @@ class FilterService
     }
 
     /**
-     * @param Model $model
      * @return $this
      * @throws \Exception
      */
@@ -73,7 +70,6 @@ class FilterService
 
 
     /**
-     * @param string $crud
      */
     public function make(string $crud)
     {
@@ -86,8 +82,6 @@ class FilterService
 
     /**
      * Prepare the filters
-     * @param array $availableFilters
-     * @return self
      */
     protected function prepareFilters(array $availableFilters = []): self
     {
@@ -158,7 +152,6 @@ class FilterService
     /**
      * Prepare the Order By data
      * @property array $availableFields
-     * @return self
      */
     protected function prepareOrder(array $availableFields = []): self
     {
@@ -204,7 +197,6 @@ class FilterService
 
     /**
      * @param string|array $key
-     * @param null|string $default
      * @return array|\Illuminate\Contracts\Translation\Translator|mixed|string|null
      * @throws \Exception
      */
@@ -226,7 +218,6 @@ class FilterService
     /**
      * @param string|array $key
      * @param string|null $default
-     * @return mixed
      * @throws \Exception
      */
     public function filterValue(mixed $key, $default = null)
@@ -242,7 +233,6 @@ class FilterService
 
     /**
      * Get the filters
-     * @return array
      */
     public function filters(): array
     {
@@ -251,7 +241,6 @@ class FilterService
 
     /**
      * Get the order data
-     * @return array
      */
     public function order(): array
     {
@@ -260,7 +249,6 @@ class FilterService
 
     /**
      * Get the search data
-     * @return string
      */
     public function search(): string
     {
@@ -269,8 +257,6 @@ class FilterService
 
     /**
      * Determine if a filter is a checkbox
-     * @param string $field
-     * @return bool
      */
     public function isCheckbox(string $field): bool
     {
@@ -279,7 +265,6 @@ class FilterService
 
     /**
      * Get the active filters
-     * @return array
      */
     public function activeFilters(): array
     {
@@ -297,7 +282,6 @@ class FilterService
     }
 
     /**
-     * @return int
      */
     public function activeFiltersCount(): int
     {
@@ -306,7 +290,6 @@ class FilterService
 
     /**
      * Determine if the request has active filters
-     * @return bool
      */
     public function hasFilters(): bool
     {
@@ -315,7 +298,6 @@ class FilterService
 
     /**
      * Prepare data to append to the crud pagination
-     * @return array
      */
     public function pagination(): array
     {
@@ -348,7 +330,6 @@ class FilterService
     }
 
     /**
-     * @param bool $session
      * @return $this
      */
     public function session(bool $session = true): self
@@ -359,8 +340,6 @@ class FilterService
 
     /**
      * Load the stored filter data from session
-     * @param string $key
-     * @return array
      */
     protected function sessionLoad(string $key): array
     {
@@ -377,7 +356,6 @@ class FilterService
 
     /**
      * Save the filter data to the session
-     * @param string $key
      * @param array $data
      * @return $this
      */
@@ -392,7 +370,6 @@ class FilterService
     }
 
     /**
-     * @return string
      */
     public function clipboardFilters(): string
     {

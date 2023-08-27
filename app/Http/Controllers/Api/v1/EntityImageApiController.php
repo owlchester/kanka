@@ -33,8 +33,6 @@ class EntityImageApiController extends Controller
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

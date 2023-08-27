@@ -44,7 +44,6 @@ class AppearanceController extends Controller
     }
 
     /**
-     * @param StoreSettingsLayout $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreSettingsLayout $request)

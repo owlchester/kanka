@@ -67,7 +67,6 @@ class ExpiringCardCommand extends Command
     }
 
     /**
-     * @param User $user
      */
     protected function notify(User $user): void
     {

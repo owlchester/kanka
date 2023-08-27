@@ -18,9 +18,6 @@ class Action extends Column
     protected $params = [];
 
     /**
-     * @param Model $model
-     * @param array $config
-     * @param bool $permissions
      */
     public function __construct(Model $model, array $config, bool $permissions)
     {
@@ -48,7 +45,6 @@ class Action extends Column
     }
 
     /**
-     * @param array $params
      * @return $this
      */
     public function params(array $params): self
@@ -80,7 +76,6 @@ class Action extends Column
     }
 
     /**
-     * @param array $action
      * @return $this
      */
     protected function import(array $action): self

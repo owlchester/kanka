@@ -10,16 +10,13 @@ trait AdminPolicyTrait
 {
     /**
      * Cached value of the check
-     * @var bool
      */
     protected bool $cachedAdminPolicy;
 
     /**
      * Determine if a user is admin of a campaign
-     * @param User $user
-     * @return bool
      */
-    public function isAdmin(User $user)
+    public function isAdmin(User $user): bool
     {
         if (isset($this->cachedAdminPolicy)) {
             return $this->cachedAdminPolicy;

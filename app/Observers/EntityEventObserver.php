@@ -7,7 +7,6 @@ use App\Models\EntityEvent;
 class EntityEventObserver
 {
     /**
-     * @param EntityEvent $entityEvent
      */
     public function saving(EntityEvent $entityEvent)
     {

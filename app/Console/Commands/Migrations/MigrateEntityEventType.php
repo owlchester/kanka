@@ -63,8 +63,6 @@ class MigrateEntityEventType extends Command
     }
 
     /**
-     * @param Journal|Quest $model
-     * @return void
      */
     protected function parse(Journal|Quest $model): void
     {

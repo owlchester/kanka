@@ -8,7 +8,6 @@ trait ExportableTrait
 {
     /**
      * Prepares the data of an entity to json.
-     * @return string
      * @throws Exception
      */
     public function export(): string

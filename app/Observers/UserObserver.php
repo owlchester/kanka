@@ -18,7 +18,6 @@ class UserObserver
     use PurifiableTrait;
 
     /**
-     * @param User $user
      */
     public function saving(User $user)
     {
@@ -56,7 +55,6 @@ class UserObserver
     }
 
     /**
-     * @param User $user
      */
     public function saved(User $user)
     {
@@ -67,7 +65,6 @@ class UserObserver
     }
 
     /**
-     * @param User $user
      */
     public function updated(User $user)
     {
@@ -97,7 +94,6 @@ class UserObserver
     }
 
     /**
-     * @param User $user
      */
     public function created(User $user)
     {

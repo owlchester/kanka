@@ -10,7 +10,6 @@ class CampaignPluginObserver
     /**
      * Handle the models campaign plugin "updated" event.
      *
-     * @param  \App\Models\CampaignPlugin  $campaignPlugin
      * @return void
      */
     public function updated(CampaignPlugin $campaignPlugin)
@@ -26,7 +25,6 @@ class CampaignPluginObserver
     /**
      * Handle the models campaign plugin "deleted" event.
      *
-     * @param  \App\Models\CampaignPlugin  $campaignPlugin
      * @return void
      */
     public function deleted(CampaignPlugin $campaignPlugin)

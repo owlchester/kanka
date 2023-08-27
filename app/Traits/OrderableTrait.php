@@ -11,10 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 trait OrderableTrait
 {
     /**
-     * @param Builder $query
-     * @param string|null $data
-     * @param string $defaultField
-     * @return mixed
      */
     public function scopeOrdered(Builder $query, string|null $data, string $defaultField = 'name')
     {

@@ -13,7 +13,6 @@ class CharacterTraitObserver
     use PurifiableTrait;
 
     /**
-     * @param CharacterTrait $model
      */
     public function saving(CharacterTrait $model)
     {

@@ -35,7 +35,6 @@ class DatagridRenderer
     protected FilterService|null $filterService = null;
 
     /**
-     * @var null|string
      */
     protected null|string $nestedFilter = null;
 
@@ -73,7 +72,6 @@ class DatagridRenderer
     }
 
     /**
-     * @param FilterService $filterService
      * @param array $columns
      * @param array $data
      * @param array $options
@@ -219,8 +217,6 @@ class DatagridRenderer
     }
 
     /**
-     * @param string|null $label
-     * @param string|null $field
      * @return string
      */
     private function route(string $field = null, string $label = null)
@@ -289,8 +285,6 @@ class DatagridRenderer
     }
 
     /**
-     * @param MiscModel|Relation $model
-     * @return string
      */
     private function renderRow(MiscModel|Relation $model): string
     {
@@ -325,7 +319,6 @@ class DatagridRenderer
     }
 
     /**
-     * @param string|array $column
      * @param MiscModel|Journal|Location $model
      * @return string|null
      */
@@ -458,7 +451,6 @@ class DatagridRenderer
     }
 
     /**
-     * @param string $field
      * @return string
      */
     private function trans(string $field = '')
@@ -476,8 +468,6 @@ class DatagridRenderer
     }
 
     /**
-     * @param MiscModel $model
-     * @return string
      */
     private function renderEntityActionRow(MiscModel $model): string
     {
@@ -515,7 +505,6 @@ class DatagridRenderer
 
     /**
      * Determin if a column is a boolean column
-     * @param string $column
      * @return bool
      */
     private function isBoolean(string $column)
@@ -534,7 +523,6 @@ class DatagridRenderer
 
     /**
      * Tell the rendered that this is a nested view
-     * @param string $key
      * @return $this
      */
     public function nested(string $key = 'parent_id'): self

@@ -16,7 +16,6 @@ class PatreonController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param PatreonService $service
      * @return void
      */
     public function __construct(PatreonService $service)
@@ -34,7 +33,6 @@ class PatreonController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function unlink(Request $request)

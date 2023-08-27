@@ -14,7 +14,6 @@ class CreatureController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'creatures';
     protected string $route = 'creatures';
@@ -27,7 +26,6 @@ class CreatureController extends CrudController
     protected string $filter = CreatureFilter::class;
 
     /**
-     * @param StoreCreature $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Campaign $campaign, StoreCreature $request)

@@ -9,7 +9,6 @@ use App\Models\MiscModel;
 trait HasLocations
 {
     /**
-     * @param MiscModel|Creature $model
      */
     public function saveLocations(MiscModel|Creature $model)
     {

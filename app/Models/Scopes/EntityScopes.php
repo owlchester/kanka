@@ -22,8 +22,6 @@ use Illuminate\Support\Str;
 trait EntityScopes
 {
     /**
-     * @param Builder$query
-     * @return Builder
      */
     public function scopeRecentlyModified(Builder $query): Builder
     {
@@ -32,8 +30,6 @@ trait EntityScopes
     }
 
     /**
-     * @param Builder$query
-     * @return Builder
      */
     public function scopeOldestModified(Builder $query): Builder
     {
@@ -42,9 +38,6 @@ trait EntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @param int|null $type
-     * @return Builder
      */
     public function scopeType(Builder $query, int $type = null): Builder
     {
@@ -55,8 +48,6 @@ trait EntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeStandardWith(Builder $query): Builder
     {
@@ -64,9 +55,6 @@ trait EntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @param array|null $tags
-     * @return mixed
      */
     public function scopeInTags(Builder $query, array $tags = null)
     {
@@ -89,7 +77,6 @@ trait EntityScopes
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeUnmentioned(Builder $query)
@@ -100,7 +87,6 @@ trait EntityScopes
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeMentionless(Builder $query)
@@ -111,8 +97,6 @@ trait EntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @param int $entityTypeID
      * @return Builder
      */
     public function scopeTemplates(Builder $query, int $entityTypeID)
@@ -123,8 +107,6 @@ trait EntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @param array $request
      * @return Builder
      */
     public function scopeApiFilter(Builder $query, array $request = [])
@@ -189,8 +171,6 @@ trait EntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @param array|null $types
      * @return Builder
      */
     public function scopeInTypes(Builder $query, array $types = null)

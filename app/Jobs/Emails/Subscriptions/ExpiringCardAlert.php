@@ -22,7 +22,6 @@ class ExpiringCardAlert implements ShouldQueue
     protected $user;
 
     /**
-     * @param User $user
      */
     public function __construct(User $user)
     {

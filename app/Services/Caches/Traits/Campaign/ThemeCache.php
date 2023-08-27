@@ -8,7 +8,6 @@ trait ThemeCache
 {
     /**
      * List of theme plugins the campaign has activated
-     * @return string|bool
      */
     public function themes(): string|bool
     {

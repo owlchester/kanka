@@ -57,7 +57,7 @@ class EntityRelationService
     /** @var bool Enable loading entities on relations */
     protected bool $withEntity = false;
 
-    /** @var string|null */
+    /**  */
     protected string|null $option = null;
 
     public function option(string $option = null): self
@@ -94,7 +94,6 @@ class EntityRelationService
     }
 
     /**
-     * @return array
      */
     public function map(): array
     {
@@ -143,8 +142,6 @@ class EntityRelationService
     }
 
     /**
-     * @param Entity $entity
-     * @param string|null $image
      * @return $this
      */
     protected function addEntity(Entity $entity, string $image = null): self
@@ -177,7 +174,6 @@ class EntityRelationService
     }
 
     /**
-     * @param Entity $entity
      * @return $this
      */
     protected function addRelations(Entity $entity): self
@@ -264,7 +260,6 @@ class EntityRelationService
 
     /**
      * Add the family or a character and the family's members
-     * @param Family $family
      */
     protected function addFamilyRelations(Family $family)
     {
@@ -294,7 +289,6 @@ class EntityRelationService
     }
 
     /**
-     * @param Organisation|null $organisation
      */
     protected function addOrganisationRelations(Organisation $organisation = null)
     {
@@ -355,7 +349,6 @@ class EntityRelationService
     }
 
     /**
-     * @param Family $family
      * @return $this
      */
     protected function addFamilyMembers(Family $family): self
@@ -980,7 +973,6 @@ class EntityRelationService
     }
 
     /**
-     * @return bool
      */
     protected function withRelations(): bool
     {
@@ -988,7 +980,6 @@ class EntityRelationService
     }
 
     /**
-     * @return bool
      */
     protected function withRelated(): bool
     {
@@ -996,7 +987,6 @@ class EntityRelationService
     }
 
     /**
-     * @return bool
      */
     protected function withMentions(): bool
     {
@@ -1004,7 +994,6 @@ class EntityRelationService
     }
 
     /**
-     * @return bool
      */
     protected function onlyRelations(): bool
     {

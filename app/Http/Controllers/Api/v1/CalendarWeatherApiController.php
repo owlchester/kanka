@@ -11,8 +11,6 @@ use App\Http\Resources\CalendarWeatherResource as Resource;
 class CalendarWeatherApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
-     * @param Calendar $calendar
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -25,9 +23,6 @@ class CalendarWeatherApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Calendar $calendar
-     * @param CalendarWeather $calendarWeather
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -39,9 +34,6 @@ class CalendarWeatherApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Calendar $calendar
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -56,10 +48,6 @@ class CalendarWeatherApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Calendar $calendar
-     * @param CalendarWeather $calendarWeather
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -73,9 +61,6 @@ class CalendarWeatherApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Calendar $calendar
-     * @param CalendarWeather $calendarWeather
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

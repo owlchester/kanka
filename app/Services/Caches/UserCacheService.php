@@ -38,7 +38,6 @@ class UserCacheService extends BaseCache
     /**
      * Get the username
      * @param int $userId the user id
-     * @return string
      */
     public function name(int $userId): string
     {
@@ -81,7 +80,6 @@ class UserCacheService extends BaseCache
     }
 
     /**
-     * @return string
      */
     protected function nameKey(int $userId): string
     {
@@ -120,8 +118,6 @@ class UserCacheService extends BaseCache
 
     /**
      * Format the campaign for the cache
-     * @param Campaign $campaign
-     * @return array
      */
     protected function formatCampaign(Campaign $campaign): array
     {
@@ -136,8 +132,6 @@ class UserCacheService extends BaseCache
 
     /**
      * Format the role for the cache
-     * @param CampaignRole $role
-     * @return array
      */
     protected function formatRole(CampaignRole $role): array
     {

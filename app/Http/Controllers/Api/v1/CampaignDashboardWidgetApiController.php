@@ -10,7 +10,6 @@ use App\Http\Resources\CampaignDashboardWidgetResource as Resource;
 class CampaignDashboardWidgetApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -25,8 +24,6 @@ class CampaignDashboardWidgetApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return Resource
      */
     public function show(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
@@ -36,8 +33,6 @@ class CampaignDashboardWidgetApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -51,9 +46,6 @@ class CampaignDashboardWidgetApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
@@ -65,8 +57,6 @@ class CampaignDashboardWidgetApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

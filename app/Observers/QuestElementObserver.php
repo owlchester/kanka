@@ -17,14 +17,12 @@ class QuestElementObserver
 
     /**
      * Service used to build the map of the entity
-     * @var EntityMappingService
      */
     protected EntityMappingService $entityMappingService;
 
 
     /**
      * CharacterObserver constructor.
-     * @param EntityMappingService $entityMappingService
      */
     public function __construct(EntityMappingService $entityMappingService)
     {
@@ -32,7 +30,6 @@ class QuestElementObserver
     }
 
     /**
-     * @param QuestElement $questElement
      */
     public function saving(QuestElement $questElement)
     {
@@ -46,7 +43,6 @@ class QuestElementObserver
     }
 
     /**
-     * @param QuestElement $questElement
      */
     public function saved(QuestElement $questElement)
     {

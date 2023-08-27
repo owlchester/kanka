@@ -28,7 +28,6 @@ class DashboardService
 
     /**
      * Get the current or default dashboard for the user
-     * @param int|null $dashboard
      * @return null|CampaignDashboard
      */
     public function getDashboard(int $dashboard = null)
@@ -101,7 +100,6 @@ class DashboardService
     }
 
     /**
-     * @param Entity $entity
      * @return $this
      */
     public function add(Entity $entity): self
@@ -111,7 +109,6 @@ class DashboardService
     }
 
     /**
-     * @return array
      */
     public function excluding(): array
     {
@@ -120,8 +117,6 @@ class DashboardService
 
     /**
      * Create a dashboard and it's permissions
-     * @param StoreCampaignDashboard $request
-     * @return CampaignDashboard
      */
     public function create(StoreCampaignDashboard $request): CampaignDashboard
     {
@@ -159,8 +154,6 @@ class DashboardService
     }
 
     /**
-     * @param StoreCampaignDashboard $request
-     * @return CampaignDashboard
      * @throws \Exception
      */
     public function update(StoreCampaignDashboard $request): CampaignDashboard
@@ -218,7 +211,6 @@ class DashboardService
 
     /**
      * Get the default dashboards for the various roles
-     * @return array
      */
     protected function availableDashboards(): array
     {
@@ -227,7 +219,6 @@ class DashboardService
 
     /**
      * Get the default dashboard of a user
-     * @param array $available
      * @return null
      */
     protected function defaultDashboard(array $available)
@@ -271,8 +262,6 @@ class DashboardService
 
     /**
      * Validate that a requested dashboard is available to the user
-     * @param array $available
-     * @param int $dashboard
      * @return null|CampaignDashboard
      */
     protected function validateDashboard(array $available, int $dashboard)

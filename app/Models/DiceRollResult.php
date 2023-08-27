@@ -22,7 +22,6 @@ class DiceRollResult extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'diceRoll.name',
@@ -83,7 +82,6 @@ class DiceRollResult extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function character()
     {

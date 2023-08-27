@@ -61,7 +61,6 @@ class MapLayer extends Model
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeOrdered(Builder $query)
@@ -73,8 +72,6 @@ class MapLayer extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @param int $width
-     * @param int|null $height
      * @return string
      */
     public function thumbnail(int $width = 400, int $height = null)
@@ -83,7 +80,6 @@ class MapLayer extends Model
     }
 
     /**
-     * @return string
      */
     public function typeName(): string
     {
@@ -97,7 +93,6 @@ class MapLayer extends Model
 
     /**
      * Functions for the datagrid2
-     * @return string
      */
     public function url(string $where): string
     {
@@ -110,8 +105,6 @@ class MapLayer extends Model
 
     /**
      * Patch an entity from the datagrid2 batch editing
-     * @param array $data
-     * @return bool
      */
     public function patch(array $data): bool
     {
@@ -120,7 +113,6 @@ class MapLayer extends Model
 
     /**
      * Override the get link
-     * @return string
      */
     public function getLink(): string
     {
@@ -130,8 +122,6 @@ class MapLayer extends Model
 
     /**
      * Override the tooltiped link for the datagrid
-     * @param string|null $displayName
-     * @return string
      */
     public function tooltipedLink(string $displayName = null): string
     {

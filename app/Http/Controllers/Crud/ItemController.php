@@ -14,7 +14,6 @@ class ItemController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'items';
     protected string $route = 'items';

@@ -40,7 +40,6 @@ class PurgeService
 
     /**
      * Accounts that haven't logged in during two years and have no campaign whatsoever
-     * @return int
      */
     public function empty(): int
     {
@@ -79,7 +78,6 @@ class PurgeService
 
     /**
      * Accounts that haven't logged in during two years and only have a campaign with the boilerplate stuff
-     * @return int
      */
     public function example(): int
     {
@@ -143,7 +141,6 @@ class PurgeService
 
     /**
      * Inactive users for > 18 months, warn them of their upcoming deletion
-     * @return int
      */
     public function firstWarning(): int
     {

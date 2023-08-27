@@ -51,7 +51,6 @@ class PreviewService
 
     /**
      * Load specific stuff from the child for the profile
-     * @return array
      */
     protected function profile(): array
     {

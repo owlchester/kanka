@@ -13,7 +13,6 @@ class EntityController extends Controller
 
     /**
      * LiveController constructor.
-     * @param SearchService $searchService
      */
     public function __construct(SearchService $searchService)
     {
@@ -22,8 +21,6 @@ class EntityController extends Controller
 
     /**
      * Only find calendar entities
-     * @param Request $request
-     * @return mixed
      */
     public function calendars(Request $request, Campaign $campaign)
     {

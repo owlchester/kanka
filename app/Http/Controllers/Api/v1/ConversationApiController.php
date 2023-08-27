@@ -10,7 +10,6 @@ use App\Http\Resources\ConversationResource as Resource;
 class ConversationApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -26,8 +25,6 @@ class ConversationApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Conversation $conversation
      * @return Resource
      */
     public function show(Campaign $campaign, Conversation $conversation)
@@ -38,8 +35,6 @@ class ConversationApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -57,9 +52,6 @@ class ConversationApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Conversation $conversation
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Conversation $conversation)
@@ -73,8 +65,6 @@ class ConversationApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Conversation $conversation
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

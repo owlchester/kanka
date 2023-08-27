@@ -21,9 +21,6 @@ use Exception;
 class ImageService
 {
     /**
-     * @param MiscModel|Map|Model $model
-     * @param string $folder
-     * @param string $field
      */
     public static function handle(MiscModel|Map|Model $model, string $folder = '', string $field = 'image')
     {
@@ -129,9 +126,6 @@ class ImageService
     }
 
     /**
-     * @param Entity $entity
-     * @param string $folder
-     * @param string $field
      */
     public static function entity(Entity $entity, string $folder = '', string $field = 'header_image')
     {

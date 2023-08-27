@@ -17,7 +17,6 @@ class TimelineReorderController extends Controller
         $this->service = $timelineService;
     }
     /**
-     * @param Timeline $timeline
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -47,9 +46,6 @@ class TimelineReorderController extends Controller
     }
 
     /**
-     * @param Timeline $timeline
-     * @param ReorderTimeline $request
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function save(Campaign $campaign, Timeline $timeline, ReorderTimeline $request)

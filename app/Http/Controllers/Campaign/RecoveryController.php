@@ -55,7 +55,6 @@ class RecoveryController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function recover(Request $request, Campaign $campaign)

@@ -94,7 +94,6 @@ class EntityLog extends Model
     }
 
     /**
-     * @return string
      */
     public function actionCode(): string
     {
@@ -150,7 +149,6 @@ class EntityLog extends Model
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeRecent(Builder $query)
@@ -159,8 +157,6 @@ class EntityLog extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param int $action
      * @return Builder
      */
     public function scopeAction(Builder $query, int $action)
@@ -170,9 +166,6 @@ class EntityLog extends Model
 
     /**
      * Replace the field edited with it's translated name
-     * @param string $transKey
-     * @param string $attribute
-     * @return string
      */
     public function attributeKey(string $transKey, string $attribute): string
     {
@@ -202,7 +195,6 @@ class EntityLog extends Model
 
     /**
      * Automatically prune old elements from the db
-     * @return Builder
      */
     public function prunable(): Builder
     {
@@ -247,9 +239,6 @@ class EntityLog extends Model
     }
 
     /**
-     * @param Builder $builder
-     * @param HistoryRequest $request
-     * @return Builder
      */
     public function scopeFilter(Builder $builder, HistoryRequest $request): Builder
     {

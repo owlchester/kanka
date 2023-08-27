@@ -46,7 +46,6 @@ class InventoryController extends Controller
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

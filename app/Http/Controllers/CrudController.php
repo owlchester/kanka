@@ -378,7 +378,6 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Model|MiscModel $model
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -409,7 +408,6 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Model|MiscModel $model
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -448,8 +446,6 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model|MiscModel $model
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -544,7 +540,6 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Model|MiscModel $model
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -566,8 +561,6 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param MiscModel $model
      * @return array
      */
     protected function prepareData(Request $request, MiscModel $model)
@@ -584,7 +577,6 @@ class CrudController extends Controller
     /**
      * Get a list of all attribute templates available for this entity type.
      * @param string $type
-     * @return array
      */
     protected function buildAttributeTemplates($type): array
     {
@@ -611,7 +603,6 @@ class CrudController extends Controller
 
     /**
      * Set the datagrid sorter for sub views
-     * @param string $datagridSorter
      * @return $this
      */
     protected function datagridSorter(string $datagridSorter): self
@@ -636,7 +627,6 @@ class CrudController extends Controller
 
     /**
      * Detect if a module is enabled
-     * @return bool
      */
     protected function moduleEnabled(): bool
     {
@@ -646,8 +636,6 @@ class CrudController extends Controller
     /**
      * Add a button to the top of a datagrid
      * @param string $route
-     * @param string $label
-     * @param string $class
      * @return $this
      */
     protected function addNavAction($route, string $label, string $class = '', bool $blank = false): self
@@ -679,7 +667,6 @@ class CrudController extends Controller
     /**
      * Load a list of templates the user can create new entities from
      * @param MiscModel $model
-     * @return Collection
      */
     protected function loadTemplates($model): Collection
     {

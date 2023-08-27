@@ -12,7 +12,6 @@ class CampaignSearchService
     /**
      * List of roles in a campaign
      * @param string|null $query Search term
-     * @return array
      */
     public function roles(string $query = null): array
     {
@@ -25,7 +24,6 @@ class CampaignSearchService
     /**
      * List of members in a campaign
      * @param string|null $query Search term
-     * @return array
      */
     public function members(string $query = null): array
     {

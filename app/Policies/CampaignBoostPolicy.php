@@ -20,9 +20,6 @@ class CampaignBoostPolicy
     }
 
     /**
-     * @param User $user
-     * @param CampaignBoost $campaignBoost
-     * @return bool
      */
     public function destroy(User $user, CampaignBoost $campaignBoost): bool
     {

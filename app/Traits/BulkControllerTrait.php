@@ -12,8 +12,6 @@ trait BulkControllerTrait
 {
     /**
      * Get the Bulk model of an entity
-     * @param MiscModel|Relation|null $modelClass
-     * @return Bulk
      */
     protected function bulkModel(MiscModel|Relation $modelClass = null): Bulk
     {

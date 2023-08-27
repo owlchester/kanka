@@ -15,7 +15,6 @@ class DiceRollResultObserver
 
     /**
      * DiceRollObserver constructor.
-     * @param DiceRollerService $diceRollerService
      */
     public function __construct(DiceRollerService $diceRollerService)
     {
@@ -23,7 +22,6 @@ class DiceRollResultObserver
     }
 
     /**
-     * @param DiceRollResult $model
      */
     public function saving(DiceRollResult $model)
     {

@@ -28,7 +28,6 @@ class EntityObserver
 
     /**
      * PermissionController constructor.
-     * @param PermissionService $permissionService
      */
     public function __construct(PermissionService $permissionService, AttributeService $attributeService)
     {
@@ -96,7 +95,6 @@ class EntityObserver
 
     /**
      * Save permissions sent to the controller
-     * @param Entity $entity
      */
     public function savePermissions(Entity $entity)
     {
@@ -126,7 +124,6 @@ class EntityObserver
     }
 
     /**
-     * @param Entity $entity
      * @return $this
      * @throws \Exception
      */
@@ -170,7 +167,6 @@ class EntityObserver
     }
 
     /**
-     * @param Entity $entity
      */
     public function created(Entity $entity)
     {
@@ -213,7 +209,6 @@ class EntityObserver
     }
 
     /**
-     * @param Entity $entity
      */
     public function updated(Entity $entity)
     {
@@ -224,8 +219,6 @@ class EntityObserver
     }
 
     /**
-     * @param Entity $entity
-     * @return void
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
@@ -265,7 +258,6 @@ class EntityObserver
     }
 
     /**
-     * @param Entity $entity
      */
     public function deleted(Entity $entity)
     {

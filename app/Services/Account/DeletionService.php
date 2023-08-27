@@ -27,7 +27,6 @@ class DeletionService
 
     /**
      * Remove the user from stripe
-     * @return void
      */
     protected function subscription(): void
     {

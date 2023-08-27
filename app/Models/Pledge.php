@@ -14,7 +14,6 @@ class Pledge
     public const ROLE = 'patreon';
 
     /**
-     * @return array
      */
     public static function pledges(): array
     {

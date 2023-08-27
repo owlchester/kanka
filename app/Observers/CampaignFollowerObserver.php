@@ -8,7 +8,6 @@ use App\Models\CampaignFollower;
 class CampaignFollowerObserver
 {
     /**
-     * @param CampaignFollower $campaignFollower
      */
     public function created(CampaignFollower $campaignFollower)
     {
@@ -18,7 +17,6 @@ class CampaignFollowerObserver
     }
 
     /**
-     * @param CampaignFollower $campaignFollower
      */
     public function deleted(CampaignFollower $campaignFollower)
     {

@@ -9,7 +9,6 @@ class MenuLinkObserver
     use PurifiableTrait;
 
     /**
-     * @param MenuLink $model
      */
     public function saving(MenuLink $model)
     {

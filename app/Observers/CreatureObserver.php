@@ -10,7 +10,6 @@ class CreatureObserver extends MiscObserver
     use HasLocations;
 
     /**
-     * @param Creature $creature
      */
     public function crudSaved(Creature $creature)
     {
@@ -21,7 +20,6 @@ class CreatureObserver extends MiscObserver
     }
 
     /**
-     * @param Creature $creature
      */
     public function deleting(Creature $creature)
     {

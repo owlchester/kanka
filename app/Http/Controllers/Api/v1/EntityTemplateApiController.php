@@ -18,7 +18,6 @@ class EntityTemplateApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -37,8 +36,6 @@ class EntityTemplateApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

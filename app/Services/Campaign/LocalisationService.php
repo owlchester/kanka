@@ -25,7 +25,6 @@ class LocalisationService
 
     /**
      * Get the campaign
-     * @return Campaign|null
      */
     public function getCampaign(): ?Campaign
     {
@@ -39,7 +38,6 @@ class LocalisationService
 
     /**
      * Force the campaign. This is use for moving entities between campaigns.
-     * @param Campaign $campaign
      */
     public function forceCampaign(Campaign $campaign): void
     {
@@ -47,7 +45,6 @@ class LocalisationService
     }
 
     /**
-     * @return int
      */
     public function getConsoleCampaign(): int
     {
@@ -55,7 +52,6 @@ class LocalisationService
     }
 
     /**
-     * @param int $campaignId
      * @return $this
      */
     public function setConsoleCampaign(int $campaignId): self

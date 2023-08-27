@@ -12,7 +12,6 @@ class Notification extends Model
 
     /**
      * Automatically prune read notifications older than a year
-     * @return Builder
      */
     public function prunable(): Builder
     {

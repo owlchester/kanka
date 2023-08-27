@@ -15,7 +15,7 @@ class RolePermission
 
     protected CampaignRole $role;
 
-    /** @var array */
+    /**  */
     protected array $permissions = [];
     protected array $rolesPermissions = [];
 
@@ -28,7 +28,6 @@ class RolePermission
     }
 
     /**
-     * @param CampaignRole $role
      * @return $this
      */
     public function role(CampaignRole $role): self

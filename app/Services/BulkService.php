@@ -57,7 +57,6 @@ class BulkService
     }
 
     /**
-     * @param string $entityName
      * @return $this
      */
     public function entity(string $entityName): self
@@ -67,7 +66,6 @@ class BulkService
     }
 
     /**
-     * @param array $ids
      * @return $this
      */
     public function entities(array $ids = []): self
@@ -78,7 +76,6 @@ class BulkService
 
     /**
      * Total updated entities submitted (can be different from the total that was updated)
-     * @return int
      */
     public function total(): int
     {
@@ -87,7 +84,6 @@ class BulkService
 
     /**
      * Delete several entities
-     * @return int
      * @throws Exception
      */
     public function delete(): int
@@ -110,7 +106,6 @@ class BulkService
     }
 
     /**
-     * @return array
      * @throws Exception
      */
     public function export(): array
@@ -125,8 +120,6 @@ class BulkService
 
     /**
      * Set permissions for several entities
-     * @param array $permissions
-     * @param bool $override
      * @return int number of updated entities
      */
     public function permissions(array $permissions = [], bool $override = true): int
@@ -145,8 +138,6 @@ class BulkService
     }
 
     /**
-     * @param int $campaignId
-     * @return int
      * @throws TranslatableException
      */
     public function copyToCampaign(int $campaignId): int
@@ -181,8 +172,6 @@ class BulkService
     }
 
     /**
-     * @param string|null $type
-     * @return int
      * @throws TranslatableException
      */
     public function transform(string $type = null): int
@@ -214,9 +203,6 @@ class BulkService
     }
 
     /**
-     * @param array $fields
-     * @param Bulk $bulk
-     * @return int
      * @throws Exception
      */
     public function editing(array $fields, Bulk $bulk): int
@@ -387,7 +373,6 @@ class BulkService
     /**
      * Bulk apply attribute templates
      * @param string $template
-     * @return int
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function templates($template): int
@@ -410,7 +395,6 @@ class BulkService
     }
 
     /**
-     * @return mixed
      * @throws Exception
      */
     protected function getEntity()
@@ -430,7 +414,6 @@ class BulkService
     }
 
     /**
-     * @param array $filledFields
      * @param array $mirrorOptions
      * @return int
      */

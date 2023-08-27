@@ -31,7 +31,6 @@ abstract class Layout
     }
 
     /**
-     * @return array
      */
     public function visibleColumns(): array
     {

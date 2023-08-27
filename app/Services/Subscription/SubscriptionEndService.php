@@ -17,7 +17,6 @@ class SubscriptionEndService
      * Find users with expired subscriptions and dispatch a cleanup job for each one
      * @param bool $dispatch set as false to not dispatch the job, just listing the expired subscriptions
      * in the admin job log.
-     * @return int
      */
     public function run(bool $dispatch = true): int
     {

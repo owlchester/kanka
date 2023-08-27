@@ -66,7 +66,6 @@ class GalleryController extends Controller
 
     /**
      * Uploading multiple images in the gallery
-     * @param GalleryImageStore $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -97,7 +96,6 @@ class GalleryController extends Controller
 
     /**
      * Called when adding an image from the text editor
-     * @param GalleryImageStore $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -115,7 +113,6 @@ class GalleryController extends Controller
     }
 
     /**
-     * @param Image $image
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -129,8 +126,6 @@ class GalleryController extends Controller
     }
 
     /**
-     * @param StoreImageFocus $request
-     * @param Image $image
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -154,8 +149,6 @@ class GalleryController extends Controller
     }
 
     /**
-     * @param GalleryImageUpdate $request
-     * @param Image $image
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -185,7 +178,6 @@ class GalleryController extends Controller
     }
 
     /**
-     * @param Image $image
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

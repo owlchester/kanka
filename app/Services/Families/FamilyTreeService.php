@@ -42,7 +42,6 @@ class FamilyTreeService
 
     /**
      * Return all data required to generate the family tree
-     * @return array
      */
     public function tree(): array
     {
@@ -56,7 +55,6 @@ class FamilyTreeService
 
     /**
      * Get an entity's representation for the rendering engine
-     * @param Entity $entity
      * @return array|string[]
      */
     public function entity(Entity $entity): array
@@ -102,7 +100,6 @@ class FamilyTreeService
 
     /**
      * Get all the unique entity ids from the family tree
-     * @return void
      */
     protected function prepareEntities(): void
     {
@@ -153,8 +150,6 @@ class FamilyTreeService
 
     /**
      * Format an entity for the rendering engine
-     * @param Entity $entity
-     * @return array
      */
     protected function formatEntity(Entity $entity): array
     {
@@ -297,8 +292,6 @@ class FamilyTreeService
 
     /**
      * Return an error handled by the frontend
-     * @param string $code
-     * @return array
      */
     protected function error(string $code): array
     {
@@ -310,7 +303,6 @@ class FamilyTreeService
 
     /**
      * Save a new tree config to the database
-     * @param array $data
      * @return $this
      */
     public function save(array $data = []): self
@@ -333,7 +325,6 @@ class FamilyTreeService
 
     /**
      * Prepare a new config for the database by adding a uuid everywhere
-     * @param array $data
      * @return array
      */
     protected function prepareForSave(array $data)//: array

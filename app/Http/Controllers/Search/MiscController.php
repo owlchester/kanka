@@ -26,8 +26,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function locations(Request $request, Campaign $campaign)
     {
@@ -37,8 +35,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function characters(Request $request, Campaign $campaign)
     {
@@ -50,8 +46,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     protected function familyCharacters(Request $request, Campaign $campaign)
     {
@@ -87,8 +81,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function families(Request $request, Campaign $campaign)
     {
@@ -98,8 +90,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function items(Request $request, Campaign $campaign)
     {
@@ -108,8 +98,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function organisations(Request $request, Campaign $campaign)
     {
@@ -119,8 +107,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function events(Request $request, Campaign $campaign)
     {
@@ -130,8 +116,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function quests(Request $request, Campaign $campaign)
     {
@@ -141,8 +125,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function calendars(Request $request, Campaign $campaign)
     {
@@ -152,8 +134,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function timelines(Request $request, Campaign $campaign)
     {
@@ -163,8 +143,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function tags(Request $request, Campaign $campaign)
     {
@@ -174,8 +152,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function diceRolls(Request $request, Campaign $campaign)
     {
@@ -184,8 +160,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function conversations(Request $request, Campaign $campaign)
     {
@@ -194,8 +168,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function races(Request $request, Campaign $campaign)
     {
@@ -205,8 +177,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function creatures(Request $request, Campaign $campaign)
     {
@@ -216,8 +186,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function maps(Request $request, Campaign $campaign)
     {
@@ -227,8 +195,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function markers(Request $request, Campaign $campaign)
     {
@@ -270,8 +236,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function notes(Request $request, Campaign $campaign)
     {
@@ -281,8 +245,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function journals(Request $request, Campaign $campaign)
     {
@@ -292,8 +254,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function abilities(Request $request, Campaign $campaign)
     {
@@ -310,8 +270,6 @@ class MiscController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function attributeTemplates(Request $request, Campaign $campaign)
     {
@@ -322,10 +280,6 @@ class MiscController extends Controller
 
     /**
      * Build the search results
-     * @param string $term
-     * @param string $class
-     * @param array $excludes
-     * @return mixed
      */
     protected function buildSearchResults(string $term, string $class, array $excludes = [])
     {

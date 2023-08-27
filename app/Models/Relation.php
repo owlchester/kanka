@@ -74,7 +74,6 @@ class Relation extends Model
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     public array $sortableColumns = [
         'owner_id',
@@ -89,9 +88,7 @@ class Relation extends Model
     public $defaultOrderField = 'relation';
 
     /**
-     * @param Builder $query
      * @param string $order
-     * @return Builder
      */
     public function scopeOrdered(Builder $query, $order = 'asc'): Builder
     {
@@ -126,7 +123,6 @@ class Relation extends Model
 
     /**
      * Check if a relation is mirrored
-     * @return bool
      */
     public function isMirrored(): bool
     {
@@ -157,8 +153,6 @@ class Relation extends Model
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -174,8 +168,6 @@ class Relation extends Model
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedSelect(Builder $query): Builder
     {
@@ -225,7 +217,6 @@ class Relation extends Model
 
     /**
      * Functions for the datagrid2
-     * @return string
      */
     public function deleteName(): string
     {
@@ -246,7 +237,6 @@ class Relation extends Model
 
     /**
      * Relations don't use the default filterable columns available to entities
-     * @return array
      */
     protected function defaultFilterableColumns(): array
     {

@@ -23,13 +23,11 @@ class EntityMappingService
 
     /**
      * If exceptions should be thrown. Probably not.
-     * @var bool
      */
     protected bool $throwExceptions = true;
 
     /**
      * If the app is verbose
-     * @var bool
      */
     public bool $verbose = false;
 
@@ -46,7 +44,6 @@ class EntityMappingService
 
 
     /**
-     * @param Entity $entity
      * @return int
      * @throws Exception
      */
@@ -57,7 +54,6 @@ class EntityMappingService
     }
 
     /**
-     * @param Post $post
      * @throws Exception
      */
     public function mapPost(Post $post)
@@ -66,7 +62,6 @@ class EntityMappingService
     }
 
     /**
-     * @param QuestElement $questElement
      * @throws Exception
      */
     public function mapQuestElement(QuestElement $questElement)
@@ -75,7 +70,6 @@ class EntityMappingService
     }
 
     /**
-     * @param TimelineElement $timelineElement
      * @throws Exception
      */
     public function mapTimelineElement(TimelineElement $timelineElement)
@@ -90,7 +84,6 @@ class EntityMappingService
 
     /**
      * @param MiscModel|Entity|EntityNote|Campaign|mixed $model
-     * @return int
      * @throws Exception
      */
     protected function map($model): int
@@ -172,7 +165,6 @@ class EntityMappingService
 
     /**
      * @param MiscModel|EntityNote|TimelineElement|QuestElement|Campaign $model
-     * @param int $target
      */
     protected function createNewMention($model, int $target)
     {
@@ -289,7 +281,6 @@ class EntityMappingService
 
     /**
      * @param MiscModel|EntityNote|TimelineElement|QuestElement|Campaign $model
-     * @param string $target
      */
     protected function createNewImageMention($model, string $target)
     {
@@ -307,7 +298,6 @@ class EntityMappingService
     }
 
     /**
-     * @param string|null $message
      */
     protected function log(string $message = null)
     {

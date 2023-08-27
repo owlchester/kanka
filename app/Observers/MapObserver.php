@@ -45,7 +45,6 @@ class MapObserver extends MiscObserver
 
     /**
      * When an element is created, check for the copy option
-     * @param MiscModel $model
      */
     public function created(MiscModel $model)
     {

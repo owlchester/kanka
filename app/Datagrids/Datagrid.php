@@ -29,7 +29,6 @@ abstract class Datagrid
 
     /**
      * Determine if the datagrid has bulk permissions.
-     * @return bool
      */
     public function hasBulkPermissions(): bool
     {
@@ -62,7 +61,6 @@ abstract class Datagrid
 
     /**
      * Determine if the datagrid has bulk entity printing.
-     * @return bool
      */
     public function hasBulkPrint(): bool
     {

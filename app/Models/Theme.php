@@ -24,7 +24,6 @@ class Theme extends Model
     }
 
     /**
-     * @return string
      */
     public function __toString(): string
     {

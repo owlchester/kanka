@@ -27,7 +27,6 @@ class MailSettingsChangeJob implements ShouldQueue
 
     /**
      * MailSettingsChangeJob constructor.
-     * @param User $user
      */
     public function __construct(User $user)
     {

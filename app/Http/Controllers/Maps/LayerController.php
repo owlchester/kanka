@@ -50,7 +50,6 @@ class LayerController extends Controller
     }
 
     /**
-     * @param Map $map
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -72,9 +71,6 @@ class LayerController extends Controller
     }
 
     /**
-     * @param Map $map
-     * @param StoreMapLayer $request
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Campaign $campaign, Map $map, StoreMapLayer $request)
@@ -122,8 +118,6 @@ class LayerController extends Controller
     }
 
     /**
-     * @param Map $map
-     * @param MapLayer $mapLayer
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -140,10 +134,6 @@ class LayerController extends Controller
     }
 
     /**
-     * @param StoreMapLayer $request
-     * @param Map $map
-     * @param MapLayer $mapLayer
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreMapLayer $request, Campaign $campaign, Map $map, MapLayer $mapLayer)
@@ -176,9 +166,6 @@ class LayerController extends Controller
     }
 
     /**
-     * @param Map $map
-     * @param MapLayer $mapLayer
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Map $map, MapLayer $mapLayer)

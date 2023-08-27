@@ -12,7 +12,6 @@ class CharacterCacheService extends BaseCache
     use CampaignAware;
 
     /**
-     * @return array
      */
     public function genderSuggestion(): array
     {
@@ -48,7 +47,6 @@ class CharacterCacheService extends BaseCache
 
     /**
      * Type suggestion cache key
-     * @return string
      */
     protected function genderSuggestionKey(): string
     {

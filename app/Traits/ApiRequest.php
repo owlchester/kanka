@@ -8,9 +8,6 @@ trait ApiRequest
 {
     /**
      * On API PUT requests, don't have all the fields as required
-     * @param array $rules
-     * @param array $except
-     * @return array
      */
     public function clean(array $rules, array $except = []): array
     {

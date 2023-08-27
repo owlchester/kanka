@@ -13,9 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 trait Pinnable
 {
     /**
-     * @param Builder $query
      * @param int $pin
-     * @return mixed
      */
     public function scopePinned(Builder $query, $pin = 1)
     {

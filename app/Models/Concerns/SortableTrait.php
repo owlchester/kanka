@@ -14,10 +14,6 @@ use Illuminate\Support\Str;
 trait SortableTrait
 {
     /**
-     * @param Builder $query
-     * @param array $filters
-     * @param array $defaultOrder
-     * @return Builder
      */
     public function scopeSort(Builder $query, array $filters, array $defaultOrder = []): Builder
     {
@@ -69,8 +65,6 @@ trait SortableTrait
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeDefaultOrder(Builder $query): Builder
     {
@@ -92,9 +86,6 @@ trait SortableTrait
 
     /**
      * Sort on a foreign relation
-     * @param Builder $query
-     * @param string $key
-     * @param string $order
      * @return Builder
      */
     protected function scopeSortOnForeign(Builder $query, string $key, string $order)

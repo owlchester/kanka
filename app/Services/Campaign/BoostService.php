@@ -23,7 +23,6 @@ class BoostService
     protected bool $upgrade = false;
 
     /**
-     * @param string $action
      * @return $this
      */
     public function action(string $action = 'boost'): self
@@ -108,7 +107,6 @@ class BoostService
 
     /**
      * Unboost a campaign
-     * @param CampaignBoost $campaignBoost
      * @return $this
      * @throws \Exception
      */
@@ -135,7 +133,6 @@ class BoostService
 
     /**
      * Migrate a user away from the old boost concepts
-     * @return void
      */
     public function migrate(): void
     {
@@ -176,7 +173,6 @@ class BoostService
 
     /**
      * Dispatch a job to notify all campaign admins
-     * @param string $key
      * @return $this
      */
     protected function notify(string $key): self

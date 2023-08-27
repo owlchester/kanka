@@ -24,7 +24,6 @@ class RedirectController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function index(Request $request, Campaign $campaign)

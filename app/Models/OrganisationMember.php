@@ -92,7 +92,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function pinned(): bool
     {
@@ -100,7 +99,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function pinnedToCharacter(): bool
     {
@@ -108,7 +106,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function pinnedToOrganisation(): bool
     {
@@ -116,7 +113,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function pinnedToBoth(): bool
     {
@@ -124,7 +120,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function inactive(): bool
     {
@@ -132,7 +127,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function unknown(): bool
     {
@@ -140,8 +134,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param int $pin
      * @return Builder
      */
     public function scopePinned(Builder $query, int $pin)
@@ -151,7 +143,6 @@ class OrganisationMember extends Model
 
     /**
      * Datagrid2: delete name
-     * @return string
      */
     public function deleteName(): string
     {
@@ -160,7 +151,6 @@ class OrganisationMember extends Model
 
     /**
      * Foreign selected
-     * @return string
      */
     public function getNameAttribute(): string
     {
@@ -169,8 +159,6 @@ class OrganisationMember extends Model
 
     /**
      * Datagrid2: url
-     * @param string $where
-     * @return string
      */
     public function url(string $where): string
     {
@@ -179,8 +167,6 @@ class OrganisationMember extends Model
 
     /**
      * Datagrid2: route options
-     * @param array $options
-     * @return array
      */
     public function routeParams(array $options = []): array
     {
@@ -188,8 +174,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeRows(Builder $query): Builder
     {

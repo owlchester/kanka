@@ -98,9 +98,7 @@ class StatService
     }
 
     /**
-     * @param int $amount
      * @param int $level = 1
-     * @return int
      */
     public function target(int $amount, int $level = 1): int
     {
@@ -118,9 +116,7 @@ class StatService
     }
 
     /**
-     * @param int $amount
      * @param int $level = 1
-     * @return int
      */
     public function level(int $amount, int $level = 1): int
     {
@@ -136,9 +132,7 @@ class StatService
     }
 
     /**
-     * @param int $amount
      * @param int $level = 1
-     * @return string
      */
     public function title(int $amount, int $level = 1): string
     {

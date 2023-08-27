@@ -11,7 +11,6 @@ use App\Http\Resources\MapGroupResource as Resource;
 class MapGroupApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -23,8 +22,6 @@ class MapGroupApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param MapGroup $mapGroup
      * @return Resource
      */
     public function show(Campaign $campaign, Map $map, MapGroup $mapGroup)
@@ -35,9 +32,6 @@ class MapGroupApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Map $map
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -50,10 +44,6 @@ class MapGroupApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Map $map
-     * @param MapGroup $mapGroup
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -71,10 +61,6 @@ class MapGroupApiController extends ApiController
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param Campaign $campaign
-     * @param Map $map
-     * @param MapGroup $mapGroup
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

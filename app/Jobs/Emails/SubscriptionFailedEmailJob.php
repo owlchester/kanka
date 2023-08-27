@@ -34,7 +34,6 @@ class SubscriptionFailedEmailJob implements ShouldQueue
 
     /**
      * WelcomeEmailJob constructor.
-     * @param User $user
      */
     public function __construct(User $user)
     {

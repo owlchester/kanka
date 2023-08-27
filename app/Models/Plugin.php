@@ -44,7 +44,6 @@ class Plugin extends Model
     ];
 
     /**
-     * @return string
      */
     public function type(): string
     {
@@ -57,7 +56,6 @@ class Plugin extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasUpdate(): bool
     {
@@ -116,7 +114,6 @@ class Plugin extends Model
     }
 
     /**
-     * @return string
      */
     public function author(): string
     {
@@ -131,7 +128,6 @@ class Plugin extends Model
     }
 
     /**
-     * @return bool
      */
     public function isContentPack(): bool
     {
@@ -139,7 +135,6 @@ class Plugin extends Model
     }
 
     /**
-     * @return bool
      */
     public function isTheme(): bool
     {
@@ -147,7 +142,6 @@ class Plugin extends Model
     }
 
     /**
-     * @return bool
      */
     public function isAttributeTemplate(): bool
     {
@@ -155,9 +149,6 @@ class Plugin extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param string|null $uuid
-     * @return Builder
      */
     public function scopeHighlighted(Builder $query, string $uuid = null): Builder
     {
@@ -171,8 +162,6 @@ class Plugin extends Model
         );
     }
     /**
-     * @param string $sub
-     * @return string
      */
     public function url(string $sub): string
     {
@@ -181,7 +170,6 @@ class Plugin extends Model
 
     /**
      * Determine if the plugin is obsolete
-     * @return bool
      */
     public function obsolete(): bool
     {

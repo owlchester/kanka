@@ -49,8 +49,6 @@ class Icon extends Component
 
     /**
      * Map icon shortcuts into their fontawesome or other elements
-     * @param string $class
-     * @return string
      */
     protected function map(string $class): string
     {
@@ -74,8 +72,6 @@ class Icon extends Component
 
     /**
      * Get the icon class based on the entity type
-     * @param string $entity
-     * @return string
      */
     protected function mapEntity(string $entity): string
     {

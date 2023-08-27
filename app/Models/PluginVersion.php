@@ -32,7 +32,7 @@ use Illuminate\Support\Str;
  */
 class PluginVersion extends Model
 {
-    /** @var Entity */
+    /**  */
     protected Entity $entity;
 
     /** @var Collection|Attribute[] */
@@ -50,7 +50,6 @@ class PluginVersion extends Model
 
     /**
      * Get the attributes (stored in the json)
-     * @return array
      */
     public function getAttributesAttribute(): array
     {
@@ -59,7 +58,6 @@ class PluginVersion extends Model
 
     /**
      * Get the css (stored in the json)
-     * @return string
      */
     public function getCssAttribute(): string
     {
@@ -68,7 +66,6 @@ class PluginVersion extends Model
 
     /**
      * Get the translations (stored in the json)
-     * @return array
      */
     public function getTranslationsAttribute(): array
     {
@@ -76,7 +73,6 @@ class PluginVersion extends Model
     }
 
     /**
-     * @param Entity $entity
      * @return string|string[]|null
      */
     public function content(Entity $entity)
@@ -120,7 +116,6 @@ class PluginVersion extends Model
     }
 
     /**
-     * @return string
      */
     public function css(): string
     {
@@ -130,7 +125,6 @@ class PluginVersion extends Model
 
     /**
      * The new rendering engine using Blade
-     * @param Entity $entity
      * @return false|string
      */
     protected function renderBlade(Entity $entity)
@@ -238,8 +232,6 @@ class PluginVersion extends Model
 
     /**
      * Build a html list of all variables
-     * @param mixed $data
-     * @return string
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
@@ -273,8 +265,6 @@ class PluginVersion extends Model
     }
 
     /**
-     * @param string $name
-     * @return string
      */
     protected function attribute(string $name): string
     {
@@ -292,8 +282,6 @@ class PluginVersion extends Model
 
     /**
      * If Else block
-     * @param array $matches
-     * @return mixed
      */
     protected function ifElseBlock(array $matches)
     {
@@ -320,7 +308,6 @@ class PluginVersion extends Model
 
     /**
      * If block
-     * @param array $matches
      * @return mixed|null
      */
     protected function ifBlock(array $matches)
@@ -351,8 +338,6 @@ class PluginVersion extends Model
 
     /**
      * Evaluate a condition
-     * @param string $condition
-     * @return bool
      */
     protected function evaluateCondition(string $condition): bool
     {
@@ -387,7 +372,6 @@ class PluginVersion extends Model
 
     /**
      * Add the plugin's translations to memory
-     * @return void
      */
     protected function loadTranslations(): void
     {
@@ -407,8 +391,6 @@ class PluginVersion extends Model
 
     /**
      * Prepare all the attributes of the entity to be accessible in blade
-     * @param Entity $entity
-     * @return array
      */
     protected function prepareBladeData(Entity $entity): array
     {
@@ -504,8 +486,6 @@ class PluginVersion extends Model
 
     /**
      * Load abilities of the entity and make them available to blade
-     * @param Entity $entity
-     * @return array
      * @throws \Exception
      */
     protected function abilities(Entity $entity): array
@@ -550,8 +530,6 @@ class PluginVersion extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param int $pluginCreator
      * @return Builder
      */
     public function scopePublishedVersions(Builder $query, int $pluginCreator)
@@ -572,7 +550,6 @@ class PluginVersion extends Model
 
     /**
      * Determine if the current version is a draft
-     * @return bool
      */
     public function isDraft(): bool
     {

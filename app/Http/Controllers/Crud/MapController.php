@@ -14,7 +14,6 @@ class MapController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'maps';
     protected string $route = 'maps';

@@ -42,8 +42,6 @@ class TemplateService
     /**
      * Apply a marketplace character sheet on an entity based on its uuid.
      * @todo: move to a separate service
-     * @param string $uuid
-     * @param Entity $entity
      * @return false|\Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed
      */
     public function applyMarketplaceTemplate(string $uuid, Entity $entity)
@@ -113,7 +111,6 @@ class TemplateService
     /**
      * Get a character sheet marketplace plugin model from the db based on its uuid
      * @param string $uuid
-     * @param Campaign $campaign
      * @return CampaignPlugin|null
      */
     public function marketplaceTemplate($uuid, Campaign $campaign)
@@ -145,7 +142,6 @@ class TemplateService
 
     /**
      * Get an attribute template model from the campaign based on its ID
-     * @param int $templateId
      * @return AttributeTemplate
      */
     protected function getAttributeTemplate(int $templateId)
@@ -160,8 +156,6 @@ class TemplateService
 
     /**
      * Get a marketplace plugin's model based on its UUID
-     * @param string $pluginUuid
-     * @param Campaign $campaign
      * @return CampaignPlugin|null
      */
     protected function getMarketplacePlugin(string $pluginUuid, Campaign $campaign)
@@ -179,7 +173,6 @@ class TemplateService
     /**
      * Map an attribute type from its string representation to an ID (as saved in the DB)
      * @param string|null $type the string type of attribute to be converted to an int
-     * @return int
      */
     protected function mapAttributeTypeToID(string $type = null): int
     {
@@ -207,7 +200,6 @@ class TemplateService
     /**
      * Deprecated as of 1.30
      * Get a community template base on its name to render properly
-     * @param string $template
      * @return bool|Template
      */
     public function communityTemplate(string $template)

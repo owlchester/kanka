@@ -8,8 +8,6 @@ trait MentionTrait
 {
     /**
      * Extract the mentions from a text
-     * @param string|null $text
-     * @return array
      */
     public function extract(string $text = null): array
     {
@@ -53,8 +51,6 @@ trait MentionTrait
 
     /**
      * Extract the Images from a text
-     * @param string|null $text
-     * @return array
      */
     public function extractImages(string $text = null): array
     {
@@ -73,8 +69,6 @@ trait MentionTrait
 
     /**
      * Extract the formatting for a mention
-     * @param array $matches
-     * @return array
      */
     protected function extractData(array $matches): array
     {

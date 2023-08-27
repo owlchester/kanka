@@ -175,8 +175,6 @@ class MigratePermissions extends Command
     }
 
     /**
-     * @param string $action
-     * @return int
      */
     protected function actionID(string $action): int
     {
@@ -204,11 +202,6 @@ class MigratePermissions extends Command
     }
 
     /**
-     * @param int $id
-     * @param int $campaignID
-     * @param int $action
-     * @param int|null $miscID
-     * @param int|null $entityType
      */
     protected function update(int $id, int $campaignID, int $action, int $miscID = null, int $entityType = null): void
     {
@@ -222,8 +215,6 @@ class MigratePermissions extends Command
     }
 
     /**
-     * @param string $table
-     * @return int
      * @throws Exception
      */
     protected function entityType(string $table): int

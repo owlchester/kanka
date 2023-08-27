@@ -16,7 +16,6 @@ class FormService
     protected $source;
 
     /**
-     * @param MiscModel|null $source
      * @return $this
      */
     public function source(MiscModel $source = null)
@@ -146,9 +145,7 @@ class FormService
 
     /**
      * Prefill a value based on an attribute
-     * @param string $field
      * @param MiscModel|null $entity
-     * @return mixed
      */
     public function prefillEntity(string $field, $entity = null)
     {

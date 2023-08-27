@@ -9,7 +9,6 @@ class CampaignRoleObserver
 {
     /**
      * Created or updated role, clear the cache
-     * @param CampaignRole $campaignRole
      */
     public function saved(CampaignRole $campaignRole)
     {
@@ -17,7 +16,6 @@ class CampaignRoleObserver
     }
 
     /**
-     * @param CampaignRole $campaignRole
      */
     public function deleted(CampaignRole $campaignRole)
     {
@@ -25,7 +23,6 @@ class CampaignRoleObserver
     }
 
     /**
-     * @param CampaignRole $campaignRole
      */
     public function updated(CampaignRole $campaignRole)
     {

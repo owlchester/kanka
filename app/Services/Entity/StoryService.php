@@ -14,8 +14,6 @@ class StoryService
     use EntityAware;
 
     /**
-     * @param ReorderStories $request
-     * @return bool
      */
     public function reorder(ReorderStories $request): bool
     {

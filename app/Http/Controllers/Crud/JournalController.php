@@ -17,7 +17,6 @@ class JournalController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'journals';
     protected string $route = 'journals';

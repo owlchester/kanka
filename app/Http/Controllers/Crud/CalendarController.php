@@ -17,7 +17,6 @@ class CalendarController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'calendars';
     protected string $route = 'calendars';
@@ -28,7 +27,7 @@ class CalendarController extends CrudController
     /** @var string */
     protected $model = \App\Models\Calendar::class;
 
-    /** @var string */
+    /**  */
     protected string $filter = CalendarFilter::class;
 
     protected string $sanitizer = CalendarSanitizer::class;
@@ -116,7 +115,6 @@ class CalendarController extends CrudController
     }
 
     /**
-     * @param Calendar $calendar
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

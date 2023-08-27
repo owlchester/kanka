@@ -74,7 +74,6 @@ class Header
     }
 
     /**
-     * @return bool
      */
     public function sortable(): bool
     {
@@ -82,7 +81,6 @@ class Header
     }
 
     /**
-     * @return string|null
      */
     public function icon(): null|string
     {
@@ -97,7 +95,6 @@ class Header
     }
 
     /**
-     * @return string
      */
     public function route(): string
     {
@@ -129,7 +126,6 @@ class Header
     }
 
     /**
-     * @return string
      */
     public function label(): string
     {

@@ -67,7 +67,6 @@ class Item extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'price',
@@ -106,7 +105,6 @@ class Item extends MiscModel
 
     /**
      * Tooltip subtitle (item price/size)
-     * @return string
      */
     public function tooltipSubtitle(): string
     {
@@ -131,7 +129,6 @@ class Item extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
      * @return Builder mixed
      */
     public function scopePreparedWith(Builder $query): Builder
@@ -166,7 +163,6 @@ class Item extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -245,7 +241,6 @@ class Item extends MiscModel
         return $this->belongsTo('App\Models\Item', 'item_id', 'id');
     }
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -263,7 +258,6 @@ class Item extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -272,7 +266,6 @@ class Item extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -300,7 +293,6 @@ class Item extends MiscModel
 
     /**
      * Grid mode sortable fields
-     * @return array
      */
     public function datagridSortableColumns(): array
     {

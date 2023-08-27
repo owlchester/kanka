@@ -16,8 +16,6 @@ class ApiPermissionService
 
     /**
      * Get the permissions of an entity
-     * @param Entity $entity
-     * @return array
      */
     protected function entityPermissions(Entity $entity): array
     {
@@ -38,7 +36,6 @@ class ApiPermissionService
 
     /**
      * @param Request $request
-     * @param Entity $entity
      */
     public function saveEntity($request, Entity $entity)
     {
@@ -67,8 +64,6 @@ class ApiPermissionService
 
     /**
      * @param Request $request
-     * @param Campaign $campaign
-     * @return array
      */
     public function entityPermissionTest($request, Campaign $campaign): array
     {

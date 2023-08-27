@@ -14,10 +14,6 @@ class EntityFileService
     use EntityAware;
 
     /**
-     * @param StoreEntityAsset $request
-     * @param string $field
-     * @param string $folder
-     * @return EntityAsset
      * @throws EntityFileException
      */
     public function upload(StoreEntityAsset $request, string $field = 'file', string $folder = 'entities/files'): EntityAsset

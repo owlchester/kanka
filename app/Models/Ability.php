@@ -60,7 +60,6 @@ class Ability extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'ability.name',
@@ -100,8 +99,6 @@ class Ability extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -129,7 +126,6 @@ class Ability extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -174,7 +170,6 @@ class Ability extends MiscModel
 
     /**
      * Menu items for the entity
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -193,7 +188,6 @@ class Ability extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -201,7 +195,6 @@ class Ability extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function entryWithAttributes()
     {
@@ -210,8 +203,6 @@ class Ability extends MiscModel
 
     /**
      * Attach an entity to the tag
-     * @param array $request
-     * @return bool
      */
     public function attachEntity(array $request): bool
     {
@@ -236,7 +227,6 @@ class Ability extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {

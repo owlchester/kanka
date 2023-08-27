@@ -22,9 +22,7 @@ class OrganisationMemberPolicy
     /**
      * Determine whether the user can update the entity.
      *
-     * @param  \App\User  $user
      * @param  \App\Models\Entity  $entity
-     * @return mixed
      */
     public function update(User $user, $entity)
     {
@@ -39,9 +37,7 @@ class OrganisationMemberPolicy
     /**
      * Determine whether the user can update the entity.
      *
-     * @param  \App\User  $user
      * @param  \App\Models\Entity  $entity
-     * @return mixed
      */
     public function delete(User $user, $entity)
     {

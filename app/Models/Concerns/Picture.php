@@ -35,8 +35,6 @@ trait Picture
     }
 
     /**
-     * @param bool $thumb
-     * @param string $field
      * @return string
      */
     public function avatar(bool $thumb = false, string $field = 'image')
@@ -51,8 +49,6 @@ trait Picture
     }
 
     /**
-     * @param bool $thumb
-     * @param string $field
      * @return string
      */
     protected function cacheAvatar(string $field, string $size = null)
@@ -68,7 +64,6 @@ trait Picture
     }
 
     /**
-     * @param string $avatar
      * @return string
      */
     protected function avatarUrl(string $avatar)
@@ -116,9 +111,6 @@ trait Picture
     }
 
     /**
-     * @param bool $thumb
-     * @param string $field
-     * @return string
      */
     protected function avatarCacheKey(string $field, string $size = null): string
     {
@@ -128,7 +120,6 @@ trait Picture
     /**
      * V2 of avatars, where instead of saving the full path, we only save the relative path, so that
      * we can get any image size
-     * @return string
      */
     public function avatarV2(MiscModel $child = null): string
     {

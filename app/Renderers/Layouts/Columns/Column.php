@@ -18,8 +18,6 @@ abstract class Column
     protected $config;
 
     /**
-     * @param Model $model
-     * @param array $config
      */
     public function __construct(Model $model, array $config)
     {
@@ -28,7 +26,6 @@ abstract class Column
     }
 
     /**
-     * @return string
      */
     public function __toString(): string
     {
@@ -36,7 +33,6 @@ abstract class Column
     }
 
     /**
-     * @return string|null
      */
     public function css(): string|null
     {

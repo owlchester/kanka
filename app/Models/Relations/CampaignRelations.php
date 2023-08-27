@@ -73,7 +73,6 @@ use Illuminate\Support\Collection;
 trait CampaignRelations
 {
     /**
-     * @return mixed
      */
     public function users()
     {
@@ -81,7 +80,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function followers()
     {
@@ -89,7 +87,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function rpgSystems()
     {
@@ -97,7 +94,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function setting()
     {
@@ -105,7 +101,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function members()
     {
@@ -113,7 +108,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function roles()
     {
@@ -317,7 +311,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function entityRelations()
     {
@@ -325,7 +318,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function plugins()
     {
@@ -337,7 +329,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function campaignPlugins()
     {
@@ -360,7 +351,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function editingUsers()
     {
@@ -370,7 +360,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function invites()
     {

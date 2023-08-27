@@ -15,7 +15,6 @@ class QuestController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'quests';
     protected string $route = 'quests';

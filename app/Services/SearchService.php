@@ -46,13 +46,11 @@ class SearchService
 
     /**
      * Set to true for a full result (rather than id => name)
-     * @var bool
      */
     protected bool $full = false;
 
     /**
      * Set to true to return new entity options
-     * @var bool
      */
     protected bool $new = false;
 
@@ -64,7 +62,6 @@ class SearchService
 
     /**
      * The search term as requested by the user
-     * @param string|null $term
      * @return $this
      */
     public function term(string $term = null): self
@@ -85,7 +82,6 @@ class SearchService
 
     /**
      * The search entity type as requested by the user
-     * @param int|null $type
      * @return $this
      */
     public function type(int $type = null): self
@@ -107,7 +103,6 @@ class SearchService
     }
 
     /**
-     * @param int $limit
      * @return $this
      */
     public function limit(int $limit = 10): self
@@ -344,7 +339,6 @@ class SearchService
 
     /**
      * List of months in the calendars
-     * @return array
      */
     public function monthList(): array
     {
@@ -370,7 +364,6 @@ class SearchService
 
     /**
      * List of elements that can be created on the fly
-     * @return array
      */
     protected function newOptions(): array
     {
@@ -423,8 +416,6 @@ class SearchService
 
     /**
      * Format an entity for the lookup/search/recent dropdown
-     * @param Entity $entity
-     * @return array
      */
     protected function formatForLookup(Entity $entity): array
     {

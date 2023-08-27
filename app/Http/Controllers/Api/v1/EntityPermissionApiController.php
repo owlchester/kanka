@@ -17,7 +17,6 @@ class EntityPermissionApiController extends ApiController
     /**
      * Create a new controller instance.
      *
-     * @param  ApiPermissionService  $apiPermissionService
      * @return void
      */
     public function __construct(ApiPermissionService $apiPermissionService)
@@ -26,7 +25,6 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -38,9 +36,6 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param CampaignPermission $permission
      * @return Resource
      */
     public function show(Campaign $campaign, Entity $entity, CampaignPermission $permission)
@@ -51,9 +46,6 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Entity $entity
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -67,10 +59,6 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param CampaignPermission $permission
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Entity $entity, CampaignPermission $permission)
@@ -83,9 +71,6 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param CampaignPermission $permission
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -99,8 +84,6 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @param PermissionTestRequest $request
-     * @param Campaign $campaign
      * @return \Illuminate\Http\JsonResponse
      */
     public function test(PermissionTestRequest $request, Campaign $campaign)

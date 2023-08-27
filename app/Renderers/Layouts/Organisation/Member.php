@@ -77,7 +77,6 @@ class Member extends Layout
 
     /**
      * Available actions on each row
-     * @return array
      */
     public function actions(): array
     {

@@ -129,7 +129,6 @@ class EntityResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  array $prepared
      * @return array|string
      */
     public function entity(array $prepared = [])

@@ -14,8 +14,6 @@ class CharacterPolicy extends MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @param Character $entity
      * @return bool
      */
     public function personality(User $user, Character $entity)
@@ -24,8 +22,6 @@ class CharacterPolicy extends MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @param Character $entity
      * @return bool|mixed
      */
     public function organisation(User $user, Character $entity)

@@ -66,7 +66,6 @@ class WebhookController extends CashierController
 
     /**
      * For users using sofort, ideal etc, we need to handle this async call
-     * @param array $payload
      */
     public function handleSucceededCharge(array $payload)
     {
@@ -98,7 +97,6 @@ class WebhookController extends CashierController
 
     /**
      * Charge Failed can happen on any medium (cc, sofort, giropay)
-     * @param array $payload
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function handleChargeFailed(array $payload)
@@ -117,8 +115,6 @@ class WebhookController extends CashierController
 
     /**
      * Check if a request is to cancel a user
-     * @param array $data
-     * @return bool
      */
     protected function isCancelling(array $data): bool
     {

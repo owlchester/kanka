@@ -14,7 +14,6 @@ class StoreSettingsLayout extends FormRequest
 
     /**
      * StoreSettingsLayout constructor.
-     * @param PaginationService $paginationService
      */
     public function __construct(PaginationService $paginationService)
     {

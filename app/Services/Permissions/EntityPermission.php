@@ -68,8 +68,6 @@ class EntityPermission
     }
 
     /**
-     * @param Entity $entity
-     * @param Campaign|null $campaign
      * @return bool
      */
     public function canView(Entity $entity, Campaign $campaign = null)
@@ -86,9 +84,7 @@ class EntityPermission
 
     /**
      * Get list of entity ids for a given model type that the user can access.
-     * @param string $modelName
      * @param string $action = 'read'
-     * @return array
      */
     public function entityIds(string $modelName, string $action = 'read'): array
     {
@@ -113,9 +109,6 @@ class EntityPermission
 
     /**
      * Entity IDs the user specifically doesn't have access to
-     * @param string $modelName
-     * @param string $action
-     * @return array
      */
     public function deniedEntityIds(string $modelName, string $action = 'read'): array
     {
@@ -144,12 +137,7 @@ class EntityPermission
 
     /**
      * Determine the permission for a user to interact with an entity
-     * @param int $entityType
-     * @param int $action
-     * @param User|null $user
      * @param MiscModel|Entity|null $entity
-     * @param Campaign|null $campaign
-     * @return bool
      */
     public function hasPermission(
         int $entityType,
@@ -204,8 +192,6 @@ class EntityPermission
 
     /**
      * Check the roles of the user. If the user is an admin, always return true
-     * @param Campaign $campaign
-     * @param User|null $user
      * @return array|bool
      */
     protected function getRoleIds(Campaign $campaign, User $user = null)
@@ -240,7 +226,6 @@ class EntityPermission
 
     /**
      * Determine if a user is part of a role that can do an action on all entities of a campaign
-     * @return bool
      */
     public function canRole(string $action, string $modelName, $user = null, Campaign $campaign = null): bool
     {

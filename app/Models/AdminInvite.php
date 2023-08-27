@@ -35,9 +35,6 @@ class AdminInvite extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param int $campaignId
-     * @return Builder
      */
     public function scopeCheck(Builder $query, int $campaignId): Builder
     {
