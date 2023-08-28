@@ -75,7 +75,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-da75c3a5.js",
+    "file": "assets/app-deddfc90.js",
     "imports": [
       "_delete-confirm-63bc2c61.js",
       "_mention-5d95822d.js",
