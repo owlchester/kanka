@@ -14,8 +14,8 @@ $newWidgetListClass = 'btn2 btn-full';
 @endphp
 
 @section('content')
-<div class="max-w-5xl">
-    <div class="flex gap-2 mb-2 items-center">
+<div class="max-w-5xl grid grid-col gap-5">
+    <div class="flex gap-2 items-center">
         <h4 class="grow">
             @if ($dashboard)
                 {!! $dashboard->name !!}
@@ -29,7 +29,6 @@ $newWidgetListClass = 'btn2 btn-full';
         </a>
     </div>
     <x-box >
-
         @if ($dashboard)
             {!! __('dashboard.dashboards.custom.text', ['name' => $dashboard->name]) !!}
         @else
@@ -162,10 +161,8 @@ $newWidgetListClass = 'btn2 btn-full';
 @endsection
 
 @section('modals')
-    <div class="col-span-1 col-span-2 col-span-3 col-span-4 col-span-5 col-span-6 col-span-6 col-span-7 col-span-8 col-span-9 col-span-10 col-span-11 col-span-12"></div>
-
     <x-dialog id="new-widget" :title="__('dashboard.setup.actions.add')">
-        <div class="widget-list grid grid-cols-1 gap-2 mb-5" id="modal-content-buttons">
+        <div class="widget-list grid grid-cols-2 gap-5" id="modal-content-buttons">
             <a href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'recent', 'dashboard' => $dashboard]) }}">
                 <x-icon class="fa-solid fa-list"></x-icon>
                 {{ __('dashboard.setup.widgets.recent') }}
