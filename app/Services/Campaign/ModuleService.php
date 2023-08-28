@@ -6,6 +6,9 @@ use App\Traits\CampaignAware;
 use Illuminate\Support\Str;
 use Exception;
 
+/**
+ * Easily get access to a campaign's modules custom name and icon
+ */
 class ModuleService
 {
     use CampaignAware;
@@ -52,6 +55,9 @@ class ModuleService
         return Str::replace('duotone', 'solid', $fallback);
     }
 
+    /**
+     * From a string or id, figure out the entity type number
+     */
     protected function id(mixed $key): int
     {
         // Ints are easy and what we hope for

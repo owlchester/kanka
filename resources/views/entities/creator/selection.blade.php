@@ -4,11 +4,10 @@
     </div>
 
     <div class="quick-creator-body">
-
         @includeWhen(isset($new), 'entities.creator._created', ['success' => $new ?? null])
 
         <div class="options">
-            <div class="popular">
+            <div class="popular pr-4">
                 @include('entities.creator.selection.popular')
             </div>
             <div class="all">
@@ -17,9 +16,8 @@
         </div>
     </div>
 
-    <div class="quick-creator-footer mt-4 text-center">
-
-        <p class="help-block my-5">{!! __('entities.creator.missing_v2', [
+    <div class="quick-creator-footertext-center mt-5">
+        <p class="m-4 text-neutral-content text-xs">{!! __('entities.creator.missing_v2', [
     'learn-more' => link_to(
         '//docs.kanka.io/en/latest/features/quick-creator.html',
         '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front/newsletter.actions.learn_more'),

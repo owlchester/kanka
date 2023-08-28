@@ -180,7 +180,7 @@ return [
     'filters'                   => [
         'all'                       => 'Filter to all descendants',
         'clear'                     => 'Clear Filters',
-        'copy_helper'               => 'Use the copied filters in your clipboard as values for filters on dashboard widgets and quick links.',
+        'copy_helper'               => 'Use the copied filters in your clipboard as values for filters on dashboard widgets and bookmarks.',
         'copy_helper_no_filters'    => 'Define some filters first to be able to copy them to your clipboard.',
         'copy_to_clipboard'         => 'Copy filters to clipboard',
         'direct'                    => 'Filter to direct descendants',

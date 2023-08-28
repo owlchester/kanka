@@ -28,7 +28,7 @@ return [
     ],
     'helpers'           => [
         'icon'      => 'Replace the default icon with one of your choice. Find our more about available icons in our :docs.',
-        'parent'    => 'Display this quick link after an element of the sidebar, rather than in the quick links section of the sidebar.',
+        'parent'    => 'Display this bookmark after an element of the sidebar, rather than in the bookmark section of the sidebar.',
     ],
     'placeholders'      => [
         'name'  => 'DNDBeyond',
