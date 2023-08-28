@@ -12,6 +12,7 @@
         __('crud.update'),
     ],
     'canonical' => true,
+    'centered' => true,
 ])
 @section('content')
     {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $campaign, $entity->id, $entityEvent->id], 'data-shortcut' => '1', 'class' => 'ajax-subform', 'data-maintenance' => 1]) !!}

@@ -7,8 +7,8 @@
 ])
 
 @section('entity-header')
-    <div class="flex gap-2 items-center">
-        <h1 class="grow m-0 text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
+    <div class="flex gap-2 items-center mb-5">
+        <h1 class="grow text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex-none flex gap-2">
             @include('layouts.datagrid._togglers', ['route' => 'tree'])
             @include('cruds.lists._actions')

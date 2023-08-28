@@ -7,13 +7,20 @@ return [
     ],
     'bulk'              => [
         'delete'            => '{0} Deleted :count connections|{1} Deleted :count connection.|[2,*] Deleted :count connections.',
-        'delete_mirrored'   => 'Also delete mirrored connections.',
         'success'           => [
             'editing'           => '{0} :count connections were updated|{1} :count connection was updated.|[2,*] :count connections were updated.',
             'editing_partial'   => '{0} :count/:total connections were updated|{1} :count/:total connection was updated.|[2,*] :count/:total connection were updated.',
         ],
-        'unmirror'          => 'Unlink mirrored connections.',
-        'update_mirrored'   => 'Also update mirrored connections.',
+        'helpers' => [
+            'unmirror' => 'Unlink mirrored connections.',
+            'delete_mirrored'   => 'Also delete mirrored connections.',
+            'update_mirrored'   => 'Update mirrored connections.',
+        ],
+        'fields' => [
+            'unmirror'          => 'Unlink mirrored',
+            'delete_mirrored'   => 'Delete mirrored',
+            'update_mirrored'   => 'Update mirrored',
+        ],
     ],
     'call-to-action'    => 'Visually explore the connections of this entity and how it\'s connected to the rest of the campaign.',
     'connections'       => [
@@ -43,7 +50,7 @@ return [
         'relation'          => 'Description',
         'target'            => 'Target entity',
         'target_relation'   => 'Target\'s description',
-        'two_way'           => 'Create mirror connection',
+        'two_way'           => 'Mirror connection',
         'unmirror'          => 'Unmirror this connection.',
     ],
     'helper'            => 'Set up connections between entities with attitudes and visibility. Connections can also be pinned to the entity\'s menu.',
@@ -58,7 +65,7 @@ return [
             'title' => 'Mirrored',
         ],
         'target_relation'   => 'The connection description on the target. Leave blank to use this connection\'s text.',
-        'two_way'           => 'If you select to create a mirror connection, the same connection will be created on the target. However, if you edit one, the mirror won\'t be updated.',
+        'two_way'           => 'Create a connection on the selected target and mirror them. Updating a mirrored relation doesn\'t update the original connection.',
     ],
     'index'             => [
         'title' => 'Connections',

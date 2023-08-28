@@ -22,7 +22,7 @@
                 @php $hasAttributeFilters = true @endphp
                 @continue
             @endif
-            <div class="field-">
+            <div class="field flex flex-col gap-1 field-">
                 @if (is_array($field))
                     <label>{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
                         <?php $model = null;
@@ -56,7 +56,7 @@
                     @elseif ($field === 'template')
                         @include('cruds.datagrids.filters._template')
                     @else
-                        <input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
+                        <input type="text" class="w-full entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                     @endif
                 @endif
             </div>

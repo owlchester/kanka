@@ -11,7 +11,8 @@
         Breadcrumb::entity($timeline->entity)->list(),
         Breadcrumb::show($timeline),
         __('timelines/elements.edit.title', ['name' => $model->name])
-    ]
+    ],
+    'centered' => true,
 ])
 
 

@@ -8,33 +8,43 @@
 <article>
     {!! Form::model($submission, ['method' => 'PATCH', 'route' => ['campaign_submissions.update', $campaign, $submission->id], 'data-shortcut' => 1, 'class' => 'entity-form w-full max-w-lg text-left']) !!}
         @if($action === 'approve')
-            <p>{{ __('campaigns/submissions.update.approve') }}</p>
 
             <x-grid type="1/1">
-                <div class="field-role text-left">
-                    <label>{{ __('campaigns.members.fields.role') }}</label>
+                <p class="m-0">{{ __('campaigns/submissions.update.approve') }}</p>
+
+                <x-forms.field
+                    field="role"
+                    :label="__('campaigns.members.fields.role')"
+                    :required="true">
                     {!! Form::select('role_id', $campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
-                </div>
-                <div class="field-approval text-left">
-                    <label>{{ __('campaigns/submissions.fields.approval') }}</label>
+                </x-forms.field>
+
+                <x-forms.field
+                    field="message"
+                    :label="__('campaigns/submissions.fields.approval')">
                     {!! Form::text('message', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                </x-forms.field>
+
+                <x-buttons.confirm type="primary" full="true">
+                    <x-icon class="check" />
+                    {{ __('campaigns/submissions.actions.accept') }}
+                </x-buttons.confirm>
             </x-grid>
-            <x-buttons.confirm type="primary" full="true">
-                <x-icon class="check" />
-                {{ __('campaigns/submissions.actions.accept') }}
-            </x-buttons.confirm>
         @else
-            <p>{{ __('campaigns/submissions.update.reject') }}</p>
-            <div class="field-rejection mb-5">
-                <label>{{ __('campaigns/submissions.fields.rejection') }}</label>
+        <x-grid type="1/1">
+            <p class="m-0">{{ __('campaigns/submissions.update.reject') }}</p>
+
+            <x-forms.field
+                field="message"
+                :label="__('campaigns/submissions.fields.rejection')">
                 {!! Form::text('rejection', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
-            </div>
+            </x-forms.field>
 
             <x-buttons.confirm type="danger" full="true">
                 <i class="fa-solid fa-times" aria-hidden="true"></i>
                 {{ __('campaigns/submissions.actions.reject') }}
             </x-buttons.confirm>
+        </x-grid>
         @endif
 
     <input type="hidden" name="action" value="{{ $action }}" />

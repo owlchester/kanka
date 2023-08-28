@@ -8,6 +8,7 @@
         __('crud.update'),
     ],
     'canonical' => true,
+    'centered' => true,
 ])
 @section('content')
     {!! Form::model($weather, ['method' => 'PATCH', 'route' => ['calendars.calendar_weather.update', $campaign, $weather->calendar->id, $weather->id], 'data-shortcut' => '1']) !!}

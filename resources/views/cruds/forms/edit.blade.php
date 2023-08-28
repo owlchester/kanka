@@ -9,6 +9,7 @@
         __('crud.edit'),
     ],
     'mainTitle' => false,
+    'centered' => true,
 ])
 
 @section('fullpage-form')
@@ -27,7 +28,6 @@
 
 @section('content')
     @include('cruds.forms._errors')
-
 
     <div class="nav-tabs-custom ">
         <div class="flex gap-2 items-center ">
@@ -54,29 +54,28 @@
         </div>
 
         <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
-            <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
+            <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
                 {{ csrf_field() }}
                 @include($name . '.form._entry', ['source' => null])
             </div>
             @includeIf($name . '.form._panes', ['source' => null])
             @if ($tabBoosted)
-                <div class="tab-pane {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
+                <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
                     @include('cruds.forms._premium', ['source' => null])
                 </div>
             @endif
             @if ($tabAttributes)
-                <div class="tab-pane {{ (request()->get('tab') == 'attributes' ? ' active' : '') }}" id="form-attributes">
+                <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == 'attributes' ? ' active' : '') }}" id="form-attributes">
                     @include('cruds.forms._attributes', ['source' => null])
                 </div>
             @endif
             @if ($tabPermissions)
-            <div class="tab-pane {{ (request()->get('tab') == 'permission' ? ' active' : '') }}" id="form-permissions">
+            <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == 'permission' ? ' active' : '') }}" id="form-permissions">
                 @include('cruds.forms._permission', ['source' => null])
             </div>
             @endif
         </div>
     </div>
-
 
     @if(!empty($model->entity) && $campaign->hasEditingWarning())
         <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', [$campaign, $model->entity->id]) }}" />

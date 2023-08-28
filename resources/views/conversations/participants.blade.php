@@ -58,9 +58,6 @@
                     @endif
                 </div>
                 <div class="">
-                    @if ($model->target ==  \App\Models\Conversation::TARGET_CHARACTERS)
-                        <label></label>
-                    @endif
                     <button class="btn2 btn-primary btn-block">
                         <x-icon class="plus"></x-icon> {{ __('crud.add') }}
                     </button>

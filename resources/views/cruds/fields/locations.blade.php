@@ -3,10 +3,10 @@
 @endif
 
 <input type="hidden" name="save_locations" value="1">
-<div class="field-locations">
+<x-forms.field field="locations">
     @include('components.form.locations', ['options' => [
         'model' => $model ?? FormCopy::model(),
         'source' => $source ?? null,
         'quickCreator' => $quickCreator ?? false
     ]])
-</div>
+</x-forms.field>

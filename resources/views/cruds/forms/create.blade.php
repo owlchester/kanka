@@ -5,6 +5,7 @@
         __('crud.create'),
     ],
     'mainTitle' => false,
+    'centered' => true,
 ])
 
 @section('fullpage-form')
@@ -53,33 +54,43 @@
 
         <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
             <div class="tab-pane pane-entry {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
-                {{ csrf_field() }}
-                @include($name . '.form._entry', ['source' => $source])
+                <x-grid type="1/1">
+                    @include($name . '.form._entry', ['source' => $source])
+                </x-grid>
             </div>
             @includeIf($name . '.form._panes', ['source' => $source])
 
             @if ($tabBoosted)
                 <div class="tab-pane pane-premium {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
-                    @include('cruds.forms._premium', ['source' => $source])
+                    <x-grid type="1/1">
+                        @include('cruds.forms._premium', ['source' => $source])
+                    </x-grid>
                 </div>
             @endif
             @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
                 <div class="tab-pane pane-copy {{ (request()->get('tab') == 'copy' ? ' active' : '') }}" id="form-copy">
-                    @include('cruds.forms._copy', ['source' => $source])
+                    <x-grid type="1/1">
+                        @include('cruds.forms._copy', ['source' => $source])
+                    </x-grid>
                 </div>
             @endif
             @if ($tabAttributes)
             <div class="tab-pane pane-attributes {{ (request()->get('tab') == 'attributes' ? ' active' : '') }}" id="form-attributes">
-                @include('cruds.forms._attributes', ['source' => $source])
+                <x-grid type="1/1">
+                    @include('cruds.forms._attributes', ['source' => $source])
+                </x-grid>
             </div>
             @endif
             @if ($tabPermissions)
             <div class="tab-pane pane-permissions {{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" id="form-permissions">
-                @include('cruds.forms._permission', ['source' => $source])
+                <x-grid type="1/1">
+                    @include('cruds.forms._permission', ['source' => $source])
+                </x-grid>
             </div>
             @endif
         </div>
     </div>
+    {{ csrf_field() }}
     {!! Form::close() !!}
 @endsection
 

@@ -1,11 +1,15 @@
 <x-grid type="1/1">
-    <div class="field-entity-type required">
-        <label>{{ __('crud.fields.entity_type') }}</label>
+    <x-forms.field
+        field="entity-type"
+        :required="true"
+        :label="__('crud.fields.entity_type')">
         {!! Form::select('entity_type', $entities, [], ['class' => 'form-control']) !!}
-    </div>
-    <div class="field-file required">
-        <label>{{ __('entities/files.fields.file') }}    </label>
+    </x-forms.field>
 
-    {!! Form::file('default_entity_image', ['class' => 'image form-control']) !!}
-    </div>
+    <x-forms.field
+        field="file"
+        :required="true"
+        :label="__('entities/files.fields.file')">
+        {!! Form::file('default_entity_image', ['class' => 'image form-control']) !!}
+    </x-forms.field>
 </x-grid>

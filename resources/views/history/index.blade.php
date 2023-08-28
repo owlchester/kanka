@@ -6,6 +6,7 @@
     'breadcrumbs' => [['url' => route('history.index', $campaign), 'label' => __('history.title')]],
     'bodyClass' => 'campaign-history',
     'mainTitle' => false,
+    'centered' => true,
 ])
 
 @section('content')
@@ -19,14 +20,13 @@
         </x-tutorial>
     @endif
 
-
     @if ($superboosted)
-        {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters']) !!}
-        <div class="flex items-center flex-row-reverse mb-5 gap-2">
-            <div class="flex-none">
+        {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters flex flex-col gap-5 mt-2']) !!}
+        <div class="flex items-center flex-row-reverse gap-2">
+            <div class="field flex-none">
                 {!! Form::select('action', $actions, $action, ['class' => 'form-control']) !!}
             </div>
-            <div class="flex-none">
+            <div class="field flex-none">
                 <select class="form-control" name="user">
                     <option value="">{{ __('history.filters.all-users') }}</option>
                     @foreach ($users as $member)

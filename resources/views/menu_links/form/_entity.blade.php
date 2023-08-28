@@ -62,13 +62,11 @@ $menus = array_merge(['' => __('crud.tabs.story')], $menus);
         'label' => __('menu_links.fields.entity'),
     ])
 
-    <div class="field-menu">
-        <label>{{ __('menu_links.fields.menu') }}</label>
+    <x-forms.field field="menu" :label="__('menu_links.fields.menu')">
         {!! Form::select('menu', $menus, null, ['class' => 'form-control', 'id' => 'entity-selector']) !!}
-    </div>
+    </x-forms.field>
 
-    <div class="field-filter" id="filter-subform" style="display: none">
-        <label>{{ __('menu_links.fields.filters') }}</label>
+    <x-forms.field field="filter" :label="__('menu_links.fields.filters')" :hidden="true">
         {!! Form::text('options[subview_filter]', !isset($model->options['subview_filter']) ? '' : $model->options['subview_filter'], ['placeholder' => 'k=name&s=desc', 'class' => 'form-control', 'maxlength' => 191]) !!}
-    </div>
+    </x-forms.field>
 </x-grid>

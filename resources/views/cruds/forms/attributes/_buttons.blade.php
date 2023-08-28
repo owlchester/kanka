@@ -69,15 +69,16 @@
         $role = \App\Facades\CampaignCache::adminRole();
     @endphp
     <hr />
-    <div class="field-private">
+    <x-forms.field field="attributes-private"
+                   :label="__('entities/attributes.fields.is_private')">
         {!! Form::hidden('is_attributes_private', 0) !!}
-        <label>{!! Form::checkbox('is_attributes_private', 1, empty($model) ? false : $model->entity->is_attributes_private) !!}
-            {{ __('entities/attributes.fields.is_private') }}
-        </label>
-        <p class="help-block">{!! __('entities/attributes.hints.is_private2', [
+        <label class="text-neutral-content cursor-pointer flex gap-2">
+            {!! Form::checkbox('is_attributes_private', 1, empty($model) ? false : $model->entity->is_attributes_private) !!}
+            {!! __('entities/attributes.helpers.is_private', [
     'admin-role' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
-    ]) !!}</p>
-    </div>
+    ]) !!}
+        </label>
+    </x-forms.field>
 @endif
 
 @section('modals')

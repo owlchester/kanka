@@ -59,13 +59,12 @@ $sizeOptions = [
                 @include('maps.markers.fields.pin_size')
                 @include('maps.markers.fields.font_colour')
 
-                <div class="field-draggable checkbox col-span-2">
+                <x-forms.field field="draggable" css="" :label="__('maps/markers.fields.is_draggable')">
                     {!! Form::hidden('is_draggable', 0) !!}
-                    <label>{!! Form::checkbox('is_draggable', 1, (!empty($source) ? $source->is_draggable : null)) !!}
-                        {{ __('maps/markers.fields.is_draggable') }}
+                    <label class="text-neutral-content cursor-pointer">{!! Form::checkbox('is_draggable', 1, (!empty($source) ? $source->is_draggable : null)) !!}
+                        {{ __('maps/markers.helpers.draggable') }}
                     </label>
-                    <p class="help-block m-0">{{ __('maps/markers.helpers.draggable') }}</p>
-                </div>
+                </x-forms.field>
             </x-grid>
         </div>
         <div class="tab-pane @if($activeTab == 2) active @endif" id="marker-label">
@@ -73,23 +72,22 @@ $sizeOptions = [
         </div>
         <div class="tab-pane @if($activeTab == 3) active @endif" id="marker-circle">
             <x-grid>
-                <div class="field-size">
-                    <label for="size_id">{{ __('maps/markers.fields.size') }}</label>
+                <x-forms.field field="size" :label="__('maps/markers.fields.size')">
                     {!! Form::select('size_id', $sizeOptions, \App\Facades\FormCopy::field('size_id')->string(), ['class' => 'form-control', 'id' => 'size_id']) !!}
-                </div>
-                <div class="field-radius">
-                    <label for="circle_radius">{{ __('maps/markers.fields.circle_radius') }}</label>
+                </x-forms.field>
+
+                <x-forms.field field="radius" :label="__('maps/markers.fields.circle_radius')">
                     {!! Form::text('circle_radius', \App\Facades\FormCopy::field('circle_radius')->string(), ['class' => 'form-control map-marker-circle-radius', 'id' => 'circle_radius', 'style' => (!isset($model) || $model->shape_id != 6) ? 'display:none;' : '']) !!}
                     <p class="help-block map-marker-circle-helper">{{ __('maps/markers.helpers.custom_radius') }}</p>
-                </div>
+                </x-forms.field>
             </x-grid>
         </div>
         <div class="tab-pane @if($activeTab == 5) active @endif" id="marker-poly">
 
             <x-grid>
-                <div class="field-shape col-span-2">
+                <div class="field field-shape flex flex-col gap-2 col-span-2">
                     <div class="flex">
-                        <div class="grow">
+                        <div class="grow field">
                             <label>{{ __('maps/markers.fields.custom_shape') }}</label>
                             @if ($campaign->boosted())
                                 @if(isset($model))
@@ -127,18 +125,17 @@ $sizeOptions = [
                     @endif
                 </div>
 
-                <div class="field-stroke">
-                    <label>{{ __('maps/markers.fields.polygon_style.stroke') }}</label><br />
+                <x-forms.field field="stroke" :label="__('maps/markers.fields.polygon_style.stroke')">
+                    <span>
                     {!! Form::text('polygon_style[stroke]', \App\Facades\FormCopy::field('polygon_style[stroke]')->string(), ['class' => 'form-control spectrum']) !!}
-                </div>
+                    </span>
+                </x-forms.field>
 
-                <div class="field-width">
-                    <label for="stroke-width">{{ __('maps/markers.fields.polygon_style.stroke-width') }}</label>
+                <x-forms.field field="width" :label="__('maps/markers.fields.polygon_style.stroke-width')">
                     {!! Form::number('polygon_style[stroke-width]', \App\Facades\FormCopy::field('polygon_style[stroke-width]')->string(), ['class' => 'form-control', 'maxlength' => 2, 'step' => 1, 'max' => 99, 'min' => 0, 'id' => 'stroke-width']) !!}
-                </div>
+                </x-forms.field>
 
-                <div class="field-opacity">
-                    <label for="stroke-opacity">{{ __('maps/markers.fields.polygon_style.stroke-opacity') }}</label>
+                <x-forms.field field="opacity" :label="__('maps/markers.fields.polygon_style.stroke-opacity')">
                     {!! Form::number('polygon_style[stroke-opacity]', \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string(), [
                     'maxlength' => 3,
                     'step' => 10,
@@ -146,7 +143,7 @@ $sizeOptions = [
                     'min' => 0,
                     'id' => 'stroke-opacity'
                 ]) !!}
-                </div>
+                </x-forms.field>
             </x-grid>
         </div>
 
@@ -172,10 +169,9 @@ $sizeOptions = [
 
 <div id="marker-main-fields">
     <x-grid>
-        <div class="field-name">
-            <label for="name">{{ __('crud.fields.name') }}</label>
+        <x-forms.field field="name" :label="__('crud.fields.name')">
             {!! Form::text('name', \App\Facades\FormCopy::field('name')->string(), ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'id' => 'name']) !!}
-        </div>
+        </x-forms.field>
 
         @include('cruds.fields.entity')
 
@@ -183,10 +179,13 @@ $sizeOptions = [
             <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
         </div>
         <div class="col-span-2 map-marker-entry-entry" style="{{ (!isset($model) || !$model->hasEntry() ? 'display: none' : '') }}">
-            <div class="field-entry">
-                <label>{{ __('crud.fields.entry') }}</label>
-                {!! Form::textarea('entry', \App\Facades\FormCopy::field('entry')->string(), ['class' => 'form-control html-editor', 'id' => 'marker-entry', 'name' => 'entry']) !!}
-            </div>
+            <x-forms.field field="entry" :label=" __('crud.fields.entry')">
+                {!! Form::textarea(
+                    'entry',
+                    \App\Facades\FormCopy::field('entry')->string(),
+                    ['class' => 'form-control html-editor', 'id' => 'marker-entry', 'name' => 'entry']
+                ) !!}
+            </x-forms.field>
         </div>
 
         @include('maps.markers.fields.opacity')
@@ -195,26 +194,21 @@ $sizeOptions = [
             @include('maps.markers.fields.background_colour')
         </div>
 
-        <div class="field-group">
-            <label for="group_id">
-                {{ __('maps/markers.fields.group') }}
-            </label>
+        <x-forms.field field="group" :label="__('maps/markers.fields.group')">
             {{ Form::select('group_id', $map->groupOptions(), \App\Facades\FormCopy::field('group_id')->string(), ['class' => 'form-control', 'id' => 'group_id']) }}
-        </div>
+        </x-forms.field>
 
         @include('cruds.fields.visibility_id')
     </x-grid>
 
     <x-grid :hidden="!$model && empty($source)">
-        <div class="field-latitude">
-            <label>{{ __('maps/markers.fields.latitude') }}</label>
+        <x-forms.field field="latitude" :label="__('maps/markers.fields.latitude')">
             {!! Form::number('latitude', \App\Facades\FormCopy::field('latitude')->string(), ['class' => 'form-control', 'id' => 'marker-latitude', 'step' => 0.001]) !!}
-        </div>
+        </x-forms.field>
 
-        <div class="field-longitude">
-            <label>{{ __('maps/markers.fields.longitude') }}</label>
+        <x-forms.field field="longitude" :label="__('maps/markers.fields.longitude')">
             {!! Form::number('longitude', \App\Facades\FormCopy::field('longitude')->string(), ['class' => 'form-control', 'id' => 'marker-longitude', 'step' => 0.001]) !!}
-        </div>
+        </x-forms.field>
     </x-grid>
 </div>
 

@@ -10,7 +10,8 @@
         Breadcrumb::entity($map->entity)->list(),
         Breadcrumb::show($map),
         __('maps/markers.edit.title', ['name' => $model->name])
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')

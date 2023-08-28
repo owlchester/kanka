@@ -23,9 +23,7 @@ if (isset($model)) {
 <x-grid>
     @include('cruds.fields.name', ['trans' => 'menu_links'])
 
-    <div class="field-icon">
-        <label class="control-label">{{ __('entities/links.fields.icon') }}</label>
-
+    <x-forms.field field="icon" :label="__('entities/links.fields.icon')">
         @if($campaign->boosted())
             {!! Form::text(
                 'icon',
@@ -56,17 +54,17 @@ if (isset($model)) {
             @endsubscriber
 
         @endif
-    </div>
+    </x-forms.field>
 
-    <div class="field-position">
-        <label class="control-label">
-            {{ __('menu_links.fields.position') }}
-            <x-helpers.tooltip :title="__('entities/links.helpers.parent')" />
-        </label>
+    <x-forms.field
+        field="position"
+        :label="__('menu_links.fields.position')"
+        :tooltip="true"
+        :helper="__('entities/links.helpers.parent')">
         @if ($campaign->boosted())
             {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'menu_links' : $model->parent), ['class' => 'form-control']) }}
 
-            <p class="help-block visible-xs visible-sm">
+            <p class="text-neutral-content md:hidden">
                 {!! __('entities/links.helpers.parent') !!}
             </p>
         @else
@@ -80,15 +78,17 @@ if (isset($model)) {
                 </p>
             @endsubscriber
         @endif
-    </div>
-    <div class="field-class">
-        <label for="config[class]">
-            {{ __('dashboard.widgets.fields.class') }}
-            <x-helpers.tooltip :title="__('dashboard.widgets.helpers.class')" />
-        </label>
+    </x-forms.field>
+
+    <x-forms.field
+        field="class"
+        :label="__('dashboard.widgets.fields.class')"
+        :tooltip="true"
+        :helper="__('dashboard.widgets.helpers.class')"
+    >
         @if ($campaign->boosted())
             {!! Form::text('css', null, ['class' => 'form-control', 'id' => 'config[class]', 'maxlength' => 45]) !!}
-            <p class="help-block visible-xs visible-sm">
+            <p class="text-neutral-content md:hidden">
                 {{ __('dashboard.widgets.helpers.class') }}
             </p>
         @else
@@ -102,25 +102,17 @@ if (isset($model)) {
                 </p>
             @endsubscriber
         @endif
-    </div>
+    </x-forms.field>
 
-    <div class="field-active">
+    <x-forms.field field="active" :label="__('menu_links.fields.active')" :tooltip="true" :helper="__('menu_links.helpers.active')">
         {!! Form::hidden('is_active', 0) !!}
-            <label>
-                {!! __('menu_links.fields.active') !!}
-                <x-helpers.tooltip :title="__('menu_links.helpers.active')" />
-            </label>
 
-        <div class="checkbox my-1">
-            <label>
+        <label class="text-neutral-content cursor-pointer flex gap-2">
             {!! Form::checkbox('is_active', 1, isset($model) ? $model->is_active : 1) !!}
-            {{ __('menu_links.visibilities.is_active') }}
-            </label>
-        </div>
-        <div class="help-block visible-xs visible-sm">
-            {{ __('menu_links.helpers.active') }}
-        </div>
-    </div>
+            <span>{{ __('menu_links.visibilities.is_active') }}</span>
+        </label>
+
+    </x-forms.field>
 </x-grid>
 
 <hr />
@@ -128,8 +120,7 @@ if (isset($model)) {
 <h4>{{ __('menu_links.fields.selector') }}</h4>
 <p class="help-block">{{ __('menu_links.helpers.selector') }}</p>
 
-<div class="field-target">
-    <label>{{ __('menu_links.fields.target') }}</label>
+<x-forms.field field="target" :label="__('menu_links.fields.target')">
     <select name="type" class="form-control" id="quick-link-selector">
         <option value="">Choose an option</option>
         <option value="entity" @if($isEntity) selected="selected" @endif data-target="#quick-link-entity">
@@ -145,7 +136,7 @@ if (isset($model)) {
             {{ __('menu_links.fields.dashboard') }}
         </option>
     </select>
-</div>
+</x-forms.field>
 <div>
     <div class="quick-link-subform" id="quick-link-entity" @if($isEntity) @else style="display: none" @endif>
         @include('menu_links.form._entity')

@@ -9,12 +9,17 @@ $usages = [
 
 {{ csrf_field() }}
 <x-grid type="1/1">
-    <div class="field-usage required">
-        <label>{{ __('campaigns.invites.fields.usage') }}</label>
+    <x-forms.field
+        field="usage"
+        :required="true"
+        :label="__('campaigns.invites.fields.usage')">
         {!! Form::select('validity', $usages, null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="field-role required">
-        <label>{{ __('campaigns.invites.fields.role') }}</label>
+    </x-forms.field>
+
+    <x-forms.field
+        field="role"
+        :required="true"
+        :label="__('campaigns.invites.fields.role')">
         {!! Form::select('role_id', $campaign->roles()->where(['is_public' => false, 'is_admin' => false])->pluck('name', 'id'), null, ['class' => 'select form-control']) !!}
-    </div>
+    </x-forms.field>
 </x-grid>

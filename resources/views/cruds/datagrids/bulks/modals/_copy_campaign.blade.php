@@ -8,10 +8,9 @@
         {{ __('entities/move.panel.description_bulk_copy') }}
     </p>
 
-    <div class="field-campaign">
-        <label>{{ __('entities/move.fields.campaign') }}</label>
+    <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
         {!! Form::select('campaign', Auth::user()->moveCampaignList($campaign, false), null, ['class' => 'form-control']) !!}
-    </div>
+    </x-forms.field>
 
     @if(view()->exists($type . '.bulk.modals._copy_to_campaign'))
         @include($type . '.bulk.modals._copy_to_campaign')

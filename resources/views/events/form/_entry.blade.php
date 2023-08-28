@@ -5,13 +5,9 @@
     @include('cruds.fields.event', ['isParent' => true])
     @include('cruds.fields.location')
 
-    <div class="field-date">
-        <label>
-            {{ __('events.fields.date') }}
-        </label>
+    <x-forms.field field="date" :label="__('events.fields.date')" :helper="__('events.helpers.date')">
         {!! Form::text('date', FormCopy::field('date')->string(), ['placeholder' => __('events.placeholders.date'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        <p class="help-block">{{ __('events.helpers.date') }}</p>
-    </div>
+    </x-forms.field>
 
     @include('cruds.fields.entry2')
 

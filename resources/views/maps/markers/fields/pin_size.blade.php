@@ -1,5 +1,4 @@
-<div class="field-pin-size">
-    <label for="pin_size">{{ __('maps/markers.fields.pin_size') }}</label>
+<x-forms.field field="pin-size" :label="__('maps/markers.fields.pin_size')">
     {!! Form::number($fieldname ?? 'pin_size', \App\Facades\FormCopy::field('pin_size')->string(), [
         'class' => 'form-control',
         'maxlength' => 3,
@@ -9,4 +8,4 @@
         'placeholder' => 40,
         'id' => 'pin_size'
     ] ) !!}
-</div>
+</x-forms.field>

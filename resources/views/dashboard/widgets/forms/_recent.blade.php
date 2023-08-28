@@ -28,45 +28,35 @@
     <div class="tab-content p-4">
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
-                <div class="field-entity-type required">
-                    <label for="config-entity">
-                        {{ __('crud.fields.entity_type') }}
-                    </label>
+                <x-forms.field field="entity-type" :required="true" :label="__('crud.fields.entity_type')">
                     {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
-                </div>
+                </x-forms.field>
 
-                <div class="field-recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
-                    <label>
-                        {{ __('dashboard.widgets.recent.filters') }}
-                        <a href="//docs.kanka.io/en/latest/guides/dashboard.html" target="_blank">
-                            <i class="fa-solid fa-question-circle" data-title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                        </a>
-
-                    </label>
+                <x-forms.field
+                    field="recent-filters"
+                    :label="__('dashboard.widgets.recent.filters')"
+                    link="https://docs.kanka.io/en/latest/guides/dashboard.html"
+                    :tooltip="true"
+                    :helper="__('dashboard.widgets.helpers.filters')"
+                    :hidden="empty($model) || empty($model->conf('entity'))">
                     {!! Form::text('config[filters]', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                </x-forms.field>
 
                 @include('dashboard.widgets.forms._tags')
 
-                <div class="field-advanced-filters">
-                    <label>{{ __('dashboard.widgets.recent.advanced_filter') }}</label>
+                <x-forms.field field="advanced-filters" :label="__('dashboard.widgets.recent.advanced_filter')">
                     {!! Form::select('config[adv_filter]', $advancedFilters, null, ['class' => 'form-control']) !!}
-                </div>
+                </x-forms.field>
 
-                <div class="field-singular col-span-2">
+                <x-forms.field field="singular" css="col-span-2" :label="__('dashboard.widgets.recent.singular')">
                     {!! Form::hidden('config[singular]', 0) !!}
                     <div class="checkbox" data-toggle="collapse" data-target="#widget-advanced">
-                        <label>
+                        <label class="text-neutral-content cursor-pointer flex gap-2">
                             {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null)) !!}
-
-                            {{ __('dashboard.widgets.recent.singular') }}
-                            <x-helpers.tooltip :title="__('dashboard.widgets.recent.help')" />
+                            {{ __('dashboard.widgets.recent.help') }}
                         </label>
                     </div>
-                    <p class="help-block md:hidden">
-                        {{ __('dashboard.widgets.recent.help') }}
-                    </p>
-                </div>
+                </x-forms.field>
 
                 <div class="col-span-2 collapse !visible {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
                     @if($campaign->boosted())
@@ -81,15 +71,14 @@
                 @include('dashboard.widgets.forms._name')
                 @include('dashboard.widgets.forms._width')
 
-                <div class="field-order">
-                    <label>{{ __('dashboard.widgets.fields.order') }}</label>
+                <x-forms.field field="orger" :label="__('dashboard.widgets.fields.order')">
                     {!! Form::select('config[order]', [
                 '' => __('dashboard.widgets.orders.recent'),
                 'oldest' => __('dashboard.widgets.orders.oldest'),
                 'name_asc' => __('dashboard.widgets.orders.name_asc'),
                 'name_desc' => __('dashboard.widgets.orders.name_desc'),
             ], null, ['class' => 'form-control']) !!}
-                </div>
+                </x-forms.field>
                 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
             </x-grid>
         </div>

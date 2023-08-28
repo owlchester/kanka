@@ -1,5 +1,13 @@
-<div class="field-icon">
-    <label>{{ __('maps/markers.fields.custom_icon') }}</label>
+@php $helper = __('maps/markers.helpers.custom_icon_v2', [
+        'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>',
+'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>',
+'docs' => link_to('https://docs.kanka.io/en/latest/entities/maps/markers.html#custom-icon', __('footer.documentation'), ['target' => '_blank'])
+]); @endphp
+<x-forms.field
+    field="icon"
+    :label="__('maps/markers.fields.custom_icon')"
+    :helper="$helper"
+    >
     {!! Form::text(
         $fieldname ?? 'custom_icon',
         \App\Facades\FormCopy::field($fieldname ?? 'custom_icon')->string(),
@@ -10,11 +18,6 @@
         'data-paste' => 'fontawesome',
         ($campaign->boosted() ? null : 'disabled')])
     !!}
-    <p class="help-block">{!! __('maps/markers.helpers.custom_icon_v2', [
-        'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>',
-        'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>',
-        'docs' => link_to('https://docs.kanka.io/en/latest/entities/maps/markers.html#custom-icon', __('footer.documentation'), ['target' => '_blank'])
-        ]) !!}</p>
     @if (!$campaign->boosted())
         @subscriber()
         <p class="help-block">
@@ -34,4 +37,4 @@
             @endforeach
         </datalist>
     </div>
-</div>
+</x-forms.field>

@@ -5,6 +5,7 @@
         Breadcrumb::show($model),
         \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations'))
     ],
+    'centered' => true,
 ])
 
 @section('content')

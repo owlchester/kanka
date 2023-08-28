@@ -74,20 +74,17 @@
                 <div role="tabpanel" class="tab-pane active" id="card">
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
 
+                    <x-grid type="1/1">
                     @if (!$card)
-                        <div class="field-card-name mb-5">
-                            <label>{{ __('settings.subscription.payment_method.card_name' )}}</label>
+                        <x-forms.field field="card-name" :label="__('settings.subscription.payment_method.card_name')">
                             {!! Form::text('card-holder-name', null, ['class' => 'form-control']) !!}
-                        </div>
+                        </x-forms.field>
 
-                        <div class="field-card-number">
-                            <label>{{ __('settings.subscription.payment_method.card' )}}</label>
-                            <div id="card-element" class="mb-5">
-                        </div>
-
-                        </div>
+                        <x-forms.field field="card-number" :label="__('settings.subscription.payment_method.card')">
+                            <div id="card-element" class=""></div>
+                        </x-forms.field>
                     @else
-                        <div class="text-center mb-5">
+                        <div class="text-center">
                             <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
                             <i class="fa-solid fa-credit-card"></i> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
                             <p><a href="{{ route('billing.payment-method') }}">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
@@ -98,7 +95,7 @@
                                 {!! __('settings.subscription.upgrade_downgrade.downgrade.provide_reason')!!}
                             </p>
 
-                            <div class="ffield-reason mb-5">
+                            <div class="ffield-reason">
                                 <label>{{ __('settings.subscription.fields.reason') }}</label>
                                 {!! Form::select('reason', [
                                     '' => __('crud.select'),
@@ -106,7 +103,7 @@
                                     'not_using' => __('settings.subscription.cancel.options.not_using'),
                                     'missing_features' => __('settings.subscription.cancel.options.missing_features'),
                                     'custom' => __('settings.subscription.cancel.options.custom')
-                                ], null, ['class' => 'form-control mb-5 select-reveal-field', 'data-change-target' => '#downgrade-reason-custom']) !!}
+                                ], null, ['class' => 'w-full select-reveal-field', 'data-change-target' => '#downgrade-reason-custom']) !!}
                                 {!! Form::textarea(
                                     'reason_custom',
                                     null,
@@ -128,6 +125,7 @@
                             <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                         </button>
                     </div>
+                    </x-grid>
 
                     <input type="hidden" name="tier" value="{{ $tier }}" />
                     <input type="hidden" name="coupon" id="coupon" value="" />
@@ -155,18 +153,17 @@
                             </x-alert>
                         @else
                         {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
-                        <label for="sofort-country">
-                            {{ __('settings.subscription.payment_method.country') }}
-                        </label>
-                        <select id="sofort-country"  name="sofort-country" class="form-control mb-5">
-                            <option value="">{{ __('crud.select') }}</option>
-                            <option value="at">{{ __('settings.countries.austria') }}</option>
-                            <option value="be">{{ __('settings.countries.belgium') }}</option>
-                            <option value="de">{{ __('settings.countries.germany') }}</option>
-                            <option value="it">{{ __('settings.countries.italy') }}</option>
-                            <option value="nl">{{ __('settings.countries.netherlands') }}</option>
-                            <option value="es">{{ __('settings.countries.spain') }}</option>
-                        </select>
+                        <x-forms.field css="mb-5" field="sofort-country" :label="__('settings.subscription.payment_method.country')">
+                            <select id="sofort-country"  name="sofort-country" class="w-full">
+                                <option value="">{{ __('crud.select') }}</option>
+                                <option value="at">{{ __('settings.countries.austria') }}</option>
+                                <option value="be">{{ __('settings.countries.belgium') }}</option>
+                                <option value="de">{{ __('settings.countries.germany') }}</option>
+                                <option value="it">{{ __('settings.countries.italy') }}</option>
+                                <option value="nl">{{ __('settings.countries.netherlands') }}</option>
+                                <option value="es">{{ __('settings.countries.spain') }}</option>
+                            </select>
+                        </x-forms.field>
 
                         <div class="text-center">
                             <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
@@ -205,10 +202,9 @@
                             </x-alert>
                         @else
                         {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
-                        <label for="accountholder-name">
-                            {{ __('settings.subscription.payment_method.card_name') }}
-                        </label>
-                        <input id="accountholder-name"  name="accountholder-name" class="form-control mb-5">
+                        <x-forms.field css="mb-5" field="accountholder-name" :label="__('settings.subscription.payment_method.card_name')">
+                            <input id="accountholder-name"  name="accountholder-name" class="w-full">
+                        </x-forms.field>
 
                         <div class="text-center">
                             <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">

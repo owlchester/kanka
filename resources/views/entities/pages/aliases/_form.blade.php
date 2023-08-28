@@ -2,14 +2,13 @@
 
 @if (!isset($entityAsset))
 
-    <p class="help-block">
+    <p class="text-neutral-content">
         {{ __('entities/aliases.helpers.primary') }}
     </p>
 @endif
 
 <x-grid>
-    <div class="col-span-2 field-name required">
-        <label>{{ __('entities/links.fields.name') }}</label>
+    <x-forms.field field="name" :required="true" css="col-span-2" :label="__('entities/links.fields.name')">
         {!! Form::text(
             'name',
             null,
@@ -19,7 +18,7 @@
                 'maxlength' => 45
             ]
         ) !!}
-    </div>
+    </x-forms.field>
 
     @include('cruds.fields.is_pinned', ['model' => $entity ?? null, 'fieldName' => 'is_pinned'])
     @include('cruds.fields.visibility_id', ['model' => $entity ?? null])

@@ -19,10 +19,9 @@
     </x-forms.field>
 </x-grid>
 <x-grid>
-    <div class="field field-comment col-span-2 flex flex-col gap-1">
-        <label class="m-0">{{ __('calendars.fields.comment') }}</label>
+    <x-forms.field field="comment" css="col-span-2" :label="__('calendars.fields.comment')">
         {!! Form::text('comment', null, ['placeholder' => __('calendars.placeholders.comment'), 'maxlength' => 191]) !!}
-    </div>
+    </x-forms.field>
 
     <x-forms.field
         field="length"
@@ -43,12 +42,10 @@
         {!! Form::select('recurring_periodicity', (isset($calendar) ? $calendar->recurringOptions() : []), (isset($entityEvent) && $entityEvent->is_recurring ? $entityEvent->recurring_periodicity : ''), ['class' => 'reminder-periodicity']) !!}
     </x-forms.field>
 
-    <div class="field-recurring-until">
-        <div style="@if (!isset($entityEvent) || !$entityEvent->is_recurring) display:none @endif" id="add_event_recurring_until">
-            <label>{{ __('calendars.fields.recurring_until') }}</label>
-            {!! Form::text('recurring_until', null, ['placeholder' => __('calendars.placeholders.recurring_until'), 'maxlength' => 12]) !!}
-        </div>
-    </div>
+    <x-forms.field field="recurring-until" :hidden="!isset($entityEvent) || !$entityEvent->is_recurring" :label="__('calendars.fields.recurring_until')"  id="add_event_recurring_until">
+        {!! Form::text('recurring_until', null, ['placeholder' => __('calendars.placeholders.recurring_until'), 'maxlength' => 12]) !!}
+    </x-forms.field>
+
     @include('cruds.fields.visibility_id', ['model' => $entityEvent ?? null])
     @if (!empty($entity) && $entity->isCharacter())
         <x-forms.field

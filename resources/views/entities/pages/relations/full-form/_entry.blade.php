@@ -11,24 +11,24 @@
     @include('cruds.fields.visibility_id', ['model' => $relation ?? null])
 
     @if(empty($relation) && (!isset($mirror) || $mirror == true))
-        <div class="field-two-way">
+        <x-forms.field field="two-way">
             <label class="" data-toggle="collapse" data-target="#two-way-relation">
                 {!! Form::checkbox('two_way') !!}
                 {{ __('entities/relations.fields.two_way') }}
                 <x-helpers.tooltip :title="__('entities/relations.hints.two_way')" />
             </label>
-            <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.two_way') }}</p>
-        </div>
+            <p class="text-neutral-content md:hidden">{{ __('entities/relations.hints.two_way') }}</p>
+        </x-forms.field>
 
-        <div class="field-target-relation">
-            <div class="collapse !visible" id="two-way-relation">
+        <div class="collapse !visible" id="two-way-relation">
+            <x-forms.field field="target-relation">
                 <label>
                     {!! __('entities/relations.fields.target_relation') !!}
                     <x-helpers.tooltip :title="__('entities/relations.hints.target_relation')" />
                 </label>
                 {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
-                <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.target_relation') }}</p>
-            </div>
+                <p class="text-neutral-content md:hidden">{{ __('entities/relations.hints.target_relation') }}</p>
+            </x-forms.field>
         </div>
     @endif
 

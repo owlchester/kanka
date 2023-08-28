@@ -3,19 +3,25 @@
 <x-grid>
 @if(!isset($entityAsset))
 
-    <div class="field-file col-span-2 required">
-        <label>{{ __('entities/files.fields.file') }}</label>
+    <x-forms.field
+        field="file"
+        css="col-span-2"
+        :required="true"
+        :label="__('entities/files.fields.file')">
         {!! Form::file('file', array('class' => 'image form-control')) !!}
 
-        <p class="help-block">
+        <p class="text-neutral-content m-0">
             {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, ogg, json', 'size' => Limit::readable()->upload()]) }}
             @include('cruds.fields.helpers.share', ['max' => 25])
         </p>
-    </div>
+    </x-forms.field>
 @endif
 
-    <div class="field-name col-span-2 @if(isset($entityAsset)) required @endif">
-        <label>{{ __('entities/files.fields.name') }}</label>
+    <x-forms.field
+        field="file"
+        css="col-span-2"
+        :required="isset($entityAsset)"
+        :label="__('entities/files.fields.file')">
         {!! Form::text(
             'name',
             null,
@@ -24,7 +30,7 @@
                 'maxlength' => 45
             ]
         ) !!}
-    </div>
+    </x-forms.field>
 
     @include('cruds.fields.is_pinned', ['model' => $entity ?? null, 'fieldName' => 'is_pinned'])
 

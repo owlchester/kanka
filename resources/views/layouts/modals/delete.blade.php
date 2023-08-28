@@ -13,13 +13,13 @@
                             {{ __('crud.delete_modal.permanent') }}
                         </span>
                 </p>
-                <div id="delete-confirm-mirror" class="field-delete-confirm  checkbox" style="display: none">
+                <div id="delete-confirm-mirror" class="field-delete-confirm checkbox" style="display: none">
                     <label>
                         <input type="checkbox" id="delete-confirm-mirror-checkbox" name="delete-mirror">
                         {{ __('entities/relations.delete_mirrored.option') }}
                         <x-helpers.tooltip :title="__('entities/relations.delete_mirrored.helper')" />
                     </label>
-                    <p class="help-block visible-xs visible-sm">
+                    <p class="text-neutral-content md:hidden">
                         {{ __('entities/relations.delete_mirrored.helper') }}
                     </p>
                 </div>

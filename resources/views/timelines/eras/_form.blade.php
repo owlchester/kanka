@@ -1,39 +1,32 @@
 <x-grid>
-    <div class="field-name required">
-        <label>{{ __('crud.fields.name') }}</label>
+    <x-forms.field field="name" :required="true" :label="__('crud.fields.name')">
         {!! Form::text('name', null, ['placeholder' => __('timelines/eras.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required']) !!}
-    </div>
+    </x-forms.field>
 
-    <div class="field-abbrev">
-        <label>{{ __('timelines/eras.fields.abbreviation') }}</label>
+    <x-forms.field field="abbrev" :label="__('timelines/eras.fields.abbreviation')">
         {!! Form::text('abbreviation', null, ['placeholder' => __('timelines/eras.placeholders.abbreviation'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-    </div>
+    </x-forms.field>
 
-    <div class="field-entry col-span-2">
-        <label>{{ __('crud.fields.entry') }}</label>
+    <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
         {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'era-entry', 'name' => 'entry']) !!}
-    </div>
+    </x-forms.field>>
 
-    <div class="field-start">
-        <label>{{ __('timelines/eras.fields.start_year') }}</label>
+    <x-forms.field field="start" :label="__('timelines/eras.fields.start_year')">
         {!! Form::number('start_year', null, ['placeholder' => __('timelines/eras.placeholders.start_year'), 'class' => 'form-control', 'maxlength' => 8]) !!}
-    </div>
-    <div class="field-end">
-        <label>{{ __('timelines/eras.fields.end_year') }}</label>
+    </x-forms.field>>
+
+    <x-forms.field field="end" :label="__('timelines/eras.fields.end_year')">
         {!! Form::number('end_year', null, ['placeholder' => __('timelines/eras.placeholders.end_year'), 'class' => 'form-control', 'maxlength' => 8]) !!}
-    </div>
+    </x-forms.field>>
 
-    <div class="field-collapsed col-span-2 checkbox">
-        <label>
-            {!! Form::hidden('is_collapsed', 0) !!}
+    <x-forms.field field="collapsed" css="col-span-2" :label="__('timelines/eras.fields.is_collapsed')">
+        {!! Form::hidden('is_collapsed', 0) !!}
+        <label class="text-neutral-content cursor-pointer flex gap-2">
             {!! Form::checkbox('is_collapsed', 1) !!}
-            {{ __('timelines/eras.fields.is_collapsed') }}
+            <span>{{ __('timelines/eras.helpers.is_collapsed') }}</span>
         </label>
-        <p class="help-block">{{ __('timelines/eras.helpers.is_collapsed') }}</p>
-    </div>
+    </x-forms.field>
 </x-grid>
-
-
 
 @include('editors.editor', (request()->ajax() ? ['dialogsInBody' => true] : []))
 

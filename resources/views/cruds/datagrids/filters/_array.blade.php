@@ -4,14 +4,14 @@
             null,
             [
                 'id' => $field['field'],
-                'class' => 'form-control select2 entity-list-filter',
+                'class' => 'w-full select2 entity-list-filter',
                 'data-url' => $field['route'],
                 'data-placeholder' => $field['placeholder'],
                 'data-dropdown-parent' => '#datagrid-filters'
             ]
         ) !!}
     </div>
-    <div class="col-span-1">
+    <div class="col-span-1 field">
         @php
             $options = [
                 '' => __('crud.filters.options.include'),
@@ -27,7 +27,7 @@
             $field['field'] . '_option',
             $options,
             $filterService->single($field['field'] . '_option'), [
-                'class' => 'form-control entity-list-option',
+                'class' => 'w-full entity-list-option',
         ]) !!}
     </div>
 </div>

@@ -5,7 +5,7 @@
 
 @section('content')
 
-    {!! Form::model($preset, ['route' => ['preset_types.presets.update', $campaign, $presetType, $preset], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+    {!! Form::model($preset, ['route' => ['preset_types.presets.update', $campaign, $presetType, $preset], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'max-w-7xl mx-auto']) !!}
         <x-box>
             @include('presets.forms._' . $presetType->code)
             <x-box.footer>

@@ -20,13 +20,12 @@
     </header>
     <article>
         <div>
-            <div class="field-visibility">
-                <label for="privacy">{{ __('entities/permissions.quick.field') }}</label>
+            <x-forms.field field="visibility" :label="__('entities/permissions.quick.field')">
                 <select name="privacy" id="quick-privacy-select" class="form-control" data-url="{{ route('entities.quick-privacy.toggle', [$campaign, $entity]) }}">
                     <option value="0">{{ __('entities/permissions.quick.options.visible') }}</option>
                     <option value="1" @if ($entity->is_private) selected="selected" @endif>{{ __('entities/permissions.quick.options.private') }}</option>
                 </select>
-            </div>
+            </x-forms.field>
 
             <hr />
 

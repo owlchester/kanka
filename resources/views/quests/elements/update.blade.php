@@ -5,7 +5,8 @@
         Breadcrumb::show($quest),
         ['url' => route('quests.quest_elements.index', [$campaign, $quest->id]), 'label' => __('quests.show.tabs.elements')],
         __('crud.update'),
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')

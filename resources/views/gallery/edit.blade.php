@@ -81,17 +81,15 @@ $imageCount = 0;
 
                 {!! Form::model($image, ['route' => ['images.update', $campaign, $image], 'method' => 'PUT', 'class' => 'flex flex-col gap-5']) !!}
 
-                <div class="field-name">
-                    <label for="name" class="control-label required">{{ __('crud.fields.name') }}</label>
+                <x-forms.field field="name" :label="__('crud.fields.name')" :required="true">
                     {!! Form::text('name', null, ['maxlength' => 45, 'class' => 'form-control']) !!}
-                </div>
+                </x-forms.field>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-5">
                 @if(!$image->isFolder())
-                    <div class="field-folder">
-                        <label for="folder_id" class="control-label">{{ __('campaigns/gallery.fields.folder') }}</label>
+                    <x-forms.field field="folder" :label="__('campaigns/gallery.fields.folder')">
                         {!! Form::select('folder_id', $folders, null, ['class' => 'form-control']) !!}
-                    </div>
+                    </x-forms.field>
                 @endif
 
                 @include('cruds.fields.visibility_id', ['model' => $image])

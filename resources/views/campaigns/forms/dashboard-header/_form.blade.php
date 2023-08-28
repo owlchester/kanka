@@ -2,29 +2,24 @@
     <p class="help-block">{{ __('campaigns.helpers.dashboard') }}</p>
 
     <x-grid type="1/1">
-        <div class="field-excerpt">
-            <label>
-                {{ __('campaigns.fields.excerpt') }}
-                <x-helpers.tooltip :title="__('campaigns.helpers.excerpt')" />
-            </label>
-            {!! Form::textarea('excerptForEdition', null, ['class' => 'form-control html-editor', 'id' => 'excerpt', 'name' => 'excerpt']) !!}
-            <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.excerpt') }}</p>
-        </div>
+        <x-forms.field
+            field="excerpt"
+            :label="__('campaigns.fields.excerpt')"
+            :tooltip="true"
+            :helper="__('campaigns.helpers.excerpt')"
+        >
+            {!! Form::textarea('excerptForEdition', null, ['class' => 'w-full html-editor', 'id' => 'excerpt', 'name' => 'excerpt']) !!}
+        </x-forms.field>
 
-        <div class="field-header">
-            <label for="header_image">
-                {{ __('campaigns.fields.header_image') }}
-                <x-helpers.tooltip :title="__('campaigns.helpers.header_image')" />
-            </label>
-            <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.header_image') }}</p>
+        <x-forms.field field="header" :label="__('campaigns.fields.header_image')" :tooltip="true" :helper="__('campaigns.helpers.header_image')">
             {!! Form::hidden('remove-header_image') !!}
             <div class="grid gap-2 grid-cols-4">
                 <div class="col-span-3 flex flex-col gap-2 ">
-                    <div class="field-header-image">
-                        {!! Form::file('header_image', ['class' => 'image form-control', 'id' => 'header_image']) !!}
+                    <div class="field field-header-image">
+                        {!! Form::file('header_image', ['class' => 'image w-full', 'id' => 'header_image']) !!}
                     </div>
-                    <div class="field-header-url">
-                        {!! Form::text('header_image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
+                    <div class="field field-header-url">
+                        {!! Form::text('header_image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full']) !!}
                     </div>
 
                     <p class="help-block">
@@ -43,7 +38,7 @@
                     @endif
                 </div>
             </div>
-        </div>
+        </x-forms.field>
     </x-grid>
 </div>
 

@@ -3,11 +3,20 @@
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $langKey)],
         __('crud.update'),
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('fullpage-form')
-    {!! Form::model($relation, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['relations.update', $campaign, $relation], 'data-shortcut' => '1', 'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null), 'id' => 'entity-form', 'data-maintenance' => 1]) !!}
+    {!! Form::model($relation, [
+    'method' => 'PATCH',
+    'enctype' => 'multipart/form-data',
+    'route' => ['relations.update', $campaign, $relation],
+    'data-shortcut' => '1',
+    'class' => 'entity-form',
+    'id' => 'entity-form',
+    'data-maintenance' => 1
+    ]) !!}
 @endsection
 
 @section('content')

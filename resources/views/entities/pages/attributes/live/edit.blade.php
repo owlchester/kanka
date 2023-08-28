@@ -6,7 +6,7 @@
     <h4 class="modal-title" id="myModalLabel">{!! __('entities/attributes.live.title', ['attribute' => $attribute->name()]) !!}</h4>
 </div>
 <div class="modal-header">
-    <div class="field-name">
+    <x-forms.field field="name">
         <label for="name">{!! $attribute->name() !!}</label>
     @if ($attribute->isCheckbox())
         <input type="hidden" name="value" value="" />
@@ -26,7 +26,7 @@
     @else
         <input type="text" name="value" class="form-control" maxlength="191" value="{{ $attribute->value }}" />
     @endif
-    </div>
+    </x-forms.field>
 
     <x-dialog.footer :modal="true">
         <button type="submit" class="btn2 btn-primary">

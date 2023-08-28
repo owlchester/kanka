@@ -1,42 +1,48 @@
 <p class="help-block">{{ __('crud.helpers.copy_options') }}</p>
-<div class="field-copy-posts">
+<x-forms.field
+    field="copy-posts">
     {!! Form::hidden('copy_source_notes', null) !!}
     <label>{!! Form::checkbox('copy_source_notes', 1, true) !!}
         {{ __('crud.fields.copy_posts') }}
     </label>
-</div>
-<div class="field-replace-mentions">
+</x-forms.field>
+<x-forms.field
+    field="replace-mentions">
     {!! Form::hidden('replace_mentions', null) !!}
     <label>{!! Form::checkbox('replace_mentions', 1, true) !!}
         {{ __('crud.fields.replace_mentions') }}
     </label>
-</div>
-<div class="field-copy-abilities">
+</x-forms.field>
+<x-forms.field
+    field="copy-abilities">
     {!! Form::hidden('copy_source_abilities', null) !!}
     <label>{!! Form::checkbox('copy_source_abilities', 1, request()->filled('template')) !!}
         {{ __('crud.fields.copy_abilities') }}
     </label>
-</div>
-<div class="field-copy-inventory">
+</x-forms.field>
+<x-forms.field
+    field="copy-inventory">
     {!! Form::hidden('copy_source_inventory', null) !!}
     <label>{!! Form::checkbox('copy_source_inventory', 1, request()->filled('template')) !!}
         {{ __('crud.fields.copy_inventory') }}
     </label>
-</div>
+</x-forms.field>
 
-<div class="field-copy-permissions">
+<x-forms.field
+    field="copy-permissions">
     {!! Form::hidden('copy_source_permissions', null) !!}
     <label>{!! Form::checkbox('copy_source_permissions', 1, request()->filled('template')) !!}
         {{ __('crud.fields.copy_permissions') }}
     </label>
-</div>
+</x-forms.field>
 @if ($campaign->boosted())
-    <div class="field-copy-links">
+    <x-forms.field
+    field="copy-links">
         {!! Form::hidden('copy_source_links', null) !!}
         <label>{!! Form::checkbox('copy_source_links', 1, request()->filled('template')) !!}
             {{ __('crud.fields.copy_links') }}
         </label>
-    </div>
+    </x-forms.field>
 @endif
 
 @if (view()->exists($name . '.form._copy'))

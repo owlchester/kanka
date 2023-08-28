@@ -6,7 +6,8 @@
         Breadcrumb::show(),
         ['url' => route('entities.relations.index', [$campaign, $entity->id]), 'label' => __('crud.tabs.relations')],
         __('crud.actions.new')
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')

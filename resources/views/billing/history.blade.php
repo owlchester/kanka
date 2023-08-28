@@ -5,10 +5,11 @@
     'breadcrumbs' => false,
     'sidebar' => 'settings',
     'noads' => true,
+    'centered' => true,
 ])
 
 @section('content')
-    <h1 class="mb-3">
+    <h1 class="">
         {{ __('billing/invoices.title') }}
     </h1>
     <p class="text-lg">

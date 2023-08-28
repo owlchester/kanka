@@ -6,7 +6,8 @@
         Breadcrumb::entity($entity)->list(),
         Breadcrumb::show(),
         ['url' => route('entities.entity_assets.index', [$campaign, $entity->id]), 'label' => __('crud.tabs.assets')],
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')

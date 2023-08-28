@@ -24,8 +24,8 @@ return [
     ],
     'hints'         => [
         'children'          => 'This list contains all the entities that are assigned to this tag or the tag\'s children.',
-        'is_auto_applied'   => 'Check this option to automatically apply this tag to newly created entities.',
-        'is_hidden'         => 'If checked, this tag won\'t be displayed in an entity\'s header or tooltip.',
+        'is_auto_applied'   => 'Automatically apply this tag to newly created entities.',
+        'is_hidden'         => 'Don\'t display this tag in an entity\'s header or tooltip.',
         'tag'               => 'This list contains all the tags are children of this tag or its children tags.',
     ],
     'placeholders'  => [

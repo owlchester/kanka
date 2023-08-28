@@ -6,6 +6,7 @@
         __('calendars.show.tabs.weather'),
     ],
     'canonical' => true,
+    'centered' => true,
 ])
 
 @section('content')

@@ -10,7 +10,8 @@
 
         {!! Form::open(['route' => 'troubleshooting.generate', 'method' => 'POST']) !!}
         <x-box>
-            <p class="mb-5">
+            <x-grid type="1/1">
+            <p class="">
                 {{ __('helpers.troubleshooting.description') }}
             </p>
 
@@ -23,10 +24,9 @@
                     </a>
                 </x-alert>
             @else
-                <div class="field-campaign mb-5">
-                    <label>{{ __('entities/move.fields.campaign') }}</label>
+                <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
                     {!! Form::select('campaign', $campaigns, null, ['class' => 'form-control']) !!}
-                </div>
+                </x-forms.field>
             @endif
 
             @if(!$token)
@@ -34,6 +34,7 @@
                     <input type="submit" class="btn2 btn-primary" value="{{ __('helpers.troubleshooting.save_btn') }}" />
                 </div>
             @endif
+            </x-grid>
         </x-box>
         {!! Form::close() !!}
     </div>

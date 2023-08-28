@@ -7,7 +7,7 @@
 ])
 
 @section('entity-header')
-    <div class="flex items-center">
+    <div class="flex gap-2 items-center mb-5">
         <h1 class="grow text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex-none flex gap-2">
             @includeWhen($route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])

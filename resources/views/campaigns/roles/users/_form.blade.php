@@ -1,9 +1,8 @@
 {{ csrf_field() }}
 <x-grid type="1/1">
-<div class="field-name required">
-    <label>{{ __('campaigns.members.fields.name') }}</label>
+<x-forms.field field="user" :required="true" :label="__('campaigns.members.fields.name')">
     {!! Form::select('user_id', $campaign->membersList($role->users->pluck('user_id')->toArray()), null, ['class' => 'form-control']) !!}
-</div>
+</x-forms.field>
 
 @if($role->isAdmin())
     <x-alert type="warning">

@@ -141,7 +141,6 @@ function initImageRemoval() {
     $.each($('[data-img="delete"]'), function () {
         $(this).unbind('click').click(function (e) {
             e.preventDefault();
-            console.log('target', $(this).data('target'));
             $('input[name=' + $(this).data('target') + ']')[0].value = 1;
             $(this).closest('.preview').hide();
         });

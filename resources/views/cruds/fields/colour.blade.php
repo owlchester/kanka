@@ -1,4 +1,3 @@
-<div class="colour required">
-    <label>{{ __('crud.fields.colour') }}</label><br />
+<x-forms.field field="colour" :required="true" :label="__('crud.fields.colour')">
     {!! Form::select('colour', FormCopy::colours(), FormCopy::field('colour')->string(), ['class' => 'form-control select2-colour']) !!}
-</div>
+</x-forms.field>

@@ -24,7 +24,7 @@ $statuses = [
         ])
     </div>
 
-    <div class="field-character col-span-2">
+    <div class="col-span-2">
         <input type="hidden" name="parent_id" value="" />
 
         @include('cruds.fields.character', [
@@ -37,23 +37,16 @@ $statuses = [
             'allowClear' => false,
         ])
     </div>
-    <div class="field-role col-span-2">
-        <label>{{ __('organisations.members.fields.role') }}</label>
+    <x-forms.field field="role" css="col-span-2" :label="__('organisations.members.fields.role')">
         {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-    </div>
-    <div class="field-status">
-        <label>
-            {{ __('organisations.members.fields.status') }}
-        </label>
+    </x-forms.field>
+    <x-forms.field field="status" css="col-span-2" :label="__('organisations.members.fields.status')">
         {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="field-pinned">
-        <label>
-            {{ __('organisations.members.fields.pinned') }}
-            <x-helpers.tooltip :title="__('organisations.members.helpers.pinned')" />
-        </label>
+    </x-forms.field>
+
+    <x-forms.field field="pinned" css="col-span-2" :label="__('organisations.members.fields.pinned')" :helper="__('organisations.members.helpers.pinned')" :tooltip="true">
         {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
-    </div>
+    </x-forms.field>
 </x-grid>
 
 

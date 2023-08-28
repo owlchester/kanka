@@ -11,7 +11,8 @@
         Breadcrumb::entity($timeline->entity)->list(),
         Breadcrumb::show($timeline),
         __('timelines/elements.create.title')
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')
