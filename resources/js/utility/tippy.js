@@ -44,7 +44,7 @@ const initTooltips = () => {
             theme: 'kanka',
             placement: e.dataset.direction ?? 'bottom',
             allowHTML: e.dataset.html ?? false,
-            appendTo: e.dataset.append ?? e,
+            appendTo: e.dataset.append ?? document.body,
             arrow: true,
         });
     });

@@ -17,7 +17,7 @@ class CampaignUser extends Layout
             'image' => [
                 'label' => '',
                 'render' => function ($model) {
-                    $html = '<div class="entity-image pull-left" style="background-image: url(' . $model->user->getAvatarUrl() . ')" title="' . $model->user->name . '"></div>';
+                    $html = '<div class="entity-image pull-left" style="background-image: url(' . $model->user->getAvatarUrl() . ')" data-title="' . $model->user->name . '"></div>';
                     return $html;
                 }
             ],

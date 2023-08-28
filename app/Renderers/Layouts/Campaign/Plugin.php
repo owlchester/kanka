@@ -29,7 +29,7 @@ class Plugin extends Layout
                 'render' => function ($model) {
                     $base = '';
                     if ($model->obsolete()) {
-                        $base = '<i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" title="'
+                        $base = '<i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" data-title="'
                             . __('campaigns/plugins.fields.obsolete')
                             . '"></i>';
                     }
@@ -67,13 +67,13 @@ class Plugin extends Layout
                     }
                     if ($model->pivot->is_active) {
                         return
-                            '<i class="fa-solid fa-check-circle" title="' .
+                            '<i class="fa-solid fa-check-circle" data-title="' .
                             __('campaigns/plugins.status.enabled') .
                             '" data-toggle="tooltip"></i>';
                     }
 
                     return
-                        '<i class="fa-solid fa-ban" title="' .
+                        '<i class="fa-solid fa-ban" data-title="' .
                         __('campaigns/plugins.status.disabled') .
                         '" data-toggle="tooltip"></i>';
                 }

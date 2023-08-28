@@ -8,7 +8,7 @@ $first = true;
 <div class="grid grid-cols-6 md:grid-cols-7 gap-2 mb-5 min-w-min">
 @foreach ($permission->permissions($role) as $entity => $permissions)
     @if ($first)
-        <div class="visible-sm visible-md visible-lg">
+        <div class="hidden sm:block">
         </div>
         @foreach ($permissions as $perm)
             <div class="text-center tooltip-wide">

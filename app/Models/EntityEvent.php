@@ -186,7 +186,7 @@ class EntityEvent extends MiscModel
             </span>';
         }
         if ($this->comment) {
-            $label .= '<span class="calendar-event-comment" data-toggle="tooltip" title="'
+            $label .= '<span class="calendar-event-comment" data-toggle="tooltip" data-title="'
                 . e($this->comment) . '">' . e($this->comment) . '</span>';
         }
 
