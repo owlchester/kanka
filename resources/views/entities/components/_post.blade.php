@@ -21,7 +21,7 @@
         </div>
         <div class="flex-none flex gap-1 items-center">
             @if (auth()->check())
-            <span id="visibility-icon" class="cursor-pointer" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
+            <span id="visibility-icon-{{ $post->id }}" class="cursor-pointer" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
                 {!! $post->visibilityIcon('btn-box-tool') !!}
             </span>
                 <div class="dropdown">

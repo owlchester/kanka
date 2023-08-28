@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditPostVisibility extends FormRequest
 {
-    use ApiRequest;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +24,8 @@ class EditPostVisibility extends FormRequest
      */
     public function rules()
     {
-        return $this->clean([
+        return [
             'visibility_id' => 'nullable|exists:visibilities,id',
-        ]);
+        ];
     }
 }

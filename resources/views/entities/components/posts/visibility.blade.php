@@ -15,7 +15,8 @@
         @include('partials.forms.form', [
             'title' => __('visibilities.title'),
             'content' => 'entities.components.posts._form',
-            'dialog' => true
+            'dialog' => true,
+            'model' => $post
         ])
 
     {!! Form::close() !!}

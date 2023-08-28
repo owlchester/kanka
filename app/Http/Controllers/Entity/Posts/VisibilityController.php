@@ -27,7 +27,7 @@ class VisibilityController extends Controller
     public function index(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'edit', $post]);
-        //$roles = $campaign->roles->where('is_public', false)->all();
+
         return view('entities.components.posts.visibility', [
             'campaign' => $campaign,
             'post' => $post,
@@ -45,7 +45,7 @@ class VisibilityController extends Controller
 
         $post->update($request->all());
 
-        return Response()->json(['test' => 'test', 'toast' => __('visibilities.toast'), 'icon' => $post->visibilityIcon('btn-box-tool') ]);
+        return Response()->json(['toast' => __('visibilities.toast'), 'icon' => $post->visibilityIcon('btn-box-tool'), 'post_id' => $post->id, 'visibility_id' => $post->visibility_id]);
     }
 
 }
