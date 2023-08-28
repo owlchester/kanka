@@ -21,7 +21,6 @@ class IdentityManager
     /**
      * IdentityManager constructor.
      *
-     * @param Application $app
      */
     public function __construct(Application $app)
     {
@@ -29,8 +28,6 @@ class IdentityManager
     }
 
     /**
-     * @param CampaignUser $campaignUser
-     * @return bool
      */
     public function switch(CampaignUser $campaignUser): bool
     {
@@ -53,7 +50,6 @@ class IdentityManager
     }
 
     /**
-     * @return bool
      */
     public function back(): bool
     {
@@ -81,7 +77,6 @@ class IdentityManager
 
     /**
      * Determine if we are someone else that we usually are.
-     * @return bool
      */
     public function isImpersonating(): bool
     {
@@ -89,8 +84,6 @@ class IdentityManager
     }
 
     /**
-     * @param int $id
-     * @return User
      */
     protected function findUserById(int $id): User
     {
@@ -99,7 +92,6 @@ class IdentityManager
 
     /**
      * The Key used to determine where our original user is stored
-     * @return string
      */
     public function getSessionKey(): string
     {
@@ -108,7 +100,6 @@ class IdentityManager
 
     /**
      * The Key used to determine where our original campaign is stored
-     * @return string
      */
     public function getSessionCampaignKey(): string
     {
@@ -116,7 +107,6 @@ class IdentityManager
     }
 
     /**
-     * @return mixed
      */
     public function getImpersonatorId()
     {
@@ -124,7 +114,6 @@ class IdentityManager
     }
 
     /**
-     * @return mixed
      */
     public function getCampaignId()
     {
@@ -133,7 +122,6 @@ class IdentityManager
 
     /**
      * Forget the saved user identity.
-     * @return bool
      */
     protected function clear(): bool
     {

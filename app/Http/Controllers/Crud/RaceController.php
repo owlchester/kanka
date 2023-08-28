@@ -14,7 +14,6 @@ class RaceController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'races';
     protected string $route = 'races';
@@ -27,7 +26,6 @@ class RaceController extends CrudController
     protected string $filter = RaceFilter::class;
 
     /**
-     * @param StoreRace $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRace $request, Campaign $campaign)

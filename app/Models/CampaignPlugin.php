@@ -49,7 +49,6 @@ class CampaignPlugin extends Model
     }
 
     /**
-     * @return bool
      */
     public function canEnable(): bool
     {
@@ -57,7 +56,6 @@ class CampaignPlugin extends Model
     }
 
     /**
-     * @return bool
      */
     public function canDisable(): bool
     {
@@ -67,7 +65,6 @@ class CampaignPlugin extends Model
     /**
      * Determine if the plug is renderable. This is needed for character sheets in draft statuses, to only
      * render a sheet for the author, as they can potentially add XSS injections.
-     * @return bool
      */
     public function renderable(): bool
     {
@@ -83,7 +80,6 @@ class CampaignPlugin extends Model
 
     /**
      * Check if the current user is an author of a plugin
-     * @return bool
      */
     public function isAuthor(): bool
     {

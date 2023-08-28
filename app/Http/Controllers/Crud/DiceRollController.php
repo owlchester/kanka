@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 class DiceRollController extends CrudController
 {
     /**
-     * @var string
      */
     protected string $view = 'dice_rolls';
     protected string $route = 'dice_rolls';
@@ -27,7 +26,7 @@ class DiceRollController extends CrudController
     /** @var string Filter */
     protected string $filter = DiceRollFilter::class;
 
-    /** @var string  */
+    /**  */
     protected string $datagridActions = DeprecatedDatagridActions::class;
 
     protected string $forceMode = 'table';
@@ -48,7 +47,6 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @param StoreDiceRoll $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -58,7 +56,6 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @param DiceRoll $diceRoll
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -68,7 +65,6 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @param DiceRoll $diceRoll
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -79,8 +75,6 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @param StoreDiceRoll $request
-     * @param DiceRoll $diceRoll
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -93,7 +87,6 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @param DiceRoll $diceRoll
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -103,7 +96,6 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @param DiceRoll $diceRoll
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -125,7 +117,6 @@ class DiceRollController extends CrudController
     }
 
     /**
-     * @param DiceRoll $diceRoll
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

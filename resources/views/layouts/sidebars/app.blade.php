@@ -12,22 +12,11 @@
     @inject('sidebar', 'App\Services\SidebarService')
     @php $sidebar->campaign($campaign)->prepareQuickLinks()@endphp
     <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(280, 210)->url($campaign->image) }})" @endif>
-        <section class="sidebar-campaign h-40 overflow-hidden">
-            <div class="campaign-block h-32 px-4 pt-24">
-                <div class="campaign-head">
-                    <div class="campaign-name truncate text-xl">
-                        {!! $campaign->name !!}
-                    </div>
 
-                    <div class="campaign-updated text-xs truncate">
-                        {{ __('sidebar.campaign_switcher.updated') }} {{ $campaign->updated_at->diffForHumans() }}
-                    </div>
-                </div>
-            </div>
-        </section>
+        @include('layouts.sidebars._campaign')
 
         <section class="sidebar pb-14" style="height: auto">
-            <ul class="sidebar-menu overflow-hidden whitespace-no-wrap m-0 p-0 list-none">
+            <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0">
                 @foreach ($sidebar->campaign($campaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
                         @includeWhen($campaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])

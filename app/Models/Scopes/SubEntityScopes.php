@@ -22,8 +22,6 @@ trait SubEntityScopes
     /**
      * This call should be adapted in each entity model to add required "with()" statements to the query for performance
      * on the datagrids.
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -40,8 +38,6 @@ trait SubEntityScopes
      *
      * This function builds a default list of fields available on all models, and each model
      * can add extra fields in the datagridSelectFields() method declared on the models.
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedSelect(Builder $query): Builder
     {
@@ -60,8 +56,6 @@ trait SubEntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeRecent(Builder $query): Builder
     {
@@ -69,8 +63,6 @@ trait SubEntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeStandardWith(Builder $query): Builder
     {
@@ -78,8 +70,6 @@ trait SubEntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeWithApi(Builder $query): Builder
     {

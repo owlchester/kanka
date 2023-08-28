@@ -1,10 +1,9 @@
-<div class="closed">
-    <h4 class="">{{ __('crud.fields.closed') }}</h4>
-    <div class="checkbox">
-        {!! Form::hidden('is_closed', 0) !!}
-        <label>
-            {!! Form::checkbox('is_closed', 1, empty($model) ? false : $model->is_closed) !!}
-            {!! __('crud.fields.is_closed') !!}
-        </label>
-    </div>
-</div>
+<x-forms.field
+    field="closed"
+    :label="__('crud.fields.closed')">
+    {!! Form::hidden('is_closed', 0) !!}
+    <label class="font-normal text-neutral-content m-0">
+        {!! Form::checkbox('is_closed', 1, empty($model) ? false : $model->is_closed) !!}
+        {!! __('crud.fields.is_closed') !!}
+    </label>
+</x-forms.field>

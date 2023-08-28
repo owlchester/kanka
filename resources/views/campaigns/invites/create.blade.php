@@ -3,7 +3,8 @@
     'breadcrumbs' => [
         ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         ['url' => route('campaign_users.index', $campaign), 'label' => __('campaigns.show.tabs.members')]
-    ]
+    ],
+    'sidebar' => 'campaign',
 ])
 
 @section('content')

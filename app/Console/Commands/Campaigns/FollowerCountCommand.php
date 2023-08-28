@@ -56,8 +56,6 @@ class FollowerCountCommand extends Command
     }
 
     /**
-     * @param Campaign $campaign
-     * @return void
      */
     protected function processCampaign(Campaign $campaign): void
     {

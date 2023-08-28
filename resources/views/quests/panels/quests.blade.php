@@ -10,10 +10,10 @@ if (request()->has('parent_id')) {
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 <div class="flex gap-2 items-center mb-2">
-    <h3 class="grow m-0">
+    <h3 class="grow">
         {!! \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests')) !!}
     </h3>
-    <div class="flex gap-2 flex-wrap">
+    <div class="flex-none flex gap-2 flex-wrap">
         <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </a>

@@ -67,7 +67,6 @@ class CampaignObserver
     }
 
     /**
-     * @param Campaign $campaign
      */
     public function creating(Campaign $campaign)
     {
@@ -79,7 +78,6 @@ class CampaignObserver
     }
 
     /**
-     * @param Campaign $campaign
      */
     public function created(Campaign $campaign)
     {
@@ -134,7 +132,6 @@ class CampaignObserver
     }
 
     /**
-     * @param Campaign $campaign
      */
     public function saved(Campaign $campaign)
     {
@@ -159,7 +156,6 @@ class CampaignObserver
     }
 
     /**
-     * @param Campaign $campaign
      */
     public function deleted(Campaign $campaign)
     {
@@ -170,7 +166,6 @@ class CampaignObserver
     /**
      * Deleting the campaign
      *
-     * @param Campaign $campaign
      */
     public function deleting(Campaign $campaign)
     {
@@ -194,7 +189,6 @@ class CampaignObserver
     }
 
     /**
-     * @param Campaign $campaign
      */
     protected function saveRpgSystems(Campaign $campaign): void
     {
@@ -266,5 +260,4 @@ class CampaignObserver
             $campaign->genres()->detach(array_keys($existing));
         }
     }
-
 }

@@ -61,7 +61,6 @@ class Tag extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'tag.name',
@@ -132,8 +131,6 @@ class Tag extends MiscModel
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -168,7 +165,6 @@ class Tag extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -193,7 +189,6 @@ class Tag extends MiscModel
 
     /**
      * Get all the children
-     * @param bool $withTags
      * @return Builder
      */
     public function allChildren(bool $withTags = false)
@@ -240,8 +235,6 @@ class Tag extends MiscModel
     }
 
     /**
-     * @param array $items
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -258,7 +251,6 @@ class Tag extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -294,8 +286,6 @@ class Tag extends MiscModel
 
     /**
      * Attach an entity to the tag
-     * @param array $request
-     * @return bool
      */
     public function attachEntity(array $request): bool
     {
@@ -319,7 +309,6 @@ class Tag extends MiscModel
 
     /**
      * Get the tag's html
-     * @return string
      */
     public function html(): string
     {
@@ -328,7 +317,6 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function bubble(): string
     {
@@ -339,7 +327,6 @@ class Tag extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -348,7 +335,6 @@ class Tag extends MiscModel
 
     /**
      * Determine if the model is a tag that has to be applied to all newly created entities
-     * @return bool
      */
     public function isAutoApplied(): bool
     {
@@ -357,7 +343,6 @@ class Tag extends MiscModel
 
     /**
      * Determine if the model is a tag that is hidden
-     * @return bool
      */
     public function isHidden(): bool
     {

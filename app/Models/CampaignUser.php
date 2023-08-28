@@ -69,7 +69,6 @@ class CampaignUser extends Pivot
 
     /**
      * Determin if the user is part of an admin role
-     * @return bool
      */
     public function isAdmin(): bool
     {
@@ -77,8 +76,6 @@ class CampaignUser extends Pivot
     }
 
     /**
-     * @param Builder $builder
-     * @param string|null $search
      * @return Builder
      */
     public function scopeSearch(Builder $builder, string $search = null)
@@ -91,7 +88,6 @@ class CampaignUser extends Pivot
 
     /**
      * Only get users of a campaign who aren't admins (used for the bulk permission UI)
-     * @param Builder $builder
      * @return Builder|\Illuminate\Database\Query\Builder
      */
     public function scopeWithoutAdmins(Builder $builder)
@@ -106,9 +102,6 @@ class CampaignUser extends Pivot
     }
 
     /**
-     * @param Builder $builder
-     * @param int $campaignID
-     * @param int $userID
      * @return Builder
      */
     public function scopeCampaignUser(Builder $builder, int $campaignID, int $userID)

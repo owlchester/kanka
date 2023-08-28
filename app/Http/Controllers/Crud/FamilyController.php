@@ -14,7 +14,6 @@ class FamilyController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'families';
     protected string $route = 'families';

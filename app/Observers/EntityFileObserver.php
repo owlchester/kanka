@@ -10,7 +10,6 @@ class EntityFileObserver
     use PurifiableTrait;
 
     /**
-     * @param EntityFile $entityFile
      */
     public function creating(EntityFile $entityFile)
     {
@@ -18,7 +17,6 @@ class EntityFileObserver
     }
 
     /**
-     * @param EntityFile $entityFile
      */
     public function saving(EntityFile $entityFile)
     {
@@ -26,7 +24,6 @@ class EntityFileObserver
     }
 
     /**
-     * @param EntityFile $entityFile
      */
     public function saved(EntityFile $entityFile)
     {
@@ -36,7 +33,6 @@ class EntityFileObserver
     }
 
     /**
-     * @param EntityFile $entityFile
      */
     public function deleted(EntityFile $entityFile)
     {

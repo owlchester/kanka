@@ -11,7 +11,6 @@ use App\Models\EntityAbility;
 class EntityAbilityApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -23,9 +22,6 @@ class EntityAbilityApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
      * @return Resource
      */
     public function show(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
@@ -36,8 +32,6 @@ class EntityAbilityApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -52,10 +46,6 @@ class EntityAbilityApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
@@ -69,9 +59,6 @@ class EntityAbilityApiController extends ApiController
 
     /**
      * @param Request $request
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

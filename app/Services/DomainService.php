@@ -6,7 +6,6 @@ class DomainService
 {
     /**
      * Check if the request is for the app/backend
-     * @return bool
      */
     public function isApp(): bool
     {
@@ -15,7 +14,6 @@ class DomainService
 
     /**
      * Check if the request is for the api
-     * @return bool
      */
     public function isApi(): bool
     {
@@ -24,7 +22,6 @@ class DomainService
 
     /**
      * Check if the request is for the frontend
-     * @return bool
      */
     public function isFront(): bool
     {

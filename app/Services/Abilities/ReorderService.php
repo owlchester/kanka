@@ -11,8 +11,6 @@ class ReorderService
     use EntityAware;
 
     /**
-     * @param ReorderAbility $request
-     * @return bool
      */
     public function reorder(ReorderAbility $request): bool
     {

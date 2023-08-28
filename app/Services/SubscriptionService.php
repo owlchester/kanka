@@ -64,7 +64,6 @@ class SubscriptionService
     protected $request;
 
     /**
-     * @param string $tier
      * @return $this
      * @throws Exception
      */
@@ -78,7 +77,6 @@ class SubscriptionService
     }
 
     /**
-     * @param string $method
      * @return $this
      */
     public function method(string $method): self
@@ -88,7 +86,6 @@ class SubscriptionService
     }
 
     /**
-     * @param string $period
      * @return $this
      * @throws Exception
      */
@@ -123,7 +120,6 @@ class SubscriptionService
     }
 
     /**
-     * @param array $request
      * @return $this
      */
     public function request(array $request): self
@@ -133,7 +129,6 @@ class SubscriptionService
     }
 
     /**
-     * @param string|null $coupon
      * @return $this
      */
     public function coupon(string $coupon = null): self
@@ -147,8 +142,6 @@ class SubscriptionService
     /**
      * Change plans
      *
-     * @param array $request
-     * @return self
      */
     public function change(array $request): self
     {
@@ -305,8 +298,6 @@ class SubscriptionService
     }
 
     /**
-     * @param Request $request
-     * @return Source
      * @throws \Stripe\Exception\ApiErrorException
      */
     public function prepare(Request $request): Source
@@ -374,7 +365,6 @@ class SubscriptionService
 
     /**
      * Get the tier amount
-     * @return string
      */
     public function amount(): string
     {
@@ -397,7 +387,6 @@ class SubscriptionService
 
     /**
      * Get the user's current plan
-     * @return string
      */
     public function currentPlan(): string
     {
@@ -416,9 +405,6 @@ class SubscriptionService
 
     /**
      * Cancel the user's subscription to Kanka
-     * @param string|null $reason
-     * @param string|null $custom
-     * @return bool
      */
     public function cancel(string $reason = null, string $custom = null): bool
     {
@@ -445,7 +431,6 @@ class SubscriptionService
     }
 
     /**
-     * @return bool
      */
     public function canceled(): bool
     {
@@ -453,7 +438,6 @@ class SubscriptionService
     }
 
     /**
-     * @param array $payload
      * @return bool
      * @throws \Stripe\Exception\ApiErrorException
      */
@@ -540,7 +524,6 @@ class SubscriptionService
 
     /**
      * About 0.2% of sofort payments fail, so we need to handle them.
-     * @param array $payload
      * @return bool
      * @throws Exception
      */
@@ -590,8 +573,6 @@ class SubscriptionService
 
     /**
      * Validate the stripe source
-     * @param string $secret
-     * @return bool
      * @throws \Stripe\Exception\ApiErrorException
      */
     public function validSource(string $secret): bool
@@ -604,7 +585,6 @@ class SubscriptionService
     }
 
     /**
-     * @return string
      */
     public function owlbearPlanID(): string
     {
@@ -614,7 +594,6 @@ class SubscriptionService
     }
 
     /**
-     * @return string
      */
     public function wyvernPlanID(): string
     {
@@ -624,7 +603,6 @@ class SubscriptionService
     }
 
     /**
-     * @return string
      */
     public function elementalPlanID(): string
     {
@@ -634,7 +612,6 @@ class SubscriptionService
     }
 
     /**
-     * @return array
      */
     public function owlbearPlans(): array
     {
@@ -648,7 +625,6 @@ class SubscriptionService
     }
 
     /**
-     * @return array
      */
     public function wyvernPlans(): array
     {
@@ -663,7 +639,6 @@ class SubscriptionService
 
     /**
      * @param string $tier = null
-     * @return array
      */
     public function monthlyPlans(string $tier = null): array
     {
@@ -684,8 +659,6 @@ class SubscriptionService
     }
 
     /**
-     * @param string|null $tier
-     * @return array
      */
     public function yearlyPlans(string $tier = null): array
     {
@@ -706,7 +679,6 @@ class SubscriptionService
     }
 
     /**
-     * @return array
      */
     public function elementalPlans(): array
     {
@@ -725,7 +697,6 @@ class SubscriptionService
     }
     /**
      * Determine if a user is downgrading
-     * @return bool
      */
     public function downgrading(): bool
     {
@@ -746,7 +717,6 @@ class SubscriptionService
     /**
      * Determine if a user is upgrading their plan to a higher tier
      * @param string $plan
-     * @return bool
      */
     protected function upgrading($plan): bool
     {
@@ -758,7 +728,6 @@ class SubscriptionService
 
     /**
      * Determine if the process is renewing the user or not
-     * @return bool
      */
     protected function renewal(): bool
     {
@@ -778,7 +747,6 @@ class SubscriptionService
     }
 
     /**
-     * @return bool
      */
     protected function toOwlbear(): bool
     {
@@ -786,7 +754,6 @@ class SubscriptionService
     }
 
     /**
-     * @return bool
      */
     protected function toWyvern(): bool
     {
@@ -794,7 +761,6 @@ class SubscriptionService
     }
 
     /**
-     * @return bool
      */
     protected function toElemental(): bool
     {
@@ -803,7 +769,6 @@ class SubscriptionService
 
     /**
      * Determine if the user is only limited to paypal subscriptions
-     * @return bool
      */
     public function isLimited(): bool
     {

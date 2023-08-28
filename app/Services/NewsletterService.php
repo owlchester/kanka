@@ -24,7 +24,6 @@ class NewsletterService
     }
 
     /**
-     * @param string $email
      * @return $this
      */
     public function email(string $email): self
@@ -35,7 +34,6 @@ class NewsletterService
 
     /**
      * Check if a user is subscribed
-     * @return bool
      */
     public function isSubscribed(): bool
     {
@@ -71,7 +69,6 @@ class NewsletterService
 
     /**
      * @param array $options
-     * @return bool
      */
     public function update($options): bool
     {
@@ -105,8 +102,6 @@ class NewsletterService
 
     /**
      * Get the user's id based on their email
-     * @param string $email
-     * @return int
      */
     protected function fetch(string $email): int
     {

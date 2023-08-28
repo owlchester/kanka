@@ -14,7 +14,6 @@ trait TooltipTrait
      * @param null|string $name override the name of the entity
      * @param bool $escape if the passed name should be escape (security)
      * @param null|string $data data attributes to control the placement of the tooltip
-     * @return string
      */
     public function tooltipedLink(string $name = null, bool $escape = true, string $data = null): string
     {
@@ -28,7 +27,6 @@ trait TooltipTrait
 
     /**
      * Full tooltip used for ajax calls
-     * @return string
      */
     public function ajaxTooltip(): string
     {
@@ -62,7 +60,6 @@ trait TooltipTrait
 
     /**
      * Allowed tags in tooltips, allowing Salvatos to do some interesting things with css
-     * @return array
      */
     protected function allowedTooltipTags(): array
     {

@@ -13,7 +13,6 @@ class CalendarController extends Controller
 
     /**
      * LiveController constructor.
-     * @param SearchService $searchService
      */
     public function __construct(SearchService $searchService)
     {

@@ -47,13 +47,11 @@ class Conversation extends MiscModel
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns  = ['name'];
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'target_id',
@@ -117,7 +115,6 @@ class Conversation extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -125,7 +122,6 @@ class Conversation extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function entry()
     {
@@ -133,7 +129,6 @@ class Conversation extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function forCharacters(): bool
     {
@@ -142,7 +137,6 @@ class Conversation extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {

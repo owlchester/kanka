@@ -18,7 +18,6 @@ class RpgSystem extends Model
 
     /**
      * Translatable name of the system
-     * @return string
      */
     public function name(): string
     {
@@ -27,8 +26,6 @@ class RpgSystem extends Model
 
     /**
      * Default query for list of rpg systems
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeOrdered(Builder $query): Builder
     {
@@ -37,7 +34,6 @@ class RpgSystem extends Model
     }
 
     /**
-     * @return mixed
      */
     public function campaigns()
     {

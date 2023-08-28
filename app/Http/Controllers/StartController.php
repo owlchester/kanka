@@ -22,7 +22,6 @@ class StartController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -44,7 +43,6 @@ class StartController extends Controller
     }
 
     /**
-     * @param StoreCampaign $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

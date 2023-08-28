@@ -83,13 +83,11 @@ class MenuLink extends MiscModel
      * Custom options array key filter
      * Used in the Menu link observer
      *
-     * @var array
      */
     public array $optionsAllowedKeys = ['is_nested', 'default_dashboard', 'subview_filter'];
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns  = ['name'];
 
@@ -108,13 +106,11 @@ class MenuLink extends MiscModel
 
     /**
      * Set to false if this entity type doesn't have relations
-     * @var bool
      */
     public bool $hasRelations = false;
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     public array $sortableColumns = [
         'position',
@@ -128,8 +124,6 @@ class MenuLink extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -142,8 +136,6 @@ class MenuLink extends MiscModel
 
     /**
      * Scope for Active menu links
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeActive(Builder $query): Builder
     {
@@ -175,7 +167,6 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function getRouteParams(bool $entity): array
     {
@@ -200,7 +191,6 @@ class MenuLink extends MiscModel
 
     /**
      * Get the route the quick link points to
-     * @return string
      */
     public function getRoute(): string
     {
@@ -219,7 +209,6 @@ class MenuLink extends MiscModel
 
     /**
      * Generate a route for an entity's overview or subpage
-     * @return string
      */
     protected function getEntityRoute(): string
     {
@@ -259,7 +248,6 @@ class MenuLink extends MiscModel
 
     /**
      * Generate the route for a list of entities
-     * @return string
      */
     protected function getIndexRoute(): string
     {
@@ -281,7 +269,6 @@ class MenuLink extends MiscModel
     /**
      * Override the get link
      * @param string $route = 'show'
-     * @return string
      */
     public function getLink(string $route = 'show'): string
     {
@@ -290,8 +277,6 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeOrdered(Builder $query): Builder
     {
@@ -302,7 +287,6 @@ class MenuLink extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -310,8 +294,6 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeStandardWith(Builder $query): Builder
     {
@@ -319,7 +301,6 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function isRandom(): bool
     {
@@ -327,7 +308,6 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function isEntity(): bool
     {
@@ -335,7 +315,6 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function isDashboard(): bool
     {
@@ -343,7 +322,6 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function isList(): bool
     {
@@ -375,7 +353,6 @@ class MenuLink extends MiscModel
 
     /**
      * Icon HTML class
-     * @return string
      */
     public function icon(): string
     {
@@ -392,7 +369,6 @@ class MenuLink extends MiscModel
 
     /**
      * Validate that the user has access to this dashboard
-     * @return bool
      */
     public function isValidDashboard(): bool
     {
@@ -400,8 +376,6 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * @param Campaign $campaign
-     * @return string
      */
     public function customClass(Campaign $campaign): string
     {
@@ -417,8 +391,6 @@ class MenuLink extends MiscModel
 
     /**
      * Override the tooltiped link for the datagrid
-     * @param string|null $displayName
-     * @return string
      */
     public function tooltipedLink(string $displayName = null): string
     {

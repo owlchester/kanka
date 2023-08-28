@@ -21,7 +21,6 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -39,8 +38,6 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Image $image
      * @return Resource
      */
     public function show(Campaign $campaign, Image $image)
@@ -51,8 +48,6 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @param GalleryImageStore $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -70,9 +65,6 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @param GalleryImageUpdate $request
-     * @param Campaign $campaign
-     * @param Image $image
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -86,8 +78,6 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Image $image
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

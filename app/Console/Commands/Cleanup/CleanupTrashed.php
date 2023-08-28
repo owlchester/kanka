@@ -31,7 +31,6 @@ class CleanupTrashed extends Command
     /**
      * The recovery service
      *
-     * @var RecoveryService
      */
     protected RecoveryService $service;
 
@@ -49,7 +48,6 @@ class CleanupTrashed extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
      */
     public function handle()
     {

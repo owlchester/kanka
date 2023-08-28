@@ -15,7 +15,7 @@
                 if ($model->isDashboard()) {
                     return '<i class="fa-solid fa-th-large"></i> ' . __('menu_links.fields.dashboard');
                 } elseif ($model->isEntity()) {
-                    return '<i class="ra ra-tower"></i> ' . __('menu_links.fields.entity');
+                    return '<i class="fa-solid fa-star"></i> ' . __('menu_links.fields.entity');
                 } elseif ($model->isList()) {
                     return '<i class="fa-solid fa-th-list"></i> ' . __('menu_links.fields.type');
                 } elseif ($model->isRandom()) {

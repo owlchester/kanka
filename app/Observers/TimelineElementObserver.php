@@ -20,7 +20,6 @@ class TimelineElementObserver
     }
 
     /**
-     * @param TimelineElement $timelineElement
      */
     public function saving(TimelineElement $timelineElement)
     {
@@ -38,7 +37,6 @@ class TimelineElementObserver
     }
 
     /**
-     * @param TimelineElement $timelineElement
      */
     public function saved(TimelineElement $timelineElement)
     {

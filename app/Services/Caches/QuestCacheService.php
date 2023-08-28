@@ -12,7 +12,6 @@ class QuestCacheService extends BaseCache
     use CampaignAware;
 
     /**
-     * @return array
      */
     public function roleSuggestion(): array
     {
@@ -48,7 +47,6 @@ class QuestCacheService extends BaseCache
 
     /**
      * Type suggestion cache key
-     * @return string
      */
     protected function roleSuggestionKey(): string
     {

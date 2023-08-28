@@ -7,7 +7,7 @@
 ])
 
 @section('entity-header')
-    <div class="flex items-center mb-2">
+    <div class="flex gap-2 items-center">
         <h1 class="grow m-0 text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex-none flex gap-2">
             @include('layouts.datagrid._togglers', ['route' => 'tree'])
@@ -21,16 +21,17 @@
 
     @include('partials.errors')
 
+    <div class="flex flex-col gap-5">
     @if (auth()->guest())
-        <div class="text-muted grow mb-5">
+        <div class="text-muted grow">
             <i class="fa-solid fa-filter" aria-hidden="true"></i>
             {{ __('filters.helpers.guest') }}
         </div>
     @else
-    <div class="mb-3 flex flex-stretch gap-2 items-center">
-        @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
-        @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index'])
-    </div>
+        <div class="flex flex-stretch gap-2 items-center">
+            @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
+            @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index'])
+        </div>
     @endif
 
     @include('partials.ads.top')
@@ -38,7 +39,7 @@
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['nested' => true, 'sub' => 'tree'])
     @else
-        {!! Form::open(['url' => route('bulk.process', $campaign), 'method' => 'POST']) !!}
+        {!! Form::open(['url' => route('bulk.process', $campaign), 'method' => 'POST', 'class' => 'flex flex-col gap-5']) !!}
         <x-box :padding="false">
             <div class="table-responsive">
                 @include($name . '._tree')
@@ -66,6 +67,7 @@
         {!! Form::close() !!}
 
     @endif
+    </div>
 
     <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.tree', $campaign) }}">
 @endsection

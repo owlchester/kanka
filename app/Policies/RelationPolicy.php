@@ -26,7 +26,6 @@ class RelationPolicy
     /**
      * Determine whether the user can create items.
      *
-     * @param  User  $user
      * @return bool
      */
     public function create(User $user)
@@ -38,8 +37,6 @@ class RelationPolicy
     /**
      * Determine whether the user can update the relation.
      *
-     * @param  User  $user
-     * @param  Relation  $relation
      * @return bool
      */
     public function update(User $user, Relation $relation)
@@ -53,8 +50,6 @@ class RelationPolicy
     /**
      * Determine whether the user can delete the relation.
      *
-     * @param  User  $user
-     * @param  Relation|null  $relation
      * @return bool
      */
     public function delete(User $user, Relation|null $relation)

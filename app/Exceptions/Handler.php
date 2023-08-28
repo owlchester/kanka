@@ -44,7 +44,6 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param Throwable $exception
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      * @throws Throwable
      */
@@ -80,7 +79,6 @@ class Handler extends ExceptionHandler
     /**
      * Unauthenticated exception handler
      * @param \Illuminate\Http\Request $request
-     * @param AuthenticationException $exception
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
@@ -95,7 +93,6 @@ class Handler extends ExceptionHandler
 
     /**
      * Handle all errors that happen in the API
-     * @param Throwable $exception
      * @return \Illuminate\Http\JsonResponse
      */
     protected function handleApiErrors(Throwable $exception)

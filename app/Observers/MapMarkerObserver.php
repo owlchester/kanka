@@ -16,7 +16,6 @@ class MapMarkerObserver
     use PurifiableTrait;
 
     /**
-     * @param MapMarker $mapMarker
      */
     public function saving(MapMarker $mapMarker)
     {
@@ -31,7 +30,6 @@ class MapMarkerObserver
     }
 
     /**
-     * @param MapMarker $mapMarker
      */
     public function saved(MapMarker $mapMarker)
     {
@@ -40,7 +38,6 @@ class MapMarkerObserver
     }
 
     /**
-     * @param MapMarker $mapMarker
      */
     public function deleted(MapMarker $mapMarker)
     {
@@ -50,7 +47,6 @@ class MapMarkerObserver
 
     /**
      * Sanitize the custom icon (i or svg html element)
-     * @param MapMarker $mapMarker
      * @return string|null
      */
     protected function sanitizeCustomIcon(MapMarker $mapMarker)

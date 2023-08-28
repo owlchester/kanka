@@ -22,7 +22,6 @@ class SubscriptionApiController extends Controller
 
     /**
      * SubscriptionApiController constructor.
-     * @param SubscriptionService $service
      */
     public function __construct(SubscriptionService $service, CouponService $couponService)
     {
@@ -44,7 +43,6 @@ class SubscriptionApiController extends Controller
 
     /**
      * Adds a payment method to the current user.
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Laravel\Cashier\Exceptions\CustomerAlreadyCreated
      */

@@ -5,7 +5,7 @@
 @if ($model->quest)
     <div class="entity-header-sub pull-left">
         <span>
-            <x-icon class="ra ra-wooden-sign" :title="__('crud.fields.parent')"></x-icon>
+            <x-icon entity="quest" :title="__('crud.fields.parent')"/>
             {!! $model->quest->tooltipedLink() !!}
         </span>
     </div>

@@ -24,7 +24,7 @@ class MenuLinkController extends CrudController
     /** @var string */
     protected $model = \App\Models\MenuLink::class;
 
-    /** @var string */
+    /**  */
     protected string $datagridActions = MenuLinkDatagridActions::class;
 
     protected string $forceMode = 'table';
@@ -114,7 +114,6 @@ class MenuLinkController extends CrudController
     }
 
     /**
-     * @return bool
      */
     protected function limitCheckReached(): bool
     {

@@ -21,8 +21,6 @@ trait CampaignTrait
     protected bool $withCampaignLimit = true;
 
     /**
-     * @param Builder $builder
-     * @return Builder
      */
     public function scopeAllCampaigns(Builder $builder): Builder
     {
@@ -32,7 +30,6 @@ trait CampaignTrait
 
     /**
      * Check if limited to the current campaign context
-     * @return bool
      */
     public function withCampaignLimit(): bool
     {

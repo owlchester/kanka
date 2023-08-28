@@ -41,25 +41,25 @@ $fromOrg = request()->get('from') === 'org';
         'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#entity-modal' : null),
     ])
 @endif
+    <x-forms.field
+        field="org-role"
+        :label="__('characters.organisations.fields.role')">
+        {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+    </x-forms.field>
 
-<div class="field-org-role">
-    <label>{{ __('characters.organisations.fields.role') }}</label>
-    {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-</div>
+    <x-forms.field
+        field="org-status"
+        :label="__('organisations.members.fields.status')">
+        {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
+    </x-forms.field>
 
-<div class="field-org-status">
-    <label>
-        {{ __('organisations.members.fields.status') }}
-    </label>
-    {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="field-org-pinned">
-    <label>
-        {{ __('organisations.members.fields.pinned') }}
-        <x-helpers.tooltip :title="__('organisations.members.helpers.pinned')"/>
-    </label>
-    {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
+    <x-forms.field
+        field="org-pinned"
+        :label="__('organisations.members.fields.pinned')"
+        :helper="__('organisations.members.helpers.pinned')"
+        :tooltip="true">
+        {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
+    </x-forms.field>
 </div>
 
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])

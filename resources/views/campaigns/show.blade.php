@@ -1,11 +1,10 @@
 <?php /** @var \App\Models\Campaign $campaign */?>
 @extends('layouts.app', [
     'title' => __('campaigns.show.title', ['name' => $campaign->name]),
-    'breadcrumbs' => [
-        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')]
-    ],
+    'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
+    'sidebar' => 'campaign',
 ])
 
 @section('og')
@@ -20,11 +19,7 @@
     @include('partials.errors')
     @include('partials.ads.top')
 
-    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
-        <div class="lg:flex-none lg:w-60">
-            @include('campaigns._menu', ['active' => 'campaign'])
-        </div>
-        <div class="grow max-w-7xl">
+    <div class="flex gap-5 flex-col max-w-7xl">
             @can('update', $campaign)
                 @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
                     <x-alert type="warning">
@@ -37,40 +32,96 @@
 
             @include('campaigns._overview')
 
-            <div class="flex gap-2 mb-2 items-center">
-                <h3 class="m-0 inline-block grow">
-                    {{ __('campaigns.fields.entry') }}
+            <div class="flex gap-2 items-center">
+                <h3 class="inline-block grow">
+                    {!! $campaign->name !!}
                 </h3>
-                @can('update', $campaign)
-                    <a href="{{ route('campaigns.edit', $campaign) }}" class="btn2 btn-sm" title="{{ __('campaigns.show.actions.edit') }}">
-                        <x-icon class="edit"></x-icon>
-                        {{ __('campaigns.show.actions.edit') }}
-                    </a>
-                @endcan
-            </div>
-            <x-box>
-                @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry()))
-                    <a href="{{ route('campaigns.edit', $campaign) }}">
-                        {{ __('campaigns.helpers.no_entry') }}
-                    </a>
-                @else
-                <div class="entity-content">
-                    {!! $campaign->entry() !!}
-                </div>
-                @endif
-            </x-box>
-
-            <div class="entity-modification-history">
-                <div class="help-block text-right italic text-xs">
-                    @if (!empty($campaign->created_at) && !empty($campaign->updated_at))
-                    {!! __('crud.history.created_date_clean', [
-                        'date' => '<span data-toggle="tooltip" data-title="' . $campaign->created_at . ' UTC' . '">' . $campaign->created_at->diffForHumans() . '</span>'
-                    ]) !!}. {!! __('crud.history.updated_date_clean', [
-                        'date' => '<span data-toggle="tooltip" data-title="' . $campaign->updated_at . ' UTC' . '">' . $campaign->updated_at->diffForHumans() . '</span>'
-                    ]) !!}
+                <div class="flex-none gap-1">
+                    @if (auth()->check() && $campaign->userIsMember())
+                        <button type="button" class="btn2 btn-warning btn-sm" data-toggle="dialog-ajax" data-target="leave-confirm" data-url="{{ route('campaign.leave', $campaign) }}">
+                            <x-icon class="fa-solid fa-sign-out-alt" />
+                            {{ __('campaigns.show.actions.leave') }}
+                        </button>
                     @endif
+                    @if (auth()->check() && auth()->user()->can('roles', $campaign))
+                        <button type="button" class="btn2 btn-error btn-sm" data-toggle="dialog" data-target="campaign-delete-confirm">
+                            <x-icon class="trash" />
+                            {{ __('campaigns.destroy.action') }}
+                        </button>
+                    @endif
+
+                    @can('update', $campaign)
+                        <a href="{{ route('campaigns.edit', $campaign) }}" class="btn2 btn-primary btn-sm" title="{{ __('campaigns.show.actions.edit') }}">
+                            <x-icon class="edit"></x-icon>
+                            {{ __('campaigns.show.actions.edit') }}
+                        </a>
+                    @endcan
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <x-box>
+                    @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry()))
+                        <a href="{{ route('campaigns.edit', $campaign) }}">
+                            {{ __('campaigns.helpers.no_entry') }}
+                        </a>
+                    @else
+                    <div class="entity-content">
+                        {!! $campaign->entry() !!}
+                    </div>
+                    @endif
+                </x-box>
+
+                <div class="entity-modification-history">
+                    <div class="help-block text-right italic text-xs">
+                        @if (!empty($campaign->created_at) && !empty($campaign->updated_at))
+                        {!! __('crud.history.created_date_clean', [
+                            'date' => '<span data-toggle="tooltip" data-title="' . $campaign->created_at . ' UTC' . '">' . $campaign->created_at->diffForHumans() . '</span>'
+                        ]) !!}. {!! __('crud.history.updated_date_clean', [
+                            'date' => '<span data-toggle="tooltip" data-title="' . $campaign->updated_at . ' UTC' . '">' . $campaign->updated_at->diffForHumans() . '</span>'
+                        ]) !!}
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+@endsection
+
+
+@section('modals')
+    @parent
+
+    <x-dialog id="leave-confirm" :loading="true" />
+
+    @if (auth()->check() && auth()->user()->can('roles', $campaign))
+        <x-dialog id="campaign-delete-confirm" :title="__('campaigns.destroy.title')">
+            @if (auth()->user()->can('delete', $campaign))
+                {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign]]) !!}
+                <p class="mt-5">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
+                <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
+
+                <div class="mb-5 required">
+                    {!! Form::text('delete', null, ['class' => 'form-control', 'required', 'id' => 'campaign-delete-form']) !!}
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                        {{ __('crud.cancel') }}
+                    </x-buttons.confirm>
+                    {!! Form::open(['method' => 'GET', 'route' => ['campaign.leave', $campaign], 'class' => 'w-full']) !!}
+                    <x-buttons.confirm type="danger" outline="true" full="true">
+                        <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+                        {{ __('campaigns.destroy.confirm-button') }}
+                    </x-buttons.confirm>
+                </div>
+                {!! Form::close() !!}
+            @else
+                <div class="max-w-lg text-justify">
+                    <p class="mt-5">{{ __('campaigns.destroy.helper-v2') }}</p>
+                    <a href="{{ route('campaign_users.index', $campaign) }}" class="py-2">
+                        {{ __('campaigns.leave.fix') }}
+                    </a>
+                </div>
+            @endif
+        </x-dialog>
+    @endif
 @endsection

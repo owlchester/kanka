@@ -51,7 +51,6 @@ class EntityNotePermission extends Model
     }
 
     /**
-     * @return string
      */
     public function permText(): string
     {
@@ -74,7 +73,6 @@ class EntityNotePermission extends Model
     }
 
     /**
-     * @return bool
      */
     public function isUser(): bool
     {

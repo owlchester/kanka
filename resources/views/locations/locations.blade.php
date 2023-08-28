@@ -28,21 +28,10 @@
     $plural = \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations'));
 @endphp
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                $plural
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'locations'])
-
-        <div class="entity-main-block">
-            @include('locations.panels.locations')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'locations',
+        'breadcrumb' => $plural,
+        'view' => 'locations.panels.locations',
+        'entity' => $model->entity,
+    ])
 @endsection

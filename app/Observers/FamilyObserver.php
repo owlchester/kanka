@@ -9,7 +9,6 @@ use App\Models\MiscModel;
 class FamilyObserver extends MiscObserver
 {
     /**
-     * @param MiscModel|Family $model
      */
     public function saved(MiscModel|Family $model)
     {
@@ -22,7 +21,6 @@ class FamilyObserver extends MiscObserver
 
     /**
      * Save family members
-     * @param Family $family
      */
     protected function saveMembers(Family $family)
     {
@@ -64,7 +62,6 @@ class FamilyObserver extends MiscObserver
     }
 
     /**
-     * @param Family $family
      */
     public function deleting(Family $family)
     {

@@ -7,7 +7,6 @@ use App\Models\Genre;
 class GenreService
 {
     /**
-     * @return array
      */
     public function getGenres($emptyOption = false): array
     {

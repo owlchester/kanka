@@ -10,7 +10,6 @@ use App\Facades\CampaignLocalization;
 class CampaignScope implements Scope
 {
     /**
-     * @param Builder $builder
      * @param Location $model
      * @return Builder
      */

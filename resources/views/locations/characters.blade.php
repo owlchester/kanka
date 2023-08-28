@@ -29,21 +29,10 @@
 
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                \App\Facades\Module::plural(config('entities.ids.character'), __('entities.locations'))
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'characters'])
-
-        <div class="entity-main-block">
-            @include('locations.panels.characters')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'characters',
+        'breadcrumb' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
+        'view' => 'locations.panels.characters',
+        'entity' => $model->entity,
+    ])
 @endsection

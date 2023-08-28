@@ -7,7 +7,9 @@
  */
 $permission->role($role);
 ?>
-<h1 class="mb-2 mt-0">
+<div class="flex flex-col gap-5">
+
+<h1 class="">
     <div class="pull-right">
         <a href="#" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="campaign-visibility" data-toggle="dialog-ajax" class="btn2 btn-sm btn-primary" >
             <i class="fa-solid fa-user-secret"></i> {{ __('campaigns/roles.actions.status', ['status' => $campaign->isPublic() ? __('campaigns.visibilities.public') : __('campaigns.visibilities.private')]) }}
@@ -53,6 +55,7 @@ $permission->role($role);
             @endif
         </div>
     @endforeach
+</div>
 </div>
 
 @section('modals')

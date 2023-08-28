@@ -32,13 +32,13 @@ class StatService
             return Cache::get($cacheKey);
         }
 
-        $characters = $this->campaign->characters()->count();
-        $locations = $this->campaign->locations()->count();
-        $races = $this->campaign->races()->count();
-        $families = $this->campaign->families()->count();
+        $characters = $this->campaign->characters()->withInvisible()->count();
+        $locations = $this->campaign->locations()->withInvisible()->count();
+        $races = $this->campaign->races()->withInvisible()->count();
+        $families = $this->campaign->families()->withInvisible()->count();
 
-        $dead = $this->campaign->characters()->where('is_dead', true)->count();
-        $calendars = $this->campaign->calendars()->count();
+        $dead = $this->campaign->characters()->withInvisible()->where('is_dead', true)->count();
+        $calendars = $this->campaign->calendars()->withInvisible()->count();
 
         $stats = [
             'characters' => [
@@ -98,9 +98,7 @@ class StatService
     }
 
     /**
-     * @param int $amount
      * @param int $level = 1
-     * @return int
      */
     public function target(int $amount, int $level = 1): int
     {
@@ -118,9 +116,7 @@ class StatService
     }
 
     /**
-     * @param int $amount
      * @param int $level = 1
-     * @return int
      */
     public function level(int $amount, int $level = 1): int
     {
@@ -136,16 +132,14 @@ class StatService
     }
 
     /**
-     * @param int $amount
      * @param int $level = 1
-     * @return string
      */
     public function title(int $amount, int $level = 1): string
     {
         $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
         foreach ($targets as $target) {
             if ($amount > $target) {
-                $level ++;
+                $level++;
             }
         }
 

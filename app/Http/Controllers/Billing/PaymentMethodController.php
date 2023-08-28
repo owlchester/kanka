@@ -44,8 +44,6 @@ class PaymentMethodController extends Controller
     }
 
     /**
-     * @param UserBillingStore $request
-     * @return mixed
      */
     public function save(UserBillingStore $request)
     {

@@ -13,30 +13,30 @@
     </x-alert>
     @endif
 
-    <x-grid>
-        <div class="field-public">
-            <label>
-                {{ __('campaigns.fields.public') }}
-            </label>
-            {!! Form::select('is_public', [0 => __('campaigns.visibilities.private'), 1 => __('campaigns.visibilities.public')], null, ['class' => 'form-control']) !!}
-        </div>
+    <x-grid type="1/1">
+        <x-forms.field
+            field="public"
+            :label="__('campaigns.fields.public')"
+            >
+            {!! Form::select('is_public', [0 => __('campaigns.visibilities.private'), 1 => __('campaigns.visibilities.public')], null, ['class' => '']) !!}
+        </x-forms.field>
 
-    </x-grid>
-    @if (isset($model) && $model->isPublic())
-        <p class="help-block mb-0">
-            {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '" target="_blank">' . route('dashboard', $campaign) . '</a>']) !!}
-        </p>
+        @if (isset($model) && $model->isPublic())
+            <p class="help-block mb-0">
+                {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '" target="_blank">' . route('dashboard', $campaign) . '</a>']) !!}
+            </p>
 
-        @if ($model->publicHasNoVisibility())
-            <x-alert type="warning">
-                {!! __('campaigns.helpers.public_no_visibility', [
-'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'), $campaign)
-]) !!}
-            </x-alert>
+            @if ($model->publicHasNoVisibility())
+                <x-alert type="warning">
+                    {!! __('campaigns.helpers.public_no_visibility', [
+    'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'), $campaign)
+    ]) !!}
+                </x-alert>
+            @endif
         @endif
-    @endif
+        <hr />
+    </x-grid>
 
-    <hr />
 
     <h4 class="mb-2">{{ __('campaigns.fields.public_campaign_filters') }}</h4>
     <p>
@@ -46,29 +46,31 @@
     </p>
 
     <x-grid>
-        <div class="field-locale">
-            <label>{{ __('campaigns.fields.locale') }}</label>
+        <x-forms.field
+            field="locale"
+            :label="__('campaigns.fields.locale')"
+            :helper="__('campaigns.sharing.language')">
             {!! Form::select('locale', $languages->getSupportedLanguagesList(true), null, ['class' => 'form-control']) !!}
-            <p class="help-block">{{ __('campaigns.sharing.language') }}</p>
-        </div>
+        </x-forms.field>
 
-        <div class="field-system">
-            <label>{{ __('campaigns.fields.system') }}</label>
+        <x-forms.field
+            field="system"
+            :label="__('campaigns.fields.system')"
+            :helper="__('campaigns.sharing.system')">
             {!! Form::text('system', null, [
                 'placeholder' => __('campaigns.placeholders.system'),
                 'class' => 'form-control',
                 'list' => 'rpg-system-list',
                 'autocomplete' => 'off'
             ]) !!}
-            <p class="help-block">{{ __('campaigns.sharing.system') }}</p>
-        </div>
-        <div class="hidden">
-            <datalist id="rpg-system-list">
-                @foreach (__('rpg_systems.names') as $name)
-                    <option value="{{ $name }}">{{ $name }}</option>
-                @endforeach
-            </datalist>
-        </div>
+            <div class="hidden">
+                <datalist id="rpg-system-list">
+                    @foreach (__('rpg_systems.names') as $name)
+                        <option value="{{ $name }}">{{ $name }}</option>
+                    @endforeach
+                </datalist>
+            </div>
+        </x-forms.field>
 
         <div class="genres">
             <input type="hidden" name="campaign_genre" value="1">

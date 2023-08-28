@@ -25,7 +25,7 @@ if (!empty($onload)) {
 $existing = $model->allChildren()->count();
 ?>
 <div class="flex gap-2 items-center mb-2">
-    <h3 class="grow m-0">
+    <h3 class="grow">
         {{ __('tags.show.tabs.children') }}
     </h3>
     <div>

@@ -21,7 +21,7 @@ class DatagridRenderer2
     /** @var Layout */
     protected $layout;
 
-    /** @var array  */
+    /**  */
     protected array $deleteForms = [];
 
     /** @var array Action params for the edit/delete */
@@ -39,7 +39,6 @@ class DatagridRenderer2
     protected Closure $highlight;
 
     /**
-     * @param string|Layout $layout
      * @return $this
      */
     public function layout(string|Layout $layout): self
@@ -52,8 +51,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @param string $route
-     * @param array|null $options
      * @return $this
      */
     public function route(string $route, array $options = null): self
@@ -64,7 +61,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @param array|null $options
      * @return $this
      */
     public function actionParams(array $options = null): self
@@ -75,7 +71,6 @@ class DatagridRenderer2
 
     /**
      * Set which element needs to be highlighted
-     * @param Closure $highlight
      * @return $this
      */
     public function highlight(Closure $highlight): self
@@ -85,7 +80,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @return array
      */
     public function getActionParams(): array
     {
@@ -116,7 +110,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @param Model $model
      * @return array|Column[]
      */
     public function columns(Model $model): array
@@ -143,7 +136,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @return bool
      */
     public function hasBulks(): bool
     {
@@ -151,7 +143,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @return array
      */
     public function bulks(): array
     {
@@ -191,7 +182,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @return bool
      */
     public function hasActions(): bool
     {
@@ -199,7 +189,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @return array
      */
     public function deleteForms(): array
     {
@@ -207,7 +196,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @param bool $permissions
      * @return $this
      */
     public function permissions(bool $permissions): self
@@ -231,7 +219,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @return array
      */
     public function routeOptions(): array
     {
@@ -239,7 +226,6 @@ class DatagridRenderer2
     }
 
     /**
-     * @return array
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
@@ -265,8 +251,6 @@ class DatagridRenderer2
 
     /**
      * Allow the ajax init to have custom ordering
-     * @param array $config
-     * @return array
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
@@ -283,8 +267,6 @@ class DatagridRenderer2
 
     /**
      * Highlight a row if it matches the highlight closure
-     * @param mixed $row
-     * @return bool
      */
     public function isHighlighted(mixed $row): bool
     {

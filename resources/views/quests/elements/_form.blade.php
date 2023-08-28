@@ -13,7 +13,7 @@
         {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100, 'spellcheck' => 'true']) !!}
     </div>
 
-    <hr />
+    <hr class="col-span-2" />
 
     <div class="field-role col-span-2">
         <label>{{ __('quests.fields.role') }}</label>

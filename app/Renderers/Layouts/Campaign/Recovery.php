@@ -52,7 +52,6 @@ class Recovery extends Layout
 
     /**
      * Bulk actions
-     * @return array
      */
     public function bulks(): array
     {

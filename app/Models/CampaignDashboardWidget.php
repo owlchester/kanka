@@ -98,7 +98,6 @@ class CampaignDashboardWidget extends Model
 
     /**
      * Get the column size
-     * @return int
      */
     public function colSize(): int
     {
@@ -114,8 +113,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePositioned(Builder $query): Builder
     {
@@ -124,8 +121,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeOnDashboard(Builder $query, CampaignDashboard $dashboard = null): Builder
     {
@@ -146,7 +141,6 @@ class CampaignDashboardWidget extends Model
 
     /**
      * Copy a dashboard to another target
-     * @param CampaignDashboard $target
      */
     public function copyTo(CampaignDashboard $target)
     {
@@ -162,7 +156,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasAdvancedOptions(): bool
     {
@@ -174,7 +167,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return bool
      */
     public function showAttributes(): bool
     {
@@ -192,7 +184,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return bool
      */
     public function showRelations(): bool
     {
@@ -301,7 +292,6 @@ class CampaignDashboardWidget extends Model
     /**
      * Get a random entity
      * Todo: refactor this code with the code from the quick link?
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function randomEntity()
@@ -347,7 +337,6 @@ class CampaignDashboardWidget extends Model
 
     /**
      * Get the widget filters
-     * @return array
      */
     private function filterOptions(): array
     {
@@ -377,7 +366,6 @@ class CampaignDashboardWidget extends Model
 
     /**
      * A way to set the entity, typically for the random widget
-     * @param Entity $entity
      * @return $this
      */
     public function setEntity(Entity $entity): self
@@ -387,7 +375,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return string
      */
     public function widgetIcon(): string
     {
@@ -413,8 +400,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @param Campaign $campaign
-     * @return string
      */
     public function customClass(Campaign $campaign): string
     {
@@ -429,7 +414,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return string
      */
     public function customSize(): string
     {
@@ -441,7 +425,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return bool
      */
     protected function filterUnmentioned(): bool
     {
@@ -449,7 +432,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return bool
      */
     protected function filterMentionless(): bool
     {

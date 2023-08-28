@@ -76,7 +76,6 @@ class CampaignPermission extends Model
 
     /**
      * Optional user
-     * @return mixed
      */
     public function user()
     {
@@ -93,9 +92,6 @@ class CampaignPermission extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param array $roleIds
-     * @return Builder
      */
     public function scopeRoleIDs(Builder $query, array $roleIds): Builder
     {
@@ -103,9 +99,6 @@ class CampaignPermission extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param int $action
-     * @return Builder
      */
     public function scopeAction(Builder $query, int $action): Builder
     {
@@ -114,21 +107,19 @@ class CampaignPermission extends Model
 
     /**
      * Get the entity id
-     * @return mixed
      */
     public function entityId()
     {
         $segments = $this->segments();
-        return $segments[count($segments)-1];
+        return $segments[count($segments) - 1];
     }
 
     /**
-     * @return mixed
      */
     public function action()
     {
         $segments = $this->segments();
-        $segment = count($segments)-(empty($this->entity_id) ? 1 : 2);
+        $segment = count($segments) - (empty($this->entity_id) ? 1 : 2);
         if (!isset($segments[$segment])) {
             return null;
         }
@@ -142,7 +133,7 @@ class CampaignPermission extends Model
     public function targetsEntity()
     {
         $segments = $this->segments();
-        return is_numeric($segments[count($segments)-1]);
+        return is_numeric($segments[count($segments) - 1]);
     }
 
     public function type()
@@ -169,9 +160,6 @@ class CampaignPermission extends Model
 
     /**
      * Copy an entity inventory to another target
-     * @param Entity $target
-     * @param int $from
-     * @param int $to
      */
     public function copyTo(Entity $target, int $from, int $to)
     {
@@ -184,8 +172,6 @@ class CampaignPermission extends Model
 
     /**
      * Determine if the permission's action is the wanted one
-     * @param int $action
-     * @return bool
      */
     public function isAction(int $action): bool
     {
@@ -194,7 +180,6 @@ class CampaignPermission extends Model
 
     /**
      * Get the "key" of the permission, used for caching and lookup in the permission engines
-     * @return string
      */
     public function key(): string
     {
@@ -217,7 +202,6 @@ class CampaignPermission extends Model
 
     /**
      * Check if the key is invalid (old corrupt data)
-     * @return bool
      */
     public function invalidKey(): bool
     {

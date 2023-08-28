@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 class ConversationMessageController extends Controller
 {
     /**
-     * @param Conversation $conversation
      * @return ConversationResource
      */
     public function index(Campaign $campaign, Conversation $conversation)
@@ -24,8 +23,6 @@ class ConversationMessageController extends Controller
     }
 
     /**
-     * @param StoreConversationMessage $request
-     * @param Conversation $conversation
      * @return ConversationResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -60,8 +57,6 @@ class ConversationMessageController extends Controller
     }
 
     /**
-     * @param Conversation $conversation
-     * @param ConversationMessage $conversationMessage
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

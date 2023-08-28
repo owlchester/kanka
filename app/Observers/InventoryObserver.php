@@ -12,7 +12,6 @@ class InventoryObserver
     use PurifiableTrait;
 
     /**
-     * @param Inventory $inventory
      */
     public function creating(Inventory $inventory)
     {
@@ -20,7 +19,6 @@ class InventoryObserver
     }
 
     /**
-     * @param Inventory $inventory
      */
     public function saving(Inventory $inventory)
     {
@@ -33,7 +31,6 @@ class InventoryObserver
     }
 
     /**
-     * @param Inventory $inventory
      */
     public function saved(Inventory $inventory)
     {
@@ -43,7 +40,6 @@ class InventoryObserver
     }
 
     /**
-     * @param Inventory $inventory
      */
     public function deleted(Inventory $inventory)
     {

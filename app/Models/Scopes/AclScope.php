@@ -25,7 +25,6 @@ class AclScope implements Scope
     /**
      * Extend the query builder with the needed functions.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
      * @return void
      */
     public function extend(Builder $builder)
@@ -38,7 +37,6 @@ class AclScope implements Scope
     /**
      * Add the with-invisible extension to the builder.
      *
-     * @param  Builder $builder
      * @return void
      */
     protected function addWithInvisible(Builder $builder)
@@ -55,8 +53,6 @@ class AclScope implements Scope
 
     /**
      * Our main logic for this scope: filtering on elements the user has access to.
-     * @param Builder $query
-     * @param Model $model
      * @return Builder|void
      */
     public function apply(Builder $query, Model $model)
@@ -98,9 +94,6 @@ class AclScope implements Scope
 
     /**
      * Permission scope on an Entity model
-     * @param Builder $query
-     * @param Model $model
-     * @return Builder
      */
     protected function applyToEntity(Builder $query, Model $model): Builder
     {
@@ -120,9 +113,6 @@ class AclScope implements Scope
 
     /**
      * Permission scope on a Misc model
-     * @param Builder $query
-     * @param MiscModel $model
-     * @return Builder
      */
     protected function applyToMisc(Builder $query, MiscModel $model): Builder
     {
@@ -175,8 +165,6 @@ class AclScope implements Scope
 
     /**
      * Map the misc model to the entity type. Should move this somewhere else?
-     * @param MiscModel $model
-     * @return int
      */
     protected function entityType(MiscModel $model): int
     {
@@ -185,8 +173,6 @@ class AclScope implements Scope
 
     /**
      * Apply the ACL scope to posts.
-     * @param Builder $query
-     * @param Model $model
      * @return Builder
      */
     protected function applyToPost(Builder $query, Model $model)

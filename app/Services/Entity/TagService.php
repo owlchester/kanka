@@ -37,9 +37,6 @@ class TagService
     }
 
     /**
-     * @param mixed $name
-     * @param int $campaignID
-     * @return Tag
      */
     public function create(mixed $name, int $campaignID): Tag
     {

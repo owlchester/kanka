@@ -75,8 +75,6 @@ class MigrateEntityAssets extends Command
 
     /**
      * @param EntityFile|EntityLink $model
-     * @param int $type
-     * @return EntityAsset
      */
     protected function asset($model, int $type): EntityAsset
     {

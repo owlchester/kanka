@@ -34,7 +34,6 @@ class TroubleshootingController extends Controller
     }
 
     /**
-     * @param SaveUserHelp $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function saveInvite(SaveUserHelp $request)

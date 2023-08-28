@@ -59,8 +59,6 @@ abstract class DatagridSorter
 
     /**
      * Build the list of filters
-     * @param Campaign|null $campaign
-     * @return array
      */
     public function options(Campaign $campaign = null): array
     {
@@ -75,9 +73,6 @@ abstract class DatagridSorter
     }
 
     /**
-     * @param string $key
-     * @param bool $asc
-     * @return bool
      */
     public function isSelected(string $key, bool $asc = true): bool
     {
@@ -87,8 +82,6 @@ abstract class DatagridSorter
 
     /**
      * Get the direction part of the key
-     * @param bool $asc
-     * @return string
      */
     public function direction(bool $asc = true): string
     {
@@ -96,7 +89,6 @@ abstract class DatagridSorter
     }
 
     /**
-     * @return string
      */
     public function fieldname(): string
     {
@@ -104,8 +96,6 @@ abstract class DatagridSorter
     }
 
     /**
-     * @param array $data
-     * @return DatagridSorter
      */
     public function request(array $data): self
     {
@@ -136,7 +126,6 @@ abstract class DatagridSorter
     }
 
     /**
-     * @return string
      */
     public function order(): string
     {
@@ -144,7 +133,6 @@ abstract class DatagridSorter
     }
 
     /**
-     * @return string
      */
     protected function sessionkey(): string
     {
@@ -156,8 +144,6 @@ abstract class DatagridSorter
     }
 
     /**
-     * @param string $selected
-     * @return DatagridSorter
      */
     protected function parse(string $selected): self
     {
@@ -183,8 +169,6 @@ abstract class DatagridSorter
     }
 
     /**
-     * @param string $key
-     * @param Campaign|null $campaign
      */
     protected function validOption(string $key, Campaign $campaign = null)
     {

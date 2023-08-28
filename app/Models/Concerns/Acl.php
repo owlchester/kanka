@@ -17,9 +17,6 @@ trait Acl
 
     /**
      * Global privacy scope
-     * @param Builder $query
-     * @param bool $private
-     * @return Builder
      */
     public function scopePrivate(Builder $query, bool $private = true): Builder
     {

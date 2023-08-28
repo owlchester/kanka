@@ -48,7 +48,6 @@ class EntityAbility extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -56,7 +55,6 @@ class EntityAbility extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function ability(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -73,7 +71,6 @@ class EntityAbility extends Model
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeDefaultOrder(Builder $query)
@@ -87,7 +84,6 @@ class EntityAbility extends Model
 
     /**
      * Copy an entity ability to another target
-     * @param Entity $target
      */
     public function copyTo(Entity $target)
     {

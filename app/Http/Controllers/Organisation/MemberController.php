@@ -21,7 +21,6 @@ class MemberController extends Controller
     use HasSubview;
 
     /**
-     * @var string
      */
     protected string $view = 'organisations.members';
 

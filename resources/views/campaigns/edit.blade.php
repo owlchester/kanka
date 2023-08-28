@@ -5,6 +5,7 @@
         __('crud.edit')
     ],
     'canonical' => true,
+    'sidebar' => 'campaign',
 ])
 
 @section('fullpage-form')

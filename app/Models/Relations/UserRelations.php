@@ -61,7 +61,6 @@ trait UserRelations
     }
 
     /**
-     * @return mixed
      */
     public function following()
     {
@@ -142,7 +141,6 @@ trait UserRelations
     }
 
     /**
-     * @return mixed
      */
     public function entities()
     {

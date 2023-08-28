@@ -11,7 +11,6 @@ use App\Models\Relation;
 class EntityRelationApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -23,9 +22,6 @@ class EntityRelationApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param Relation $relation
      * @return Resource
      */
     public function show(Campaign $campaign, Entity $entity, Relation $relation)
@@ -36,8 +32,6 @@ class EntityRelationApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -53,10 +47,6 @@ class EntityRelationApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param Relation $relation
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Entity $entity, Relation $relation)
@@ -70,9 +60,6 @@ class EntityRelationApiController extends ApiController
 
     /**
      * @param Request $request
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param Relation $relation
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

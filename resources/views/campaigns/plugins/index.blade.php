@@ -1,8 +1,8 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Plugin $plugin
  */?>
-<div class="flex gap-2 items-center mb-5">
-    <h3 class="m-0 inline-block grow">
+<div class="flex gap-2 items-center">
+    <h3 class="inline-block grow">
         {{ __('campaigns.show.tabs.plugins') }}
     </h3>
     <a href="{{ config('marketplace.url') }}" target="_blank" class="btn2 btn-primary">

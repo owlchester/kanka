@@ -17,8 +17,6 @@ class AdvancerApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Calendar $calendar
      * @return \Illuminate\Http\JsonResponse
      */
     public function advance(Campaign $campaign, Calendar $calendar)
@@ -31,8 +29,6 @@ class AdvancerApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Calendar $calendar
      * @return \Illuminate\Http\JsonResponse
      */
     public function retreat(Campaign $campaign, Calendar $calendar)

@@ -12,24 +12,23 @@ namespace App\Datagrids;
  */
 abstract class Datagrid
 {
-    /** @var bool The entities can have permissions applied to them */
+    /** The entities can have permissions applied to them */
     public bool $bulkPermissions = true;
 
-    /** @var bool The entities can be copied to other campaigns */
+    /** The entities can be copied to other campaigns */
     public bool $bulkCopyToCampaign = true;
 
-    /** @var bool The entities can be transformed */
+    /** The entities can be transformed */
     public bool $bulkTransform = true;
 
-    /** @var bool The entities can be printed */
+    /** The entities can be printed */
     public bool $bulkPrint = true;
 
-    /** @var bool The entities can have templates applied to them */
+    /** The entities can have templates applied to them */
     public bool $bulkTemplate = true;
 
     /**
      * Determine if the datagrid has bulk permissions.
-     * @return bool
      */
     public function hasBulkPermissions(): bool
     {
@@ -38,7 +37,6 @@ abstract class Datagrid
 
     /**
      * Determine if the datagrid has bulk copy to campaign.
-     * @return bool
      */
     public function hasBulkCopy(): bool
     {
@@ -47,7 +45,6 @@ abstract class Datagrid
 
     /**
      * Determine if the datagrid has bulk transforming entities.
-     * @return bool
      */
     public function hasBulkTransform(): bool
     {
@@ -56,7 +53,6 @@ abstract class Datagrid
 
     /**
      * Determine if the datagrid has bulk transforming entities.
-     * @return bool
      */
     public function hasBulkTemplate(): bool
     {
@@ -65,7 +61,6 @@ abstract class Datagrid
 
     /**
      * Determine if the datagrid has bulk entity printing.
-     * @return bool
      */
     public function hasBulkPrint(): bool
     {

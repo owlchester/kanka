@@ -12,8 +12,6 @@ use Illuminate\Database\Eloquent\Builder;
 trait CalendarWeatherScopes
 {
     /**
-     * @param Builder $builder
-     * @param int $year
      * @return Builder
      */
     public function scopeYear(Builder $builder, int $year)
@@ -22,8 +20,6 @@ trait CalendarWeatherScopes
     }
 
     /**
-     * @param Builder $builder
-     * @param int $month
      * @return Builder
      */
     public function scopeMonth(Builder $builder, int $month)
@@ -32,11 +28,6 @@ trait CalendarWeatherScopes
     }
 
     /**
-     * @param Builder $builder
-     * @param int $year
-     * @param int $month
-     * @param int $day
-     * @return mixed
      */
     public function scopeDated(Builder $builder, int $calendarId, int $year, int $month, int $day)
     {

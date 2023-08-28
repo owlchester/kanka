@@ -7,8 +7,8 @@
 ?>
 @if (auth()->user()->can('invite', $campaign))
 
-    <div class="flex gap-2 items-center mb-5">
-        <h3 class="m-0 inline-block grow">
+    <div class="flex gap-2 items-center">
+        <h3 class="inline-block grow">
             {{ __('campaigns.members.invite.title') }}
         </h3>
         <button class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="invite-help">
@@ -30,9 +30,9 @@
                     <thead>
                         <tr>
                             <th>{{ __('campaigns.invites.fields.token') }}</th>
-                            <th class="hidden md:inline">{{ __('campaigns.invites.fields.usage') }}</th>
+                            <th class="hidden md:table-cell">{{ __('campaigns.invites.fields.usage') }}</th>
                             <th>{{ __('campaigns.invites.fields.role') }}</th>
-                            <th class="hidden md:inline">{{ __('campaigns.invites.fields.created') }}</th>
+                            <th class="hidden md:table-cell">{{ __('campaigns.invites.fields.created') }}</th>
                             <th class="text-right"></th>
                         </tr>
                     </thead>

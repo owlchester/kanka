@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 class CampaignInviteObserver
 {
     /**
-     * @param CampaignInvite $campaignInvite
      */
     public function creating(CampaignInvite $campaignInvite)
     {

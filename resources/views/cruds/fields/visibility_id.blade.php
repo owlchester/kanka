@@ -36,12 +36,11 @@ if (isset($model) && ((in_array($model->visibility_id, [Visibility::Admin, Visib
 }
 $visibilityUniqueID = uniqid('visibility_');
 ?>
-<div class="field-visibility">
-    <label for="{{ $visibilityUniqueID }}">
-        {{ __('crud.fields.visibility') }}
-        <a href="//docs.kanka.io/en/latest/advanced/visibility.html" target="_blank">
-            <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-title="{{ __('visibilities.tooltip') }}"></i>
-        </a>
-    </label>
+<x-forms.field
+    field="visibility"
+    label="{{ __('crud.fields.visibility') }}"
+    :tooltip="true"
+    :helper="__('visibilities.tooltip')"
+    link="//docs.kanka.io/en/latest/advanced/visibility.html">
     {{ Form::select('visibility_id', $options, empty($model) ? (isset($bulk) ? null : $campaign->defaultVisibilityID()) : ($model->visibility_id instanceof Visibility ? $model->visibility_id->value : $model->visibility_id), ['class' => 'form-control', 'id' => $visibilityUniqueID]) }}
-</div>
+</x-forms.field>

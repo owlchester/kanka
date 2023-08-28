@@ -39,6 +39,19 @@ class ModuleService
         return $fallback;
     }
 
+    public function duoIcon(string $entityType): string
+    {
+        $id = $this->id($entityType);
+        if ($this->campaign->hasModuleIcon($id)) {
+            return $this->campaign->moduleIcon($id);
+        }
+        $fallback = config('entities.icons.' . $entityType);
+        if (config('fontawesome.kit')) {
+            return $fallback;
+        }
+        return Str::replace('duotone', 'solid', $fallback);
+    }
+
     protected function id(mixed $key): int
     {
         // Ints are easy and what we hope for

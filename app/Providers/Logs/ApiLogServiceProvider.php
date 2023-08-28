@@ -25,5 +25,4 @@ class ApiLogServiceProvider extends ServiceProvider
 
         $this->app->alias(ApiLogService::class, 'api_log');
     }
-
 }

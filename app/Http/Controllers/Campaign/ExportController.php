@@ -28,7 +28,6 @@ class ExportController extends Controller
 
     /**
      * Dispatch the campaign export jobs and have the user wait for a bit
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

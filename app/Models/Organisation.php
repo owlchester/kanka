@@ -65,7 +65,6 @@ class Organisation extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'organisation.name',
@@ -94,8 +93,6 @@ class Organisation extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -116,10 +113,6 @@ class Organisation extends MiscModel
 
     /**
      * Filter for organisations with specific member
-     * @param Builder $query
-     * @param string|null $value
-     * @param FilterOption $filter
-     * @return Builder
      */
     public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
     {
@@ -150,7 +143,6 @@ class Organisation extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -261,7 +253,6 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -279,7 +270,6 @@ class Organisation extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -288,7 +278,6 @@ class Organisation extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -297,7 +286,6 @@ class Organisation extends MiscModel
 
     /**
      * Get the value of the is_defunct variable
-     * @return bool
      */
     public function isDefunct(): bool
     {

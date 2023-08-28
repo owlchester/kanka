@@ -46,7 +46,6 @@ class EntityCreatorController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param string $type
      */
     public function form(Request $request, Campaign $campaign, $type)
@@ -204,7 +203,6 @@ class EntityCreatorController extends Controller
 
     /**
      * Build a list of entities the user has permission to create
-     * @return array
      */
     protected function creatableEntities(): array
     {
@@ -231,10 +229,6 @@ class EntityCreatorController extends Controller
 
     /**
      * Validate an entity's request to make sure data doesn't contain erroneous info
-     * @param array $data
-     * @param array $rules
-     * @param array $messages
-     * @param array $customAttributes
      * @return array
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -249,9 +243,6 @@ class EntityCreatorController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param string $type
-     * @param string|null $success
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -322,7 +313,6 @@ class EntityCreatorController extends Controller
 
     /**
      * Ordered entity types alphabetically to the user's local
-     * @return array
      */
     protected function orderedEntityTypes(): array
     {

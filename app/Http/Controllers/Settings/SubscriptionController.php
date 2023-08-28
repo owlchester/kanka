@@ -22,7 +22,6 @@ class SubscriptionController extends Controller
 
     /**
      * SubscriptionController constructor.
-     * @param SubscriptionService $service
      */
     public function __construct(SubscriptionService $service)
     {
@@ -72,7 +71,6 @@ class SubscriptionController extends Controller
     /**
      * Change subscription modal
      *
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
      */
@@ -164,7 +162,6 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * @param UserAltSubscribeStore $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Stripe\Exception\ApiErrorException
      */
@@ -181,7 +178,6 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Stripe\Exception\ApiErrorException
      */
@@ -200,8 +196,6 @@ class SubscriptionController extends Controller
 
     /**
      * Stripe secure 3d callback page handler
-     * @param Request $request
-     * @return mixed
      */
     public function callback(Request $request)
     {

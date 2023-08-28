@@ -59,10 +59,13 @@
 
                             <!-- Delete Button -->
                             <td class="text-right" style="vertical-align: middle;">
-                                <a class="btn2 btn-error btn-outline btn-xs" @click="destroy(client)">
+                                <a class="btn2 btn-error btn-outline btn-xs" @click="deleteConfirm(client)" v-if="!this.confirmClient || this.confirmClient.id != client.id">
                                     Delete
                                 </a>
-                            </td>
+                                <a class="btn2 btn-error btn-xs" @click="deleteConfirm(client)" v-else>
+                                    Confirm delete
+                                </a>
+                            </td>   
                         </tr>
                     </tbody>
                 </table>
@@ -206,6 +209,7 @@
         data() {
             return {
                 clients: [],
+                confirmClient: null,
 
                 createForm: {
                     errors: [],
@@ -327,6 +331,7 @@
                 axios.delete('/oauth/clients/' + client.id)
                         .then(response => {
                             this.getClients();
+                            window.showToast('OAuth client deleted succesfully.');
                         });
             },
 
@@ -345,6 +350,12 @@
             closeModal(ref) {
                 this.$refs[ref].close();
             },
+            deleteConfirm(client) {
+                if(this.confirmClient && client.id === this.confirmClient.id) {
+                    return this.destroy(client);
+                }
+                this.confirmClient = client;
+            }
         }
     }
 </script>

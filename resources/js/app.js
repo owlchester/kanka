@@ -50,6 +50,7 @@ $(document).ready(function() {
         deleteConfirm();
         initFeedbackButtons();
         window.initDialogs();
+        window.initTooltips();
     });
 });
 

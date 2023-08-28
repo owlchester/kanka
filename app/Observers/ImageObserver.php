@@ -11,7 +11,6 @@ class ImageObserver
     use PurifiableTrait;
 
     /**
-     * @param Image $image
      */
     public function saving(Image $image)
     {
@@ -30,7 +29,6 @@ class ImageObserver
         }
     }
     /**
-     * @param Image $image
      */
     public function deleted(Image $image)
     {
@@ -41,7 +39,6 @@ class ImageObserver
     }
 
     /**
-     * @param Image $image
      */
     public function saved(Image $image)
     {

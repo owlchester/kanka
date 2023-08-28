@@ -64,7 +64,6 @@ class MarkerController extends Controller
     }
 
     /**
-     * @param Map $map
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -90,9 +89,6 @@ class MarkerController extends Controller
     }
 
     /**
-     * @param Map $map
-     * @param StoreMapMarker $request
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Campaign $campaign, Map $map, StoreMapMarker $request)
@@ -128,8 +124,6 @@ class MarkerController extends Controller
     }
 
     /**
-     * @param Map $map
-     * @param MapMarker $mapMarker
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -152,10 +146,6 @@ class MarkerController extends Controller
     }
 
     /**
-     * @param StoreMapMarker $request
-     * @param Map $map
-     * @param MapMarker $mapMarker
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreMapMarker $request, Campaign $campaign, Map $map, MapMarker $mapMarker)
@@ -191,8 +181,6 @@ class MarkerController extends Controller
     }
 
     /**
-     * @param Map $map
-     * @param MapMarker $mapMarker
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

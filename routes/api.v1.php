@@ -101,4 +101,6 @@ Route::get('campaigns/{campaign}/recovery', [\App\Http\Controllers\Api\v1\Entity
 Route::post('campaigns/{campaign}/recover', [\App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'recover']);
 
 Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
-Route::get('version', function () { return config('app.version'); });
+Route::get('version', function () {
+    return config('app.version');
+});

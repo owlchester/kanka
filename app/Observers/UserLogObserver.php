@@ -7,7 +7,6 @@ use App\Models\UserLog;
 class UserLogObserver
 {
     /**
-     * @param UserLog $userLog
      */
     public function creating(UserLog $userLog)
     {

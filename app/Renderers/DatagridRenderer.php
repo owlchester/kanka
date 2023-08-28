@@ -2,6 +2,7 @@
 
 namespace App\Renderers;
 
+use App\Facades\Avatar;
 use App\Facades\Module;
 use App\Facades\UserCache;
 use App\Models\Entity;
@@ -22,6 +23,7 @@ class DatagridRenderer
 {
     use CampaignAware;
 
+    protected string $hidden = ' hidden lg:table-cell';
     protected array $columns = [];
 
     protected LengthAwarePaginator|Collection|array $data = [];
@@ -33,7 +35,6 @@ class DatagridRenderer
     protected FilterService|null $filterService = null;
 
     /**
-     * @var null|string
      */
     protected null|string $nestedFilter = null;
 
@@ -71,7 +72,6 @@ class DatagridRenderer
     }
 
     /**
-     * @param FilterService $filterService
      * @param array $columns
      * @param array $data
      * @param array $options
@@ -113,7 +113,7 @@ class DatagridRenderer
         $html = '';
         // Checkbox for delete
         if (auth()->check()) {
-            $html .= '<th>' . Form::checkbox('all', 1, false, ['id' => 'datagrid-select-all']) . '</th>';
+            $html .= '<th class="col-checkbox">' . Form::checkbox('all', 1, false, ['id' => 'datagrid-select-all']) . '</th>';
         }
 
         foreach ($this->columns as $column) {
@@ -121,7 +121,7 @@ class DatagridRenderer
         }
         // Admin column
 
-        $html .= '<th class="text-right">' . $this->renderFilters() . '</th>';
+        $html .= '<th class="text-right col-actions">' . $this->renderFilters() . '</th>';
         return $html;
     }
 
@@ -133,9 +133,9 @@ class DatagridRenderer
         // Easy mode: A string. We want to return it directly since it's so easy.
         if (is_string($column)) {
             if ($column == 'name') {
-                return "<th>" . $this->route($column) . "</th>\n";
+                return "<th class='dg-name'>" . $this->route($column) . "</th>\n";
             } else {
-                return "<th class='hidden-xs hidden-sm'>" . $this->route($column) . "</th>\n";
+                return "<th class='dg-" . $column . " " . $this->hidden . "'>" . $this->route($column) . "</th>\n";
             }
         }
 
@@ -152,25 +152,25 @@ class DatagridRenderer
             $type = $column['type'];
             $class = $column['type'];
             if ($type == 'avatar') {
-                $class = (!empty($column['parent']) ? 'hidden-xs hidden-sm' : $class) . ' w-14';
+                $class = (!empty($column['parent']) ? $this->hidden : $class) . ' w-14';
                 //$html = null;
             } elseif ($type == 'location') {
-                $class .= '  hidden-xs hidden-sm';
+                $class .= ' ' . $this->hidden;
                 $label = Arr::get($column, 'label', Module::singular(config('entities.ids.location'), __('entities.location')));
                 $html = $this->route('location.name', $label);
             } elseif ($type == 'organisation') {
-                $class .= '  hidden-xs hidden-sm';
+                $class .= ' ' . $this->hidden;
                 $label = Arr::get($column, 'label', Module::singular(config('entities.ids.organisation'), __('entities.organisation')));
                 $html = $this->route('organisation.name', $label);
             } elseif ($type == 'character') {
-                $class .= '  hidden-xs hidden-sm';
+                $class .= ' ' . $this->hidden;
                 $label = Arr::get($column, 'label', Module::singular(config('entities.ids.character'), __('entities.character')));
                 $html = $this->route(
                     'character.name',
                     $label
                 );
             } elseif ($type == 'entity') {
-                $class .= '  hidden-xs hidden-sm';
+                $class .= ' ' . $this->hidden;
                 $html = $this->route(
                     'entity.name',
                     !empty($column['label']) ? $column['label'] : __('crud.fields.entity')
@@ -186,7 +186,7 @@ class DatagridRenderer
                 );
                 $class = 'w-14 text-center';
             } elseif ($type == 'calendar_date') {
-                $class .= ' hidden-xs hidden-sm';
+                $class .= ' ' . $this->hidden;
                 $html = $this->route('calendar_date', __('crud.fields.calendar_date'));
             } else {
                 // No idea what is expected
@@ -194,7 +194,7 @@ class DatagridRenderer
             }
         } else {
             // Now the 'fun' starts
-            $class .= Arr::get($column, 'class', '  hidden-xs hidden-sm');
+            $class .= Arr::get($column, 'class', ' ' . $this->hidden);
             if (!empty($column['label'])) {
                 $label = $column['label'];
 
@@ -205,18 +205,18 @@ class DatagridRenderer
                     // So we have a label and no renderer, so we can order by. We just need a field
                     $html = $this->route($column['field'], $label);
                 }
+                $type = Str::slug($label);
             } else {
                 // No label? Sure, we can do this
                 $html = null;
+                $type = 'unknown';
             }
         }
 
-        return "<th" . (!empty($class) ? " class=\"{$class}\"" : null) . ">{$html}</th>\n";
+        return "<th class='dg-" . $type . " " . ($class ?? null) . "'>{$html}</th>\n";
     }
 
     /**
-     * @param string|null $label
-     * @param string|null $field
      * @return string
      */
     private function route(string $field = null, string $label = null)
@@ -278,15 +278,13 @@ class DatagridRenderer
 
         // Render an empty row
         if ($rows == 0) {
-            $html .= '<tr><td colspan="' . (count($this->columns)+2) . '"><i>'
+            $html .= '<tr><td colspan="' . (count($this->columns) + 2) . '"><i>'
                 . __('crud.datagrid.empty') . '</i></td>';
         }
         return $html;
     }
 
     /**
-     * @param MiscModel|Relation $model
-     * @return string
      */
     private function renderRow(MiscModel|Relation $model): string
     {
@@ -321,7 +319,6 @@ class DatagridRenderer
     }
 
     /**
-     * @param string|array $column
      * @param MiscModel|Journal|Location $model
      * @return string|null
      */
@@ -343,7 +340,7 @@ class DatagridRenderer
                 } else {
                     $content = e($model->{$column});
                 }
-                $class = 'hidden-xs hidden-sm';
+                $class = $this->hidden;
             }
             return '<td class="truncated max-w-fit' . ($class ?? null) . '">' . $content . '</td>';
         }
@@ -359,9 +356,12 @@ class DatagridRenderer
             if ($type == 'avatar') {
                 $who = !empty($column['parent']) ? $model->{$column['parent']} : $model;
                 if ($who instanceof Entity) {
+                    Avatar::entity($who)->child($who->child);
                     $who = $who->child;
+                } else {
+                    Avatar::entity($who->entity)->child($who);
                 }
-                $class = !empty($column['parent']) ? 'hidden-xs hidden-sm' : $class;
+                $class = !empty($column['parent']) ? $this->hidden : $class;
                 if (!empty($who)) {
                     $whoRoute = !empty($column['parent_route'])
                         ? (is_string($column['parent_route'])
@@ -369,11 +369,11 @@ class DatagridRenderer
                             : $column['parent_route']($model))
                         : $this->getOption('baseRoute');
                     $route = $who->getLink();
-                    $content = '<a class="entity-image cover-background" style="background-image: url(\'' . $who->thumbnail() .
+                    $content = '<a class="entity-image cover-background" style="background-image: url(\'' . Avatar::size(40)->fallback()->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
             } elseif ($type == 'location') {
-                $class = 'hidden-xs hidden-sm';
+                $class = $this->hidden;
                 if (method_exists($model, 'location')) {
                     // @phpstan-ignore-next-line
                     $content = $model->location?->tooltipedLink();
@@ -382,19 +382,19 @@ class DatagridRenderer
                     $content = $model->parentLocation?->tooltipedLink();
                 }
             } elseif ($type == 'character') {
-                $class = 'hidden-xs hidden-sm';
+                $class = $this->hidden;
                 if (method_exists($model, 'character')) {
                     // @phpstan-ignore-next-line
                     $content = $model->character?->tooltipedLink();
                 }
             } elseif ($type == 'organisation') {
-                $class = 'hidden-xs hidden-sm';
+                $class = $this->hidden;
                 if (method_exists($model, 'organisation')) {
                     // @phpstan-ignore-next-line
                     $content = $model->organisation?->tooltipedLink();
                 }
             } elseif ($type == 'entity') {
-                $class = 'hidden-xs hidden-sm';
+                $class = $this->hidden;
                 if ($model->entity) {
                     $content = $model->entity->tooltipedLink();
                 }
@@ -408,14 +408,14 @@ class DatagridRenderer
                     null;
                 $class = ' text-center';
             } elseif ($type == 'calendar_date') {
-                $class = 'hidden-xs hidden-sm';
+                $class = $this->hidden;
                 /** @var Journal $model */
                 if ($model->entity->calendarDate) {
                     $reminder = $model->entity->calendarDate;
                     $content = link_to_route(
                         'entities.show',
                         $reminder->readableDate(),
-                        [$reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
+                        [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
                     );
                 }
             } else {
@@ -425,11 +425,11 @@ class DatagridRenderer
         } elseif (!empty($column['render'])) {
             // If it's not a type, do we have a renderer?
             $content = $column['render']($model, $column);
-            $class = Arr::get($column, 'class', 'hidden-xs hidden-sm');
+            $class = Arr::get($column, 'class', $this->hidden);
         } elseif (!empty($column['field'])) {
             // A field was given? This could be when a field needs another label than anticipated.
             $content = $model->{$column['field']};
-            $class = 'hidden-xs hidden-sm';
+            $class = $this->hidden;
         } else {
             // I have no idea.
             $content = 'ERR_UNKNOWN';
@@ -451,7 +451,6 @@ class DatagridRenderer
     }
 
     /**
-     * @param string $field
      * @return string
      */
     private function trans(string $field = '')
@@ -469,8 +468,6 @@ class DatagridRenderer
     }
 
     /**
-     * @param MiscModel $model
-     * @return string
      */
     private function renderEntityActionRow(MiscModel $model): string
     {
@@ -508,7 +505,6 @@ class DatagridRenderer
 
     /**
      * Determin if a column is a boolean column
-     * @param string $column
      * @return bool
      */
     private function isBoolean(string $column)
@@ -527,7 +523,6 @@ class DatagridRenderer
 
     /**
      * Tell the rendered that this is a nested view
-     * @param string $key
      * @return $this
      */
     public function nested(string $key = 'parent_id'): self
@@ -535,5 +530,4 @@ class DatagridRenderer
         $this->nestedFilter = $key;
         return $this;
     }
-
 }

@@ -24,7 +24,6 @@ class InviteService
 
     /**
      * InviteService constructor.
-     * @param FollowService $campaignFollowService
      */
     public function __construct(FollowService $campaignFollowService)
     {
@@ -33,7 +32,6 @@ class InviteService
 
     /**
      * @param string $token
-     * @return mixed
      * @throws RequireLoginException
      * @throws \Exception
      */
@@ -69,7 +67,6 @@ class InviteService
     }
 
     /**
-     * @param string|null $token
      * @return bool|Campaign
      */
     public function join(string $token = null)

@@ -13,7 +13,6 @@ class CampaignStyleObserver
     use PurifiableTrait;
 
     /**
-     * @param CampaignStyle $campaignStyle
      */
     public function saving(CampaignStyle $campaignStyle)
     {
@@ -22,7 +21,6 @@ class CampaignStyleObserver
     }
 
     /**
-     * @param CampaignStyle $campaignStyle
      */
     public function creating(CampaignStyle $campaignStyle)
     {

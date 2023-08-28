@@ -56,7 +56,6 @@ class PermissionService
 
     /**
      * Set the desired action
-     * @param int $action
      * @return $this
      */
     public function action(int $action): self
@@ -84,7 +83,6 @@ class PermissionService
 
     /**
      * List of post ids the user has access to
-     * @return array
      */
     public function allowedPosts(): array
     {
@@ -94,7 +92,6 @@ class PermissionService
 
     /**
      * List of post ids the user doesn't have access to
-     * @return array
      */
     public function deniedPosts(): array
     {
@@ -150,7 +147,6 @@ class PermissionService
 
     /**
      * Grant a permission ad-hoc
-     * @param Entity $entity
      * @return $this
      */
     public function grant(Entity $entity): self
@@ -163,7 +159,6 @@ class PermissionService
 
     /**
      * Was a permission granted?
-     * @return bool
      */
     public function granted(): bool
     {
@@ -283,7 +278,6 @@ class PermissionService
 
     /**
      * Load the permissions of a role into the service
-     * @param CampaignRole $role
      */
     protected function parseRole(CampaignRole $role): void
     {
@@ -295,7 +289,6 @@ class PermissionService
     }
     /**
      * Load the permissions of several roles into the service
-     * @param array $roleIDs
      */
     protected function parseRoles(array $roleIDs): void
     {
@@ -310,7 +303,6 @@ class PermissionService
 
     /**
      * Parse a role permission
-     * @param CampaignPermission $permission
      */
     protected function parseRolePermission(CampaignPermission $permission)
     {
@@ -362,7 +354,6 @@ class PermissionService
 
     /**
      * Parse a permission
-     * @param CampaignPermission $permission
      */
     protected function parseUserPermission(CampaignPermission $permission)
     {

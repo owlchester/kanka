@@ -10,7 +10,6 @@ use App\Http\Resources\DiceRollResource as Resource;
 class DiceRollApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -26,8 +25,6 @@ class DiceRollApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param DiceRoll $diceRoll
      * @return Resource
      */
     public function show(Campaign $campaign, DiceRoll $diceRoll)
@@ -38,8 +35,6 @@ class DiceRollApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -56,9 +51,6 @@ class DiceRollApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param DiceRoll $diceRoll
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, DiceRoll $diceRoll)
@@ -72,8 +64,6 @@ class DiceRollApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param DiceRoll $diceRoll
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

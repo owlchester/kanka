@@ -10,7 +10,6 @@ use App\Models\CampaignRoleUser;
 class CampaignRoleUserObserver
 {
     /**
-     * @param CampaignRoleUser $campaignRoleUser
      */
     public function created(CampaignRoleUser $campaignRoleUser)
     {
@@ -19,7 +18,6 @@ class CampaignRoleUserObserver
     }
 
     /**
-     * @param CampaignRoleUser $campaignRoleUser
      */
     public function deleted(CampaignRoleUser $campaignRoleUser)
     {

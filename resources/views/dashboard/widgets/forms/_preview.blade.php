@@ -28,10 +28,11 @@
                     2 => __('crud.tabs.attributes'),
                 ];
                 @endphp
-                <div class="field-display">
-                    <label>{{ __('dashboard.widgets.preview.fields.display') }}</label>
+                <x-forms.field
+                    field="display"
+                    :label="__('dashboard.widgets.preview.fields.display')">
                     {!! Form::select('config[full]', $displayOptions, null, ['class' => 'form-control']) !!}
-                </div>
+                </x-forms.field>
 
                 @include('dashboard.widgets.forms._name')
 

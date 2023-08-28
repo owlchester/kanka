@@ -130,7 +130,6 @@ class MapMarker extends Model
 
     /**
      * Get the marker's size, and make it 20 times bigger for a "pixel" size equivalent
-     * @return int
      */
     public function size(): int
     {
@@ -139,7 +138,6 @@ class MapMarker extends Model
 
     /**
      * Determine if the marker is of the label type
-     * @return bool
      */
     public function isLabel(): bool
     {
@@ -148,7 +146,6 @@ class MapMarker extends Model
 
     /**
      * Determine if the marker is of the circle type
-     * @return bool
      */
     public function isCircle(): bool
     {
@@ -157,7 +154,6 @@ class MapMarker extends Model
 
     /**
      * Determine if the marker is of the polygon type and has a custom shape
-     * @return bool
      */
     public function isPolygon(): bool
     {
@@ -166,7 +162,6 @@ class MapMarker extends Model
 
     /**
      * Determine the type of the marker
-     * @return string
      */
     public function typeLabel(): string
     {
@@ -182,7 +177,6 @@ class MapMarker extends Model
 
     /**
      * Determine the icon of the marker for the datagrid.
-     * @return string
      */
     public function datagridMarkerIcon(): string
     {
@@ -212,7 +206,6 @@ class MapMarker extends Model
 
     /**
      * Generate the marker for leaflet
-     * @return string
      */
     public function marker(): string
     {
@@ -252,7 +245,6 @@ class MapMarker extends Model
 
     /**
      * Generate a circle marker
-     * @return string
      */
     protected function circleMarker(): string
     {
@@ -269,7 +261,6 @@ class MapMarker extends Model
 
     /**
      * Generate a label marker
-     * @return string
      */
     protected function labelMarker(): string
     {
@@ -359,7 +350,6 @@ class MapMarker extends Model
 
     /**
      * Determine if a marker is draggable
-     * @return bool
      */
     protected function isDraggable(): bool
     {
@@ -371,7 +361,6 @@ class MapMarker extends Model
 
     /**
      * Generate the draggable event for a marker
-     * @return string
      */
     protected function draggable(): string
     {
@@ -419,7 +408,6 @@ class MapMarker extends Model
 
     /**
      * Marker icon as shown in explore and edit mode
-     * @return string
      */
     protected function markerIcon(): string
     {
@@ -469,8 +457,6 @@ class MapMarker extends Model
     }
 
     /**
-     * @param bool $withPx
-     * @return string
      */
     public function pinSize(bool $withPx = true): string
     {
@@ -481,7 +467,6 @@ class MapMarker extends Model
     /**
      * The name of the marker: name or entity
      * @param bool $link = false
-     * @return string
      */
     public function markerTitle(bool $link = false): string
     {
@@ -525,7 +510,6 @@ class MapMarker extends Model
     /**
      * Determine if the marker is being viewed in the "explore" page.
      * Refactor potential: move all of the rendering logic to a separate class.
-     * @return bool
      */
     public function isExploring(): bool
     {
@@ -545,7 +529,6 @@ class MapMarker extends Model
 
     /**
      * Get the opacity of a point. Users input a %, convert it to a float for leaflet
-     * @return float
      */
     protected function floatOpacity(): float
     {
@@ -563,7 +546,6 @@ class MapMarker extends Model
 
     /**
      * Get the polygon's stroke opacity
-     * @return float
      */
     protected function strokeOpacity(): float
     {
@@ -578,7 +560,6 @@ class MapMarker extends Model
 
     /**
      * Resize any custom svg icon to be limited in height and width to the pin
-     * @return string
      */
     protected function resizedCustomIcon(): string
     {
@@ -589,7 +570,6 @@ class MapMarker extends Model
 
     /**
      * Marker background colour
-     * @return string
      */
     public function backgroundColour(): string
     {
@@ -610,7 +590,6 @@ class MapMarker extends Model
 
     /**
      * Check if a marker is visible (pointing to an entity that shouldn't be visible)
-     * @return bool
      */
     public function visible(): bool
     {
@@ -627,7 +606,6 @@ class MapMarker extends Model
 
     /**
      * Calculate the circle radius
-     * @return int
      */
     protected function circleRadius(): int
     {
@@ -640,7 +618,6 @@ class MapMarker extends Model
 
     /**
      * Determine if the marker has a filled out entry
-     * @return bool
      */
     public function hasEntry(): bool
     {
@@ -651,7 +628,6 @@ class MapMarker extends Model
 
     /**
      * For legacy tinymce editor
-     * @return bool
      */
     public function hasEntity(): bool
     {
@@ -660,7 +636,6 @@ class MapMarker extends Model
 
     /**
      * Functions for the datagrid2
-     * @return string
      */
     public function url(string $where): string
     {
@@ -676,8 +651,6 @@ class MapMarker extends Model
     }
     /**
      * Patch an entity from the datagrid2 batch editing
-     * @param array $data
-     * @return bool
      */
     public function patch(array $data): bool
     {
@@ -689,7 +662,6 @@ class MapMarker extends Model
 
     /**
      * Override the get link
-     * @return string
      */
     public function getLink(): string
     {
@@ -699,8 +671,6 @@ class MapMarker extends Model
 
     /**
      * Generate link for the datagrid
-     * @param string|null $displayName
-     * @return string
      */
     public function markerLink(string $displayName = null): string
     {

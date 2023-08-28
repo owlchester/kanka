@@ -15,7 +15,6 @@ use App\Models\Race;
 class ConnectionService
 {
     /**
-     * @var Entity
      */
     protected Entity $entity;
 
@@ -26,7 +25,6 @@ class ConnectionService
     protected string $order = 'name';
 
     /**
-     * @param Entity $entity
      * @return $this
      */
     public function entity(Entity $entity): self

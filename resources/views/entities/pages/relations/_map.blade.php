@@ -21,7 +21,7 @@ $options = [
     'route' => ['entities.relations.index', $campaign, $entity],
     'method' => 'GET',
 ]) !!}
-    <div class="join mb-5 w-full">
+    <div class="join w-full">
         {!! Form::select('option', $options, $option, ['class' => 'form-control join-item']) !!}
         <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn2 btn-primary btn-sm join-item" />
     </div>

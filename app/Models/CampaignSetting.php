@@ -47,7 +47,6 @@ class CampaignSetting extends Model
 
     /**
      * Count the number of activated modules
-     * @return int
      */
     public function countEnabledModules(): int
     {

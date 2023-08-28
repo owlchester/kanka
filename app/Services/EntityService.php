@@ -56,7 +56,6 @@ class EntityService
     }
     /**
      * Get the entities
-     * @return array
      */
     public function entities(): array
     {
@@ -75,8 +74,6 @@ class EntityService
     }
 
     /**
-     * @param string $entity
-     * @return string
      */
     public function singular(string $entity): string
     {
@@ -115,7 +112,6 @@ class EntityService
 
     /**
      * Get an entity object string based on the entity type
-     * @param string $entity
      * @return string|bool
      */
     public function getClass(string $entity)
@@ -125,8 +121,6 @@ class EntityService
 
     /**
      * Get a list of enabled entities of a campaign
-     * @param Campaign $campaign
-     * @param array $except
      * @return array
      */
     public function getEnabledEntities(Campaign $campaign, array $except = [])
@@ -144,9 +138,6 @@ class EntityService
     }
 
     /**
-     * @param bool $singular
-     * @param array $except
-     * @return array
      */
     public function getEnabledEntitiesSorted(bool $singular = true, array $except = []): array
     {
@@ -173,8 +164,6 @@ class EntityService
     }
 
     /**
-     * @param array $except
-     * @return array
      */
     public function getEnabledEntitiesID(array $except = []): array
     {

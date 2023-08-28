@@ -20,9 +20,6 @@ class CampaignPolicy
     /**
      * Determine whether the user can view the campaign.
      *
-     * @param  User  $user
-     * @param  Campaign  $campaign
-     * @return bool
      */
     public function view(User $user, Campaign $campaign): bool
     {
@@ -32,9 +29,6 @@ class CampaignPolicy
     /**
      * Determine whether the user can access the campaign
      *
-     * @param User $user
-     * @param Campaign $campaign
-     * @return bool
      */
     public function access(User $user, Campaign $campaign): bool
     {
@@ -46,7 +40,6 @@ class CampaignPolicy
 
     /**
      * Can't create a campaign while impersonating another user. Should be handled in the controller?
-     * @return bool
      */
     public function create(): bool
     {
@@ -56,9 +49,6 @@ class CampaignPolicy
     /**
      * Determine whether the user can update the campaign.
      *
-     * @param  User  $user
-     * @param  Campaign  $campaign
-     * @return bool
      */
     public function update(User $user, Campaign $campaign): bool
     {
@@ -71,9 +61,6 @@ class CampaignPolicy
     /**
      * Determine whether the user can manage the roles of the campaign.
      *
-     * @param  User  $user
-     * @param  Campaign  $campaign
-     * @return bool
      */
     public function roles(User $user, Campaign $campaign): bool
     {
@@ -86,9 +73,6 @@ class CampaignPolicy
     /**
      * Determine whether the user can delete the campaign.
      *
-     * @param  User  $user
-     * @param  Campaign  $campaign
-     * @return bool
      */
     public function delete(User $user, Campaign $campaign): bool
     {
@@ -99,9 +83,6 @@ class CampaignPolicy
     }
 
     /**
-     * @param User $user
-     * @param Campaign $campaign
-     * @return bool
      */
     public function invite(User $user, Campaign $campaign): bool
     {
@@ -111,9 +92,6 @@ class CampaignPolicy
     }
 
     /**
-     * @param User $user
-     * @param Campaign $campaign
-     * @return bool
      */
     public function setting(User $user, Campaign $campaign): bool
     {
@@ -121,9 +99,6 @@ class CampaignPolicy
     }
 
     /**
-     * @param User $user
-     * @param Campaign $campaign
-     * @return bool
      */
     public function recover(User $user, Campaign $campaign): bool
     {
@@ -131,9 +106,6 @@ class CampaignPolicy
     }
 
     /**
-     * @param User $user
-     * @param Campaign $campaign
-     * @return bool
      */
     public function history(User $user, Campaign $campaign): bool
     {
@@ -141,9 +113,6 @@ class CampaignPolicy
     }
 
     /**
-     * @param User $user
-     * @param Campaign $campaign
-     * @return bool
      */
     public function dashboard(User $user, Campaign $campaign): bool
     {
@@ -151,9 +120,6 @@ class CampaignPolicy
     }
 
     /**
-     * @param User $user
-     * @param Campaign $campaign
-     * @return bool
      */
     public function stats(User $user, Campaign $campaign): bool
     {
@@ -161,9 +127,6 @@ class CampaignPolicy
     }
 
     /**
-     * @param User $user
-     * @param Campaign $campaign
-     * @return bool
      */
     public function search(User $user, Campaign $campaign): bool
     {
@@ -173,8 +136,6 @@ class CampaignPolicy
     /**
      * Determine whether the user can leave the campaign
      *
-     * @param User $user
-     * @param Campaign $campaign
      * @return bool
      */
     public function leave(User $user, Campaign $campaign)
@@ -193,8 +154,6 @@ class CampaignPolicy
 
     /**
      * Determine if a user can follow a campaign
-     * @param User|null $user
-     * @param Campaign $campaign
      * @return bool
      */
     public function follow(?User $user, Campaign $campaign)
@@ -212,8 +171,6 @@ class CampaignPolicy
     /**
      *
      * Determine if a user can apply to a campaign
-     * @param User|null $user
-     * @param Campaign $campaign
      * @return bool
      */
     public function apply(?User $user, Campaign $campaign)
@@ -232,7 +189,6 @@ class CampaignPolicy
     /**
      * Permission to view the members of a campaign
      * @param User $user
-     * @param Campaign $campaign
      * @return bool
      */
     public function members(?User $user, Campaign $campaign)
@@ -255,9 +211,6 @@ class CampaignPolicy
     }
 
     /**
-     * @param User|null $user
-     * @param Campaign $campaign
-     * @return bool
      */
     public function gallery(?User $user, Campaign $campaign): bool
     {
@@ -267,8 +220,6 @@ class CampaignPolicy
     }
 
     /**
-     * @param User|null $user
-     * @return bool
      */
     public function relations(?User $user): bool
     {
@@ -277,8 +228,6 @@ class CampaignPolicy
 
 
     /**
-     * @param User|null $user
-     * @return bool
      */
     public function mapPresets(?User $user): bool
     {
@@ -287,9 +236,6 @@ class CampaignPolicy
 
     /**
      * Check if a user can unboost a campaign
-     * @param User|null $user
-     * @param Campaign $campaign
-     * @return bool
      */
     public function unboost(?User $user, Campaign $campaign): bool
     {
@@ -298,9 +244,6 @@ class CampaignPolicy
     }
 
     /**
-     * @param int $action
-     * @param User $user
-     * @param Campaign|null $campaign
      * @return bool
      */
     protected function checkPermission(int $action, User $user, Campaign $campaign = null)

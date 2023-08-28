@@ -9,11 +9,10 @@ use App\User;
 
 class PrivacyService
 {
-    /** @var Entity */
+    /**  */
     protected Entity $entity;
 
     /**
-     * @param Entity $entity
      * @return $this
      */
     public function entity(Entity $entity): self

@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 trait SimpleSortableTrait
 {
     /**
-     * @param Builder $builder
      * @param DatagridSorter|string $datagridSorter
      * @return Builder
      */

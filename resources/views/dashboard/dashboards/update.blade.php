@@ -9,6 +9,7 @@
     @include('partials.forms.form', [
         'title' => __('dashboard.dashboards.update.title', ['name' => $dashboard->name]),
         'content' => 'dashboard.dashboards._form',
+        'dialog' => true,
     ])
     {!! Form::close() !!}
 @endsection

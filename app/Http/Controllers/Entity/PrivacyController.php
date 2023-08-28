@@ -13,11 +13,10 @@ use App\Services\Entity\PrivacyService;
  */
 class PrivacyController extends Controller
 {
-    /** @var PrivacyService */
+    /**  */
     protected PrivacyService $service;
 
     /**
-     * @param PrivacyService $service
      */
     public function __construct(PrivacyService $service)
     {
@@ -25,7 +24,6 @@ class PrivacyController extends Controller
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -45,7 +43,6 @@ class PrivacyController extends Controller
 
     /**
      * Toggle an entity's privacy setting
-     * @param Entity $entity
      */
     public function toggle(Campaign $campaign, Entity $entity)
     {

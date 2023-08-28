@@ -1,11 +1,9 @@
-<div class="field-foreign @if ($required) required @endif {{ $key }}" >
-    @if (!empty($label))
-        <label>{!! __($label) !!}
-            @if(!empty($helper))
-                <x-helpers.tooltip :title="$helper" />
-            @endif
-        </label>
-    @endif
+<x-forms.field
+    field="{{ $key }}"
+    :required="$required"
+    :label="__($label)"
+    :helper="$helper"
+    :tooltip="true">
 
     @if ($canNew)
         <div class="join w-full">
@@ -33,10 +31,4 @@
             </a>
         </div>
     @endif
-
-    @if (!empty($helper))
-        <p class="help-block visible-xs visible-sm">
-            {{ $helper }}
-        </p>
-    @endif
-</div>
+</x-forms.field>

@@ -65,7 +65,6 @@ class EntityAlias extends Model
 
     /**
      * Copy an entity link to another target
-     * @param Entity $target
      */
     public function copyTo(Entity $target)
     {

@@ -158,7 +158,6 @@ class Image extends Model
     }
 
     /**
-     * @return string
      */
     public function getPathAttribute(): string
     {
@@ -166,7 +165,6 @@ class Image extends Model
     }
 
     /**
-     * @return string
      */
     public function getFileAttribute(): string
     {
@@ -174,7 +172,6 @@ class Image extends Model
     }
 
     /**
-     * @return string
      */
     public function getFolderAttribute(): string
     {
@@ -182,7 +179,6 @@ class Image extends Model
     }
 
     /**
-     * @return string
      */
     public function niceSize(): string
     {
@@ -194,9 +190,6 @@ class Image extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param string|null $folderUuid
-     * @return Builder
      */
     public function scopeImageFolder(Builder $query, string $folderUuid = null): Builder
     {
@@ -208,8 +201,6 @@ class Image extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeDefaultOrder(Builder $query): Builder
     {
@@ -221,8 +212,6 @@ class Image extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeFolders(Builder $query): Builder
     {
@@ -232,7 +221,6 @@ class Image extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasNoFolders(): bool
     {
@@ -240,7 +228,6 @@ class Image extends Model
     }
 
     /**
-     * @return string
      */
     public function getImagePath($width = 40, $height = 40): string
     {

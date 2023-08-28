@@ -19,7 +19,7 @@ class MemberService
 
     protected CampaignRole $campaignRole;
 
-    /** @var CampaignRoleUser|null */
+    /**  */
     protected ?CampaignRoleUser $userCampaignRole;
 
     public function element(CampaignRoleUser $campaignRoleUser): self
@@ -29,7 +29,6 @@ class MemberService
     }
 
     /**
-     * @param UpdateUserRole $request
      * @return $this
      */
     public function fromRequest(UpdateUserRole $request): self
@@ -42,9 +41,6 @@ class MemberService
     }
 
     /**
-     * @param CampaignUser $user
-     * @param CampaignRole $campaignRole
-     * @return bool
      */
     public function update(CampaignUser $user, CampaignRole $campaignRole): bool
     {
@@ -82,7 +78,6 @@ class MemberService
 
     /**
      * Add a user to a role
-     * @return bool
      */
     public function add(): bool
     {
@@ -105,7 +100,6 @@ class MemberService
 
     /**
      * Remove a user from a campaign role
-     * @return bool
      */
     public function remove(): bool
     {
@@ -124,7 +118,6 @@ class MemberService
 
 
     /**
-     * @return bool
      * @throws TranslatableException
      */
     public function delete(): bool
@@ -164,7 +157,6 @@ class MemberService
 
     /**
      * Load a user
-     * @param int $userID
      * @return $this
      */
     protected function loadUser(int $userID): self
@@ -175,7 +167,6 @@ class MemberService
 
     /**
      * Load a campaign role
-     * @param int $roleID
      * @return $this
      */
     protected function loadCampaignRole(int $roleID): self
@@ -186,7 +177,6 @@ class MemberService
 
     /**
      * Validate that the given user is in the correct campaign
-     * @return bool
      */
     protected function checkUserInCampaign(): bool
     {
@@ -195,7 +185,6 @@ class MemberService
 
     /**
      * Validate that the given role is in the correct campaign
-     * @return bool
      */
     protected function checkRoleInCampaign(): bool
     {
@@ -204,7 +193,6 @@ class MemberService
 
     /**
      * Validate that the user exists in the role
-     * @return bool
      */
     protected function userIsInRole(): bool
     {

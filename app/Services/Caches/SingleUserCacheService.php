@@ -30,8 +30,6 @@ class SingleUserCacheService
 
     /**
      * Wrapper for the cache get method
-     * @param string $key
-     * @return mixed
      */
     protected function get(string $key)
     {
@@ -41,10 +39,6 @@ class SingleUserCacheService
     /**
      * Wrapper for the cache forever method. Don't actually store forever as data from inactive users doesn't
      * need to be kept somewhere.
-     * @param string $key
-     * @param mixed $data
-     * @param int $days
-     * @return bool
      */
     protected function forever(string $key, $data, int $days = 7): bool
     {
@@ -56,8 +50,6 @@ class SingleUserCacheService
 
     /**
      * Wrapper for the cache has metho
-     * @param string $key
-     * @return bool
      */
     protected function has(string $key): bool
     {

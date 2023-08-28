@@ -19,7 +19,6 @@ class RoleController extends Controller
 
     /**
      * Create a new controller instance.
-     * @param PermissionService $permissionService
      * @return void
      */
     public function __construct(PermissionService $permissionService)
@@ -169,8 +168,6 @@ class RoleController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param CampaignRole $campaignRole
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -214,7 +211,6 @@ class RoleController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -242,9 +238,6 @@ class RoleController extends Controller
 
     /**
      * Toggle a permission on a role
-     * @param CampaignRole $campaignRole
-     * @param int $entityType
-     * @param int $action
      * @return \Illuminate\Http\JsonResponse
      */
     public function toggle(Campaign $campaign, CampaignRole $campaignRole, int $entityType, int $action)

@@ -14,7 +14,6 @@ class CouponService
     protected string $code;
 
     /**
-     * @param string $code
      * @return $this
      */
     public function code(string $code): self
@@ -24,7 +23,6 @@ class CouponService
     }
 
     /**
-     * @return array
      */
     public function check(): array
     {
@@ -70,14 +68,12 @@ class CouponService
                 'coupon' => $promo->coupon->id,
                 'discount' => __('settings.subscription.coupon.percent_off', ['percent' => $promo->coupon->percent_off]),
             ];
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
     }
 
     /**
-     * @param mixed $error
-     * @return array
      */
     protected function error(mixed $error): array
     {

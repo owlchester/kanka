@@ -53,7 +53,6 @@ class MapChunk extends Command
     }
 
     /**
-     * @param int $mapID
      * @return \Illuminate\Foundation\Bus\PendingDispatch
      */
     protected function dispatch(int $mapID)

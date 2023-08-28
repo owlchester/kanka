@@ -10,7 +10,6 @@ use App\Http\Resources\FamilyResource as Resource;
 class FamilyApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -26,8 +25,6 @@ class FamilyApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Family $family
      * @return Resource
      */
     public function show(Campaign $campaign, Family $family)
@@ -38,8 +35,6 @@ class FamilyApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -56,9 +51,6 @@ class FamilyApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Family $family
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Family $family)
@@ -72,8 +64,6 @@ class FamilyApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Family $family
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

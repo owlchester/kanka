@@ -60,8 +60,6 @@ class CampaignStyle extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param bool $enabled
      * @return Builder
      */
     public function scopeEnabled(Builder $query, bool $enabled = true)
@@ -70,8 +68,6 @@ class CampaignStyle extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param bool $theme
      * @return Builder
      */
     public function scopeTheme(Builder $query, bool $theme = true)
@@ -80,7 +76,6 @@ class CampaignStyle extends Model
     }
 
     /**
-     * @return string
      */
     public function length(): string
     {
@@ -88,8 +83,6 @@ class CampaignStyle extends Model
     }
 
     /**
-     * @param string $sub
-     * @return string
      */
     public function url(string $sub): string
     {

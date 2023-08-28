@@ -3,10 +3,10 @@
  */
 ?>
 @if ($model->journal || $model->date)
-    <div class="entity-header-sub pull-left">
+    <div class="entity-header-sub pull-left flex items-center gap-2">
         @if($model->journal)
-        <span data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip" class="mr-2">
-            <x-icon class="ra ra-quill-ink"></x-icon>
+        <span>
+            <x-icon entity="journal" :title="__('crud.fields.parent')"/>
             {!! $model->journal->tooltipedLink() !!}
         </span>
         @endif

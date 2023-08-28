@@ -35,7 +35,6 @@ class CampaignCacheService extends BaseCache
 
     /**
      * Count the number of entities in a campaign, skipping the permission engine.
-     * @return int
      */
     public function entityCount(): int
     {
@@ -53,7 +52,6 @@ class CampaignCacheService extends BaseCache
 
     /**
      * Get the public campaign systems and cache them for a day
-     * @return array
      */
     public function systems(): array
     {

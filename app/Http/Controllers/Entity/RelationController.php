@@ -85,7 +85,6 @@ class RelationController extends Controller
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -102,14 +101,12 @@ class RelationController extends Controller
         ));
     }
 
-    /**
-     * @param StoreRelation $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(StoreRelation $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only([
             'owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id'

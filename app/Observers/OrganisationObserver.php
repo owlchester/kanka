@@ -10,7 +10,6 @@ use App\Models\OrganisationMember;
 class OrganisationObserver extends MiscObserver
 {
     /**
-     * @param Organisation|MiscModel $model
      */
     public function saved(MiscModel|Organisation $model)
     {
@@ -22,7 +21,6 @@ class OrganisationObserver extends MiscObserver
     }
 
     /**
-     * @param Organisation $organisation
      */
     public function deleting(Organisation $organisation)
     {

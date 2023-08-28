@@ -11,7 +11,7 @@
         <div class="flex gap-2 items-center grow cursor-pointer"  data-toggle="collapse" data-target="#post-body-{{ $post->id }}">
             <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
             <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
-            <h3 class="post-title grow m-0 {{ $post->collapsed() ? "collapsed" : null }}"  >
+            <h3 class="post-title grow {{ $post->collapsed() ? "collapsed" : null }}"  >
                 {{ $post->name  }}
                 @if (app()->environment('local'))
                     <sup class="text-xs">({{ $post->position }})</sup>
@@ -80,7 +80,7 @@
 
                     @if ($post->location)
                     <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
-                    <x-icon :class="\App\Facades\Module::icon(config('entities.ids.location'), 'ra ra-tower')"></x-icon>
+                        <x-icon entity="location" />
                         {!! $post->location->tooltipedLink() !!}
                     </span>
                     @endif

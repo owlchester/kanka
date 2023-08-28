@@ -31,13 +31,11 @@ class DiceRoll extends MiscModel
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns  = ['name'];
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'parameters',
@@ -77,7 +75,6 @@ class DiceRoll extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -94,7 +91,6 @@ class DiceRoll extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -113,8 +109,6 @@ class DiceRoll extends MiscModel
     }
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {

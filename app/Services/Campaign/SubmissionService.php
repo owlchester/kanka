@@ -54,8 +54,6 @@ class SubmissionService
     }
 
     /**
-     * @param array $data
-     * @return string
      * @throws Exception
      */
     public function process(array $data): string
@@ -90,8 +88,6 @@ class SubmissionService
     }
 
     /**
-     * @param int $roleID
-     * @param string $message
      * @return $this
      */
     protected function approve(int $roleID, string $message = ''): self

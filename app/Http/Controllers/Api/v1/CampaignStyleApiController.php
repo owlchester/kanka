@@ -15,7 +15,6 @@ class CampaignStyleApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -30,8 +29,6 @@ class CampaignStyleApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param CampaignStyle $campaignStyle
      * @return Resource
      */
     public function show(Campaign $campaign, CampaignStyle $campaignStyle)
@@ -42,8 +39,6 @@ class CampaignStyleApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -59,9 +54,6 @@ class CampaignStyleApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param CampaignStyle $campaignStyle
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, CampaignStyle $campaignStyle)
@@ -74,8 +66,6 @@ class CampaignStyleApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param CampaignStyle $campaignStyle
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

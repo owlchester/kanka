@@ -10,8 +10,6 @@ use App\Models\CampaignDashboardWidget;
 class DashboardHeaderController extends Controller
 {
     /**
-     * @param Campaign $campaign
-     * @param CampaignDashboardWidget|null $campaignDashboardWidget
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -33,9 +31,6 @@ class DashboardHeaderController extends Controller
     }
 
     /**
-     * @param UpdateCampaignHeader $request
-     * @param Campaign $campaign
-     * @param CampaignDashboardWidget|null $campaignDashboardWidget
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

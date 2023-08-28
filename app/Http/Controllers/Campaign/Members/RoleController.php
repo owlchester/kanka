@@ -33,5 +33,4 @@ class RoleController extends Controller
             'campaignUser' => $campaignUser,
         ]);
     }
-
 }

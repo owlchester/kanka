@@ -21,7 +21,6 @@ class MiscPolicy
     /**
      * If a whole model requires a boosted campaign, for example if it's early access, set the child policy's
      * $boosted property to true.
-     * @var bool
      */
     protected bool $boosted = false;
 
@@ -112,8 +111,6 @@ class MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @return bool
      */
     public function move(User $user, $entity): bool
     {
@@ -121,8 +118,6 @@ class MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @return bool
      */
     public function events(User $user, $entity): bool
     {
@@ -130,8 +125,6 @@ class MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @return bool
      */
     public function inventory(User $user, $entity): bool
     {
@@ -139,11 +132,7 @@ class MiscPolicy
     }
 
     /**
-     * @param int $action
-     * @param User $user
      * @param Entity|MiscModel|null $entity
-     * @param Campaign|null $campaign
-     * @return bool
      */
     protected function checkPermission(int $action, User $user, $entity = null, Campaign $campaign = null): bool
     {
@@ -152,9 +141,6 @@ class MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @param Post $post
-     * @return bool
      */
     protected function checkPostPermission(User $user, Post $post): bool
     {

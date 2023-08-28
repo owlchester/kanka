@@ -42,7 +42,6 @@ class NewService
 
     /**
      * Get a list of available entity types the user can create
-     * @return array
      */
     public function available(): array
     {

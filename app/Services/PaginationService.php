@@ -12,7 +12,6 @@ class PaginationService
 
     /**
      * List of available options for pagination
-     * @return array
      */
     public function options(): array
     {
@@ -32,7 +31,6 @@ class PaginationService
 
     /**
      * Non-subscribers can see the max option, but can't select it
-     * @return array
      */
     public function disabled(): array
     {
@@ -47,7 +45,6 @@ class PaginationService
 
     /**
      * Get the max pagination amount possible
-     * @return int
      */
     public function max(): int
     {

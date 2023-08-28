@@ -12,7 +12,6 @@ class CampaignSearchController extends Controller
 
     /**
      * CampaignSearchController constructor.
-     * @param CampaignSearchService $searchService
      */
     public function __construct(CampaignSearchService $searchService)
     {

@@ -17,27 +17,10 @@
 ])
 
 @section('content')
-    @include('partials.errors')
-
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                __('entities.timelines')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'timelines',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block">
-            @include('entities.pages.timelines._timelines')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'timelines',
+        'breadcrumb' => __('entities.timelines'),
+        'view' => 'entities.pages.timelines._timelines',
+    ])
 @endsection
 

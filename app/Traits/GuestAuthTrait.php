@@ -33,9 +33,6 @@ trait GuestAuthTrait
 
     /**
      * Secondary Authentication for Guest users
-     * @param int $action
-     * @param MiscModel|null $model
-     * @param int|null $modelType
      * @return void
      */
     protected function authorizeForGuest(int $action, MiscModel $model = null, int $modelType = null)
@@ -63,8 +60,6 @@ trait GuestAuthTrait
 
     /**
      * Secondary Authentication for Guest users
-     * @param int $action
-     * @param MiscModel|null $model
      * @return void
      */
     protected function authorizeEntityForGuest(int $action, MiscModel $model = null)
@@ -82,5 +77,4 @@ trait GuestAuthTrait
             abort(403);
         }
     }
-
 }

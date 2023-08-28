@@ -34,8 +34,6 @@ trait VisibilityIDTrait
 
     /**
      * Generate the html icon for visibility
-     * @param string|null $extra
-     * @return string
      */
     public function visibilityIcon(string $extra = null): string
     {
@@ -65,7 +63,6 @@ trait VisibilityIDTrait
 
     /**
      * Get a list of visibility options when editing an element
-     * @return array
      */
     public function visibilityOptions(): array
     {
@@ -93,7 +90,6 @@ trait VisibilityIDTrait
 
     /**
      * Determine if the current user is the creator
-     * @return bool
      */
     protected function isCreator(): bool
     {

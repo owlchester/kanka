@@ -29,10 +29,10 @@ class ImporterService
 
     protected Plugin $plugin;
 
-    /** @var array */
+    /**  */
     protected array $loadedRelations = [];
 
-    /** @var array */
+    /**  */
     protected array $loadedPosts = [];
 
     /** @var null|Collection */
@@ -61,7 +61,6 @@ class ImporterService
     protected mixed $model;
 
     /**
-     * @param Plugin $plugin
      * @return $this
      */
     public function plugin(Plugin $plugin): self
@@ -71,7 +70,6 @@ class ImporterService
     }
 
     /**
-     * @param array $options
      * @return $this
      */
     public function options(array $options): self
@@ -125,7 +123,6 @@ class ImporterService
     }
 
     /**
-     * @param PluginVersionEntity $pluginEntity
      */
     protected function importModel(PluginVersionEntity $pluginEntity)
     {
@@ -175,7 +172,6 @@ class ImporterService
     }
 
     /**
-     * @param PluginVersionEntity $pluginEntity
      */
     protected function importFields(PluginVersionEntity $pluginEntity)
     {
@@ -292,9 +288,6 @@ class ImporterService
     }
     /**
      * Create or update a relation
-     * @param array $data
-     * @param string $uuid
-     * @param int $ownerId
      */
     protected function saveRelation(array $data, string $uuid, int $ownerId)
     {
@@ -325,10 +318,6 @@ class ImporterService
     }
 
     /**
-     * @param array $data
-     * @param string $uuid
-     * @param int $characterId
-     * @param PluginVersionEntity $pluginEntity
      */
     protected function saveOrganisationMember(array $data, string $uuid, int $characterId, PluginVersionEntity $pluginEntity)
     {
@@ -359,10 +348,6 @@ class ImporterService
     }
 
     /**
-     * @param array $data
-     * @param string $uuid
-     * @param int $questId
-     * @param PluginVersionEntity $pluginEntity
      */
     protected function saveQuestElement(array $data, string $uuid, int $questId, PluginVersionEntity $pluginEntity)
     {
@@ -394,8 +379,6 @@ class ImporterService
     }
 
     /**
-     * @param MiscModel $model
-     * @param PluginVersionEntity $entity
      * @return MiscModel
      */
     protected function importImage(MiscModel $model, PluginVersionEntity $entity)
@@ -420,8 +403,6 @@ class ImporterService
     }
 
     /**
-     * @param string $block
-     * @param array|null $values
      */
     protected function importBlock(string $block, array $values = null)
     {
@@ -488,7 +469,6 @@ class ImporterService
         }
     }
     /**
-     * @param int $id
      */
     protected function getEntityId(int $id)
     {
@@ -497,7 +477,6 @@ class ImporterService
 
     /**
      * Load
-     * @param MiscModel $misc
      */
     protected function loadRelations(MiscModel $misc)
     {
@@ -512,7 +491,6 @@ class ImporterService
     }
 
     /**
-     * @param int $entityId
      */
     protected function loadPosts(int $entityId)
     {
@@ -528,8 +506,6 @@ class ImporterService
     }
 
     /**
-     * @param string $text
-     * @return string
      */
     protected function mentions(string $text): string
     {
@@ -545,7 +521,6 @@ class ImporterService
 
     /**
      * List of created entities
-     * @return string
      */
     public function created(): string
     {
@@ -555,7 +530,6 @@ class ImporterService
 
     /**
      * List of created entities
-     * @return string
      */
     public function updated(): string
     {
@@ -563,8 +537,6 @@ class ImporterService
     }
 
     /**
-     * @param PluginVersionEntity $entity
-     * @param int $entityId
      */
     protected function importPosts(PluginVersionEntity $entity, int $entityId)
     {

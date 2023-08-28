@@ -21,7 +21,6 @@ class LogService
     protected MiscModel $model;
 
     /**
-     * @param MiscModel $model
      * @return $this
      */
     public function model(MiscModel $model): self
@@ -33,7 +32,6 @@ class LogService
     /**
      * Log an update to an entity. Note that this only works on the attributes of the model, so it won't
      * log a creature's locations change.
-     * @return void
      */
     public function logUpdate(): void
     {
@@ -78,10 +76,7 @@ class LogService
     }
 
     /**
-     * @param MiscModel $model
-     * @param string $attribute
      * @param string $original
-     * @return string
      */
     protected function getForeignOriginal(MiscModel $model, string $attribute, $original): string
     {

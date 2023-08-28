@@ -86,7 +86,7 @@
     @if (!app()->isProduction())
         {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['tutorials.reset']]) !!}
         <div class="flex gap-2 my-5">
-            <h1 class="m-0 grow">
+            <h1 class="grow">
                 Reset Tutorials
             </h1>
             <x-buttons.confirm type="danger" outline="true">

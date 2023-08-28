@@ -10,8 +10,8 @@ use Exception;
 class ImportService
 {
     use EntityAware;
+
     /**
-     * @return int
      * @throws Exception
      */
     public function import(): int

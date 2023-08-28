@@ -14,7 +14,6 @@ class NoteController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'notes';
     protected string $route = 'notes';
@@ -27,7 +26,6 @@ class NoteController extends CrudController
     protected string $filter = NoteFilter::class;
 
     /**
-     * @param StoreNote $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreNote $request, Campaign $campaign)

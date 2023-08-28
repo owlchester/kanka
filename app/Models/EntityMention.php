@@ -95,7 +95,6 @@ class EntityMention extends Model
 
     /**
      * Determine if the mention goes to a post
-     * @return bool
      */
     public function isPost(): bool
     {
@@ -104,7 +103,6 @@ class EntityMention extends Model
 
     /**
      * Determine if the mention goes to an entity
-     * @return bool
      */
     public function isEntity(): bool
     {
@@ -113,7 +111,6 @@ class EntityMention extends Model
 
     /**
      * Determine if the mention goes to a timeline element
-     * @return bool
      */
     public function isTimelineElement(): bool
     {
@@ -122,7 +119,6 @@ class EntityMention extends Model
 
     /**
      * Determine if the mention goes to a quest element
-     * @return bool
      */
     public function isQuestElement(): bool
     {
@@ -131,7 +127,6 @@ class EntityMention extends Model
 
     /**
      * Determine if the mention goes to a campaign
-     * @return bool
      */
     public function isCampaign(): bool
     {
@@ -141,8 +136,6 @@ class EntityMention extends Model
     /**
      * Build the query that will loop on the various mentions to get the total count.
      * The AclTrait on entities and posts makes sure only visible things get added to the query.
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePrepareCount(Builder $query): Builder
     {
@@ -176,8 +169,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeEntity(Builder $query): Builder
     {
@@ -185,8 +176,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePost(Builder $query): Builder
     {
@@ -194,8 +183,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeTimelineElement(Builder $query): Builder
     {
@@ -203,8 +190,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeQuestElement(Builder $query): Builder
     {
@@ -212,8 +197,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeCampaign(Builder $query): Builder
     {
@@ -221,8 +204,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeDatagridElements(Builder $query, array $options): Builder
     {
@@ -245,7 +226,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @return string
      */
     public function getLink(): string
     {
@@ -263,7 +243,6 @@ class EntityMention extends Model
     /**
      * Determine if the mention is linked to an entity.
      * In theory, this is true for everything except a campaign mention, but in practice it's more complicated.
-     * @return bool
      */
     public function hasEntity(): bool
     {
@@ -273,7 +252,6 @@ class EntityMention extends Model
     /**
      * Get the entity link with ajax tooltip.
      * When coming from an entity first, call this method on the entity. It avoids some back and worth.
-     * @return string
      */
     public function mentionLink(): string
     {

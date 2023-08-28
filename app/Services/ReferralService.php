@@ -12,7 +12,6 @@ class ReferralService
 
     /**
      * Validate a referral and save it to the session
-     * @param Request $request
      */
     public function validate(Request $request): void
     {
@@ -31,7 +30,6 @@ class ReferralService
     }
 
     /**
-     * @return mixed
      */
     public function referralId()
     {

@@ -8,7 +8,6 @@ trait ThumbnailCache
 {
     /**
      * Default Entity Images for a campaign
-     * @return array
      */
     public function defaultImages(): array
     {

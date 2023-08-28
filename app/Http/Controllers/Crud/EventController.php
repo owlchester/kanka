@@ -14,7 +14,6 @@ class EventController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'events';
     protected string $route = 'events';

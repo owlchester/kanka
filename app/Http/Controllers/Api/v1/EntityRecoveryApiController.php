@@ -19,7 +19,6 @@ class EntityRecoveryApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -32,8 +31,6 @@ class EntityRecoveryApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function recover(Request $request, Campaign $campaign)

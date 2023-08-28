@@ -3,16 +3,16 @@
  */
 ?>
 @if ($model->map || $model->location)
-    <div class="entity-header-sub pull-left">
+    <div class="entity-header-sub pull-left flex items-center gap-2">
         @if ($model->map)
-            <span  class="mr-2">
-                <x-icon class="fa-regular fa-map" :title="__('crud.fields.parent')"></x-icon>
+            <span class="">
+                <x-icon entity="map" :title="__('crud.fields.parent')"/>
                 {!! $model->map->tooltipedLink() !!}
             </span>
         @endif
 
         @if ($model->location)
-        <x-icon :class="\App\Facades\Module::icon(config('entities.ids.location'), 'ra ra-tower')" :tooltip="\App\Facades\Module::singular(config('entities.ids.location'), __('entities.location'))"></x-icon>
+            <x-icon entity="location" />
             {!! $model->location->tooltipedLink() !!}
         @endif
     </div>

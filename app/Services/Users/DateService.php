@@ -9,14 +9,11 @@ class DateService
 {
     /**
      * Default format is MMMM d, Y
-     * @var string
      */
     private string $format = 'LL';
 
     /**
      * Display a date to the user's preferred format
-     * @param string|null $date
-     * @return string
      */
     public function format(string $date = null): string
     {
@@ -34,7 +31,6 @@ class DateService
 
     /**
      * Load the user's format if logged in
-     * @return void
      */
     private function loadUserFormat(): void
     {

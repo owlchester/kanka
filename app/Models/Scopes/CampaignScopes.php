@@ -76,9 +76,6 @@ trait CampaignScopes
     }
 
     /**
-     * @param Builder $query
-     * @param int $visibility
-     * @return Builder
      */
     public function scopeVisibility(Builder $query, int $visibility): Builder
     {
@@ -86,9 +83,6 @@ trait CampaignScopes
     }
 
     /**
-     * @param Builder $query
-     * @param bool $open
-     * @return Builder
      */
     public function scopeOpen(Builder $query, bool $open = true): Builder
     {
@@ -97,8 +91,6 @@ trait CampaignScopes
 
     /**
      * Admin crud datagrid
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeAdmin(Builder $query): Builder
     {
@@ -107,8 +99,6 @@ trait CampaignScopes
 
     /**
      * Featured Campaigns
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeFeatured(Builder $query, $featured = true): Builder
     {
@@ -129,8 +119,6 @@ trait CampaignScopes
 
     /**
      * Public campaigns
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePublic(Builder $query): Builder
     {
@@ -140,9 +128,6 @@ trait CampaignScopes
 
     /**
      * Filtered campaigns for the front end
-     * @param Builder $query
-     * @param int|null $sort
-     * @return Builder
      */
     public function scopeFront(Builder $query, int $sort = null): Builder
     {
@@ -160,9 +145,6 @@ trait CampaignScopes
     }
 
     /**
-     * @param Builder $query
-     * @param array $options
-     * @return Builder
      */
     public function scopeFilterPublic(Builder $query, array $options): Builder
     {
@@ -216,8 +198,6 @@ trait CampaignScopes
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -226,8 +206,6 @@ trait CampaignScopes
 
     /**
      * Unboosted campaigns
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeUnboosted(Builder $query): Builder
     {
@@ -237,9 +215,6 @@ trait CampaignScopes
         });
     }
     /**
-     * @param Builder $query
-     * @param int $hidden
-     * @return Builder
      */
     public function scopeHidden(Builder $query, int $hidden = 1): Builder
     {

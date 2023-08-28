@@ -49,7 +49,6 @@ class ChildController extends Controller
     }
 
     /**
-     * @param Tag $tag
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -69,8 +68,6 @@ class ChildController extends Controller
     }
 
     /**
-     * @param StoreTagEntity $request
-     * @param Tag $tag
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

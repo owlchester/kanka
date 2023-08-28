@@ -22,17 +22,17 @@ $direct = $model->members()->has('character')->count();
 $all = $model->allMembers()->has('character')->count();
 ?>
 <div class="flex gap-2 items-center mb-2">
-    <h3 class="m-0 grow">
+    <h3 class="grow">
         {{ __('organisations.fields.members') }}
     </h3>
-    <div>
+    <div class="flex-none flex gap-1 flex-wrap">
         @if (!$allMembers)
             <a href="{{ route('organisations.show', [$campaign, $model, 'all' => true, '#organisation-members']) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i>
-                <span class="hidden md:inline">
+                <span class="hidden xl:inline">
                     {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
                 </span>
-                <span class="visible-xs-inline visible-sm-inline">
+                <span class="xl:hidden">
                     {{ __('crud.filters.lists.mobile.all', ['count' => $all]) }}
                 </span>
             </a>
@@ -40,10 +40,10 @@ $all = $model->allMembers()->has('character')->count();
             <a href="{{ route('organisations.show', [$campaign, $model, '#organisation-members']) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i>
 
-                <span class="hidden md:inline">
+                <span class="hidden xl:inline">
                     {{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}
                 </span>
-                <span class="visible-xs-inline visible-sm-inline">
+                <span class="xl:inline">
                     {{ __('crud.filters.lists.mobile.filtered', ['count' => $direct]) }}
                 </span>
             </a>

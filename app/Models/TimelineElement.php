@@ -81,7 +81,6 @@ class TimelineElement extends Model
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeOrdered(Builder $query)
@@ -92,7 +91,6 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return string
      */
     public function elementName(): string
     {
@@ -103,7 +101,6 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return mixed
      */
     public function getEntryForEditionAttribute()
     {
@@ -112,7 +109,6 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return mixed
      */
     public function entry()
     {
@@ -120,7 +116,6 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return string
      */
     public function htmlIcon(bool $absolute = true): string
     {
@@ -136,7 +131,6 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return string
      */
     public function htmlName(): string
     {
@@ -159,7 +153,6 @@ class TimelineElement extends Model
 
     /**
      * For legacy tinymce editor
-     * @return bool
      */
     public function hasEntity(): bool
     {
@@ -173,7 +166,6 @@ class TimelineElement extends Model
 
     /**
      * Check if the element has an entity, but it's not accessible (permission issue for non-admins)
-     * @return bool
      */
     public function invisibleEntity(): bool
     {
@@ -184,7 +176,6 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return mixed
      */
     public function editingUsers()
     {

@@ -29,7 +29,6 @@ trait Blameable
 
     /**
      * Get the user who created this model
-     * @return mixed
      */
     public function creator()
     {
@@ -38,7 +37,6 @@ trait Blameable
 
     /**
      * Get the user who updated this model
-     * @return mixed
      */
     public function updater()
     {
@@ -47,7 +45,6 @@ trait Blameable
 
     /**
      *
-     * @return mixed
      */
     public function remover()
     {
@@ -58,10 +55,7 @@ trait Blameable
     /**
      * createdBy Query Scope.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed                                 $userId
      *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCreatedBy(Builder $query, $userId): Builder
     {
@@ -74,10 +68,7 @@ trait Blameable
     /**
      * updatedBy Query Scope.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed                                 $userId
      *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeUpdatedBy(Builder $query, $userId): Builder
     {

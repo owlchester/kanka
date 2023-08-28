@@ -74,5 +74,28 @@ return [
         'dice_rolls' => 'App\Models\DiceRoll',
         'menu_links' => 'App\Models\MenuLink',
         'relations' => 'App\Models\Relation',
+    ],
+
+    'icons' => [
+        'character' => 'fa-duotone fa-user',
+        'family' => 'fa-duotone fa-family',
+        'location' => 'fa-duotone fa-circle-location-arrow',
+        'organisation' => 'fa-duotone fa-screen-users',
+        'item' => 'fa-duotone fa-gem',
+        'note' => 'fa-duotone fa-book-open',
+        'event' => 'fa-duotone fa-cake-candles',
+        'calendar' => 'fa-duotone fa-calendar',
+        'race' => 'fa-duotone fa-person-fairy',
+        'quest' => 'fa-duotone fa-sign-hanging',
+        'journal' => 'fa-duotone fa-books',
+        'tag' => 'fa-duotone fa-tags',
+        'dice_roll' => 'fa-duotone fa-dice',
+        'conversation' => 'fa-duotone fa-comments',
+        'attribute_template' => 'fa-duotone fa-file-export',
+        'ability' => 'fa-duotone fa-fire',
+        'map' => 'fa-duotone fa-map',
+        'timeline' => 'fa-duotone fa-list-timeline',
+        'menu_link' => 'fa-duotone fa-bookmark',
+        'creature' => 'fa-duotone fa-deer',
     ]
 ];

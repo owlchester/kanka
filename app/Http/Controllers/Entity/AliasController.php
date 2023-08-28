@@ -16,7 +16,6 @@ class AliasController extends Controller
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      */
     public function index(Campaign $campaign, Entity $entity)
@@ -26,7 +25,6 @@ class AliasController extends Controller
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

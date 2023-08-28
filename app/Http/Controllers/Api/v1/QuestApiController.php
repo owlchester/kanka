@@ -10,7 +10,6 @@ use App\Http\Resources\QuestResource as Resource;
 class QuestApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -26,8 +25,6 @@ class QuestApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Quest $quest
      * @return Resource
      */
     public function show(Campaign $campaign, Quest $quest)
@@ -38,8 +35,6 @@ class QuestApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -57,9 +52,6 @@ class QuestApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Quest $quest
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Quest $quest)
@@ -73,8 +65,6 @@ class QuestApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Quest $quest
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

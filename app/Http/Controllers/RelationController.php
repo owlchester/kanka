@@ -31,7 +31,7 @@ class RelationController extends CrudController
     /** @var string Disable the sanitizer, handled by the observer */
     protected string $sanitizer = '';
 
-    /** @var string  */
+    /**  */
     protected string $filter = RelationFilter::class;
 
     public string $titleKey;
@@ -68,7 +68,6 @@ class RelationController extends CrudController
     }
 
     /**
-     * @param StoreRelation $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -131,7 +130,6 @@ class RelationController extends CrudController
     }
 
     /**
-     * @param Relation $relation
      * @return \Illuminate\Http\RedirectResponse
      */
     public function show(Campaign $campaign, Relation $relation)
@@ -141,7 +139,6 @@ class RelationController extends CrudController
     }
 
     /**
-     * @param Relation $relation
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -167,8 +164,6 @@ class RelationController extends CrudController
     }
 
     /**
-     * @param StoreRelation $request
-     * @param Relation $relation
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

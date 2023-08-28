@@ -6,6 +6,7 @@
         __('campaigns.roles.actions.add')
     ],
     'mainTitle' => false,
+    'sidebar' => 'campaign',
 ])
 
 @section('content')

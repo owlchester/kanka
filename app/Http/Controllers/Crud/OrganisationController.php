@@ -14,7 +14,6 @@ class OrganisationController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'organisations';
     protected string $route = 'organisations';

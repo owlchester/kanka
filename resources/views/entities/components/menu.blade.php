@@ -1,6 +1,6 @@
 <?php use \Illuminate\Support\Arr; ?>
 @php $modelMenuItems = $model->menuItems(); @endphp
-<div class="hidden md:block">
+<div class="hidden md:flex flex-col gap-5">
 @foreach ($modelMenuItems as $section => $menuItems)
     <x-box css="entity-menu{{ $section }}" :padding="0">
         <x-menu>
@@ -24,27 +24,25 @@
 
 @php $firstBlock = true @endphp
 <div class="md:hidden" id="sm-a">
-    <div class="mb-2">
-        <select name="menu-switcher" class="form-control submenu-switcher">
-            @foreach ($modelMenuItems as $section => $menuItems)
-                @if (!$firstBlock)
-                    <option disabled>----</option>
-                @endif
-                @foreach ($menuItems as $key => $menuItem)
-                    <option
-                            name="{{ $key }}"
-                            data-route="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $model : $model->entity)]) }}"
-                            @if($key == $active) selected="selected" @endif
-                            @if(Arr::get($menuItem, 'ajax')) data-toggle="ajax-modal" data-target="#large-modal" @endif
-                    >
-                        {{ __($menuItem['name']) }}
-                        @if (!empty($menuItem['count']))
-                            ({{ $menuItem['count'] }})
-                        @endif
-                    </option>
-                @endforeach
-                @php $firstBlock = false @endphp
+    <select name="menu-switcher" class="form-control submenu-switcher">
+        @foreach ($modelMenuItems as $section => $menuItems)
+            @if (!$firstBlock)
+                <option disabled>----</option>
+            @endif
+            @foreach ($menuItems as $key => $menuItem)
+                <option
+                        name="{{ $key }}"
+                        data-route="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $model : $model->entity)]) }}"
+                        @if($key == $active) selected="selected" @endif
+                        @if(Arr::get($menuItem, 'ajax')) data-toggle="ajax-modal" data-target="#large-modal" @endif
+                >
+                    {{ __($menuItem['name']) }}
+                    @if (!empty($menuItem['count']))
+                        ({{ $menuItem['count'] }})
+                    @endif
+                </option>
             @endforeach
+            @php $firstBlock = false @endphp
+        @endforeach
         </select>
-    </div>
 </div>

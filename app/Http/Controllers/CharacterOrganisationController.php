@@ -11,7 +11,6 @@ use App\Http\Requests\StoreOrganisationMember;
 class CharacterOrganisationController extends Controller
 {
     /**
-     * @var string
      */
     protected string $view = 'characters.organisations';
 
@@ -27,7 +26,6 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * @param Character $character
      * @return \Illuminate\Http\RedirectResponse
      */
     public function index(Campaign $campaign, Character $character)
@@ -36,7 +34,6 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * @param Character $character
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -48,8 +45,6 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * @param StoreOrganisationMember $request
-     * @param Character $character
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -66,8 +61,6 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * @param Character $character
-     * @param OrganisationMember $organisationMember
      * @return void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -78,8 +71,6 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * @param Character $character
-     * @param CharacterOrganisation $characterOrganisation
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -95,9 +86,6 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * @param StoreOrganisationMember $request
-     * @param Character $character
-     * @param CharacterOrganisation $characterOrganisation
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -120,8 +108,6 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
-     * @param Character $character
-     * @param CharacterOrganisation $characterOrganisation
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Psr\Container\ContainerExceptionInterface

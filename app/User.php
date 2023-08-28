@@ -134,7 +134,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * @param int $size = 40
-     * @return string
      */
     public function getAvatarUrl(int $size = 40): string
     {
@@ -182,7 +181,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Check if a user has campaigns
-     * @return bool
      */
     public function hasCampaigns($count = 0): bool
     {
@@ -191,8 +189,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Check if the user has other campaigns than the current one
-     * @param int $campaignId
-     * @return bool
      */
     public function hasOtherCampaigns(int $campaignId): bool
     {
@@ -202,7 +198,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user is a subscriber
-     * @return bool
      */
     public function isSubscriber(): bool
     {
@@ -211,7 +206,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user has a legacy patreon sync set up
-     * @return bool
      */
     public function isLegacyPatron(): bool
     {
@@ -220,7 +214,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user is a goblin (deprecated)
-     * @return bool
      */
     public function isGoblin(): bool
     {
@@ -229,7 +222,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user is an elemental
-     * @return bool
      */
     public function isElemental(): bool
     {
@@ -240,7 +232,6 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * @return bool
      */
     public function isOwlbear(): bool
     {
@@ -248,7 +239,6 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * @return bool
      */
     public function isWyvern(): bool
     {
@@ -257,7 +247,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * API throttling is increased for subscribers
-     * @return int
      */
     public function getRateLimitAttribute(): int
     {
@@ -266,7 +255,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Currency symbol
-     * @return string
      */
     public function currencySymbol(): string
     {
@@ -278,7 +266,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if the user is billed in EUR.
-     * @return bool
      */
     public function billedInEur(): bool
     {
@@ -286,7 +273,6 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * @return array
      */
     public function adminCampaigns(): array
     {
@@ -308,7 +294,6 @@ class User extends \Illuminate\Foundation\Auth\User
      *
      * @param string|array $name The role(s) to check.
      *
-     * @return bool
      */
     public function hasRole($name): bool
     {
@@ -325,7 +310,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user is using a social login
-     * @return bool
      */
     public function isSocialLogin(): bool
     {
@@ -334,7 +318,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Number of entities the user has created
-     * @return string
      */
     public function createdEntitiesCount(): string
     {
@@ -348,7 +331,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Get the Discord app of the user
-     * @return mixed
      */
     public function discord()
     {
@@ -357,8 +339,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Get the user's role IDs based on the campaign
-     * @param int $campaignID
-     * @return array
      */
     public function campaignRoleIDs(int $campaignID): array
     {
@@ -367,7 +347,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Log an event on the user
-     * @param int $type
      * @return $this
      */
     public function log(int $type): self
@@ -384,7 +363,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if the user is banned
-     * @return bool
      */
     public function isBanned(): bool
     {
@@ -393,7 +371,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if the user has achievements to display on their profile page
-     * @return bool
      */
     public function hasAchievements(): bool
     {
@@ -402,7 +379,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user has the Wordsmith role
-     * @return bool
      */
     public function isWordsmith(): bool
     {
@@ -428,7 +404,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if the user has unread notifications or kanka alerts
-     * @return bool
      */
     public function hasUnread(): bool
     {
@@ -450,7 +425,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Fraud detection system
-     * @return bool
      */
     public function isFrauding(): bool
     {
@@ -485,7 +459,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * List of campaigns the user is the only admin of. This is used for the automatic purge warning emails
-     * @return array
      */
     public function onlyAdminCampaigns(): array
     {

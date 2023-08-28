@@ -11,7 +11,6 @@ use App\Models\Entity;
 class ImageController extends Controller
 {
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -30,8 +29,6 @@ class ImageController extends Controller
     }
 
     /**
-     * @param StoreImageFocus $request
-     * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -50,7 +47,6 @@ class ImageController extends Controller
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

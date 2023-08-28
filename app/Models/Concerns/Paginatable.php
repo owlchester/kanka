@@ -12,7 +12,6 @@ trait Paginatable
     private int $pageSizeMinimum = 15;
 
     /**
-     * @return mixed
      */
     public function getPerPage()
     {

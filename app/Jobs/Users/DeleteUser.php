@@ -18,7 +18,7 @@ class DeleteUser implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /** @var int */
+    /**  */
     protected int $user;
 
     /**queue

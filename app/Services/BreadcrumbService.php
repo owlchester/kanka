@@ -12,8 +12,6 @@ class BreadcrumbService
     use EntityAware;
 
     /**
-     * @param string $name
-     * @return string
      */
     public function index(string $name): string
     {

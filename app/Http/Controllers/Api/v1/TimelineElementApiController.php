@@ -11,7 +11,6 @@ use App\Http\Resources\TimelineElementResource as Resource;
 class TimelineElementApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -23,8 +22,6 @@ class TimelineElementApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param TimelineElement $timelineElement
      * @return Resource
      */
     public function show(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
@@ -35,9 +32,6 @@ class TimelineElementApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Timeline $timeline
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -50,9 +44,6 @@ class TimelineElementApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param TimelineElement $timelineElement
      * @return Resource
      */
     public function update(
@@ -69,10 +60,6 @@ class TimelineElementApiController extends ApiController
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param Campaign $campaign
-     * @param Timeline $timeline
-     * @param TimelineElement $timelineElement
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

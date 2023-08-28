@@ -12,7 +12,6 @@ trait EntityAware
     public Entity $entity;
 
     /**
-     * @param Entity $entity
      * @return $this
      */
     public function entity(Entity $entity): self

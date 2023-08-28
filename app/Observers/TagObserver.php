@@ -7,7 +7,6 @@ use App\Models\Tag;
 class TagObserver extends MiscObserver
 {
     /**
-     * @param Tag $model
      */
     public function deleting(Tag $model)
     {

@@ -43,9 +43,6 @@ class UserApp extends Model
     ];
 
     /**
-     * @param Builder $query
-     * @param string $type
-     * @return Builder
      */
     public function scopeApp(Builder $query, string $type): Builder
     {
@@ -53,8 +50,6 @@ class UserApp extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeDiscord(Builder $query): Builder
     {

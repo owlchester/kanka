@@ -12,7 +12,6 @@ class TimelineElementCacheService extends BaseCache
     use CampaignAware;
 
     /**
-     * @return array
      */
     public function iconSuggestion(): array
     {
@@ -70,7 +69,6 @@ class TimelineElementCacheService extends BaseCache
 
     /**
      * Type suggestion cache key
-     * @return string
      */
     protected function iconSuggestionKey(): string
     {

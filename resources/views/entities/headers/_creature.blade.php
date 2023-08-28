@@ -4,9 +4,7 @@
 ?>
 @if ($model->creature)
     <div class="entity-header-sub pull-left">
-        <span data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
-            <x-icon class="ra ra-raven"></x-icon>
+        <x-icon entity="creature" :title="__('crud.fields.parent')"/>
         {!! $model->creature->tooltipedLink() !!}
-        </span>
     </div>
 @endif

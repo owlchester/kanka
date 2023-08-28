@@ -8,7 +8,6 @@ use App\Models\MiscModel;
 class LocationObserver extends MiscObserver
 {
     /**
-     * @param Location $location
      */
     public function deleting(Location $location)
     {

@@ -9,10 +9,6 @@ use App\User;
 class CommunityVoteService
 {
     /**
-     * @param CommunityVote $communityVote
-     * @param User $user
-     * @param string|null $option
-     * @return array
      */
     public function cast(CommunityVote $communityVote, User $user, string $option = null): array
     {
@@ -28,8 +24,6 @@ class CommunityVoteService
     }
 
     /**
-     * @param CommunityVote $communityVote
-     * @param User $user
      */
     protected function remove(CommunityVote $communityVote, User $user): void
     {
@@ -40,9 +34,6 @@ class CommunityVoteService
     }
 
     /**
-     * @param CommunityVote $communityVote
-     * @param User $user
-     * @param string $option
      */
     protected function add(CommunityVote $communityVote, User $user, string $option): void
     {

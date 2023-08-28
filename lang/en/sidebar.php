@@ -16,6 +16,7 @@ return [
     'custom_links'      => 'Quick Links',
     'dashboard'         => 'Dashboard',
     'entity-creator'    => 'Quick Creator',
+    'game'              => 'Game',
     'gallery'           => 'Gallery',
     'manage_links'      => 'Manage Links',
     'new-entity'        => 'New entity',
@@ -23,5 +24,7 @@ return [
     'presets'           => 'Presets',
     'relations'         => 'Connections',
     'search'            => 'Search...',
+    'settings'          => 'Settings',
+    'time'              => 'Time tracking',
     'world'             => 'World',
 ];

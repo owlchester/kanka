@@ -13,5 +13,5 @@
         </a>
     </label>
     {!! Form::select('is_pinned', $pinnedOptions, !empty($model) ? $model->isPinned() : 0, ['class' => 'form-control']) !!}
-    <p class="help-block visible-xs visible-sm">{{ __('crud.hints.is_star') }}</p>
+    <p class="help-block md:hidden">{{ __('crud.hints.is_star') }}</p>
 </div>

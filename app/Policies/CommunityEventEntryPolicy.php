@@ -10,9 +10,6 @@ class CommunityEventEntryPolicy
     /**
      * Determine whether the user can delete the entry.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\CommunityEventEntry  $communityEventEntry
-     * @return bool
      */
     public function delete(User $user, CommunityEventEntry $communityEventEntry): bool
     {

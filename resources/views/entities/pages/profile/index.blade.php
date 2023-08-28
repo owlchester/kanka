@@ -22,26 +22,11 @@
 
 
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                Breadcrumb::entity($entity)->list(),
-                __('crud.tabs.profile')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'profile',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block">
-            @includeIf('entities.pages.profile._' . $model->getEntityType())
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'profile',
+        'breadcrumb' => __('crud.tabs.profile'),
+        'view' => 'entities.pages.profile._' . $model->getEntityType(),
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection

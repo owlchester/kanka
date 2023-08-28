@@ -3,7 +3,8 @@
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($name), 'label' => $plural],
         __('crud.create'),
-    ]
+    ],
+    'mainTitle' => false,
 ])
 
 @section('fullpage-form')

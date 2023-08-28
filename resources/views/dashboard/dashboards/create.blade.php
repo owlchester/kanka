@@ -11,6 +11,7 @@
         'dialog' => true,
         'title' => __('dashboard.dashboards.create.title'),
         'content' => 'dashboard.dashboards._form',
+        'dialog' => true,
     ])
     {!! Form::close() !!}
 @endsection

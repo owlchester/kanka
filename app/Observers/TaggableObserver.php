@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class TaggableObserver
 {
     /**
-     * @param Model $model
      */
     public function saved(Model $model)
     {
@@ -17,7 +16,6 @@ class TaggableObserver
     }
 
     /**
-     * @param Model $model
      * @return void
      */
     protected function saveTags(Model $model)

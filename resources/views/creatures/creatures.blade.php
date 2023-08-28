@@ -28,21 +28,10 @@
 @endsection
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                Breadcrumb::entity($model->entity)->list(),
-                $plural
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'creatures'])
-
-        <div class="entity-main-block">
-            @include('creatures.panels.creatures')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'creatures',
+        'breadcrumb' => $plural,
+        'view' => 'creatures.panels.creatures',
+        'entity' => $model->entity,
+    ])
 @endsection

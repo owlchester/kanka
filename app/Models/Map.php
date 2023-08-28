@@ -149,8 +149,6 @@ class Map extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -184,7 +182,6 @@ class Map extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -262,7 +259,6 @@ class Map extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -293,7 +289,6 @@ class Map extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -301,7 +296,6 @@ class Map extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function grids(): array
     {
@@ -372,8 +366,6 @@ class Map extends MiscModel
     }
 
     /**
-     * @param bool $groups
-     * @return string
      */
     public function activeLayers(bool $groups = true): string
     {
@@ -395,7 +387,6 @@ class Map extends MiscModel
 
     /**
      * List of markers for the map legend (ordered by "name")
-     * @return array
      */
     public function legendMarkers(bool $link = true): array
     {
@@ -455,7 +446,6 @@ class Map extends MiscModel
 
     /**
      * Minimum zoom of a map
-     * @return int
      */
     public function minZoom(): int
     {
@@ -480,7 +470,6 @@ class Map extends MiscModel
 
     /**
      * Maximum zoom of a map
-     * @return float
      */
     public function maxZoom(): float
     {
@@ -503,7 +492,6 @@ class Map extends MiscModel
 
     /**
      * Initiall zoom of a map
-     * @return int
      */
     public function initialZoom(): int
     {
@@ -524,7 +512,6 @@ class Map extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function centerFocus(): string
     {
@@ -563,7 +550,6 @@ class Map extends MiscModel
      * Build the image's bounds for leaflet.
      * If the height or width is 0, which can happen with an svg with no height/width property,
      * we just assume 1000/1000 and wait for a user to come in discord for help.
-     * @return string
      */
     public function bounds(bool $extend = false): string
     {
@@ -577,7 +563,6 @@ class Map extends MiscModel
 
     /**
      * Copy related elements to the target
-     * @param MiscModel $target
      */
     public function copyRelatedToTarget(MiscModel $target)
     {
@@ -629,7 +614,6 @@ class Map extends MiscModel
 
     /**
      * Determine if a map can be explored
-     * @return bool
      */
     public function explorable(): bool
     {
@@ -641,7 +625,6 @@ class Map extends MiscModel
 
     /**
      * The explore link for a map, or the chunking process icon
-     * @return string
      */
     public function exploreLink(): string
     {
@@ -666,7 +649,6 @@ class Map extends MiscModel
 
     /**
      * Prepare groups for clustering
-     * @return string
      */
     public function checkinGroups(): string
     {
@@ -683,7 +665,6 @@ class Map extends MiscModel
 
     /**
      * Check if a map is using the "real" world (openstreetmaps)
-     * @return bool
      */
     public function isReal(): bool
     {
@@ -692,7 +673,6 @@ class Map extends MiscModel
 
     /**
      * Check if a map has a chunked tileset
-     * @return bool
      */
     public function isChunked(): bool
     {
@@ -701,7 +681,6 @@ class Map extends MiscModel
 
     /**
      * Check if a map is currently being chunked
-     * @return bool
      */
     public function chunkingReady(): bool
     {
@@ -710,7 +689,6 @@ class Map extends MiscModel
 
     /**
      * Check if a map encountered a chunking error
-     * @return bool
      */
     public function chunkingError(): bool
     {
@@ -718,7 +696,6 @@ class Map extends MiscModel
     }
     /**
      * Check if a map encountered a chunking error
-     * @return bool
      */
     public function chunkingRunning(): bool
     {
@@ -727,7 +704,6 @@ class Map extends MiscModel
 
     /**
      * Determine if the map uses marker clustering or not
-     * @return bool
      */
     public function isClustered(): bool
     {

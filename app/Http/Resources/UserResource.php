@@ -29,7 +29,7 @@ class UserResource extends JsonResource
         $campaign = CampaignLocalization::getCampaign();
         if ($campaign) {
             $roles = $user->campaignRoles->where('campaign_id', $campaign->id);
-            $data['role'] =CampaignUserRoleResource::collection($roles);
+            $data['role'] = CampaignUserRoleResource::collection($roles);
         }
 
         return $data;

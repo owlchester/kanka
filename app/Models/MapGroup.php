@@ -54,7 +54,6 @@ class MapGroup extends Model
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeOrdered(Builder $query)
@@ -73,7 +72,6 @@ class MapGroup extends Model
     }
 
     /**
-     * @return string
      */
     public function markerGroupHtml(): string
     {
@@ -91,7 +89,6 @@ class MapGroup extends Model
 
     /**
      * Functions for the datagrid2
-     * @return string
      */
     public function url(string $where): string
     {
@@ -104,8 +101,6 @@ class MapGroup extends Model
 
     /**
      * Patch an entity from the datagrid2 batch editing
-     * @param array $data
-     * @return bool
      */
     public function patch(array $data): bool
     {
@@ -114,7 +109,6 @@ class MapGroup extends Model
 
     /**
      * Override the get link
-     * @return string
      */
     public function getLink(): string
     {
@@ -124,8 +118,6 @@ class MapGroup extends Model
 
     /**
      * Override the tooltiped link for the datagrid
-     * @param string|null $displayName
-     * @return string
      */
     public function tooltipedLink(string $displayName = null): string
     {

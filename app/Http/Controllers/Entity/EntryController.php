@@ -10,7 +10,6 @@ use App\Models\Entity;
 class EntryController extends Controller
 {
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

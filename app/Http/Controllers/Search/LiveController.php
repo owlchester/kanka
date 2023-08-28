@@ -17,7 +17,6 @@ class LiveController extends Controller
 
     /**
      * LiveController constructor.
-     * @param SearchService $searchService
      */
     public function __construct(SearchService $searchService)
     {
@@ -68,7 +67,6 @@ class LiveController extends Controller
     {
         $recent = [];
         if (auth()->check()) {
-
             $recent = $this->search
                 ->campaign($campaign)
                 ->user(auth()->user())
@@ -92,8 +90,6 @@ class LiveController extends Controller
 
     /**
      * Filter on entities which have reminders (entity_events)
-     * @param Request $request
-     * @return mixed
      */
     public function reminderEntities(Request $request, Campaign $campaign)
     {
@@ -115,8 +111,6 @@ class LiveController extends Controller
 
     /**
      * Filter on entities which have relations
-     * @param Request $request
-     * @return mixed
      */
     public function relationEntities(Request $request, Campaign $campaign)
     {
@@ -140,8 +134,6 @@ class LiveController extends Controller
 
     /**
      * Filter on entities which have multiple tags
-     * @param Request $request
-     * @return mixed
      */
     public function tagChildren(Request $request, Campaign $campaign)
     {
@@ -166,8 +158,6 @@ class LiveController extends Controller
 
     /**
      * Filter on entities which aren't part of an ability
-     * @param Request $request
-     * @return mixed
      */
     public function abilityEntities(Request $request, Campaign $campaign)
     {
@@ -192,8 +182,6 @@ class LiveController extends Controller
 
     /**
      * Only find calendar entities
-     * @param Request $request
-     * @return mixed
      */
     public function calendars(Request $request, Campaign $campaign)
     {
@@ -210,8 +198,6 @@ class LiveController extends Controller
 
     /**
      * Filter on org members
-     * @param Request $request
-     * @return mixed
      */
     public function organisationMembers(Request $request, Campaign $campaign)
     {

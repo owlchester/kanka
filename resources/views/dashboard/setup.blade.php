@@ -14,8 +14,8 @@ $newWidgetListClass = 'btn2 btn-full';
 @endphp
 
 @section('content')
-<div class="max-w-5xl">
-    <div class="flex gap-2 mb-2 items-center">
+<div class="max-w-5xl grid grid-col gap-5">
+    <div class="flex gap-2 items-center">
         <h4 class="grow">
             @if ($dashboard)
                 {!! $dashboard->name !!}
@@ -29,7 +29,6 @@ $newWidgetListClass = 'btn2 btn-full';
         </a>
     </div>
     <x-box >
-
         @if ($dashboard)
             {!! __('dashboard.dashboards.custom.text', ['name' => $dashboard->name]) !!}
         @else
@@ -50,8 +49,8 @@ $newWidgetListClass = 'btn2 btn-full';
                 @if(!$dashboards->isEmpty() || !empty($dashboard))
                     <div class="dropdown">
                         <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <span class="hidden sm:inline">{{ __('dashboard.dashboards.actions.switch') }}</span>
-                            <span class="visible-xs-inline">
+                            <span class="hidden md:inline">{{ __('dashboard.dashboards.actions.switch') }}</span>
+                            <span class="inline md:hidden">
                                 <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
                             </span> <span class="caret"></span>
                         </button>
@@ -162,10 +161,8 @@ $newWidgetListClass = 'btn2 btn-full';
 @endsection
 
 @section('modals')
-    <div class="col-span-1 col-span-2 col-span-3 col-span-4 col-span-5 col-span-6 col-span-6 col-span-7 col-span-8 col-span-9 col-span-10 col-span-11 col-span-12"></div>
-
     <x-dialog id="new-widget" :title="__('dashboard.setup.actions.add')">
-        <div class="widget-list grid grid-cols-1 gap-2 mb-5" id="modal-content-buttons">
+        <div class="widget-list grid grid-cols-2 gap-5" id="modal-content-buttons">
             <a href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'recent', 'dashboard' => $dashboard]) }}">
                 <x-icon class="fa-solid fa-list"></x-icon>
                 {{ __('dashboard.setup.widgets.recent') }}
@@ -175,7 +172,7 @@ $newWidgetListClass = 'btn2 btn-full';
                 {{ __('dashboard.setup.widgets.preview') }}
             </a>
             <a  href="#" class="{{ $newWidgetListClass }}" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'calendar', 'dashboard' => $dashboard]) }}">
-                <x-icon class="ra ra-moon-sun"></x-icon>
+                <x-icon entity="calendar" />
                 {{ __('dashboard.setup.widgets.calendar') }}
             </a>
 

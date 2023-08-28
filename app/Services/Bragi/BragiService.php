@@ -56,8 +56,6 @@ class BragiService
 
     /**
      * Call the API and generate a result for the user.
-     * @param BragiRequest $request
-     * @return array
      */
     public function generate(BragiRequest $request): array
     {
@@ -108,8 +106,6 @@ class BragiService
 
     /**
      * Log what was generated into the db
-     * @param string $prompt
-     * @param string $result
      * @return void
      */
     protected function log(string $prompt, string $result, array $data = [])
@@ -125,10 +121,6 @@ class BragiService
 
     /**
      * Prepare an error for the plugin
-     * @param array $data
-     * @param string $error
-     * @param array $params
-     * @return array
      */
     protected function renderError(array $data, string $error, array $params = []): array
     {

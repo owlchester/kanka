@@ -101,8 +101,6 @@ class Calendar extends MiscModel
     protected array $cachedCurrentDate;
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -124,7 +122,6 @@ class Calendar extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -222,7 +219,6 @@ class Calendar extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function currentDate(string $value = null): mixed
     {
@@ -244,7 +240,6 @@ class Calendar extends MiscModel
 
     /**
      * Get the calendar's current date
-     * @return int
      */
     public function currentYear(): int
     {
@@ -253,7 +248,6 @@ class Calendar extends MiscModel
 
     /**
      * Get the calendar's current month
-     * @return int
      */
     public function currentMonth(): int
     {
@@ -262,7 +256,6 @@ class Calendar extends MiscModel
 
     /**
      * Get the calendar's current day
-     * @return int
      */
     public function currentDay(): int
     {
@@ -382,7 +375,6 @@ class Calendar extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -432,8 +424,6 @@ class Calendar extends MiscModel
     }
 
     /**
-     * @param bool $flat
-     * @return array
      */
     public function recurringOptions(bool $flat = false): array
     {
@@ -506,7 +496,6 @@ class Calendar extends MiscModel
 
     /**
      * Determine if the calendar skips year zero.
-     * @return bool
      */
     public function hasYearZero(): bool
     {

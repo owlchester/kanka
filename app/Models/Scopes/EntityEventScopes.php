@@ -10,9 +10,6 @@ trait EntityEventScopes
 {
     /**
      * All events before the current calendar's date
-     * @param Builder $query
-     * @param Calendar $calendar
-     * @return Builder
      */
     public function scopeBefore(Builder $query, Calendar $calendar): Builder
     {
@@ -34,9 +31,6 @@ trait EntityEventScopes
 
     /**
      * All events today and after today
-     * @param Builder $query
-     * @param Calendar $calendar
-     * @return Builder
      */
     public function scopeAfter(Builder $query, Calendar $calendar): Builder
     {
@@ -58,9 +52,6 @@ trait EntityEventScopes
 
     /**
      * Sort order for the datagrid page
-     * @param Builder $query
-     * @param string|null $order
-     * @return Builder
      */
     public function scopeCustomSortDate(Builder $query, string $order = null): Builder
     {

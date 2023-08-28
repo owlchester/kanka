@@ -73,7 +73,6 @@ class PluginController extends Controller
     }
 
     /**
-     * @param Plugin $plugin
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -91,7 +90,6 @@ class PluginController extends Controller
     }
 
     /**
-     * @param Plugin $plugin
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -110,8 +108,6 @@ class PluginController extends Controller
 
 
     /**
-     * @param Request $request
-     * @param Plugin $plugin
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -154,7 +150,6 @@ class PluginController extends Controller
     }
 
     /**
-     * @param Plugin $plugin
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -174,7 +169,6 @@ class PluginController extends Controller
     }
 
     /**
-     * @param Plugin $plugin
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -206,7 +200,6 @@ class PluginController extends Controller
     }
 
     /**
-     * @param Plugin $plugin
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

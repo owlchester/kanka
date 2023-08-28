@@ -29,7 +29,6 @@ abstract class DatagridFilter
 
     /**
      * Get the filters
-     * @return array
      */
     public function filters(): array
     {

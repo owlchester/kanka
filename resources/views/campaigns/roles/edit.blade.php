@@ -6,6 +6,7 @@
         $role->name,
     ],
     'mainTitle' => false,
+    'sidebar' => 'campaign',
 ])
 
 @section('content')

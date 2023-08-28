@@ -1,7 +1,9 @@
 {{ csrf_field() }}
 <x-grid>
-    <div class="field-name required">
-        <label>{{ __('entities/links.fields.name') }}</label>
+    <x-forms.field
+        field="name"
+        :label="__('entities/links.fields.name')"
+        :required="true">
         {!! Form::text(
             'name',
             null,
@@ -11,9 +13,12 @@
                 'maxlength' => 45
             ]
         ) !!}
-    </div>
-    <div class="field-url required">
-        <label>{{ __('entities/links.fields.url') }}</label>
+    </x-forms.field>
+
+    <x-forms.field
+        field="url"
+        :label="__('entities/links.fields.url')"
+        :required="true">
         {!! Form::text(
             'metadata[url]',
             null,
@@ -23,7 +28,7 @@
                 'maxlength' => 255
             ]
         ) !!}
-    </div>
+    </x-forms.field>
 
     @include('cruds.fields.icon', ['iconFieldName' => 'metadata[icon]', 'placeholder' => 'fa-brands fa-d-and-d-beyond, ra ra-aura'])
     @include('cruds.fields.visibility_id', ['model' => $entity ?? null])

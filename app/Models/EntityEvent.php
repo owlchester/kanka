@@ -102,7 +102,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function readableDate(): string
     {
@@ -133,7 +132,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Length of the event in a readable format (appends "days")
-     * @return string
      */
     public function readableLength(): string
     {
@@ -141,8 +139,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @param Calendar $calendar
-     * @return bool
      */
     public function isToday(Calendar $calendar): bool
     {
@@ -150,7 +146,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function date(): string
     {
@@ -158,7 +153,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function getLabelColour(): string
     {
@@ -169,7 +163,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function getLabelBackgroundColour(): string
     {
@@ -182,7 +175,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Generate the Entity Event label for the calendar
-     * @return string
      */
     public function getLabel(): string
     {
@@ -202,8 +194,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Check if a reminder is after the current date of a given calendar
-     * @param Calendar $calendar
-     * @return bool
      */
     public function isPast(Calendar $calendar): bool
     {
@@ -226,10 +216,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @param int $year
-     * @param int $month
-     * @param int $day
-     * @return bool
      */
     public function isPastDate(int $year, int $month, int $day): bool
     {
@@ -305,12 +291,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Calculate how long ago the event happened
-     * @param int $year
-     * @param int $month
-     * @param int $day
-     * @param array $months
-     * @param int $daysInYear
-     * @return int
      */
     public function mostRecentOccurrence(int $year, int $month, int $day, array $months, int $daysInYear): int
     {
@@ -402,12 +382,6 @@ class EntityEvent extends MiscModel
      * Calculate when this reminder happens next. We want the YYYYYYYMMMMDDDD format, and use that as a string to
      * order by, instead of doing complicated math. Or do we? I don't know, I'm so confused. This is all super
      * hard to calculate :(
-     * @param int $calendarYear
-     * @param int $calendarMonth
-     * @param int $day
-     * @param array $months
-     * @param int $daysInYear
-     * @return int
      */
     public function nextUpcomingOccurrence(int $calendarYear, int $calendarMonth, int $day, array $months, int $daysInYear): int
     {
@@ -496,7 +470,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if a reminder is recurring every year
-     * @return bool
      */
     public function recurringYearly(): bool
     {
@@ -505,7 +478,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if a reminder is recurring every month
-     * @return bool
      */
     public function recurringMonthly(): bool
     {
@@ -514,7 +486,6 @@ class EntityEvent extends MiscModel
 
     /**
      * How many days ago the last occurrence was
-     * @return int
      */
     public function daysAgo(): int
     {
@@ -523,7 +494,6 @@ class EntityEvent extends MiscModel
 
     /**
      * In how many days the next reminder is
-     * @return int
      */
     public function inDays(): int
     {
@@ -532,7 +502,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if an event is of the character birth type
-     * @return bool
      */
     public function isBirth(): bool
     {
@@ -541,7 +510,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if an event is of the entity foundation type
-     * @return bool
      */
     public function isFounded(): bool
     {
@@ -550,7 +518,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if an event is of the character death type
-     * @return bool
      */
     public function isDeath(): bool
     {
@@ -559,7 +526,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if an event is of the calendar date type
-     * @return bool
      */
     public function isCalendarDate(): bool
     {
@@ -568,9 +534,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Reduce the month by one, making sure it's still in the bounds of a valid month
-     * @param int $month
-     * @param int $min
-     * @return int
      */
     protected function previousMonth(int $month, int $min): int
     {

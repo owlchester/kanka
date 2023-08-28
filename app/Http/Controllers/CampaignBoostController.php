@@ -42,7 +42,6 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -114,8 +113,6 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param CampaignBoost $campaignBoost
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -150,7 +147,6 @@ class CampaignBoostController extends Controller
 
 
     /**
-     * @param CampaignBoost $campaignBoost
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -169,7 +165,6 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @param CampaignBoost $campaignBoost
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

@@ -9,8 +9,6 @@ trait CanFixTree
 {
     /**
      * When transforming or moving an entity, we need to fix its tree
-     * @param MiscModel $model
-     * @return void
      */
     protected function fixTree(MiscModel $model): void
     {

@@ -26,7 +26,6 @@ class MoveController extends Controller
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -45,8 +44,6 @@ class MoveController extends Controller
     }
 
     /**
-     * @param MoveEntityRequest $request
-     * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

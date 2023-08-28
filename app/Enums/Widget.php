@@ -12,5 +12,4 @@ enum Widget: String
     case Header = 'header';
     case Campaign = 'campaign';
     case Welcome = 'welcome';
-
 }

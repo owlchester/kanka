@@ -20,7 +20,6 @@ class PostObserver
     protected EntityMappingService $entityMappingService;
 
     /**
-     * @param EntityMappingService $entityMappingService
      */
     public function __construct(EntityMappingService $entityMappingService)
     {
@@ -28,7 +27,6 @@ class PostObserver
     }
 
     /**
-     * @param Post $post
      */
     public function saving(Post $post)
     {
@@ -51,7 +49,6 @@ class PostObserver
     }
 
     /**
-     * @param Post $post
      */
     public function created(Post $post)
     {
@@ -62,7 +59,6 @@ class PostObserver
     }
 
     /**
-     * @param Post $post
      */
     public function updated(Post $post)
     {
@@ -75,7 +71,6 @@ class PostObserver
     }
 
     /**
-     * @param Post $post
      */
     public function saved(Post $post)
     {
@@ -95,7 +90,6 @@ class PostObserver
     }
 
     /**
-     * @param Post $post
      */
     public function deleted(Post $post)
     {
@@ -110,8 +104,6 @@ class PostObserver
         }
     }
     /**
-     * @param Post $post
-     * @param int $action
      */
     private function log(Post $post, int $action)
     {
@@ -126,8 +118,6 @@ class PostObserver
         $log->save();
     }
     /**
-     * @param Post $post
-     * @return bool
      */
     public function savePermissions(Post $post): bool
     {

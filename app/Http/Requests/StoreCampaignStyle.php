@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreCampaignStyle extends FormRequest
 {
     use ApiRequest;
+
     public const MAX = 60000;
 
     /**

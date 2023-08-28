@@ -11,7 +11,6 @@ use App\Models\Character;
 class CharacterController extends CrudController
 {
     /**
-     * @var string
      */
     protected string $view = 'characters';
     protected string $route = 'characters';
@@ -23,7 +22,6 @@ class CharacterController extends CrudController
     protected $model = \App\Models\Character::class;
 
     /**
-     * @var string
      */
     protected string $filter = CharacterFilter::class;
 

@@ -14,7 +14,6 @@ class TimelineController extends CrudController
     use TreeControllerTrait;
 
     /**
-     * @var string
      */
     protected string $view = 'timelines';
     protected string $route = 'timelines';

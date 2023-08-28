@@ -114,7 +114,6 @@ class Campaign extends Model
 
     /**
      * Does the campaign has a preview text that can be displayed
-     * @return bool
      */
     public function hasPreview(): bool
     {
@@ -123,7 +122,6 @@ class Campaign extends Model
 
     /**
      * Preview text for the dashboard
-     * @return string
      */
     public function preview(): string
     {
@@ -137,7 +135,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return array
      */
     public function membersList($removedIds = []): array
     {
@@ -171,7 +168,6 @@ class Campaign extends Model
 
     /**
      * Count the number of admins in a campaign. Used by the CampaignPolicy
-     * @return int
      */
     public function adminCount(): int
     {
@@ -184,7 +180,6 @@ class Campaign extends Model
 
     /**
      * Determine if the user is in the campaign
-     * @return bool
      */
     public function userIsMember(User $user = null): bool
     {
@@ -198,8 +193,6 @@ class Campaign extends Model
     /**
      * Determine if a campaign has a module enabled or not
      *
-     * @param string $module
-     * @return bool
      */
     public function enabled(string $module): bool
     {
@@ -220,7 +213,6 @@ class Campaign extends Model
 
     /**
      * Determine if the user is currently following the campaign
-     * @return bool
      */
     public function isFollowing(): bool
     {
@@ -229,7 +221,6 @@ class Campaign extends Model
 
     /**
      * Determine if a campaign is public
-     * @return bool
      */
     public function isPublic(): bool
     {
@@ -238,7 +229,6 @@ class Campaign extends Model
     /**
      *
      * Determine if a campaign is open to submissions
-     * @return bool
      */
     public function isOpen(): bool
     {
@@ -247,7 +237,6 @@ class Campaign extends Model
 
     /**
      * Determine if a campaign is hidden
-     * @return bool
      */
     public function isHidden(): bool
     {
@@ -255,7 +244,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return mixed
      */
     public function entry()
     {
@@ -263,7 +251,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return mixed
      */
     public function getEntryForEditionAttribute()
     {
@@ -271,7 +258,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return mixed
      */
     public function excerpt()
     {
@@ -279,7 +265,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return mixed
      */
     public function getExcerptForEditionAttribute()
     {
@@ -288,7 +273,6 @@ class Campaign extends Model
 
     /**
      * Determine if the campaign has images in tooltips.
-     * @return mixed
      */
     public function getTooltipImageAttribute()
     {
@@ -296,7 +280,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return bool
      */
     public function defaultToNested(): bool
     {
@@ -304,7 +287,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return bool
      */
     public function defaultToConnection(): bool
     {
@@ -312,7 +294,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return int
      */
     public function defaultToConnectionMode(): int
     {
@@ -320,7 +301,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return mixed
      */
     public function getHideMembersAttribute()
     {
@@ -329,7 +309,6 @@ class Campaign extends Model
 
 
     /**
-     * @return mixed
      */
     public function getHideHistoryAttribute()
     {
@@ -338,7 +317,6 @@ class Campaign extends Model
 
     /**
      * Number of layers a map of a campaign can have
-     * @return int
      */
     public function maxMapLayers(): int
     {
@@ -349,7 +327,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return int
      */
     public function maxEntityFiles(): int
     {
@@ -365,7 +342,6 @@ class Campaign extends Model
     }
 
     /**
-     * @return array
      */
     public function existingDefaultImages(): array
     {
@@ -378,7 +354,6 @@ class Campaign extends Model
 
     /**
      * Prepare the default entity images
-     * @return array
      */
     public function defaultImages(): array
     {
@@ -409,7 +384,6 @@ class Campaign extends Model
 
     /**
      * Determine if a campaign has plugins of the theme type
-     * @return bool
      */
     public function hasPluginTheme(): bool
     {
@@ -427,7 +401,6 @@ class Campaign extends Model
 
     /**
      * Determine the campaign's default visibility_id select option
-     * @return int
      */
     public function defaultVisibilityID(): int
     {
@@ -448,7 +421,6 @@ class Campaign extends Model
 
     /**
      * Checks if the campaign's public role has no read permissions
-     * @return bool
      */
     public function publicHasNoVisibility(): bool
     {
@@ -464,7 +436,6 @@ class Campaign extends Model
     /**
      * Determine if a campaign has editing warnings (when multiple people are trying to edit
      * the same entity). This is enabled if the campaign has several members.
-     * @return bool
      */
     public function hasEditingWarning(): bool
     {
@@ -474,7 +445,6 @@ class Campaign extends Model
 
     /**
      * Send a notification to the campaign's admins
-     * @param Notification $notification
      * @return $this
      */
     public function notifyAdmins(Notification $notification): self
@@ -487,9 +457,6 @@ class Campaign extends Model
 
     /**
      * Get the campaign's thumbnail url
-     * @param int $width
-     * @param int|null $height
-     * @param string $field
      * @return string
      */
     public function thumbnail(int $width = 400, int $height = null, string $field = 'image')
@@ -504,7 +471,6 @@ class Campaign extends Model
 
     /**
      * Determine if a campaign can be exported, or if it already hit the daily maximum
-     * @return bool
      */
     public function exportable(): bool
     {
@@ -517,7 +483,6 @@ class Campaign extends Model
 
     /**
      * Get the value of the follower variable
-     * @return int
      */
     public function follower(): int
     {

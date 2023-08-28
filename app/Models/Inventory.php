@@ -43,7 +43,6 @@ class Inventory extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -51,7 +50,6 @@ class Inventory extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function item(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -69,7 +67,6 @@ class Inventory extends Model
 
     /**
      * List of recently used positions for the form suggestions
-     * @return Builder
      */
     public function scopePositionList(Builder $builder, Campaign $campaign): Builder
     {
@@ -83,7 +80,6 @@ class Inventory extends Model
     }
 
     /**
-     * @return string
      */
     public function itemName(): string
     {
@@ -95,7 +91,6 @@ class Inventory extends Model
 
     /**
      * Copy an entity inventory to another target
-     * @param Entity $target
      */
     public function copyTo(Entity $target)
     {

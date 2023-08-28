@@ -3,6 +3,7 @@
 namespace App\Services\Campaign;
 
 use App\Enums\Visibility;
+use App\Facades\Avatar;
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\StoreImageFocus;
 use App\Models\Image;
@@ -61,7 +62,6 @@ class GalleryService
 
     /**
      * Size in mb
-     * @return int
      */
     public function usedSpace(): int
     {
@@ -79,7 +79,6 @@ class GalleryService
 
     /**
      * Available space in KB
-     * @return int
      */
     public function available(): int
     {
@@ -109,7 +108,6 @@ class GalleryService
 
     /**
      * Total size in mb
-     * @return int
      */
     public function totalSpace(): int
     {
@@ -160,8 +158,6 @@ class GalleryService
     }
 
     /**
-     * @param StoreImageFocus $request
-     * @return bool
      */
     public function saveFocusPoint(StoreImageFocus $request): bool
     {
@@ -170,15 +166,13 @@ class GalleryService
         $this->image->save();
 
         foreach ($this->image->inEntities() as $entity) {
-            $entity->clearAvatarCache();
+            Avatar::entity($entity)->forget();
         }
 
         return $request->filled('focus_x');
     }
 
     /**
-     * @param array $options
-     * @return Image
      */
     public function update(array $options): Image
     {
@@ -193,7 +187,6 @@ class GalleryService
 
     /**
      * Create a folder (virtual image)
-     * @param Request $request
      */
     public function createFolder(Request $request)
     {
@@ -211,7 +204,6 @@ class GalleryService
     }
 
     /**
-     * @return array
      */
     public function folderList(): array
     {
@@ -232,8 +224,6 @@ class GalleryService
     }
 
     /**
-     * @param Image $folder
-     * @param int $level
      */
     protected function loopSubfolder(Image $folder, int $level)
     {

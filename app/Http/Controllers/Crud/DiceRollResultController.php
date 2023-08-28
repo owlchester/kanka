@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 class DiceRollResultController extends CrudController
 {
     /**
-     * @var string
      */
     protected string $view = 'dice_roll_results';
     protected string $route = 'dice_roll_results';

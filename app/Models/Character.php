@@ -67,7 +67,6 @@ class Character extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
     protected array $sortableColumns = [
         'title',
@@ -91,7 +90,6 @@ class Character extends MiscModel
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns = ['name', 'title', 'type', 'entry'];
 
@@ -135,8 +133,6 @@ class Character extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -163,10 +159,6 @@ class Character extends MiscModel
     }
     /**
      * Filter for characters in a specific list of organisations
-     * @param Builder $query
-     * @param string|null $value
-     * @param FilterOption $filter
-     * @return Builder
      */
     public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
     {
@@ -205,7 +197,6 @@ class Character extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -347,7 +338,6 @@ class Character extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -380,7 +370,6 @@ class Character extends MiscModel
 
     /**
      * Tooltip subtitle (character title)
-     * @return string
      */
     public function tooltipSubtitle(): string
     {
@@ -392,7 +381,6 @@ class Character extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -401,13 +389,14 @@ class Character extends MiscModel
 
     /**
      * Determine if the character has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
         // Test text fields first
-        if (!empty($this->type) || !empty($this->age) || !empty($this->sex)
-            || !empty($this->pronouns)) {
+        if (
+            !empty($this->type) || !empty($this->age) || !empty($this->sex)
+            || !empty($this->pronouns)
+        ) {
             return true;
         }
         if (!$this->races->isEmpty() || !$this->families->isEmpty()) {
@@ -418,7 +407,6 @@ class Character extends MiscModel
 
     /**
      * Determine if the character has an age. 0 counts as a valide age.
-     * @return bool
      */
     public function hasAge(): bool
     {
@@ -427,7 +415,6 @@ class Character extends MiscModel
 
     /**
      * Row classes for entities
-     * @return string
      */
     public function rowClasses(): string
     {
@@ -460,7 +447,6 @@ class Character extends MiscModel
 
     /**
      * Available sorting on the grid view
-     * @return array
      */
     public function datagridSortableColumns(): array
     {
@@ -483,7 +469,6 @@ class Character extends MiscModel
 
     /**
      * Get the value of the is_dead variable
-     * @return bool
      */
     public function isDead(): bool
     {
@@ -491,8 +476,6 @@ class Character extends MiscModel
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeFilteredCharacters(Builder $query): Builder
     {

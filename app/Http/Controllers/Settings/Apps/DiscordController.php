@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Log;
 class DiscordController extends Controller
 {
     /**
-     * @var DiscordService
      */
     protected DiscordService $discord;
 
@@ -56,7 +55,6 @@ class DiscordController extends Controller
     }
 
     /**
-     * @param Request $request
      */
     public function callback(Request $request)
     {
@@ -79,8 +77,6 @@ class DiscordController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
      */
     public function destroy(Request $request)
     {

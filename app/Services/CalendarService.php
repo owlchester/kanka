@@ -24,8 +24,6 @@ class CalendarService
 
     /**
      * Add an event to a calendar, and return the new calendar_event model
-     * @param array $data
-     * @return EntityEvent
      */
     public function addEvent(array $data = []): EntityEvent
     {

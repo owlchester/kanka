@@ -60,7 +60,7 @@ $specificTheme = null;
 <body id="map-body" class="map-page sidebar-collapse @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts.tracking.fallback')
 
-    <div id="app" class="wrapper mt-12">
+    <div id="app" class="wrapper h-full relative overflow-x-hidden overflow-y-auto mt-12">
         <!-- Header -->
         @include('layouts.header', ['toggle' => true])
 

@@ -15,7 +15,6 @@ class PatreonService
     use UserAware;
 
     /**
-     * @return mixed
      */
     protected function getRole()
     {
@@ -24,7 +23,6 @@ class PatreonService
 
     /**
      * Remove a user's legacy link to the patreon service
-     * @return bool
      */
     public function unlink(): bool
     {

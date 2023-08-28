@@ -41,8 +41,6 @@ class UserApiController extends ApiController
 
     /**
      * Add a single user to a role
-     * @param UpdateUserRole $request
-     * @param Campaign $campaign
      * @return \Illuminate\Http\JsonResponse
      */
     public function add(UpdateUserRole $request, Campaign $campaign)
@@ -63,8 +61,6 @@ class UserApiController extends ApiController
 
     /**
      * Remove a role from a user
-     * @param UpdateUserRole $request
-     * @param Campaign $campaign
      * @return \Illuminate\Http\JsonResponse
      */
     public function remove(UpdateUserRole $request, Campaign $campaign)
