@@ -45,6 +45,14 @@
                                         Delete
                                     </a>
                                 </td>
+                                <td class="text-right" style="vertical-align: middle;">
+                                    <a class="btn2 btn-error btn-outline btn-xs" @click="deleteConfirm(token)" v-if="!this.confirmToken || this.confirmToken.id != token.id">
+                                        Delete
+                                    </a>
+                                    <a class="btn2 btn-error btn-xs" @click="deleteConfirm(token)" v-else>
+                                        Confirm delete
+                                    </a>
+                                </td>                       
                             </tr>
                         </tbody>
                     </table>
@@ -149,6 +157,7 @@
 
                 tokens: [],
                 scopes: [],
+                confirmToken: null,
 
                 form: {
                     name: '',
@@ -272,6 +281,7 @@
                 axios.delete('/oauth/personal-access-tokens/' + token.id)
                         .then(response => {
                             this.getTokens();
+                            window.showToast('API token deleted succesfully.');
                         });
             },
 
@@ -290,6 +300,12 @@
             closeModal(ref) {
                 this.$refs[ref].close();
             },
+            deleteConfirm(token) {
+                if(this.confirmToken && token.id === this.confirmToken.id) {
+                    return this.revoke(token);
+                }
+                this.confirmToken = token;
+            }
         }
     }
 </script>
