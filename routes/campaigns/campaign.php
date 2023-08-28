@@ -13,8 +13,8 @@ Route::delete('/w/{campaign}/remove', 'Campaign\ApplyController@remove')->name('
 Route::get('/w/{campaign}/gallery', 'Campaign\GalleryController@index')->name('campaign.gallery.index');
 Route::get('/w/{campaign}/gallery/load', 'Campaign\GalleryController@load')->name('campaign.gallery.load');
 Route::get('/w/{campaign}/gallery/search', 'Campaign\GalleryController@search')->name('campaign.gallery.search');
-Route::post('/w/{campaign}/gallery/ajax-upload', 'Campaign\GalleryController@ajaxUpload')->name('campaign.gallery.ajax-upload');
-Route::get('/w/{campaign}/gallery/ajax-gallery', 'Campaign\AjaxGalleryController@index')->name('campaign.gallery.summernote');
+Route::post('/w/{campaign}/gallery/ajax-upload', 'Summernote\GalleryController@upload')->name('campaign.gallery.ajax-upload');
+Route::get('/w/{campaign}/gallery/ajax-gallery', 'Summernote\GalleryController@index')->name('campaign.gallery.summernote');
 Route::post('/w/{campaign}/gallery/{image}/save-focus', 'Campaign\GalleryController@saveFocus')->name('campaign.gallery.save-focus');
 Route::post('/w/{campaign}/gallery/bulk', 'Campaign\Gallery\BulkController@delete')->name('campaign.gallery.bulk.delete');
 

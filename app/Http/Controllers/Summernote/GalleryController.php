@@ -1,17 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Campaign;
+namespace App\Http\Controllers\Summernote;
 
+use App\Facades\Img;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Models\Campaign;
 use App\Models\Image;
+use App\Services\Campaign\GalleryService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
-class AjaxGalleryController extends Controller
+class GalleryController extends Controller
 {
-    public function __construct()
+    protected GalleryService $service;
+
+    public function __construct(GalleryService $service)
     {
         $this->middleware('auth');
+        $this->middleware('campaign.member');
+        $this->service = $service;
     }
 
     public function index(Campaign $campaign)
@@ -70,5 +79,20 @@ class AjaxGalleryController extends Controller
         }
 
         return response()->json($response);
+    }
+    /**
+     * Called when adding an image from the text editor
+     */
+    public function upload(GalleryImageStore $request, Campaign $campaign): JsonResponse
+    {
+        $this->authorize('gallery', $campaign);
+
+        $images = $this->service
+            ->campaign($campaign)
+            ->user(auth()->user())
+            ->store($request);
+        $image = Arr::first($images);
+
+        return response()->json(Img::resetCrop()->url($image->path));
     }
 }
