@@ -1,5 +1,5 @@
 
-<div class="field-tag">
+<div class="field field-tag flex flex-col gap-1 ">
     @if (!empty($label))
         <label>{{ \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')) }}
             @if(!empty($helper))
@@ -9,7 +9,7 @@
     @endif
 
     <select multiple="multiple" name="tags[]" id="{{ $id }}"
-            class="form-control form-tags"
+            class="form-tags"
             style="width: 100%"
             data-url="{{ route('tags.find', $campaign) }}"
             data-allow-new="{{ $allowNew ? 'true' : 'false' }}"

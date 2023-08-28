@@ -14,7 +14,7 @@ $label = $imageLabel ?? 'crud.fields.image';
 $previewThumbnail = null;
 $canDelete = true;
 if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($model->entity->image)) {
-    $previewThumbnail = $model->entity->image->getUrl(240,112);
+    $previewThumbnail = $model->entity->image->getUrl(192, 144);
     $canDelete = false;
     /*
     <div class="preview-v2">
@@ -25,19 +25,22 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
     $previewThumbnail = $model->thumbnail(120);
 }
 ?>
-<div class="field field-image">
-    <div class="@if (!empty($imageRequired) && $imageRequired) required @endif">
-        <label>{{ __($label) }}</label>
-        {!! Form::hidden('remove-image') !!}
-    </div>
+{!! Form::hidden('remove-image') !!}
+<div class="field field-image flex flex-col gap-1 @if (!empty($imageRequired) && $imageRequired) required @endif">
 
-    <div class="flex gap-2">
+    <label>{{ __($label) }}</label>
+
+    <div class="flex flex-row gap-2">
         <div class="grow flex flex-col gap-2">
             <div class="image-file field">
                 {!! Form::file('image', ['class' => 'image w-full  ']) !!}
             </div>
             <div class="image-url field">
-                {!! Form::text('image_url', ((!empty($source) && $source->image) ? $source->getOriginalImageUrl() : ''), ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full']) !!}
+                {!! Form::text(
+                    'image_url',
+                    ((!empty($source) && $source->image) ? $source->getOriginalImageUrl() : ''),
+                    ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full'])
+ !!}
             </div>
 
             @php
@@ -61,11 +64,6 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
             @if (!empty($model->entity) && !empty($model->entity->image_uuid) && empty($model->entity->image))
                 <input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" />
             @endif
-
-            <p class="help-block">
-                {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }}
-                @include('cruds.fields.helpers.share')
-            </p>
         </div>
         @if (!empty($previewThumbnail))
             <div class="preview w-32">
@@ -84,4 +82,10 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
             </div>
         @endif
     </div>
+
+
+    <p class="text-neutral-content m-0">
+        {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }}
+        @include('cruds.fields.helpers.share')
+    </p>
 </div>

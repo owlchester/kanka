@@ -1,6 +1,6 @@
 <div class="field field-{{ $field }} flex flex-col gap-1 @if (isset($required) && $required) required @endif">
-    @if (isset($label))
-        <label class="m-0">
+    @if (isset($label) && !empty($label))
+        <label class="">
             {!! $label !!}
             @if ($tooltip && isset($helper))
                 @if (isset($link))
@@ -14,7 +14,7 @@
         </label>
     @endif
     {!! $slot !!}
-    @if (isset($helper))
+    @if (isset($helper) && !empty($helper))
         <p class="m-0 text-neutral-content @if ($tooltip) md:hidden @endif">
             {!! $helper !!}
             @if (isset($link))

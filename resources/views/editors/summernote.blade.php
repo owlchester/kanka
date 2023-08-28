@@ -5,12 +5,12 @@
     @vite('resources/js/editors/summernote.js')
     <script src="/vendor/summernote/plugin/embed/summernote-embed-plugin.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js" defer></script>
-    <script src="/vendor/summernote/plugin/summernote-gallery-kanka.min.js" defer></script>
+    <script src="/vendor/summernote/plugin/kanka/summernote-gallery.min.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-toc-kanka/summernote-toc.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-aroba-kanka/summernote-aroba.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-table-ext.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-image-attribute.js" defer></script>
-    <script src="/vendor/summernote/plugin/kanka/summernote-bragi-kanka.min.js" defer></script>
+    <script src="/vendor/summernote/plugin/kanka/summernote-bragi.min.js" defer></script>
     <script src="/vendor/summernote/plugin/kanka/summernote-prettify-kanka.min.js" defer></script>
 {{--    <script src="/vendor/summernote/plugin/rtl/summernote-ext-rtl.js" defer></script>--}}
 

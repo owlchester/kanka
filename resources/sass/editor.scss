@@ -89,18 +89,7 @@ img.note-float-left {
 // Gallery
 .images-list {
     .img-item {
-        overflow: hidden;
-        margin: 10px 0;
-
         .img-thumbnail {
-            height: 120px;
-            overflow: hidden;
-            line-height: 120px;
-            background-color: hsl(var(--b1)/1);
-            color: hsl(var(--bc)/1);
-            border: none;
-            cursor: pointer;
-
             .text {
                 display: inline-block;
                 vertical-align: middle;
@@ -109,13 +98,6 @@ img.note-float-left {
                 i {
                     display: block;
                 }
-            }
-
-            &:focus,
-            &:hover {
-                box-shadow: 0 0 0 1px hsl(var(--bc)/1), 0 0 2px 1px rgba(30, 140, 190, 0.8);
-                color: hsl(var(--bc)/1);
-                outline: 1px solid transparent;
             }
         }
     }
