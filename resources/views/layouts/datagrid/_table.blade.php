@@ -44,7 +44,6 @@
 
 @if (isset($responsive))</div>@endif
 @if ($rows->hasPages() || Datagrid::hasBulks() )
-    <div class=" clearfix"></div>
     <div class="flex gap-2 w-full">
         @includeWhen(Datagrid::hasBulks(), 'layouts.datagrid.bulks')
         {!! $rows->appends(Datagrid::paginationFilters())->links() !!}

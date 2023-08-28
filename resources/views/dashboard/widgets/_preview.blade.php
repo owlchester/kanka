@@ -20,6 +20,6 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
     @include($specificPreview, ['entity' => $entity])
 @else
         <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity" />
-        <x-widgets.previews.body  :widget="$widget" :campaign="$campaign" :entity="$entity" :model="$model" />
+        <x-widgets.previews.body :widget="$widget" :campaign="$campaign" :entity="$entity" :model="$model" />
 @endif
 </x-box>

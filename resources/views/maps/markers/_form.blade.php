@@ -96,7 +96,7 @@ $sizeOptions = [
                                     </p>
                                 </div>
 
-                                <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline pull-right btn-sm mb-1" style="">
+                                <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm" style="">
                                     <i class="fa-solid fa-eraser" aria-hidden="true"></i>
                                     {{ __('maps/markers.actions.reset-polygon') }}
                                 </a>
@@ -109,7 +109,7 @@ $sizeOptions = [
                             <x-icon class="pencil"></x-icon>
                             {{ __('maps/markers.actions.start-drawing') }}
                         </a>
-                        <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm pull-right" style="display: none">
+                        <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm" style="display: none">
                             <x-icon class="fa-solid fa-eraser"></x-icon>
                             {{ __('maps/markers.actions.reset-polygon') }}
                         </a>

@@ -9,11 +9,13 @@
     @include($content)
 </article>
 <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3">
+    @if (!isset($skipCancel))
     <menu class="flex flex-wrap gap-3 ps-0 ms-0">
         <button autofocus type="button" class="btn2 btn-ghost btn-full" onclick="this.closest('dialog').close('close')">
             {{ __('crud.cancel') }}
         </button>
     </menu>
+    @endif
     <menu class="flex flex-wrap gap-3 ps-0">
         @if (isset($deleteID) && !empty($deleteID))
             <x-button.delete-confirm target="{{ $deleteID }}" />

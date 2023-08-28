@@ -1,20 +1,16 @@
 @extends('layouts.app', [
     'title' => __('presets.create.title'),
+    'centered' => true,
 ])
 
 
 @section('content')
 
-    <form method="POST" action="{{ route('presets.store', [$campaign, $presetType]) }}" class="max-w-7xl mx-auto">
-        <x-box>
-            @include('presets.forms._' . $presetType->code)
-            <x-dialog.footer>
-                <button type="submit" class="btn2 btn-primary">
-                    {!! __('crud.save') !!}
-                </button>
-            </x-dialog.footer>
-        </x-box>
-
+    <form method="POST" action="{{ route('presets.store', [$campaign, $presetType]) }}">
+        @include('partials.forms.form', [
+           'title' => __('presets.create.title'),
+           'content' => 'presets.forms._' . $presetType->code,
+        ])
         <input type="hidden" name="from" value="{{ $from }}" />
         @csrf
     </form>

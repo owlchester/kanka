@@ -4,6 +4,7 @@
     'skipBannerAd' => true,
     'startUI' => $start,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('fullpage-form')

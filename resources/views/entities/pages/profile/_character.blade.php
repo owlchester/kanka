@@ -83,11 +83,11 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             <div class="character-personalities flex-1">
 
                 @if(auth()->check() && auth()->user()->can('personality', $model))
-                    <span class="pull-right">
+                    <span class="float-right">
                         @if (!$model->is_personality_visible)
-                            <i class="fa-solid fa-lock" data-title="{{ __('characters.hints.personality_not_visible') }}" data-toggle="tooltip"></i>
+                            <x-icon class="fa-solid fa-lock" :tooltip="true" :title="__('characters.hints.personality_not_visible')" />
                         @else
-                            <i class="fa-solid fa-lock-open" data-title="{{ __('characters.hints.personality_visible') }}" data-toggle="tooltip"></i>
+                            <x-icon class="fa-solid fa-lock-open" :tooltip="true" :title="__('characters.hints.personality_visible')" />
                         @endif
                     </span>
                 @endif

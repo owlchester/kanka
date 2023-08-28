@@ -9,7 +9,7 @@
 ])
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block pull-right ml-auto">
+    <div class="header-buttons inline-block ml-auto">
         <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </a>

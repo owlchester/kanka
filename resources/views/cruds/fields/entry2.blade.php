@@ -7,7 +7,7 @@ $old = old('entry');
             {{ __('crud.fields.entry') }}
         </label>
 
-        <a href="//docs.kanka.io/en/latest/features/mentions.html" class="pull-right btn2 btn-xs btn-link"
+        <a href="//docs.kanka.io/en/latest/features/mentions.html" class="btn2 btn-xs btn-link"
            target="_blank" data-title="{{ __('helpers.link.description') }}" data-toggle="tooltip">
             {{ __('crud.helpers.linking') }}
         </a>

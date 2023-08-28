@@ -6,6 +6,7 @@
     'canonical' => true,
     'mainTitle' => false,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @php
@@ -14,7 +15,7 @@
 @section('content')
     @include('partials.ads.top')
     @include('partials.errors')
-    <div class="grow max-w-7xl flex flex-col gap-5" id="campaign-modules">
+    <div class="grow flex flex-col gap-5" id="campaign-modules">
 
         <div class="flex gap-2 items-center">
             <h3 class="inline-block grow">

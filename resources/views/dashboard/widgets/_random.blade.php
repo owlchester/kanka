@@ -25,31 +25,6 @@ $widget->setEntity($entity);
     @include($specificPreview, ['entity' => $entity, 'customName' => $customName])
 @else
     <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity" />
-    <div class="panel-body p-4">
-        @if ($widget->conf('full') === '1')
-            <div class="entity-content">
-                {!! $model->entry() !!}
-            </div>
-
-            @include('dashboard.widgets.previews._members')
-            @include('dashboard.widgets.previews._relations')
-            @include('dashboard.widgets.previews._attributes')
-        @else
-        <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
-            <div class="entity-content">
-                {!! $model->entry() !!}
-            </div>
-
-            @include('dashboard.widgets.previews._members')
-            @include('dashboard.widgets.previews._relations')
-            @include('dashboard.widgets.previews._attributes')
-        </div>
-        <a href="#" class="preview-switch w-full inline-block text-center hidden hidden"
-           id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
-            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-            <span class="sr-only">{{ __('Show more') }}</span>
-        </a>
-        @endif
-    </div>
+    <x-widgets.previews.body :widget="$widget" :campaign="$campaign" :entity="$entity" :model="$model" />
 @endif
 </x-box>

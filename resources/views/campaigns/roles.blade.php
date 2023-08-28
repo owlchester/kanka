@@ -6,11 +6,12 @@
     'canonical' => true,
     'mainTitle' => false,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('content')
     @include('partials.errors')
-    <div class="flex flex-col gap-5 max-w-7xl">
+    <div class="flex flex-col gap-5">
         @include('campaigns.roles.index')
     </div>
 @endsection

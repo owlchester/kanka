@@ -5,7 +5,7 @@ $imageCount = 0;
     <x-dialog.close :modal="true"  />
     <h4 class="modal-title" id="myModalLabel">{!! $image->name !!}</h4>
 </div>
-<div class="modal-body panel-image-edit">
+<div class="modal-body gallery-image-edit">
     <div class="gallery-toggle collapse !visible in">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="">
@@ -119,7 +119,7 @@ $imageCount = 0;
     </div>
     </div>
     <div class="gallery-toggle collapse !visible">
-        <div class="panel-image-edit">
+        <div class="gallery-image-edit">
             <p class="help-block">{{ __('entities/image.focus.helper') }}</p>
             <div class="focus-selector max-h-96 relative mb-2 overflow-auto">
                 <div class="focus absolute text-white cursor-pointer text-3xl" style="@if(empty($image->focus_x))display: none; @else left: {{ $image->focus_x }}px; top: {{ $image->focus_y }}px; @endif">

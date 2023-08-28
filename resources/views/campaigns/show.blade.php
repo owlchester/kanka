@@ -5,6 +5,7 @@
     'canonical' => true,
     'mainTitle' => false,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('og')
@@ -19,7 +20,7 @@
     @include('partials.errors')
     @include('partials.ads.top')
 
-    <div class="flex gap-5 flex-col max-w-7xl">
+    <div class="flex gap-5 flex-col">
             @can('update', $campaign)
                 @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
                     <x-alert type="warning">

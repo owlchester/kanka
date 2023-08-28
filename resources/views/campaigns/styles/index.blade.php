@@ -7,28 +7,29 @@ use App\Facades\Datagrid ?>
     ],
     'mainTitle' => false,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('content')
     @include('partials.errors')
 
-    <div class="flex gap-5 flex-col max-w-7xl">
+    <div class="flex gap-5 flex-col">
         <div class="flex gap-2 items-center flex-wrap">
             <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.styles') }}
             </h3>
             @if ($campaign->boosted())
-                <button class="btn2 btn-sm btn-ghost ml-1" data-toggle="dialog"
-                        data-target="theming-help">
-                    <x-icon class="question"></x-icon>
+                <button class="btn2 btn-sm btn-ghost ml-1" data-toggle="dialog" data-target="theming-help">
+                    <x-icon class="question" />
                     {{ __('crud.actions.help') }}
                 </button>
-                <a href="#" data-url="{{ route('campaign-theme', $campaign) }}" data-target="campaign-theme" data-toggle="dialog-ajax" class="btn2 btn-sm pull-right ml-1">
-                    <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
+                <a href="#" data-url="{{ route('campaign-theme', $campaign) }}" data-target="campaign-theme" data-toggle="dialog-ajax" class="btn2 btn-sm">
+                    <x-icon class="fa-solid fa-brush" />
+                    {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
                 </a>
-
-                <a href="{{ route('campaign_styles.create', $campaign) }}" class="btn2 btn-primary btn-sm pull-right ml-1">
-                    <x-icon class="plus"></x-icon> {{ __('campaigns/styles.actions.new') }}
+                <a href="{{ route('campaign_styles.create', $campaign) }}" class="btn2 btn-primary btn-sm">
+                    <x-icon class="plus" />
+                    {{ __('campaigns/styles.actions.new') }}
                 </a>
             @endif
         </div>

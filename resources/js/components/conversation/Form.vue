@@ -8,13 +8,13 @@
                     </option>
                 </select>
             </div>
-            <div class="grow">
+            <div class="field grow">
                 <input
                         type="text"
                         id="message"
                         maxlength="1000"
                         autocomplete="off"
-                        class="form-control"
+                        class="w-full"
                         @keydown="typing"
                         v-model="body"
                         :placeholder=" disabled ? translate('is_closed') : ''"

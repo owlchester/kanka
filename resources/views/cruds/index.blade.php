@@ -56,7 +56,7 @@
         @endif
 
         @if($models->hasPages())
-        <div class="pull-right">
+        <div class="">
             {{ $models->appends($filterService->pagination())->onEachSide(0)->links() }}
         </div>
         @endif

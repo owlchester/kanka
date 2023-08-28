@@ -56,7 +56,7 @@
             </p>
         @endif
         @if($models->hasPages())
-        <div class="pull-right">
+        <div class="">
             {{ $models->appends('parent_id', request()->get('parent_id'))->appends('m', 'table')->onEachSide(0)->links() }}
         </div>
         @endif

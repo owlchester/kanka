@@ -17,13 +17,14 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
         </div>
         @endads
         <div class="col-span-2 sidebar-section-box entity-pins overflow-hidden flex flex-col gap-2 {{ $model->entity->hasPins() ? '' : 'entity-empty-pin' }}">
-            <div class="sidebar-section-title cursor-pointer text-lg user-select border-b" data-toggle="collapse" data-target="#sidebar-pinned-elements">
+            <div class="sidebar-section-title cursor-pointer text-lg user-select border-b flex items-center gap-2" data-toggle="collapse" data-target="#sidebar-pinned-elements">
                 <i class="fa-solid fa-chevron-right" aria-hidden="true" style="display: none"></i>
                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
 
-                {{ __('entities/pins.title') }}
-                <a href="//docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank" aria-label="Open docs about profile sidebare">
-                    <x-icon class="fa-solid fa-question-circle pull-right"></x-icon>
+                <span class="grow">{{ __('entities/pins.title') }}</span>
+
+                <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank" aria-label="Open docs about profile sidebar">
+                    <x-icon class="fa-solid fa-question-circle"></x-icon>
                 </a>
             </div>
             <div class="sidebar-elements grid collapse !visible in overflow-hidden" id="sidebar-pinned-elements">

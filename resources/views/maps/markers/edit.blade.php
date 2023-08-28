@@ -36,17 +36,13 @@
             @include('maps.markers._form')
 
             <x-box.footer>
-                <div class="submit-group">
-                    <div class="inline-block">
+                <div class="submit-group flex items-center gap-2">
+                    <div class="inline-block grow">
                         <x-button.delete-confirm target="#delete-marker-confirm-form-{{ $model->id}}" />
                     </div>
-                    <input id="submit-mode" type="hidden" value="true"/>
-                    <div class="pull-right">
-                        @include('maps.markers._actions')
-                    </div>
-                    <div class="pull-right mr-2">
-                        @include('partials.footer_cancel', ['ajax' => null])
-                    </div>
+                    @include('partials.footer_cancel', ['ajax' => null])
+
+                    @include('maps.markers._actions')
                 </div>
             </x-box.footer>
             {!! Form::close() !!}

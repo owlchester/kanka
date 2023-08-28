@@ -60,7 +60,7 @@ $enabled = $campaign->enabled($module);
                             <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
                             {{ __('campaigns.settings.deprecated.title') }}
                         </span>
-                        <span class="visible-xs visible-sm">{{ __('campaigns.settings.deprecated.help') }}</span>
+                        <span class="md:hidden">{{ __('campaigns.settings.deprecated.help') }}</span>
                     </div>
                 @endif
             </div>

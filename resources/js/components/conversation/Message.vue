@@ -1,7 +1,23 @@
 <template>
     <div v-bind:class="boxClasses(message)">
-        <div class="message-time text-right pull-right">
-            <div class="message-options mr-2" v-if="message.can_delete">
+        <div class="flex items-center gap-1" v-if="!message.group">
+            <div class="message-author">
+                <strong class="user" v-if="isUser">{{ message.user }}</strong>
+                <strong class="character" v-else-if="isCharacter">
+                    <span>{{ message.character }}</span>
+                </strong>
+                <strong class="unknown" v-else>
+                    {{ translate('user_unknown') }}
+                </strong>
+            </div>
+
+            <div class="grow">
+                <span class="text-xs text-neutral-content" v-if="!message.group">
+                    {{ message.created_at }}
+                </span>
+            </div>
+
+            <div class="message-options mr-1" v-if="message.can_delete">
                 <div v-bind:class="dropdownClass()" v-click-outside="onClickOutside">
                     <a v-on:click="openDropdown()" role="button">
                         <span class="caret"></span>
@@ -14,20 +30,10 @@
             </div>
         </div>
 
-        <div class="message-author" v-if="!message.group">
-          <strong class="user" v-if="isUser">{{ message.user }}</strong>
-          <strong class="character" v-else-if="isCharacter">
-              <span>{{ message.character }}</span>
-          </strong>
-          <strong class="unknown" v-else>
-              {{ translate('user_unknown') }}
-          </strong>
-        </div>
-        <div class="comment-text ml-0">
+
+        <div class="comment-text">
             {{ message.message }}
-            <span class="pull-right text-muted" v-if="!message.group">
-                <em v-if="message.is_updated" v-bind:title="message.updated_at">{{ translate('is_updated') }},</em> {{ message.created_at }}
-            </span>
+            <span class="text-xs text-neutral-content italic" v-if="message.is_updated" v-bind:title="message.updated_at">{{ translate('is_updated') }}</span>
         </div>
     </div>
 </template>
@@ -76,7 +82,7 @@
                 return this.openedDropdown = true;
             },
             boxClasses: function (message) {
-                let classes = 'box-comment bg-base-200 px-1 py-3';
+                let classes = 'box-comment bg-base-200 px-1 py-3 flex flex-col gap-1';
                 classes += ' message-author-' + message.from_id;
                 classes += ' message-real-author-' + message.created_by;
 
