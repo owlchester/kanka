@@ -4,6 +4,7 @@
     'breadcrumbs' => false,
     'sidebar' => 'settings',
     'noads' => true,
+    'centered' => true,
 ])
 
 @section('content')

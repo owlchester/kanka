@@ -126,11 +126,9 @@ if ($folder) {
     <x-dialog id="new-folder" title="{{ __('campaigns/gallery.new_folder.title') }}">
         {!! Form::open(['route' => ['campaign.gallery.folder', $campaign], 'method' => 'POST', 'class' => 'ajax-subform']) !!}
             <x-grid type="1/1">
-                <div class="field-name">
-                    <label>{{ __('campaigns/gallery.fields.name') }}</label>
+                <x-forms.field field="name" :label="__('campaigns/gallery.fields.name')">
                     {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100, 'required']) !!}
-                </div>
-
+                </x-forms.field>
                 @include('cruds.fields.visibility_id', ['model' => null])
             </x-grid>
             <div class="flex flex-wrap gap-3 justify-between items-start my-5">

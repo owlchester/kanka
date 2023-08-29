@@ -2,19 +2,19 @@
     <div class="box-footer mt-5" v-if="commentable">
         <div class="flex items-center gap-2">
             <div class="max-w-xs" v-if="targetCharacter">
-                <select class="form-control" v-model="character_id">
+                <select class="w-full" v-model="character_id">
                     <option v-for="(name, key) in targets" :value="key" :key="key">
                         {{ name }}
                     </option>
                 </select>
             </div>
-            <div class="grow">
+            <div class="field grow">
                 <input
                         type="text"
                         id="message"
                         maxlength="1000"
                         autocomplete="off"
-                        class="form-control"
+                        class="w-full"
                         @keydown="typing"
                         v-model="body"
                         :placeholder=" disabled ? translate('is_closed') : ''"

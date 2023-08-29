@@ -32,7 +32,8 @@ if (($widget->conf('singular'))) {
 }
 ?>
 <x-box padding="0" css="widget-list {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
-    <h4 class="text-lg mb-3 px-4 pt-4">
+    <h4 class="text-lg mb-3 px-4 pt-4 flex gap-2">
+        <span class="grow">
         @if (!empty($widget->conf('text')))
             {{ $widget->conf('text') }}
         @else
@@ -40,13 +41,14 @@ if (($widget->conf('singular'))) {
                 {{ __($entityString) }} -
             @endif{{ __('dashboard.widgets.recent.title') }}
         @endif
+        </span>
 
         @if (!empty($widget->tags))
-            <span class="pull-right">
-                    @foreach ($widget->tags as $tag)
+            <span class="flex-none flex gap-1">
+                @foreach ($widget->tags as $tag)
                     {!! $tag->bubble() !!}
                 @endforeach
-                </span>
+            </span>
         @endif
     </h4>
     @if (!empty($widget->conf('singular')))

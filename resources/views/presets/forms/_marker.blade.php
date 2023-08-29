@@ -6,15 +6,14 @@ $types = [
 ];
 @endphp
 <x-grid>
-    <div class="field-name required">
-        <label>{{ __('presets.fields.name') }}</label>
+    <x-forms.field field="name" :required="true" :label=" __('presets.fields.name')">
         {!! Form::text('name', null, [
             'class' => 'form-control',
             'placeholder' => __('presets.placeholders.name'),
             'required',
             'autofocus',
         ]) !!}
-    </div>
+    </x-forms.field>
 
     @include('maps.markers.fields.icon', ['fieldname' => 'config[icon]'])
     @include('maps.markers.fields.custom_icon', ['fieldname' => 'config[custom_icon]'])

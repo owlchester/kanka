@@ -24,22 +24,19 @@
     <div class="tab-content p-4">
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
-                <div class="field-random-type required">
-                    <label for="config-entity">
-                        {{ __('menu_links.fields.random_type') }}
-                    </label>
+                <x-forms.field field="random-type" :required="true" :label="__('menu_links.fields.random_type')">
                     {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
-                </div>
+                </x-forms.field>
 
-                <div class="field-recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
-                    <label>
-                        {{ __('dashboard.widgets.recent.filters') }}
-                        <a href="//docs.kanka.io/en/latest/guides/dashboard.html" target="_blank">
-                            <i class="fa-solid fa-question-circle" data-title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                        </a>
-                    </label>
+                <x-forms.field field="recent-filters"
+                    :hidden="empty($model) || empty($model->conf('entity'))"
+                    :label="__('dashboard.widgets.recent.filters')"
+                    :tooltip="true"
+                    link="https://docs.kanka.io/en/latest/guides/dashboard.html"
+                    :helper="__('dashboard.widgets.helpers.filters')">
                     {!! Form::text('config[filters]', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                </x-forms.field>
+
                 @include('dashboard.widgets.forms._name', ['random' => true])
 
                 @include('dashboard.widgets.forms._width')

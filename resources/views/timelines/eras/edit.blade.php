@@ -11,7 +11,8 @@
         Breadcrumb::entity($timeline->entity)->list(),
         Breadcrumb::show($timeline),
         __('timelines/eras.edit.title', ['name' => $model->name])
-    ]
+    ],
+    'centered' => true,
 ])
 @section('content')
     @include('partials.errors')

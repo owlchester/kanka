@@ -13,6 +13,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 use App\Enums\Visibility;
 
+/**
+ * @method static self|Builder withInvisible()
+ */
 class AclScope implements Scope
 {
     /**

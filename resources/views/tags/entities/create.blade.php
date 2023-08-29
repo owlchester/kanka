@@ -5,7 +5,8 @@
     'breadcrumbs' => [
         Breadcrumb::entity($model->entity)->list(),
         Breadcrumb::show($model),
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')

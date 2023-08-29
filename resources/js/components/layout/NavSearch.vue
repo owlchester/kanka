@@ -1,7 +1,7 @@
 <template>
     <div v-click-outside="onClickOutside" class="flex grow mr-2">
-        <div class="relative grow">
-            <input type="text" class="form-control leading-4 w-20 md:w-full" maxlength="25"
+        <div class="relative grow field flex items-center">
+            <input type="text" class="leading-4 w-20 md:w-full" maxlength="25"
                 ref="searchField"
                 id="entity-lookup"
                 v-model="term"
@@ -10,8 +10,10 @@
                 @keydown.esc="escape()"
                 :placeholder="placeholder"
             />
-            <span class="form-control-feedback hidden md:inline">
-                <span class="flex-none keyboard-shortcut py-1" id="lookup-kb-shortcut" data-toggle="tooltip" v-bind:data-title="keyboard_tooltip" data-html="true" data-placement="bottom" >K</span>
+            <span class="absolute right-1  hidden md:inline">
+                <span class="flex-none keyboard-shortcut py-1" id="lookup-kb-shortcut" data-toggle="tooltip" v-bind:data-title="keyboard_tooltip" data-html="true" data-placement="bottom">
+                    K
+                </span>
             </span>
         </div>
 
@@ -45,6 +47,40 @@
                                       :entity="entity"
                         >
                         </LookupEntity>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 justify-center" v-if="bookmarks.length > 0">
+                        <button class="btn2 btn-sm btn-ghost" v-bind:class="this.modeClass(true)" v-if="bookmarks.length > 0"
+                                @click="showBookmarks()">{{ texts.bookmarks }}
+                        </button>
+                        <button class="btn2 btn-sm btn-ghost"
+                                v-bind:class="this.modeClass(false)"
+                                @click="showIndexes()">
+                            {{ texts.index }}
+                        </button>
+                    </div>
+
+                    <div class="flex flex-col gap-4" v-if="show_bookmarks">
+                        <a
+                            v-for="bookmark in bookmarks"
+                            v-bind:href="bookmark.url"
+                            v-on:click.stop
+                            :title="bookmark.text"
+                            class="flex gap-2 items-center ">
+                            <i class="w-4" v-bind:class="bookmark.icon" aria-hidden="true"></i>
+                            {{ bookmark.text }}
+                        </a>
+                    </div>
+                    <div class="flex flex-col gap-4" v-else>
+                        <a
+                            v-for="link in indexes"
+                            v-bind:href="link.url"
+                            v-on:click.stop
+                            :title="link.name"
+                            class="flex gap-2 items-center ">
+                            <i class="w-4 text-center" v-bind:class="link.icon" aria-hidden="true"></i>
+                            {{ link.name }}
+                        </a>
                     </div>
                 </div>
 
@@ -94,7 +130,10 @@ export default {
             show_recent: false,
             show_preview: false,
             show_results: false,
+            show_bookmarks: false,
             recent: [],
+            bookmarks: [],
+            indexes: [],
             results: [],
             cached: {},
             has_recent: false,
@@ -162,14 +201,19 @@ export default {
             this.show_loading = true;
             axios.get(this.api_recent).then(response => {
                 this.recent = response.data.recent;
+                this.bookmarks = response.data.bookmarks;
+                this.indexes = response.data.indexes;
                 this.texts.recents = response.data.texts.recents;
                 this.texts.results = response.data.texts.results;
                 this.texts.hint = response.data.texts.hint;
+                this.texts.bookmarks = response.data.texts.bookmarks;
+                this.texts.index = response.data.texts.index;
                 this.texts.keyboard = response.data.texts.keyboard;
                 this.texts.empty_results = response.data.texts.empty_results;
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = true;
+                this.show_bookmarks = true;
             }).catch(error => {
                 // Probably unlogged user
                 this.show_loading = false;
@@ -217,6 +261,20 @@ export default {
             this.show_loading = false;
             this.show_preview = false;
             this.$refs.searchField.blur();
+        },
+        showBookmarks() {
+            this.show_bookmarks = true;
+        },
+        showIndexes() {
+            this.show_bookmarks = false;
+        },
+        modeClass(bookmark) {
+            if (bookmark && this.show_bookmarks) {
+                return ' btn-active ';
+            } else if (!bookmark && !this.show_bookmarks) {
+                return ' btn-active';
+            }
+            return '';
         }
     },
     mounted() {

@@ -13,6 +13,7 @@ return [
         'email'                     => 'Email',
         'hide_subscription'         => 'Hide my name from the :hall_of_fame.',
         'last_login_share'          => 'Share with other campaign members when I last logged in.',
+        'login_sharing'             => 'Last login sharing',
         'name'                      => 'Name',
         'new_password'              => 'New Password',
         'new_password_confirmation' => 'New Password Confirmation',
@@ -20,6 +21,7 @@ return [
         'password'                  => 'Current password',
         'profile-name'              => 'Profile name',
         'settings'                  => 'Settings',
+        'subscription_hiding'       => 'Subscription hiding',
         'theme'                     => 'Theme',
     ],
     'helpers'       => [

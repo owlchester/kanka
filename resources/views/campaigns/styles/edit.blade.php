@@ -16,32 +16,14 @@
         'data-error' => '#max-content-error'
     ]) !!}
     <x-box>
-        @include('partials.errors')
-
-        <x-alert type="error" id="max-content-error" :hidden="true">
-            {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
-        </x-alert>
-
         <x-grid type="1/1">
-            <div class="field-name required">
-                <label>{{ __('campaigns/styles.fields.name') }}</label>
-                {!! Form::text('name', null, ['class' => 'form-control']) !!}
-            </div>
+            @include('partials.errors')
 
-            <div class="field-content required">
-                <label>{{ __('campaigns/styles.fields.content') }}</label>
-                {!! Form::textarea('content', null, ['class' => 'form-control codemirror', 'id' => 'css', 'spellcheck' => 'false']) !!}
-                <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
-            </div>
+            <x-alert type="error" id="max-content-error" :hidden="true">
+                {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
+            </x-alert>
 
-            <div class="field-enabled">
-                {!! Form::hidden('is_enabled', 0) !!}
-                <div class="checkbox">
-                    <label>{!! Form::checkbox('is_enabled') !!}
-                        {{ __('campaigns/styles.fields.is_enabled') }}
-                    </label>
-                </div>
-            </div>
+            @include('campaigns.styles._form')
         </x-grid>
         <x-dialog.footer>
             <div class="submit-group">

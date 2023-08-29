@@ -6,10 +6,11 @@
     'canonical' => true,
     'mainTitle' => false,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('content')
-    <div class="flex gap-5 flex-col max-w-7xl">
+    <div class="flex gap-5 flex-col">
         @include('partials.ads.top')
         @include('partials.errors')
 

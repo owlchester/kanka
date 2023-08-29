@@ -7,7 +7,7 @@
         FormCopy::field('name')->string(),
         [
             'placeholder' => __($trans . '.placeholders.age'),
-            'class' => 'form-control',
+            'class' => 'w-full',
             'maxlength' => 9
         ]
     ) !!}

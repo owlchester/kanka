@@ -50,7 +50,7 @@
             field="locale"
             :label="__('campaigns.fields.locale')"
             :helper="__('campaigns.sharing.language')">
-            {!! Form::select('locale', $languages->getSupportedLanguagesList(true), null, ['class' => 'form-control']) !!}
+            {!! Form::select('locale', $languages->getSupportedLanguagesList(true), null, ['class' => 'w-full']) !!}
         </x-forms.field>
 
         <x-forms.field
@@ -59,7 +59,7 @@
             :helper="__('campaigns.sharing.system')">
             {!! Form::text('system', null, [
                 'placeholder' => __('campaigns.placeholders.system'),
-                'class' => 'form-control',
+                'class' => 'w-full',
                 'list' => 'rpg-system-list',
                 'autocomplete' => 'off'
             ]) !!}

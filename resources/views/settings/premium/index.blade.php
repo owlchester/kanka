@@ -8,12 +8,13 @@
     'breadcrumbs' => false,
     'sidebar' => 'settings',
     'noads' => true,
+    'centered' => true,
 ])
 
 @section('content')
     @include('partials.errors')
 
-    <h1 class="mb-3">
+    <h1 class="">
         {{ __('settings.menu.premium') }}
     </h1>
 
@@ -24,8 +25,8 @@
     @endif
 
     <x-box>
-        <h3 class="my-1">{{ __('settings/boosters.pitch.title') }}</h3>
-        <p class="my-5">{{ __('settings/premium.pitch.description') }}</p>
+        <h3 class="">{{ __('settings/boosters.pitch.title') }}</h3>
+        <p class="">{{ __('settings/premium.pitch.description') }}</p>
 
         <h4 class="mt-5">{{ __('settings/premium.pitch.title') }}</h4>
         <div class="grid grid-cols-2 lg:grid-cols-3 gap-1 mb-3">
@@ -83,7 +84,7 @@
     </x-box>
 
 
-    <h2 class="my-5">
+    <h2 class="">
         {{ __('settings/premium.ready.title') }}
 
         @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
@@ -102,7 +103,7 @@
     ]) !!}</p>
     @endif
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 campaign-list mb-5">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 campaign-list">
         @foreach ($premiums as $premium)
             @include('settings.boosters._campaign', ['campaign' => $premium->campaign])
         @endforeach

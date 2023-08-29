@@ -8,13 +8,14 @@
     ],
     'mainTitle' => false,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('content')
     @include('partials.ads.top')
     @include('partials.errors')
 
-    <div class="flex gap-5 flex-col max-w-7xl">
+    <div class="flex gap-5 flex-col">
         <div class="flex gap-2 items-center">
             <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.applications') }}

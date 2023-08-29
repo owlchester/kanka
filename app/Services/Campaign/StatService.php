@@ -32,12 +32,17 @@ class StatService
             return Cache::get($cacheKey);
         }
 
+        // @phpstan-ignore-next-line
         $characters = $this->campaign->characters()->withInvisible()->count();
+        // @phpstan-ignore-next-line
         $locations = $this->campaign->locations()->withInvisible()->count();
+        // @phpstan-ignore-next-line
         $races = $this->campaign->races()->withInvisible()->count();
+        // @phpstan-ignore-next-line
         $families = $this->campaign->families()->withInvisible()->count();
-
+        // @phpstan-ignore-next-line
         $dead = $this->campaign->characters()->withInvisible()->where('is_dead', true)->count();
+        // @phpstan-ignore-next-line
         $calendars = $this->campaign->calendars()->withInvisible()->count();
 
         $stats = [

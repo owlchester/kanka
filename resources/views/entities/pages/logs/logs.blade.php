@@ -7,7 +7,8 @@
     'breadcrumbs' => [
         Breadcrumb::entity($entity)->list(),
         Breadcrumb::show(),
-    ]
+    ],
+    'centered' => true,
 ])
 @section('content')
     <form class="pagination-ajax-body max-w-2xl">

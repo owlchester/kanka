@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Facade;
  * @package App\Facades
  *
  * @see \App\Services\BreadcrumbService
+ * @mixin \App\Services\BreadcrumbService
  */
 class Breadcrumb extends Facade
 {

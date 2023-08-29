@@ -64,10 +64,9 @@
                     <h4 class="modal-title" id="myModalLabel">{{ __('entities/notes.show.advanced') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="field-user">
-                        <label for="user">{{ __('crud.permissions.fields.member') }}</label>
+                    <x-forms.field field="user" :label="__('crud.permissions.fields.member')">
                         @include('components.form.user', ['options' => ['dropdownParent' => '#post-new-user']])
-                    </div>
+                    </x-forms.field>
 
                     <x-dialog.footer :modal="true" >
                         <button class="btn2 btn-primary post-perm-add" id="post-perm-user-add" data-type="user">
@@ -86,12 +85,11 @@
                     <h4 class="modal-title" id="myModalLabel">{{ __('entities/notes.show.advanced') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="field-user">
-                        <label for="user">{{ __('crud.permissions.fields.role') }}</label>
+                    <x-forms.field field="user" :label="__('crud.permissions.fields.role')">
                         @include('components.form.role', ['options' => [
                             'dropdownParent' => '#post-new-role'
                         ]])
-                    </div>
+                    </x-forms.field>
 
                     <x-dialog.footer :modal="true" >
                         <button class="btn2 btn-primary post-perm-add" id="post-perm-role-add" data-type="role">

@@ -13,15 +13,18 @@
 
     {{ csrf_field() }}
     <x-box>
-        <div class="field-entity mb-5">
-            <label>{{ __('entities/notes.move.entity') }}</label>
-            <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations', $campaign) }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
-        </div>
-        <div class="field-copy form-check">
-            <label>{!! Form::checkbox('copy', 1, true) !!}
-                {{ __('entities/notes.move.copy') }}
-            </label>
-        </div>
+        <x-grid type="1/1">
+            <x-forms.field type="entity" :label="__('entities/notes.move.entity')">
+                <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations', $campaign) }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
+            </x-forms.field>
+
+            <x-forms.field field="copy" css="form-check" :label="__('entities/notes.move.copy')">
+                <label class="text-neutral-content cursor-pointer flex gap-2">
+                    {!! Form::checkbox('copy', 1, true) !!}
+                    <span>{{ __('entities/notes.move.copy') }}</span>
+                </label>
+            </x-forms.field>
+        </x-grid>
 
         <x-dialog.footer>
             <button class="btn2 btn-primary">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>

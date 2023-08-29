@@ -3,20 +3,15 @@
 </x-dialog.header>
 <article>
     {!! Form::model($campaign, ['route' => ['campaign-theme.save', $campaign], 'method' => 'POST', 'class' => 'w-full max-w-lg text-left']) !!}
-    <div class="field-theme">
-        <label>
-            {{ __('campaigns.fields.theme') }}
-            <x-helpers.tooltip :title="__('campaigns.helpers.theme')"/>
-        </label>
-
+    <x-forms.field field="theme" :label="__('campaigns.fields.theme')" :tooltip="true" :helper="__('campaigns.helpers.theme')">
         {!! Form::select(
             'theme_id',
             $themes,
             null,
-            ['class' => 'form-control']
+            ['class' => 'w-full']
         ) !!}
-        <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.theme') }}</p>
-    </div>
+        <p class="text-neutral-content md:hidden">{{ __('campaigns.helpers.theme') }}</p>
+    </x-forms.field>
 
     <x-dialog.footer>
         <button class="btn2 btn-primary">{{ __('crud.actions.apply') }}</button>

@@ -5,12 +5,12 @@
     @vite('resources/js/editors/summernote.js')
     <script src="/vendor/summernote/plugin/embed/summernote-embed-plugin.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js" defer></script>
-    <script src="/vendor/summernote/plugin/summernote-gallery-kanka.min.js" defer></script>
+    <script src="/vendor/summernote/plugin/kanka/summernote-gallery.min.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-toc-kanka/summernote-toc.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-aroba-kanka/summernote-aroba.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-table-ext.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-image-attribute.js" defer></script>
-    <script src="/vendor/summernote/plugin/kanka/summernote-bragi-kanka.min.js" defer></script>
+    <script src="/vendor/summernote/plugin/kanka/summernote-bragi.min.js" defer></script>
     <script src="/vendor/summernote/plugin/kanka/summernote-prettify-kanka.min.js" defer></script>
 {{--    <script src="/vendor/summernote/plugin/rtl/summernote-ext-rtl.js" defer></script>--}}
 
@@ -24,6 +24,12 @@
 @section('styles')
 @parent
 <link href="/vendor/summernote/summernote.min.css" rel="stylesheet">
+
+@if (config('app.asset_url'))
+    <link href="{{ config('app.asset_url') }}/vendor/bootstrap/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">
+@else
+    <link href="/css/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">
+@endif
 @endsection
 
 @section('modals')

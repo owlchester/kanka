@@ -61,7 +61,7 @@ class AvatarService
     {
         $this->field = 'image';
         $this->fallback = false;
-        $this->cached = false;
+        $this->withCache = false;
         unset($this->entity, $this->child);
 
         return $this;

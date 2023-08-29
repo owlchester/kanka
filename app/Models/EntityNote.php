@@ -22,7 +22,7 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property string $value
  * @property string $entry
- * @property int $visibility_id
+ * @property \App\Enums\Visibility $visibility_id
  * @property integer $created_by
  * @property integer|null $location_id
  * @property integer|null $layout_id

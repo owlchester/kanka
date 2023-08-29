@@ -190,7 +190,7 @@ class MenuLink extends MiscModel
     }
 
     /**
-     * Get the route the quick link points to
+     * Get the route the bookmark points to
      */
     public function getRoute(): string
     {
@@ -397,5 +397,22 @@ class MenuLink extends MiscModel
         return '<a href="' . $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .
         '</a>';
+    }
+
+    /**
+     * Determine if the bookmark is valid
+     */
+    public function valid(Campaign $campaign): bool
+    {
+        if ($this->dashboard) {
+            return $campaign->boosted() && $this->isValidDashboard();
+        } elseif ($this->target) {
+            return true;
+        } elseif ($this->type) {
+            return true;
+        } return (bool) ($this->isRandom())
+
+
+        ;
     }
 }

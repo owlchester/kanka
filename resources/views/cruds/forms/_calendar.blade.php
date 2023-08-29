@@ -1,6 +1,6 @@
 <?php
 /**
- * View used in Quest and Journals form "calendar" tab
+ * View used in Quest and Journals form "calendar" button
  * @var \App\Models\Journal $model
  */
 $calendars = \App\Models\Calendar::get();
@@ -15,7 +15,6 @@ if (!empty($oldCalendarID)) {
     $calendar = \App\Models\Calendar::find($oldCalendarID);
 }
 ?>
-
 @if (isset($model) && $model->hasCalendarButNoAccess())
     {!! Form::hidden('calendar_id', $model->calendarReminder()->calendar_id) !!}
     {!! Form::hidden('calendar_skip', true) !!}
@@ -110,11 +109,15 @@ if (!empty($oldCalendarID)) {
         <div class="entity-calendar-loading text-center p-4" style="display: none">
             <x-icon class="load" />
         </div>
-    </div>
 
-    <a href="#" id="entity-calendar-form-cancel" class="pull-right" style="@if ((((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else display:none @endif">
-        {{ __('crud.remove') }}
-    </a>
+
+        <div class="text-right mt-2">
+            <a href="#" id="entity-calendar-form-cancel" class="btn2 btn-ghost btn-sm" style="@if ((((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else display:none @endif">
+                <x-icon class="fa-solid fa-eraser" />
+                {{ __('crud.remove') }}
+            </a>
+        </div>
+    </div>
 </div>
 
 <input type="hidden" name="calendar-data-url" data-url="{{ route('calendars.month-list', [$campaign, 'calendar' => 0]) }}">

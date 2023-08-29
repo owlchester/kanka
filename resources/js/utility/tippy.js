@@ -44,7 +44,7 @@ const initTooltips = () => {
             theme: 'kanka',
             placement: e.dataset.direction ?? 'bottom',
             allowHTML: e.dataset.html ?? false,
-            appendTo: e.dataset.append ?? e,
+            appendTo: e.dataset.append ?? document.body,
             arrow: true,
         });
     });
@@ -54,16 +54,19 @@ const initDropdowns = () => {
     const elements = document.querySelectorAll('[data-dropdown]');
 
     elements.forEach(e => {
-        let content = e.parentNode.getElementsByClassName('dropdown-menu')[0];
-        //console.log('content', content.outerHTML);
+        let content = e.parentNode.querySelectorAll('.dropdown-menu')[0];
         tippy(e, {
-            content: '<ul class="dropdown-elements flex flex-col m-0 p-0 shadow-sm">' + content.innerHTML + '</ul>',
+            content: '<div class="dd-menu flex flex-col gap-1 max-w-2xl">' + content.innerHTML + '</div>',
             theme: 'kanka-dropdown',
             placement: e.dataset.direction ?? 'bottom',
+            zIndex: 890,
             allowHTML: true,
             arrow: true,
             interactive: true,
             trigger: "click",
+            onShown(instance) {
+                $(document).trigger('shown.bs.modal');
+            }
         });
     });
 };

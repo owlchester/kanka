@@ -4,25 +4,23 @@
     'breadcrumbs' => false,
     'sidebar' => 'settings',
     'noads' => true,
+    'centered' => true,
 ])
 
 @section('content')
     @include('partials.errors')
-    <h1 class="mb-3">
+    <h1 class="">
         {{ __('profiles.newsletter.title') }}
     </h1>
     <p class="text-lg">
         {{ __('profiles.newsletter.helpers.header') }}
     </p>
-    <div class="field-mail-release checkbox">
-        <label>
+    <x-forms.field field="mail-release" :label="__('profiles.newsletter.options.monthly')">
+        <label class="text-neutral-content cursor-pointer flex gap-2">
             {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
-            {!! __('profiles.newsletter.options.monthly') !!}
+            <span>{{ __('front/newsletter.groups.all') }}</span>
         </label>
-        <p class="help-block">
-            {{ __('front/newsletter.groups.all') }}
-        </p>
-    </div>
+    </x-forms.field>
 
     <input type="hidden" id="newsletter-api" value="{{ route('settings.newsletter-api') }}" />
 @endsection

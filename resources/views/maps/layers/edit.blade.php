@@ -11,7 +11,8 @@
         Breadcrumb::show($map),
         ['url' => route('maps.map_layers.index', [$campaign, $map]), 'label' => __('maps.panels.layers')],
         __('maps/layers.edit.title', ['name' => $model->name])
-        ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')

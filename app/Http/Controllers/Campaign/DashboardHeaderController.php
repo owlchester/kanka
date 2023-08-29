@@ -26,7 +26,7 @@ class DashboardHeaderController extends Controller
         }
 
         return view('campaigns.forms.dashboard-header.edit')
-            ->with('model', $campaign)
+            ->with('campaign', $campaign)
             ->with('widget', $campaignDashboardWidget);
     }
 

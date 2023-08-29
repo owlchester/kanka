@@ -3,11 +3,20 @@
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $langKey)],
         __('crud.create'),
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('fullpage-form')
-    {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data', 'route' => ['relations.store', $campaign], 'data-shortcut' => '1', 'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null), 'id' => 'entity-form', 'data-maintenance' => 1]) !!}
+    {!! Form::open([
+        'method' => 'POST',
+        'enctype' => 'multipart/form-data',
+        'route' => ['relations.store', $campaign],
+        'data-shortcut' => '1',
+        'class' => 'entity-form',
+        'id' => 'entity-form',
+        'data-maintenance' => 1,
+        ]) !!}
 @endsection
 
 @section('content')

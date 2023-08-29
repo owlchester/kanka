@@ -1,7 +1,7 @@
 <x-grid type="1/1">
-    <div class="field-abilities required">
+    <x-forms.field field="abilities" :required="true" >
         @include('components.form.abilities', ['options' => ['exclude-entity' => $entity->id], 'dropdownParent' => '#abilities-dialog'])
-    </div>
+    </x-forms.field>
 
     @include('cruds.fields.visibility_id')
 </x-grid>

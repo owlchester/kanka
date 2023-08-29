@@ -10,19 +10,18 @@ $entityTypes = array_merge($entityTypes, $entities);
 ]) !!}</p>
 
 <x-grid>
-    <div class="field-typer">
-        <label>{{ __('crud.fields.type') }}</label>
+    <x-forms.field field="type" :label="__('crud.fields.type')">
         {!! Form::select('type', $entityTypes, FormCopy::field('type')->string(), ['class' => 'form-control']) !!}
-    </div>
-    <div class="field-filters">
-        <label>{{ __('menu_links.fields.filters') }}</label>
+    </x-forms.field>
+
+    <x-forms.field field="filters" :label="__('menu_links.fields.filters')">
         {!! Form::text('filters', FormCopy::field('filters')->string(), ['placeholder' => __('menu_links.placeholders.filters'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-    </div>
-    <div class="field-nested checkbox">
+    </x-forms.field>
+    <x-forms.field field="nested" :label="__('menu_links.fields.is_nested')">
         {!! Form::hidden('options[is_nested]', 0) !!}
-        <label>
+        <label class="text-neutral-content cursor-pointer flex gap-2">
             {!! Form::checkbox('options[is_nested]', 1, empty($model->options) ? false : $model->options['is_nested']) !!}
-            {!! __('menu_links.fields.is_nested') !!}
+            <span>{!! __('menu_links.fields.is_nested') !!}</span>
         </label>
-    </div>
+    </x-forms.field>
 </x-grid>

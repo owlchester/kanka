@@ -13,53 +13,46 @@ if (!empty($era)) {
 
 <x-grid>
 
-    <div class="field-era col-span-2 required">
-        <label>{{ __('timelines/elements.fields.era') }}</label>
+    <x-forms.field field="era" css="col-span-2" :required="true" :label="__('timelines/elements.fields.era')">
         {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => 'form-control', 'id' => 'element-era-id']) !!}
-    </div>
+    </x-forms.field>
 
-    <div class="field-name mb-0">
-        <label>{{ __('crud.fields.name') }}</label>
+    <x-forms.field field="name" :label="__('crud.fields.name')">
         {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('timelines/elements.placeholders.name')]) !!}
-    </div>
+    </x-forms.field>
 
     @include('cruds.fields.entity')
 
-    <div class="field-entry col-span-2">
-        <label>{{ __('crud.fields.entry') }}</label>
+    <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
         {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'element-entry', 'name' => 'entry']) !!}
-
         {!! Form::hidden('use_entity_entry', 0) !!}
         <label>
             {!! Form::checkbox('use_entity_entry') !!}
             {{ __('timelines/elements.fields.use_entity_entry') }}
         </label>
-    </div>
+    </x-forms.field>
 
-    <div class="field-date">
-        <label>{{ __('timelines/elements.fields.date') }}</label>
+    <x-forms.field field="date" :label="__('timelines/elements.fields.date')">
         {!! Form::text('date', null, ['placeholder' => __('timelines/elements.placeholders.date'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-    </div>
-    <div class="field-event-date">
+    </x-forms.field>>
+
+    <x-forms.field field="event-date" :label="__('timelines/elements.fields.use_event_date')">
         {!! Form::hidden('use_event_date', 0) !!}
         <label>
             {!! Form::checkbox('use_event_date') !!}
-            {{ __('timelines/elements.fields.use_event_date') }}
-            <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-title="{{ __('timelines/elements.helpers.date') }}" aria-hidden="true"></i>
+            {{ __('timelines/elements.helpers.date') }}
         </label>
-    </div>
-    <div class="field-position">
-        <label>{{ __('crud.fields.position') }}</label>
+    </x-forms.field>
+
+    <x-forms.field field="position" :label="__('crud.fields.position')">
         {!! Form::select('position', $positions, (!empty($model->position) ? -9999 : $oldPosition), ['class' => 'form-control', 'name' => 'position']) !!}
-    </div>
+    </x-forms.field>
 
-    <div class="field-colour">
-        <label>{{ __('crud.fields.colour') }}</label>
+    <x-forms.field field="colour" :label="__('crud.fields.colour')">
         {!! Form::select('colour', FormCopy::colours(false), (!empty($model) ? null : 'grey'), ['class' => 'form-control select2-colour']) !!}
-    </div>
+    </x-forms.field>
 
-    <div class="field-icon">
-        <label>{{ __('timelines/elements.fields.icon') }}</label>
+    <x-forms.field field="icon" :label="__('timelines/elements.fields.icon')">
         {!! Form::text(
             'icon',
             null,
@@ -94,18 +87,17 @@ if (!empty($era)) {
                 </p>
             @endsubscriber
         @endif
-    </div>
+    </x-forms.field>
 
     @include('cruds.fields.visibility_id')
 
-    <div class="field-collapsed checkbox">
-        <label>
-            {!! Form::hidden('is_collapsed', 0) !!}
+    <x-forms.field field="collapsed" :label="__('timelines/eras.fields.is_collapsed')">
+        {!! Form::hidden('is_collapsed', 0) !!}
+        <label class="text-neutral-content cursor-pointer flex gap-2">
             {!! Form::checkbox('is_collapsed', 1) !!}
-            {{ __('timelines/eras.fields.is_collapsed') }}
+            <span>{{ __('timelines/elements.helpers.is_collapsed') }}</span>
         </label>
-        <p class="help-block">{{ __('timelines/elements.helpers.is_collapsed') }}</p>
-    </div>
+    </x-forms.field>
 </x-grid>
 
 <input type="hidden" name="era-data-url" data-url="{{ route('timelines.era-list', [$campaign, 'timeline' => $timeline->id, 'timeline_era' => 0, 'new' => !empty($model)]) }}">

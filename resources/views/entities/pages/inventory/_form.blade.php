@@ -50,29 +50,25 @@
         </datalist>
     </x-forms.field>
 
-    <div class="field-description col-span-2">
-        <label>{{ __('entities/inventories.fields.description') }}</label>
+    <x-forms.field field="description" css="col-span-2" :label="__('entities/inventories.fields.description')">
         {!! Form::text('description', null, ['placeholder' => __('entities/inventories.placeholders.description'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-    </div>
+    </x-forms.field>
 
-    <div class="field-copy">
-        <label>
-            {!! Form::hidden('copy_item_entry', 0) !!}
+    <x-forms.field field="copy" :label="__('entities/inventories.fields.copy_entity_entry')">
+        {!! Form::hidden('copy_item_entry', 0) !!}
+        <label class="text-neutral-content cursor-pointer flex gap-2">
             {!! Form::checkbox('copy_item_entry') !!}
-            {{ __('entities/inventories.fields.copy_entity_entry') }}
-            <x-helpers.tooltip :title="__('entities/inventories.helpers.copy_entity_entry')" />
-        </label>
-        <p class="help-block md:hidden m-0">
             {{ __('entities/inventories.helpers.copy_entity_entry') }}
-        </p>
-    </div>
-    <div class="field-equipped">
-        {!! Form::hidden('is_equipped', 0) !!}
-        <label>
-            {!! Form::checkbox('is_equipped', 1, isset($inventory) ? $inventory->is_equipped : null) !!}
-            {{ __('entities/inventories.fields.is_equipped') }}
         </label>
-    </div>
+    </x-forms.field>
+
+    <x-forms.field field="equipped" :label="__('entities/inventories.fields.is_equipped')">
+        {!! Form::hidden('is_equipped', 0) !!}
+        <label class="text-neutral-content cursor-pointer flex gap-2">
+            {!! Form::checkbox('is_equipped', 1, isset($inventory) ? $inventory->is_equipped : null) !!}
+            {{ __('entities/inventories.helpers.is_equipped') }}
+        </label>
+    </x-forms.field>
 
     @include('cruds.fields.visibility_id', ['model' => $inventory ?? null])
 </x-grid>

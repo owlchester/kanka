@@ -24,35 +24,34 @@ $actions = [
         @foreach ($campaign->roles()->withoutAdmin()->get() as $role)
             <tr>
                 <td>{{ $role->name }}</td>
-                <td>
+                <td class="field">
                     {!! Form::select(
                     'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_READ . ']',
                     $actions,
                     'ignore',
-                    ['class' => 'form-control']) !!}
+                    ['class' => 'w-full']) !!}
                 </td>
                 @if (!$role->is_public)
-                    <td>
+                    <td class="field">
                         {!! Form::select(
                         'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_EDIT . ']',
                         $actions,
                         'ignore',
-                        ['class' => 'form-control']) !!}
+                        ['class' => 'w-full']) !!}
                     </td>
-                    <td>
-
+                    <td class="field">
                         {!! Form::select(
                         'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_DELETE . ']',
                         $actions,
                         'ignore',
-                        ['class' => 'form-control']) !!}
+                        ['class' => 'w-full']) !!}
                     </td>
-                    <td>
+                    <td class="field">
                         {!! Form::select(
                         'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_POSTS . ']',
                         $actions,
                         'ignore',
-                        ['class' => 'form-control']) !!}
+                        ['class' => 'w-full']) !!}
                     </td>
                 @else
                     <td colspan="3"></td>
@@ -73,33 +72,33 @@ $actions = [
         @foreach ($campaign->members()->with('user')->withoutAdmins()->paginate(20) as $member)
             <tr>
                 <td>{{ $member->user->name }}</td>
-                <td>
+                <td class="field">
                     {!! Form::select(
                     'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_READ . ']',
                     $actions,
                     'ignore',
-                    ['class' => 'form-control']) !!}
+                    ['class' => 'w-full']) !!}
                 </td>
-                <td>
+                <td class="field">
                     {!! Form::select(
                     'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_EDIT . ']',
                     $actions,
                     'ignore',
-                    ['class' => 'form-control']) !!}
+                    ['class' => 'w-full']) !!}
                 </td>
-                <td>
+                <td class="field">
                     {!! Form::select(
                     'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_DELETE . ']',
                     $actions,
                     'ignore',
-                    ['class' => 'form-control']) !!}
+                    ['class' => 'w-full']) !!}
                 </td>
-                <td>
+                <td class="field">
                     {!! Form::select(
                     'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_POSTS . ']',
                     $actions,
                     'ignore',
-                    ['class' => 'form-control']) !!}
+                    ['class' => 'w-full']) !!}
                 </td>
             </tr>
         @endforeach

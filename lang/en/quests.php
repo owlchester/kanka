@@ -36,7 +36,7 @@ return [
         'role'          => 'Role',
     ],
     'helpers'       => [
-        'is_completed'      => 'Select if the quest is considered as completed.',
+        'is_completed'      => 'The quest is considered as completed.',
         'nested_without'    => 'Displaying all quests that don\'t have a parent quest. Click on a row to see the children quests.',
     ],
     'hints'         => [

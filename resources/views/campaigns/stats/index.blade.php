@@ -8,12 +8,13 @@ use \Illuminate\Support\Arr;
     ],
     'mainTitle' => false,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('content')
     @include('partials.errors')
 
-    <div class="flex gap-5 flex-col max-w-7xl achievements">
+    <div class="flex gap-5 flex-col achievements">
         <div class="flex gap-2 items-center">
             <h3 class="inline-block grow">
             {{ __('campaigns.show.tabs.achievements') }}

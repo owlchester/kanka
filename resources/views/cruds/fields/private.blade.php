@@ -1,10 +1,10 @@
 @if (auth()->user()->isAdmin())
     <hr />
-    <div class="field-private">
+    <x-forms.field field="private" :label="__('crud.fields.is_private')">
         {!! Form::hidden('is_private', 0) !!}
-        <label>{!! Form::checkbox('is_private', 1, empty($model) ? (!empty($source) ? $source->is_private : $campaign->entity_visibility) : $model->is_private) !!}
-            {{ __('crud.fields.is_private') }}
+        <label class="text-neutral-content cursor-pointer flex gap-2">
+            {!! Form::checkbox('is_private', 1, empty($model) ? (!empty($source) ? $source->is_private : $campaign->entity_visibility) : $model->is_private) !!}
+            @include('cruds.fields.helpers.private')
         </label>
-        @include('cruds.fields.helpers.private')
-    </div>
+    </x-forms.field>
 @endif

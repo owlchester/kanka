@@ -1,4 +1,4 @@
-<input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-gender-list" />
+<input type="text" class="w-full entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-gender-list" />
 
 <datalist id="entity-gender-list">
     @foreach (\App\Facades\CharacterCache::genderSuggestion() as $suggestion)

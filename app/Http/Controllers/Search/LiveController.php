@@ -61,34 +61,6 @@ class LiveController extends Controller
     }
 
     /**
-     * Get a user's recent searches
-     */
-    public function recent(Campaign $campaign)
-    {
-        $recent = [];
-        if (auth()->check()) {
-            $recent = $this->search
-                ->campaign($campaign)
-                ->user(auth()->user())
-                ->recent();
-        }
-
-        return response()->json([
-            'recent' => $recent,
-            'texts' => [
-                'recents' => __('search.lookup.recents'),
-                'results' => __('search.lookup.results'),
-                'hint' => __('search.lookup.hint'),
-                'keyboard' => __('search.lookup.keyboard', [
-                    'k' => '<strong>k</strong>',
-                    'esc' => '<strong>esc</strong>'
-                ]),
-                'empty_results' => __('search.lookup.empty'),
-            ],
-        ]);
-    }
-
-    /**
      * Filter on entities which have reminders (entity_events)
      */
     public function reminderEntities(Request $request, Campaign $campaign)

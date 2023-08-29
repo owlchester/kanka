@@ -104,7 +104,7 @@ function initDashboardAdminUI() {
             window.initSummernote();
         }
 
-        $.each($('.img-delete'), function () {
+        $.each($('[data-img="delete"]'), function () {
             $(this).click(function (e) {
                 e.preventDefault();
                 $('input[name=' + $(this).data('target') + ']')[0].value = 1;

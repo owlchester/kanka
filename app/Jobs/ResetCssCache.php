@@ -43,7 +43,7 @@ class ResetCssCache implements ShouldQueue
             return;
         }
         Cache::forget('campaign_' . $campaign->id . '_theme');
-        $campaign->touchSilently();
+        $campaign->touch();
         Log::info('Campaign #' . $campaign->id . ' cleared css cache (job)');
     }
 }

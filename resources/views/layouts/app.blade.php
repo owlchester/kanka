@@ -97,7 +97,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
             @include('layouts.banner')
 
             @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))
-                <section class="content-header p-4 pb-0">
+                <section class="content-header p-4 pb-0 @if (isset($centered) && $centered) max-w-7xl mx-auto @endif">
                     @includeWhen(!isset($breadcrumbs) || $breadcrumbs !== false, 'layouts._breadcrumbs')
                     @if (!view()->hasSection('entity-header'))
                         @if (isset($mainTitle))
@@ -112,8 +112,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
             @yield('content-header')
 
-            <section class="content mx-auto p-4" role="main">
-                @if (isset($sidebar) && $sidebar === 'settings') <div class="max-w-4xl"> @endif
+            <section class="content p-4 @if (isset($centered) && $centered) max-w-7xl mx-auto  @endif" role="main">
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
                     <div class=" alert p-4 rounded alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5 mb-5">
                         <div class="grow">
@@ -134,9 +133,8 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                 @include('partials.success')
 
                 @yield('entity-header')
-                @yield('content')
 
-                @if (isset($sidebar) && $sidebar === 'settings') </div> @endif
+                @yield('content')
             </section>
         </div>
 

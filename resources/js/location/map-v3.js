@@ -11,6 +11,8 @@ let polygonStrokeWeight, polygonStrokeColour, polygonStrokeOpacity, polygonColou
 
 let tickerTimeout, tickerUrl, tickerTs;
 
+const isMobile = window.matchMedia("only screen and (max-width: 760px)");
+
 $(document).ready(function() {
 
     window.map.invalidateSize();
@@ -75,7 +77,7 @@ function initMapExplore()
 
     window.markerDetails = function(url) {
         showSidebar();
-        if (window.kankaIsMobile.matches) {
+        if (isMobile.matches) {
             url = url + '?mobile=1';
         }
         $.ajax({
@@ -84,7 +86,7 @@ function initMapExplore()
             async: true,
             success: function (result) {
                 if (result) {
-                    if (window.kankaIsMobile.matches) {
+                    if (isMobile.matches) {
                         markerModalTitle.html(result.name);
                         markerModalContent.find('.content').html(result.body).show();
                         markerModalContent.find('.spinner').hide();
@@ -139,7 +141,7 @@ function initMapForms()
 function showSidebar()
 {
     // On mobile use the modal instead of the sidebar
-    if (window.kankaIsMobile.matches) {
+    if (isMobile.matches) {
         markerModalContent.find('.spinner').show();
         markerModalContent.find('.content').hide();
         markerModal.modal('toggle');

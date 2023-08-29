@@ -7,7 +7,7 @@ endforeach;
 
 $role = isset($model) ? \App\Facades\CampaignCache::adminRole() : null;
 $boostedFormFields = [
-    'class' => 'form-control',
+    'class' => 'w-full',
 ];
 if (!isset($model) || !$model->boosted()) {
     $boostedFormFields['disabled'] = 'disabled';
@@ -95,7 +95,7 @@ if (!isset($model) || !$model->boosted()) {
             :label="__('campaigns.ui.fields.connections')"
             :helper="__('campaigns.ui.helpers.connections')"
             :tooltip="true">
-            {!! Form::select('ui_settings[connections]', [0 => __('campaigns.ui.connections.explorer'), 1 => __('campaigns.ui.connections.list')], null, ['class' => 'form-control']) !!}
+            {!! Form::select('ui_settings[connections]', [0 => __('campaigns.ui.connections.explorer'), 1 => __('campaigns.ui.connections.list')], null, ['class' => 'w-full']) !!}
         </x-forms.field>
 
         <x-forms.field
@@ -103,7 +103,7 @@ if (!isset($model) || !$model->boosted()) {
             :label="__('campaigns.ui.fields.connections_mode')"
             :helper="__('campaigns.ui.helpers.connections_mode')"
             :tooltip="true">
-            {!! Form::select('ui_settings[connections_mode]', [0 => __('campaigns.ui.collapsed.default'), 1 => __('entities/relations.options.only_relations'), 2 => __('entities/relations.options.related'), 3 => __('entities/relations.options.mentions')], null, ['class' => 'form-control']) !!}
+            {!! Form::select('ui_settings[connections_mode]', [0 => __('campaigns.ui.collapsed.default'), 1 => __('entities/relations.options.only_relations'), 2 => __('entities/relations.options.related'), 3 => __('entities/relations.options.mentions')], null, ['class' => 'w-full']) !!}
         </x-forms.field>
 
         <x-forms.field
@@ -117,7 +117,7 @@ if (!isset($model) || !$model->boosted()) {
             :label="__('campaigns.ui.fields.post_collapsed')"
             :helper="__('campaigns.ui.helpers.post_collapsed')"
             :tooltip="true">
-            {!! Form::select('ui_settings[post_collapsed]', [0 => __('campaigns.ui.collapsed.default'), 1 => __('campaigns.ui.collapsed.collapsed')], null, ['class' => 'form-control']) !!}
+            {!! Form::select('ui_settings[post_collapsed]', [0 => __('campaigns.ui.collapsed.default'), 1 => __('campaigns.ui.collapsed.collapsed')], null, ['class' => 'w-full']) !!}
         </x-forms.field>
     </x-grid>
 </div>

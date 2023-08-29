@@ -48,11 +48,11 @@
                                     <span class="sr-only">{{ __('Copy') }}</span>
                                 </a>
                             </td>
-                            <td class="hidden md:inline">
+                            <td class="hidden md:table-cell">
                                 {{ $relation->validity !== null ? $relation->validity : __('campaigns.invites.unlimited_validity') }}
                             </td>
                             <td>{{ $relation->role ? $relation->role->name : null }}</td>
-                            <td class="hidden md:inline">
+                            <td class="hidden md:table-cell">
                                 <span data-title="{{ $relation->created_at }}+00:00" data-toggle="tooltip">
                                     {{ $relation->created_at->diffForHumans() }}
                                 </span>

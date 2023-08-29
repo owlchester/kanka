@@ -22,6 +22,7 @@ return [
     ],
     'helpers'       => [
         'copy_entity_entry' => 'Display the item\'s entry instead of the custom description.',
+        'is_equipped'   => 'Mark this items as being equipped.',
     ],
     'placeholders'  => [
         'amount'        => 'Any amount',

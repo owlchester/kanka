@@ -5,7 +5,8 @@
         Breadcrumb::entity($entity)->list(),
         Breadcrumb::show(),
         __('crud.update'),
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('fullpage-form')

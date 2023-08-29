@@ -633,16 +633,16 @@ class Map extends MiscModel
         }
         if ($this->isChunked()) {
             if ($this->chunkingError()) {
-                return '<i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" title="' .
+                return '<i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" data-title="' .
                     __('maps.errors.chunking.error', ['discord' => 'Discord']) . '"></i>';
             } elseif ($this->chunkingRunning()) {
-                return '<i class="fa-solid fa-spin fa-spinner" data-toggle="tooltip" title="' .
+                return '<i class="fa-solid fa-spin fa-spinner" data-toggle="tooltip" data-title="' .
                     __('maps.tooltips.chunking.running') . '"></i>';
             }
         }
         $campaign = CampaignLocalization::getCampaign();
         return '<a href="' . route('maps.explore', [$campaign, $this->id]) . '" target="_blank" ' .
-            'data-toggle="tooltip" title="' . __('maps.actions.explore') . '">' .
+            'data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '">' .
             '<i class="fa-solid fa-map" data-tree="escape"></i>' .
             '</a>';
     }

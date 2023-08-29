@@ -6,6 +6,7 @@
     ],
     'canonical' => true,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('fullpage-form')

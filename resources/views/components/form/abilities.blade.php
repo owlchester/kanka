@@ -52,7 +52,7 @@ elseif(!empty($model) && !empty($model->entity)) {
     multiple="multiple"
     name="abilities[]"
     id="{{ Arr::get($options, 'id', 'abilities[]') }}"
-    class="form-control form-tags form-abilities"
+    class="w-full form-tags form-abilities"
     style="width: 100%"
     data-url="{{ route('abilities.find', $searchParams) }}"
     data-allow-new="{{ $enableNew ? 'true' : 'false' }}"

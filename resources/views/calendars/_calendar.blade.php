@@ -34,7 +34,7 @@ $weekNumber = 1;
         <a href="{{ $renderer->linkToYear(false) }}" class="btn2 join-item btn-sm" @if ($renderer->isYearlyLayout()) data-shortcut="previous" data-title="{{ $renderer->titleToYear(false) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear(false) }}" @endif data-toggle="tooltip">
             <x-icon class="fa-solid fa-chevron-left" />
         </a>
-        <div data-toggle="modal" data-target="#calendar-year-switcher" title="{{ __('calendars.modals.switcher.title') }}"
+        <div data-toggle="dialog" data-target="calendar-year-switcher" title="{{ __('calendars.modals.switcher.title') }}"
              class="btn2 join-item btn-sm">
             {!! $renderer->currentYearName() !!}
         </div>
@@ -107,33 +107,20 @@ $weekNumber = 1;
 
 @section('modals')
     @parent
-    <div class="modal fade" id="calendar-year-switcher" tabindex="-1" role="dialog" aria-labelledby="deleteYearSwitcherLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100">
-                <div class="modal-header">
-                    <x-dialog.close />
-                    <h4 class="modal-title" id="myModalLabel">{{ __('calendars.modals.switcher.title') }}</h4>
-                </div>
-                <div class="modal-body">
-                    {!! Form::open(['route' => ['calendars.show', $campaign, $model], 'method' => 'GET']) !!}
-                    <div class="field-year">
-                        <label>{{ __('calendars.fields.year') }}</label>
-                        {!! Form::number('year', null, ['placeholder' => e($renderer->currentYear())]) !!}
-                    </div>
-                    @if ($renderer->isYearlyLayout() && !$model->yearlyLayout())
-                        <input type="hidden" name="layout" value="year">
-                    @else
-                        @if ($model->yearlyLayout())
-                            <input type="hidden" name="layout" value="month">
-                        @endif
-                        {!! Form::hidden('month', $renderer->currentMonthId()) !!}
-                    @endif
+    {!! Form::open(['route' => ['calendars.show', $campaign, $model], 'method' => 'GET']) !!}
+    <x-dialog id="calendar-year-switcher" :title="__('calendars.modals.switcher.title')" footer="calendars.year-switcher._footer">
+        <x-forms.field field="year" :label="__('calendars.fields.year')">
+            {!! Form::number('year', null, ['placeholder' => e($renderer->currentYear())]) !!}
+        </x-forms.field>
 
-                    <x-dialog.footer :modal="true">
-                        <button type="submit" class="btn2 btn-primary"> {{ __('crud.click_modal.confirm') }}</button>
-                    </x-dialog.footer>
-                </div>
-            </div>
-        </div>
-    </div>
+        @if ($renderer->isYearlyLayout() && !$model->yearlyLayout())
+            <input type="hidden" name="layout" value="year">
+        @else
+            @if ($model->yearlyLayout())
+                <input type="hidden" name="layout" value="month">
+            @endif
+            {!! Form::hidden('month', $renderer->currentMonthId()) !!}
+        @endif
+    </x-dialog>
+    {!! Form::close() !!}
 @endsection

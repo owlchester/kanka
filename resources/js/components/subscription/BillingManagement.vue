@@ -44,9 +44,9 @@
                 </button>
             </header>
             <article class="text-justify">
-                <div class="mb-2 w-full">
+                <div class="mb-2 w-full field">
                     <label>{{ translate('card_name') }}</label>
-                    <input id="card-holder-name" type="text" v-model="name" class="form-control">
+                    <input id="card-holder-name" type="text" v-model="name" class="w-full">
                 </div>
 
                 <div class="mb-2 w-full">

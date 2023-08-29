@@ -6,7 +6,7 @@
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $entity->child,
-    'bodyClass' => 'entity-inventory'
+    'bodyClass' => 'entity-inventory',
 ])
 
 

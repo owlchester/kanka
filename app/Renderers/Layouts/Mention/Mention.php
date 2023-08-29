@@ -25,7 +25,7 @@ class Mention extends Layout
                         ($model->isTimelineElement() && $model->timelineElement && $model->timelineElement->timeline && $model->timelineElement->timeline->entity && $model->timelineElement->timeline->entity->is_private) ||
                         ($model->isPost() && $model->post && $model->post->entity && $model->post->entity->is_private)
                     ) {
-                        $private = '<i class="fa-solid fa-lock mr-1" title="' . __('crud.is_private') . '" data-toggle="tooltip" aria-hidden="true"></i>';
+                        $private = '<i class="fa-solid fa-lock mr-1" data-title="' . __('crud.is_private') . '" data-toggle="tooltip" aria-hidden="true"></i>';
                     }
                     return $private . $model->mentionLink();
                 },

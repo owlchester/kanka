@@ -14,6 +14,7 @@ $isAdmin = auth()->user()->isAdmin();
         __('crud.tabs.attributes'),
     ],
     'mainTitle' => false,
+    'centered' => true,
 ])
 
 @section('fullpage-form')

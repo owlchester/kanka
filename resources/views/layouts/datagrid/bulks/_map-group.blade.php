@@ -6,11 +6,8 @@
     ];
 ?>
 
-<div class="field-group-shown">
-    <label>
-        {{ __('maps/groups.fields.is_shown') }}
-    </label>
+<x-forms.field field="group-shown" :label="__('maps/groups.fields.is_shown')">
     {{ Form::select('is_shown',  $typeOptions, null, ['class' => 'form-control', 'id' => 'type_id']) }}
-</div>
+</x-forms.field>
 
 @include('cruds.fields.visibility_id', ['bulk' => true])

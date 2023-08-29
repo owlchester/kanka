@@ -4,6 +4,7 @@
         __('dashboard.setup.title')
     ],
     'mainTitle' => '',
+    'centered' => true,
 ])
 
 @php
@@ -14,7 +15,6 @@ $newWidgetListClass = 'btn2 btn-full';
 @endphp
 
 @section('content')
-<div class="max-w-5xl grid grid-col gap-5">
     <div class="flex gap-2 items-center">
         <h4 class="grow">
             @if ($dashboard)
@@ -154,7 +154,6 @@ $newWidgetListClass = 'btn2 btn-full';
             </div>
         </div>
     </div>
-</div>
     {{ csrf_field() }}
 
     @include('editors.editor', ['dialogsInBody' => true])

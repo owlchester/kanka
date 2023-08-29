@@ -9,7 +9,7 @@
 ])
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block pull-right ml-auto">
+    <div class="header-buttons inline-block ml-auto">
         @if (request()->has('parent_id'))
             <a href="{{ route('abilities.abilities', [$campaign, $model]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />

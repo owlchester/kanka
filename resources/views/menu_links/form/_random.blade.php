@@ -8,16 +8,13 @@ $entityTypes = array_merge($entityTypes, $entities);
 ]) !!}</p>
 
 <x-grid>
-    <div class="field-random-type">
-        <label>{{ __('menu_links.fields.random_type') }}</label>
+    <x-forms.field field="random-type" :label="__('menu_links.fields.random_type')">
         {!! Form::select('random_entity_type', $entityTypes, FormCopy::field('random_entity_type')->string(), ['class' => 'form-control']) !!}
-    </div>
+    </x-forms.field>
 
-    <div class="field-tags">
-        <input type="hidden" name="save_tags" value="1" />
-        <x-forms.tags
-            :campaign="$campaign"
-            :model="$model ?? null">
-        </x-forms.tags>
-    </div>
+    <input type="hidden" name="save_tags" value="1" />
+    <x-forms.tags
+        :campaign="$campaign"
+        :model="$model ?? null">
+    </x-forms.tags>
 </x-grid>

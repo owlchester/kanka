@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\PreviewService;
-use App\Services\SearchService;
+use App\Services\Search\RecentService;
 use App\Traits\GuestAuthTrait;
 
 class PreviewController extends Controller
@@ -14,10 +14,12 @@ class PreviewController extends Controller
     use GuestAuthTrait;
 
     protected PreviewService $service;
+    protected RecentService $recentService;
 
-    public function __construct(PreviewService $service)
+    public function __construct(PreviewService $service, RecentService $recentService)
     {
         $this->service = $service;
+        $this->recentService = $recentService;
     }
 
     public function index(Campaign $campaign, Entity $entity)
@@ -25,8 +27,8 @@ class PreviewController extends Controller
         $this->authEntityView($entity);
 
         if (auth()->check()) {
-            $service = app()->make(SearchService::class);
-            $service->campaign($campaign)
+            $this->recentService
+                ->campaign($campaign)
                 ->user(auth()->user())
                 ->logView($entity);
         }

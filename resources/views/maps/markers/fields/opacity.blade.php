@@ -1,5 +1,4 @@
-<div class="field-opacity">
-    <label for="opacity">{{ __('maps/markers.fields.opacity') }}</label><br />
+<x-forms.field field="opacity" :label="__('maps/markers.fields.opacity')">
     {!! Form::number($fieldname ?? 'opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : (!isset($fieldname) ? 100 : null))), [
     'class' => 'form-control',
     'maxlength' => 3,
@@ -8,4 +7,4 @@
     'min' => 0,
     'id' => 'opacity'
     ]) !!}
-</div>
+</x-forms.field>

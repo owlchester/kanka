@@ -11,6 +11,7 @@
     ],
     'mainTitle' => false,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('content')
@@ -20,7 +21,7 @@
     @if ($role->isPublic())
         @include('campaigns.roles._public')
     @else
-    <div class="flex gap-2 lg:gap-5 flex-col lg:flex-row max-w-7xl">
+    <div class="flex gap-2 lg:gap-5 flex-col lg:flex-row">
         <div class="lg:flex-none lg:w-60">
         @include('campaigns.roles._members')
         </div>

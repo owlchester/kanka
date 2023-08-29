@@ -3,7 +3,7 @@
 
 <div class="print-box-abilities">
 
-    <h2>{{ __('crud.tabs.abilities') }}</h2>
+    <h2>{{ __('entities.abilities') }}</h2>
 
     @foreach ($entityAbilities['parents'] as $parent)
         <h3 class="box-title">{{ $parent['name'] }}</h3>

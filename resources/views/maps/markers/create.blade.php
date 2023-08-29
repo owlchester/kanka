@@ -12,7 +12,8 @@
         Breadcrumb::entity($map->entity)->list(),
         Breadcrumb::show($map),
         __('maps/markers.create.title')
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')

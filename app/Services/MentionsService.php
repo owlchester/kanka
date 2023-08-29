@@ -716,7 +716,7 @@ class MentionsService
                     $replace = '<i class="unknown-mention unknown-attribute">' . $fallback . '</i>';
                 }
             } else {
-                $replace = '<span class="attribute attribute-mention" title="' . e($attribute->name)
+                $replace = '<span class="attribute attribute-mention" data-title="' . e($attribute->name)
                     . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
             }
             return $replace;

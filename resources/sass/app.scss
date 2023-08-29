@@ -70,8 +70,11 @@ tr.tr-hover {
 }
 
 .field {
-    > input, > select {
-        padding: 0.4rem 0.8rem;
+    > input, > select, > textarea {
+        padding: 0.5rem 0.5rem;
+        &:placeholder-shown {
+            text-overflow: ellipsis;
+        }
     }
 }
 

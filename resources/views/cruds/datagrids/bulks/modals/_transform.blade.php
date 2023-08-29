@@ -8,10 +8,9 @@
         {{ __('entities/transform.panel.bulk_description') }}
     </p>
 
-    <div class="field-target">
-        <label>{{ __('entities/transform.fields.target') }}</label>
-        {!! Form::select('target', $entities, null, ['class' => 'form-control']) !!}
-    </div>
+    <x-forms.field field="target" :label="__('entities/transform.fields.target')">
+        {!! Form::select('target', $entities, null, ['class' => 'w-full']) !!}
+    </x-forms.field>
 
     <x-dialog.footer :modal="true">
         <button class="btn2 btn-primary" type="submit">

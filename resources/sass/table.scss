@@ -5,6 +5,11 @@ table {
             //vertical-align: middle !important;
         }
     }
+    thead {
+        th {
+            text-align: left;
+        }
+    }
 }
 
 .table {
@@ -59,4 +64,15 @@ table {
 
 .table-condensed > :is(thead, tbody, tfoot) > tr > :is(th, td) {
     padding: .25rem;
+}
+
+/** Old bootstrap 3.4 stuff to keep people happy? **/
+legend {
+    display: block;
+    width: 100%;
+    margin-bottom: 22px;
+    font-size: 21px;
+    line-height: inherit;
+    color: #333;
+    border-bottom: 1px solid #e5e5e5
 }

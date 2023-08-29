@@ -1,15 +1,15 @@
-<?php /** @var \App\Models\Campaign $model */?>
+<?php /** @var \App\Models\Campaign $campaign */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('campaigns/dashboard-header.edit.title', ['name' => $model->name]),
+    'title' => __('campaigns/dashboard-header.edit.title', ['name' => $campaign->name]),
     'breadcrumbs' => [],
     'mainTitle' => false,
 ])
 
 @section('content')
 
-    {!! Form::model($model, [
+    {!! Form::model($campaign, [
         'method' => 'PATCH',
-        'route' => ['campaigns.dashboard-header.update', [$campaign, $model]],
+        'route' => ['campaigns.dashboard-header.update', [$campaign, $campaign]],
         'data-shortcut' => 1,
         'class' => 'entity-form',
         'enctype' => 'multipart/form-data',
@@ -19,7 +19,7 @@
         'dialog' => true,
         'title' => __('campaigns/dashboard-header.edit.title'),
         'content' => 'campaigns.forms.dashboard-header._form',
-        'deleteID' => !empty($widget) ? '#delete-widget-' . $widget->id : null
+        'deleteID' => !empty($widget) ? '#delete-widget-' . $widget->id : null,
     ])
 
     {!! Form::close() !!}

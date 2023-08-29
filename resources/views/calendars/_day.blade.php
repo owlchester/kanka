@@ -2,33 +2,42 @@
  * @var \App\Models\Calendar $model
  * @var \App\Models\EntityEvent $event
  */?>
-@if (empty($day))
+@if(empty($day))
     <td class="h-24"></td>
 @else
+
+    @php
+        $routeOptions = [
+            $campaign,
+            $model,
+            'date' => $day['date']
+    ];
+    if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
+        $routeOptions['layout'] = 'year';
+    } elseif (!$renderer->isYearlyLayout() && $model->yearlyLayout()) {
+        $routeOptions['layout'] = 'month';
+    }
+    @endphp
+
     <td class="h-24 text-center break-words align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}">
         @if ($day['day'])
-            <h5 class="m-0 pull-left {{ $day['isToday'] ? "badge badge-primary" : null}}">
-                <span class="day-number">{{ $day['day'] }}</span>
-                <span class="julian-number">{{ $day['julian'] }}</span>
-            </h5>
-            @if ($canEdit)
-                <div class="dropdown pull-right">
+            <div class="flex items-center items-stretch gap-1">
+                <h5 class="m-0 {{ $day['isToday'] ? "badge badge-primary" : null}}">
+                    <span class="day-number">{{ $day['day'] }}</span>
+                    <span class="julian-number">{{ $day['julian'] }}</span>
+                </h5>
+                <div class="grow">
+                @if ($day['day'] == 1 && !empty($showMonth))
+                    <span class="hidden md:inline">{{ $day['month'] }}</span>
+                @endif
+                </div>
+                @if ($canEdit)
+                <div class="dropdown">
                     <a class="dropdown-toggle btn2 btn-xs" data-toggle="dropdown" aria-expanded="false" data-placement="right">
                         <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                     </a>
-@php
-    $routeOptions = [
-        $campaign,
-        $model,
-        'date' => $day['date']
-];
-if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
-    $routeOptions['layout'] = 'year';
-} elseif (!$renderer->isYearlyLayout() && $model->yearlyLayout()) {
-    $routeOptions['layout'] = 'month';
-}
-@endphp
+
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                         <li>
                             <a href="{{ route('calendars.event.create', $routeOptions) }}" data-toggle="dialog"
@@ -57,10 +66,8 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                         @endif
                     </ul>
                 </div>
-            @endif
-            @if ($day['day'] == 1 && !empty($showMonth))
-            <span class="hidden md:inline">{{ $day['month'] }}</span>
-            @endif
+               @endif
+            </div>
             @if (!empty($day['moons']))
                 @foreach ($day['moons'] as $moon)
                     <i class="moon {{ $moon['class'] }} text-{{ \Illuminate\Support\Arr::get($moon, 'colour', 'grey') }}" data-title="{{ __('calendars.show.moon_' . $moon['type'], ['moon' => $moon['name']]) }}" data-toggle="tooltip"></i>
@@ -81,7 +88,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                 @endif
                 @if (!empty($day['events']))
                     @foreach ($day['events'] as $event)
-                        <div class="calendar-event-block block text-left my-1 p-1 rounded overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
+                        <div class="calendar-event-block block text-left my-1 p-1 relative overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
                             @if ($canEdit)
 @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
                                 data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.entity_events.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->entity->id, $event->id]) + $routeOptions) }}"

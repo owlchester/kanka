@@ -14,7 +14,7 @@ $targets = [
         field="participants"
         :required="true"
         :label="__('conversations.fields.participants')">
-        {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => 'form-control']) !!}
+        {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => 'w-full']) !!}
     </x-forms.field>
 
     @include('cruds.fields.tags')

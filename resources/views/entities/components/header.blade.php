@@ -57,38 +57,38 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             </a>
             @endif
             <div class="dropdown">
-                <div class="cursor-pointer dropdown-toggle hidden sm:block print-none" data-toggle="dropdown" aria-expanded="false">
+                <div class="cursor-pointer dropdown-toggle hidden sm:block print-none" data-dropdown aria-expanded="false">
                     <picture>
                         <source media="(min-width:766px)" srcset="{{ $imagePathXL }}">
                         <img src="{{ $imagePath }}" alt="{{ $model->name }}" style="width:auto;">
                     </picture>
                 </div>
 
-                <ul class="dropdown-menu" role="menu">
-                    <li>
-                        <a href="{{ $imageUrl }}" target="_blank">
-                            <x-icon class="fa-solid fa-external-link"></x-icon>
-                            {{ __('entities/image.actions.view') }}
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="{{ route('entities.image.replace', [$campaign, $model->entity]) }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.image.replace', [$campaign, $model->entity]) }}">
-                            {{ __('entities/image.actions.replace_image') }}
-                        </a>
-                    </li>
-                    <li>
-                        @if ($campaign->boosted())
-                        <a href="{{ route('entities.image.focus', [$campaign, $model->entity]) }}">
-                            {{ __('entities/image.actions.change_focus') }}
-                        </a>
-                        @else
-                        <a href="#" data-toggle="dialog" data-target="booster-cta">
-                            {{ __('entities/image.actions.change_focus') }}
-                        </a>
-                        @endif
-                    </li>
-                </ul>
+                <div class="dropdown-menu" role="menu">
+                    <x-dropdowns.item
+                        :link="$imageUrl"
+                        target="_blank">
+                        <x-icon class="fa-solid fa-external-link"></x-icon>
+                        {{ __('entities/image.actions.view') }}
+                    </x-dropdowns.item>
+                    <hr class="m-0" />
+                    <x-dropdowns.item
+                        :link="route('entities.image.replace', [$campaign, $model->entity])"
+                        :dialog="route('entities.image.replace', [$campaign, $model->entity])">
+                        {{ __('entities/image.actions.replace_image') }}
+                    </x-dropdowns.item>
+
+                    @if ($campaign->boosted())
+                        <x-dropdowns.item
+                            :link="route('entities.image.focus', [$campaign, $model->entity])">
+                            {{ __('entities/image.actions.change_focus') }}</x-dropdowns.item>
+                    @else
+                        <x-dropdowns.item
+                            link="#"
+                            popup="booster-cta">
+                            {{ __('entities/image.actions.change_focus') }}</x-dropdowns.item>
+                    @endif
+                </div>
             </div>
         @else
 
@@ -147,64 +147,50 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                     </span>
             @endif
             <div class="dropdown entity-actions">
-                <span role="button" tabindex="0" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
+                <span role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
                     <i class="fa-solid fa-cog entity-icons cursor-pointer text-2xl transition-all hover:rotate-45" aria-hidden="true"></i>
                     <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                 </span>
-                <ul class="dropdown-menu dropdown-menu-right" role="menu" id="entity-submenu">
+                <div class="dropdown-menu dropdown-menu-right" role="menu" id="entity-submenu">
                     @can('update', $model)
-                        <li>
-                            <a href="{{ route($entity->pluralType() . '.edit', [$campaign, $model->id]) }}" data-keyboard="edit">
-                                <x-icon class="pencil"></x-icon>
-                                <span class="grow">{{ __('crud.edit') }}</span>
+                        <x-dropdowns.item :link="route($entity->pluralType() . '.edit', [$campaign, $model->id])" keyboard="edit">
+                            <x-icon class="pencil"></x-icon>
+                            <span class="grow">{{ __('crud.edit') }}</span>
 
-                                <span class="keyboard-shortcut"  title="{!! __('crud.keyboard-shortcut', ['code' => '[E]']) !!}" data-html="true">E</span>
-                            </a>
-                        </li>
+                            <span class="keyboard-shortcut"  title="{!! __('crud.keyboard-shortcut', ['code' => '[E]']) !!}" data-html="true">E</span>
+                        </x-dropdowns.item>
                     @endcan
                     @can('create', $model)
-                        <li>
-                            <a href="{{ route($entity->pluralType() . '.create', $campaign) }}">
-                                <x-icon class="fa-regular fa-plus"></x-icon>
-                                {{ __('crud.actions.new') }}
-                            </a>
-                        </li>
+                        <x-dropdowns.item :link="route($entity->pluralType() . '.create', $campaign)">
+                            <x-icon class="fa-regular fa-plus"></x-icon>
+                            {{ __('crud.actions.new') }}
+                        </x-dropdowns.item>
                         @if (\Illuminate\Support\Facades\Route::has($entity->pluralType() . '.tree'))
-                            <li>
-                                <a href="{{ route($entity->pluralType() . '.create', [$campaign, $model->entity, 'parent_id' => $model->id]) }}">
-                                    <x-icon class="fa-regular fa-plus"></x-icon>
-                                    {{ __('crud.actions.new_child') }}
-                                </a>
-                            </li>
+                            <x-dropdowns.item :link="route($entity->pluralType() . '.create', [$campaign, $model->entity, 'parent_id' => $model->id])">
+                                <x-icon class="fa-regular fa-plus"></x-icon>
+                                {{ __('crud.actions.new_child') }}
+                            </x-dropdowns.item>
                         @endif
-                        <li>
-                            <a href="{{ route($entity->pluralType() . '.create', [$campaign, $model->entity, 'copy' => $model->id]) }}">
-                                <x-icon class="fa-regular fa-copy"></x-icon>
-                                {{ __('crud.actions.copy') }}
-                            </a>
-                        </li>
+                        <x-dropdowns.item link="{{ route($entity->pluralType() . '.create', [$campaign, $model->entity, 'copy' => $model->id]) }}">
+                            <x-icon class="fa-regular fa-copy"></x-icon>
+                            {{ __('crud.actions.copy') }}
+                        </x-dropdowns.item>
                     @endcan
 
                     @if ($model->entity)
                         @if(auth()->check())
                             @can('update', $model)
-                                <li>
-                                    <a href="{{ route('entities.story.reorder', [$campaign, $model->entity->id]) }}">
-                                        <x-icon class="fa-solid fa-list-ol"></x-icon>
-                                        {{ __('entities/story.reorder.icon_tooltip') }}
-                                    </a>
-                                </li>
+                                <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, $model->entity->id])">
+                                    <x-icon class="fa-solid fa-list-ol"></x-icon>
+                                    {{ __('entities/story.reorder.icon_tooltip') }}
+                                </x-dropdowns.item>
                             @endcan
-                            <li>
-                                <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toggle="tooltip"
-                                   data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toast="{{ __('crud.alerts.copy_mention') }}">
+                                <x-dropdowns.item link="#" :data="['title' => $model->getEntityType() . ':' . $model->entity->id, 'toggle' => 'tooltip', 'clipboard' => '[' . $model->getEntityType() . ':' . $model->entity->id .']', 'toast' => __('crud.alerts.copy_mention')]">
                                     <x-icon class="fa-solid fa-link"></x-icon>
                                     {{ __('crud.actions.copy_mention') }}
-                                </a>
-                            </li>
+                                </x-dropdowns.item>
                             @if (auth()->user()->isAdmin())
-                                <li>
-                                    <a href="{{ route('entities.template', [$campaign, $entity]) }}">
+                                    <x-dropdowns.item :link="route('entities.template', [$campaign, $entity])">
                                         @if($entity->is_template)
                                             <x-icon class="fa-regular fa-star"></x-icon>
                                             {{ __('entities/actions.templates.unset') }}
@@ -212,64 +198,51 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                             <x-icon class="fa-solid fa-star"></x-icon>
                                             {{ __('entities/actions.templates.set') }}
                                         @endif
-                                    </a>
-                                </li>
+                                    </x-dropdowns.item>
                             @endif
-                            <li class="divider"></li>
+                            <hr class="m-0" />
                                 @can('update', $model)
-                                    <li>
-                                        <a href="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}">
-                                            <x-icon class="fa-solid fa-people-arrows"></x-icon>
-                                            {{ __('entities/relations.create.new_title') }}
-                                        </a>
-                                    </li>
+                                    <x-dropdowns.item link="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}" :dialog="route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table'])">
+                                        <x-icon class="fa-solid fa-people-arrows"></x-icon>
+                                        {{ __('entities/relations.create.new_title') }}
+                                    </x-dropdowns.item>
+                                    <hr class="m-0" />
                                 @endcan
-                            <li class="divider"></li>
                         @endif
-                        <li>
-                            <a href="{{ route('entities.html-export', [$campaign, $entity]) }}">
-                                <x-icon class="fa-solid fa-print"></x-icon>
-                                {{ __('crud.actions.print') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('entities.json-export', [$campaign, $entity]) }}">
-                                <x-icon class="fa-solid fa-download"></x-icon>
-                                {{ __('crud.actions.json-export') }}
-                            </a>
-                        </li>
+                        <x-dropdowns.item link="{{ route('entities.html-export', [$campaign, $entity]) }}">
+                            <x-icon class="fa-solid fa-print"></x-icon>
+                            {{ __('crud.actions.print') }}
+                        </x-dropdowns.item>
+                        <x-dropdowns.item link="{{ route('entities.json-export', [$campaign, $entity]) }}">
+                            <x-icon class="fa-solid fa-download"></x-icon>
+                            {{ __('crud.actions.json-export') }}
+                        </x-dropdowns.item>
                     @endif
                     @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
-                        <li class="divider"></li>
-                        <li>
-                            <a href="{{ route('entities.move', [$campaign, $entity->id]) }}">
-                                <x-icon class="fa-regular fa-clone"></x-icon>
-                                {{ __('crud.actions.move') }}
-                            </a>
-                        </li>
+                        <hr class="m-0" />
+                        <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity->id]) }}">
+                            <x-icon class="fa-regular fa-clone"></x-icon>
+                            {{ __('crud.actions.move') }}
+                        </x-dropdowns.item>
                     @endif
 
                     @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
-                        <li>
-                            <a href="{{ route('entities.transform', [$campaign, $entity->id]) }}">
-                                <x-icon class="fa-solid fa-exchange-alt"></x-icon>
-                                {{ __('crud.actions.transform') }}
-                            </a>
-                        </li>
+                        <x-dropdowns.item link="{{ route('entities.transform', [$campaign, $entity->id]) }}">
+                            <x-icon class="fa-solid fa-exchange-alt"></x-icon>
+                            {{ __('crud.actions.transform') }}
+                        </x-dropdowns.item>
                     @endif
 
                     @can('delete', $model)
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm" data-recoverable="1">
-                                <x-icon class="trash"></x-icon>
-                                {{ __('crud.remove') }}
-                            </a>
-                            {!! Form::open(['method' => 'DELETE', 'route' => [$entity->pluralType() . '.destroy', [$campaign, $model->id]], 'style' => 'display:inline', 'id' => 'delete-confirm-form']) !!}
+                        <hr class="m-0" />
+                        <x-dropdowns.item link="#" css="delete-confirm text-red" :data="['name' => $model->name, 'toggle' => 'modal', 'target' => '#delete-confirm', 'recoverable' => 1]">
+                            <x-icon class="trash"></x-icon>
+                            {{ __('crud.remove') }}
+                        </x-dropdowns.item>
+                        {!! Form::open(['method' => 'DELETE', 'route' => [$entity->pluralType() . '.destroy', [$campaign, $model->id]], 'style' => 'display:inline', 'id' => 'delete-confirm-form']) !!}
                             {!! Form::close() !!}
-                        </li>
                     @endcan
-                </ul>
+                </div>
             </div>
         </div>
 
@@ -312,12 +285,12 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
         <x-dialog id="booster-cta" :title="__('callouts.booster.titles.boosted')">
             <p class="mb-2">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
-            <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn bg-boost text-white btn-block mb-2">
+            <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-block mb-2">
                 {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
             </a>
             @else
                 <p class="mb-2">{{ __('callouts.booster.limitation') }}</p>
-                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" class="btn bg-boost text-white btn-block mb-2">
+                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" class="btn2 bg-boost text-white btn-block mb-2">
                     {!! __('callouts.premium.learn-more') !!}
                 </a>
             @endif

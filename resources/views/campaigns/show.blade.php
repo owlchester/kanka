@@ -5,6 +5,7 @@
     'canonical' => true,
     'mainTitle' => false,
     'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('og')
@@ -19,7 +20,7 @@
     @include('partials.errors')
     @include('partials.ads.top')
 
-    <div class="flex gap-5 flex-col max-w-7xl">
+    <div class="flex gap-5 flex-col">
             @can('update', $campaign)
                 @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
                     <x-alert type="warning">
@@ -99,8 +100,8 @@
                 <p class="mt-5">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
                 <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
 
-                <div class="mb-5 required">
-                    {!! Form::text('delete', null, ['class' => 'form-control', 'required', 'id' => 'campaign-delete-form']) !!}
+                <div class="mb-5 required field">
+                    {!! Form::text('delete', null, ['class' => 'w-full', 'required', 'id' => 'campaign-delete-form']) !!}
                 </div>
 
                 <div class="grid grid-cols-2 gap-2">

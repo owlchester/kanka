@@ -1,14 +1,12 @@
 <?php /** @var \App\Models\Calendar $model */?>
-<p class="help-block">{{ __('calendars.hints.moons') }}</p>
-<div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4 mb-2">
-    <div class="">{{ __('calendars.parameters.moon.name') }}</div>
-    <div class="">{{ __('calendars.parameters.moon.fullmoon') }}</div>
-    <div class="">{{ __('crud.fields.colour') }}</div>
-    <div class="">
-        {{ __('calendars.parameters.moon.offset') }}
-        <x-helpers.tooltip :title="__('calendars.helpers.moon_offset')" />
-    </div>
-</div>
+<x-grid type="1/1">
+
+    <p class="text-neutral-content m-0">{{ __('calendars.hints.moons') }}</p>
+
+    <button class="btn2 btn-sm  dynamic-row-add" data-template="template_moon" data-target="calendar-moons" title="{{ __('calendars.actions.add_moon') }}">
+        <x-icon class="plus"></x-icon>
+        {{ __('calendars.actions.add_moon') }}
+    </button>
 <?php
 $moons = [];
 $moonNames = old('moon_name');
@@ -35,7 +33,16 @@ if (!empty($moonNames)) {
 } elseif (isset($source)) {
     $moons = $source->moons();
 }?>
-<div class="calendar-moons sortable-elements" data-handle=".sortable-handler">
+<div class="flex flex-col gap-2 calendar-moons sortable-elements" data-handle=".sortable-handler">
+    <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
+        <div class="">{{ __('calendars.parameters.moon.name') }}</div>
+        <div class="">{{ __('calendars.parameters.moon.fullmoon') }}</div>
+        <div class="">{{ __('crud.fields.colour') }}</div>
+        <div class="">
+            {{ __('calendars.parameters.moon.offset') }}
+            <x-helpers.tooltip :title="__('calendars.helpers.moon_offset')" />
+        </div>
+    </div>
     @foreach ($moons as $fullmoon)
         <div class="parent-delete-row">
             <x-grid>
@@ -44,25 +51,25 @@ if (!empty($moonNames)) {
                         <div class="sortable-handler p-2 cursor-move">
                             <x-icon class="fa-solid fa-grip-vertical" />
                         </div>
-                        <div class="grow">
+                        <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.moon.name') }}</label>
-                            {!! Form::text('moon_name[]', $fullmoon['name'], ['class' => 'form-control', 'aria-label' => __('calendars.parameters.moon.name')]) !!}
+                            {!! Form::text('moon_name[]', $fullmoon['name'], ['class' => 'w-full', 'aria-label' => __('calendars.parameters.moon.name')]) !!}
                         </div>
                     </div>
-                    <div>
+                    <div class="field">
                         <label class="sr-only">{{ __('calendars.parameters.moon.fullmoon') }}</label>
-                        {!! Form::number('moon_fullmoon[]', $fullmoon['fullmoon'], ['class' => 'form-control', 'step' => '0.01', 'min' => 1, 'aria-label' => __('calendars.parameters.moon.fullmoon')]) !!}
+                        {!! Form::number('moon_fullmoon[]', $fullmoon['fullmoon'], ['class' => 'w-full', 'step' => '0.01', 'min' => 1, 'aria-label' => __('calendars.parameters.moon.fullmoon')]) !!}
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                    <div>
+                    <div class="field">
                         <label class="sr-only">{{ __('crud.fields.colour') }}</label>
-                        {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), \Illuminate\Support\Arr::get($fullmoon, 'colour', 'grey'), ['class' => 'form-control', 'aria-label' => __('crud.fields.colour')]) !!}
+                        {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), \Illuminate\Support\Arr::get($fullmoon, 'colour', 'grey'), ['class' => 'w-full', 'aria-label' => __('crud.fields.colour')]) !!}
                     </div>
                     <div class="flex gap-2 items-center">
-                        <div class="grow">
+                        <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.moon.offset') }}</label>
-                            {!! Form::number('moon_offset[]', $fullmoon['offset'], ['class' => 'form-control', 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
+                            {!! Form::number('moon_offset[]', $fullmoon['offset'], ['class' => 'w-full', 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
                         </div>
                         <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                             <x-icon class="trash" />
@@ -74,13 +81,10 @@ if (!empty($moonNames)) {
         {!! Form::hidden('moon_id[]', $fullmoon['id']) !!}
     @endforeach
 </div>
-<button class="btn2 btn-sm  dynamic-row-add" data-template="template_moon" data-target="calendar-moons" title="{{ __('calendars.actions.add_moon') }}">
-    <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_moon') }}
-</button>
-
+</x-grid>
 @section('modals')
     @parent
-<div id="template_moon" style="display: none">
+<template id="template_moon">
     <div class="parent-delete-row">
         <x-grid>
             <div class="grid grid-cols-2 gap-2">
@@ -88,25 +92,25 @@ if (!empty($moonNames)) {
                     <div class="sortable-handler p-2 cursor-move">
                         <x-icon class="fa-solid fa-grip-vertical" />
                     </div>
-                    <div class="grow">
+                    <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.moon.name') }}</label>
-                        {!! Form::text('moon_name[]', null, ['class' => 'form-control', 'aria-label' => __('calendars.parameters.moon.name')]) !!}
+                        {!! Form::text('moon_name[]', null, ['class' => 'w-full', 'aria-label' => __('calendars.parameters.moon.name')]) !!}
                     </div>
                 </div>
-                <div>
+                <div class="field">
                     <label class="sr-only">{{ __('calendars.parameters.moon.fullmoon') }}</label>
-                    {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'step' => '0.01', 'min' => 1, 'aria-label' => __('calendars.parameters.moon.fullmoon')]) !!}
+                    {!! Form::number('moon_fullmoon[]', null, ['class' => 'w-full', 'step' => '0.01', 'min' => 1, 'aria-label' => __('calendars.parameters.moon.fullmoon')]) !!}
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-2">
-                <div>
+                <div class="field">
                     <label class="sr-only">{{ __('crud.fields.colour') }}</label>
-                    {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), 'grey', ['class' => 'form-control', 'aria-label' => __('crud.fields.colour')]) !!}
+                    {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), 'grey', ['class' => 'w-full', 'aria-label' => __('crud.fields.colour')]) !!}
                 </div>
                 <div class="flex gap-2 items-center">
-                    <div class="grow">
+                    <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.moon.offset') }}</label>
-                        {!! Form::number('moon_offset[]', null, ['class' => 'form-control', 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
+                        {!! Form::number('moon_offset[]', null, ['class' => 'w-full', 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
                     </div>
                     <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                         <x-icon class="trash" />
@@ -116,5 +120,5 @@ if (!empty($moonNames)) {
         </x-grid>
         {!! Form::hidden('moon_id[]', null) !!}
     </div>
-</div>
+</template>
 @endsection

@@ -6,7 +6,7 @@
         FormCopy::field('size')->string(),
         [
             'placeholder' => __($trans . '.placeholders.size'),
-            'class' => 'form-control',
+            'class' => 'w-full',
             'maxlength' => 191
         ]
     ) !!}

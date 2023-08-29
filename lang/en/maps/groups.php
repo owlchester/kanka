@@ -27,7 +27,7 @@ return [
         'amount_v3' => 'Markers can be grouped together using map groups. Each group can then be clicked when exploring a map to quickly show or hide all markers in it.',
     ],
     'hints'         => [
-        'is_shown'  => 'If checked, the group markers will be shown on the map by default.',
+        'is_shown'  => 'Show markers in this group by default on the map.',
     ],
     'index'         => [
         'title' => 'Groups of :name',

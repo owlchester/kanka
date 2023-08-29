@@ -7,6 +7,7 @@
         trans('crud.tabs.reminders'),
     ],
     'canonical' => true,
+    'centered' => true,
 ])
 
 @section('content')

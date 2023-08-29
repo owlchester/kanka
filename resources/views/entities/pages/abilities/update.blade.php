@@ -4,8 +4,9 @@
     'breadcrumbs' => [
         Breadcrumb::entity($entity)->list(),
         Breadcrumb::show(),
-        ['url' => route('entities.entity_abilities.index', [$campaign, $entity]), 'label' => trans('crud.tabs.abilities')],
-    ]
+        ['url' => route('entities.entity_abilities.index', [$campaign, $entity]), 'label' => __('entities.ability')],
+    ],
+    'centered' => true,
 ])
 
 

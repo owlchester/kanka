@@ -5,7 +5,8 @@
         Breadcrumb::entity($entity)->list(),
         Breadcrumb::show(),
         __('entities/notes.actions.add')
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('fullpage-form')

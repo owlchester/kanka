@@ -138,11 +138,11 @@ function manageTabs() {
 }
 
 function initImageRemoval() {
-    $.each($('.img-delete'), function () {
+    $.each($('[data-img="delete"]'), function () {
         $(this).unbind('click').click(function (e) {
             e.preventDefault();
             $('input[name=' + $(this).data('target') + ']')[0].value = 1;
-            $(this).parent().parent().hide();
+            $(this).closest('.preview').hide();
         });
     });
 }

@@ -11,19 +11,17 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
 
 @if($campaign->boosted())
     <x-grid>
-        <div class="field-dashboard">
-            <label>{{ __('menu_links.fields.dashboard') }}</label>
+        <x-forms.field field="dashboard" :label="__('menu_links.fields.dashboard')">
             {!! Form::select('dashboard_id', $dashboards, FormCopy::field('dashboard_id')->string(), ['class' => 'form-control']) !!}
-        </div>
+        </x-forms.field>
 
-        <div class="field-default checkbox">
-            {!! Form::hidden('options[default_dashboard]', 0) !!}
-            {{ __('menu_links.fields.default_dashboard') }}
-            <label>
+        {!! Form::hidden('options[default_dashboard]', 0) !!}
+        <x-forms.field field="default" :label="__('menu_links.fields.default_dashboard')">
+            <label class="text-neutral-content cursor-pointer flex gap-2">
                 {!! Form::checkbox('options[default_dashboard]', 1, empty($model->options) ? false : \Illuminate\Support\Arr::get($model->options, 'default_dashboard')) !!}
                 {{ __('menu_links.helpers.default_dashboard') }}
             </label>
-        </div>
+        </x-forms.field>
     </x-grid>
 @else
     <x-cta :campaign="$campaign" minimal="1" image="0">

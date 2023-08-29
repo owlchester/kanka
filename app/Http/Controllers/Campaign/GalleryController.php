@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\Img;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\Campaigns\GalleryImageFolderStore;
@@ -11,7 +10,6 @@ use App\Http\Requests\Campaigns\GalleryImageUpdate;
 use App\Models\Campaign;
 use App\Models\Image;
 use App\Services\Campaign\GalleryService;
-use Illuminate\Support\Arr;
 
 class GalleryController extends Controller
 {
@@ -94,23 +92,7 @@ class GalleryController extends Controller
         ]);
     }
 
-    /**
-     * Called when adding an image from the text editor
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function ajaxUpload(GalleryImageStore $request, Campaign $campaign)
-    {
-        $this->authorize('gallery', $campaign);
 
-        $images = $this->service
-            ->campaign($campaign)
-            ->user(auth()->user())
-            ->store($request);
-        $image = Arr::first($images);
-
-        return response()->json(Img::resetCrop()->url($image->path));
-    }
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View

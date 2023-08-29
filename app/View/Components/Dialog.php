@@ -10,6 +10,7 @@ class Dialog extends Component
 {
     public string $id;
     public ?string $title;
+    public ?string $footer;
     public bool $full;
     public bool $loading;
 
@@ -19,6 +20,7 @@ class Dialog extends Component
     public function __construct(
         string $title = null,
         string $id = null,
+        string $footer = null,
         bool $full = false,
         bool $loading = false,
     ) {
@@ -26,6 +28,7 @@ class Dialog extends Component
         $this->title = $title;
         $this->full = $full;
         $this->loading = $loading;
+        $this->footer = $footer;
     }
 
     /**

@@ -7,9 +7,8 @@
     ];
 ?>
 
-<div class="field-type">
-    <label>{{ __('maps/layers.fields.type') }}</label>
+<x-forms.field field="type" :label="__('maps/layers.fields.type')">
     {{ Form::select('type_id', $typeOptions, null, ['class' => 'form-control', 'id' => 'type_id']) }}
-</div>
+</x-forms.field>
 
 @include('cruds.fields.visibility_id', ['bulk' => true])

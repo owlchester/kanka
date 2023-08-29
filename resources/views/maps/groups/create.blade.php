@@ -11,7 +11,8 @@
         Breadcrumb::show($map),
         ['url' => route('maps.map_groups.index', [$campaign, $map]), 'label' => __('maps.panels.groups')],
         __('maps/groups.create.title')
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')

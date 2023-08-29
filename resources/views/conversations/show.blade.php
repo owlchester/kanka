@@ -13,7 +13,7 @@ $translations = json_encode([
 @section('entity-header-actions-override')
     @can('update', $model)
         <div class="header-buttons inline-block  flex gap-2 items-center justify-end">
-            <a class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#entity-modal"
+            <a class="btn2 btn-sm" data-toggle="dialog-ajax" data-target="primary-dialog"
                     data-url="{{ route('conversations.conversation_participants.index', [$campaign, $model]) }}">
                 <x-icon class="fa-solid fa-users"></x-icon>
                 {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}

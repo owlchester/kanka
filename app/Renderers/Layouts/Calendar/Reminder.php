@@ -45,7 +45,7 @@ class Reminder extends Layout
                     if (empty($model->comment)) {
                         return '';
                     }
-                    return '<i class="fa-solid fa-comment" title="' . $model->comment . '" data-toggle="tooltip"></i>';
+                    return '<i class="fa-solid fa-comment" data-title="' . $model->comment . '" data-toggle="tooltip"></i>';
                 }
             ],
             'recurring' => [
@@ -54,7 +54,7 @@ class Reminder extends Layout
                     if (empty($model->is_recurring)) {
                         return '';
                     }
-                    return '<i class="fa-solid fa-refresh" title="' . __('calendars.fields.is_recurring') . '" data-toggle="tooltip"></i>';
+                    return '<i class="fa-solid fa-refresh" data-title="' . __('calendars.fields.is_recurring') . '" data-toggle="tooltip"></i>';
                 }
             ],
 

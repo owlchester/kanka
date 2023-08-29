@@ -27,6 +27,7 @@ $permissions = $permissionService->type($entity->type_id)->entityPermissions($en
     @include('partials.forms.form', [
         'title' => __('crud.permissions.title', ['name' => $entity->name]),
         'content' => 'cruds.permissions.permissions_table',
+        'dialog' => true,
     ])
     {!! Form::hidden('entity_id', $entity->id) !!}
     {!! Form::close() !!}

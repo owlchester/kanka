@@ -44,13 +44,13 @@ $fromOrg = request()->get('from') === 'org';
     <x-forms.field
         field="org-role"
         :label="__('characters.organisations.fields.role')">
-        {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+        {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'w-full', 'maxlength' => 45]) !!}
     </x-forms.field>
 
     <x-forms.field
         field="org-status"
         :label="__('organisations.members.fields.status')">
-        {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
+        {!! Form::select('status_id', $statuses, null, ['class' => 'w-full']) !!}
     </x-forms.field>
 
     <x-forms.field
@@ -58,7 +58,7 @@ $fromOrg = request()->get('from') === 'org';
         :label="__('organisations.members.fields.pinned')"
         :helper="__('organisations.members.helpers.pinned')"
         :tooltip="true">
-        {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
+        {!! Form::select('pin_id', $options, null, ['class' => 'w-full']) !!}
     </x-forms.field>
 </div>
 
