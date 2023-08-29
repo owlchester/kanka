@@ -21,7 +21,7 @@
     'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('footer.documentation', ['target' => '_blank']))
     ]) !!}</p>
 
-                <input type="text" maxlength="45" name="vanity" class="form-control" data-url="{{ route('campaign.vanity-validate', $model) }}" value="{{ old('vanity') }}"/>
+                <input type="text" maxlength="45" name="vanity" class="w-full" data-url="{{ route('campaign.vanity-validate', $model) }}" value="{{ old('vanity') }}"/>
                 <p style="display: none" id="vanity-loading">
                     <x-icon class="loading" />
                 </p>
@@ -36,14 +36,14 @@
     'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('footer.documentation', ['target' => '_blank']))
     ]) !!}</p>
 
-                <input type="text" maxlength="45" name="" class="form-control" readonly="readonly" />
+                <input type="text" maxlength="45" name="" class="w-full" readonly="readonly" />
             @endif
         </x-forms.field>
 
         <x-forms.field
             field="entry"
             :label="__('campaigns.fields.description')">
-            {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+            {!! Form::textarea('entryForEdition', null, ['class' => 'w-full html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
         </x-forms.field>
 
         @include('cruds.fields.image', ['campaignImage' => true, 'imageLabel' => 'campaigns.fields.image'])

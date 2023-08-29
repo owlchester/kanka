@@ -3,5 +3,5 @@
     field="position"
     :label="__($trans . '.fields.position')"
     :helper="__($trans . '.helpers.position')">
-    {!! Form::number('position', FormCopy::field('position')->string(), ['class' => 'form-control', 'maxlength' => 1]) !!}
+    {!! Form::number('position', FormCopy::field('position')->string(), ['class' => 'w-full', 'maxlength' => 1]) !!}
 </x-forms.field>

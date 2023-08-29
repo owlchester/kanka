@@ -16,13 +16,13 @@
                     field="role"
                     :label="__('campaigns.members.fields.role')"
                     :required="true">
-                    {!! Form::select('role_id', $campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
+                    {!! Form::select('role_id', $campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id'), null, ['class' => 'w-full']) !!}
                 </x-forms.field>
 
                 <x-forms.field
                     field="message"
                     :label="__('campaigns/submissions.fields.approval')">
-                    {!! Form::text('message', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('message', null, ['class' => 'w-full', 'maxlength' => 191]) !!}
                 </x-forms.field>
 
                 <x-buttons.confirm type="primary" full="true">
@@ -37,7 +37,7 @@
             <x-forms.field
                 field="message"
                 :label="__('campaigns/submissions.fields.rejection')">
-                {!! Form::text('rejection', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::text('rejection', null, ['class' => 'w-full', 'maxlength' => 191]) !!}
             </x-forms.field>
 
             <x-buttons.confirm type="danger" full="true">

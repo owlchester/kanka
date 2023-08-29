@@ -1,7 +1,7 @@
 <template>
     <div v-click-outside="onClickOutside" class="flex grow mr-2">
-        <div class="relative grow">
-            <input type="text" class="form-control leading-4 w-20 md:w-full" maxlength="25"
+        <div class="relative grow field flex items-center">
+            <input type="text" class="leading-4 w-20 md:w-full" maxlength="25"
                 ref="searchField"
                 id="entity-lookup"
                 v-model="term"
@@ -10,8 +10,10 @@
                 @keydown.esc="escape()"
                 :placeholder="placeholder"
             />
-            <span class="form-control-feedback hidden md:inline">
-                <span class="flex-none keyboard-shortcut py-1" id="lookup-kb-shortcut" data-toggle="tooltip" v-bind:data-title="keyboard_tooltip" data-html="true" data-placement="bottom" >K</span>
+            <span class="absolute right-1  hidden md:inline">
+                <span class="flex-none keyboard-shortcut py-1" id="lookup-kb-shortcut" data-toggle="tooltip" v-bind:data-title="keyboard_tooltip" data-html="true" data-placement="bottom">
+                    K
+                </span>
             </span>
         </div>
 

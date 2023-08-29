@@ -18,7 +18,7 @@
 
     @if (isset($bulk) && $bulk)
         <x-forms.field field="tagging" :label="__('crud.bulk.edit.tagging')">
-            <select name="bulk-tagging" class="form-control">
+            <select name="bulk-tagging" class="w-full">
                 <option value="add">{{ __('crud.bulk.edit.tags.add') }}</option>
                 <option value="remove">{{ __('crud.bulk.edit.tags.remove') }}</option>
             </select>

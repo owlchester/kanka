@@ -60,7 +60,7 @@ input::placeholder, textarea::placeholder, select::placeholder, .form-control::p
     color: hsl(var(--bc)/var(--tw-text-opacity));
 }
 input[type="text"], input[type="date"], input[type="number"], input[type="file"], select {
-    min-height: 2.2rem;
+    min-height: 2.1rem;
 }
 input:focus, .textarea:focus, .form-control:focus {
     outline-style: solid;
@@ -264,9 +264,13 @@ blockquote {
     border-left-sytle: solid;
     border-left-width: 0.25rem;
 }
+.dd-menu {
+    min-width: 160px;
+}
 
 
 /** Tables */
+
 .table-striped > tbody > tr:nth-of-type(odd) {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b3)/var(--tw-bg-opacity));

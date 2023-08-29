@@ -4,10 +4,10 @@
 const initCopyToClipboard = () => {
     const elements = document.querySelectorAll('[data-clipboard]');
     elements.forEach((el) => {
-        if (el.dataset.loaded == 1) {
+        /*if (el.dataset.loaded == 1) {
             return;
         }
-        el.dataset.loaded = 1;
+        el.dataset.loaded = 1;*/
         el.addEventListener('click', clickToastHandler, false);
     });
 };
@@ -52,3 +52,6 @@ async function copyToClipboard(textToCopy, el) {
 }
 
 initCopyToClipboard();
+$(document).on('shown.bs.modal', function (e) {
+    initCopyToClipboard();
+});

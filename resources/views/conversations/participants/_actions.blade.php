@@ -11,7 +11,7 @@
                         'user_id',
                         $memberList,
                         null,
-                        ['class' => 'form-control']
+                        ['class' => 'w-full']
                     ) !!}
                 @endif
             </div>

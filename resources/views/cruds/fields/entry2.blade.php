@@ -17,7 +17,7 @@ $old = old('entry');
         'entryForEdition',
         !empty($old) ? $old : FormCopy::field('entryForEdition')->string(),
         [
-            'class' => 'form-control html-editor',
+            'class' => 'w-full html-editor',
             'id' => 'entry',
             'name' => 'entry'
         ]

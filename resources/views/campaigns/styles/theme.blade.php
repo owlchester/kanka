@@ -8,7 +8,7 @@
             'theme_id',
             $themes,
             null,
-            ['class' => 'form-control']
+            ['class' => 'w-full']
         ) !!}
         <p class="text-neutral-content md:hidden">{{ __('campaigns.helpers.theme') }}</p>
     </x-forms.field>

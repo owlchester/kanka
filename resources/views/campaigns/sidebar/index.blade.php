@@ -57,9 +57,9 @@
                             <span class="bg-base-300 p-2 w-10 rounded dnd-handle cursor-move flex-none text-center">
                                 <i class="inline-block {{ $setup['custom_icon'] ?? $setup['icon'] }}" aria-hidden="true"></i>
                             </span>
-                            <input type="text" class="form-control" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] ?? null }}" placeholder="{{ $setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
+                            <input type="text" class="w-full" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] ?? null }}" placeholder="{{ $setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
                         </div>
-                        <input type="text" class="form-control grow" name="{{ $name }}_label" value="{{ $setup['custom_label'] ?? null }}" placeholder="{{ $setup['label'] ?? __($setup['label_key'])  }}" maxlength="90" />
+                        <input type="text" class="w-full grow" name="{{ $name }}_label" value="{{ $setup['custom_label'] ?? null }}" placeholder="{{ $setup['label'] ?? __($setup['label_key'])  }}" maxlength="90" />
                         <span class="text-muted text-sm hidden md:!inline">({{ $setup['label'] ?? __($setup['label_key']) }})</span>
                         <input type="hidden" name="order[{{ $name }}]" value="1" />
                     </div>
@@ -80,9 +80,9 @@
                                         <span class="bg-base-300 p-2 w-10 text-center flex-none rounded dnd-handle cursor-move">
                                             <i class="inline-block w-6 {{ $child['custom_icon'] ?? $child['icon'] }}" aria-hidden="true"></i>
                                         </span>
-                                        <input type="text" class="form-control" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] ?? null }}" placeholder="{{ $child['icon'] ?? null }}" data-paste="fontawesome" maxlength="50" />
+                                        <input type="text" class="w-full" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] ?? null }}" placeholder="{{ $child['icon'] ?? null }}" data-paste="fontawesome" maxlength="50" />
                                     </div>
-                                    <input type="text" class="form-control" name="{{ $childName }}_label" value="{{ $child['custom_label'] ?? null }}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" />
+                                    <input type="text" class="w-full" name="{{ $childName }}_label" value="{{ $child['custom_label'] ?? null }}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" />
                                     <span class="text-muted text-sm hidden md:!inline grow flex-no-wrap">(
                                         {{ $child['label'] ?? __($child['label_key']) }}
                                         @if (\Illuminate\Support\Arr::get($child, 'disabled') === true)

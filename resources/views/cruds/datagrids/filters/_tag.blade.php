@@ -17,7 +17,7 @@
                 'none' => __('crud.filters.options.none'),
             ],
             $filterService->single($field['field'] . '_option'), [
-                'class' => 'form-control  entity-list-filter',
+                'class' => 'w-full entity-list-filter',
         ]) !!}
     </div>
 </div>

@@ -10,6 +10,6 @@
         :label="__('entities.attribute_template')"
         :tooltip="true"
         :helper="__('crud.hints.attribute_template')">
-        {!! Form::select('template_id', $attributeTemplates, null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'form-control', 'id' => 'template_id']) !!}
+        {!! Form::select('template_id', $attributeTemplates, null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'w-full', 'id' => 'template_id']) !!}
     </x-forms.field>
 </div>

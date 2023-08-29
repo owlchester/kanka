@@ -9,7 +9,7 @@
     </p>
 
     <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
-        {!! Form::select('campaign', Auth::user()->moveCampaignList($campaign, false), null, ['class' => 'form-control']) !!}
+        {!! Form::select('campaign', Auth::user()->moveCampaignList($campaign, false), null, ['class' => 'w-full']) !!}
     </x-forms.field>
 
     @if(view()->exists($type . '.bulk.modals._copy_to_campaign'))

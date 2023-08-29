@@ -8,7 +8,7 @@
             :label="__('campaigns.fields.excerpt')"
             :helper="__('campaigns.helpers.excerpt')"
             :tooltip="true">
-            {!! Form::textarea('excerptForEdition', null, ['class' => 'form-control html-editor', 'id' => 'excerpt', 'name' => 'excerpt']) !!}
+            {!! Form::textarea('excerptForEdition', null, ['class' => 'w-full html-editor', 'id' => 'excerpt', 'name' => 'excerpt']) !!}
         </x-forms.field>
 
         <x-forms.field
@@ -21,11 +21,11 @@
                 <div class="basis-3/4 flex flex-col gap-2">
                     <x-forms.field
                         field="header-image">
-                        {!! Form::file('header_image', ['class' => 'image form-control', 'id' => 'header_image']) !!}
+                        {!! Form::file('header_image', ['class' => 'image w-full', 'id' => 'header_image']) !!}
                     </x-forms.field>
                     <x-forms.field
                         field="image-url">
-                        {!! Form::text('header_image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
+                        {!! Form::text('header_image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full']) !!}
                     </x-forms.field>
 
                     <p class="text-neutral-content m-0">

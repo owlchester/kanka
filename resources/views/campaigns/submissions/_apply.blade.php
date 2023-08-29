@@ -5,7 +5,7 @@
 
     <x-forms.field field="application" :label="__('campaigns/submissions.fields.application')">
         {!! Form::textarea('application', !empty($submission) ? $submission->text : null, [
-            'class' => 'form-control', 'rows' => 5,
+            'class' => 'w-full', 'rows' => 5,
             'placeholder' => __('campaigns/submissions.placeholders.note')
         ]) !!}
     </x-forms.field>

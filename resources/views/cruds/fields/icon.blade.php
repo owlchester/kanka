@@ -11,7 +11,7 @@ $required = !isset($bulk);
             null,
             [
                 'placeholder' => $placeholder ?? 'fa-solid fa-users',
-                'class' => 'form-control',
+                'class' => 'w-full',
                 'data-paste' => 'fontawesome',
                 'maxlength' => 45
             ]

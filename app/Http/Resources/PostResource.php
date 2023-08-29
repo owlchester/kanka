@@ -18,7 +18,7 @@ class PostResource extends EntityChild
         $model = $this->resource;
         return $this->entity([
             'name' => $model->name,
-            'visibility_id' => (int) $model->visibility_id,
+            'visibility_id' => (int) $model->visibility_id->value,
             'entry' => $model->entry,
             'entry_parsed' => $model->entry(),
             //            'is_pinned' => (bool) $this->is_pinned,

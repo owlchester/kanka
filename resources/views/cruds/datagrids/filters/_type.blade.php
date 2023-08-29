@@ -1,4 +1,4 @@
-<input type="text" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-type-list" />
+<input type="text" class="w-full entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-type-list" />
 
 <datalist id="entity-type-list">
     @foreach (\App\Facades\EntityCache::typeSuggestion($entityModel) as $suggestion)

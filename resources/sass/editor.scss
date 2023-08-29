@@ -55,9 +55,11 @@ img.note-float-left {
     float: left;
 }
 
-.note-btn i.fa, .note-btn i.fas, .note-btn i.fa-brands, .note-btn i.far, .note-btn i.fa-solid {
-    min-height: 15px;
-    line-height: 18px;
+.note-btn i.fa, .note-btn i.fas, .note-btn i.fa-brands, .note-btn i.far, .note-btn i.fa-solid, .note-btn i.fa-sharp, .note-icon-code {
+    min-height: 18px;
+    line-height: 20px;
+    height: 18px;
+    display: inline-block;
     &:before {
         height: 20px;
         display: inline-block;

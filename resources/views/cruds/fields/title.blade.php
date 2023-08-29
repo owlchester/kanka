@@ -6,7 +6,7 @@
         FormCopy::field('title')->string(),
         [
             'placeholder' => __('characters.placeholders.title'),
-            'class' => 'form-control',
+            'class' => 'w-full',
             'maxlength' => 191,
             'spellcheck' => 'true'
         ]

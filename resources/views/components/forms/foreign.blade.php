@@ -10,7 +10,7 @@
     @endif
 
     <select name="{{ $name }}" id="{{ $id }}"
-            class="form-control select2 join-item"
+            class="w-full select2 join-item"
             style="width: 100%"
             data-url="{{ $route }}"
             data-placeholder="{!! $placeholder ?? __('crud.placeholders.parent') !!}"

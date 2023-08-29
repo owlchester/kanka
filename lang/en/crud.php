@@ -324,6 +324,7 @@ return [
         'tag'           => 'Choose a tag',
         'timeline'      => 'Choose a timeline',
         'user'          => 'Choose a user',
+        'multiple'      => 'Choose one or several',
     ],
     'remove'                    => 'Remove',
     'rename'                    => 'Rename',
