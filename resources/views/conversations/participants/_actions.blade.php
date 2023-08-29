@@ -1,5 +1,5 @@
 @can('update', $model)
-    <?php $memberList = $campaign->membersList($model->participantsList(false)); ?>
+    <?php $memberList = $campaign->membersList($model->participantsList(false, true)); ?>
     @if($model->forCharacters() || count($memberList) > 0)
         {!! Form::open(['route' => ['conversations.conversation_participants.store', $campaign, $model], 'method' => 'POST', 'data-shortcut' => 1]) !!}
         <div class="flex gap-2 items-center">
