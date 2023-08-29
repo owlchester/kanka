@@ -410,9 +410,9 @@ class MenuLink extends MiscModel
             return true;
         } elseif ($this->type) {
             return true;
-        } elseif ($this->isRandom()) {
-            return true;
-        }
-        return false;
+        } return (bool) ($this->isRandom())
+
+
+        ;
     }
 }

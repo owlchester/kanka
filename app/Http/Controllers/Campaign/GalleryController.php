@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\Img;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\Campaigns\GalleryImageFolderStore;
@@ -11,7 +10,6 @@ use App\Http\Requests\Campaigns\GalleryImageUpdate;
 use App\Models\Campaign;
 use App\Models\Image;
 use App\Services\Campaign\GalleryService;
-use Illuminate\Support\Arr;
 
 class GalleryController extends Controller
 {

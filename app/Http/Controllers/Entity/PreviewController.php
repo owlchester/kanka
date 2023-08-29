@@ -7,7 +7,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\PreviewService;
 use App\Services\Search\RecentService;
-use App\Services\SearchService;
 use App\Traits\GuestAuthTrait;
 
 class PreviewController extends Controller
