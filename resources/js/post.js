@@ -1,5 +1,11 @@
 var addPermBtn;
+
 $(document).ready(function () {
+initPostVisibility();
+    $(document).on('shown.bs.modal shown.bs.popover', function() {
+        initPostVisibility();
+    });
+  
     addPermBtn = $('.post-perm-add');
     if (addPermBtn.length === 0) {
         return;
@@ -9,8 +15,8 @@ $(document).ready(function () {
 });
 
 /**
- * Add advanced permissions on a post
- */
+* Add advanced permissions on a post
+*/
 function registerAdvancedPermissions() {
     addPermBtn.on('click', function (ev) {
         ev.preventDefault();
@@ -50,5 +56,22 @@ function registerPermissionDeleteEvents() {
         $(this).on('click', function () {
             $(this).closest('.grid').remove();
         });
+    });
+}
+
+const initPostVisibility = () => {
+    $('form.post-visibility').on('submit', function (e) {
+        //console.log('submitting the form');
+        e.preventDefault();
+        $.post({
+            url: $(this).attr('action'),
+            data: {visibility_id: $(this).find('[name="visibility_id"]').val()}
+        })
+        .done(function (res) {
+            document.getElementById('primary-dialog').close();
+            $('#visibility-icon-' + res.post_id).html(res.icon);
+            window.showToast(res.toast);
+        });
+        return false;
     });
 }
