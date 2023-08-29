@@ -67,7 +67,7 @@
     "css": [
       "assets/api-bb386fc3.css"
     ],
-    "file": "assets/api-d35ef985.js",
+    "file": "assets/api-3a4259a4.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js"
     ],
@@ -75,7 +75,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-ac1b5589.js",
+    "file": "assets/app-42f0d563.js",
     "imports": [
       "_delete-confirm-63bc2c61.js",
       "_mention-5d95822d.js",
