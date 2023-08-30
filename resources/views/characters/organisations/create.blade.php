@@ -20,7 +20,7 @@
         'content' => 'characters.organisations._form',
         'submit' => __('crud.add'),
         'dialog' => true,
-        'dropdownParent' => '#organisation-dialog',
+        'dropdownParent' => '#primary-dialog',
     ])
 
     {!! Form::hidden('character_id', $model->id) !!}

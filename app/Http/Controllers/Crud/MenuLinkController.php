@@ -41,18 +41,18 @@ class MenuLinkController extends CrudController
     {
         $this->addNavAction(
             route('quick-links.reorder', $this->campaign),
-            '<i class="fa-solid fa-arrows-alt-v" aria-hidden="true"></i> <span class="hidden-xs">' .
+            '<i class="fa-solid fa-arrows-alt-v" aria-hidden="true"></i> <span class="hidden md:inline">' .
                 __('menu_links.reorder.title') . '</span>'
         );
         $this->addNavAction(
             route('campaign-sidebar', $this->campaign),
-            '<i class="fa-solid fa-cog" aria-hidden="true"></i> <span class="hidden-xs">' .
+            '<i class="fa-solid fa-bars-staggered" aria-hidden="true"></i> <span class="hidden md:inline">' .
                 __('menu_links.actions.customise') . '</span>'
         );
 
         $this->addNavAction(
             '//docs.kanka.io/en/latest/advanced/quick-links.html',
-            '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> <span class="hidden-xs">' . __('crud.actions.help') . '</span>',
+            '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> <span class="hidden md:inline">' . __('crud.actions.help') . '</span>',
             '',
             true
         );

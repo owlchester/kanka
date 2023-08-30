@@ -1,4 +1,4 @@
-<div class="element bg-base-200" data-id="story">
+<x-reorder.child id="story">
     {!! Form::hidden('posts[story]', 'story') !!}
     <div class="dragger pr-3">
         <span class="fa-solid fa-ellipsis-v" aria-hidden="true"></span>
@@ -8,4 +8,4 @@
     </div>
     <div class="self-end">
     </div>
-</div>
+</x-reorder.child>

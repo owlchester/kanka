@@ -122,6 +122,8 @@ trait TreeControllerTrait
         $bulk = $this->bulkModel();
         $actions = $this->navActions;
         $campaign = $this->campaign;
+        $this->getNavActions();
+        $navActions = $this->navActions;
 
         $entityTypeId = $model->entityTypeId();
         if (!empty($this->titleKey)) {

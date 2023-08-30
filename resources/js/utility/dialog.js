@@ -1,6 +1,7 @@
 /**
  * Heavily inspired by the amazing https://web.dev/building-a-dialog-component/
  */
+const backdrop = document.getElementById('dialog-backdrop');
 
 const initDialogs = () => {
     document.querySelectorAll('[data-toggle="dialog"]').forEach(el => {
@@ -19,14 +20,19 @@ function openingDialog(e) {
         return;
     }
     let url = this.dataset.url;
-    console.log('url', url);
+    //console.log('url', url);
     openDialog(target, url);
 }
 
 const openDialog = (target, url) => {
     target = document.getElementById(target);
     target.removeAttribute('open');
-    target.showModal();
+    target.show();
+
+    backdrop.classList.remove('hidden');
+    backdrop.addEventListener('click', function (event) {
+        target.close();
+    });
 
     target.addEventListener('click', function (event) {
         let rect = target.getBoundingClientRect();
@@ -35,6 +41,9 @@ const openDialog = (target, url) => {
         if (!isInDialog && event.target.tagName === 'DIALOG') {
             target.close();
         }
+    });
+    target.addEventListener('close', function (event) {
+        backdrop.classList.add('hidden');
     });
 
     if (url) {

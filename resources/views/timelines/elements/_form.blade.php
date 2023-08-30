@@ -34,7 +34,7 @@ if (!empty($era)) {
 
     <x-forms.field field="date" :label="__('timelines/elements.fields.date')">
         {!! Form::text('date', null, ['placeholder' => __('timelines/elements.placeholders.date'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-    </x-forms.field>>
+    </x-forms.field>
 
     <x-forms.field field="event-date" :label="__('timelines/elements.fields.use_event_date')">
         {!! Form::hidden('use_event_date', 0) !!}

@@ -1,7 +1,5 @@
 import './tags.js';
 import './components/select2.js';
-
-import deleteConfirm from './components/delete-confirm.js';
 import dynamicMentions from "./mention";
 
 
@@ -12,23 +10,11 @@ $(document).ready(function() {
     initSpectrum();
     initSubmenuSwitcher();
 
-    let deleteConfirmForms = $('#delete-confirm-form');
-    if (deleteConfirmForms.length > 0) {
-        deleteConfirmForms.on('keyup keypress', function (e) {
-            var keyCode = e.keyCode || e.which;
-            if (keyCode === 13) {
-                e.preventDefault();
-                return false;
-            }
-        });
-    }
-
     // Treeview for locations
     treeViewInit();
 
     manageTabs();
 
-    deleteConfirm();
     dynamicMentions();
     initAjaxPagination();
     initDynamicDelete();
@@ -47,7 +33,6 @@ $(document).ready(function() {
         initSpectrum();
         initDynamicDelete();
         initImageRemoval();
-        deleteConfirm();
         initFeedbackButtons();
         window.initDialogs();
         window.initTooltips();

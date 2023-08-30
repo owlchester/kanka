@@ -55,6 +55,9 @@ input, textarea, .select2, select, .form-control {
     box-shadow: none;
     color: inherit;
 }
+input, textarea, select {
+    padding: 0.5rem 0.5rem;
+}
 input::placeholder, textarea::placeholder, select::placeholder, .form-control::placeholder {
     --tw-text-opacity: .5;
     color: hsl(var(--bc)/var(--tw-text-opacity));

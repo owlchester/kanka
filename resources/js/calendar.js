@@ -34,9 +34,9 @@ function initCalendarEventBlock() {
 function initCalendarEventModal() {
     $('select[name="recurring_periodicity"]').change(function () {
         if (this.value) {
-            $('#add_event_recurring_until').show();
+            $('.field-recurring-until').show();
         } else {
-            $('#add_event_recurring_until').hide();
+            $('.field-recurring-until').hide();
         }
     });
 

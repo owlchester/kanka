@@ -14,7 +14,8 @@
     @include('partials.forms.form', [
         'title' => __('families.members.create.title', ['name' => $model->name]),
         'content' => 'families.members._form',
-        'submit' => __('families.members.create.submit')
+        'submit' => __('families.members.create.submit'),
+        'dialog' => true,
     ])
     {!! Form::hidden('family_id', $model->id) !!}
     {!! Form::close() !!}

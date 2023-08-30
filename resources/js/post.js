@@ -5,7 +5,7 @@ initPostVisibility();
     $(document).on('shown.bs.modal shown.bs.popover', function() {
         initPostVisibility();
     });
-  
+
     addPermBtn = $('.post-perm-add');
     if (addPermBtn.length === 0) {
         return;
@@ -37,7 +37,8 @@ function registerAdvancedPermissions() {
             .replace(/\$SELECTEDNAME\$/g, selectedName.text);
         body.html(html).insertBefore($('#post-perm-target'));
 
-        $('#post-new-' + type).modal('toggle');
+        let target = document.getElementById('post-new-' + type);
+        target.close();
 
         registerPermissionDeleteEvents();
 

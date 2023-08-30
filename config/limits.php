@@ -29,7 +29,7 @@ return [
 
     'gallery' => [
         'standard' => 50 * 1024,
-        'premium' => 2 * 1024 * 1024,
+        'premium' => 1 * 1024 * 1024,
         //'premium' => 20 * 1024,
     ]
 ];

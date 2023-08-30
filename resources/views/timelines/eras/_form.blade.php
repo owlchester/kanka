@@ -9,15 +9,15 @@
 
     <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
         {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'era-entry', 'name' => 'entry']) !!}
-    </x-forms.field>>
+    </x-forms.field>
 
     <x-forms.field field="start" :label="__('timelines/eras.fields.start_year')">
         {!! Form::number('start_year', null, ['placeholder' => __('timelines/eras.placeholders.start_year'), 'class' => 'form-control', 'maxlength' => 8]) !!}
-    </x-forms.field>>
+    </x-forms.field>
 
     <x-forms.field field="end" :label="__('timelines/eras.fields.end_year')">
         {!! Form::number('end_year', null, ['placeholder' => __('timelines/eras.placeholders.end_year'), 'class' => 'form-control', 'maxlength' => 8]) !!}
-    </x-forms.field>>
+    </x-forms.field>
 
     <x-forms.field field="collapsed" css="col-span-2" :label="__('timelines/eras.fields.is_collapsed')">
         {!! Form::hidden('is_collapsed', 0) !!}

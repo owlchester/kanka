@@ -78,12 +78,12 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
                 <x-icon class="fa-solid fa-map-pin"></x-icon>
                 {{ __('maps/markers.actions.update') }}
             </a>
-            <button class="btn2 btn-error btn-sm join-item delete-confirm" data-name="{{ $marker->markerTitle() }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-marker-confirm-form-{{ $marker->id }}">
+            <button class="btn2 btn-error btn-sm join-item"
+                    data-toggle="dialog"
+                    data-target="primary-dialog"
+                    data-url="{{ route('confirm-delete', [$campaign, 'route' => route('maps.map_markers.destroy', [$campaign, $marker->map, $marker, 'from' => 'map']), 'name' => $marker->markerTitle(), 'permanent' => true]) }}">
                 <x-icon class="trash"></x-icon> {{ __('maps/markers.actions.remove') }}
             </button>
         </div>
     </div>
-
-    {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $campaign, $marker->map, $marker, 'from' => 'map'], 'style' => 'display:inline', 'id' => 'delete-marker-confirm-form-' . $marker->id]) !!}
-    {!! Form::close() !!}
 @endcan

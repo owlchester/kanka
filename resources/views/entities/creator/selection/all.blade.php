@@ -6,12 +6,12 @@ $i = 0;
     {{ __('entities.creator.titles.everything') }}
 </div>
 <div class="grid grid-cols-2 gap-5 selection">
-    <div class="column flex flex-col gap-4" data-i="{{ $i }}" data-half="{{ $half }}">
+    <div class="column flex flex-col gap-4 sm:w-60" data-i="{{ $i }}" data-half="{{ $half }}">
     @foreach ($types as $plural => $name)
         @if (!isset($entities[$plural]))
             @continue;
         @endif
-        @if ($i == $half) </div><div class="column flex flex-col gap-4"> @endif
+        @if ($i == $half) </div><div class="column flex flex-col gap-4  sm:w-60"> @endif
         @include('entities.creator.selection._' . $plural)
         @php $i++; @endphp
     @endforeach

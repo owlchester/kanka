@@ -18,7 +18,3 @@
 
 @includeWhen($rows->count() > 1, 'maps.groups._reorder')
 
-@section('modals')
-    @parent
-    @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms(), 'params' => []])
-@endsection

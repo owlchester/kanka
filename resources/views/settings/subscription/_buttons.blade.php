@@ -22,7 +22,7 @@ if (isset($toggle) && $toggle) {
             {{ __('tiers.current') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-accent " data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::KOBOLD]) }}">
+        <a class="btn2 btn-block btn-sm btn-accent " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::KOBOLD]) }}">
             {{ __('settings.subscription.subscription.actions.cancel') }}<br />
             ({{ __('settings.subscription.subscription.actions.rollback') }})
         </a>
@@ -39,7 +39,7 @@ if (isset($toggle) && $toggle) {
                 {{ __('tiers.current') }}
             </a>
         @else
-            <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::OWLBEAR, 'period' => 'monthly']) }}">
+            <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::OWLBEAR, 'period' => 'monthly']) }}">
                 {{ __($monthlyKey, ['tier' => 'Owlbear']) }}
             </a>
         @endif
@@ -49,7 +49,7 @@ if (isset($toggle) && $toggle) {
                 {{ __('tiers.current') }}
             </a>
         @else
-            <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::OWLBEAR, 'period' => 'yearly']) }}">
+            <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::OWLBEAR, 'period' => 'yearly']) }}">
                 {{ __($yearlyKey, ['tier' => 'Owlbear']) }}
             </a>
         @endif
@@ -65,7 +65,7 @@ if (isset($toggle) && $toggle) {
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::WYVERN, 'period' => 'monthly']) }}">
+        <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::WYVERN, 'period' => 'monthly']) }}">
             {{ __($monthlyKey, ['tier' => 'Wyvern']) }}
         </a>
     @endif
@@ -76,7 +76,7 @@ if (isset($toggle) && $toggle) {
             {{ __('tiers.current') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::WYVERN, 'period' => 'yearly']) }}">
+        <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::WYVERN, 'period' => 'yearly']) }}">
             {{ __($yearlyKey, ['tier' => 'Wyvern']) }}
         </a>
     @endif
@@ -91,7 +91,7 @@ if (isset($toggle) && $toggle) {
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::ELEMENTAL, 'period' => 'monthly']) }}">
+        <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::ELEMENTAL, 'period' => 'monthly']) }}">
             {{ __($monthlyKey, ['tier' => 'Elemental']) }}
         </a>
     @endif
@@ -101,7 +101,7 @@ if (isset($toggle) && $toggle) {
             {{ __('tiers.current') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::ELEMENTAL, 'period' => 'yearly']) }}">
+        <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::ELEMENTAL, 'period' => 'yearly']) }}">
             {{ __($yearlyKey, ['tier' => 'Elemental']) }}
         </a>
     @endif

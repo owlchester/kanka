@@ -11,12 +11,16 @@ Route::post('/w/{campaign}/apply', 'Campaign\ApplyController@save')->name('campa
 Route::delete('/w/{campaign}/remove', 'Campaign\ApplyController@remove')->name('campaign.apply.remove');
 
 Route::get('/w/{campaign}/gallery', 'Campaign\GalleryController@index')->name('campaign.gallery.index');
-Route::get('/w/{campaign}/gallery/load', 'Campaign\GalleryController@load')->name('campaign.gallery.load');
-Route::get('/w/{campaign}/gallery/search', 'Campaign\GalleryController@search')->name('campaign.gallery.search');
+Route::get('/w/{campaign}/gallery/search', [\App\Http\Controllers\Campaign\Gallery\SearchController::class, 'index'])->name('campaign.gallery.search');
+Route::get('/w/{campaign}/gallery/folders/create', [\App\Http\Controllers\Campaign\Gallery\FolderController::class, 'create'])->name('campaign.gallery.folders.create');
+Route::post('/w/{campaign}/gallery/folders', [\App\Http\Controllers\Campaign\Gallery\FolderController::class, 'store'])->name('campaign.gallery.folders.store');
+
+Route::get('/w/{campaign}/gallery/{image}/save-focus', [\App\Http\Controllers\Campaign\Gallery\FocusController::class, 'index'])->name('campaign.gallery.focus');
+Route::post('/w/{campaign}/gallery/{image}/save-focus', [\App\Http\Controllers\Campaign\Gallery\FocusController::class, 'save'])->name('campaign.gallery.save-focus');
+
+Route::post('/w/{campaign}/gallery/bulk', [\App\Http\Controllers\Campaign\Gallery\BulkController::class, 'delete'])->name('campaign.gallery.bulk.delete');
 Route::post('/w/{campaign}/gallery/ajax-upload', 'Summernote\GalleryController@upload')->name('campaign.gallery.ajax-upload');
 Route::get('/w/{campaign}/gallery/ajax-gallery', 'Summernote\GalleryController@index')->name('campaign.gallery.summernote');
-Route::post('/w/{campaign}/gallery/{image}/save-focus', 'Campaign\GalleryController@saveFocus')->name('campaign.gallery.save-focus');
-Route::post('/w/{campaign}/gallery/bulk', 'Campaign\Gallery\BulkController@delete')->name('campaign.gallery.bulk.delete');
 
 
 // Campaign
@@ -58,9 +62,6 @@ Route::post('/w/{campaign}/default-images/create', 'Campaign\DefaultImageControl
     ->name('campaign.default-images.store');
 Route::delete('/w/{campaign}/default-images', 'Campaign\DefaultImageController@destroy')
     ->name('campaign.default-images.delete');
-
-Route::post('/w/{campaign}/gallery/folder', 'Campaign\GalleryController@folder')
-    ->name('campaign.gallery.folder');
 
 Route::resources([
     '/w/{campaign}/campaign_users' => 'Campaign\UserController',
@@ -167,4 +168,5 @@ Route::get('/w/{campaign}/bragi', [\App\Http\Controllers\Bragi\BragiController::
 Route::post('/w/{campaign}/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'generate'])->name('bragi.generate');
 
 
+Route::get('/w/{campaign}/confirm-delete', [\App\Http\Controllers\ConfirmController::class, 'index'])->name('confirm-delete');
 Route::post('/w/{campaign}/vanity-validate', [\App\Http\Controllers\Calendars\Api\VanityController::class, 'index'])->name('campaign.vanity-validate');

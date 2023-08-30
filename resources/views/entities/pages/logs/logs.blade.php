@@ -89,11 +89,11 @@
 'amount' => config('entities.logs'),
 ]) !!}</p>
                                 @subscriber()
-                                <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn bg-boost text-white">
+                                <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white">
                                     {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
                                 </a>
                             @else
-                                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" class="btn bg-boost text-white">
+                                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" class="btn2 bg-boost text-white">
                                     {!! __('callouts.premium.learn-more') !!}
                                 </a>
                             @endif

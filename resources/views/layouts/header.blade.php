@@ -20,7 +20,7 @@
 
         @if (auth()->check() && !empty($campaign) && $campaign->userIsMember() && (!isset($qq) || $qq))
         <div class="flex-none">
-            <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button btn2 btn-primary btn-sm"
+            <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="dialog" data-target="primary-dialog" class="quick-creator-button btn2 btn-primary btn-sm"
             tabindex="4">
                 <i class="flex-none fa-solid fa-plus ml-1" aria-hidden="true" ></i>
                 <span class="flex-grow hidden sm:inline-block">

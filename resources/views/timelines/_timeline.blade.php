@@ -36,15 +36,15 @@ $loadedElements = [];
                         <span class="sr-only">{{ __('crud.edit') }}</span>
                     </a>
 
-                    <a href="#" class="btn2 btn-ghost btn-xs text-red delete-confirm"
-                       data-toggle="modal" data-name="{{ $era->name }}" role="button"
-                       data-target="#delete-confirm" data-delete-target="delete-form-timeline-era-{{ $era->id }}"
+                    <a href="#" class="btn2 btn-ghost btn-xs text-red"
+                       role="button"
+                       data-toggle="dialog"
+                       data-target="primary-dialog"
+                       data-url="{{ route('confirm-delete', [$campaign, 'route' => route('timelines.timeline_eras.destroy', [$campaign, $timeline, $era, 'from' => 'view']), 'name' => $era->name, 'permanent' => true]) }}"
                        title="{{ __('crud.remove') }}">
                         <x-icon class="trash"></x-icon>
                         <span class="sr-only">{{ __('crud.remove') }}</span>
                     </a>
-                    {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $campaign, $timeline, $era, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-era-' . $era->id]) !!}
-                    {!! Form::close() !!}
                 @endcan
             </div>
         </div>
@@ -118,19 +118,3 @@ $loadedElements = [];
     @endcan
 @endif
 
-
-@section('modals')
-    @can('update', $timeline)
-        @foreach($loadedElements as $element)
-            @php
-                $position = $element->position + 1;
-            @endphp
-            @if(!empty($element->entity_id) && empty($element->entity->child))
-                @continue
-            @endif
-
-            {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_elements.destroy', $campaign, $timeline, $element, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-element-' . $element->id]) !!}
-            {!! Form::close() !!}
-        @endforeach
-    @endcan
-@endsection

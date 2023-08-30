@@ -21,95 +21,93 @@ if ($folder) {
     'breadcrumbs' => $breadcrumbs,
     'bodyClass' => 'campaign-gallery',
     'mainTitle' => false,
+    'centered' => true,
 ])
 
 @section('content')
-    <div class="flex flex-col gap-2 mb-5">
-        <div class="flex items-center gap-2">
-            <x-icon class="fa-solid fa-cloud" />
-            <div class="grow text-lg">Storage</div>
-            <div class="">
-                <span id="storage-used">{{ $galleryService->human($galleryService->usedSpace()) }}</span> of
-                <span id="storage-total">{{ $galleryService->human($galleryService->totalSpace()) }}</span>
+    <x-grid type="1/1">
+        <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+                <x-icon class="fa-solid fa-cloud" />
+                <div class="grow text-lg">Storage</div>
+                <div class="">
+                    <span id="storage-used">{{ $galleryService->human($galleryService->usedSpace()) }}</span> of
+                    <span id="storage-total">{{ $galleryService->human($galleryService->totalSpace()) }}</span>
+                </div>
+                @if (!$campaign->boosted())
+                    <a href="{{ \App\Facades\Domain::toFront('pricing') }}" class="btn2 btn-accent btn-sm">
+                        Upgrade
+                    </a>
+                @endif
             </div>
-            @if (!$campaign->boosted())
-                <a href="{{ \App\Facades\Domain::toFront('pricing') }}" class="btn2 btn-accent btn-sm">
-                    Upgrade
-                </a>
-            @endif
+            <div class="bg-base-300 w-full h-2 overflow-hidden rounded transition-all duration-300">
+                <div class="{{ $galleryService->usedBarClasses() }}" style="width: {{ $galleryService->usedQuota() }}%" id="storage-progress" data-title="{{ $galleryService->usedQuota() }}%" data-toggle="tooltip"></div>
+            </div>
         </div>
-        <div class="bg-base-300 w-full h-2 overflow-hidden rounded transition-all duration-300">
-            <div class="{{ $galleryService->usedBarClasses() }}" style="width: {{ $galleryService->usedQuota() }}%" id="storage-progress" data-title="{{ $galleryService->usedQuota() }}%" data-toggle="tooltip"></div>
-        </div>
-    </div>
-    <div class="hidden bg-green-500 bg-orange-400 bg-red-500" title="Needed for tailwind"></div>
 
-    <div class="flex items-center gap-2">
-        <div class="grow">
-            <button class="btn2 btn-primary btn-sm" data-toggle="collapse" data-target="#uploader">
-                <x-icon class="fa-solid fa-upload"></x-icon> {{ __('campaigns/gallery.uploader.add') }}
-            </button>
-            <button class="btn2 btn-sm" data-toggle="dialog" data-target="new-folder">
-                <x-icon class="fa-solid fa-folder"></x-icon> {{ __('campaigns/gallery.uploader.new_folder') }}
-            </button>
-
-            @if(!empty($folder))
-                <button class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', [$campaign, $folder]) }}">
-                    <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
+        <div class="flex items-center gap-2">
+            <div class="grow">
+                <button class="btn2 btn-sm" data-toggle="dialog" data-target="new-folder" data-url="{{ route('campaign.gallery.folders.create', [$campaign, 'folder' => $folder ?? null]) }}">
+                    <x-icon class="fa-solid fa-folder"></x-icon> {{ __('campaigns/gallery.uploader.new_folder') }}
                 </button>
-            @endif
-            <button class="btn2 btn-sm btn-error" style="display: none" id="bulk-delete" data-toggle="dialog" data-target="bulk-destroy-dialog">
-                <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-            </button>
+
+                @if(!empty($folder))
+                    <button class="btn2 btn-sm" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('images.edit', [$campaign, $folder]) }}">
+                        <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
+                    </button>
+                @endif
+                <button class="btn2 btn-sm btn-error" style="display: none" id="bulk-delete" data-toggle="dialog" data-target="bulk-destroy-dialog">
+                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
+                </button>
+            </div>
+
+            <div class="search">
+                <input type="text" class="form-control" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('campaign.gallery.search', $campaign) }}" />
+            </div>
         </div>
 
-        <div class="search">
-            <input type="text" class="form-control" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('campaign.gallery.search', $campaign) }}" />
-        </div>
-    </div>
+        <form id="gallery-form" method="post" action="{{ route('images.store', $campaign) }}" enctype="multipart/form-data" class="file-upload-form">
+            {{ csrf_field() }}
+            <div class="rounded uploader transition duration-150 text-center border-dotted border-2 p-4" id="uploader">
 
-    <form id="gallery-form" method="post" action="{{ route('images.store', $campaign) }}" enctype="multipart/form-data" class="file-upload-form mb-5">
-        {{ csrf_field() }}
-        <div class="uploader collapse !visible out well text-center border-dotted border-2 p-4 " id="uploader">
+                <h4>{{ __('campaigns/gallery.uploader.well') }}</h4>
 
-            <h4>{{ __('campaigns/gallery.uploader.well') }}</h4>
+                <p>{{ __('campaigns/gallery.uploader.or') }}</p>
 
-            <p>{{ __('campaigns/gallery.uploader.or') }}</p>
+                <span class="btn2 btn-primary btn-sm fileinput-button relative overflow-hidden inline-block">
+                    <x-icon class="plus"></x-icon>
+                    <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
+                    <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer opacity-0" multiple />
+                </span>
 
-            <span class="btn2 btn-primary btn-sm fileinput-button relative overflow-hidden inline-block">
-                <x-icon class="plus"></x-icon>
-                <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
-                <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer opacity-0" multiple />
-            </span>
-
-            <p class="my-2">{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => Limit::readable()->upload()]) }}</p>
+                <p class="my-2">{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => Limit::readable()->upload()]) }}</p>
 
 
-            <p class="text-red gallery-error" style="display:none"></p>
+                <p class="text-red gallery-error" style="display:none"></p>
 
-            <div class="progress h-0.5 w-full bg-gray" style="display: none">
-                <div class="h-0.5 bg-aqua" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                    <span class="sr-only"></span>
+                <div class="progress h-0.5 w-full bg-gray" style="display: none">
+                    <div class="h-0.5 bg-aqua" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                        <span class="sr-only"></span>
+                    </div>
                 </div>
             </div>
+            {!! Form::hidden('folder_id', $folder?->id) !!}
+        </form>
+
+
+        <div class="gallery">
+            <div id="gallery-loader" class="text-center text-xl" style="display: none">
+                <x-icon class="load" />
+            </div>
+            <div id="gallery-content">
+                <ul id="gallery-images" class="m-0 p-0 list-none flex gap-4 flex-wrap">
+                    @include('gallery.images')
+                </ul>
+            </div>
         </div>
-        {!! Form::hidden('folder_id', $folder?->id) !!}
-    </form>
 
-
-    <div class="gallery">
-        <div id="gallery-loader" class="text-center text-xl" style="display: none">
-            <x-icon class="load" />
-        </div>
-        <div id="gallery-content">
-            <ul id="gallery-images" class="m-0 p-0 list-none flex gap-2 md:gap-5 flex-wrap">
-                @include('gallery.images')
-            </ul>
-        </div>
-    </div>
-
-    {{ $images->appends(!empty($folder) ? ['folder_id' => $folder->id] : [])->onEachSide(0)->links() }}
-
+        {{ $images->appends(!empty($folder) ? ['folder_id' => $folder->id] : [])->onEachSide(0)->links() }}
+    </x-grid>
 
 
     <input type="hidden" id="gallery-config" data-max="{{ ini_get('max_file_uploads') }}" data-error="{{ __('campaigns/gallery.errors.max', ['count' => ini_get('max_file_uploads')]) }}" />
@@ -123,31 +121,7 @@ if ($folder) {
 
 @section('modals')
     @parent
-    <x-dialog id="new-folder" title="{{ __('campaigns/gallery.new_folder.title') }}">
-        {!! Form::open(['route' => ['campaign.gallery.folder', $campaign], 'method' => 'POST', 'class' => 'ajax-subform']) !!}
-            <x-grid type="1/1">
-                <x-forms.field field="name" :label="__('campaigns/gallery.fields.name')">
-                    {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100, 'required']) !!}
-                </x-forms.field>
-                @include('cruds.fields.visibility_id', ['model' => null])
-            </x-grid>
-            <div class="flex flex-wrap gap-3 justify-between items-start my-5">
-                <menu class="flex flex-wrap gap-3 ps-0 ms-0">
-                    <button autofocus type="button" class="btn2 btn-ghost btn-full" onclick="this.closest('dialog').close('close')">
-                        {{ __('crud.cancel') }}
-                    </button>
-                </menu>
-                <menu class="flex flex-wrap gap-3 ps-0">
-                    <button type="submit" class="btn2 btn-primary">
-                        {{ __('crud.create') }}
-                    </button>
-                </menu>
-            </div>
-        @if(!empty($folder))
-            {!! Form::hidden('folder_id', $folder->id) !!}
-        @endif
-        {!! Form::close() !!}
-    </x-dialog>
+    <x-dialog id="new-folder" :loading="true"></x-dialog>
 
     <form method="POST" action="{{ route('campaign.gallery.bulk.delete', [$campaign]) }}" id="gallery-bulk">
     <x-dialog id="bulk-destroy-dialog" title="{{ __('crud.delete_modal.title') }}">

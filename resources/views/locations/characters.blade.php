@@ -7,20 +7,21 @@
 
 
 @section('entity-header-actions')
-    <div class="header-buttons flex gap-2 items-center justify-end">
+    <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
         <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
-            <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+            <x-icon class="question"></x-icon>
+            <span class="hidden lg:inline">{{ __('crud.actions.help') }}</span>
         </a>
         @if (request()->has('parent_id'))
             <a href="{{ route('locations.characters', [$campaign, $model]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden md:inline">{{ __('crud.filters.all') }}</span>
+                <span class="hidden lg:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->allCharacters()->count() }})
             </a>
         @else
             <a href="{{ route('locations.characters', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden md:inline">{{ __('crud.filters.direct') }}</span>
+                <span class="hidden lg:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->characters()->count() }})
             </a>
         @endif

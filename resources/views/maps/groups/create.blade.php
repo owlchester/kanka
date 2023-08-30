@@ -23,7 +23,8 @@
         'title' => __('maps/groups.create.title', ['name' => $map->name]),
         'content' => 'maps.groups._form',
         'formParams' => ['model' => null, 'map' => $map],
-        'actions' => 'maps.groups._actions'
+        'actions' => 'maps.groups._actions',
+        'dialog' => true,
     ])
 
     {!! Form::close() !!}

@@ -36,8 +36,10 @@
                 @endif
                 </div>
                 @can('delete', [$relation, $role])
-                    <a href="#" class="btn2 btn-error btn-outline btn-sm delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}"
-                       data-target="#delete-confirm" data-delete-target="campaign-role-member-{{ $relation->id }}"
+                    <a href="#" class="btn2 btn-error btn-outline btn-sm"
+                       data-toggle="dialog"
+                       data-target="primary-dialog"
+                       data-url="{{ route('confirm-delete', [$campaign, 'route' => route('campaign_roles.campaign_role_users.destroy', [$campaign, $role, 'campaign_role_user' => $relation->id]), 'name' => __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]), 'permanent' => true]) }}"
                        title="{{ __('campaigns.roles.users.actions.remove_user') }}">
                         <x-icon class="fa-solid fa-user-slash" />
                     </a>
@@ -56,14 +58,4 @@
 @section('modals')
     @parent
     <x-dialog id="new-member" :loading="true" />
-    @foreach ($members as $relation)
-        @can('delete', [$relation, $role])
-        {!! Form::open([
-                'method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign' => $campaign, 'campaign_role' => $role, 'campaign_role_user' => $relation->id],
-                'style' => 'display:inline',
-                'id' => 'campaign-role-member-' . $relation->id
-            ]) !!}
-        {!! Form::close() !!}
-        @endcan
-    @endforeach
 @endsection

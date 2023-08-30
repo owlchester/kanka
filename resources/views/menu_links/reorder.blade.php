@@ -23,7 +23,7 @@
         {{ __('menu_links.reorder.title') }}
     </h3>
     <div class="box-entity-story-reorder max-w-4xl">
-        <div class="element-live-reorder sortable-elements">
+        <div class="element-live-reorder sortable-elements flex flex-col gap-1">
             @foreach($links as $link)
                 <div class="element bg-base-200" data-id="{{ $link->id }}">
                     {!! Form::hidden('menu_link[]', $link->id) !!}

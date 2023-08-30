@@ -14,7 +14,8 @@
     @include('partials.forms.form', [
         'title' => __('races.members.create.title', ['name' => $model->name]),
         'content' => 'races.members._form',
-        'submit' => __('races.members.create.submit')
+        'submit' => __('races.members.create.submit'),
+        'dialog' => true,
     ])
     {!! Form::hidden('race_id', $model->id) !!}
     {!! Form::close() !!}

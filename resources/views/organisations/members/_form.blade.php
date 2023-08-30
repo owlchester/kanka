@@ -18,7 +18,7 @@ $statuses = [
     <div class="col-span-2">
         @include('cruds.fields.character', [
             'required' => true,
-            'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+            'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
             'allowNew' => false,
             'allowClear' => false,
         ])
@@ -32,7 +32,7 @@ $statuses = [
             'label' => __('organisations.members.fields.parent'),
             'placeholder' => __('organisations.members.placeholders.parent'),
             'route' => 'search.organisation-member',
-            'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+            'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
             'allowNew' => false,
             'allowClear' => false,
         ])

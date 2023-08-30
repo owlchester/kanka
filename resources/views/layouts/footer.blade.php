@@ -9,8 +9,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
                 <div class="flex-col gap-8 hidden lg:flex col-span-2 ">
                     <div class="logo">
-                        <img class="logo-blue" src="https://th.kanka.io/nIphUNhqWdWv4BPwhAtDTfGOaKs=/113x103/smart/src/app/logos/logo.png" alt="Kanka logo blue" title="Kanka" width="113" height="103" />
-                        <img class="logo-white" src="https://th.kanka.io/xN5x77HjpTuJNhugegF_PbquoYs=/113x103/smart/src/app/logos/logo-white.png" alt="Kanka logo white" title="Kanka" width="113" height="103" />
+                        @include('icons.kanka-svg')
                     </div>
 
                     <div class="flex items-center gap-5 text-3xl flex-wrap">
@@ -60,9 +59,10 @@
                 </div>
             </div>
             <div class="lg:hidden flex flex-col gap-5 text-center">
-                <div class="logo">
-                    <img class="logo-blue" src="https://th.kanka.io/nIphUNhqWdWv4BPwhAtDTfGOaKs=/113x103/smart/src/app/logos/logo.png" alt="Kanka logo blue" title="Kanka" width="113" height="103" />
-                    <img class="logo-white" src="https://th.kanka.io/xN5x77HjpTuJNhugegF_PbquoYs=/113x103/smart/src/app/logos/logo-white.png" alt="Kanka logo white" title="Kanka" width="113" height="103" />
+                <div class="logo text-center">
+                    <div class="inline-block">
+                        @include('icons.kanka-svg')
+                    </div>
                 </div>
 
                 <div class="flex justify-center gap-5 text-3xl">
@@ -81,7 +81,7 @@
 
 <x-dialog id="language-select-modal" :title="__('footer.language-switcher.title')">
     <div class="grid grid-cols-2 gap-4">
-        <ul class="list-unstyled">
+        <ul class="list-none p-0 m-0">
             <li class="py-2">
                 <a rel="alternate" hreflang="en-US" href="{{ url()->full() . '?lang=en-US' }}">
                     US English
@@ -98,7 +98,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="list-unstyled">
+        <ul class="list-none p-0 m-0">
             <li class="py-2">
                 <a rel="alternate" hreflang="de" href="{{ url()->full() . '?lang=de' }}">
                     Deutsch
@@ -116,12 +116,12 @@
             </li>
         </ul>
     </div>
-    <div class="text-center w-full">
+    <div class="text-left w-full">
         {{ __('footer.language-switcher.other') }}
     </div>
     <div class="w-full">
         <div class="grid grid-cols-2 gap-4">
-            <ul class="list-unstyled">
+            <ul class="list-none p-0 m-0">
                 <li class="py-2">
                     <a rel="alternate" hreflang="it" href="{{ url()->full() . '?lang=it' }}">
                         Italiano
@@ -138,7 +138,7 @@
                     </a>
                 </li>
             </ul>
-            <ul class="list-unstyled">
+            <ul class="list-none p-0 m-0">
                 <li class="py-2">
                     <a rel="alternate" hreflang="nl" href="{{ url()->full() . '?lang=nl' }}">
                         Nederlands

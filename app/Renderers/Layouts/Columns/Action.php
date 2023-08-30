@@ -25,7 +25,7 @@ class Action extends Column
 
         // Validate actions?
         foreach ($this->config as $action) {
-            if (in_array($action, [Layout::ACTION_EDIT, Layout::ACTION_EDIT_AJAX, Layout::ACTION_COPY, Layout::ACTION_EDIT_DIALOG])) {
+            if (in_array($action, [Layout::ACTION_EDIT, Layout::ACTION_COPY, Layout::ACTION_EDIT_DIALOG])) {
                 if (!$permissions) {
                     $this->actions[] = $action;
                 } elseif (auth()->user()->can('update', $this->model)) {
@@ -67,7 +67,7 @@ class Action extends Column
 
     public function css(): string|null
     {
-        return 'text-center table-actions';
+        return 'text-center table-actions w-8 h-8';
     }
 
     public function hasDelete(): bool

@@ -82,7 +82,7 @@ class MemberController extends Controller
 
         $relation = OrganisationMember::create($request->all());
         return redirect()->route('entities.show', [$campaign, $organisation->entity])
-            ->with('success', trans($this->view . '.create.success'));
+            ->with('success', __($this->view . '.create.success', ['name' => $organisation->name]));
     }
 
     /**

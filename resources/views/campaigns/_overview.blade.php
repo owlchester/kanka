@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Campaign $campaign */
-$boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-center gap-3 flex-col w-32 break-words';
+$boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-center gap-3 flex-col w-40 break-words';
 ?>
-<div class="flex flex-wrap gap-4">
+<div class="flex flex-wrap gap-5">
 
     @can ('update', $campaign)
         <a href="#" role="button" class="{{ $boxClass }}" data-url="{{ route('campaign-visibility', [$campaign, 'from' => 'overview']) }}" data-target="campaign-visibility" data-toggle="dialog-ajax">
@@ -43,14 +43,22 @@ $boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-
     @endif
 
     @if ($campaign->boosted())
+        @php
+        $booster = $campaign->boosts->first();
+        if ($booster) {
+            $link = link_to_route('users.profile', $booster->user->name, [$booster->user]);
+        } else {
+            $link = __('crud.unknown');
+        }
+        @endphp
         <div class="{{ $boxClass }}">
             <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
             <div class="">
                 @if ($campaign->premium())
-                    {{ __('campaigns.fields.premium', ['name' => $campaign->boosts->first()?->user->name]) }}
+                    {!! __('campaigns.fields.premium', ['name' => $link]) !!}
                 @else
                     {{ __('campaigns.fields.' . ($campaign->superboosted() ? 'superboosted' : 'boosted')) }}
-                    {{ $campaign->boosts->first()?->user->name }}
+                    {!! $link !!}
                 @endif
             </div>
         </div>
@@ -64,32 +72,23 @@ $boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-
             </div>
         </div>
     @endif
-
-@if (auth()->check() && auth()->user()->hasBoosterNomenclature() && !$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost))
-    <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boosts.edit', [$boost]) }}" class="btn2 bg-boost text-white">
-        <div class="flex flex-col gap-3">
-        <x-icon class="premium" size="fa-2x" />
-        {{ __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) }}
-        </div>
-    </a>
-@endif
-@if (!$campaign->boosted())
-    @if (auth()->check() && auth()->user()->hasBoosterNomenclature()) {
-    <a href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}" class="btn2 bg-boost text-white">
-        <div class="flex flex-col gap-3">
-        <x-icon class="premium" size="fa-2x" />
-        {{ __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) }}
-        </div>
-    </a>
-    @else
-    <a href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" class="btn2 bg-boost text-white">
-        <div class="flex flex-col gap-3">
-        <x-icon class="premium" size="fa-2x" />
-        {{  __('settings/premium.actions.unlock') }}
-        </div>
-    </a>
+    @if (!$campaign->boosted())
+        @if (auth()->check() && auth()->user()->hasBoosterNomenclature()) {
+        <a href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}" class="btn2 bg-boost text-white">
+            <div class="flex flex-col gap-3">
+            <x-icon class="premium" size="fa-2x" />
+            {{ __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) }}
+            </div>
+        </a>
+        @else
+        <a href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" class="btn2 bg-boost text-white">
+            <div class="flex flex-col gap-3">
+            <x-icon class="premium" size="fa-2x" />
+            {{  __('settings/premium.actions.unlock') }}
+            </div>
+        </a>
+        @endif
     @endif
-@endif
 </div>
 
 @section('modals')

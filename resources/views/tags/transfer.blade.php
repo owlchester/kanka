@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('tags.transfer.title', ['name' => $tag->name]),
     'breadcrumbs' => [
         Breadcrumb::entity($tag->entity)->list(),
@@ -9,24 +9,12 @@
 ])
 
 @section('content')
-    @include('partials.errors')
     {!! Form::open(['route' => ['tags.transfer', [$campaign, $tag->id]], 'method' => 'POST']) !!}
-
-    {{ csrf_field() }}
-    <x-box>
-        <p class="help-block mb-5">
-            {{ __('tags.transfer.description') }}
-        </p>
-
-        @include('cruds.fields.tag', ['model' => $tag, 'allowNew' => false])
-
-        <x-dialog.footer>
-            <button class="btn2 btn-primary">
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                {{ __('tags.transfer.transfer') }}
-            </button>
-        </x-dialog.footer>
-    </x-box>
-
+        @include('partials.forms.form', [
+            'title' => __('tags.transfer.transfer'),
+            'content' => 'tags.transfer._form',
+            'submit' =>  __('tags.transfer.transfer'),
+            'dialog' => true,
+        ])
     {!! Form::close() !!}
 @endsection

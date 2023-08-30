@@ -197,11 +197,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="subscribe-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100"></div>
-        </div>
-    </div>
+    <x-dialog id="subscribe-confirm" :loading="true"></x-dialog>
 @endsection
 
 

@@ -234,13 +234,14 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                     @endif
 
                     @can('delete', $model)
+                        @php
+                            $url = route('confirm-delete', [$campaign, 'route' => route($entity->pluralType() . '.destroy', [$campaign, $model->id]), 'name' => $entity->name]);
+                        @endphp
                         <hr class="m-0" />
-                        <x-dropdowns.item link="#" css="delete-confirm text-red" :data="['name' => $model->name, 'toggle' => 'modal', 'target' => '#delete-confirm', 'recoverable' => 1]">
+                        <x-dropdowns.item link="#" css="text-red" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]">
                             <x-icon class="trash"></x-icon>
                             {{ __('crud.remove') }}
                         </x-dropdowns.item>
-                        {!! Form::open(['method' => 'DELETE', 'route' => [$entity->pluralType() . '.destroy', [$campaign, $model->id]], 'style' => 'display:inline', 'id' => 'delete-confirm-form']) !!}
-                            {!! Form::close() !!}
                     @endcan
                 </div>
             </div>

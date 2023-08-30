@@ -252,12 +252,7 @@ function registerEvents() {
                 return;
             }
 
-            $.ajax({
-                url: $(this).data('url')
-            }).done(function(data) {
-                $('#large-modal-content').html(data);
-                $('#large-modal').modal('show');
-            });
+            window.openDialog('primary-dialog', $(this).data('url'));
     });
 }
 const registerShift = () => {

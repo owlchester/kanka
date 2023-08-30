@@ -157,48 +157,49 @@ function initLiveAttributes() {
         liveEditCurrentUID = $(this).data('uid');
 
         let url = liveEditURL + '?id=' + id + '&uid=' + $(this).data('uid');
-        $.ajax({
-            url: url
-        }).done(function (result) {
-            let params = {};
-            liveEditModal.find('.modal-content').html(result);
-            liveEditModal.modal(params);
 
-            //console.log('child', liveEditModal.find('form'));
-            liveEditModal.find('form').submit(function (e) {
-                e.preventDefault();
-
-                $.ajax({
-                    method: 'POST',
-                    context: this,
-                    url: $(this).attr('action'),
-                    data: $(this).serialize()
-                }).done(function (result) {
-
-                    liveEditModal.find('.modal-content').html('');
-                    liveEditModal.modal('hide');
-
-                    let target = $('[data-uid="' + result.uid + '"]');
-                    //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
-                    target.html(result.value);
-                    if (result.value) {
-                        target.removeClass('empty-value');
-                    } else {
-                        target.addClass('empty-value');
-                    }
-
-                    window.showToast(result.success);
-
-                }).fail(function (result) {
-                    //alert('error! check console logs');
-                    //console.error('live-edit-error', result);
-
-                    liveEditModal.find('.modal-content').html('');
-                    liveEditModal.modal('hide');
-                });
-
-                return false;
-            });
+        $(document).on('shown.bs.modal', function () {
+            listenToLiveForm();
         });
+        window.openDialog('live-attribute-modal', url);
+
+    });
+}
+
+const listenToLiveForm = () => {
+    liveEditModal.find('form').submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            method: 'POST',
+            context: this,
+            url: $(this).attr('action'),
+            data: $(this).serialize()
+        }).done(function (result) {
+
+            liveEditModal.find('article').html('');
+            let dialog = document.getElementById('live-attribute-modal');
+            dialog.close();
+
+            let target = $('[data-uid="' + result.uid + '"]');
+            //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
+            target.html(result.value);
+            if (result.value) {
+                target.removeClass('empty-value');
+            } else {
+                target.addClass('empty-value');
+            }
+
+            window.showToast(result.success);
+
+        }).fail(function (result) {
+            //alert('error! check console logs');
+            //console.error('live-edit-error', result);
+
+            liveEditModal.find('.modal-content').html('');
+            liveEditModal.modal('hide');
+        });
+
+        return false;
     });
 }

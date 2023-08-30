@@ -41,8 +41,10 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="#" class="delete-confirm text-error" data-toggle="modal" data-name="{{ $element->elementName() }}"
-                                       data-target="#delete-confirm" data-delete-target="delete-form-timeline-element-{{ $element->id }}"
+                                    <a href="#" class="text-error"
+                                       data-toggle="dialog"
+                                       data-target="primary-dialog"
+                                       data-url="{{ route('confirm-delete', [$campaign, 'route' => route('timelines.timeline_elements.destroy', [$campaign, $timeline, $element, 'from' => 'view']), 'name' => $element->elementName(), 'permanent' => true]) }}"
                                        title="{{ __('crud.remove') }}">
                                         <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
                                     </a>

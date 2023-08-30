@@ -7,7 +7,6 @@ abstract class Layout
     public const ONLY_DESKTOP = 'hidden lg:table-cell';
 
     public const ACTION_EDIT = 'edit';
-    public const ACTION_EDIT_AJAX = 'edit-ajax';
     public const ACTION_EDIT_DIALOG = 'edit-dialog';
     public const ACTION_DELETE = 'delete';
     public const ACTION_COPY = 'copy';

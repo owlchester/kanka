@@ -21,7 +21,8 @@
     @include('partials.forms.form', [
         'title' => __('maps/groups.edit.title', ['name' => $map->name]),
         'content' => 'maps.groups._form',
-        'actions' => 'maps.groups._actions'
+        'actions' => 'maps.groups._actions',
+        'dialog' => true,
     ])
 
     {!! Form::close() !!}

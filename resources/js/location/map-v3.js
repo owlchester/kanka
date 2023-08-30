@@ -1,5 +1,4 @@
-import deleteConfirm from "../components/delete-confirm";
-
+//import deleteConfirm from "../components/delete-confirm";
 
 let mapPageBody;
 let sidebarMap, sidebarMarker;
@@ -16,10 +15,9 @@ const isMobile = window.matchMedia("only screen and (max-width: 760px)");
 $(document).ready(function() {
 
     window.map.invalidateSize();
-    //deleteConfirm();
 
     window.map.on('popupopen', function (ev) {
-        deleteConfirm();
+        window.initDialogs();
     });
 
     // Event fired when clicking on an existing map point
@@ -97,7 +95,7 @@ function initMapExplore()
                         handleCloseMarker();
                         mapPageBody.addClass('sidebar-open');
                     }
-                    deleteConfirm();
+                    window.initDialogs();
                 }
             }
         });

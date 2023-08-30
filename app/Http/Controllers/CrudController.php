@@ -193,6 +193,7 @@ class CrudController extends Controller
                 '<i class="fa-solid fa-share-nodes" aria-hidden="true"></i> ' . __('crud.actions.explore_view')
             );
         }
+        $this->getNavActions();
         $actions = $this->navActions;
         $entityTypeId = $model->entityTypeId();
         $singular = Module::singular($entityTypeId, __('entities.' . \Illuminate\Support\Str::singular($route)));
