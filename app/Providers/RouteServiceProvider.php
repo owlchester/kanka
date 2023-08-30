@@ -133,6 +133,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain($domain)
             ->middleware(['web', LastCampaign::class])
             ->namespace($this->namespace)
+            ->group(base_path('routes/campaigns/bulks.php'));
+
+        Route::domain($domain)
+            ->middleware(['web', LastCampaign::class])
+            ->namespace($this->namespace)
             ->group(base_path('routes/campaigns/search.php'));
         return $this;
     }

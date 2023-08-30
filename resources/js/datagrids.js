@@ -20,16 +20,20 @@ $(document).ready(function () {
     registerBulkActions();
     toggleCrudMultiDelete();
     registerDatagrids2();
+
+    $(document).on('shown.bs.modal', function () {
+        registerBulkActions();
+    });
 });
 
 /**
  * Register button handeling for bulk actions
  */
 function registerBulkActions() {
-    $('[data-bulk-action]').on('click', function() {
+    $('[data-bulk-action]').unbind('click').on('click', function() {
         setBulkModels($(this).data('bulk-action'));
     });
-    $('.bulk-print').on('click', function (e) {
+    $('.bulk-print').unbind('click').on('click', function (e) {
         e.preventDefault();
         let form = $(this).closest('form');
         form.find();
@@ -76,7 +80,13 @@ function setBulkModels(modelField) {
         }
     });
 
-    $('#datagrid-bulk-' + modelField + '-models').val(values.toString());
+    if (modelField === 'ajax') {
+        $(document).on('shown.bs.modal', function () {
+            $('#primary-dialog').find('input[name="models"]').val(values.toString());
+        });
+    } else {
+        $('#datagrid-bulk-' + modelField + '-models').val(values.toString());
+    }
 }
 
 

@@ -399,13 +399,16 @@ class BulkService
      */
     protected function getEntity()
     {
-        $entity = $this->entityService->getClass($this->entityName);
-        if (empty($entity)) {
+        if ($this->entityName === 'relations') {
+            return new Relation();
+        }
+        $classes = config('entities.classes');
+        if (!isset($classes[$this->entityName])) {
             throw new Exception("Unknown entity name {$this->entityName}.");
         }
 
         /** @var MiscModel|null $model */
-        $model = new $entity();
+        $model = new $classes[$this->entityName]();
         if (empty($model)) {
             throw new Exception("Couldn't create a class from {$entity}.");
         }

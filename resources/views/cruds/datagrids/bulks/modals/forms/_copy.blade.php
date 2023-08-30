@@ -7,7 +7,5 @@
         {!! Form::select('campaign', Auth::user()->moveCampaignList($campaign, false), null, ['class' => 'w-full']) !!}
     </x-forms.field>
 
-    @if(view()->exists($type . '.bulk.modals._copy_to_campaign'))
-        @include($type . '.bulk.modals._copy_to_campaign')
-    @endif
+    @includeIf($type . '.bulk.modals._copy_to_campaign')
 </x-grid>

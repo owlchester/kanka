@@ -35,7 +35,7 @@ class EntityType extends Model
      */
     public function getClass()
     {
-        $className = 'App\Models\\' . Str::camel($this->code);
+        $className = 'App\Models\\' . Str::studly($this->code);
         return app()->make($className);
     }
 

@@ -71,10 +71,12 @@ class RelationController extends Controller
                 $option = 'mentions';
             }
         }
+        $entityTypeId = 'connection';
 
         return view('entities.pages.relations.index', compact(
             'campaign',
             'entity',
+            'entityTypeId',
             'rows',
             'mode',
             'option',

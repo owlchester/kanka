@@ -1,4 +1,4 @@
-@if ($campaign->premium())
+@if ($campaign->premium() || $boost->inCooldown())
         <?php return; ?>
 @elseif (auth()->user()->availableBoosts() < $cost)
         <?php return; ?>

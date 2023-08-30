@@ -25,3 +25,5 @@
 {!! Form::hidden('models', null, ['id' => 'datagrid-bulk-batch-models']) !!}
 {!! Form::close() !!}
 
+<h1>Not closing</h1>
+
