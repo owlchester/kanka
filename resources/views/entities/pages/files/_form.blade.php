@@ -8,7 +8,7 @@
         css="col-span-2"
         :required="true"
         :label="__('entities/files.fields.file')">
-        {!! Form::file('file', array('class' => 'image form-control')) !!}
+        {!! Form::file('file', array('class' => 'image ')) !!}
 
         <p class="text-neutral-content m-0">
             {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, ogg, json', 'size' => Limit::readable()->upload()]) }}
@@ -26,7 +26,7 @@
             'name',
             null,
             [
-                'class' => 'form-control',
+                'class' => '',
                 'maxlength' => 45
             ]
         ) !!}

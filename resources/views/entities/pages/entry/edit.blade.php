@@ -18,7 +18,7 @@
         @include('partials.errors')
 
         <x-forms.field field="entry">
-            {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+            {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
         </x-forms.field>
 
         <div class="flex gap-2 items-center">

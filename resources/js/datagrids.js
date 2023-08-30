@@ -114,7 +114,7 @@ function registerDatagrids2() {
 
 function initDatagrid2Bulk() {
     // Bulk edit multiple models at the same time
-    $('.datagrid-bulk').click(function (e) {
+    $('.datagrid-bulk').unbind('click').click(function (e) {
         e.preventDefault();
 
         datagrid2Form = $(this).closest('form');
@@ -131,8 +131,9 @@ function initDatagrid2Bulk() {
             method: 'POST',
             data: {model: models}
         }).done(function (response) {
-            $('#entity-modal').find('.modal-content').html(response);
-            $('#entity-modal').modal();
+            let target = document.getElementById('primary-dialog');
+            target.innerHTML = response;
+            target.show();
         });
     });
 

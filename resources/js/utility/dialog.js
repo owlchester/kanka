@@ -55,7 +55,8 @@ const loadDialogContent = (url, target) => {
     $.ajax({
         url: url
     }).done(function (success) {
-        $(target).html(success).show();
+        target.innerHTML = success;
+        target.show();
         $(document).trigger('shown.bs.modal'); // Get tooltips, select2 and delete-confirmation to re-generate
 
         $('.btn-manage-perm').click(function (e) {

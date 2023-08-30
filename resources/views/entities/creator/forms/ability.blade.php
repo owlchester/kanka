@@ -11,7 +11,7 @@
             FormCopy::field('charges')->string(),
             [
                 'placeholder' => __('abilities.placeholders.charges'),
-                'class' => 'form-control',
+                'class' => '',
                 'maxlength' => 120,
                 'autocomplete' => 'off'
             ]

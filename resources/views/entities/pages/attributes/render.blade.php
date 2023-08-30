@@ -34,5 +34,5 @@ if ($layout && !empty($campaign)) {
 
 @section('modals')
     @parent
-    <x-dialog id="live-attribute-modal" :loading="true"></x-dialog>
+    <x-dialog id="live-attribute-dialog" :loading="true"></x-dialog>
 @endsection

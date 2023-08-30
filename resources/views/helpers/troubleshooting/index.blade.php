@@ -25,7 +25,7 @@
                 </x-alert>
             @else
                 <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
-                    {!! Form::select('campaign', $campaigns, null, ['class' => 'form-control']) !!}
+                    {!! Form::select('campaign', $campaigns, null, ['class' => '']) !!}
                 </x-forms.field>
             @endif
 

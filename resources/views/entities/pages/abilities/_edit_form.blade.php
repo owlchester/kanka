@@ -15,7 +15,7 @@
         'attr' => '<code>{Strength}</code>'
     ])"
         :tooltip="true">
-        {!! Form::textarea('note', null, ['class' => 'form-control', 'rows' => 4]) !!}
+        {!! Form::textarea('note', null, ['class' => '', 'rows' => 4]) !!}
     </x-forms.field>
 
     @include('cruds.fields.visibility_id', ['model' => $ability])

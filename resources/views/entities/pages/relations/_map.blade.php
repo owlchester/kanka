@@ -22,7 +22,7 @@ $options = [
     'method' => 'GET',
 ]) !!}
     <div class="join w-full">
-        {!! Form::select('option', $options, $option, ['class' => 'form-control join-item']) !!}
+        {!! Form::select('option', $options, $option, ['class' => ' join-item']) !!}
         <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn2 btn-primary btn-sm join-item" />
     </div>
 {!! Form::hidden('mode', 'map') !!}

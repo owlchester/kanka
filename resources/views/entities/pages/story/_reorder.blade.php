@@ -40,14 +40,14 @@ if ($firstPost && $firstPost->position >= 0) {
                     {!! $note->name !!}
                 </div>
                 <div class="px-2 self-end">
-                    <select name="posts[{{ $note->id }}][collapsed]" class="form-control">
+                    <select name="posts[{{ $note->id }}][collapsed]" class="">
                         <option value="0">{{ __('entities/notes.states.expanded') }}</option>
                         <option value="1" @if ($note->collapsed()) selected="selected" @endif>{{ __('entities/notes.states.collapsed') }}</option>
                     </select>
                 </div>
 
                 <div class="self-end">
-                    <select name="posts[{{ $note->id }}][visibility_id]" class="form-control">
+                    <select name="posts[{{ $note->id }}][visibility_id]" class="">
                         @foreach ($note->visibilityOptions() as $key => $value)
                             <option value="{{ $key }}" @if ($key == $note->visibility_id) selected="selected" @endif>
                                 {{ $value }}

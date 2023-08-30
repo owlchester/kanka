@@ -140,7 +140,7 @@ function initLiveAttributes() {
     }
 
     liveEditURL = config.data('live');
-    liveEditModal = $('#live-attribute-modal');
+    liveEditModal = $('#live-attribute-dialog');
 
     // Add the live-edit-parsed attribute to variables to confirm that they are valid
     let uid = 1;
@@ -161,7 +161,7 @@ function initLiveAttributes() {
         $(document).on('shown.bs.modal', function () {
             listenToLiveForm();
         });
-        window.openDialog('live-attribute-modal', url);
+        window.openDialog('live-attribute-dialog', url);
 
     });
 }
@@ -178,7 +178,7 @@ const listenToLiveForm = () => {
         }).done(function (result) {
 
             liveEditModal.find('article').html('');
-            let dialog = document.getElementById('live-attribute-modal');
+            let dialog = document.getElementById('live-attribute-dialog');
             dialog.close();
 
             let target = $('[data-uid="' + result.uid + '"]');
@@ -195,9 +195,8 @@ const listenToLiveForm = () => {
         }).fail(function (result) {
             //alert('error! check console logs');
             //console.error('live-edit-error', result);
-
-            liveEditModal.find('.modal-content').html('');
-            liveEditModal.modal('hide');
+            let dialog = document.getElementById('live-attribute-dialog');
+            dialog.close();
         });
 
         return false;

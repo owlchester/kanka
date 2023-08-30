@@ -26,7 +26,7 @@
             {!! Form::textarea('name', null, [
                 'placeholder' => __('entities.creator.bulk_names'),
                 'autocomplete' => 'off',
-                'class' => 'form-control',
+                'class' => '',
                 'rows' => 4,
                 'data-live' => route('search.live', $campaign),
                 'data-type' => $singularType,
@@ -36,7 +36,7 @@
                 {!! Form::text('name', null, [
                     'placeholder' => $type === 'posts' ? __('posts.placeholders.name') : __('crud.placeholders.name'),
                     'autocomplete' => 'off',
-                    'class' => 'form-control',
+                    'class' => '',
                     'maxlength' => 191,
                     'data-live' => route('search.live', $campaign),
                     'data-type' => $singularType,
@@ -55,7 +55,7 @@
             {{ __('entities.creator.actions.more') }}
         </a>
         <div class="qq-more-fields flex flex-col gap-5" style="{{ $singularType !== 'post' ? 'display: none' : null }}">
-            @php $allowNew = false; $dropdownParent = '#entity-modal';@endphp
+            @php $allowNew = false; $dropdownParent = '#primary-dialog';@endphp
             @include('entities.creator.forms.' . $singularType)
 
             @if (!in_array($type, ['tags', 'posts', 'attribute_templates']))

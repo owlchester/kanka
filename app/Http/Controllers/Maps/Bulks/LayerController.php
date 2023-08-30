@@ -15,7 +15,7 @@ class LayerController extends Controller
     use BulkControllerTrait;
     use CampaignAware;
 
-    public function bulk(Request $request, Campaign $campaign, Map $map)
+    public function index(Request $request, Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map);
 
@@ -27,7 +27,7 @@ class LayerController extends Controller
         }
 
         if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.layers.bulk', [$campaign, 'map' => $map]), '_map-layer', $models);
+            return $this->campaign($campaign)->bulkBatch(route('maps.layers.bulk', [$campaign, 'map' => $map]), '_map-layer', $models);
         }
 
         $count = $this->bulkProcess($request, MapLayer::class);

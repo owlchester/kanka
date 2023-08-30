@@ -62,7 +62,7 @@ if ($folder) {
             </div>
 
             <div class="search">
-                <input type="text" class="form-control" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('campaign.gallery.search', $campaign) }}" />
+                <input type="text" class="" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('campaign.gallery.search', $campaign) }}" />
             </div>
         </div>
 

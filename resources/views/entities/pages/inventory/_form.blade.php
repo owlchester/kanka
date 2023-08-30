@@ -19,7 +19,7 @@
             null,
             [
                 'placeholder' => __('entities/inventories.placeholders.name'),
-                'class' => 'form-control',
+                'class' => '',
                 'max-length' => 45
             ]
         ) !!}
@@ -29,7 +29,7 @@
         field="amount"
         :required="true"
         :label="__('entities/inventories.fields.amount')">
-        {!! Form::number('amount', (empty($inventory) ? 1 : null), ['class' => 'form-control', 'max' => 1000000000, 'min' => 0, 'required']) !!}
+        {!! Form::number('amount', (empty($inventory) ? 1 : null), ['class' => '', 'max' => 1000000000, 'min' => 0, 'required']) !!}
     </x-forms.field>
 
     <x-forms.field
@@ -37,7 +37,7 @@
         :label="__('entities/inventories.fields.position')">
         {!! Form::text('position', null, [
             'placeholder' => __('entities/inventories.placeholders.position'),
-            'class' => 'form-control',
+            'class' => '',
             'maxlength' => 191,
             'list' => 'position-list',
             'autocomplete' => 'off'
@@ -51,7 +51,7 @@
     </x-forms.field>
 
     <x-forms.field field="description" css="col-span-2" :label="__('entities/inventories.fields.description')">
-        {!! Form::text('description', null, ['placeholder' => __('entities/inventories.placeholders.description'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+        {!! Form::text('description', null, ['placeholder' => __('entities/inventories.placeholders.description'), 'class' => '', 'maxlength' => 191]) !!}
     </x-forms.field>
 
     <x-forms.field field="copy" :label="__('entities/inventories.fields.copy_entity_entry')">

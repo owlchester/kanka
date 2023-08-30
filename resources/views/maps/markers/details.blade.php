@@ -74,16 +74,15 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
 @can('update', $marker->map)
     <div class="marker-actions text-center">
         <div class="join">
-            <a href="{{ route('maps.map_markers.edit', [$campaign, $marker->map, $marker, 'from' => 'explore']) }}" class="btn2 btn-primary btn-sm join-item">
+            <a href="{{ route('maps.map_markers.edit', [$campaign, $marker->map, $marker, 'from' => 'explore']) }}" class="btn2 btn-primary btn-outline btn-sm join-item">
                 <x-icon class="fa-solid fa-map-pin"></x-icon>
                 {{ __('maps/markers.actions.update') }}
             </a>
-            <button class="btn2 btn-error btn-sm join-item"
-                    data-toggle="dialog"
-                    data-target="primary-dialog"
-                    data-url="{{ route('confirm-delete', [$campaign, 'route' => route('maps.map_markers.destroy', [$campaign, $marker->map, $marker, 'from' => 'map']), 'name' => $marker->markerTitle(), 'permanent' => true]) }}">
-                <x-icon class="trash"></x-icon> {{ __('maps/markers.actions.remove') }}
-            </button>
+
+            <x-button.delete-confirm css="join-item" target="#delete-marker-confirm-form-{{ $marker->id }}" />
         </div>
     </div>
+    {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $campaign, $marker->map, $marker, 'from' => 'map'], 'style' => 'display:inline', 'id' => 'delete-marker-confirm-form-' . $marker->id]) !!}
+    {!! Form::close() !!}
+
 @endcan

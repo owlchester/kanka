@@ -9,7 +9,7 @@
     {!! Form::open(['route' => ['search', $campaign], 'method' => 'GET']) !!}
         <x-box>
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ request()->get('q') }}">
+                <input type="text" name="q" class="" placeholder="Search..." value="{{ request()->get('q') }}">
 
                 <div class="input-group-btn">
                     <button type="submit" class="btn2 btn-primary">

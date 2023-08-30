@@ -39,10 +39,10 @@ $tooltipTags = implode(', ', $tooltipTags);
         <x-grid type="3/4">
             <div class="flex flex-col gap-2 @if ((!empty($model->entity) && !empty($model->entity->header_image))) col-span-3 @else col-span-4 @endif">
                 <x-forms.field field="header-file">
-                    {!! Form::file('header_image', array('class' => 'image form-control')) !!}
+                    {!! Form::file('header_image', array('class' => 'image')) !!}
                 </x-forms.field>
                 <x-forms.field field="header-url" :helper="__('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => Limit::readable()->upload()]) . ' ' . __('crud.hints.image_recommendation', ['width' => '1200', 'height' => '400'])">
-                    {!! Form::text('header_image_url', $headerUrlPreset, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
+                    {!! Form::text('header_image_url', $headerUrlPreset, ['placeholder' => __('crud.placeholders.image_url'), 'class' => '']) !!}
                 </x-forms.field>
             </div>
 

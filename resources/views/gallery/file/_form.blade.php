@@ -68,12 +68,12 @@
 
             <x-grid type="1/1">
                 <x-forms.field field="name" :label="__('crud.fields.name')" :required="true">
-                    {!! Form::text('name', null, ['maxlength' => 45, 'class' => 'form-control']) !!}
+                    {!! Form::text('name', null, ['maxlength' => 45, 'class' => '']) !!}
                 </x-forms.field>
 
                 @if(!$image->isFolder())
                     <x-forms.field field="folder" :label="__('campaigns/gallery.fields.folder')">
-                        {!! Form::select('folder_id', $folders, null, ['class' => 'form-control']) !!}
+                        {!! Form::select('folder_id', $folders, null, ['class' => '']) !!}
                     </x-forms.field>
                 @endif
 

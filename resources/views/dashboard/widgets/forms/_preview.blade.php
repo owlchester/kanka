@@ -31,7 +31,7 @@
                 <x-forms.field
                     field="display"
                     :label="__('dashboard.widgets.preview.fields.display')">
-                    {!! Form::select('config[full]', $displayOptions, null, ['class' => 'form-control']) !!}
+                    {!! Form::select('config[full]', $displayOptions, null, ['class' => '']) !!}
                 </x-forms.field>
 
                 @include('dashboard.widgets.forms._name')

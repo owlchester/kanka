@@ -53,11 +53,11 @@ $layoutOptions = $layoutDefault + $layoutOptions
         <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
                 <x-forms.field field="name" :required="true">
-                    {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
+                    {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => '', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
                 </x-forms.field>
 
                 <x-forms.field field="layout" :hidden="isset($layoutHelper)">
-                    {!! Form::select('layout_id', $layoutOptions, isset($model) ? $model->layout_id : '',['class' => 'form-control', 'id' => 'post-layout-selector']) !!}
+                    {!! Form::select('layout_id', $layoutOptions, isset($model) ? $model->layout_id : '',['class' => '', 'id' => 'post-layout-selector']) !!}
                     <div id="post-layout-subform" style="display: none">
                         @includeWhen(!$campaign->superboosted(), 'entities.pages.posts._boosted')
                     </div>
@@ -67,7 +67,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 @endif
 
                 <x-forms.field field="entry" css="md:col-span-2" id="field-entry" :hidden="isset($layoutHelper)">
-                    {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+                    {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
                 </x-forms.field>
                 <x-forms.field field="location" id="field-location" :hidden="isset($layoutHelper)">
                     @include('cruds.fields.location', ['from' => null])
@@ -76,7 +76,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 @include('cruds.fields.visibility_id')
 
                 <x-forms.field field="position" :label="__('crud.fields.position')">
-                    {!! Form::select('position', $options, (!empty($model->position) ? -9999 : $last), ['class' => 'form-control']) !!}
+                    {!! Form::select('position', $options, (!empty($model->position) ? -9999 : $last), ['class' => '']) !!}
                 </x-forms.field>
                 @php
                     $collapsedOptions = [
@@ -85,11 +85,11 @@ $layoutOptions = $layoutDefault + $layoutOptions
                     ];
                 @endphp
                 <x-forms.field field="display" id="field-display" :hidden="isset($layoutHelper)" :label="__('entities/notes.fields.display')">
-                    {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => 'form-control']) !!}
+                    {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => '']) !!}
                 </x-forms.field>
 
                 <x-forms.field field="class" :label=" __('dashboard.widgets.fields.class')" :tooltip="true" :helper="__('dashboard.widgets.helpers.class')">
-                    {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$campaign->boosted() ? 'disabled' : null]) !!}
+                    {!! Form::text('settings[class]', null, ['class' => '', 'id' => 'config[class]', 'disabled' => !$campaign->boosted() ? 'disabled' : null]) !!}
                     @includeWhen(!$campaign->boosted(), 'entities.pages.posts._boosted')
                 </x-forms.field>
             </x-grid>

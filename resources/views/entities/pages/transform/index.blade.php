@@ -26,7 +26,7 @@
             </a>
 
             <x-forms.field field="target" :label="__('entities/transform.fields.target')">
-                {!! Form::select('target', $entities, null, ['class' => 'form-control']) !!}
+                {!! Form::select('target', $entities, null, ['class' => '']) !!}
             </x-forms.field>
         </x-grid>
 

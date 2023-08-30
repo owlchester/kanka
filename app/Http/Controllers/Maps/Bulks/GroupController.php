@@ -29,7 +29,7 @@ class GroupController extends Controller
             return $this->bulkBatch(route('maps.groups.bulk', [$campaign, 'map' => $map]), '_map-group', $models);
         }
 
-        $count = $this->bulkProcess($request, MapGroup::class);
+        $count = $this->bulkrocess($request, MapGroup::class);
 
         return redirect()
             ->route('maps.map_groups.index', [$campaign, 'map' => $map])

@@ -27,7 +27,7 @@
         @if ($hasPromo)
             <label>{{ __('settings.subscription.coupon.label') }}</label>
             <div class="join mb-5">
-                <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control join-item" data-url="{{ route('subscription.check-coupon') }}" />
+                <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class=" join-item" data-url="{{ route('subscription.check-coupon') }}" />
 
                 <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline join-item" data-title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
                     <i class="fa-solid fa-check check"></i>
@@ -77,7 +77,7 @@
                     <x-grid type="1/1">
                     @if (!$card)
                         <x-forms.field field="card-name" :label="__('settings.subscription.payment_method.card_name')">
-                            {!! Form::text('card-holder-name', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('card-holder-name', null, ['class' => '']) !!}
                         </x-forms.field>
 
                         <x-forms.field field="card-number" :label="__('settings.subscription.payment_method.card')">
@@ -109,7 +109,7 @@
                                     null,
                                     [
                                         'placeholder' => __('settings.subscription.placeholders.downgrade_reason'),
-                                        'class' => 'form-control',
+                                        'class' => '',
                                         'style' => 'display: none',
                                         'rows' => 4,
                                         'id' => 'downgrade-reason-custom'

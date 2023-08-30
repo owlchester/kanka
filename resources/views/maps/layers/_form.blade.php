@@ -11,7 +11,7 @@ $typeOptions = [
         field="name"
         :required="true"
         :label="__('crud.fields.name')">
-        {!! Form::text('name', null, ['placeholder' => __('maps/layers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required' => true]) !!}
+        {!! Form::text('name', null, ['placeholder' => __('maps/layers.placeholders.name'), 'class' => '', 'maxlength' => 191, 'required' => true]) !!}
     </x-forms.field>
     @php
         $options = $map->layerPositionOptions(!empty($model->position) ? $model->position : null);
@@ -20,13 +20,13 @@ $typeOptions = [
     <x-forms.field
         field="type"
         :label="__('maps/layers.fields.type')">
-        {{ Form::select('type_id', $typeOptions, null, ['class' => 'form-control', 'id' => 'type_id']) }}
+        {{ Form::select('type_id', $typeOptions, null, ['class' => '', 'id' => 'type_id']) }}
     </x-forms.field>
 
     <x-forms.field
         field="entry col-span-2"
         :label="__('crud.fields.entry')">
-        {!! Form::textarea('entry', null, ['class' => 'form-control html-editor', 'id' => 'layer-entry', 'name' => 'entry']) !!}
+        {!! Form::textarea('entry', null, ['class' => ' html-editor', 'id' => 'layer-entry', 'name' => 'entry']) !!}
     </x-forms.field>
 
     @include('cruds.fields.visibility_id')
@@ -34,7 +34,7 @@ $typeOptions = [
     <x-forms.field
         field="position"
         :label="__('maps/layers.fields.position')">
-        {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
+        {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => '']) !!}
     </x-forms.field>
 
     @include('cruds.fields.image', ['imageRequired' => true, 'size' => 'map'])

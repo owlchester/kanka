@@ -22,7 +22,7 @@ elseif(!empty($model)) {
 ?>
 <label>{{ trans('campaigns.fields.rpg_system') }}</label>
 
-<select multiple="multiple" name="rpg_systems[]" id="rpg_systems" class="form-control form-rpg-systems" style="width: 100%">
+<select multiple="multiple" name="rpg_systems[]" id="rpg_systems" class=" form-rpg-systems" style="width: 100%">
     @foreach ($options as $rpgSystem)
         <option value="{{ $rpgSystem->id }}" @if (in_array($rpgSystem->id, $selectedOptions)) selected="selected" @endif >
             {{ $rpgSystem->name() }}

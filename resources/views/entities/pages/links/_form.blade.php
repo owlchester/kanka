@@ -9,7 +9,7 @@
             null,
             [
                 'placeholder' => __('entities/links.placeholders.name'),
-                'class' => 'form-control',
+                'class' => '',
                 'maxlength' => 45
             ]
         ) !!}
@@ -24,7 +24,7 @@
             null,
             [
                 'placeholder' => __('entities/links.placeholders.url'),
-                'class' => 'form-control',
+                'class' => '',
                 'maxlength' => 255
             ]
         ) !!}

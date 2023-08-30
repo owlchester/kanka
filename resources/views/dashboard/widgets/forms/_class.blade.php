@@ -4,5 +4,5 @@
     :helper="__('dashboard.widgets.helpers.class')"
     :tooltip="true"
 >
-    {!! Form::text('config[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$boosted ? 'disabled' : null]) !!}
+    {!! Form::text('config[class]', null, ['class' => '', 'id' => 'config[class]', 'disabled' => !$boosted ? 'disabled' : null]) !!}
 </x-forms.field>

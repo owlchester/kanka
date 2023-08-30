@@ -193,13 +193,6 @@ function addListeners() {
         }
 
         window.openDialog('connection-dialog', editUrl);
-
-        /*$.ajax({
-            url: editUrl,
-        }).done(function (data) {
-            $('#entity-modal .modal-content').html(data);
-            $('#entity-modal').modal();
-        });*/
     });
 
     // highlight edges on hover to show relation

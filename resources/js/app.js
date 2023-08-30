@@ -158,14 +158,18 @@ function initAjaxPagination() {
  * in a modal.
  */
 function initDynamicDelete() {
-    $('[data-toggle="confirm-delete"]').on('click', function (e) {
+    $('[data-toggle="confirm-delete"]').unbind('click').on('click', function (e) {
         e.preventDefault();
         if ($(this).data('confirming') === 1) {
             $(this).addClass('loading');
             $(this).html('');
             let target = $(this).data('target');
-            //console.log('target', target);
-            $(target).submit();
+            if ($(target).length === 0) {
+                console.error('Unknown target', target);
+            } else {
+                $(target).submit();
+            }
+
             return;
         }
 

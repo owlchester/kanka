@@ -30,7 +30,7 @@ if (isset($model)) {
                 null,
                 [
                     'placeholder' => 'fa-solid fa-users',
-                    'class' => 'form-control',
+                    'class' => '',
         'data-paste' => 'fontawesome',
                     'maxlength' => 45
                 ]
@@ -62,7 +62,7 @@ if (isset($model)) {
         :tooltip="true"
         :helper="__('entities/links.helpers.parent')">
         @if ($campaign->boosted())
-            {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'menu_links' : $model->parent), ['class' => 'form-control']) }}
+            {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'menu_links' : $model->parent), ['class' => '']) }}
 
             <p class="text-neutral-content md:hidden">
                 {!! __('entities/links.helpers.parent') !!}
@@ -87,7 +87,7 @@ if (isset($model)) {
         :helper="__('dashboard.widgets.helpers.class')"
     >
         @if ($campaign->boosted())
-            {!! Form::text('css', null, ['class' => 'form-control', 'id' => 'config[class]', 'maxlength' => 45]) !!}
+            {!! Form::text('css', null, ['class' => '', 'id' => 'config[class]', 'maxlength' => 45]) !!}
             <p class="text-neutral-content md:hidden">
                 {{ __('dashboard.widgets.helpers.class') }}
             </p>
@@ -121,7 +121,7 @@ if (isset($model)) {
 <p class="help-block">{{ __('menu_links.helpers.selector') }}</p>
 
 <x-forms.field field="target" :label="__('menu_links.fields.target')">
-    <select name="type" class="form-control" id="quick-link-selector">
+    <select name="type" class="" id="quick-link-selector">
         <option value="">Choose an option</option>
         <option value="entity" @if($isEntity) selected="selected" @endif data-target="#quick-link-entity">
             {{ __('menu_links.fields.entity') }}

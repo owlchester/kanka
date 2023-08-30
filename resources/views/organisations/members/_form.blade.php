@@ -38,14 +38,14 @@ $statuses = [
         ])
     </div>
     <x-forms.field field="role" css="col-span-2" :label="__('organisations.members.fields.role')">
-        {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+        {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => '', 'maxlength' => 45]) !!}
     </x-forms.field>
     <x-forms.field field="status" css="col-span-2" :label="__('organisations.members.fields.status')">
-        {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
+        {!! Form::select('status_id', $statuses, null, ['class' => '']) !!}
     </x-forms.field>
 
     <x-forms.field field="pinned" css="col-span-2" :label="__('organisations.members.fields.pinned')" :helper="__('organisations.members.helpers.pinned')" :tooltip="true">
-        {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
+        {!! Form::select('pin_id', $options, null, ['class' => '']) !!}
     </x-forms.field>
 </x-grid>
 

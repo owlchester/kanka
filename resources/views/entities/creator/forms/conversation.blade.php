@@ -10,6 +10,6 @@ $targets = [
     <x-forms.field
         field="participants"
         :label="__('conversations.fields.participants')">
-        {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => 'form-control']) !!}
+        {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => '']) !!}
     </x-forms.field>
 </x-grid>

@@ -1,5 +1,3 @@
-//import deleteConfirm from "../components/delete-confirm";
-
 let mapPageBody;
 let sidebarMap, sidebarMarker;
 let markerModal, markerModalContent, markerModalTitle;
@@ -95,7 +93,8 @@ function initMapExplore()
                         handleCloseMarker();
                         mapPageBody.addClass('sidebar-open');
                     }
-                    window.initDialogs();
+                    $(document).trigger('shown.bs.modal');
+                    //window.initDialogs();
                 }
             }
         });

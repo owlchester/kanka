@@ -24,10 +24,10 @@
         {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters flex flex-col gap-5 mt-2']) !!}
         <div class="flex items-center flex-row-reverse gap-2">
             <div class="field flex-none">
-                {!! Form::select('action', $actions, $action, ['class' => 'form-control']) !!}
+                {!! Form::select('action', $actions, $action, ['class' => '']) !!}
             </div>
             <div class="field flex-none">
-                <select class="form-control" name="user">
+                <select class="" name="user">
                     <option value="">{{ __('history.filters.all-users') }}</option>
                     @foreach ($users as $member)
                         <option value="{{ $member->user_id }}" @if (isset($user) && $user == $member->user_id) selected="selected" @endif>{!! $member->user->name !!}</option>

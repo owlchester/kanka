@@ -12,7 +12,7 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
 @if($campaign->boosted())
     <x-grid>
         <x-forms.field field="dashboard" :label="__('menu_links.fields.dashboard')">
-            {!! Form::select('dashboard_id', $dashboards, FormCopy::field('dashboard_id')->string(), ['class' => 'form-control']) !!}
+            {!! Form::select('dashboard_id', $dashboards, FormCopy::field('dashboard_id')->string(), ['class' => '']) !!}
         </x-forms.field>
 
         {!! Form::hidden('options[default_dashboard]', 0) !!}

@@ -7,11 +7,11 @@
                     <span class="join-item flex items-center bg-base-200 p-2 rounded">
                         <i class="fa-solid fa-users" aria-hidden="true"></i>
                     </span>
-                    <input type="text" value="{!! $perm->role->name !!}" disabled="disabled" class="form-control" />
+                    <input type="text" value="{!! $perm->role->name !!}" disabled="disabled" class="" />
                 </div>
 
                 <div class="flex items-center gap-2">
-                    {!! Form::select('perm_role_perm[]', $permissions, $perm->permission, ['class' => 'form-control grow']) !!}
+                    {!! Form::select('perm_role_perm[]', $permissions, $perm->permission, ['class' => ' grow']) !!}
 
                     <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                         <x-icon class="trash"></x-icon>
@@ -27,11 +27,11 @@
                     <span class="join-item flex items-center bg-base-200 p-2 rounded">
                         <i class="fa-solid fa-user" aria-hidden="true"></i>
                     </span>
-                    <input type="text" value="{!! $perm->user->name !!}" disabled="disabled" class="form-control" />
+                    <input type="text" value="{!! $perm->user->name !!}" disabled="disabled" class="" />
                 </div>
 
                 <div class="flex items-center gap-2">
-                    {!! Form::select('perm_user_perm[]', $permissions, $perm->permission, ['class' => 'form-control grow']) !!}
+                    {!! Form::select('perm_user_perm[]', $permissions, $perm->permission, ['class' => ' grow']) !!}
 
                     <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                         <x-icon class="trash"></x-icon>
@@ -77,12 +77,12 @@
         <x-grid id="post-perm-user-template">
             <div class="join">
                 <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
-                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control join-item" />
+                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class=" join-item" />
             </div>
 
             <div class="flex items-center gap-2">
                 {!! Form::select('perm_user_perm[]', $permissions, null, [
-                    'class' => 'form-control grow'
+                    'class' => ' grow'
                 ]) !!}
                 <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                     <x-icon class="trash"></x-icon>
@@ -93,11 +93,11 @@
         <x-grid id="post-perm-role-template">
             <div class="join">
                 <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
-                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control join-item" />
+                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class=" join-item" />
             </div>
             <div class="flex items-center gap-2">
                 {!! Form::select('perm_role_perm[]', $permissions, null, [
-                    'class' => 'form-control grow'
+                    'class' => ' grow'
                 ]) !!}
                 <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                     <x-icon class="trash"></x-icon>
