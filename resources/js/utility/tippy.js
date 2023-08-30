@@ -52,6 +52,7 @@ const initTooltip = (e) => {
     tippy(e, {
         content: e.dataset.title ?? e.title,
         theme: 'kanka',
+        delay: 250,
         placement: e.dataset.direction ?? 'bottom',
         allowHTML: e.dataset.html ?? false,
         appendTo: e.dataset.append ?? document.body,
