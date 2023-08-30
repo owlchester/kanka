@@ -20,9 +20,5 @@
 
 @section('modals')
     @parent
-    <div class="modal fade" id="live-attribute-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100"></div>
-        </div>
-    </div>
+    <x-dialog id="live-attribute-dialog" :loading="true"></x-dialog>
 @endsection

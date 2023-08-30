@@ -287,7 +287,7 @@ class Entity extends Model
      */
     public function hasFiles(): bool
     {
-        return $this->type_id != config('entities.ids.menu_link');
+        return $this->type_id != config('entities.ids.bookmark');
     }
 
     /**

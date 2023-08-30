@@ -1,4 +1,4 @@
-<div class="option flex">
+<div class="option flex gap-2">
 
     @include('entities.creator.selection._main', [
         'singular' => 'character',

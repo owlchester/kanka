@@ -9,7 +9,7 @@
 @section('entity-header')
     <div class="flex gap-2 items-center mb-5">
         <h1 class="grow text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
-        <div class="flex-none flex gap-2">
+        <div class="flex flex-wrap gap-2">
             @includeWhen($route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
             @include('cruds.lists._actions')
             @includeWhen(auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
@@ -39,7 +39,7 @@
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['sub' => 'index'])
     @else
-        {!! Form::open(['url' => route('bulk.process', $campaign), 'method' => 'POST', 'class' => 'flex flex-col gap-5']) !!}
+        {!! Form::open(['url' => route('bulk.print', [$campaign, 'entity_type' => $entityTypeId]), 'method' => 'POST', 'class' => 'flex flex-col gap-5']) !!}
         <x-box :padding="false" >
             <div class="table-responsive">
                 @include($name . '.datagrid')
@@ -60,11 +60,8 @@
             {{ $models->appends($filterService->pagination())->onEachSide(0)->links() }}
         </div>
         @endif
-        {!! Form::hidden('entity', $name) !!}
-        {!! Form::hidden('datagrid-action', 'print') !!}
         {!! Form::hidden('page', request()->get('page')) !!}
-        {!! Form::hidden('mode', $mode) !!}
-            {!! Form::close() !!}
+        {!! Form::close() !!}
 
     @endif
     </div>

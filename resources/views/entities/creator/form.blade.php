@@ -3,10 +3,17 @@
 <form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', [$campaign, 'type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }}">
     @csrf
 
-<div class="modal-body entity-creator-body-{{ $type }}">
-    @include('partials.modals.close')
+@if (isset($origin))
+    <x-dialog.header>
+        <div class="sm:w-80 text-left">{{ __('entities.creator.modes.default') }}</div>
+    </x-dialog.header>
+    <article>
+@endif
 
-    @include('entities.creator.header.header')
+<div class="entity-creator-body-{{ $type }} flex flex-col gap-5 w-full">
+    @if (!isset($origin))
+        @include('entities.creator.header.header')
+    @endif
     <div class="quick-creator-body flex flex-col gap-5">
 
         @includeWhen(!empty($success), 'entities.creator._created')
@@ -19,7 +26,7 @@
             {!! Form::textarea('name', null, [
                 'placeholder' => __('entities.creator.bulk_names'),
                 'autocomplete' => 'off',
-                'class' => 'form-control',
+                'class' => '',
                 'rows' => 4,
                 'data-live' => route('search.live', $campaign),
                 'data-type' => $singularType,
@@ -29,7 +36,7 @@
                 {!! Form::text('name', null, [
                     'placeholder' => $type === 'posts' ? __('posts.placeholders.name') : __('crud.placeholders.name'),
                     'autocomplete' => 'off',
-                    'class' => 'form-control',
+                    'class' => '',
                     'maxlength' => 191,
                     'data-live' => route('search.live', $campaign),
                     'data-type' => $singularType,
@@ -48,7 +55,7 @@
             {{ __('entities.creator.actions.more') }}
         </a>
         <div class="qq-more-fields flex flex-col gap-5" style="{{ $singularType !== 'post' ? 'display: none' : null }}">
-            @php $allowNew = false; $dropdownParent = '#entity-modal';@endphp
+            @php $allowNew = false; $dropdownParent = '#primary-dialog';@endphp
             @include('entities.creator.forms.' . $singularType)
 
             @if (!in_array($type, ['tags', 'posts', 'attribute_templates']))
@@ -62,9 +69,8 @@
             @endif
         </div>
     </div>
+    @if (empty($origin))
     <div class="quick-creator-footer mt-4">
-
-        @if (empty($origin))
 
             <div class="join mr-4">
                 <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.create') }}">
@@ -90,26 +96,27 @@
                 </button>
             @endif
 
-            <a role="button" class="btn2 btn-sm btn-ghost" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
+            <a role="button" class="btn2 btn-sm btn-ghost" onclick="this.closest('dialog').close('close')" aria-label="{{ __('crud.delete_modal.close') }}">
                 {{ __('crud.cancel') }}
             </a>
-
-        @else
-            <div class="text-center">
-            <button class="btn2 btn-primary quick-creator-submit" data-entity-type="{{ $singularType }}">
-                <span>
-                    <x-icon class="plus"></x-icon> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
-                </span>
-                <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
-            </button>
-            </div>
-        @endif
     </div>
+    @endif
     <div class="quick-creator-loading p-8 text-center text-lg" style="display: none">
         <x-icon class="load" />
     </div>
 </div>
 
+@if (isset($origin))
+    </article>
+    <footer class="bg-base-200 flex flex-wrap gap-3 justify-center items-center p-3">
+        <button class="btn2 btn-primary quick-creator-submit" data-entity-type="{{ $singularType }}">
+                <span>
+                    <x-icon class="plus"></x-icon> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
+                </span>
+            <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
+        </button>
+    </footer>
+@endif
     <input type="hidden" name="entity" value="{{ $type }}" />
 @if (!empty($target))
     <input type="hidden" name="_target" value="{{ $target }}" />

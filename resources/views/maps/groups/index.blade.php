@@ -9,23 +9,23 @@
 
 @section('entity-header-actions')
     @can('update', $model)
-        <div class="header-buttons flex gap-2 items-center justify-end">
+        <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
             <a href="https://docs.kanka.io/en/latest/entities/maps/groups.html" class="btn2 btn-sm" target="_blank">
                 <x-icon class="question"></x-icon>
-                {{ __('crud.actions.help') }}
+                <span class="hidden lg:inline">{{ __('crud.actions.help') }}</span>
             </a>
             @if ($model->explorable())
                 <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="btn2 btn-primary btn-sm">
                     <x-icon class="map"></x-icon>
-                    {{ __('maps.actions.explore') }}
+                    <span class="hidden lg:inline">{{ __('maps.actions.explore') }}</span>
                 </a>
             @endif
             <a href="{{ route('maps.map_groups.create', [$campaign, $model]) }}" class="btn2 btn-accent btn-sm"
-                data-toggle="ajax-modal" data-target="#entity-modal"
+                data-toggle="dialog" data-target="primary-dialog"
                 data-url="{{ route('maps.map_groups.create', [$campaign, $model]) }}"
             >
                 <x-icon class="plus"></x-icon>
-                {{ __('maps/groups.actions.add') }}
+                <span class="hidden lg:inline">{{ __('maps/groups.actions.add') }}</span>
             </a>
         </div>
     @endcan

@@ -1,5 +1,5 @@
 <x-grid type="1/1">
-    @foreach ($model->participants as $participant)
+    @forelse ($model->participants as $participant)
         @if ($participant->isMember() || (auth()->check() && auth()->user()->can('view', $participant->entity())))
             @can('update', $model)
                 {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $campaign, $model, $participant]]) !!}
@@ -22,6 +22,10 @@
             @endcan
         </div>
         @endif
-    @endforeach
+    @empty
+        <p class="text-neutral-content">{{ __('conversations.hints.empty') }}</p>
+    @endforelse
+
+
 </x-grid>
 

@@ -20,7 +20,7 @@
     </x-grid>
 @else
     <x-grid type="1/1">
-        @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id', 'dropdownParent' => $dropdownParent ?? '#entity-modal', 'allowClear' => false])
+        @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id', 'dropdownParent' => $dropdownParent ?? '#primary-dialog', 'allowClear' => false])
     </x-grid>
 @endif
 
@@ -29,7 +29,7 @@
         <div class="flex gap-2 md:gap-4 items-center">
             <div class="grow calendar-existing-event-field">
                 @include('cruds.fields.entity', [
-                    'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#entity-modal' : null),
+                    'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#primary-dialog' : null),
                     'required' => true
                 ])
             </div>

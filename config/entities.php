@@ -24,7 +24,7 @@ return [
         'ability' => 16,
         'map' => 17,
         'timeline' => 18,
-        'menu_link' => 19,
+        'bookmark' => 19,
         'creature' => 20,
     ],
 
@@ -48,7 +48,7 @@ return [
         'timeline' => 'App\Models\Timeline',
         'attribute_template' => 'App\Models\AttributeTemplate',
         'dice_roll' => 'App\Models\DiceRoll',
-        'menu_link' => 'App\Models\MenuLink',
+        'bookmark' => 'App\Models\Bookmark',
         'relation' => 'App\Models\Relation',
     ],
 
@@ -72,7 +72,7 @@ return [
         'timelines' => 'App\Models\Timeline',
         'attribute_templates' => 'App\Models\AttributeTemplate',
         'dice_rolls' => 'App\Models\DiceRoll',
-        'menu_links' => 'App\Models\MenuLink',
+        'bookmarks' => 'App\Models\Bookmark',
         'relations' => 'App\Models\Relation',
     ],
 
@@ -95,7 +95,7 @@ return [
         'ability' => 'fa-duotone fa-fire',
         'map' => 'fa-duotone fa-map',
         'timeline' => 'fa-duotone fa-list-timeline',
-        'menu_link' => 'fa-duotone fa-bookmark',
+        'bookmark' => 'fa-duotone fa-bookmark',
         'creature' => 'fa-duotone fa-deer',
     ]
 ];

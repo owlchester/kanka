@@ -1,10 +1,10 @@
 @can('organisation', [$model, 'add'])
-    <div class="header-buttons flex gap-2 items-center justify-end">
+    <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
         <a href="{{ route('characters.character_organisations.create', [$campaign, $model]) }}"
-            class="btn2 btn-sm btn-accent" data-toggle="dialog-ajax"
-            data-target="organisation-dialog" data-url="{{ route('characters.character_organisations.create', [$campaign, $model]) }}">
+            class="btn2 btn-sm btn-accent" data-toggle="dialog"
+            data-target="primary-dialog" data-url="{{ route('characters.character_organisations.create', [$campaign, $model]) }}">
             <x-icon class="plus"></x-icon>
-            {!! \App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation')) !!}
+            <span class="hidden lg:inline">{!! \App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation')) !!}</span>
         </a>
     </div>
 @endcan

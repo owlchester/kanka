@@ -24,7 +24,7 @@
 
 @php $firstBlock = true @endphp
 <div class="md:hidden" id="sm-a">
-    <select name="menu-switcher" class="form-control submenu-switcher">
+    <select name="menu-switcher" class="w-full submenu-switcher">
         @foreach ($modelMenuItems as $section => $menuItems)
             @if (!$firstBlock)
                 <option disabled>----</option>
@@ -34,7 +34,7 @@
                         name="{{ $key }}"
                         data-route="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $model : $model->entity)]) }}"
                         @if($key == $active) selected="selected" @endif
-                        @if(Arr::get($menuItem, 'ajax')) data-toggle="ajax-modal" data-target="#large-modal" @endif
+                        @if(Arr::get($menuItem, 'ajax')) data-toggle="dialog" data-target="primary-dialog" data-url="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $model : $model->entity)]) }}" @endif
                 >
                     {{ __($menuItem['name']) }}
                     @if (!empty($menuItem['count']))

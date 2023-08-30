@@ -68,7 +68,7 @@ class Tags extends Component
                     $this->tags[$tag->id] = $tag;
                 }
             }
-        } elseif (!empty($this->model) && ($this->model instanceof \App\Models\CampaignDashboardWidget || $this->model instanceof \App\Models\MenuLink)) {
+        } elseif (!empty($this->model) && ($this->model instanceof \App\Models\CampaignDashboardWidget || $this->model instanceof \App\Models\Bookmark)) {
             foreach ($this->model->tags()->get() as $tag) {
                 $this->tags[$tag->id] = $tag;
             }

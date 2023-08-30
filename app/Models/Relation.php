@@ -230,9 +230,9 @@ class Relation extends Model
     {
         return $options + ['entity' => $this->owner_id, 'relation' => $this->id, 'mode' => 'table'];
     }
-    public function actionDeleteConfirmOptions(): string
+    public function actionDeleteConfirmOptions(): array
     {
-        return 'data-mirrored="' . $this->isMirrored() . '"';
+        return ['mirrored' => $this->isMirrored()];
     }
 
     /**

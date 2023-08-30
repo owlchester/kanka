@@ -11,14 +11,13 @@
     <div class="timeline-item p-0 relative rounded-sm mt-0 ml-16 mr-4">
         <x-box css="flex gap-2 flex-col p-2 mb-5" :padding="0">
             <div class="timeline-item-head flex gap-2 items-center">
-                <h3 class="grow cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }} !visible text-base" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
-
-                    <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
-                    <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
+                <h3 class="grow flex gap-2 items-center cursor-pointer element-toggle m-0 {{ $element->collapsed() ? 'animate-collapsed' : null }} text-base" data-animate="collapse" data-target="#timeline-element-body-{{ $element->id }}">
+                    <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
+                    <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
                     {!! $element->htmlName() !!}
 
                     @if (isset($element->date) || $element->use_event_date && isset($element->entity->event->date))
-                        <span class="text-muted">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
+                        <span class="text-neutral-content text-sm">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
                     @endif
                     @if($element->entity && $element->entity->is_private)
                         <i class="fa-solid fa-lock" data-title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" aria-hidden="true"></i>
@@ -41,8 +40,10 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="#" class="delete-confirm text-error" data-toggle="modal" data-name="{{ $element->elementName() }}"
-                                       data-target="#delete-confirm" data-delete-target="delete-form-timeline-element-{{ $element->id }}"
+                                    <a href="#" class="text-error"
+                                       data-toggle="dialog"
+                                       data-target="primary-dialog"
+                                       data-url="{{ route('confirm-delete', [$campaign, 'route' => route('timelines.timeline_elements.destroy', [$campaign, $timeline, $element, 'from' => 'view']), 'name' => $element->elementName(), 'permanent' => true]) }}"
                                        title="{{ __('crud.remove') }}">
                                         <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
                                     </a>
@@ -66,7 +67,7 @@
                     @endcan
                 </div>
             </div>
-            <div class="timeline-item-body entity-content collapse {{ $element->collapsed() ? 'out' : 'in' }} !visible" id="timeline-element-body-{{ $element->id }}">
+            <div class="timeline-item-body entity-content overflow-hidden @if ($element->collapsed()) hidden @endif" id="timeline-element-body-{{ $element->id }}">
                 {!! \App\Facades\Mentions::mapAny($element) !!}
 
                 @if ($element->use_entity_entry && $element->entity && $element->entity->child->hasEntry())

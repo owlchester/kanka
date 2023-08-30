@@ -1,5 +1,7 @@
-var quickCreatorModalID = '#entity-modal';
+var quickCreatorModalID = '#primary-dialog';
 var quickCreatorSubmitBtn;
+
+let loadingArticle, selectionArticle, formArticle;
 
 $(document).ready(function () {
     $(document).on('shown.bs.modal shown.bs.popover', function() {
@@ -7,15 +9,21 @@ $(document).ready(function () {
     });
 
     $('.quick-creator-subform').click(function () {
-        $.ajax({
-            url: $(this).data('url')
-        }).done(function (data) {
-            $(quickCreatorModalID).find('.modal-content').show().html(data);
-            $(quickCreatorModalID).find('.modal-spinner').hide();
-            $(quickCreatorModalID).modal();
-
+        $(document).on('shown.bs.modal', function() {
             quickCreatorSubformHandler();
         });
+        window.openDialog('primary-dialog', $(this).data('url'));
+        /*$.ajax({
+            url: $(this).data('url')
+        }).done(function (data) {
+            console.log('trying');
+            //$('#qq-modal-form').show().html(data);
+            //$(quickCreatorModalID).find('.modal-spinner').hide();
+            console.log($(quickCreatorModalID));
+            $(quickCreatorModalID).html(data).show();
+
+            quickCreatorSubformHandler();
+        });*/
     });
 });
 
@@ -24,6 +32,9 @@ $(document).ready(function () {
  * Quick Entity Creator UI
  */
 function quickCreatorUI() {
+    loadingArticle = $('#qq-modal-loading');
+    selectionArticle = $('#qq-modal-selection');
+    formArticle = $('#qq-modal-form');
     $('[data-toggle="entity-creator"]').unbind('click').click(function(e) {
         e.preventDefault();
 
@@ -41,8 +52,9 @@ function quickCreatorUI() {
             context: this
         }).done(function (data) {
 
-            $(quickCreatorModalID).find('.modal-content').show().html(data);
-            $(quickCreatorModalID).find('.modal-spinner').hide();
+            loadingArticle.hide();
+            selectionArticle.hide();
+            formArticle.show().html(data);
 
             quickCreatorSubformHandler();
             quickCreatorToggles();
@@ -68,7 +80,7 @@ function quickCreatorDuplicateName() {
             if (res.length > 0) {
                 let entities = Object.keys(res).map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'; }).join(', ');
                 $(this).parent().parent().find('.duplicate-entities').html(entities);
-                $(this).parent().parent().find('.duplicate-entity-warning').fadeIn();
+                $(this).parent().parent().find('.duplicate-entity-warning').show();
             } else {
                 $(this).parent().parent().find('.duplicate-entity-warning').hide();
             }
@@ -77,10 +89,8 @@ function quickCreatorDuplicateName() {
 }
 
 function quickCreatorLoadingModal() {
-    $(quickCreatorModalID)
-        .find('.modal-content').hide();
-    $(quickCreatorModalID)
-        .find('.modal-spinner').show();
+    $('#qq-modal-form').hide();
+    $('#qq-modal-loading').show();
 }
 
 /**
@@ -89,6 +99,9 @@ function quickCreatorLoadingModal() {
 function quickCreatorSubformHandler() {
 
     quickCreatorSubmitBtn = $('.quick-creator-submit');
+    if (quickCreatorSubmitBtn.length === 0) {
+        return;
+    }
 
     window.initForeignSelect();
     window.initTags();
@@ -143,17 +156,19 @@ function quickCreatorSubformHandler() {
                 }
                 field.trigger('change');
 
-                $(quickCreatorModalID).find('.modal-content').html('').show();
-                $(quickCreatorModalID).find('.modal-spinner').hide();
-                $(quickCreatorModalID).modal('toggle');
+                $('#qq-modal-form').html('').show();
+                $('#qq-modal-loading').hide();
+                $('#qq-modal-selection').show();
+                let target = document.getElementById('primary-dialog');
+                target.close();
 
                 quickCreatorHandleEvents();
 
                 return;
             }
 
-            $(quickCreatorModalID).find('.modal-content').html(result).show();
-            $(quickCreatorModalID).find('.modal-spinner').hide();
+            $('#qq-modal-form').html(result).show();
+            $('#qq-modal-loading').hide();
             quickCreatorUI();
             quickCreatorHandleEvents();
 
@@ -208,8 +223,8 @@ function quickCreatorBackButton() {
             context: this
         }).done(function (result) {
             let target = $(this).data('target');
-            $(target).find('.modal-content').html(result).show();
-            $(target).find('.modal-spinner').hide();
+            formArticle.html(result).show();
+            loadingArticle.hide();
             quickCreatorUI();
         });
     });
@@ -234,7 +249,7 @@ function quickCreatorToggles() {
             url: $(this).data('url')
         })
             .done(function (result) {
-                $('#entity-modal').find('.modal-content').html(result).show();
+                formArticle.html(result).show();
                 quickCreatorHandleEvents();
             })
         ;

@@ -1,7 +1,5 @@
 import './tags.js';
 import './components/select2.js';
-
-import deleteConfirm from './components/delete-confirm.js';
 import dynamicMentions from "./mention";
 
 
@@ -12,23 +10,11 @@ $(document).ready(function() {
     initSpectrum();
     initSubmenuSwitcher();
 
-    let deleteConfirmForms = $('#delete-confirm-form');
-    if (deleteConfirmForms.length > 0) {
-        deleteConfirmForms.on('keyup keypress', function (e) {
-            var keyCode = e.keyCode || e.which;
-            if (keyCode === 13) {
-                e.preventDefault();
-                return false;
-            }
-        });
-    }
-
     // Treeview for locations
     treeViewInit();
 
     manageTabs();
 
-    deleteConfirm();
     dynamicMentions();
     initAjaxPagination();
     initDynamicDelete();
@@ -47,7 +33,6 @@ $(document).ready(function() {
         initSpectrum();
         initDynamicDelete();
         initImageRemoval();
-        deleteConfirm();
         initFeedbackButtons();
         window.initDialogs();
         window.initTooltips();
@@ -173,14 +158,18 @@ function initAjaxPagination() {
  * in a modal.
  */
 function initDynamicDelete() {
-    $('[data-toggle="confirm-delete"]').on('click', function (e) {
+    $('[data-toggle="confirm-delete"]').unbind('click').on('click', function (e) {
         e.preventDefault();
         if ($(this).data('confirming') === 1) {
             $(this).addClass('loading');
             $(this).html('');
             let target = $(this).data('target');
-            //console.log('target', target);
-            $(target).submit();
+            if ($(target).length === 0) {
+                console.error('Unknown target', target);
+            } else {
+                $(target).submit();
+            }
+
             return;
         }
 
@@ -295,6 +284,7 @@ import './keep-alive';
 import './quick-creator';
 //import './tutorial')
 import './datagrids';
+import './animations';
 import './quick-links';
 import './post-layouts';
 import './members';

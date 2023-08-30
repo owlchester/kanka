@@ -6,9 +6,9 @@
 * @var \Illuminate\Database\Eloquent\Collection $pinnedNotes
 */
 ?>
-<div class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif {{ $post->collapsed() ? "collapsed" : null }}" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
+<div class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif " data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
     <div class="post-header flex gap-1 md:gap-2 items-center">
-        <div class="flex gap-2 items-center grow cursor-pointer"  data-toggle="collapse" data-target="#post-body-{{ $post->id }}">
+        <div class="grow flex gap-2 items-center cursor-pointer element-toggle {{ $post->collapsed() ? "animate-collapsed" : null }}" data-animate="collapse" data-target="#post-body-{{ $post->id }}">
             <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
             <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
             <h3 class="post-title grow {{ $post->collapsed() ? "collapsed" : null }}"  >
@@ -74,10 +74,9 @@
         </div>
     </div>
     <div class="bg-box rounded post entity-note" id="post-{{ $post->id }}">
-        <div class="entity-content box-body collapse !visible @if(!$post->collapsed()) in @endif" id="post-body-{{ $post->id }}">
+        <div class="entity-content box-body overflow-hidden @if ($post->collapsed()) hidden @endif" id="post-body-{{ $post->id }}">
             <div class="flex flex-col gap-2 p-4">
                 <div class="post-details mb-2 entity-note-details">
-
                     @if ($post->location)
                     <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
                         <x-icon entity="location" />
@@ -88,7 +87,6 @@
                 <div class="entity-note-body post-body">
                     {!! $post->entry() !!}
                 </div>
-
 
                 <div class="post-footer entity-note-footer text-right text-muted text-xs ">
                     <span class="post-footer-element post-created entity-note-footer-element entity-note-created" data-title="{{ __('entities/notes.footer.created', [

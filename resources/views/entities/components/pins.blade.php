@@ -17,17 +17,17 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
         </div>
         @endads
         <div class="col-span-2 sidebar-section-box entity-pins overflow-hidden flex flex-col gap-2 {{ $model->entity->hasPins() ? '' : 'entity-empty-pin' }}">
-            <div class="sidebar-section-title cursor-pointer text-lg user-select border-b flex items-center gap-2" data-toggle="collapse" data-target="#sidebar-pinned-elements">
-                <i class="fa-solid fa-chevron-right" aria-hidden="true" style="display: none"></i>
-                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            <div class="sidebar-section-title cursor-pointer text-lg user-select border-b element-toggle flex items-center gap-2" data-animate="collapse" data-target="#sidebar-pinned-elements">
+                <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
+                <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
 
                 <span class="grow">{{ __('entities/pins.title') }}</span>
 
-                <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank" aria-label="Open docs about profile sidebar">
+                <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank" aria-label="{{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}" data-toggle="tooltip" data-title="{{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}">
                     <x-icon class="fa-solid fa-question-circle"></x-icon>
                 </a>
             </div>
-            <div class="sidebar-elements grid collapse !visible in overflow-hidden" id="sidebar-pinned-elements">
+            <div class="sidebar-elements grid overflow-hidden" id="sidebar-pinned-elements">
                 <div class="pins flex flex-col gap-2">
                     @includeWhen(!$model->entity->pinnedFiles->isEmpty() || !$model->entity->pinnedAliases->isEmpty(), 'entities.components.assets')
                     @include('entities.components.relations')

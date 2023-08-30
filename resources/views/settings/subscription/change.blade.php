@@ -1,13 +1,10 @@
+<x-dialog.header>
+    {{ __('settings.subscription.change.title') }}
+</x-dialog.header>
 
+<article class="text-center max-w-xl">
 
-<div class="modal-body">
-    @include('partials.modals.close')
-    <div class="quick-creator-header mt-8 pb-4 mb-4">
-        <div class="text-2xl">
-            {{ __('settings.subscription.change.title') }}
-        </div>
-    </div>
-
+    <x-grid type="1/1">
     @if ($user->isFrauding())
         <x-alert type="warning">
             {{ __('settings.subscription.errors.failed', ['email' => config('app.email')]) }}
@@ -25,14 +22,16 @@
 
     @if (!$cancel)
         @if ($hasPromo)
-            <label>{{ __('settings.subscription.coupon.label') }}</label>
-            <div class="join mb-5">
-                <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control join-item" data-url="{{ route('subscription.check-coupon') }}" />
+            <div class="field">
+                <label>{{ __('settings.subscription.coupon.label') }}</label>
+                <div class="join">
+                    <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class=" join-item" data-url="{{ route('subscription.check-coupon') }}" />
 
-                <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline join-item" data-title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
-                    <i class="fa-solid fa-check check"></i>
-                    <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
-                </button>
+                    <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline join-item" data-title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
+                        <i class="fa-solid fa-check check"></i>
+                        <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
+                    </button>
+                </div>
             </div>
             <x-alert type="success" :hidden="true" id="coupon-success"></x-alert>
             <x-alert type="warning" :hidden="true" id="coupon-invalid">
@@ -40,8 +39,7 @@
             </x-alert>
         @endif
         <div class="card" style="margin: 0">
-
-            <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
+            <ul class="nav-tabs bg-base-300 !p-1 rounded " role="tablist">
                 @if (! $limited)
                 <li role="presentation" class="active">
                     <a href="#card" aria-controls="home" role="tab" data-toggle="tab">
@@ -74,10 +72,10 @@
                 <div role="tabpanel" class="tab-pane active" id="card">
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
 
-                    <x-grid type="1/1">
+                    <x-grid type="1/1" css="text-left">
                     @if (!$card)
                         <x-forms.field field="card-name" :label="__('settings.subscription.payment_method.card_name')">
-                            {!! Form::text('card-holder-name', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('card-holder-name', null, ['class' => '']) !!}
                         </x-forms.field>
 
                         <x-forms.field field="card-number" :label="__('settings.subscription.payment_method.card')">
@@ -109,7 +107,7 @@
                                     null,
                                     [
                                         'placeholder' => __('settings.subscription.placeholders.downgrade_reason'),
-                                        'class' => 'form-control',
+                                        'class' => '',
                                         'style' => 'display: none',
                                         'rows' => 4,
                                         'id' => 'downgrade-reason-custom'
@@ -271,5 +269,5 @@
     @else
         @include('settings.subscription._cancel')
     @endif
-    </div>
-</div>
+    </div></x-grid>
+</article>

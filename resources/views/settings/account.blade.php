@@ -16,7 +16,7 @@
     {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.email']]) !!}
         <x-grid type="1/1">
             <x-forms.field field="email" :required="true" :label="__('profiles.fields.email')">
-                {!! Form::email('email', null, ['placeholder' => __('profiles.placeholders.email'), 'class' => 'form-control']) !!}
+                {!! Form::email('email', null, ['placeholder' => __('profiles.placeholders.email'), 'class' => '']) !!}
             </x-forms.field>
 
             <div class="text-right">
@@ -37,10 +37,10 @@
 
         <x-grid type="1/1">
             <x-forms.field field="new-password" :required="true" :label="__('profiles.fields.new_password')">
-                    {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
+                    {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => '']) !!}
             </x-forms.field>
             <x-forms.field field="password-confirm" :required="true" :label="__('profiles.fields.new_password_confirmation')">
-                {!! Form::password('password_new_confirmation', ['placeholder' => __('profiles.placeholders.new_password_confirmation'), 'class' => 'form-control']) !!}
+                {!! Form::password('password_new_confirmation', ['placeholder' => __('profiles.placeholders.new_password_confirmation'), 'class' => '']) !!}
             </x-forms.field>
 
             <div class="text-right">
@@ -61,7 +61,7 @@
         <x-grid type="1/1">
             <p class="help">{{ __('settings.account.social.helper', ['provider' => ucfirst($user->provider)]) }}</p>
             <x-forms.field field="new-password" :label="__('profiles.fields.new_password')">
-                {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
+                {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => '']) !!}
             </x-forms.field>
 
             <div class="text-right">
@@ -123,7 +123,7 @@
                 {!! __('profiles.sections.delete.goodbye', ['code' => '<code>goodbye</code>']) !!}
             </p>
             <x-forms.field field="goodbye" :required="true">
-                {!! Form::text('goodbye',null, ['class' => 'form-control','required']) !!}
+                {!! Form::text('goodbye',null, ['class' => '','required']) !!}
             </x-forms.field>
             <x-buttons.confirm type="danger" outline="true" full="true">
                 <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>

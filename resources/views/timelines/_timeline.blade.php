@@ -14,7 +14,7 @@ $loadedElements = [];
 
     <x-box css="flex gap-2 flex-col p-2 timeline-era entity-note" :padding="0" id="era{{ $era->id }}">
         <div class="timeline-era-head flex gap-2 items-center">
-            <h3 class="cursor-pointer grow element-toggle text-base {{ $era->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}">
+            <h3 class="grow cursor-pointer flex gap-2 items-center element-toggle text-base m-0 {{ $era->collapsed() ? 'animate-collapsed' : null }}" data-animate="collapse" data-target="#era-items-{{ $era->id }}">
 
                 <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
                 <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
@@ -36,15 +36,15 @@ $loadedElements = [];
                         <span class="sr-only">{{ __('crud.edit') }}</span>
                     </a>
 
-                    <a href="#" class="btn2 btn-ghost btn-xs text-red delete-confirm"
-                       data-toggle="modal" data-name="{{ $era->name }}" role="button"
-                       data-target="#delete-confirm" data-delete-target="delete-form-timeline-era-{{ $era->id }}"
+                    <a href="#" class="btn2 btn-ghost btn-xs text-red"
+                       role="button"
+                       data-toggle="dialog"
+                       data-target="primary-dialog"
+                       data-url="{{ route('confirm-delete', [$campaign, 'route' => route('timelines.timeline_eras.destroy', [$campaign, $timeline, $era, 'from' => 'view']), 'name' => $era->name, 'permanent' => true]) }}"
                        title="{{ __('crud.remove') }}">
                         <x-icon class="trash"></x-icon>
                         <span class="sr-only">{{ __('crud.remove') }}</span>
                     </a>
-                    {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $campaign, $timeline, $era, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-era-' . $era->id]) !!}
-                    {!! Form::close() !!}
                 @endcan
             </div>
         </div>
@@ -53,7 +53,7 @@ $loadedElements = [];
         </div>
     </x-box>
 
-    <ul class="timeline relative m-0 p-0 list-none collapse {{ $era->is_collapsed ? 'out' : 'in' }} !visible" id="era-items-{{ $era->id }}">
+    <ul class="timeline relative m-0 p-0 list-none overflow-hidden @if ($era->collapsed()) hidden @endif" id="era-items-{{ $era->id }}">
     @foreach($era->orderedElements as $element)
         @php
             $position = $element->position + 1;
@@ -118,19 +118,3 @@ $loadedElements = [];
     @endcan
 @endif
 
-
-@section('modals')
-    @can('update', $timeline)
-        @foreach($loadedElements as $element)
-            @php
-                $position = $element->position + 1;
-            @endphp
-            @if(!empty($element->entity_id) && empty($element->entity->child))
-                @continue
-            @endif
-
-            {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_elements.destroy', $campaign, $timeline, $element, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-element-' . $element->id]) !!}
-            {!! Form::close() !!}
-        @endforeach
-    @endcan
-@endsection

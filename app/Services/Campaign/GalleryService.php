@@ -111,7 +111,7 @@ class GalleryService
      */
     public function totalSpace(): int
     {
-        if ($this->campaign->premium()) {
+        if ($this->campaign->boosted()) {
             return config('limits.gallery.premium');
         }
         return config('limits.gallery.standard');

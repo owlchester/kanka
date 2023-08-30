@@ -314,8 +314,8 @@ class FilterService
             $options['_from'] = 'quicklink';
         }
 
-        if ($quickLinkID = $this->request->get('quick-link')) {
-            $options['quick-link'] = (int) $quickLinkID;
+        if ($quickLinkID = $this->request->get('bookmark')) {
+            $options['bookmark'] = (int) $quickLinkID;
         }
 
         if (in_array($this->request->get('m'), ['table', 'grid'])) {

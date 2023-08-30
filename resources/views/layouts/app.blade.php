@@ -82,7 +82,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="1">
     {{ __('crud.navigation.skip_to_content') }}
 </a>
-    <div id="app" class="wrapper h-full relative overflow-x-hidden overflow-y-auto mt-12">
+    <div id="app" class="wrapper h-full relative mt-12">
         @include('layouts.header', ['toggle' => $showSidebar])
 
         @include('layouts.sidebars.' . ($sidebar ?? 'app'))
@@ -145,27 +145,19 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     </div>
 
     <!-- Default modal used throughout the app -->
-    <div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100 rounded-2xl"></div>
-            <div class="modal-spinner" style="display: none">
-                <div class="modal-body text-center text-lg">
-                    <x-icon class="load" />
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Extra-large modal on desktop for more data -->
-    <div class="modal fade z-[9900]" id="large-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content bg-base-100 rounded-2xl" id="large-modal-content"></div>
-        </div>
-    </div>
+{{--    <div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">--}}
+{{--        <div class="modal-dialog" role="document">--}}
+{{--            <div class="modal-content bg-base-100 rounded-2xl"></div>--}}
+{{--            <div class="modal-spinner" style="display: none">--}}
+{{--                <div class="modal-body text-center text-lg">--}}
+{{--                    <x-icon class="load" />--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <x-dialog id="primary-dialog" :loading="true" />
-
-    @includeWhen(auth()->check(), 'layouts.modals.delete')
+    <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
 
     @yield('modals')
 

@@ -11,7 +11,7 @@
     {!! Form::text(
         $fieldname ?? 'custom_icon',
         \App\Facades\FormCopy::field($fieldname ?? 'custom_icon')->string(),
-        ['class' => 'form-control',
+        ['class' => '',
         'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-aura"']),
         'list' => 'map-marker-icon-list',
         'autocomplete' => 'off',

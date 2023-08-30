@@ -7,12 +7,12 @@
         </h3>
         <div class="text-muted mb-2">{{ __('front/newsletter.headline', ['kanka' => config('app.name')]) }}</div>
 
-        <a class="btn2 btn-ghost" data-toggle="collapse" href="#newsletter-collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn2 btn-ghost" data-animate="collapse" data-target="#newsletter-collapse" href="#newsletter-collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
             {{ __('front/newsletter.actions.learn_more') }}
         </a>
 
 
-        <div class="collapse my-2" id="newsletter-collapse">
+        <div class="hidden my-2" id="newsletter-collapse">
         @endif
             <div id="mc_embed_signup">
                 <form action="https://kanka.us19.list-manage.com/subscribe/post?u=e971e01b5e0f6f2597dad7d8f&amp;id=2fb0754d39" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -21,19 +21,19 @@
                             <label for="mce-EMAIL" class="col-sm-2 col-form-label">{{ __('auth.login.fields.email') }}  <span class="asterisk text-danger">*</span>
                             </label>
                             <div class="col-sm-10">
-                                <input type="email" value="" name="EMAIL" class="form-control required email" required id="mce-EMAIL">
+                                <input type="email" value="" name="EMAIL" class=" required email" required id="mce-EMAIL">
                             </div>
                         </div>
                         <div class="mc-field-group form-group row">
                             <label for="mce-FNAME" class="col-sm-2 col-form-label">{{ __('front/newsletter.fields.firstname') }}</label>
                             <div class="col-sm-10">
-                                <input type="text" value="" name="FNAME" class="form-control" id="mce-FNAME">
+                                <input type="text" value="" name="FNAME" class="" id="mce-FNAME">
                             </div>
                         </div>
                         <div class="mc-field-group form-group row">
                             <label for="mce-LNAME" class="col-sm-2 col-form-label">{{ __('front/newsletter.fields.lastname') }}</label>
                             <div class="col-sm-10">
-                                <input type="text" value="" name="LNAME" class="form-control" id="mce-LNAME">
+                                <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
                             </div>
                         </div>
                         <div class="form-group row">

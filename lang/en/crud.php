@@ -23,6 +23,7 @@ return [
         'new_child'         => 'New child',
         'new_post'          => 'New post',
         'next'              => 'Next',
+        'open'              => 'Open',
         'print'             => 'Print',
         'reorder'           => 'Reorder',
         'reset'             => 'Reset',

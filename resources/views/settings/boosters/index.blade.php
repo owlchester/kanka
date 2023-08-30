@@ -124,8 +124,8 @@
         @foreach ($boosts as $boost)
             @include('settings.boosters._campaign', ['campaign' => $boost->campaign])
         @endforeach
-        @foreach ($campaigns as $campaign)
-            @include('settings.boosters._campaign')
+        @foreach ($campaigns as $c)
+            @include('settings.boosters._campaign', ['campaign' => $c])
         @endforeach
     </div>
 

@@ -22,17 +22,17 @@
             @continue
         @endif
         @if ($previousPosition != $item->position)
-            <tr class="active cursor-pointer" data-toggle="collapse" data-target=".inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }}">
-                <th colspan="@if (auth()->check())5 @else 4 @endif" class="text-muted">
+            <tr class="active cursor-pointer" data-animate="collapse" data-target=".inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }}">
+                <th colspan="@if (auth()->check())5 @else 4 @endif" class="text-neutral-content text-left">
                     {!! $item->position ?: '<i>' . __('entities/inventories.show.unsorted') . '</i>' !!}
                 </th>
             </tr>
             <?php $previousPosition = $item->position; ?>
         @endif
-        <tr class="collapse !visible inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }} in">
+        <tr class="overflow-hidden inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }}">
             <td style="width: 50px">
                 @if ($item->is_equipped)
-                    <i class="fa-solid fa-check" data-title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                    <i class="fa-solid fa-check" data-title="{{ __('entities/inventories.fields.is_equipped') }}" data-animate="collapse" aria-hidden="true"></i>
                     <span class="sr-only">{{ __('entities/inventories.fields.is_equipped') }}</span>
                 @endif
             </td>

@@ -23,7 +23,7 @@ $fromOrg = request()->get('from') === 'org';
         'allowNew' => false,
         'required' => true,
         'allowClear' => false,
-        'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#entity-modal' : null),
+        'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#primary-dialog' : null),
     ])
 @endif
 
@@ -38,7 +38,7 @@ $fromOrg = request()->get('from') === 'org';
         'placeholder' => __('organisations.members.placeholders.parent'),
         'route' => 'search.organisation-member',
         'model' => $member->organisation,
-        'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#entity-modal' : null),
+        'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#primary-dialog' : null),
     ])
 @endif
     <x-forms.field

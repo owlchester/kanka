@@ -1,5 +1,4 @@
-<div class="modal-body entity-creator-body-{{ $type }}">
-    @include('partials.modals.close')
+<div class="entity-creator-body-{{ $type }}">
 
     @include('entities.creator.header.header')
     <div class="quick-creator-body">

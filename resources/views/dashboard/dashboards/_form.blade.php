@@ -10,7 +10,7 @@
         field="name"
         :required="true"
         :label="__('dashboard.dashboards.fields.name')">
-        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('dashboard.dashboards.placeholders.name')]) !!}
+        {!! Form::text('name', null, ['class' => '', 'placeholder' => __('dashboard.dashboards.placeholders.name')]) !!}
     </x-forms.field>
 
     <div class="field grid grid-cols-2 gap-5">

@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\MenuLink;
+use App\Models\Bookmark;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +20,7 @@ class TaggableObserver
      */
     protected function saveTags(Model $model)
     {
-        /** @var MenuLink $model */
+        /** @var Bookmark $model */
         if (!request()->has('save_tags')) {
             return;
         }

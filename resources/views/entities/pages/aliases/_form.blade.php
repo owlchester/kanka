@@ -14,7 +14,7 @@
             null,
             [
                 'placeholder' => __('entities/aliases.placeholders.name'),
-                'class' => 'form-control',
+                'class' => '',
                 'maxlength' => 45
             ]
         ) !!}

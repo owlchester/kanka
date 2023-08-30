@@ -154,7 +154,7 @@ class DashboardWidgetController extends Controller
 
         $enabledEntities = $this
             ->entityService
-            ->getEnabledEntities($campaign, ['menu_links']);
+            ->getEnabledEntities($campaign, ['bookmarks']);
         foreach ($enabledEntities as $entity) {
             $entities[$entity] = __('entities.' . $entity);
         }

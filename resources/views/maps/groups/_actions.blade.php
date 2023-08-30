@@ -4,7 +4,7 @@
         {{ __('crud.save') }}
     </button>
     <div class="dropdown">
-        <button type="button" class="btn2 btn-primary btn-sm join-item dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn2 btn-primary join-item dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">

@@ -9,5 +9,5 @@
         6 => __('dashboard.widgets.widths.6'),
         8 => __('dashboard.widgets.widths.8'),
         9 => __('dashboard.widgets.widths.9')
-    ], null, ['class' => 'form-control']) !!}
+    ], null, ['class' => '']) !!}
 </x-forms.field>

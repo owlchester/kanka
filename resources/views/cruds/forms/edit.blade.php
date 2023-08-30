@@ -3,11 +3,13 @@
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('crud.titles.editing', ['name' => $model->name])  . ' - ' . __('entities.' . $name),
-    'breadcrumbs' => [
+    'breadcrumbs' => (isset($entity) ? [
         Breadcrumb::entity($entity ?? $model->entity)->list(),
         Breadcrumb::show(),
         __('crud.edit'),
-    ],
+    ] : [
+        __('crud.edit'),
+    ]),
     'mainTitle' => false,
     'centered' => true,
 ])
@@ -91,5 +93,5 @@
 
 @section('modals')
     @parent
-    @includeWhen(!empty($editingUsers) && !empty($model), 'cruds.forms.edit_warning', ['model' => $model])
+    @includeWhen(!empty($editingUsers) && !empty($model->entity), 'cruds.forms.edit_warning', ['model' => $model])
 @endsection

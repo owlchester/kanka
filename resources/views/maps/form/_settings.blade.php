@@ -48,7 +48,7 @@ if (isset($model) && $model->isChunked()) {
         FormCopy::field('max_zoom')->string(),
         [
         'placeholder' => 5,
-        'class' => 'form-control',
+        'class' => '',
         'min' => 1,
         'max' => Map::MAX_ZOOM,
         ]
@@ -65,7 +65,7 @@ if (isset($model) && $model->isChunked()) {
         FormCopy::field('min_zoom')->string(),
         [
         'placeholder' => -2,
-        'class' => 'form-control',
+        'class' => '',
         'min' => Map::MIN_ZOOM,
         'max' => Map::MAX_ZOOM_REAL,
         ]
@@ -82,7 +82,7 @@ if (isset($model) && $model->isChunked()) {
         FormCopy::field('initial_zoom')->string(),
         [
         'placeholder' => 5,
-        'class' => 'form-control',
+        'class' => '',
         'min' => $minInitial,
         'max' => $maxInitial,
         ]
@@ -98,7 +98,7 @@ if (isset($model) && $model->isChunked()) {
         FormCopy::field('grid')->string(),
         [
         'placeholder' => __('maps.placeholders.grid'),
-        'class' => 'form-control',
+        'class' => '',
         'maxlength' => 4
         ]
         ) !!}
@@ -114,7 +114,7 @@ if (isset($model) && $model->isChunked()) {
             FormCopy::field('config[distance_name]')->string(),
             [
                 'placeholder' => __('maps.placeholders.distance_name'),
-                'class' => 'form-control',
+                'class' => '',
                 'maxlength' => 20
             ]
             ) !!}
@@ -130,7 +130,7 @@ if (isset($model) && $model->isChunked()) {
         'config[distance_measure]',
         FormCopy::field('config[distance_measure]')->string(),
         [
-            'class' => 'form-control',
+            'class' => '',
             'min' => 0.0001,
             'max' => 100.99,
             'step' => 0.0001,
@@ -171,7 +171,7 @@ if (isset($model) && $model->isChunked()) {
                             FormCopy::field('center_y')->string(),
                             [
                             'placeholder' => __('maps.placeholders.center_y'),
-                            'class' => 'form-control',
+                            'class' => '',
                             'min' => -90,
                             'step' => 0.001
                             ]
@@ -184,7 +184,7 @@ if (isset($model) && $model->isChunked()) {
                             FormCopy::field('center_x')->string(),
                             [
                             'placeholder' => __('maps.placeholders.center_x'),
-                            'class' => 'form-control',
+                            'class' => '',
                             'min' => -180,
                             'step' => 0.001
                             ]

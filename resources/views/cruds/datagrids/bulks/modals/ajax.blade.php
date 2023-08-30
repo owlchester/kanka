@@ -5,7 +5,6 @@
         </div>
     </div>
 </div>
-{!! Form::hidden('entity', $name) !!}
 {!! Form::hidden('models', null, ['id' => 'datagrid-bulk-ajax-models']) !!}
 {!! Form::hidden('mode', $mode) !!}
 {!! Form::close() !!}

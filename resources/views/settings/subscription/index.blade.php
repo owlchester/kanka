@@ -139,11 +139,9 @@
         </div>
     </div>
 
-    <div class="">
-        <p class="help-block">
-            {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
-        </p>
-    </div>
+    <p class="help-block my-5">
+        {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
+    </p>
     <input type="hidden" id="stripe-token" value="{{ config('services.stripe.key') }}" />
 @endsection
 
@@ -174,34 +172,7 @@
         </ul>
     </x-dialog>
 
-    <div class="modal fade" id="change-currency" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100">
-                @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended())
-                    @include('partials.forms._modal', [
-                        'title' => __('settings.subscription.currency.title'),
-                        'content' => 'settings.subscription.currency._blocked',
-                        'actions' => '',
-                    ])
-                @else
-                {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['billing.payment-method.save']]) !!}
-                @include('partials.forms._modal', [
-                    'title' => __('settings.subscription.currency.title'),
-                    'content' => 'settings.subscription.currency._form',
-                    'submit' => __('settings.subscription.actions.update_currency')
-                ])
-                <input type="hidden" name="from" value="{{ 'settings.subscription' }}" />
-                {!! Form::close() !!}
-                @endif
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="subscribe-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100"></div>
-        </div>
-    </div>
+    <x-dialog id="subscribe-confirm" :loading="true"></x-dialog>
 @endsection
 
 

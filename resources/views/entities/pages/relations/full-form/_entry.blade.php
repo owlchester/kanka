@@ -12,7 +12,7 @@
 
     @if(empty($relation) && (!isset($mirror) || $mirror == true))
         <x-forms.field field="two-way">
-            <label class="" data-toggle="collapse" data-target="#two-way-relation">
+            <label class="" data-animate="collapse" data-target="#two-way-relation">
                 {!! Form::checkbox('two_way') !!}
                 {{ __('entities/relations.fields.two_way') }}
                 <x-helpers.tooltip :title="__('entities/relations.hints.two_way')" />
@@ -20,13 +20,13 @@
             <p class="text-neutral-content md:hidden">{{ __('entities/relations.hints.two_way') }}</p>
         </x-forms.field>
 
-        <div class="collapse !visible" id="two-way-relation">
+        <div class="hidden" id="two-way-relation">
             <x-forms.field field="target-relation">
                 <label>
                     {!! __('entities/relations.fields.target_relation') !!}
                     <x-helpers.tooltip :title="__('entities/relations.hints.target_relation')" />
                 </label>
-                {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
+                {!! Form::text('target_relation', null, ['class' => '', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
                 <p class="text-neutral-content md:hidden">{{ __('entities/relations.hints.target_relation') }}</p>
             </x-forms.field>
         </div>

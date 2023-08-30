@@ -2,10 +2,12 @@
 
 namespace App\Services\Campaign;
 
+use App\Facades\CampaignCache;
 use App\Http\Requests\UpdateModuleName;
 use App\Models\EntityType;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Exception;
 
@@ -46,6 +48,8 @@ class ModuleEditService
 
         $this->campaign->settings = $settings;
         $this->campaign->updateQuietly();
+
+        Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
         //$this->campaign->touchQuietly();
 
         return $this;
@@ -67,6 +71,7 @@ class ModuleEditService
         }
         $this->campaign->settings = $settings;
         $this->campaign->saveQuietly();
+        Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
         return $this;
     }
 
@@ -80,6 +85,7 @@ class ModuleEditService
 
         $this->campaign->setting->{$module} = !$this->campaign->setting->{$module};
         $this->campaign->setting->saveQuietly();
+        Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
         return (bool) $this->campaign->setting->{$module};
     }
 }

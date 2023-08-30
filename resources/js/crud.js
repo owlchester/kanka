@@ -35,7 +35,6 @@ $(document).ready(function () {
     registerPermissionToggler();
     registerStoryActions();
     registerStoryLoadMore();
-    registerSidebarActions();
     registerTrustDomain();
     registerPrivacyToggle();
 });
@@ -84,7 +83,7 @@ function registerEntityNameCheck() {
 
                 if (entities.length > 0) {
                     $('#duplicate-entities').html(entities.join(', '));
-                    entityCreatorDuplicateWarning.fadeIn();
+                    entityCreatorDuplicateWarning.show();
                 }
             } else {
                 entityCreatorDuplicateWarning.hide();
@@ -180,7 +179,7 @@ function registerEntityCalendarForm() {
             if (defaultCalendarId) {
                 entityCalendarField.val(defaultCalendarId);
                 entityCalendarCancel.show();
-                entityCalendarSubForm.fadeIn();
+                entityCalendarSubForm.show();
                 loadCalendarDates(defaultCalendarId);
             }
             return false;
@@ -245,7 +244,7 @@ function registerEntityCalendarModal() {
     //var defaultCalendarId = entityCalendarAdd.data('default-calendar');
     if (entityCalendarField.val()) {
         entityCalendarCancel.show();
-        entityCalendarSubForm.fadeIn();
+        entityCalendarSubForm.show();
         loadCalendarDates(entityCalendarField.val());
     }
 
@@ -462,43 +461,23 @@ function registerStoryActions() {
     let posts = $('.entity-story-block .collapse');
     let togglers = $('.entity-story-block .element-toggle');
     $('.btn-post-collapse').unbind('click').click(function () {
-        posts.collapse('hide');
-        togglers.addClass('collapsed');
+        let elements = document.querySelectorAll('.element-toggle');
+        elements.forEach((e) => {
+            e.classList.add('animate-collapsed');
+            let target = document.querySelector(e.dataset.target);
+            target.classList.add('h-0');
+        });
         return false;
     });
 
     $('.btn-post-expand').unbind('click').click(function () {
-        posts.collapse('show');
-        togglers.removeClass('collapsed');
-        /*posts.each(function () {
-            let body = $(this).find('.entity-content');
-            if (!body.hasClass('in')) {
-                body.addClass('in');
-                body.prev().find('.fa-chevron-up').show();
-                body.prev().find('.fa-chevron-down').hide();
-                body.css('height', '');
-            }
-            let header = $(this).find('.post-toggle');
-            if (header.hasClass('collapsed')) {
-                header.removeClass('collapsed');
-            }
-        });*/
+        let elements = document.querySelectorAll('.element-toggle');
+        elements.forEach((e) => {
+            e.classList.remove('animate-collapsed');
+            let target = document.querySelector(e.dataset.target);
+            target.classList.remove('h-0');
+        });
         return false;
-    });
-}
-
-/**
- * Sidebars (right-side profile) elements can be collapsed after the page has been loaded
- */
-function registerSidebarActions() {
-    $('.sidebar-section-title').click(function () {
-        if ($(this).next().hasClass('in')) {
-            $(this).find('.fa-chevron-down').hide();
-            $(this).find('.fa-chevron-right').show();
-        } else {
-            $(this).find('.fa-chevron-right').hide();
-            $(this).find('.fa-chevron-down').show();
-        }
     });
 }
 

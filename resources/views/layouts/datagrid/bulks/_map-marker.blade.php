@@ -28,49 +28,51 @@ $typeOptions = [
 $groups = $model->groupOptions();
 $groups[-1] = __('crud.filters.options.none');
 ?>
-<x-forms.field field="icon" :label="__('maps/markers.fields.icon')">
-    {!! Form::select('icon', $iconOptions, null, ['class' => 'form-control', 'id' => 'icon']) !!}
-</x-forms.field>
+<x-grid>
+    <x-forms.field field="icon" :label="__('maps/markers.fields.icon')">
+        {!! Form::select('icon', $iconOptions, null, ['class' => '', 'id' => 'icon']) !!}
+    </x-forms.field>
 
-@if ($campaign->boosted())
-<x-forms.field field="custom-icon" :label="__('maps/markers.fields.custom_icon')">
-    {!! Form::text(
-        'custom_icon',
-        null,
-        [
-            'class' => 'form-control',
-            'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']),
-            'list' => 'map-marker-icon-list',
-            'autocomplete' => 'off'
-        ])
-    !!}
+    @if ($campaign->boosted())
+    <x-forms.field field="custom-icon" :label="__('maps/markers.fields.custom_icon')">
+        {!! Form::text(
+            'custom_icon',
+            null,
+            [
+                'class' => '',
+                'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']),
+                'list' => 'map-marker-icon-list',
+                'autocomplete' => 'off'
+            ])
+        !!}
 
-    <div class="hidden">
-        <datalist id="map-marker-icon-list">
-            @foreach (\App\Facades\MapMarkerCache::iconSuggestion() as $icon)
-                <option value="{{ $icon }}">{{ $icon }}</option>
-            @endforeach
-        </datalist>
-    </div>
-</x-forms.field>
-@endif
-<x-forms.field field="font-colour" :label="__('maps/markers.fields.font_colour')">
-    {!! Form::text('font_colour', null, ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
-</x-forms.field>
+        <div class="hidden">
+            <datalist id="map-marker-icon-list">
+                @foreach (\App\Facades\MapMarkerCache::iconSuggestion() as $icon)
+                    <option value="{{ $icon }}">{{ $icon }}</option>
+                @endforeach
+            </datalist>
+        </div>
+    </x-forms.field>
+    @endif
+    <x-forms.field field="font-colour" :label="__('maps/markers.fields.font_colour')">
+        {!! Form::text('font_colour', null, ['class' => ' spectrum', 'maxlength' => 6] ) !!}
+    </x-forms.field>
 
-<x-forms.field field="is-draggable" :label="__('maps/markers.fields.is_draggable')">
-    {{ Form::select('is_draggable',  $typeOptions, null, ['class' => 'form-control', 'id' => 'type_id']) }}
-</x-forms.field>
+    <x-forms.field field="is-draggable" :label="__('maps/markers.fields.is_draggable')">
+        {{ Form::select('is_draggable',  $typeOptions, null, ['class' => '', 'id' => 'type_id']) }}
+    </x-forms.field>
 
-<x-forms.field field="opacity" :label="__('maps/markers.fields.opacity')">
-    {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : null)), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0, 'id' => 'opacity'] ) !!}
-</x-forms.field>
+    <x-forms.field field="opacity" :label="__('maps/markers.fields.opacity')">
+        {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : null)), ['class' => '', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0, 'id' => 'opacity'] ) !!}
+    </x-forms.field>
 
-<x-forms.field field="bg-colour" :label="__('maps/markers.fields.bg_colour')">
-    {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
-</x-forms.field>
+    <x-forms.field field="bg-colour" :label="__('maps/markers.fields.bg_colour')">
+        {!! Form::text('colour', null, ['class' => ' spectrum', 'maxlength' => 6] ) !!}
+    </x-forms.field>
 
-<x-forms.field field="group" :label="__('maps/markers.fields.group')">
-    {{ Form::select('group_id', $groups, null, ['class' => 'form-control', 'id' => 'group_id']) }}
-</x-forms.field>
-@include('cruds.fields.visibility_id', ['bulk' => true])
+    <x-forms.field field="group" :label="__('maps/markers.fields.group')">
+        {{ Form::select('group_id', $groups, null, ['class' => '', 'id' => 'group_id']) }}
+    </x-forms.field>
+    @include('cruds.fields.visibility_id', ['bulk' => true])
+</x-grid>

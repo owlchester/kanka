@@ -54,13 +54,13 @@
                                 <td class="text-right">
                                     @if ($campaign->superboosted())
                                         @if(!empty($log->changes))
-                                            <a href="#log-{{ $log->id }}" data-toggle="collapse">
+                                            <a href="#log-{{ $log->id }}" data-animate="collapse">
                                                 <i class="fa-solid fa-scroll" aria-hidden="true"></i>
                                                 <span class="hidden md:inline">{{ __('entities/logs.actions.view') }}</span>
                                             </a>
                                         @endif
                                     @else
-                                    <a href="#log-cta" data-toggle="collapse">
+                                    <a href="#log-cta" data-animate="collapse">
                                         <i class="fa-solid fa-scroll" aria-hidden="true"></i>
                                         <span class="hidden md:inline">{{ __('entities/logs.actions.view') }}</span>
                                     </a>
@@ -69,7 +69,7 @@
                             </tr>
                         @endif
                         @if ($campaign->superboosted() && !empty($log->changes))
-                        <tr id="log-{{ $log->id }}" class="collapse !visible">
+                        <tr id="log-{{ $log->id }}" class="hidden">
                             <td colspan="4">
                                 <dl class="dl-horizontal">
                                     @foreach ($log->changes as $attribute => $value)
@@ -89,11 +89,11 @@
 'amount' => config('entities.logs'),
 ]) !!}</p>
                                 @subscriber()
-                                <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn bg-boost text-white">
+                                <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white">
                                     {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
                                 </a>
                             @else
-                                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" class="btn bg-boost text-white">
+                                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" class="btn2 bg-boost text-white">
                                     {!! __('callouts.premium.learn-more') !!}
                                 </a>
                             @endif

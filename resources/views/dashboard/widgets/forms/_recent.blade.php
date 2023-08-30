@@ -29,7 +29,7 @@
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
                 <x-forms.field field="entity-type" :required="true" :label="__('crud.fields.entity_type')">
-                    {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
+                    {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => ' recent-entity-type']) !!}
                 </x-forms.field>
 
                 <x-forms.field
@@ -39,18 +39,18 @@
                     :tooltip="true"
                     :helper="__('dashboard.widgets.helpers.filters')"
                     :hidden="empty($model) || empty($model->conf('entity'))">
-                    {!! Form::text('config[filters]', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('config[filters]', null, ['class' => '', 'maxlength' => 191]) !!}
                 </x-forms.field>
 
                 @include('dashboard.widgets.forms._tags')
 
                 <x-forms.field field="advanced-filters" :label="__('dashboard.widgets.recent.advanced_filter')">
-                    {!! Form::select('config[adv_filter]', $advancedFilters, null, ['class' => 'form-control']) !!}
+                    {!! Form::select('config[adv_filter]', $advancedFilters, null, ['class' => '']) !!}
                 </x-forms.field>
 
                 <x-forms.field field="singular" css="col-span-2" :label="__('dashboard.widgets.recent.singular')">
                     {!! Form::hidden('config[singular]', 0) !!}
-                    <div class="checkbox" data-toggle="collapse" data-target="#widget-advanced">
+                    <div class="checkbox" data-animate="collapse" data-target="#widget-advanced">
                         <label class="text-neutral-content cursor-pointer flex gap-2">
                             {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null)) !!}
                             {{ __('dashboard.widgets.recent.help') }}
@@ -58,7 +58,7 @@
                     </div>
                 </x-forms.field>
 
-                <div class="col-span-2 collapse !visible {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
+                <div class="col-span-2 hidden {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
                     @if($campaign->boosted())
                         @include('dashboard.widgets.forms._header_select')
                         @include('dashboard.widgets.forms._related')
@@ -77,7 +77,7 @@
                 'oldest' => __('dashboard.widgets.orders.oldest'),
                 'name_asc' => __('dashboard.widgets.orders.name_asc'),
                 'name_desc' => __('dashboard.widgets.orders.name_desc'),
-            ], null, ['class' => 'form-control']) !!}
+            ], null, ['class' => '']) !!}
                 </x-forms.field>
                 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
             </x-grid>

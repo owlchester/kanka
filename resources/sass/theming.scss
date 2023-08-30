@@ -20,12 +20,12 @@ a, .text-link {
 
     &:hover {
         --tw-text-opacity: 1;
-        color: hsl(var(--link-text, var(--pf))/var(--tw-text-opacity));
+        color: var(--link-text, hsl(var(--pf))/var(--tw-text-opacity));
     }
 
     &:focus {
         --tw-text-opacity: 1;
-        color: hsl(var(--link-focus, var(--pf))/var(--tw-text-opacity));
+        color: var(--link-focus, hsl(var(--pf))/var(--tw-text-opacity));
     }
 }
 
@@ -55,6 +55,9 @@ input, textarea, .select2, select, .form-control {
     box-shadow: none;
     color: inherit;
 }
+input, textarea, select {
+    padding: 0.5rem 0.5rem;
+}
 input::placeholder, textarea::placeholder, select::placeholder, .form-control::placeholder {
     --tw-text-opacity: .5;
     color: hsl(var(--bc)/var(--tw-text-opacity));
@@ -62,7 +65,7 @@ input::placeholder, textarea::placeholder, select::placeholder, .form-control::p
 input[type="text"], input[type="date"], input[type="number"], input[type="file"], select {
     min-height: 2.1rem;
 }
-input:focus, .textarea:focus, .form-control:focus {
+input:focus, select:focus, .textarea:focus, .form-control:focus {
     outline-style: solid;
     outline-width: 2px;
     outline-offset: 2px;

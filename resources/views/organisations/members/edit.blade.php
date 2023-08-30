@@ -11,6 +11,7 @@
     @include('partials.forms.form', [
         'title' => __('organisations.members.edit.title', ['name' => $model->name]),
         'content' => 'organisations.members._form',
+        'dialog' => true,
     ])
     {!! Form::hidden('organisation_id', $model->id) !!}
     {!! Form::close() !!}

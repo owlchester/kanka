@@ -4,7 +4,7 @@ return [
     'actions'       => [
         'close'         => 'Close',
         'file-link'     => 'File link',
-        'focus_point'   => 'Set focus point',
+        'focus_point'   => 'Focus point',
         'image-link'    => 'Image link',
         'reset_focus'   => 'Reset focus point',
         'save'          => 'Save',

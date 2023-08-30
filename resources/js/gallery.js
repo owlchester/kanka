@@ -111,6 +111,8 @@ function initGallery() {
             let target = document.getElementById('bulk-destroy-dialog');
             target.close();
 
+            bulkDelete.addClass('btn-disabled');
+
             window.showToast(res.toast);
             return false;
         });
@@ -252,20 +254,15 @@ function registerEvents() {
                 return;
             }
 
-            $.ajax({
-                url: $(this).data('url')
-            }).done(function(data) {
-                $('#large-modal-content').html(data);
-                $('#large-modal').modal('show');
-            });
+            window.openDialog('primary-dialog', $(this).data('url'));
     });
 }
 const registerShift = () => {
     let selected = $('li[data-selected="1"]');
     if (selected.length === 0) {
-        bulkDelete.hide();
+        bulkDelete.addClass('btn-disabled');
     } else {
-        bulkDelete.show();
+        bulkDelete.removeClass('btn-disabled');
     }
 };
 

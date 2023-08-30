@@ -24,10 +24,10 @@
         {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters flex flex-col gap-5 mt-2']) !!}
         <div class="flex items-center flex-row-reverse gap-2">
             <div class="field flex-none">
-                {!! Form::select('action', $actions, $action, ['class' => 'form-control']) !!}
+                {!! Form::select('action', $actions, $action, ['class' => '']) !!}
             </div>
             <div class="field flex-none">
-                <select class="form-control" name="user">
+                <select class="" name="user">
                     <option value="">{{ __('history.filters.all-users') }}</option>
                     @foreach ($users as $member)
                         <option value="{{ $member->user_id }}" @if (isset($user) && $user == $member->user_id) selected="selected" @endif>{!! $member->user->name !!}</option>
@@ -78,7 +78,7 @@
                         </div>
                         @if(!empty($log->changes))
                             <div class="flex-end">
-                                <a href="#log-{{ $log->id }}" data-toggle="collapse">
+                                <a href="#log-{{ $log->id }}" data-animate="collapse" data-target="#log-{{ $log->id }}">
                                     <i class="fa-solid fa-eye" aria-hidden="true"></i>
                                     {{ __('history.actions.show-old') }}
                                 </a>
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     @if (!empty($log->changes) && $superboosted)
-                    <div id="log-{{ $log->id }}" class="collapse !visible my-5">
+                    <div id="log-{{ $log->id }}" class="hidden my-5">
                         <p class="text-muted">{{ __('history.helpers.changes') }}</p>
                         @foreach ($log->changes as $attribute => $value)
                             @if (is_array($value)) @continue @endif

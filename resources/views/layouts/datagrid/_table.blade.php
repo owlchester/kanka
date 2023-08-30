@@ -7,7 +7,7 @@
 @endif
 
 @if (isset($responsive))<div class="table-responsive">@endif
-<table class="table table-hover mb-0 w-full shadow-xs bg-box mb-2 rounded" data-render="datagrid2">
+<table class="table table-hover m-0 mb-2 w-full shadow-xs bg-box rounded " data-render="datagrid2">
     <thead>
         <tr>
             @foreach (Datagrid::headers() as $header)

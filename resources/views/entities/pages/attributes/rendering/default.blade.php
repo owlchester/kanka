@@ -18,14 +18,14 @@ $inSection = false;
         $inSection = true;
         @endphp
         <div class="rounded shadow-sm mb-5 p-2">
-            <h4 class="text-lg cursor-pointer" data-toggle="collapse" data-target="#attribute-section-body-{{ $attribute->id }}">
+            <h4 class="text-lg cursor-pointer" data-animate="collapse" data-target="#attribute-section-body-{{ $attribute->id }}">
                 @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
                     <i class="fa-solid fa-lock" data-toggle="tooltip" data-title="{{ __('crud.is_private') }}" aria-hidden="true"></i>
                 @endif
 
                 {!! $attribute->name() !!}
             </h4>
-            <div class="py-2 collapse  !visible in" id="attribute-section-body-{{ $attribute->id }}">
+            <div class="py-2 overflow-hidden" id="attribute-section-body-{{ $attribute->id }}">
                 <dl class="dl-horizontal">
         @continue
     @endif

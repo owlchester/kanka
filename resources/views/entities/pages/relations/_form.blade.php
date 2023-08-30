@@ -11,7 +11,7 @@
         'allowClear' => false,
     ])
     <x-forms.field field="relation" :required="true" :label="__('entities/relations.fields.relation')">
-        {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191, 'required']) !!}
+        {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => '', 'maxlength' => 191, 'required']) !!}
     </x-forms.field>
 
     @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#connection-dialog'] : [])
@@ -19,20 +19,20 @@
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
     <x-forms.field field="field-two-way" :label="__('entities/relations.fields.two_way')">
-        <label class="text-neutral-content cursor-pointer flex gap-2" data-toggle="collapse" data-target="#two-way-relation">
+        <label class="text-neutral-content cursor-pointer flex gap-2" data-animate="collapse" data-target="#two-way-relation">
             {!! Form::checkbox('two_way') !!}
             {{ __('entities/relations.hints.two_way') }}
         </label>
     </x-forms.field>
 
     <div>
-    <div class="collapse !visible" id="two-way-relation">
+    <div class="hidden" id="two-way-relation">
         <x-forms.field
             field="target-relation"
             :label="__('entities/relations.fields.target_relation')"
             :helper="__('entities/relations.hints.target_relation')"
             :tooltip="true">
-        {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
+        {!! Form::text('target_relation', null, ['class' => '', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
         </x-forms.field>
     </div>
     </div>

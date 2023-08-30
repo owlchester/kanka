@@ -26,11 +26,6 @@ class GalleryController extends Controller
     {
         $this->authorize('gallery', $campaign);
 
-        /*if (!$campaign->superboosted()) {
-            return view('gallery.unsuperboosted')
-                ->with('campaign', $campaign);
-        }*/
-
         $folder = null;
         $folderId = request()->get('folder_id');
         if (!empty($folderId)) {
@@ -46,21 +41,6 @@ class GalleryController extends Controller
             ->with('galleryService', $this->service->campaign($campaign));
     }
 
-    public function search(Campaign $campaign)
-    {
-        $this->authorize('gallery', $campaign);
-
-        $name = trim(request()->get('q', null));
-        $images = Image::where('name', 'like', "%{$name}%")
-            ->defaultOrder()
-            ->take(50)
-            ->get();
-
-        return view('gallery.images', compact(
-            'images',
-            'campaign',
-        ));
-    }
 
     /**
      * Uploading multiple images in the gallery
@@ -92,8 +72,6 @@ class GalleryController extends Controller
         ]);
     }
 
-
-
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -104,30 +82,7 @@ class GalleryController extends Controller
 
         $folders = $this->service->campaign($campaign)->folderList();
 
-        return view('gallery.edit', compact('image', 'folders', 'campaign'));
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function saveFocus(StoreImageFocus $request, Campaign $campaign, Image $image)
-    {
-        $this->authorize('gallery', $campaign);
-
-        $added = $this->service
-            ->campaign($campaign)
-            ->image($image)
-            ->user(auth()->user())
-            ->saveFocusPoint($request);
-
-        $params = [];
-        if (!empty($image->folder_id)) {
-            $params = ['folder_id' => $image->folder_id];
-        }
-
-        return redirect()->route('campaign.gallery.index', [$campaign] + $params)
-            ->with('success', __('campaigns/gallery.focus.' . ($added ? 'updated' : 'removed')));
+        return view('gallery.file.edit', compact('image', 'folders', 'campaign'));
     }
 
     /**
@@ -176,29 +131,5 @@ class GalleryController extends Controller
         $key = $image->isFolder() ? 'folder' : 'success';
         return redirect()->route('campaign.gallery.index', $options)
             ->with('success', __('campaigns/gallery.destroy.' . $key, ['name' => $image->name]));
-    }
-
-    /**
-     * Create a new folder
-     */
-    public function folder(GalleryImageFolderStore $request, Campaign $campaign)
-    {
-        $this->authorize('gallery', $campaign);
-        if ($request->ajax()) {
-            return response()->json(['success' => true]);
-        }
-
-        $folder = $this->service
-            ->campaign($campaign)
-            ->user(auth()->user())
-            ->createFolder($request);
-
-        $params = [$campaign];
-        if (!empty($folder->folder_id)) {
-            $params['folder_id'] = $folder->folder_id;
-        }
-
-        return redirect()
-            ->route('campaign.gallery.index', $params);
     }
 }

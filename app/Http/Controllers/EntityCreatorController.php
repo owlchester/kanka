@@ -210,7 +210,7 @@ class EntityCreatorController extends Controller
 
         // Loop through the entities, check those enabled in the campaign, and where the user has create access.
         $ignoredTypes = [
-            'menu_links'
+            'bookmarks'
         ];
         foreach ($this->entityService->exclude($ignoredTypes)->entities() as $name => $class) {
             if ($this->campaign->enabled($name)) {

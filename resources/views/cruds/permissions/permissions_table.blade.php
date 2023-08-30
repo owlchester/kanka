@@ -51,7 +51,7 @@ $permissionService->campaign($campaign);
                 <label class="inline md:hidden">{{ __('crud.permissions.actions.read') }}</label>
                 <div class="join w-full field">
                 {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_READ . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_READ), [
-                    'class' => 'form-control join-item w-full',
+                    'class' => ' join-item w-full',
                     'aria-label' => __('crud.permissions.actions.read'),
                 ]) !!}
                 @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_READ, $role->id))

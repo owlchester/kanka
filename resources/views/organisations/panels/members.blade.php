@@ -25,7 +25,7 @@ $all = $model->allMembers()->has('character')->count();
     <h3 class="grow">
         {{ __('organisations.fields.members') }}
     </h3>
-    <div class="flex-none flex gap-1 flex-wrap">
+    <div class="flex gap-2 flex-wrap overflow-auto">
         @if (!$allMembers)
             <a href="{{ route('organisations.show', [$campaign, $model, 'all' => true, '#organisation-members']) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i>
@@ -33,7 +33,7 @@ $all = $model->allMembers()->has('character')->count();
                     {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
                 </span>
                 <span class="xl:hidden">
-                    {{ __('crud.filters.lists.mobile.all', ['count' => $all]) }}
+                    {{ $all }}
                 </span>
             </a>
         @else
@@ -44,15 +44,18 @@ $all = $model->allMembers()->has('character')->count();
                     {{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}
                 </span>
                 <span class="xl:inline">
-                    {{ __('crud.filters.lists.mobile.filtered', ['count' => $direct]) }}
+                    {{ $direct  }}
                 </span>
             </a>
         @endif
 
         @can('member', $model)
             <a href="{{ route('organisations.organisation_members.create', [$campaign, 'organisation' => $model->id]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', [$campaign, $model->id]) }}">
-                <x-icon class="plus"></x-icon> <span class="hidden md:inline">{{ __('organisations.members.actions.add') }}</span>
+               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('organisations.organisation_members.create', [$campaign, $model->id]) }}">
+                <x-icon class="plus"></x-icon>
+                <span class="hidden lg:inline">
+                    {{ __('organisations.members.actions.add') }}
+                </span>
             </a>
         @endcan
     </div>

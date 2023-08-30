@@ -2,13 +2,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 1.25rem;
+    height: 1.5rem;
     font-size: .875rem;
     line-height: 1.25rem;
     width: fit-content;
     padding-left: .5rem;
     padding-right: .5rem;
     border-width: 1px;
+    overflow: hidden;
     --tw-border-opacity: 1;
     border-color: hsl(var(--b2)/var(--tw-border-opacity));
     --tw-bg-opacity: 1;

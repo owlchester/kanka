@@ -30,16 +30,16 @@
             @if (!$max)
                 @subscriber()
                     @if ($superboost)
-                        <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-boost text-white btn-lg btn-block">
+                        <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn2 bg-boost text-white btn-lg btn-block">
                             {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->name]) !!}
                         </a>
                     @else
-                        <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-boost text-white btn-lg btn-block">
+                        <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-lg btn-block">
                             {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
                         </a>
                     @endif
                 @else
-                    <a href="https://kanka.io/premium" target="_blank" class="btn bg-boost text-white btn-lg btn-block">
+                    <a href="https://kanka.io/premium" target="_blank" class="btn2 bg-boost text-white btn-lg btn-block">
                         {!! __('callouts.booster.learn-more') !!}
                     </a>
                 @endif
@@ -63,11 +63,11 @@
 
             @if (!$max)
             @subscriber()
-                <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn bg-boost text-white btn-lg btn-block">
+                <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-lg btn-block">
                     {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
                 </a>
             @else
-                <a href="https://kanka.io/premium" class="btn bg-boost text-white btn-lg btn-block">
+                <a href="https://kanka.io/premium" class="btn2 bg-boost text-white btn-lg btn-block">
                     {!! __('callouts.premium.learn-more') !!}
                 </a>
             @endif

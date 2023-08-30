@@ -19,7 +19,7 @@
         'title' => __('characters.organisations.edit.title', ['name' => $model->name]),
         'content' => 'characters.organisations._form',
         'dialog' => true,
-        'dropdownParent' => '#edit-dialog',
+        'dropdownParent' => '#primary-dialog',
     ])
 
     {!! Form::hidden('character_id', $model->id) !!}

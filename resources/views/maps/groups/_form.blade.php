@@ -4,7 +4,7 @@
         :label="__('crud.fields.name')"
         field="name"
         css="col-span-2">
-        {!! Form::text('name', null, ['placeholder' => __('maps/groups.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required' => true]) !!}
+        {!! Form::text('name', null, ['placeholder' => __('maps/groups.placeholders.name'), 'class' => '', 'maxlength' => 191, 'required' => true]) !!}
     </x-forms.field>
 
     <x-forms.field
@@ -24,7 +24,7 @@
     <x-forms.field
         field="position"
         :label="__('maps/groups.fields.position')">
-        {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
+        {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => '']) !!}
     </x-forms.field>
 
     @include('cruds.fields.visibility_id')

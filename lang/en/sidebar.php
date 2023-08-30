@@ -25,6 +25,7 @@ return [
     'relations'         => 'Connections',
     'search'            => 'Search...',
     'settings'          => 'Settings',
-    'time'              => 'Time tracking',
+    'time'              => 'Time',
+    'recent'            => 'Recent changes',
     'world'             => 'World',
 ];

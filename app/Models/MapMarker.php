@@ -327,9 +327,9 @@ class MapMarker extends Model
                 $copyButton = '<a href="' . route('maps.map_markers.create', [$campaign, $this->map_id, 'source' => $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.actions.copy') . '</a>';
             }
             if (auth()->user()->can('delete', $this)) {
-                $deleteButton = '<a href="#" class="btn2 btn-xs btn-error delete-confirm" data-toggle="modal" data-name="' .
-                    str_replace('`', '\'', $this->markerTitle(false)) . '"
-                        data-target="#delete-confirm" data-delete-target="delete-form-marker-' . $this->id . '"
+                $route = route('confirm-delete', [$campaign, 'route' => route('maps.map_markers.destroy', [$campaign, $this->map_id, $this->id]), 'name' => $this->markerTitle(), 'permanent' => true]);
+                $deleteButton = '<a href="#" class="btn2 btn-xs btn-error"
+                data-url="' . $route . '" data-toggle="dialog" data-target="primary-dialog"
                         title="' . __('crud.remove') . '">
                     ' . __('crud.remove') . '
                 </a>';

@@ -737,22 +737,20 @@ class Map extends MiscModel
         $actions = parent::datagridActions($campaign);
 
         if (auth()->check() && auth()->user()->can('update', $this)) {
-            $newActions[] = '<li class="divider"></li>';
-            $newActions[] = '<li>
-                <a href="' . route('maps.map_layers.index', [$campaign, $this]) . '" class="dropdown-item datagrid-dropdown-item" data-name="layers">
+            $newActions[] = '<hr class="m-0" />';
+            $newActions[] = '
+                <a href="' . route('maps.map_layers.index', [$campaign, $this]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm" data-name="layers">
                     <i class="fa-solid fa-layer-group" aria-hidden="true"></i> ' . __('maps.panels.layers') . '
                 </a>
-            </li>';
-            $newActions[] = '<li>
-                <a href="' . route('maps.map_groups.index', [$campaign, $this]) . '" class="dropdown-item datagrid-dropdown-item" data-name="groups">
+            ';
+            $newActions[] = '
+                <a href="' . route('maps.map_groups.index', [$campaign, $this]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm" data-name="groups">
                     <i class="fa-solid fa-map-signs" aria-hidden="true"></i> ' . __('maps.panels.groups') . '
-                </a>
-            </li>';
-            $newActions[] = '<li>
-                <a href="' . route('maps.map_markers.index', [$campaign, $this]) . '" class="dropdown-item datagrid-dropdown-item" data-name="markers">
+                </a>';
+            $newActions[] = '
+                <a href="' . route('maps.map_markers.index', [$campaign, $this]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm" data-name="markers">
                     <i class="fa-solid fa-map-pin" aria-hidden="true"></i> ' . __('maps.panels.markers') . '
-                </a>
-            </li>';
+                </a>';
         }
         array_splice($actions, 2, 0, $newActions);
 

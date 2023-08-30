@@ -19,7 +19,7 @@ $required = !isset($bulk);
         ]
     ) !!}
 
-    <p class="text-warning-content duplicate-entity-warning collapse out !visible">
+    <p class="text-warning-content duplicate-entity-warning hidden">
         {{ __('entities.creator.duplicate') }}<br /><span id="duplicate-entities"></span>
     </p>
 </x-forms.field>

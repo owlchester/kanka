@@ -141,11 +141,10 @@ $specificTheme = null;
         @yield('content')
         </div>
     </div>
+    <x-dialog id="primary-dialog" :loading="true" />
+    <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
 
     <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full"></div>
-
-    <!-- Modal -->
-    @includeWhen(auth()->check(), 'layouts.modals.delete')
 
 @vite(['resources/js/vendor-final.js', 'resources/js/app.js', 'resources/js/cookieconsent.js'])
 @if (config('fontawesome.kit'))
@@ -164,21 +163,8 @@ $specificTheme = null;
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
 
-<!-- Default modal used throughout the app -->
-<div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content bg-base-100 rounded-2xl"></div>
-        <div class="modal-spinner" style="display: none">
-            <div class="modal-body text-center text-lg">
-                <x-icon class="load" />
-            </div>
-        </div>
-    </div>
-</div>
-
 @vite('resources/js/location/map-v3.js')
 @yield('scripts')
-
 @yield('modals')
 </body>
 </html>

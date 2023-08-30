@@ -65,8 +65,8 @@ return [
     'locations'             => 'Locations',
     'map'                   => 'Map',
     'maps'                  => 'Maps',
-    'menu_link'             => 'Bookmark',
-    'menu_links'            => 'Bookmarks',
+    'bookmark'              => 'Bookmark',
+    'bookmarks'             => 'Bookmarks',
     'new'                   => [
         'ability'       => 'New ability',
         'character'     => 'New character',

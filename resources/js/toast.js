@@ -23,24 +23,3 @@ window.showToast = function(message, css) {
     registerToastDismiss();
 };
 
-
-window.handleExploreMapClick = function (ev) {
-    if (!window.exploreEditMode) {
-        return;
-    }
-    // return false;
-    let position = ev.latlng;
-
-    let lat = position.lat.toFixed(3);
-    let lng = position.lng.toFixed(3);
-    if (window.drawingPolygon) {
-        window.addPolygonPosition(lat, lng);
-        return;
-    }
-    //console.log('Click', 'lat', position.lat, 'lng', position.lng);
-    // AJAX request
-    //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
-    $('#marker-latitude').val(lat);
-    $('#marker-longitude').val(lng);
-    $('#marker-modal').modal('show');
-};

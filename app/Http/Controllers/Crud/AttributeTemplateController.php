@@ -22,7 +22,7 @@ class AttributeTemplateController extends CrudController
     {
         $this->addNavAction(
             '//docs.kanka.io/en/latest/entities/attribute-templates.html',
-            '<i class="fa-solid fa-question-circle"></i aria-hidden="true"> <span class="hidden-xs">' . __('crud.actions.help') . '</span>',
+            '<i class="fa-solid fa-question-circle"></i aria-hidden="true"> <span class="hidden md:inline">' . __('crud.actions.help') . '</span>',
             '',
             true
         );

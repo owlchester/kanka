@@ -181,8 +181,8 @@ Route::post('/w/{campaign}/editing/timeline-elements/{timeline_element}/keep-ali
 Route::get('/w/{campaign}/timeline/{timeline}/era/{timeline_era}/list', 'Timelines\TimelineEraController@positionList')->name('timelines.era-list');
 
 
-Route::get('/w/{campaign}/menu_links/{menu_link}/random', 'QuickLink\RandomController@index')
-    ->name('menu_links.random');
+Route::get('/w/{campaign}/bookmarks/{bookmark}/random', 'Bookmarks\RandomController@index')
+    ->name('bookmarks.random');
 
 Route::get('/w/{campaign}/timelines/{timeline}/reorder', [\App\Http\Controllers\Timelines\TimelineReorderController::class, 'index'])
     ->name('timelines.reorder');
@@ -190,10 +190,10 @@ Route::post('/w/{campaign}/timelines/{timeline}/reorder', [\App\Http\Controllers
     ->name('timelines.reorder-save');
 Route::post('/w/{campaign}/timelines/{timeline}/eras/bulk', 'Timelines\TimelineEraController@bulk')->name('timelines.eras.bulk');
 
-Route::get('/w/{campaign}/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'reorder'])
-    ->name('quick-links.reorder');
-Route::post('/w/{campaign}/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'save'])
-    ->name('quick-links.reorder-save');
+Route::get('/w/{campaign}/bookmarks/reorder', [\App\Http\Controllers\Bookmarks\ReorderController::class, 'index'])
+    ->name('bookmarks.reorder');
+Route::post('/w/{campaign}/bookmarks/reorder', [\App\Http\Controllers\Bookmarks\ReorderController::class, 'save'])
+    ->name('bookmarks.reorder-save');
 
 // Entity Abilities API
 Route::get('/w/{campaign}/entities/{entity}/abilities', 'Entity\AbilityController@index')->name('entities.abilities');
@@ -232,7 +232,7 @@ Route::resources([
     '/w/{campaign}/maps.map_layers' => 'Maps\LayerController',
     '/w/{campaign}/maps.map_groups' => 'Maps\GroupController',
     '/w/{campaign}/maps.map_markers' => 'Maps\MarkerController',
-    '/w/{campaign}/menu_links' => 'Crud\MenuLinkController',
+    '/w/{campaign}/bookmarks' => 'Crud\BookmarkController',
     '/w/{campaign}/organisations' => 'Crud\OrganisationController',
     '/w/{campaign}/organisations.organisation_members' => 'Organisation\MemberController',
     '/w/{campaign}/notes' => 'Crud\NoteController',

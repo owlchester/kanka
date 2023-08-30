@@ -38,7 +38,7 @@
                     </x-forms.field>
 
                     <x-forms.field field="otp" :required="true" :label="__('settings.account.2fa.fields.otp')">
-                        {!! Form::password('otp', ['class' => 'form-control', 'maxlength' => 12]) !!}
+                        {!! Form::password('otp', ['class' => '', 'maxlength' => 12]) !!}
                     </x-forms.field>
 
                     <div class="text-right">

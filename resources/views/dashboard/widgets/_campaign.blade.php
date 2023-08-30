@@ -2,12 +2,14 @@
 @section('content-header')
 <div class="campaign-header cover-background mb-3 p-2 relative z-[10] @if(!empty($campaign->header_image))campaign-imaged-header px-10 py-14" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif">
 
-    <div class="campaign-header-content p-2">
-        <div class="campaign-content">
+    <div class="campaign-header-content p-2 max-w-7xl mx-auto">
+        <div class="campaign-content ">
             <div class="campaign-head flex gap-2">
-                <a href="{{ route('overview', $campaign) }}" title="{!! $campaign->name !!}" class="grow campaign-title text-2xl m-0 p-0">
-                    {!! $campaign->name !!}
-                </a>
+                <div class="grow">
+                    <a href="{{ route('overview', $campaign) }}" title="{!! $campaign->name !!}" class="campaign-title text-2xl">
+                        {!! $campaign->name !!}
+                    </a>
+                </div>
                 <div class="flex gap-2 action-bar">
                     @can ('follow', $campaign)
                         <button id="campaign-follow" class="btn2 btn-sm" data-id="{{ $campaign->id }}"
@@ -114,17 +116,17 @@
                             <li class="divider"></li>
                             <li>
                                 <a href="{{ route('campaign_users.index', $campaign) }}"  title="{{ __('campaigns.show.tabs.members') }}">
-                                    <x-icon class="fa-solid fa-user"></x-icon> {{ __('campaigns.show.tabs.members') }}
+                                    <x-icon class="fa-solid fa-users"></x-icon> {{ __('campaigns.show.tabs.members') }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('campaign_roles.index', $campaign) }}" title="{{  __('campaigns.show.tabs.roles') }}">
-                                    <x-icon class="fa-solid fa-user-tag"></x-icon> {{ __('campaigns.show.tabs.roles') }}
+                                    <x-icon class="fa-solid fa-screen-users"></x-icon> {{ __('campaigns.show.tabs.roles') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('campaign.modules', $campaign) }}" title="{{ __('campaigns.show.tabs.settings') }}">
-                                    <x-icon class="fa-solid fa-th-large"></x-icon> {{ __('campaigns.show.tabs.settings') }}
+                                <a href="{{ route('campaign.modules', $campaign) }}" title="{{ __('sidebar.settings') }}">
+                                    <x-icon class="fa-solid fa-cog"></x-icon> {{ __('sidebar.settings') }}
                                 </a>
                             </li>
                         </ul>

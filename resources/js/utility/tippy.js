@@ -12,6 +12,7 @@ const initAjaxTooltips = () => {
             theme: 'kanka',
             placement: e.dataset.direction ?? 'bottom',
             allowHTML: true,
+            interactive: true,
             delay: 500,
             content: '<i class="fa-solid fa-spin fa-spinner" aria-hidden="true" aria-label="loading..." />',
             arrow: true,
@@ -36,17 +37,25 @@ const initAjaxTooltips = () => {
 };
 
 const initTooltips = () => {
-    const elements = document.querySelectorAll('[data-toggle="tooltip"]');
-
+    let elements = document.querySelectorAll('[data-toggle="tooltip"]');
     elements.forEach(e => {
-        tippy(e, {
-            content: e.dataset.title ?? e.title,
-            theme: 'kanka',
-            placement: e.dataset.direction ?? 'bottom',
-            allowHTML: e.dataset.html ?? false,
-            appendTo: e.dataset.append ?? document.body,
-            arrow: true,
-        });
+        initTooltip(e);
+    });
+
+    elements = document.querySelectorAll('[data-tooltip]');
+    elements.forEach(e => {
+        initTooltip(e);
+    });
+};
+
+const initTooltip = (e) => {
+    tippy(e, {
+        content: e.dataset.title ?? e.title,
+        theme: 'kanka',
+        placement: e.dataset.direction ?? 'bottom',
+        allowHTML: e.dataset.html ?? false,
+        appendTo: e.dataset.append ?? document.body,
+        arrow: true,
     });
 };
 

@@ -19,6 +19,46 @@ class EditingController extends Controller
         $this->service = $service;
     }
 
+    public function index(Campaign $campaign)
+    {
+        $model = request()->get('model');
+        $id = request()->get('id');
+        if (empty($model)) {
+            $model = $campaign;
+        } else {
+            $modelName = app()->make('App\Models\\' . $model);
+            $model = new $modelName();
+            $model = $model->findOrFail($id);
+        }
+
+        $editingUsers = $this->service
+            ->model($model)
+            ->user(auth()->user())
+            ->users();
+
+        if ($model instanceof \App\Models\EntityNote) {
+            $url = route('posts.confirm-editing', [$campaign, 'post' => $model, 'entity' => $model->entity]);
+            $show = $model->entity->url();
+        } elseif ($model instanceof \App\Models\Campaign) {
+            $url = route('campaigns.confirm-editing', $model);
+            $show = route('overview', $campaign);
+        } elseif ($model instanceof \App\Models\TimelineElement) {
+            $url = route('timeline-elements.confirm-editing', [$campaign, $model]);
+            $show = $model->timeline->getLink();
+        } elseif ($model instanceof \App\Models\QuestElement) {
+            $url = route('quest-elements.confirm-editing', [$campaign, $model]);
+            $show = $model->quest->getLink();
+        } else {
+            $url = route('entities.confirm-editing', [$campaign, $model]);
+            $show = $model->url();
+        }
+
+        return view('confirms.editing')
+            ->with('url', $url)
+            ->with('show', $show)
+            ->with('editingUsers', $editingUsers);
+    }
+
     private function confirmHandle(Model $model)
     {
         $this->service

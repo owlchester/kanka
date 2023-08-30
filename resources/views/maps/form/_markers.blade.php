@@ -84,28 +84,9 @@
             window.handleExploreMapClick(ev);
         });
 
-        /*map{{ $model->id }}.on('click', function(ev) {
-            let position = ev.latlng;
-            //console.log('Click', 'lat', position.lat, 'lng', position.lng);
-            // AJAX request
-            //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
-            $('#marker-latitude').val(position.lat.toFixed(3));
-            $('#marker-longitude').val(position.lng.toFixed(3));
-            $('#marker-modal').modal('show');
-        });*/
-
         window.map = map{{ $model->id }};
 
     </script>
-@endsection
-
-@section('modals')
-    @parent
-    <!-- Deletion forms -->
-    @foreach ($model->markers as $marker)
-        {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $campaign, $model, $marker], 'style ' => 'display:inline', 'id' => 'delete-form-marker-' . $marker->id]) !!}
-        {!! Form::close() !!}
-    @endforeach
 @endsection
 
 @section('styles')
@@ -148,34 +129,20 @@
 
 @section('modals')
     @parent
-    {!! Form::open([
+    <x-dialog
+        id="marker-modal"
+        :title="__('maps/markers.create.title', ['name' => $model->name])"
+        footer="maps.markers._new-footer"
+        :form="[
         'route' => ['maps.map_markers.store', $campaign, $model],
         'method' => 'POST',
         //'enctype' => 'multipart/form-data',
         //'id' => 'map-marker-new-form'
         'class' => 'ajax-subform',
         'data-maintenance' => 1
-    ]) !!}
-    <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content bg-base-100">
-                <div class="modal-header">
-                    <x-dialog.close :modal="true" />
-                    <h4>
-                        {{ __('maps/markers.create.title', ['name' => $model->name]) }}
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.map_markers.index:' . $model->id)])
-
-                    <x-dialog.footer id="marker-footer">
-                        @include('maps.markers._actions')
-                    </x-dialog.footer>
-                </div>
-            </div>
-        </div>
-    </div>
-    {!! Form::close() !!}
+    ]">
+        @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.map_markers.index:' . $model->id)])
+    </x-dialog>
 @endsection
 
 @endif

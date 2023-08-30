@@ -8,7 +8,7 @@ $types = [
 <x-grid>
     <x-forms.field field="name" :required="true" :label=" __('presets.fields.name')">
         {!! Form::text('name', null, [
-            'class' => 'form-control',
+            'class' => '',
             'placeholder' => __('presets.placeholders.name'),
             'required',
             'autofocus',

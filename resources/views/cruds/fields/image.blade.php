@@ -31,7 +31,7 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
     <label>{{ __($label) }}</label>
 
     <div class="flex flex-row gap-2">
-        <div class="grow flex flex-col gap-2">
+        <div class="grow flex flex-col gap-2 w-full">
             <div class="image-file field">
                 {!! Form::file('image', ['class' => 'image w-full  ']) !!}
             </div>

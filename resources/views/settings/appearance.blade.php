@@ -39,7 +39,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 '' => __('profiles.theme.themes.default'),
                 'dark' => __('profiles.theme.themes.dark'),
                 'midnight' => __('profiles.theme.themes.midnight')
-            ], null, ['class' => 'form-control self-end w-full border rounded p-2']) !!}
+            ], null, ['class' => ' self-end w-full border rounded p-2']) !!}
         </div>
 
         <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? $highlightClass : '' }}">
@@ -56,7 +56,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             <p class="text-sm flex-grow">
                 {{ __('settings/appearance.helpers.pagination')}}
             </p>
-            {!! Form::select('pagination', $paginationOptions, null, ['class' => 'form-control flex self-end w-full border rounded p-2'], $paginationDisabled) !!}
+            {!! Form::select('pagination', $paginationOptions, null, ['class' => ' flex self-end w-full border rounded p-2'], $paginationDisabled) !!}
         </div>
 
 
@@ -82,7 +82,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 'd-m-y' => 'd-m-y',
                 'm/d/Y' => 'm/d/Y',
 
-            ], null, ['class' => 'form-control flex self-end w-full border rounded p-2']) !!}
+            ], null, ['class' => ' flex self-end w-full border rounded p-2']) !!}
 
         </div>
 
@@ -108,7 +108,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 'r_alphabetical' => __('settings/appearance.campaign-switcher.r_alphabetical'),
                 'date_joined' => __('settings/appearance.campaign-switcher.date_joined'),
                 'r_date_joined' => __('settings/appearance.campaign-switcher.r_date_joined'),
-            ], auth()->user()->campaignSwitcherOrderBy, ['class' => 'form-control flex self-end w-full border rounded p-2']) !!}
+            ], auth()->user()->campaignSwitcherOrderBy, ['class' => ' flex self-end w-full border rounded p-2']) !!}
         </div>
 
         <div class="{{ $boxClass }}">
@@ -126,7 +126,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             {!! Form::select('new_entity_workflow', [
                     '' => __('profiles.workflows.default'),
                     'created' => __('profiles.workflows.created'),
-                ], null, ['class' => 'form-control flex self-end w-full border rounded p-2']) !!}
+                ], null, ['class' => ' flex self-end w-full border rounded p-2']) !!}
         </div>
 
         @if ($textEditorSelect)
@@ -145,7 +145,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 {!! Form::select('editor', [
                     '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
                     'legacy' => __('settings/appearance.editors.legacy', ['name' => 'TinyMCE 4']),
-                ], null, ['class' => 'form-control flex self-end w-full border rounded p-2']) !!}
+                ], null, ['class' => ' flex self-end w-full border rounded p-2']) !!}
 
             </div>
         @endif
@@ -167,7 +167,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             {!! Form::select('entity_explore', [
                     0 => __('settings/appearance.explore.grid'),
                     1 => __('settings/appearance.explore.table'),
-                ], null, ['class' => 'form-control flex self-end w-full border rounded p-2']) !!}
+                ], null, ['class' => ' flex self-end w-full border rounded p-2']) !!}
         </div>
 
         <div class="{{ $boxClass }}">
@@ -188,7 +188,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             {!! Form::select('default_nested', [
                     0 => __('settings/appearance.nested.default'),
                     1 => __('settings/appearance.nested.nested'),
-                ], null, ['class' => 'form-control flex self-end w-full border rounded p-2']) !!}
+                ], null, ['class' => ' flex self-end w-full border rounded p-2']) !!}
         </div>
 
         <div class="{{ $boxClass }}">
@@ -208,7 +208,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             {!! Form::select('advanced_mentions', [
                     0 => __('settings/appearance.mentions.default'),
                     1 => __('settings/appearance.mentions.advanced', ['code' => '[entity:123]']),
-                ], auth()->user()->alwaysAdvancedMentions(), ['class' => 'form-control self-end w-full border rounded p-2']) !!}
+                ], auth()->user()->alwaysAdvancedMentions(), ['class' => ' self-end w-full border rounded p-2']) !!}
         </div>
 
         <x-buttons.confirm type="primary" full="true">

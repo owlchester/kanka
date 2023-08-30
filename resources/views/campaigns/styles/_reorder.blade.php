@@ -6,10 +6,10 @@
     <h3 class="">
         {{ __('campaigns/styles.reorder.title') }}
     </h3>
-    <div class="box-entity-story-reorder">
-        <div class="element-live-reorder sortable-elements">
+    <div class="box-entity-story-reorder flex flex-col gap-5">
+        <div class="element-live-reorder sortable-elements flex flex-col gap-1">
             @foreach($reorderStyles as $style)
-                <div class="element bg-base-200" data-id="{{ $style->id }}">
+                <x-reorder.child :id="$style->id">
                     {!! Form::hidden('style[]', $style->id) !!}
                     <div class="pr-3">
                         <span class="fa-solid fa-ellipsis-v"></span>
@@ -20,7 +20,7 @@
                     <div class="self-end">
                         @if ($style->is_enabled) <x-icon class="fa-solid fa-check-circle" />@endif
                     </div>
-                </div>
+                </x-reorder.child>
             @endforeach
         </div>
         <div class="">

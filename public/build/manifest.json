@@ -8,9 +8,6 @@
   "_ajax-modal-1230002e.js": {
     "file": "assets/ajax-modal-1230002e.js"
   },
-  "_delete-confirm-63bc2c61.js": {
-    "file": "assets/delete-confirm-63bc2c61.js"
-  },
   "_index-0b481a1e.js": {
     "file": "assets/index-0b481a1e.js",
     "imports": [
@@ -75,9 +72,8 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-42f0d563.js",
+    "file": "assets/app-92b4afe2.js",
     "imports": [
-      "_delete-confirm-63bc2c61.js",
       "_mention-5d95822d.js",
       "_ajax-modal-1230002e.js",
       "_sortable.esm-be94e56d.js",
@@ -90,7 +86,7 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes.js": {
-    "file": "assets/attributes-baa85a3d.js",
+    "file": "assets/attributes-773034cd.js",
     "imports": [
       "_sortable.esm-be94e56d.js",
       "_mention-5d95822d.js"
@@ -173,7 +169,7 @@
     "src": "resources/js/front.js"
   },
   "resources/js/gallery.js": {
-    "file": "assets/gallery-0ad73be6.js",
+    "file": "assets/gallery-f28a42ba.js",
     "imports": [
       "_index-0b481a1e.js",
       "__commonjsHelpers-725317a4.js"
@@ -187,10 +183,7 @@
     "src": "resources/js/history.js"
   },
   "resources/js/location/map-v3.js": {
-    "file": "assets/map-v3-95dd460a.js",
-    "imports": [
-      "_delete-confirm-63bc2c61.js"
-    ],
+    "file": "assets/map-v3-045208a7.js",
     "isEntry": true,
     "src": "resources/js/location/map-v3.js"
   },
@@ -218,7 +211,7 @@
     "src": "resources/js/story.js"
   },
   "resources/js/subscription.js": {
-    "file": "assets/subscription-f2f82c9b.js",
+    "file": "assets/subscription-c81ecf6b.js",
     "isEntry": true,
     "src": "resources/js/subscription.js"
   },
@@ -233,12 +226,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-68563e27.css",
+    "file": "assets/app-6cdb09ba.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-6806bb85.css",
+    "file": "assets/auth-aa5611e6.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -263,7 +256,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-e83fa567.css",
+    "file": "assets/front-cd6bcc63.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },

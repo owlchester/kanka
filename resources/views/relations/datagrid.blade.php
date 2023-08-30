@@ -38,9 +38,9 @@
         ],
         [
             'field' => 'mirror_id',
-            'label' => '<i class="fa-solid fa-sync-alt" title="' . __('entities/relations.hints.mirrored.title') . '"></i>',
+            'label' => '<i class="fa-solid fa-link" data-toggle="tooltip" data-title="' . __('entities/relations.hints.mirrored.title') . '" aria-hidden="true"></i>',
             'render' => function ($model) {
-                return $model->isMirrored() ? '<i class="fa-solid fa-sync-alt"></i>' : null;
+                return $model->isMirrored() ? '<i class="fa-solid fa-link" aria-hidden="true" data-toggle="tooltip" data-title="' . __('entities/relations.hints.mirrored.title') . '"></i>' : null;
             }
         ],
         [

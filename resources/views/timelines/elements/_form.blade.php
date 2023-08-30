@@ -14,17 +14,17 @@ if (!empty($era)) {
 <x-grid>
 
     <x-forms.field field="era" css="col-span-2" :required="true" :label="__('timelines/elements.fields.era')">
-        {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => 'form-control', 'id' => 'element-era-id']) !!}
+        {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => '', 'id' => 'element-era-id']) !!}
     </x-forms.field>
 
     <x-forms.field field="name" :label="__('crud.fields.name')">
-        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('timelines/elements.placeholders.name')]) !!}
+        {!! Form::text('name', null, ['class' => '', 'placeholder' => __('timelines/elements.placeholders.name')]) !!}
     </x-forms.field>
 
     @include('cruds.fields.entity')
 
     <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
-        {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'element-entry', 'name' => 'entry']) !!}
+        {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'element-entry', 'name' => 'entry']) !!}
         {!! Form::hidden('use_entity_entry', 0) !!}
         <label>
             {!! Form::checkbox('use_entity_entry') !!}
@@ -33,8 +33,8 @@ if (!empty($era)) {
     </x-forms.field>
 
     <x-forms.field field="date" :label="__('timelines/elements.fields.date')">
-        {!! Form::text('date', null, ['placeholder' => __('timelines/elements.placeholders.date'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-    </x-forms.field>>
+        {!! Form::text('date', null, ['placeholder' => __('timelines/elements.placeholders.date'), 'class' => '', 'maxlength' => 45]) !!}
+    </x-forms.field>
 
     <x-forms.field field="event-date" :label="__('timelines/elements.fields.use_event_date')">
         {!! Form::hidden('use_event_date', 0) !!}
@@ -45,18 +45,18 @@ if (!empty($era)) {
     </x-forms.field>
 
     <x-forms.field field="position" :label="__('crud.fields.position')">
-        {!! Form::select('position', $positions, (!empty($model->position) ? -9999 : $oldPosition), ['class' => 'form-control', 'name' => 'position']) !!}
+        {!! Form::select('position', $positions, (!empty($model->position) ? -9999 : $oldPosition), ['class' => '', 'name' => 'position']) !!}
     </x-forms.field>
 
     <x-forms.field field="colour" :label="__('crud.fields.colour')">
-        {!! Form::select('colour', FormCopy::colours(false), (!empty($model) ? null : 'grey'), ['class' => 'form-control select2-colour']) !!}
+        {!! Form::select('colour', FormCopy::colours(false), (!empty($model) ? null : 'grey'), ['class' => ' select2-colour']) !!}
     </x-forms.field>
 
     <x-forms.field field="icon" :label="__('timelines/elements.fields.icon')">
         {!! Form::text(
             'icon',
             null,
-            ['class' => 'form-control',
+            ['class' => '',
                 'placeholder' => 'fa-solid fa-gem, ra ra-sword',
                 ($campaign->boosted() ? null : 'disabled'),
                 'list' => 'timeline-element-icon-list',
