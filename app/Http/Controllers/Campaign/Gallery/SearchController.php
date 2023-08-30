@@ -22,6 +22,7 @@ class SearchController extends Controller
         $name = trim(request()->get('q', null));
         if (empty($name)) {
             $images = $campaign->images()->with('user')
+                ->imageFolder(null)
                 ->defaultOrder()
                 ->paginate(50);
         } else {

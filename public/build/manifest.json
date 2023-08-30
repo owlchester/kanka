@@ -72,7 +72,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-c17641c8.js",
+    "file": "assets/app-ae29cb82.js",
     "imports": [
       "_mention-5d95822d.js",
       "_ajax-modal-1230002e.js",
@@ -169,7 +169,7 @@
     "src": "resources/js/front.js"
   },
   "resources/js/gallery.js": {
-    "file": "assets/gallery-c670a51c.js",
+    "file": "assets/gallery-f28a42ba.js",
     "imports": [
       "_index-0b481a1e.js",
       "__commonjsHelpers-725317a4.js"

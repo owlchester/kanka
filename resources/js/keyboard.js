@@ -35,7 +35,7 @@ function initKeyboardShortcuts() {
             return false; // don't add the k to the search field
         } else if (e.key === 'n' && !(e.ctrlKey || e.metaKey) && !e.altKey && quickCreatorButton.length > 0) {
             // n for quick creator. Don't re-open if already opened
-            if (isInputField(target).isShown) {
+            if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
                 return;
             }
             quickCreatorButton[0].click();

@@ -111,6 +111,8 @@ function initGallery() {
             let target = document.getElementById('bulk-destroy-dialog');
             target.close();
 
+            bulkDelete.addClass('btn-disabled');
+
             window.showToast(res.toast);
             return false;
         });

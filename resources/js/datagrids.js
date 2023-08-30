@@ -148,7 +148,7 @@ function initDatagrid2Bulk() {
 
         if ($(this).data('action') === 'delete') {
             if (datagrid2DeleteConfirm === false) {
-                $('#datagrid-bulk-delete').modal();
+                window.openDialog('datagrid-bulk-delete');
                 return false;
             }
         }
@@ -160,7 +160,7 @@ function initDatagrid2Bulk() {
     });
 
     $('#datagrid-action-confirm').click(function () {
-        $('#datagrid-bulk-delete').modal('hide');
+        window.closeDialog('datagrid-bulk-delete');
         datagrid2Form.submit();
     });
 }

@@ -42,27 +42,20 @@ $hasOthers = false;
 
 @section('modals')
     @parent
-    <div class="modal fade" id="datagrid-bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100 rounded-2xl">
-                <div class="modal-body text-center">
+    <x-dialog id="datagrid-bulk-delete" :title="__('crud.delete_modal.title')">
+        <x-grid type="1/1">
+            <p class="m-0">
+                {{ __('crud.bulk.delete.warning') }}</p>
+            <p>
+                {{ __('crud.delete_modal.permanent') }}
+            </p>
+        </x-grid>
 
-                    <x-dialog.close />
-                    <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
-
-                    <p class="mt-3">
-                        {{ __('crud.bulk.delete.warning') }}<br />
-                        {{ __('crud.delete_modal.permanent') }}
-                    </p>
-
-                    <x-dialog.footer :modal="true">
-                        <button type="button" class="btn2 btn-error btn-outline" id="datagrid-action-confirm">
-                            <x-icon class="trash"></x-icon>
-                            <span class="remove-button-label">{{ __('crud.remove') }}</span>
-                        </button>
-                    </x-dialog.footer>
-                </div>
-            </div>
-        </div>
-    </div>
+        <x-dialog.footer>
+            <button type="button" class="btn2 btn-error btn-outline" id="datagrid-action-confirm">
+                <x-icon class="trash"></x-icon>
+                <span class="remove-button-label">{{ __('crud.remove') }}</span>
+            </button>
+        </x-dialog.footer>
+    </x-dialog>
 @endsection

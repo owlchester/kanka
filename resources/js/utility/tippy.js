@@ -43,7 +43,6 @@ const initTooltips = () => {
     });
 
     elements = document.querySelectorAll('[data-tooltip]');
-    console.log(elements);
     elements.forEach(e => {
         initTooltip(e);
     });
