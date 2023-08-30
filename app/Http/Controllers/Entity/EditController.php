@@ -52,7 +52,7 @@ class EditController extends Controller
     protected function hasTabs(int $type): bool
     {
         return !in_array($type, [
-            config('entities.ids.menu_link'),
+            config('entities.ids.bookmark'),
             config('entities.ids.relation')
         ]);
     }

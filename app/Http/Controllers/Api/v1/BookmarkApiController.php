@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\MenuLink;
-use App\Http\Requests\StoreMenuLink as Request;
+use App\Models\Bookmark;
+use App\Http\Requests\StoreBookmark as Request;
 use App\Http\Resources\MenuLinkResource as Resource;
 
-class MenuLinkApiController extends ApiController
+class BookmarkApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -26,11 +26,11 @@ class MenuLinkApiController extends ApiController
     /**
      * @return Resource
      */
-    public function show(Campaign $campaign, MenuLink $menuLink)
+    public function show(Campaign $campaign, Bookmark $bookmark)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $menuLink);
-        return new Resource($menuLink);
+        $this->authorize('view', $bookmark);
+        return new Resource($bookmark);
     }
 
     /**
@@ -40,12 +40,12 @@ class MenuLinkApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', MenuLink::class);
+        $this->authorize('create', Bookmark::class);
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        /** @var MenuLink $model */
-        $model = MenuLink::create($data);
+        /** @var Bookmark $model */
+        $model = Bookmark::create($data);
         $this->crudSave($model);
         return new Resource($model);
     }
@@ -53,25 +53,25 @@ class MenuLinkApiController extends ApiController
     /**
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, MenuLink $menuLink)
+    public function update(Request $request, Campaign $campaign, Bookmark $bookmark)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $menuLink);
-        $menuLink->update($request->all());
-        $this->crudSave($menuLink);
+        $this->authorize('update', $bookmark);
+        $bookmark->update($request->all());
+        $this->crudSave($bookmark);
 
-        return new Resource($menuLink);
+        return new Resource($bookmark);
     }
 
     /**
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Campaign $campaign, MenuLink $menuLink)
+    public function destroy(Campaign $campaign, Bookmark $bookmark)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $menuLink);
-        $menuLink->delete();
+        $this->authorize('delete', $bookmark);
+        $bookmark->delete();
 
         return response()->json(null, 204);
     }

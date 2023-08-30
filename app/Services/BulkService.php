@@ -182,7 +182,7 @@ class BulkService
 
         // Validate the type
         $validTypes = config('entities.classes');
-        unset($validTypes['menu_link'], $validTypes['relation']);
+        unset($validTypes['bookmark'], $validTypes['relation']);
 
         if (!isset($validTypes[$type])) {
             throw new TranslatableException('entities/transform.bulk.errors.unknown_type');

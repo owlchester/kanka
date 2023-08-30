@@ -39,16 +39,11 @@ use Illuminate\Support\Str;
  *
  * @method self ordered()
  */
-class MenuLink extends MiscModel
+class Bookmark extends MiscModel
 {
     use CampaignTrait;
     use Privatable;
     use Taggable;
-
-    /**
-     * @var string
-     */
-    public $table = 'menu_links';
 
     /** @var string[]  */
     protected $fillable = [
@@ -174,7 +169,7 @@ class MenuLink extends MiscModel
         $parameters = [
             $campaign,
             $entity ? $this->target : $this->target->entity_id,
-            'quick-link' => $this->id
+            'bookmark' => $this->id
         ];
 
         if (!empty($this->menu)) {
@@ -200,9 +195,9 @@ class MenuLink extends MiscModel
             if (Arr::get($this->options, 'default_dashboard') === '1') {
                 $dashboard = 'default';
             }
-            return route('dashboard', [$campaign, 'dashboard' => $dashboard, 'quick-link' => $this->id]);
+            return route('dashboard', [$campaign, 'dashboard' => $dashboard, 'bookmark' => $this->id]);
         } elseif ($this->isRandom()) {
-            return route('menu_links.random', [$campaign, $this->id]);
+            return route('bookmarks.random', [$campaign, $this->id]);
         }
         return !empty($this->entity_id) ? $this->getEntityRoute() : $this->getIndexRoute();
     }
@@ -224,7 +219,7 @@ class MenuLink extends MiscModel
             $entity = false;
 
             // Inventories use a different url buildup
-            $routeOptions = [$campaign, $this->target->id, 'quick-link' => $this->id];
+            $routeOptions = [$campaign, $this->target->id, 'bookmark' => $this->id];
             if ($this->menu === 'inventory') {
                 return route('entities.inventory', $routeOptions);
             } elseif ($this->menu === 'relations') {
@@ -251,7 +246,7 @@ class MenuLink extends MiscModel
      */
     protected function getIndexRoute(): string
     {
-        $filters = $this->filters . '&_clean=true&_from=quicklink&quick-link=' . $this->id;
+        $filters = $this->filters . '&_clean=true&_from=bookmark&bookmark=' . $this->id;
         $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] == '1' ? 'tree' : 'index');
 
         $routeName = Str::plural($this->type) . ".{$nestedType}";
@@ -273,7 +268,7 @@ class MenuLink extends MiscModel
     public function getLink(string $route = 'show'): string
     {
         $campaign = CampaignLocalization::getCampaign();
-        return route('menu_links.' . $route, [$campaign, $this->id]);
+        return route('bookmarks.' . $route, [$campaign, $this->id]);
     }
 
     /**
@@ -290,7 +285,7 @@ class MenuLink extends MiscModel
      */
     public function entityTypeId(): int
     {
-        return (int) config('entities.ids.menu_link');
+        return (int) config('entities.ids.bookmark');
     }
 
     /**

@@ -28,7 +28,7 @@ class CampaignSetting extends Model
         'calendars',
         'tags',
         'dice_rolls',
-        'menu_links',
+        'bookmarks',
         'conversations',
         'races',
         'maps',

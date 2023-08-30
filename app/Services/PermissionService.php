@@ -130,7 +130,7 @@ class PermissionService
     public function entityTypes(): array
     {
         $types = [];
-        $excludedEntities = ['menu_link', 'relation'];
+        $excludedEntities = ['bookmark', 'relation'];
 
         foreach (config('entities.ids') as $name => $id) {
             if (in_array($name, $excludedEntities)) {

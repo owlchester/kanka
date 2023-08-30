@@ -7,12 +7,12 @@
         </h3>
         <div class="text-muted mb-2">{{ __('front/newsletter.headline', ['kanka' => config('app.name')]) }}</div>
 
-        <a class="btn2 btn-ghost" data-toggle="collapse" href="#newsletter-collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn2 btn-ghost" data-animate="collapse" data-target="#newsletter-collapse" href="#newsletter-collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
             {{ __('front/newsletter.actions.learn_more') }}
         </a>
 
 
-        <div class="collapse my-2" id="newsletter-collapse">
+        <div class="hidden my-2" id="newsletter-collapse">
         @endif
             <div id="mc_embed_signup">
                 <form action="https://kanka.us19.list-manage.com/subscribe/post?u=e971e01b5e0f6f2597dad7d8f&amp;id=2fb0754d39" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>

@@ -44,7 +44,7 @@ class EntityService
             'timelines' => 'App\Models\Timeline',
             'attribute_templates' => 'App\Models\AttributeTemplate',
             'dice_rolls' => 'App\Models\DiceRoll',
-            'menu_links' => 'App\Models\MenuLink',
+            'bookmarks' => 'App\Models\Bookmark',
             'relations' => 'App\Models\Relation',
         ];
     }

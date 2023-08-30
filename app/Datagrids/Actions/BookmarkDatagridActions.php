@@ -5,7 +5,7 @@ namespace App\Datagrids\Actions;
 /**
  * Menu links aren't real entities, meaning that they don't get a lot of actions
  */
-class MenuLinkDatagridActions extends DatagridActions
+class BookmarkDatagridActions extends DatagridActions
 {
     public $bulkPermissions = false;
     public $bulkCopyToCampaign = false;

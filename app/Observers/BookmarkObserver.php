@@ -2,19 +2,19 @@
 
 namespace App\Observers;
 
-use App\Models\MenuLink;
+use App\Models\Bookmark;
 
-class MenuLinkObserver
+class BookmarkObserver
 {
     use PurifiableTrait;
 
     /**
      */
-    public function saving(MenuLink $model)
+    public function saving(Bookmark $model)
     {
         // Handle empty or wrong positions
         if (empty($model->position)) {
-            $model->position = MenuLink::max('position') + 1;
+            $model->position = Bookmark::max('position') + 1;
         } else {
             $model->position = (int) $model->position;
         }

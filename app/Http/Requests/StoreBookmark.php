@@ -6,7 +6,7 @@ use App\Rules\FontAwesomeIcon;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMenuLink extends FormRequest
+class StoreBookmark extends FormRequest
 {
     use ApiRequest;
 

@@ -284,6 +284,7 @@ import './keep-alive';
 import './quick-creator';
 //import './tutorial')
 import './datagrids';
+import './animations';
 import './quick-links';
 import './post-layouts';
 import './members';

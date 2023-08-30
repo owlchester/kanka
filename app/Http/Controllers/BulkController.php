@@ -101,7 +101,7 @@ class BulkController extends Controller
             $templates = $service->campaign($campaign)->templateList();
         } elseif (request()->get('view') === 'transform') {
             $entities = $this->typeService
-                ->exclude([$type, 'menu_link', 'relation'])
+                ->exclude([$type, 'bookmark', 'relation'])
                 ->withNull()
                 ->labelled();
             $entities[''] = __('entities/transform.fields.select_one');

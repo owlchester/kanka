@@ -118,6 +118,13 @@
 
 @section('modals')
 
+    {!! Form::open([
+        'method' => 'DELETE',
+        'route' => [
+            'campaign-sidebar-reset',
+            $campaign
+        ]
+    ]) !!}
     <x-dialog id="reset-confirm" :title="__('campaigns/sidebar.reset.title')">
         <p>{{ __('campaigns/sidebar.reset.warning') }}</p>
 
@@ -126,17 +133,10 @@
                 {{ __('crud.cancel') }}
             </x-buttons.confirm>
 
-            {!! Form::open([
-                'method' => 'DELETE',
-                'route' => [
-                    'campaign-sidebar-reset',
-                    $campaign
-                ]
-            ]) !!}
                 <x-buttons.confirm type="danger" full="true" outline="true">
                     {{ __('crud.click_modal.confirm') }}
                 </x-buttons.confirm>
-            {!! Form::close() !!}
         </div>
     </x-dialog>
+    {!! Form::close() !!}
 @endsection

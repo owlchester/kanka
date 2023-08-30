@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReorderMenuLinks extends FormRequest
+class ReorderBookmarks extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class ReorderMenuLinks extends FormRequest
     public function rules()
     {
         return [
-            'menu_link' => [
-                '*' => 'exists:menu_links,id'
+            'bookmark' => [
+                '*' => 'exists:bookmarks,id'
             ]
         ];
     }

@@ -12,7 +12,7 @@ use App\Facades\Permissions;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
-use App\Models\MenuLink;
+use App\Models\Bookmark;
 use App\Models\MiscModel;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\MultiEditingService;
@@ -243,7 +243,7 @@ class CrudController extends Controller
         if ($this->hasLimitCheck) {
             // @phpstan-ignore-next-line
             if ($this->limitCheckReached()) {
-                $key = $this->view == 'menu_links' ? 'quick-links' : 'entities';
+                $key = $this->view == 'bookmarks' ? 'bookmarks' : 'entities';
                 return view('cruds.forms.limit')
                     ->with('campaign', $this->campaign)
                     ->with('key', $key)
@@ -391,7 +391,7 @@ class CrudController extends Controller
         $entity_type_id = $model->entityTypeId();
 
         // Fix for models without an entity
-        if (empty($model->entity) && !($model instanceof MenuLink)) {
+        if (empty($model->entity) && !($model instanceof Bookmark)) {
             if (auth()->guest()) {
                 abort(404);
             }

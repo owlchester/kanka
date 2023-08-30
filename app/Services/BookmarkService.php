@@ -2,24 +2,24 @@
 
 namespace App\Services;
 
-use App\Http\Requests\ReorderMenuLinks;
-use App\Models\MenuLink;
+use App\Http\Requests\ReorderBookmarks;
+use App\Models\Bookmark;
 
-class MenuLinkService
+class BookmarkService
 {
     /**
      */
-    public function reorder(ReorderMenuLinks $request): bool
+    public function reorder(ReorderBookmarks $request): bool
     {
-        $ids = $request->get('menu_link');
+        $ids = $request->get('bookmark');
         if (empty($ids)) {
             return false;
         }
 
         $position = 1;
         foreach ($ids as $id) {
-            /** @var MenuLink|null $link */
-            $link = MenuLink::where('id', $id)->first();
+            /** @var Bookmark|null $link */
+            $link = Bookmark::where('id', $id)->first();
             if (empty($link)) {
                 continue;
             }

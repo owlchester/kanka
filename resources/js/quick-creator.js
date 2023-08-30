@@ -80,7 +80,7 @@ function quickCreatorDuplicateName() {
             if (res.length > 0) {
                 let entities = Object.keys(res).map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'; }).join(', ');
                 $(this).parent().parent().find('.duplicate-entities').html(entities);
-                $(this).parent().parent().find('.duplicate-entity-warning').fadeIn();
+                $(this).parent().parent().find('.duplicate-entity-warning').show();
             } else {
                 $(this).parent().parent().find('.duplicate-entity-warning').hide();
             }

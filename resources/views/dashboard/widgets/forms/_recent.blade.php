@@ -50,7 +50,7 @@
 
                 <x-forms.field field="singular" css="col-span-2" :label="__('dashboard.widgets.recent.singular')">
                     {!! Form::hidden('config[singular]', 0) !!}
-                    <div class="checkbox" data-toggle="collapse" data-target="#widget-advanced">
+                    <div class="checkbox" data-animate="collapse" data-target="#widget-advanced">
                         <label class="text-neutral-content cursor-pointer flex gap-2">
                             {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null)) !!}
                             {{ __('dashboard.widgets.recent.help') }}
@@ -58,7 +58,7 @@
                     </div>
                 </x-forms.field>
 
-                <div class="col-span-2 collapse !visible {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
+                <div class="col-span-2 hidden {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
                     @if($campaign->boosted())
                         @include('dashboard.widgets.forms._header_select')
                         @include('dashboard.widgets.forms._related')

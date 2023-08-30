@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\QuickLink;
+namespace App\Http\Controllers\Bookmarks;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Models\MenuLink;
+use App\Models\Bookmark;
 
 class RandomController extends Controller
 {
-    public function index(Campaign $campaign, MenuLink $menuLink)
+    public function index(Campaign $campaign, Bookmark $bookmark)
     {
-        $route = $menuLink->randomEntity();
+        $route = $bookmark->randomEntity();
 
         if (empty($route)) {
             return redirect()

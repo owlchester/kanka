@@ -78,7 +78,7 @@
                         </div>
                         @if(!empty($log->changes))
                             <div class="flex-end">
-                                <a href="#log-{{ $log->id }}" data-toggle="collapse">
+                                <a href="#log-{{ $log->id }}" data-animate="collapse" data-target="#log-{{ $log->id }}">
                                     <i class="fa-solid fa-eye" aria-hidden="true"></i>
                                     {{ __('history.actions.show-old') }}
                                 </a>
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     @if (!empty($log->changes) && $superboosted)
-                    <div id="log-{{ $log->id }}" class="collapse !visible my-5">
+                    <div id="log-{{ $log->id }}" class="hidden my-5">
                         <p class="text-muted">{{ __('history.helpers.changes') }}</p>
                         @foreach ($log->changes as $attribute => $value)
                             @if (is_array($value)) @continue @endif

@@ -10,7 +10,7 @@
     $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? [$campaign, 'm' => 'table'] : [$campaign];
  @endphp
     @inject('sidebar', 'App\Services\SidebarService')
-    @php $sidebar->campaign($campaign)->prepareQuickLinks()@endphp
+    @php $sidebar->campaign($campaign)->prepareBookmarks()@endphp
     <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(280, 210)->url($campaign->image) }})" @endif>
 
         @include('layouts.sidebars._campaign')
@@ -18,8 +18,8 @@
         <section class="sidebar pb-14" style="height: auto">
             <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0">
                 @foreach ($sidebar->campaign($campaign)->layout() as $name => $element)
-                    @if ($name === 'menu_links')
-                        @includeWhen($campaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])
+                    @if ($name === 'bookmarks')
+                        @includeWhen($campaign->enabled('bookmarks'), 'layouts.sidebars.quick-links', ['links' => $sidebar->bookmarks('bookmarks')])
                         @continue
                     @endif
                     <li class="px-2 {{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section-{{ $name }}">
@@ -58,12 +58,12 @@
                                     :text="$child['custom_label'] ?? __($child['label_key'])"
                                 ></x-sidebar.element>
                             </li>
-                            @includeWhen($sidebar->hasQuickLinks($childName), 'layouts.sidebars._quick-links', ['links' => $sidebar->quickLinks($childName)])
+                            @includeWhen($sidebar->hasBookmarks($childName), 'layouts.sidebars._quick-links', ['links' => $sidebar->bookmarks($childName)])
                         @endforeach
                         </ul>
                         @endif
 
-                        @includeWhen($sidebar->hasQuickLinks($name), 'layouts.sidebars._quick-links', ['links' => $sidebar->quickLinks($name)])
+                        @includeWhen($sidebar->hasBookmarks($name), 'layouts.sidebars._quick-links', ['links' => $sidebar->bookmarks($name)])
                     </li>
                 @endforeach
             </ul>

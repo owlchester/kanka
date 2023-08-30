@@ -19,14 +19,14 @@
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
     <x-forms.field field="field-two-way" :label="__('entities/relations.fields.two_way')">
-        <label class="text-neutral-content cursor-pointer flex gap-2" data-toggle="collapse" data-target="#two-way-relation">
+        <label class="text-neutral-content cursor-pointer flex gap-2" data-animate="collapse" data-target="#two-way-relation">
             {!! Form::checkbox('two_way') !!}
             {{ __('entities/relations.hints.two_way') }}
         </label>
     </x-forms.field>
 
     <div>
-    <div class="collapse !visible" id="two-way-relation">
+    <div class="hidden" id="two-way-relation">
         <x-forms.field
             field="target-relation"
             :label="__('entities/relations.fields.target_relation')"

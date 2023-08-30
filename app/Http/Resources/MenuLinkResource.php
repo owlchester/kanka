@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Models\MenuLink;
+use App\Models\Bookmark;
 
 class MenuLinkResource extends EntityResource
 {
@@ -14,7 +14,7 @@ class MenuLinkResource extends EntityResource
      */
     public function toArray($request)
     {
-        /** @var MenuLink $model */
+        /** @var Bookmark $model */
         $model = $this->resource;
         return [
             'id' => $model->id,

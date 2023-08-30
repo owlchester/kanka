@@ -40,7 +40,7 @@ class DefaultImageController extends Controller
         $this->authorize('recover', $campaign);
 
         $ignore = $campaign->existingDefaultImages();
-        $ignore = array_merge($ignore, ['relations', 'menu_links']);
+        $ignore = array_merge($ignore, ['relations', 'bookmarks']);
         $entities = $this->typeService
             ->exclude($ignore)
             ->plural()

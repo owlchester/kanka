@@ -1,11 +1,11 @@
 <div class="sidebar-section-box entity-history overflow-hidden flex flex-col gap-2">
-    <div class="sidebar-section-title cursor-pointer text-lg user-select border-b" data-toggle="collapse" data-target="#sidebar-history">
-        <i class="fa-solid fa-chevron-right" aria-hidden="true" style="display: none"></i>
-        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    <div class="sidebar-section-title cursor-pointer text-lg user-select border-b element-toggle" data-animate="collapse" data-target="#sidebar-history">
+        <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
+        <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
 
         {{ __('entities/profile.history') }}
     </div>
-    <div class="sidebar-elements collapse !visible in" id="sidebar-history">
+    <div class="sidebar-elements overflow-hidden" id="sidebar-history">
         <div class="flex flex-col gap-2 text-xs">
         @if ($model->entity)
             <p class="m-0">

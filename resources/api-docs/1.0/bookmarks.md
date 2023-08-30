@@ -2,21 +2,21 @@
 
 ---
 
-- [Menu links](#menu-links)
-  - [All Menu links](#all-menu-links)
+- [Menu links](#bookmarks)
+  - [All Menu links](#all-bookmarks)
     - [Results](#results)
-  - [Menu link](#menu-link)
+  - [Menu link](#bookmark)
     - [Results](#results-1)
-  - [Create a Menu link](#create-a-menu-link)
+  - [Create a Menu link](#create-a-bookmark)
     - [Body](#body)
     - [Results](#results-2)
-  - [Update a Menu link](#update-a-menu-link)
+  - [Update a Menu link](#update-a-bookmark)
     - [Body](#body-1)
     - [Results](#results-3)
-  - [Delete a Menu link](#delete-a-menu-link)
+  - [Delete a Menu link](#delete-a-bookmark)
     - [Results](#results-4)
 
-<a name="all-menu-links"></a>
+<a name="all-bookmarks"></a>
 ## All Menu links
 
 You can get a list of all the menu links of a campaign by using the following endpoint.
@@ -26,7 +26,7 @@ You can get a list of all the menu links of a campaign by using the following en
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `menu_links` | Default |
+| GET/HEAD | `bookmarks` | Default |
 
 ### Results
 ```json
@@ -55,14 +55,14 @@ You can get a list of all the menu links of a campaign by using the following en
 ```
 
 
-<a name="menu-link"></a>
+<a name="bookmark"></a>
 ## Menu link
 
 To get the details of a single menu link, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| GET/HEAD | `menu_links/{menu-link.id}` | Default |
+| Method | URI                       | Headers |
+| :- |:--------------------------|  :-  |
+| GET/HEAD | `bookmarks/{bookmark.id}` | Default |
 
 ### Results
 ```json
@@ -90,14 +90,14 @@ To get the details of a single menu link, use the following endpoint.
 ```
 
 
-<a name="create-menu-link"></a>
+<a name="create-bookmark"></a>
 ## Create a Menu link
 
 To create a menu link, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `menu_links` | Default |
+| POST | `bookmarks` | Default |
 
 ### Body
 
@@ -122,14 +122,14 @@ To create a menu link, use the following endpoint.
 > {success} Code 200 with JSON body of the new menu link.
 
 
-<a name="update-menu-link"></a>
+<a name="update-bookmark"></a>
 ## Update a Menu link
 
 To update a menu link, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| PUT/PATCH | `menu_links/{menu-link.id}` | Default |
+| Method | URI                       | Headers |
+| :- |:--------------------------|  :-  |
+| PUT/PATCH | `bookmarks/{bookmark.id}` | Default |
 
 ### Body
 
@@ -140,14 +140,14 @@ The same body parameters are available as for when creating a menu link.
 > {success} Code 200 with JSON body of the updated menu link.
 
 
-<a name="delete-menu-link"></a>
+<a name="delete-bookmark"></a>
 ## Delete a Menu link
 
-To delete a menu link, use the following endpoint.
+To delete a bookmark, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| DELETE | `menu_links/{menu-link.id}` | Default |
+| Method | URI                            | Headers |
+| :- |:-------------------------------|  :-  |
+| DELETE | `bookmarks/{bookmark.id}` | Default |
 
 ### Results
 

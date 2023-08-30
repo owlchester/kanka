@@ -6,10 +6,10 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
 
     <div class="flex flex-col gap-3 post-block character-personalities">
         <div class="post-header flex gap-1 md:gap-2 items-center">
-            <div class="flex gap-2 items-center grow cursor-pointer" data-toggle="collapse" data-target="#character-personality-body">
+            <div class="flex gap-2 items-center grow cursor-pointer element-toggle" data-animate="collapse" data-target="#character-personality-body">
                 <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
                 <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
-                <h3 class="post-title grow"  >
+                <h3 class="post-title grow m-0">
                     {{ __('characters.sections.personality') }}
                 </h3>
             </div>
@@ -24,7 +24,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             @endif
         </div>
         <div class="bg-box rounded" id="character-personality">
-            <div class="entity-content box-body collapse !visible in" id="character-personality-body">
+            <div class="entity-content box-body overflow-hidden" id="character-personality-body">
                 <div class="p-4">
                     @foreach ($traits as $trait)
                         <p class="entity-trait-{{ \Illuminate\Support\Str::slug($trait->name) }}">

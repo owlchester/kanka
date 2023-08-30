@@ -6,7 +6,7 @@ use App\Facades\UserCache;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class MenuLinkPolicy
+class BookmarkPolicy
 {
     use HandlesAuthorization;
 

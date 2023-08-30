@@ -31,7 +31,7 @@
         display: none;
     }
 }
-.element-toggle.collapsed, .post-block .collapsed {
+.element-toggle.collapsed, .post-block .collapsed, .element-toggle.animate-collapsed {
     .icon-hide {
         display: unset;
     }

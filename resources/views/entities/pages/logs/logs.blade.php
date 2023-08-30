@@ -54,13 +54,13 @@
                                 <td class="text-right">
                                     @if ($campaign->superboosted())
                                         @if(!empty($log->changes))
-                                            <a href="#log-{{ $log->id }}" data-toggle="collapse">
+                                            <a href="#log-{{ $log->id }}" data-animate="collapse">
                                                 <i class="fa-solid fa-scroll" aria-hidden="true"></i>
                                                 <span class="hidden md:inline">{{ __('entities/logs.actions.view') }}</span>
                                             </a>
                                         @endif
                                     @else
-                                    <a href="#log-cta" data-toggle="collapse">
+                                    <a href="#log-cta" data-animate="collapse">
                                         <i class="fa-solid fa-scroll" aria-hidden="true"></i>
                                         <span class="hidden md:inline">{{ __('entities/logs.actions.view') }}</span>
                                     </a>
@@ -69,7 +69,7 @@
                             </tr>
                         @endif
                         @if ($campaign->superboosted() && !empty($log->changes))
-                        <tr id="log-{{ $log->id }}" class="collapse !visible">
+                        <tr id="log-{{ $log->id }}" class="hidden">
                             <td colspan="4">
                                 <dl class="dl-horizontal">
                                     @foreach ($log->changes as $attribute => $value)

@@ -54,7 +54,7 @@
 - ## Other Concepts
     - [Last Sync](/api-docs/{{version}}/last-sync)
     - [Pagination](/api-docs/{{version}}/pagination)
-    - [Menu Links](/api-docs/{{version}}/menu-links)
+    - [Bookmarks](/api-docs/{{version}}/bookmark)
     - [Dashboard Widgets](/api-docs/{{version}}/dashboard-widgets)
     - [Mention Language](/api-docs/{{version}}/mention-language)
     - [Gallery](/api-docs/{{version}}/images)

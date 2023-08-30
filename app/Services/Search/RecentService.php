@@ -6,7 +6,7 @@ use App\Facades\Avatar;
 use App\Facades\Breadcrumb;
 use App\Facades\Module;
 use App\Models\Entity;
-use App\Models\MenuLink;
+use App\Models\Bookmark;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Collator;
@@ -93,8 +93,8 @@ class RecentService
     public function bookmarks(): array
     {
         $bookmarks = [];
-        $links = MenuLink::active()->standardWith()->ordered()->get();
-        /** @var MenuLink $link */
+        $links = Bookmark::active()->standardWith()->ordered()->get();
+        /** @var Bookmark $link */
         foreach ($links as $link) {
             if (!$link->valid($this->campaign)) {
                 continue;
@@ -108,7 +108,7 @@ class RecentService
     /**
      * Extract usable data from the bookmark
      */
-    protected function formatBookmark(MenuLink $link): array
+    protected function formatBookmark(Bookmark $link): array
     {
         return [
             'url' => $link->getRoute(),
@@ -137,7 +137,7 @@ class RecentService
     protected function orderedTypes(): array
     {
         $types = config('entities.ids');
-        unset($types['menu_link']);
+        unset($types['bookmark']);
         $orderedTypes = [];
         foreach ($types as $singular => $id) {
             $orderedTypes[$singular] = Module::singular($id, __('entities.' . $singular));

@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Facades\Module;
 use App\Models\Entity;
-use App\Models\MenuLink;
+use App\Models\Bookmark;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
@@ -18,7 +18,7 @@ class SidebarService
     /**
      * List of the campaign's quick links
      */
-    protected array $quickLinks = [];
+    protected array $bookmarks = [];
 
     protected array $rules = [
         'dashboard' => [
@@ -105,8 +105,8 @@ class SidebarService
         'dice_rolls' => [
             'dice_rolls',
         ],
-        'menu_links' => [
-            'menu_links',
+        'bookmarks' => [
+            'bookmarks',
         ],
         'races' => [
             'races',
@@ -132,7 +132,7 @@ class SidebarService
 
     protected $layout = [
         'dashboard' => null,
-        'menu_links' => null,
+        'bookmarks' => null,
         'world' => [ //world
             'characters',
             'locations',
@@ -182,9 +182,9 @@ class SidebarService
                 'route' => 'dashboard',
                 'fixed' => true,
             ],
-            'menu_links' => [
-                'icon' => config('entities.icons.menu_link'),
-                'label' => 'entities.menu_links',
+            'bookmarks' => [
+                'icon' => config('entities.icons.bookmark'),
+                'label' => 'entities.bookmarks',
                 'fixed' => true,
             ],
             'world' => [
@@ -389,7 +389,7 @@ class SidebarService
             return '';
         }
 
-        if (request()->has('quick-link')) {
+        if (request()->has('bookmark')) {
             return '';
         }
 
@@ -413,10 +413,10 @@ class SidebarService
 
     /**
      */
-    public function activeMenuLink(MenuLink $menuLink): string
+    public function activeBookmark(Bookmark $bookmark): string
     {
-        $request = request()->get('quick-link');
-        if (empty($request) || $request != $menuLink->id) {
+        $request = request()->get('bookmark');
+        if (empty($request) || $request != $bookmark->id) {
             return '';
         }
 
@@ -730,42 +730,42 @@ class SidebarService
     /**
      * Prepare the quick links by figuring out where they will be rendered
      */
-    public function prepareQuickLinks(): void
+    public function prepareBookmarks(): void
     {
-        $this->quickLinks = [];
+        $this->bookmarks = [];
 
         // Quick menu module not activated on the campaign, no need to go further
-        if (!$this->campaign->enabled('menu_links')) {
+        if (!$this->campaign->enabled('bookmarks')) {
             return;
         }
-        $quickLinks = $this->campaign->menuLinks()->active()->ordered()->with(['target' => function ($sub) {
+        $bookmarks = $this->campaign->bookmarks()->active()->ordered()->with(['target' => function ($sub) {
             return $sub->select('id', 'type_id', 'entity_id');
         }])->get();
-        foreach ($quickLinks as $quickLink) {
-            $parent = 'menu_links';
-            if (!empty($quickLink->parent) && $this->campaign->boosted()) {
-                $parent = $quickLink->parent;
+        foreach ($bookmarks as $bookmark) {
+            $parent = 'bookmarks';
+            if (!empty($bookmark->parent) && $this->campaign->boosted()) {
+                $parent = $bookmark->parent;
             }
-            $this->quickLinks[$parent][] = $quickLink;
+            $this->bookmarks[$parent][] = $bookmark;
         }
     }
 
     /**
      * Get the quick links for a specified section/parent
      */
-    public function quickLinks(string $parent = null): array
+    public function bookmarks(string $parent = null): array
     {
-        if (!$this->hasQuickLinks($parent)) {
+        if (!$this->hasBookmarks($parent)) {
             return [];
         }
-        return $this->quickLinks[$parent];
+        return $this->bookmarks[$parent];
     }
 
     /**
      * Determine if a section has quick links in it
      */
-    public function hasQuickLinks(string $parent): bool
+    public function hasBookmarks(string $parent): bool
     {
-        return array_key_exists($parent, $this->quickLinks) && !empty($this->quickLinks[$parent]);
+        return array_key_exists($parent, $this->bookmarks) && !empty($this->bookmarks[$parent]);
     }
 }

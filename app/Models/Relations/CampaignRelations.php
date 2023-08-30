@@ -27,7 +27,7 @@ use App\Models\Item;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Map;
-use App\Models\MenuLink;
+use App\Models\Bookmark;
 use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\Plugin;
@@ -227,11 +227,11 @@ trait CampaignRelations
     }
 
     /**
-     * @return MenuLink|\Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Bookmark|\Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function menuLinks()
+    public function bookmarks()
     {
-        return $this->hasMany(MenuLink::class)
+        return $this->hasMany(Bookmark::class)
             ->with(['dashboard']);
     }
 

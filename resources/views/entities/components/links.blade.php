@@ -1,13 +1,13 @@
 <?php /** @var \App\Models\EntityAsset $asset */?>
 
 <div class="sidebar-section-box entity-links overflow-hidden flex flex-col gap-2">
-    <div class="sidebar-section-title cursor-pointer text-lg user-select border-b" data-toggle="collapse" data-target="#sidebar-link-elements">
-        <i class="fa-solid fa-chevron-right" style="display: none" aria-hidden="true"></i>
-        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    <div class="sidebar-section-title cursor-pointer text-lg user-select border-b element-toggle" data-animate="collapse" data-target="#sidebar-link-elements">
+        <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
+        <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
 
         {{ __('entities/pins.links') }}
     </div>
-    <div class="sidebar-elements collapse !visible in" id="sidebar-link-elements">
+    <div class="sidebar-elements overflow-hidden" id="sidebar-link-elements">
         <div class="flex flex-col gap-2">
             @foreach ($model->entity->assets->where('type_id', \App\Models\EntityAsset::TYPE_LINK) as $asset)
                 <a href="{{ route('entities.entity_assets.go', [$campaign, 'entity' => $model->entity->id, 'entity_asset' => $asset]) }}"

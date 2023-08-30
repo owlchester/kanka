@@ -1,4 +1,4 @@
-<?php /** @var \App\Models\MenuLink $model */?>
+<?php /** @var \App\Models\Bookmark $model */ ?>
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
@@ -60,8 +60,8 @@
         ]
     ])
     ->options(    [
-        'route' => 'menu_links.index',
-        'baseRoute' => 'menu_links',
+        'route' => 'bookmarks.index',
+        'baseRoute' => 'bookmarks',
         'trans' => 'menu_links.fields.',
         'disableEntity' => true,
     ]

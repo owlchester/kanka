@@ -2,7 +2,7 @@
 
 namespace App\Datagrids\Bulks;
 
-class MenuLinkBulk extends Bulk
+class BookmarkBulk extends Bulk
 {
     protected array $fields = [
         'name',

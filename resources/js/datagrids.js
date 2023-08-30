@@ -202,7 +202,7 @@ function initDatagrid2OnLoad() {
 function datagrid2Reorder(ele) {
     datagrid2Table.find('thead').hide();
     datagrid2Table.find('tbody').hide();
-    datagrid2Table.find('tfoot').fadeIn();
+    datagrid2Table.find('tfoot').show();
 
     let url = ele.attr('href');
     let dataUrl = ele.data('url');

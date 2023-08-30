@@ -1,5 +1,5 @@
 <?php /**
- * @var \App\Models\MenuLink $model
+ * @var \App\Models\Bookmark $model
  * @var \App\Services\EntityService $entityService
  * @var \App\Services\SidebarService $sidebar
  */
@@ -51,16 +51,16 @@ if (isset($model)) {
                 <p class="help-block">
                     {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
                 </p>
-            @endsubscriber
+                @endsubscriber
 
-        @endif
+            @endif
     </x-forms.field>
 
     <x-forms.field
-        field="position"
-        :label="__('menu_links.fields.position')"
-        :tooltip="true"
-        :helper="__('entities/links.helpers.parent')">
+            field="position"
+            :label="__('menu_links.fields.position')"
+            :tooltip="true"
+            :helper="__('entities/links.helpers.parent')">
         @if ($campaign->boosted())
             {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'menu_links' : $model->parent), ['class' => '']) }}
 
@@ -69,22 +69,22 @@ if (isset($model)) {
             </p>
         @else
             @subscriber()
-                <p class="help-block">
-                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
-                </p>
+            <p class="help-block">
+                {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
+            </p>
             @else
                 <p class="help-block">
                     {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
                 </p>
-            @endsubscriber
-        @endif
+                @endsubscriber
+            @endif
     </x-forms.field>
 
     <x-forms.field
-        field="class"
-        :label="__('dashboard.widgets.fields.class')"
-        :tooltip="true"
-        :helper="__('dashboard.widgets.helpers.class')"
+            field="class"
+            :label="__('dashboard.widgets.fields.class')"
+            :tooltip="true"
+            :helper="__('dashboard.widgets.helpers.class')"
     >
         @if ($campaign->boosted())
             {!! Form::text('css', null, ['class' => '', 'id' => 'config[class]', 'maxlength' => 45]) !!}
@@ -93,18 +93,19 @@ if (isset($model)) {
             </p>
         @else
             @subscriber()
-                <p class="help-block">
-                    {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
-                </p>
+            <p class="help-block">
+                {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
+            </p>
             @else
                 <p class="help-block">
                     {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
                 </p>
-            @endsubscriber
-        @endif
+                @endsubscriber
+            @endif
     </x-forms.field>
 
-    <x-forms.field field="active" :label="__('menu_links.fields.active')" :tooltip="true" :helper="__('menu_links.helpers.active')">
+    <x-forms.field field="active" :label="__('menu_links.fields.active')" :tooltip="true"
+                   :helper="__('menu_links.helpers.active')">
         {!! Form::hidden('is_active', 0) !!}
 
         <label class="text-neutral-content cursor-pointer flex gap-2">
@@ -115,7 +116,7 @@ if (isset($model)) {
     </x-forms.field>
 </x-grid>
 
-<hr />
+<hr/>
 
 <h4>{{ __('menu_links.fields.selector') }}</h4>
 <p class="help-block">{{ __('menu_links.helpers.selector') }}</p>
@@ -123,35 +124,35 @@ if (isset($model)) {
 <x-forms.field field="target" :label="__('menu_links.fields.target')">
     <select name="type" class="" id="quick-link-selector">
         <option value="">Choose an option</option>
-        <option value="entity" @if($isEntity) selected="selected" @endif data-target="#quick-link-entity">
+        <option value="entity" @if($isEntity) selected="selected" @endif data-target="#bookmark-entity">
             {{ __('menu_links.fields.entity') }}
         </option>
-        <option value="type" @if($isList) selected="selected" @endif data-target="#quick-link-list">
+        <option value="type" @if($isList) selected="selected" @endif data-target="#bookmark-list">
             {{ __('crud.fields.type') }}
         </option>
-        <option value="random" @if($isRandom) selected="selected" @endif data-target="#quick-link-random">
+        <option value="random" @if($isRandom) selected="selected" @endif data-target="#bookmark-random">
             {{ __('menu_links.fields.random') }}
         </option>
-        <option value="dashboard" @if($isDashboard) selected="selected" @endif data-target="#quick-link-dashboard">
+        <option value="dashboard" @if($isDashboard) selected="selected" @endif data-target="#bookmark-dashboard">
             {{ __('menu_links.fields.dashboard') }}
         </option>
     </select>
 </x-forms.field>
 <div>
-    <div class="quick-link-subform" id="quick-link-entity" @if($isEntity) @else style="display: none" @endif>
-        @include('menu_links.form._entity')
+    <div class="bookmark-subform" id="bookmark-entity" @if($isEntity) @else style="display: none" @endif>
+        @include('bookmarks.form._entity')
     </div>
-    <div class="quick-link-subform" id="quick-link-list" @if($isList) @else style="display: none" @endif>
-        @include('menu_links.form._type')
+    <div class="bookmark-subform" id="bookmark-list" @if($isList) @else style="display: none" @endif>
+        @include('bookmarks.form._type')
     </div>
-    <div class="quick-link-subform" id="quick-link-random" @if($isRandom) @else style="display: none" @endif>
-        @include('menu_links.form._random')
+    <div class="bookmark-subform" id="bookmark-random" @if($isRandom) @else style="display: none" @endif>
+        @include('bookmarks.form._random')
     </div>
-    <div class="quick-link-subform" id="quick-link-dashboard" @if($isDashboard) @else style="display: none" @endif>
-        @include('menu_links.form._dashboard')
+    <div class="bookmark-subform" id="bookmark-dashboard" @if($isDashboard) @else style="display: none" @endif>
+        @include('bookmarks.form._dashboard')
     </div>
 </div>
 
-<hr />
+<hr/>
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
 

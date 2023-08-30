@@ -97,7 +97,7 @@ class LiveController extends Controller
             $this->search
                 ->term($term)
                 ->campaign($campaign)
-                ->exclude([config('entities.ids.menu_link')])
+                ->exclude([config('entities.ids.bookmark')])
                 ->excludeIds($exclude)
                 ->only($request->get('only'))
                 ->find()
