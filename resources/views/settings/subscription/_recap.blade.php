@@ -71,7 +71,7 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
             </div>
         </div>
         <a class="{{ $box }}" href="#" data-toggle="dialog"
-           data-target="change-currency">
+           data-target="primary-dialog" data-url="{{ route('billing.currency') }}">
             <div class="text-xl text-center">
                 {{ $user->billedInEur() ? 'EUR' : 'USD' }}
                 <i class="fa-solid fa-pencil-alt" aria-hidden="true"></i>

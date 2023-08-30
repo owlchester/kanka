@@ -14,7 +14,7 @@ $(document).ready(function() {
     initStripe();
     initPeriodToggle();
     subscribeModal = $('#subscribe-confirm');
-    subscribeModal.on('shown.bs.modal', () => {
+    $(document).on('shown.bs.modal', () => {
         initConfirmListener();
     });
 });

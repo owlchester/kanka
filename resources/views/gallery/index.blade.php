@@ -56,9 +56,10 @@ if ($folder) {
                         <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
                     </button>
                 @endif
-                <button class="btn2 btn-sm btn-error" style="display: none" id="bulk-delete" data-toggle="dialog" data-target="bulk-destroy-dialog">
+                <span data-tooltip data-title="{{ __('Use shift+click on images to bulk delete them.') }}">
+                <button class="btn2 btn-sm btn-error btn-disabled " id="bulk-delete" data-toggle="dialog"  data-target="bulk-destroy-dialog">
                     <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-                </button>
+                </button></span>
             </div>
 
             <div class="search">

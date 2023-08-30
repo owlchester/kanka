@@ -66,6 +66,7 @@ Route::get('/subscription/callback', [SubscriptionController::class, 'callback']
 Route::post('/subscription/change', [SubscriptionController::class, 'subscribe'])->name('settings.subscription.subscribe');
 Route::get('/billing/payment-method', [PaymentMethodController::class, 'index'])->name('billing.payment-method');
 Route::patch('/billing/payment-method', [PaymentMethodController::class, 'save'])->name('billing.payment-method.save');
+Route::get('/billing/currency', [PaymentMethodController::class, 'currency'])->name('billing.currency');
 
 Route::post('/subscription/alt-subscribe', [SubscriptionController::class, 'altSubscribe'])->name('settings.subscription.alt-subscribe');
 Route::get('/subscription/alt-callback', [SubscriptionController::class, 'altCallback'])->name('settings.subscription.alt-callback');

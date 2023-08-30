@@ -43,6 +43,14 @@ class PaymentMethodController extends Controller
         ));
     }
 
+    public function currency()
+    {
+        $content = auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended() ?
+            '_blocked' : '_form';
+        return view('settings.subscription.currency.edit')
+            ->with('content', $content);
+    }
+
     /**
      */
     public function save(UserBillingStore $request)

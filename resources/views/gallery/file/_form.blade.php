@@ -47,8 +47,8 @@
                 </div>
             @endif
         </div>
-        <div class="">
-            <div class="flex gap-2 items-center mb-5">
+        <x-grid type="1/1">
+            <div class="flex gap-2 items-center flex-wrap">
                 @if(!$image->isFolder())
                     <x-badge :title="__('campaigns/gallery.fields.ext')">
                         <x-icon class="fa-regular fa-image"></x-icon>
@@ -59,25 +59,25 @@
                         {{ $image->niceSize() }}
                     </x-badge>
                 @endif
-                <x-badge :title="__('campaigns/gallery.fields.created_by')">
+                <x-badge :title="__('campaigns/gallery.fields.created_by')" css="text-xs">
                     <x-icon class="fa-regular fa-user"></x-icon>
-                    {{ $image->user ? $image->user->name : __('crud.users.unknown') }}
+                    <div class="text-ellipsis truncate">
+                        {{ $image->user ? $image->user->name : __('crud.users.unknown') }}
+                    </div>
                 </x-badge>
             </div>
 
 
-            <x-grid type="1/1">
-                <x-forms.field field="name" :label="__('crud.fields.name')" :required="true">
-                    {!! Form::text('name', null, ['maxlength' => 45, 'class' => '']) !!}
+            <x-forms.field field="name" :label="__('crud.fields.name')" :required="true">
+                {!! Form::text('name', null, ['maxlength' => 45, 'class' => '']) !!}
+            </x-forms.field>
+
+            @if(!$image->isFolder())
+                <x-forms.field field="folder" :label="__('campaigns/gallery.fields.folder')">
+                    {!! Form::select('folder_id', $folders, null, ['class' => '']) !!}
                 </x-forms.field>
+            @endif
 
-                @if(!$image->isFolder())
-                    <x-forms.field field="folder" :label="__('campaigns/gallery.fields.folder')">
-                        {!! Form::select('folder_id', $folders, null, ['class' => '']) !!}
-                    </x-forms.field>
-                @endif
-
-                @include('cruds.fields.visibility_id', ['model' => $image])
-            </x-grid>
-        </div>
+            @include('cruds.fields.visibility_id', ['model' => $image])
+        </x-grid>
     </div>

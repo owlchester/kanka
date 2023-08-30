@@ -258,9 +258,9 @@ function registerEvents() {
 const registerShift = () => {
     let selected = $('li[data-selected="1"]');
     if (selected.length === 0) {
-        bulkDelete.hide();
+        bulkDelete.addClass('btn-disabled');
     } else {
-        bulkDelete.show();
+        bulkDelete.removeClass('btn-disabled');
     }
 };
 
