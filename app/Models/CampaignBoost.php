@@ -41,4 +41,9 @@ class CampaignBoost extends Model
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
+
+    public function inCooldown(): bool
+    {
+        return !$this->created_at->isBefore(Carbon::now()->subDays(7));
+    }
 }

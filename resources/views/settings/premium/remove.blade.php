@@ -11,7 +11,7 @@
     <h4 class="mt-0">
         {{ __('settings/premium.remove.title') }}
     </h4>
-    @if(!$boost->created_at->isBefore(Carbon\Carbon::now()->subDays(7)))
+    @if($boost->inCooldown())
         <p class="py-5">{!! __('settings/premium.remove.cooldown', [
         'campaign' => '<strong>' . $campaign->name . '</strong>', 'date' => $boost->created_at->addDays(7)->diffForHumans()])!!}</p>
     @else
