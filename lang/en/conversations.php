@@ -11,6 +11,7 @@ return [
     ],
     'hints'         => [
         'participants'  => 'Please add participants to your conversation by pressing on the :icon icon on the upper-right.',
+        'empty' => 'There are no participants in this conversation.',
     ],
     'messages'      => [
         'destroy'       => [
