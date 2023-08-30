@@ -12,6 +12,7 @@ const initAjaxTooltips = () => {
             theme: 'kanka',
             placement: e.dataset.direction ?? 'bottom',
             allowHTML: true,
+            interactive: true,
             delay: 500,
             content: '<i class="fa-solid fa-spin fa-spinner" aria-hidden="true" aria-label="loading..." />',
             arrow: true,
