@@ -21,10 +21,9 @@
     @if ($role->isPublic())
         @include('campaigns.roles._public')
     @else
-    <div class="flex gap-2 lg:gap-5 flex-col lg:flex-row">
-        <div class="lg:flex-none lg:w-60">
+    <div class="flex flex-col gap-5">
         @include('campaigns.roles._members')
-        </div>
+
         <div class="grow">
             <div class="flex gap-2 items-center mb-5">
                 <h3 class="grow">{{ __('crud.permissions.title') }}</h3>
@@ -41,6 +40,7 @@
                     <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<code>' . $role->name . '</code>']) !!} </p>
                 </x-alert>
             @endif
+            @if (!$role->isAdmin())
             <x-box>
                 @can('permission', $role)
                 {{ Form::open(['route' => ['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role], 'data-shortcut' => '1']) }}
@@ -58,6 +58,7 @@
                     {{ Form::close() }}
                 @endif
             </x-box>
+            @endif
         </div>
     </div>
     @endif
@@ -65,10 +66,9 @@
 
 @section('modals')
     <x-dialog id="permission-modal" :title="__('campaigns.roles.modals.details.title')">
-        <p>
+        <p class="m-0">
             {!! __('campaigns.roles.modals.details.entities') !!}
         </p>
-
         <ul>
             <li>
                 <code>{{ __('campaigns.roles.permissions.actions.read') }}</code>:
@@ -96,10 +96,9 @@
             </li>
         </ul>
 
-        <p>
+        <p class="m-0">
             {!! __('campaigns.roles.modals.details.campaign') !!}
         </p>
-
 
         <ul>
             <li>
@@ -120,7 +119,7 @@
             </li>
         </ul>
 
-        <p>
+        <p class="m-0">
             <a href="https://www.youtube.com/watch?v=ikNPzNgjYmg" target="_blank" class="inline-block py-5">
                 {{ __('campaigns.roles.modals.details.more') }}
             </a>

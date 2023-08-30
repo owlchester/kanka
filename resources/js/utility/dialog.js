@@ -30,9 +30,11 @@ const openDialog = (target, url) => {
     target.show();
 
     backdrop.classList.remove('hidden');
-    backdrop.addEventListener('click', function (event) {
-        target.close();
-    });
+    if (target.dataset.dismissible !== 'false') {
+        backdrop.addEventListener('click', function (event) {
+            target.close();
+        });
+    }
 
     target.addEventListener('click', function (event) {
         let rect = target.getBoundingClientRect();

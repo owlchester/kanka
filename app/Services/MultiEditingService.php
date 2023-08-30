@@ -19,9 +19,6 @@ class MultiEditingService
     /** @var Model|Post|Entity */
     protected $model;
 
-    /**
-     * @return $this
-     */
     public function model(Model $model): self
     {
         $this->model = $model;

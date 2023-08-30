@@ -20,12 +20,12 @@ a, .text-link {
 
     &:hover {
         --tw-text-opacity: 1;
-        color: hsl(var(--link-text, var(--pf))/var(--tw-text-opacity));
+        color: var(--link-text, hsl(var(--pf))/var(--tw-text-opacity));
     }
 
     &:focus {
         --tw-text-opacity: 1;
-        color: hsl(var(--link-focus, var(--pf))/var(--tw-text-opacity));
+        color: var(--link-focus, hsl(var(--pf))/var(--tw-text-opacity));
     }
 }
 

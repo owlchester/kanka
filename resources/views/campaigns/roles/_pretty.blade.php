@@ -5,14 +5,14 @@
  */
 $first = true;
 ?>
-<div class="grid grid-cols-6 md:grid-cols-7 gap-2 mb-5 min-w-min">
+<div class="grid grid-cols-6 md:grid-cols-7 gap-2">
 @foreach ($permission->permissions($role) as $entity => $permissions)
     @if ($first)
         <div class="hidden sm:block">
         </div>
         @foreach ($permissions as $perm)
-            <div class="text-center tooltip-wide">
-                <label>
+            <div class="text-center tooltip-wide  md:w-40 flex gap-2 justify-center">
+                <label class="">
                     <span class="hidden sm:inline">
                         {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
                         <i class="fa-solid fa-question-circle text-link cursor-pointer" aria-hidden="true" data-target="permission-modal" data-toggle="dialog"></i>
@@ -26,8 +26,8 @@ $first = true;
         @endforeach
         @php $first = false; @endphp
     @endif
-        <div class="col-span-7 md:col-span-1">
-            <strong>{!! __($permission->entityType($entity)) !!}</strong>
+        <div class="col-span-7 md:col-span-1 md:w-40">
+            <div class="font-extrabold truncate">{!! __($permission->entityType($entity)) !!}</div>
             @if (!$campaign->enabled($permission->entityTypePlural($entity)))
                 <div class="inline" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
                     <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
@@ -36,7 +36,7 @@ $first = true;
             @endif
         </div>
     @foreach ($permissions as $perm)
-        <div class="text-center">
+        <div class="text-center md:w-40 overflow-hidden">
             <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
                 {!! Form::checkbox('permissions[' . $perm['key'] . ']', $entity, $perm['enabled'], ['data-action' => $perm['action']]) !!}
                 <div class="state p-success-o p-on">
@@ -68,7 +68,7 @@ $first = true;
         </div>
 
         @foreach ($permissions as $perm)
-            <div class="hidden sm:inline text-center tooltip-wide">
+            <div class="hidden sm:inline text-center tooltip-wide flex gap-2 justify-center">
                 <label>
         <span class="hidden sm:inline">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}@if($perm['action'] == \App\Models\CampaignPermission::ACTION_POSTS)
                 <i class="fa-solid fa-question-circle" data-placement="bottom" data-toggle="tooltip" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
@@ -86,7 +86,7 @@ $first = true;
         <strong>{{ __('entities.' . $entity) }}</strong>
     </div>
     @foreach ($permissions as $perm)
-        <div class="text-center">
+        <div class="text-center md:w-40 overflow-hidden">
             <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
                 {!! Form::checkbox('permissions[' . $perm['key'] . ']', $entity, $perm['enabled'], ['data-action' => $perm['action']]) !!}
                 <div class="state p-success-o p-on">

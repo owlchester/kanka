@@ -13,6 +13,7 @@ class Dialog extends Component
     public ?string $footer;
     public bool $full;
     public bool $loading;
+    public bool $dismissible = true;
 
     /**
      * Create a new component instance.
@@ -23,12 +24,14 @@ class Dialog extends Component
         string $footer = null,
         bool $full = false,
         bool $loading = false,
+        bool $dismissible = true,
     ) {
         $this->id = $id ?? uniqid();
         $this->title = $title;
         $this->full = $full;
         $this->loading = $loading;
         $this->footer = $footer;
+        $this->dismissible = $dismissible;
     }
 
     /**

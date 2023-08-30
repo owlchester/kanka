@@ -21,11 +21,6 @@ return [
             'entity_or_name'    => 'Either select either an entity of the campaign, or give a name for this element.',
             'name'              => 'Name',
         ],
-        'warning'   => [
-            'editing'   => [
-                'description'   => 'Looks like someone else is currently editing this quest element! Do you want to go back or ignore this warning, at the risk of losing data? Members currently editing this quest element:',
-            ],
-        ],
     ],
     'fields'        => [
         'copy_elements' => 'Copy elements attached to the quest',

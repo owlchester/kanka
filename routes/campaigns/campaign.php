@@ -24,6 +24,7 @@ Route::get('/w/{campaign}/gallery/ajax-gallery', 'Summernote\GalleryController@i
 
 
 // Campaign
+Route::get('/w/{campaign}/editing-warning', [\App\Http\Controllers\EditingController::class, 'index'])->name('campaign.editing-warning');
 Route::post('/w/{campaign}/editing/confirm-editing', 'EditingController@confirmCampaign')->name('campaigns.confirm-editing');
 Route::post('/w/{campaign}/editing/keep-alive', 'EditingController@keepAliveCampaign')->name('campaigns.keep-alive');
 

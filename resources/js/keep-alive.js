@@ -1,15 +1,19 @@
-var multiEditingModal;
-var keepAliveTimer = 300 * 1000; // 5 minutes
-var keepAliveUrl;
-var keepAliveEnabled = true;
+const multiEditingModal = document.querySelector('dialog#edit-warning');
+const keepAliveTimer = 300 * 1000; // 5 minutes
+let keepAliveUrl;
+let keepAliveEnabled = true;
 
 $(document).ready(function () {
-    multiEditingModal = $('#entity-edit-warning');
-    if (multiEditingModal.length === 0) {
+    if (!multiEditingModal) {
         return;
     }
 
-    registerEditWarning();
+    let config = document.querySelector('input[name="edit-warning"]');
+    window.openDialog('edit-warning', config.dataset.url);
+
+    $(document).on('shown.bs.modal', function () {
+        registerEditWarning();
+    });
     registerEditKeepAlive();
 });
 
@@ -19,14 +23,10 @@ $(document).ready(function () {
 function registerEditWarning() {
     // Don't enable keep alive until the user has confirmed
     keepAliveEnabled = false;
-    multiEditingModal.modal({
-        backdrop: false
-    });
 
     // Handle clicks
     $('#entity-edit-warning-ignore').click(function (e) {
         e.preventDefault();
-        confirmEditWarningModal();
         keepAliveEnabled = true;
 
         $.ajax({
@@ -34,21 +34,9 @@ function registerEditWarning() {
             type: 'POST',
             context: this
         }).done(function () {
-            multiEditingModal.modal('hide');
+            multiEditingModal.close();
         });
     });
-
-    $('#entity-edit-warning-back').click(function (e) {
-        e.preventDefault();
-        confirmEditWarningModal();
-        window.location.href = $(this).data('url');
-    });
-}
-
-function confirmEditWarningModal() {
-    multiEditingModal.find('.modal-ajax-body').hide();
-    multiEditingModal.find('.modal-spinner-body').show();
-    multiEditingModal.find('.modal-footer').hide();
 }
 
 /**
