@@ -23,7 +23,7 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
 
                 <span class="grow">{{ __('entities/pins.title') }}</span>
 
-                <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank" aria-label="Open docs about profile sidebar">
+                <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank" aria-label="{{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}" data-toggle="tooltip" data-title="{{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}">
                     <x-icon class="fa-solid fa-question-circle"></x-icon>
                 </a>
             </div>
