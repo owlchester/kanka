@@ -178,60 +178,16 @@
 </div>
 
 @can('update', $map)
-    <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content bg-base-100">
-                {!! Form::open(['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
-                    <div class="modal-header">
-                        <x-dialog.close :modal="true" />
-                        <h4 class="modal-title">
-                            {{ __('maps/markers.create.title', ['name' => $map->name]) }}
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        @include('partials.errors')
-                        @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.explore:' . $map->id)])
-                    </div>
-                    <div class="modal-footer" id="marker-footer">
-                        <div class="pull-left">
-                            @include('partials.footer_cancel', ['ajax' => true])
-                        </div>
-                        <div class="submit-group">
-                            <input id="submit-mode" type="hidden" value="true"/>
-                            <div class="join">
-                                <button class="btn2 btn-primary join-item form-submit-main" id="form-submit-main"
-                                    data-target="{{ isset($target) ? $target : null }}">
-                                    <span>{{ __('crud.save') }}</span>
-                                </button>
-                                <div class="dropdown dropdown-menu-right">
-                                    <button type="button" class="btn2 join-item btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#" class="dropdown-item form-submit-actions">
-                                                {{ __('crud.save') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="dropdown-item form-submit-actions"
-                                                data-action="submit-update">
-                                                {{ __('crud.save_and_update') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="dropdown-item form-submit-actions"
-                                                data-action="submit-explore">
-                                                {{ __('maps/markers.actions.save_and_explore') }}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <x-dialog
+        id="marker-modal"
+        :title="__('maps/markers.create.title', ['name' => $map->name])"
+        footer="maps.markers._new-footer"
+        :form="['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']">
+        @include('partials.errors')
+        @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.explore:' . $map->id)])
+
+    </x-dialog>
+
                 {!! Form::hidden('from', 'explore') !!}
                 {!! Form::close() !!}
             </div>

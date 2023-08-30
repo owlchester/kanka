@@ -65,6 +65,9 @@ return [
             'edit'  => 'Edit the polygon by dragging its edges and nodes.',
         ],
     ],
+    'hints' => [
+        'entry' => 'Edit the marker to write a custom entry for it.',
+    ],
     'icons'         => [
         'custom'        => 'Custom icon',
         'entity'        => 'Entity\'s picture',

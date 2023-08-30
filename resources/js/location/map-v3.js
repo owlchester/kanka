@@ -242,7 +242,7 @@ function registerModes() {
 function endDrawing() {
     window.drawingPolygon = false;
     $('body').removeClass('map-drawing-mode');
-    $('#marker-modal').modal('show');
+    window.openDialog('marker-modal');
 }
 function initPolygonDrawing() {
 
@@ -252,7 +252,8 @@ function initPolygonDrawing() {
         window.startNewPolygon();
         window.showToast($(this).data('toast'));
         $('body').addClass('map-drawing-mode');
-        $('#marker-modal').modal('hide');
+
+        window.closeDialog('marker-modal');
     });
 
     eraseTempPolygonBtn = $('#reset-polygon');
@@ -474,3 +475,29 @@ function handlePresetClick() {
         });
     });
 }
+
+/**
+ * Why is this here?
+ */
+const handleExploreMapClick = (ev) => {
+    if (!window.exploreEditMode) {
+        return;
+    }
+    // return false;
+    let position = ev.latlng;
+
+    let lat = position.lat.toFixed(3);
+    let lng = position.lng.toFixed(3);
+    if (window.drawingPolygon) {
+        window.addPolygonPosition(lat, lng);
+        return;
+    }
+    //console.log('Click', 'lat', position.lat, 'lng', position.lng);
+    // AJAX request
+    //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
+    $('#marker-latitude').val(lat);
+    $('#marker-longitude').val(lng);
+    window.openDialog('marker-modal');
+};
+
+window.handleExploreMapClick = handleExploreMapClick;

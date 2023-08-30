@@ -50,7 +50,7 @@ $sizeOptions = [
         </li>
     </ul>
 
-    <div class="tab-content bg-base-100 shadow-sm rounded mb-5 p-4 rounded-bl rounded-br">
+    <div class="tab-content bg-base-100 shadow-sm rounded mb-5 p-4 rounded-bl rounded-br w-full">
         <div class="tab-pane @if($activeTab == 1) active @endif" id="marker-pin">
             <x-grid>
                 @include('maps.markers.fields.icon')
@@ -83,7 +83,6 @@ $sizeOptions = [
             </x-grid>
         </div>
         <div class="tab-pane @if($activeTab == 5) active @endif" id="marker-poly">
-
             <x-grid>
                 <div class="field field-shape flex flex-col gap-2 col-span-2">
                     <div class="flex">
@@ -148,26 +147,28 @@ $sizeOptions = [
         </div>
 
         <div class="tab-pane pane-presets" id="presets">
-            <p class="help-block mb-0">
-                {!! __('maps/markers.presets.helper') !!}
-            </p>
+            <x-grid type="1/1">
+                <p class="help-block mb-0">
+                    {!! __('maps/markers.presets.helper') !!}
+                </p>
 
-            <div class="marker-preset-list rounded">
-                <div class="text-center">
-                    <x-icon class="load" />
+                <div class="marker-preset-list rounded">
+                    <div class="text-center">
+                        <x-icon class="load" />
+                    </div>
                 </div>
-            </div>
 
-            @can('mapPresets', $campaign)
-                <a href="{{ route('preset_types.presets.create', [$campaign, 'preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}" class="btn2 btn-primary btn-sm">
-                    {{ __('presets.actions.create') }}
-                </a>
-            @endcan
+                @can('mapPresets', $campaign)
+                    <a href="{{ route('preset_types.presets.create', [$campaign, 'preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}" class="btn2 btn-primary btn-sm">
+                        {{ __('presets.actions.create') }}
+                    </a>
+                @endcan
+            </x-grid>
         </div>
     </div>
 </div>
 
-<div id="marker-main-fields">
+<div id="marker-main-fields" class="flex flex-col gap-5 w-full">
     <x-grid>
         <x-forms.field field="name" :label="__('crud.fields.name')">
             {!! Form::text('name', \App\Facades\FormCopy::field('name')->string(), ['placeholder' => __('maps/markers.placeholders.name'), 'class' => '', 'maxlength' => 191, 'id' => 'name']) !!}
@@ -175,10 +176,17 @@ $sizeOptions = [
 
         @include('cruds.fields.entity')
 
-        <div class="col-span-2" style="{{ (isset($model) && $model->hasEntry() ? 'display: none' : '') }}">
+        @if (!isset($model))
+            <div class="md:col-span-2">
+                <x-alert type="info">
+                    {{ __('maps/markers.hints.entry') }}
+                </x-alert>
+            </div>
+        @else
+        <div class="md:col-span-2" style="{{ (isset($model) && $model->hasEntry() ? 'display: none' : '') }}">
             <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
         </div>
-        <div class="col-span-2 map-marker-entry-entry" style="{{ (!isset($model) || !$model->hasEntry() ? 'display: none' : '') }}">
+        <div class="md:col-span-2 map-marker-entry-entry" style="{{ (!isset($model) || !$model->hasEntry() ? 'display: none' : '') }}">
             <x-forms.field field="entry" :label=" __('crud.fields.entry')">
                 {!! Form::textarea(
                     'entry',
@@ -187,6 +195,7 @@ $sizeOptions = [
                 ) !!}
             </x-forms.field>
         </div>
+        @endif
 
         @include('maps.markers.fields.opacity')
 

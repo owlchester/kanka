@@ -70,5 +70,11 @@ const loadDialogContent = (url, target) => {
     });
 };
 
+const closeDialog = (target) => {
+    let el = document.getElementById(target);
+    el.close();
+};
+
 window.initDialogs = initDialogs;
 window.openDialog = openDialog;
+window.closeDialog = closeDialog;
