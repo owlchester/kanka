@@ -89,11 +89,13 @@ class Conversation extends MiscModel
      * Get a list of participants
      * @return array
      */
-    public function participantsList($withNames = true)
+    public function participantsList($withNames = true, $users = false)
     {
         $participants = [];
         foreach ($this->participants as $participant) {
             if (auth()->check() && auth()->user()->can('update', $participant->character)) {
+                $participants[$participant->id()] = $participant->name();
+            } elseif ($users == true) {
                 $participants[$participant->id()] = $participant->name();
             }
         }
