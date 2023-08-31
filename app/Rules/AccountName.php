@@ -25,7 +25,7 @@ class AccountName implements Rule
      */
     public function passes($attribute, $value)
     {
-        return !Str::contains($value, ['<', '>', 'https', 'http://', 'www.', 'Ђ']) and Str::length($value) < 31;
+        return !Str::contains($value, ['<', '>', 'https', 'http://', 'www.', 'Ђ', ' Illuro']) and Str::length($value) < 31;
     }
 
     /**
