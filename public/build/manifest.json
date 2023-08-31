@@ -14,8 +14,8 @@
       "__commonjsHelpers-725317a4.js"
     ]
   },
-  "_mention-5d95822d.js": {
-    "file": "assets/mention-5d95822d.js"
+  "_mention-6dbb4e38.js": {
+    "file": "assets/mention-6dbb4e38.js"
   },
   "_mitt-f7ef348c.js": {
     "file": "assets/mitt-f7ef348c.js"
@@ -46,7 +46,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-930d018e.js",
+    "file": "assets/abilities-65719e05.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
@@ -72,9 +72,9 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-088343f3.js",
+    "file": "assets/app-19047f8b.js",
     "imports": [
-      "_mention-5d95822d.js",
+      "_mention-6dbb4e38.js",
       "_ajax-modal-1230002e.js",
       "_sortable.esm-be94e56d.js",
       "__plugin-vue_export-helper-c420bb3b.js",
@@ -86,10 +86,10 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes.js": {
-    "file": "assets/attributes-773034cd.js",
+    "file": "assets/attributes-62f7cd61.js",
     "imports": [
       "_sortable.esm-be94e56d.js",
-      "_mention-5d95822d.js"
+      "_mention-6dbb4e38.js"
     ],
     "isEntry": true,
     "src": "resources/js/attributes.js"
@@ -113,7 +113,7 @@
     "src": "resources/js/campaigns/theme-builder.js"
   },
   "resources/js/conversation.js": {
-    "file": "assets/conversation-e237e1e7.js",
+    "file": "assets/conversation-aaf96a7d.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
@@ -226,12 +226,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-6cdb09ba.css",
+    "file": "assets/app-d9299e73.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-aa5611e6.css",
+    "file": "assets/auth-b9de9e47.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -256,7 +256,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-cd6bcc63.css",
+    "file": "assets/front-6f23e829.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
