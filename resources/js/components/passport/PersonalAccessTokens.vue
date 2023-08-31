@@ -4,7 +4,7 @@
 <template>
     <div class="">
         <div>
-            <div class="">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="">
                     <div class="flex justify-between items-center">
                         <span class="text-lg">
@@ -39,12 +39,6 @@
                                     {{ token.name }}
                                 </td>
 
-                                <!-- Delete Button -->
-                                <td class="text-right" style="vertical-align: middle;">
-                                    <a class="btn2 btn-error btn-outline btn-xs" @click="revoke(token)">
-                                        Delete
-                                    </a>
-                                </td>
                                 <td class="text-right" style="vertical-align: middle;">
                                     <a class="btn2 btn-error btn-outline btn-xs" @click="deleteConfirm(token)" v-if="!this.confirmToken || this.confirmToken.id != token.id">
                                         Delete
@@ -52,7 +46,7 @@
                                     <a class="btn2 btn-error btn-xs" @click="deleteConfirm(token)" v-else>
                                         Confirm delete
                                     </a>
-                                </td>                       
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -85,7 +79,7 @@
                 </div>
 
                 <!-- Create Token Form -->
-                <form role="form" class="w-full mb-5" @submit.prevent="store">
+                <form role="form" class="w-full mb-5" @submit.prevent="store" autocomplete="off">
                     <!-- Name -->
                     <label class="font-extrabold required">Token name</label>
 
@@ -93,7 +87,7 @@
 
 
                     <!-- Scopes -->
-                    <div class="form-group row" v-if="scopes.length > 0">
+                    <div class="form-group grid grid-cols-2 gap-4" v-if="scopes.length > 0">
                         <label class="col-md-4 col-form-label">Scopes</label>
 
                         <div class="col-md-6">

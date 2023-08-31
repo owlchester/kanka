@@ -65,7 +65,7 @@
                                 <a class="btn2 btn-error btn-xs" @click="deleteConfirm(client)" v-else>
                                     Confirm delete
                                 </a>
-                            </td>   
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -96,7 +96,7 @@
                 </div>
 
                 <!-- Create Client Form -->
-                <form role="form" class="w-full" @submit.prevent="store">
+                <form role="form" class="w-full" @submit.prevent="store" autocomplete="off">
                     <!-- Name -->
                     <div class="mb-5">
                         <label class="font-extrabold required">Client name</label>
@@ -120,7 +120,7 @@
                         </span>
                     </div>
                 </form>
-                <form role="form" class="w-full mb-5" @submit.prevent="store">
+                <form role="form" class="w-full mb-5" @submit.prevent="store" autocomplete="off">
                     <!-- Name -->
 
                 </form>
@@ -159,9 +159,9 @@
                 </div>
 
                 <!-- Edit Client Form -->
-                <form role="form">
+                <form role="form" autocomplete="off">
                     <!-- Name -->
-                    <div class="form-group row">
+                    <div class="form-group grid grid-cols-2 gap-5">
                         <label class="col-md-3 col-form-label">Name</label>
 
                         <div class="col-md-9">
@@ -175,7 +175,7 @@
                     </div>
 
                     <!-- Redirect URL -->
-                    <div class="form-group row">
+                    <div class="form-group grid grid-cols-2 gap-5">
                         <label class="col-md-3 col-form-label">Redirect URL</label>
 
                         <div class="col-md-9">
