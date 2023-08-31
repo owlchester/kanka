@@ -11,50 +11,50 @@
             <i class="fa-solid fa-spinner fa-spin spinner" aria-hidden="true" style="display: none"></i>
         </button>
         <div class="dropdown">
-            <button type="button" class="btn2 btn-sm join-item btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <span class="caret"></span>
+            <button type="button" class="btn2 btn-sm join-item btn-primary" data-dropdown aria-expanded="false">
+                <x-icon class="fa-solid fa-caret-down" />
+                <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </button>
-            <ul class="dropdown-menu {{ isset($disableCancel) ? 'dropdown-menu-right' : '' }}" role="menu">
-                <li>
-                    <a href="#" class="form-submit-actions !flex gap-2">
-                        <span class="grow">{{ __('crud.save') }}</span>
-                        <span class="keyboard-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+S</code>']) !!}" data-html="true">
+            <div class="dropdown-menu hidden" role="menu">
+                <x-dropdowns.item link="#" css="form-submit-actions">
+                    <span class="grow">{{ __('crud.save') }}</span>
+                    <span class="keyboard-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+S</code>']) !!}" data-html="true">
                             CTRL+S
                         </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="form-submit-actions !flex gap-2" data-action="submit-new">
-                        <span class="grow">{{ __('crud.save_and_new') }}</span>
-                        <span class="keyboard-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+ALT+S</code>']) !!}" data-html="true">
-                            CTRL+ALT+S
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="form-submit-actions !flex gap-2" data-action="submit-update">
+                </x-dropdowns.item>
+
+                <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-new']">
+                    <span class="grow w-40">{{ __('crud.save_and_new') }}</span>
+                    <span class="keyboard-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+ALT+S</code>']) !!}" data-html="true">
+                        CTRL+ALT+S
+                    </span>
+                </x-dropdowns.item>
+
+                <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-update']">
                         <span class="grow">{{ __('crud.save_and_update') }}</span>
                         <span class="keyboard-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+SHIFT+S</code>']) !!}" data-html="true">
                             CTRL+SHIFT+S
                         </span>
-                    </a>
-                </li>
+                </x-dropdowns.item>
                 @if(!isset($disableCopy))
                     @if (empty($model))
-                    <li><a href="#" class="form-submit-actions" data-action="submit-view">{{ __('crud.save_and_view') }}</a></li>
+                        <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-view']">
+                            {{ __('crud.save_and_view') }}
+                        </x-dropdowns.item>
                     @else
-                    <li><a href="#" class="form-submit-actions" data-action="submit-close">{{ __('crud.save_and_close') }}</a></li>
-                    <li>
-                        <a href="#" class="form-submit-actions !flex gap-2" data-action="submit-copy">
+                        <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-close']">
+                            {{ __('crud.save_and_close') }}
+                        </x-dropdowns.item>
+
+                        <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-copy']">
                             <span class="grow">{{ __('crud.save_and_copy') }}</span>
                             <span class="keyboard-shortcut" data-toggle="tooltip" data-title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+ALT+C</code>']) !!}" data-html="true">
                                 CTRL+ALT+C
                             </span>
-                        </a>
-                    </li>
+                        </x-dropdowns.item>
                     @endif
                 @endif
-            </ul>
+            </div>
         </div>
         @includeWhen(!isset($disableCancel), 'partials.or_cancel')
     </div>

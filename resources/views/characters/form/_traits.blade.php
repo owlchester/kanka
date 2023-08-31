@@ -146,72 +146,70 @@ $role = \App\Facades\CampaignCache::adminRole();
 
 @section('modals')
     @parent
-    <div class="hidden">
-        <template id="template_appearance">
-            <x-grid css="parent-delete-row gap-1">
-                <div class="flex gap-1 items-center">
-                    <div class="sortable-handler px-2 cursor-move">
-                        <x-icon class="fa-solid fa-grip-vertical" />
-                    </div>
-                    <div class="grow field">
-                        <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
-                        {!! Form::text('appearance_name[]', null, [
-                            'class' => 'w-full',
-                            'placeholder' => __('characters.placeholders.appearance_name'),
-                            'spellcheck' => 'true',
-                            'aria-label' => __('characters.labels.appearance.name'),
-                        ]) !!}
-                    </div>
+    <template id="template_appearance">
+        <x-grid css="parent-delete-row gap-1">
+            <div class="flex gap-1 items-center">
+                <div class="sortable-handler px-2 cursor-move">
+                    <x-icon class="fa-solid fa-grip-vertical" />
                 </div>
-                <div class="flex gap-1 items-center">
-                    <div class="grow field">
-                        <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
-                        {!! Form::text('appearance_entry[]', null, [
-                            'class' => 'w-full',
-                            'placeholder' => __('characters.placeholders.appearance_entry'),
-                            'spellcheck' => 'true',
-                            'aria-label' => __('characters.labels.appearance.entry'),
-                        ]) !!}
-                    </div>
-                    <div class="dynamic-row-delete btn2 btn-sm btn-error btn-outline" role="button" tabindex="0">
-                        <x-icon class="trash"></x-icon>
-                        <span class="sr-only">{{ __('crud.remove') }}</span>
-                    </div>
-                </div>
-            </x-grid>
-        </template>
-        <template id="template_personality">
-            <div class="grid grid-cols-1 gap-2 parent-delete-row">
-                <div class="flex gap-1 items-center">
-                    <div class="sortable-handler px-2 cursor-move">
-                        <x-icon class="fa-solid fa-grip-vertical" />
-                    </div>
-                    <div class="grow field">
-                        <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
-                        {!! Form::text('personality_name[]', null, [
-                            'class' => 'w-full',
-                            'placeholder' => __('characters.placeholders.personality_name'),
-                            'spellcheck' => 'true',
-                            'aria-label' => __('characters.labels.personality.name'),
-                        ]) !!}
-                    </div>
-                    <div class="dynamic-row-delete btn2 btn-error btn-sm btn-outline" title="{{ __('crud.remove') }}" role="button" tabindex="0">
-                        <x-icon class="trash"></x-icon>
-                        <span class="sr-only">{{ __('crud.remove') }}</span>
-                    </div>
-                </div>
-                <div class="field-personality-entry field">
-                    <label class="sr-only">{{ __('characters.labels.personality.entry') }}</label>
-                    {!! Form::textarea('personality_entry[]', null, [
+                <div class="grow field">
+                    <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
+                    {!! Form::text('appearance_name[]', null, [
                         'class' => 'w-full',
-                        'placeholder' => __('characters.placeholders.personality_entry'),
+                        'placeholder' => __('characters.placeholders.appearance_name'),
                         'spellcheck' => 'true',
-                        'rows' => 3,
-                        'aria-label' => __('characters.labels.personality.entry'),
+                        'aria-label' => __('characters.labels.appearance.name'),
                     ]) !!}
                 </div>
             </div>
-        </template>
-    </div>
+            <div class="flex gap-1 items-center">
+                <div class="grow field">
+                    <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
+                    {!! Form::text('appearance_entry[]', null, [
+                        'class' => 'w-full',
+                        'placeholder' => __('characters.placeholders.appearance_entry'),
+                        'spellcheck' => 'true',
+                        'aria-label' => __('characters.labels.appearance.entry'),
+                    ]) !!}
+                </div>
+                <div class="dynamic-row-delete btn2 btn-sm btn-error btn-outline" role="button" tabindex="0">
+                    <x-icon class="trash"></x-icon>
+                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                </div>
+            </div>
+        </x-grid>
+    </template>
+    <template id="template_personality">
+        <div class="grid grid-cols-1 gap-2 parent-delete-row">
+            <div class="flex gap-1 items-center">
+                <div class="sortable-handler px-2 cursor-move">
+                    <x-icon class="fa-solid fa-grip-vertical" />
+                </div>
+                <div class="grow field">
+                    <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
+                    {!! Form::text('personality_name[]', null, [
+                        'class' => 'w-full',
+                        'placeholder' => __('characters.placeholders.personality_name'),
+                        'spellcheck' => 'true',
+                        'aria-label' => __('characters.labels.personality.name'),
+                    ]) !!}
+                </div>
+                <div class="dynamic-row-delete btn2 btn-error btn-sm btn-outline" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                    <x-icon class="trash"></x-icon>
+                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                </div>
+            </div>
+            <div class="field-personality-entry field">
+                <label class="sr-only">{{ __('characters.labels.personality.entry') }}</label>
+                {!! Form::textarea('personality_entry[]', null, [
+                    'class' => 'w-full',
+                    'placeholder' => __('characters.placeholders.personality_entry'),
+                    'spellcheck' => 'true',
+                    'rows' => 3,
+                    'aria-label' => __('characters.labels.personality.entry'),
+                ]) !!}
+            </div>
+        </div>
+    </template>
 
 @endsection

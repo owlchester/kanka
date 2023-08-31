@@ -1,41 +1,35 @@
 <div class="flex flex-wrap gap-2 items-center">
-    <button type="button" class="btn2 btn-sm add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+    <button type="button" class="btn2 btn-sm" data-attribute-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
         <x-icon class="plus"></x-icon> {{ __('entities/attributes.types.attribute') }}
     </button>
     <div class="dropdown">
-        <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+        <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="true">
+            <x-icon class="fa-solid fa-caret-down" />
             {{ __('entities/attributes.actions.more') }}
-            <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" role="menu">
-            <li>
-                <a href="#" class="add_attribute" data-template="#checkbox_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                    <x-icon class="check" /> {{ __('entities/attributes.types.checkbox') }}
-                </a>
-            </li>
-            <li>
-                <a href="#" class="add_attribute" data-template="#text_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                    <i class="fa-solid fa-align-justify"></i> {{ __('entities/attributes.types.text') }}
-                </a>
-            </li>
-            <li>
-                <a href="#" class="add_attribute" data-template="#number_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                    <i class="fa-solid fa-hashtag"></i> {{ __('entities/attributes.types.number') }}
-                </a>
-            </li>
-            <li>
-                <a  href="#" class="add_attribute" data-template="#section_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                    <i class="fa-solid fa-layer-group"></i> {{ __('entities/attributes.types.section') }}
-                </a>
-            </li>
+        <div class="dropdown-menu hidden" role="menu">
+            <x-dropdowns.item link="#" :data="['attribute-template' => '#checkbox_template', 'sortable' => $existing ? 'true' : 'false']" icon="check">
+                {{ __('entities/attributes.types.checkbox') }}
+            </x-dropdowns.item>
+
+            <x-dropdowns.item link="#" :data="['attribute-template' => '#text_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-solid fa-align-justify">
+                {{ __('entities/attributes.types.text') }}
+            </x-dropdowns.item>
+
+            <x-dropdowns.item link="#" :data="['attribute-template' => '#number_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-solid fa-hashtag">
+                {{ __('entities/attributes.types.number') }}
+            </x-dropdowns.item>
+
+            <x-dropdowns.item link="#" :data="['attribute-template' => '#section_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-solid fa-layer-group">
+                {{ __('entities/attributes.types.section') }}
+            </x-dropdowns.item>
+
             @if(request()->is('*/attribute_templates/*') || (isset($entity) && $entity->isAttributeTemplate()))
-            <li>
-                <a  href="#" class="add_attribute" data-template="#random_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                    <i class="fa-solid fa-question"></i> {{ __('entities/attributes.types.random') }}
-                </a>
-            </li>
+                <x-dropdowns.item link="#" :data="['attribute-template' => '#random_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-solid fa-question">
+                    {{ __('entities/attributes.types.random') }}
+                </x-dropdowns.item>
             @endif
-        </ul>
+        </div>
     </div>
     @if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
         <button type="button" class="btn2 btn-ghost" data-toggle="dialog" data-target="hidden-attributes">

@@ -77,7 +77,7 @@
 
     @includeWhen(config('google2fa.enabled'), 'settings._tfa')
 
-    <h3 class="text-red">
+    <h3 class="text-error">
         {{ __('profiles.sections.dangerzone') }}
     </h3>
     <div class="flex gap-2">
@@ -89,7 +89,7 @@
 
 
             @if (auth()->user()->subscribed('kanka') && !auth()->user()->subscription('kanka')->canceled())
-                <p class="text-red">
+                <p class="text-error">
                     {!! __('profiles.sections.delete.subscribed', [
     'subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))
 ]) !!}

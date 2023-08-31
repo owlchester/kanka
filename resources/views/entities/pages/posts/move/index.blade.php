@@ -14,7 +14,7 @@
     {{ csrf_field() }}
     <x-box>
         <x-grid type="1/1">
-            <x-forms.field type="entity" :label="__('entities/notes.move.entity')">
+            <x-forms.field field="entity" :label="__('entities/notes.move.entity')">
                 <select name="entity" class=" select2" data-tags="true" data-url="{{ route('search.entities-with-relations', $campaign) }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
             </x-forms.field>
 

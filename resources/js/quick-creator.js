@@ -58,6 +58,7 @@ function quickCreatorUI() {
 
             quickCreatorSubformHandler();
             quickCreatorToggles();
+            $(document).trigger('shown.bs.modal');
         });
 
         return false;
@@ -103,8 +104,6 @@ function quickCreatorSubformHandler() {
         return;
     }
 
-    window.initForeignSelect();
-    window.initTags();
     quickCreatorDuplicateName();
 
     // Back button
@@ -251,6 +250,7 @@ function quickCreatorToggles() {
             .done(function (result) {
                 formArticle.html(result).show();
                 quickCreatorHandleEvents();
+                $(document).trigger('shown.bs.modal');
             })
         ;
     });
@@ -270,6 +270,4 @@ function quickCreatorHandleEvents() {
     quickCreatorDuplicateName();
     quickCreatorBackButton();
     quickCreatorSubformHandler();
-    window.initForeignSelect();
-    window.initTags();
 }

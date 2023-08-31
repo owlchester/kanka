@@ -40,44 +40,45 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
     <div class="flex-none">
         @if (auth()->user()->hasBoosterNomenclature())
         <div class="dropdown">
-            <a class="dropdown-toggle cursor-pointer p-2" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+            <a class="dropdown-toggle p-2" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
                 <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <div class="dropdown-menu hidden" role="menu">
                 @if (!$campaign->boosted())
-                    <li>
-                        <a href="#" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign, 'boost' => 1]) }}">
-                            {!! __('settings/boosters.boost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign, 'superboost' => 1]) }}">
-                            {!! __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
-                        </a>
-                    </li>
+                    <x-dropdowns.element
+                        link="#"
+                        :dialog="route('campaign_boosts.create', ['campaign' => $campaign, 'boost' => 1])">
+                        {!! __('settings/boosters.boost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
+                    </x-dropdowns.element>
+                    <x-dropdowns.element
+                        link="#"
+                        :dialog="route('campaign_boosts.create', ['campaign' => $campaign, 'superboost' => 1])">
+                        {!! __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
+                    </x-dropdowns.element>
                 @elseif (auth()->user()->can('destroy', $boost))
                     @if (!$campaign->superboosted())
-                        <li>
-                            <a href="#" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boosts.edit', [$boost]) }}">
-                                {!! __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boost.confirm-destroy', $boost) }}" class="text-red">
-                                {!! __('settings/boosters.boost.actions.remove', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
-                            </a>
-                        </li>
+                        <x-dropdowns.element
+                            link="#"
+                            :dialog="route('campaign_boosts.edit', [$boost])">
+                            {!! __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
+                        </x-dropdowns.element>
+                        <hr class="m-0" />
+                        <x-dropdowns.element
+                            link="#"
+                            :dialog="route('campaign_boost.confirm-destroy', $boost)">
+                            {!! __('settings/boosters.boost.actions.remove', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
+                        </x-dropdowns.element>
                     @else
-                        <li>
-                            <a href="#" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boost.confirm-destroy', $boost) }}" class="text-red">
-                                {!! __('settings/boosters.superboost.actions.remove', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
-                            </a>
-                        </li>
+                        <x-dropdowns.element
+                            link="#"
+                            css="text-error hover:bg-error hover:text-error-content"
+                            :dialog="route('campaign_boost.confirm-destroy', $boost)">
+                            {!! __('settings/boosters.superboost.actions.remove', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
+                        </x-dropdowns.element>
                     @endif
                 @endif
-            </ul>
+            </div>
         </div>
         @else
             @if (!$campaign->premium())

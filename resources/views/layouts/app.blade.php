@@ -44,12 +44,6 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     @endif
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
-
-    @if (config('app.asset_url'))
-        <link href="{{ config('app.asset_url') }}/vendor/bootstrap/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    @else
-        <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    @endif
     @vite([
         'resources/sass/vendor.scss',
         'resources/sass/app.scss',

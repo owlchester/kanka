@@ -94,7 +94,6 @@ class Plugin extends Layout
                 'icon' => 'fa-solid fa-download',
                 'can' => 'update',
                 'type' => 'dialog-ajax',
-                'target' => 'plugin-update',
                 'route' => 'campaign_plugins.update-info',
             ],
             'changelog' => [
@@ -102,7 +101,6 @@ class Plugin extends Layout
                 'icon' => 'fa-solid fa-list',
                 'can' => 'changelog',
                 'type' => 'dialog-ajax',
-                'target' => 'plugin-update',
                 'route' => 'campaign_plugins.update-info',
             ],
             'disable' => [
@@ -121,7 +119,6 @@ class Plugin extends Layout
                 'can' => 'import',
                 'route' => 'campaign_plugins.confirm-import',
                 'type' => 'dialog-ajax',
-                'target' => 'plugin-update',
                 'label' => 'campaigns/plugins.actions.import',
                 'icon' => 'fa-solid fa-check-circle',
             ],

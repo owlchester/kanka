@@ -33,38 +33,30 @@
                 </div>
                 @if ($canEdit)
                 <div class="dropdown">
-                    <a class="dropdown-toggle btn2 btn-xs" data-toggle="dropdown" aria-expanded="false" data-placement="right">
+                    <a class="btn2 btn-xs" data-dropdown aria-expanded="false" data-placement="right">
                         <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                     </a>
 
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li>
-                            <a href="{{ route('calendars.event.create', $routeOptions) }}" data-toggle="dialog"
-                               data-target="primary-dialog" data-url="{{ route('calendars.event.create', $routeOptions) }}"
-                               class="" data-date="{{ $day['date'] }}">
-                                <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_reminder') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('calendars.calendar_weather.create', $routeOptions) }}" data-toggle="dialog"
-                               data-target="primary-dialog" data-url="{{ route('calendars.calendar_weather.create', $routeOptions) }}"
-                               class="" data-date="{{ $day['date'] }}">
-                                <x-icon class="fa-solid fa-snowflake" />
-                                {{ __('calendars.actions.' .  (!empty($day['weather']) ? 'update_weather' : 'add_weather')) }}
-                            </a>
-                        </li>
+                    <div class="dropdown-menu hidden" role="menu">
+                        @php $data = ['toggle' => 'dialog', 'date' => $day['date'], 'target' => 'primary-dialog', 'url' => route('calendars.event.create', $routeOptions)]; @endphp
+                        <x-dropdowns.item link="#" :data="$data" icon="plus">
+                            {{ __('calendars.actions.add_reminder') }}
+                        </x-dropdowns.item>
+
+                        @php $data = ['toggle' => 'dialog', 'date' => $day['date'], 'target' => 'primary-dialog', 'url' => route('calendars.calendar_weather.create', $routeOptions)]; @endphp
+                        <x-dropdowns.item link="#" :data="$data" icon="fa-solid fa-snowflake">
+                            {{ __('calendars.actions.' .  (!empty($day['weather']) ? 'update_weather' : 'add_weather')) }}
+                        </x-dropdowns.item>
 
                         @if (!\Illuminate\Support\Arr::get($day, 'isToday', false))
-                            <li class="divider"></li>
-                            <li>
-                                <a href="{{ route('calendars.today', $routeOptions) }}"
-                                   class="" data-date="{{ $day['date'] }}">
-                                    <x-icon class="check" /> {{ __('calendars.actions.set_today') }}
-                                </a>
-                            </li>
+                            <hr class="m-0" />
+                            @php $data = ['date' => $day['date']]; @endphp
+                            <x-dropdowns.item :link="route('calendars.today', $routeOptions)" :data="$data" icon="check">
+                                {{ __('calendars.actions.set_today') }}
+                            </x-dropdowns.item>
                         @endif
-                    </ul>
+                    </div>
                 </div>
                @endif
             </div>

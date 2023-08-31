@@ -101,7 +101,6 @@ function registerEntityFormActions() {
     if (entityFormActions.length === 0) {
         return;
     }
-    //console.log('RegisterEntityFormActions', entityFormActions);
     let entityFormMainButton = $('#form-submit-main');
     let entityFormSubmitMode = $('#submit-mode');
     if (entityFormSubmitMode === undefined) {

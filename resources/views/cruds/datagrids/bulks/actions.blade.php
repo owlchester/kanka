@@ -7,7 +7,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
         $dropdownActions[] = [
             'data' => ['target' => 'bulk-edit', 'bulk-action' => 'batch', 'toggle' => 'dialog'],
             'class' => 'bulk-edit',
-            'icon' => '<i class="fa-solid fa-pencil" aria-hidden="true"></i>',
+            'icon' => 'edit',
             'text' => __('crud.bulk.actions.edit')
         ];
         /*'
@@ -19,19 +19,19 @@ if (auth()->check() && auth()->user()->isAdmin()) {
         $dropdownActions[] = [
              'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.permissions', [$campaign, 'entity_type' => $entityTypeId])],
             'class' => 'bulk-permissions',
-            'icon' => '<x-icon class="fa-solid fa-lock"></x-icon>',
+            'icon' => 'fa-solid fa-lock',
             'text' => __('crud.bulk.actions.permissions')
         ];
-        $dropdownActions[] = '
+        /*$dropdownActions[] = '
             <a href="#" class="bulk-permissions" data-toggle="dialog" data-target="primary-dialog" data-url="' . route('bulk.permissions', [$campaign, 'entity_type' => $entityTypeId]) . '" data-bulk-action="ajax">
                 <i class="fa-solid fa-cog" aria-hidden="true"></i> ' .  __('crud.bulk.actions.permissions') . '
-            </a>';
+            </a>';*/
     }
     if ($datagridActions->hasBulkTemplate() && $campaign->enabled('entity_attributes')) {
         $dropdownActions[] = [
              'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.templates', [$campaign, 'entity_type' => $entityTypeId])],
             'class' => 'bulk-templates',
-            'icon' => '<x-icon class="fa-solid fa-th-list"></x-icon>',
+            'icon' => 'fa-solid fa-th-list',
             'text' => __('crud.bulk.actions.templates')
         ];
     }
@@ -39,7 +39,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
         $dropdownActions[] = [
              'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.transform', [$campaign, 'entity_type' => $entityTypeId])],
             'class' => 'bulk-transform',
-            'icon' => '<x-icon class="fa-solid fa-exchange-alt"></x-icon>',
+            'icon' => 'fa-solid fa-exchange-alt',
             'text' => __('crud.actions.transform')
         ];
     }
@@ -47,7 +47,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
         $dropdownActions[] = [
             'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.copy-to-campaign', [$campaign, 'entity_type' => $entityTypeId])],
             'class' => 'bulk-copy-campaign',
-            'icon' => '<x-icon class="fa-regular fa-clone"></x-icon>',
+            'icon' => 'fa-regular fa-clone',
             'text' => __('crud.actions.copy_to_campaign')
         ];
         /*$dropdownActions[] = '
@@ -59,7 +59,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
 if ($datagridActions->hasBulkPrint()) {
         $dropdownActions[] = [
             'class' => 'bulk-print',
-            'icon' => '<x-icon class="fa-solid fa-print"></x-icon>',
+            'icon' => 'fa-solid fa-print',
             'text' => __('crud.actions.print')
         ];
     /*$dropdownActions[] = '
@@ -74,14 +74,14 @@ if (auth()->check() && auth()->user()->can('delete', $model)) {
         $dropdownActions[] = [
             'data' => ['target' => 'primary-dialo', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete-relations', [$campaign])],
             'class' => 'text-red',
-            'icon' => '<x-icon class="fa-regular fa-trash"></x-icon>',
+            'icon' => 'trash',
             'text' => __('crud.remove')
         ];
     } else {
         $dropdownActions[] = [
             'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'route' => route('bulk.delete', [$campaign, 'entity_type' => $entityTypeId])],
             'class' => 'text-red',
-            'icon' => '<x-icon class="fa-regular fa-trash"></x-icon>',
+            'icon' => 'trash',
             'text' => __('crud.remove')
         ];
     }
@@ -92,11 +92,11 @@ if (auth()->check() && auth()->user()->can('delete', $model)) {
 @if (!empty($dropdownActions))
 <div class="datagrid-bulk-actions inline-block">
     <div class="dropdown">
-        <a role="button" tabindex="0" class="dropdown-toggle btn2" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="batch-actions-submenu" aria-label="Batch actions">
+        <a role="button" tabindex="0" class="btn2" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="batch-actions-submenu" aria-label="Batch actions">
+            <x-icon class="fa-solid fa-caret-down" />
             {{ __('crud.bulk.buttons.label') }}
-            <span class="caret"></span>
         </a>
-        <div class="dropdown-menu" role="menu" id="batch-actions-submenu">
+        <div class="dropdown-menu hidden" role="menu" id="batch-actions-submenu">
             @foreach ($dropdownActions as $dropdownAction)
                 @if ($dropdownAction === 'divider')
                     <hr class="m-0" />
@@ -104,8 +104,7 @@ if (auth()->check() && auth()->user()->can('delete', $model)) {
                 @elseif (!is_array($dropdownAction))
                     @continue
                 @endif
-                    <x-dropdowns.item link="#" :css="$dropdownAction['class']" :data="$dropdownAction['data'] ?? []" >
-                        {!! $dropdownAction['icon'] !!}
+                    <x-dropdowns.item link="#" :css="$dropdownAction['class']" :data="$dropdownAction['data'] ?? []" :icon="$dropdownAction['icon']">
                         {!! $dropdownAction['text'] !!}
                     </x-dropdowns.item>
             @endforeach

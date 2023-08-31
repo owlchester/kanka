@@ -9,7 +9,7 @@
     @if (isset($form) && !empty($form))  {!! Form::open($form) !!} @endif
     <article class="text-justify @if (!$full) max-w-2xl @endif">
         @if ($loading)
-            <div class="p-5 text-center w-full text-lg">
+            <div class="my-8 text-center text-lg w-40">
                 <x-icon class="load" />
             </div>
         @endif

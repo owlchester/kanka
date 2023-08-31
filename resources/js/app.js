@@ -36,6 +36,7 @@ $(document).ready(function() {
         initFeedbackButtons();
         window.initDialogs();
         window.initTooltips();
+        window.initDropdowns();
     });
 });
 

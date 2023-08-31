@@ -476,11 +476,11 @@ class DatagridRenderer
         if (!empty($actions)) {
             $content = '
         <div class="dropdown">
-            <a role="button" class="dropdown-toggle cursor-pointer" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="datagrid-submenu-' . $model->id . '" aria-label="Quick actions menu" data-tree="escape">
+            <a role="button" class="cursor-pointer" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="datagrid-submenu-' . $model->id . '" aria-label="Quick actions menu" data-tree="escape">
                 <i class="fa-solid fa-ellipsis-v" data-tree="escape"></i>
                 <span class="sr-only">' . __('crud.actions.actions') . '</span>
             </a>
-            <div class="dropdown-menu" role="menu" id="datagrid-submenu-' . $model->id . '">
+            <div class="dropdown-menu hidden" role="menu" id="datagrid-submenu-' . $model->id . '">
                 ' . implode("\n", $actions) . '
             </div>
         </div>

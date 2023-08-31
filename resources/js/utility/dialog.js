@@ -2,6 +2,7 @@
  * Heavily inspired by the amazing https://web.dev/building-a-dialog-component/
  */
 const backdrop = document.getElementById('dialog-backdrop');
+let loadingContent;
 
 const initDialogs = () => {
     document.querySelectorAll('[data-toggle="dialog"]').forEach(el => {
@@ -54,6 +55,12 @@ const openDialog = (target, url) => {
 };
 
 const loadDialogContent = (url, target) => {
+    // When re-opening the dialog, show again the loading animation
+    if (!loadingContent) {
+        loadingContent = target.innerHTML;
+    } else {
+        target.innerHTML = loadingContent;
+    }
     $.ajax({
         url: url
     }).done(function (success) {

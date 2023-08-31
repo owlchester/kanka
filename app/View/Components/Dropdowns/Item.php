@@ -12,8 +12,11 @@ class Item extends Component
     public ?string $target;
     public ?string $css;
     public ?string $popup;
+    public ?string $icon;
     public ?string $dialog;
     public ?string $keyboard;
+    public bool $active = false;
+
     public array $dataProperties;
     /**
      * Create a new component instance.
@@ -26,6 +29,8 @@ class Item extends Component
         string $popup = null,
         string $keyboard = null,
         array $data = [],
+        string $icon = null,
+        bool $active = false,
     ) {
         $this->link = $link;
         $this->target = $target;
@@ -34,6 +39,8 @@ class Item extends Component
         $this->popup = $popup;
         $this->keyboard = $keyboard;
         $this->dataProperties = $data;
+        $this->icon = $icon;
+        $this->active = $active;
     }
 
     /**

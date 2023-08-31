@@ -18,14 +18,14 @@
             </div>
 
             <div class="message-options mr-1" v-if="message.can_delete">
-                <div v-bind:class="dropdownClass()" v-click-outside="onClickOutside">
-                    <a v-on:click="openDropdown()" role="button">
-                        <span class="caret"></span>
+                <div class="" v-click-outside="onClickOutside">
+                    <a v-on:click="openDropdown()" role="button" v-if="!this.openedDropdown">
+                        <i class="fa-solid fa-caret-down" aria-hidden="true" />
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li><a role="button" v-on:click="editMessage(message)">{{ translate('edit') }}</a></li>
-                        <li><a role="button" v-on:click="deleteMessage(message)">{{ translate('remove') }}</a></li>
-                    </ul>
+                    <div class="flex gap flex-row" v-else >
+                        <a class="btn2 btn-xs" v-on:click="editMessage(message)">{{ translate('edit') }}</a>
+                        <a class="btn2 btn-xs text-error" v-on:click="deleteMessage(message)">{{ translate('remove') }}</a>
+                    </div>
                 </div>
             </div>
         </div>

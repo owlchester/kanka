@@ -92,7 +92,6 @@ class CampaignUser extends Layout
                 'icon' => 'fa-solid fa-trash',
                 'can' => 'delete',
                 'type' => 'dialog-ajax',
-                'target' => 'member-dialog',
                 'route' => 'campaign_users.delete',
             ],
         ];

@@ -25,7 +25,7 @@
                 <p style="display: none" id="vanity-loading">
                     <x-icon class="loading" />
                 </p>
-                <p class="text-red" style="display: none" id="vanity-error"></p>
+                <p class="text-error" style="display: none" id="vanity-error"></p>
                 <div class="alert alert-success my-1 rounded px-2 py-1" style="display: none" id="vanity-success">
                     <p>{!! __('campaigns/vanity.available', ['vanity' => '<code></code>']) !!}</p>
                 </div>

@@ -36,7 +36,7 @@ $loadedElements = [];
                         <span class="sr-only">{{ __('crud.edit') }}</span>
                     </a>
 
-                    <a href="#" class="btn2 btn-ghost btn-xs text-red"
+                    <a href="#" class="btn2 btn-ghost btn-xs text-error
                        role="button"
                        data-toggle="dialog"
                        data-target="primary-dialog"

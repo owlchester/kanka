@@ -93,3 +93,4 @@ initDropdowns()
 window.initTooltips = initTooltips;
 window.ajaxTooltip = initAjaxTooltips;
 window.showTooltip = showTooltip;
+window.initDropdowns = initDropdowns;

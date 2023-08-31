@@ -57,14 +57,14 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             </a>
             @endif
             <div class="dropdown">
-                <div class="cursor-pointer dropdown-toggle hidden sm:block print-none" data-dropdown aria-expanded="false">
+                <div class="cursor-pointer hidden sm:block print-none" data-dropdown aria-expanded="false">
                     <picture>
                         <source media="(min-width:766px)" srcset="{{ $imagePathXL }}">
                         <img src="{{ $imagePath }}" alt="{{ $model->name }}" style="width:auto;">
                     </picture>
                 </div>
 
-                <div class="dropdown-menu" role="menu">
+                <div class="dropdown-menu hidden" role="menu">
                     <x-dropdowns.item
                         :link="$imageUrl"
                         target="_blank">
@@ -151,7 +151,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                     <i class="fa-solid fa-cog entity-icons cursor-pointer text-2xl transition-all hover:rotate-45" aria-hidden="true"></i>
                     <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                 </span>
-                <div class="dropdown-menu dropdown-menu-right" role="menu" id="entity-submenu">
+                <div class="dropdown-menu hidden" role="menu" id="entity-submenu">
                     @can('update', $model)
                         <x-dropdowns.item :link="route($entity->pluralType() . '.edit', [$campaign, $model->id])" keyboard="edit">
                             <x-icon class="pencil"></x-icon>
@@ -238,7 +238,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                             $url = route('confirm-delete', [$campaign, 'route' => route($entity->pluralType() . '.destroy', [$campaign, $model->id]), 'name' => $entity->name]);
                         @endphp
                         <hr class="m-0" />
-                        <x-dropdowns.item link="#" css="text-red" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]">
+                        <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]">
                             <x-icon class="trash"></x-icon>
                             {{ __('crud.remove') }}
                         </x-dropdowns.item>

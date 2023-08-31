@@ -38,37 +38,32 @@
                     @cannot('update', $campaign)
                         @if(!empty($dashboards))
                             <div class="dropdown ">
-                                <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-th-large"></i>
+                                <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
+                                    <x-icon class="fa-solid fa-th-large" />
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                <div class="dropdown-menu hidden" role="menu">
                                     @if (!empty($dashboard))
-                                        <li>
                                             <a href="{{ route('dashboard', [$campaign, 'dashboard' => 'default']) }}">
                                                 {{ __('dashboard.dashboards.default.title')}}
                                             </a>
-                                        </li>
                                     @endif
                                     @foreach ($dashboards as $dash)
                                         @if (!empty($dashboard) && $dash->id == $dashboard->id)
                                             @continue
                                         @endif
-                                        <li>
-                                            <a href="{{ route('dashboard', [$campaign, 'dashboard' => $dash->id]) }}">
+                                            <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => $dash->id])">
                                                 {!! $dash->name !!}
-                                            </a>
-                                        </li>
+                                            </x-dropdowns.item>
                                     @endforeach
 
                                     @can('dashboard', $campaign)
-                                        <li class="divider"></li>
-                                        <li>
-                                            <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}">
-                                                {{ __('dashboard.settings.title') }}
-                                            </a>
-                                        </li>
+                                        <hr class="m-0">
+
+                                        <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}">
+                                            {{ __('dashboard.settings.title') }}
+                                        </a>
                                     @endcan
-                                </ul>
+                                </div>
                             </div>
                         @else
                             @can('dashboard', $campaign)
@@ -81,55 +76,45 @@
 
                     @can('update', $campaign)
                     <div class="dropdown">
-                        <button data-toggle="dropdown" class="btn2 btn-sm dropdown-toggle" aria-expanded="false">
-                            <i class="fa-solid fa-ellipsis-h"></i>
+                        <button class="btn2 btn-sm" data-dropdown aria-expanded="false">
+                            <x-icon class="fa-solid fa-ellipsis-h" />
+
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu hidden" role="menu">
                             @if (!empty($dashboard))
-                                <li>
-                                    <a href="{{ route('dashboard', [$campaign, 'dashboard' => 'default']) }}">
-                                        <i class="fa-solid fa-th-large"></i> {{ __('dashboard.dashboards.default.title')}}
-                                    </a>
-                                </li>
+                                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => 'default'])" icon="fa-solid fa-th-large">
+                                    {{ __('dashboard.dashboards.default.title')}}
+                                </x-dropdowns.item>
                             @endif
                             @foreach ($dashboards as $dash)
                                 @if (!empty($dashboard) && $dash->id == $dashboard->id)
                                     @continue
                                 @endif
-                                <li>
-                                    <a href="{{ route('dashboard', [$campaign, 'dashboard' => $dash->id]) }}">
-                                        <i class="fa-solid fa-th-large"></i> {!! $dash->name !!}
-                                    </a>
-                                </li>
+                                    <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => $dash->id])" icon="fa-solid fa-th-large">
+                                        {!! $dash->name !!}
+                                    </x-dropdowns.item>
                             @endforeach
-                            <li>
-                                <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" title="{{ __('dashboard.settings.title') }}">
-                                    <x-icon class="cog"></x-icon> {{ __('dashboard.settings.title') }}
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="{{ route('campaigns.edit', $campaign) }}">
-                                    <x-icon class="pencil"></x-icon> {{ __('campaigns.show.actions.edit') }}
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="{{ route('campaign_users.index', $campaign) }}"  title="{{ __('campaigns.show.tabs.members') }}">
-                                    <x-icon class="fa-solid fa-users"></x-icon> {{ __('campaigns.show.tabs.members') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('campaign_roles.index', $campaign) }}" title="{{  __('campaigns.show.tabs.roles') }}">
-                                    <x-icon class="fa-solid fa-screen-users"></x-icon> {{ __('campaigns.show.tabs.roles') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('campaign.modules', $campaign) }}" title="{{ __('sidebar.settings') }}">
-                                    <x-icon class="fa-solid fa-cog"></x-icon> {{ __('sidebar.settings') }}
-                                </a>
-                            </li>
-                        </ul>
+                                <x-dropdowns.item :link="route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign])" icon="cog">
+                                    {{ __('dashboard.settings.title') }}
+                                </x-dropdowns.item>
+                                <hr class="m-0" />
+
+                                <x-dropdowns.item :link="route('campaigns.edit', $campaign)" icon="pencil">
+                                    {{ __('campaigns.show.actions.edit') }}
+                                </x-dropdowns.item>
+
+                                <hr class="m-0" />
+                                <x-dropdowns.item :link="route('campaign_users.index', $campaign)" icon="fa-solid fa-users">
+                                    {{ __('campaigns.show.tabs.members') }}
+                                </x-dropdowns.item>
+                                <x-dropdowns.item :link="route('campaign_roles.index', $campaign)" icon="fa-solid fa-screen-users">
+                                    {{ __('campaigns.show.tabs.roles') }}
+                                </x-dropdowns.item>
+
+                                <x-dropdowns.item :link="route('campaign.modules', $campaign)" icon="fa-solid fa-floppy-disks">
+                                    {{ __('sidebar.settings') }}
+                                </x-dropdowns.item>
+                        </div>
                     </div>
                     @endcan
                 </div>

@@ -3,7 +3,7 @@
         {{ __('crud.bulk.delete.warning') }}
     </p>
     @if(isset($datagrid) && !$datagrid->hasBulkPermissions())
-        <p class="m-0">
+        <p class="m-0 permanent">
         {{ __('crud.delete_modal.permanent') }}
         </p>
     @endif

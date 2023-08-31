@@ -45,29 +45,24 @@
         </div>
 
         <div class="dropdown">
-            <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown"
+            <button type="button" class="btn2 btn-sm" data-dropdown
                     aria-expanded="false">
-                <span class="caret"></span>
+                <x-icon class="fa-solid fa-caret-down" />
+                <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                 Dropdown menu
             </button>
-            <ul class="dropdown-menu" role="menu">
-                <li>
-                    <a href="#" class="dropdown-item">
-                        Action 1
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-item">
-                        Action 2
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#" class="dropdown-item">
-                        Action 3
-                    </a>
-                </li>
-            </ul>
+            <div class="dropdown-menu hidden" role="menu">
+                <x-dropdowns.item link="#">
+                    Action 1
+                </x-dropdowns.item>
+                <x-dropdowns.item link="#">
+                    Action 2
+                </x-dropdowns.item>
+                <hr class="m-0" />
+                <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content">
+                    Action 3
+                </x-dropdowns.item>
+            </div>
         </div>
 
         <span class="btn2 btn-link btn-sm" data-toggle="tooltip-demo">Hover me tooltip</span>

@@ -33,7 +33,7 @@
 
     <div class="focus-selector max-h-screen relative mb-2 overflow-auto">
         <div class="focus absolute text-white cursor-pointer text-3xl" style="@if(empty($entity->focus_x))display: none; @else left: {{ $entity->focus_x }}px; top: {{ $entity->focus_y }}px; @endif">
-            <x-icon class="fa-regular fa-bullseye fa-2x hover:text-red" />
+            <x-icon class="fa-regular fa-bullseye fa-2x hover:text-error" />
         </div>
 
         <img class="focus-image max-w-none" src="{{ $model->thumbnail(0) }}" alt="img" />

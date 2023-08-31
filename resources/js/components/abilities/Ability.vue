@@ -5,32 +5,22 @@
         <div class="ability-box p-3 rounded bg-box shadow-xs">
             <div class="ability-header border-b flex items-center gap-2 pb-2 mb-2">
                 <div v-bind:class="dropdownClass()" v-click-outside="onClickOutside" v-if="permission">
-                    <a v-on:click="openDropdown()" class="dropdown-toggle" role="button">
+                    <a v-on:click="openDropdown()" class="dropdown-toggle" data-dropdown role="button"  v-if="!this.openedDropdown">
                         <i class="fa-solid fa-lock" v-if="ability.visibility_id === 2" v-bind:title="translate('admin')"></i>
                         <i class="fa-solid fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="translate('admin-self')"></i>
                         <i class="fa-solid fa-users" v-if="ability.visibility_id === 5" v-bind:title="translate('members')"></i>
                         <i class="fa-solid fa-user-secret" v-if="ability.visibility_id === 4" v-bind:title="translate('self')"></i>
                         <i class="fa-solid fa-eye" v-if="ability.visibility_id === 1" v-bind:title="translate('all')"></i>
                     </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a role="button" v-on:click="setVisibility(1)">{{ translate('all') }}</a>
-                        </li>
-                        <li v-if="meta.is_admin">
-                            <a role="button" v-on:click="setVisibility(2)">{{ translate('admin') }}</a>
-                        </li>
-                        <li v-if="this.isSelf">
-                            <a role="button" v-on:click="setVisibility(4)">{{ translate('self') }}</a>
-                        </li>
-                        <li v-if="this.isSelf">
-                            <a role="button" v-on:click="setVisibility(5)">{{ translate('members') }}</a>
-                        </li>
-                        <li v-if="this.isSelf">
-                            <a role="button" v-on:click="setVisibility(3)">{{ translate('admin-self') }}</a>
-                        </li>
-                    </ul>
+                    <div class="flex gap-2 flex-wrap" v-else>
+                          <a role="button" class="btn2 btn-sm" v-on:click="setVisibility(1)">{{ translate('all') }}</a>
+                          <a role="button" class="btn2 btn-sm" v-on:click="setVisibility(2)" v-if="meta.is_admin">{{ translate('admin') }}</a>
+                          <a role="button" class="btn2 btn-sm" v-on:click="setVisibility(4)" v-if="this.isSelf">{{ translate('self') }}</a>
+                          <a role="button" class="btn2 btn-sm" v-on:click="setVisibility(5)" v-if="this.isSelf">{{ translate('members') }}</a>
+                          <a role="button" class="btn2 btn-sm" v-on:click="setVisibility(3)" v-if="this.isSelf">{{ translate('admin-self') }}</a>
+                    </div>
                 </div>
-                <div class="grow">
+                <div class="grow" v-if="!this.openedDropdown">
                     <a role="button" v-on:click="showAbility(ability)" data-toggle="tooltip-ajax" class="grow text-lg"
                        v-bind:data-id="ability.entity.id" v-bind:data-url="ability.entity.tooltip">
                       {{ ability.name }}
@@ -38,7 +28,7 @@
                 </div>
                 <a role="button"
                     v-on:click="updateAbility(ability)"
-                    v-if="this.canDelete"
+                    v-if="this.canDelete && !this.openedDropdown"
                     class="btn2 btn-ghost btn-xs"
                     v-bind:title="translate('update')">
                     <i class="fa-solid fa-pencil" aria-hidden="true"></i>
@@ -161,6 +151,7 @@
                 .catch(() => {
 
                 });
+                this.openedDropdown = false;
             },
             useCharge: function(ability, charge) {
                 if (charge > ability.used_charges) {
@@ -186,7 +177,7 @@
                 return this.openedDropdown ? 'open dropdown' : 'dropdown';
             },
             openDropdown() {
-                return this.openedDropdown = true;
+                this.openedDropdown = !this.openedDropdown;
             },
             onClickOutside (event) {
                 //console.log('Clicked outside. Event: ', event)

@@ -4,11 +4,10 @@ $textBlock = 'grow';
 $actionBlock = 'flex gap-2';
 $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 ?>
-    <!-- Attribute Section -->
 @section('modals')
     @parent
-    <div class="attribute-templates hidden">
-        <div class="{{ $flex }} attribute_row" id="attribute_template">
+    <template id="attribute_template">
+        <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
@@ -46,8 +45,9 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_STANDARD_ID) !!}
         </div>
-        <!-- Text Section -->
-        <div class="{{ $flex }} attribute_row" id="text_template">
+    </template>
+    <template id="text_template">
+        <div class="{{ $flex }} attribute_row" >
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
@@ -81,8 +81,10 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_TEXT_ID) !!}
         </div>
-        <!-- Number Section -->
-        <div class="{{ $flex }} attribute_row" id="number_template">
+    </template>
+
+    <template id="number_template">
+        <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
@@ -114,8 +116,9 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_NUMBER_ID) !!}
         </div>
-
-        <div class="{{ $flex }} attribute_row items-center" id="checkbox_template">
+    </template>
+    <template id="checkbox_template">
+        <div class="{{ $flex }} attribute_row items-center">
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
@@ -147,8 +150,10 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_CHECKBOX_ID) !!}
         </div>
-        <!-- Section -->
-        <div class="{{ $flex }} attribute_row" id="section_template">
+    </template>
+
+    <template id="section_template">
+        <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
@@ -178,8 +183,10 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_SECTION_ID) !!}
         </div>
-        <!-- Random -->
-        <div class="{{ $flex }} attribute_row"  id="random_template">
+    </template>
+
+    <template id="random_template">
+        <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
@@ -214,5 +221,5 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_RANDOM_ID) !!}
         </div>
-    </div>
+    </template>
 @endsection

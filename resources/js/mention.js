@@ -3,17 +3,14 @@ import Tribute from "tributejs";
 
 export default function dynamicMentions() {
 
-    var remoteUrl;
-    var fields;
     const SELECTOR = '.kanka-mentions'; //:not(.kanka-mentions-tribute)';
-
-    fields = $(SELECTOR);
+    const fields = $(SELECTOR);
     if (fields.length === 0) {
         return;
     }
-    remoteUrl = fields.first().data('remote');
+    const remoteUrl = fields.first().data('remote');
 
-    var tribute = new Tribute({
+    const tribute = new Tribute({
         values: function (text, cb) {
             remoteSearch(text, users => cb(users));
         },
@@ -27,8 +24,15 @@ export default function dynamicMentions() {
         },
     });
 
-    tribute.attach(document.querySelectorAll(SELECTOR));
-    //$(SELECTOR).addClass('kanka-mentions-tribute');
+    let targets = document.querySelectorAll(SELECTOR);
+    targets.forEach(el => {
+        // Don't attach twice or to templates
+        if (el.dataset.mentions === "1") {
+            return;
+        }
+        el.dataset.mentions = 1;
+        tribute.attach(el);
+    });
 
     function remoteSearch(text, cb) {
         let xhr = new XMLHttpRequest();

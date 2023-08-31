@@ -12,23 +12,21 @@
             </div>
             @if (empty($target))
                 <div class="dropdown">
-                    <div role="button" class="text-2xl dropdown-toggle text-2xl" data-toggle="dropdown" aria-expanded="false">
+                    <div role="button" class="text-2xl text-2xl" data-dropdown aria-expanded="false">
                         {!! $newLabel !!}
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-chevron-down" />
+                        <span class="sr-only">Change type</span>
                     </div>
-                    <ul class="dropdown-menu" role="menu">
+                    <div class="dropdown-menu hidden" role="menu">
                         @foreach ($orderedEntityTypes as $module => $name)
                             @includeWhen(isset($entities[$module]), 'entities.creator.header._dropdown', ['dropType' => $module, 'trans' => $name])
                         @endforeach
-
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#" class="" data-toggle="entity-creator" data-url="{{ route('entity-creator.selection', $campaign) }}" data-entity-type="return">
-                                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                        <hr class="m-0" />
+                            @php $data = ['toggle' => 'entity-creator', 'url' => route('entity-creator.selection', $campaign), 'entity-type' => 'return']; @endphp
+                            <x-dropdowns.item link="#" icon="fa-solid fa-arrow-left" :data="$data">
                                 {{ __('entities.creator.back') }}
-                            </a>
-                        </li>
-                    </ul>
+                            </x-dropdowns.item>
+                    </div>
                 </div>
             @else
                 <div>

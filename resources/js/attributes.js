@@ -8,6 +8,8 @@ var attribute_id_count = -1000;
 var maxFields = false;
 var maxFieldAlert;
 
+const target = $('#add_attribute_target');
+
 import dynamicMentions from "./mention";
 
 $(document).ready(function() {
@@ -29,33 +31,9 @@ $(document).ready(function() {
  */
 function initAttributeUI()
 {
-    var target = $('#add_attribute_target');
 
     initAttributeHandlers();
-
-    $('.add_attribute').click(function (e) {
-        e.preventDefault();
-
-        if (maxFields !== false) {
-            let fieldCount = $('form :input').length + 4;
-            //console.log('checking', fieldCount, 'vs', maxFields);
-            if (fieldCount > maxFields) {
-                maxFieldAlert.show();
-                return;
-            } else {
-                maxFieldAlert.hide();
-            }
-        }
-        attribute_id_count -= 1;
-
-        let body = $($(this).data('template')).clone().removeClass('hidden').removeAttr('id');
-        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-        body.html(html).insertBefore(target);
-        initAttributeHandlers();
-        dynamicMentions();
-
-        return false;
-    });
+    initAddAttribute();
 
     // Delete all visible attributes
     $('#attributes-delete-all-confirm-submit').click(function(e) {
@@ -82,7 +60,37 @@ function initAttributeUI()
             $(this).prop('title', $(this).data('public'));
         }
     });
+
+    $(document).on('shown.bs.modal', function () {
+        initAddAttribute();
+    });
 }
+
+const initAddAttribute = () => {
+    $('[data-attribute-template]').unbind('click').click(function (e) {
+        e.preventDefault();
+
+        if (maxFields !== false) {
+            let fieldCount = $('form :input').length + 4;
+            //console.log('checking', fieldCount, 'vs', maxFields);
+            if (fieldCount > maxFields) {
+                maxFieldAlert.show();
+                return;
+            } else {
+                maxFieldAlert.hide();
+            }
+        }
+        attribute_id_count -= 1;
+
+        let template = $(this).data('attribute-template');
+        let html = $(template).html().replace(/\$TMP_ID\$/g, attribute_id_count);
+        target.append(html);
+        initAttributeHandlers();
+        dynamicMentions();
+
+        return false;
+    });
+};
 
 /**
  * This function rebinds the delete on all buttons

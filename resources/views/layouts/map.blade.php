@@ -89,26 +89,27 @@ $specificTheme = null;
                                         <x-icon class="map"></x-icon> {{ __('maps.actions.edit') }}
                                     </a>
                                     <div class="dropdown">
-                                        <button type="button" class="btn2 btn-primary btn-sm join-item dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="caret"></span>
+                                        <button type="button" class="btn2 btn-primary btn-sm join-item" data-dropdown aria-expanded="false">
+                                            <x-icon class="fa-solid fa-caret-down" />
+                                            <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                                         </button>
-                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                            <li>
-                                                <a href="{{ route('maps.map_layers.index', [$campaign, $map]) }}" class="dropdown-item">
-                                                    <x-icon class="fa-solid fa-layer-group"></x-icon> {{ __('maps.panels.layers') }}
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('maps.map_groups.index', [$campaign, $map]) }}" class="dropdown-item">
-                                                    <x-icon class="fa-solid fa-map-signs"></x-icon> {{ __('maps.panels.groups') }}
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('maps.map_markers.index', [$campaign, $map]) }}" class="dropdown-item">
-                                                    <x-icon class="fa-solid fa-map-pin"></x-icon> {{ __('maps.panels.markers') }}
-                                                </a>
-                                            </li>
-                                        </ul>
+                                        <div class="dropdown-menu hidden" role="menu">
+                                            <x-dropdowns.item
+                                                :link="route('maps.map_layers.index', [$campaign, $map])"
+                                                icon="fa-solid fa-layer-group">
+                                                {{ __('maps.panels.layers') }}
+                                            </x-dropdowns.item>
+                                            <x-dropdowns.item
+                                                :link="route('maps.map_groups.index', [$campaign, $map])"
+                                                icon="fa-solid fa-map-signs">
+                                                {{ __('maps.panels.groups') }}
+                                            </x-dropdowns.item>
+                                            <x-dropdowns.item
+                                                :link="route('maps.map_markers.index', [$campaign, $map])"
+                                                icon="fa-solid fa-map-pin">
+                                                {{ __('maps.panels.markers') }}
+                                            </x-dropdowns.item>
+                                        </div>
                                     </div>
                                 </div>
                             @endcan

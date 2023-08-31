@@ -37,32 +37,7 @@
         </x-grid>
 
         <x-dialog.footer>
-            <div class="submit-group">
-                <input id="submit-mode" type="hidden" value="true"/>
-                <div class="join">
-                    <button class="btn2 btn-primary join-item" id="form-submit-main">
-                        {{ __('crud.save') }}
-                    </button>
-                    <div class="dropdown">
-                        <button type="button" class="btn2 btn-primary join-item dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="false">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                            <li>
-                                <a href="#" class="dropdown-item form-submit-actions">
-                                    {{ __('crud.save') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
-                                    {{ __('crud.save_and_update') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            @include('campaigns.styles._form-footer')
         </x-dialog.footer>
     </x-box>
 

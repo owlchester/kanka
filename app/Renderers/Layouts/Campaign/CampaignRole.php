@@ -88,7 +88,6 @@ class CampaignRole extends Layout
                 'icon' => 'fa-solid fa-edit',
                 'can' => 'update',
                 'type' => 'dialog-ajax',
-                'target' => 'role-dialog',
                 'route' => 'campaign_roles.edit',
             ],
             'show' => [
@@ -101,7 +100,6 @@ class CampaignRole extends Layout
                 'icon' => 'fa-solid fa-copy',
                 'can' => 'update',
                 'type' => 'dialog-ajax',
-                'target' => 'role-dialog',
                 'route' => 'campaign_roles.duplicate',
             ],
             Layout::ACTION_DELETE,

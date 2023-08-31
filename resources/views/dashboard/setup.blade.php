@@ -50,75 +50,54 @@ $newWidgetListClass = 'btn2 btn-full';
 
                     @if(!$dashboards->isEmpty() || !empty($dashboard))
                         <div class="dropdown">
-                            <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
                                 <span class="hidden md:inline">{{ __('dashboard.dashboards.actions.switch') }}</span>
                                 <span class="inline md:hidden">
                                     <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
-                                </span> <span class="caret"></span>
+                                </span>
+                                <x-icon class="fa-solid fa-caret-down" />
                             </button>
-                            <ul class="dropdown-menu" role="menu">
+                            <div class="dropdown-menu hidden" role="menu">
                                 @if (!empty($dashboard))
-                                    <li>
-                                        <a href="{{ route('dashboard.setup', $campaign) }}">
-                                            {{ __('dashboard.dashboards.default.title')}}
-                                        </a>
-                                    </li>
+                                    <x-dropdowns.item :link="route('dashboard.setup', $campaign)">
+                                        {{ __('dashboard.dashboards.default.title')}}
+                                    </x-dropdowns.item>
                                 @endif
                                 @foreach ($dashboards as $dash)
-                                <li>
-                                    <a href="{{ route('dashboard.setup', [$campaign, 'dashboard' => $dash->id]) }}">
+                                    <x-dropdowns.item :link="route('dashboard.setup', [$campaign, 'dashboard' => $dash->id])">
                                         {!! $dash->name !!}
-                                    </a>
-                                </li>
+                                    </x-dropdowns.item>
                                 @endforeach
-                            </ul>
+                            </div>
                         </div>
                     @endif
 
                     @if($dashboard)
                         <div class="dropdown">
-                            <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                {{ __('crud.actions.actions') }} <span class="caret"></span>
+                            <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
+                                {{ __('crud.actions.actions') }}
+                                <x-icon class="fa-solid fa-caret-down" />
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                <li>
-                                    <a href="{{ route('dashboard', [$campaign, 'dashboard' => $dashboard->id]) }}" target="_blank"
-                                       >
-                                        <i class="fa-solid fa-external-link-alt" aria-hidden="true"></i>
-                                        {{ __('crud.view') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        data-toggle="dialog"
-                                        data-target="edit-widget"
-                                        data-url="{{ route('campaign_dashboards.edit', [$campaign, $dashboard]) }}"
-                                    >
-                                        <i class="fa-solid fa-pencil-alt" aria-hidden="true"></i>
-                                        {{ __('dashboard.dashboards.actions.edit') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                            href="#"
-                                            data-toggle="dialog"
-                                            data-target="edit-widget"
-                                            data-url="{{ route('campaign_dashboards.create', [$campaign, 'source' => $dashboard]) }}"
-                                    >
-                                        <i class="fa-solid fa-copy" aria-hidden="true"></i>
-                                        {{ __('crud.actions.copy') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-red" data-toggle="dialog"
-                                       data-target="primary-dialog" data-url="{{ route('confirm-delete', [$campaign, 'route' => route('campaign_dashboards.destroy', [$campaign, $dashboard]), 'name' => $dashboard->name, 'permanent' => true]) }}"
-                                       title="{{ __('crud.remove') }}">
-                                        <x-icon class="trash"></x-icon>
-                                        {{ __('crud.remove') }}
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-menu hidden" role="menu">
+                                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => $dashboard->id])" icon="fa-solid fa-external-link-alt">
+                                    {{ __('crud.view') }}
+                                </x-dropdowns.item>
+
+                                @php $url = route('campaign_dashboards.edit', [$campaign, $dashboard]); @endphp
+                                <x-dropdowns.item link="#" :dialog="$url" icon="edit">
+                                    {{ __('dashboard.dashboards.actions.edit') }}
+                                </x-dropdowns.item>
+
+                                @php $url = route('campaign_dashboards.create', [$campaign, 'source' => $dashboard]); @endphp
+                                <x-dropdowns.item link="#" :dialog="$url" icon="copy">
+                                    {{ __('crud.actions.copy') }}
+                                </x-dropdowns.item>
+
+                                @php $data = route('campaign_dashboards.destroy', [$campaign, $dashboard]), 'name' => $dashboard->name, 'permanent' => true]); @endphp
+                                <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :dialog="$data" icon="trash">
+                                    {{ __('crud.remove') }}
+                                </x-dropdowns.item>
+                            </div>
                         </div>
                     @endif
                 </div>

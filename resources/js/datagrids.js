@@ -23,6 +23,7 @@ $(document).ready(function () {
 
     $(document).on('shown.bs.modal', function () {
         registerBulkActions();
+        initDatagrid2Bulk();
     });
 });
 
@@ -119,7 +120,6 @@ function registerDatagrids2() {
     initDatagrid2Ajax();
     initDatagrid2OnLoad();
     toggleCrudMultiDelete();
-    initDatagrid2Bulk();
 }
 
 function initDatagrid2Bulk() {

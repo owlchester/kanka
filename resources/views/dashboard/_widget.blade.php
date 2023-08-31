@@ -22,11 +22,11 @@ if ($widget->conf('entity')) {
     <div class="{{ $widgetClass }} cursor-pointer {{ !empty($background) ? 'p-5' : null }} widget-{{ $widget->widget->value }} cover-background {{ $widget->widget ===  Widget::Header ? 'h-auto' : null }}"
     @if($widget->widget == Widget::Campaign)
          data-toggle="dialog"
-         data-target="#primary-dialog"
+         data-target="primary-dialog"
          data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaign, 'campaignDashboardWidget' => $widget]) }}"
     @else
-         data-toggle="dialog-ajax"
-         data-target="edit-widget"
+         data-toggle="dialog"
+         data-target="primary-dialog"
          data-url="{{ route('campaign_dashboard_widgets.edit', [$campaign, $widget]) }}"
     @endif
     @if (!empty($background))

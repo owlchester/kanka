@@ -1,4 +1,6 @@
-<x-dialog.header></x-dialog.header>
+<x-dialog.header>
+
+</x-dialog.header>
 <article id="qq-modal-loading" style="display: none">
     <div class="text-center text-4xl">
         <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>

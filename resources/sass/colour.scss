@@ -11,8 +11,16 @@
 .text-white {
     color:#fff !important
 }
+.text-base-content {
+    --tw-text-opacity: 1;
+    color:hsl(var(--bc)/var(--tw-text-opacity));
+}
 
 .text-error {
+    --tw-text-opacity: 1;
+    color:hsl(var(--er)/var(--tw-text-opacity))
+}
+.hover\:text-error:hover {
     --tw-text-opacity: 1;
     color:hsl(var(--er)/var(--tw-text-opacity))
 }
@@ -32,10 +40,6 @@
 .text-accent-content {
     --tw-text-opacity: 1;
     color:hsl(var(--ac)/var(--tw-text-opacity))
-}
-.text-base-content {
-    --tw-text-opacity: 1;
-    color:hsl(var(--bc)/var(--tw-text-opacity))
 }
 .text-neutral {
     --tw-text-opacity: 1;
@@ -94,4 +98,11 @@
 }
 .gradient-to-base-100 {
     background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient, hsl(var(--b1)/1)));
+}
+
+
+/** Hover */
+.hover\:text-error-content:hover {
+    --tw-text-opacity: 1;
+    color:hsl(var(--erc)/var(--tw-text-opacity));
 }

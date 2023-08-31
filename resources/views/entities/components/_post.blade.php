@@ -17,58 +17,20 @@
                     <sup class="text-xs">({{ $post->position }})</sup>
                 @endif
             </h3>
-
         </div>
-        <div class="flex-none flex gap-1 items-center">
+        <div class="flex-none flex gap-2 items-center">
             @if (auth()->check())
             <span id="visibility-icon-{{ $post->id }}" class="cursor-pointer" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
-                {!! $post->visibilityIcon('btn-box-tool') !!}
+                {!! $post->visibilityIcon('') !!}
             </span>
                 <div class="dropdown">
-                    <a role="button" class="dropdown-toggle btn2 btn-ghost btn-sm" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+                    <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
                         <x-icon class="fa-solid fa-ellipsis-v"></x-icon>
                         <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        @can('post', [$model, 'edit', $post])
-                            <li>
-                                <a href="{{ route('entities.posts.edit', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
-                                    <x-icon class="edit"></x-icon>
-                                    {{ __('crud.edit') }}
-                                </a>
-                            </li>
-                        @endcan
-                        @if (!isset($more))
-                            <li>
-                                <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toggle="tooltip"
-                                   data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
-                                    <x-icon class="fa-solid fa-link"></x-icon>
-                                    {{ __('entities/notes.copy_mention.copy') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toggle="tooltip"
-                                   data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
-                                    <x-icon class="fa-solid fa-link"></x-icon>
-                                    {{ __('entities/notes.copy_mention.copy_with_name') }}
-                                </a>
-                            </li>
-                        @endif
-                        @if(auth()->user()->isAdmin())
-                            <li>
-                                <a href="{{ route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
-                                    <x-icon class="fa-solid fa-arrows-left-right"></x-icon> {{ __('entities/notes.move.move') }}
-                                </a>
-                            </li>
-                        @endif
-                        <li class="divider"></li>
-                        <li>
-                            <a href="{{ route('entities.story.reorder', [$campaign, 'entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
-                                <x-icon class="fa-solid fa-arrows-v"></x-icon>
-                                {{ __('entities/story.reorder.icon_tooltip') }}
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="dropdown-menu hidden" role="menu">
+                        @include('entities.pages.posts._actions')
+                    </div>
                 </div>
             @endif
         </div>
