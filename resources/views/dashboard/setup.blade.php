@@ -93,7 +93,7 @@ $newWidgetListClass = 'btn2 btn-full';
                                     {{ __('crud.actions.copy') }}
                                 </x-dropdowns.item>
 
-                                @php $data = route('campaign_dashboards.destroy', [$campaign, $dashboard]), 'name' => $dashboard->name, 'permanent' => true]); @endphp
+                                @php $data = route('confirm-delete', [$campaign, 'route' => route('campaign_dashboards.destroy', [$campaign, $dashboard]), 'name' => $dashboard->name, 'permanent' => true]); @endphp
                                 <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :dialog="$data" icon="trash">
                                     {{ __('crud.remove') }}
                                 </x-dropdowns.item>
