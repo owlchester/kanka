@@ -15,7 +15,7 @@ class PurgeBots extends Command
      *
      * @var string
      */
-    protected $signature = 'purge:bots';
+    protected $signature = 'purge:bots {dry=0}';
 
     /**
      * The console command description.
@@ -24,11 +24,18 @@ class PurgeBots extends Command
      */
     protected $description = 'Purge bot accounts';
 
+    protected int $count = 0;
+    protected bool $dry = true;
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
+        $dry = $this->argument('dry');
+        if ($dry === '0') {
+            $this->dry = false;
+        }
         User::where('created_at', '>=', Carbon::now()->subDays(3))
             ->where(function ($sub) {
                 $sub->where('name', 'like', '% Illuro');
@@ -36,11 +43,16 @@ class PurgeBots extends Command
             ->chunk(500, function ($users) {
                 foreach ($users as $user) {
                     if (Str::length($user->name) < 50) {
-                        $this->log('Skipping ' . $user->id . ': ' . $user->name);
+                        $this->warn('Skipping ' . $user->id . ': ' . $user->name);
                         continue;
                     }
-                    DeleteUser::dispatch($user);
+                    if (!$this->dry) {
+                        DeleteUser::dispatch($user);
+                    }
+                    $this->count++;
                 }
             });
+
+        $this->info('Purged ' . $this->count . ' accounts');
     }
 }
