@@ -33,14 +33,14 @@ class PurgeBots extends Command
     public function handle()
     {
         $dry = $this->argument('dry');
-        if ($dry === '0') {
+        if ($dry === '1') {
             $this->dry = false;
         }
         User::where('created_at', '>=', Carbon::now()->subDays(3))
             ->where(function ($sub) {
                 $sub->where('name', 'like', '% Illuro');
             })
-            ->chunk(500, function ($users) {
+            ->chunkById(500, function ($users) {
                 foreach ($users as $user) {
                     if (Str::length($user->name) < 50) {
                         $this->warn('Skipping ' . $user->id . ': ' . $user->name);

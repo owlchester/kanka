@@ -281,7 +281,7 @@ class PurgeService
             ->where('f.created_at', '<=', $cutoff)
             ->whereNull('users.stripe_id')
             ->limit($this->limit)
-            ->chunk(1000, function ($users) {
+            ->chunkById(1000, function ($users) {
                 if ($this->count >= $this->limit) {
                     return false;
                 }
