@@ -281,7 +281,7 @@
     "src": "resources/sass/subscription.scss"
   },
   "resources/sass/themes/dark.scss": {
-    "file": "assets/dark-61a9d9a8.css",
+    "file": "assets/dark-5f375fa4.css",
     "isEntry": true,
     "src": "resources/sass/themes/dark.scss"
   },

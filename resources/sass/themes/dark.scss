@@ -76,6 +76,9 @@
     dialog {
         --b1: var(--b3);
     }
+    input {
+        --p: var(--mauve);
+    }
 }
 /*.btn2.btn-primary, .btn2.btn-accent, .btn2.btn-error, .btn2.btn-warning {
     --tw-bg-opacity: 0;
