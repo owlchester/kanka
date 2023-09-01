@@ -38,6 +38,7 @@
                 @elseif (is_array($action))
                     @if (\Illuminate\Support\Arr::get($action, 'type') === 'dialog-ajax')
                         <x-dropdowns.item
+                            :css="$action['css'] ?? ''"
                             :link="route($action['route'], [$campaign, $model])"
                             :dialog="route($action['route'], [$campaign, $model])"
                             :icon="$action['icon']">

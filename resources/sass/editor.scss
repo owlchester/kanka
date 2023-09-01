@@ -115,6 +115,10 @@ img.note-float-left {
     background-color: hsl(var(--p)/var(--tw-bg-opacity)) !important;
     color: hsl(var(--pc)) !important
 }
+.note-placeholder {
+    --tw-text-opacity: .5;
+    color: hsl(var(--bc)/var(--tw-text-opacity)) !important;
+}
 
 
 /**

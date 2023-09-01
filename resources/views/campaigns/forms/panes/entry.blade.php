@@ -13,7 +13,7 @@
             field="vanity"
             :label="__('campaigns.fields.vanity')">
             @if (isset($model) && $model->hasVanity())
-                <x-helper :title="__('campaigns/vanity.set', ['vanity' => '<code>' . $model->slug . '</code>'])" />
+                <x-helper :text="__('campaigns/vanity.set', ['vanity' => '<code>' . $model->slug . '</code>'])" />
             @elseif(isset($model) && $model->premium())
                 <x-helper>{!! __('campaigns/vanity.helper', [
     'default' => '<code>w/' . (isset($model) ? $model->id : 123456) . '</code>',

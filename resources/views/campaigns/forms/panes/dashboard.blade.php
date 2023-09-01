@@ -1,7 +1,6 @@
 <div class="tab-pane" id="form-dashboard">
-
     <x-grid type="1/1">
-        <p class="text-neutral-content m-0">{{ __('campaigns.helpers.dashboard') }}</p>
+        <x-helper :text="__('campaigns.helpers.dashboard')" />
 
         <x-forms.field
             field="excerpt"

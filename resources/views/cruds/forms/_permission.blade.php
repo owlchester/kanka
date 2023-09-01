@@ -19,11 +19,6 @@ $actions = [
 ];
 
 $role = \App\Facades\CampaignCache::adminRole();
-@endphp
-
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['privacyToggle' => true])
-
-@php
 $hidden = false;
 if (!empty($source) && $source->is_private) {
     $hidden = true;
@@ -31,11 +26,16 @@ if (!empty($source) && $source->is_private) {
     $hidden = true;
 }
 @endphp
-<x-alert type="warning" id="entity-is-private" :hidden="!$hidden">
-    <strong>{{ __('entities/permissions.privacy.warning') }}</strong>
-    <p>{!! __('entities/permissions.privacy.text', [
-    'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign)
-]) !!}</p>
-</x-alert>
 
-@include('cruds.permissions.permissions_table', ['skipUsers' => true, 'campaign'])
+<x-grid type="1/1">
+    @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['privacyToggle' => true])
+
+    <x-alert type="warning" id="entity-is-private" :hidden="!$hidden">
+        <strong>{{ __('entities/permissions.privacy.warning') }}</strong>
+        <p>{!! __('entities/permissions.privacy.text', [
+        'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign)
+    ]) !!}</p>
+    </x-alert>
+
+    @include('cruds.permissions.permissions_table', ['skipUsers' => true, 'campaign'])
+</x-grid>
