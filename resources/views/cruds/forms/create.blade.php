@@ -23,6 +23,7 @@
 @endsection
 
 @section('content')
+    <x-grid type="1/1">
     @include('cruds.forms._errors')
 
     <div class="nav-tabs-custom">
@@ -90,7 +91,7 @@
             @endif
         </div>
     </div>
-    {{ csrf_field() }}
+    </x-grid>
     {!! Form::close() !!}
 @endsection
 

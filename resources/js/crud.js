@@ -135,7 +135,7 @@ function registerFormSubmitAnimation() {
             var submit = $(this).find('.btn-primary');
             if (submit.length > 0) {
                 $.each(submit, function () {
-                    if ($(this).hasClass('dropdown-toggle')) {
+                    if ($(this).parent().hasClass('dropdown') || $(this).hasClass('quick-creator-subform')) {
                         $(this).prop('disabled', true);
                     } else {
                         $(this)

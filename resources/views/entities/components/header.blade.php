@@ -40,7 +40,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
 
 ?>
 
-<div class="entity-header flex gap-5 items-end px-4 @if ($hasBanner) with-entity-banner py-4 text-white @endif" @if ($hasBanner) style="background-image: url('{{ $headerImageUrl }}');" @endif>
+<div class="entity-header flex gap-5 items-end @if ($hasBanner) with-entity-banner p-4 text-white @endif" @if ($hasBanner) style="background-image: url('{{ $headerImageUrl }}');" @endif>
 
     @if ($imageUrl)
     <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto">

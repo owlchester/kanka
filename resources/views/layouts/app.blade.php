@@ -106,9 +106,9 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
             @yield('content-header')
 
-            <section class="content p-4 @if (isset($centered) && $centered) max-w-7xl mx-auto  @endif" role="main">
+            <section class="content p-4 flex flex-col gap-2 lg:flex-gap-5 @if (isset($centered) && $centered) max-w-7xl mx-auto  @endif" role="main">
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
-                    <div class=" alert p-4 rounded alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5 mb-5">
+                    <div class=" alert p-4 rounded alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5">
                         <div class="grow">
                             <div class="m-0 p-0 text-lg">
                                 <i class="icon fa-solid fa-exclamation-triangle" aria-hidden="true"></i>

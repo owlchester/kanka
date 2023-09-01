@@ -3,7 +3,7 @@
 @if ($dismissible) opacity-100 duration-150 transition-opacity {{ $unique }} @endif"
      @if ($id) id="{{ $id }}" @endif
 @if ($hidden) style="display: none" @endif>
-    <div class="grow flex flex-col gap-5">
+    <div class="grow flex flex-col gap-2">
         {!! $slot !!}
     </div>
     @if ($dismissible)
