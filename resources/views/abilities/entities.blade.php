@@ -9,7 +9,7 @@
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons inline-block ml-auto">
-            <a href="{{ route('abilities.entity-add', [$campaign, $model]) }}" class="btn2 btn-accent btn-sm"
+            <a href="{{ route('abilities.entity-add', [$campaign, $model]) }}" class="btn2 btn-sm"
                data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('abilities.entity-add', [$campaign, $model]) }}">
                 <x-icon class="plus"></x-icon> <span class="hidden md:inline">{{ __('abilities.children.actions.add') }}</span>
             </a>

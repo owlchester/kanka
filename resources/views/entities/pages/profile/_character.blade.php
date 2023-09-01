@@ -1,10 +1,10 @@
 <?php /** @var \App\Models\Character $model */
 $appearances = $model->characterTraits()->appearance()->orderBy('default_order')->get();
 $traits = $model->characterTraits()->personality()->orderBy('default_order')->get();
+
 ?>
-<x-box css="box-entity-profile">
-    <div class="flex w-full gap-5">
-        <div class="flex-1">
+    <x-grid type="1/1">
+        <x-box css="box-entity-profile grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-5">
             @if ($model->title)
                 <p class="entity-character-title">
                     <b>{{ __('characters.fields.title') }}</b><br />
@@ -66,30 +66,32 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                     {{ $model->pronouns }}
                 </p>
             @endif
-        </div>
+        </x-box>
 
         @if (count($appearances) > 0)
-            <div class="character-appearances flex-1">
-                @foreach ($appearances as $trait)
-                    <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}">
-                        <b>{{ $trait->name }}</b><br />
-                        {{ $trait->entry }}
-                    </p>
-                @endforeach
-            </div>
+        <x-box css="character-appearances grid grid-cols-2 gap-5">
+            <h4 class="grow col-span-2">{{ __('characters.sections.appearance') }}</h4>
+            @foreach ($appearances as $trait)
+                <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}">
+                    <b>{{ $trait->name }}</b><br />
+                    {{ $trait->entry }}
+                </p>
+            @endforeach
+        </x-box>
         @endif
 
         @if (((auth()->check() && auth()->user()->can('personality', $model)) || $model->is_personality_visible) && count($traits) > 0)
-            <div class="character-personalities flex-1">
+            <x-box css="character-personalities flex flex-col gap-5">
 
                 @if(auth()->check() && auth()->user()->can('personality', $model))
-                    <span class="float-right">
+                    <div class="flex gap-2">
+                        <h4 class="grow">{{ __('characters.sections.personality') }}</h4>
                         @if (!$model->is_personality_visible)
                             <x-icon class="fa-solid fa-lock" :tooltip="true" :title="__('characters.hints.personality_not_visible')" />
                         @else
                             <x-icon class="fa-solid fa-lock-open" :tooltip="true" :title="__('characters.hints.personality_visible')" />
                         @endif
-                    </span>
+                    </div>
                 @endif
 
                 @foreach ($traits as $trait)
@@ -98,13 +100,12 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                         {!! nl2br(\App\Facades\Mentions::mapAny($trait, 'entry')) !!}
                     </p>
                 @endforeach
-            </div>
+            </x-box>
         @endif
-    </div>
+    </x-grid>
 
     <ul class="m-0 p-0">
         @include('entities.components.elasped_events')
     </ul>
-</x-box>
 
 

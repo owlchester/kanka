@@ -39,7 +39,7 @@
                 </h3>
                 <div class="flex-none gap-1">
                     @if (auth()->check() && $campaign->userIsMember())
-                        <button type="button" class="btn2 btn-warning btn-sm" data-toggle="dialog-ajax" data-target="leave-confirm" data-url="{{ route('campaign.leave', $campaign) }}">
+                        <button type="button" class="btn2 btn-sm" data-toggle="dialog-ajax" data-target="leave-confirm" data-url="{{ route('campaign.leave', $campaign) }}">
                             <x-icon class="fa-solid fa-sign-out-alt" />
                             {{ __('campaigns.show.actions.leave') }}
                         </button>

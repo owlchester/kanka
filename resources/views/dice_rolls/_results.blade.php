@@ -3,7 +3,7 @@
 <div class="flex gap-2 items-center">
     <h4 class="grow">{{ __('dice_rolls.index.actions.results') }}</h4>
     @can('roll', $model)
-        <a href="{{ route('dice_rolls.roll', [$campaign, 'dice_roll' => $model]) }}" class="btn2 btn-sm btn-accent">
+        <a href="{{ route('dice_rolls.roll', [$campaign, 'dice_roll' => $model]) }}" class="btn2 btn-sm">
             <x-icon class="plus"></x-icon> {{ __('dice_rolls.results.actions.add') }}
         </a>
     @endcan

@@ -22,7 +22,7 @@ if (isset($toggle) && $toggle) {
             {{ __('tiers.current') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-accent " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::KOBOLD]) }}">
+        <a class="btn2 btn-block btn-sm " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::KOBOLD]) }}">
             {{ __('settings.subscription.subscription.actions.cancel') }}<br />
             ({{ __('settings.subscription.subscription.actions.rollback') }})
         </a>

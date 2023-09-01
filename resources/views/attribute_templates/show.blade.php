@@ -19,7 +19,7 @@
                             <span class="hidden md:inline">{{ __('entities/attributes.actions.apply_template') }}</span>
                         </a>
 
-                        <a href="{{ route('entities.attributes.edit', [$campaign, 'entity' => $model->entity]) }}" class="btn2 btn-sm btn-accent">
+                        <a href="{{ route('entities.attributes.edit', [$campaign, 'entity' => $model->entity]) }}" class="btn2 btn-sm">
                             <x-icon class="fa-solid fa-list" />
                             <span class="hidden md:inline">{{ __('entities/attributes.actions.manage') }}</span>
                         </a>

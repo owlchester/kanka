@@ -12,7 +12,7 @@
             </a>
         @endcan
         @can('post', [$model, 'add'])
-            <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn2 btn-accent btn-sm btn-new-post"
+            <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn2 btn-sm btn-new-post"
                data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">
                 <x-icon class="plus"></x-icon>
                 <span class="hidden lg:inline">{{ __('crud.actions.new_post') }}</span>

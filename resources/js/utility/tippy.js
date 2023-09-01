@@ -72,7 +72,7 @@ const initDropdowns = () => {
             return;
         }
         let dropdown = e.parentNode.querySelectorAll('.dropdown-menu')[0];
-        console.log('me', e, dropdown);
+        //console.log('me', e, dropdown);
         e.dataset.loaded = '1';
         tippy(e, {
             content: '<div class="dd-menu flex flex-col gap-1 max-w-2xl">' + dropdown.innerHTML + '</div>',

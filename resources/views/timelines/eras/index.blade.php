@@ -10,7 +10,7 @@
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
-            <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model]) }}" class="btn2 btn-accent btn-sm"
+            <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model]) }}" class="btn2 btn-sm"
             >
                 <x-icon class="plus"></x-icon>
                 <span class="hidden lg:inline">{{ __('timelines/eras.actions.add') }}</span>

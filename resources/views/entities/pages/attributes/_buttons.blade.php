@@ -3,7 +3,7 @@
     {{ __('entities/attributes.actions.apply_template') }}
 </a>
 
-<a href="{{ route('entities.attributes.edit', [$campaign, 'entity' => $entity]) }}" class="btn2 btn-sm btn-accent">
+<a href="{{ route('entities.attributes.edit', [$campaign, 'entity' => $entity]) }}" class="btn2 btn-sm">
     <i class="fa-solid fa-list" aria-hidden="true"></i>
     {{ __('entities/attributes.actions.manage') }}
 </a>

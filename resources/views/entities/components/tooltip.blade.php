@@ -14,7 +14,7 @@
         @endif
         <div class="grow entity-names">
             <a href="{{ $entity->url() }}" class="entity-name text-xl block">
-                {!! $entity->child->name !!} with a really long and stupid name that might cause issues down the line?
+                {!! $entity->child->name !!}
             </a>
             @if (method_exists($entity->child, 'tooltipSubtitle'))
                 <span class="entity-subtitle text-base block">{!! $entity->child->tooltipSubtitle() !!}</span>

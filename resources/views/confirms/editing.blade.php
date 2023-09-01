@@ -29,7 +29,7 @@
             </a>
         </menu>
         <menu class="flex flex-wrap gap-3 ps-0">
-            <button type="button" class="btn2 btn-warning" id="entity-edit-warning-ignore" data-url="{{ $url }}">
+            <button type="button" class="btn2 btn-error btn-outline" id="entity-edit-warning-ignore" data-url="{{ $url }}">
                 {{ __('confirm/editing.ignore') }}
             </button>
         </menu>

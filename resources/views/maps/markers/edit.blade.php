@@ -33,18 +33,20 @@
             @include('partials.errors')
 
             {!! Form::model($model, ['route' => ['maps.map_markers.update', $campaign, 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
-            @include('maps.markers._form')
+            <x-grid type="1/1">
+                @include('maps.markers._form')
 
-            <x-box.footer>
-                <div class="submit-group flex items-center gap-2">
-                    <div class="inline-block grow">
-                        <x-button.delete-confirm target="#delete-marker-confirm-form-{{ $model->id}}" />
+                <x-box.footer>
+                    <div class="submit-group flex items-center gap-2">
+                        <div class="inline-block grow">
+                            <x-button.delete-confirm target="#delete-marker-confirm-form-{{ $model->id}}" />
+                        </div>
+                        @include('partials.footer_cancel', ['ajax' => null])
+
+                        @include('maps.markers._actions')
                     </div>
-                    @include('partials.footer_cancel', ['ajax' => null])
-
-                    @include('maps.markers._actions')
-                </div>
-            </x-box.footer>
+                </x-box.footer>
+            </x-grid>
             {!! Form::close() !!}
             @endif
     </x-box>

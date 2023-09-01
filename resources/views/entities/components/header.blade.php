@@ -12,7 +12,7 @@ if (!isset($entity)) {
 
 $imageUrl = $imagePath = $headerImageUrl = $imagePathXL = $imagePathMobile = null;
 $imageUrl = Avatar::entity($entity ?? $model->entity)->child($model)->original();
-$imagePath = Avatar::entity($entity ?? $model->entity)->child($model)->size(170)->thumbnail();
+$imagePath = Avatar::entity($entity ?? $model->entity)->child($model)->size(192)->thumbnail();
 $imagePathXL = Avatar::entity($entity ?? $model->entity)->child($model)->size(400)->thumbnail();
 $imagePathMobile = Avatar::entity($entity ?? $model->entity)->child($model)->size(100)->thumbnail();
 
@@ -95,7 +95,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             @if(isset($printing) && $printing)
                 <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $model->name }}"/>
             @else
-            <a class="entity-image cover-background" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
+            <a class="entity-image cover-background block rounded-none" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
             @endif
         @endcan
     </div>
