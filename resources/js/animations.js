@@ -8,7 +8,7 @@ const initAnimations = () => {
 };
 
 function toggle(e) {
-    e.preventDefault();
+    //e.preventDefault();
 
     let selector = this.dataset.target;
     if (!selector) {

@@ -96,7 +96,7 @@
             <input type="checkbox" v-model="isUnknown" id="family_tree_unknown" name="isUnknown" value="isUnknown" />
             {{ this.texts.modals.fields.unknown }}
           </label>
-          <p class="help-block">{{ this.texts.modals.entity.edit.helper }}</p>
+          <p class="help-block text-neutral-content">{{ this.texts.modals.entity.edit.helper }}</p>
         </div>
 
         <div class="field field-relation flex flex-col gap-1">

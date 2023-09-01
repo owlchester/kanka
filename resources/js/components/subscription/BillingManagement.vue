@@ -26,7 +26,7 @@
             </div>
         </div>
         <div v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length == 0" class="flex gap-2 mb-5">
-            <p class="help-block grow">
+            <p class="help-block text-neutral-content grow">
                 {{ translate('add_one') }}
             </p>
             <a href="#" v-on:click.close="toggleShowNewPaymentMethod" class="btn2 btn-secondary btn-sm">
@@ -58,7 +58,7 @@
                     </p>
                 </div>
 
-                <p class="help-block mb-2">
+                <p class="help-block text-neutral-content mb-2">
                     {{ translate('helper') }}
                 </p>
 

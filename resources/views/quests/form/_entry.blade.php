@@ -8,10 +8,9 @@
     @include('cruds.fields.date')
     <x-forms.field field="completed" :label="__('quests.fields.is_completed')">
         {!! Form::hidden('is_completed', 0) !!}
-        <label class="text-neutral-content cursor-pointer">
+        <x-checkbox :text="__('quests.helpers.is_completed')">
             {!! Form::checkbox('is_completed', 1, (!empty($model) ? $model->is_completed : (!empty($source) ? FormCopy::field('is_completed')->boolean() : 0))) !!}
-            {{ __('quests.helpers.is_completed') }}
-        </label>
+        </x-checkbox>
     </x-forms.field>
 
     @include('cruds.fields.entry2')

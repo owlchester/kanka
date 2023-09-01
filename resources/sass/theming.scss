@@ -20,12 +20,12 @@ a, .text-link {
 
     &:hover {
         --tw-text-opacity: 1;
-        color: var(--link-text, hsl(var(--pf))/var(--tw-text-opacity));
+        color: var(--link-text, hsl(var(--pf)/var(--tw-text-opacity)));
     }
 
     &:focus {
         --tw-text-opacity: 1;
-        color: var(--link-focus, hsl(var(--pf))/var(--tw-text-opacity));
+        color: var(--link-focus, hsl(var(--pf)/var(--tw-text-opacity)));
     }
 }
 
@@ -95,7 +95,7 @@ input[type="checkbox"]:checked {
     color: hsl(var(--pc)/var(--tw-text-opacity));
 }
 input[type="checkbox"]:checked:after {
-    content: '\2714';
+    content: var(--checkbox-content, '\2714');
     font-size: 1rem;
     position: absolute;
     top: 0;

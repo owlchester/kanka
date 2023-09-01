@@ -12,14 +12,12 @@
 
     @if(empty($relation) && (!isset($mirror) || $mirror == true))
         <x-forms.field field="two-way">
-            <label class="" data-animate="collapse" data-target="#two-way-relation">
-                {!! Form::checkbox('two_way') !!}
-                {{ __('entities/relations.fields.two_way') }}
-                <x-helpers.tooltip :title="__('entities/relations.hints.two_way')" />
-            </label>
-            <p class="text-neutral-content md:hidden">{{ __('entities/relations.hints.two_way') }}</p>
+            <x-checkbox :text="__('entities/relations.hints.two_way')" :label="__('entities/relations.fields.two_way')">
+                {!! Form::checkbox('two_way', 1, null, ['data-animate' => 'collapse', 'data-target' => '#two-way-relation']) !!}
+            </x-checkbox>
         </x-forms.field>
 
+    <div>
         <div class="hidden" id="two-way-relation">
             <x-forms.field field="target-relation">
                 <label>
@@ -30,6 +28,7 @@
                 <p class="text-neutral-content md:hidden">{{ __('entities/relations.hints.target_relation') }}</p>
             </x-forms.field>
         </div>
+    </div>
     @endif
 
     @include('cruds.fields.pinned')

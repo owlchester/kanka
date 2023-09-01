@@ -17,10 +17,9 @@
             {{ __('profiles.newsletter.helpers.header') }}
         </p>
         <x-forms.field field="mail-release" :label="__('profiles.newsletter.options.monthly')">
-            <label class="text-neutral-content cursor-pointer flex gap-2">
+            <x-checkbox :text="__('front/newsletter.groups.all')">
                 {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
-                <span>{{ __('front/newsletter.groups.all') }}</span>
-            </label>
+            </x-checkbox>
         </x-forms.field>
     </x-grid>
 

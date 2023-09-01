@@ -72,7 +72,7 @@
                                     :notification="notification">
                       </Notification>
                     </div>
-                    <div class="no-notifications help-block italic" v-if="notifications.messages.length === 0">
+                    <div class="no-notifications help-block text-neutral-content italic" v-if="notifications.messages.length === 0">
                         {{  notifications.none }}
                     </div>
                 </div>
