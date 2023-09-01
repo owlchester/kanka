@@ -30,16 +30,16 @@ class EntityRelationService
     use CampaignAware;
     use EntityAware;
 
-    /** @var array Entities */
+    /** Entities */
     protected array $entities = [];
 
-    /** @var array Relations */
+    /** Relations */
     protected array $relations = [];
 
-    /** @var array Loaded relation IDS */
+    /** Loaded relation IDS */
     protected array $relationIds = [];
 
-    /** @var array Loaded org members to avoid things getting messy */
+    /** Loaded org members to avoid things getting messy */
     protected array $orgMembers = [];
 
     /** @var array Mirrored IDs */

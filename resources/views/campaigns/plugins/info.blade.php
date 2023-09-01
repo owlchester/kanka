@@ -66,7 +66,7 @@
         @endforeach
 
         @if ($versions->hasPages())
-        <div class="mt-5">
+        <div class="">
             {!! $versions->onEachSide(0)->links() !!}
         </div>
         @endif

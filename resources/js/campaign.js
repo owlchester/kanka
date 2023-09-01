@@ -40,21 +40,20 @@ function registerModules() {
         }
         header.addClass('loading');
 
-        $.ajax({
-            method: 'post',
-            url: $(this).data('url'),
-            context: this,
-        }).done(function (res) {
-            if (res.success) {
-                if (res.status) {
-                    $(this).closest('.box-module').addClass('module-enabled');
-                } else {
-                    $(this).closest('.box-module').removeClass('module-enabled');
+        axios
+            .post($(this).data('url'))
+            .then(response => {
+                let el = $(this);
+                el.closest('.box-module').find('h3').removeClass('loading');
+                if (!response.data.success) {
+                    return;
                 }
-
-                window.showToast(res.toast);
-            }
-            $(this).closest('.box-module').find('h3').removeClass('loading');
+                if (response.data.status) {
+                    el.closest('.box-module').addClass('module-enabled');
+                } else {
+                    el.closest('.box-module').removeClass('module-enabled');
+                }
+                window.showToast(response.data.toast);
         });
     });
 }
@@ -72,27 +71,28 @@ function registerUserRoles() {
 
 /** Toggling an action on a permission **/
 function registerRoles() {
-    $('.public-permission').click(function (e) {
-        e.preventDefault();
-        $(this).addClass('loading');
+    let elements = document.querySelectorAll('.public-permission');
+    elements.forEach(el => {
+        el.addEventListener('click', togglePublicRole);
+    });
+}
 
-        $.ajax({
-            method: 'post',
-            url: $(this).data('url'),
-            context: this,
-        }).done(function (res) {
-            $(this).removeClass('loading');
-            if (res.success) {
-                if (res.status) {
+function togglePublicRole(e) {
+    e.preventDefault();
+    this.classList.add('loading');
+
+    axios.post(this.dataset.url)
+        .then(res => {
+            this.classList.remove('loading');
+            if (res.data.success) {
+                if (res.data.status) {
                     $(this).addClass('enabled');
                 } else {
                     $(this).removeClass('enabled');
                 }
-                window.showToast(res.toast);
+                window.showToast(res.data.toast);
             }
         });
-
-    });
 }
 
 /**
@@ -137,33 +137,33 @@ function registerSidebarSetup() {
     }
 }
 
-function registerCampaignExport() {
-    let exportBtn = $('.campaign-export-btn');
-    if (exportBtn.length === 0) {
-        return;
-    }
-
-    exportBtn.click(function (e) {
-        e.preventDefault();
-        $(this).addClass('loading');
-
-        $.ajax({
-            url: exportBtn.data('url'),
-            method: 'POST',
-            context: this,
-        }).done (function (res) {
-            $(this).removeClass('loading').hide();
-            if (res.error) {
-                window.showToast(res.error, 'toast-error');
-            } else {
-                window.showToast(res.success);
-            }
-        }).fail (function (res) {
-            console.error('campaign export call', res);
-        });
+const registerCampaignExport = () => {
+    let elements = document.querySelectorAll('.campaign-export-btn');
+    elements.forEach(el => {
+        el.addEventListener('click', startCampaignExport);
     });
-}
+};
 
+function startCampaignExport(e) {
+    e.preventDefault();
+    this.classList.add('loading');
+
+    axios.post(this.dataset.url)
+        .then(res => {
+            console.log(this);
+            this.classList.remove('loading');
+            this.classList.add('btn-disabled');
+            if (res.data.error) {
+                window.showToast(res.data.error, 'error');
+            } else {
+                window.showToast(res.data.success);
+            }
+        })
+        .catch((res) => {
+            this.classList.add('loading');
+            console.error('campaign export call', res.data);
+        });
+}
 /**
  * Register events for campaign themes, notably the max size of a css field
  */

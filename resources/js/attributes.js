@@ -4,9 +4,9 @@ import Sortable from "sortablejs";
  * When adding a new attribute, we give it a negative id to avoid issues with checkboxes losing information
  * @type {number}
  */
-var attribute_id_count = -1000;
-var maxFields = false;
-var maxFieldAlert;
+let attribute_id_count = -1000;
+let maxFields = false;
+let maxFieldAlert;
 
 const target = $('#add_attribute_target');
 
@@ -29,9 +29,7 @@ $(document).ready(function() {
 /**
  * Initiate on click handles for attribute interface
  */
-function initAttributeUI()
-{
-
+const initAttributeUI = () => {
     initAttributeHandlers();
     initAddAttribute();
 
@@ -64,7 +62,7 @@ function initAttributeUI()
     $(document).on('shown.bs.modal', function () {
         initAddAttribute();
     });
-}
+};
 
 const initAddAttribute = () => {
     $('[data-attribute-template]').unbind('click').click(function (e) {
@@ -95,8 +93,7 @@ const initAddAttribute = () => {
 /**
  * This function rebinds the delete on all buttons
  */
-function initAttributeHandlers() {
-
+const initAttributeHandlers = () => {
     $.each($('.attribute_delete'), function() {
         $(this).unbind('click');
         $(this).on('click', function() {
@@ -135,13 +132,10 @@ function initAttributeHandlers() {
             window.showToast($(this).data('unpin'));
         }
     });
+};
 
-    //window.initSelect2();
-}
-
-
-var liveEditURL, liveEditModal, liveEditCurrentUID;
-function initLiveAttributes() {
+let liveEditURL, liveEditModal, liveEditCurrentUID;
+const initLiveAttributes = () => {
     let config = $('[name="live-attribute-config"]');
     if (config.length === 0) {
         return;
@@ -172,7 +166,7 @@ function initLiveAttributes() {
         window.openDialog('live-attribute-dialog', url);
 
     });
-}
+};
 
 const listenToLiveForm = () => {
     liveEditModal.find('form').submit(function (e) {
@@ -209,4 +203,4 @@ const listenToLiveForm = () => {
 
         return false;
     });
-}
+};

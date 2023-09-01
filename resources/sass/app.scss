@@ -181,10 +181,7 @@ button.loading {
 }
 
 /** Cancel some of tw's resets **/
-hr {
-    margin-top: 1.1rem;
-    margin-bottom: 1.1rem;
-}
+
 ul {
     list-style: disc;
     padding: 0 1.5rem;
@@ -322,7 +319,6 @@ ul.entity-menu {
 @import "dialog";
 @import "adminlte";
 @import "print/general";
-@import "toast";
 @import "colour";
 @import "dl";
 

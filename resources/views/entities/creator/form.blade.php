@@ -70,7 +70,7 @@
         </div>
     </div>
     @if (empty($origin))
-    <div class="quick-creator-footer mt-4">
+    <div class="quick-creator-footer">
 
             <div class="join mr-4">
                 <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.create') }}">

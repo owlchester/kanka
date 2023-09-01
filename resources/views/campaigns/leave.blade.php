@@ -19,7 +19,7 @@
             {!! Form::close() !!}
         </div>
     @else
-        <p class="mt-5">{{ __('campaigns.leave.no-admin-left') }}</p>
+        <p class="">{{ __('campaigns.leave.no-admin-left') }}</p>
         <a href="{{ route('campaign_users.index', $campaign) }}" class="btn2">
             {{ __('campaigns.leave.fix') }}
         </a>

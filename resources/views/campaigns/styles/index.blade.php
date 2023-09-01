@@ -46,7 +46,7 @@ use App\Facades\Datagrid ?>
                 </x-box>
             @else
                 @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_styles.bulk', $campaign]]) !!} @endif
-                <div id="datagrid-parent" class="mb-5">
+                <div id="datagrid-parent" class="">
                     @include('layouts.datagrid._table', ['rows' => $styles])
                 </div>
                 @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif

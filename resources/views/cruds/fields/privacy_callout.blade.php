@@ -6,7 +6,7 @@ if (isset($privacyToggle)) {
 @endphp
 <div class="privacy-callout border-l-2 border-orange-200 p-3 mb-2 flex flex-col gap-1">
     <div class="flex gap-2">
-        <i class="fa-solid fa-lock" aria-hidden="true"></i>
+        <x-icon class="fa-solid fa-lock" />
         <label class="grow m-0">{{ __('crud.fields.privacy') }}</label>
     </div>
     <div class="m-0 checkbox">

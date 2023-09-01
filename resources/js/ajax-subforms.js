@@ -62,7 +62,7 @@ const displayErrors = (form, error) => {
     // If we have a 503 error status, let's assume it's from cloudflare and help the user
     // properly save their data.
     if (error.status === 503) {
-        window.showToast(error.responseJSON.message, 'toast-error');
+        window.showToast(error.responseJSON.message, 'error');
         stopAnimation(form);
         return;
     }
@@ -101,7 +101,7 @@ const displayErrors = (form, error) => {
     // If some of the errors couldn't be found in the form, alert the user with a toast error
     if (!foundAllErrors) {
         errorKeys.forEach(function (i) {
-            window.showToast(errors[i][0], 'toast-error');
+            window.showToast(errors[i][0], 'error');
         });
     }
 

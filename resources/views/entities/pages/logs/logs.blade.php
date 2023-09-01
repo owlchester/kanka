@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\EntityLog $log
  * @var \App\Models\EntityLog[]|\Illuminate\Pagination\LengthAwarePaginator $logs */?>
-@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
+@extends('layouts.ajax', [
     'title' => __('entities/logs.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -12,9 +12,7 @@
 ])
 @section('content')
     <form class="pagination-ajax-body max-w-2xl">
-    @if (request()->ajax())
         <x-dialog.header>{{ $entity->name }}</x-dialog.header>
-    @endif
         <article>
             <div class="modal-loading text-center text-xl p-5" style="display: none">
                 <x-icon class="load" />
@@ -102,14 +100,10 @@
                     @endif
                     </tbody>
                 </table>
-
-                @if (!request()->ajax())
-                    {{ $logs->onEachSide(0)->links() }}
-                @endif
             </div>
         </article>
 
-        @if (request()->ajax() && $logs->hasPages())
+        @if ($logs->hasPages())
             <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3 pagination-ajax-links">
                 {{ $logs->onEachSide(0)->links() }}
             </footer>

@@ -76,28 +76,23 @@ function initMapExplore()
         if (isMobile.matches) {
             url = url + '?mobile=1';
         }
-        $.ajax({
-            url: url,
-            type: 'GET',
-            async: true,
-            success: function (result) {
-                if (result) {
-                    if (isMobile.matches) {
-                        markerModalTitle.html(result.name);
-                        markerModalContent.find('.content').html(result.body).show();
-                        markerModalContent.find('.spinner').hide();
-                    } else {
-                        sidebarMarker.html(result.body).show()
-                            .parent().find('.spinner').hide();
 
-                        handleCloseMarker();
-                        mapPageBody.addClass('sidebar-open');
-                    }
-                    $(document).trigger('shown.bs.modal');
-                    //window.initDialogs();
+        fetch(url)
+            .then((response) => response.json())
+            .then((result) => {
+                if (isMobile.matches) {
+                    markerModalTitle.html(result.name);
+                    markerModalContent.find('.content').html(result.body).show();
+                    markerModalContent.find('.spinner').hide();
+                } else {
+                    sidebarMarker.html(result.body).show()
+                        .parent().find('.spinner').hide();
+
+                    handleCloseMarker();
+                    mapPageBody.addClass('sidebar-open');
                 }
-            }
-        });
+                $(document).trigger('shown.bs.modal');
+            });
     };
 
     initTicker();
@@ -162,21 +157,17 @@ function handleCloseMarker()
 }
 
 const initTicker = () => {
-    let config = $('#ticker-config');
-    tickerTimeout = config.data('timeout');
-    tickerUrl = config.data('url');
-    tickerTs = config.data('ts');
-    $(document).ready(function() {
-        setTimeout(mapTicker, tickerTimeout);
-    });
+    let config = document.getElementById('ticker-config');
+    tickerTimeout = config.dataset.timeout;
+    tickerUrl = config.dataset.url;
+    tickerTs = config.dataset.ts;
+    setTimeout(mapTicker, tickerTimeout);
 };
 
 const mapTicker = () => {
-    $.ajax(tickerUrl + '?ts=' + tickerTs)
-        .done(function(data) {
-            if (!data) {
-                return;
-            }
+    fetch(tickerUrl + '?ts=' + tickerTs)
+        .then(response => response.json())
+        .then(data => {
             tickerTs = data.ts;
             for (let id in data.markers) {
                 let changedMarker = data.markers[id];
@@ -435,12 +426,12 @@ function loadPresets(url) {
     }
 
     //console.log('load from', url);
-    $.ajax({
-        url: url
-    }).done(function (data) {
-        $('.marker-preset-list').html(data);
-        handlePresetClick();
-    });
+    fetch(url)
+        .then(response => response.text())
+        .then(response => {
+            $('.marker-preset-list').html(response);
+            handlePresetClick();
+        });
 }
 
 function handlePresetClick() {

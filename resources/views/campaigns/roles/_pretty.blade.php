@@ -61,7 +61,7 @@ $first = true;
 
 <hr />
 
-<div class="grid grid-cols-4 md:grid-cols-5 gap-2 mb-2">
+<div class="grid grid-cols-4 md:grid-cols-5 gap-2">
 @foreach ($permission->campaignPermissions($role) as $entity => $permissions)
     @if ($first)
         <div class="hidden sm:inline">

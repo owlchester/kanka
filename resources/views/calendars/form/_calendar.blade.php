@@ -75,7 +75,7 @@
         } ?>
         <div class="calendar-years sortable-elements" data-handle=".sortable-handler">
             @foreach ($years as $year => $name)
-                <div class="parent-delete-row mb-2">
+                <div class="parent-delete-row">
                     <x-grid>
                         <div class="flex gap-2 items-center">
                             <div class="sortable-handler p-2 cursor-move">

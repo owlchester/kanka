@@ -1,4 +1,4 @@
-<div class="flex gap-2 mb-2 items-center align-center">
+<div class="flex gap-2 items-center align-center">
     <div class="flex-0">
         @include ('partials.boost_icon')
     </div>

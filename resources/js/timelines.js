@@ -30,6 +30,7 @@ function loadTimelineEra(eraID) {
     eraID = parseInt(eraID);
     let url = $('input[name="era-data-url"]').data('url').replace('/0/', '/' + eraID + '/');
     let oldPosition = $('input[name="oldPosition"]').data('url');
+
     $.ajax(url)
         .done(function (data) {
             let eraField = $('select[name="position"]');

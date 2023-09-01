@@ -13,17 +13,6 @@ $(document).ready(function () {
             quickCreatorSubformHandler();
         });
         window.openDialog('primary-dialog', $(this).data('url'));
-        /*$.ajax({
-            url: $(this).data('url')
-        }).done(function (data) {
-            console.log('trying');
-            //$('#qq-modal-form').show().html(data);
-            //$(quickCreatorModalID).find('.modal-spinner').hide();
-            console.log($(quickCreatorModalID));
-            $(quickCreatorModalID).html(data).show();
-
-            quickCreatorSubformHandler();
-        });*/
     });
 });
 
@@ -91,6 +80,7 @@ function quickCreatorDuplicateName() {
 
 function quickCreatorLoadingModal() {
     $('#qq-modal-form').hide();
+    $('#qq-modal-selection').hide();
     $('#qq-modal-loading').show();
 }
 

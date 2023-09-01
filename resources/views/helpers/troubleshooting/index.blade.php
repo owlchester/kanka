@@ -11,17 +11,19 @@
         {!! Form::open(['route' => 'troubleshooting.generate', 'method' => 'POST']) !!}
         <x-box>
             <x-grid type="1/1">
-            <p class="">
-                {{ __('helpers.troubleshooting.description') }}
-            </p>
+                <p class="">
+                    {{ __('helpers.troubleshooting.description') }}
+                </p>
 
             @if($token)
                 <x-alert type="success">
-                    <p class="mb-5">{{ __('helpers.troubleshooting.success') }}</p>
-                    <a href="#" data-clipboard="{{ $token }}" data-toggle="tooltip" data-toast="Token copied to the clipboard" data-title="{{__('campaigns.invites.actions.copy') }}">
-                        <i class="fa-solid fa-copy" aria-hidden="true"></i>
-                        {{ $token }}
-                    </a>
+                    <x-grid type="1/1">
+                        <p class="">{{ __('helpers.troubleshooting.success') }}</p>
+                        <a href="#" data-clipboard="{{ $token }}" data-toggle="tooltip" data-toast="Token copied to the clipboard" data-title="{{__('campaigns.invites.actions.copy') }}">
+                            <x-icon class="fa-solid fa-copy" />
+                            {{ $token }}
+                        </a>
+                    </x-grid>
                 </x-alert>
             @else
                 <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">

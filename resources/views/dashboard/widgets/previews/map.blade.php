@@ -11,7 +11,7 @@ $map = $entity->child;
 @if(empty($map->image))
     <x-alert type="warning">
         <a href="{{ $entity->url() }}">{!! $entity->name !!}</a>
-        <p class="help-block">{{ __('maps.errors.dashboard.missing') }}</p>
+        <p class="">{{ __('maps.errors.dashboard.missing') }}</p>
     </x-alert>
     @php return @endphp
 @endif

@@ -61,20 +61,21 @@ const loadDialogContent = (url, target) => {
     } else {
         target.innerHTML = loadingContent;
     }
-    $.ajax({
-        url: url
-    }).done(function (success) {
-        target.innerHTML = success;
-        target.show();
-        $(document).trigger('shown.bs.modal'); // Get tooltips, select2 and delete-confirmation to re-generate
 
-        $('.btn-manage-perm').click(function (e) {
-            e.preventDefault();
-            target.close();
-            let permTarget = $(this).data('target');
-            $(permTarget).click();
+    fetch(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}})
+        .then(response => response.text())
+        .then(response => {
+            target.innerHTML = response;
+            target.show();
+            $(document).trigger('shown.bs.modal'); // Get tooltips, select2 and delete-confirmation to re-generate
+
+            $('.btn-manage-perm').click(function (e) {
+                e.preventDefault();
+                target.close();
+                let permTarget = $(this).data('target');
+                $(permTarget).click();
+            });
         });
-    });
 };
 
 const closeDialog = (target) => {

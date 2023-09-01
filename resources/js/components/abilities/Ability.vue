@@ -5,7 +5,7 @@
         <div class="ability-box p-3 rounded bg-box shadow-xs">
             <div class="ability-header border-b flex items-center gap-2 pb-2 mb-2">
                 <div v-bind:class="dropdownClass()" v-click-outside="onClickOutside" v-if="permission">
-                    <a v-on:click="openDropdown()" class="dropdown-toggle" data-dropdown role="button"  v-if="!this.openedDropdown">
+                    <a v-on:click="openDropdown()" role="button"  v-if="!this.openedDropdown">
                         <i class="fa-solid fa-lock" v-if="ability.visibility_id === 2" v-bind:title="translate('admin')"></i>
                         <i class="fa-solid fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="translate('admin-self')"></i>
                         <i class="fa-solid fa-users" v-if="ability.visibility_id === 5" v-bind:title="translate('members')"></i>

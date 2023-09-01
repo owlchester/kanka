@@ -53,7 +53,7 @@ function registerModalLoad() {
         $('#campaign-delete-form').focus();
     });
 }
-//this one
+
 function registerEntityNameCheck() {
     if (entityName.data('live-disabled')) {
         return;
@@ -63,32 +63,30 @@ function registerEntityNameCheck() {
         if (!$(this).val()) {
             return;
         }
-        let entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
-        let currentEntityID = $(this).data('id');
+        let block = $(this).data('duplicate');
+        let entityCreatorDuplicateWarning = $(block);
         let url = $(this).data('live') +
             '?q=' + encodeURIComponent($(this).val()) +
             '&type=' + $(this).data('type') +
             '&exclude=' + $(this).data('id');
-
         entityCreatorDuplicateWarning.hide();
-        // Check if an entity of the same type already exists, and warn when it does.
-        $.ajax(
-            url
-        ).done(function (res) {
-            if (res.length > 0) {
-                let entities = Object.keys(res)
-                    // Filter out what isn't itself
-                    .filter(function (k) { return !currentEntityID || currentEntityID != res[k].id; })
-                    .map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'; });
+        const field = entityCreatorDuplicateWarning.find('.duplicates');
 
-                if (entities.length > 0) {
-                    $('#duplicate-entities').html(entities.join(', '));
+        // Check if an entity of the same type already exists, and warn when it does.
+        fetch(url)
+            .then((response) => response.json())
+            .then((res) => {
+                field.innerHTML = '';
+                res.forEach(entity => {
+                    let link = document.createElement('a');
+                    link.href = entity.url;
+                    link.text = entity.name;
+                    field.append(link);
+                });
+                if (res.length > 0) {
                     entityCreatorDuplicateWarning.show();
                 }
-            } else {
-                entityCreatorDuplicateWarning.hide();
-            }
-        });
+            });
     });
 }
 
@@ -282,8 +280,9 @@ const loadCalendarDates = (calendarID) => {
 
     calendarID = parseInt(calendarID);
     var url = $('input[name="calendar-data-url"]').data('url').replace('/0/', '/' + calendarID + '/');
-    $.ajax(url)
-        .done(function (data) {
+    fetch(url)
+        .then((response) => response.json())
+        .then(data => {
             let selectedDay = entityCalendarDayField.val();
             entityCalendarYearField.html('');
             entityCalendarMonthField.html('');
@@ -485,34 +484,30 @@ function registerStoryActions() {
  */
 function registerStoryLoadMore() {
     $('.story-load-more').click(function (e) {
+        e.preventDefault();
         let btn = $(this);
 
-        e.preventDefault();
+        $(this).addClass('loading');
 
-        $('#story-more-spinner').show();
-        $(this).hide();
-
-        $.ajax({
-            url: $(this).data('url')
-        }).done(function (result) {
-            btn.parent().remove();
-            if (result) {
+        fetchMorePosts($(this).data('url'))
+            .then(result => {
+                btn.parent().remove();
                 $('.entity-posts').append(result);
                 registerStoryLoadMore();
                 registerStoryActions();
-                window.ajaxTooltip();
-            }
-        }).fail(function () {
-            //console.log('modal ajax error', result);
-            $('#story-more-spinner').hide();
-            btn.show();
-        });
-
+                $(document).trigger('shown.bs.modal');
+            })
+            .catch(() => {
+                btn.removeClass('loading');
+            });
         return false;
     });
 }
 
-
+async function fetchMorePosts(url) {
+    const result = await fetch(url);
+    return await result.text();
+}
 
 function registerTrustDomain() {
     $('.domain-trust').click(function () {

@@ -13,45 +13,46 @@
 ])
 
 @section('content')
-    <h1 class="mb-3">{{ __('settings.subscription.manage_subscription') }}</h1>
+    <x-grid type="1/1">
+        <h1>{{ __('settings.subscription.manage_subscription') }}</h1>
 
-    <p class="text-lg">
-        {!! __('subscription.benefits.main', [
-            'more' => link_to(Domain::toFront('pricing'), __('subscription.benefits.more'), '#paid-features'),
-            'boosters' => link_to(Domain::toFront('premium'), __('concept.premium-campaigns')),
-            'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
-        ]) !!}
-    </p>
+        <p class="text-lg">
+            {!! __('subscription.benefits.main', [
+                'more' => link_to(Domain::toFront('pricing'), __('subscription.benefits.more'), '#paid-features'),
+                'boosters' => link_to(Domain::toFront('premium'), __('concept.premium-campaigns')),
+                'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
+            ]) !!}
+        </p>
 
-    @include('partials.errors')
-    @if (session('sub_value'))
-        <div class="text-center">
-            <p>
-                <a  href="{{ route('settings.premium') }}" class="btn2 btn-primary btn-lg mr-4" target="blank">
-                    <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
-                    {{ __('settings/premium.ready.title') }}
-                </a>
-                @if (!$user->discord())
-                    <a  href="{{ route('settings.apps') }}" class="btn2 btn-primary btn-lg ml-4" target="blank">
-                        <i class="fa-brands fa-discord mr-1" aria-hidden="true"></i>
-                        {{ __('settings.apps.discord.unlock') }}
+        @include('partials.errors')
+        @if (session('sub_value'))
+            <div class="text-center">
+                <p>
+                    <a  href="{{ route('settings.premium') }}" class="btn2 btn-primary btn-lg mr-4" target="blank">
+                        <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
+                        {{ __('settings/premium.ready.title') }}
                     </a>
-                @endif
-            </p>
-        </div>
-    @endif
-    @include('settings.subscription._recap')
+                    @if (!$user->discord())
+                        <a  href="{{ route('settings.apps') }}" class="btn2 btn-primary btn-lg ml-4" target="blank">
+                            <i class="fa-brands fa-discord mr-1" aria-hidden="true"></i>
+                            {{ __('settings.apps.discord.unlock') }}
+                        </a>
+                    @endif
+                </p>
+            </div>
+        @endif
+        @include('settings.subscription._recap')
 
-    <div class="flex gap-2 mb-2">
-        <h2 class="grow">
-            {{ __('settings.subscription.tiers') }}
-        </h2>
-        <x-buttons.confirm type="ghost" target="change-information" size="sm">
-            <x-icon class="question"></x-icon>
-            <span>{{ __('settings.subscription.upgrade_downgrade.button') }}</span>
-        </x-buttons.confirm>
-    </div>
-    <div class="text-center py-5 text-vertical">
+        <div class="flex gap-2">
+            <h2 class="grow m-0">
+                {{ __('settings.subscription.tiers') }}
+            </h2>
+            <x-buttons.confirm type="ghost" target="change-information" size="sm">
+                <x-icon class="question"></x-icon>
+                <span>{{ __('settings.subscription.upgrade_downgrade.button') }}</span>
+            </x-buttons.confirm>
+        </div>
+    <div class="text-center text-vertical">
         <span>{{ __('tiers.periods.monthly') }}</span>
         <label class="toggle mx-1">
             <input type="checkbox" name="period">
@@ -139,9 +140,10 @@
         </div>
     </div>
 
-    <p class="help-block my-5">
+    <p class="text-neutral-content">
         {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
     </p>
+    </x-grid>
     <input type="hidden" id="stripe-token" value="{{ config('services.stripe.key') }}" />
 @endsection
 
@@ -151,14 +153,14 @@
     <x-dialog id="change-information" :title="__('settings.subscription.upgrade_downgrade.button')">
 
         <h4>{{ __('settings.subscription.upgrade_downgrade.upgrade.title') }}</h4>
-        <ul class="mb-5">
+        <ul class="">
             @foreach(__('settings.subscription.upgrade_downgrade.upgrade.bullets') as $key => $text)
                 <li>{{ $text }}</li>
             @endforeach
         </ul>
 
         <h4>{{ __('settings.subscription.upgrade_downgrade.downgrade.title') }}</h4>
-        <ul class="mb-5">
+        <ul class="">
             @foreach(__('settings.subscription.upgrade_downgrade.downgrade.bullets') as $key => $text)
                 <li>{{ $text }}</li>
             @endforeach

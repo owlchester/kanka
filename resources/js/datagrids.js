@@ -238,7 +238,7 @@ function datagrid2Reorder(ele) {
         initDatagrid2Ajax();
         $(document).trigger('shown.bs.modal'); // Get tooltips to re-generate
         // Needed for ajax buttons in campaigns/plugins
-        ajaxModal();
+        //ajaxModal();
     }).fail(function (err) {
         console.error('datagrid2', err);
         datagrid2Table.find('tfoot').addClass('bg-danger');

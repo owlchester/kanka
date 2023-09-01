@@ -172,7 +172,7 @@ function initUploader() {
 }
 
 const alertTooManyFiles = () => {
-    window.showToast(maxError, 'toast-error');
+    window.showToast(maxError, 'error');
 };
 
 const uploadFiles = (data) => {
@@ -222,7 +222,7 @@ const uploadFiles = (data) => {
                 let errors = err.response.data.errors;
                 let errorKeys = Object.keys(errors);
                 errorKeys.forEach(k => {
-                    window.showToast(errors[k], 'toast-error');
+                    window.showToast(errors[k], 'error');
                 });
             }
 

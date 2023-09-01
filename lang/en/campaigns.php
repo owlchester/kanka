@@ -374,7 +374,7 @@ TEXT
             'journals'          => 'Observations written by characters, or session prep for the dungeon master.',
             'locations'         => 'Planets, planes, continents, rivers, states, settlements, temples, taverns.',
             'maps'              => 'Upload maps with layers and markers pointing to other entities in the campaign.',
-            'menu_links'        => 'Custom menu links in the side bar.',
+            'bookmarks'         => 'Create bookmarks to entities or filtered lists that appear in the sidebar.',
             'notes'             => 'Lore, nature, history, magic, cultures.',
             'organisations'     => 'Cults, religions, factions, guilds.',
             'quests'            => 'To keep track of various quests with characters and locations.',

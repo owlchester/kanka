@@ -38,7 +38,7 @@
     <div class="bg-box rounded post entity-note" id="post-{{ $post->id }}">
         <div class="entity-content box-body overflow-hidden @if ($post->collapsed()) hidden @endif" id="post-body-{{ $post->id }}">
             <div class="flex flex-col gap-2 p-4">
-                <div class="post-details mb-2 entity-note-details">
+                <div class="post-details entity-note-details">
                     @if ($post->location)
                     <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
                         <x-icon entity="location" />

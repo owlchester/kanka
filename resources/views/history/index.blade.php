@@ -10,6 +10,7 @@
 ])
 
 @section('content')
+    <x-grid type="1/1">
     @if (!$superboosted)
         <x-cta :campaign="$campaign" superboost="true">
             <p>{{ __('history.cta') }}</p>
@@ -21,7 +22,7 @@
     @endif
 
     @if ($superboosted)
-        {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters flex flex-col gap-5 mt-2']) !!}
+        {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters flex flex-col gap-5']) !!}
         <div class="flex items-center flex-row-reverse gap-2">
             <div class="field flex-none">
                 {!! Form::select('action', $actions, $action, ['class' => '']) !!}
@@ -51,8 +52,8 @@
             @if ($log->action < 7 || $log->post)
                 @if ($log->day() !== $previous)
                     @if ($previous !== null) </div> @endif
-                    <div class="{{ !$superboosted ? 'blur' : null }} font-bold mb-2">{{ $log->created_at->format('M d, Y') }}</div>
-                    <div class="rounded bg-box mb-5 border border-b-0 ">
+                    <div class="{{ !$superboosted ? 'blur' : null }} font-bold">{{ $log->created_at->format('M d, Y') }}</div>
+                    <div class="rounded bg-box border border-b-0 ">
                 @endif
                 <div class="p-2 border-solid border-b {{ !$superboosted ? 'blur' : null }}">
                     <div class="flex justify-center items-center gap-2">
@@ -95,11 +96,11 @@
                         </div>
                     </div>
                     @if (!empty($log->changes) && $superboosted)
-                    <div id="log-{{ $log->id }}" class="hidden my-5">
-                        <p class="text-muted">{{ __('history.helpers.changes') }}</p>
+                    <div id="log-{{ $log->id }}" class="py-2 flex flex-col gap-2 hidden">
+                        <p class="text-neutral-content">{{ __('history.helpers.changes') }}</p>
                         @foreach ($log->changes as $attribute => $value)
                             @if (is_array($value)) @continue @endif
-                            <div class="flex mb-2">
+                            <div class="flex">
                                 <div class="flex-initial w-32 font-bold" data-attribute="{{ $attribute }}">
                                     {!! $log->attributeKey($log->entity->pluralType(), $attribute) !!}
                                 </div>
@@ -132,6 +133,8 @@
             {!! $models->appends($filters)->onEachSide(0)->links() !!}
         </div>
     @endif
+
+    </x-grid>
 @endsection
 
 @section('scripts')

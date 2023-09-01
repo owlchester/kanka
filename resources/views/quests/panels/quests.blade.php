@@ -9,7 +9,7 @@ if (request()->has('parent_id')) {
 }
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
-<div class="flex gap-2 items-center mb-2">
+<div class="flex gap-2 items-center">
     <h3 class="grow">
         {!! \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests')) !!}
     </h3>

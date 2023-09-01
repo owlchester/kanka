@@ -85,10 +85,12 @@
 
         methods: {
             getAbilities: function() {
-                axios.get(this.api).then(response => {
-                    this.abilities = response.data.data.abilities;
-                    this.parents = response.data.data.parents;
-                    this.meta = response.data.data.meta;
+              fetch(this.api)
+                  .then(response => response.json())
+                  .then(response => {
+                    this.abilities = response.data.abilities;
+                    this.parents = response.data.parents;
+                    this.meta = response.data.meta;
                     this.loading = false;
                     this.waiting = false;
 

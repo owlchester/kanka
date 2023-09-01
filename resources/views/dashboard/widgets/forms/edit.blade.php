@@ -16,7 +16,6 @@
     'titleIcon' => $model->widgetIcon(),
     'content' => 'dashboard.widgets.forms._' . $widget,
     'deleteID' => '#delete-form-widget-' . $model->id,
-    'dropdownParent' => '#edit-widget',
 ])
 <input type="hidden" name="widget" value="{{ $widget }}">
 @if(empty($dashboards) && !empty($dashboard))

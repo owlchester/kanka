@@ -64,7 +64,7 @@ $loadedElements = [];
     </ul>
 
     @can('update', $timeline)
-        <div class="text-center mb-5">
+        <div class="text-center">
             <a href="{{ route('timelines.timeline_elements.create', [$campaign, $model, 'era_id' => $era, 'position' => $position]) }}" class="btn2 btn-primary btn-sm"
                 title="{{ __('crud.create') }}"
             >
@@ -76,19 +76,25 @@ $loadedElements = [];
     </ul>
 @empty
     <x-alert type="warning">
-        <div class = "mb-2" >{{ __('timelines.helpers.no_era_v2') }} </div>
-        @can('update', $timeline)
-        <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model, 'from' => 'view']) }}" class="btn2 btn-accent btn-sm">
-            <x-icon class="plus"></x-icon> {{ __('timelines/eras.actions.add') }}
-        </a>
-        @endcan
+        <x-grid type="1/1">
+            <p>
+                {{ __('timelines.helpers.no_era_v2') }}
+            </p>
+            @can('update', $timeline)
+                <div>
+            <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model, 'from' => 'view']) }}" class="btn2 btn-sm">
+                <x-icon class="plus"></x-icon> {{ __('timelines/eras.actions.add') }}
+            </a></div>
+            @endcan
+        </x-grid>
     </x-alert>
 @endforelse
 @if (!$timeline->eras->isEmpty())
     @can('update', $timeline)
-        <div class="text-center mb-5">
+        <div class="text-center">
             <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model, 'from' => 'view']) }}" class="btn2 btn-primary btn-sm">
-                <x-icon class="plus"></x-icon> {{ __('timelines/eras.actions.add') }}
+                <x-icon class="plus"></x-icon>
+                {{ __('timelines/eras.actions.add') }}
             </a>
         </div>
     @endcan

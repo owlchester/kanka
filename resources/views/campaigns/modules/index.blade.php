@@ -99,7 +99,7 @@
                 @include('campaigns.modules.box', ['icon' => config('entities.icons.conversation'), 'module' => 'conversations', 'deprecated' => true, 'id' => config('entities.ids.conversation')])
             </div>
             <div class="cell col-span-1 flex">
-                @include('campaigns.modules.box', ['icon' => config('entities.icons.menu_link'), 'module' => 'menu_links', 'id' => config('entities.ids.menu_link')])
+                @include('campaigns.modules.box', ['icon' => config('entities.icons.bookmark'), 'module' => 'bookmarks', 'id' => config('entities.ids.bookmarks')])
             </div>
             <div class="cell col-span-1 flex">
                 @include('campaigns.modules.box', ['icon' => 'fa-solid fa-suitcase', 'module' => 'inventories'])

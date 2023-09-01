@@ -1,5 +1,5 @@
 
-    <div class="flex gap-2 items-center mb-5">
+    <div class="flex gap-2 items-center">
         <div class="flex-0">
             <img class="img-circle  w-24 h-24" src="{{ Img::crop(96)->new()->url('app/tiers/elemental-750.png') }}" alt="Elemental">
         </div>
@@ -8,7 +8,7 @@
             <h5>{{ auth()->user()->currencySymbol() }}25 / {{ __('front.pricing.tier.month') }}</h5>
         </div>
     </div>
-    <div class="grid grid-cols-2 gap-3 w-fit mb-5">
+    <div class="grid grid-cols-2 gap-3 w-fit">
 
         <div class="">{{ __('front.features.patreon.upload_limit') }}</div>
         <div class="">8 mb</div>

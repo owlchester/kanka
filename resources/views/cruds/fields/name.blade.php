@@ -14,12 +14,14 @@ $required = !isset($bulk);
             'maxlength' => 191,
             'data-live' => route('search.live', $campaign),
             'data-type' => \Illuminate\Support\Str::singular($trans),
+            'data-duplicate' => '.duplicate-warning',
             'data-id' => (isset($model) && !empty($model->id) && !empty($model->entity) ? $model->entity->id : null),
             'required' => $required ? 'required' : null
         ]
     ) !!}
 
-    <p class="text-warning-content duplicate-entity-warning hidden">
-        {{ __('entities.creator.duplicate') }}<br /><span id="duplicate-entities"></span>
-    </p>
+    <div class="text-warning-content duplicate-warning flex flex-col gap-1" style="display: none">
+        <span>{{ __('entities.creator.duplicate') }}</span>
+        <div class="duplicates flex flex-wrap gap-2 items-center"></div>
+    </div>
 </x-forms.field>

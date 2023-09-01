@@ -106,11 +106,6 @@ input:focus, select:focus, .textarea:focus, .form-control:focus {
 }
 
 
-hr {
-    border-color: hsl(var(--bc)/var(--tw-bg-opacity));
-    --tw-bg-opacity: .2;
-}
-
 .select2 {
     .select2-selection {
         .select2-selection__rendered {

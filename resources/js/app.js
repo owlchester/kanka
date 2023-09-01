@@ -7,6 +7,7 @@ $(document).ready(function() {
     initPageHeight();
 
     window.initForeignSelect();
+    window.initDialogs();
     initSpectrum();
     initSubmenuSwitcher();
 
@@ -20,7 +21,7 @@ $(document).ready(function() {
     initDynamicDelete();
     initImageRemoval();
     initFeedbackButtons();
-    window.initDialogs();
+    initDismissible();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -28,15 +29,16 @@ $(document).ready(function() {
     $(document).on('shown.bs.modal shown.bs.popover', function() {
         // Also re-bind select2 elements on modal show
         window.initForeignSelect();
-        window.initTags(); // Need this for the abilities popup on entities
+        window.initTags();
+        window.initDialogs();
+        window.initTooltips();
+        window.initDropdowns();
         initAjaxPagination();
         initSpectrum();
         initDynamicDelete();
         initImageRemoval();
         initFeedbackButtons();
-        window.initDialogs();
-        window.initTooltips();
-        window.initDropdowns();
+        initDismissible();
     });
 });
 
@@ -143,13 +145,13 @@ function initAjaxPagination() {
         paginationAjaxBody.find('.modal-loading').show();
         paginationAjaxBody.find('.pagination-ajax-content').hide();
 
-        $.ajax({
-                url: $(this).attr('href'),
-                context: this,
-        }).done(function (res) {
-            paginationAjaxBody.parent().html(res);
-            initAjaxPagination();
-        });
+        fetch($(this).attr('href'))
+            .then(response => response.text())
+            .then(response => {
+                paginationAjaxBody.parent().html(response);
+                initAjaxPagination();
+                $(document).trigger('shown.bs.modal');
+            });
         return false;
     });
 }
@@ -258,32 +260,44 @@ const initFeedbackButtons = () => {
     $('#quick-privacy-select').change(function () {
         let toggleUrl = $(this).data('url');
 
-        $.ajax({
-            url: toggleUrl,
-            type: 'POST'
-        }).done( function (success) {
-            window.showToast(success.toast);
-            if (!success.status) {
-                $('body').addClass('kanka-entity-private');
-            } else {
-                $('body').removeClass('kanka-entity-private');
-            }
-            //target.close();
+        axios
+            .post(toggleUrl)
+            .then(response => {
+                window.showToast(response.data.success.toast);
+                let body = document.querySelector('body');
+                if (!response.data.success.status) {
+                    body.classList.add('kanka-entity-private');
+                } else {
+                    body.classList.remove('kanka-entity-private');
+                }
+            });
+    });
+};
+
+const initDismissible = () => {
+    const elements = document.querySelectorAll('[data-dismisses]');
+    elements.forEach(el => {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            let target = document.querySelector(this.dataset.dismisses);
+            target.classList.remove('opacity-100');
+            target.classList.add('opacity-0');
+
+            setTimeout(function () {
+                target.remove();
+            }, 150);
         });
     });
 };
 
 // Splitting off the js files into logical blocks
-import './helpers';
 import './keyboard';
 import './crud';
 import './post';
 import './calendar';
 import './keep-alive';
 //import './search');
-//import './notification');
 import './quick-creator';
-//import './tutorial')
 import './datagrids';
 import './animations';
 import './quick-links';

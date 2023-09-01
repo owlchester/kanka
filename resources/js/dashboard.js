@@ -1,13 +1,4 @@
-import ajaxModal from "./components/ajax-modal";
 import Sortable from "sortablejs";
-
-/**
- * Dashboard
- */
-let newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
-
-let btnAddWidget;
-let modalContentButtons, modalContentTarget, modalContentSpinner;
 
 var widgetVisible = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
@@ -58,28 +49,7 @@ $(document).ready(function() {
 /**
  *
  */
-function initDashboardAdminUI() {
-    newWidget = $('#new-widget');
-    newWidgetPreview = $('#new-widget-preview');
-    newWidgetCalendar = $('#new-widget-calendar');
-    newWidgetRecent = $('#new-widget-recent');
-
-    btnAddWidget = $('#btn-add-widget');
-    modalContentButtons = $('#modal-content-buttons');
-    modalContentTarget = $('#modal-content-target');
-    modalContentSpinner = $('#modal-content-spinner');
-
-    $('.widget-list > a').click(function(e) {
-        e.preventDefault();
-        loadModalForm($(this).data('url'));
-    });
-
-    // Reset the modal
-    btnAddWidget.click(function() {
-        modalContentSpinner.hide();
-        modalContentTarget.html('');
-        modalContentButtons.show();
-    });
+const initDashboardAdminUI = () => {
 
     let el = document.getElementById('widgets');
     new Sortable(el, {
@@ -98,7 +68,7 @@ function initDashboardAdminUI() {
         }
     });
 
-    $(document).on('shown.bs.modal shown.bs.popover', function() {
+    $(document).on('shown.bs.modal', function() {
         let summernoteConfig = $('#summernote-config');
         if (summernoteConfig.length > 0) {
             window.initSummernote();
@@ -111,71 +81,40 @@ function initDashboardAdminUI() {
                 $(this).parent().parent().hide();
             });
         });
-        initWidgetSubform();
-
     });
-    //$('#widgets').disableSelection();
-}
+};
 
 /**
- * Load widget subform in modal
- * @param url
+ *
  */
-function loadModalForm(url) {
-    // Remove content from any edit widget already loaded (to avoid having multiple fields with the tag id
-    $('#edit-widget .modal-content').html('');
-
-    modalContentButtons.hide();
-    modalContentSpinner.show();
-
-    $.ajax(url).done(function(data) {
-        modalContentSpinner.hide();
-        modalContentTarget.html(data);
-
-        window.initForeignSelect();
-        window.initTags();
-        initWidgetSubform();
+const initDashboardRecent = () => {
+    const elements = document.querySelectorAll('.widget-recent-more');
+    elements.forEach(el => {
+        el.addEventListener('click', loadMoreEntities);
     });
 }
 
-function initWidgetSubform() {
-    // Recent entities: filter field dynamic display
-    $('.recent-entity-type').change(function () {
-        if (this.value) {
-            $('.recent-filters').show();
-        } else {
-            $('.recent-filters').hide();
-        }
+function loadMoreEntities (e) {
+    e.preventDefault();
+    $(this).find('.spinner').show();
+    $(this).find('span').hide();
+
+    $.ajax({
+        url: $(this).data('url'),
+        context: this
+    }).done(function(data) {
+        $(this).closest('.widget-recent-list').append(data);
+        $(this).remove();
+
+        initDashboardRecent();
+        window.ajaxTooltip();
     });
 }
 
 /**
  *
  */
-function initDashboardRecent() {
-    $('.widget-recent-more').click(function(e) {
-        e.preventDefault();
-        $(this).find('.spinner').show();
-        $(this).find('span').hide();
-
-        $.ajax({
-            url: $(this).data('url'),
-            context: this
-        }).done(function(data) {
-            $(this).closest('.widget-recent-list').append(data);
-            $(this).remove();
-
-            initDashboardRecent();
-            window.ajaxTooltip();
-        });
-    });
-}
-
-/**
- *
- */
-function initDashboardCalendars()
-{
+const initDashboardCalendars = () => {
     $('.widget-calendar-switch').unbind('click').click(function(e) {
         e.preventDefault();
 
@@ -201,21 +140,20 @@ function initDashboardCalendars()
             }
         });
     });
-}
+};
 
 /**
  * Follow / Unfollow a campaign
  */
-function initFollow()
-{
-    var btn = $('#campaign-follow');
-    var text = $('#campaign-follow-text');
+const initFollow = () => {
+    const btn = $('#campaign-follow');
+    const text = $('#campaign-follow-text');
 
     if (btn.length !== 1) {
         return;
     }
 
-    var status = btn.data('following');
+    const status = btn.data('following');
     if (status) {
         text.html(btn.data('unfollow'));
     } else {
@@ -237,9 +175,9 @@ function initFollow()
             }
         });
     });
-}
+};
 
-function removePreviewExpander() {
+const removePreviewExpander = () => {
     $.each($('[data-toggle="preview"]'), function() {
         // If we are exactly the max-height, some content is hidden
         // console.log('compare', $(this).height(), 'vs', $(this).css('max-height'));
@@ -250,14 +188,13 @@ function removePreviewExpander() {
         }
         //$(this).next().removeClass('hidden');
     });
-}
+};
 
 /**
  * Render an deferred-rendering widget
  * @param widget
  */
-function renderWidget(widget)
-{
+function renderWidget(widget) {
     widget = $(widget);
     $.ajax({
         url: widget.data('render'),
@@ -294,9 +231,4 @@ function clickWelcomePulse(e) {
         interactive: true,
         trigger: 'manual',
     });
-
-    /*$(target).popover('show', {content: content, placement: 'top'});
-    setTimeout(function () {
-        $(target).popover('hide');
-    }, 1500);*/
 }

@@ -47,8 +47,17 @@ a:hover, a:active, a:focus {
     outline: none;
     text-decoration: none;
 }
-p {
+.entity-content {
+  p {
     margin-bottom: 0.75rem;
+  }
+
+  hr {
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+    border-color: hsl(var(--bc)/var(--tw-bg-opacity));
+    --tw-bg-opacity: .2;
+  }
 }
 
 .entity-content {

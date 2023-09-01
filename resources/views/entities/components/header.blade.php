@@ -140,7 +140,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             @endif
 
             @if (auth()->check() && auth()->user()->isAdmin())
-                <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', [$campaign, $model->entity]) }}" data-target="quick-privacy" aria-haspopup="dialog">
+                <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $model->entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
                         <i class="fa-solid fa-lock entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <i class="fa-solid fa-lock-open entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
@@ -284,14 +284,14 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
 
     @if (!$campaign->boosted())
         <x-dialog id="booster-cta" :title="__('callouts.booster.titles.boosted')">
-            <p class="mb-2">{{ __('entities/image.call-to-action') }}</p>
+            <p class="">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
-            <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-block mb-2">
+            <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-block">
                 {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
             </a>
             @else
-                <p class="mb-2">{{ __('callouts.booster.limitation') }}</p>
-                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" class="btn2 bg-boost text-white btn-block mb-2">
+                <p class="">{{ __('callouts.booster.limitation') }}</p>
+                <a href="{{ \App\Facades\Domain::toFront('premium')  }}" class="btn2 bg-boost text-white btn-block">
                     {!! __('callouts.premium.learn-more') !!}
                 </a>
             @endif

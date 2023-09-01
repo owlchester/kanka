@@ -8,6 +8,10 @@ const entityTooltips = Array();
 const initAjaxTooltips = () => {
     const elementsAjax = document.querySelectorAll('[data-toggle="tooltip-ajax"]');
     elementsAjax.forEach(e => {
+        if (e.dataset.loaded === '1') {
+            return;
+        }
+        e.dataset.loaded = '1';
         tippy(e, {
             theme: 'kanka',
             placement: e.dataset.direction ?? 'bottom',
@@ -64,9 +68,14 @@ const initDropdowns = () => {
     const elements = document.querySelectorAll('[data-dropdown]');
 
     elements.forEach(e => {
-        let content = e.parentNode.querySelectorAll('.dropdown-menu')[0];
+        if (e.dataset.loaded === '1') {
+            return;
+        }
+        let dropdown = e.parentNode.querySelectorAll('.dropdown-menu')[0];
+        console.log('me', e, dropdown);
+        e.dataset.loaded = '1';
         tippy(e, {
-            content: '<div class="dd-menu flex flex-col gap-1 max-w-2xl">' + content.innerHTML + '</div>',
+            content: '<div class="dd-menu flex flex-col gap-1 max-w-2xl">' + dropdown.innerHTML + '</div>',
             theme: 'kanka-dropdown',
             placement: e.dataset.direction ?? 'bottom',
             zIndex: 890,

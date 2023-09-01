@@ -24,42 +24,40 @@
     <div class="flex flex-col gap-5">
         @include('campaigns.roles._members')
 
-        <div class="grow">
-            <div class="flex gap-2 items-center mb-5">
-                <h3 class="grow">{{ __('crud.permissions.title') }}</h3>
-                <button class="btn2 btn-sm btn-ghost" data-target="permission-modal" data-toggle="dialog">
-                    <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+        <div class="flex gap-2 items-center">
+            <h3 class="grow">{{ __('crud.permissions.title') }}</h3>
+            <button class="btn2 btn-sm btn-ghost" data-target="permission-modal" data-toggle="dialog">
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+            </button>
+        </div>
+        @if (!$role->isAdmin())
+            <x-alert type="info">
+                <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<code>' . $role->name . '</code>']) !!}</p>
+            </x-alert>
+        @else
+            <x-alert type="info">
+                <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<code>' . $role->name . '</code>']) !!} </p>
+            </x-alert>
+        @endif
+        @if (!$role->isAdmin())
+        <x-box>
+            @can('permission', $role)
+            {{ Form::open(['route' => ['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role], 'data-shortcut' => '1']) }}
+                    <div class="w-full overflow-y-auto flex flex-col gap-5 pb-5">
+                @include('campaigns.roles._pretty')
+                    </div>
+            @endif
+            @can('permission', $role)
+            <div class="text-right">
+                <button class="btn2 btn-primary">
+                    <x-icon class="save"></x-icon>
+                    {{ __('crud.save') }}
                 </button>
             </div>
-            @if (!$role->isAdmin())
-                <x-alert type="info">
-                    <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<code>' . $role->name . '</code>']) !!}</p>
-                </x-alert>
-            @else
-                <x-alert type="info">
-                    <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<code>' . $role->name . '</code>']) !!} </p>
-                </x-alert>
+                {{ Form::close() }}
             @endif
-            @if (!$role->isAdmin())
-            <x-box>
-                @can('permission', $role)
-                {{ Form::open(['route' => ['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role], 'data-shortcut' => '1']) }}
-                        <div class="w-full overflow-y-auto">
-                    @include('campaigns.roles._pretty')
-                        </div>
-                @endif
-                @can('permission', $role)
-                <div class="text-right mt-5">
-                    <button class="btn2 btn-primary">
-                        <x-icon class="save"></x-icon>
-                        {{ __('crud.save') }}
-                    </button>
-                </div>
-                    {{ Form::close() }}
-                @endif
-            </x-box>
-            @endif
-        </div>
+        </x-box>
+        @endif
     </div>
     @endif
 @endsection

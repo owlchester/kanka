@@ -1,5 +1,5 @@
 @if (!$presets->isEmpty())
-    <div class="grid grid-cols-4 gap-2 mb-2">
+    <div class="grid grid-cols-4 gap-2">
         @foreach ($presets as $preset)
             <div class="preset p-2 bg-base-300 hover:shadow-md flex gap-2  rounded">
                 <span role="button" class="preset-use cursor-pointer hover:underline grow" data-url="{{ route('preset_types.presets.show', [$campaign, $presetType, $preset]) }}">

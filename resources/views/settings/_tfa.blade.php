@@ -58,7 +58,7 @@
     @if($user->passwordSecurity?->google2fa_enable)
     {!! Form::model($user, ['method' => 'POST', 'route' => ['settings.security.disable-2fa']]) !!}
     <x-dialog id="deactivate-2fa" :title="__('settings.account.2fa.disable.title')">
-        <p class="mb-2">
+        <p class="">
             {{ __('settings.account.2fa.disable.helper') }}
         </p>
         <div class="w-full">

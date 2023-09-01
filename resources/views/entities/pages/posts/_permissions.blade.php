@@ -1,47 +1,47 @@
 <div class="tab-pane" id="form-permissions">
-    <div class="max-w-4xl">
-    @if(!empty($model))
-        @foreach ($model->permissions()->onlyRoles()->with('role')->get() as $perm)
-            <x-grid>
-                <div class="join">
-                    <span class="join-item flex items-center bg-base-200 p-2 rounded">
-                        <i class="fa-solid fa-users" aria-hidden="true"></i>
-                    </span>
-                    <input type="text" value="{!! $perm->role->name !!}" disabled="disabled" class="" />
-                </div>
+    <div class="max-w-4xl flex flex-col gap-2">
+        @if(!empty($model))
+            @foreach ($model->permissions()->onlyRoles()->with('role')->get() as $perm)
+                <x-grid>
+                    <div class="join">
+                        <span class="join-item flex items-center bg-base-200 p-2 rounded">
+                            <i class="fa-solid fa-users" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" value="{!! $perm->role->name !!}" disabled="disabled" class="" />
+                    </div>
 
-                <div class="flex items-center gap-2">
-                    {!! Form::select('perm_role_perm[]', $permissions, $perm->permission, ['class' => ' grow']) !!}
+                    <div class="flex items-center gap-2">
+                        {!! Form::select('perm_role_perm[]', $permissions, $perm->permission, ['class' => ' grow']) !!}
 
-                    <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
-                        <x-icon class="trash"></x-icon>
-                        <span class="sr-only">{{ __('crud.remove') }}</span>
-                    </button>
-                </div>
-                <input type="hidden" name="perm_role[]" value="{{ $perm->role_id }}" />
-            </x-grid>
-        @endforeach
-        @foreach ($model->permissions()->onlyUsers()->with('user')->get() as $perm)
-            <x-grid>
-                <div class="join">
-                    <span class="join-item flex items-center bg-base-200 p-2 rounded">
-                        <i class="fa-solid fa-user" aria-hidden="true"></i>
-                    </span>
-                    <input type="text" value="{!! $perm->user->name !!}" disabled="disabled" class="" />
-                </div>
+                        <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
+                            <x-icon class="trash"></x-icon>
+                            <span class="sr-only">{{ __('crud.remove') }}</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="perm_role[]" value="{{ $perm->role_id }}" />
+                </x-grid>
+            @endforeach
+            @foreach ($model->permissions()->onlyUsers()->with('user')->get() as $perm)
+                <x-grid>
+                    <div class="join">
+                        <span class="join-item flex items-center bg-base-200 p-2 rounded">
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" value="{!! $perm->user->name !!}" disabled="disabled" class="w-full" />
+                    </div>
 
-                <div class="flex items-center gap-2">
-                    {!! Form::select('perm_user_perm[]', $permissions, $perm->permission, ['class' => ' grow']) !!}
+                    <div class="flex items-center gap-2">
+                        {!! Form::select('perm_user_perm[]', $permissions, $perm->permission, ['class' => ' grow']) !!}
 
-                    <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
-                        <x-icon class="trash"></x-icon>
-                    </button>
-                </div>
-                <input type="hidden" name="perm_user[]" value="{{ $perm->user_id }}" />
-            </x-grid>
-        @endforeach
-    @endif
-    <div id="post-perm-target" class="mb-5"></div>
+                        <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
+                            <x-icon class="trash"></x-icon>
+                        </button>
+                    </div>
+                    <input type="hidden" name="perm_user[]" value="{{ $perm->user_id }}" />
+                </x-grid>
+            @endforeach
+        @endif
+        <div id="post-perm-target" class=""></div>
     </div>
     <div class="join">
         <a href="#" class="join-item btn2 btn-outline" data-toggle="dialog" data-target="post-new-user">
@@ -77,7 +77,7 @@
         <x-grid id="post-perm-user-template">
             <div class="join">
                 <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
-                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class=" join-item" />
+                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="w-full join-item" />
             </div>
 
             <div class="flex items-center gap-2">
@@ -93,7 +93,7 @@
         <x-grid id="post-perm-role-template">
             <div class="join">
                 <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
-                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class=" join-item" />
+                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="w-full join-item" />
             </div>
             <div class="flex items-center gap-2">
                 {!! Form::select('perm_role_perm[]', $permissions, null, [

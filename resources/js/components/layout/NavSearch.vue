@@ -170,9 +170,9 @@ export default {
                 return this.displayCached(cacheKey);
             }
 
-            axios.get(this.api_lookup, {params: {q: term, v2: true}}).then(response => {
-                this.parseLookupResponse(response, cacheKey);
-            });
+            fetch(this.api_lookup + '?' + new URLSearchParams({q: term, v2: true}))
+                .then(response => response.json())
+                .then(response => this.parseLookupResponse(response, cacheKey));
         },
         focus() {
             // Unlogged in users don't get a recent list pop out when focusing on the search field
@@ -199,17 +199,19 @@ export default {
             }
 
             this.show_loading = true;
-            axios.get(this.api_recent).then(response => {
-                this.recent = response.data.recent;
-                this.bookmarks = response.data.bookmarks;
-                this.indexes = response.data.indexes;
-                this.texts.recents = response.data.texts.recents;
-                this.texts.results = response.data.texts.results;
-                this.texts.hint = response.data.texts.hint;
-                this.texts.bookmarks = response.data.texts.bookmarks;
-                this.texts.index = response.data.texts.index;
-                this.texts.keyboard = response.data.texts.keyboard;
-                this.texts.empty_results = response.data.texts.empty_results;
+            fetch(this.api_recent)
+                .then(response => response.json())
+                .then(response => {
+                this.recent = response.recent;
+                this.bookmarks = response.bookmarks;
+                this.indexes = response.indexes;
+                this.texts.recents = response.texts.recents;
+                this.texts.results = response.texts.results;
+                this.texts.hint = response.texts.hint;
+                this.texts.bookmarks = response.texts.bookmarks;
+                this.texts.index = response.texts.index;
+                this.texts.keyboard = response.texts.keyboard;
+                this.texts.empty_results = response.texts.empty_results;
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = true;
@@ -223,8 +225,8 @@ export default {
         },
         // Load results from a search
         parseLookupResponse(response, cacheKey) {
-            this.results = response.data.entities;
-            this.cached[cacheKey] = response.data.entities;
+            this.results = response.entities;
+            this.cached[cacheKey] = response.entities;
             this.showResults();
         },
         displayCached(key) {
@@ -240,18 +242,18 @@ export default {
         // Preview an entity
         loadPreview(entity) {
             this.show_loading = true;
-            axios.get(entity.preview).then(response => {
-                this.parsePreviewResponse(response);
-            });
+          fetch(entity.preview)
+              .then(response => response.json())
+              .then(response => this.parsePreviewResponse(response));
         },
         parsePreviewResponse(response) {
-            this.preview_entity = response.data;
+            this.preview_entity = response;
             //console.log('preview_entity', this.preview_entity);
             this.show_loading = false;
             this.show_preview = true;
             this.show_recent = false;
         },
-        // When clicking outside of the area, close the search pannel
+        // When clicking outside  the area, close the search panel
         onClickOutside (event) {
             //console.log('Clicked outside. Event: ', event)
             this.close();

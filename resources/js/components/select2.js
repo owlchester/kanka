@@ -51,7 +51,7 @@ $(document).ready(function() {
                     error: function(response) {
                         console.log('error', response);
                         if (response.status === 503) {
-                            window.showToast(response.responseJSON.message, 'toast-error');
+                            window.showToast(response.responseJSON.message, 'error');
                         }
                         return { results: [] }; // Return dataset to load after error
                     },

@@ -16,7 +16,7 @@ if (isset($toggle) && $toggle) {
 }
 @endphp
 
-<div class="">
+<div class="flex flex-col gap-2">
     @if($currentPlan === \App\Models\Pledge::KOBOLD)
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
@@ -28,14 +28,14 @@ if (isset($toggle) && $toggle) {
         </a>
     @endif
 </div>
-<div class="">
+<div class="flex flex-col gap-2">
     @if ($user->subscribedToPrice($service->elementalPlans(), 'kanka'))
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else
         @if($user->subscribedToPrice([config('subscription.owlbear.eur.monthly'), config('subscription.owlbear.usd.monthly')], 'kanka'))
-            <a class="btn2 btn-block btn-sm disabled mb-2">
+            <a class="btn2 btn-block btn-sm disabled">
                 {{ __('tiers.current') }}
             </a>
         @else
@@ -55,13 +55,13 @@ if (isset($toggle) && $toggle) {
         @endif
     @endif
 </div>
-<div class="">
+<div class="flex flex-col gap-2">
     @if($user->subscribedToPrice([config('subscription.wyvern.eur.monthly'), config('subscription.wyvern.usd.monthly')], 'kanka'))
-        <a class="btn2 btn-block btn-sm disabled mb-2">
+        <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
         </a>
     @elseif ($user->subscribedToPrice($service->wyvernPlans(), 'kanka'))
-        <a class="btn2 btn-block btn-sm disabled mb-2">
+        <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else
@@ -81,13 +81,13 @@ if (isset($toggle) && $toggle) {
         </a>
     @endif
 </div>
-<div class="">
+<div class="flex flex-col gap-2">
     @if($user->subscribedToPrice([config('subscription.elemental.eur.monthly'), config('subscription.elemental.usd.monthly')], 'kanka'))
-        <a class="btn2 btn-block btn-sm disabled mb-2">
+        <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
         </a>
     @elseif ($user->subscribedToPrice($service->elementalPlans(), 'kanka'))
-        <a class="btn2 btn-block btn-sm disabled mb-2">
+        <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else

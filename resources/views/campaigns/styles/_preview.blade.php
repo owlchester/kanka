@@ -1,4 +1,4 @@
-<h2 class="mb-5">Preview</h2>
+<h2 class="">Preview</h2>
 <div class="grid grid-cols-4 gap-2">
     <a href="#" class="btn2">
         Default

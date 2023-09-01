@@ -35,49 +35,51 @@
             @endif
         @endif
         <hr />
-    </x-grid>
 
+        <h4 class="m-0">{{ __('campaigns.fields.public_campaign_filters') }}</h4>
 
-    <h4 class="mb-2">{{ __('campaigns.fields.public_campaign_filters') }}</h4>
-    <p>
-        {!! __('campaigns.sharing.filters', [
-'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), null, ['target' => '_blank'])
-]) !!}
-    </p>
+        <p>
+            {!! __('campaigns.sharing.filters', [
+    'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), null, ['target' => '_blank'])
+    ]) !!}
+        </p>
 
-    <x-grid>
-        <x-forms.field
-            field="locale"
-            :label="__('campaigns.fields.locale')"
-            :helper="__('campaigns.sharing.language')">
-            {!! Form::select('locale', $languages->getSupportedLanguagesList(true), null, ['class' => 'w-full']) !!}
-        </x-forms.field>
+        <x-grid>
+            <x-forms.field
+                    field="locale"
+                    :label="__('campaigns.fields.locale')"
+                    :helper="__('campaigns.sharing.language')">
+                {!! Form::select('locale', $languages->getSupportedLanguagesList(true), null, ['class' => 'w-full']) !!}
+            </x-forms.field>
 
-        <x-forms.field
-            field="system"
-            :label="__('campaigns.fields.system')"
-            :helper="__('campaigns.sharing.system')">
-            {!! Form::text('system', null, [
-                'placeholder' => __('campaigns.placeholders.system'),
-                'class' => 'w-full',
-                'list' => 'rpg-system-list',
-                'autocomplete' => 'off'
-            ]) !!}
-            <div class="hidden">
-                <datalist id="rpg-system-list">
-                    @foreach (__('rpg_systems.names') as $name)
-                        <option value="{{ $name }}">{{ $name }}</option>
-                    @endforeach
-                </datalist>
+            <x-forms.field
+                    field="system"
+                    :label="__('campaigns.fields.system')"
+                    :helper="__('campaigns.sharing.system')">
+                {!! Form::text('system', null, [
+                    'placeholder' => __('campaigns.placeholders.system'),
+                    'class' => 'w-full',
+                    'list' => 'rpg-system-list',
+                    'autocomplete' => 'off'
+                ]) !!}
+                <div class="hidden">
+                    <datalist id="rpg-system-list">
+                        @foreach (__('rpg_systems.names') as $name)
+                            <option value="{{ $name }}">{{ $name }}</option>
+                        @endforeach
+                    </datalist>
+                </div>
+            </x-forms.field>
+
+            <div class="genres">
+                <input type="hidden" name="campaign_genre" value="1">
+                @include('components.form.genres', ['options' => [
+                    'model' => isset($model) ? $model : null,
+                    'quickCreator' => false
+                ]])
             </div>
-        </x-forms.field>
+        </x-grid>
 
-        <div class="genres">
-            <input type="hidden" name="campaign_genre" value="1">
-            @include('components.form.genres', ['options' => [
-                'model' => isset($model) ? $model : null,
-                'quickCreator' => false
-            ]])
-        </div>
     </x-grid>
+
 </div>

@@ -97,10 +97,10 @@
         <x-dialog id="campaign-delete-confirm" :title="__('campaigns.destroy.title')">
             @if (auth()->user()->can('delete', $campaign))
                 {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign]]) !!}
-                <p class="mt-5">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
-                <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
+                <p class="">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
+                <p class="text-neutral-content"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
 
-                <div class="mb-5 required field">
+                <div class="required field">
                     {!! Form::text('delete', null, ['class' => 'w-full', 'required', 'id' => 'campaign-delete-form']) !!}
                 </div>
 
@@ -116,12 +116,10 @@
                 </div>
                 {!! Form::close() !!}
             @else
-                <div class="max-w-lg text-justify">
-                    <p class="mt-5">{{ __('campaigns.destroy.helper-v2') }}</p>
-                    <a href="{{ route('campaign_users.index', $campaign) }}" class="py-2">
-                        {{ __('campaigns.leave.fix') }}
-                    </a>
-                </div>
+                <p class="">{{ __('campaigns.destroy.helper-v2') }}</p>
+                <a href="{{ route('campaign_users.index', $campaign) }}" class="btn2 btn-sm">
+                    {{ __('campaigns.leave.fix') }}
+                </a>
             @endif
         </x-dialog>
     @endif

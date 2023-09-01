@@ -50,12 +50,12 @@ $enabled = $campaign->enabled($module);
             @endcan
         </div>
         <div class="grow flex flex-wrap flex-col">
-            <div class="body p-4 pb-2 grow">
-                <p class="mb-0">
+            <div class="body p-4 grow flex flex-col gap-2">
+                <p class="">
                     {{ __('campaigns.settings.helpers.' . $module) }}
                 </p>
                 @if (isset($deprecated))
-                <div class="text-center text-sm mt-2">
+                <div class="text-center text-sm">
                         <span data-toggle="tooltip" data-title="{{ __('campaigns.settings.deprecated.help') }}">
                             <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
                             {{ __('campaigns.settings.deprecated.title') }}

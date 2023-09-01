@@ -32,10 +32,18 @@ class DashboardWidgetController extends Controller
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function index(Campaign $campaign)
+    public function index(Campaign $campaign, )
     {
         $this->authorize('dashboard', $campaign);
-        return redirect()->route('dashboard.setup', $campaign);
+
+        $dashboard = null;
+        if (request()->get('dashboard')) {
+            $dashboard = \App\Models\CampaignDashboard::findOrFail(request()->get('dashboard'));
+        }
+
+        return view('dashboard.widgets.selection')
+            ->with('campaign', $campaign)
+            ->with('dashboard', $dashboard);
     }
 
     /**

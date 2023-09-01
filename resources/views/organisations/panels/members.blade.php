@@ -21,7 +21,7 @@ if (!empty($rows)) {
 $direct = $model->members()->has('character')->count();
 $all = $model->allMembers()->has('character')->count();
 ?>
-<div class="flex gap-2 items-center mb-2">
+<div class="flex gap-2 items-center">
     <h3 class="grow">
         {{ __('organisations.fields.members') }}
     </h3>

@@ -110,10 +110,10 @@
 @section('modals')
     @parent
     <x-dialog id="delete-account" :title="__('profiles.sections.delete.title')">
-        <p class="mb-2">
+        <p class="">
             {{ __('profiles.sections.delete.helper') }}
         </p>
-        <p class="mb-2">
+        <p class="">
             {{ __('profiles.sections.delete.warning') }}
         </p>
 

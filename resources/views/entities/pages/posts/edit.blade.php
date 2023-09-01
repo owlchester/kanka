@@ -23,11 +23,13 @@
 
 @section('content')
 
+    <x-grid type="1/1">
     @include('entities.pages.posts._form')
 
-    <div class="mt-5">
+    <div class="">
         <x-button.delete-confirm target="#delete-form-note-{{ $model->id}}" />
     </div>
+    </x-grid>
 
     @if(!empty($model) && $campaign->hasEditingWarning())
         <input type="hidden" id="editing-keep-alive" data-url="{{ route('posts.keep-alive', [$campaign, 'post' => $model, 'entity' => $entity]) }}" />

@@ -28,7 +28,7 @@ export default {
     },
     methods: {
         backgroundClass: function(release) {
-            let css = 'release bg-base-200 flex justify-center items-center mb-2 px-2 py-2  rounded-md';
+            let css = 'release bg-base-200 flex justify-center items-center p-2  rounded-md';
             return css;
         },
         dismiss: function(release) {

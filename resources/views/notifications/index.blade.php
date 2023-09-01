@@ -72,7 +72,7 @@
 
 @section('modals')
     <x-dialog id="delete-confirm-notifications" :title="__('notifications.clear.title')">
-        <p class="mb-2">
+        <p class="">
             {{ __('crud.delete_modal.permanent') }}
         </p>
 
