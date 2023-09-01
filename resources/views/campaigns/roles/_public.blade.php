@@ -49,7 +49,7 @@ $permission->role($role);
 
                 <div>{{ EntitySetup::plural($id) }}</div>
                 @if (!$campaign->enabled(\Illuminate\Support\Str::plural($name)))
-                    <div class="rounded bg-warning text-danger" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
+                    <div class="rounded bg-warning text-warning-content" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
                         <i class="fa-solid fa-exclamation-triangle"  aria-hidden="true"></i>
                         <span class="md:hidden text-sm inline">{{ __('campaigns.modules.permission-disabled') }}</span>
                     </div>

@@ -83,9 +83,9 @@
                     @if (!$campaign->superboosted())
                     <tr id="log-cta" class="collapse">
                         <td colspan="4">
-                                <p class="help-block">{!! __('entities/logs.call-to-action', [
+                                <x-helper>{!! __('entities/logs.call-to-action', [
 'amount' => config('entities.logs'),
-]) !!}</p>
+]) !!}</x-helper>
                                 @subscriber()
                                 <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white">
                                     {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}

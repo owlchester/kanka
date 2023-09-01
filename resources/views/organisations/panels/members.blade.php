@@ -63,9 +63,9 @@ $all = $model->allMembers()->has('character')->count();
 <div id="organisation-members">
     @if ($direct === 0 && !$allMembers)
         <x-box>
-            <p class="help-block">
+            <x-helper>
                 {{ __('organisations.members.helpers.' . ($allMembers ? 'all_' : null) . 'members') }}
-            </p>
+            </x-helper>
         </x-box>
     @else
         <div id="datagrid-parent" class="table-responsive">

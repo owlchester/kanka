@@ -8,10 +8,7 @@ use Illuminate\Http\Request;
 
 class PatreonController extends Controller
 {
-    /**
-     * @var PatreonService
-     */
-    protected $service;
+    protected PatreonService $service;
 
     /**
      * Create a new controller instance.

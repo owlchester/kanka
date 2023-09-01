@@ -68,7 +68,7 @@ $sizeOptions = [
             </x-grid>
         </div>
         <div class="tab-pane @if($activeTab == 2) active @endif" id="marker-label">
-            <p class="help-block">{{ __('maps/markers.helpers.label') }}</p>
+            <x-helper>{{ __('maps/markers.helpers.label') }}</x-helper>
         </div>
         <div class="tab-pane @if($activeTab == 3) active @endif" id="marker-circle">
             <x-grid>
@@ -78,7 +78,9 @@ $sizeOptions = [
 
                 <x-forms.field field="radius" :label="__('maps/markers.fields.circle_radius')">
                     {!! Form::text('circle_radius', \App\Facades\FormCopy::field('circle_radius')->string(), ['class' => ' map-marker-circle-radius', 'id' => 'circle_radius', 'style' => (!isset($model) || $model->shape_id != 6) ? 'display:none;' : '']) !!}
-                    <p class="help-block map-marker-circle-helper">{{ __('maps/markers.helpers.custom_radius') }}</p>
+                    <div class="map-marker-circle-helper">
+                        <x-helper :text="__('maps/markers.helpers.custom_radius')" />
+                    </div>
                 </x-forms.field>
             </x-grid>
         </div>
@@ -90,9 +92,9 @@ $sizeOptions = [
                             <label>{{ __('maps/markers.fields.custom_shape') }}</label>
                             @if ($campaign->boosted())
                                 @if(isset($model))
-                                    <p class="help-block mb-0">
+                                    <x-helper>
                                         {{ __('maps/markers.helpers.polygon.edit') }}
-                                    </p>
+                                    </x-helper>
                                 </div>
 
                                 <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm" style="">
@@ -148,9 +150,9 @@ $sizeOptions = [
 
         <div class="tab-pane pane-presets" id="presets">
             <x-grid type="1/1">
-                <p class="help-block mb-0">
+                <x-helper>
                     {!! __('maps/markers.presets.helper') !!}
-                </p>
+                </x-helper>
 
                 <div class="marker-preset-list rounded">
                     <div class="text-center">

@@ -50,23 +50,27 @@ $menus = [
 asort($menus);
 $menus = array_merge(['' => __('crud.tabs.story')], $menus);
 ?>
-<p class="help-block">{!! __('menu_links.helpers.entity', [
-    'menu' => '<code>' . __('menu_links.fields.menu') . '</code>',
-    ]) !!}</p>
+<x-grid type="1/1">
+    <x-helper>
+            {!! __('menu_links.helpers.entity', [
+            'menu' => '<code>' . __('menu_links.fields.menu') . '</code>',
+            ]) !!}
+    </x-helper>
 
-<x-grid>
-    @include('cruds.fields.entity', [
-        'name' => 'entity_id',
-        'required' => true,
-        'preset' => !empty($model) && $model->target ? $model->target : null,
-        'label' => __('menu_links.fields.entity'),
-    ])
+    <x-grid>
+        @include('cruds.fields.entity', [
+            'name' => 'entity_id',
+            'required' => true,
+            'preset' => !empty($model) && $model->target ? $model->target : null,
+            'label' => __('menu_links.fields.entity'),
+        ])
 
-    <x-forms.field field="menu" :label="__('menu_links.fields.menu')">
-        {!! Form::select('menu', $menus, null, ['class' => '', 'id' => 'entity-selector']) !!}
-    </x-forms.field>
+        <x-forms.field field="menu" :label="__('menu_links.fields.menu')">
+            {!! Form::select('menu', $menus, null, ['class' => '', 'id' => 'entity-selector']) !!}
+        </x-forms.field>
 
-    <x-forms.field field="filter" :label="__('menu_links.fields.filters')" :hidden="true">
-        {!! Form::text('options[subview_filter]', !isset($model->options['subview_filter']) ? '' : $model->options['subview_filter'], ['placeholder' => 'k=name&s=desc', 'class' => '', 'maxlength' => 191]) !!}
-    </x-forms.field>
+        <x-forms.field field="filter" :label="__('menu_links.fields.filters')" :hidden="true">
+            {!! Form::text('options[subview_filter]', !isset($model->options['subview_filter']) ? '' : $model->options['subview_filter'], ['placeholder' => 'k=name&s=desc', 'class' => '', 'maxlength' => 191]) !!}
+        </x-forms.field>
+    </x-grid>
 </x-grid>

@@ -1,5 +1,5 @@
-<div class="grid gap-5 grid-cols-1 @if ($image) lg:grid-cols-2 mb-5 @endif">
-    <div class="max-w-2xl p-5 rounded text-center mb-5 text-base border-boost border-1 border-solid bg-box shadow-xs flex flex-col gap-1">
+<div class="grid gap-5 grid-cols-1 @if ($image) lg:grid-cols-2 @endif">
+    <div class="@if (request()->ajax()) max-w-2xl @endif p-5 rounded text-center text-base border-boost border-1 border-solid bg-box shadow-xs flex flex-col gap-5">
 
         @if (!$minimal)
             <div class="inline">
@@ -8,7 +8,7 @@
         @endif
 
         @if ($legacy)
-            <h4 class="text-2xl my-3">
+            <h4 class="text-2xl">
                 @if ($limit)
                     {{ __('callouts.booster.limit') }}
                 @else
@@ -16,7 +16,7 @@
                 @endif
             </h4>
 
-            <div class="grow">
+            <div class="grow flex flex-col gap-5">
                 {!! $slot !!}
 
                 @if (!$max)
@@ -46,10 +46,10 @@
             @endif
         @else
             @if (!$minimal)
-            <h4 class="text-2xl my-3">{{ __('callouts.premium.title') }}</h4>
+            <h4 class="text-2xl">{{ __('callouts.premium.title') }}</h4>
             @endif
 
-            <div class="grow">
+                <div class="grow flex flex-col gap-5">
                 {!! $slot !!}
 
                 @if (!$max)

@@ -51,9 +51,9 @@
         @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
 
         @if ($unfilteredCount != $filteredCount)
-            <p class="help-block">
+            <x-helper>
                 {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
-            </p>
+            </x-helper>
         @endif
         @if($models->hasPages())
         <div class="">

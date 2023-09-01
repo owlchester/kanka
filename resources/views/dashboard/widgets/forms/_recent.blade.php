@@ -63,9 +63,10 @@
                         @include('dashboard.widgets.forms._header_select')
                         @include('dashboard.widgets.forms._related')
                     @else
-                        <p class="help-block">{!! __('dashboard.widgets.advanced_options_boosted', [
-                    'boosted_campaign' => link_to('https://' . config('domains.front') . '/pricing', __('concept.boosted-campaign'), '#boost', ['target' => '_blank'])
-                ]) !!}</p>
+                        <x-helper>
+                            {!! __('dashboard.widgets.advanced_options_boosted', [
+                    'boosted_campaign' => link_to('https://' . config('domains.front') . '/pricing', __('concept.boosted-campaign'), '#boost', ['target' => '_blank'])]) !!}
+                        </x-helper>
                     @endif
                 </div>
                 @include('dashboard.widgets.forms._name')

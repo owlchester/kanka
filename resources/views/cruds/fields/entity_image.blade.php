@@ -8,9 +8,9 @@
     }
     @endphp
 
-    <p class="help-block">
+    <x-helper>
         {{ __('fields.gallery-image.description') }}
-    </p>
+    </x-helper>
     <x-grid type="3/4">
         <div class="col-span-3">
             <x-forms.foreign

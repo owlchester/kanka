@@ -315,7 +315,7 @@ class BulkService
                 $entity->{$relation}()->syncWithoutDetaching($ids);
             }
 
-            // We have to still update the entity object (except for menu links)
+            // We have to still update the entity object (except for bookmarks)
             // Todo: refactor into a trait or function
             if (!empty($entity->entity)) {
                 $realEntity = $entity->entity;
@@ -410,7 +410,7 @@ class BulkService
         /** @var MiscModel|null $model */
         $model = new $classes[$this->entityName]();
         if (empty($model)) {
-            throw new Exception("Couldn't create a class from {$entity}.");
+            throw new Exception("Couldn't create a class from {$this->entityName}.");
         }
 
         return $model;

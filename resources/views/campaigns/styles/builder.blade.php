@@ -47,14 +47,14 @@
                             <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-neutral" data-toggle="tooltip" data-title="Click me to change the colour" data-target="n"></div>
                             <div class="break-words">
                                 <p class="m-0">Neutral </p>
-                                <p class="help-block m-0">Used for tooltips, default tags and calendar weather.</p>
+                                <x-helper text="Used for tooltips, default tags and calendar weather." />
                             </div>
                         </div>
                         <div class="flex gap-2">
                             <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-base-100" data-toggle="tooltip" data-title="Click me to change the colour" data-target="b"></div>
                             <div class="break-words">
                                 <p class="m-0">Content </p>
-                                <p class="help-block m-0">Used for menus, boxes, panels, forms. Its contrast is used as the main text colour.</p>
+                                <x-helper text="Used for menus, boxes, panels, forms. Its contrast is used as the main text colour." />
                             </div>
                         </div>
                     </div>

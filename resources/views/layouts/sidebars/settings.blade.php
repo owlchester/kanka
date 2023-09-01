@@ -33,7 +33,7 @@
                     :text="__('settings.menu.appearance')"
                 ></x-sidebar.element>
             </li>
-            <li class="px-2 {{ $sidebar->settings('notification') }}">
+            <li class="px-2 {{ $sidebar->settings('newsletter') }}">
                 <x-sidebar.element
                     :url="route('settings.newsletter')"
                     icon="fa-solid fa-bell"

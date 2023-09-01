@@ -1,8 +1,8 @@
 {{ csrf_field() }}
 
-<p class="help-block">
+<x-helper>
  {{ __('quests.elements.fields.entity_or_name') }}
-</p>
+</x-helper>
 <x-grid>
     <x-forms.field field="entity" :required="true">
         <input type="hidden" name="entity_id" value="" />

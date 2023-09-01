@@ -84,7 +84,7 @@ if ($folder) {
                 <p class="my-2">{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => Limit::readable()->upload()]) }}</p>
 
 
-                <p class="text-red gallery-error" style="display:none"></p>
+                <p class="text-error gallery-error" style="display:none"></p>
 
                 <div class="progress h-0.5 w-full bg-gray" style="display: none">
                     <div class="h-0.5 bg-aqua" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">

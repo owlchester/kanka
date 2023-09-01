@@ -1,5 +1,5 @@
 <div class="tab-pane" id="form-dashboard">
-    <p class="help-block">{{ __('campaigns.helpers.dashboard') }}</p>
+    <x-helper :text="__('campaigns.helpers.dashboard')" />
 
     <x-grid type="1/1">
         <x-forms.field
@@ -22,11 +22,11 @@
                         {!! Form::text('header_image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full']) !!}
                     </div>
 
-                    <p class="help-block">
+                    <x-helper>
                         {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => Limit::readable()->upload()]) }}
                         {{ __('crud.hints.image_recommendation', ['width' => '1200', 'height' => '400']) }}
                         @include('cruds.fields.helpers.share', ['max' => 25])
-                    </p>
+                    </x-helper>
                 </div>
                 <div class="">
                     @if (!empty($model->header_image))

@@ -49,7 +49,7 @@ class SetupService
                 return 'fa-solid fa-map';
             case 18: // timeline
                 return 'fa-solid fa-hourglass-half';
-            case 19: // menu link
+            case 19: // bookmark
                 return 'fa-solid fa-star';
             case 20: // creature
                 return 'ra ra-raven';

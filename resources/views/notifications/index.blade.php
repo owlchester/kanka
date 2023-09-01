@@ -21,7 +21,7 @@
 
         <x-box :padding="0">
             @if ($notifications->count() === 0)
-                <p class="help-block p-4">{{ __('notifications.no_notifications') }}</p>
+                <x-helper :text="__('notifications.no_notifications')" />
             @else
             <div class="table-responsive">
                 <table class="table table-hover mb-0">

@@ -13,8 +13,7 @@ use Illuminate\Http\Request;
 
 class RecoveryController extends Controller
 {
-    /** @var RecoveryService */
-    protected $service;
+    protected RecoveryService $service;
 
     public function __construct(RecoveryService $service)
     {

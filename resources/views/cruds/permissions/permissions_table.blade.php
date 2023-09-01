@@ -13,13 +13,13 @@ $actions = [
 $permissionService->campaign($campaign);
 ?>
 
-<p class="help-block">
+<x-helper>
     {!! __('crud.permissions.helpers.setup', [
         'allow' => '<code>' . __('crud.permissions.actions.bulk_entity.allow') . '</code>',
         'deny' => '<code>' . __('crud.permissions.actions.bulk_entity.deny') . '</code>',
         'inherit' => '<code>' . __('crud.permissions.actions.bulk_entity.inherit') . '</code>',
     ]) !!}
-</p>
+</x-helper>
 
 <div id="crud_permissions" class="flex flex-col gap-3">
     <div class="hidden md:grid md:grid-cols-5 gap-2">
@@ -113,7 +113,7 @@ $permissionService->campaign($campaign);
     @endforeach
 
     @if (isset($skipUsers) && $skipUsers && $permissionService->users()->count() > 10)
-        <p class="help-block">{{ __('crud.permissions.too_many_members', ['number' => 10]) }}</p>
+        <x-helper>{{ __('crud.permissions.too_many_members', ['number' => 10]) }}</x-helper>
         <input type="hidden" name="permissions_too_many" value="1" />
     @else
         <hr />

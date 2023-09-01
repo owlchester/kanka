@@ -62,9 +62,7 @@ $existing = $model->allChildren()->count();
 @if ($existing === 0)
 <div class="" id="tag-children">
     <x-box>
-        <p class="help-block">
-            {{ __('tags.helpers.no_children') }}
-        </p>
+        <x-helper :text="__('tags.helpers.no_children')" />
         @can('update', $model)
             <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
                 data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">

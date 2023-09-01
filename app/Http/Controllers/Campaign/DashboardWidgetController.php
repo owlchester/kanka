@@ -11,10 +11,7 @@ use App\Services\EntityService;
 
 class DashboardWidgetController extends Controller
 {
-    /**
-     * @var EntityService
-     */
-    protected $entityService;
+    protected EntityService $entityService;
 
     /**
      * Create a new controller instance.
@@ -29,10 +26,7 @@ class DashboardWidgetController extends Controller
         $this->entityService = $entityService;
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function index(Campaign $campaign, )
+    public function index(Campaign $campaign)
     {
         $this->authorize('dashboard', $campaign);
 

@@ -13,13 +13,13 @@
             field="vanity"
             :label="__('campaigns.fields.vanity')">
             @if (isset($model) && $model->hasVanity())
-                <p class="help-block">{!! __('campaigns/vanity.set', ['vanity' => '<code>' . $model->slug . '</code>']) !!}</p>
+                <x-helper :title="__('campaigns/vanity.set', ['vanity' => '<code>' . $model->slug . '</code>'])" />
             @elseif(isset($model) && $model->premium())
-                <p class="help-block">{!! __('campaigns/vanity.helper', [
+                <x-helper>{!! __('campaigns/vanity.helper', [
     'default' => '<code>w/' . (isset($model) ? $model->id : 123456) . '</code>',
     'example' => '<code>w/exandria-unlimited</code>',
     'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('footer.documentation', ['target' => '_blank']))
-    ]) !!}</p>
+    ]) !!}</x-helper>
 
                 <input type="text" maxlength="45" name="vanity" class="w-full" data-url="{{ route('campaign.vanity-validate', $model) }}" value="{{ old('vanity') }}"/>
                 <p style="display: none" id="vanity-loading">
@@ -30,11 +30,11 @@
                     <p>{!! __('campaigns/vanity.available', ['vanity' => '<code></code>']) !!}</p>
                 </div>
             @else
-                <p class="help-block">{!! __('campaigns/vanity.helper', [
+                <x-helper>{!! __('campaigns/vanity.helper', [
     'default' => '<code>w/' . (isset($model) ? $model->id : 123456) . '</code>',
     'example' => '<code>w/exandria-unlimited</code>',
     'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('footer.documentation', ['target' => '_blank']))
-    ]) !!}</p>
+    ]) !!}</x-helper>
 
                 <input type="text" maxlength="45" name="" class="w-full" readonly="readonly" />
             @endif

@@ -29,7 +29,7 @@
             </p>
         @else
 
-    <p class="help-block">{{ __('entities/image.focus.helper') }}</p>
+    <x-helper>{{ __('entities/image.focus.helper') }}</x-helper>
 
     <div class="focus-selector max-h-screen relative overflow-auto">
         <div class="focus absolute text-white cursor-pointer text-3xl" style="@if(empty($entity->focus_x))display: none; @else left: {{ $entity->focus_x }}px; top: {{ $entity->focus_y }}px; @endif">

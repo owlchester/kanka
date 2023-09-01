@@ -20,13 +20,13 @@
     !!}
     @if (!$campaign->boosted())
         @subscriber()
-        <p class="help-block">
+        <x-helper>
             <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
-        </p>
+        </x-helper>
     @else
-        <p class="help-block">
+        <x-helper>
             <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to('https://kanka.io/premium', __('concept.boosted-campaign'))]) !!}
-        </p>
+        </x-helper>
         @endsubscriber
     @endif
 

@@ -21,7 +21,7 @@ class ReorderController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function reorder(Campaign $campaign)
+    public function index(Campaign $campaign)
     {
         $this->authorize('create', Bookmark::class);
 

@@ -40,9 +40,9 @@ use App\Facades\Datagrid ?>
         @else
             @if ($styles->count() === 0)
                 <x-box>
-                    <p class="help-block">
+                    <x-helper>
                         {!! __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]) !!}
-                    </p>
+                    </x-helper>
                 </x-box>
             @else
                 @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_styles.bulk', $campaign]]) !!} @endif

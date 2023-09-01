@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Bookmark;
 use App\Http\Requests\StoreBookmark as Request;
-use App\Http\Resources\MenuLinkResource as Resource;
+use App\Http\Resources\BookmarkResource as Resource;
 
 class BookmarkApiController extends ApiController
 {
@@ -17,7 +17,7 @@ class BookmarkApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         return Resource::collection($campaign
-            ->menuLinks()
+            ->bookmarks()
             ->withApi()
             ->lastSync(request()->get('lastSync'))
             ->paginate());

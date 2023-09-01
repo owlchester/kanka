@@ -22,9 +22,9 @@
         </x-forms.field>
 
         @if (isset($model) && $model->isPublic())
-            <p class="help-block mb-0">
+            <x-helper>
                 {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '" target="_blank">' . route('dashboard', $campaign) . '</a>']) !!}
-            </p>
+            </x-helper>
 
             @if ($model->publicHasNoVisibility())
                 <x-alert type="warning">

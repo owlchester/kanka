@@ -29,7 +29,7 @@
         :helper="__('calendars.hints.event_length')"
         :tooltip="true">
         {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'maxlength' => 1, 'data-url' => route('calendars.event-length', [$campaign, 'calendar' => 0])]) !!}
-        <p class="length-warning hidden text-red">
+        <p class="length-warning hidden text-error">
             {!!  __('calendars.warnings.event_length', ['documentation' => link_to('https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation'), ['target' => '_blank'], null, false)])!!}
         </p>
     </x-forms.field>

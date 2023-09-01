@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Bookmark;
 
-class MenuLinkResource extends EntityResource
+class BookmarkResource extends EntityResource
 {
     /**
      * Transform the resource into an array.

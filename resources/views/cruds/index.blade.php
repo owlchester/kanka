@@ -9,7 +9,7 @@
 @section('entity-header')
     <div class="flex gap-2 items-center mb-5">
         <h1 class="grow text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 justify-end">
             @includeWhen($route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
             @include('cruds.lists._actions')
             @includeWhen(auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
@@ -50,9 +50,9 @@
         @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
 
         @if ($unfilteredCount != $filteredCount)
-            <p class="help-block">
+            <x-helper>
                 {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
-            </p>
+            </x-helper>
         @endif
 
         @if($models->hasPages())

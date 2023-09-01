@@ -6,7 +6,7 @@
     @foreach($submissions as $submission)
         <x-box>
             <h4 class="text-lg">{{ $submission->user->name }}</h4>
-            <p class="help-block">{!! nl2br($submission->text) !!}</p>
+            <x-helper>{!! nl2br($submission->text) !!}</x-helper>
 
             <div class="grid grid-cols-2 gap-5">
                 <a class="btn2 btn-error "

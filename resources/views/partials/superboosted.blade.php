@@ -6,7 +6,7 @@
         </p>
     </x-alert>
 @else
-    <p class="help-block">
+    <x-helper>
         {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to('https://kanka.io/premium', __('crud.superboosted_campaigns'), '#superboosted')]) !!}
     </p>
 @endif

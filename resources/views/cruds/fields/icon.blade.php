@@ -16,22 +16,22 @@ $required = !isset($bulk);
                 'maxlength' => 45
             ]
         ) !!}
-        <p class="help-block m-0">
+        <x-helper>
             {!! __('entities/links.helpers.icon', [
                 'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
                 'rpgawesome' => link_to('https://nagoshiashumari.github.io/Rpg-Awesome/', 'RPGAwesome', ['target' => '_blank']),
                 'docs' => link_to('https://docs.kanka.io/en/latest/articles/available-icons.html', __('footer.documentation', ['target' => '_blank']))
             ]) !!}
-        </p>
+        </x-helper>
     @else
         @subscriber()
-        <p class="help-block">
+        <x-helper>
             {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaign])]) !!}
-        </p>
+        </x-helper>
     @else
-        <p class="help-block">
+        <x-helper>
             {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
-        </p>
+        </x-helper>
         @endsubscriber
     @endif
 </x-forms.field>

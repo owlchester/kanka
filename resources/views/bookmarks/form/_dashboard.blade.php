@@ -5,9 +5,8 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
     $dashboards[$dash->id] = $dash->name;
 }
 ?>
-<p class="help-block">
-    {!! __('menu_links.helpers.dashboard') !!}
-</p>
+<x-grid type="1/1">
+    <x-helper :text="__('menu_links.helpers.dashboard')" />
 
 @if($campaign->boosted())
     <x-grid>
@@ -28,3 +27,4 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
         <p>{{ __('dashboard.dashboards.pitch') }}</p>
     </x-cta>
 @endif
+</x-grid>

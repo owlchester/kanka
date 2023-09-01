@@ -7,7 +7,7 @@ return [
          */
         'members' => 10,
         'roles' => 3,
-        'quick-links' => 3,
+        'bookmarks' => 3,
 
         /**
          * Entities have a limited number of files (a type of entity_asset) available on each entity

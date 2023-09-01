@@ -92,11 +92,10 @@ class FilterService
 
         // Load the filters from the session if we're revisiting a page
         $sessionKey = 'filterService-filter-' . $this->crud;
-        if ($this->hasRequest && $this->request->get('_from', false) == 'quicklink') {
-            $sessionKey .= '-quicklink';
+        if ($this->hasRequest && $this->request->get('_from', false) == 'bookmark') {
+            $sessionKey .= '-bookmark';
         }
         $this->filters = $this->sessionLoad($sessionKey);
-
 
         // If the request has _clean, we only want filters that are set in the url
         if ($this->hasRequest && $this->request->get('_clean', false)) {
@@ -310,12 +309,12 @@ class FilterService
             return $options;
         }
 
-        if ($this->request->get('_from', false) == 'quicklink') {
-            $options['_from'] = 'quicklink';
+        if ($this->request->get('_from', false) == 'bookmark') {
+            $options['_from'] = 'bookmark';
         }
 
-        if ($quickLinkID = $this->request->get('bookmark')) {
-            $options['bookmark'] = (int) $quickLinkID;
+        if ($bookmarkId = $this->request->get('bookmark')) {
+            $options['bookmark'] = (int) $bookmarkId;
         }
 
         if (in_array($this->request->get('m'), ['table', 'grid'])) {

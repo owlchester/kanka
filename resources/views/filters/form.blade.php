@@ -12,7 +12,7 @@
 </x-dialog.header>
 <article>
     @if (auth()->guest())
-        <p class="help-block">{{ __('filters.helpers.guest') }}</p>
+        <x-helper :text="__('filters.helpers.guest')" />
     @else
         <x-grid css="max-w-3xl">
             @foreach ($filters as $field)

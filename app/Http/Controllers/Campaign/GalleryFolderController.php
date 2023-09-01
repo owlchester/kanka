@@ -9,8 +9,7 @@ use App\Services\Campaign\GalleryService;
 
 class GalleryFolderController extends Controller
 {
-    /** @var GalleryService */
-    protected $service;
+    protected GalleryService $service;
 
     public function __construct(GalleryService $service)
     {

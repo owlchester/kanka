@@ -79,9 +79,7 @@
         </x-box>
         @else
         <x-box>
-            <p class="help-block">
-                {!! __('campaigns.members.invite.description') !!}
-            </p>
+            <x-helper :text="__('campaigns.members.invite.description')" />
         </x-box>
         @endif
 @endif

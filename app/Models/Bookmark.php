@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 /**
- * Class MenuLink
+ * Class Bookmark
  * @package App\Models
  *
  * @property integer $campaign_id

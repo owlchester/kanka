@@ -9,8 +9,7 @@ use App\Services\TroubleshootingService;
 
 class TroubleshootingController extends Controller
 {
-    /** @var TroubleshootingService */
-    protected $service;
+    protected TroubleshootingService $service;
 
     public function __construct(TroubleshootingService $service)
     {

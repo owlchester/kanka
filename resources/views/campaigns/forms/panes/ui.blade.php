@@ -20,13 +20,13 @@ if (!isset($model) || !$model->boosted()) {
         {{ ucfirst(__('concept.premium-campaign')) }}
     </h4>
     @if (isset($model) && $model->boosted())
-        <p class="help-block">
+        <x-helper>
             {!! __('campaigns.helpers.premium', ['settings' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
-        </p>
+        </x-helper>
     @else
-        <p class="help-block">
+        <x-helper>
             {!! __('campaigns.helpers.premium', ['settings' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
-        </p>
+        </x-helper>
     @endif
 
     <x-grid type="3/3">
@@ -66,9 +66,7 @@ if (!isset($model) || !$model->boosted()) {
     <hr />
 
     <h4>{{ __('crud.fields.tooltip') }}</h4>
-    <p class="help-block">
-        {{ __('campaigns.ui.helpers.tooltip') }}
-    </p>
+    <x-helper :text="__('campaigns.ui.helpers.tooltip')" />
 
     <x-grid type="3/3">
         <x-forms.field
@@ -77,7 +75,7 @@ if (!isset($model) || !$model->boosted()) {
             {!! Form::select('ui_settings[tooltip_image]', [0 => __('campaigns.privacy.hidden'), 1 => __('campaigns.privacy.visible')], null, $boostedFormFields) !!}
             @if (!isset($model) || !$model->boosted())
                 {!! Form::hidden('ui_settings[tooltip_image]', 0) !!}
-                <p class="help-block">{!! __('callouts.premium.limitation') !!}</p>
+                <x-helper :text="__('callouts.premium.limitation')" />
             @endif
         </x-forms.field>
     </x-grid>
@@ -85,9 +83,7 @@ if (!isset($model) || !$model->boosted()) {
     <hr />
 
     <h4>{{ __('campaigns.ui.other') }}</h4>
-    <p class="help-block">
-        {{ __('campaigns.ui.helpers.other') }}
-    </p>
+    <x-helper :text="__('campaigns.ui.helpers.other')" />
 
     <x-grid type="3/3">
         <x-forms.field

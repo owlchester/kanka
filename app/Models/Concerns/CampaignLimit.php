@@ -29,12 +29,12 @@ trait CampaignLimit
     /**
      * Get the quick link limit for the campaign
      */
-    public function quickLinkLimit(): null|int
+    public function bookmarkLimit(): null|int
     {
         if ($this->boosted()) {
             return null;
         }
-        return config('limits.campaigns.quick-links');
+        return config('limits.campaigns.bookmarks');
     }
 
     /**
@@ -64,12 +64,12 @@ trait CampaignLimit
     /**
      * Determine if the campaign can have more quick links added
      */
-    public function canHaveMoreQuickLinks(): bool
+    public function canHaveMoreBookmarks(): bool
     {
-        $limit = $this->quickLinkLimit();
+        $limit = $this->bookmarkLimit();
         if (empty($limit)) {
             return true;
         }
-        return $this->menuLinks()->count() < $limit;
+        return $this->bookmarks()->count() < $limit;
     }
 }

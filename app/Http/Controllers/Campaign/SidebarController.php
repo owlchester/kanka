@@ -8,8 +8,7 @@ use App\Services\SidebarService;
 
 class SidebarController extends Controller
 {
-    /** @var SidebarService */
-    protected $service;
+    protected SidebarService $service;
 
     public function __construct(SidebarService $service)
     {

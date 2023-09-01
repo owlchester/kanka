@@ -11,8 +11,7 @@ use App\Services\Campaign\MemberService;
 
 class UserApiController extends ApiController
 {
-    /** @var MemberService */
-    protected $service;
+    protected MemberService $service;
 
     public function __construct(MemberService $memberService)
     {

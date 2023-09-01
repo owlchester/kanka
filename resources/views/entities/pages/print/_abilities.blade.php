@@ -19,7 +19,7 @@
                         {!! $ability['entry'] !!}
 
                         @if ($ability['note'])
-                            <p class="help-block">{!! $ability['note'] !!}</p>
+                            <x-helper>{!! $ability['note'] !!}</x-helper>
                         @endif
 
                         @if(!empty($ability['charges']))
@@ -51,7 +51,7 @@
                 {!! $ability['entry'] !!}
 
                 @if ($ability['note'])
-                    <p class="help-block">{!! $ability['note'] !!}</p>
+                    <x-helper>{!! $ability['note'] !!}</x-helper>
                 @endif
 
                 @if(!empty($ability['charges']))

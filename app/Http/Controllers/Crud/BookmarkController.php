@@ -117,6 +117,6 @@ class BookmarkController extends CrudController
      */
     protected function limitCheckReached(): bool
     {
-        return !$this->campaign->canHaveMoreQuickLinks();
+        return !$this->campaign->canHaveMoreBookmarks();
     }
 }

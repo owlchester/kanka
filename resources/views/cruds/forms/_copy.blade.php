@@ -1,4 +1,4 @@
-<p class="help-block">{{ __('crud.helpers.copy_options') }}</p>
+<x-helper>{{ __('crud.helpers.copy_options') }}</x-helper>
 <x-forms.field
     field="copy-posts">
     {!! Form::hidden('copy_source_notes', null) !!}

@@ -14,11 +14,9 @@ use Stripe\Card;
 
 class SubscriptionApiController extends Controller
 {
-    /** @var SubscriptionService */
-    protected $service;
+    protected SubscriptionService $service;
 
-    /** @var CouponService */
-    protected $couponService;
+    protected CouponService $couponService;
 
     /**
      * SubscriptionApiController constructor.

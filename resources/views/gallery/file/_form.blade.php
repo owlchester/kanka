@@ -7,7 +7,7 @@
             @else
 
                 @if ($image->isFont())
-                    <div class="help-block">This file is a font file.</div>
+                    <x-helper text="This file is a font file." />
                 @else
                     <div class="text-center">
                         <img src="{{ $image->getUrl(192, 144) }}" class="max-w-full rounded" alt="{{ $image->name }}" />

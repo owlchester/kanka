@@ -8,11 +8,12 @@
 ])
 
 @section('content')
+    <x-grid type="1/1">
     @include('partials.errors')
 
-    <h3 class="">
+    <h1 class="">
         {{ __('settings.account.email') }}
-    </h3>
+    </h1>
     {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.email']]) !!}
         <x-grid type="1/1">
             <x-forms.field field="email" :required="true" :label="__('profiles.fields.email')">
@@ -37,7 +38,7 @@
 
         <x-grid type="1/1">
             <x-forms.field field="new-password" :required="true" :label="__('profiles.fields.new_password')">
-                    {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => '']) !!}
+                {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => '']) !!}
             </x-forms.field>
             <x-forms.field field="password-confirm" :required="true" :label="__('profiles.fields.new_password_confirmation')">
                 {!! Form::password('password_new_confirmation', ['placeholder' => __('profiles.placeholders.new_password_confirmation'), 'class' => '']) !!}
@@ -57,7 +58,6 @@
             {{ __('settings.account.social.title') }}
         </h2>
         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.social']]) !!}
-
         <x-grid type="1/1">
             <p class="help">{{ __('settings.account.social.helper', ['provider' => ucfirst($user->provider)]) }}</p>
             <x-forms.field field="new-password" :label="__('profiles.fields.new_password')">
@@ -87,7 +87,6 @@
             </strong><br />
             <p>{{ __('profiles.sections.delete.helper') }}</p>
 
-
             @if (auth()->user()->subscribed('kanka') && !auth()->user()->subscription('kanka')->canceled())
                 <p class="text-error">
                     {!! __('profiles.sections.delete.subscribed', [
@@ -105,6 +104,7 @@
         </div>
         @endif
     </div>
+    </x-grid>
 @endsection
 
 @section('modals')
