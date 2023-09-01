@@ -9,12 +9,12 @@
     <div class="flex gap-2 items-center mb-1">
         @if ($campaign->boosted() && $campaign->tooltip_image && Avatar::entity($entity)->hasImage())
         <div class="flex-none">
-            <div class="entity-image w-15 h-15 cover-background" style="background-image: url('{{ Avatar::entity($entity)->size(40)->thumbnail() }} ');"></div>
+                <div class="rounded-full w-10 h-10 cover-background" style="background-image: url('{{ Avatar::entity($entity)->size(40)->thumbnail() }}');"></div>
         </div>
         @endif
         <div class="grow entity-names">
             <a href="{{ $entity->url() }}" class="entity-name text-xl block">
-                {!! $entity->child->name !!}
+                {!! $entity->child->name !!} with a really long and stupid name that might cause issues down the line?
             </a>
             @if (method_exists($entity->child, 'tooltipSubtitle'))
                 <span class="entity-subtitle text-base block">{!! $entity->child->tooltipSubtitle() !!}</span>
