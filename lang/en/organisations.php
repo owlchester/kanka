@@ -40,7 +40,7 @@ return [
         'helpers'       => [
             'all_members'   => 'All characters that are members of this organisations and it\'s sub-organisations.',
             'members'       => 'All characters that are members of this organisation.',
-            'pinned'        => 'Choose if this member should be shown in the pinned section of the overview of its associated entities.',
+            'pinned'        => 'This member can be shown in the profile pins of its associated entities.',
         ],
         'pinned'        => [
             'both'  => 'Pinned on both',

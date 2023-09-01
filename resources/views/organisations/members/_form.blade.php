@@ -1,8 +1,8 @@
 @php
 $options = [
     '' => __('organisations.members.pinned.none'),
-    \App\Models\OrganisationMember::PIN_CHARACTER => __('organisations.members.pinned.character'),
-    \App\Models\OrganisationMember::PIN_ORGANISATION => __('organisations.members.pinned.organisation'),
+    \App\Models\OrganisationMember::PIN_CHARACTER => \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')),
+    \App\Models\OrganisationMember::PIN_ORGANISATION => \App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation')),
     \App\Models\OrganisationMember::PIN_BOTH => __('organisations.members.pinned.both'),
 ];
 $statuses = [
