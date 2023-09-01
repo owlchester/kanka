@@ -15,9 +15,8 @@
 
 <x-forms.field field="enabled" :label=" __('campaigns/styles.fields.is_enabled')">
     {!! Form::hidden('is_enabled', 0) !!}
-        <label class="text-neutral-content cursor-pointer flex gap-2">
+        <x-checkbox :text="__('campaigns/styles.helpers.is_enabled')">
             {!! Form::checkbox('is_enabled', 1, !isset($style) ? true : $style->is_enabled) !!}
-            {{ __('campaigns/styles.helpers.is_enabled' )}}
-        </label>
+        </x-checkbox>
     </div>
 </x-forms.field>

@@ -25,10 +25,9 @@
 
             @can('update', $entity->child)
                 <x-forms.field field="copy" css="form-check" :label="__('entities/move.fields.copy')">
-                    <label class="text-neutral-content cursor-pointer flex gap-2">
+                    <x-checkbox :text="__('entities/move.helpers.copy')">
                         {!! Form::checkbox('copy', 1, true) !!}
-                        <span>{{ __('entities/move.helpers.copy') }}</span>
-                    </label>
+                    </x-checkbox>
                 </x-forms.field>
             @else
                 {!! Form::hidden('copy', 1) !!}

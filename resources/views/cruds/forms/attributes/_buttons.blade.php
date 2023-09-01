@@ -66,12 +66,11 @@
     <x-forms.field field="attributes-private"
                    :label="__('entities/attributes.fields.is_private')">
         {!! Form::hidden('is_attributes_private', 0) !!}
-        <label class="text-neutral-content cursor-pointer flex gap-2">
-            {!! Form::checkbox('is_attributes_private', 1, empty($model) ? false : $model->entity->is_attributes_private) !!}
-            {!! __('entities/attributes.helpers.is_private', [
+        <x-checkbox :text="__('entities/attributes.helpers.is_private', [
     'admin-role' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
-    ]) !!}
-        </label>
+    ])">
+            {!! Form::checkbox('is_attributes_private', 1, empty($model) ? false : $model->entity->is_attributes_private) !!}
+        </x-checkbox>
     </x-forms.field>
 @endif
 

@@ -80,7 +80,27 @@ input:focus, select:focus, .textarea:focus, .form-control:focus {
     background-color: hsl(var(--b2)/var(--tw-bg-opacity));
     --tw-text-opacity: .2;
 }
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    --tw-accent-opacity: 1;
+    accent-color: hsl(var(--p)/var(--tw-accent-opacity));
+    position: relative;
+    margin: 0;
 
+}
+input[type="checkbox"]:checked {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--p)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--pc)/var(--tw-text-opacity));
+}
+input[type="checkbox"]:checked:after {
+    content: '\2714';
+    font-size: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0.1rem;
+}
 /**, ::before, ::after {
     --tw-border-opacity: 0.2;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));

@@ -1,7 +1,6 @@
 <x-forms.field field="unmirror" :label="__('entities/relations.bulk.fields.unmirror')">
     {!! Form::hidden('unmirror', 0) !!}
-    <label class="text-neutral-content cursor-pointer">
+    <x-checkbox :text="__('entities/relations.bulk.helpers.unmirror')">
         {!! Form::checkbox('unmirror', 1)!!}
-        {{ __('entities/relations.bulk.helpers.unmirror') }}
-    </label>
+    </x-checkbox>
 </x-forms.field>

@@ -26,10 +26,9 @@ if (!empty($era)) {
     <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
         {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'element-entry', 'name' => 'entry']) !!}
         {!! Form::hidden('use_entity_entry', 0) !!}
-        <label>
+        <x-checkbox :text="__('timelines/elements.fields.use_entity_entry')">
             {!! Form::checkbox('use_entity_entry') !!}
-            {{ __('timelines/elements.fields.use_entity_entry') }}
-        </label>
+        </x-checkbox>
     </x-forms.field>
 
     <x-forms.field field="date" :label="__('timelines/elements.fields.date')">
@@ -38,10 +37,9 @@ if (!empty($era)) {
 
     <x-forms.field field="event-date" :label="__('timelines/elements.fields.use_event_date')">
         {!! Form::hidden('use_event_date', 0) !!}
-        <label>
+        <x-checkbox :text="__('timelines/elements.helpers.date')">
             {!! Form::checkbox('use_event_date') !!}
-            {{ __('timelines/elements.helpers.date') }}
-        </label>
+        </x-checkbox>
     </x-forms.field>
 
     <x-forms.field field="position" :label="__('crud.fields.position')">
@@ -95,10 +93,9 @@ if (!empty($era)) {
 
     <x-forms.field field="collapsed" :label="__('timelines/eras.fields.is_collapsed')">
         {!! Form::hidden('is_collapsed', 0) !!}
-        <label class="text-neutral-content cursor-pointer flex gap-2">
+        <x-checkbox :text="__('timelines/elements.helpers.is_collapsed')">
             {!! Form::checkbox('is_collapsed', 1) !!}
-            <span>{{ __('timelines/elements.helpers.is_collapsed') }}</span>
-        </label>
+        </x-checkbox>
     </x-forms.field>
 </x-grid>
 

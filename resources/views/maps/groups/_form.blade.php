@@ -11,10 +11,9 @@
         field="shown col-span-2"
         :label="__('maps/groups.fields.is_shown')">
         {!! Form::hidden('is_shown', 0) !!}
-        <label class="text-neutral-content">
+        <x-checkbox :text="__('maps/groups.hints.is_shown')">
             {!! Form::checkbox('is_shown', 1, isset($model) ? $model->is_shown : 1) !!}
-            {{  __('maps/groups.hints.is_shown') }}
-        </label>
+        </x-checkbox>
     </x-forms.field>
 
     @php

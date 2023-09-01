@@ -16,10 +16,9 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
 
         {!! Form::hidden('options[default_dashboard]', 0) !!}
         <x-forms.field field="default" :label="__('menu_links.fields.default_dashboard')">
-            <label class="text-neutral-content cursor-pointer flex gap-2">
+            <x-checkbox :text="__('menu_links.helpers.default_dashboard')">
                 {!! Form::checkbox('options[default_dashboard]', 1, empty($model->options) ? false : \Illuminate\Support\Arr::get($model->options, 'default_dashboard')) !!}
-                {{ __('menu_links.helpers.default_dashboard') }}
-            </label>
+            </x-checkbox>
         </x-forms.field>
     </x-grid>
 @else

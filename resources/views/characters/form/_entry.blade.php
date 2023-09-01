@@ -22,9 +22,9 @@
         field="dead"
         :label="__('characters.fields.is_dead')">
         {!! Form::hidden('is_dead', 0) !!}
-        <label class="font-normal text-neutral-content">{!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : (!empty($source) ? FormCopy::field('is_dead')->boolean() : 0))) !!}
-            {{ __('characters.hints.is_dead')}}
-        </label>
+        <x-checkbox :text="__('characters.hints.is_dead')">
+            {!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : (!empty($source) ? FormCopy::field('is_dead')->boolean() : 0))) !!}
+        </x-checkbox>
     </x-forms.field>
 
     @include('cruds.fields.tags')

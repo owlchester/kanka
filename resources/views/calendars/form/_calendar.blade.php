@@ -4,10 +4,9 @@
 
         <x-forms.field field="skip-zero" :label="__('calendars.fields.skip_year_zero')">
             {!! Form::hidden('skip_year_zero', 0) !!}
-            <label class="text-neutral-content cursor-pointer flex gap-2">
+            <x-checkbox :text="__('calendars.hints.skip_year_zero')">
                 {!! Form::checkbox('skip_year_zero', 1, !empty($model) ? $model->skip_year_zero : 0) !!}
-                {{ __('calendars.hints.skip_year_zero') }}
-            </label>
+            </x-checkbox>
         </x-forms.field>
 
         <x-forms.field
@@ -41,10 +40,9 @@
 
         <x-forms.field field="incrementing" :label="__('calendars.fields.is_incrementing')">
             {!! Form::hidden('is_incrementing', 0) !!}
-            <label class="text-neutral-content cursor-pointer flex gap-2">
+            <x-checkbox :text="__('calendars.hints.is_incrementing')">
                 {!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
-                {{ __('calendars.hints.is_incrementing') }}
-            </label>
+            </x-checkbox>
         </x-forms.field>
     </div>
     <div class="flex gap-5 flex-col">
@@ -105,10 +103,9 @@
 
         <x-forms.field field="leap-year" :label="__('calendars.fields.leap_year')">
             {!! Form::hidden('has_leap_year', 0) !!}
-            <label class="text-neutral-content cursor-pointer flex gap-2">
+            <x-checkbox :text="__('calendars.hints.leap_year')">
                 {!! Form::checkbox('has_leap_year', 1, FormCopy::field('has_leap_year')->string()) !!}
-                {{ __('calendars.hints.leap_year') }}
-            </label>
+            </x-checkbox>
         </x-forms.field>
         <div class="grid grid-cols-2 gap-2 md:gap-5" id="calendar-leap-year" style="@if (isset($model) && $model->has_leap_year || request()->old('has_leap_year') || (isset($source) && $source->has_leap_year))@else display:none; @endif">
             <x-forms.field field="year-amount" :label="__('calendars.fields.leap_year_amount')">

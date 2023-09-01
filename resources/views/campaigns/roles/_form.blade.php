@@ -13,10 +13,9 @@
         :label="__('campaigns.roles.fields.copy_permissions')">
         {!! Form::hidden('role_id', $roleId) !!}
         {!! Form::hidden('duplicate', 0) !!}
-        <label class="font-normal">
+        <x-checkbox :text="__('campaigns.roles.helper.permissions_helper')">
             {!! Form::checkbox('duplicate', 1, null, ['id' => 'duplicate']) !!}
-            {{ __('campaigns.roles.helper.permissions_helper') }}
-        </label>
+        </x-checkbox>
     </x-forms.field>
 @endif
 </x-grid>

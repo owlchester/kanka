@@ -47,10 +47,10 @@
             ]) !!}</p>
             <x-forms.field field="unmirror">
                 {!! Form::hidden('unmirror', 0) !!}
-                <label class="cursor-pointer flex gap-1">
+                <x-checkbox :text="__('entities/relations.fields.unmirror')">
                     {!! Form::checkbox('unmirror', 1)!!}
-                    {{ __('entities/relations.fields.unmirror') }}
-                </label></x-forms.field>
+                </x-checkbox>
+            </x-forms.field>
         </x-alert>
     </div>
 @endif

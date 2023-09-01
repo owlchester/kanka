@@ -52,10 +52,10 @@ $role = \App\Facades\CampaignCache::adminRole();
             field="appearance-pinned"
             :label="__('characters.fields.is_appearance_pinned')">
             {!! Form::hidden('is_appearance_pinned', 0) !!}
-            <label class="text-neutral-content">
+
+            <x-checkbox :text="__('characters.hints.is_appearance_pinned')">
                 {!! Form::checkbox('is_appearance_pinned', 1, (!empty($model) ? $model->is_appearance_pinned : (!empty($source) ? FormCopy::field('is_appearance_pinned')->boolean() : null))) !!}
-                {{ __('characters.hints.is_appearance_pinned') }}
-            </label>
+            </x-checkbox>
         </x-forms.field>
     </x-grid>
 
@@ -116,10 +116,9 @@ $role = \App\Facades\CampaignCache::adminRole();
                 :label="__('characters.fields.is_personality_pinned')"
             >
                 {!! Form::hidden('is_personality_pinned', 0) !!}
-                <label class="text-neutral-content">
+                <x-checkbox :text="__('characters.hints.is_personality_pinned')">
                     {!! Form::checkbox('is_personality_pinned', 1, (!empty($model) ? $model->is_personality_pinned : (!empty($source) ? FormCopy::field('is_personality_pinned')->boolean() : null))) !!}
-                    {{ __('characters.hints.is_personality_pinned') }}
-                </label>
+                </x-checkbox>
             </x-forms.field>
         @endif
 
@@ -130,12 +129,11 @@ $role = \App\Facades\CampaignCache::adminRole();
                 field="personality-visible"
                 :label="__('characters.fields.is_personality_visible')"
             >
-                <label class="text-neutral-content">
-                    {!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? FormCopy::field('is_personality_visible')->boolean() : !$campaign->entity_personality_visibility))) !!}
-                        {!! __('characters.hints.is_personality_visible', [
+                <x-checkbox :text="__('characters.hints.is_personality_visible', [
         'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
-]) !!}
-                </label>
+])">
+                    {!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? FormCopy::field('is_personality_visible')->boolean() : !$campaign->entity_personality_visibility))) !!}
+                </x-checkbox>
             </x-forms.field>
         @else
             {!! Form::hidden('is_personality_visible', 1) !!}

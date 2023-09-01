@@ -61,9 +61,9 @@ $sizeOptions = [
 
                 <x-forms.field field="draggable" css="" :label="__('maps/markers.fields.is_draggable')">
                     {!! Form::hidden('is_draggable', 0) !!}
-                    <label class="text-neutral-content cursor-pointer">{!! Form::checkbox('is_draggable', 1, (!empty($source) ? $source->is_draggable : null)) !!}
-                        {{ __('maps/markers.helpers.draggable') }}
-                    </label>
+                    <x-checkbox :text="__('maps/markers.helpers.draggable')">
+                        {!! Form::checkbox('is_draggable', 1, (!empty($source) ? $source->is_draggable : null)) !!}
+                    </x-checkbox>
                 </x-forms.field>
             </x-grid>
         </div>

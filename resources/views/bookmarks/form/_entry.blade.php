@@ -108,10 +108,9 @@ if (isset($model)) {
                    :helper="__('menu_links.helpers.active')">
         {!! Form::hidden('is_active', 0) !!}
 
-        <label class="text-neutral-content cursor-pointer flex gap-2">
+        <x-checkbox :text="__('menu_links.visibilities.is_active')">
             {!! Form::checkbox('is_active', 1, isset($model) ? $model->is_active : 1) !!}
-            <span>{{ __('menu_links.visibilities.is_active') }}</span>
-        </label>
+        </x-checkbox>
 
     </x-forms.field>
 </x-grid>

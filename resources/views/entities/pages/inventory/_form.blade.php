@@ -56,18 +56,16 @@
 
     <x-forms.field field="copy" :label="__('entities/inventories.fields.copy_entity_entry')">
         {!! Form::hidden('copy_item_entry', 0) !!}
-        <label class="text-neutral-content cursor-pointer flex gap-2">
+        <x-checkbox :text="__('entities/inventories.helpers.copy_entity_entry')">
             {!! Form::checkbox('copy_item_entry') !!}
-            {{ __('entities/inventories.helpers.copy_entity_entry') }}
-        </label>
+        </x-checkbox>
     </x-forms.field>
 
     <x-forms.field field="equipped" :label="__('entities/inventories.fields.is_equipped')">
         {!! Form::hidden('is_equipped', 0) !!}
-        <label class="text-neutral-content cursor-pointer flex gap-2">
+        <x-checkbox :text="__('entities/inventories.helpers.is_equipped')">
             {!! Form::checkbox('is_equipped', 1, isset($inventory) ? $inventory->is_equipped : null) !!}
-            {{ __('entities/inventories.helpers.is_equipped') }}
-        </label>
+        </x-checkbox>
     </x-forms.field>
 
     @include('cruds.fields.visibility_id', ['model' => $inventory ?? null])

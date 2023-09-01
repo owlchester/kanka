@@ -21,10 +21,9 @@
 
     <x-forms.field field="collapsed" css="col-span-2" :label="__('timelines/eras.fields.is_collapsed')">
         {!! Form::hidden('is_collapsed', 0) !!}
-        <label class="text-neutral-content cursor-pointer flex gap-2">
+        <x-checkbox :text="__('timelines/eras.helpers.is_collapsed')">
             {!! Form::checkbox('is_collapsed', 1) !!}
-            <span>{{ __('timelines/eras.helpers.is_collapsed') }}</span>
-        </label>
+        </x-checkbox>
     </x-forms.field>
 </x-grid>
 

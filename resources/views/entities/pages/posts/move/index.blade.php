@@ -19,10 +19,9 @@
             </x-forms.field>
 
             <x-forms.field field="copy" css="form-check" :label="__('entities/notes.move.copy')">
-                <label class="text-neutral-content cursor-pointer flex gap-2">
+                <x-checkbox :text="__('entities/notes.move.copy')">
                     {!! Form::checkbox('copy', 1, true) !!}
-                    <span>{{ __('entities/notes.move.copy') }}</span>
-                </label>
+                </x-checkbox>>
             </x-forms.field>
         </x-grid>
 

@@ -19,10 +19,9 @@
 
     <x-forms.field field="defunct" :label="__('organisations.fields.is_defunct')">
         {!! Form::hidden('is_defunct', 0) !!}
-        <label class="text-neutral-content cursor-pointer flex gap-2">
+        <x-checkbox :text="__('organisations.hints.is_defunct')">
             {!! Form::checkbox('is_defunct', 1, $model->is_defunct ?? '' )!!}
-            <span>{{ __('organisations.hints.is_defunct') }}</span>
-        </label>
+        </x-checkbox>
     </x-forms.field>
 
     @include('cruds.fields.tags')

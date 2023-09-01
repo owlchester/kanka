@@ -23,10 +23,9 @@ $entityTypes = array_merge($entityTypes, $entities);
         </x-forms.field>
         <x-forms.field field="nested" :label="__('menu_links.fields.is_nested')">
             {!! Form::hidden('options[is_nested]', 0) !!}
-            <label class="text-neutral-content cursor-pointer flex gap-2">
+            <x-checkbox :text="__('menu_links.fields.is_nested')">
                 {!! Form::checkbox('options[is_nested]', 1, empty($model->options) ? false : $model->options['is_nested']) !!}
-                <span>{!! __('menu_links.fields.is_nested') !!}</span>
-            </label>
+            </x-checkbox>
         </x-forms.field>
     </x-grid>
 </x-grid>

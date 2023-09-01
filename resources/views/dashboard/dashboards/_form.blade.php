@@ -34,10 +34,9 @@
 @if(!empty($source))
     {!! Form::hidden('copy_widgets', null) !!}
     <x-forms.field field="copy" :label="__('dashboard.dashboards.fields.copy_widgets')">
-        <label class="text-neutral-content cursor-pointer flex gap-2">
+        <x-checkbox :text="__('dashboard.dashboards.helpers.copy_widgets', ['name' => $source->name])">
             {!! Form::checkbox('copy_widgets', 1, true) !!}
-            {{ __('dashboard.dashboards.helpers.copy_widgets', ['name' => $source->name]) }}
-        </label>
+        </x-checkbox>
         {!! Form::hidden('source', $source->id) !!}
     </x-forms.field>
 @endif
