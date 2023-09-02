@@ -6,7 +6,7 @@
 * @var \Illuminate\Database\Eloquent\Collection $pinnedNotes
 */
 ?>
-<div class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif " data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
+<div class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif " data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" id="post-{{ $post->id }}">
     <div class="post-header flex gap-1 md:gap-2 items-center">
         <div class="grow flex gap-2 items-center cursor-pointer element-toggle {{ $post->collapsed() ? "animate-collapsed" : null }}" data-animate="collapse" data-target="#post-body-{{ $post->id }}">
             <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
@@ -35,8 +35,8 @@
             @endif
         </div>
     </div>
-    <div class="bg-box rounded post entity-note" id="post-{{ $post->id }}">
-        <div class="entity-content box-body overflow-hidden @if ($post->collapsed()) hidden @endif" id="post-body-{{ $post->id }}">
+    <div class="bg-box rounded post entity-note">
+        <div class="entity-content overflow-hidden @if ($post->collapsed()) hidden @endif" id="post-body-{{ $post->id }}">
             <div class="flex flex-col gap-2 p-4">
                 <div class="post-details entity-note-details">
                     @if ($post->location)
