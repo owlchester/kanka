@@ -24,36 +24,6 @@ class DiscordController extends Controller
         $this->discord = $discord;
     }
 
-    public function me(Request $request)
-    {
-        //        DiscordRoleJob::dispatch($request->user(), false);
-        //
-        //        $this->discord
-        //            ->user($request->user())
-        //            ->addRoles();
-
-
-        //        $request->user()->notify(new Header(
-        //            'subscriptions.failed',
-        //            'far fa-credit-card',
-        //            'red'
-        //        ));
-        //
-        //        // Notify admin
-        //        SubscriptionFailedEmailJob::dispatch($request->user());
-        //
-        //        // Set the subscription to end when it's supposed to end (admittedly, this is already passed)
-        //        SubscriptionEndJob::dispatch($request->user())->delay(
-        //            $request->user()->subscription('kanka')->ends_at
-        //        );
-    }
-
-    public function setup()
-    {
-        dd('what?');
-        //$this->discord->setup();
-    }
-
     /**
      */
     public function callback(Request $request)

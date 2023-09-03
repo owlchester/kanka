@@ -33,7 +33,9 @@
                                     <x-icon class="fa-solid fa-link-slash" />
                                     <span>
                                         {{ __('settings.apps.actions.remove') }}
-                                        @if (!empty($discord->settings)) {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }} @endif
+                                        @if (!empty($discord->settings)) {{ $discord->settings['username'] }}
+                                        @if (!empty($discord->settings['discriminator']))#{{ $discord->settings['discriminator'] }} @endif
+                                        @endif
                                     </span>
                                 </x-buttons.confirm>
                             @else
