@@ -31,6 +31,9 @@ table {
 .table-bordered {
     --tw-border-opacity: .2;
     border-width: 1px;
+    th, td {
+        border-width: 1px;
+    }
 }
 
 .table :is(thead, tbody, tfoot) tr :is(td, th) {

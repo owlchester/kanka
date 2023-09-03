@@ -38,7 +38,7 @@ return [
         'destroy'   => 'Reminder removed from calendar \':name\'.',
         'edit'      => [
             'success'   => 'Reminder updated.',
-            'title'     => 'Update Reminder for :name',
+            'title'     => 'Updating :name\'s reminder',
         ],
         'errors'    => [
             'invalid_entity'    => 'Invalid entity selection'

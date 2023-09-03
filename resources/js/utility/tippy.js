@@ -18,6 +18,7 @@ const initAjaxTooltips = () => {
             allowHTML: true,
             interactive: true,
             delay: 500,
+            appendTo: e.dataset.append ?? document.body,
             content: '<i class="fa-solid fa-spin fa-spinner" aria-hidden="true" aria-label="loading..." />',
             arrow: true,
             onShow(instance) {

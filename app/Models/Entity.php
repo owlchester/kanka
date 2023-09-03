@@ -303,24 +303,6 @@ class Entity extends Model
     }
 
     /**
-     * Entity assets: files and links
-     * @return array
-     */
-    /*public function assets(): Collection
-    {
-        $assets = $this->files;
-        $campaign = CampaignLocalization::getCampaign();
-        $links = $campaign->boosted() ? $this->links : [];
-        $aliases = $campaign->boosted() ? $this->aliases : [];
-        $assets = $assets->merge($aliases);
-        $assets = $assets->merge($links);
-        //$assets
-        return $assets->sort(function ($a, $b) {
-            return strcmp($a->name, $b->name);
-        });
-    }*/
-
-    /**
      */
     public function hasHeaderImage(bool $superboosted = false): bool
     {
