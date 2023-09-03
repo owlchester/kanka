@@ -76,6 +76,12 @@ legend {
     margin-bottom: 22px;
     font-size: 21px;
     line-height: inherit;
-    color: #333;
-    border-bottom: 1px solid #e5e5e5
+    color: hsl(var(--nc)/1);
+    border-bottom: 1px solid hsl(var(--n)/1)
+}
+
+.entity-content, .note-editing-area {
+    table {
+        margin-bottom: 0.75rem;
+    }
 }
