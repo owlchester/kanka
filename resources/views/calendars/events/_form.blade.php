@@ -40,8 +40,9 @@
                     {!! Form::text('name', null, ['placeholder' => __('crud.placeholders.name'), 'maxlength' => 191]) !!}
                 </x-forms.field>
             </div>
-            <div class="self-end">
-                <a href="#" id="calendar-event-switch" class="btn2 btn-sm">
+            <div class="self-start">
+                <a href="#" id="calendar-event-switch" class="btn2 btn-xs">
+                    <x-icon class="fa-solid fa-exchange-alt" />
                     {{ __('calendars.event.actions.switch') }}
                 </a>
             </div>
