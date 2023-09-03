@@ -1,5 +1,5 @@
 
-<div class="bg-box rounded box-entity-entry">
+<article class="bg-box rounded box-entity-entry">
     @if ($model->hasEntry())
     <div class="p-4 entity-content">
         @if (auth()->check())
@@ -15,7 +15,7 @@
         {!! $model->entry() !!}
     </div>
     @endif
-</div>
+</article>
 
 @includeWhen($model instanceof \App\Models\Character && $model->is_appearance_pinned, 'characters.panels._appearance')
 @includeWhen($model instanceof \App\Models\Character && $model->is_personality_pinned, 'characters.panels._personality')
