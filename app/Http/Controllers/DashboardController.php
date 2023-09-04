@@ -35,6 +35,16 @@ class DashboardController extends Controller
             $welcome = true;
         }
 
+        $hasMap = false;
+        $hasCampaignHeader = false;
+        foreach ($widgets as $w) {
+            if ($w->widget === Widget::Preview && $w->entity && $w->visible() && $w->entity->isMap()) {
+                $hasMap = true;
+            } elseif ($w->widget === Widget::Campaign) {
+                $hasCampaignHeader = true;
+            }
+        }
+
 
         return view('home', compact(
             'campaign',
@@ -43,7 +53,10 @@ class DashboardController extends Controller
             'dashboards',
             'welcome',
             'gaTrackingEvent',
-        ));
+        ))
+            ->with('hasMap', $hasMap)
+            ->with('hasCampaignHeader', $hasCampaignHeader)
+        ;
     }
 
     /**

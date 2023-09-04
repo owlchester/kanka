@@ -63,7 +63,7 @@
                         </ul>
                         @endif
 
-                        @includeWhen($sidebar->hasBookmarks($name), 'layouts.sidebars._quick-links', ['links' => $sidebar->bookmarks($name)])
+                        @includeWhen($sidebar->hasBookmarks($name), 'layouts.sidebars._quick-links', ['links' => $sidebar->bookmarks($name), 'css' => 'px-2'])
                     </li>
                 @endforeach
             </ul>

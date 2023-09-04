@@ -217,7 +217,7 @@ class PermissionService
         }
 
         // If the user had no loaded roles, we need a public role
-        if ($this->loadedRoles > 0) {
+        if (!isset($this->loadedRoles) || $this->loadedRoles > 0) {
             return $this;
         }
         $this->loadPublicRole();
