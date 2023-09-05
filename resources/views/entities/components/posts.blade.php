@@ -77,7 +77,7 @@ $postCount = 0;
 @if (!request()->ajax() && $entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
 @can('post', [$model, 'add'])
     <div class="text-center row-add-note-button">
-        <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-accent btn-sm btn-new-post"
+        <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-sm btn-new-post  btn-block"
            data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">
             <x-icon class="plus"></x-icon>
             {{ __('crud.actions.new_post') }}

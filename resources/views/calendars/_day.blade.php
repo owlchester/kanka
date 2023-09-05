@@ -20,6 +20,7 @@
     @endphp
 
     <td class="h-24 text-center break-words align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}">
+        <div class="flex flex-col gap-1">
         @if ($day['day'])
             <div class="flex items-center items-stretch gap-1">
                 <h5 class="m-0 {{ $day['isToday'] ? "badge badge-primary" : null}}">
@@ -71,39 +72,38 @@
                 </div>
             @endif
 
-            <p class="text-left mb-0">
-                @if (!empty($day['weather']))
-                    <div class="weather block w-full weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" data-title="{!! $day['weather']->tooltip() !!}">
-                        <i class="fa-solid fa-{{ $day['weather']->weather }}"></i>
-                        {{ $day['weather']->weatherName() }}
-                    </div>
-                @endif
-                @if (!empty($day['events']))
-                    @foreach ($day['events'] as $event)
-                        <div class="calendar-event-block block text-left my-1 p-1 relative overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
-                            @if ($canEdit)
+            @if (!empty($day['weather']))
+                <div class="weather weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" data-title="{!! $day['weather']->tooltip() !!}">
+                    <i class="fa-solid fa-{{ $day['weather']->weather }}" aria-hidden="true"></i>
+                    {{ $day['weather']->weatherName() }}
+                </div>
+            @endif
+            @if (!empty($day['events']))
+                @foreach ($day['events'] as $event)
+                    <div class="calendar-event-block rounded-sm text-left p-1 relative overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
+                        @if ($canEdit)
 @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
-                                data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.entity_events.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->entity->id, $event->id]) + $routeOptions) }}"
-                            @else
-                                data-url="{{ $event->entity->url() }}"
+                            data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.entity_events.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->entity->id, $event->id]) + $routeOptions) }}"
+                        @else
+                            data-url="{{ $event->entity->url() }}"
+                        @endif
+                        >
+                        @if (Avatar::entity($event->entity)->child($event->entity->child)->hasImage())
+                            <a href="{{ $event->entity->url() }}" class="hidden md:inline-block entity-image !w-7 !h-7 pull-left mr-1 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
+                        @endif
+                        <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->entity]) }}" class="block">
+                            {{ $event->entity->name }}
+                            @if ($renderer->isEventStartDate($event, $day['date']))
+                                <span class="text-xs">{{ __('calendars.events.start')}}</span>
+                            @elseif ($renderer->isEventEndDate($event, $day['date']))
+                                <span class="text-xs">{{ __('calendars.events.end')}}</span>
                             @endif
-                            >
-                            @if (Avatar::entity($event->entity)->child($event->entity->child)->hasImage())
-                                <a href="{{ $event->entity->url() }}" class="hidden md:inline-block entity-image !w-7 !h-7 pull-left mr-1 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
-                            @endif
-                            <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->entity]) }}" class="block">
-                                {{ $event->entity->name }}
-                                @if ($renderer->isEventStartDate($event, $day['date']))
-                                    <span class="text-xs">{{ __('calendars.events.start')}}</span>
-                                @elseif ($renderer->isEventEndDate($event, $day['date']))
-                                    <span class="text-xs">{{ __('calendars.events.end')}}</span>
-                                @endif
-                            </span>
-                            {!! $event->getLabel() !!}
-                        </div>
-                    @endforeach
-                @endif
-            </p>
+                        </span>
+                        {!! $event->getLabel() !!}
+                    </div>
+                @endforeach
+            @endif
         @endif
+        </div>
     </td>
 @endif

@@ -48,7 +48,7 @@
                     <x-alert type="warning">
                         <p>{{ __('campaigns/submissions.helpers.open_not_public') }}</p>
                         @if (auth()->user()->can('update', $campaign))
-                        <a href="{{ route('campaigns.edit', [$campaign, '#tab_form-public']) }}" class="btn2 btn-warning">
+                        <a href="{{ route('campaigns.edit', [$campaign, '#tab_form-public']) }}" class="btn2">
                             {{ __('crud.fix-this-issue') }}
                         </a>
                         @endif

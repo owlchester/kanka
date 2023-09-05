@@ -11,11 +11,11 @@ $enabled = $campaign->enabled($module);
 
 @if (isset($boosted) && $boosted && !$campaign->boosted())
     <x-box css="box-warning flex flex-wrap flex-col" id="{{ $module }}">
-        <div class="header p-2 bg-gray-600 flex items-center gap-2">
+        <div class="header p-2 bg-neutral text-neutral-content flex items-center gap-2">
             <i class="flex-0 text-lg {{ $icon }}" aria-hidden="true"></i>
-            <h3 class="text-lg grow text-white ">
+            <span class="text-lg grow">
                 {!! $moduleName !!}
-            </h3>
+            </span>
         </div>
         <div class="grow flex flex-wrap flex-col">
             <div class="body p-4 pb-2 grow">
@@ -28,15 +28,15 @@ $enabled = $campaign->enabled($module);
     </x-box>
 @else
     <x-box css="box-module overflow-hidden flex flex-wrap flex-col select-none {{ $enabled ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $module }}" :padding="false">
-        <div class="header p-2 bg-gray-600 flex items-center gap-2 ">
+        <div class="header p-2 bg-neutral text-neutral-content flex items-center gap-2 ">
             <i class="flex-0 text-lg {{ $icon }}" aria-hidden="true"></i>
-            <h3 class="text-lg grow break-all text-white">
+            <spanf class="text-lg grow break-all">
                 {!! $moduleName !!}
-            </h3>
+            </spanf>
             @can('update', $campaign)
             @if (isset($id) && !isset($deprecated))
                 <button
-                    class="text-white hover:shadow-sm text-xl transition-all hover:rotate-45"
+                    class="hover:shadow-sm text-xl transition-all hover:rotate-45"
                     data-toggle="dialog-ajax"
                     data-url="{{ route('modules.edit', [$campaign, $id]) }}"
                     data-target="rename-dialog"

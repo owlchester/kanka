@@ -9,37 +9,87 @@
         --footer-logo-white: inline;
 
         // General background color
-        --content-wrapper-background: hsl(var(--b3)/1);
+        --base: 240 21% 15%;
+        --crust: 240 23% 9%;
+        --mantle: 240 21% 12%;
+        --content-wrapper-background: hsl(var(--base)/1);
+        --surface0: 237 16% 23%;
+        --surface1: 234 13% 31%;
+        --surface2: 233 12% 39%;
+        --text: 226 64% 88%;
+        --subtext0: 228 24% 72%;
+        --subtext1: 227 35% 80%;
+        --mauve: 287 84% 81%;
+        --pink: 316 72% 86%;
 
         // For the legacy editor, make it compatible with dark mode
         --tinymce-filter: invert(90%) !important;
-
-        --pf: 210 64% 64%;
+        --body-background: hsl(var(--base)/1);
         --sf: 316 70% 43%;
         --af: 175 70% 34%;
         --su: 144 31% 36%;
-        --wa: 39 64% 50%;
-        --er: 6 56% 43%;
-        --in: 198 90% 8%;
-        --inc: 210 64% 91%;
-        --suc: 141 16% 92%;
-        --wac: 37 30% 13%;
-        --erc: 11 59% 89%;
-        --p: 210 64% 41%;
-        --pc: 219 26% 86%;
+        --wa: 23 92% 75%;
+        --er: 343 81% 75%;
+        --in: 199 76% 69%;
+        --inc: var(--text);
+        --suc: var(--text);
+        --wac: var(--text);
+        --erc: var(--text);
+        --p: var(--subtext1);
+        --pc: var(--subtext0);
+        --pf: var(--subtext1);
         --s: 316 70% 50%;
-        --sc: 0 0% 100%;
+        --sc: var(--text);
         --a: 175 70% 41%;
-        --ac: 0 0% 100%;
+        --ac: var(--text);
         --n: 213 18% 20%;
         --nf: 212 17% 17%;
-        --nc: 220 13% 69%;
-        --b1: 0 0% 13%;
-        --b2: 0 0% 6%;
-        --b3: 0 0% 0%;
-        --bc: 145 0% 80%;
+        --nc: 228 17% 64%;
+        --b1: var(--mantle);
+        --b2: var(--base);
+        --b3: 240 23% 9%;
+        --bc: var(--text);
 
-        --si: var(--b1);
-        --sif: var(--b2);
+        --si: var(--mantle);
+        --sif: var(--surface1);
+    }
+
+    .btn2 {
+        --b2: var(--surface0);
+        --b3: var(--surface1);
+    }
+    .btn2.btn-primary {
+        --p: var(--surface0);
+        --pf: var(--surface1);
+        --pc: var(--text);
+    }
+    .btn-default {
+        --b2: var(--b3);
+    }
+    .quick-creator-subform {
+        --border-btn: 1px;
+    }
+    a {
+        --p: var(--mauve);
+        --pf: var(--pink);
+    }
+    dialog {
+        --b1: var(--b3);
+    }
+    input {
+        --p: var(--mauve);
+        --pc: var(--b3);
     }
 }
+/*.btn2.btn-primary, .btn2.btn-accent, .btn2.btn-error, .btn2.btn-warning {
+    --tw-bg-opacity: 0;
+    background-color: hsl(var(--b2)/1);
+    --tw-border-opacity: 0;
+}*/
+.alert {
+    border: 1px solid var(--alert-bg);
+    --alert-bg: hsl(var(--b2)/1);
+}
+/*.btn2.btn-outline {
+    border: none;
+}*/

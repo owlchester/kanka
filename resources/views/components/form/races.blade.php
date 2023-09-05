@@ -40,7 +40,7 @@ if ($quickCreator) {
     </select>
 
     @if ($quickCreator)
-            <a class="quick-creator-subform btn2 join-item btn-primary btn-outline" data-url="{{ route('entity-creator.form', [$campaign, 'type' => 'races', 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}">
+            <a class="quick-creator-subform btn2 join-item" data-url="{{ route('entity-creator.form', [$campaign, 'type' => 'races', 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}">
                 <span class="fa-solid fa-plus"></span>
             </a>
         </div>

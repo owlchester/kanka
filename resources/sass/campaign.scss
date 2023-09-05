@@ -36,8 +36,8 @@
     }
     .module-enabled {
         .header {
-            background-color: #008347;
-            color: white;
+            background-color: hsl(var(--su)/1);
+            color: hsl(var(--suc)/1);
         }
         .module-actions {
             .btn-module-enable {

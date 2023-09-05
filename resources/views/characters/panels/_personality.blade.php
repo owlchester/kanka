@@ -24,7 +24,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             @endif
         </div>
         <div class="bg-box rounded" id="character-personality">
-            <div class="entity-content box-body overflow-hidden" id="character-personality-body">
+            <div class="entity-content overflow-hidden" id="character-personality-body">
                 <div class="p-4">
                     @foreach ($traits as $trait)
                         <p class="entity-trait-{{ \Illuminate\Support\Str::slug($trait->name) }}">

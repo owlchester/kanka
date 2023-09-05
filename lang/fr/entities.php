@@ -65,8 +65,8 @@ return [
     'locations'             => 'Lieux',
     'map'                   => 'Carte',
     'maps'                  => 'Cartes',
-    'menu_link'             => 'Lien personnalisé',
-    'menu_links'            => 'Liens personnalisés',
+    'bookmark'             => 'Favori',
+    'bookmarks'            => 'Favoris',
     'new'                   => [
         'ability'       => 'Nouveau pouvoir',
         'character'     => 'Nouveau personnage',

@@ -18,6 +18,7 @@ const initAjaxTooltips = () => {
             allowHTML: true,
             interactive: true,
             delay: 500,
+            appendTo: e.dataset.append ?? document.body,
             content: '<i class="fa-solid fa-spin fa-spinner" aria-hidden="true" aria-label="loading..." />',
             arrow: true,
             onShow(instance) {
@@ -72,7 +73,7 @@ const initDropdowns = () => {
             return;
         }
         let dropdown = e.parentNode.querySelectorAll('.dropdown-menu')[0];
-        console.log('me', e, dropdown);
+        //console.log('me', e, dropdown);
         e.dataset.loaded = '1';
         tippy(e, {
             content: '<div class="dd-menu flex flex-col gap-1 max-w-2xl">' + dropdown.innerHTML + '</div>',

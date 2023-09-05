@@ -26,7 +26,7 @@
     </select>
 
     @if ($canNew)
-            <a class="quick-creator-subform btn2 join-item btn-primary btn-outline btn-sm" data-url="{{ route('entity-creator.form', [$campaign, 'type' => $entityType, 'origin' => 'entity-form', 'target' => $id]) }}">
+            <a class="quick-creator-subform btn2 join-item btn-sm" data-url="{{ route('entity-creator.form', [$campaign, 'type' => $entityType, 'origin' => 'entity-form', 'target' => $id]) }}">
                 <x-icon class="plus"></x-icon>
                 <span class="sr-only">{{ __('crud.create') }}</span>
             </a>

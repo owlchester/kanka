@@ -217,7 +217,8 @@ return [
         'tooltips' => [
             //<p>', '<table>', '<tr>', '<th>', '<td>', '<i>', '<span>', '<div>', '<img>
             'allowed' => [
-                'h1', 'h2', 'h3', 'p', 'table', 'tr', 'th', 'td', 'i', 'span', 'b', 'strong', 'div', 'img'
+                'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'table', 'tr', 'th', 'td',
+                'i', 'span', 'b', 'strong', 'div', 'img'
             ],
         ]
     ],

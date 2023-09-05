@@ -19,6 +19,6 @@
 >
     <?php /** @var \App\Models\Tag $tag */?>
     @foreach ($tags as $key => $tag)
-        <option value="{{ $key }}" data-colour="{{ $tag->colourClass() }}" selected="selected">{{ $tag->name }}</option>
+        <option value="{{ $key }}" data-colour="{{ $tag->colourClass() }}" selected="selected">{{ $tag->name }} </option>
     @endforeach
 </select>

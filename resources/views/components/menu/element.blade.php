@@ -5,7 +5,7 @@
     >
 
         @if ($badge > 0)
-            <x-badge css="float-right">
+            <x-badge css="float-right border">
                 {{ number_format($badge) }}
             </x-badge>
         @endif

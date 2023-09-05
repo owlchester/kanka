@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Creature;
+
 it('POSTS an invalid creature form')
     ->asUser()
     ->withCampaign()
@@ -99,11 +101,23 @@ it('can GET a creature as a player')
     ->assertStatus(200)
 ;
 
-it('can\'t GET a private creature as a player')
-    ->asUser()
-    ->withCampaign()
-    ->withCreatures(['is_private' => true])
-    ->asPlayer()
-    ->get('/api/1.0/campaigns/1/creatures/1?aaa=1')
-    ->assertStatus(404)
+/**
+ * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
+ * on-off function calls.
+ */
+it('can\'t GET a private creature as a player', function () {
+    $this->asUser()
+        ->withCampaign();
+
+    Creature::factory()
+        ->count(5)
+        ->create(['campaign_id' => 1, 'is_private' => true]);
+
+    $this->asPlayer();
+
+    $response = $this->get('/api/1.0/campaigns/1/creatures/1?aaa=1');
+    expect($response->status())
+        ->toBe(404);
+})
+
 ;

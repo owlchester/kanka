@@ -42,8 +42,8 @@
     color:hsl(var(--n)/var(--tw-text-opacity))
 }
 .text-neutral-content, .help-block {
-    --tw-text-opacity: .6;
-    color:hsl(var(--bc)/var(--tw-text-opacity))
+    --tw-text-opacity: 1;
+    color:hsl(var(--nc)/var(--tw-text-opacity))
 }
 .text-warning {
     --tw-text-opacity: 1;

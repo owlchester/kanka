@@ -49,11 +49,13 @@
                         </LookupEntity>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-2 justify-center" v-if="bookmarks.length > 0">
-                        <button class="btn2 btn-sm btn-ghost" v-bind:class="this.modeClass(true)" v-if="bookmarks.length > 0"
+                    <div class="flex gap-5 justify-center" v-if="bookmarks.length > 0">
+                        <button class="grow text-sm uppercase hover:underline"
+                                v-bind:class="this.modeClass(true)"
+                                v-if="bookmarks.length > 0"
                                 @click="showBookmarks()">{{ texts.bookmarks }}
                         </button>
-                        <button class="btn2 btn-sm btn-ghost"
+                        <button class="grow text-sm uppercase hover:underline"
                                 v-bind:class="this.modeClass(false)"
                                 @click="showIndexes()">
                             {{ texts.index }}
@@ -215,9 +217,13 @@ export default {
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = true;
-                this.show_bookmarks = true;
+                if (this.bookmarks.length > 0) {
+                    this.show_bookmarks = true;
+                } else {
+                    this.show_bookmarks = false;
+                }
             }).catch(error => {
-                // Probably unlogged user
+                // Probably un-logged user
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = false;
@@ -272,9 +278,9 @@ export default {
         },
         modeClass(bookmark) {
             if (bookmark && this.show_bookmarks) {
-                return ' btn-active ';
+                return ' underline';
             } else if (!bookmark && !this.show_bookmarks) {
-                return ' btn-active';
+                return ' underline';
             }
             return '';
         }

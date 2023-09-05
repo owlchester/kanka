@@ -1,7 +1,7 @@
 <?php
 $nameBlock = '';
 $textBlock = 'grow';
-$actionBlock = 'flex gap-2';
+$actionBlock = 'flex gap-3';
 $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 ?>
 @section('modals')
@@ -161,9 +161,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 <label class="sr-only">{{ __('entities/attributes.labels.section') }}</label>
                 {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.section'), 'class' => 'w-full', 'maxlength' => 191]) !!}
             </div>
-            <div class="{{ $textBlock }}">
-                {!! Form::hidden('attr_value[$TMP_ID$]', null) !!}
-            </div>
+            {!! Form::hidden('attr_value[$TMP_ID$]', null) !!}
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"

@@ -1,4 +1,4 @@
-<a href="{{ route('entities.inventories.create', [$campaign, 'entity' => $entity]) }}" class="btn2 btn-accent btn-sm"
+<a href="{{ route('entities.inventories.create', [$campaign, 'entity' => $entity]) }}" class="btn2 btn-sm"
     data-toggle="dialog" data-target="inventory-dialog"
     data-url="{{ route('entities.inventories.create', [$campaign, 'entity' => $entity]) }}"
 >

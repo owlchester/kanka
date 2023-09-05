@@ -15,7 +15,7 @@
         <span class="md:hidden">{{ __('entities/abilities.actions.import_from_race_mobile') }}</span>
     </a>
 @endif
-<a href="{{ route('entities.entity_abilities.create', [$campaign, $entity]) }}" class="btn2 btn-sm btn-accent"
+<a href="{{ route('entities.entity_abilities.create', [$campaign, $entity]) }}" class="btn2 btn-sm"
     data-toggle="dialog" data-target="abilities-dialog" data-url="{{ route('entities.entity_abilities.create', [$campaign, $entity]) }}">
     <x-icon class="plus" />
     <span class="hidden md:inline">{{ __('entities/abilities.actions.add') }}</span>

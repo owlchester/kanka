@@ -29,12 +29,12 @@
         // Text colour for accent
         --ac: 151 21% 13%;
 
-        // Neutral colour, for example for the page's background, code and pre elements, tooltip borders
-        --n: 233 27% 13%;
+        // Neutral colour, for example for default tags, code and pre elements, tooltip borders
+        --n: 220 22% 92%;
         // Neutral colour when focused
-        --nf: 233 27% 6%;
+        --nf: 227 12% 71%;
         // Text colour for elements with the neutral colour background
-        --nc: 210 38% 95%;
+        --nc: 223 13% 41%;
 
         // Base background colours, used for boxes, panels, modals
         --b1: 0 0% 100%;
@@ -74,7 +74,7 @@
         --btn-focus-scale: 1;
 
         // Button border width
-        --border-btn: 1px;
+        //--border-btn: 1px;
         // Button text transform
         --btn-text-case: uppercase;
 

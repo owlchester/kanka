@@ -21,7 +21,7 @@
                     <span class="hidden lg:inline">{{ __('maps.actions.explore') }}</span>
                 </a>
             @endif
-            <a href="{{ route('maps.map_layers.create', [$campaign, $model]) }}" class="btn2 btn-accent btn-sm"
+            <a href="{{ route('maps.map_layers.create', [$campaign, $model]) }}" class="btn2 btn-sm"
                 data-url="{{ route('maps.map_layers.create', [$campaign, $model]) }}"
             >
                 <x-icon class="plus"></x-icon>

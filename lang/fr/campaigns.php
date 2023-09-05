@@ -381,7 +381,7 @@ TEXT
             'journals'          => 'Observations écrites par des personnages, ou préparation de session pour le maître de jeu.',
             'locations'         => 'Planètes, plaines, continents, rivières, pays, temples, tavernes.',
             'maps'              => 'Ajouter des cartes et y ajouter des couches et des marqueurs pointant vers des entités de la campagne.',
-            'menu_links'        => 'Liens personnalisés dans la navigation.',
+            'menu_links'        => 'Liens favoris visibles dans la navigation de la campagne.',
             'notes'             => 'Histoires, légendes, religions, magie, races.',
             'organisations'     => 'Cultes, unités militaires, factions, guildes.',
             'quests'            => 'Gestionnaire de quêtes avec personnages et lieux.',

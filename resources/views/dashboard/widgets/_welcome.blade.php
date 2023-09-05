@@ -1,7 +1,8 @@
-<x-box css="widget-welcome entity-content" id="dashboard-widget-{{ $widget->id }}">
+<x-box css="widget-welcome" id="dashboard-widget-{{ $widget->id }}">
     <h4 class="text-lg mb-3">
         {{ __('dashboards/widgets/welcome.title', ['kanka' => config('app.name')]) }}
     </h4>
+    <div class=" entity-content">
     <p>
         {!! __('dashboards/widgets/welcome.intros.1', [
 'user' => auth()->check() ? '<strong>' . auth()->user()->name . '</strong>' : __('crud.users.unknown'),
@@ -34,7 +35,7 @@
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.2', [
-'world' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-globe" aria-hidden="true"></i> ' . __('sidebar.world') . '</span>',
+'world' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-cog" aria-hidden="true"></i> ' . __('sidebar.settings') . '</span>',
 'edit' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-pencil" aria-hidden="true"></i> ' . __('campaigns.show.actions.edit') . '</span>',
 ]) !!}
         </li>
@@ -44,7 +45,7 @@
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.4', [
- 'world' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-globe" aria-hidden="true"></i> ' . __('sidebar.world') . '</span>',
+ 'world' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-cog" aria-hidden="true"></i> ' . __('sidebar.settings') . '</span>',
 'members' => '<span class="badge select-none flex items-center gap-2">' . __('campaigns.show.tabs.members') . '</span>',
 ]) !!}
         </li>
@@ -83,5 +84,5 @@
 ]) !!}
         </li>
     </ul>
-
+    </div>
 </x-box>
