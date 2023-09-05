@@ -30,7 +30,7 @@ class Badge extends Component
     public function render(): View|Closure|string
     {
         return view('components.badge');
-           // ->with('colour', $this->colour());
+        // ->with('colour', $this->colour());
     }
 
     public function colour(): string

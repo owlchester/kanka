@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreImageFocus;
-use App\Http\Requests\Campaigns\GalleryImageFolderStore;
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\Campaigns\GalleryImageUpdate;
 use App\Models\Campaign;

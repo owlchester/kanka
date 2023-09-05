@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Campaign\Gallery;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Image;
-use App\Services\Campaign\GalleryService;
 
 class SearchController extends Controller
 {

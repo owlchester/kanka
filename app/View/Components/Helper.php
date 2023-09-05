@@ -14,8 +14,7 @@ class Helper extends Component
      */
     public function __construct(
         string $text = null,
-    )
-    {
+    ) {
         $this->text = $text;
     }
 
