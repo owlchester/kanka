@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Bulks;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\EntityType;
-use App\Services\AttributeService;
 use App\Services\BulkService;
-use App\Services\Entity\TypeService;
 
 class CopyController extends Controller
 {

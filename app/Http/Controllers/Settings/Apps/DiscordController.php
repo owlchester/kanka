@@ -3,10 +3,6 @@
 namespace App\Http\Controllers\Settings\Apps;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\DiscordRoleJob;
-use App\Jobs\Emails\SubscriptionFailedEmailJob;
-use App\Jobs\SubscriptionEndJob;
-use App\Notifications\Header;
 use App\Services\DiscordService;
 use Illuminate\Http\Request;
 use Exception;

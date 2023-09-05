@@ -153,7 +153,6 @@ class FormCopyService
 
     /**
      * Prefill model for custom blade directives
-     * @return null
      */
     public function model()
     {
@@ -166,7 +165,6 @@ class FormCopyService
 
     /**
      * Prefill model for custom blade directives
-     * @return null
      */
     public function related()
     {
