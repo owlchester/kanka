@@ -35,7 +35,6 @@ class TocSlugify implements SlugifyInterface
      * Slugify
      *
      * @param string $string
-     * @param null $options
      */
     public function slugify($string, $options = null): string
     {

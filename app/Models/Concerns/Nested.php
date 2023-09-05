@@ -773,7 +773,6 @@ trait Nested
     }
 
     /**
-     * @return null
      */
     protected function getScopeAttributes()
     {

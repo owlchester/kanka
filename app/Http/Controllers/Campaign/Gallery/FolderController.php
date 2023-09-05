@@ -7,7 +7,6 @@ use App\Http\Requests\Campaigns\GalleryImageFolderStore;
 use App\Models\Campaign;
 use App\Models\Image;
 use App\Services\Campaign\GalleryService;
-use Illuminate\Support\Facades\Request;
 
 class FolderController extends Controller
 {

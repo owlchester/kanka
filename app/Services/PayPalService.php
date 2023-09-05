@@ -39,7 +39,7 @@ class PayPalService
             } elseif ($this->user->isWyvern()) {
                 $oldPrice = "110.00";
             }
-            $price = floatval($price) - ($oldPrice + ((floatval($price)/365) * $this->user->subscriptions()->first()->created_at->diffInDays(Carbon::now())));
+            $price = floatval($price) - ($oldPrice + ((floatval($price) / 365) * $this->user->subscriptions()->first()->created_at->diffInDays(Carbon::now())));
             $price = str(ceil($price)) . '.00';
         }
 
