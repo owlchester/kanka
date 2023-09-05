@@ -8,16 +8,9 @@ if (isset($toggle) && $toggle) {
 @endphp
 
 <div class="flex flex-col gap-2">
-    @if($currentPlan === \App\Models\Pledge::KOBOLD)
-        <a class="btn2 btn-block btn-sm disabled">
-            {{ __('tiers.current') }}
-        </a>
-    @else
-        <a class="btn2 btn-block btn-sm btn-accent " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::KOBOLD]) }}">
-            {{ __('settings.subscription.subscription.actions.cancel') }}<br />
-            ({{ __('settings.subscription.subscription.actions.rollback') }})
-        </a>
-    @endif
+    <a class="btn2 btn-block btn-sm disabled">
+        {{ __('settings.subscription.subscription.actions.downgrading') }}
+    </a>
 </div>
 <div class="flex flex-col gap-2">
     @if (str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))

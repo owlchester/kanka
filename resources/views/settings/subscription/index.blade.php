@@ -133,7 +133,7 @@
                     </x-alert>
                 </div>
             @else
-                @if (str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))
+                @if ($user->isSubscriber() && str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))
                     @include('settings.subscription._paypal_buttons', ['toggle' => true])
                 @else
                     @include('settings.subscription._buttons', ['toggle' => true])
