@@ -230,7 +230,7 @@
                         </x-alert>
                     @elseif (config('paypal.enabled'))
 
-                        @if ($user->subscribed('kanka'))
+                        @if ($user->subscribed('kanka') && !str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))
                             <x-alert type="warning">
                                 {{ __('settings.subscription.helpers.alternatives_warning') }}
                             </x-alert>
@@ -245,7 +245,6 @@
                                     <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                                 </button>
                             </div>
-
                             <input type="hidden" name="tier" value="{{ $tier }}" />
                             <input type="hidden" name="coupon" id="coupon" value="" />
                             <input type="hidden" name="period" value="{{ $period }}" />
