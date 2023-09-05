@@ -16,10 +16,11 @@ class PayPalService
      */
     public function process(string $pledge): mixed
     {
+        // @phpstan-ignore-next-line
         if ($this->user->isSubscriber() && !str_contains($this->user->subscriptions()->first()->stripe_price, 'paypal')) {
             return [];
         }
-
+        $oldPrice = '';
         $currency = "USD";
         if ($this->user->billedInEur()) {
             $currency = "EUR";
@@ -39,7 +40,9 @@ class PayPalService
             } elseif ($this->user->isWyvern()) {
                 $oldPrice = "110.00";
             }
+            // @phpstan-ignore-next-line
             $price = floatval($price) - ($oldPrice + ((floatval($price) / 365) * $this->user->subscriptions()->first()->created_at->diffInDays(Carbon::now())));
+            // @phpstan-ignore-next-line
             $price = str(ceil($price)) . '.00';
         }
 

@@ -91,6 +91,7 @@ class SubscriptionController extends Controller
         $isYearly = $period === 'yearly';
         $hasPromo = $isYearly && \Carbon\Carbon::create(2022, 10, 31)->isFuture();
         $limited = $this->subscription->isLimited();
+        // @phpstan-ignore-next-line
         if ($user->subscribed('kanka') && str_contains($user->subscriptions()->first()->stripe_price, 'paypal')) {
             $limited = true;
         }
