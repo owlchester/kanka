@@ -219,7 +219,6 @@ class DashboardService
 
     /**
      * Get the default dashboard of a user
-     * @return null
      */
     protected function defaultDashboard(array $available)
     {

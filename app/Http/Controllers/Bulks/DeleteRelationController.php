@@ -24,7 +24,7 @@ class DeleteRelationController extends Controller
         return view('cruds.datagrids.bulks.modals.delete.relation')
             ->with('campaign', $campaign)
             ->with('datagrid', $datagrid)
-            ;
+        ;
     }
 
     public function apply(Campaign $campaign)

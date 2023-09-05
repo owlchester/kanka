@@ -17,8 +17,7 @@ class Checkbox extends Component
     public function __construct(
         string $text,
         ?array $data = [],
-    )
-    {
+    ) {
         $this->text = $text;
         $this->dataProperties = $data;
     }
