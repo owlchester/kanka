@@ -249,7 +249,7 @@ abstract class MiscModel extends Model
             'entity' => true,
             'button' => auth()->check() && auth()->user()->can('update', $this) ? [
                 'url' => route('entities.story.reorder', [$campaign, $this->entity->id]),
-                'icon' => 'fa-solid fa-cog',
+                'icon' => 'fa-solid fa-arrow-up-arrow-down',
                 'tooltip' => __('entities/story.reorder.icon_tooltip'),
             ] : null,
         ];

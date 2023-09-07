@@ -1,5 +1,5 @@
 <a href="{{ route('entities.entity_abilities.reorder', [$campaign, $entity]) }}" class="btn2 btn-sm">
-    <x-icon class="fa-solid fa-sort" />
+    <x-icon class="fa-solid fa-arrow-up-arrow-down" />
     <span class="hidden md:inline">{{ __('entities/abilities.show.reorder') }}</span>
     <span class="md:hidden">{{ __('sidebar.campaign_switcher.reorder') }}</span>
 </a>

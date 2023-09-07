@@ -1,4 +1,4 @@
-@if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
+@if ($status == \App\Services\SubscriptionService::STATUS_GRACE && !str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))
     <div class="col-span-4">
         <p class="help-block">
             {{ __('settings.subscription.cancelled', ['date' => auth()->user()->subscription('kanka')->ends_at->isoFormat('lll')]) }}
@@ -29,7 +29,7 @@ if (isset($toggle) && $toggle) {
     @endif
 </div>
 <div class="flex flex-col gap-2">
-    @if ($user->subscribedToPrice($service->elementalPlans(), 'kanka'))
+    @if ($user->subscribedToPrice($service->elementalPlans(), 'kanka') || str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
@@ -60,7 +60,7 @@ if (isset($toggle) && $toggle) {
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
         </a>
-    @elseif ($user->subscribedToPrice($service->wyvernPlans(), 'kanka'))
+    @elseif ($user->subscribedToPrice($service->wyvernPlans(), 'kanka') || str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
@@ -86,7 +86,7 @@ if (isset($toggle) && $toggle) {
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
         </a>
-    @elseif ($user->subscribedToPrice($service->elementalPlans(), 'kanka'))
+    @elseif ($user->subscribedToPrice($service->elementalPlans(), 'kanka') || str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
