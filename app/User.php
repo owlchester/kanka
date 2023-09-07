@@ -487,4 +487,12 @@ class User extends \Illuminate\Foundation\Auth\User
 
         return $campaigns;
     }
+
+    /**
+     * Check if user is subscribed via PayPal
+     */
+    public function hasPayPal(): bool
+    {
+        return $this->subscribed('kanka') && $this->subscriptions()->first() && str_contains($this->subscriptions()->first()->stripe_price, 'paypal');
+    }
 }

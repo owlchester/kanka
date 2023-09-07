@@ -13,7 +13,7 @@ if (isset($toggle) && $toggle) {
     </a>
 </div>
 <div class="flex flex-col gap-2">
-    @if (str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))
+    @if ($user->hasPaypal())
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
