@@ -164,9 +164,9 @@ class FamilyTreeService
         $birth = null;
         $death = null;
         foreach ($elapsed as $event) {
-            if ($event->isBirth() && is_null($birth)) {
+            if ($event->isBirth() && null === $birth) {
                 $birth = $event->year;
-            } elseif ($event->isDeath() && is_null($death)) {
+            } elseif ($event->isDeath() && null === $death) {
                 $death = $event->year;
             }
         }
