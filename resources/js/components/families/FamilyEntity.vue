@@ -15,13 +15,21 @@
                         {{ entity.name }}
                     </span>
                     <span class="self-end" v-show="entity.is_dead">
-                        <i class="fa-solid fa-skull" v-bind:title="tooltip('is_dead')" aria-hidden="true"/>
+                        <i class="fa-solid fa-skull" v-bind:title="tooltip('is_dead')" aria-hidden="true"></i>
                     </span>
                 </a>
                 <span v-bind:class="cssClasses()" v-if="node.isUnknown">
                     <i>{{ fields('unknown') }}</i>
                 </span>
-
+                <span class="text-xs" v-show="entity.birth">
+                    {{ entity.birth }}
+                </span>
+                <span class="text-xs" v-if="entity.birth && entity.death">
+                    -
+                </span>
+                <span class="text-xs" v-show="entity.death">
+                    ✝ {{ entity.death }}
+                </span>
                 <span class="text-xs" v-if="!isEditing && false">
                     (#{{ entity.id }})
                 </span>

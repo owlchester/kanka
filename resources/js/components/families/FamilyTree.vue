@@ -99,7 +99,7 @@
           <p class="help-block text-neutral-content">{{ this.texts.modals.entity.edit.helper }}</p>
         </div>
 
-        <div class="field field-relation flex flex-col gap-1">
+        <div v-if="!isAddingChild" class="field field-relation flex flex-col gap-1">
           <label>{{ this.texts.modals.fields.relation }}</label>
           <input v-model="relation" type="text" maxlength="70" class="w-full" id="family_tree_relation" @keyup.enter="saveModal()"/>
         </div>
