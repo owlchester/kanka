@@ -133,8 +133,11 @@
                     </x-alert>
                 </div>
             @else
-                @include('settings.subscription._buttons', ['toggle' => true])
-
+                @if ($user->hasPayPal())
+                    @include('settings.subscription._paypal_buttons', ['toggle' => true])
+                @else
+                    @include('settings.subscription._buttons', ['toggle' => true])
+                @endif
             @endif
             @include('settings.subscription._benefits')
         </div>
