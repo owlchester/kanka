@@ -158,12 +158,27 @@ class FamilyTreeService
             $tags[] = 'kanka-tag-' . $tag->id;
             $tags[] = 'kanka-tag-' . $tag->slug;
         }
+        $elapsed = $entity->elapsedEvents;
+
+        // Prepare birth and death events
+        $birth = null;
+        $death = null;
+        foreach ($elapsed as $event) {
+            if ($event->isBirth() && null === $birth) {
+                $birth = $event->year;
+            } elseif ($event->isDeath() && null === $death) {
+                $death = $event->year;
+            }
+        }
+
         return [
             'id' => $entity->id,
             'name' => $entity->name,
             'url' => $entity->url(),
             'thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
             'is_dead' => (bool)$entity->character->is_dead,
+            'death' => $birth,
+            'birth' => $death,
             'tags' => $tags,
         ];
     }
