@@ -182,15 +182,17 @@ class AttributeController extends Controller
         ]);
         $attributeValue = null;
         $result = $attribute->mappedValue();
+        $attributeValue = $result;
         if ($attribute->isText()) {
             $result = nl2br($result);
+            $attributeValue = $result;
         } elseif ($attribute->isCheckbox()) {
             $result = '<i class="fa-solid fa-' . ($attribute->value ? 'check' : 'times') . '"></i>';
             $attributeValue = $attribute->value ? 'true' : 'false';
         }
         return response()->json([
             'value' => $result,
-            'checkbox' => $attributeValue,
+            'attribute' => $attributeValue,
             'uid' => $request->get('uid'),
             'success' => __('entities/attributes.live.success', ['attribute' => $attribute->name()])
         ]);
