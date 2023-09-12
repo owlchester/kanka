@@ -2,8 +2,8 @@
 
 return [
     'ads'   => [
-        'premium'       => 'activer les fonctionnalités Premium pour',
-        'remove_v3'     => 'Retirer ces publicités en :subscribing à Kanka ou en :boosting la campagne.',
-        'subscribing'   => 'souscrivant',
+        'premium'       => 'activant les fonctionnalités Premium',
+        'remove_v3'     => 'Retire ces publicités en t\':subscribing à Kanka ou en :boosting pour la campagne.',
+        'subscribing'   => 'abonnant',
     ],
 ];
