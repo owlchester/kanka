@@ -185,6 +185,7 @@ const listenToLiveForm = () => {
 
             let target = $('[data-uid="' + result.uid + '"]');
             //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
+            target.attr('data-attribute', result.attribute)
             target.html(result.value);
             if (result.value) {
                 target.removeClass('empty-value');

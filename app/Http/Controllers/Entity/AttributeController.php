@@ -180,15 +180,19 @@ class AttributeController extends Controller
         $attribute->update([
             'value' => Purify::clean($request->get('value'))
         ]);
-
+        $attributeValue = null;
         $result = $attribute->mappedValue();
+        $attributeValue = $result;
         if ($attribute->isText()) {
             $result = nl2br($result);
+            $attributeValue = $result;
         } elseif ($attribute->isCheckbox()) {
             $result = '<i class="fa-solid fa-' . ($attribute->value ? 'check' : 'times') . '"></i>';
+            $attributeValue = $attribute->value ? 'true' : 'false';
         }
         return response()->json([
             'value' => $result,
+            'attribute' => $attributeValue,
             'uid' => $request->get('uid'),
             'success' => __('entities/attributes.live.success', ['attribute' => $attribute->name()])
         ]);

@@ -82,7 +82,7 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes.js": {
-    "file": "assets/attributes-d7f77ad0.js",
+    "file": "assets/attributes-6b4fbadc.js",
     "imports": [
       "_sortable.esm-be94e56d.js",
       "_mention-6dbb4e38.js"
