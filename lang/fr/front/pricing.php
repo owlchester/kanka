@@ -24,7 +24,7 @@ return [
         ],
         'resub'         => [
             'answer'    => 'Lorsque ton abonnement se termine, toutes les fonctionnalités et les données liées à l\'abonnement sont désactivées mais enregistrées sur nos serveurs. Cela signifie que lorsque tu te réabonnes, tout reviendra comme tu l\'avais laissé.',
-            'title'     => 'Que ce passe-t-il quand je re-souscri à un abonnement?',
+            'title'     => 'Que se passe-t-il lorsque je me réabonne?',
         ],
         'security'      => [
             'answer'    => 'Nous utilisons Stripe.com pour gérer en toute sécurité tes informations de paiement et nous ne stockons que des données limitées concernant ton mode de paiement. Nous utilisons ces informations pour t\'avertir lorsque ta carte est sur le point d\'expirer, afin que tu puisses la mettre à jour et ne pas perdre ton abonnement.',

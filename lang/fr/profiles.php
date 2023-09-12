@@ -30,7 +30,7 @@ return [
     ],
     'newsletter'                    => [
         'helpers'   => [
-            'header'    => 'Souscrire aux newsletters par email pour être notifié des changements dans Kanka.',
+            'header'    => 'S\'adonner aux newsletters par email pour être notifié des changements dans Kanka.',
         ],
         'options'   => [
             'monthly'   => 'Newsletter Kanka',

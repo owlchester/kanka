@@ -54,8 +54,8 @@ return [
     'no_notifications'  => 'Il n\'y a actuellement aucune notification.',
     'subscriptions'     => [
         'charge_fail'   => 'Une erreur est survenue lors du paiement. Kanka va ressayer encore une fois. Si rien ne change, prière de nous contacter.',
-        'deleted'       => 'Ta souscription à Kanka a été annulée après trop d\'essais ratés avec ta méthode de paiement. Va sur la page de ta souscription et mets à jour tes données de paiement.',
-        'ended'         => 'Ta souscription a Kanka est terminée. Tes boosters de campagnes et rôles Discord ont été retirés. Nous espérons te revoir bientôt!',
+        'deleted'       => 'Ton abonnement à Kanka a été annulé après trop d\'essais ratés avec ta méthode de paiement. Va sur la page d\'abonnement et mets à jour tes données de paiement.',
+        'ended'         => 'Ton abonnement a Kanka est terminée. Tes campagnes premium et rôles Discord ont été retirés. Nous espérons te revoir bientôt!',
         'failed'        => 'Problème lors du traitement de la méthode de paiement, merci de les mettre à jour.',
         'started'       => 'L\'abonnement à Kanka a commencé.',
     ],

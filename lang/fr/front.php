@@ -277,7 +277,7 @@ return [
     ],
     'pricing'               => [
         'actions'       => [
-            'subscribe' => 'Souscrire',
+            'subscribe' => 'S\'abonner',
         ],
         'benefits'      => [
             'big_maps'      => 'Taille de carte (:size)',

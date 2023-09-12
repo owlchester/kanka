@@ -26,7 +26,7 @@ return [
         'pitch'     => 'Abonne-toi pour accéder aux boosters de campagne.',
         'success'   => 'La campagne :campaign est maintenant boostée. Régale-toi avec les incroyables fonctionnalités!',
         'title'     => 'Booster :campaign',
-        'upgrade'   => 'souscris à un tier plus élevé',
+        'upgrade'   => 's\'abonner à un niveau plus élevé',
     ],
     'campaign'  => [
         'boosted'       => 'Boosté par :user depuis :time',

@@ -4,7 +4,7 @@ return [
     'actions'       => [
         'return'    => 'Retour aux votes communautaires.',
         'show'      => 'Afficher les résultats',
-        'subscribe' => 'Souscrire à Kanka pour voter',
+        'subscribe' => 'S\'abonner à Kanka pour voter',
         'vote'      => 'Voter',
     ],
     'description'   => 'Les utilisateurs qui soutiennent Kanka aident à façonner l\'évolution de l\'application en participant fréquemment à des votes communautaires.',
