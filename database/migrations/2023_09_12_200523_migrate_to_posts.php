@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,7 +12,7 @@ return new class extends Migration
     {
         Schema::rename('entity_notes', 'posts');
         Schema::rename('entity_note_permissions', 'post_permissions');
-    
+
         Schema::table('post_permissions', function (Blueprint $table) {
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
@@ -33,7 +32,7 @@ return new class extends Migration
     {
         Schema::rename('posts', 'entity_notes');
         Schema::rename('post_permissions', 'entity_note_permissions');
-    
+
         Schema::table('post_permissions', function (Blueprint $table) {
             $table->foreign('post_id')->references('id')->on('entity_notes')->onDelete('cascade');
         });
