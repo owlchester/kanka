@@ -8,7 +8,6 @@ use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
-use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Quest;
@@ -102,7 +101,7 @@ class MentionsService
      * Map the mentions in a post
      * @return string|string[]|null
      */
-    public function mapPost(Post|EntityNote $post)
+    public function mapPost(Post $post)
     {
         $this->text = (string) $post->entry;
         return $this->extractAndReplace();

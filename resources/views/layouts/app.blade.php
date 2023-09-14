@@ -79,7 +79,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <div id="app" class="wrapper h-full relative mt-12">
         @include('layouts.header', ['toggle' => $showSidebar])
 
-        @include('layouts.sidebars.' . ($sidebar ?? 'app'))
+        @includeWhen(isset($campaign), 'layouts.sidebars.' . ($sidebar ?? 'app'))
 
         @yield('fullpage-form')
 

@@ -27,7 +27,7 @@ class EntityFileObserver
      */
     public function saved(EntityFile $entityFile)
     {
-        // When adding or changing an entity note to an entity, we want to update the
+        // When adding or changing an post to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
         $entityFile->entity->child->touchQuietly();
     }
@@ -38,7 +38,7 @@ class EntityFileObserver
     {
         ImageService::cleanup($entityFile, 'path');
 
-        // When deleting an entity note, we want to update the entity's last update
+        // When deleting an post, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
         if ($entityFile->entity) {

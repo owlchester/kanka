@@ -1,6 +1,6 @@
 <?php
-if ($model instanceof \App\Models\EntityNote) {
-    $modelName = 'EntityNote';
+if ($model instanceof \App\Models\Post) {
+    $modelName = 'Post';
     $modelId = $entity->id;
 } elseif ($model instanceof \App\Models\Campaign) {
     $modelName = null;

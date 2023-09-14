@@ -6,7 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
-use App\Models\EntityNote;
+use App\Models\Post;
 use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -67,7 +67,7 @@ class AclScope implements Scope
         }
 
         // For posts, we need a different hook because they can be private even for an admin
-        if ($model instanceof EntityNote) {
+        if ($model instanceof Post) {
             return $this->applyToPost($query, $model);
         }
 

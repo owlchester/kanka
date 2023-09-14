@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Models\EntityNotePermission;
+use App\Models\PostPermission;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,7 +15,7 @@ class PostPermissionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        /** @var EntityNotePermission $model */
+        /** @var PostPermission $model */
         $model = $this->resource;
 
         return [

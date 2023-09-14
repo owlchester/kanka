@@ -18,7 +18,7 @@ class EntityMentionResource extends EntityChild
         $model = $this->resource;
         return [
             'entity_id' => $model->entity_id,
-            'entity_note_id' => $model->entity_note_id,
+            'post_id' => $model->post_id,
             'campaign_id' => $model->campaign_id,
             'target_id' => $model->target_id,
         ];

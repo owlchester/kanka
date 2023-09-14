@@ -36,7 +36,7 @@ class EditingController extends Controller
             ->user(auth()->user())
             ->users();
 
-        if ($model instanceof \App\Models\EntityNote) {
+        if ($model instanceof \App\Models\Post) {
             $url = route('posts.confirm-editing', [$campaign, 'post' => $model, 'entity' => $model->entity]);
             $show = $model->entity->url();
         } elseif ($model instanceof \App\Models\Campaign) {

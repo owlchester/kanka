@@ -57,6 +57,6 @@ class StoryController extends Controller
             ->with('model', $entity->child)
             ->with('more', true)
             ->with('campaign', $campaign)
-            ->with('pinnedPosts', $posts);
+            ->with('posts', $posts);
     }
 }

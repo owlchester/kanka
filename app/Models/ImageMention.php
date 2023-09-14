@@ -91,6 +91,6 @@ class ImageMention extends Model
      */
     public function scopePost(Builder $query): Builder
     {
-        return $query->whereNotNull('image_mentions.entity_note_id');
+        return $query->whereNotNull('image_mentions.post_id');
     }
 }

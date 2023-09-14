@@ -13,7 +13,7 @@ use Illuminate\Support\Arr;
  * @package App\Models
  *
  * @property integer $entity_id
- * @property integer|null $entity_note_id
+ * @property integer|null $post_id
  * @property integer|null $quest_element_id
  * @property integer|null $timeline_element_id
  * @property integer|null $campaign_id
@@ -33,7 +33,7 @@ class EntityMention extends Model
 
     public $fillable = [
         'entity_id',
-        'entity_note_id',
+        'post_id',
         'timeline_element_id',
         'quest_element_id',
         'campaign_id',
@@ -66,7 +66,7 @@ class EntityMention extends Model
      */
     public function post()
     {
-        return $this->belongsTo('App\Models\Post', 'entity_note_id', 'id');
+        return $this->belongsTo('App\Models\Post', 'post_id', 'id');
     }
 
     /**
@@ -98,7 +98,7 @@ class EntityMention extends Model
      */
     public function isPost(): bool
     {
-        return !empty($this->entity_note_id);
+        return !empty($this->post_id);
     }
 
     /**
@@ -179,7 +179,7 @@ class EntityMention extends Model
      */
     public function scopePost(Builder $query): Builder
     {
-        return $query->whereNotNull('entity_mentions.entity_note_id');
+        return $query->whereNotNull('entity_mentions.post_id');
     }
 
     /**
@@ -235,7 +235,7 @@ class EntityMention extends Model
         } elseif ($this->isTimelineElement()) {
             return route('entities.show', [$campaign, $this->entity, '#timeline-element-' . $this->timeline_element_id]);
         } elseif ($this->isPost()) {
-            return route('entities.show', [$campaign, $this->entity, '#post-' . $this->entity_note_id]);
+            return route('entities.show', [$campaign, $this->entity, '#post-' . $this->post_id]);
         }
         return '#';
     }

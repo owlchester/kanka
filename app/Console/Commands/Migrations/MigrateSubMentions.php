@@ -86,7 +86,7 @@ class MigrateSubMentions extends Command
             'post' => function ($sub) {
                 $sub->select('id', 'entity_id');
             }])
-            ->whereNotNull('entity_note_id')
+            ->whereNotNull('post_id')
             ->whereNull('entity_id')
             ->has('post')
             ->has('post.entity')

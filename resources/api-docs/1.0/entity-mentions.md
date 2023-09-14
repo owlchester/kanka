@@ -22,7 +22,7 @@ You can get a list of all the mentions of an entity by using the following endpo
     "data": [
         {
             "entity_id": 10,
-            "entity_note_id": null,
+            "post_id": null,
             "campaign_id": null,
             "target_id": 36
         }
@@ -34,8 +34,8 @@ You can get a list of all the mentions of an entity by using the following endpo
 | Field | References |
 | :- |   :-   |  :-  |
 | `entity_id` | The current entity |
-| `entity_note_id` | The entity note id that mentions this entity |
+| `post_id` | The post id that mentions this entity |
 | `campaign_id` | The campaign ID mentioning this entity. This will always be the entity's campaign ID |
 | `target_id` | The entity ID that mentions this entity |
 
-Only one of `entity_note_id`, `campaign_id` or `target_id` will ever be filled out for a mention. If an entity is mentionned several times by another entity, only one mention object is saved.
+Only one of `post_id`, `campaign_id` or `target_id` will ever be filled out for a mention. If an entity is mentionned several times by another entity, only one mention object is saved.

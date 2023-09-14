@@ -8,7 +8,7 @@ use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\CharacterTrait;
-use App\Models\EntityNote;
+use App\Models\Post;
 use App\Models\MiscModel;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
@@ -129,9 +129,9 @@ class MoveService
             $newModel->saveQuietly();
             $newModel->createEntity();
 
-            // Copy entity notes over
+            // Copy posts over
             foreach ($this->entity->posts as $note) {
-                /** @var EntityNote $newNote */
+                /** @var Post $newNote */
                 $newNote = $note->replicate(['entity_id', 'created_by', 'updated_by']);
                 $newNote->entity_id = $newModel->entity->id;
                 $newNote->created_by = auth()->user()->id;

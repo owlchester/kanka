@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\Models\Entity $entity
- * @var \App\Models\EntityNote $model
+ * @var \App\Models\Post $model
  */
 use App\Enums\Visibility;
 

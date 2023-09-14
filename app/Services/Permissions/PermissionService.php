@@ -6,7 +6,7 @@ use App\Facades\UserCache;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
-use App\Models\EntityNotePermission;
+use App\Models\PostPermission;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use App\User;
@@ -166,7 +166,7 @@ class PermissionService
     }
 
     /**
-     * Load the permissions for posts (entity notes)
+     * Load the permissions for posts
      * @return $this
      */
     protected function loadPostPermissions(): self
@@ -178,8 +178,8 @@ class PermissionService
 
         // Get the user's individual and role permissions
         $roles = $this->user->campaignRoleIDs($this->campaign->id);
-        $perms = EntityNotePermission::select(['post_id', 'permission'])
-            ->leftJoin('entity_notes as p', 'p.id', 'entity_note_permissions.post_id')
+        $perms = PostPermission::select(['post_id', 'permission'])
+            ->leftJoin('posts as p', 'p.id', 'post_permissions.post_id')
             ->leftJoin('entities as e', 'e.id', 'p.entity_id')
             ->where(function ($sub) use ($roles) {
                 $sub->where('user_id', $this->user->id)
@@ -187,7 +187,7 @@ class PermissionService
             })
             ->where('e.campaign_id', $this->campaign->id)
             ->get();
-        /** @var EntityNotePermission $perm */
+        /** @var PostPermission $perm */
         foreach ($perms as $perm) {
             if ($perm->permission === 2) {
                 $this->deniedPostIDs[] = $perm->post_id;

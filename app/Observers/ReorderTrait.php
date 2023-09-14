@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\EntityNote;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\Post;
@@ -38,12 +37,12 @@ trait ReorderTrait
                 $element->updateQuietly();
                 $position = $position + 1;
             }
-        } elseif ($model instanceof EntityNote) {
+        } elseif ($model instanceof Post) {
             $this->reorderPosts($model);
         }
     }
 
-    protected function reorderPosts(EntityNote $model)
+    protected function reorderPosts(Post $model)
     {
         // Placing it first, this makes it a bit complicated
         $position = $model->position;
