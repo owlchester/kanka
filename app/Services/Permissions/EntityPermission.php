@@ -243,8 +243,6 @@ class EntityPermission
     /**
      * It's way easier to just load all permissions of the user once and "cache" them, rather than try and be
      * optional on each query.
-     * @param User $user
-     * @param Campaign $campaign
      * @return void
      */
     protected function loadAllPermissions(User $user = null, Campaign $campaign = null)

@@ -18,7 +18,6 @@ class CommunityVotePolicy
 
     /**
      * Determine if a user can view a vote
-     * @param User $user
      */
     public function show(?User $user, CommunityVote $communityVote): bool
     {

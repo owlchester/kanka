@@ -188,7 +188,6 @@ class CampaignPolicy
 
     /**
      * Permission to view the members of a campaign
-     * @param User $user
      * @return bool
      */
     public function members(?User $user, Campaign $campaign)
@@ -202,7 +201,6 @@ class CampaignPolicy
 
     /**
      * Permission to view the campaign submissions
-     * @param User $user
      * @return bool
      */
     public function submissions(?User $user)

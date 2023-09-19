@@ -70,7 +70,6 @@ class AttributeMentionService
 
     /**
      * Determine if the text contains a valid attribute mention using {}
-     * @param string $value
      */
     protected function validField(string $value = null): bool
     {
