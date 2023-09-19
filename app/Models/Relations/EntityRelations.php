@@ -15,7 +15,6 @@ use App\Models\EntityEvent;
 use App\Models\EntityEventType;
 use App\Models\EntityLink;
 use App\Models\EntityMention;
-use App\Models\EntityNote;
 use App\Models\EntityTag;
 use App\Models\EntityUser;
 use App\Models\Image;
@@ -40,7 +39,6 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Creature $creature
  * @property Tag[]|Collection $tags
  * @property EntityTag[]|Collection $entityTags
- * @property EntityNote[]|Collection $notes
  * @property Post[]|Collection $posts
  * @property EntityMention[]|Collection $mentions
  * @property Inventory[]|Collection $inventories
@@ -359,14 +357,6 @@ trait EntityRelations
     public function targetRelationships()
     {
         return $this->hasMany('App\Models\Relation', 'target_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function notes()
-    {
-        return $this->hasMany('App\Models\EntityNote', 'entity_id', 'id');
     }
 
     /**

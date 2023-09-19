@@ -1,7 +1,7 @@
 <?php /**
  * @var \App\Models\Entity $entity
- * @var \App\Models\EntityNote[]|\Illuminate\Support\Collection $notes
- * @var \App\Models\EntityNote $first
+ * @var \App\Models\Post[]|\Illuminate\Support\Collection $notes
+ * @var \App\Models\Post $first
  */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [

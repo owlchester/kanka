@@ -90,7 +90,7 @@ class EntityLog extends Model
      */
     public function post()
     {
-        return $this->belongsTo('App\Models\EntityNote', 'post_id');
+        return $this->belongsTo('App\Models\Post', 'post_id');
     }
 
     /**

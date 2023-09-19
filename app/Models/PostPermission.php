@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EntityNotePermission
+ * Class PostPermission
  * @package App\Models
  *
  * @property int $id
@@ -15,9 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $role_id
  * @property int $permission
  * @property User $user
- * @property EntityNote $note
+ * @property Post $post
  */
-class EntityNotePermission extends Model
+class PostPermission extends Model
 {
     public $fillable = [
         'user_id',
@@ -45,9 +45,9 @@ class EntityNotePermission extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function note()
+    public function post()
     {
-        return $this->belongsTo(EntityNote::class, 'post_id', 'id');
+        return $this->belongsTo(Post::class, 'post_id', 'id');
     }
 
     /**

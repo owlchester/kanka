@@ -11,7 +11,7 @@ class OpenAiService
     /**  */
     protected string $prompt;
 
-    /** @var string */
+    /**  */
     protected ?string $name;
     protected ?string $pronouns = null;
     protected ?string $gender = null;

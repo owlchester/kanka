@@ -378,12 +378,12 @@ trait HasFilters
     {
         $query
             ->joinEntity()
-            ->leftJoin('entity_notes', 'entity_notes.entity_id', 'e.id');
+            ->leftJoin('posts', 'posts.entity_id', 'e.id');
 
         if ($value) {
-            $query->whereNotNull('entity_notes.id');
+            $query->whereNotNull('posts.id');
         } else {
-            $query->whereNull('entity_notes.id');
+            $query->whereNull('posts.id');
         }
     }
 

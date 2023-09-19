@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \App\Models\EntityNotePermission $perm
+ * @var \App\Models\PostPermission $perm
  */
 
 use App\Models\PostLayout;

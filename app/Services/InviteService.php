@@ -31,7 +31,6 @@ class InviteService
     }
 
     /**
-     * @param string $token
      * @throws RequireLoginException
      * @throws \Exception
      */

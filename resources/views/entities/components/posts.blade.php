@@ -3,23 +3,23 @@
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  * @var \App\Models\Post $post
- * @var \Illuminate\Database\Eloquent\Collection $pinnedPosts
+ * @var \Illuminate\Database\Eloquent\Collection $posts
  */
 if (empty($entity)) {
     $entity = $model->entity;
 }
 $wrapper = false;
 $entryShown = false;
-if (!isset($pinnedPosts)) {
-    $pinnedPosts = $entity->posts()->with(['permissions', 'location'])->ordered()->paginate(15);
+if (!isset($posts)) {
+    $posts = $entity->posts()->with(['permissions', 'location'])->ordered()->paginate(15);
     $wrapper = true;
 }
 
-$first = $pinnedPosts->first();
+$first = $posts->first();
 $postCount = 0;
 @endphp
 
-@if(isset($withEntry) && ($pinnedPosts->count() === 0 || (!empty($first) && $first->position >= 0)))
+@if(isset($withEntry) && ($posts->count() === 0 || (!empty($first) && $first->position >= 0)))
     @include('entities.components.entry')
     @php $entryShown = true; @endphp
     @include('partials.ads.inline')
@@ -29,7 +29,7 @@ $postCount = 0;
 @if($wrapper)
 <div class="entity-posts entity-notes flex flex-col gap-5">
 @endif
-    @foreach ($pinnedPosts as $post)
+    @foreach ($posts as $post)
         @if ($post->layout_id && isset($printing) && $printing === true)
             @continue
         @endif
@@ -53,10 +53,10 @@ $postCount = 0;
         @include('partials.ads.inline')
     @endif
 
-    @if ($pinnedPosts->currentPage() < $pinnedPosts->lastPage())
+    @if ($posts->currentPage() < $posts->lastPage())
         <div class="text-center">
             @if (auth()->check())
-            <a href="#" class="btn2  btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$campaign, $entity, 'page' => $pinnedPosts->currentPage() + 1]) }}">
+            <a href="#" class="btn2  btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$campaign, $entity, 'page' => $posts->currentPage() + 1]) }}">
                 <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 

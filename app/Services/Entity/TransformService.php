@@ -5,7 +5,7 @@ namespace App\Services\Entity;
 use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\Entity;
-use App\Models\EntityNote;
+use App\Models\Post;
 use App\Models\Family;
 use App\Models\Location;
 use App\Models\MiscModel;
@@ -189,8 +189,8 @@ class TransformService
     protected function removePosts(): self
     {
         //Delete non compatible posts.
-        EntityNote::where('entity_id', $this->entity->id)
-            ->leftJoin('post_layouts', 'entity_notes.layout_id', '=', 'post_layouts.id')
+        Post::where('entity_id', $this->entity->id)
+            ->leftJoin('post_layouts', 'posts.layout_id', '=', 'post_layouts.id')
             ->whereNotNull('post_layouts.entity_type_id')
             ->delete();
         return $this;

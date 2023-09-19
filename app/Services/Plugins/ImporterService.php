@@ -6,7 +6,7 @@ use App\Models\CampaignPlugin;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
-use App\Models\EntityNote;
+use App\Models\Post;
 use App\Models\EntityTag;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
@@ -495,11 +495,11 @@ class ImporterService
     protected function loadPosts(int $entityId)
     {
         $this->loadedPosts = [];
-        $posts = EntityNote::where('entity_id', $entityId)
+        $posts = Post::where('entity_id', $entityId)
             ->whereNotNull('marketplace_uuid')
             ->get();
 
-        /** @var EntityNote $post */
+        /** @var Post $post */
         foreach ($posts as $post) {
             $this->loadedPosts[$post->marketplace_uuid] = $post;
         }
@@ -549,7 +549,7 @@ class ImporterService
         foreach ($entity->posts as $uuid => $data) {
             $post = $this->loadedPosts[$uuid] ?? null;
             if (empty($post)) {
-                $post = new EntityNote();
+                $post = new Post();
                 $post->entity_id = $entityId;
                 $post->marketplace_uuid = $uuid;
             }

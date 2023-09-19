@@ -135,7 +135,7 @@ class CampaignObserver
      */
     public function saved(Campaign $campaign)
     {
-        // If the entity note's entry has changed, we need to re-build it's map.
+        // If the posts's entry has changed, we need to re-build it's map.
         if ($campaign->isDirty('entry')) {
             $this->entityMappingService->mapCampaign($campaign);
         }

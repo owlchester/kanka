@@ -50,7 +50,7 @@ class EntityUser extends Pivot
 
     public function post()
     {
-        return $this->belongsTo(EntityNote::class, 'post_id');
+        return $this->belongsTo(Post::class, 'post_id');
     }
 
     public function timelineElement()
