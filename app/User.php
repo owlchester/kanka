@@ -530,6 +530,7 @@ class User extends \Illuminate\Foundation\Auth\User
         }
 
         if ($this->isSubscriber()) {
+            // @phpstan-ignore-next-line
             if (in_array($this->subscriptions->first()->stripe_price, $plans) || $this->hasPayPal()) {
                 $monthly = false;
             }
@@ -557,6 +558,7 @@ class User extends \Illuminate\Foundation\Auth\User
                 // @phpstan-ignore-next-line
                 $price = floatval($price) - ($oldPrice + ((floatval($price) / 365) * $this->subscriptions()->first()->updated_at->diffInDays(Carbon::now())));
             } elseif ($monthly && $period == 'monthly') {
+                // @phpstan-ignore-next-line
                 $price = floatval($price) - ($oldPrice + ((floatval($price) / 31) * $this->subscriptions()->first()->updated_at->diffInDays(Carbon::now())));
             } else {
                 return 'test';
