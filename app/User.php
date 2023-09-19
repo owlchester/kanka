@@ -496,4 +496,75 @@ class User extends \Illuminate\Foundation\Auth\User
         // @phpstan-ignore-next-line
         return $this->subscribed('kanka') && $this->subscriptions()->first() && str_contains($this->subscriptions()->first()->stripe_price, 'paypal');
     }
+
+    public function upgradePrice(string $period, string $tier): string
+    {
+        $plans = [
+            config('subscription.owlbear.eur.yearly'),
+            config('subscription.owlbear.usd.yearly'),
+            config('subscription.wyvern.eur.yearly'),
+            config('subscription.wyvern.usd.yearly'),
+            config('subscription.elemental.eur.yearly'),
+            config('subscription.elemental.usd.yearly'),
+        ];
+
+
+        $oldPrice = '';
+        $currency = "US$ ";
+        $monthly = true;
+        if ($this->billedInEur()) {
+            $currency = "€ ";
+        }
+
+        $price = "55.00";
+        if ($tier === 'Wyvern') {
+            $price = "110.00";
+            if ($period == 'monthly') {
+                $price = "10.00";
+            }
+        } elseif ($tier === 'Elemental') {
+            $price = "275.00";
+            if ($period == 'monthly') {
+                $price = "25.00";
+            }
+        }
+
+        if ($this->isSubscriber()) {
+            if (in_array($this->subscriptions->first()->stripe_price, $plans) || $this->hasPayPal()) {
+                $monthly = false;
+            }
+            if ($this->isElemental()) {
+                if ($monthly) {
+                    $oldPrice = "25.00";
+                } else {
+                    return '';
+                }
+            } elseif ($this->isOwlbear()) {
+                if ($monthly) {
+                    $oldPrice = "5.00";
+                } else {
+                    $oldPrice = "55.00";
+                }
+
+            } elseif ($this->isWyvern()) {
+                if ($monthly) {
+                    $oldPrice = "10.00";
+                } else {
+                    $oldPrice = "110.00";
+                }
+            }
+            if ($period == 'yearly') {
+                // @phpstan-ignore-next-line
+                $price = floatval($price) - ($oldPrice + ((floatval($price) / 365) * $this->subscriptions()->first()->updated_at->diffInDays(Carbon::now())));
+            } elseif ($monthly && $period == 'monthly') {
+                $price = floatval($price) - ($oldPrice + ((floatval($price) / 31) * $this->subscriptions()->first()->updated_at->diffInDays(Carbon::now())));
+            } else {
+                return 'test';
+            }
+            // @phpstan-ignore-next-line
+            $price = $currency . str(ceil($price)) . '.00';
+        }
+
+        return $price;
+    }
 }

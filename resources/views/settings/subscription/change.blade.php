@@ -1,3 +1,6 @@
+@php
+    $upgrade = $user->upgradePrice($period, $tier);
+@endphp
 <x-dialog.header>
     {{ __('settings.subscription.change.title') }}
 </x-dialog.header>
@@ -12,7 +15,7 @@
     @endif
 
     @if (!$cancel)
-        <h4>{!! __('settings.subscription.change.text.' . $period, ['tier' => "<strong>$tier</strong>", 'amount' => "<strong>$amount</strong>"]) !!}</h4>
+        <h4>{!! __('settings.subscription.change.text.upgrade_' . $period, ['upgrade' => "<strong>$upgrade</strong>", 'tier' => "<strong>$tier</strong>", 'amount' => "<strong>$amount</strong>"]) !!}</h4>
     @else
         <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
     @endif
