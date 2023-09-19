@@ -48,7 +48,7 @@ class EntityAbilityObserver
             }
         }
 
-        // When adding or changing a post to an entity, we want to update the
+        // When adding or changing an entity ability to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
         $entityAbility->entity->child->touchQuietly();
     }
@@ -57,7 +57,7 @@ class EntityAbilityObserver
      */
     public function deleted(EntityAbility $entityAbility)
     {
-        // When deleting a post, we want to update the entity's last update
+        // When deleting an entity ability, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
         if ($entityAbility->entity) {
