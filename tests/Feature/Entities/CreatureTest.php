@@ -20,6 +20,7 @@ it('POSTS a new creature')
     ->assertJsonStructure([
         'data' => [
             'id',
+            'entity_id',
         ]
     ])
 ;
@@ -34,6 +35,7 @@ it('GETS all creatures')
         'data' => [
             [
                 'id',
+                'entity_id',
                 'name',
                 'is_private',
             ]
@@ -115,7 +117,7 @@ it('can\'t GET a private creature as a player', function () {
 
     $this->asPlayer();
 
-    $response = $this->get('/api/1.0/campaigns/1/creatures/1?aaa=1');
+    $response = $this->get('/api/1.0/campaigns/1/creatures/1');
     expect($response->status())
         ->toBe(404);
 })

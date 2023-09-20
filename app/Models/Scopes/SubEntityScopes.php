@@ -75,7 +75,7 @@ trait SubEntityScopes
     {
         $relations = [
             'entity',
-            'entity.tags', 'entity.notes', 'entity.events',
+            'entity.tags', 'entity.posts', 'entity.events',
             'entity.relationships', 'entity.attributes', 'entity.inventories',
             'entity.assets'
         ];
