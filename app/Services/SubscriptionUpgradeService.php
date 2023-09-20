@@ -77,7 +77,7 @@ class SubscriptionUpgradeService
 
         // @phpstan-ignore-next-line
         $price = $currency . str(ceil($price)) . '.00';
-        
+
 
         return $price;
     }
