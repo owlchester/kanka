@@ -1,6 +1,3 @@
-@php
-    $upgrade = $user->upgradePrice($period, $tier);
-@endphp
 <x-dialog.header>
     {{ __('settings.subscription.change.title') }}
 </x-dialog.header>
