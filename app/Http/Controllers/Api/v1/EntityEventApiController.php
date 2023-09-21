@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Http\Requests\AddCalendarEvent as Request;
+use App\Http\Requests\API\StoreReminder as Request;
 use App\Http\Resources\EntityEventResource as Resource;
 use App\Models\EntityEvent;
 

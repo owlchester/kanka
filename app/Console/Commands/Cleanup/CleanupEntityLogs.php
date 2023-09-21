@@ -53,7 +53,7 @@ class CleanupEntityLogs extends Command
          */
         EntityLog::where('created_at', '<=', Carbon::now()->subDays($amount)->toDateString())
             ->whereNotNull('changes')
-            ->chunk(100, function ($models): void {
+            ->chunkById(100, function ($models): void {
                 $entityIds = [];
                 foreach ($models as $model) {
                     $entityIds[] = $model->id;

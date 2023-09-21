@@ -94,21 +94,21 @@ To create an entity-event, use the following endpoint.
 
 ### Body
 
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `name` | `string` (Required) | Name of the entity event |
-| `day` | `integer` (Required) | Day on which the event takes place |
-| `month` | `integer` (Required) | Month (id) on which the event takes place |
-| `year` | `integer` (Required) | Year on which the event takes place |
-| `length` | `integer` (Required) | Duration in days of the event |
-| `recurring_periodicity` | `string` | Null if the event isn't recurring. `yearly`, `monthly` or `{moon.id}_(f|n)` where `f` is full moon and `n` is new moon |
-| `recurring_until` | `integer` | Year until the event reoccurs |
-| `colour` | `string` | Colour of the entity event in the calendar |
-| `comment` | `string` | Comment of the entity event |
-| `entity_id` | `integer` (Required) | The entity event's parent entity |
-| `is_private` | `boolean` | If the entity event is only visible to `admin` members of the campaign |
-| `type_id` | `null` or `int` | Special field for calculating the age of a character. `2` for birthday, `3` for death. |
-| `visibility_id` | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
+| Parameter               | Type | Detail                                                                                 |
+|:------------------------|   :-   |:---------------------------------------------------------------------------------------|
+| `name`                  | `string` (Required) | Name of the entity event                                                               |
+| `day`                   | `integer` (Required) | Day on which the event takes place                                                     |
+| `month`                 | `integer` (Required) | Month (id) on which the event takes place                                              |
+| `year`                  | `integer` (Required) | Year on which the event takes place                                                    |
+| `length`                | `integer` (Required) | Duration in days of the event                                                          |
+| `recurring_periodicity` | `string` | Null if the event isn't recurring. `yearly`, `monthly` or `{moon.id}_(f                |n)` where `f` is full moon and `n` is new moon |
+| `recurring_until`       | `integer` | Year until the event reoccurs                                                          |
+| `colour`                | `string` | Colour of the entity event in the calendar                                             |
+| `comment`               | `string` | Comment of the entity event                                                            |
+| `calendar_id`           | `integer` (Required) | The calendar\'s id                                                                     |
+| `is_private`            | `boolean` | If the entity event is only visible to `admin` members of the campaign                 |
+| `type_id`               | `null` or `int` | Special field for calculating the age of a character. `2` for birthday, `3` for death. |
+| `visibility_id`         | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`.    |
 
 ### Results
 
