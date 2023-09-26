@@ -28,7 +28,7 @@ class TimelineEraResource extends JsonResource
             'entry_parsed' => Mentions::mapAny($era),
             'end_year' => $era->end_year,
             'elements' => $era->elements ? TimelineElementResource::collection($era->elements) : [],
-            'is_collapsed' => (bool) $era->is_collapsed,
+            'is_collapsed' => $era->collapsed(),
             'position'  => $era->position,
         ];
     }

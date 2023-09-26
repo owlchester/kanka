@@ -39,7 +39,9 @@ class TimelineEraApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $timeline);
-        $model = TimelineEra::create($request->all());
+        $data = $request->all();
+        $data['timeline_id'] = $timeline->id;
+        $model = TimelineEra::create($data);
         return new Resource($model);
     }
 
