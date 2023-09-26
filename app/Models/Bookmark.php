@@ -58,7 +58,6 @@ class Bookmark extends MiscModel
         'type',
         'position',
         'random_entity_type',
-        'icon',
         'dashboard_id',
         'css',
         'parent',

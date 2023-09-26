@@ -99,7 +99,6 @@ To create a timeline era, use the following endpoint.
 
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
-| `timeline_id` | `int` (Required) | Timeline ID |
 | `era` | `string` (Required) | Name of the era |
 | `abbreviation` | `string` | Abbreviation of the era |
 | `start_year` | `integer` | Year the era starts |

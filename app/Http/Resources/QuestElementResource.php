@@ -25,7 +25,7 @@ class QuestElementResource extends ModelResource
             'description_parsed' => !empty($model->description) ? Mentions::mapAny($model, 'description') : null,
             'colour' => $model->colour,
             'role' => $model->role,
-            'visibility' => $model->visibility,
+            'visibility_id' => $model->visibility_id,
         ]);
     }
 }
