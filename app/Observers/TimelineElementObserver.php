@@ -24,7 +24,10 @@ class TimelineElementObserver
     public function saving(TimelineElement $timelineElement)
     {
         $timelineElement->name = $this->purify($timelineElement->name);
-        $timelineElement->entry = $this->purify(Mentions::codify($timelineElement->entry));
+        // When creating a timeline element on the API, we might not have an entry
+        if (property_exists($timelineElement, 'entry')) {
+            $timelineElement->entry = $this->purify(Mentions::codify($timelineElement->entry ));
+        }
 
         if (empty($timelineElement->position) || $timelineElement->position < 1) {
             $timelineElement->position = 1;
