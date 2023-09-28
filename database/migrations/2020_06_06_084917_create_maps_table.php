@@ -26,6 +26,7 @@ class CreateMapsTable extends Migration
             $table->unsignedSmallInteger('height')->nullable();
             $table->unsignedInteger('map_id')->nullable();
             $table->boolean('is_private')->default(false);
+            $table->boolean('is_real')->default(false);
 
             // Tree
             $table->unsignedInteger('_lft')->default(0);

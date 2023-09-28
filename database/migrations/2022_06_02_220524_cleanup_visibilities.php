@@ -12,7 +12,6 @@ class CleanupVisibilities extends Migration
         'inventories',
         'calendar_weathers',
         'quest_elements',
-        'entity_events',
         'entity_abilities',
         'timeline_elements',
         'relations'
