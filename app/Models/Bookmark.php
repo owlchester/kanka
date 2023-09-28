@@ -9,6 +9,7 @@ use App\Models\Concerns\Taggable;
 use App\Traits\CampaignTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -44,6 +45,7 @@ class Bookmark extends MiscModel
     use CampaignTrait;
     use Privatable;
     use Taggable;
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

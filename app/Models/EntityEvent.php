@@ -8,6 +8,7 @@ use Exception;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class EntityEvent
@@ -38,6 +39,7 @@ class EntityEvent extends MiscModel
     use EntityEventScopes;
     use SortableTrait;
     use VisibilityIDTrait;
+    use HasFactory;
 
     /** @var string */
     public $table = 'entity_events';

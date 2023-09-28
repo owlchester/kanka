@@ -7,6 +7,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class TimelineEra
@@ -31,6 +32,7 @@ use Illuminate\Database\Eloquent\Builder;
 class TimelineEra extends Model
 {
     use SortableTrait;
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

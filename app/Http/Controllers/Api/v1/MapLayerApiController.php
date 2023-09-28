@@ -40,6 +40,7 @@ class MapLayerApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $map);
         $model = MapLayer::create($request->all());
+        $model->refresh();
         return new Resource($model);
     }
 

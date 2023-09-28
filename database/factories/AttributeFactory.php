@@ -22,7 +22,12 @@ class AttributeFactory extends Factory
     public function definition(): array
     {
         return [
+            'name' => fake()->text(10),
             'value' => rand(500, 5000),
+            'type_id' => 1,
+            'api_key' => '1',
+            'is_hidden' => 0,
+            'is_private' => 0,
         ];
     }
 }

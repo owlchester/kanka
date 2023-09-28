@@ -10,6 +10,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class MapLayer
@@ -35,6 +36,7 @@ class MapLayer extends Model
     use Paginatable;
     use SortableTrait;
     use VisibilityIDTrait;
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

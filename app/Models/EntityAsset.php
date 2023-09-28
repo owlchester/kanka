@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id
@@ -31,6 +32,7 @@ class EntityAsset extends Model
     use EntityAssetScopes;
     use Pinnable;
     use VisibilityIDTrait;
+    use HasFactory;
 
     public const TYPE_FILE = 1;
     public const TYPE_LINK = 2;

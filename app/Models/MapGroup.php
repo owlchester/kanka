@@ -9,6 +9,7 @@ use App\Traits\VisibilityIDTrait;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class MapGroup
@@ -30,6 +31,7 @@ class MapGroup extends Model
     use Paginatable;
     use SortableTrait;
     use VisibilityIDTrait;
+    use HasFactory;
 
     protected $sortable = [
         'name',

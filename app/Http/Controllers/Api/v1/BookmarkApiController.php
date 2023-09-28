@@ -18,7 +18,6 @@ class BookmarkApiController extends ApiController
         $this->authorize('access', $campaign);
         return Resource::collection($campaign
             ->bookmarks()
-            ->withApi()
             ->lastSync(request()->get('lastSync'))
             ->paginate());
     }
@@ -47,6 +46,7 @@ class BookmarkApiController extends ApiController
         /** @var Bookmark $model */
         $model = Bookmark::create($data);
         $this->crudSave($model);
+        $model->refresh();
         return new Resource($model);
     }
 
