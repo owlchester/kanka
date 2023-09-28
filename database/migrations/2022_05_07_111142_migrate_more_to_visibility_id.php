@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class MigrateMoreToVisibilityId extends Migration
 {
-    protected $tableName = ['quest_elements', 'entity_events', 'entity_abilities', 'timeline_elements', 'relations'];
+    protected $tableName = ['quest_elements', 'entity_abilities', 'timeline_elements', 'relations'];
 
     /**
      * Run the migrations.
