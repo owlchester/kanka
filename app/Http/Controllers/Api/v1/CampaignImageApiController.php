@@ -59,6 +59,7 @@ class CampaignImageApiController extends ApiController
             return abort(422);
         }
         $images = $this->service
+            ->user($request->user())
             ->campaign($campaign)
             ->store($request);
         return new Resource(Arr::first($images));

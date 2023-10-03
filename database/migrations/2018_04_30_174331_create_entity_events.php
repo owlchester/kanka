@@ -18,7 +18,6 @@ class CreateEntityEvents extends Migration
             $table->integer('calendar_id')->unsigned();
             $table->integer('entity_id')->unsigned();
             $table->unsignedInteger('created_by')->nullable();
-            $table->string('date');
             $table->smallInteger('length')->unsigned()->default(1);
             $table->boolean('is_recurring')->default(false);
             $table->string('comment')->nullable();
@@ -27,10 +26,11 @@ class CreateEntityEvents extends Migration
             $table->unsignedMediumInteger('day');
             $table->unsignedMediumInteger('month');
             $table->integer('year');
+            $table->string('recurring_until', 12)->nullable();
 
             $table->timestamps();
 
-            $table->index(['date', 'is_recurring']);
+            $table->index(['is_recurring']);
             $table->index(['visibility']);
             $table->index(['day', 'month', 'year']);
 

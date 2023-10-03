@@ -42,6 +42,7 @@ class EntityEventApiController extends ApiController
         $data = $request->all();
         $data['entity_id'] = $entity->id;
         $model = EntityEvent::create($data);
+        $model->refresh();
         return new Resource($model);
     }
 

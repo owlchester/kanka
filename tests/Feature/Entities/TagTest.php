@@ -9,7 +9,6 @@ it('POSTS an invalid tag form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new tag')
     ->asUser()
     ->withCampaign()
@@ -59,7 +58,6 @@ it('GETS a specific tag')
     ])
 ;
 
-
 it('UPDATES a valid tag')
     ->asUser()
     ->withCampaign()
@@ -85,7 +83,6 @@ it('DELETES a tag')
     ->delete('/api/1.0/campaigns/1/tags/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid tag')
     ->asUser()

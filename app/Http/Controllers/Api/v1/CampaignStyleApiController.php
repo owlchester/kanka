@@ -49,6 +49,7 @@ class CampaignStyleApiController extends ApiController
         $model = new CampaignStyle($request->all());
         $model->campaign_id = $campaign->id;
         $model->save();
+        $model->refresh();
 
         return new Resource($model);
     }

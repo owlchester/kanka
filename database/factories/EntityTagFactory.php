@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 //use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Relation;
+use App\Models\EntityTag;
 
-class RelationFactory extends Factory
+class EntityTagFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Relation::class;
+    protected $model = EntityTag::class;
     /**
      * Define the model's default state.
      *
@@ -22,8 +22,8 @@ class RelationFactory extends Factory
     public function definition(): array
     {
         return [
-            'relation' => fake()->text(20),
-            'is_pinned' => 0,
+            'entity_id' => 1,
+            'tag_id' => 1,
         ];
     }
 }

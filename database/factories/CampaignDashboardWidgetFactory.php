@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 //use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Relation;
+use App\Models\CampaignDashboardWidget;
 
-class RelationFactory extends Factory
+class CampaignDashboardWidgetFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Relation::class;
+    protected $model = CampaignDashboardWidget::class;
     /**
      * Define the model's default state.
      *
@@ -22,8 +22,7 @@ class RelationFactory extends Factory
     public function definition(): array
     {
         return [
-            'relation' => fake()->text(20),
-            'is_pinned' => 0,
+            'widget' => 'header'
         ];
     }
 }

@@ -17,12 +17,11 @@ class UpdateCampaignPermissionsPerf extends Migration
             $table->unsignedInteger('campaign_id')->after('user_id')->nullable();
             $table->foreign('campaign_id')->references('id')->on('campaigns')->cascadeOnDelete();
 
-            $table->unsignedInteger('entity_type_id')->after('table_name')->nullable();
-            $table->foreign('entity_type_id')->references('id')->on('entity_types')->cascadeOnDelete();
-
-
-            $table->unsignedTinyInteger('action')->after('key');
+            $table->unsignedTinyInteger('action')->after('campaign_id');
             $table->unsignedInteger('misc_id')->nullable()->after('entity_id');
+
+            $table->unsignedInteger('entity_type_id')->after('action')->nullable();
+            $table->foreign('entity_type_id')->references('id')->on('entity_types')->cascadeOnDelete();
         });
     }
 

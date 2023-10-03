@@ -4,16 +4,17 @@ namespace Database\Factories;
 
 //use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Relation;
+use App\Models\Image;
+use Illuminate\Support\Str;
 
-class RelationFactory extends Factory
+class ImageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Relation::class;
+    protected $model = Image::class;
     /**
      * Define the model's default state.
      *
@@ -21,9 +22,17 @@ class RelationFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
-            'relation' => fake()->text(20),
-            'is_pinned' => 0,
+            'id' => '1',
+            'name' => fake()->text(10),
+            'ext' => 'png',
+            'size' => 209,
+            'is_default' => 0,
+            'folder_id' => null,
+            'is_folder' => 0,
+            'visibility_id' => 1
+            
         ];
     }
 }

@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 //use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Relation;
+use App\Models\EntityEvent;
 
-class RelationFactory extends Factory
+class EntityEventFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Relation::class;
+    protected $model = EntityEvent::class;
     /**
      * Define the model's default state.
      *
@@ -22,8 +22,12 @@ class RelationFactory extends Factory
     public function definition(): array
     {
         return [
-            'relation' => fake()->text(20),
-            'is_pinned' => 0,
-        ];
+            'calendar_id' => 1,
+            'day' => 2,
+            'month' => 2,
+            'year' => 2,
+            'length' => 2,
+            'visibility_id' => 1,
+            ];
     }
 }

@@ -8,7 +8,6 @@ it('POSTS an invalid entity_events form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new entity event')
     ->asUser()
     ->withCampaign()
@@ -16,13 +15,11 @@ it('POSTS a new entity event')
     ->withCalendars()
     ->postJson('/api/1.0/campaigns/1/entities/1/entity_events', [
         'calendar_id' => 1,
-        'entity_id' => 1,
         'day' => 2,
         'month' => 2,
         'year' => 2,
         'length' => 2,
-        'is_recurring' => true,
-        'recurring_until' => 22
+        'visibility_id' => 1,
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
@@ -44,9 +41,7 @@ it('GETS all entity_events')
         'data' => [
             [
                 'id',
-                'entity_id',
-                'name',
-                'is_private',
+                'calendar_id',
             ]
         ]
     ])
@@ -62,31 +57,19 @@ it('GETS a specific entity event')
     ->assertJsonStructure([
         'data' => [
             'id',
-            'name',
-            'is_private',
+            'calendar_id',
         ]
     ])
 ;
-
 
 it('UPDATES a valid entity event')
     ->asUser()
     ->withCampaign()
     ->withCharacters()
     ->withEntityEvents()
-    ->putJson('/api/1.0/campaigns/1/entities/1/entity_events/1', ['name' => 'Bob'])
+    ->putJson('/api/1.0/campaigns/1/entities/1/entity_events/1', ['length' => 2])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
-
-it('UPDATES a valid entity event without a name')
-    ->asUser()
-    ->withCampaign()
-    ->withCharacters()
-    ->withEntityEvents()
-    ->putJson('/api/1.0/campaigns/1/entities/1/entity_events/1', ['value' => 'Magic'])
-    ->assertStatus(200)
-    ->assertJsonFragment(['value' => 'Magic'])
+    ->assertJsonFragment(['length' => 2])
 ;
 
 it('DELETES an entity event')
@@ -97,7 +80,6 @@ it('DELETES an entity event')
     ->delete('/api/1.0/campaigns/1/entities/1/entity_events/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid entity event')
     ->asUser()

@@ -7,9 +7,13 @@ use App\Facades\EntityCache;
 use App\Facades\Permissions;
 use App\Facades\UserCache;
 use App\Models\Ability;
+use App\Models\CampaignPermission;
+use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignRole;
 use App\Models\Attribute;
 use App\Models\Bookmark;
 use App\Models\Campaign;
+use Illuminate\Support\Facades\Storage;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Models\Creature;
@@ -35,6 +39,8 @@ use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Models\Journal;
 use App\Models\Tag;
+use App\Models\Relation;
+use App\Models\EntityTag;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
 use App\Models\TimelineElement;
@@ -45,8 +51,13 @@ use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Models\Post;
 use App\Facades\MapMarkerCache;
+use App\Models\CampaignStyle;
+use App\Models\Image;
 use Laravel\Passport\Passport;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Carbon\Carbon;
+use Laravel\Cashier\Subscription;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -58,14 +69,35 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
         //putenv(LaravelLocalization::ENV_ROUTE_KEY . '=' . 'en');
+
+        //putenv(LaravelLocalization::ENV_ROUTE_KEY . '=' . 'en');
     }
 
-    public function asUser(): self
+    public function asUser(bool $subscribed = false): self
     {
+        $user = \App\User::factory()->create();
         Passport::actingAs(
-            \App\User::factory()->create(),
+            $user,
             ['*']
         );
+        if ($subscribed) {
+            // Add the subscriber role
+            $user->roles()->syncWithoutDetaching([5]);
+
+            // Add the subscription to the user level
+            $user->pledge = 'Elemental';
+            $user->save();
+
+            $sub = new Subscription();
+            $sub->user_id = $user->id; // @phpstan-ignore-line
+            $sub->name = 'kanka'; // @phpstan-ignore-line
+            $sub->stripe_id = 'manual_sub_' . uniqid(); // @phpstan-ignore-line
+            $sub->stripe_status = 'canceled'; // @phpstan-ignore-line
+            $sub->stripe_price = 'paypal_' . $user->pledge; // @phpstan-ignore-line
+            $sub->quantity = 1; // @phpstan-ignore-line
+            $sub->ends_at = Carbon::now()->addYear(); // @phpstan-ignore-line
+            $sub->save();
+        }
         return $this;
     }
 
@@ -87,14 +119,37 @@ abstract class TestCase extends BaseTestCase
             'campaign_role_id' => 3,
             'user_id' => $user2->id,
         ]);
-
         Permissions::reset();
+        CampaignRole::where('id', 3)->first()->toggle(1,1);
+
+        return $this;
+    }
+
+    public function withMember(): self
+    {
+        $user3 =  \App\User::factory()->create();
+        
+        CampaignUser::create([
+            'campaign_id' => 1,
+            'user_id' => $user3->id,
+        ]);
+
+        CampaignRoleUser::create([
+            'campaign_role_id' => 3,
+            'user_id' => $user3->id,
+        ]);
+
+        CampaignRole::where('id', 3)->first()->toggle(1,1);
 
         return $this;
     }
 
     public function withCampaign(array $extra = []): self
     {
+        $this->seed(\Database\Seeders\VisibilitiesTableSeeder::class);
+        $this->seed(\Database\Seeders\EntityTypesTableSeeder::class);
+        Storage::fake('s3');
+
         $campaign = Campaign::factory()->create($extra);
         CampaignLocalization::forceCampaign($campaign);
 
@@ -106,6 +161,23 @@ abstract class TestCase extends BaseTestCase
         CharacterCache::campaign($campaign);
         MapMarkerCache::campaign($campaign);
 
+        return $this;
+    }
+
+    public function withPermissions(array $extra = []): self
+    {
+        CampaignRole::where('id', 3)->first()->toggle(1,1);
+        CampaignRole::where('id', 3)->first()->toggle(1,2);
+        CampaignRole::where('id', 3)->first()->toggle(1,3);
+
+        return $this;
+    }
+
+    public function withCampaignStyles(array $extra = []): self
+    {
+        CampaignStyle::factory()
+            ->count(5)
+            ->create(['campaign_id' => 1] + $extra);
         return $this;
     }
 
@@ -355,6 +427,85 @@ abstract class TestCase extends BaseTestCase
         Post::factory()
             ->count(5)
             ->create(['entity_id' => 1] + $extra);
+        return $this;
+    }
+
+    public function withRelations(array $extra = []): self
+    {
+        Relation::factory()
+            ->count(5)
+            ->create(['owner_id' => 1, 'target_id' => 2, 'campaign_id' => 1] + $extra);
+        return $this;
+    }
+
+    public function withEntityTags(array $extra = []): self
+    {
+        EntityTag::factory()
+            ->count(5)
+            ->create($extra);
+        return $this;
+    }
+
+    public function withDashboardWidgets(array $extra = []): self
+    {
+        CampaignDashboardWidget::factory()
+            ->count(5)
+            ->create(['campaign_id' => 1]);
+        return $this;
+    }
+
+    public function withImages(array $extra = []): self
+    {
+        Image::factory()
+            ->count(1)
+            ->create(['campaign_id' => 1] + $extra);
+        return $this;
+    }
+
+    public function withCharacterTags(array $extra = []): self
+    {
+        Character::factory()
+            ->count(1)
+            ->create(['campaign_id' => 1]);
+
+        Tag::factory()
+            ->count(3)
+            ->create(['campaign_id' => 1] + $extra);
+
+        EntityTag::factory()->count(2)->state(
+            new Sequence(
+                ['tag_id' => 1, 'entity_id' => 1],
+                ['tag_id' => 2, 'entity_id' => 1],
+            )
+        )->create();
+
+        return $this;
+    }
+
+    public function withPrivateCharacterTags(array $extra = []): self
+    {
+        Character::factory()
+            ->count(1)
+            ->create(['campaign_id' => 1, 'is_private' => false]);
+
+        Tag::factory()
+            ->count(2)
+            ->state(
+                new Sequence(
+                    ['campaign_id' => 1],
+                    ['campaign_id' => 1, 'is_private' => true]
+                )
+            )
+            ->create();
+
+        EntityTag::factory()->count(2)->state(
+            new Sequence(
+                ['tag_id' => 1, 'entity_id' => 1],
+                ['tag_id' => 2, 'entity_id' => 1],
+            )
+        )->create();
+
+
         return $this;
     }
 }

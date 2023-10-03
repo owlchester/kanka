@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use App\Enums\Widget;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class CampaignDashboardWidget
@@ -37,6 +38,7 @@ class CampaignDashboardWidget extends Model
     use CampaignTrait;
     use LastSync;
     use Taggable;
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [
