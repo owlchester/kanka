@@ -9,7 +9,6 @@ it('POSTS an invalid item form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new item')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific item')
     ])
 ;
 
-
 it('UPDATES a valid item')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a item')
     ->delete('/api/1.0/campaigns/1/items/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid item')
     ->asUser()
@@ -121,5 +118,4 @@ it('can\'t GET a private item as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

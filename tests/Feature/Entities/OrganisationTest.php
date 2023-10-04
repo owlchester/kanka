@@ -9,7 +9,6 @@ it('POSTS an invalid organisation form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new organisation')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific organisation')
     ])
 ;
 
-
 it('UPDATES a valid organisation')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a organisation')
     ->delete('/api/1.0/campaigns/1/organisations/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid organisation')
     ->asUser()
@@ -121,5 +118,4 @@ it('can\'t GET a private organisation as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

@@ -8,7 +8,6 @@ it('POSTS an invalid posts form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new post')
     ->asUser()
     ->withCampaign()
@@ -17,6 +16,7 @@ it('POSTS a new post')
         'name' => fake()->name(),
         'entity_id' => 1,
         'position' => 1,
+        'entry' => 'Entity: [entity:2]',
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
@@ -62,7 +62,6 @@ it('GETS a specific post')
     ])
 ;
 
-
 it('UPDATES a valid post')
     ->asUser()
     ->withCampaign()
@@ -91,7 +90,6 @@ it('DELETES an post')
     ->delete('/api/1.0/campaigns/1/entities/1/posts/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid post')
     ->asUser()

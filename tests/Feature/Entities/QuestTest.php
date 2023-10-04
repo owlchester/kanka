@@ -9,7 +9,6 @@ it('POSTS an invalid quest form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new quest')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific quest')
     ])
 ;
 
-
 it('UPDATES a valid quest')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a quest')
     ->delete('/api/1.0/campaigns/1/quests/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid quest')
     ->asUser()
@@ -121,5 +118,4 @@ it('can\'t GET a private quest as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

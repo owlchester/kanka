@@ -119,5 +119,4 @@ it('can\'t GET a private tag as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

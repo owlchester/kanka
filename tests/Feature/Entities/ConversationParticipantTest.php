@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Conversation;
-use App\Models\ConversationParticipant;
-
 it('POSTS an invalid conversation participant form')
     ->asUser()
     ->withCampaign()
@@ -11,7 +8,6 @@ it('POSTS an invalid conversation participant form')
     ])
     ->assertStatus(422)
 ;
-
 
 it('POSTS a new conversation participant')
     ->asUser()
@@ -65,7 +61,6 @@ it('GETS a specific conversation participant')
     ])
 ;
 
-
 it('UPDATES a valid conversation participant')
     ->asUser()
     ->withCampaign()
@@ -86,7 +81,6 @@ it('DELETES a conversation participant')
     ->delete('/api/1.0/campaigns/1/conversations/1/conversation_participants/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid conversation participant')
     ->asUser()

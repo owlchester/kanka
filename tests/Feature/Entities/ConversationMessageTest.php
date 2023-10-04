@@ -9,7 +9,6 @@ it('POSTS an invalid conversation message form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new conversation message')
     ->asUser()
     ->withCampaign()
@@ -84,7 +83,6 @@ it('DELETES a conversation message')
     ->delete('/api/1.0/campaigns/1/conversations/1/conversation_messages/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid conversation message')
     ->asUser()

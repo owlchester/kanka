@@ -137,5 +137,4 @@ it('can\'t GET a private calendar as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

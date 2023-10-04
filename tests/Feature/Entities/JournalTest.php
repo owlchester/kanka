@@ -9,7 +9,6 @@ it('POSTS an invalid journal form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new journal')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific journal')
     ])
 ;
 
-
 it('UPDATES a valid journal')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a journal')
     ->delete('/api/1.0/campaigns/1/journals/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid journal')
     ->asUser()
@@ -121,5 +118,4 @@ it('can\'t GET a private journal as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

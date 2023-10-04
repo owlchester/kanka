@@ -9,7 +9,6 @@ it('POSTS an invalid location form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new location')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific location')
     ])
 ;
 
-
 it('UPDATES a valid location')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a location')
     ->delete('/api/1.0/campaigns/1/locations/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid location')
     ->asUser()
@@ -121,5 +118,4 @@ it('can\'t GET a private location as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

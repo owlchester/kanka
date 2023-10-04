@@ -9,7 +9,6 @@ it('POSTS an invalid map form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new map')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific map')
     ])
 ;
 
-
 it('UPDATES a valid map')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a map')
     ->delete('/api/1.0/campaigns/1/maps/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid map')
     ->asUser()
@@ -121,5 +118,4 @@ it('can\'t GET a private map as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

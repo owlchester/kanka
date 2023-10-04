@@ -7,7 +7,6 @@ use App\Facades\EntityCache;
 use App\Facades\Permissions;
 use App\Facades\UserCache;
 use App\Models\Ability;
-use App\Models\CampaignPermission;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignRole;
 use App\Models\Attribute;
@@ -51,6 +50,7 @@ use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Models\Post;
 use App\Facades\MapMarkerCache;
+use App\Facades\Mentions;
 use App\Models\CampaignStyle;
 use App\Models\Image;
 use Laravel\Passport\Passport;
@@ -121,6 +121,9 @@ abstract class TestCase extends BaseTestCase
         ]);
         Permissions::reset();
         CampaignRole::where('id', 3)->first()->toggle(1,1);
+        CampaignRole::where('id', 3)->first()->toggle(10,1);
+        CampaignRole::where('id', 3)->first()->toggle(11,1);
+        CampaignRole::where('id', 3)->first()->toggle(7,1);
 
         return $this;
     }
@@ -156,6 +159,7 @@ abstract class TestCase extends BaseTestCase
         EntityCache::campaign($campaign);
         CampaignCache::campaign($campaign);
         UserCache::campaign($campaign);
+        Mentions::campaign($campaign);
         QuestCache::campaign($campaign);
         TimelineElementCache::campaign($campaign);
         CharacterCache::campaign($campaign);
@@ -504,7 +508,6 @@ abstract class TestCase extends BaseTestCase
                 ['tag_id' => 2, 'entity_id' => 1],
             )
         )->create();
-
 
         return $this;
     }

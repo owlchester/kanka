@@ -9,7 +9,6 @@ it('POSTS an invalid race form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new race')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific race')
     ])
 ;
 
-
 it('UPDATES a valid race')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a race')
     ->delete('/api/1.0/campaigns/1/races/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid race')
     ->asUser()
@@ -121,5 +118,4 @@ it('can\'t GET a private race as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

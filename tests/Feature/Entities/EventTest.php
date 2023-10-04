@@ -9,7 +9,6 @@ it('POSTS an invalid event form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new event')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific event')
     ])
 ;
 
-
 it('UPDATES a valid event')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a event')
     ->delete('/api/1.0/campaigns/1/events/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid event')
     ->asUser()

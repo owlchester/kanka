@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\TimelineElement;
-
 it('POSTS an invalid timeline element element form')
     ->asUser()
     ->withCampaign()
@@ -10,7 +8,6 @@ it('POSTS an invalid timeline element element form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new timeline element')
     ->asUser()
     ->withCampaign()
@@ -18,7 +15,6 @@ it('POSTS a new timeline element')
     ->withTimelineEras()
     ->postJson('/api/1.0/campaigns/1/timelines/1/timeline_elements', [
         'name' => fake()->name(),
-        'timeline_id' => 1,
         'era_id' => 1,
         'use_event_date' => true,
     ])
@@ -64,7 +60,6 @@ it('GETS a specific timeline element')
         ]
     ])
 ;
-
 
 it('UPDATES a valid timeline element')
     ->asUser()

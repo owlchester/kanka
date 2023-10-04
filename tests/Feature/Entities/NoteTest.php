@@ -9,7 +9,6 @@ it('POSTS an invalid note form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new note')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific note')
     ])
 ;
 
-
 it('UPDATES a valid note')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a note')
     ->delete('/api/1.0/campaigns/1/notes/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid note')
     ->asUser()
@@ -121,5 +118,4 @@ it('can\'t GET a private note as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

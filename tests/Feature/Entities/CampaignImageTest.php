@@ -1,7 +1,6 @@
 <?php
 use Illuminate\Http\UploadedFile;
 
-
 it('POSTS a new image')
     ->asUser(true)
     ->withCampaign(['boost_count' => 4])

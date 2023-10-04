@@ -9,7 +9,6 @@ it('POSTS an invalid character form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new character')
     ->asUser()
     ->withCampaign()
@@ -85,7 +84,6 @@ it('DELETES a character')
     ->assertStatus(204)
 ;
 
-
 it('DELETES an invalid character')
     ->asUser()
     ->withCampaign()
@@ -121,5 +119,4 @@ it('can\'t GET a private character as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

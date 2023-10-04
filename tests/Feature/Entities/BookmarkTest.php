@@ -1,14 +1,11 @@
 <?php
 
-use App\Models\Bookmark;
-
 it('POSTS an invalid bookmark form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/bookmarks', [])
     ->assertStatus(422)
 ;
-
 
 it('POSTS a new bookmark')
     ->asUser()
@@ -59,7 +56,6 @@ it('GETS a specific bookmark')
     ])
 ;
 
-
 it('UPDATES a valid bookmark')
     ->asUser()
     ->withCampaign()
@@ -76,7 +72,6 @@ it('DELETES a bookmark')
     ->delete('/api/1.0/campaigns/1/bookmarks/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid bookmark')
     ->asUser()

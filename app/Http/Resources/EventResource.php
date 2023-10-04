@@ -20,10 +20,10 @@ class EventResource extends EntityResource
             'type' => $model->type,
             'event_id' => $model->event_id,
             'date' => $model->date,
-            'calendar_id' => $model->entity?->calendarDate?->calendar_id,
-            'calendar_year' => $model->entity?->calendarDate?->year,
-            'calendar_month' => $model->entity?->calendarDate?->month,
-            'calendar_day' => $model->entity?->calendarDate?->day,
+            'calendar_id' => $model->entity->calendarDate?->calendar_id,
+            'calendar_year' => $model->entity->calendarDate?->year,
+            'calendar_month' => $model->entity->calendarDate?->month,
+            'calendar_day' => $model->entity->calendarDate?->day,
         ]);
     }
 }

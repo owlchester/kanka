@@ -8,7 +8,6 @@ it('POSTS an invalid quest element form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new quest element')
     ->asUser()
     ->withCampaign()

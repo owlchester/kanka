@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\TimelineEra;
-
 it('POSTS an invalid timeline era form')
     ->asUser()
     ->withCampaign()
@@ -10,14 +8,12 @@ it('POSTS an invalid timeline era form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new timeline era')
     ->asUser()
     ->withCampaign()
     ->withTimelines()
     ->postJson('/api/1.0/campaigns/1/timelines/1/timeline_eras', [
         'name' => fake()->name(),
-        'timeline_id' => 1,
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
@@ -60,7 +56,6 @@ it('GETS a specific timeline era')
     ])
 ;
 
-
 it('UPDATES a valid timeline era')
     ->asUser()
     ->withCampaign()
@@ -89,7 +84,6 @@ it('DELETES a timeline era')
     ->delete('/api/1.0/campaigns/1/timelines/1/timeline_eras/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid timeline')
     ->asUser()

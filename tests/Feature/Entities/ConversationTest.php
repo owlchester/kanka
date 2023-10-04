@@ -9,7 +9,6 @@ it('POSTS an invalid conversation form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new conversation')
     ->asUser()
     ->withCampaign()
@@ -59,7 +58,6 @@ it('GETS a specific conversation')
     ])
 ;
 
-
 it('UPDATES a valid conversation')
     ->asUser()
     ->withCampaign()
@@ -85,7 +83,6 @@ it('DELETES a conversation')
     ->delete('/api/1.0/campaigns/1/conversations/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid conversation')
     ->asUser()
@@ -122,5 +119,4 @@ it('can\'t GET a private conversation as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

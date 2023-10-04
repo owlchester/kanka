@@ -9,7 +9,6 @@ it('POSTS an invalid timeline form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new timeline')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific timeline')
     ])
 ;
 
-
 it('UPDATES a valid timeline')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a timeline')
     ->delete('/api/1.0/campaigns/1/timelines/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid timeline')
     ->asUser()
@@ -121,5 +118,4 @@ it('can\'t GET a private timeline as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

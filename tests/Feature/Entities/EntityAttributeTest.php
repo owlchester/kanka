@@ -8,7 +8,6 @@ it('POSTS an invalid attributes form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new attribute')
     ->asUser()
     ->withCampaign()
@@ -18,6 +17,7 @@ it('POSTS a new attribute')
         'entity_id' => 1,
         'type_id' => 1,
         'api_key' => '1',
+        'value' => 'Entity: [entity:2]',
         'is_hidden' => 0,
     ])
     ->assertStatus(201)
@@ -64,7 +64,6 @@ it('GETS a specific attribute')
     ])
 ;
 
-
 it('UPDATES a valid attribute')
     ->asUser()
     ->withCampaign()
@@ -93,7 +92,6 @@ it('DELETES an attribute')
     ->delete('/api/1.0/campaigns/1/entities/1/attributes/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid attribute')
     ->asUser()

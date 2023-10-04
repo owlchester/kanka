@@ -9,7 +9,6 @@ it('POSTS an invalid family form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new family')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific family')
     ])
 ;
 
-
 it('UPDATES a valid family')
     ->asUser()
     ->withCampaign()
@@ -84,7 +82,6 @@ it('DELETES a family')
     ->delete('/api/1.0/campaigns/1/families/1')
     ->assertStatus(204)
 ;
-
 
 it('DELETES an invalid family')
     ->asUser()
@@ -121,5 +118,4 @@ it('can\'t GET a private family as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

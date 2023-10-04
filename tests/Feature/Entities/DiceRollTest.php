@@ -9,7 +9,6 @@ it('POSTS an invalid dice_roll form')
     ->assertStatus(422)
 ;
 
-
 it('POSTS a new dice_roll')
     ->asUser()
     ->withCampaign()
@@ -58,7 +57,6 @@ it('GETS a specific dice_roll')
         ]
     ])
 ;
-
 
 it('UPDATES a valid dice_roll')
     ->asUser()
@@ -122,5 +120,4 @@ it('can\'t GET a private dice_roll as a player', function () {
     expect($response->status())
         ->toBe(404);
 })
-
 ;

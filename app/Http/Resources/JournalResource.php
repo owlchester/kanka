@@ -22,10 +22,10 @@ class JournalResource extends EntityResource
             'type' => $model->type,
             'author' => $model->author,
             'author_id' => $model->author_id,
-            'calendar_id' => $model->entity?->calendarDate?->calendar_id,
-            'calendar_year' => $model->entity?->calendarDate?->year,
-            'calendar_month' => $model->entity?->calendarDate?->month,
-            'calendar_day' => $model->entity?->calendarDate?->day,
+            'calendar_id' => $model->entity->calendarDate?->calendar_id,
+            'calendar_year' => $model->entity->calendarDate?->year,
+            'calendar_month' => $model->entity->calendarDate?->month,
+            'calendar_day' => $model->entity->calendarDate?->day,
         ]);
     }
 }
