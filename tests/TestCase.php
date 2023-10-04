@@ -120,10 +120,10 @@ abstract class TestCase extends BaseTestCase
             'user_id' => $user2->id,
         ]);
         Permissions::reset();
-        CampaignRole::where('id', 3)->first()->toggle(1,1);
-        CampaignRole::where('id', 3)->first()->toggle(10,1);
-        CampaignRole::where('id', 3)->first()->toggle(11,1);
-        CampaignRole::where('id', 3)->first()->toggle(7,1);
+        CampaignRole::where('id', 3)->first()->toggle(1, 1);
+        CampaignRole::where('id', 3)->first()->toggle(10, 1);
+        CampaignRole::where('id', 3)->first()->toggle(11, 1);
+        CampaignRole::where('id', 3)->first()->toggle(7, 1);
 
         return $this;
     }
@@ -131,7 +131,7 @@ abstract class TestCase extends BaseTestCase
     public function withMember(): self
     {
         $user3 =  \App\User::factory()->create();
-        
+
         CampaignUser::create([
             'campaign_id' => 1,
             'user_id' => $user3->id,
@@ -142,7 +142,7 @@ abstract class TestCase extends BaseTestCase
             'user_id' => $user3->id,
         ]);
 
-        CampaignRole::where('id', 3)->first()->toggle(1,1);
+        CampaignRole::where('id', 3)->first()->toggle(1, 1);
 
         return $this;
     }
@@ -170,9 +170,9 @@ abstract class TestCase extends BaseTestCase
 
     public function withPermissions(array $extra = []): self
     {
-        CampaignRole::where('id', 3)->first()->toggle(1,1);
-        CampaignRole::where('id', 3)->first()->toggle(1,2);
-        CampaignRole::where('id', 3)->first()->toggle(1,3);
+        CampaignRole::where('id', 3)->first()->toggle(1, 1);
+        CampaignRole::where('id', 3)->first()->toggle(1, 2);
+        CampaignRole::where('id', 3)->first()->toggle(1, 3);
 
         return $this;
     }

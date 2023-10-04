@@ -27,8 +27,8 @@ use Illuminate\Support\Facades\Auth;
 class ConversationMessage extends MiscModel
 {
     use Blameable;
-    use LastSync;
     use HasFactory;
+    use LastSync;
 
     public $isGroupped = false;
 

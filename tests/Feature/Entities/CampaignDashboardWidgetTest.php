@@ -25,7 +25,7 @@ it('GETS all dashboard widgets')
     ->assertStatus(200)
     ->assertJsonStructure([
         'data' => [
-        '*' => [
+            '*' => [
                 'id',
                 'widget',
             ]
@@ -41,8 +41,8 @@ it('GETS a specific dashboard widget')
     ->assertStatus(200)
     ->assertJsonStructure([
         'data' => [
-                'id',
-                'widget',
+            'id',
+            'widget',
         ]
     ])
 ;

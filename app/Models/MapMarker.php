@@ -45,11 +45,11 @@ use Illuminate\Support\Str;
 class MapMarker extends Model
 {
     use Blameable;
+    use HasFactory;
     use Paginatable;
     use SortableTrait;
     use SourceCopiable;
     use VisibilityIDTrait;
-    use HasFactory;
 
     public const SHAPE_MARKER = 1;
     public const SHAPE_LABEL = 2;

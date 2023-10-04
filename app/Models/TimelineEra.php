@@ -31,8 +31,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class TimelineEra extends Model
 {
-    use SortableTrait;
     use HasFactory;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [

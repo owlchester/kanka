@@ -36,9 +36,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class CampaignDashboardWidget extends Model
 {
     use CampaignTrait;
+    use HasFactory;
     use LastSync;
     use Taggable;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

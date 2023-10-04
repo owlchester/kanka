@@ -113,9 +113,9 @@ it('POSTS a new character with 1 tag')
     ])
 ;
 
-//Create a character with two tags in the factory. 
-//Update the character with one of those tags and a third new tag. 
-//The result contains one of the original tags + the new tag. 
+//Create a character with two tags in the factory.
+//Update the character with one of those tags and a third new tag.
+//The result contains one of the original tags + the new tag.
 
 it('POSTS a new character with 2 tags')
     ->asUser()
@@ -137,8 +137,8 @@ it('POSTS a new character with 2 tags')
     ])
 ;
 
-//Create a character with two tags, 
-//one of the tags is private. 
+//Create a character with two tags,
+//one of the tags is private.
 //Get the character asPlayer() and validate that the private tag isn't visible
 
 it('POSTS a new character with a private tag')

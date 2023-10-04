@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Character;
 
 it('GETS all entities')
     ->asUser()

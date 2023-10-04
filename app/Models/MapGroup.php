@@ -28,10 +28,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class MapGroup extends Model
 {
     use Blameable;
+    use HasFactory;
     use Paginatable;
     use SortableTrait;
     use VisibilityIDTrait;
-    use HasFactory;
 
     protected $sortable = [
         'name',

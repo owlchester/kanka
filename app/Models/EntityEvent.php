@@ -37,9 +37,9 @@ class EntityEvent extends MiscModel
 {
     use Blameable;
     use EntityEventScopes;
+    use HasFactory;
     use SortableTrait;
     use VisibilityIDTrait;
-    use HasFactory;
 
     /** @var string */
     public $table = 'entity_events';

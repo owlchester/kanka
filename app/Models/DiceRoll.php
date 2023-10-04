@@ -17,8 +17,8 @@ class DiceRoll extends MiscModel
 {
     use Acl;
     use CampaignTrait;
-    use SoftDeletes;
     use HasFactory;
+    use SoftDeletes;
 
     /** @var string[]  */
     protected $fillable = [

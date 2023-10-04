@@ -45,9 +45,9 @@ class Post extends Model
 {
     use Acl;
     use Blameable;
+    use HasFactory;
     use Paginatable;
     use VisibilityIDTrait;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

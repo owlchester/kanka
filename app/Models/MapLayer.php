@@ -33,10 +33,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class MapLayer extends Model
 {
     use Blameable;
+    use HasFactory;
     use Paginatable;
     use SortableTrait;
     use VisibilityIDTrait;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

@@ -43,9 +43,9 @@ use Illuminate\Support\Str;
 class Bookmark extends MiscModel
 {
     use CampaignTrait;
+    use HasFactory;
     use Privatable;
     use Taggable;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

@@ -48,10 +48,10 @@ class Map extends MiscModel
     use Acl;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
     use SortableTrait;
-    use HasFactory;
 
     public const MAX_ZOOM = 10;
     public const MIN_ZOOM = -10;

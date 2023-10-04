@@ -5,7 +5,6 @@ namespace Database\Factories;
 //use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Image;
-use Illuminate\Support\Str;
 
 class ImageFactory extends Factory
 {
@@ -32,7 +31,7 @@ class ImageFactory extends Factory
             'folder_id' => null,
             'is_folder' => 0,
             'visibility_id' => 1
-            
+
         ];
     }
 }

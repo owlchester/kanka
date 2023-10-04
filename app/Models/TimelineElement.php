@@ -38,8 +38,8 @@ use Illuminate\Support\Str;
 class TimelineElement extends Model
 {
     use Blameable;
-    use VisibilityIDTrait;
     use HasFactory;
+    use VisibilityIDTrait;
 
     /** @var string[]  */
     protected $fillable = [

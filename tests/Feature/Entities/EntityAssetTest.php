@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Http\UploadedFile;
 
 it('POSTS an invalid entity_assets form')

@@ -30,9 +30,9 @@ class EntityAsset extends Model
 {
     use Blameable;
     use EntityAssetScopes;
+    use HasFactory;
     use Pinnable;
     use VisibilityIDTrait;
-    use HasFactory;
 
     public const TYPE_FILE = 1;
     public const TYPE_LINK = 2;

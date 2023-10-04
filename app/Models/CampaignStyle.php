@@ -32,9 +32,9 @@ use Illuminate\Support\Str;
 class CampaignStyle extends Model
 {
     use CampaignTrait;
+    use HasFactory;
     use SoftDeletes;
     use SortableTrait;
-    use HasFactory;
 
     public $fillable = [
         'name',

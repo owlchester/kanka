@@ -28,6 +28,6 @@ class EntityEventFactory extends Factory
             'year' => 2,
             'length' => 2,
             'visibility_id' => 1,
-            ];
+        ];
     }
 }
