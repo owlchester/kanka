@@ -100,6 +100,8 @@ Route::get('post-layouts', [\App\Http\Controllers\Api\v1\PostLayoutApiController
 Route::get('campaigns/{campaign}/recovery', [\App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'index']);
 Route::post('campaigns/{campaign}/recover', [\App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'recover']);
 
+Route::post('campaigns/{campaign}/transform', [\App\Http\Controllers\Api\v1\EntityTransformApiController::class, 'transform']);
+
 Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
 Route::get('version', function () {
     return config('app.version');
