@@ -35,7 +35,7 @@ it('Transforms entities')
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/transform', [
         'entities' => [1,2,3],
-        'entity_type' => 'creature'
+        'entity_type' => 'organisation'
     ])
     ->assertJsonFragment(['success' => 'Succesfully transformed 3 entities.'])
     ->assertStatus(200)
