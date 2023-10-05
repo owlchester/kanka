@@ -9,6 +9,7 @@ use App\Models\Concerns\Paginatable;
 use App\Traits\SourceCopiable;
 use App\Traits\VisibilityIDTrait;
 use App\Models\Concerns\SortableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -44,6 +45,7 @@ use Illuminate\Support\Str;
 class MapMarker extends Model
 {
     use Blameable;
+    use HasFactory;
     use Paginatable;
     use SortableTrait;
     use SourceCopiable;

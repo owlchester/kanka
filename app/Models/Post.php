@@ -10,6 +10,7 @@ use App\Traits\VisibilityIDTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
@@ -44,6 +45,7 @@ class Post extends Model
 {
     use Acl;
     use Blameable;
+    use HasFactory;
     use Paginatable;
     use VisibilityIDTrait;
 

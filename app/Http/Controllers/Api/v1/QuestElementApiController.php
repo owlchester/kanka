@@ -42,6 +42,7 @@ class QuestElementApiController extends ApiController
         $data = $requestElement->all();
         $data['quest_id'] = $quest->id;
         $model = QuestElement::create($data);
+        $model->refresh();
         return new Resource($model);
     }
 

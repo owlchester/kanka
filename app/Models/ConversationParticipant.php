@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id
@@ -16,6 +17,8 @@ use App\User;
  */
 class ConversationParticipant extends MiscModel
 {
+    use HasFactory;
+
     /**
      * @var bool|Character|User
      */

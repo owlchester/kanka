@@ -42,6 +42,7 @@ class TimelineEraApiController extends ApiController
         $data = $request->all();
         $data['timeline_id'] = $timeline->id;
         $model = TimelineEra::create($data);
+        $model->refresh();
         return new Resource($model);
     }
 

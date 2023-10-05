@@ -22,6 +22,7 @@ class QuestElementFactory extends Factory
     public function definition(): array
     {
         return [
+            'name' => fake()->name(),
             'description' => '<p>' . fake()->text(50) . '<p>',
         ];
     }

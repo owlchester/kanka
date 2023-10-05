@@ -9,6 +9,7 @@ use App\Traits\VisibilityIDTrait;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class MapGroup
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\Builder;
 class MapGroup extends Model
 {
     use Blameable;
+    use HasFactory;
     use Paginatable;
     use SortableTrait;
     use VisibilityIDTrait;

@@ -13,8 +13,10 @@ it('POSTS an invalid creature form')
 it('POSTS a new creature')
     ->asUser()
     ->withCampaign()
+    ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/creatures', [
-        'name' => fake()->name()
+        'name' => fake()->name(),
+        'entry' => 'Entity: [entity:2]',
     ])
     ->assertStatus(201)
     ->assertJsonStructure([

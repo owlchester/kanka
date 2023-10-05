@@ -7,4 +7,5 @@ We're always excited to have people help out with our weak areas like:
 * Documentation
 * UI/UX
 * Onboarding
-* Quality insurance
+* Quality assurance
+  

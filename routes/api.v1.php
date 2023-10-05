@@ -14,6 +14,7 @@
 Route::apiResources([
     'campaigns' => 'CampaignApiController',
     'campaigns.abilities' => 'AbilityApiController',
+    'campaigns.bookmarks' => 'BookmarkApiController',
     //'campaigns.campaign_users' => 'CampaignUserApiController',
     'campaigns.calendars' => 'CalendarApiController',
     'campaigns.calendars.calendar_weather' => 'CalendarWeatherApiController',

@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 
 /**
@@ -31,6 +32,7 @@ use Illuminate\Support\Str;
 class CampaignStyle extends Model
 {
     use CampaignTrait;
+    use HasFactory;
     use SoftDeletes;
     use SortableTrait;
 

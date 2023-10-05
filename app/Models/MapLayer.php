@@ -10,6 +10,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class MapLayer
@@ -32,6 +33,7 @@ use Illuminate\Database\Eloquent\Builder;
 class MapLayer extends Model
 {
     use Blameable;
+    use HasFactory;
     use Paginatable;
     use SortableTrait;
     use VisibilityIDTrait;

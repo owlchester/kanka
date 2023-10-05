@@ -8,6 +8,7 @@ use Exception;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class EntityEvent
@@ -36,6 +37,7 @@ class EntityEvent extends MiscModel
 {
     use Blameable;
     use EntityEventScopes;
+    use HasFactory;
     use SortableTrait;
     use VisibilityIDTrait;
 

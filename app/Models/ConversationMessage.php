@@ -6,6 +6,7 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\LastSync;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
 class ConversationMessage extends MiscModel
 {
     use Blameable;
+    use HasFactory;
     use LastSync;
 
     public $isGroupped = false;

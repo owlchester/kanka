@@ -1,0 +1,30 @@
+<?php
+
+
+it('GETS all entities')
+    ->asUser()
+    ->withCampaign()
+    ->withCharacters()
+    ->withCreatures()
+    ->get('/api/1.0/campaigns/1/entities')
+    ->assertStatus(200)
+;
+
+it('GETS a specific entity')
+    ->asUser()
+    ->withCampaign()
+    ->withCharacters()
+    ->withCreatures()
+    ->get('/api/1.0/campaigns/1/entities/1')
+    ->assertStatus(200)
+;
+
+it('GETS all creatures')
+    ->asUser()
+    ->withCampaign()
+    ->withCharacters()
+    ->withCreatures()
+    ->get('/api/1.0/campaigns/1/entities?types=creature')
+    ->assertStatus(200)
+    ->assertJsonCount(5, 'data');
+;

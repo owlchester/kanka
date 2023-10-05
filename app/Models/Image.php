@@ -9,6 +9,7 @@ use App\Traits\VisibilityIDTrait;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -51,6 +52,7 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use CampaignTrait;
+    use HasFactory;
     use LastSync;
     use VisibilityIDTrait;
 

@@ -100,9 +100,6 @@ To get the details of a single entity-asset, use the following endpoint.
 
 To create an asset, use the following endpoint.
 
-> {warning} It is not possible to upload files through the API. Only links and aliases.
-
-
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/{entity.id}/entity_assets` | Default |
@@ -112,7 +109,8 @@ To create an asset, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` | The name of the asset (max 45) |
-| `type_id` | `required` | The type of asset being created.
+| `type_id` | `int`  (Required) | The type of asset being created.
+| `file` | `file` | The file to be uploaded as an asset, exlcusive and required for file assets (`type_id: 1`). |
 | `visibility_id` | `int` | The visibility id: 1 `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 | `metadata` | `array` | `metadata.icon` and `metadata.url` are required for `links`. |
 | `is_pinned` | `bool` | Controls wether or not an asset is shown and linked to on the pins tab in the overview of the entity, exlcusive to file assets (`type_id: 1`). |

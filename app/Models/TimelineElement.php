@@ -8,6 +8,7 @@ use App\Traits\VisibilityIDTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 
 /**
@@ -37,6 +38,7 @@ use Illuminate\Support\Str;
 class TimelineElement extends Model
 {
     use Blameable;
+    use HasFactory;
     use VisibilityIDTrait;
 
     /** @var string[]  */

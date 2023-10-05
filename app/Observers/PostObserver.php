@@ -30,7 +30,11 @@ class PostObserver
      */
     public function saving(Post $post)
     {
-        $post->entry = $this->purify(Mentions::codify($post->entry));
+
+        // When creating a timeline element on the API, we might not have an entry
+        if (property_exists($post, 'entry')) {
+            $post->entry = $this->purify(Mentions::codify($post->entry));
+        }
 
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($post->is_private)) {

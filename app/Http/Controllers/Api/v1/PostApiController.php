@@ -40,6 +40,7 @@ class PostApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
         $model = Post::create($request->all());
+        $model->refresh();
         return new Resource($model);
     }
 
