@@ -1,16 +1,11 @@
 # Contributing to Kanka
 
-:+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
+If you want to help out with Kanka development, contact us in  #assis-the-team` on the official [Kanka Discord](http://kanka.io/go/discord) server.
 
-The following is a set of guidelines for contributing to Kanka, which is hosted in [here](https://github.com/ilestis/miscellany) on GitHub. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+We're always excited to have people help out with our weak areas like:
 
-## Contributing
-
-We track issues and feature requests on two distinct trello boards.
-
-* [Backlog](https://trello.com/b/hVjPfOMU/kanka-backlog)
-* [In progress](https://trello.com/b/62aOwCHU/kanka)
-
-Issues in this repository should reflect requests from the community which are visible on the trello boards.
-
-When submitting PRs, include a link to the Trello ticket so that we know it's been requested by the community.
+* Documentation
+* UI/UX
+* Onboarding
+* Quality assurance
+  
