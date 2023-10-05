@@ -24,15 +24,17 @@ class EntityTransformApiController extends ApiController
     public function transform(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-
+        $count = 0;
         foreach ($request->entities as $id) {
             $entity = Entity::find($id);
-
-            $this->service
-                ->child($entity->child)
-                ->transform($request->entity_type);
+            if ($this->authorize('update', $entity->child)) {
+                $this->service
+                    ->child($entity->child)
+                    ->transform($request->entity_type);
+                $count++;
+            }
         }
 
-        return response()->json(['success' => 'Succesfully transformed ' . count($request->entities) . ' entities.']);
+        return response()->json(['success' => 'Succesfully transformed ' . $count . ' entities.']);
     }
 }

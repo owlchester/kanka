@@ -7,6 +7,7 @@
 - [Single Entity](#entity)
 - [Filtering Entities](#filtering-entities)
 - [Related Entities](#related-entities)
+- [Transform Entities](#transform-entities)
 - [Deleted Entities](#deleted-entities)
 - [Recover Deleted Entities](#recover-entities)
 
@@ -195,6 +196,24 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
 ```
 
 Notice the new array objects `attributes`, `entity_files`, `entity_events`, `posts`, `entity_abilities` and `relations`.
+
+<a name="transform-entities"></a>
+## Transform Entities
+
+You can post an array with the ids of the entities you want to transform to the `/transform` endpoint to undo transform them into a different entity type.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `transform` | Default |
+
+| Parameter | Type | Description
+| :- | :- | :- |
+| `entities` | `array`(required) | The ids of the entities to transform. |
+| `entity_type` | `string`(required) | The type of entity the entity will be transformed to. |
+
+### Result
+
+> {success} Code 200 with JSON.
 
 <a name="deleted-entities"></a>
 ## Deleted Entities

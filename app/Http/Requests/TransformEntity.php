@@ -24,7 +24,7 @@ class TransformEntity extends FormRequest
     public function rules()
     {
         $rules = [
-            'entities' => 'array',
+            'entities' => 'array|required',
             'entities.*' => 'distinct|exists:entities,id',
             'entity_type' => 'required|exists:entity_types,code'
         ];

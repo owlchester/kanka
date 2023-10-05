@@ -28,3 +28,15 @@ it('GETS all creatures')
     ->assertStatus(200)
     ->assertJsonCount(5, 'data');
 ;
+
+it('Transforms entities')
+    ->asUser()
+    ->withCampaign()
+    ->withCharacters()
+    ->postJson('/api/1.0/campaigns/1/transform', [
+        'entities' => [1,2,3],
+        'entity_type' => 'creature'
+    ])
+    ->assertJsonFragment(['success' => 'Succesfully transformed 3 entities.'])
+    ->assertStatus(200)
+;
