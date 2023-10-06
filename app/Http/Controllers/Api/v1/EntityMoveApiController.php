@@ -32,14 +32,14 @@ class EntityMoveApiController extends ApiController
                 $entity = Entity::find($id);
                 if ($this->authorize('update', $entity->child)) {
                     $this->service
-                    ->entity($entity)
-                    ->campaign($campaign)
-                    ->user($request->user())
-                    ->to($request->campaign_id)
-                    ->copy($copy)
-                    ->validate()
-                    ->process()
-                ;
+                        ->entity($entity)
+                        ->campaign($campaign)
+                        ->user($request->user())
+                        ->to($request->campaign_id)
+                        ->copy($copy)
+                        ->validate()
+                        ->process()
+                    ;
                     $count++;
                 }
             }
@@ -48,13 +48,12 @@ class EntityMoveApiController extends ApiController
                 return response()->json(['success' => 'Succesfully copied ' . $count . ' entities.']);
             }
             return response()->json(['success' => 'Succesfully transfered ' . $count . ' entities.']);
-        
         } catch (TranslatableException $e) {
             return response()->json([
                 'error' => true,
                 'message' => $e->getTranslatedMessage(),
             ]);
         }
-    
+
     }
 }
