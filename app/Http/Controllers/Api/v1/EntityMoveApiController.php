@@ -7,7 +7,6 @@ use App\Models\Entity;
 use App\Http\Requests\MoveEntity as Request;
 use App\Services\Entity\MoveService;
 
-
 class EntityMoveApiController extends ApiController
 {
     protected MoveService $service;
@@ -26,20 +25,20 @@ class EntityMoveApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $count = 0;
-        $copy = is_null($request->copy) ? true : $request->copy;
+        $copy = null === $request->copy ? true : $request->copy;
 
         foreach ($request->entities as $id) {
             $entity = Entity::find($id);
             if ($this->authorize('update', $entity->child)) {
                 $this->service
-                ->entity($entity)
-                ->campaign($campaign)
-                ->user($request->user())
-                ->to($request->campaign_id)
-                ->copy($copy)
-                ->validate()
-                ->process()
-            ;
+                    ->entity($entity)
+                    ->campaign($campaign)
+                    ->user($request->user())
+                    ->to($request->campaign_id)
+                    ->copy($copy)
+                    ->validate()
+                    ->process()
+                ;
                 $count++;
             }
         }
