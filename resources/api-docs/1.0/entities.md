@@ -8,6 +8,7 @@
 - [Filtering Entities](#filtering-entities)
 - [Related Entities](#related-entities)
 - [Transform Entities](#transform-entities)
+- [Transfer Entities](#transfer-entities)
 - [Deleted Entities](#deleted-entities)
 - [Recover Deleted Entities](#recover-entities)
 
@@ -200,7 +201,7 @@ Notice the new array objects `attributes`, `entity_files`, `entity_events`, `pos
 <a name="transform-entities"></a>
 ## Transform Entities
 
-You can post an array with the ids of the entities you want to transform to the `/transform` endpoint to undo transform them into a different entity type.
+You can post an array with the ids of the entities you want to transform to the `/transform` endpoint to transform them into a different entity type.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
@@ -210,6 +211,25 @@ You can post an array with the ids of the entities you want to transform to the 
 | :- | :- | :- |
 | `entities` | `array`(required) | The ids of the entities to transform. |
 | `entity_type` | `string`(required) | The type of entity the entity will be transformed to. |
+
+### Result
+
+> {success} Code 200 with JSON.
+
+<a name="transfer-entities"></a>
+## Transfer Entities
+
+You can post an array with the ids of the entities you want to transfer to another campaign to the `/transfer` endpoint to transfer or copy them.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `transfer` | Default |
+
+| Parameter | Type | Description
+| :- | :- | :- |
+| `entities` | `array`(required) | The ids of the entities to transfer or copy. |
+| `campaign_id` | `integer`(required) | The id of the campaign the entity will be transfered or copied to. |
+| `copy` | `boolean` | True if the entity will be copied, false if the entity will be transfered, defaults to false if left empty |
 
 ### Result
 

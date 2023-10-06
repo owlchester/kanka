@@ -168,6 +168,12 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
+    public function withCampaigns(array $extra = []): self
+    {
+        Campaign::factory()->create($extra);
+        return $this;
+    }
+
     public function withPermissions(array $extra = []): self
     {
         CampaignRole::where('id', 3)->first()->toggle(1, 1);
