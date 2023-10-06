@@ -102,6 +102,8 @@ Route::post('campaigns/{campaign}/recover', [\App\Http\Controllers\Api\v1\Entity
 
 Route::post('campaigns/{campaign}/transform', [\App\Http\Controllers\Api\v1\EntityTransformApiController::class, 'transform']);
 
+Route::post('campaigns/{campaign}/transfer', [\App\Http\Controllers\Api\v1\EntityMoveApiController::class, 'transfer']);
+
 Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
 Route::get('version', function () {
     return config('app.version');
