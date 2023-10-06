@@ -49,7 +49,6 @@ it('Transfers entities')
     ->postJson('/api/1.0/campaigns/1/transfer', [
         'entities' => [1,2,3],
         'campaign_id' => 2,
-        'copy'  => false
     ])
     ->assertJsonFragment(['success' => 'Succesfully transfered 3 entities.'])
     ->assertStatus(200)
@@ -63,6 +62,7 @@ it('Copies entities')
     ->postJson('/api/1.0/campaigns/1/transfer', [
         'entities' => [1,2,3],
         'campaign_id' => 2,
+        'copy'  => true
     ])
     ->assertJsonFragment(['success' => 'Succesfully copied 3 entities.'])
     ->assertStatus(200)

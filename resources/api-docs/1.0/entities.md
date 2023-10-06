@@ -229,7 +229,7 @@ You can post an array with the ids of the entities you want to transfer to anoth
 | :- | :- | :- |
 | `entities` | `array`(required) | The ids of the entities to transfer or copy. |
 | `campaign_id` | `integer`(required) | The id of the campaign the entity will be transfered or copied to. |
-| `copy` | `boolean` | True if the entity will be copied, false if the entity will be transfered, defaults to copy if left empty |
+| `copy` | `boolean` | True if the entity will be copied, false if the entity will be transfered, defaults to false if left empty |
 
 ### Result
 
