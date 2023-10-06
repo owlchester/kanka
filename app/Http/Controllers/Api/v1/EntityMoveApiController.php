@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Exceptions\TranslatableException;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\MoveEntity as Request;
 use App\Services\Entity\MoveService;
-use Exception;
 
 class EntityMoveApiController extends ApiController
 {
@@ -26,7 +26,7 @@ class EntityMoveApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $count = 0;
-        $copy = is_null($request->copy) ? false : $request->copy;
+        $copy = $request->has('copy');
         try {
             foreach ($request->entities as $id) {
                 $entity = Entity::find($id);
@@ -49,10 +49,10 @@ class EntityMoveApiController extends ApiController
             }
             return response()->json(['success' => 'Succesfully transfered ' . $count . ' entities.']);
         
-        } catch (Exception $e) {
+        } catch (TranslatableException $e) {
             return response()->json([
                 'error' => true,
-                'message' => $e->getMessage(),
+                'message' => $e->getTranslatedMessage(),
             ]);
         }
     
