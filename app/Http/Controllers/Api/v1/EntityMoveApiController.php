@@ -26,20 +26,20 @@ class EntityMoveApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $count = 0;
-        $copy = is_null($request->copy) ? false : $request->copy;
+        $copy = null === $request->copy ? false : $request->copy;
         try {
             foreach ($request->entities as $id) {
                 $entity = Entity::find($id);
                 if ($this->authorize('update', $entity->child)) {
                     $this->service
-                    ->entity($entity)
-                    ->campaign($campaign)
-                    ->user($request->user())
-                    ->to($request->campaign_id)
-                    ->copy($copy)
-                    ->validate()
-                    ->process()
-                ;
+                        ->entity($entity)
+                        ->campaign($campaign)
+                        ->user($request->user())
+                        ->to($request->campaign_id)
+                        ->copy($copy)
+                        ->validate()
+                        ->process()
+                    ;
                     $count++;
                 }
             }
@@ -48,13 +48,13 @@ class EntityMoveApiController extends ApiController
                 return response()->json(['success' => 'Succesfully copied ' . $count . ' entities.']);
             }
             return response()->json(['success' => 'Succesfully transfered ' . $count . ' entities.']);
-        
+
         } catch (Exception $e) {
             return response()->json([
                 'error' => true,
                 'message' => $e->getMessage(),
             ]);
         }
-    
+
     }
 }
