@@ -21,6 +21,10 @@ class CreateNotes extends Migration
             $table->string('image', 255)->nullable();
 
             $table->integer('campaign_id')->unsigned()->notNull();
+            $table->unsignedInteger('note_id')->nullable();
+            $table->unsignedInteger('_lft')->default(0);
+            $table->unsignedInteger('_rgt')->default(0);
+
 
             // Overview
             $table->longText('entry')->nullable();
@@ -32,10 +36,12 @@ class CreateNotes extends Migration
             $table->index(['is_private']);
 
             // Foreign
-            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->cascadeOnDelete();
+            $table->foreign('note_id')->references('id')->on('notes')->nullOnDelete();
 
             // Index
             $table->index(['name', 'slug', 'type']);
+            $table->index(['_lft', '_rgt', 'note_id']);
         });
     }
 

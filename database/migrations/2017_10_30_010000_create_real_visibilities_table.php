@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CleanupPostVisibility extends Migration
+class CreateRealVisibilitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class CleanupPostVisibility extends Migration
      */
     public function up()
     {
-        Schema::table('entity_notes', function (Blueprint $table) {
-            $table->dropColumn('visibility');
+        if(Schema::hasTable('visibilities')) {
+            return;
+        }
+        Schema::create('visibilities', function (Blueprint $table) {
+            $table->id();
+            $table->string('code', 10);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ class CleanupPostVisibility extends Migration
      */
     public function down()
     {
-        Schema::table('entity_notes', function (Blueprint $table) {
-            // No coming back
-        });
+        Schema::dropIfExists('visibilities');
     }
 }

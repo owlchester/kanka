@@ -21,7 +21,7 @@ class AddMapGroups extends Migration
             $table->string('name');
             $table->unsignedSmallInteger('position')->nullable();
 
-            $table->string('visibility', 10)->default('all');
+            $table->unsignedBigInteger('visibility_id')->default(1);
             $table->boolean('is_shown')->default(0);
 
             $table->timestamps();
@@ -29,9 +29,10 @@ class AddMapGroups extends Migration
             // Foreign
             $table->foreign('map_id')->references('id')->on('maps')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete();
 
             // Index
-            $table->index(['name', 'position', 'visibility']);
+            $table->index(['name', 'position']);
         });
 
         Schema::table('map_markers', function (Blueprint $table) {

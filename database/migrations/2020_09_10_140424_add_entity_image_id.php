@@ -15,7 +15,9 @@ class AddEntityImageId extends Migration
     {
         Schema::table('entities', function (Blueprint $table) {
             $table->uuid('image_uuid')->nullable();
-            $table->foreign('image_uuid')->references('id')->on('images')->onDelete('set null');
+            $table->uuid('header_uuid')->nullable();
+            $table->foreign('image_uuid')->references('id')->on('images')->nullOnDelete();
+            $table->foreign('header_uuid')->references('id')->on('images')->nullOnDelete();
         });
     }
 

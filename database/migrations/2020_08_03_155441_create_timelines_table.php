@@ -62,6 +62,8 @@ class CreateTimelinesTable extends Migration
             $table->longText('entry')->nullable();
             $table->boolean('is_collapsed')->default(false);
 
+            $table->unsignedTinyInteger('position')->nullable();
+
             $table->timestamps();
 
             // Foreign
@@ -69,7 +71,7 @@ class CreateTimelinesTable extends Migration
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
 
             // Index
-            $table->index(['name', 'start_year']);
+            $table->index(['name', 'start_year', 'position']);
         });
 
         Schema::table('campaign_settings', function (Blueprint $table) {

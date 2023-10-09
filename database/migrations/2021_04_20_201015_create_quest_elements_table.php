@@ -24,7 +24,7 @@ class CreateQuestElementsTable extends Migration
 
             $table->string('role', 191)->nullable();
             $table->longText('description')->nullable();
-            $table->string('visibility', 10)->nullable();
+            $table->unsignedBigInteger('visibility_id')->default(1);
             $table->string('colour', 10)->nullable();
 
             $table->foreign('quest_id')->references('id')->on('quests')->onDelete('cascade');

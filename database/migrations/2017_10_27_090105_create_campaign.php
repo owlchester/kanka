@@ -33,7 +33,7 @@ class CreateCampaign extends Migration
             $table->string('export_path')->nullable();
             $table->date('export_date')->nullable();
 
-            $table->string('visibility', 7)->default('private');
+            $table->unsignedTinyInteger('visibility_id')->default(\App\Models\Campaign::VISIBILITY_PRIVATE);
             $table->boolean('is_featured')->default(false);
             $table->boolean('entity_visibility')->default(false);
             $table->unsignedInteger('visible_entity_count')->default(0);
@@ -45,20 +45,33 @@ class CreateCampaign extends Migration
 
             $table->unsignedTinyInteger('boost_count')->nullable();
 
+            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('updated_by')->nullable();
+
+            $table->dateTime('featured_until')->nullable();
+            $table->text('featured_reason')->nullable();
+
+            $table->unsignedInteger('follower')->default(0);
+
+            $table->boolean('is_hidden')->default(0);
+
             $table->timestamps();
 
-            $table->index(['visibility', 'is_featured', 'visible_entity_count']);
+            $table->index(['visibility_id', 'is_featured', 'visible_entity_count', 'featured_until', 'is_hidden'], 'campaigns_idx');
+            $table->index('follower');
+
+            $table->foreign('created_by')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('updated_by')->references('id')->on('users')->nullOnDelete();
         });
 
         Schema::create('campaign_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('campaign_id')->unsigned();
-            $table->string('role', 6);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->cascadeOnDelete();
         });
     }
 

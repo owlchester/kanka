@@ -10,6 +10,9 @@ return new class () extends Migration {
      */
     public function up(): void
     {
+        if (Schema::hasColumn('attributes', 'is_pinned')) {
+            return;
+        }
         Schema::table('attributes', function (Blueprint $table) {
             $table->renameColumn('is_star', 'is_pinned');
         });

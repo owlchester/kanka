@@ -21,15 +21,15 @@ class CreateCharacterTraitsTable extends Migration
             $table->string('name')->notNull();
             $table->text('entry')->nullable();
             $table->boolean('is_private')->default(0);
-            $table->string('section', 10)->default('appearance');
-            $table->unsignedSmallInteger('default_order')->null()->default('0');
+            $table->unsignedTinyInteger('section_id')->default(\App\Models\CharacterTrait::SECTION_APPEARANCE);
+            $table->unsignedSmallInteger('default_order')->nullable()->default('0');
             $table->timestamps();
 
             // Foreign
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
 
-            $table->index(['name', 'section', 'is_private']);
+            $table->index(['name', 'section_id', 'is_private']);
             $table->index(['default_order']);
         });
     }
