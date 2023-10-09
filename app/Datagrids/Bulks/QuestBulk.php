@@ -7,7 +7,7 @@ class QuestBulk extends Bulk
     protected array $fields = [
         'name',
         'type',
-        'quest_id',
+        'parent_quest_id',
         'instigator_id',
         'completed_choice',
         'tags',
