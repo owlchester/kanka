@@ -24,7 +24,7 @@
             'field' => 'quest.name',
             'render' => function($model) {
                 if ($model->quest) {
-                    return '<a href="' . route('quests.show', [$campaign, $model->quest->id]) . '">' . e($model->quest->name) . '</a>';
+                    return $model->quest->tooltipedLink();
                 }
             }
         ],

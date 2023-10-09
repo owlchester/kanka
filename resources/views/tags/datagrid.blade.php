@@ -28,7 +28,7 @@
             'field' => 'tag.name',
             'render' => function($model) {
                 if ($model->tag) {
-                    return '<a href="' . route('tags.show', [$campaign, $model->tag->id]) . '">' . e($model->tag->name) . '</a>';
+                    return $model->tag->tooltipedLink();
                 }
             }
         ],
