@@ -227,7 +227,7 @@ class EntityObserver
         // Gallery is now available to all
         if (request()->has('entity_image_uuid')) {
             $entity->image_uuid = request()->get('entity_image_uuid');
-        } else {
+        } elseif (!request()->is('1.0/*')) {
             $entity->image_uuid = null;
         }
 
@@ -249,7 +249,7 @@ class EntityObserver
         if ($entity->campaign->superboosted()) {
             if (request()->has('entity_header_uuid')) {
                 $entity->header_uuid = request()->get('entity_header_uuid');
-            } else {
+            } elseif (!request()->is('1.0/*')) {
                 $entity->header_uuid = null;
             }
         }
