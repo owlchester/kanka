@@ -434,7 +434,7 @@ class User extends \Illuminate\Foundation\Auth\User
             return false;
         }
         // If the account was created recently, add some small checks
-        if ($this->created_at->isAfter(Carbon::now()->subHour())) {
+        /*if ($this->created_at->isAfter(Carbon::now()->subHour())) {
             // User's name is directly in the campaign name
             if (Str::startsWith($this->email, $this->name . '@')) {
                 return true;
@@ -446,7 +446,7 @@ class User extends \Illuminate\Foundation\Auth\User
                     return true;
                 }
             }
-        }
+        }*/
         // Recent fails are a clear indicator of someone cycling through cards
         return $this->logs()
             ->where('type_id', UserLog::TYPE_FAILED_CHARGE_EMAIL)
