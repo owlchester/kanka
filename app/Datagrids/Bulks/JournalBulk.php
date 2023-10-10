@@ -7,7 +7,7 @@ class JournalBulk extends Bulk
     protected array $fields = [
         'name',
         'type',
-        'journal_id',
+        'parent_journal_id',
         'author_id',
         'location_id',
         'tags',

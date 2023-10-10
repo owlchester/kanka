@@ -7,7 +7,7 @@ class AbilityBulk extends Bulk
     protected array $fields = [
         'name',
         'type',
-        'ability_id',
+        'parent_ability_id',
         'tags',
         'private_choice',
     ];

@@ -8,7 +8,7 @@ class TagBulk extends Bulk
         'name',
         'type',
         'colour',
-        'tag_id',
+        'parent_tag_id',
         'private_choice',
         'auto_applied_choice',
         'hide_choice',
