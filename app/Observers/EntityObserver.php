@@ -12,6 +12,7 @@ use App\Services\Entity\TagService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
 use Illuminate\Support\Str;
+use App\Facades\Domain;
 
 class EntityObserver
 {
@@ -227,10 +228,9 @@ class EntityObserver
         // Gallery is now available to all
         if (request()->has('entity_image_uuid')) {
             $entity->image_uuid = request()->get('entity_image_uuid');
-        } else {
+        } elseif (Domain::isApp()) {
             $entity->image_uuid = null;
         }
-
         // No changed for non-boosted campaigns
         if (!$entity->campaign->boosted()) {
             $entity->save();
@@ -249,7 +249,7 @@ class EntityObserver
         if ($entity->campaign->superboosted()) {
             if (request()->has('entity_header_uuid')) {
                 $entity->header_uuid = request()->get('entity_header_uuid');
-            } else {
+            } elseif (Domain::isApp()) {
                 $entity->header_uuid = null;
             }
         }
