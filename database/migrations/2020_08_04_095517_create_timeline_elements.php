@@ -26,9 +26,13 @@ class CreateTimelineElements extends Migration
             $table->timestamps();
             $table->unsignedInteger('created_by')->nullable();
 
-            $table->string('visibility', 10)->default('all');
+            $table->unsignedBigInteger('visibility_id')->default(1);
 
             $table->text('icon')->nullable();
+
+            $table->boolean('use_event_date')->default(false);
+            $table->boolean('is_collapsed')->default(false);
+            $table->boolean('use_entity_entry')->default(false);
 
             $table->index('position');
 
@@ -36,6 +40,7 @@ class CreateTimelineElements extends Migration
             $table->foreign('era_id')->references('id')->on('timeline_eras')->onDelete('cascade');
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete();
 
         });
     }

@@ -34,6 +34,9 @@ class UpdateUserAndCampaignLink extends Migration
             $table->boolean('has_last_login_sharing')->default(0);
 
             $table->string('theme', 20)->nullable();
+            $table->text('profile')->nullable();
+
+            $table->datetime('banned_until')->nullable();
 
             $table->index(['provider', 'provider_id']);
 

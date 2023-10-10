@@ -39,6 +39,11 @@ class CreateCalendarTable extends Migration
             $table->string('date')->nullable();
             $table->string('suffix')->nullable();
 
+            $table->text('month_aliases')->nullable();
+            $table->text('week_names')->nullable();
+            $table->string('reset', 5)->nullable();
+            $table->boolean('is_incrementing')->default(false);
+
             // Leap year stuff, single
             $table->boolean('has_leap_year')->default(false);
             $table->integer('leap_year_amount')->nullable();
@@ -48,11 +53,13 @@ class CreateCalendarTable extends Migration
 
             $table->unsignedTinyInteger('start_offset')->nullable()->default(0);
             $table->string('reset', 5)->nullable()->change();
+            $table->boolean('skip_year_zero')->default(false);
 
             $table->timestamps();
 
             // Indexes
             $table->index(['name', 'is_private']);
+            $table->index(['is_incrementing']);
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');

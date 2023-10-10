@@ -27,11 +27,11 @@ class CreateEntityEvents extends Migration
             $table->unsignedMediumInteger('month');
             $table->integer('year');
             $table->string('recurring_until', 12)->nullable();
+            $table->string('recurring_periodicity', 5)->nullable();
 
             $table->timestamps();
 
             $table->index(['is_recurring']);
-            $table->index(['visibility']);
             $table->index(['day', 'month', 'year']);
 
             // Foreign

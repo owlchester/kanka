@@ -24,8 +24,8 @@ class CreateCampaignStylesTable extends Migration
             $table->softDeletes();
 
             $table->unsignedInteger('created_by')->nullable();
-
-            $table->index('is_enabled');
+            $table->unsignedTinyInteger('order')->nullable();
+            $table->index(['order', 'is_enabled']);
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');

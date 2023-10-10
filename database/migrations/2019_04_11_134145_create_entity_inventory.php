@@ -21,7 +21,7 @@ class CreateEntityInventory extends Migration
             $table->unsignedInteger('created_by')->nullable();
             $table->unsignedInteger('amount')->nullable();
             $table->string('position')->nullable();
-            $table->string('visibility', 10)->default('all');
+            $table->unsignedBigInteger('visibility_id')->default(1);
 
             $table->text('description')->nullable();
 
@@ -37,6 +37,8 @@ class CreateEntityInventory extends Migration
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete();
+
         });
     }
 

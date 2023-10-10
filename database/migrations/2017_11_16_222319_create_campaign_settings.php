@@ -27,10 +27,11 @@ class CreateCampaignSettings extends Migration
             $table->boolean('menu_links')->default(true);
             $table->boolean('maps')->default(true);
             $table->boolean('inventories')->default(true);
+            $table->boolean('entity_attributes')->default(true);
             $table->timestamps();
 
             // Foreign
-            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->cascadeOnDelete();
         });
     }
 

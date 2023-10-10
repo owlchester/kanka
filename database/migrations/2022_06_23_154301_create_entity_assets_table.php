@@ -18,7 +18,9 @@ class CreateEntityAssetsTable extends Migration
             $table->unsignedTinyInteger('type_id')->after('entity_id');
             $table->text('metadata')->after('name')->nullable();
             $table->unsignedSmallInteger('position')->nullable();
-            $table->index(['type_id']);
+            $table->boolean('is_pinned')->default(0);
+
+            $table->index(['type_id', 'is_pinned']);
         });
 
         DB::update('update entity_aliases set type_id = ' . \App\Models\EntityAsset::TYPE_ALIAS);

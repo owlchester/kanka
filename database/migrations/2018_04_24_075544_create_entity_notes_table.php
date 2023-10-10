@@ -25,7 +25,7 @@ class CreateEntityNotesTable extends Migration
             $table->unsignedInteger('created_by')->nullable();
 
             $table->integer('updated_by')->unsigned()->nullable();
-            $table->string('visibility', 10)->default('all');
+            $table->unsignedBigInteger('visibility_id')->default(1);
             $table->smallInteger('position');
 
             $table->text('settings')->nullable();
@@ -36,9 +36,10 @@ class CreateEntityNotesTable extends Migration
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete();
 
             $table->index(['name', 'is_private']);
-            $table->index(['visibility', 'position']);
+            $table->index(['position']);
         });
     }
 
