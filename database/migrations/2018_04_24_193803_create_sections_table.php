@@ -27,10 +27,12 @@ class CreateSectionsTable extends Migration
             $table->unsignedInteger('tag_id')->nullable();
             $table->unsignedInteger('_lft')->default(0);
             $table->unsignedInteger('_rgt')->default(0);
+            $table->boolean('is_hidden')->default(false);
+            $table->boolean('is_auto_applied')->default(0);
 
             $table->timestamps();
 
-            $table->index(['name', 'type', 'is_private']);
+            $table->index(['name', 'type', 'is_private', 'is_hidden', 'is_auto_applied']);
             $table->index(['tag_id', '_lft', '_rgt']);
 
             // Foreign

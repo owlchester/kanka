@@ -10,6 +10,7 @@ use App\Models\Pledge;
 use App\Models\SubscriptionCancellation;
 use Carbon\Carbon;
 use App\Services\SubscriptionService;
+use App\Services\SubscriptionUpgradeService;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -19,14 +20,16 @@ use Laravel\Cashier\Exceptions\IncompletePayment;
 class SubscriptionController extends Controller
 {
     protected SubscriptionService $subscription;
+    protected SubscriptionUpgradeService $subscriptionUpgrade;
 
     /**
      * SubscriptionController constructor.
      */
-    public function __construct(SubscriptionService $service)
+    public function __construct(SubscriptionService $service, SubscriptionUpgradeService $subscriptionUpgradeService)
     {
         $this->middleware(['auth', 'identity', 'subscriptions']);
         $this->subscription = $service;
+        $this->subscriptionUpgrade = $subscriptionUpgradeService;
     }
 
     /**
@@ -94,6 +97,7 @@ class SubscriptionController extends Controller
         if ($user->hasPayPal()) {
             $limited = true;
         }
+        $upgrade = $this->subscriptionUpgrade->user($user)->upgradePrice($period, $tier);
 
         return view('settings.subscription.change', compact(
             'tier',
@@ -103,6 +107,7 @@ class SubscriptionController extends Controller
             'intent',
             'cancel',
             'user',
+            'upgrade',
             'isDowngrading',
             'hasPromo',
             'limited',

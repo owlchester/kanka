@@ -10,6 +10,7 @@ return new class () extends Migration {
      */
     public function up(): void
     {
+        Schema::dropIfExists('posts');
         Schema::rename('entity_notes', 'posts');
         Schema::rename('entity_note_permissions', 'post_permissions');
 

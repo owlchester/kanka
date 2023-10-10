@@ -21,13 +21,14 @@ class CreateTableEntityLinks extends Migration
             $table->unsignedTinyInteger('position')->default(0);
             $table->text('url');
             $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedBigInteger('visibility_id')->default(1);
             $table->timestamps();
-            $table->string('visibility', 10);
 
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete();
 
-            $table->index(['visibility', 'position']);
+            $table->index(['position']);
         });
     }
 

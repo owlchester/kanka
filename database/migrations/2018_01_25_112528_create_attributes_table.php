@@ -24,9 +24,12 @@ class CreateAttributesTable extends Migration
 
             $table->unsignedSmallInteger('default_order')->null()->default('0');
             $table->unsignedInteger('origin_attribute_id')->nullable();
+            $table->unsignedTinyInteger('type_id')->default(1);
 
-            $table->boolean('is_star')->default(false);
+            $table->boolean('is_pinned')->default(false);
             $table->string('api_key', 20)->null();
+
+            $table->boolean('is_hidden')->defaultValue(false);
 
             $table->timestamps();
 
@@ -34,9 +37,7 @@ class CreateAttributesTable extends Migration
             $table->foreign('origin_attribute_id')->references('id')->on('attributes')->onDelete('set null');
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
 
-            $table->index(['name', 'is_private']);
-            $table->index(['is_star'], 'attributes_is_star_idx');
-            $table->index(['default_order']);
+            $table->index(['name', 'is_private', 'is_hidden', 'is_pinned', 'default_order'], 'attributes_idx');
         });
     }
 

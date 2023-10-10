@@ -32,8 +32,10 @@ class CreateCharacters extends Migration
 
             $table->timestamps();
 
-            // Privacy
             $table->boolean('is_private')->default(false);
+            $table->boolean('is_personality_pinned')->default(false);
+            $table->boolean('is_appearance_pinned')->default(false);
+
             $table->index(['is_private']);
 
             $table->boolean('is_personality_visible')->default(true);

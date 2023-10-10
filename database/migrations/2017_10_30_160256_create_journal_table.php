@@ -23,7 +23,7 @@ class CreateJournalTable extends Migration
             $table->string('image', 255)->nullable();
             $table->date('date')->nullable();
             $table->unsignedInteger('campaign_id')->notNull();
-            $table->unsignedInteger('character_id')->nullable();
+            $table->unsignedInteger('author_id')->nullable();
             $table->unsignedInteger('location_id')->nullable();
 
             $table->unsignedInteger('_lft')->default(0);
@@ -41,7 +41,7 @@ class CreateJournalTable extends Migration
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->cascadeOnDelete();
-            $table->foreign('character_id')->references('id')->on('characters')->nullOnDelete();
+            $table->foreign('author_id')->references('id')->on('entities')->nullOnDelete();
             $table->foreign('location_id')->references('id')->on('locations')->nullOnDelete();
             $table->foreign('journal_id')->references('id')->on('journals')->nullOnDelete();
 

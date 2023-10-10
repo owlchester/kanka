@@ -23,7 +23,7 @@ class CreateCalendarWeather extends Migration
             $table->string('wind', 45)->nullable();
             $table->string('effect', 45)->nullable();
             $table->string('name', 40)->nullable();
-            $table->string('visibility', 10)->default('all');
+            $table->unsignedBigInteger('visibility_id')->default(1);
 
             $table->unsignedMediumInteger('day');
             $table->unsignedMediumInteger('month');
@@ -34,6 +34,7 @@ class CreateCalendarWeather extends Migration
 
             $table->foreign('calendar_id')->references('id')->on('calendars')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete();
         });
     }
 

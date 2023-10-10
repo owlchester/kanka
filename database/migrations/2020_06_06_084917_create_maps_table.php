@@ -74,7 +74,7 @@ class CreateMapsTable extends Migration
             // Overview
             $table->longText('entry')->nullable();
 
-            $table->string('visibility', 10)->default('all');
+            $table->unsignedBigInteger('visibility_id')->default(1);
 
             $table->boolean('is_shown')->default(true);
 
@@ -85,9 +85,10 @@ class CreateMapsTable extends Migration
             // Foreign
             $table->foreign('map_id')->references('id')->on('maps')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete();
 
             // Index
-            $table->index(['name', 'position', 'visibility']);
+            $table->index(['name', 'position']);
         });
 
         Schema::create('map_markers', function (Blueprint $table) {
@@ -112,13 +113,16 @@ class CreateMapsTable extends Migration
 
             $table->unsignedInteger('created_by')->nullable();
 
-            $table->string('visibility', 10)->default('all')->nullable();
+            $table->unsignedBigInteger('visibility_id')->default(1);
             $table->string('font_colour', 7)->nullable();
 
             $table->smallInteger('circle_radius')->unsigned()->nullable();
             $table->text('polygon_style')->nullable();
 
             $table->tinyInteger('opacity')->nullable();
+            $table->unsignedTinyInteger('chunking_status')->nullable();
+
+            $table->text('config')->nullable();
 
             $table->timestamps();
 
@@ -126,9 +130,10 @@ class CreateMapsTable extends Migration
             $table->foreign('map_id')->references('id')->on('maps')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
+            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete();
 
             // Index
-            $table->index(['name', 'visibility']);
+            $table->index(['name']);
         });
     }
 

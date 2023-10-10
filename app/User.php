@@ -441,7 +441,6 @@ class User extends \Illuminate\Foundation\Auth\User
             } elseif ($this->campaigns()->count() === 1) {
                 $campaign = $this->campaigns()->first();
                 // Only the 4 starting entities
-                // @//phpstan-ignore-next-line
                 if ($campaign->entities()->withInvisible()->count() === 4) {
                     return true;
                 }

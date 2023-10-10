@@ -13,6 +13,7 @@ class CreateItemTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('items');
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->notNull();
@@ -20,27 +21,26 @@ class CreateItemTable extends Migration
             $table->string('type')->nullable();
             $table->string('image', 255)->nullable();
             $table->date('date')->nullable();
-            $table->integer('campaign_id')->unsigned()->notNull();
-            $table->integer('character_id')->unsigned()->nullable();
-            $table->integer('location_id')->unsigned()->nullable();
+            $table->unsignedInteger('campaign_id')->notNull();
+            $table->unsignedInteger('item_id')->nullable();
+            $table->unsignedInteger('character_id')->nullable();
+            $table->unsignedInteger('location_id')->nullable();
 
-            // Overview
             $table->longText('entry')->nullable();
 
             $table->string('price')->nullable();
             $table->string('size')->nullable();
 
-
-            // Privacy
             $table->boolean('is_private')->default(false);
 
             $table->timestamps();
 
 
             // Foreign
-            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->cascadeOnDelete();
             $table->foreign('location_id')->references('id')->on('locations')->nullOnDelete();
             $table->foreign('character_id')->references('id')->on('characters')->nullOnDelete();
+            $table->foreign('item_id')->references('id')->on('items')->nullOnDelete();
 
             // Index
             $table->index(['name', 'slug', 'type', 'is_private']);
