@@ -369,7 +369,7 @@ class ImporterService
             }
             $element->role = Arr::get($data, 'role', null);
             $element->description = $this->mentions(Arr::get($data, 'description', ''));
-            $element->visibility = 'all';
+            $element->visibility_id = \App\Enums\Visibility::All->value;
             //dd($element);
             $element->save();
         } catch (Exception $e) {
@@ -554,9 +554,21 @@ class ImporterService
                 $post->marketplace_uuid = $uuid;
             }
 
+            $visibility = \App\Enums\Visibility::All->value;
+
+            if (Arr::get($data, 'visibility') == 'admin') {
+                $visibility = \App\Enums\Visibility::Admin->value;
+            } elseif (Arr::get($data, 'visibility') == 'admin-self') {
+                $visibility = \App\Enums\Visibility::AdminSelf->value;
+            } elseif (Arr::get($data, 'visibility') == 'members') {
+                $visibility = \App\Enums\Visibility::Member->value;
+            } elseif (Arr::get($data, 'visibility') == 'self') {
+                $visibility = \App\Enums\Visibility::Self->value;
+            }
+
             $post->name = Arr::get($data, 'name');
             $post->entry = $this->mentions(Arr::get($data, 'entry'));
-            $post->visibility = Arr::get($data, 'visibility');
+            $post->visibility_id = $visibility;
             $post->save();
         }
     }
