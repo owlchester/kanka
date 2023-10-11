@@ -447,10 +447,10 @@ class Entity extends Model
         $campaign = CampaignLocalization::getCampaign();
         $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? [$campaign, 'm' => 'table'] : [$campaign];
 
-        return '<a href="' .
-            route($this->pluralType() . '.index', $defaultOptions + ['_clean' => true, 'type' => $this->child->type])
-            . '">' .
-            $this->child->type .
-            '</a>';
+        return link_to_route(
+            $this->pluralType() . '.index',
+            $this->child->type,
+            $defaultOptions + ['_clean' => true, 'type' => $this->child->type]
+        );
     }
 }
