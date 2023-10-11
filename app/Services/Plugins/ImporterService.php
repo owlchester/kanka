@@ -369,7 +369,7 @@ class ImporterService
             }
             $element->role = Arr::get($data, 'role', null);
             $element->description = $this->mentions(Arr::get($data, 'description', ''));
-            $element->visibility = 'all';
+            $element->visibility_id = \App\Enums\Visibility::All->value;
             //dd($element);
             $element->save();
         } catch (Exception $e) {
