@@ -30,7 +30,7 @@ class DefaultThumbnailApiController extends ApiController
     {
         $this->authorize('access', $campaign);
 
-        if ($campaign->premium()){
+        if ($campaign->premium()) {
             /** @var DefaultImageService $service */
             $service = app()->make(DefaultImageService::class);
             $type = Str::plural(array_search($request->post('entity_type'), config('entities.ids')));
@@ -49,8 +49,9 @@ class DefaultThumbnailApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(DestroyDefaultThumbnail $request, Campaign $campaign) {
-        if ($campaign->premium()){
+    public function delete(DestroyDefaultThumbnail $request, Campaign $campaign)
+    {
+        if ($campaign->premium()) {
             /** @var DefaultImageService $service */
             $service = app()->make(DefaultImageService::class);
             $this->authorize('recover', $campaign);
