@@ -56,6 +56,7 @@
     - [Pagination](/api-docs/{{version}}/pagination)
     - [Bookmarks](/api-docs/{{version}}/bookmark)
     - [Dashboard Widgets](/api-docs/{{version}}/dashboard-widgets)
+    - [Default Images](/api-docs/{{version}}/default-images)
     - [Mention Language](/api-docs/{{version}}/mention-language)
     - [Gallery](/api-docs/{{version}}/images)
     - [Templates](/api-docs/{{version}}/templates)
