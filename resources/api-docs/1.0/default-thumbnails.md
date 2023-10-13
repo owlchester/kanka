@@ -1,15 +1,15 @@
-# Images
+# Thumbnails
 
 ---
 
-- [All Default Images](#all-images)
+- [All Default Thumbnails](#all-thumbnails)
 - [Create a Image](#create-image)
 - [Delete a Image](#delete-image)
 
-<a name="all-images"></a>
-## All Images
+<a name="all-thumbnails"></a>
+## All Thumbnails
 
-You can get a list of all the default images of a campaign by using the following endpoint. This is a superboosted campaign feature! If the campaign isn't superboosted, this API endpoint will result in a 404.
+You can get a list of all the default thumbnails of a campaign by using the following endpoint. This is a premium campaign feature! If the campaign isn't premium, this API endpoint will result in a 404.
 
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 

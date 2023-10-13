@@ -383,19 +383,6 @@ class Campaign extends Model
     }
 
     /**
-     * Prepare the default entity images
-     */
-    public function getDefaultImages(): array
-    {
-        $data = [];
-        foreach($this->defaultImages() as $image) {
-            $data[] = ['entity_type' => $image['type'], 'url' =>  Img::url($image['path'])];
-        }
-
-        return $data;
-    }
-
-    /**
      * Determine if a campaign has plugins of the theme type
      */
     public function hasPluginTheme(): bool
