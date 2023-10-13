@@ -24,7 +24,7 @@ it('DELETES a default thumbnail')
     ->asUser(true)
     ->withCampaign(['boost_count' => 4, 'default_images' => ["characters" => "1"]])
     ->withImages()
-    ->delete('/api/1.0/campaigns/1/default-thumbnails', ['entity_type' => 1 ])
+    ->delete('/api/1.0/campaigns/1/default-thumbnails', ['entity_type' => 1])
     ->assertJsonFragment(["data" => "Default thumbnail succesfully deleted"])
 
 ;

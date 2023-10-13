@@ -52,16 +52,12 @@ class DefaultThumbnailApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(DestroyDefaultThumbnail $request, Campaign $campaign) 
-    {
-        if (!$campaign->boosted()){
-            return response()->json(['error' => 'Feature exclusive to premium campaigns'], 422);
-        }
-
-        /** @var DefaultImageService $service */
-        $service = app()->make(DefaultImageService::class);
-        $this->authorize('recover', $campaign);
-        $type = Str::plural(array_search($request->post('entity_type'), config('entities.ids')));
+    public function delete(DestroyDefaultThumbnail $request, Campaign $campaign) {
+        if ($campaign->premium()){
+            /** @var DefaultImageService $service */
+            $service = app()->make(DefaultImageService::class);
+            $this->authorize('recover', $campaign);
+            $type = Str::plural(array_search($request->post('entity_type'), config('entities.ids')));
 
         $result = $service->campaign($campaign)->type($type)->destroy();
 
