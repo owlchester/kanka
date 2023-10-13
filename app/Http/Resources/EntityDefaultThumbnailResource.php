@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\CampaignUser;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Facades\Img;
 

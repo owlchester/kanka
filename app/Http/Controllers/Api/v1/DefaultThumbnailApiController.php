@@ -30,7 +30,7 @@ class DefaultThumbnailApiController extends ApiController
     {
         $this->authorize('access', $campaign);
 
-        if (!$campaign->boosted()){
+        if (!$campaign->boosted()) {
             return response()->json(['error' => 'Feature exclusive to premium campaigns'], 422);
         }
 
@@ -52,9 +52,9 @@ class DefaultThumbnailApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(DestroyDefaultThumbnail $request, Campaign $campaign) 
+    public function delete(DestroyDefaultThumbnail $request, Campaign $campaign)
     {
-        if (!$campaign->boosted()){
+        if (!$campaign->boosted()) {
             return response()->json(['error' => 'Feature exclusive to premium campaigns'], 422);
         }
 
@@ -70,7 +70,7 @@ class DefaultThumbnailApiController extends ApiController
                 'data' => 'Default thumbnail succesfully deleted'
             ]);
         }
-        
+
         return response()->json(['error' => 'Invalid input'], 422);
     }
 }
