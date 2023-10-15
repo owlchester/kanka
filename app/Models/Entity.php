@@ -438,19 +438,4 @@ class Entity extends Model
         }*/
         return $options;
     }
-
-    /**
-     * Type filter link
-     */
-    public function typeLink(string $displayName = null): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? [$campaign, 'm' => 'table'] : [$campaign];
-
-        return link_to_route(
-            $this->pluralType() . '.index',
-            $this->child->type,
-            $defaultOptions + ['_clean' => true, 'type' => $this->child->type]
-        );
-    }
 }

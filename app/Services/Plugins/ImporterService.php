@@ -2,6 +2,7 @@
 
 namespace App\Services\Plugins;
 
+use App\Enums\Visibility;
 use App\Models\CampaignPlugin;
 use App\Models\Character;
 use App\Models\CharacterTrait;
@@ -362,15 +363,13 @@ class ImporterService
         try {
             $element = QuestElement::where('quest_id', $questId)->where('entity_id', $target)->first();
             if (empty($element)) {
-                /** @var QuestElement $element */
                 $element = new QuestElement();
                 $element->quest_id = $questId;
                 $element->entity_id = $target;
             }
             $element->role = Arr::get($data, 'role', null);
             $element->description = $this->mentions(Arr::get($data, 'description', ''));
-            $element->visibility_id = \App\Enums\Visibility::All->value;
-            //dd($element);
+            $element->visibility_id = Visibility::All;
             $element->save();
         } catch (Exception $e) {
             Log::error('Invalid quest element ' . $uuid . ' for plugin entity #' . $pluginEntity->id
