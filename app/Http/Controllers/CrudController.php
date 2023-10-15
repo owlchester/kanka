@@ -442,6 +442,9 @@ class CrudController extends Controller
             'editingUsers' => $editingUsers,
             'entityTypeId' => $model->entityTypeId()
         ];
+        if ($model->entity) {
+            $params['entity'] = $model->entity;
+        }
 
         return view('cruds.forms.edit', $params);
     }

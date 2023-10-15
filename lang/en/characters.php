@@ -26,7 +26,7 @@ return [
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Display the appearance traits on the overview page.',
-        'is_dead'                   => 'This character is dead',
+        'is_dead'                   => 'This character is dead.',
         'is_personality_pinned'     => 'Display the personality traits on the overview page.',
         'is_personality_visible'    => 'The personality traits are visible to all, not only to members of the :admin role.',
         'personality_not_visible'   => 'Personality traits of this character are currently only visible to Admin users.',
