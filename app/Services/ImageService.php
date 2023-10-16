@@ -7,6 +7,7 @@ use App\Models\Entity;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Sanitizers\SvgAllowedAttributes;
+use App\Traits\EntityAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -20,9 +21,11 @@ use Exception;
  */
 class ImageService
 {
+    use EntityAware;
+
     /**
      */
-    public static function handle(MiscModel|Map|Model $model, string $folder = '', string $field = 'image')
+    public static function handle(MiscModel|Map|Model|Entity $model, string $folder = '', string $field = 'image')
     {
         // Remove the old image
         if (request()->post('remove-' . $field) == '1') {
@@ -111,7 +114,11 @@ class ImageService
                 } else {
                     $path = request()->file($field)->storePublicly($folder);
                 }
-                $model->$field = $path;
+                if ($model instanceof Entity) {
+                    $model->image_path = $path;
+                } else {
+                    $model->$field = $path;
+                }
 
                 if (!empty($sizes) && array_key_exists('height', $model->getAttributes())) {
                     $model->width = $sizes[0]; // @phpstan-ignore-line
@@ -200,6 +207,9 @@ class ImageService
      */
     public static function cleanup($model, $field = 'image')
     {
+        if ($model instanceof Entity) {
+            $field = 'image_path';
+        }
         if (empty($model->$field)) {
             return;
         }

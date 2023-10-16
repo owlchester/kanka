@@ -43,7 +43,6 @@ class TransformService
         $this
             ->attributes()
             ->location()
-            ->image()
             ->removeTags()
             ->removePosts()
         ;
@@ -156,20 +155,6 @@ class TransformService
                 $this->new->{$attribute} = $value;
             }
         }
-        return $this;
-    }
-
-    protected function image(): self
-    {
-        if (empty($this->new->image)) {
-            return $this;
-        }
-        $newPath = str_replace($this->child->getTable(), $this->new->getTable(), $this->child->image);
-        $this->new->image = $newPath;
-        if (!Storage::exists($newPath)) {
-            Storage::copy($this->child->image, $newPath);
-        }
-
         return $this;
     }
 

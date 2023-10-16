@@ -42,7 +42,6 @@ class Organisation extends MiscModel
         'name',
         'slug',
         'entry',
-        'image',
         'location_id',
         'organisation_id',
         'type',

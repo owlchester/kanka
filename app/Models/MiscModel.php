@@ -132,18 +132,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Get the original image url (for prod: aws cloudfront)
-     */
-    public function getOriginalImageUrl(string $field = 'image')
-    {
-        $cloudfront = config('filesystems.disks.cloudfront.url');
-        if ($cloudfront) {
-            return Storage::disk('cloudfront')->url($this->$field);
-        }
-        return Storage::url($this->$field);
-    }
-
-    /**
      * Get the image fallback image
      */
     protected function getImageFallback(int $size = 40): string

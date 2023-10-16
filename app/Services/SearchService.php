@@ -252,9 +252,9 @@ class SearchService
                 continue;
             }
             $img = '';
-            if (!empty($child->image)) {
+            if (!empty($model->image_path)) {
                 $img = '<span class="entity-image" style="background-image: url(\''
-                    . $child->thumbnail() . '\');"></span> ';
+                    . Avatar::entity($model)->size(120)->thumbnail() . '\');"></span> ';
             }
 
             $parsedName = str_replace(['&#039;', '&amp;'], ['\'', '&'], $model->name);
@@ -392,7 +392,7 @@ class SearchService
             'id' => $entity->id,
             'name' => $entity->name,
             'is_private' => $entity->is_private,
-            'image' => Avatar::entity($entity)->size(64)->thumbnail(),
+            'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
             'link' => $entity->url(),
             // @phpstan-ignore-next-line
             'type' => Module::singular($entity->typeId(), __('entities.' . $entity->type())),

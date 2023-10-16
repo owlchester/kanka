@@ -38,7 +38,6 @@ class Timeline extends MiscModel
         'slug',
         'entry',
         'is_private',
-        'image',
         'timeline_id',
     ];
 
@@ -92,7 +91,7 @@ class Timeline extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

@@ -17,7 +17,7 @@
     @include('partials.errors')
     <x-box>
     @if ($campaign->boosted())
-        @if($campaign->superboosted() && empty($model->image) && !empty($entity->image_uuid))
+        @if($campaign->superboosted() && empty($entity->image_path) && !empty($entity->image_uuid))
             <x-alert type="warning">
                 {!! __('entities/image.focus.warning_v2', ['gallery' => link_to_route('campaign.gallery.index', __('sidebar.gallery'), $campaign)]) !!}
             </x-alert>
@@ -36,7 +36,7 @@
             <x-icon class="fa-regular fa-bullseye fa-2x hover:text-error" />
         </div>
 
-        <img class="focus-image max-w-none" src="{{ $model->thumbnail(0) }}" alt="img" />
+        <img class="focus-image max-w-none" src="{{ \App\Facades\Avatar::entity($entity)->original() }}" alt="img" />
     </div>
 
     {!! Form::open([

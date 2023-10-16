@@ -56,7 +56,6 @@ class Character extends MiscModel
         'age',
         'sex',
         'pronouns',
-        'image',
         'is_private',
         'type',
         'is_dead',
@@ -138,7 +137,7 @@ class Character extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -481,7 +480,7 @@ class Character extends MiscModel
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'image', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
+            ->select(['id', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
             ->has('entity');

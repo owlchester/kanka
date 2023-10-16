@@ -347,10 +347,11 @@ trait HasFilters
      */
     protected function filterHasImage(Builder $query, string $value = null): void
     {
+        $query->joinEntity();
         if ($value) {
-            $query->whereNotNull($this->getTable() . '.image');
+            $query->whereNotNull('e.image_path');
         } else {
-            $query->whereNull($this->getTable() . '.image');
+            $query->whereNull('e.image_path');
         }
     }
 

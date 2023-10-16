@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\Avatar;
 use Illuminate\Support\Facades\Route;
 
 class Entity extends EntityChild
@@ -28,9 +29,9 @@ class Entity extends EntityChild
             'id' => $model->child->id,
             'entity_id' => $model->id,
             'name' => $model->name,
-            'image' => $model->child->thumbnail(0),
-            'image_thumb' => $model->child->thumbnail(),
-            'has_custom_image' => !empty($model->child->image),
+            'image' => Avatar::entity($model)->thumbnail(),
+            'image_thumb' => Avatar::entity($model)->size(40)->thumbnail(),
+            'has_custom_image' => !empty($model->image_path) && !empty($model->image),
 
             // @phpstan-ignore-next-line
             'type' => $model->type(),

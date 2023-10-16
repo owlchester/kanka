@@ -60,9 +60,6 @@ abstract class MiscObserver
             }
         }
 
-        // Handle image. Let's use a service for this.
-        ImageService::handle($model, $model->getTable());
-
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($model->is_private)) {
             $model->is_private = false;
@@ -85,15 +82,20 @@ abstract class MiscObserver
         $entity->is_private = $model->is_private;
         $entity->name = $model->name;
         $entity->type_id = $model->entityTypeId();
+        ImageService::handle($entity, 'w/' . $entity->campaign_id);
 
         // Once saved, refresh the model so that we can call $model->entity
         if ($entity->save()) {
+            // Handle image. Let's use a service for this.
+
             // Take care of mentions for the entity.
             $this->syncMentions($model, $entity);
             $model->refresh();
 
             // Clear some cache
             EntityCache::clearSuggestion($model);
+
+
         }
     }
 

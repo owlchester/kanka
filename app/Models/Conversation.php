@@ -29,7 +29,6 @@ class Conversation extends MiscModel
     /** @var string[]  */
     protected $fillable = [
         'name',
-        'image',
         'slug',
         'type',
         'campaign_id',

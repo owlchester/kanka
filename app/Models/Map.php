@@ -71,7 +71,6 @@ class Map extends MiscModel
         'slug',
         'type',
         'entry',
-        'image',
         'map_id',
         'location_id',
         'grid',
@@ -156,7 +155,7 @@ class Map extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -619,7 +618,7 @@ class Map extends MiscModel
      */
     public function explorable(): bool
     {
-        if (empty($this->image) && !$this->isReal()) {
+        if (empty($this->entity->image_path) && !$this->isReal()) {
             return false;
         }
         return ! ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));

@@ -2,6 +2,7 @@
 
 namespace App\Services\Abilities;
 
+use App\Facades\Avatar;
 use App\Facades\Mentions;
 use App\Models\Attribute;
 use App\Models\Entity;
@@ -34,7 +35,7 @@ class AbilityService extends BaseAbilityService
                 // entity
                 'ability.entity', 'ability.entity.image', 'ability.entity.attributes',
                 // parent
-                'ability.ability', 'ability.ability.entity', 'ability.ability.entity.tags',
+                'ability.ability', 'ability.ability.entity', 'ability.ability.entity.tags', 'ability.ability.entity.image'
             ])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->defaultOrder()
@@ -88,8 +89,8 @@ class AbilityService extends BaseAbilityService
                 'id' => $parent->id,
                 'name' => $parent->name,
                 'type' => $parent->type,
-                'image' => $parent->thumbnail(120),
-                'has_image' => !empty($parent->image),
+                'image' => Avatar::entity($parent->entity)->size(120)->thumbnail(),
+                'has_image' => !empty($parent->entity->image_path) && !empty($parent->entity->image),
                 'entry' => $parent->entry(),
                 'parent' => true,
                 'abilities' => [],
@@ -132,9 +133,9 @@ class AbilityService extends BaseAbilityService
             'created_by' => $entityAbility->created_by,
             'attributes' => $this->attributes($entityAbility->ability->entity),
             'images' => [
-                'has' => !empty($entityAbility->ability->image) || $entityAbility->ability->entity->image,
-                'thumb' => $entityAbility->ability->thumbnail(120),
-                'url' => !empty($entityAbility->ability->image) ? $entityAbility->ability->getOriginalImageUrl() : null,
+                'has' => !empty($entityAbility->ability->entity->image_path) || $entityAbility->ability->entity->image,
+                'thumb' => Avatar::entity($entityAbility->ability->entity)->size(120)->thumbnail(),
+                'url' => Avatar::entity($entityAbility->ability->entity)->original(),
             ],
             'actions' => [
                 'edit' => route('entities.entity_abilities.edit', [$this->campaign, $this->entity, $entityAbility]),

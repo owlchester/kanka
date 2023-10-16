@@ -58,6 +58,7 @@ class DeleteEntityImage implements ShouldQueue
 
     private function deleteImage(string $field)
     {
+        /** @var Entity $entity */
         $entity = Entity::find($this->entityId);
 
         if (empty($entity) || empty($entity->child)) {
@@ -69,13 +70,12 @@ class DeleteEntityImage implements ShouldQueue
         $campaign = Campaign::find($entity->campaign_id);
 
         $service->campaign($campaign)->entity($entity)->notify();
-        $child = $entity->child;
 
         if ($campaign->superboosted() && $entity->image && $field == 'image') {
             $entity->image->delete();
-        } elseif (!empty($entity->child->image) && $field == 'image') {
-            ImageService::cleanup($child, $field);
-            $child->update(['image' => $child->image]);
+        } elseif (!empty($entity->image_path) && $field == 'image') {
+            ImageService::cleanup($entity, $field);
+            $entity->updateQuietly(['image_path' => '']);
         }
 
         if ($campaign->superboosted() && $entity->header && $field == 'header_image') {
