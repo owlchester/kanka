@@ -472,6 +472,14 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
+    public function withThumbnails(array $extra = []): self
+    {
+        Image::factory()
+            ->count(1)
+            ->create(['campaign_id' => 1] + $extra);
+        return $this;
+    }
+
     public function withCharacterTags(array $extra = []): self
     {
         Character::factory()

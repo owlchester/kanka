@@ -104,6 +104,10 @@ Route::post('campaigns/{campaign}/transform', [\App\Http\Controllers\Api\v1\Enti
 
 Route::post('campaigns/{campaign}/transfer', [\App\Http\Controllers\Api\v1\EntityMoveApiController::class, 'transfer']);
 
+Route::get('campaigns/{campaign}/default-thumbnails', [\App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'index']);
+Route::post('campaigns/{campaign}/default-thumbnails', [\App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'upload']);
+Route::delete('campaigns/{campaign}/default-thumbnails', [\App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'delete']);
+
 Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
 Route::get('version', function () {
     return config('app.version');
