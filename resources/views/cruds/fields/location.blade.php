@@ -12,7 +12,7 @@
 @endphp
 <x-forms.foreign
     :campaign="$campaign"
-    :name='"location_id"'
+    name="location_id"
     key="location"
     entityType="locations"
     :allowNew="$allowNew ?? true"
