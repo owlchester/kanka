@@ -9,10 +9,10 @@
 <div
     class="widget-header"
 >
-    @if (!empty($image))
+    @if (!empty($images['wide']))
         <div
             class="widget-image cover-background bg-center aspect-video rounded-t "
-            style="background-image: url('{{ $image }}');"
+            style="background-image: var(--widget-image-wide); --widget-image-wide: url('{{ $images['wide'] }}'); --widget-image-square: url('{{ $images['square'] }}');"
         ></div>
     @endif
     <a href="{{ $entity->child->getLink() }}" class="flex gap-1 text-xl p-4 pb-0">

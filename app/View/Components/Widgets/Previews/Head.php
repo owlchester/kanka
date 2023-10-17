@@ -36,19 +36,31 @@ class Head extends Component
     public function render(): View|Closure|string
     {
         return view('components.widgets.previews.head')
-            ->with('image', $this->headerImage());
+            ->with('images', $this->headerImage());
     }
 
-    protected function headerImage(): null|string
+    protected function headerImage(): null|array
     {
         if ($this->widget->conf('entity-header') && $this->campaign->boosted() && $this->entity->header_image) {
-            return $this->entity->thumbnail(1200, 400, 'header_image');
+            return [
+                'wide' => $this->entity->thumbnail(1200, 400, 'header_image'),
+                'square' => $this->entity->thumbnail(1200, 1200, 'header_image'),
+            ];
         } elseif ($this->widget->conf('entity-header') && $this->campaign->boosted() && $this->widget->entity->header) {
-            return $this->entity->header->path;
+            return [
+                'wide' => $this->entity->header->getUrl(1200, 400),
+                'square' => $this->entity->header->getUrl(1200, 1200),
+            ];
         } elseif ($this->entity->image) {
-            return Img::crop(1200, 400)->url($this->entity->image->path);
+            return [
+                'wide' => Img::crop(1200, 400)->url($this->entity->image->path),
+                'square' => Img::crop(1200, 1200)->url($this->entity->image->path),
+            ];
         } elseif ($this->entity->image_path) {
-            return Avatar::entity($this->entity)->size(1200, 400)->thumbnail();
+            return [
+                'wide' => Avatar::entity($this->entity)->size(1200, 400)->thumbnail(),
+                'square' => Avatar::entity($this->entity)->size(1200, 1200)->thumbnail(),
+            ];
         }
         return null;
     }
