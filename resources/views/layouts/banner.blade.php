@@ -10,15 +10,14 @@
     </div>
 @endif
 
-@if (false)
-<div class="bg-orange banner-notification p-2">
-    <span>
-        @if (auth()->check())
-        <button type="button" class="close banner-notification-dismiss" data-dismiss="banner-notification" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'das_migration']) }}">×</button>
-        @endif
-
-        Kanka will be undergoing scheduled maintenance on Wednesday 19th of October 2022. This will result in Kanka being unavailable from <a href="https://everytimezone.com/s/fce7c091" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 14:00 UTC</a> to 16:00 UTC. <br />Join us on <a href="{{ config('social.discord') }}" target="_blank"  style="text-decoration: underline">Discord</a> to get updates.
-    </span>
+@if (auth()->check() && !auth()->user()->settings()->get('kanka_v2'))
+<div class="alert alert-warning p-2 flex gap-2" id="banner-notification">
+    <div class="grow">
+        Kanka will be undergoing scheduled maintenance on Wednesday 25th of October 2023. As a result, Kanka will be unavailable from <a href="https://everytimezone.com/s/99cb5e5b" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 14:00 UTC</a> to 18:00 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank"  style="text-decoration: underline">Discord</a> to get updates.
+    </div>
+    @if (auth()->check())
+        <button type="button" class="close p-2 banner-notification-dismiss" data-dismiss="#banner-notification" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'kanka_v2']) }}">×</button>
+    @endif
 </div>
 @endif
 
