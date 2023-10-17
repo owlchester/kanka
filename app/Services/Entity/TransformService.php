@@ -64,12 +64,12 @@ class TransformService
 
     protected function location(): self
     {
-        // Special import for location parent_location_id
-        if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && !empty($this->child->parent_location_id)) {
+        // Special import for location location_id
+        if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && !empty($this->child->location_id)) {
             // @phpstan-ignore-next-line
             $this->new->location_id = $this->child->getParentId();
         }
-        if (in_array('parent_location_id', $this->fillable) && empty($this->new->parent_location_id) && !empty($this->child->location_id)) {
+        if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && !empty($this->child->location_id)) {
             // @phpstan-ignore-next-line
             $this->new->setParentId($this->child->location_id);
         }
@@ -82,7 +82,7 @@ class TransformService
             if (in_array('location_id', $this->fillable)) {
                 // @phpstan-ignore-next-line
                 $this->new->location_id = $this->child->locations()->first()->id;
-            } elseif (in_array('parent_location_id', $this->fillable)) {
+            } elseif (in_array('location_id', $this->fillable)) {
                 // Todo: fix crash when location is empty
                 // @phpstan-ignore-next-line
                 $this->new->setParentId($this->child->locations()->first()->id);
@@ -102,9 +102,9 @@ class TransformService
 
         //If the entity is switched from one location to multiple locations
         if (!in_array($this->child->entityTypeId(), [$raceID, $creatureID]) && in_array($this->new->entityTypeId(), [$raceID, $creatureID])) {
-            if (in_array('parent_location_id', $this->child->getFillable()) && !empty($this->child->parent_location_id)) {
+            if (in_array('location_id', $this->child->getFillable()) && !empty($this->child->location_id)) {
                 // @phpstan-ignore-next-line
-                $this->new->locations()->attach($this->child->parent_location_id);
+                $this->new->locations()->attach($this->child->location_id);
             } elseif (in_array('location_id', $this->child->getFillable()) && !empty($this->child->location_id)) {
                 // @phpstan-ignore-next-line
                 $this->new->locations()->attach($this->child->location_id);

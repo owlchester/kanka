@@ -45,7 +45,7 @@ The list of returned locations can be filtered. The available filters are availa
             "created_by": 1,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
-            "parent_location_id": 4,
+            "location_id": 4,
             "type": "Kingdom"
         }
     ]
@@ -81,7 +81,7 @@ To get the details of a single location, use the following endpoint.
         "created_by": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
-        "parent_location_id": 4,
+        "location_id": 4,
         "type": "Kingdom"
     }
 
@@ -105,7 +105,7 @@ To create a location, use the following endpoint.
 | `name` | `string` (Required) | Name of the location |
 | `entry` | `string` | The html description of the location |
 | `type` | `string` | Type of location |
-| `parent_location_id` | `integer` | The parent location id (where this location is located)|
+| `location_id` | `integer` | The parent location id (where this location is located)|
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the location is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the location |

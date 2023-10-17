@@ -85,7 +85,7 @@ class LogService
         }
 
         try {
-            if ($attribute == 'parent_location_id') {
+            if ($attribute == 'location_id') {
                 $originalLocation = Location::where('id', $original)->first();
                 if (!empty($originalLocation)) {
                     return (string) $originalLocation->name;

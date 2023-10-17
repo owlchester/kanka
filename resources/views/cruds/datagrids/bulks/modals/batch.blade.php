@@ -4,8 +4,8 @@
     <x-grid>
         @foreach ($bulk->fields() as $field)
             @php 
-                $trimmed = \Illuminate\Support\Str::between($field,'parent_', '_id'); 
-                $isParent = \Illuminate\Support\Str::contains($field, 'parent');
+                $trimmed = \Illuminate\Support\Str::before($field, '_id'); 
+                $isParent = \Illuminate\Support\Str::contains($trimmed, $model->getEntityType());
             @endphp
             
 

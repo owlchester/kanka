@@ -218,7 +218,7 @@ class ImporterService
         //dump("field $field => $value");
         // parent mapping
         if ($field == 'location_id' && $pluginEntity->type_id == config('entities.ids.location')) {
-            $field = 'parent_location_id';
+            $field = 'location_id';
         } elseif ($field == 'gender') {
             $field = 'sex';
         }

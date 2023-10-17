@@ -8,7 +8,7 @@ class OrganisationBulk extends Bulk
         'name',
         'type',
         'location_id',
-        'parent_organisation_id',
+        'organisation_id',
         'tags',
         'private_choice',
         'defunct_choice'

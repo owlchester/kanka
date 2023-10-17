@@ -22,7 +22,7 @@ trait CanFixTree
             }
             return;
         }
-        $isLocationWithParent = in_array('parent_location_id', $model->getFillable()) && !empty($model->getParentId());
+        $isLocationWithParent = in_array('location_id', $model->getFillable()) && !empty($model->getParentId());
         // If it's not a location or the parent location is empty, force the parent to be properly empty
         if (!$isLocationWithParent) {
             /** @var Location $model */
