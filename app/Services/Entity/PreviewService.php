@@ -3,7 +3,6 @@
 namespace App\Services\Entity;
 
 use App\Facades\Avatar;
-use App\Facades\Img;
 use App\Facades\Module;
 use App\Models\Attribute;
 use App\Models\Character;
@@ -72,12 +71,7 @@ class PreviewService
 
     protected function image(): mixed
     {
-        if ($this->entity->child->image) {
-            return $this->entity->child->thumbnail(276);
-        } elseif ($this->campaign->superboosted() && $this->entity->image) {
-            return Img::crop(276, 276)->url($this->entity->image->path);
-        }
-        return null;
+        return Avatar::entity($this->entity)->size(276)->thumbnail();
     }
 
     protected function attributes(): array

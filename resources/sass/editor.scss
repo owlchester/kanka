@@ -71,6 +71,9 @@ img.note-float-left {
         vertical-align: middle;
     }
 }
+.note-hint-popover {
+    background-color: hsl(var(--b1)/1);
+}
 .note-hint-item {
     .entity-hint {
         display: grid;

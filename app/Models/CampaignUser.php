@@ -29,7 +29,7 @@ class CampaignUser extends Pivot
 
     public $table = 'campaign_user';
 
-    protected $sortable = ['user.name', 'created_at', 'last_login'];
+    protected array $sortable = ['user.name', 'created_at', 'last_login'];
 
     /** @var string[]  */
     protected $fillable = ['user_id', 'campaign_id'];

@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Widgets\Previews;
 
+use App\Facades\Avatar;
 use App\Facades\Img;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -46,8 +47,8 @@ class Head extends Component
             return $this->entity->header->path;
         } elseif ($this->entity->image) {
             return Img::crop(1200, 400)->url($this->entity->image->path);
-        } elseif ($this->entity->child->image) {
-            return $this->entity->child->thumbnail(400);
+        } elseif ($this->entity->image_path) {
+            return Avatar::entity($this->entity)->size(1200, 400)->thumbnail();
         }
         return null;
     }

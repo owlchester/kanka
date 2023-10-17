@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
+use App\Facades\Avatar;
 use App\Facades\Module;
 use App\Renderers\Layouts\Layout;
 
@@ -22,8 +23,7 @@ class Recovery extends Layout
                     if (empty($child)) {
                         return '';
                     }
-                    $child->withEntity($entity);
-                    return '<div style="background-image: url(' . $child->thumbnail() . ');" class="entity-image"></div>';
+                    return '<div style="background-image: url(' . Avatar::entity($entity)->size(40)->thumbnail() . ');" class="entity-image"></div>';
                 },
             ],
             'name' => [

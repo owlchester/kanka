@@ -46,13 +46,12 @@ class Ability extends MiscModel
         'slug',
         'type',
         'entry',
-        'image',
         'ability_id',
         'is_private',
         'charges'
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'ability.name',
@@ -69,15 +68,14 @@ class Ability extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'ability_id',
     ];
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'ability';
+    protected string $entityType = 'ability';
 
     /**
      * Parent ID used for the Node Trait
@@ -104,7 +102,7 @@ class Ability extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

@@ -46,6 +46,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property string|null $marketplace_uuid
  * @property integer|null $focus_x
  * @property integer|null $focus_y
+ * @property string|null $image_path
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -87,7 +88,7 @@ class Entity extends Model
     ];
 
     /** @var string[] Fields that can be used to order by */
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type_id',
         'deleted_at',
@@ -319,7 +320,7 @@ class Entity extends Model
     public function hasImage(bool $boosted = false): bool
     {
         // Most basic setup, the child has an image
-        if (!empty($this->child->image)) {
+        if (!empty($this->image_path)) {
             return true;
         }
         // Otherwise, might have a gallery image, which needs a boosted campaign
@@ -437,20 +438,5 @@ class Entity extends Model
             array_pop($options);
         }*/
         return $options;
-    }
-
-    /**
-     * Type filter link
-     */
-    public function typeLink(string $displayName = null): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? [$campaign, 'm' => 'table'] : [$campaign];
-
-        return link_to_route(
-            $this->pluralType() . '.index',
-            $this->child->type,
-            $defaultOptions + ['_clean' => true, 'type' => $this->child->type]
-        );
     }
 }

@@ -56,7 +56,6 @@ class Character extends MiscModel
         'age',
         'sex',
         'pronouns',
-        'image',
         'is_private',
         'type',
         'is_dead',
@@ -75,7 +74,7 @@ class Character extends MiscModel
         'sex',
         'is_dead'
     ];
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'location.name',
@@ -84,9 +83,8 @@ class Character extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'character';
+    protected string $entityType = 'character';
 
     /**
      * Searchable fields
@@ -111,22 +109,21 @@ class Character extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'characterTraits', 'families', 'races'
     ];
 
     /**
      * @var string[] Extra relations loaded for the API endpoint
      */
-    public $apiWith = ['characterTraits'];
+    public array $apiWith = ['characterTraits'];
 
     /**
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'is_personality_visible', // checkbox
     ];
@@ -138,7 +135,7 @@ class Character extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -481,7 +478,7 @@ class Character extends MiscModel
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'image', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
+            ->select(['id', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
             ->has('entity');

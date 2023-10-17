@@ -41,7 +41,6 @@ class Family extends MiscModel
         'name',
         'slug',
         'entry',
-        'image',
         'location_id',
         'family_id',
         'is_private',
@@ -56,7 +55,7 @@ class Family extends MiscModel
         'location.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'location.name',
@@ -65,9 +64,8 @@ class Family extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'members',
     ];
 
@@ -75,16 +73,15 @@ class Family extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'family_id',
     ];
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'family';
+    protected string $entityType = 'family';
 
     /**
      * Parent ID used for the Node Trait
@@ -111,7 +108,7 @@ class Family extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

@@ -19,7 +19,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Exception;
 use Illuminate\Support\Str;
 
@@ -63,7 +62,7 @@ abstract class MiscModel extends Model
     /**
      * @var string Entity type
      */
-    protected $entityType;
+    protected string $entityType;
 
     /**
      * Fields that can be ordered on
@@ -81,7 +80,7 @@ abstract class MiscModel extends Model
      * Fields that can be set to null (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [];
+    public array $nullableForeignKeys = [];
 
     /**
      * Default ordering
@@ -129,18 +128,6 @@ abstract class MiscModel extends Model
         }
         return $img
             ->url($this->$field);
-    }
-
-    /**
-     * Get the original image url (for prod: aws cloudfront)
-     */
-    public function getOriginalImageUrl(string $field = 'image')
-    {
-        $cloudfront = config('filesystems.disks.cloudfront.url');
-        if ($cloudfront) {
-            return Storage::disk('cloudfront')->url($this->$field);
-        }
-        return Storage::url($this->$field);
     }
 
     /**

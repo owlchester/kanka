@@ -112,22 +112,23 @@ class MoveService
                 }
             }
 
-            // Copy the image to avoid issues when deleting/replacing one image
-            if (!empty($this->entity->child->image)) {
-                $uniqid = uniqid();
-                $newPath = str_replace('.', $uniqid . '.', $this->entity->child->image);
-                $newModel->image = $newPath;
-                if (!Storage::exists($newPath)) {
-                    Storage::copy($this->entity->child->image, $newPath);
-                }
-            }
-
             CampaignLocalization::forceCampaign($this->to);
             $this->fixTree($newModel);
 
             // The model is ready to be saved.
             $newModel->saveQuietly();
             $newModel->createEntity();
+
+            // Copy the image to avoid issues when deleting/replacing one image
+            if (!empty($this->entity->image_path)) {
+                $uniqid = uniqid();
+                $newPath = str_replace('.', $uniqid . '.', $this->entity->image_path);
+                $newModel->entity->image_path = $newPath;
+                $newModel->entity->saveQuietly();
+                if (!Storage::exists($newPath)) {
+                    Storage::copy($this->entity->image_path, $newPath);
+                }
+            }
 
             // Copy posts over
             foreach ($this->entity->posts as $note) {
@@ -180,7 +181,7 @@ class MoveService
         return $success;
     }
 
-    protected function moveEntity()
+    protected function moveEntity(): bool
     {
         $success = false;
         DB::beginTransaction();
@@ -204,6 +205,15 @@ class MoveService
             // Update Entity first, as there are no hooks on the Entity model.
             CampaignLocalization::forceCampaign($this->to);
             $this->entity->campaign_id = $this->to->id;
+            if (!empty($this->entity->image_path)) {
+                $oldImagePath = $this->entity->image_path;
+                $this->entity->image_path = Str::replace(
+                    'w/' . $this->campaign->id . '/',
+                    'w/' . $this->to->id . '/',
+                    $oldImagePath
+                );
+                Storage::move($oldImagePath, $this->entity->image_path);
+            }
             $this->entity->saveQuietly();
 
             $this->fixTree($child);

@@ -4,7 +4,7 @@
 * @var \App\Models\Map $model
 */
 ?>
-@if (!isset($model) || empty($model->image))
+@if (!isset($model) || empty($model->entity->image_path))
     <x-alert type="warning">
         <p>{{ __('maps.helpers.missing_image') }}</p>
     </x-alert>

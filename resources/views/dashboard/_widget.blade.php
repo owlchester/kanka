@@ -6,8 +6,8 @@ use App\Enums\Widget;
 $background = null;
 
 if ($widget->entity) {
-    if (!empty($widget->entity->child->image)) {
-        $background = $widget->entity->child->thumbnail(600);
+    if (!empty($widget->entity->image_path)) {
+        $background = $widget->entity->thumbnail(600, 600, 'image_path');
     } elseif (!empty($widget->entity->image)) {
         $background = Img::crop(600, 600)->url($widget->entity->image->path);
     }

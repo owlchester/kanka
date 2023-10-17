@@ -36,9 +36,8 @@ class DiceRollResult extends MiscModel
 
     /**
      * We want to use the dice_roll entity type for permissions
-     * @var string
      */
-    protected $entityType = 'dice_roll';
+    protected string $entityType = 'dice_roll';
 
     /** @var bool No relations for this entity "type" */
     protected $hasRelations = false;

@@ -45,7 +45,6 @@ class Journal extends MiscModel
         'campaign_id',
         'slug',
         'type',
-        'image',
         'entry',
         'date',
         'character_id',
@@ -57,9 +56,8 @@ class Journal extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'journal';
+    protected string $entityType = 'journal';
 
     /**
      * Fields that can be sorted on
@@ -69,7 +67,7 @@ class Journal extends MiscModel
         'calendar_date',
         'author.name',
     ];
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'date',
         'character.name',
@@ -80,7 +78,7 @@ class Journal extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         //'character_id',
         'calendar_id',
@@ -100,7 +98,7 @@ class Journal extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

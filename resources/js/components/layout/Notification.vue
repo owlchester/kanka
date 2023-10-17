@@ -1,9 +1,9 @@
 <template>
-    <a :class="backgroundClass(notification)" v-bind:href="notification.url" v-if="notification.url && !is_dismissed" :data-id="notification.id">
+    <div :class="backgroundClass(notification)" v-if="notification.url && !is_dismissed" :data-id="notification.id">
         <div class="flex-none p-2">
             <i :class="iconClass(notification)" aria-hidden="true"></i>
         </div>
-        <div class="flex-grow p-2 break-all " v-html="notification.text"></div>
+        <a class="flex-grow p-2 break-all " v-html="notification.text" v-bind:href="notification.url" ></a>
 
         <div class="flex-none p-2 cursor-pointer dismissable" v-on:click="dismiss(notification)" v-if="!this.is_loading" :title="notification.dismiss_text">
             <i class="fa-solid fa-times" aria-hidden="true"></i>
@@ -11,7 +11,7 @@
         <div class="flex-none p-2" v-else>
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
         </div>
-    </a>
+    </div>
     <div :class="backgroundClass(notification)" :data-id="notification.id" v-else-if="!is_dismissed">
         <div class="flex-none p-2">
             <i :class="iconClass(notification)" aria-hidden="true"></i>

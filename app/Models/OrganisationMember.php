@@ -59,7 +59,7 @@ class OrganisationMember extends Model
         'parent_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'organisation.name',
         'character.name',
         'parent_id',

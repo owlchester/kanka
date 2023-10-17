@@ -29,7 +29,7 @@ class ImageMention extends Model
         'post_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
     ];

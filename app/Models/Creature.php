@@ -42,7 +42,6 @@ class Creature extends MiscModel
         'campaign_id',
         'slug',
         'type',
-        'image',
         'entry',
         'is_private',
         'creature_id',
@@ -50,15 +49,14 @@ class Creature extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'creature';
+    protected string $entityType = 'creature';
 
     protected array $sortableColumns = [
         'creature.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'creature.name',
@@ -68,15 +66,14 @@ class Creature extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'creature_id',
     ];
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'locations',
     ];
 
@@ -106,7 +103,7 @@ class Creature extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

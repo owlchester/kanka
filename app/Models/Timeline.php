@@ -38,11 +38,10 @@ class Timeline extends MiscModel
         'slug',
         'entry',
         'is_private',
-        'image',
         'timeline_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'timeline.name',
@@ -60,25 +59,23 @@ class Timeline extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'calendar_id',
         'timeline_id',
     ];
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'eras',
         'elements',
     ];
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'timeline';
+    protected string $entityType = 'timeline';
 
     protected array $apiWith = [
         'eras',
@@ -92,7 +89,7 @@ class Timeline extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

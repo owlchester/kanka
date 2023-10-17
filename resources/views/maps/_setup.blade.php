@@ -24,7 +24,7 @@ if (isset($single) && $single) {
     @if ($map->isReal())
     var baseLayer{{ $map->id }} = L.imageOverlay('', bounds{{ $map->id }});
     @else
-    var baseLayer{{ $map->id }} = L.imageOverlay('{{ Storage::url($map->image) }}', bounds{{ $map->id }});
+    var baseLayer{{ $map->id }} = L.imageOverlay('{{ \App\Facades\Avatar::entity($map->entity)->original() }}', bounds{{ $map->id }});
     @endif
 
     /** Layers Init **/

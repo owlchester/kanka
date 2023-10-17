@@ -372,14 +372,15 @@ trait EntityRelations
      */
     public function files()
     {
-        return $this->hasMany('App\Models\EntityFile', 'entity_id', 'id');
+        return $this->assets()
+            ->where('type_id', 1)
+        ;
     }
 
     public function pinnedFiles()
     {
-        return $this->assets()
+        return $this->files()
             ->where('is_pinned', 1)
-            ->where('type_id', 1)
         ;
     }
 

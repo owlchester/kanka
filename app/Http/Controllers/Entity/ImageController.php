@@ -71,7 +71,7 @@ class ImageController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $oldImage = $entity->child->image;
+        $oldImage = $entity->image_path;
         $oldBoostedImage = $entity->image_uuid;
 
         $entity->child->update(
@@ -87,7 +87,7 @@ class ImageController extends Controller
 
 
         $resetFocus = false;
-        if ($oldImage != $entity->child->image || $oldBoostedImage != $request->get('entity_image_uuid')) {
+        if ($oldImage != $entity->image_path || $oldBoostedImage != $request->get('entity_image_uuid')) {
             $resetFocus = true;
         }
 
