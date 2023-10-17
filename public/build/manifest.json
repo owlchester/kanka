@@ -69,7 +69,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-0bfd2026.js",
+    "file": "assets/app-aa829cd0.js",
     "imports": [
       "_mention-6dbb4e38.js",
       "_sortable.esm-be94e56d.js",
@@ -221,12 +221,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-a6f19140.css",
+    "file": "assets/app-cb619db9.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-13d52236.css",
+    "file": "assets/auth-771c671e.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -251,7 +251,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-cebbe6c5.css",
+    "file": "assets/front-1694f62b.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },

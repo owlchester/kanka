@@ -17,29 +17,29 @@ class PermissionService
     use UserAware;
 
     /** @var int CampaignPermission::ACTION_READ etc */
-    protected $action;
+    protected int $action;
 
     /** @var array Entity IDs and Types the user can access */
-    protected $entityIds = [];
-    protected string $entityTypes = [];
-    protected string $entityTypesIds = [];
-    protected $deniedIds = [];
-    protected $allowedModels = [];
-    protected $deniedModels = [];
+    protected array $entityIds = [];
+    protected array $entityTypes = [];
+    protected array $entityTypesIds = [];
+    protected array $deniedIds = [];
+    protected array $allowedModels = [];
+    protected array $deniedModels = [];
     protected bool $loadedPermissions = false;
 
     /** @var array Permissions for posts */
-    protected $allowedPostIDs = [];
-    protected $deniedPostIDs = [];
-    protected $loadedPosts = false;
+    protected array $allowedPostIDs = [];
+    protected array $deniedPostIDs = [];
+    protected bool $loadedPosts = false;
 
     protected int $loadedRoles;
     protected bool $admin = false;
 
-    protected $granted = false;
+    protected bool $granted = false;
 
-    /** @var null|int the entity type if provided to limit queries */
-    protected string $entityType = null;
+    /** @var int the entity type if provided to limit queries */
+    protected int $entityType;
     protected int $entityTypeID;
 
     public function isAdmin(): bool
@@ -310,7 +310,7 @@ class PermissionService
         if (!$permission->isAction($this->action)) {
             return;
         }
-        if (!empty($this->entityType) && $permission->entity_type_id !== $this->entityType) {
+        if (isset($this->entityType) && !empty($this->entityType) && $permission->entity_type_id !== $this->entityType) {
             return;
         }
         if (isset($this->entityTypeID) && !empty($permission->entity_type_id) && $permission->entity_type_id !== $this->entityTypeID) {
