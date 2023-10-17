@@ -58,7 +58,6 @@ class Organisation extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
     protected string $entityType = 'organisation';
 
@@ -73,7 +72,6 @@ class Organisation extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
     protected array $foreignExport = [
         'members',

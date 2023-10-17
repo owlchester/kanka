@@ -42,7 +42,6 @@ class Conversation extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
     protected string $entityType = 'conversation';
 

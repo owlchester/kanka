@@ -83,7 +83,6 @@ class Character extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
     protected string $entityType = 'character';
 
@@ -110,7 +109,6 @@ class Character extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
     protected array $foreignExport = [
         'characterTraits', 'families', 'races'

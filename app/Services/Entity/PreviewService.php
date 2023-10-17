@@ -3,7 +3,6 @@
 namespace App\Services\Entity;
 
 use App\Facades\Avatar;
-use App\Facades\Img;
 use App\Facades\Module;
 use App\Models\Attribute;
 use App\Models\Character;

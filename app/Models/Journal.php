@@ -56,7 +56,6 @@ class Journal extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
     protected string $entityType = 'journal';
 

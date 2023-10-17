@@ -65,7 +65,7 @@ class MigrateImageToEntity extends Command
             Timeline::class,
         ];
         foreach ($models as $class) {
-            $model = new $class;
+            $model = new $class();
             $model->select('id', 'image')
                 ->with('entity')->has('entity')
                 ->whereNotNull('image')

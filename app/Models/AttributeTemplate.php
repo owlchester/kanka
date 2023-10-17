@@ -42,7 +42,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
     protected string $entityType = 'attribute_template';
 
@@ -53,7 +52,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
 
     /**

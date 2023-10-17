@@ -34,7 +34,6 @@ class ConversationParticipant extends MiscModel
 
     /**
      * We want to use the dice_roll entity type for permissions
-     * @var string
      */
     protected string $entityType = 'conversation_participants';
 

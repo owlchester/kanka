@@ -111,7 +111,6 @@ class Map extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
     protected array $foreignExport = [
         'layers',
@@ -121,7 +120,6 @@ class Map extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
     protected string $entityType = 'map';
 

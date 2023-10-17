@@ -63,7 +63,6 @@ class Quest extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
     protected string $entityType = 'quest';
 

@@ -60,7 +60,6 @@ class Item extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
     protected string $entityType = 'item';
 
@@ -96,7 +95,6 @@ class Item extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
     protected array $foreignExport = [
 

@@ -49,7 +49,6 @@ class Race extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
     protected string $entityType = 'race';
 
@@ -73,7 +72,6 @@ class Race extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
     protected array $foreignExport = [
         'locations',

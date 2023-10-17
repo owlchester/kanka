@@ -49,7 +49,6 @@ class Creature extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
     protected string $entityType = 'creature';
 
@@ -73,7 +72,6 @@ class Creature extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
     protected array $foreignExport = [
         'locations',

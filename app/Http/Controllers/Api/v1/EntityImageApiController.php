@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\UploadEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\Services\ImageService;
 
 class EntityImageApiController extends Controller
