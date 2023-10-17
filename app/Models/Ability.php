@@ -51,7 +51,7 @@ class Ability extends MiscModel
         'charges'
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'ability.name',
@@ -68,7 +68,7 @@ class Ability extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'ability_id',
     ];
 
@@ -76,7 +76,7 @@ class Ability extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'ability';
+    protected string $entityType = 'ability';
 
     /**
      * Parent ID used for the Node Trait

@@ -49,7 +49,7 @@ class Organisation extends MiscModel
         'is_defunct'
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'organisation.name',
@@ -60,7 +60,7 @@ class Organisation extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'organisation';
+    protected string $entityType = 'organisation';
 
     /**
      * Fields that can be sorted on
@@ -75,7 +75,7 @@ class Organisation extends MiscModel
      * Foreign relations to add to export
      * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'members',
     ];
 
@@ -83,7 +83,7 @@ class Organisation extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'organisation_id'
     ];

@@ -54,7 +54,7 @@ class Quest extends MiscModel
         'date',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'date',
@@ -65,7 +65,7 @@ class Quest extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'quest';
+    protected string $entityType = 'quest';
 
     /**
      * Fields that can be sorted on
@@ -82,7 +82,7 @@ class Quest extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'instigator_id',
         'quest_id',
     ];

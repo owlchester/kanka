@@ -88,7 +88,7 @@ class Entity extends Model
     ];
 
     /** @var string[] Fields that can be used to order by */
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type_id',
         'deleted_at',

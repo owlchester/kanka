@@ -91,7 +91,7 @@ class Bookmark extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'entity_id',
         'dashboard_id',
     ];

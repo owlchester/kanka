@@ -43,13 +43,13 @@ class Note extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'note';
+    protected string $entityType = 'note';
 
     /**
      * Fields that can be set to null (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'note_id',
     ];
 

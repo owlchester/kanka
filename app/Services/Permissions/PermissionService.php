@@ -21,8 +21,8 @@ class PermissionService
 
     /** @var array Entity IDs and Types the user can access */
     protected $entityIds = [];
-    protected $entityTypes = [];
-    protected $entityTypesIds = [];
+    protected string $entityTypes = [];
+    protected string $entityTypesIds = [];
     protected $deniedIds = [];
     protected $allowedModels = [];
     protected $deniedModels = [];
@@ -39,7 +39,7 @@ class PermissionService
     protected $granted = false;
 
     /** @var null|int the entity type if provided to limit queries */
-    protected $entityType = null;
+    protected string $entityType = null;
     protected int $entityTypeID;
 
     public function isAdmin(): bool

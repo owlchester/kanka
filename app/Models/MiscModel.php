@@ -63,7 +63,7 @@ abstract class MiscModel extends Model
     /**
      * @var string Entity type
      */
-    protected $entityType;
+    protected string $entityType;
 
     /**
      * Fields that can be ordered on
@@ -81,7 +81,7 @@ abstract class MiscModel extends Model
      * Fields that can be set to null (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [];
+    public array $nullableForeignKeys = [];
 
     /**
      * Default ordering

@@ -46,11 +46,11 @@ class Tag extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'tag';
+    protected string $entityType = 'tag';
 
     protected $explicitFilters = ['tag_id'];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'tag.name',
         'type',
@@ -87,7 +87,7 @@ class Tag extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'tag_id',
     ];
 

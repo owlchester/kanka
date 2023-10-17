@@ -81,7 +81,7 @@ class MapMarker extends Model
         'polygon_style',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'entity_id',
         'type',

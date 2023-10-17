@@ -62,7 +62,7 @@ class Location extends MiscModel
         'parentLocation.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'location.name',
@@ -72,13 +72,13 @@ class Location extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'location';
+    protected string $entityType = 'location';
 
     /**
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'parent_location_id',
     ];
 

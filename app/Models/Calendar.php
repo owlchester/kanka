@@ -96,7 +96,7 @@ class Calendar extends MiscModel
 
     protected array $loadedMonthAliases;
 
-    protected $entityType = 'calendar';
+    protected string $entityType = 'calendar';
 
     protected array $cachedCurrentDate;
 

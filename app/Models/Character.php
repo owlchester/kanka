@@ -74,7 +74,7 @@ class Character extends MiscModel
         'sex',
         'is_dead'
     ];
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'location.name',
@@ -85,7 +85,7 @@ class Character extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'character';
+    protected string $entityType = 'character';
 
     /**
      * Searchable fields
@@ -112,20 +112,20 @@ class Character extends MiscModel
      * Foreign relations to add to export
      * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'characterTraits', 'families', 'races'
     ];
 
     /**
      * @var string[] Extra relations loaded for the API endpoint
      */
-    public $apiWith = ['characterTraits'];
+    public array $apiWith = ['characterTraits'];
 
     /**
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'is_personality_visible', // checkbox
     ];

@@ -50,7 +50,7 @@ class Item extends MiscModel
         'location_id',
         'is_private',
     ];
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'price',
@@ -62,7 +62,7 @@ class Item extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'item';
+    protected string $entityType = 'item';
 
     /**
      * Fields that can be sorted on
@@ -87,7 +87,7 @@ class Item extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'character_id',
         'item_id',
@@ -98,7 +98,7 @@ class Item extends MiscModel
      * Foreign relations to add to export
      * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
 
     ];
 

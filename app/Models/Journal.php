@@ -58,7 +58,7 @@ class Journal extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'journal';
+    protected string $entityType = 'journal';
 
     /**
      * Fields that can be sorted on
@@ -68,7 +68,7 @@ class Journal extends MiscModel
         'calendar_date',
         'author.name',
     ];
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'date',
         'character.name',
@@ -79,7 +79,7 @@ class Journal extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         //'character_id',
         'calendar_id',

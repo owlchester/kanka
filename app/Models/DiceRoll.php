@@ -48,7 +48,7 @@ class DiceRoll extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'character_id',
     ];
 
@@ -56,7 +56,7 @@ class DiceRoll extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'dice_roll';
+    protected string $entityType = 'dice_roll';
 
     /**
      * Who created this entry

@@ -44,7 +44,7 @@ class Conversation extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'conversation';
+    protected string $entityType = 'conversation';
 
     /**
      * Searchable fields
@@ -68,7 +68,7 @@ class Conversation extends MiscModel
     /**
      * @var string[] Extra relations loaded for the API endpoint
      */
-    public $apiWith = ['messages', 'participants'];
+    public array $apiWith = ['messages', 'participants'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

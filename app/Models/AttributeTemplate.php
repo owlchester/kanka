@@ -44,7 +44,7 @@ class AttributeTemplate extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'attribute_template';
+    protected string $entityType = 'attribute_template';
 
     /**
      * Searchable fields
@@ -60,7 +60,7 @@ class AttributeTemplate extends MiscModel
      * Fields that can be set to null (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'attribute_template_id',
         'entity_type_id'
     ];

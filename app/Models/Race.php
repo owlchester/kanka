@@ -51,13 +51,13 @@ class Race extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'race';
+    protected string $entityType = 'race';
 
     protected array $sortableColumns = [
         'race.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'race.name',
@@ -67,7 +67,7 @@ class Race extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'race_id',
     ];
 
@@ -75,7 +75,7 @@ class Race extends MiscModel
      * Foreign relations to add to export
      * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'locations',
     ];
 

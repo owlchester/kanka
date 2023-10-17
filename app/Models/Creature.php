@@ -51,13 +51,13 @@ class Creature extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'creature';
+    protected string $entityType = 'creature';
 
     protected array $sortableColumns = [
         'creature.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'creature.name',
@@ -67,7 +67,7 @@ class Creature extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'creature_id',
     ];
 
@@ -75,7 +75,7 @@ class Creature extends MiscModel
      * Foreign relations to add to export
      * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'locations',
     ];
 

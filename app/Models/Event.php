@@ -50,7 +50,7 @@ class Event extends MiscModel
         'event_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'date',
         'type',
@@ -69,7 +69,7 @@ class Event extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'event_id',
     ];
@@ -123,7 +123,7 @@ class Event extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'event';
+    protected string $entityType = 'event';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

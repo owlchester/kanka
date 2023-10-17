@@ -41,7 +41,7 @@ class Timeline extends MiscModel
         'timeline_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'timeline.name',
@@ -59,7 +59,7 @@ class Timeline extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'calendar_id',
         'timeline_id',
     ];
@@ -68,7 +68,7 @@ class Timeline extends MiscModel
      * Foreign relations to add to export
      * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'eras',
         'elements',
     ];
@@ -77,7 +77,7 @@ class Timeline extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'timeline';
+    protected string $entityType = 'timeline';
 
     protected array $apiWith = [
         'eras',

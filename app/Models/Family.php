@@ -55,7 +55,7 @@ class Family extends MiscModel
         'location.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'location.name',
@@ -66,7 +66,7 @@ class Family extends MiscModel
      * Foreign relations to add to export
      * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'members',
     ];
 
@@ -74,7 +74,7 @@ class Family extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'family_id',
     ];
@@ -83,7 +83,7 @@ class Family extends MiscModel
      * Entity type
      * @var string
      */
-    protected $entityType = 'family';
+    protected string $entityType = 'family';
 
     /**
      * Parent ID used for the Node Trait
