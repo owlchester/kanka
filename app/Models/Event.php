@@ -43,7 +43,6 @@ class Event extends MiscModel
         'name',
         'slug',
         'type',
-        'image',
         'date',
         'entry',
         'is_private',
@@ -51,7 +50,7 @@ class Event extends MiscModel
         'event_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'date',
         'type',
@@ -70,7 +69,7 @@ class Event extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'event_id',
     ];
@@ -82,7 +81,7 @@ class Event extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -122,9 +121,8 @@ class Event extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'event';
+    protected string $entityType = 'event';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

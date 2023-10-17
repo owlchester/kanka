@@ -94,13 +94,12 @@ class EntityResource extends JsonResource
             if (empty($entity->child)) {
                 $data['child'] = 'Invalid child, please contact Jay on Discord with the following: EntityResource for #' . $entity->id;
             } else {
-                $campaign = CampaignLocalization::getCampaign();
                 $image = !empty($entity->image);
                 $data['child'] = [
-                    'image' => $image ? $entity->image->path : $entity->child->image,
-                    'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : Avatar::entity($entity)->child($entity->child)->original(),
-                    'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : Avatar::entity($entity)->child($entity->child)->size(40)->thumbnail(),
-                    'has_custom_image' => $image || !empty($entity->child->image),
+                    'image' => $image ? $entity->image->path : $entity->image_path,
+                    'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : Avatar::entity($entity)->original(),
+                    'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : Avatar::entity($entity)->size(40)->thumbnail(),
+                    'has_custom_image' => $image || !empty($entity->image_path),
                 ];
 
                 /*if (request()->get('entry')) {
@@ -152,15 +151,15 @@ class EntityResource extends JsonResource
             'entry' => $misc->hasEntry() ? $misc->entry : null,
             'entry_parsed' => $misc->hasEntry() ? Mentions::map($misc) : null,
             'tooltip' => $boosted ? ($misc->entity->tooltip ?: null) : null,
-            'image' => $misc->image,
+            'image' => $misc->entity->image_path,
             'focus_x' => $misc->entity->focus_x,
             'focus_y' => $misc->entity->focus_y,
 
             // Image
             // @phpstan-ignore-next-line
-            'image_full' => !empty($misc->image) ? $misc->thumbnail(0) : $misc->entity->image?->getImagePath(0),
-            'image_thumb' => $misc->thumbnail(),
-            'has_custom_image' => !empty($misc->image) || !empty($galleryImage),
+            'image_full' => Avatar::entity($misc->entity)->original(),
+            'image_thumb' => Avatar::size(40)->thumbnail(),
+            'has_custom_image' => !empty($misc->entity->image_path) || !empty($galleryImage),
             'image_uuid' => $superboosted && $misc->entity->image ? $misc->entity->image->id : null,
 
             // Header

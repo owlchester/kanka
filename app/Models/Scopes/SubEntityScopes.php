@@ -44,7 +44,7 @@ trait SubEntityScopes
         if (!method_exists($this, 'datagridSelectFields')) {
             return $query;
         }
-        $defaults = ['id', 'name', 'type', 'image', 'is_private'];
+        $defaults = ['id', 'name', 'type', 'is_private'];
         $fields = array_merge($defaults, $this->datagridSelectFields());
 
         $tableName = $this->getTable();

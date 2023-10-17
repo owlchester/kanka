@@ -15,8 +15,8 @@ $headerImage = true;
 ])
 
 @section('og')
-@if ($tooltip = $model->entity->mappedPreview())<meta property="og:description" content="{{ $tooltip }}" />@endif
-@if ($model->image)<meta property="og:image" content="{{ $model->thumbnail(200)  }}" />@endif
+@if ($tooltip = $entity->mappedPreview())<meta property="og:description" content="{{ $tooltip }}" />@endif
+@if ($entity->image_path)<meta property="og:image" content="{{ \App\Facades\Avatar::entity($entity)->size(200)->thumbnail()  }}" />@endif
     <meta property="og:url" content="{{ $model->getLink()  }}" />
     <meta name="twitter:card" content="summary_large_image" />
 @endsection
@@ -26,7 +26,7 @@ $headerImage = true;
     <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
         @include('entities.headers.toggle')
         @can('post', [$model, 'add'])
-            <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn2 btn-sm btn-new-post"
+            <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-sm btn-new-post"
                data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">
                 <x-icon class="plus"></x-icon> {{ __('crud.actions.new_post') }}
             </a>

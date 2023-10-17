@@ -49,7 +49,7 @@ class MapLayer extends Model
         'type_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'position',
     ];

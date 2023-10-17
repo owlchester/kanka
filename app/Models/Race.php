@@ -42,7 +42,6 @@ class Race extends MiscModel
         'campaign_id',
         'slug',
         'type',
-        'image',
         'entry',
         'is_private',
         'race_id',
@@ -50,15 +49,14 @@ class Race extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'race';
+    protected string $entityType = 'race';
 
     protected array $sortableColumns = [
         'race.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'race.name',
@@ -68,15 +66,14 @@ class Race extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'race_id',
     ];
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'locations',
     ];
 
@@ -106,7 +103,7 @@ class Race extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

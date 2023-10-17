@@ -65,7 +65,7 @@ class Relation extends Model
         'colour',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'relation',
         'target.name',
         'attitude',

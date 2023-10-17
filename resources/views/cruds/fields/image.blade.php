@@ -16,13 +16,8 @@ $canDelete = true;
 if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($model->entity->image)) {
     $previewThumbnail = $model->entity->image->getUrl(192, 144);
     $canDelete = false;
-    /*
-    <div class="preview-v2">
-        <a class="h-28 cover-background relative inline-block w-full text-white bg-red-900/50 hover:bg-red-900/90" href="{{ route('campaign.gallery.index', [$campaign, 'folder_id' => $model->entity->image->folder_id]) }}" style="background-image: url('{{ $model->entity->image->getUrl(240,112) }}')" title="{{ $model->name }}">
-        </a>
-    </div>*/
-} elseif (!empty($model->image)) {
-    $previewThumbnail = $model->thumbnail(120);
+} elseif (!empty($entity) && !empty($entity->image_path)) {
+    $previewThumbnail = Avatar::entity($entity)->size(120)->thumbnail();
 }
 ?>
 {!! Form::hidden('remove-image') !!}
@@ -38,7 +33,7 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
             <div class="image-url field">
                 {!! Form::text(
                     'image_url',
-                    ((!empty($source) && $source->image) ? $source->getOriginalImageUrl() : ''),
+                    ((!empty($source) && $source->entity->image_path) ? Avatar::entity($source->entity)->original() : ''),
                     ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full'])
  !!}
             </div>

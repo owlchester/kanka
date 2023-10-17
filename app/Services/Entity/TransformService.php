@@ -13,7 +13,6 @@ use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Traits\CanFixTree;
 use App\Traits\EntityAware;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Exception;
 
@@ -43,7 +42,6 @@ class TransformService
         $this
             ->attributes()
             ->location()
-            ->image()
             ->removeTags()
             ->removePosts()
         ;
@@ -156,20 +154,6 @@ class TransformService
                 $this->new->{$attribute} = $value;
             }
         }
-        return $this;
-    }
-
-    protected function image(): self
-    {
-        if (empty($this->new->image)) {
-            return $this;
-        }
-        $newPath = str_replace($this->child->getTable(), $this->new->getTable(), $this->child->image);
-        $this->new->image = $newPath;
-        if (!Storage::exists($newPath)) {
-            Storage::copy($this->child->image, $newPath);
-        }
-
         return $this;
     }
 

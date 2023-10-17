@@ -201,7 +201,7 @@ class ExportService
         // Notify the user that something went wrong
         $this->user->notify(new Header(
             $this->assets ? 'campaign.asset_export_error' : 'campaign.export_error',
-            'times',
+            'circle-exclamation',
             'red',
             [
                 'campaign' => $this->campaign->name,

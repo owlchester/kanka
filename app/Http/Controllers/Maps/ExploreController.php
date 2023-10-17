@@ -23,7 +23,7 @@ class ExploreController extends Controller
     {
         $this->campaign($campaign)->authView($map);
 
-        if (empty($map->image) && !$map->isReal()) {
+        if (!$map->explorable()) {
             return redirect()
                 ->route('entities.show', [$campaign, $map->entity])
                 ->withError(__('maps.errors.explore.missing'));

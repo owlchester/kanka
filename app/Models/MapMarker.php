@@ -81,7 +81,7 @@ class MapMarker extends Model
         'polygon_style',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'entity_id',
         'type',
@@ -580,7 +580,7 @@ class MapMarker extends Model
         }
 
         // Entity with no image?
-        if ($this->icon == 4 && empty($this->entity->child->image)) {
+        if ($this->icon == 4 && empty($this->entity->image_path)) {
             return '#ccc';
         }
 

@@ -166,7 +166,7 @@ class AvatarService
         if ($this->withCache) {
             return $this->cachedChildThumbnailPath();
         }
-        return $this->getChild()->image;
+        return $this->entity->image_path;
     }
 
     protected function cachedChildThumbnailPath(): string|null
@@ -176,7 +176,7 @@ class AvatarService
             return $cached;
         }
 
-        $cached = $this->getChild()->image;
+        $cached = $this->entity->image_path;
         Cache::put($this->cacheKey(), $cached, 3600 * 24);
         return $cached;
     }

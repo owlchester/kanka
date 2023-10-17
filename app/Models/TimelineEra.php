@@ -45,7 +45,7 @@ class TimelineEra extends Model
         'is_collapsed',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'position',
         'abbreviation',

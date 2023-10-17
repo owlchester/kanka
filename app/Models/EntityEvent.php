@@ -65,7 +65,7 @@ class EntityEvent extends MiscModel
         'visibility_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'entity.name',
         'length',
         'date',

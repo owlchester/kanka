@@ -50,7 +50,7 @@ $conversation = $entity->child;
                 @if (!empty($message->user_id))
                     <img class="cover-background w-6 h-6 rounded-full" src="{{ $message->user->getAvatarUrl() }}" alt="{{ $message->user->name }}">
                 @elseif (!empty($message->character_id))
-                    <img class="entity-image" src="{{ $message->character->thumbnail() }}" alt="{{ $message->character->name }}">
+                    <img class="entity-image cover-background w-6 h-6 rounded-full" src="{{ \App\Facades\Avatar::entity($message->character->entity)->fallback()->size(40)->thumbnail() }}" alt="{{ $message->character->name }}">
                 @endif
                     <div class="direct-chat-text grow">
                         {{ $message->message }}

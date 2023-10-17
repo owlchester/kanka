@@ -33,7 +33,7 @@ class MapGroup extends Model
     use SortableTrait;
     use VisibilityIDTrait;
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'position',
     ];

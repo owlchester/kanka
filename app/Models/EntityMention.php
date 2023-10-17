@@ -40,7 +40,7 @@ class EntityMention extends Model
         'target_id'
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
     ];
