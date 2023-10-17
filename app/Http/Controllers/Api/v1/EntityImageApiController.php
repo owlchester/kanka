@@ -16,8 +16,6 @@ class EntityImageApiController extends Controller
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
 
-        $entity->child;
-
         // Let the service handle everything
         ImageService::handle($entity);
         $entity->update();

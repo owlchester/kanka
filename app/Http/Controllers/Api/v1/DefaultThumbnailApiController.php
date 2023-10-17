@@ -11,6 +11,14 @@ use Illuminate\Support\Str;
 
 class DefaultThumbnailApiController extends ApiController
 {
+    protected DefaultImageService $service;
+
+    public function __construct(DefaultImageService $defaultImageService)
+    {
+        $this->service = $defaultImageService;
+        $this->middleware('campaign.boosted')->except('index');
+    }
+
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -23,24 +31,17 @@ class DefaultThumbnailApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function upload(StoreDefaultThumbnail $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
 
-        if (!$campaign->boosted()) {
-            return response()->json(['error' => 'Feature exclusive to premium campaigns'], 422);
-        }
-
-        /** @var DefaultImageService $service */
-        $service = app()->make(DefaultImageService::class);
-        $type = Str::plural(array_search($request->post('entity_type'), config('entities.ids')));
-
-        if ($service->campaign($campaign)->type($type)->save($request)) {
+        $type = Str::plural(array_search($request->post('entity_type_id'), config('entities.ids')));
+        if ($this->service->campaign($campaign)->type($type)->save($request)) {
             return response()->json([
-                'data' => 'Default thumbnail succesfully uploaded'
+                'data' => 'Default thumbnail successfully uploaded'
             ]);
         }
 
@@ -48,26 +49,18 @@ class DefaultThumbnailApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function delete(DestroyDefaultThumbnail $request, Campaign $campaign)
     {
-        if (!$campaign->boosted()) {
-            return response()->json(['error' => 'Feature exclusive to premium campaigns'], 422);
-        }
-
-        /** @var DefaultImageService $service */
-        $service = app()->make(DefaultImageService::class);
         $this->authorize('recover', $campaign);
-        $type = Str::plural(array_search($request->post('entity_type'), config('entities.ids')));
 
-        $result = $service->campaign($campaign)->type($type)->destroy();
+        $type = Str::plural(array_search($request->post('entity_type_id'), config('entities.ids')));
+        $result = $this->service->campaign($campaign)->type($type)->destroy();
 
         if ($result) {
             return response()->json([
-                'data' => 'Default thumbnail succesfully deleted'
+                'data' => 'Default thumbnail successfully deleted'
             ]);
         }
 

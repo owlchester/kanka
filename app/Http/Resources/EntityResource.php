@@ -156,7 +156,6 @@ class EntityResource extends JsonResource
             'focus_y' => $misc->entity->focus_y,
 
             // Image
-            // @phpstan-ignore-next-line
             'image_full' => Avatar::entity($misc->entity)->original(),
             'image_thumb' => Avatar::size(40)->thumbnail(),
             'has_custom_image' => !empty($misc->entity->image_path) || !empty($galleryImage),
