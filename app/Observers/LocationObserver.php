@@ -16,11 +16,11 @@ class LocationObserver extends MiscObserver
          * all descendants when deleting the parent (soft delete)
          */
         foreach ($location->locations as $sub) {
-            $sub->parent_location_id = null;
+            $sub->location_id = null;
             $sub->saveQuietly();
         }
 
-        $this->cleanupTree($location, 'parent_location_id');
+        $this->cleanupTree($location, 'location_id');
     }
 
     /**

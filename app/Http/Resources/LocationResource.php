@@ -18,7 +18,7 @@ class LocationResource extends EntityResource
         $model = $this->resource;
         return $this->entity([
             'type' => $model->type,
-            'parent_location_id' => $model->parent_location_id,
+            'location_id' => $model->location_id,
         ]);
     }
 }

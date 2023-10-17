@@ -31,7 +31,7 @@ class StoreLocation extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'parent_location_id' => 'nullable|integer|exists:locations,id',
+            'location_id' => 'nullable|integer|exists:locations,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
@@ -39,7 +39,7 @@ class StoreLocation extends FormRequest
 
         $self = request()->segment(5);
         if (!empty($self)) {
-            $rules['parent_location_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:locations,id';
+            $rules['location_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:locations,id';
         }
 
         return $this->clean($rules);

@@ -9,7 +9,7 @@ class ItemBulk extends Bulk
         'type',
         'price',
         'size',
-        'parent_item_id',
+        'item_id',
         'location_id',
         'character_id',
         'tags',

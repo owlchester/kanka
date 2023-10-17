@@ -68,7 +68,7 @@ class StarterService
         $city = new Location([
             'name' => __('starter.kingdom2.name'),
             'type' => __('starter.kingdom2.type'),
-            'parent_location_id' => $kingdom->id,
+            'location_id' => $kingdom->id,
             'entry' => '<p>' . __('starter.kingdom2.description') . '</p>',
             'campaign_id' => $this->campaign->id,
             'is_private' => false,

@@ -7,7 +7,7 @@ class RaceBulk extends Bulk
     protected array $fields = [
         'name',
         'type',
-        'parent_race_id',
+        'race_id',
         'tags',
         'private_choice',
     ];

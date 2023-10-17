@@ -26,7 +26,7 @@ class LocationController extends Controller
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $location->id;
-            $filters['parent_location_id'] = $location->id;
+            $filters['location_id'] = $location->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Location\Location::class)
             ->route('locations.locations', $options);
@@ -34,7 +34,7 @@ class LocationController extends Controller
         // @phpstan-ignore-next-line
         $this->rows = $location
             ->descendants()
-            ->select(['id', 'image', 'name', 'type', 'parent_location_id', 'is_private'])
+            ->select(['id', 'image', 'name', 'type', 'location_id', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with(['location', 'location.entity', 'entity', 'entity.tags', 'entity.image'])
