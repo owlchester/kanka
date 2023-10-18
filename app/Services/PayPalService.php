@@ -41,9 +41,8 @@ class PayPalService
                 $oldPrice = "110.00";
             }
             // @phpstan-ignore-next-line
-            $price = floatval($price) - ($oldPrice + ((floatval($price) / 365) * $this->user->subscriptions()->first()->updated_at->diffInDays(Carbon::now())));
-            // @phpstan-ignore-next-line
-            $price = str(ceil($price)) . '.00';
+            $price = (floatval($price) - ($oldPrice)) * ($this->user->subscriptions()->first()->ends_at->diffInDays(Carbon::now()) / 365);
+            $price = number_format($price, 2);
         }
 
         $provider = new PayPal();

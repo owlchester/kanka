@@ -157,8 +157,9 @@ return [
             'text'  => [
                 'monthly'   => 'You are subscribing at the :tier tier, billed monthly for :amount.',
                 'yearly'    => 'You are subscribing at the :tier tier, billed annually for :amount.',
-                'upgrade_monthly'   => 'You are upgrading to the :tier tier for :upgrade, billed monthly for :amount after.',
-                'upgrade_yearly'    => 'You are upgrading to the :tier tier for :upgrade, billed annually for :amount after.',
+                'upgrade_monthly'   => 'You are upgrading to the :tier tier for :upgrade, thereafter billed monthly for :amount.',
+                'upgrade_yearly'    => 'You are upgrading to the :tier tier for :upgrade, thereafter billed annually for :amount.',
+                'upgrade_paypal'    => 'You are upgrading to the :tier tier for :upgrade until :date.',
             ],
             'title' => 'Change Subscription Tier',
         ],

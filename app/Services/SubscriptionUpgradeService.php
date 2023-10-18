@@ -11,15 +11,6 @@ class SubscriptionUpgradeService
 
     public function upgradePrice(string $period, string $tier): string
     {
-        $plans = [
-            config('subscription.owlbear.eur.yearly'),
-            config('subscription.owlbear.usd.yearly'),
-            config('subscription.wyvern.eur.yearly'),
-            config('subscription.wyvern.usd.yearly'),
-            config('subscription.elemental.eur.yearly'),
-            config('subscription.elemental.usd.yearly'),
-        ];
-
         $oldPrice = '';
         $currency = "US$ ";
         $monthly = true;
@@ -43,10 +34,11 @@ class SubscriptionUpgradeService
         if (!$this->user->isSubscriber()) {
             return $price;
         }
-        // @phpstan-ignore-next-line
-        if (in_array($this->user->subscriptions->first()->stripe_price, $plans) || $this->user->hasPayPal()) {
+        if ($this->user->isStripeYearly() || $this->user->hasPayPal()) {
             $monthly = false;
         }
+
+        // Calculate the current subscription price
         if ($this->user->isElemental()) {
             if ($monthly) {
                 $oldPrice = "25.00";
@@ -59,7 +51,6 @@ class SubscriptionUpgradeService
             } else {
                 $oldPrice = "55.00";
             }
-
         } elseif ($this->user->isWyvern()) {
             if ($monthly) {
                 $oldPrice = "10.00";
@@ -67,18 +58,21 @@ class SubscriptionUpgradeService
                 $oldPrice = "110.00";
             }
         }
+        $endPeriod = Carbon::createFromTimestamp($this->user->subscription('kanka')->asStripeSubscription()->current_period_end);
         if ($period == 'yearly') {
-            // @phpstan-ignore-next-line
-            $price = floatval($price) - ($oldPrice + ((floatval($price) / 365) * $this->user->subscriptions()->first()->updated_at->diffInDays(Carbon::now())));
+            // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Number of Days in a Full Year)
+            $price = round((floatval($price) - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / 365), 2);
         } elseif ($monthly && $period == 'monthly') {
-            // @phpstan-ignore-next-line
-            $price = floatval($price) - ($oldPrice + ((floatval($price) / 31) * $this->user->subscriptions()->first()->updated_at->diffInDays(Carbon::now())));
+            // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Total Days in the Month)
+            $price = round((floatval($price) - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / 31), 2);
+        } elseif ($period === 'monthly') {
+            // Switching from a yearly plan to a monthly plan, this gets interesting
+            $remaining = 365;
+            $price = round((floatval($price) - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / $remaining), 2);
         }
 
-        // @phpstan-ignore-next-line
-        $price = $currency . str(ceil($price)) . '.00';
 
-
+        $price = $currency . number_format(max(0, $price), 2);
         return $price;
     }
 }

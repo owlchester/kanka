@@ -12,13 +12,27 @@
     @endif
 
     @if (!$cancel)
-        <h4>{!! __('settings.subscription.change.text.upgrade_' . $period, ['upgrade' => "<strong>$upgrade</strong>", 'tier' => "<strong>$tier</strong>", 'amount' => "<strong>$amount</strong>"]) !!}</h4>
+            <h4>
+        @if ($user->hasPayPal())
+            {!! __('settings.subscription.change.text.upgrade_paypal', [
+                'upgrade' => "<strong>$upgrade</strong>",
+                'tier' => "<strong>$tier</strong>",
+                'amount' => "<strong>$amount</strong>",
+                'date' => $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y')
+            ]) !!}
+        @else
+            {!! __('settings.subscription.change.text.upgrade_' . $period, [
+                'upgrade' => "<strong>$upgrade</strong>",
+                'tier' => "<strong>$tier</strong>",
+                'amount' => "<strong>$amount</strong>"
+            ]) !!}
+        @endif
+            </h4>
     @else
         <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
     @endif
 
     <x-alert type="error" :hidden="true"></x-alert>
-
 
     @if (!$cancel)
         @if ($hasPromo)

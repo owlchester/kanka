@@ -495,4 +495,17 @@ class User extends \Illuminate\Foundation\Auth\User
         // @phpstan-ignore-next-line
         return $this->subscribed('kanka') && $this->subscriptions()->first() && str_contains($this->subscriptions()->first()->stripe_price, 'paypal');
     }
+
+    public function isStripeYearly(): bool
+    {
+        $prices = [
+            config('subscription.owlbear.usd.yearly'),
+            config('subscription.owlbear.eur.yearly'),
+            config('subscription.wyvern.usd.yearly'),
+            config('subscription.wyvern.eur.yearly'),
+            config('subscription.elemental.usd.yearly'),
+            config('subscription.elemental.eur.yearly'),
+        ];
+        return $this->subscribedToPrice($prices);
+    }
 }

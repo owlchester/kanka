@@ -615,7 +615,6 @@ class SubscriptionService
      */
     public function owlbearPlans(): array
     {
-        // eur: plan_GpVbGxVYKmmnp8 usd: plan_GpVZhf8C9bMAt4
         return [
             config('subscription.owlbear.eur.monthly'),
             config('subscription.owlbear.usd.monthly'),
@@ -628,7 +627,6 @@ class SubscriptionService
      */
     public function wyvernPlans(): array
     {
-        // eur: plan_GpVbGxVYKmmnp8 usd: plan_GpVZhf8C9bMAt4
         return [
             config('subscription.wyvern.eur.monthly'),
             config('subscription.wyvern.usd.monthly'),
@@ -662,12 +660,6 @@ class SubscriptionService
      */
     public function yearlyPlans(string $tier = null): array
     {
-        /*if (!empty($only)) {
-            return [
-                config('subscription.' . strtolower($tier). '.eur.yearly'),
-                config('subscription.' . strtolower($tier). '.usd.yearly'),
-            ];
-        }*/
         return [
             config('subscription.owlbear.eur.yearly'),
             config('subscription.owlbear.usd.yearly'),
@@ -682,7 +674,6 @@ class SubscriptionService
      */
     public function elementalPlans(): array
     {
-        // eur: plan_GpYTOMLzQzBo6K usd: plan_GpYTfsbyHMlUEk
         return [
             config('subscription.elemental.eur.monthly'),
             config('subscription.elemental.eur.yearly'),
