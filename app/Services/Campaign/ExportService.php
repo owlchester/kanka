@@ -144,13 +144,13 @@ class ExportService
 
     protected function processFolder($image, string $path): string
     {
-        $route = $path . '/'. $image->name;
+        $route = $path . '/' . $image->name;
 
         if ($image->imageFolder) {
             $route = $route . '/';
             $route = $this->processFolder($image->imageFolder, $route);
         } else {
-            $route = $route .'.' . $image->ext;
+            $route = $route . '.' . $image->ext;
         }
 
         return $route;
