@@ -8,7 +8,7 @@ $imageCount = 0;
     'submit' => __('campaigns/gallery.actions.save'),
     'dialog' => true,
     'actions' => 'gallery.file._actions',
-    'deleteID' => $image->isFolder() || $image->hasNoFolders() ? 'delete-confirm-form' : null,
+    'deleteID' => $image->isFolder() || $image->hasNoFolders() ? '#delete-confirm-form' : null,
 ])
 {!! Form::close() !!}
 

@@ -56,6 +56,7 @@ class ExportService
             ->prepare()
             ->campaignJson()
             ->entities()
+            ->gallery()
             ->finish()
             ->notify()
         ;
@@ -121,6 +122,47 @@ class ExportService
                     . $e->getMessage()
                 );
             }
+        }
+        return $this;
+    }
+
+    protected function gallery(): self
+    {
+        foreach ($this->campaign->images()->get() as $image) {
+            try {
+                $this->processImage($image);
+            } catch (Exception $e) {
+                $this->archive->close();
+                unlink($this->path);
+                throw new Exception(
+                    $e->getMessage()
+                );
+            }
+        }
+        return $this;
+    }
+
+    protected function processFolder($image, string $path): string
+    {
+        $route = $path . '/'. $image->name;
+
+        if ($image->imageFolder) {
+            $route = $route . '/';
+            $route = $this->processFolder($image->imageFolder, $route);
+        } else {
+            $route = $route .'.' . $image->ext;
+        }
+
+        return $route;
+    }
+
+    protected function processImage($image): self
+    {
+        // Boosted image?
+        if (!$image->is_folder) {
+            $path = $this->processFolder($image, 'gallery/');
+            $this->archive->addFromString($path, Storage::get($image->path));
+            $this->files++;
         }
         return $this;
     }

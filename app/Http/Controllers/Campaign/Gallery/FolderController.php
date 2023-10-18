@@ -35,7 +35,7 @@ class FolderController extends Controller
     /**
      * Create a new folder
      */
-    public function folder(GalleryImageFolderStore $request, Campaign $campaign)
+    public function store(GalleryImageFolderStore $request, Campaign $campaign)
     {
         $this->authorize('gallery', $campaign);
         if ($request->ajax()) {
