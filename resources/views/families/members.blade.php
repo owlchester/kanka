@@ -8,8 +8,7 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'members',
-        'breadcrumb' => $plural,
-        'view' => 'familes.panels._members',
+        'view' => 'families.panels._members',
         'entity' => $model->entity,
     ])
 @endsection

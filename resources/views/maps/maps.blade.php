@@ -15,13 +15,13 @@
         @if (request()->has('map_id'))
             <a href="{{ route('maps.maps', [$campaign, $model, '#map-maps']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden lg:inline">{{ __('crud.filters.all') }}</span>
+                <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->descendants->count() }})
             </a>
         @else
             <a href="{{ route('maps.maps', [$campaign, $model, 'map_id' => $model->id, '#map-maps']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden lg:inline">{{ __('crud.filters.direct') }}</span>
+                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->maps->count() }})
             </a>
         @endif

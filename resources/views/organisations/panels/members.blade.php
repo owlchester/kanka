@@ -27,8 +27,8 @@ $all = $model->allMembers()->has('character')->count();
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
         @if (!$allMembers)
-            <a href="{{ route('organisations.show', [$campaign, $model, 'all' => true, '#organisation-members']) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i>
+            <a href="{{ route('entities.show', [$campaign, $entity, 'all' => true, '#organisation-members']) }}" class="btn2 btn-sm">
+                <x-icon class="filter" />
                 <span class="hidden xl:inline">
                     {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
                 </span>
@@ -37,13 +37,13 @@ $all = $model->allMembers()->has('character')->count();
                 </span>
             </a>
         @else
-            <a href="{{ route('organisations.show', [$campaign, $model, '#organisation-members']) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i>
+            <a href="{{ $entity->url() }}" class="btn2 btn-sm">
+                <x-icon class="filter" />
 
                 <span class="hidden xl:inline">
                     {{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}
                 </span>
-                <span class="xl:inline">
+                <span class="xl:hidden">
                     {{ $direct  }}
                 </span>
             </a>
@@ -52,7 +52,7 @@ $all = $model->allMembers()->has('character')->count();
         @can('member', $model)
             <a href="{{ route('organisations.organisation_members.create', [$campaign, 'organisation' => $model->id]) }}" class="btn2 btn-primary btn-sm"
                data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('organisations.organisation_members.create', [$campaign, $model->id]) }}">
-                <x-icon class="plus"></x-icon>
+                <x-icon class="plus" />
                 <span class="hidden lg:inline">
                     {{ __('organisations.members.actions.add') }}
                 </span>

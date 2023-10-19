@@ -32,6 +32,9 @@ class Header
             if (Arr::get($this->data, 'render') === Standard::IMAGE) {
                 return '';
             }
+            if (Arr::get($this->data, 'render') === Standard::TAGS) {
+                return __('entities.tags');
+            }
 
             return !isset($this->data['label']) ? '<i>no label</i>' : '';
         }

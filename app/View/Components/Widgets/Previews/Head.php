@@ -43,23 +43,27 @@ class Head extends Component
     {
         if ($this->widget->conf('entity-header') && $this->campaign->boosted() && $this->entity->header_image) {
             return [
-                'wide' => $this->entity->thumbnail(1200, 400, 'header_image'),
-                'square' => $this->entity->thumbnail(1200, 1200, 'header_image'),
+                'wide_xl' => $this->entity->thumbnail(800, 450, 'header_image'),
+                'wide_sm' => $this->entity->thumbnail(480, 270, 'header_image'),
+                'square' => $this->entity->thumbnail(800, 800, 'header_image'),
             ];
         } elseif ($this->widget->conf('entity-header') && $this->campaign->boosted() && $this->widget->entity->header) {
             return [
-                'wide' => $this->entity->header->getUrl(1200, 400),
-                'square' => $this->entity->header->getUrl(1200, 1200),
+                'wide_xl' => $this->entity->header->getUrl(800, 450),
+                'wide_sm' => $this->entity->header->getUrl(480, 270),
+                'square' => $this->entity->header->getUrl(800, 800),
             ];
         } elseif ($this->entity->image) {
             return [
-                'wide' => Img::crop(1200, 400)->url($this->entity->image->path),
-                'square' => Img::crop(1200, 1200)->url($this->entity->image->path),
+                'wide_xl' => Img::crop(800, 450)->url($this->entity->image->path),
+                'wide_sm' => Img::crop(480, 270)->url($this->entity->image->path),
+                'square' => Img::crop(800, 800)->url($this->entity->image->path),
             ];
         } elseif ($this->entity->image_path) {
             return [
-                'wide' => Avatar::entity($this->entity)->size(1200, 400)->thumbnail(),
-                'square' => Avatar::entity($this->entity)->size(1200, 1200)->thumbnail(),
+                'wide_xl' => Avatar::entity($this->entity)->size(800, 450)->thumbnail(),
+                'wide_sm' => Avatar::entity($this->entity)->size(480, 270)->thumbnail(),
+                'square' => Avatar::entity($this->entity)->size(800, 800)->thumbnail(),
             ];
         }
         return null;

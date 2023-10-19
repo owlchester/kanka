@@ -14,6 +14,7 @@ class Standard extends Column
     public const VISIBILITY = 'visibility';
     public const VISIBILITY_PIVOT = 'visibility_pivot';
     public const DATE = 'date';
+    public const TAGS = 'tags';
 
     /**
      */
@@ -45,6 +46,7 @@ class Standard extends Column
         return in_array($render, [
             self::CHARACTER,
             self::IMAGE,
+            self::TAGS,
             self::ENTITYLINK,
             self::VISIBILITY,
             self::VISIBILITY_PIVOT,

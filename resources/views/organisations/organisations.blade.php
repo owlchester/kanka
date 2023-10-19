@@ -14,13 +14,13 @@
         @if (request()->has('parent_id'))
             <a href="{{ route('organisations.organisations', [$campaign, $model]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden lg:inline">{{ __('crud.filters.all') }}</span>
+                <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->descendants()->count() }})
             </a>
         @else
             <a href="{{ route('organisations.organisations', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden lg:inline">{{ __('crud.filters.direct') }}</span>
+                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->organisations()->count() }})
             </a>
         @endif

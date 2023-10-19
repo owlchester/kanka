@@ -21,21 +21,21 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
         @if (!$allMembers)
-            <a href="{{ route('families.show', [$campaign, $model]) }}" class="btn2 btn-sm">
+            <a href="{{ $entity->url() }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden lg:inline">{{ __('crud.filters.all') }}</span> ({{ $model->allMembers()->count() }})
+                <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span> ({{ $model->allMembers()->count() }})
             </a>
         @else
-            <a href="{{ route('families.show', [$campaign, $model, 'family_id' => $model->id]) }}" class="btn2 btn-sm">
+            <a href="{{ route('entities.show', [$campaign, $entity, 'family_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden lg:inline">{{ __('crud.filters.direct') }}</span> ({{ $model->members()->count() }})
+                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span> ({{ $model->members()->count() }})
             </a>
         @endif
         @can('update', $model)
             <a href="{{ route('families.members.create', [$campaign, 'family' => $model->id]) }}" class="btn2 btn-primary btn-sm"
                data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('families.members.create', [$campaign, $model->id]) }}">
                 <x-icon class="plus"></x-icon>
-                <span class="hidden lg:inline">{{ __('organisations.members.actions.add') }}</span>
+                <span class="hidden xl:inline">{{ __('organisations.members.actions.add') }}</span>
             </a>
         @endcan
     </div>

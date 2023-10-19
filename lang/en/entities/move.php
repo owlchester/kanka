@@ -17,12 +17,12 @@ return [
         'select_one'    => 'Select a campaign',
     ],
     'helpers'       => [
-        'copy'  => 'Create a copy of the entity in the target campaign.',
+        'copy'  => 'Keep a copy of the entity in the current campaign.',
     ],
     'panel'         => [
-        'description'           => 'Move this entity to another campaign, or create a copy of it in a target campaign.',
+        'description'           => 'Move this entity to another campaign, optionally keeping a copy in the current campaign.',
         'description_bulk_copy' => 'Select a campaign you want to copy the selected entities to.',
-        'title'                 => 'Move or copy an entity to another campaign',
+        'title'                 => 'Move an entity to another campaign',
     ],
     'success'       => 'Entity :name moved to the :campaign campaign.',
     'success_copy'  => 'Entity :name copied to the :campaign campaign.',

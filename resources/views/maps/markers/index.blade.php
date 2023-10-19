@@ -13,12 +13,12 @@
         <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
             <a href="https://docs.kanka.io/en/latest/entities/maps/markers.html" class="btn2 btn-sm" target="_blank">
                 <x-icon class="question" />
-                <span class="hidden lg:inline">{{ __('crud.actions.help') }}</span>
+                <span class="hidden xl:inline">{{ __('crud.actions.help') }}</span>
             </a>
             @if ($model->explorable())
                 <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="btn2 btn-primary btn-sm">
                     <x-icon class="map" />
-                    <span class="hidden lg:inline">{{ __('maps.actions.explore') }}</span>
+                    <span class="hidden xl:inline">{{ __('maps.actions.explore') }}</span>
                 </a>
             @endif
         </div>

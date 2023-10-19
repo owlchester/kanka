@@ -9,11 +9,15 @@
 <div
     class="widget-header"
 >
-    @if (!empty($images['wide']))
+    @if (!empty($images['wide_xl']))
         <div
             class="widget-image cover-background bg-center aspect-video rounded-t "
-            style="background-image: var(--widget-image-wide); --widget-image-wide: url('{{ $images['wide'] }}'); --widget-image-square: url('{{ $images['square'] }}');"
-        ></div>
+            >
+            <picture class="entity-image-wide">
+                <source srcset="{{ $images['wide_xl'] }}" media="(min-width: 768px)" />
+                <img src="{{ $images['wide_sm'] }}" />
+            </picture>
+        </div>
     @endif
     <a href="{{ $entity->child->getLink() }}" class="flex gap-1 text-xl p-4 pb-0">
         @if ($entity->is_private)

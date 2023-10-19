@@ -45,7 +45,7 @@ return [
         'title' => 'Posts for :name',
     ],
     'move'          => [
-        'copy'          => 'Create a copy on the target entity',
+        'copy'          => 'Keep a copy on the current entity.',
         'copy_success'  => 'Post :name copied to :entity successfully.',
         'description'   => 'Select an entity you want to move or make a copy of this post in.',
         'entity'        => 'Target entity',

@@ -23,13 +23,13 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
         @if (request()->has('race_id'))
-            <a href="{{ route('races.show', [$campaign, $model]) }}" class="btn2 btn-sm">
+            <a href="{{ $entity->url() }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->allCharacters()->count() }})
             </a>
         @else
-            <a href="{{ route('races.show', [$campaign, $model, 'race_id' => $model->id]) }}" class="btn2 btn-sm">
+            <a href="{{ route('entities.show', [$campaign, $entity, 'race_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->characters()->count() }})
@@ -39,7 +39,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
             <a href="{{ route('races.members.create', [$campaign, $model]) }}" class="btn2 btn-primary btn-sm"
                data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('races.members.create', [$campaign, $model]) }}">
                 <x-icon class="plus"></x-icon>
-                <span class="hidden lg:inline">{{ __('crud.add') }}</span>
+                <span class="hidden xl:inline">{{ __('crud.add') }}</span>
             </a>
         @endcan
     </div>
