@@ -98,6 +98,8 @@ class ExportService
             'entity.tags', 'entity.relationships',
             'entity.posts', 'entity.abilities',
             'entity.events',
+            'entity.image',
+            'entity.header',
             'entity.assets',
             'entity.entityAttributes',
         ];
@@ -128,7 +130,7 @@ class ExportService
 
     protected function gallery(): self
     {
-        foreach ($this->campaign->images()->get() as $image) {
+        foreach ($this->campaign->images()->with('imageFolder')->get() as $image) {
             try {
                 $this->processImage($image);
             } catch (Exception $e) {
@@ -142,27 +144,19 @@ class ExportService
         return $this;
     }
 
-    protected function processFolder($image, string $path): string
-    {
-        $route = $path . '/'. $image->name;
-
-        if ($image->imageFolder) {
-            $route = $route . '/';
-            $route = $this->processFolder($image->imageFolder, $route);
-        } else {
-            $route = $route .'.' . $image->ext;
-        }
-
-        return $route;
-    }
-
     protected function processImage($image): self
     {
+        if(!$this->assets) {
+            $this->archive->addFromString('gallery/' . Str::slug($image->name) . '.json', $image->export());
+            $this->files++;
+            return $this;
+        }
+
         // Boosted image?
         if (!$image->is_folder) {
-            $path = $this->processFolder($image, 'gallery/');
-            $this->archive->addFromString($path, Storage::get($image->path));
+            $this->archive->addFromString('gallery/' . $image->name . '.' . $image->ext, Storage::get($image->path));
             $this->files++;
+            return $this;
         }
         return $this;
     }

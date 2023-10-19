@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\Img;
 use App\Models\Concerns\LastSync;
 use App\Traits\CampaignTrait;
+use App\Traits\ExportableTrait;
 use App\Traits\VisibilityIDTrait;
 use App\User;
 use Carbon\Carbon;
@@ -55,6 +56,7 @@ class Image extends Model
     use HasFactory;
     use LastSync;
     use VisibilityIDTrait;
+    use ExportableTrait;
 
     public $fillable = [
         'name',
