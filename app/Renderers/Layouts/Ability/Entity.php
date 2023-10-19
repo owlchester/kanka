@@ -32,7 +32,10 @@ class Entity extends Layout
             'visibility' => [
                 'label' => 'crud.fields.visibility',
                 'render' => Standard::VISIBILITY_PIVOT,
-            ]
+            ],
+            'tags' => [
+                'render' => Standard::TAGS
+            ],
         ];
     }
 }

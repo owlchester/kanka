@@ -37,7 +37,7 @@ class OrganisationController extends Controller
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
-                'entity', 'entity.image', 'entity.tags',
+                'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
                 'organisation', 'organisation.entity'
             ])
             ->filter($filters)

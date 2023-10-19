@@ -71,7 +71,7 @@ Route::get('/w/{campaign}/items/{item}/items', 'Items\ItemController@index')->na
 
 // Quest menus
 Route::get('/w/{campaign}/quests/tree', 'Crud\QuestController@tree')->name('quests.tree');
-Route::get('/w/{campaign}/quests/{quest}/quests', 'Crud\QuestController@quests')->name('quests.quests');
+Route::get('/w/{campaign}/quests/{quest}/quests', 'Quests\QuestController@index')->name('quests.quests');
 
 // Races
 Route::get('/w/{campaign}/races/{race}/characters', 'Races\MemberController@index')->name('races.characters');

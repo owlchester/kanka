@@ -37,7 +37,10 @@ class LocationController extends Controller
             ->select(['id', 'image', 'name', 'type', 'location_id', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
-            ->with(['location', 'location.entity', 'entity', 'entity.tags', 'entity.image'])
+            ->with([
+                'location', 'location.entity',
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'
+            ])
             ->has('entity')
             ->paginate();
 

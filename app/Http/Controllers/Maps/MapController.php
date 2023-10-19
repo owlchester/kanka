@@ -36,7 +36,10 @@ class MapController extends Controller
         $this->rows = $map
             ->{$base}()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with(['entity', 'map', 'map.entity'])
+            ->with([
+                'map', 'map.entity',
+                'entity', 'entity.image', 'entity.tags', 'entity.tags.entity'
+            ])
             ->paginate();
 
         if (request()->ajax()) {

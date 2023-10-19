@@ -54,6 +54,9 @@ class Character extends Layout
                     return !request()->has('race_id');
                 }
             ],
+            'tags' => [
+                'render' => Standard::TAGS
+            ]
         ];
 
         return $columns;

@@ -36,7 +36,10 @@ class CreatureController extends Controller
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
-            ->with(['entity'])
+            ->with([
+                'creature', 'creature.entity',
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'
+            ])
             ->paginate(15);
 
         if (request()->ajax()) {

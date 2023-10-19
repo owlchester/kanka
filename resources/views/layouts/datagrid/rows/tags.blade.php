@@ -1,12 +1,20 @@
 <?php /** @var \App\Models\MiscModel|\App\Models\Entity $model */?>
-@if ($model instanceof \App\Models\Entity)
+<div class="flex gap-1 flex-wrap">
 
-@elseif ($model instanceof \App\Models\MiscModel)
-    <div class="flex gap-1 flex-wrap">
+@if ($model instanceof \App\Models\MiscModel)
     @foreach ($model->entity->tags as $tag)
-        <a href="{{ $tag->getLink() }}">
-            {!! $tag->bubble() !!}
-        </a>
+        @if (!$tag->entity) @continue @endif
+        <x-tags.bubble :tag="$tag" />
     @endforeach
-    </div>
+@elseif ($model instanceof \App\Models\Entity)
+    @foreach ($model->tags as $tag)
+        @if (!$tag->entity) @continue @endif
+        <x-tags.bubble :tag="$tag" />
+    @endforeach
+@else
+    @foreach ($model->tags() as $tag)
+        @if (!$tag->entity) @continue @endif
+        <x-tags.bubble :tag="$tag" />
+    @endforeach
 @endif
+</div>

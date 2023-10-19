@@ -91,6 +91,11 @@ class OrganisationMember extends Model
         return $this->belongsTo('App\Models\OrganisationMember', 'parent_id');
     }
 
+    public function tags()
+    {
+        return $this->organisation->entity->tags;
+    }
+
     /**
      */
     public function pinned(): bool

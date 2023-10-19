@@ -281,7 +281,7 @@ class Tag extends MiscModel
     /**
      * @return bool
      */
-    public function hasColour()
+    public function hasColour(): bool
     {
         return !empty($this->colour);
     }
@@ -316,15 +316,6 @@ class Tag extends MiscModel
     {
         return '<span class="badge ' . ($this->hasColour() ? $this->colourClass() . 'py-1 rounded-sm' : 'color-tag rounded-sm px-2 py-1') . '">'
             . e($this->name) . '</span>';
-    }
-
-    /**
-     */
-    public function bubble(): string
-    {
-        return '<span class="badge ' .
-            ($this->hasColour() ? $this->colourClass() : 'color-tag') . '" title="' .
-            e($this->name) . '">' . ucfirst(mb_substr($this->slug, 0, 1)) . '</span>';
     }
 
     /**

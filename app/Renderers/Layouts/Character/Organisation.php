@@ -48,10 +48,10 @@ class Organisation extends Layout
                 'key' => 'location.name',
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'render' => function ($model) {
-                    if (!$model->location) {
+                    if (!$model->organisation->location) {
                         return null;
                     }
-                    return $model->location->tooltipedLink();
+                    return $model->organisation->location->tooltipedLink();
                 },
             ],
             'pinned' => [
@@ -67,6 +67,9 @@ class Organisation extends Layout
                     }
                     return '<i class="fa-solid fa-star" data-toggle="tooltip" data-title="' . __('organisations.members.pinned.both') . '"></i>';
                 }
+            ],
+            'tags' => [
+                'render' => Standard::TAGS
             ]
         ];
 

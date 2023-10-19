@@ -42,7 +42,7 @@ class MemberController extends Controller
                 'location', 'location.entity',
                 'families', 'families.entity',
                 'races', 'races.entity',
-                'entity', 'entity.tags', 'entity.image'
+                'entity', 'entity.tags', 'entity.image', 'entity.tags.entity'
             ])
             ->has('entity')
             ->paginate(15);

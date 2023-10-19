@@ -34,6 +34,9 @@ class Entity extends Layout
                     return __('entities.' . $model->pluralType());
                 }
             ],
+            'tags' => [
+                'render' => Standard::TAGS
+            ]
 
         ];
 

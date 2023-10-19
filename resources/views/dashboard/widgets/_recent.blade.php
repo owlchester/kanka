@@ -46,7 +46,7 @@ if (($widget->conf('singular'))) {
         @if (!empty($widget->tags))
             <span class="flex-none flex gap-1">
                 @foreach ($widget->tags as $tag)
-                    {!! $tag->bubble() !!}
+                    <x-tags.bubble :tag="$tag" />
                 @endforeach
             </span>
         @endif

@@ -37,7 +37,11 @@ class FamilyController extends Controller
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
-            ->with(['location', 'location.entity', 'entity', 'entity.tags'])
+            ->with([
+                'family', 'family.entity',
+                'location', 'location.entity',
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'
+            ])
             ->paginate(15);
 
         if (request()->ajax()) {

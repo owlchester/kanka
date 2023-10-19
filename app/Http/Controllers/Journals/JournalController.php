@@ -35,7 +35,10 @@ class JournalController extends Controller
             ->allJournals()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
-            ->with(['entity', 'character'])
+            ->with([
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image',
+                'author'
+            ])
             ->paginate();
 
         if (request()->ajax()) {
