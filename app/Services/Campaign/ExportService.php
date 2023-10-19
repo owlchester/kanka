@@ -154,7 +154,7 @@ class ExportService
 
         // Boosted image?
         if (!$image->is_folder) {
-            $this->archive->addFromString('gallery/' . $image->name . '.' . $image->ext, Storage::get($image->path));
+            $this->archive->addFromString('gallery/' . $image->name . '-' . $image->id . '.' . $image->ext, Storage::get($image->path));
             $this->files++;
             return $this;
         }
