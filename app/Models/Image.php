@@ -53,10 +53,10 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use CampaignTrait;
+    use ExportableTrait;
     use HasFactory;
     use LastSync;
     use VisibilityIDTrait;
-    use ExportableTrait;
 
     public $fillable = [
         'name',
