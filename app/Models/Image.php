@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\Img;
 use App\Models\Concerns\LastSync;
 use App\Traits\CampaignTrait;
+use App\Traits\ExportableTrait;
 use App\Traits\VisibilityIDTrait;
 use App\User;
 use Carbon\Carbon;
@@ -52,6 +53,7 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use CampaignTrait;
+    use ExportableTrait;
     use HasFactory;
     use LastSync;
     use VisibilityIDTrait;

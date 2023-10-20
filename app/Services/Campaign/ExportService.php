@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
+use App\Models\Image;
 use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -56,6 +57,7 @@ class ExportService
             ->prepare()
             ->campaignJson()
             ->entities()
+            ->gallery()
             ->finish()
             ->notify()
         ;
@@ -97,6 +99,8 @@ class ExportService
             'entity.tags', 'entity.relationships',
             'entity.posts', 'entity.abilities',
             'entity.events',
+            'entity.image',
+            'entity.header',
             'entity.assets',
             'entity.entityAttributes',
         ];
@@ -121,6 +125,37 @@ class ExportService
                     . $e->getMessage()
                 );
             }
+        }
+        return $this;
+    }
+
+    protected function gallery(): self
+    {
+        foreach ($this->campaign->images()->with('imageFolder')->get() as $image) {
+            try {
+                $this->processImage($image);
+            } catch (Exception $e) {
+                $this->archive->close();
+                unlink($this->path);
+                throw new Exception(
+                    $e->getMessage()
+                );
+            }
+        }
+        return $this;
+    }
+
+    protected function processImage(Image $image): self
+    {
+        if (!$this->assets) {
+            $this->archive->addFromString('gallery/' . $image->id . '.json', $image->export());
+            $this->files++;
+            return $this;
+        }
+
+        if (!$image->isFolder()) {
+            $this->archive->addFromString('gallery/' . $image->id . '.' . $image->ext, Storage::get($image->path));
+            $this->files++;
         }
         return $this;
     }
