@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
+use App\Models\Image;
 use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -144,19 +145,17 @@ class ExportService
         return $this;
     }
 
-    protected function processImage($image): self
+    protected function processImage(Image $image): self
     {
-        if(!$this->assets) {
-            $this->archive->addFromString('gallery/' . Str::slug($image->name) . '.json', $image->export());
+        if (!$this->assets) {
+            $this->archive->addFromString('gallery/' . $image->id . '.json', $image->export());
             $this->files++;
             return $this;
         }
 
-        // Boosted image?
-        if (!$image->is_folder) {
-            $this->archive->addFromString('gallery/' . $image->name . '-' . $image->id . '.' . $image->ext, Storage::get($image->path));
+        if (!$image->isFolder()) {
+            $this->archive->addFromString('gallery/' . $image->id . '.' . $image->ext, Storage::get($image->path));
             $this->files++;
-            return $this;
         }
         return $this;
     }
