@@ -48,7 +48,6 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->api()
             ->web()
-            ->front()
             ->campaign()
             ->settings()
             ->auth()
@@ -92,22 +91,6 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
-
-        return $this;
-    }
-
-    /**
-     * Define the "front" routes that can be seen by everyone
-     *
-     * These routes are typically stateless.
-     */
-    protected function front(): self
-    {
-        $domain = Domain::isApp() ? Domain::front() : '';
-        Route::domain($domain)->middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
-            ->prefix(LaravelLocalization::setLocale())
-            ->namespace($this->namespace)
-            ->group(base_path('routes/front.php'));
 
         return $this;
     }
