@@ -178,6 +178,15 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Deterine of the model has an associated entity (bookmarks don't)
+     * @return bool
+     */
+    public function hasEntityType(): bool
+    {
+        return isset($this->entityType);
+    }
+
+    /**
      * @param string $action = 'show'
      * @throws Exception
      */

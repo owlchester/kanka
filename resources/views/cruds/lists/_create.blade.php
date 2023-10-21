@@ -3,7 +3,7 @@
         <x-icon class="plus"></x-icon>
         <span class="hidden md:inline">{!! $singular !!}</span>
     </a>
-    @if(!in_array($name, ['menu_links', 'relations']))
+    @if(!in_array($name, ['bookmarks', 'relations']))
         <div class="dropdown">
             <button type="button" class="btn2 btn-primary join-item" data-dropdown aria-expanded="false" aria-label="Create from template" aria-haspopup="menu" aria-controls="templates-submenu">
                 <x-icon class="fa-solid fa-caret-down" />

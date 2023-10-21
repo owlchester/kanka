@@ -69,7 +69,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-aa829cd0.js",
+    "file": "assets/app-3306cb21.js",
     "imports": [
       "_mention-6dbb4e38.js",
       "_sortable.esm-be94e56d.js",
@@ -221,7 +221,7 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-cb619db9.css",
+    "file": "assets/app-a177122a.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },

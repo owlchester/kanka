@@ -3,11 +3,11 @@
 <x-dialog id="bulk-edit" :title="__('crud.bulk.edit.title')" footer="cruds.datagrids.bulks.modals._batch-footer">
     <x-grid>
         @foreach ($bulk->fields() as $field)
-            @php 
-                $trimmed = \Illuminate\Support\Str::before($field, '_id'); 
-                $isParent = \Illuminate\Support\Str::contains($trimmed, $model->getEntityType());
+            @php
+                $trimmed = \Illuminate\Support\Str::before($field, '_id');
+                $isParent = $model->hasEntityType() ? \Illuminate\Support\Str::contains($trimmed, $model->getEntityType()) : false;
             @endphp
-            
+
 
             {!! $fieldCount % 2 === 0 ? '' : null !!}
             @include('cruds.fields.' . $trimmed, [

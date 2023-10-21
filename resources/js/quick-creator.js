@@ -156,8 +156,11 @@ function quickCreatorSubformHandler() {
                 return;
             }
 
-            $('#qq-modal-form').html(result).show();
-            $('#qq-modal-loading').hide();
+            let target = document.getElementById('primary-dialog');
+            target.innerHTML = result;
+
+            //$('#qq-modal-form').html(result).show();
+            //$('#qq-modal-loading').hide();
             quickCreatorUI();
             quickCreatorHandleEvents();
 
