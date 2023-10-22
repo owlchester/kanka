@@ -48,20 +48,21 @@
     @endif
 
     @if ($models->count() > 0)
+        @php $count = 0; @endphp
         @foreach ($models as $log)
             @if ($log->action < 7 || $log->post)
                 @if ($log->day() !== $previous)
                     @if ($previous !== null) </div> @endif
-                    <div class="{{ !$superboosted ? 'blur' : null }} font-bold">{{ $log->created_at->format('M d, Y') }}</div>
+                    <div class="font-bold">{{ $log->created_at->format('M d, Y') }}</div>
                     <div class="rounded bg-box border border-b-0 ">
                 @endif
-                <div class="p-2 border-solid border-b {{ !$superboosted ? 'blur' : null }}">
-                    <div class="flex justify-center items-center gap-2">
+                <div class="p-2 border-solid border-b">
+                    <div class="flex justify-center items-center gap-2 {{ $count > 0 && !$superboosted ? 'blur' : null }}">
                         <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
                             <i class="fa-solid {{ $log->actionIcon() }}" aria-hidden="true"></i>
                         </div>
                         <div class="flex-grow">
-                            @if ($superboosted)
+                            @if ($superboosted || $count === 0)
                                 {!! __('history.log.' . $log->actionCode(), [
                                     'user' => $log->userLink(),
                                     'entity' => $log->entityLink(),
@@ -86,7 +87,7 @@
                             </div>
                         @endif
                         <div class="text-xs text-muted flex-end text-right">
-                            @if ($superboosted)
+                            @if ($superboosted || $count === 0)
                                 <span data-toggle="tooltip" data-title="{{ $log->created_at }} UTC">
                                     {{ $log->created_at->diffForHumans() }}
                                 </span>
@@ -118,7 +119,7 @@
                     </div>
                     @endif
                 </div>
-                @php $previous = $log->day(); @endphp
+                @php $previous = $log->day(); $count++; @endphp
             @endif
         @endforeach
         </div>
