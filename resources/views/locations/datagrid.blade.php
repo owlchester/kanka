@@ -13,10 +13,10 @@
         'type',
         [
             'label' => __('crud.fields.parent'),
-            'field' => 'parentLocation.name',
+            'field' => 'location.name',
             'render' => function($model) {
-                if ($model->parentLocation) {
-                return $model->parentLocation->tooltipedLink();
+                if ($model->location) {
+                return $model->location->tooltipedLink();
                 }
             }
         ],

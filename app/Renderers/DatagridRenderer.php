@@ -377,9 +377,6 @@ class DatagridRenderer
                 if (method_exists($model, 'location')) {
                     // @phpstan-ignore-next-line
                     $content = $model->location?->tooltipedLink();
-                } elseif (method_exists($model, 'parentLocation')) {
-                    // @phpstan-ignore-next-line
-                    $content = $model->parentLocation?->tooltipedLink();
                 }
             } elseif ($type == 'character') {
                 $class = $this->hidden;

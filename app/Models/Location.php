@@ -25,7 +25,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @property boolean $is_private
  * @property boolean $is_map_private
  * @property integer|null $location_id
- * @property Location|null $parentLocation
  * @property Map[]|Collection $maps
  * @property Location[]|Collection $descendants
  * @property Location[]|Collection $locations
@@ -59,7 +58,7 @@ class Location extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
-        'parentLocation.name',
+        'location.name',
     ];
 
     protected array $sortable = [
@@ -100,13 +99,13 @@ class Location extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'parentLocation' => function ($sub) {
+            'location' => function ($sub) {
                 $sub->select('id', 'name');
             },
             'children' => function ($sub) {
                 $sub->select('id', 'location_id');
             },
-            'parentLocation.entity' => function ($sub) {
+            'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'locations' => function ($sub) {
@@ -125,14 +124,6 @@ class Location extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['location_id'];
-    }
-
-    /**
-     *
-     */
-    public function parentLocation()
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     /**
