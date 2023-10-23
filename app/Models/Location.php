@@ -276,7 +276,7 @@ class Location extends MiscModel
      * Specify parent id attribute mutator
      * @param int $value
      */
-    public function setParentLocationIdAttribute($value)
+    public function setLocationIdAttribute($value)
     {
         $this->setParentIdAttribute($value);
     }
