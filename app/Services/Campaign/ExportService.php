@@ -12,7 +12,7 @@ use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use ZipArchive;
+use Zip;
 
 class ExportService
 {
@@ -21,9 +21,10 @@ class ExportService
 
     protected string $exportPath;
 
-    protected ZipArchive $archive;
     protected string $path;
     protected string $file;
+
+    protected $archive;
 
     protected bool $assets = false;
 
@@ -74,18 +75,17 @@ class ExportService
         $this->file = 'campaign_' . $this->campaign->id . '_' . uniqid() . '_' . date('Ymd_His') . ($this->assets ? '_assets' : null) . '.zip';
         CampaignCache::campaign($this->campaign);
         $this->path = $saveFolder . $this->file;
-        $this->archive = new ZipArchive();
-        $this->archive->open($this->path, ZipArchive::CREATE);
+        $this->archive = Zip::create($this->file);
 
         return $this;
     }
 
     protected function campaignJson(): self
     {
-        $this->archive->addFromString('campaign.json', $this->campaign->toJson());
+        $this->archive->addRaw($this->campaign->toJson(), 'campaign.json');
         $this->files++;
         if (!empty($this->campaign->image) && Storage::exists($this->campaign->image)) {
-            $this->archive->addFromString($this->campaign->image, Storage::get($this->campaign->image));
+            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($this->campaign->image), $this->campaign->image);
             $this->files++;
         }
 
@@ -148,13 +148,13 @@ class ExportService
     protected function processImage(Image $image): self
     {
         if (!$this->assets) {
-            $this->archive->addFromString('gallery/' . $image->id . '.json', $image->export());
+            $this->archive->add($image->export(), 'gallery/' . $image->id . '.json');
             $this->files++;
             return $this;
         }
 
         if (!$image->isFolder()) {
-            $this->archive->addFromString('gallery/' . $image->id . '.' . $image->ext, Storage::get($image->path));
+            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
             $this->files++;
         }
         return $this;
@@ -163,24 +163,28 @@ class ExportService
     protected function process($entity, $model): self
     {
         if (!$this->assets) {
-            $this->archive->addFromString($entity . '/' . Str::slug($model->name) . '.json', $model->export());
+            $this->archive->add($model->export(), $entity . '/' . Str::slug($model->name) . '.json', );
             $this->files++;
             return $this;
         }
 
         if (!empty($model->image) && Storage::exists($model->image)) {
-            $this->archive->addFromString($model->image, Storage::get($model->image));
+            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($model->image), $model->image);
             $this->files++;
         }
         // Boosted image?
         if (!empty($model->entity->header_image) && Storage::exists($model->entity->header_image)) {
-            $this->archive->addFromString($model->entity->header_image, Storage::get($model->entity->header_image));
+
+            //dd(env('AWS_BUCKET'));
+
+            //dd(Storage::path($model->entity->header_image));
+            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($model->entity->header_image), $model->entity->header_image);
             $this->files++;
         }
 
         // Locations have maps
         if ($model->getEntityType() == 'location' && !empty($model->map) && Storage::exists($model->map)) {
-            $this->archive->addFromString($model->map, Storage::get($model->map));
+            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($model->map), $model->map);
             $this->files++;
         }
         return $this;
@@ -205,7 +209,9 @@ class ExportService
     {
         // Save all the content.
         try {
-            $this->archive->close();
+            $saveFolder = storage_path() . '/exports/campaigns/';
+
+            $this->archive->saveTo($saveFolder);
         } catch (Exception $e) {
             // The export might fail if the zip is too big.
             $this->files = 0;

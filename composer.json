@@ -43,6 +43,7 @@
         "sergej-kurakin/diceroller": "^2.0",
         "spatie/laravel-backup": "^8.0",
         "srmklive/paypal": "^3.0",
+        "stechstudio/laravel-zipstream": "^4.13",
         "stevebauman/purify": "5.1.*",
         "symfony/http-client": "^6.2",
         "symfony/mailgun-mailer": "^6.2"
