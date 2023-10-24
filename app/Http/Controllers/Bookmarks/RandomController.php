@@ -17,7 +17,7 @@ class RandomController extends Controller
                 ->route('dashboard', $campaign)
                 ->with(
                     'error',
-                    __('menu_links.random_no_entity')
+                    __('bookmarks.random_no_entity')
                 );
         }
         return redirect()->to($route);

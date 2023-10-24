@@ -7,8 +7,8 @@ $entityTypes = array_merge($entityTypes, $entities);
 <x-grid type="1/1">
 
     <x-helper>
-        {!! __('menu_links.helpers.type', [
-            'filter' => '<code>' . __('menu_links.fields.filters') . '</code>',
+        {!! __('bookmarks.helpers.type', [
+            'filter' => '<code>' . __('bookmarks.fields.filters') . '</code>',
             '?' => '<code>?</code>',
         ]) !!}
     </x-helper>
@@ -18,12 +18,12 @@ $entityTypes = array_merge($entityTypes, $entities);
             {!! Form::select('type', $entityTypes, FormCopy::field('type')->string(), ['class' => '']) !!}
         </x-forms.field>
 
-        <x-forms.field field="filters" :label="__('menu_links.fields.filters')">
-            {!! Form::text('filters', FormCopy::field('filters')->string(), ['placeholder' => __('menu_links.placeholders.filters'), 'class' => '', 'maxlength' => 191]) !!}
+        <x-forms.field field="filters" :label="__('bookmarks.fields.filters')">
+            {!! Form::text('filters', FormCopy::field('filters')->string(), ['placeholder' => __('bookmarks.placeholders.filters'), 'class' => '', 'maxlength' => 191]) !!}
         </x-forms.field>
-        <x-forms.field field="nested" :label="__('menu_links.fields.is_nested')">
+        <x-forms.field field="nested" :label="__('bookmarks.fields.is_nested')">
             {!! Form::hidden('options[is_nested]', 0) !!}
-            <x-checkbox :text="__('menu_links.fields.is_nested')">
+            <x-checkbox :text="__('bookmarks.fields.is_nested')">
                 {!! Form::checkbox('options[is_nested]', 1, empty($model->options) ? false : $model->options['is_nested']) !!}
             </x-checkbox>
         </x-forms.field>

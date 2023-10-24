@@ -1,6 +1,6 @@
 <x-forms.field
     field="active"
-    :label="__('menu_links.fields.active')">
+    :label="__('bookmarks.fields.active')">
     <select name="is_active" id="is_active">
         <option value=""></option>
         <option value="1">{{ __('general.yes') }}</option>

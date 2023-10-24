@@ -46,6 +46,6 @@ class ReorderController extends Controller
 
         return redirect()
             ->route('bookmarks.index', $campaign)
-            ->with('success', __('menu_links.reorder.success'));
+            ->with('success', __('bookmarks.reorder.success'));
     }
 }

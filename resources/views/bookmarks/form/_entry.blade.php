@@ -21,7 +21,7 @@ if (isset($model)) {
 ?>
 @inject('sidebar', 'App\Services\SidebarService')
 <x-grid>
-    @include('cruds.fields.name', ['trans' => 'menu_links'])
+    @include('cruds.fields.name', ['trans' => 'bookmarks'])
 
     <x-forms.field field="icon" :label="__('entities/links.fields.icon')">
         @if($campaign->boosted())
@@ -58,7 +58,7 @@ if (isset($model)) {
 
     <x-forms.field
             field="position"
-            :label="__('menu_links.fields.position')"
+            :label="__('bookmarks.fields.position')"
             :tooltip="true"
             :helper="__('entities/links.helpers.parent')">
         @if ($campaign->boosted())
@@ -104,11 +104,11 @@ if (isset($model)) {
             @endif
     </x-forms.field>
 
-    <x-forms.field field="active" :label="__('menu_links.fields.active')" :tooltip="true"
-                   :helper="__('menu_links.helpers.active')">
+    <x-forms.field field="active" :label="__('bookmarks.fields.active')" :tooltip="true"
+                   :helper="__('bookmarks.helpers.active')">
         {!! Form::hidden('is_active', 0) !!}
 
-        <x-checkbox :text="__('menu_links.visibilities.is_active')">
+        <x-checkbox :text="__('bookmarks.visibilities.is_active')">
             {!! Form::checkbox('is_active', 1, isset($model) ? $model->is_active : 1) !!}
         </x-checkbox>
 
@@ -117,23 +117,23 @@ if (isset($model)) {
 
 <hr/>
 
-<h4>{{ __('menu_links.fields.selector') }}</h4>
-<x-helper :text="__('menu_links.helpers.selector')" />
+<h4>{{ __('bookmarks.fields.selector') }}</h4>
+<x-helper :text="__('bookmarks.helpers.selector')" />
 
-<x-forms.field field="target" :label="__('menu_links.fields.target')">
+<x-forms.field field="target" :label="__('bookmarks.fields.target')">
     <select name="type" class="" id="bookmark-selector">
         <option value="">Choose an option</option>
         <option value="entity" @if($isEntity) selected="selected" @endif data-target="#bookmark-entity">
-            {{ __('menu_links.fields.entity') }}
+            {{ __('bookmarks.fields.entity') }}
         </option>
         <option value="type" @if($isList) selected="selected" @endif data-target="#bookmark-list">
             {{ __('crud.fields.type') }}
         </option>
         <option value="random" @if($isRandom) selected="selected" @endif data-target="#bookmark-random">
-            {{ __('menu_links.fields.random') }}
+            {{ __('bookmarks.fields.random') }}
         </option>
         <option value="dashboard" @if($isDashboard) selected="selected" @endif data-target="#bookmark-dashboard">
-            {{ __('menu_links.fields.dashboard') }}
+            {{ __('bookmarks.fields.dashboard') }}
         </option>
     </select>
 </x-forms.field>

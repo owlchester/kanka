@@ -195,8 +195,6 @@ return [
             'alternatives_warning'  => 'Ein Upgrade Ihres Abonnements mit dieser Methode ist nicht möglich. Bitte erstellen Sie ein neues Abonnement, wenn Ihr aktuelles Abonnement endet.',
             'alternatives_yearly'   => 'Aufgrund der Einschränkungen bei wiederkehrenden Zahlungen ist die :method nur für Jahresabonnements verfügbar',
             'currency_blocked'      => 'Es ist nicht möglich, die Währung zu ändern, sobald du ein aktives Kanka-Abonnement hast. Bitte kontaktiere  uns unter :email für Unterstützung.',
-            'paypal'                => 'Möchtest du stattdessen Paypal verwenden? Kontaktiere uns unter :email, wenn du einen Jahresplan mit Paypal abonnieren möchtest.',
-            'paypal_v2'             => 'Wir akzeptieren PayPal für Jahresabonnements. Kontaktiere uns unter :email mit der E-Mail-Adresse deines Kanka-Kontos, der Stufe, die du abonnieren möchtest, und der Währung (USD oder EUR), mit der du abgerechnet werden möchtest.',
             'paypal_v3'             => 'Bezahle dein Jahresabonnement sicher mit PayPal.',
             'stripe'                => 'Deine Rechnungsinformationen werden von :stripe sicher verarbeitet und gespeichert.',
         ],

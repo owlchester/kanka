@@ -13,13 +13,13 @@
             'label' => __('crud.fields.type'),
             'render' => function ($model) {
                 if ($model->isDashboard()) {
-                    return '<i class="fa-solid fa-th-large"></i> ' . __('menu_links.fields.dashboard');
+                    return '<i class="fa-solid fa-th-large"></i> ' . __('bookmarks.fields.dashboard');
                 } elseif ($model->isEntity()) {
-                    return '<i class="fa-solid fa-star"></i> ' . __('menu_links.fields.entity');
+                    return '<i class="fa-solid fa-star"></i> ' . __('bookmarks.fields.entity');
                 } elseif ($model->isList()) {
-                    return '<i class="fa-solid fa-th-list"></i> ' . __('menu_links.fields.type');
+                    return '<i class="fa-solid fa-th-list"></i> ' . __('bookmarks.fields.type');
                 } elseif ($model->isRandom()) {
-                    return '<i class="fa-solid fa-question"></i> ' . __('menu_links.fields.random');
+                    return '<i class="fa-solid fa-question"></i> ' . __('bookmarks.fields.random');
                 }
                 return '';
             },
@@ -39,14 +39,14 @@
                 } elseif ($model->isList()) {
                     return __('entities.' . $model->type);
                 } elseif ($model->isRandom()) {
-                    return $model->random_entity_type == 'any' ? __('menu_links.random_types.any') : __('entities.' . $model->random_entity_type);
+                    return $model->random_entity_type == 'any' ? __('bookmarks.random_types.any') : __('entities.' . $model->random_entity_type);
                 }
                 return '';
             },
             'disableSort' => true,
         ],
         [
-            'label' => __('menu_links.fields.active'),
+            'label' => __('bookmarks.fields.active'),
             'render' => function ($model) {
                 if ($model->is_active) {
                     return '<i class="fa-solid fa-check-circle" aria-hidden="true"></i>';
@@ -62,7 +62,7 @@
     ->options(    [
         'route' => 'bookmarks.index',
         'baseRoute' => 'bookmarks',
-        'trans' => 'menu_links.fields.',
+        'trans' => 'bookmarks.fields.',
         'disableEntity' => true,
     ]
 ) !!}

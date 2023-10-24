@@ -24,7 +24,7 @@
     <div class="tab-content p-4">
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
-                <x-forms.field field="random-type" :required="true" :label="__('menu_links.fields.random_type')">
+                <x-forms.field field="random-type" :required="true" :label="__('bookmarks.fields.random_type')">
                     {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => ' recent-entity-type']) !!}
                 </x-forms.field>
 

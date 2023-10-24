@@ -1,14 +1,14 @@
 @inject('entityService', 'App\Services\EntityService')
 <?php
-$entityTypes = ['' => '', 'any' => __('menu_links.random_types.any')];
+$entityTypes = ['' => '', 'any' => __('bookmarks.random_types.any')];
 $entities = $entityService->campaign($campaign)->getEnabledEntitiesSorted(false);
 $entityTypes = array_merge($entityTypes, $entities);
 ?>
 <x-grid type="1/1">
-    <x-helper :text="__('menu_links.helpers.random')" />
+    <x-helper :text="__('bookmarks.helpers.random')" />
 
     <x-grid>
-        <x-forms.field field="random-type" :label="__('menu_links.fields.random_type')">
+        <x-forms.field field="random-type" :label="__('bookmarks.fields.random_type')">
             {!! Form::select('random_entity_type', $entityTypes, FormCopy::field('random_entity_type')->string(), ['class' => '']) !!}
         </x-forms.field>
 

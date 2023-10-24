@@ -42,12 +42,12 @@ class BookmarkController extends CrudController
         $this->addNavAction(
             route('bookmarks.reorder', $this->campaign),
             '<i class="fa-solid fa-arrow-up-arrow-down" aria-hidden="true"></i> <span class="hidden md:inline">' .
-                __('menu_links.reorder.title') . '</span>'
+                __('bookmarks.reorder.title') . '</span>'
         );
         $this->addNavAction(
             route('campaign-sidebar', $this->campaign),
             '<i class="fa-solid fa-bars-staggered" aria-hidden="true"></i> <span class="hidden md:inline">' .
-                __('menu_links.actions.customise') . '</span>'
+                __('bookmarks.actions.customise') . '</span>'
         );
 
         $this->addNavAction(

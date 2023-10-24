@@ -193,8 +193,6 @@ return [
             'alternatives_warning'  => 'Non è possibile aggiornare l\'abbonamento utilizzando questo metodo. Sottoscrivi nuovamente l\'abbonamento al termine di quello attuale.',
             'alternatives_yearly'   => 'Accettiamo abbonamenti annuali solo con :method',
             'currency_blocked'      => 'Non è possibile cambiare valuta dopo aver sottoscritto un abbonamento attivo a Kanka. Contattaci all\'indirizzo :email per ricevere assistenza.',
-            'paypal'                => 'Vuoi invece utilizzare Paypal? Contattaci a :email se desideri sottoscrivere un piano annuale utilizzando Paypal.',
-            'paypal_v2'             => 'Accettiamo PayPal per gli abbonamenti annuali. Contattaci all\'indirizzo :e-mail indicando l\'e-mail del tuo account Kanka, il grado a cui desideri abbonarti e la valuta (USD o EUR) in cui desideri essere fatturato.',
             'paypal_v3'             => 'Paga in tutta sicurezza il tuo abbonamento annuale con PayPal.',
             'stripe'                => 'I dati di fatturazione vengono elaborati e conservati in modo sicuro tramite :stripe.',
         ],
