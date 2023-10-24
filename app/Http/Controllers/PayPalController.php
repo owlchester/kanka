@@ -58,10 +58,12 @@ class PayPalController extends Controller
                 ->user($request->user())
                 ->subscribe($pledge);
             $routeOptions = ['success' => 1];
+            $flash = 'subscribed';
 
             return redirect()
                 ->route('settings.subscription', $routeOptions)
-                ->with('success', __('settings.subscription.success.subscribed'));
+                ->with('success', __('settings.subscription.success.subscribed'))
+                ->with('sub_tracking', $flash);
         } else {
             return redirect()
                 ->route('settings.subscription')
