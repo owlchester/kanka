@@ -264,4 +264,9 @@ class Relation extends Model
     {
         return false;
     }
+
+    public function hasEntityType(): bool
+    {
+        return false;
+    }
 }

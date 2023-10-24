@@ -46,6 +46,7 @@ return [
         'attitude'          => 'Attitude',
         'connection'        => 'Connection',
         'is_star'           => 'Pinned',
+        'is_pinned'         => 'Pinned',
         'owner'             => 'Source',
         'relation'          => 'Description',
         'target'            => 'Target entity',

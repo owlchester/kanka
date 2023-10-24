@@ -783,7 +783,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $related->map->entity->id,
-                'text' => __('crud.tabs.map-points'),
+                'text' => __('maps/markers.tabs.marker'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'entity-map-marker',
