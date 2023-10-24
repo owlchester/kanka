@@ -65,9 +65,5 @@ return [
         'collapsed' => 'Recolhido',
         'expanded'  => 'Expandido',
     ],
-    'warning'       => [
-        'editing'   => [
-            'description'   => 'Parece que outra pessoa está editando este post no momento! Deseja voltar atrás ou ignorar este aviso, correndo o risco de perder dados? Membros atualmente editando este post:',
-        ],
-    ],
+    'warning'       => [],
 ];

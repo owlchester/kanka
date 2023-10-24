@@ -40,7 +40,6 @@ return [
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Menü Unterseite (Nutze den letzten Text der URL)',
-        'name'      => 'Name des Menü Links',
         'tab'       => 'Geschichte, Beziehungen, Notizen',
     ],
     'random_no_entity'  => 'Keine zufälligen Objekte gefunden.',

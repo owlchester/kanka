@@ -13,6 +13,5 @@ return [
     'destroy'           => [
         'success'   => 'Image par défaut pour :type retirée.',
     ],
-    'helper'            => 'Gestion des images d\'entité par défaut pour la campagne. Celles-ci seront affichées dans les listes, mais pas sur l\'entité même.',
     'index'             => [],
 ];

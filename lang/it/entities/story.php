@@ -17,13 +17,5 @@ return [
     'update'    => [
         'title' => 'Aggiorna :entity inserimento',
     ],
-    'warning'   => [
-        'editing'   => [
-            'back'          => 'Indietro',
-            'description'   => 'Sembra che qualcun altro stia modificando questa entità! Vuoi tornare indietro o ignorare questo messaggio rischiando di perdere dei dati? Membri che al momento stanno modificando questa entità:',
-            'ignore'        => 'Modifica comunque',
-            'title'         => 'Attenzione',
-            'user'          => ':user fino :since',
-        ],
-    ],
+    'warning'   => [],
 ];

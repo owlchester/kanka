@@ -131,10 +131,8 @@ TEXT
             'role'          => 'Rol',
             'roles'         => 'Rollen',
         ],
-        'help'                  => 'Campaigns kunnen een onbeperkt aantal leden hebben.',
         'helpers'               => [
-            'admin' => 'Als lid van de campaign\'s beheerder rol kun je nieuwe gebruikers uitnodigen, inactieve gebruikers verwijderen en hun rechten wijzigen. Gebruik de knop Wissel om de machtigingen van een lid te testen. Je kunt meer over deze functie lezen in de :link.',
-            'switch'=> 'Wissel naar deze gebruiker',
+            'switch'    => 'Wissel naar deze gebruiker',
         ],
         'impersonating'         => [
             'message'   => 'Je bekijkt de campaign als een andere gebruiker. Sommige functies zijn uitgeschakeld, maar de rest werkt precies zoals de gebruiker het zou zien. Om terug te schakelen naar jouw gebruiker, gebruik je de knop Wissel Terug op de plaats waar de knop Uitloggen zich gewoonlijk bevindt.',
@@ -265,7 +263,6 @@ TEXT
             'journals'      => 'Observaties geschreven door personages of sessie voorbereiding voor de dungeon master.',
             'locations'     => 'Planeten, vliegtuigen, continenten, rivieren, staten, nederzettingen, tempels, herbergen.',
             'maps'          => 'Upload kaarten met lagen en markeringen die naar andere entiteiten in de campaign verwijzen.',
-            'menu_links'    => 'Aangepaste menu koppelingen in de zijbalk.',
             'notes'         => 'Lore, natuur, geschiedenis, magie, culturen.',
             'organisations' => 'Sekten, religies, facties, gilden.',
             'quests'        => 'Om verschillende quests bij te houden met personages en locaties.',
@@ -295,7 +292,6 @@ TEXT
             'plugins'           => 'Plugins',
             'recovery'          => 'Herstel',
             'roles'             => 'Rollen',
-            'settings'          => 'Modules',
         ],
         'title'     => 'Campaign :name',
     ],

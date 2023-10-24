@@ -13,6 +13,5 @@ return [
     'destroy'           => [
         'success'   => 'Imagem em miniatura padrão para :type removida.',
     ],
-    'helper'            => 'Defina imagem em miniatura padrão personalizadas para os tipos de entidades de sua campanha. Elas serão mostradas em várias listas, mas não na própria entidade.',
     'index'             => [],
 ];

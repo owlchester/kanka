@@ -12,6 +12,5 @@ return [
     'destroy'   => [
         'success'   => 'Alapértelmezett entitáskép a(z) :type típushoz eltávolítva.',
     ],
-    'helper'    => 'Állíts be saját alapértelmezett entitásképet a kampányodhoz. Ezek különféle listáknál jelennek meg, nem pedig az entitás oldalán.',
     'index'     => [],
 ];

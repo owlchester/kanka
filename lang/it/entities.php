@@ -65,8 +65,6 @@ return [
     'locations'             => 'Luoghi',
     'map'                   => 'Mappa',
     'maps'                  => 'Mappe',
-    'menu_link'             => 'Menu Link',
-    'menu_links'            => 'Menu Links',
     'new'                   => [
         'ability'       => 'Nuova abilità',
         'character'     => 'Nuovo personaggio',

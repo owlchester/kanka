@@ -6,14 +6,11 @@ return [
         'mode-table'    => 'Táboa de relacións e conexións',
     ],
     'bulk'              => [
-        'delete'            => '{1} Eliminada :count relación.|[2,*] Eliminadas :count relacións.',
-        'delete_mirrored'   => 'Eliminar tamén relacións reflectidas.',
-        'success'           => [
+        'delete'    => '{1} Eliminada :count relación.|[2,*] Eliminadas :count relacións.',
+        'success'   => [
             'editing'           => '{1} :count relación actualizada.|[2,*] :count relacións actualizadas.',
             'editing_partial'   => '{1} :count/:total relación actualizada.|[2,*] :count/:total relacións actualizadas.',
         ],
-        'unmirror'          => 'Desligar relacións reflectidas.',
-        'update_mirrored'   => 'Actualizar tamén relacións reflectidas.',
     ],
     'call-to-action'    => 'Explora visualmente as relacións desta entidade e como está conectada co resto da campaña.',
     'connections'       => [

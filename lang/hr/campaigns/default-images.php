@@ -12,6 +12,5 @@ return [
     'destroy'   => [
         'success'   => 'Uklonjena zadana slika entiteta za :type.',
     ],
-    'helper'    => 'Postavi proizvoljne zadane slike entiteta za svoju kampanju. One će biti prikazane u raznim listama, ali ne i na samom entitetu.',
     'index'     => [],
 ];

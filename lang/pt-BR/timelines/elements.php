@@ -34,9 +34,5 @@ return [
         'name'      => 'Obrigatório se nenhuma entidade for selecionada',
         'position'  => 'Posição na lista de elementos da era. Deixe em branco para adicionar ao final.',
     ],
-    'warning'       => [
-        'editing'   => [
-            'description'   => 'Parece que outra pessoa está editando este elemento da linha do tempo! Deseja voltar atrás ou ignorar este aviso, correndo o risco de perder dados? Membros atualmente editando este elemento da linha do tempo:',
-        ],
-    ],
+    'warning'       => [],
 ];

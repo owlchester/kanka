@@ -154,7 +154,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Pomoc',
             'remove'        => 'Odstrániť z kampane',
             'switch'        => 'Prepnúť',
             'switch-back'   => 'Prepnúť späť',
@@ -174,10 +173,8 @@ TEXT
             'role'          => 'Rola',
             'roles'         => 'Roly',
         ],
-        'help'                  => 'Kampane môžu mať nekonečný počet členov. Ako administrátor vieš odstrániť členov, ktorí už nie sú aktívni.',
         'helpers'               => [
-            'admin' => 'Ako člen kampane s rolou administrátora môžeš pozývať nových užívateľov, odstraňovať neaktívnych a meniť ich oprávnenia. Otestovať oprávnenia člena môžeš cez tlačidlo Prepnúť. Viac o tejto funkcionalite si môžeš prečítať na: :link.',
-            'switch'=> 'Prepnúť na tohto užívateľa',
+            'switch'    => 'Prepnúť na tohto užívateľa',
         ],
         'impersonating'         => [
             'message'   => 'Kampaň teraz vidíš ako iný užívateľ. Niektoré funkcionality boli deaktivované, ale ostatok vyzerá rovnako, ako by to videl daný užívateľ. Aby si sa prepol/a späť na tvojho užívateľa, použi tlačidlo Prepnúť, ktoré sa nachádza na mieste, kde je bežne tlačidlo Logout.',
@@ -381,7 +378,6 @@ TEXT
             'journals'          => 'Zistenia a pozorovania spísané postavami alebo príprava na hry pre Rozprávača.',
             'locations'         => 'Planéty, sféry, kontinenty, rieky, štáty, osídlia, chrámy, hostince.',
             'maps'              => 'Nahraj mapy s úrovňami a značkami, ktoré sú prelinkované s inými objektami tvojej kampane.',
-            'menu_links'        => 'Vlastné linky v menu.',
             'notes'             => 'Báje, náboženstvá, dejiny, mágia, rasy.',
             'organisations'     => 'Kulty, vojenské jednotky, frakcie, cechy.',
             'quests'            => 'Aby si vedel/a sledovať plnenie úloh a cieľov postáv.',
@@ -416,7 +412,6 @@ TEXT
             'plugins'           => 'Pluginy',
             'recovery'          => 'Obnovenie',
             'roles'             => 'Roly',
-            'settings'          => 'Moduly',
             'sidebar'           => 'Bočné menu',
             'styles'            => 'Témy',
         ],
@@ -474,9 +469,5 @@ TEXT
         'public'    => 'Verejný',
         'review'    => 'Čaká na schválenie',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Zdá sa, že iná osoba upravuje súčasne túto kampaň! Chceš sa vrátiť a ignorovať toto varovanie aj s rizikom straty dát? Členstvo súčasne editujúce túto kampaň:',
-        ],
-    ],
+    'warning'                           => [],
 ];

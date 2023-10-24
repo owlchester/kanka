@@ -16,13 +16,5 @@ return [
     'update'    => [
         'title' => 'Actualizar entrada de ":entity"',
     ],
-    'warning'   => [
-        'editing'   => [
-            'back'          => 'Voltar',
-            'description'   => 'Parece que outra persoa está editando esta entidade! Queres voltar ou ignorar este aviso, correndo o risco de perder datos? Integrantes que están editando esta entrada:',
-            'ignore'        => 'Editar de calquera forma',
-            'title'         => 'Aviso',
-            'user'          => ':user dende :since',
-        ],
-    ],
+    'warning'   => [],
 ];

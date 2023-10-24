@@ -59,7 +59,6 @@ return [
         'current_month'         => 'Jelenlegi hónap',
         'current_year'          => 'Jelenlegi év',
         'date'                  => 'Jelenlegi dátum',
-        'has_leap_year'         => 'Van szökőév',
         'intercalary'           => 'Naptárközi napok',
         'is_incrementing'       => 'Dinamikusan haladó naptár',
         'is_recurring'          => 'Ismétlődő',

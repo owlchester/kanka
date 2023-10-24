@@ -23,11 +23,6 @@ return [
             'entity_or_name'    => 'Selecciona una entidad de la campaña o asigna un nombre a este elemento.',
             'name'              => 'Nombre',
         ],
-        'warning'   => [
-            'editing'   => [
-                'description'   => 'Parece que otra persona está editando este elemento de la misión. ¿Quieres volver atrás o ignorar esta advertencia, a riesgo de perder datos? Miembros editando actualmente este elemento de la misión:',
-            ],
-        ],
     ],
     'fields'        => [
         'copy_elements' => 'Copiar elementos vinculados a la misión',

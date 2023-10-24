@@ -13,6 +13,5 @@ return [
     'destroy'           => [
         'success'   => 'Imaxe predeterminada para :type eliminada.',
     ],
-    'helper'            => 'Define imaxes predeterminadas para as entidades da túa campaña. Estas mostraranse nas listaxes, pero non nas propias entidades.',
     'index'             => [],
 ];

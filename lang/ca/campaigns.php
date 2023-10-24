@@ -135,7 +135,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Ajuda',
             'remove'        => 'Elimina de la campanya',
             'switch'        => 'Veu com',
             'switch-back'   => 'Torna al meu usuari',
@@ -153,10 +152,8 @@ TEXT
             'role'          => 'Rol',
             'roles'         => 'Rols',
         ],
-        'help'                  => 'No hi ha cap límit al nombre de membres que pot tenir una campanya.',
         'helpers'               => [
-            'admin' => 'Com a administrador de la campanya, podeu convidar nous usuaris, eliminar-ne els inactius i cambiar els seus permisos. Per comprovar els permisos d\'un membre, cliqueu a «Veu com». Per saber més sobre aquesta eina, aneu a :link.',
-            'switch'=> 'Veu com aquest usuari',
+            'switch'    => 'Veu com aquest usuari',
         ],
         'impersonating'         => [
             'message'   => 'Esteu veient la campanya com a un altre usuari. Algunes funcionalitats estan deshabilitades, però majorment veieu exactament allò que l\'usuari veuria. Per tornar al vostre usuari, cliqueu a «Torna al meu usuari», prop del botó de sortida.',
@@ -326,7 +323,6 @@ TEXT
             'journals'      => 'Observacions escrites pels personatges, o la preparació de la sessió del màster.',
             'locations'     => 'Planetes, continents, rius, estats, assentaments, temples, tavernes...',
             'maps'          => 'Pugeu mapes amb diferents capes i marcadors que hi indiquen altres entitats de la campanya.',
-            'menu_links'    => 'Enllaços directes personalitzats a la barra lateral.',
             'notes'         => 'Tradicions, religions, història, màgia, mecàniques...',
             'organisations' => 'Sectes, unitats militars, faccions, gremis...',
             'quests'        => 'Per a dur un seguiment de les missions amb personatges i localitzacions.',
@@ -356,7 +352,6 @@ TEXT
             'plugins'           => 'Connectors',
             'recovery'          => 'Recuperació',
             'roles'             => 'Rols',
-            'settings'          => 'Mòduls',
             'styles'            => 'Temes',
         ],
         'title'     => 'Campanya :name',

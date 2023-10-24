@@ -27,7 +27,6 @@ return [
     'title'         => 'Galeria de la campanya :campaign',
     'update'        => [
         'success'   => 'S\'ha modificat la imatge.',
-        'title'     => 'Detalls de la imatge',
     ],
     'uploader'      => [
         'add'           => 'Afegeix una nova imatge',

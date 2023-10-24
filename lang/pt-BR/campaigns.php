@@ -154,7 +154,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Ajuda',
             'remove'        => 'Remover da campanha',
             'switch'        => 'Visualizar campanha como usuário',
             'switch-back'   => 'Voltar para meu usuário',
@@ -174,10 +173,8 @@ TEXT
             'role'          => 'Cargo',
             'roles'         => 'Cargos',
         ],
-        'help'                  => 'Não há limite para o número de membros que uma campanha pode ter, e como Administrador da campanha, você pode remover membros que não estão mais ativos nela.',
         'helpers'               => [
-            'admin' => 'Como membro com o cargo de administrador da campanha, você pode convidar novos usuários, remover os inativos e alterar suas permissões. Para testar as permissões de um membro, use o botão Alternar. Você pode ler mais sobre esse recurso no :link.',
-            'switch'=> 'Trocar para este usuário',
+            'switch'    => 'Trocar para este usuário',
         ],
         'impersonating'         => [
             'message'   => 'Você está vendo a campanha como outro usuário. Alguns recursos foram desabilitados, mas o resto age exatamente como o usuário veria. Para voltar ao seu usuário, use o botão Trocar de Volta localizado onde o botão Logout normalmente está localizado.',
@@ -381,7 +378,6 @@ TEXT
             'journals'          => 'Observações escritas por personagens, ou preparações de sessões para o mestre do jogo.',
             'locations'         => 'Planetas, planos, continentes, rios, estados, acampamentos, templos, tavernas.',
             'maps'              => 'Faça upload de mapas com camadas e marcadores apontando para outras entidades na campanha.',
-            'menu_links'        => 'Links de menus personalizados na barra lateral.',
             'notes'             => 'Conhecimento, natureza, história, magia, culturas.',
             'organisations'     => 'Cultos, religiões, facções, guildas.',
             'quests'            => 'Para manter controle de várias missões com personagens e locais.',
@@ -416,7 +412,6 @@ TEXT
             'plugins'           => 'Plugins',
             'recovery'          => 'Restaurar',
             'roles'             => 'Cargos',
-            'settings'          => 'Módulos',
             'sidebar'           => 'Configurar barra lateral',
             'styles'            => 'Temas',
         ],
@@ -474,9 +469,5 @@ TEXT
         'public'    => 'Campanha pública',
         'review'    => 'Aguardando Revisão',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Parece que outra pessoa está editando esta campanha no momento! Deseja voltar atrás ou ignorar este aviso, correndo o risco de perder dados? Membros atualmente editando esta campanha:',
-        ],
-    ],
+    'warning'                           => [],
 ];

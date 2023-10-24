@@ -154,7 +154,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Pomoc',
             'remove'        => 'Usuń z kampanii',
             'switch'        => 'Przełącz',
             'switch-back'   => 'Powrót do profilu',
@@ -174,10 +173,8 @@ TEXT
             'role'          => 'Rola',
             'roles'         => 'Role',
         ],
-        'help'                  => 'W kampaniach może brać udział dowolnie dużo uczestników.',
         'helpers'               => [
-            'admin' => 'Jako administrator, możesz zapraszać nowych graczy, usuwać nieaktywnych i zmieniać ich uprawnienia. By przetestować uprawnienia gracza, użyj funkcji Przełącz. Jej dokładny opis znajdziesz tutaj: :link.',
-            'switch'=> 'Przełącz uczestnika',
+            'switch'    => 'Przełącz uczestnika',
         ],
         'impersonating'         => [
             'message'   => 'Oglądasz kampanię z perspektywy innego uczestnika. Niektóre funkcje mogą nie działać, ale reszta wygląda dokładnie tak, jak widzi ją ta osoba. By wrócić do własnego profilu użyj opcji Powrót do profilu, znajdującej się w miejscu opcji Wyloguj.',
@@ -381,7 +378,6 @@ TEXT
             'journals'          => 'Rozmaite spostrzeżenia spisane przez postaci oraz notatki MG.',
             'locations'         => 'Planety, wymiary, kontynenty, państwa, miasta, rzeki, świątynie, gospody.',
             'maps'              => 'Dodaj do kampanii mapę i oznacz położenie innych elementów z pomocą warstw i znaczników.',
-            'menu_links'        => 'Zbiór własnych odnośników w dodatkowym menu.',
             'notes'             => 'Tajemnice, religie, historia, magia, rasy.',
             'organisations'     => 'Kulty, oddziały wojskowe, frakcje polityczne, gildie.',
             'quests'            => 'Zadania, które realizuje drużyna, z opisem zaangażowanych miejsc i postaci.',
@@ -416,7 +412,6 @@ TEXT
             'plugins'           => 'Dodatki',
             'recovery'          => 'Odzyskiwanie',
             'roles'             => 'Role',
-            'settings'          => 'Moduły',
             'sidebar'           => 'Ustawienia menu bocznego',
             'styles'            => 'Motywy',
         ],
@@ -474,9 +469,5 @@ TEXT
         'public'    => 'Publiczna',
         'review'    => 'Oczekuje na recenzję',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Najwyraźniej ktoś inny edytuje właśnie tę kampanię! Chcesz się wycofać czy zignorować to ostrzeżenie, ryzykując utratę danych? Członkowie obecnie edytujący kampanię:',
-        ],
-    ],
+    'warning'                           => [],
 ];

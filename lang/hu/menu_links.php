@@ -32,7 +32,6 @@ return [
     'placeholders'  => [
         'filters'   => 'location_id=15&type=város',
         'menu'      => 'Menü aloldal (az url utolsó szöveges része)',
-        'name'      => 'A menühivatkozás neve',
         'tab'       => 'bejegyzés, hivatkozások, jegyzetek',
     ],
     'random_types'  => [

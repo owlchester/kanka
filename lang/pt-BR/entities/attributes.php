@@ -30,9 +30,7 @@ return [
         'delete_all'    => 'Tem certeza de que deseja excluir todos os atributos desta entidade?',
         'setup'         => 'Você pode representar elementos como PV ou inteligência de uma entidade com atributos. Adicione atributos manualmente clicando no botão :manage, ou aplique aqueles de um modelo de atributo.',
     ],
-    'hints'         => [
-        'is_private2'   => 'Se selecionado, apenas membros do cargo :admin-role podem ver os atributos dessa entidade.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Atributos para :entity atualizados.',
         'title'     => 'Atributos para :name',

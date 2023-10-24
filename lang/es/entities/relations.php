@@ -6,14 +6,11 @@ return [
         'mode-table'    => 'Tabla de relaciones y conexiones',
     ],
     'bulk'              => [
-        'delete'            => '{1} Se ha eliminado :count relación.|[2,*] Se han eliminado :count relaciones.',
-        'delete_mirrored'   => 'Elimina también las conexiones duplicadas.',
-        'success'           => [
+        'delete'    => '{1} Se ha eliminado :count relación.|[2,*] Se han eliminado :count relaciones.',
+        'success'   => [
             'editing'           => '{1} Se ha actualizado :count relación.|[2,*] Se han actualizado :count relaciones.',
             'editing_partial'   => '{1} Se ha eliminado :count/:total relación.|[2,*] Se han eliminado :count/:total relaciones.',
         ],
-        'unmirror'          => 'Desenlazar conexiones duplicadas.',
-        'update_mirrored'   => 'Actualice también las conexiones duplicadas.',
     ],
     'call-to-action'    => 'Explore visualmente las conexiones de esta entidad y cómo se relaciona con el resto de la campaña.',
     'connections'       => [

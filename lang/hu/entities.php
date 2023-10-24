@@ -33,8 +33,6 @@ return [
     'locations'             => 'Helyszínek',
     'map'                   => 'Térkép',
     'maps'                  => 'Térképek',
-    'menu_link'             => 'Menühivatkozás',
-    'menu_links'            => 'Menühivatkozások',
     'new'                   => [
         'character'     => 'Új karakter',
         'event'         => 'Új esemény',

@@ -154,7 +154,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Ayuda',
             'remove'        => 'Quitar de la campaña',
             'switch'        => 'Ver como',
             'switch-back'   => 'Volver a mi usuario',
@@ -174,10 +173,8 @@ TEXT
             'role'          => 'Rol',
             'roles'         => 'Roles',
         ],
-        'help'                  => 'No hay límite de miembros que puede tener una campaña.',
         'helpers'               => [
-            'admin' => 'Como administrador de la campaña, puedes invitar a nuevos usuarios, eliminar usuarios inactivos y cambiar sus permisos. Para probar los permisos de un miembro, haz clic en "Ver como". Puedes leer más sobre esta herramienta en :link.',
-            'switch'=> 'Ver como este usuario',
+            'switch'    => 'Ver como este usuario',
         ],
         'impersonating'         => [
             'message'   => 'Estás viendo la campaña como otro usuario. Algunas funcionalidades están deshabilitadas, pero el resto actúa exactamente como el usuario lo vería. Para volver a tu usuario, usa el botón "Volver a mi usuario" cerca del botón de Cerrar Sesión.',
@@ -381,7 +378,6 @@ TEXT
             'journals'          => 'Observaciones escritas por los personajes, o preparación de la sesión del máster.',
             'locations'         => 'Planetas, planos, continentes, ríos, estados, asentamientos, templos, tabernas...',
             'maps'              => 'Sube mapas con diferentes capas y marcadores que señalen a otras entidades de la campaña.',
-            'menu_links'        => 'Enlaces de menú personalizados en la barra lateral.',
             'notes'             => 'Tradiciones, religiones, historia, magia, razas...',
             'organisations'     => 'Sectas, unidades militares, facciones, gremios...',
             'quests'            => 'Para llevar un seguimiento de varias misiones con personajes y localizaciones.',
@@ -416,7 +412,6 @@ TEXT
             'plugins'           => 'Plugins',
             'recovery'          => 'Recuperación',
             'roles'             => 'Roles',
-            'settings'          => 'Módulos',
             'sidebar'           => 'Configuración de la barra lateral',
             'styles'            => 'Personalización',
         ],
@@ -474,9 +469,5 @@ TEXT
         'public'    => 'Pública',
         'review'    => 'Esperando revisión',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => '¡Parece que alguien más está editando esta campaña! ¿Deseas retroceder o ignorar esta advertencia, a riesgo de perder datos? Miembros que actualmente editan esta campaña:',
-        ],
-    ],
+    'warning'                           => [],
 ];

@@ -6,24 +6,21 @@ return [
         'mode-table'    => 'Table des relations et connexions',
     ],
     'bulk'              => [
-        'delete'            => '{1} :count relation supprimée.|[2,*] :count relations supprimées.',
-        'delete_mirrored'   => 'Ainsi que la relation miroir.',
-        'fields'            => [
+        'delete'    => '{1} :count relation supprimée.|[2,*] :count relations supprimées.',
+        'fields'    => [
             'delete_mirrored'   => 'Supprimer la relation liée',
             'unmirror'          => 'Délier la relation',
             'update_mirrored'   => 'Actualiser la relation liée',
         ],
-        'helpers'           => [
+        'helpers'   => [
             'delete_mirrored'   => 'Aussi supprimer les relations liées.',
             'unmirror'          => 'Délier les relations liées.',
             'update_mirrored'   => 'Actualiser les relations liées.',
         ],
-        'success'           => [
+        'success'   => [
             'editing'           => '{1} :count relation modifiée.|[2,*] :count relations modifiées.',
             'editing_partial'   => '{1} :count/:total relation modifiée.|[2,*] :count/:total relations modifiées.',
         ],
-        'unmirror'          => 'Délier les relations miroirs.',
-        'update_mirrored'   => 'Aussi modifier les relations miroirs',
     ],
     'call-to-action'    => 'Explorer visuellement les relations d\'une entité et la manière dont elle est connectée au reste de la campagne.',
     'connections'       => [

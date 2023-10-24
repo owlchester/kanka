@@ -40,7 +40,6 @@ return [
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Podstrona menu (użyj ostatniego tekstu adresu)',
-        'name'      => 'Nazwa skrótu',
         'tab'       => 'opis, relacje, notki',
     ],
     'random_no_entity'  => 'Nie znaleziono losowego elementu.',

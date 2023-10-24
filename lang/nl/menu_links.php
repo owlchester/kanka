@@ -31,7 +31,6 @@ return [
     'placeholders'  => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Menu subpagina (gebruik de laatste tekst van de url)',
-        'name'      => 'Naam van de snelle link',
         'tab'       => 'invoer, relaties, notities',
     ],
     'random_types'  => [

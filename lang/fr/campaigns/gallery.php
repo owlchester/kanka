@@ -51,7 +51,6 @@ return [
     'update'        => [
         'folder'    => 'Dossier modifié',
         'success'   => 'Image modifiée.',
-        'title'     => 'Détails d\'image',
     ],
     'uploader'      => [
         'add'           => 'Ajouter',

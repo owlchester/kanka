@@ -33,8 +33,6 @@ return [
     'locations'             => 'Lokacije',
     'map'                   => 'Karta',
     'maps'                  => 'Karte',
-    'menu_link'             => 'Poveznica izbornika',
-    'menu_links'            => 'Poveznice izbornika',
     'new'                   => [
         'character'     => 'Novi lik',
         'event'         => 'Novi događaj',

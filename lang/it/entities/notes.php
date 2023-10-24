@@ -65,9 +65,5 @@ return [
         'collapsed' => 'Ridotto',
         'expanded'  => 'Espanso',
     ],
-    'warning'       => [
-        'editing'   => [
-            'description'   => 'Sembra che qualcun altro stia modificando questo post! Vuoi tornare indietro o ignorare questo avviso, con il rischio di perdere i dati? Membri che stanno modificando questo post:',
-        ],
-    ],
+    'warning'       => [],
 ];

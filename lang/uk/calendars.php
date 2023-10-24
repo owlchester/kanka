@@ -68,7 +68,6 @@ return [
         'date'                  => 'Поточна дата',
         'day'                   => 'День',
         'default_layout'        => 'Шаблон за замовчанням',
-        'has_leap_year'         => 'Має високосні роки',
         'intercalary'           => 'Високосні дні',
         'is_incrementing'       => 'Наступна дата',
         'is_recurring'          => 'Повторювана',

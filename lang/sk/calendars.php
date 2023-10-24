@@ -70,7 +70,6 @@ return [
         'date'                  => 'Aktuálny dátum',
         'day'                   => 'Deň',
         'default_layout'        => 'Štandardné rozmiestnenie',
-        'has_leap_year'         => 'Má priestupné roky',
         'intercalary'           => 'Priestupné dni',
         'is_incrementing'       => 'Narastajúce dni',
         'is_recurring'          => 'Opakujúce',

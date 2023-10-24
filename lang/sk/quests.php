@@ -23,11 +23,6 @@ return [
             'entity_or_name'    => 'Zvoľ buď objekt kampane, alebo pomenuj tento prvok.',
             'name'              => 'Názov',
         ],
-        'warning'   => [
-            'editing'   => [
-                'description'   => 'Zdá sa, že iná osoba upravuje súčasne tento prvok úlohy! Chceš sa vrátiť a ignorovať toto varovanie aj s rizikom straty dát? Členstvo súčasne editujúce tento prvok:',
-            ],
-        ],
     ],
     'fields'        => [
         'copy_elements' => 'Kopírovať objekty priradené úlohám',

@@ -6,14 +6,11 @@ return [
         'mode-table'    => 'Tabela relacji i powiązań',
     ],
     'bulk'              => [
-        'delete'            => '{1} Usunięto :count relację.|[2,3,4] Usunięto :count relacje.|[5,*] Usunięto :count relacji.',
-        'delete_mirrored'   => 'Usuń również drugą stronę relacji.',
-        'success'           => [
+        'delete'    => '{1} Usunięto :count relację.|[2,3,4] Usunięto :count relacje.|[5,*] Usunięto :count relacji.',
+        'success'   => [
             'editing'           => '{1} Zmienono :count relację.|[2,3,4] Zmienono :count relacje.|[5,*] Zmienono :count relacji.',
             'editing_partial'   => '{1} Zmienono :count/:total relację.|[2,3,4] Zmienono :count/:total relacje.|[5,*] Zmienono :count/:total relacji.',
         ],
-        'unmirror'          => 'Rozłącz relację dwustronną',
-        'update_mirrored'   => 'Zmień również drugą stronę relacji.',
     ],
     'call-to-action'    => 'Zobacz rozkład rozmaitych relacji, łączących elementy kampanii.',
     'connections'       => [

@@ -154,7 +154,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Hilfe',
             'remove'        => 'aus Kampagne entfernen',
             'switch'        => 'Wechseln',
             'switch-back'   => 'Zurück zu meinem User',
@@ -174,10 +173,8 @@ TEXT
             'role'          => 'Rolle',
             'roles'         => 'Rollen',
         ],
-        'help'                  => 'Es gibt kein Limit der Anzahl der Mitglieder einer Kampagne und als ein Admin kannst du Mitglieder entfernen, die nicht mehr aktiv sind.',
         'helpers'               => [
-            'admin' => 'Als Mitglied der Administratorrolle der Kampagne können Sie neue Benutzer einladen, inaktive Benutzer entfernen und deren Berechtigungen ändern. Verwenden Sie die Schaltfläche Wechseln, um die Berechtigungen eines Mitglieds zu testen. Weitere Informationen zu dieser Funktion finden Sie unter :link.',
-            'switch'=> 'Zu diesem User wechseln',
+            'switch'    => 'Zu diesem User wechseln',
         ],
         'impersonating'         => [
             'message'   => <<<'TEXT'
@@ -385,7 +382,6 @@ TEXT
             'journals'          => 'Beobachtungen von Spielern oder Spielvorbereitungen vom Spielleiter.',
             'locations'         => 'Planeten, Ebenen, Kontinente, Flüsse, Staaten, Siedlungen, Tempel, Tavernen.',
             'maps'              => 'Laden Sie Karten mit Ebenen und Markierungen hoch, die auf andere Objekte in der Kampagne verweisen.',
-            'menu_links'        => 'Selbsterstellte Menü Links in der Seitenleiste.',
             'notes'             => 'Sagen, Religionen, Geschichte, Magie, Spezies.',
             'organisations'     => 'Kulte, Militäreinheiten, Fraktionen, Gilden.',
             'quests'            => 'Um Aufgaben mit Charakteren und Ort zu verfolgen.',
@@ -420,7 +416,6 @@ TEXT
             'plugins'           => 'Plugins',
             'recovery'          => 'Wiederherstellen',
             'roles'             => 'Rollen',
-            'settings'          => 'Einstellungen',
             'sidebar'           => 'Einrichtung der Seitenleiste',
             'styles'            => 'Thematisierung',
         ],
@@ -478,9 +473,5 @@ TEXT
         'public'    => 'Öffentlich',
         'review'    => 'Wartet auf Überprüfung',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Anscheinend bearbeitet gerade jemand anderes diese Kampagne! Möchtest du zurückgehen oder diese Warnung ignorieren, auf die Gefahr hin, dass Daten verloren gehen? Mitglieder, die diese Kampagne derzeit bearbeiten:',
-        ],
-    ],
+    'warning'                           => [],
 ];

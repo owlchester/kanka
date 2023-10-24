@@ -31,9 +31,7 @@ return [
         'is_private'    => 'Seulement permettre aux membres du rôle :admin-role de t voir les attributs de cette entité.',
         'setup'         => 'Tu peux représenter des valeurs comme les points de vie ou l\'intelligence d\'une entité avec les attributs. Ajoutes des attributs manuellement en cliquant le bouton :manage, ou applique ceux d\'un modèle d\'attributs.',
     ],
-    'hints'         => [
-        'is_private2'   => 'Si sélectionné, seuls les membres du rôle :admin-role pourront voir les attributs de cette entité.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Attributs modifiés pour :entity.',
         'title'     => 'Attributs pour :name',

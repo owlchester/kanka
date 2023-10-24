@@ -23,11 +23,6 @@ return [
             'entity_or_name'    => 'Seleziona un\'entità della campagna o dai un nome a questo elemento.',
             'name'              => 'Nome',
         ],
-        'warning'   => [
-            'editing'   => [
-                'description'   => 'Sembra che qualcun altro stia modificando questo elemento della missione! Vuoi tornare indietro o ignorare questo avviso, con il rischio di perdere i dati? Membri che stanno modificando questo elemento della missione:',
-            ],
-        ],
     ],
     'fields'        => [
         'copy_elements' => 'Copia gli elementi collegati alla missione',

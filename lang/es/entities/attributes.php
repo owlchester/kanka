@@ -30,9 +30,7 @@ return [
         'delete_all'    => '¿Seguro que quieres eliminar todos los atributos de esta entidad?',
         'setup'         => 'Puedes representar elementos como los PV o la inteligencia de un personaje mediante los atributos. Puedes añadirlos manualmente desde el botón de :manage, o aplicarlos desde una plantilla de atributos.',
     ],
-    'hints'         => [
-        'is_private2'   => 'Si está seleccionado, solo los miembros del rol :admin-rola podrán ver los atributos de esta entidad.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Atributos de :entity actualizados.',
         'title'     => 'Atributos de :name',

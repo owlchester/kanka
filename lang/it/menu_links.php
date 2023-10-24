@@ -40,7 +40,6 @@ return [
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Sottopagina del menu (utilizza l\'ultimo testo dell\'url)',
-        'name'      => 'Nome del Collegamento Rapido',
         'tab'       => '(disattivato)',
     ],
     'random_no_entity'  => 'Non è stata trovata alcuna entità casuale.',

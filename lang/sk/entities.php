@@ -65,8 +65,6 @@ return [
     'locations'             => 'Miesta',
     'map'                   => 'Mapa',
     'maps'                  => 'Mapy',
-    'menu_link'             => 'Link v menu',
-    'menu_links'            => 'Linky v menu',
     'new'                   => [
         'ability'       => 'Nová schopnosť',
         'character'     => 'Nová postava',

@@ -27,9 +27,7 @@ return [
         'delete_all'    => 'Seguro que queres eliminar todos os atributos desta entidade?',
         'setup'         => 'Podes representar elementos como os PV ou a intelixencia dunha entidade con atributos. Engade atributos manualmente facendo clic no botón :manage, ou aplica os dun padrón de atributos.',
     ],
-    'hints'         => [
-        'is_private2'   => 'Se está seleccionado, só integrantes do rol :admin-role poderán ver os atributos desta entidade.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Atributos de :entity actualizados.',
         'title'     => 'Atributos de :name',

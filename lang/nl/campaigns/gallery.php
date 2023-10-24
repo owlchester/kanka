@@ -26,7 +26,6 @@ return [
     'title'         => 'Campaign :campaign Galerij',
     'update'        => [
         'success'   => 'Afbeelding gewijzigd.',
-        'title'     => 'Afbeelding details',
     ],
     'uploader'      => [
         'add'           => 'Voeg nieuwe toe',

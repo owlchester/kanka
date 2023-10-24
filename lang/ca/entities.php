@@ -34,8 +34,6 @@ return [
     'locations'             => 'Indrets',
     'map'                   => 'Mapa',
     'maps'                  => 'Mapes',
-    'menu_link'             => 'Accés directe',
-    'menu_links'            => 'Accessos directes',
     'new'                   => [
         'character'     => 'Nou personatge',
         'event'         => 'Nou esdeveniment',

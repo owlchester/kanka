@@ -69,7 +69,6 @@ return [
         'date'                  => 'Data corrente',
         'day'                   => 'Giorno',
         'default_layout'        => 'Layout predefinito',
-        'has_leap_year'         => 'Ha anni bisestili',
         'intercalary'           => 'Giorni intercalari',
         'is_incrementing'       => 'Data di Avanzamento',
         'is_recurring'          => 'Ricorrente',

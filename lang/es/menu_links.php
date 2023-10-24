@@ -40,7 +40,6 @@ return [
     'placeholders'      => [
         'filters'   => 'location_id=15&type=ciudad',
         'menu'      => 'Subpágina del menú (usa la última parte de la url)',
-        'name'      => 'Nombre del acceso directo',
         'tab'       => 'Historia, Relaciones, Notas',
     ],
     'random_no_entity'  => 'No se ha encontrado ninguna entidad aleatoria.',

@@ -69,7 +69,6 @@ return [
         'date'                  => 'Fecha actual',
         'day'                   => 'Día',
         'default_layout'        => 'Diseño predeterminado',
-        'has_leap_year'         => 'Tiene años bisiestos',
         'intercalary'           => 'Días intercalares',
         'is_incrementing'       => 'Fecha incremental',
         'is_recurring'          => 'Recurrente',

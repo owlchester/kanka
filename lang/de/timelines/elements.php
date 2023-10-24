@@ -34,9 +34,5 @@ return [
         'name'      => 'Erforderlich, wenn kein Objekt ausgewählt ist',
         'position'  => 'Position in der Liste der Elemente für die Epoche. Lassen Sie das Feld leer, um es am Ende hinzuzufügen.',
     ],
-    'warning'       => [
-        'editing'   => [
-            'description'   => 'Es sieht so aus, als ob gerade jemand anderes diesen Zeitstrahl bearbeitet! Möchtest du zurückgehen oder diese Warnung ignorieren, auf die Gefahr hin, dass Daten verloren gehen? Mitglieder, die diesen Zeitstrahl derzeit bearbeiten:',
-        ],
-    ],
+    'warning'       => [],
 ];

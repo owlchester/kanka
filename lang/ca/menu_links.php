@@ -32,7 +32,6 @@ return [
     'placeholders'      => [
         'filters'   => 'location_id=15&type=ciutat',
         'menu'      => 'Subpàgina del menú (usa l\'última part de la url)',
-        'name'      => 'Nom de l\'enllaç directe',
         'tab'       => 'Presentació, relacions, notes...',
     ],
     'random_no_entity'  => 'No s\'ha trobat cap entitat aleatòria.',

@@ -23,11 +23,6 @@ return [
             'entity_or_name'    => 'Sélection soit d\'une entité de la campagne, soit d\'un nom pour cet élément.',
             'name'              => 'Nom',
         ],
-        'warning'   => [
-            'editing'   => [
-                'description'   => 'On dirait que quelqu\'un d\'autre est en train de modifier cet élément de quête! Souhaites-tu revenir en arrière ou ignorer cet avertissement, au risque de perdre des données? Les membres éditant actuellement cet élément entité sont:',
-            ],
-        ],
     ],
     'fields'        => [
         'copy_elements' => 'Copier les éléments de la quête',

@@ -30,9 +30,7 @@ return [
         'delete_all'    => 'Sei sicuro di voler cancellare tutti gli attributi di questa entità?',
         'setup'         => 'Puoi rappresentare elementi come Punti Ferita o l\'intelligenza di un\'entità con degli attributi. È possibile aggiungere manualmente gli attributi facendo clic sul pulsante :manage, oppure applicare automaticamente quelli di un modello di attributo.',
     ],
-    'hints'         => [
-        'is_private2'   => 'Se selezionato, solo i membri del ruolo :admin-role possono vedere gli attributi di questa entità.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Attributi per :entity aggiornati.',
         'title'     => 'Attributi per :name',
