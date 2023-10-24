@@ -16,8 +16,7 @@ class Bubble extends Component
      */
     public function __construct(
         Tag $tag,
-    )
-    {
+    ) {
         $this->tag = $tag;
     }
 

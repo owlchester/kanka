@@ -18,5 +18,3 @@ Route::group([
 Route::group(['middleware' => ['auth', 'translator'], 'prefix' => 'translations'], function () {
     Translator::routes();
 });
-
-
