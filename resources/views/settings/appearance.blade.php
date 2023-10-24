@@ -112,24 +112,6 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 ], auth()->user()->campaignSwitcherOrderBy, ['class' => ' flex self-end w-full border rounded p-2']) !!}
             </div>
 
-            <div class="{{ $boxClass }}">
-                <div class="flex gap-2">
-                    <h2 class="text-base grow">
-                        <x-icon class="save"></x-icon>
-                        {{ __('settings/appearance.fields.new-entity-workflow') }}
-                    </h2>
-                    <a href="https://docs.kanka.io/en/latest/account/appearance.html#new-entity-workflow" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                        <x-icon class="question"></x-icon>
-                        <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
-                    </a>
-                </div>
-                <p class="text-sm flex-grow">{{ __('settings/appearance.helpers.new-entity-workflow') }}</p>
-                {!! Form::select('new_entity_workflow', [
-                        '' => __('profiles.workflows.default'),
-                        'created' => __('profiles.workflows.created'),
-                    ], null, ['class' => ' flex self-end w-full border rounded p-2']) !!}
-            </div>
-
             @if ($textEditorSelect)
                 <div class="{{ $boxClass }}">
                     <div class="flex gap-2">

@@ -270,7 +270,7 @@ class CrudController extends Controller
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
         $params['entityAttributeTemplates'] = $templates;
-        $params['entityType'] = $model->getEntityType();
+        $params['entityType'] = $model->hasEntityType() ? $model->getEntityType() : null;
         $params['title'] = __($this->view . '.create.title');
 
         // Custom module names shenanigans
@@ -354,21 +354,15 @@ class CrudController extends Controller
             } elseif ($request->has('submit-copy')) {
                 $route = route($this->route . '.create', [$this->campaign, 'copy' => $new->id]);
                 return response()->redirectTo($route);
-            } elseif (auth()->user()->new_entity_workflow == 'created') {
-                $redirectToCreated = true;
-            } elseif ($model->getEntityType() == 'maps') {
-                // If creating a map, go to edit it directly
-                $route = route($this->route . '.edit', [$this->campaign, $new]);
-                return response()->redirectTo($route);
             }
 
-            if ($redirectToCreated) {
+            if ($new->entity) {
                 $route = route('entities.show', [$this->campaign, $new->entity]);
                 return response()->redirectTo($route);
             }
-
             $route = Breadcrumb::index($this->route);
             return response()->redirectTo($route);
+
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));
             return redirect()
