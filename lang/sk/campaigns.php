@@ -55,6 +55,7 @@ TEXT
         'excerpt'                           => 'Krátky popis',
         'featured'                          => 'Zvýraznená kampaň',
         'followers'                         => 'Odberatelia',
+        'genre'                             => 'Žáner',
         'header_image'                      => 'Titulný obrázok',
         'image'                             => 'Obrázok',
         'locale'                            => 'Jazyk',
@@ -240,6 +241,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Pridať rolu',
+            'duplicate'     => 'Duplikovať rolu',
             'permissions'   => 'Spravovať oprávnenia',
             'rename'        => 'Premenovať rolu',
             'save'          => 'Uložiť rolu',
@@ -261,16 +263,18 @@ TEXT
             'title'     => 'Upraviť rolu :name',
         ],
         'fields'        => [
-            'name'          => 'Názov',
-            'permissions'   => 'Oprávnenia',
-            'type'          => 'Typ',
-            'users'         => 'Užívateľ',
+            'copy_permissions'  => 'Kopírovať oprávnenia',
+            'name'              => 'Názov',
+            'permissions'       => 'Oprávnenia',
+            'type'              => 'Typ',
+            'users'             => 'Užívateľ',
         ],
         'helper'        => [
-            '1' => 'Kampani môže byť priradených viacero rolí. Rola "Admin" má automaticky prístup ku všetkému v kampani, ale každej inej roli môžu byť pridelené špecifické oprávnenia na rôzne typy objektov (postavy, miesta, atď.)',
-            '2' => 'Objekty môžu mať oveľa detailnejšie nastavenie oprávnení, ktoré vieš nastaviť v karte "Oprávnenia" objektu. Táto karta sa zobrazí, ak máš v kampani viacero rolí alebo členov.',
-            '3' => 'Môžeš použiť "opt-out" systém, v ktorom všetky roly dostanú práva na čítanie na všetky objekty a niektoré objekty potom nastavíš ako "Súkromné", čím ich skryješ. Alebo rolám nedáš veľa oprávnení a následne ich nastavíš individuálne pre každý objekt.',
-            '4' => 'Boostnuté kampane môžu mať neobmedzený počet rolí.',
+            '1'                     => 'Kampani môže byť priradených viacero rolí. Rola "Admin" má automaticky prístup ku všetkému v kampani, ale každej inej roli môžu byť pridelené špecifické oprávnenia na rôzne typy objektov (postavy, miesta, atď.)',
+            '2'                     => 'Objekty môžu mať oveľa detailnejšie nastavenie oprávnení, ktoré vieš nastaviť v karte "Oprávnenia" objektu. Táto karta sa zobrazí, ak máš v kampani viacero rolí alebo členov.',
+            '3'                     => 'Môžeš použiť "opt-out" systém, v ktorom všetky roly dostanú práva na čítanie na všetky objekty a niektoré objekty potom nastavíš ako "Súkromné", čím ich skryješ. Alebo rolám nedáš veľa oprávnení a následne ich nastavíš individuálne pre každý objekt.',
+            '4'                     => 'Boostnuté kampane môžu mať neobmedzený počet rolí.',
+            'permissions_helper'    => 'Duplikuje všetky oprávnenia danej roly v moduloch a objektoch.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Verejná rola má oprávnenia, ale kampaň je súkromná. Tieto nastavenia počas úpravy kampane nájdeš na karte Zdieľanie.',

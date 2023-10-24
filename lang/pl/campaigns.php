@@ -55,6 +55,7 @@ TEXT
         'excerpt'                           => 'Podsumowanie',
         'featured'                          => 'Wyróżniona kampania',
         'followers'                         => 'Obserwujący',
+        'genre'                             => 'Gatunek',
         'header_image'                      => 'Ilustracja okładkowa',
         'image'                             => 'Obraz',
         'locale'                            => 'Język kampanii',
@@ -240,6 +241,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Dodaj rolę',
+            'duplicate'     => 'Powiel rolę',
             'permissions'   => 'Zarządzaj uprawnieniami',
             'rename'        => 'Zmień nazwę',
             'save'          => 'Zapisz rolę',
@@ -261,16 +263,18 @@ TEXT
             'title'     => 'Edycja roli :name',
         ],
         'fields'        => [
-            'name'          => 'Nazwa',
-            'permissions'   => 'Uprawnienia',
-            'type'          => 'Rodzaj',
-            'users'         => 'Posiadacze',
+            'copy_permissions'  => 'Kopiuj uprawnienia',
+            'name'              => 'Nazwa',
+            'permissions'       => 'Uprawnienia',
+            'type'              => 'Rodzaj',
+            'users'             => 'Posiadacze',
         ],
         'helper'        => [
-            '1' => 'Kampania może posiadać dowodnie dużo ról. "Administrator" posiada automatycznie dostęp do wszystkich elementów kampanii, ale inne role mogą być ograniczone tylko do części elementów (postaci, miejsc, itd.).',
-            '2' => 'Uprawnienia rozmaitych elementów można dodatkowo modyfikować w zakładce "Uprawnienia". Pojawi się ona, kiedy w kampanii przybędzie ról lub członków.',
-            '3' => 'Ustawieniami można zarządzać globalnie, zapewniając rolom uprawienia dostępu do całych kategorii elementów kampanii i ukrywając część z nich za pomocą opcji "Tajne", albo lokalnie, włączając ręcznie widoczność konkretnych elementów.',
-            '4' => 'Liczba ról w kampaniach doładowanych nie jest ograniczona.',
+            '1'                     => 'Kampania może posiadać dowodnie dużo ról. "Administrator" posiada automatycznie dostęp do wszystkich elementów kampanii, ale inne role mogą być ograniczone tylko do części elementów (postaci, miejsc, itd.).',
+            '2'                     => 'Uprawnienia rozmaitych elementów można dodatkowo modyfikować w zakładce "Uprawnienia". Pojawi się ona, kiedy w kampanii przybędzie ról lub członków.',
+            '3'                     => 'Ustawieniami można zarządzać globalnie, zapewniając rolom uprawienia dostępu do całych kategorii elementów kampanii i ukrywając część z nich za pomocą opcji "Tajne", albo lokalnie, włączając ręcznie widoczność konkretnych elementów.',
+            '4'                     => 'Liczba ról w kampaniach doładowanych nie jest ograniczona.',
+            'permissions_helper'    => 'Powiela wszystkie uprawnienia roli dotyczące modułów i elementów kampanii.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Ustawiono uprawnienia roli Publiczność, ale kampania jest prywatna. Możesz to zmienić z pomocą zakładki Udostępnij w menu edycji kampanii.',

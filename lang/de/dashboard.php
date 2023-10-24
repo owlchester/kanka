@@ -140,7 +140,17 @@ return [
         'orders'                    => [
             'name_asc'  => 'Name aufsteigend',
             'name_desc' => 'Name absteigend',
+            'oldest'    => 'Älteste geänderte',
             'recent'    => 'Kürzlich modifiziert',
+        ],
+        'preview'                   => [
+            'displays'  => [
+                'expand'    => 'Erweiterbarer Eintrag',
+                'full'      => 'Vollständiger Eintrag',
+            ],
+            'fields'    => [
+                'display'   => 'Anzeige',
+            ],
         ],
         'random'                    => [
             'helpers'   => [

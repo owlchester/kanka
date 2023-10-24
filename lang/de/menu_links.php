@@ -23,6 +23,7 @@ return [
         'random'            => 'zufällig',
         'random_type'       => 'zufälliger Objekttyp',
         'selector'          => 'Quick Link-Konfiguration',
+        'target'            => 'Ziel',
         'type'              => 'Objekttyp',
     ],
     'helpers'           => [

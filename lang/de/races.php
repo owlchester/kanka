@@ -12,11 +12,20 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'fields'        => [],
+    'fields'        => [
+        'members'   => 'Mitglieder',
+    ],
     'helpers'       => [
         'nested_without'    => 'Anzeige aller Spezies, die keine übergeordnete Spezies haben. Klicken Sie auf eine Zeile, um die untergeordneten Spezies anzuzeigen.',
     ],
     'index'         => [],
+    'members'       => [
+        'create'    => [
+            'submit'    => 'Mitlgied hinzufügen',
+            'success'   => '{0} Kein Mitglied wurde hinzugefügt.|{1} 1 Mitglied wurde hinzugefügt.|[2,*] :count Mitglieder wurden hinzugefügt.',
+            'title'     => 'Neue Mitglieder',
+        ],
+    ],
     'placeholders'  => [
         'type'  => 'Mensch, Fee, Borg',
     ],

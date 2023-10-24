@@ -7,16 +7,21 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'members'   => 'Miembros',
+        'is_defunct'    => 'Extinta',
+        'members'       => 'Miembros',
     ],
     'helpers'       => [
         'descendants'       => 'Esta lista contiene todas las organizaciones que descienden de esta organización, no solo las que están directamente por debajo.',
         'nested_without'    => 'Mostrando todas las organizaciones sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
+    'hints'         => [
+        'is_defunct'    => 'Esta organización ha desaparecido.',
+    ],
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'   => 'Añadir miembro',
+            'add'       => 'Añadir miembro',
+            'submit'    => 'Añadir miembro',
         ],
         'create'        => [
             'success'   => 'Miembro añadido a la organización.',

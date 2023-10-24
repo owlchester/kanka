@@ -26,8 +26,13 @@ return [
         ],
         'success'   => '{1} Se han importado :count habilidades.|[2,*] Se han importado :count habilidades.',
     ],
+    'reorder'   => [
+        'parentless'    => 'Sin padre',
+        'success'       => 'Habilidades reordenadas con éxito',
+    ],
     'show'      => [
         'helper'    => 'Adjunta habilidades a esta entidad. Puedes modificar su visibilidad o eliminarlas más adelante. Las habilidades pertenecientes al mismo grupo se agrupan por tipos.',
+        'reorder'   => 'Reordenar',
         'title'     => 'Habilidades de :name',
     ],
     'update'    => [

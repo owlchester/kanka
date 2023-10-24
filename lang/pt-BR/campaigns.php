@@ -55,6 +55,7 @@ TEXT
         'excerpt'                           => 'Texto do dashboard da campanha',
         'featured'                          => 'Campanha em destaque',
         'followers'                         => 'Seguidores',
+        'genre'                             => 'Gênero(s)',
         'header_image'                      => 'Background do dashboard da campanha',
         'image'                             => 'Imagem da barra lateral',
         'locale'                            => 'Local',
@@ -240,6 +241,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Criar cargo',
+            'duplicate'     => 'Duplicar cargo',
             'permissions'   => 'Gerenciar permissões',
             'rename'        => 'Renomear função',
             'save'          => 'Salvar função',
@@ -261,16 +263,18 @@ TEXT
             'title'     => 'Editar cargo :name',
         ],
         'fields'        => [
-            'name'          => 'Nome',
-            'permissions'   => 'Permissões',
-            'type'          => 'Tipo',
-            'users'         => 'Usuários',
+            'copy_permissions'  => 'Copiar permissões',
+            'name'              => 'Nome',
+            'permissions'       => 'Permissões',
+            'type'              => 'Tipo',
+            'users'             => 'Usuários',
         ],
         'helper'        => [
-            '1' => 'Uma campanha pode ter quantos cargos quiser. O cargo de "Administrador" tem automaticamente acesso a tudo de uma campanha, mas cada outro cargo pode ter permissões específicas em cada tipo de entidade (personagem, local, etc).',
-            '2' => 'Entidades podem ter permissões mais refinadas visualizando a aba "Permissões" dessa entidade. Essa aba aparece uma vez que sua campanha tenha vários cargos ou membros.',
-            '3' => 'Pode-se optar pelo sistema de "exclusão", onde o acesso para visualização de todas as entidades é dado aos cargos, e usar a caixa de seleção "Privado" nas entidades para escondê-las. Ou pode-se optar por não dar aos cargos muitas permissões, mas configurar cada entidade ser visível individualmente.',
-            '4' => 'Campanhas impulsionadas podem ter uma quantidade ilimitada de cargos.',
+            '1'                     => 'Uma campanha pode ter quantos cargos quiser. O cargo de "Administrador" tem automaticamente acesso a tudo de uma campanha, mas cada outro cargo pode ter permissões específicas em cada tipo de entidade (personagem, local, etc).',
+            '2'                     => 'Entidades podem ter permissões mais refinadas visualizando a aba "Permissões" dessa entidade. Essa aba aparece uma vez que sua campanha tenha vários cargos ou membros.',
+            '3'                     => 'Pode-se optar pelo sistema de "exclusão", onde o acesso para visualização de todas as entidades é dado aos cargos, e usar a caixa de seleção "Privado" nas entidades para escondê-las. Ou pode-se optar por não dar aos cargos muitas permissões, mas configurar cada entidade ser visível individualmente.',
+            '4'                     => 'Campanhas impulsionadas podem ter uma quantidade ilimitada de cargos.',
+            'permissions_helper'    => 'Duplique todas as permissões do cargo, tanto nos módulos quanto nas entidades.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'A função pública tem permissões, mas a campanha é privada. Você pode alterar essa configuração na guia Compartilhamento ao editar a campanha.',

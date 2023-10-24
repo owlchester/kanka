@@ -14,33 +14,34 @@ return [
     'conversation'          => 'Conversazione',
     'conversations'         => 'Conversazioni',
     'creator'               => [
-        'actions'           => [
+        'actions'                   => [
             'create'    => 'Crea :tipo',
             'full'      => 'Vai al modulo completo',
             'more'      => 'Aggiungi dettagli',
         ],
-        'back'              => 'Ritorna alla selezione',
-        'bulk_names'        => 'Aggiungi un nome per riga',
-        'duplicate'         => 'Ci sono altre entità di questo tipo con lo stesso nome.',
-        'helper_v2'         => 'Crea velocemente le basi di una nuova entità senza interrompere il flusso corrente.',
-        'missing_v2'        => 'Solo i moduli abilitati e che hai il permesso di creare sono mostrati in questa interfaccia. :scopri-di-più.',
-        'modes'             => [
+        'back'                      => 'Ritorna alla selezione',
+        'bulk_names'                => 'Aggiungi un nome per riga',
+        'duplicate'                 => 'Ci sono altre entità di questo tipo con lo stesso nome.',
+        'helper_v2'                 => 'Crea velocemente le basi di una nuova entità senza interrompere il flusso corrente.',
+        'missing_v2'                => 'Solo i moduli abilitati e che hai il permesso di creare sono mostrati in questa interfaccia. :scopri-di-più.',
+        'modes'                     => [
             'bulk'      => 'Aggiungi in blocco',
             'default'   => 'Aggiungi veloce',
             'templates' => 'Seleziona modello',
         ],
-        'name'              => [
+        'name'                      => [
             'new'       => 'Nuovo nome',
             'remove'    => 'Rimuovi',
         ],
-        'success_multiple'  => '{1} Nuova entità :link creata.|[2,*] Nuove entità :link create.',
-        'title'             => 'Nuova Entità',
-        'titles'            => [
+        'success_multiple'          => '{1} Nuova entità :link creata.|[2,*] Nuove entità :link create.',
+        'success_multiple_posts'    => '{1} Nuovo post :link creato.|[2,*] Nuovi posts :link creati.',
+        'title'                     => 'Nuova Entità',
+        'titles'                    => [
             'everything'    => 'Tutto',
             'quick-access'  => 'Accesso veloce',
         ],
-        'tooltip'           => 'Crea una nuova entità senza lasciare la pagina corrente.',
-        'tooltips'          => [
+        'tooltip'                   => 'Crea una nuova entità senza lasciare la pagina corrente.',
+        'tooltips'                  => [
             'create'        => 'Crea un\'entità e torna alla schermata di selezione delle entità',
             'create_more'   => 'Crea un\'entità e comincia a crearne un\'altra dello stesso tipo',
             'edit'          => 'Crea un0entità e comincia a modificarla',

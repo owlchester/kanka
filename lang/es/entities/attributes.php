@@ -6,9 +6,13 @@ return [
         'manage'            => 'Administrar',
         'more'              => 'Más opciones',
         'remove_all'        => 'Eliminar todos',
+        'save_and_edit'     => 'Aplicar y editar',
+        'save_and_story'    => 'Aplicar y ver',
+        'show_hidden'       => 'Mostrar atributos ocultos',
     ],
     'errors'        => [
-        'loop'  => '¡Hay un bucle infinito en el cálculo de este atributo!',
+        'loop'      => '¡Hay un bucle infinito en el cálculo de este atributo!',
+        'too_many'  => 'Hay demasiados campos en esta entidad, no se pueden añadir más atributos. Elimina primero algunos atributos antes de poder añadir más.',
     ],
     'fields'        => [
         'attribute'             => 'Atributo',
@@ -33,6 +37,16 @@ return [
         'success'   => 'Atributos de :entity actualizados.',
         'title'     => 'Atributos de :name',
     ],
+    'labels'        => [
+        'checkbox'  => 'Nombre de la casilla',
+        'name'      => 'Nombre del atributo',
+        'section'   => 'Nombre de la sección',
+        'value'     => 'Valor del atributo',
+    ],
+    'live'          => [
+        'success'   => 'Atributo :attribute actualizado.',
+        'title'     => 'Actualizando :attribute',
+    ],
     'placeholders'  => [
         'attribute' => 'Número de conquistas, Iniciativa, Población...',
         'block'     => 'Nombre del bloque',
@@ -41,6 +55,7 @@ return [
             'class' => 'Clase de FontAwesome o RPG Awesome: fas fa-users',
             'name'  => 'Nombre del icono',
         ],
+        'number'    => 'Valor numérico',
         'random'    => [
             'name'  => 'Nombre del atributo',
             'value' => '1-100 o una lista de valores separados por comas',
@@ -49,18 +64,29 @@ return [
         'template'  => 'Seleccionar plantilla',
         'value'     => 'Valor del atributo',
     ],
+    'ranges'        => [
+        'text'  => 'Opciones disponibles: :options',
+    ],
     'show'          => [
-        'title' => 'Atributos de :name',
+        'hidden'    => 'Atributos ocultos',
+        'title'     => 'Atributos de :name',
     ],
     'template'      => [
         'success'   => 'Plantilla de atributos :name aplicada a :entity',
         'title'     => 'Aplicar plantilla de atributos a :name',
+    ],
+    'toasts'        => [
+        'lock'      => 'Atributo bloqueado',
+        'pin'       => 'Atributo fijado',
+        'unlock'    => 'Atributo desbloqueado',
+        'unpin'     => 'Atributo no fijado',
     ],
     'types'         => [
         'attribute' => 'Atributo',
         'block'     => 'Bloque',
         'checkbox'  => 'Casilla',
         'icon'      => 'Icono',
+        'number'    => 'Número',
         'random'    => 'Aleatorio',
         'section'   => 'Sección',
         'text'      => 'Texto multilínea',

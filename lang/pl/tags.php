@@ -40,4 +40,11 @@ return [
         ],
     ],
     'tags'          => [],
+    'transfer'      => [
+        'description'   => 'Zamienia tę etykietę na inną u wszystkich posiadających ją elementów.',
+        'fail'          => 'Nie udało się zamienić etykiety :tag na nową etykietę :newTag.',
+        'success'       => 'Zamieniono etykietę :tag na nową etykietę :newTag.',
+        'title'         => 'Zamiana :name',
+        'transfer'      => 'Zamień',
+    ],
 ];

@@ -23,10 +23,17 @@ return [
             'entity_or_name'    => 'Selecciona una entidad de la campaña o asigna un nombre a este elemento.',
             'name'              => 'Nombre',
         ],
+        'warning'   => [
+            'editing'   => [
+                'description'   => 'Parece que otra persona está editando este elemento de la misión. ¿Quieres volver atrás o ignorar esta advertencia, a riesgo de perder datos? Miembros editando actualmente este elemento de la misión:',
+            ],
+        ],
     ],
     'fields'        => [
         'copy_elements' => 'Copiar elementos vinculados a la misión',
         'date'          => 'Fecha',
+        'element_role'  => 'Rol',
+        'instigator'    => 'Instigador',
         'is_completed'  => 'Completada',
         'role'          => 'Rol',
     ],
@@ -39,9 +46,10 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'date'  => 'Fecha real de la misión',
-        'role'  => 'El papel que juega la entidad en la misión',
-        'type'  => 'Historia Principal, Arco de Personaje, Misión Secundaria...',
+        'date'      => 'Fecha real de la misión',
+        'entity'    => 'Nombre de un elemento de la misión',
+        'role'      => 'El papel que juega la entidad en la misión',
+        'type'      => 'Historia Principal, Arco de Personaje, Misión Secundaria...',
     ],
     'show'          => [
         'actions'   => [

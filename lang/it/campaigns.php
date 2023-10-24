@@ -54,6 +54,7 @@ TEXT
         'excerpt'                           => 'Estratto',
         'featured'                          => 'Campagna in Primo Piano',
         'followers'                         => 'Followers',
+        'genre'                             => 'Genere(i)',
         'header_image'                      => 'Immagine di copertina',
         'image'                             => 'Immagine',
         'locale'                            => 'Lingua',
@@ -237,6 +238,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Aggiungi un ruolo',
+            'duplicate'     => 'Duplica ruolo',
             'permissions'   => 'Gestire le autorizzazioni',
             'rename'        => 'Rinomina ruolo',
             'save'          => 'Salva ruolo',
@@ -258,16 +260,18 @@ TEXT
             'title'     => 'Modifica il ruolo :name',
         ],
         'fields'        => [
-            'name'          => 'Nome',
-            'permissions'   => 'Permessi',
-            'type'          => 'Tipo',
-            'users'         => 'Utenti',
+            'copy_permissions'  => 'Copia autorizzazioni',
+            'name'              => 'Nome',
+            'permissions'       => 'Permessi',
+            'type'              => 'Tipo',
+            'users'             => 'Utenti',
         ],
         'helper'        => [
-            '1' => 'Una campagna può avere tanti ruoli quanti ne desideri. Il ruolo "Proprietario" ti dà automaticamente accesso a tutto nella campagna, ma ogni altro ruolo può avere permessi specifici su diversi tipi di entità (personaggio, luogo, ecc).',
-            '2' => 'I permessi delle entità possono essere perfezionati utilizzando la tabella "Permessi" di unl\'entità. Questa tabella appare quando la tua campagna ha più ruoli o membri.',
-            '3' => 'Puoi usare un sistema "opt-out", dove ai ruoli è dato il permesso di vedere tutte le entità, e usare la spunta "Privato" sull\'entità per nasconderla. Oppure puoi dare ai ruoli pochi permessi, ma impostare ogni entità come visibile.',
-            '4' => 'Campagne Potenziate possono avere un numero illimitato di ruoli',
+            '1'                     => 'Una campagna può avere tanti ruoli quanti ne desideri. Il ruolo "Proprietario" ti dà automaticamente accesso a tutto nella campagna, ma ogni altro ruolo può avere permessi specifici su diversi tipi di entità (personaggio, luogo, ecc).',
+            '2'                     => 'I permessi delle entità possono essere perfezionati utilizzando la tabella "Permessi" di unl\'entità. Questa tabella appare quando la tua campagna ha più ruoli o membri.',
+            '3'                     => 'Puoi usare un sistema "opt-out", dove ai ruoli è dato il permesso di vedere tutte le entità, e usare la spunta "Privato" sull\'entità per nasconderla. Oppure puoi dare ai ruoli pochi permessi, ma impostare ogni entità come visibile.',
+            '4'                     => 'Campagne Potenziate possono avere un numero illimitato di ruoli',
+            'permissions_helper'    => 'Duplica tutte le autorizzazioni del ruolo, sia dei moduli che delle entità',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Il ruolo pubblico ha dei permessi, ma la campagna è privata. Puoi cambiare questa impostazione sulla tabella Condivisione mentre modifichi la campagna.',

@@ -25,6 +25,10 @@ return [
         'plugin'                => [
             'deleted'   => 'Das Plugin :plugin wurde vom Marktplatz gelöscht und aus Ihrer Kampagne :campaign entfernt.',
         ],
+        'premium'               => [
+            'add'       => 'Premium-Funktionen wurden für die :campaign-Kampagne von :user freigeschaltet.',
+            'remove'    => ':user schaltet keine Premiumfunktionen mehr für die :campaign-Kampagne frei.',
+        ],
         'removed-image'         => 'Das Bild oder der Header von :entity wurde aufgrund eines Urheberrechtsanspruchs entfernt.',
         'role'                  => [
             'add'       => 'Du wurdest zur Rolle :role in der Kampagne :campaign hinzugefügt.',

@@ -78,6 +78,12 @@ return [
         'success'   => 'Attributvorlage :name wird auf :entity angewendet',
         'title'     => 'Wende eine Attributvorlage auf :name an',
     ],
+    'toasts'        => [
+        'lock'      => 'Attribut gesperrt',
+        'pin'       => 'Attribut angepinnt',
+        'unlock'    => 'Attribut freigeschaltet',
+        'unpin'     => 'Attribut nicht angepinnt',
+    ],
     'types'         => [
         'attribute' => 'Attribute',
         'block'     => 'Block',

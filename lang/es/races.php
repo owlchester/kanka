@@ -12,11 +12,20 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'fields'        => [],
+    'fields'        => [
+        'members'   => 'Miembros',
+    ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas las razas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [],
+    'members'       => [
+        'create'    => [
+            'submit'    => 'Añadir miembros',
+            'success'   => '{0} No se ha añadido ningún miembro. |{1} Se ha añadido 1 miembro. |[2,*] :se han añadido un número de miembros.',
+            'title'     => 'Nuevos miembros',
+        ],
+    ],
     'placeholders'  => [
         'type'  => 'Humano, Elfo, Troll...',
     ],

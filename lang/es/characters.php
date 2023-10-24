@@ -39,6 +39,16 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
+    'labels'        => [
+        'appearance'    => [
+            'entry' => 'Descripción de la apariencia',
+            'name'  => 'Nombre de la apariencia',
+        ],
+        'personality'   => [
+            'entry' => 'Descripción del rasgo de personalidad',
+            'name'  => 'Nombre del rasgo de personalidad',
+        ],
+    ],
     'maps'          => [],
     'organisations' => [
         'create'    => [
@@ -60,6 +70,7 @@ return [
         'age'               => 'Edad',
         'appearance_entry'  => 'Descripción',
         'appearance_name'   => 'Cabello, ojos, piel, altura...',
+        'name'              => 'Nombre del personaje',
         'personality_entry' => 'Detalles',
         'personality_name'  => 'Objetivos, manías, miedos, lazos...',
         'physical'          => 'Físico',

@@ -40,10 +40,11 @@ return [
         'title'         => 'Kampagnen-Booster bringen dein Kanka-Erlebnis auf die nächste Stufe',
     ],
     'call-to-action'    => [
-        'description'   => 'Überzeugt und bereit, Ihre Kampagnen anzukurbeln? Abonniere Kanka, um Kampagnen-Booster freizuschalten!',
-        'go-to-pricing' => 'Bring mich zur Preisseite',
-        'go-to-sub'     => 'Bring mich zur Abonnementseite',
-        'title'         => 'Okay, nimm mein Geld',
+        'description'       => 'Überzeugt und bereit, Ihre Kampagnen anzukurbeln? Abonniere Kanka, um Kampagnen-Booster freizuschalten!',
+        'description_v2'    => 'Bist du dir sicher und bereit, mit deiner Kampagnen auf Premium-Niveau wechseln? Abonniere Kanka, um Premium-Kampagnen freizuschalten!',
+        'go-to-pricing'     => 'Bring mich zur Preisseite',
+        'go-to-sub'         => 'Bring mich zur Abonnementseite',
+        'title'             => 'Okay, nimm mein Geld',
     ],
     'description'       => 'Schalte gegen eine geringe monatliche Gebühr erweiterte Funktionen für deine Kanka-Kampagnen frei. Passe das Erscheinungsbild einer Kampagne an, mache die Kampagne werbefrei, genieße größere Datei-Uploads für alle Kampagnenmitglieder und vieles mehr.',
     'perks'             => [

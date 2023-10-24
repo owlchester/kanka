@@ -31,6 +31,7 @@ return [
         ],
         'benefits'  => 'Kanka ofrece algunas integraciones con servicios de terceros. Hay más integraciones planeadas para el futuro.',
         'discord'   => [
+            'confirm'   => '¿Estás seguro de que quieres desconectar tu cuenta de Discord? Esto eliminará todos los roles con los que hayas estado sincronizado.',
             'errors'    => [
                 'add'   => 'Ha ocurrido un error tratando de vincular tu cuenta de Discord con Kanka. Por favor, inténtalo de nuevo.',
             ],
@@ -39,8 +40,14 @@ return [
                 'remove'    => 'Se ha desvinculado tu cuenta de Discord.',
             ],
             'text'      => 'Accede a los roles de suscripción automáticamente.',
+            'unlock'    => 'Desbloquear roles de Discord',
         ],
         'title'     => 'Integración de aplicaciones',
+    ],
+    'billing'       => [
+        'placeholder'   => 'Si necesitas añadir información adicional de contacto o fiscal a tus recibos (dirección comercial, número de IVA, etc.), introdúcela a continuación y aparecerá en todos tus recibos.',
+        'save'          => 'Guardar los datos de facturación',
+        'title'         => 'Datos de facturación',
     ],
     'boost'         => [
         'exceptions'    => [
@@ -66,11 +73,15 @@ return [
     'menu'          => [
         'account'               => 'Cuenta',
         'api'                   => 'API',
+        'appearance'            => 'Apariencia',
         'apps'                  => 'Aplicaciones',
+        'boosters'              => 'Potenciadores',
+        'notifications'         => 'Notificaciones',
         'other'                 => 'Otros',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opciones de pago',
         'personal_settings'     => 'Ajustes personales',
+        'premium'               => 'Campañas Premium',
         'profile'               => 'Perfil',
         'settings'              => 'Configuración',
         'subscription'          => 'Suscripción',

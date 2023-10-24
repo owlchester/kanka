@@ -14,33 +14,34 @@ return [
     'conversation'          => 'Diálogo',
     'conversations'         => 'Diálogos',
     'creator'               => [
-        'actions'           => [
+        'actions'                   => [
             'create'    => 'Criar :type',
             'full'      => 'Acesse o formulário completo',
             'more'      => 'Adicionar mais detalhes',
         ],
-        'back'              => 'Voltar à seleção',
-        'bulk_names'        => 'Adicione um nome por linha',
-        'duplicate'         => 'Atenção! Já existem outras entidades deste tipo com um nome semelhante.',
-        'helper_v2'         => 'Crie rapidamente a base de uma nova entidade sem interromper seu fluxo atual.',
-        'missing_v2'        => 'Apenas os módulos habilitados e que você tem permissão para criar estão disponíveis nesta interface. :learn-more.',
-        'modes'             => [
+        'back'                      => 'Voltar à seleção',
+        'bulk_names'                => 'Adicione um nome por linha',
+        'duplicate'                 => 'Atenção! Já existem outras entidades deste tipo com um nome semelhante.',
+        'helper_v2'                 => 'Crie rapidamente a base de uma nova entidade sem interromper seu fluxo atual.',
+        'missing_v2'                => 'Apenas os módulos habilitados e que você tem permissão para criar estão disponíveis nesta interface. :learn-more.',
+        'modes'                     => [
             'bulk'      => 'Adição em massa',
             'default'   => 'Adição rápida',
             'templates' => 'Selecionar modelo',
         ],
-        'name'              => [
+        'name'                      => [
             'new'       => 'Novo nome',
             'remove'    => 'Remover',
         ],
-        'success_multiple'  => '{1} Nova entidade :link criada.|[2,*] Novas entidades :link criadas.',
-        'title'             => 'Nova Entidade',
-        'titles'            => [
+        'success_multiple'          => '{1} Nova entidade :link criada.|[2,*] Novas entidades :link criadas.',
+        'success_multiple_posts'    => '{1} Novo post :link criado.|[2,*] Novos posts: link criados.',
+        'title'                     => 'Nova Entidade',
+        'titles'                    => [
             'everything'    => 'Tudo',
             'quick-access'  => 'Acesso rápido',
         ],
-        'tooltip'           => 'Crie uma nova entidade sem deixar a página atual.',
-        'tooltips'          => [
+        'tooltip'                   => 'Crie uma nova entidade sem deixar a página atual.',
+        'tooltips'                  => [
             'create'        => 'Crie a entidade e volte para a tela de seleção de entidade',
             'create_more'   => 'Crie a entidade e comece a criar outra do mesmo tipo',
             'edit'          => 'Crie a entidade e comece a editá-la',

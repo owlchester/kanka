@@ -29,6 +29,7 @@ return [
                 'title'     => 'Untergeordnetes Objekt',
             ],
             'edit'  => [
+                'helper'    => 'Aktiviere diese Option, wenn die Beziehung unbekannt ist. Ein Charakter kann später hinzugefügt werden.',
                 'success'   => 'Objekt aktualisiert',
                 'title'     => 'Objekt aktualisieren',
             ],
@@ -38,14 +39,15 @@ return [
             ],
         ],
         'relations' => [
-            'add'   => [
+            'add'       => [
                 'success'   => 'Beziehung hinzugefügt',
                 'title'     => 'Beziehung hinzufügen',
             ],
-            'edit'  => [
+            'edit'      => [
                 'success'   => 'Beziehung aktualisiert.',
                 'title'     => 'Beziehung aktualisiert',
             ],
+            'unknown'   => 'Unbekannt',
         ],
         'reset'     => [
             'confirm'   => 'Bist du sicher, dass du alle am Stammbaum vorgenommenen Änderungen verwerfen möchtest?',

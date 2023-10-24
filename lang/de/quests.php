@@ -33,6 +33,7 @@ return [
         'copy_elements' => 'Kopiere Elemente, die an die Queste angehängt sind',
         'date'          => 'Datum',
         'element_role'  => 'Rolle',
+        'instigator'    => 'Impulsgeber',
         'is_completed'  => 'Abgeschlossen',
         'role'          => 'Rolle',
     ],

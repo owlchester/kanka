@@ -87,6 +87,7 @@ return [
             'images'                => 'Legen Sie benutzerdefinierte Standardobjektbilder fest',
             'map_markers'           => 'Zugriff auf Tausende von Symbolen für Kartenmarkierungen und benutzerdefinierte Markierungsformen',
             'marketplace'           => 'Zugang zum :marketplace',
+            'modules'               => 'Benenne Module um, indem du beispielsweise in einer Kampagne Familien in Clans umwandelst.',
             'no_ads'                => 'Keine Anzeigen in der Kampagne',
             'premium'               => 'Premium Kampagne',
             'recovery'              => 'Wiederherstellung des Objektes für bis zu 30 Tage',
@@ -216,7 +217,11 @@ return [
         ],
     ],
     'goodbye'               => [
-        'title' => 'Auf Wiedersehen',
+        'description_1' => 'Wir bedauern deinen Weggang und verstehen, dass die Löschung deines Kontos eine große Entscheidung ist. Wir schätzen die Zeit, die du mit Kanka verbracht hast, und hoffen, dass wir deinen Erwartungen entsprochen haben.',
+        'description_2' => 'Bitte beachte, dass unser Team bestrebt ist, Kanka ständig zu verbessern und zu aktualisieren, um das bestmögliche Erlebnis zu bieten. Wir schätzen dein Feedback und deine Vorschläge und empfehlen dir, uns jederzeit unter :email zu kontaktieren, wenn du Vorschläge hast.',
+        'description_3' => 'Wir möchten dich auch darüber informieren, dass wir uns sehr freuen würden, dich wieder bei uns begrüßen zu dürfen, solltest du dich jemals für eine Rückkehr entscheiden. Wir sind zuversichtlich, dass du Kanka durch unsere regelmäßigen Updates noch besser und benutzerfreundlicher als je zuvor finden wirst.',
+        'description_4' => 'Nochmals vielen Dank, dass du Teil unserer Community bist. Wir wünschen dir alles Gute für deine zukünftigen Bemühungen beim Aufbau der Welt.',
+        'title'         => 'Auf Wiedersehen',
     ],
     'help'                  => [
         'description'   => 'Wir sind für dich da, falls du Hilfe brauchst. Kontaktier uns über einen der folgenden Wege und wir melden uns bei dir so schnell wie möglich zurück.',

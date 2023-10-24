@@ -14,33 +14,34 @@ return [
     'conversation'          => 'Diskusia',
     'conversations'         => 'Diskusie',
     'creator'               => [
-        'actions'           => [
+        'actions'                   => [
             'create'    => 'Vytvoriť :type',
             'full'      => 'Prejsť na úplný formulár',
             'more'      => 'Pridať viac detailov',
         ],
-        'back'              => 'Späť na výber',
-        'bulk_names'        => 'Pridaj jedno meno na riadok',
-        'duplicate'         => 'Existujú iné objekty tohto typu s rovnakým menom.',
-        'helper_v2'         => 'Zrýchlene vytvor základ nového objektu bez prerušenia práce.',
-        'missing_v2'        => 'Jediné moduly, ktoré sú aktivované a ktoré máš povolenie vytvárať sú dostupné na tejto obrazovke. :learn-more',
-        'modes'             => [
+        'back'                      => 'Späť na výber',
+        'bulk_names'                => 'Pridaj jedno meno na riadok',
+        'duplicate'                 => 'Existujú iné objekty tohto typu s rovnakým menom.',
+        'helper_v2'                 => 'Zrýchlene vytvor základ nového objektu bez prerušenia práce.',
+        'missing_v2'                => 'Jediné moduly, ktoré sú aktivované a ktoré máš povolenie vytvárať sú dostupné na tejto obrazovke. :learn-more',
+        'modes'                     => [
             'bulk'      => 'Masové pridanie',
             'default'   => 'Rýchle pridanie',
             'templates' => 'Výber šablóny',
         ],
-        'name'              => [
+        'name'                      => [
             'new'       => 'Nový názov',
             'remove'    => 'Odstrániť',
         ],
-        'success_multiple'  => '{1} Nový objekt :link vytvorený.|[2,4] Nové objekty :link vytvorené.|[5,*] Nových objektov :link vytvorených.',
-        'title'             => 'Nový objekt',
-        'titles'            => [
+        'success_multiple'          => '{1} Nový objekt :link vytvorený.|[2,4] Nové objekty :link vytvorené.|[5,*] Nových objektov :link vytvorených.',
+        'success_multiple_posts'    => '{1} Nová poznámka :link vytvorená.|[2,4] Nové poznámky :link vytvorené.|[5,*] Nových poznámok :link vytvorených.',
+        'title'                     => 'Nový objekt',
+        'titles'                    => [
             'everything'    => 'Všetko',
             'quick-access'  => 'Rýchly prístup',
         ],
-        'tooltip'           => 'Vytvoriť nový objekt bez opustenia aktuálnej stránky',
-        'tooltips'          => [
+        'tooltip'                   => 'Vytvoriť nový objekt bez opustenia aktuálnej stránky',
+        'tooltips'                  => [
             'create'        => 'Vytvoriť objekt a prejsť späť na výber',
             'create_more'   => 'Vytvoriť objekt a začať vytvárať ďalší rovnakého typu',
             'edit'          => 'Vytvoriť objekt a začať ho upravovať',

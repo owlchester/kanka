@@ -2,7 +2,15 @@
 
 return [
     'actions'   => [
-        'new'   => 'Nuevo estilo',
+        'current'   => 'Tema actual: :theme',
+        'disable'   => 'Desactivar',
+        'enable'    => 'Activar',
+        'new'       => 'Nuevo estilo',
+    ],
+    'bulks'     => [
+        'delete'    => '{1} :count estilo eliminados.|[2,*] :count estilos eliminados .',
+        'disable'   => '{1} :count estilo desactivado.|[2,*] :count estilos desactivados.',
+        'enable'    => '{1} :count estilo activado.|[2,*] :count estilos activados.',
     ],
     'create'    => [
         'success'   => 'Se ha creado el nuevo estilo.',
@@ -11,17 +19,32 @@ return [
     'delete'    => [
         'success'   => 'Se ha eliminado el estilo :name.',
     ],
+    'errors'    => [
+        'max_content'   => 'La regla CSS no puede tener más de :amount caracteres.',
+        'max_reached'   => 'Número máximo de estilos (:max) alcanzado.',
+    ],
     'fields'    => [
         'content'       => 'Regla CSS',
         'is_enabled'    => 'Habilitado',
         'length'        => 'Longitud',
         'modified'      => 'Modificado',
         'name'          => 'Nombre',
+        'order'         => 'Orden',
     ],
     'helpers'   => [
         'css_moved' => 'El campo CSS se ha movido a una nueva interfaz flexible en el menú de la campaña :link.',
         'here'      => 'en nuestro blog',
         'main'      => 'Puedes crear estilos CSS personalizados para tu campaña mejorada. Estos estilos se cargan después de los temas del marketplace que hayas habilitado para la campaña. Puedes saber más sobre cómo aplicar estilos a tu campaña :here.',
+    ],
+    'pitch'     => 'Crea estilos CSS personalizados para cambiar por completo el aspecto de la campaña.',
+    'reorder'   => [
+        'save'      => 'Guardar nuevo orden',
+        'success'   => '{1} :count estilos reordenados.|[2,*] :count estilos reordenados.',
+        'title'     => 'Reordenar estilos',
+    ],
+    'theme'     => [
+        'success'   => 'Tema de campaña actualizado.',
+        'title'     => 'Actualizar el tema de la campaña',
     ],
     'title'     => 'Personalizar la campaña',
     'update'    => [

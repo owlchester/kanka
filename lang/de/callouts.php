@@ -25,9 +25,13 @@ return [
     ],
     'premium'   => [
         'learn-more'    => 'Was sind Premium Kampangen?',
+        'limitation'    => 'Um auf diese Funktion zugreifen zu können, müssen Premiumfunktionen aktiviert sein.',
+        'title'         => 'Premium-Kampagnenfunktion',
+        'unlock'        => 'Schalte Premium-Funktionen für :campaign frei',
     ],
     'subscribe' => [
         'pitch-image'   => 'Abonniere, um bis zu :max MB Datei-Upload-Größen freizuschalten.',
         'share-booster' => 'Boost :campaign, um die Größe des Datei-Uploads für alle Mitglieder der Kampagne zu erhöhen.',
+        'share-premium' => 'Erhöhe die Datei-Upload-Größe für alle Mitglieder der Kampagne mit einer Premium-Kampagne.',
     ],
 ];

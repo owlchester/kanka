@@ -5,6 +5,10 @@ return [
         'add'   => 'Añadir nueva capa',
     ],
     'base'          => 'Capa base',
+    'bulks'         => [
+        'delete'    => '{1} Se ha eliminado :count capa.|[2,*] Se han eliminado :count capas.',
+        'patch'     => '{1} Se ha actualizado :count capa.|[2,*] Se han actualizado :count capas.',
+    ],
     'create'        => [
         'success'   => 'Capa :name creada.',
         'title'     => 'Nueva capa',
@@ -21,11 +25,25 @@ return [
         'type'      => 'Tipo de capa',
     ],
     'helper'        => [
+        'amount_v2' => 'Cargue capas en un mapa para cambiar la imagen de fondo que se muestra debajo de los marcadores, o como superposiciones sobre el mapa pero debajo de los marcadores.',
         'is_real'   => 'Las capas no están disponibles con OpenStretMaps.',
     ],
+    'index'         => [
+        'title' => 'Capas de :name',
+    ],
+    'pitch'         => [
+        'error' => 'Número máximo de capas alcanzado.',
+        'until' => 'Sube hasta :max capas a cada mapa.',
+    ],
     'placeholders'  => [
-        'name'      => 'Subterráneo, nivel 2, naufragio...',
-        'position'  => 'Campo opcional para definir en qué orden se apilan las capas.',
+        'name'          => 'Subterráneo, nivel 2, naufragio...',
+        'position'      => 'Campo opcional para definir en qué orden se apilan las capas.',
+        'position_list' => 'Después de :name',
+    ],
+    'reorder'       => [
+        'save'      => 'Guardar nuevo orden',
+        'success'   => '{1} Se ha reordenado :count capa.|[2,*] Se han reordenado :count capas.',
+        'title'     => 'Reordenar capas',
     ],
     'short_types'   => [
         'overlay'       => 'Superposición',

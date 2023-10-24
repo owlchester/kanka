@@ -54,9 +54,13 @@ return [
         'description'   => 'Las campañas Premium pueden instalar plugins del :marketplace. Estos son temas, plantillas de atributos o paquetes de contenido creados por la comunidad para la comunidad.',
         'title'         => 'Marketplace',
     ],
+    'modular'       => [
+        'description'   => 'Hemos centrado nuestros esfuerzos en crear unos 20 módulos diferentes en Kanka, cada uno de los cuales se centra en un aspecto del juego de un TTRPG o del wordbuilding en general. En cada campaña puedes crear personajes, lugares, familias, organizaciones, objetos, misiones, diarios, calendarios, eventos, habilidades y mucho más. ¿No necesitas habilidades? No hay problema, puedes desactivar los módulos de tu elección en cada campaña, simplificando tu configuración para centrarte en lo que es importante para ti.',
+    ],
     'other_features'=> 'Otras funcionalidades',
     'premium'       => [
         'description'   => 'Algunas funciones sólo están disponibles para las campañas premium. Cuando un usuario se suscribe a Kanka, puede mejorar un número determinado de campañas. Estas campañas premium pueden moverse de una campaña a otra, por ejemplo cuando una campaña termina. Mientras un usuario siga siendo suscriptor, sus campañas premium seguirán siéndolo.',
+        'link'          => 'Consulta todas las funciones Premium en nuestra página de precios.',
     ],
     'quests'        => [
         'description'   => 'Prepara y controla las misiones de tu juego, adónde llevarán a los jugadores, quién está implicado y qué organizaciones mueven los hilos en secreto. Una vez completada una misión, márcala como tal y pasa a la siguiente.',

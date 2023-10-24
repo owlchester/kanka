@@ -59,6 +59,10 @@ return [
         'description'   => 'Wir haben unsere Bemühungen darauf konzentriert, ungefähr 20 verschiedene Module in Kanka zu entwickeln, die sich jeweils auf einen Aspekt des Spielens eines TTRPG oder der Worldbildung im Allgemeinen konzentrieren. In jeder Kampagne kannst du Charaktere, Orte, Familien, Organisationen, Gegenstände, Quests, Tagebücher, Kalender, Ereignisse, Fähigkeiten und mehr erstellen. Sie brauchen keine Fähigkeiten? Kein Problem, Sie können Module Ihrer Wahl in jeder Kampagne deaktivieren und so Ihre Einrichtung vereinfachen, damit Sie sich auf das konzentrieren können, was Ihnen wichtig ist.',
     ],
     'other_features'=> 'andere Besonderheiten',
+    'premium'       => [
+        'description'   => 'Einige Funktionen sind nur für Premium-Kampagnen verfügbar. Wenn ein Benutzer Kanka abonniert, kann er eine festgelegte Anzahl von Kampagnen aktualisieren. Diese Premium-Kampagnen können von einer Kampagne auf eine andere verschoben werden, beispielsweise wenn eine Kampagne endet. Solange ein Benutzer Abonnent bleibt, bleiben seine Premium-Kampagnen dies.',
+        'link'          => 'Alle Premium-Funktionen findest du auf unserer Preisseite.',
+    ],
     'quests'        => [
         'description'   => 'Bereiten Sie die Quests Ihres Spiels vor und behalten Sie den Überblick darüber, wohin sie die Spieler führen, wer beteiligt ist und welche Organisationen heimlich die Fäden ziehen. Sobald eine Quest abgeschlossen ist, markieren Sie sie als solche und fahren Sie mit der nächsten fort.',
         'title'         => 'Abenteuer',
@@ -70,6 +74,7 @@ return [
     ],
     'sections'      => [
         'general'       => 'Allgemein',
+        'premium'       => 'Premium-Kampagnenfunktionen',
         'rpg'           => 'RPGs',
         'worldbuilding' => 'Worldbuilding',
     ],

@@ -1,35 +1,45 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'           => [
         'add'   => 'Añadir un enlace',
     ],
-    'create'        => [
+    'call-to-action'    => 'Añade enlaces a recursos externos en esta entidad, como a DnDBeyond, y se mostrarán directamente en la vista general de la entidad.',
+    'create'            => [
         'success'   => 'Enlace :name añadido a :entity.',
         'title'     => 'Añadir un enlace a :name',
     ],
-    'destroy'       => [
+    'destroy'           => [
         'success'   => 'Enlace :name eliminado de :entity.',
     ],
-    'fields'        => [
+    'fields'            => [
         'icon'      => 'Icono',
         'name'      => 'Nombre',
         'position'  => 'Posición',
         'url'       => 'URL',
     ],
-    'helpers'       => [
-        'icon'  => 'Se puede personalizar el icono mostrado en el enlace con cualquiera de los iconos gratuitos de :fontawesome. Si se deja en blanco, se usará el icono por defecto.',
+    'go'                => [
+        'actions'       => [
+            'confirm'   => 'Estoy segur@',
+            'trust'     => 'No me preguntes otra vez',
+        ],
+        'description'   => 'Este enlace le llevará a :link. ¿Estás segur@ de que deseas ir allí?',
+        'title'         => 'Saliendo de Kanka',
     ],
-    'placeholders'  => [
+    'helpers'           => [
+        'icon'      => 'Se puede personalizar el icono mostrado en el enlace con cualquiera de los iconos gratuitos de :fontawesome. Si se deja en blanco, se usará el icono por defecto.',
+        'parent'    => 'Mostrar este enlace rápido después de un elemento de la barra lateral, en lugar de en la sección de enlaces rápidos de la barra lateral.',
+    ],
+    'placeholders'      => [
         'name'  => 'DNDBeyond',
         'url'   => 'https://dndbeyond.com/character-url',
     ],
-    'show'          => [
+    'show'              => [
         'helper'    => 'Las campañas mejoradas pueden añadir enlaces en las entidades que dirigen a webs externas.',
         'title'     => 'Enlaces de :name',
     ],
-    'unboosted'     => [],
-    'update'        => [
+    'unboosted'         => [],
+    'update'            => [
         'success'   => 'Enlace :name actualizado.',
         'title'     => 'Actualizar enlace de :name',
     ],

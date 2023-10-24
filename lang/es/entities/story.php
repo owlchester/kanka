@@ -2,9 +2,10 @@
 
 return [
     'actions'   => [
-        'collapse_all'  => 'Colapsar todo',
-        'expand_all'    => 'Expandir todo',
-        'load_more'     => 'Cargar más',
+        'collapse_all'      => 'Colapsar todo',
+        'expand_all'        => 'Expandir todo',
+        'load_more'         => 'Cargar más',
+        'login_for_more'    => 'Inicia sesión para ver más entradas',
     ],
     'reorder'   => [
         'icon_tooltip'  => 'Reordenar notas',
