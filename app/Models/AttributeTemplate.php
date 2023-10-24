@@ -21,8 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class AttributeTemplate extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use Nested;
     use SoftDeletes;

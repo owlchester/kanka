@@ -55,10 +55,6 @@ class RelationController extends CrudController
         $model = new $this->model();
 
         $params['campaign'] = $campaign;
-        $params['tabPermissions'] = false;
-        $params['tabAttributes'] = false;
-        $params['tabCopy'] = false;
-        $params['tabBoosted'] = false;
         $params['entityAttributeTemplates'] = [];
         $params['entityType'] = $model->getEntityType();
         $params['source'] = null;
@@ -151,11 +147,7 @@ class RelationController extends CrudController
             'model' => $relation,
             'relation' => $relation,
             'name' => $this->view,
-            'tabPermissions' => false,
-            'tabAttributes' => false,
-            'tabBoosted' => false,
             'source' => null,
-            'tabCopy' => false,
             'entityType' => $relation->getEntityType(),
             'langKey' => $this->langKey,
         ];
