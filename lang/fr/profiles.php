@@ -16,6 +16,7 @@ return [
         'email'                     => 'Email',
         'hide_subscription'         => 'Cacher mon nom du :hall_of_fame.',
         'last_login_share'          => 'Partager la date de ma dernière connexion avec les autres membres de mes campagnes.',
+        'login_sharing'             => 'Partage de la dernière connexion',
         'name'                      => 'Nom',
         'new_password'              => 'Nouveau mot de passe',
         'new_password_confirmation' => 'Confirmation du nouveau mot de passe',
@@ -23,6 +24,7 @@ return [
         'password'                  => 'Mot de passe actuel',
         'profile-name'              => 'Nom de profil',
         'settings'                  => 'Paramètres',
+        'subscription_hiding'       => 'Cacher l\'abonnement',
         'theme'                     => 'Thème',
     ],
     'helpers'                       => [

@@ -157,8 +157,11 @@ return [
         'cancelled'             => 'L\'abonnement a été annulé. Un nouvel abonnement peut être fait dès que celui-ci arrive à terme le :date.',
         'change'                => [
             'text'  => [
-                'monthly'   => 'Abonnement au niveau :tier, facturé mensuellement pour :amount.',
-                'yearly'    => 'Abonnement au niveau :tier, facturé annuellement pour :amount.',
+                'monthly'           => 'Abonnement au niveau :tier, facturé mensuellement pour :amount.',
+                'upgrade_monthly'   => 'Tu passes au niveau :tier pour :upgrade, ensuite facturé mensuellement pour :amount.',
+                'upgrade_paypal'    => 'Tu passes au niveau :tier pour :upgrade jusqu\'au :date.',
+                'upgrade_yearly'    => 'Tu passes au niveau :tier pour :upgrade, ensuite facturé annuellement pour :amount.',
+                'yearly'            => 'Abonnement au niveau :tier, facturé annuellement pour :amount.',
             ],
             'title' => 'Changement d\'abonnement',
         ],

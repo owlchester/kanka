@@ -196,8 +196,6 @@ return [
             'alternatives_warning'  => 'Upgrading your subscription when using this method is not possible. Please subscribe again when your current one ends.',
             'alternatives_yearly'   => 'We only accept yearly subscriptions when subscribing with :method',
             'currency_blocked'      => 'It is not possible to change currency once you have had an active Kanka subscription. Please contact us at :email for assistance.',
-            'paypal'                => 'Want to use Paypal instead? Contact us at :email if you wish to subscribe to a yearly plan using Paypal.',
-            'paypal_v2'             => 'We accept PayPal for yearly subscriptions. Contact us at :email with your Kanka account email, the tier you wish to subscribe to, and currency (USD or EUR) you want to be billed in.',
             'paypal_v3'             => 'Safely pay for your yearly subscription using PayPal.',
             'stripe'                => 'Your billing information is processed and stored safely through :stripe.',
         ],
