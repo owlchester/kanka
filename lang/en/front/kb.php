@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'title'         => 'Knowledge base',
+    'title' => 'Knowledge base',
 ];

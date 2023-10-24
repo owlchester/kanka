@@ -10,13 +10,21 @@ return [
         'save'          => 'Enregistrer',
     ],
     'breadcrumb'    => 'Galerie',
+    'bulk'          => [
+        'destroy'   => [
+            'confirm'   => 'Es-tu sûr de vouloir supprimer définitivement les éléments sélectionnés? Cette action est permanente.',
+            'success'   => '{0}Aucun fichier supprimé.|{1}Un fichier supprimé.|{2,*} :count les fichiers supprimés.',
+        ],
+    ],
     'cta'           => 'Gérer et réutiliser des images à travers la campagne.',
     'destroy'       => [
+        'folder'    => 'Dossier :name supprimé.',
         'success'   => 'Image :name supprimée.',
     ],
     'errors'        => [
         'max'           => 'Prière de ne que sélectionner jusqu\'à :count fichiers à la fois.',
         'permissions'   => 'Tes rôles de campagne n\'ont pas la permission :permission pour pouvoir télécharger des images à la galerie de la campagne.',
+        'storage'       => 'Il n\'y a pas assez d\'espace de stockage pour télécharger les images sélectionnées. Espace de stockage disponible: :available.',
     ],
     'fields'        => [
         'created_by'            => 'Téléchargé par',
@@ -41,6 +49,7 @@ return [
     ],
     'title'         => 'Galerie de la campagne :campaign',
     'update'        => [
+        'folder'    => 'Dossier modifié',
         'success'   => 'Image modifiée.',
         'title'     => 'Détails d\'image',
     ],

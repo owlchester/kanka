@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'title'         => 'Community Votes',
+    'title' => 'Community Votes',
 ];

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'title'         => 'Hall of Fame',
+    'title' => 'Hall of Fame',
 ];

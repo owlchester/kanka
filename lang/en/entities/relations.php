@@ -6,20 +6,20 @@ return [
         'mode-table'    => 'Table of connections and related elements',
     ],
     'bulk'              => [
-        'delete'            => '{0} Deleted :count connections|{1} Deleted :count connection.|[2,*] Deleted :count connections.',
-        'success'           => [
-            'editing'           => '{0} :count connections were updated|{1} :count connection was updated.|[2,*] :count connections were updated.',
-            'editing_partial'   => '{0} :count/:total connections were updated|{1} :count/:total connection was updated.|[2,*] :count/:total connection were updated.',
+        'delete'    => '{0} Deleted :count connections|{1} Deleted :count connection.|[2,*] Deleted :count connections.',
+        'fields'    => [
+            'delete_mirrored'   => 'Delete mirrored',
+            'unmirror'          => 'Unlink mirrored',
+            'update_mirrored'   => 'Update mirrored',
         ],
-        'helpers' => [
-            'unmirror' => 'Unlink mirrored connections.',
+        'helpers'   => [
             'delete_mirrored'   => 'Also delete mirrored connections.',
+            'unmirror'          => 'Unlink mirrored connections.',
             'update_mirrored'   => 'Update mirrored connections.',
         ],
-        'fields' => [
-            'unmirror'          => 'Unlink mirrored',
-            'delete_mirrored'   => 'Delete mirrored',
-            'update_mirrored'   => 'Update mirrored',
+        'success'   => [
+            'editing'           => '{0} :count connections were updated|{1} :count connection was updated.|[2,*] :count connections were updated.',
+            'editing_partial'   => '{0} :count/:total connections were updated|{1} :count/:total connection was updated.|[2,*] :count/:total connection were updated.',
         ],
     ],
     'call-to-action'    => 'Visually explore the connections of this entity and how it\'s connected to the rest of the campaign.',

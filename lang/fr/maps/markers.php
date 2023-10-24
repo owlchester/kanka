@@ -65,6 +65,9 @@ return [
             'edit'  => 'Cliquer sur le carte pour ajouter des coordonnées au polygone.',
         ],
     ],
+    'hints'         => [
+        'entry' => 'Modifier le marqueur pour y écrire une entrée personnalisée.',
+    ],
     'icons'         => [
         'custom'        => 'Personnalisé',
         'entity'        => 'Entité',

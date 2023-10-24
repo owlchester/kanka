@@ -22,6 +22,7 @@ return [
     ],
     'helpers'       => [
         'copy_entity_entry' => 'Affiche l\'entrée de l\'objet au lieu de la description.',
+        'is_equipped'       => 'Marquer cet objet comme étant équipé.',
     ],
     'placeholders'  => [
         'amount'        => 'Un nombre',
@@ -34,6 +35,7 @@ return [
         'title'     => 'Inventaire de l\'entité :name',
         'unsorted'  => 'Autre',
     ],
+    'tutorial'      => 'Garder la trace de ce qu\'une entité possède en ajoutant des objets à son inventaire.',
     'update'        => [
         'success'   => 'Objet :item modifié pour :entity.',
         'title'     => 'Modifier un objet sur :name',

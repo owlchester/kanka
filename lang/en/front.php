@@ -1,23 +1,23 @@
 <?php
 
 return [
-    'campaigns'             => [
-        'public'            => [
-            'filters'       => [
+    'campaigns' => [
+        'public'    => [
+            'filters'   => [
                 'is-premium'    => 'This is a premium campaign!',
             ],
         ],
     ],
-    'cookie'                => [
+    'cookie'    => [
         'dismiss'   => 'Got it!',
         'link'      => 'Learn more',
         'message'   => 'This website uses cookies to ensure you get the best experience on our website.',
     ],
-    'features'              => [
-        'api'               => [
-            'link'          => 'API docs',
+    'features'  => [
+        'api'       => [
+            'link'  => 'API docs',
         ],
-        'patreon'           => [
+        'patreon'   => [
             'api_calls'         => 'Increased API calls (90 per minute)',
             'boosts'            => 'Campaign Boosters',
             'curation'          => 'Help curate the community vote items',
@@ -32,28 +32,28 @@ return [
             'upload_limit_map'  => 'Map upload sizes',
         ],
     ],
-    'home'                  => [
+    'home'      => [
         'seo'   => [
             'meta-description'  => 'Are you a game master, worldbuilder, or a storyteller? We offer a tabletop campaign manager and worldbuilding tool that makes it easy to organise, plan, and enjoy your TTRPG campaigns. We are community driven, and best of all, our core features are free!',
         ],
     ],
-    'menu'                  => [
+    'menu'      => [
         'dashboard'     => 'Dashboard',
         'login'         => 'Login',
         'register'      => 'Register',
         'register_free' => 'Register for free',
     ],
-    'meta'                  => [
+    'meta'      => [
         'description'   => ':kanka is a flexible digital world builder and online tabletop rpg campaign manager',
         'title'         => ':kanka - Online tabletop RPG campaign manager and worldbuilding tool',
     ],
-    'pricing'               => [
-        'tier'          => [
+    'pricing'   => [
+        'tier'  => [
             'free'  => 'Free',
             'month' => 'month',
         ],
     ],
-    'seo'                   => [
+    'seo'       => [
         'keywords'  => 'Worldbuilding, Tabletop RPG, RPG Campaign Manager',
     ],
 ];

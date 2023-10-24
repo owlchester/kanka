@@ -28,6 +28,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Es-tu certain de vouloir supprimer tous les attributs de cette entité?',
+        'is_private'    => 'Seulement permettre aux membres du rôle :admin-role de t voir les attributs de cette entité.',
         'setup'         => 'Tu peux représenter des valeurs comme les points de vie ou l\'intelligence d\'une entité avec les attributs. Ajoutes des attributs manuellement en cliquant le bouton :manage, ou applique ceux d\'un modèle d\'attributs.',
     ],
     'hints'         => [
@@ -81,6 +82,7 @@ return [
         'unlock'    => 'Attribut déverouillé',
         'unpin'     => 'Attribut non-épinglé',
     ],
+    'tutorial'      => 'Les attributs sont des petits bouts d\'information attachés à une entité. Par exemple, un personnage peut avoir une stat :hp et :str, tandis qu\'un lieu peut avoir une stat :pop. Ces informations peuvent être facilement suivies grâce aux attributs.',
     'types'         => [
         'attribute' => 'Attribut',
         'block'     => 'Bloc',

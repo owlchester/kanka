@@ -12,6 +12,7 @@ return [
         'participants'  => 'Participants',
     ],
     'hints'         => [
+        'empty'         => 'Il n\'y a aucun participant dans cette convertation.',
         'participants'  => 'Ajoute des participants à la conversation.',
     ],
     'index'         => [],

@@ -8,6 +8,16 @@ return [
     'bulk'              => [
         'delete'            => '{1} :count relation supprimée.|[2,*] :count relations supprimées.',
         'delete_mirrored'   => 'Ainsi que la relation miroir.',
+        'fields'            => [
+            'delete_mirrored'   => 'Supprimer la relation liée',
+            'unmirror'          => 'Délier la relation',
+            'update_mirrored'   => 'Actualiser la relation liée',
+        ],
+        'helpers'           => [
+            'delete_mirrored'   => 'Aussi supprimer les relations liées.',
+            'unmirror'          => 'Délier les relations liées.',
+            'update_mirrored'   => 'Actualiser les relations liées.',
+        ],
         'success'           => [
             'editing'           => '{1} :count relation modifiée.|[2,*] :count relations modifiées.',
             'editing_partial'   => '{1} :count/:total relation modifiée.|[2,*] :count/:total relations modifiées.',

@@ -5,6 +5,8 @@ return [
     'ability'               => 'Ability',
     'attribute_template'    => 'Attribute Template',
     'attribute_templates'   => 'Attribute Templates',
+    'bookmark'              => 'Bookmark',
+    'bookmarks'             => 'Bookmarks',
     'calendar'              => 'Calendar',
     'calendars'             => 'Calendars',
     'campaign'              => 'Campaign',
@@ -65,8 +67,6 @@ return [
     'locations'             => 'Locations',
     'map'                   => 'Map',
     'maps'                  => 'Maps',
-    'bookmark'              => 'Bookmark',
-    'bookmarks'             => 'Bookmarks',
     'new'                   => [
         'ability'       => 'New ability',
         'character'     => 'New character',
