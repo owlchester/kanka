@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
+use App\Models\Entity;
 use App\Models\Image;
 use App\Notifications\Header;
 use App\Traits\CampaignAware;
@@ -68,11 +69,12 @@ class ExportService
 
     protected function prepare(): self
     {
-        $saveFolder = storage_path() . '/exports/campaigns/';
+        $this->exportPath = '/exports/campaigns/' . $this->campaign->id . '/';
+        $saveFolder = storage_path($this->exportPath);
         File::ensureDirectoryExists($saveFolder);
 
         // We want the full path for jobs running in the queue.
-        $this->file = 'campaign_' . $this->campaign->id . '_' . uniqid() . '_' . date('Ymd_His') . ($this->assets ? '_assets' : null) . '.zip';
+        $this->file = $this->campaign->id . '_' . date('Ymd_His') . ($this->assets ? '_assets' : null) . '.zip';
         CampaignCache::campaign($this->campaign);
         $this->path = $saveFolder . $this->file;
         $this->archive = Zip::create($this->file);
@@ -118,7 +120,7 @@ class ExportService
                     $this->process($entity, $model);
                 }
             } catch (Exception $e) {
-                $saveFolder = storage_path() . '/exports/campaigns/';
+                $saveFolder = storage_path($this->exportPath);
                 $this->archive->saveTo($saveFolder);
                 unlink($this->path);
                 throw new Exception(
@@ -136,7 +138,7 @@ class ExportService
             try {
                 $this->processImage($image);
             } catch (Exception $e) {
-                $saveFolder = storage_path() . '/exports/campaigns/';
+                $saveFolder = storage_path($this->exportPath);
                 $this->archive->saveTo($saveFolder);
                 unlink($this->path);
                 throw new Exception(
@@ -162,7 +164,7 @@ class ExportService
         return $this;
     }
 
-    protected function process($entity, $model): self
+    protected function process(string $entity, $model): self
     {
         if (!$this->assets) {
             $this->archive->add($model->export(), $entity . '/' . Str::slug($model->name) . '.json', );
@@ -170,23 +172,14 @@ class ExportService
             return $this;
         }
 
-        if (!empty($model->image) && Storage::exists($model->image)) {
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($model->image), $model->image);
+        $path = $model->entity->image_path;
+        if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
+            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($path), $path);
             $this->files++;
         }
-        // Boosted image?
-        if (!empty($model->entity->header_image) && Storage::exists($model->entity->header_image)) {
-
-            //dd(env('AWS_BUCKET'));
-
-            //dd(Storage::path($model->entity->header_image));
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($model->entity->header_image), $model->entity->header_image);
-            $this->files++;
-        }
-
-        // Locations have maps
-        if ($model->getEntityType() == 'location' && !empty($model->map) && Storage::exists($model->map)) {
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($model->map), $model->map);
+        $path = $model->entity->header_image;
+        if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
+            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($path), $path);
             $this->files++;
         }
         return $this;
@@ -211,8 +204,7 @@ class ExportService
     {
         // Save all the content.
         try {
-            $saveFolder = storage_path() . '/exports/campaigns/';
-
+            $saveFolder = storage_path($this->exportPath);
             $this->archive->saveTo($saveFolder);
         } catch (Exception $e) {
             // The export might fail if the zip is too big.
@@ -223,7 +215,7 @@ class ExportService
         }
 
         // Move to ?
-        $this->exportPath = Storage::putFileAs('exports/campaigns', $this->path, $this->file, 'public');
+        $this->exportPath = Storage::putFileAs('exports/campaigns/' . $this->campaign->id, $this->path, $this->file, 'public');
         unlink($this->path);
 
         return $this;
