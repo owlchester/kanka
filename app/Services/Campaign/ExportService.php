@@ -118,7 +118,8 @@ class ExportService
                     $this->process($entity, $model);
                 }
             } catch (Exception $e) {
-                $this->archive->close();
+                $saveFolder = storage_path() . '/exports/campaigns/';
+                $this->archive->saveTo($saveFolder);
                 unlink($this->path);
                 throw new Exception(
                     'Missing campaign entity relation: ' . $entity . '-' . $class . '? '
@@ -135,7 +136,8 @@ class ExportService
             try {
                 $this->processImage($image);
             } catch (Exception $e) {
-                $this->archive->close();
+                $saveFolder = storage_path() . '/exports/campaigns/';
+                $this->archive->saveTo($saveFolder);
                 unlink($this->path);
                 throw new Exception(
                     $e->getMessage()
