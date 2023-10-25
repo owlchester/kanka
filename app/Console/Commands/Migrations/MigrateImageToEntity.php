@@ -7,7 +7,6 @@ use App\Models\MiscModel;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class MigrateImageToEntity extends Command
 {

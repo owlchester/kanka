@@ -4,7 +4,6 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
-use App\Models\Entity;
 use App\Models\Image;
 use App\Notifications\Header;
 use App\Traits\CampaignAware;

@@ -43,6 +43,6 @@ class ExportCommand extends Command
             ->user($user)
             ->queue();
 
-        $this->info(Carbon::now() . ': Queues campaign #' . $campaign->id .' export.');
+        $this->info(Carbon::now() . ': Queues campaign #' . $campaign->id . ' export.');
     }
 }
