@@ -13,7 +13,7 @@
 @if (auth()->check() && !auth()->user()->settings()->get('kanka_v20'))
 <div class="alert alert-warning p-2 flex gap-2 banner-notification " id="banner-notification">
     <div class="grow">
-        Kanka will be undergoing scheduled maintenance on Wednesday 1st of November 2023. As a result, Kanka will be unavailable from <a href=" https://everytimezone.com/s/99cb5e5b" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 14:30 UTC</a> to 18:00 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank"  style="text-decoration: underline">Discord</a> to get updates.
+        Kanka will be undergoing scheduled maintenance on Wednesday 1st of November 2023. As a result, Kanka will be unavailable from <a href=" https://everytimezone.com/s/99cb5e5b" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 14:30 UTC</a> to 18:30 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank"  style="text-decoration: underline">Discord</a> to get updates.
     </div>
     @if (auth()->check())
         <button type="button" class="close p-2 banner-notification-dismiss" data-dismiss="banner-notification" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'kanka_v20']) }}">×</button>
