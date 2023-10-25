@@ -279,7 +279,6 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function hasColour(): bool
     {

@@ -11,7 +11,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('entities', function (Blueprint $table) {
-            $table->string('image_path', 100)->nullable();
+            $table->string('image_path', 255)->nullable();
         });
     }
 

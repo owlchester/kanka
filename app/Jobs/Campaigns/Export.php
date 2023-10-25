@@ -12,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Throwable;
 
 class Export implements ShouldQueue
 {
@@ -81,7 +82,7 @@ class Export implements ShouldQueue
     /**
      *
      */
-    public function failed(Exception $exception)
+    public function failed(Throwable $exception)
     {
         // Set the campaign export date to null so that the user can try again.
         // If it failed once, trying again won't help, but this might motivate

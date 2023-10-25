@@ -25,7 +25,7 @@ class SidebarService
             null,
             'dashboard',
         ],
-        'campaigns' => [
+        'settings' => [
             'campaign',
             'overview',
             'campaigns',
@@ -163,7 +163,7 @@ class SidebarService
         ],
         'gallery' => null,
         'history' => null,
-        'campaign' => null,
+        'settings' => null,
         //'search' => null,
     ];
 
@@ -350,7 +350,7 @@ class SidebarService
                 'icon' => config('entities.icons.attribute_template'),
                 'label' => 'entities.attribute_templates',
             ],
-            'campaign' => [
+            'settings' => [
                 'icon' => 'fa-duotone fa-cog',
                 'label' => 'sidebar.settings',
                 'module' => false,
@@ -471,7 +471,22 @@ class SidebarService
             return Cache::get($key);
         }
         $layout = [];
-        foreach ($this->customLayout() as $name => $children) {
+        $layoutSetup = $this->customLayout();
+        $rewrite = [];
+        foreach ($layoutSetup as $name => $children) {
+            // We migrated to a new structure, but have the setup in json, so we need to "fix it" here
+            if (in_array($name, $rewrite)) {
+                continue;
+            }
+            if ($name === 'menu_links') {
+                $name = 'bookmarks';
+            } elseif ($name === 'campaigns') {
+                $name = 'world';
+                $rewrite[] = 'world';
+            } elseif ($name === 'campaign') {
+                $name = 'game';
+                $rewrite[] = 'game';
+            }
             if (!isset($this->elements[$name])) {
                 dd('E601 - cant find element ' . $name);
             }
