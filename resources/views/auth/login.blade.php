@@ -60,24 +60,16 @@
             @endif
         </div>
 
-        <div class="flex gap-2 items-center">
-            <div class="grow">
-                <label>
-                    <input type="checkbox" class="minimal" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                    {{ __('auth.login.remember_me') }}
-                </label>
-            </div>
-            <div class="self-end">
-                <button type="submit" class="rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white dark:bg-slate-800">
-                    {{ __('auth.login.submit') }}
-                </button>
-            </div>
-        </div>
+        <input type="hidden" name="remember" value="1" />
+
+        <button type="submit" class="w-full rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white dark:bg-slate-800">
+            {{ __('auth.login.submit') }}
+        </button>
     </form>
 
 @if(config('auth.register_enabled'))
     <div class="social-auth-links text-center mb-3">
-        <p class="mb-2 text-gray-500 dark:text-slate-200">- {{ __('auth.login.or') }} -</p>
+        <p class="mb-2 text-gray-500 dark:text-slate-200 m-3">- {{ __('auth.login.or') }} -</p>
 
         <div class="flex flex-col gap-2">
             @if(config('services.facebook.client_id'))
