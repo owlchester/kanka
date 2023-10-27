@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $campaign_id
  * @property int $created_by
  * @property int $status
- * 
+ *
  */
 class CampaignExport extends Model
 {

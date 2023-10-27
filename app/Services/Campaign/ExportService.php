@@ -63,7 +63,7 @@ class ExportService
             'type' => CampaignExport::TYPE_ASSETS,
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
-    
+
         Export::dispatch($this->campaign, $this->user, $assetExport, true);
 
         return $this;
@@ -229,7 +229,7 @@ class ExportService
             $saveFolder = storage_path() . '/exports/campaigns/';
 
             $this->archive->saveTo($saveFolder);
-            $this->filesize = (int) floor(filesize($this->path)/ pow(1024, 2));
+            $this->filesize = (int) floor(filesize($this->path) / pow(1024, 2));
 
         } catch (Exception $e) {
             // The export might fail if the zip is too big.
