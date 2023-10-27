@@ -4,6 +4,7 @@ namespace App\Jobs\Campaigns;
 
 use App\Jobs\FileCleanup;
 use App\Models\Campaign;
+use App\Models\CampaignExport;
 use App\Services\Campaign\ExportService;
 use App\User;
 use Exception;
@@ -31,16 +32,19 @@ class Export implements ShouldQueue
 
     protected int $userId;
 
+    protected int $campaignExportId;
+
     protected bool $assets;
 
     /**
      * CampaignExport constructor.
      */
-    public function __construct(Campaign $campaign, User $user, bool $assets = false)
+    public function __construct(Campaign $campaign, User $user, CampaignExport $campaignExport, bool $assets = false)
     {
         $this->campaignId = $campaign->id;
         $this->userId = $user->id;
         $this->assets = $assets;
+        $this->campaignExportId = $campaignExport->id;
     }
 
     /**
@@ -49,6 +53,12 @@ class Export implements ShouldQueue
      */
     public function handle()
     {
+        $campaignExport = CampaignExport::find($this->campaignExportId);
+        if (!$campaignExport) {
+            return 0;
+        }
+        $campaignExport->update(['status' => CampaignExport::STATUS_RUNNING]);
+
         /** @var Campaign|null $campaign */
         $campaign = Campaign::find($this->campaignId);
         if (!$campaign) {
@@ -63,7 +73,7 @@ class Export implements ShouldQueue
 
         /** @var ExportService $service */
         $service = app()->make(ExportService::class);
-        $service
+        $filesize = $service
             ->user($user)
             ->campaign($campaign)
             ->assets($this->assets)
@@ -74,7 +84,7 @@ class Export implements ShouldQueue
         if ($queue !== 'sync') {
             FileCleanup::dispatch($service->exportPath())->delay(now()->addMinutes(60));
         }
-
+        $campaignExport->update(['status' => CampaignExport::STATUS_FINISHED, 'size' => $filesize]);
         return 1;
     }
 
@@ -83,6 +93,12 @@ class Export implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
+        $campaignExport = CampaignExport::find($this->campaignExportId);
+        if (!$campaignExport) {
+            return;
+        }
+        $campaignExport->update(['status' => CampaignExport::STATUS_FAILED]);
+
         // Set the campaign export date to null so that the user can try again.
         // If it failed once, trying again won't help, but this might motivate
         // them to report the error.

@@ -5,6 +5,7 @@ namespace App\Services\Campaign;
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
 use App\Models\Image;
+use App\Models\CampaignExport;
 use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -29,6 +30,7 @@ class ExportService
     protected bool $assets = false;
 
     protected int $files = 0;
+    protected int $filesize = 0;
 
     public function exportPath(): string
     {
@@ -46,13 +48,28 @@ class ExportService
         $this->campaign->export_date = date('Y-m-d');
         $this->campaign->saveQuietly();
 
-        Export::dispatch($this->campaign, $this->user, false);
-        Export::dispatch($this->campaign, $this->user, true);
+        $entitiesExport = CampaignExport::create([
+            'campaign_id' => $this->campaign->id,
+            'created_by' => $this->user->id,
+            'type' => CampaignExport::TYPE_ENTITIES,
+            'status' => CampaignExport::STATUS_SCHEDULED,
+        ]);
+
+        Export::dispatch($this->campaign, $this->user, $entitiesExport, false);
+
+        $assetExport = CampaignExport::create([
+            'campaign_id' => $this->campaign->id,
+            'created_by' => $this->user->id,
+            'type' => CampaignExport::TYPE_ASSETS,
+            'status' => CampaignExport::STATUS_SCHEDULED,
+        ]);
+    
+        Export::dispatch($this->campaign, $this->user, $assetExport, true);
 
         return $this;
     }
 
-    public function export(): self
+    public function export(): int
     {
         $this
             ->prepare()
@@ -63,7 +80,7 @@ class ExportService
             ->notify()
         ;
 
-        return $this;
+        return $this->filesize;
     }
 
     protected function prepare(): self
@@ -212,6 +229,8 @@ class ExportService
             $saveFolder = storage_path() . '/exports/campaigns/';
 
             $this->archive->saveTo($saveFolder);
+            $this->filesize = (int) floor(filesize($this->path)/ pow(1024, 2));
+
         } catch (Exception $e) {
             // The export might fail if the zip is too big.
             $this->files = 0;
