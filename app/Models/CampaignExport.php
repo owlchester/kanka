@@ -27,7 +27,7 @@ class CampaignExport extends Model
     public const STATUS_SCHEDULED = 1;
     public const STATUS_RUNNING = 2;
     public const STATUS_FINISHED = 3;
-    public const STATUS_FAILED = 3;
+    public const STATUS_FAILED = 4;
 
     public $fillable = [
         'size',
