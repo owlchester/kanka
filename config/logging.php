@@ -89,5 +89,5 @@ return [
         ],
     ],
 
-    'enabled' => env('DB_LOGS_DATABASE'),
+    'enabled' => env('DB_LOGS_DATABASE', false),
 ];

@@ -541,13 +541,12 @@ function registerDynamicRows() {
 
         let target = $(this).data('target');
         let template = $(this).data('template');
-        //console.log('target', target, $('.' + target));
-        //console.log('template', template, $('#' + template));
         $('.' + target).append('<div class="">' +
             $('#' + template).html() +
             '</div>');
 
         registerDynamicRowDelete();
+        $(document).trigger('shown.bs.modal');
         return false;
     });
     registerDynamicRowDelete();

@@ -62,9 +62,9 @@ if (!empty($moonNames)) {
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                    <div class="field">
+                    <div class="field w-full">
                         <label class="sr-only">{{ __('crud.fields.colour') }}</label>
-                        {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), \Illuminate\Support\Arr::get($fullmoon, 'colour', 'grey'), ['class' => 'w-full', 'aria-label' => __('crud.fields.colour')]) !!}
+                        {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), \Illuminate\Support\Arr::get($fullmoon, 'colour', 'grey'), ['class' => 'select2-colour', 'style' => 'width: 100%', 'aria-label' => __('crud.fields.colour')]) !!}
                     </div>
                     <div class="flex gap-2 items-center">
                         <div class="grow field">
@@ -103,9 +103,9 @@ if (!empty($moonNames)) {
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-2">
-                <div class="field">
+                <div class="field w-full">
                     <label class="sr-only">{{ __('crud.fields.colour') }}</label>
-                    {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), 'grey', ['class' => 'w-full', 'aria-label' => __('crud.fields.colour')]) !!}
+                    {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), 'grey', ['class' => 'w-full select2-colour', 'style' => 'width: 100%', 'aria-label' => __('crud.fields.colour')]) !!}
                 </div>
                 <div class="flex gap-2 items-center">
                     <div class="grow field">
