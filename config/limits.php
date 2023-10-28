@@ -3,7 +3,7 @@
 return [
     'campaigns' => [
         /**
-         * Limits in place for non-grandfathered unboosted campaigns
+         * Limits in place for standard campaigns
          */
         'members' => 10,
         'roles' => 3,
