@@ -19,7 +19,7 @@ class EntityAssetApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return Resource::collection($entity->assets()->paginate());
+        return Resource::collection($entity->assets()->with('entity')->paginate());
     }
 
     /**

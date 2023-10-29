@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\EntityAsset $asset */?>
 <div class="">
     <div class="entity-asset asset-file flex justify-center items-center overflow-hidden mb-4">
-        <a href="{{ Storage::url($asset->metadata['path']) }}" target="_blank" class="w-1/2 block h-20 cover-background icon rounded flex items-center align-center justify-center bg-black/10 " @if($asset->isImage()) style="background-image: url({{ $asset->imageUrl() }})"@endif>
+        <a href="{{ $asset->url() }}" target="_blank" class="w-1/2 block h-20 cover-background icon rounded flex items-center align-center justify-center bg-black/10 " @if($asset->isImage()) style="background-image: url({{ $asset->imageUrl() }})"@endif>
             @if (!$asset->isImage())
             <i class="text-3xl fa-regular fa-file" aria-hidden="true"></i>
             @endif

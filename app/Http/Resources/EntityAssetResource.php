@@ -30,7 +30,7 @@ class EntityAssetResource extends EntityChild
         ]);
 
         if ($asset->isFile()) {
-            $data['_url'] = Storage::url($asset->metadata['path']);
+            $data['_url'] = $asset->url();
         }
 
         return $data;
