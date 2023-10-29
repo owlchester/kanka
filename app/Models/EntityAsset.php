@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -145,5 +146,15 @@ class EntityAsset extends Model
         } catch (Exception $e) {
             return '';
         }
+    }
+
+    public function url(): string
+    {
+        $path = $this->metadata['path'];
+        $cloudfront = config('filesystems.disks.cloudfront.url');
+        if ($cloudfront) {
+            return Storage::disk('cloudfront')->url($path);
+        }
+        return Storage::url($path);
     }
 }
