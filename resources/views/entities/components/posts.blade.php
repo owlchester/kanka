@@ -11,7 +11,7 @@ if (empty($entity)) {
 $wrapper = false;
 $entryShown = false;
 if (!isset($posts)) {
-    $posts = $entity->posts()->with(['permissions', 'location'])->ordered()->paginate(15);
+    $posts = $entity->posts()->with(['permissions', 'location', 'layout'])->ordered()->paginate(15);
     $wrapper = true;
 }
 
@@ -37,11 +37,11 @@ $postCount = 0;
             @include('entities.components.entry')
             @php $entryShown = true @endphp
         @endif
-        @if ($post->layout && !$campaign->superboosted())
+        @if ($post->layout_id && !$campaign->superboosted())
             @continue
         @endif
-        @includeWhen($post->layout && $campaign->superboosted(), 'entities.components._post_layouts')
-        @includeWhen(!$post->layout, 'entities.components._post')
+        @includeWhen($post->layout_id && $campaign->superboosted(), 'entities.components._post_layouts')
+        @includeWhen(!$post->layout_id, 'entities.components._post')
         @includeWhen($postCount > 0 && $postCount % 3 === 0, 'partials.ads.inline')
         @php $postCount++; @endphp
     @endforeach

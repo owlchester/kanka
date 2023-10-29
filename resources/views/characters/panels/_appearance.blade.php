@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Character $model */
-$appearances = $model->characterTraits()->appearance()->orderBy('default_order')->get();
+$appearances = $model->appearances;
 ?>
 
 @if (count($appearances) > 0)

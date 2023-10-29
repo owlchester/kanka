@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Character $model */
-$traits = $model->characterTraits()->personality()->orderBy('default_order')->get();
+$traits = $model->personality;
 ?>
 
 @if (((auth()->check() && auth()->user()->can('personality', $model)) || $model->is_personality_visible) && count($traits) > 0)

@@ -303,6 +303,15 @@ class Character extends MiscModel
         return $this->hasMany('App\Models\CharacterTrait', 'character_id', 'id');
     }
 
+    public function appearances()
+    {
+        return $this->characterTraits()->appearance()->orderBy('default_order');
+    }
+    public function personality()
+    {
+        return $this->characterTraits()->personality()->orderBy('default_order');
+    }
+
     /**
      */
     public function pinnedMembers()

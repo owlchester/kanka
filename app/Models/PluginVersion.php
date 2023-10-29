@@ -438,9 +438,9 @@ class PluginVersion extends Model
             $data['_character_age'] = $character->age;
             $data['_character_pronouns'] = $character->pronouns;
 
-            $appearances = $character->characterTraits()->appearance()->orderBy('default_order')->get();
+            $appearances = $character->appearances;
             $data['_character_appearances'] = $appearances->pluck('entry', 'name')->toArray();
-            $traits = $character->characterTraits()->personality()->orderBy('default_order')->get();
+            $traits = $character->personality;
             $data['_character_traits'] = $traits->pluck('entry', 'name')->toArray();
         }
 
@@ -493,7 +493,7 @@ class PluginVersion extends Model
         $abilities = $entity
             ->abilities()
             ->has('ability')
-            ->with(['ability', 'ability.parent', 'ability.entity', 'ability.entity.tags'])
+            ->with(['ability', 'ability.parent', 'ability.entity', 'ability.entity.image', 'ability.entity.tags'])
             ->get();
         $data = [];
         /** @var EntityAbility $abi */
