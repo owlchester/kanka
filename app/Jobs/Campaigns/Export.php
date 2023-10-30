@@ -73,18 +73,19 @@ class Export implements ShouldQueue
 
         /** @var ExportService $service */
         $service = app()->make(ExportService::class);
-        $filesize = $service
+        $service
             ->user($user)
             ->campaign($campaign)
             ->assets($this->assets)
             ->export();
+
+        $campaignExport->update(['status' => CampaignExport::STATUS_FINISHED, 'size' => $service->filesize(), 'path' => $service->exportPath()]);
 
         // Don't delete in "sync" mode as there is no delay.
         $queue = config('queue.default');
         if ($queue !== 'sync') {
             FileCleanup::dispatch($service->exportPath())->delay(now()->addMinutes(60));
         }
-        $campaignExport->update(['status' => CampaignExport::STATUS_FINISHED, 'size' => $filesize]);
         return 1;
     }
 

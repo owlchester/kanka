@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $campaign_id
  * @property int $created_by
  * @property int $status
+ * @property string $path
  *
  */
 class CampaignExport extends Model
@@ -33,7 +34,8 @@ class CampaignExport extends Model
         'type',
         'status',
         'campaign_id',
-        'created_by'
+        'created_by',
+        'path',
     ];
 
     /**

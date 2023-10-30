@@ -69,7 +69,7 @@ class ExportService
         return $this;
     }
 
-    public function export(): int
+    public function export(): self
     {
         $this
             ->prepare()
@@ -80,6 +80,11 @@ class ExportService
             ->notify()
         ;
 
+        return $this;
+    }
+
+    public function filesize(): int
+    {
         return $this->filesize;
     }
 

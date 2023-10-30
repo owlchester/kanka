@@ -18,6 +18,7 @@ return new class () extends Migration {
             $table->integer('size');
             $table->tinyInteger('type');
             $table->tinyInteger('status');
+            $table->string('path')->nullable();
             $table->timestamps();
 
             $table->index(['status']);
