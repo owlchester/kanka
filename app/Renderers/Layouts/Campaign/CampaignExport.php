@@ -2,10 +2,8 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Layout;
 use Illuminate\Support\Facades\Storage;
-
 
 class CampaignExport extends Layout
 {
