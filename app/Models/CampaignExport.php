@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\User;
+use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
 class CampaignExport extends Model
 {
     use MassPrunable;
+    use SortableTrait;
 
     public const TYPE_ENTITIES = 1;
     public const TYPE_ASSETS = 2;
@@ -38,6 +41,14 @@ class CampaignExport extends Model
         'path',
     ];
 
+    public $sortable = [
+        'status',
+        'type',
+        'updated_at',
+        'created_at',
+        'created_by',
+    ];
+
     /**
      * Automatically prune old elements from the db
      */
@@ -46,4 +57,19 @@ class CampaignExport extends Model
         return static::where('updated_at', '<=', now()->subDays(90));
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function campaign()
+    {
+        return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
+    }
 }
