@@ -118,7 +118,7 @@ class CampaignDashboardWidget extends Model
      */
     public function scopePositioned(Builder $query): Builder
     {
-        return $query->with(['entity', 'tags'])
+        return $query->with(['entity', 'entity.image', 'tags'])
             ->orderBy('position', 'asc');
     }
 

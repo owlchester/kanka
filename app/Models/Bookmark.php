@@ -293,7 +293,7 @@ class Bookmark extends MiscModel
      */
     public function scopeStandardWith(Builder $query): Builder
     {
-        return $query->with('entity');
+        return $query->with(['entity', 'dashboard', 'target']);
     }
 
     /**

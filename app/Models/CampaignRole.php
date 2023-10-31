@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignCache;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
 use Illuminate\Database\Eloquent\Collection;

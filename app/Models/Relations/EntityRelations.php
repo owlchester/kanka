@@ -538,7 +538,7 @@ trait EntityRelations
         return $this->relationships()
             ->pinned()
             ->ordered()
-            ->with('target')
+            ->with(['target', 'target.image'])
             ->has('target');
     }
 

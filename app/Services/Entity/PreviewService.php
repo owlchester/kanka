@@ -104,7 +104,7 @@ class PreviewService
     protected function tags(): array
     {
         $tags = [];
-        foreach ($this->entity->tags as $tag) {
+        foreach ($this->entity->tags()->with('entity')->get() as $tag) {
             $tags[] = [
                 'id' => $tag->id,
                 'name' => $tag->name,

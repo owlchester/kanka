@@ -62,7 +62,7 @@
 </section>
 
 <section class="max-w-2xl mx-auto flex flex-col gap-10 lg:gap-10 py-10 lg:py-12 px-4 xl:px-0 text-dark">
-    <img src="/images/svgs/503.svg" alt="Error 503 image" />
+    <img src="/images/errors/maintenance.jpeg" alt="Maintenance" class="rounded-2xl" />
 </section>
 
 @yield('content')

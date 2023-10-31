@@ -79,6 +79,13 @@
     @endif
 </section>
 
+
+@if ($error === 404)
+    <section class="max-w-2xl mx-auto flex flex-col gap-10 lg:gap-10 py-10 lg:py-12 px-4 xl:px-0 text-dark">
+        <img src="/images/errors/lost.jpeg" alt="Lost" class="rounded-2xl" />
+    </section>
+@endif
+
 <div id="main-content"></div>
 @yield('content')
 

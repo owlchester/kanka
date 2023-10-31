@@ -34,6 +34,7 @@ class PrivacyService
             // General role permission
             $perm = $role->permissions
                 ->where('action', CampaignPermission::ACTION_READ)
+                ->whereNull('entity_id')
                 ->where('entity_type_id', $this->entity->type_id);
             if ($perm->count() > 0) {
                 // Add unless it's on the entity denied
