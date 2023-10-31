@@ -37,15 +37,10 @@
         </x-alert>
         @endif
 
-        <?php /** @var \App\Models\Campaign $campaign
-         * @var \App\Models\CampaignExport $row
-         */?>
         <div class="box box-solid">
             <div id="datagrid-parent" class="table-responsive">
                 @include('layouts.datagrid._table')
             </div>
         </div>
     </div>
-
-
 @endsection

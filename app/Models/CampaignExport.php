@@ -44,7 +44,6 @@ class CampaignExport extends Model
     public $sortable = [
         'status',
         'type',
-        'updated_at',
         'created_at',
         'created_by',
     ];

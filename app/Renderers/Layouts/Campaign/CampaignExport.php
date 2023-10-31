@@ -16,8 +16,11 @@ class CampaignExport extends Layout
         $columns = [
             'created_by' => [
                 'key' => 'user.name',
-                'label' => 'campaigns.exports.created_by',
+                'label' => 'campaigns.exports.name',
                 'render' => function ($model) {
+                    if (!$model->created_by) {
+                        return '';
+                    }
                     $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
                     return $html;
                 },
@@ -28,7 +31,7 @@ class CampaignExport extends Layout
                     if ($model->size == 0) {
                         return '<1 MB';
                     }
-                    return $model->size . ' MB';
+                    return number_format($model->size) . ' MB';
                 }
             ],
             'type' => [
@@ -64,13 +67,9 @@ class CampaignExport extends Layout
 
             'created_at' => [
                 'key' => 'created_at',
-                'label' => 'campaigns.exports.created',
+                'label' => 'campaigns.invites.fields.created',
                 'render' => function ($model) {
-                    $html = '';
-
-                    if (!empty($model->created_at)) {
-                        $html = '<span data-title="' . $model->created_at . 'UTC" data-toggle="tooltip">' . $model->created_at->diffForHumans() . '</span>';
-                    }
+                    $html = '<span data-title="' . $model->created_at . 'UTC" data-toggle="tooltip">' . $model->created_at->diffForHumans() . '</span>';
                     return $html;
                 },
             ],
@@ -81,9 +80,8 @@ class CampaignExport extends Layout
                         $html = '<a class="block break-all truncate" href="' . Storage::url($model->path) . '" target="_blank">' . __('campaigns.exports.download') . '</a>';
                         return $html;
                     } elseif ($model->path) {
-                        return __('campaigns.exports.expired');
+                        return '<span class="text-neutral-content">' . __('campaigns.exports.expired') . '</span>';
                     }
-
                     return '';
                 }
             ],

@@ -469,7 +469,7 @@ TEXT
         'review'    => 'Awaiting Review',
     ],
     'exports'                      => [
-        'created_by'      => 'Created by',
+        'name'            => 'Created by',
         'size'            => 'Size',
         'type'            => 'Type',
         'status'          => 'Status',
@@ -479,7 +479,6 @@ TEXT
         'status_running'  => 'Running',
         'type_assets'     => 'Assets',
         'type_entities'   => 'Entities',
-        'created'         => 'Created',
         'expired'         => 'Link expired',
         'download'        => 'Download',
     ],
