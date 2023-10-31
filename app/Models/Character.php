@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property Collection|ConversationParticipant[] $conversationParticipants
  * @property Collection|Journal[] $journals
  * @property Collection|Item[] $items
+ * @property Collection|CharacterTrait[] $appearances
+ * @property Collection|CharacterTrait[] $personality
  */
 class Character extends MiscModel
 {

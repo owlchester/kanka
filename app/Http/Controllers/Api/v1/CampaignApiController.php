@@ -10,6 +10,7 @@ class CampaignApiController extends ApiController
 {
     public function index(\Illuminate\Http\Request $request)
     {
+        // @phpstan-ignore-next-line
         $campaigns = $request
             ->user()
             ->campaigns()
