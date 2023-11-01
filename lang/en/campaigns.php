@@ -469,17 +469,6 @@ TEXT
         'review'    => 'Awaiting Review',
     ],
     'exports'                      => [
-        'size'            => 'Size',
-        'type'            => 'Type',
-        'status' => [
-            'finished'  => 'Finished',
-            'scheduled' => 'Scheduled',
-            'failed'    => 'Failed',
-            'running'   => 'Running',
-        ],
-        'type_assets'     => 'Assets',
-        'type_entities'   => 'Entities',
-        'expired'         => 'Link expired',
-        'download'        => 'Download',
+
     ],
 ];

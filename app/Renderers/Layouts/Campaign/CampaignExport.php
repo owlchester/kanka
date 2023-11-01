@@ -16,7 +16,7 @@ class CampaignExport extends Layout
         $columns = [
             'type' => [
                 'key' => 'type',
-                'label' => 'campaigns.exports.type',
+                'label' => 'campaigns/export.type',
                 'render' => function ($model) {
                     $key = 'entities';
                     /** @var \App\Models\CampaignExport $model */
@@ -24,7 +24,7 @@ class CampaignExport extends Layout
                         $key = 'assets';
                     }
 
-                    return __('campaigns.exports.type_' . $key);
+                    return __('campaigns/export.type_' . $key);
                 },
             ],
             'status' => [
@@ -41,7 +41,7 @@ class CampaignExport extends Layout
                         $key = 'finished';
                     }
 
-                    return __('campaigns.exports.status.' . $key);
+                    return __('campaigns/export.status.' . $key);
                 },
             ],
             'created_by' => [
@@ -64,7 +64,7 @@ class CampaignExport extends Layout
                 },
             ],
             'size' => [
-                'label' => 'campaigns.exports.size',
+                'label' => 'campaigns/export.size',
                 'render' => function ($model) {
                     if (!$model->finished()) {
                         return '';
@@ -76,16 +76,16 @@ class CampaignExport extends Layout
                 }
             ],
             'download' => [
-                'label' => 'campaigns.exports.download',
+                'label' => 'campaigns/export.actions.download',
                 'render' => function ($model) {
                     if (!$model->finished()) {
                         return '';
                     }
                     if ($model->path && Storage::exists($model->path)) {
-                        $html = '<a class="block break-all truncate" href="' . Storage::url($model->path) . '" target="_blank">' . __('campaigns.exports.download') . '</a>';
+                        $html = '<a class="block break-all truncate" href="' . Storage::url($model->path) . '" target="_blank">' . __('campaigns/export.actions.download') . '</a>';
                         return $html;
                     } elseif ($model->path) {
-                        return '<span class="text-neutral-content">' . __('campaigns.exports.expired') . '</span>';
+                        return '<span class="text-neutral-content">' . __('campaigns/export.expired') . '</span>';
                     }
                     return '';
                 }

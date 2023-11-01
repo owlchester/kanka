@@ -70,6 +70,8 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignStyle[] $styles
  * @property Collection|RpgSystem[] $rpgSystems
  * @property Collection|Genre[] $genres
+ * @property Collection|CampaignExport[] $campaignExports
+ * @property Collection|CampaignExport[] $queuedCampaignExports
  */
 trait CampaignRelations
 {
@@ -349,6 +351,12 @@ trait CampaignRelations
     public function campaignExports()
     {
         return $this->hasMany(CampaignExport::class);
+    }
+
+    public function queuedCampaignExports()
+    {
+        return $this->campaignExports()
+            ->whereIn('status', [CampaignExport::STATUS_SCHEDULED, CampaignExport::STATUS_RUNNING]);
     }
 
     public function styles()

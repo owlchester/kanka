@@ -64,6 +64,8 @@ class ExportController extends Controller
             ->user($request->user())
             ->queue();
 
-        return response()->json(['success' => __('campaigns/export.success')]);
+        return redirect()
+            ->route('campaign.export', $campaign)
+            ->withSuccess(__('campaigns/export.success'));
     }
 }

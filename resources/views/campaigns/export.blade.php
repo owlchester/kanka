@@ -22,16 +22,15 @@
                 <x-icon class="question"></x-icon>
                 {{ __('crud.actions.help') }}
             </a>
+            @if ($campaign->exportable())
+                <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">
+                    <x-icon class="fa-solid fa-download" />
+                    {{ __('campaigns/export.actions.export') }}
+                </a>
+            @endif
         </div>
 
-        @if ($campaign->exportable())
-        <div class="text-center">
-            <button class="btn2 btn-primary campaign-export-btn pull-right" data-url="{{ route('campaign.export-process', $campaign) }}">
-                <i class="fa-solid fa-download" aria-hidden="true"></i>
-                {{ __('campaigns/export.actions.export') }}
-            </button>
-        </div>
-        @else
+        @if (!$campaign->exportable() && !session()->has('success'))
         <x-alert type="warning">
             {{ __('campaigns/export.errors.limit') }}
         </x-alert>
@@ -43,4 +42,29 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('modals')
+    @parent
+    <x-dialog id="export-confirm" :title="__('campaigns/export.confirm.title')">
+        <p>{{ __('campaigns/export.confirm.warning') }}</p>
+
+        <div class="grid grid-cols-2 gap-2 w-full">
+            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                {{ __('crud.cancel') }}
+            </x-buttons.confirm>
+
+            {!! Form::open([
+                'method' => 'POST',
+                'route' => [
+                    'campaign.export-process',
+                    $campaign
+                ]
+            ]) !!}
+            <x-buttons.confirm type="primary" full="true">
+                {{ __('crud.click_modal.confirm') }}
+            </x-buttons.confirm>
+            {!! Form::close() !!}
+        </div>
+    </x-dialog>
 @endsection

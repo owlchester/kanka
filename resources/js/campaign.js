@@ -6,7 +6,6 @@ $(document).ready(function() {
     registerUserRoles();
     registerCodeMirror();
     registerSidebarSetup();
-    registerCampaignExport();
     registerRoles();
     registerCampaignThemes();
     registerVanityUrl();
@@ -137,33 +136,7 @@ function registerSidebarSetup() {
     }
 }
 
-const registerCampaignExport = () => {
-    let elements = document.querySelectorAll('.campaign-export-btn');
-    elements.forEach(el => {
-        el.addEventListener('click', startCampaignExport);
-    });
-};
 
-function startCampaignExport(e) {
-    e.preventDefault();
-    this.classList.add('loading');
-
-    axios.post(this.dataset.url)
-        .then(res => {
-            console.log(this);
-            this.classList.remove('loading');
-            this.classList.add('btn-disabled');
-            if (res.data.error) {
-                window.showToast(res.data.error, 'error');
-            } else {
-                window.showToast(res.data.success);
-            }
-        })
-        .catch((res) => {
-            this.classList.add('loading');
-            console.error('campaign export call', res.data);
-        });
-}
 /**
  * Register events for campaign themes, notably the max size of a css field
  */
