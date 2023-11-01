@@ -7,7 +7,7 @@
         <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0">
             <li class="px-2 section-dashboard">
                 <x-sidebar.element
-                    :url="route('home', [$campaign])"
+                    :url="route('dashboard', [$campaign])"
                     icon="fa-duotone fa-house"
                     :text="__('sidebar.dashboard')"
                 ></x-sidebar.element>
