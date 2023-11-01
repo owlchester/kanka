@@ -32,10 +32,9 @@ class PostObserver
     {
 
         // When creating a timeline element on the API, we might not have an entry
-        if (property_exists($post, 'entry')) {
+        if (isset($post->entry)) {
             $post->entry = $this->purify(Mentions::codify($post->entry));
         }
-
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($post->is_private)) {
             $post->is_private = false;
