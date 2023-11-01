@@ -55,7 +55,7 @@
                     <a href="{{ Domain::toFront('press-kit') }}">{{ __('footer.press-kit') }}</a>
                     <a href="{{ Domain::toFront('security') }}">{{ __('footer.security') }}</a>
                     <a href="{{ Domain::toFront('privacy-policy') }}">{{ __('footer.privacy') }}</a>
-                    <a href="{{ Domain::toFront('terms-and-conditionsZ') }}">{{ __('footer.terms') }}</a>
+                    <a href="{{ Domain::toFront('terms-and-conditions') }}">{{ __('footer.terms') }}</a>
                 </div>
             </div>
             <div class="lg:hidden flex flex-col gap-5 text-center">
