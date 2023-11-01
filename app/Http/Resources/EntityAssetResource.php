@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\EntityAsset;
-use Illuminate\Support\Facades\Storage;
 
 class EntityAssetResource extends EntityChild
 {
