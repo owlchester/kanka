@@ -115,8 +115,8 @@ class BoostService
         $campaignBoost->delete();
 
         // Delete other boosts on the same campaign if the user is superboosting
-        if ($this->user) {
-            foreach (auth()->user()->boosts()->where('campaign_id', $campaignBoost->campaign_id)->get() as $boost) {
+        if (isset($this->user)) {
+            foreach ($this->user->boosts()->where('campaign_id', $campaignBoost->campaign_id)->get() as $boost) {
                 $boost->delete();
             }
             $this->user->log(UserLog::TYPE_CAMPAIGN_UNBOOST);
@@ -125,8 +125,10 @@ class BoostService
         $this->campaign->boost_count = $this->campaign->boosts()->count();
         $this->campaign->saveQuietly();
 
-        $key = $this->user->hasBoosterNomenclature() ? 'boost.remove' : 'premium.remove';
-        $this->notify($key);
+        if (isset($this->user)) {
+            $key = $this->user->hasBoosterNomenclature() ? 'boost.remove' : 'premium.remove';
+            $this->notify($key);
+        }
 
         return $this;
     }

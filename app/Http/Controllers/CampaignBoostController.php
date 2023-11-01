@@ -21,7 +21,7 @@ class CampaignBoostController extends Controller
     public function create()
     {
         $campaignID = request()->get('campaign');
-        $campaign = Campaign::findOrFail($campaignID);
+        $campaign = Campaign::where('slug', $campaignID)->firstOrFail();
         $user = auth()->user();
         if ($user->hasBoosterNomenclature()) {
             $superboost = request()->has('superboost');
@@ -49,7 +49,7 @@ class CampaignBoostController extends Controller
     {
         $campaignId = $request->get('campaign_id');
         /** @var Campaign $campaign */
-        $campaign = Campaign::findOrFail((int) $campaignId);
+        $campaign = Campaign::findOrFail($campaignId);
         CampaignCache::campaign($campaign);
         $this->authorize('access', $campaign);
 
