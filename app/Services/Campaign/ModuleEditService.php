@@ -62,10 +62,11 @@ class ModuleEditService
     {
         $settings = $this->campaign->settings;
         unset($settings['modules']);
-
-        foreach ($settings as $name => $val) {
-            if (Str::startsWith($name, 'modules.')) {
-                unset($settings[$name]);
+        if (is_array($settings)) {
+            foreach ($settings as $name => $val) {
+                if (Str::startsWith($name, 'modules.')) {
+                    unset($settings[$name]);
+                }
             }
         }
         $this->campaign->settings = $settings;
