@@ -395,10 +395,11 @@ class CrudController extends Controller
                 abort(404);
             }
         }
+        $entity = $model->entity;
 
         return view(
             'cruds.show',
-            compact('campaign', 'model', 'name', 'entity_type_id')
+            compact('campaign', 'model', 'name', 'entity_type_id', 'entity')
         );
     }
 
