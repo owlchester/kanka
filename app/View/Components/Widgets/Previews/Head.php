@@ -36,7 +36,8 @@ class Head extends Component
     public function render(): View|Closure|string
     {
         return view('components.widgets.previews.head')
-            ->with('images', $this->headerImage());
+            ->with('images', $this->headerImage())
+            ->with('customName', $this->customName());
     }
 
     protected function headerImage(): null|array
@@ -67,5 +68,14 @@ class Head extends Component
             ];
         }
         return null;
+    }
+
+    protected function customName(): string
+    {
+        if (empty($this->widget->conf('text'))) {
+            return '';
+        }
+        return str_replace('{name}', $this->entity->name, $this->widget->conf('text'));
+
     }
 }
