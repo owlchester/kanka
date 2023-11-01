@@ -70,7 +70,7 @@
         <div class="flex gap-2">
             <div class="grow text-xs text-gray-500">
                 {!! __('auth.register.tos', [
-    'terms' => link_to('https://kanka.io/terms-and-conditions', __('footer.title'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
+    'terms' => link_to('https://kanka.io/terms-and-conditions', __('footer.terms'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
     'privacy' => link_to('https://kanka.io/privacy-policy', __('footer.privacy'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
     ]) !!}
             </div>
