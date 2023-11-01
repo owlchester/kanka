@@ -53,7 +53,7 @@ if (($widget->conf('singular'))) {
     </h4>
     @if (!empty($widget->conf('singular')))
     <div class="widget-body widget-recent-body p-4">
-        @include('dashboard.widgets._recent_singular', ['entities' => $entities])
+        <p class="italic">{{ __('search.lookup.empty') }}</p>
     </div>
     @else
     <div class="widget-recent-list overflow-auto max-h-[400px]">
