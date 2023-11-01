@@ -433,7 +433,7 @@ class CrudController extends Controller
             'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity) && $this->campaign->enabled('entity_attributes'),
             'tabBoosted' => $this->tabBoosted,
             'tabCopy' => $this->tabCopy,
-            'entityType' => $model->getEntityType(),
+            'entityType' => $model->hasEntityType() ? $model->getEntityType() : null,
             'editingUsers' => $editingUsers,
             'entityTypeId' => $model->entityTypeId()
         ];

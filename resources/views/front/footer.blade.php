@@ -26,13 +26,13 @@
 
             <div class="flex flex-col gap-3 text-sm">
                 <span class="block text-nav uppercase">{{ __('footer.resources') }}</span>
-                <a href="{{ config('domains.front') }}/kb">{{ __('footer.kb') }}</a>
+                <a href="{{ Domain::toFront('kb') }}">{{ __('footer.kb') }}</a>
                 <a href="https://docs.kanka.io/en/latest/index.html" target="_blank">{{ __('footer.documentation') }}</a>
                 <a href="{{ route('larecipe.index') }}" target="_blank">{{ __('front.features.api.link') }}</a>
                 <a href="https://blog.kanka.io/category/news/" target="_blank">{{ __('footer.whats-new') }}</a>
                 <a href="https://blog.kanka.io" target="_blank">{{ __('footer.blog') }}</a>
                 <a href="https://status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
-                <a href="{{ config('domains.front') }}/newsletter">{{ __('footer.newsletter') }}</a>
+                <a href="{{ Domain::toFront('newsletter') }}">{{ __('footer.newsletter') }}</a>
             </div>
 
             <div class="flex flex-col gap-3 text-sm">

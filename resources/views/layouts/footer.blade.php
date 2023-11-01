@@ -24,38 +24,38 @@
                 </div>
                 <div class="flex flex-col gap-3 text-sm">
                     <span class="block text-nav uppercase">{{ __('footer.platform') }}</span>
-                    <a href="{{ config('domains.front') }}/features">{{ __('footer.features') }}</a>
-                    <a href="{{ config('domains.front') }}/premium">{{ __('footer.premium') }}</a>
-                    <a href="{{ config('domains.front') }}/pricing">{{ __('footer.pricing') }}</a>
+                    <a href="{{ Domain::toFront('features') }}">{{ __('footer.features') }}</a>
+                    <a href="{{ Domain::toFront('premium') }}">{{ __('footer.premium') }}</a>
+                    <a href="{{ Domain::toFront('pricing') }}">{{ __('footer.pricing') }}</a>
                     <a href="https://marketplace.kanka.io" target="_blank">{{ __('footer.marketplace') }}</a>
                 </div>
 
                 <div class="flex flex-col gap-3 text-sm">
                     <span class="block text-nav uppercase">{{ __('footer.resources') }}</span>
-                    <a href="{{ config('domains.front') }}/kb">{{ __('footer.kb') }}</a>
+                    <a href="{{ Domain::toFront('kb') }}">{{ __('footer.kb') }}</a>
                     <a href="https://docs.kanka.io/en/latest/index.html" target="_blank">{{ __('footer.documentation') }}</a>
                     <a href="{{ route('larecipe.index') }}" target="_blank">{{ __('front.features.api.link') }}</a>
                     <a href="https://blog.kanka.io/category/news/" target="_blank">{{ __('footer.whats-new') }}</a>
                     <a href="https://blog.kanka.io" target="_blank">{{ __('footer.blog') }}</a>
                     <a href="https://status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
-                    <a href="{{ config('domains.front') }}/newsletter">{{ __('footer.newsletter') }}</a>
+                    <a href="{{ Domain::toFront('newsletter') }}">{{ __('footer.newsletter') }}</a>
                 </div>
 
                 <div class="flex flex-col gap-3 text-sm">
                     <span class="block text-nav uppercase">{{ __('footer.community') }}</span>
-                    <a href="{{ config('domains.front') }}/campaigns">{{ __('footer.public-campaigns') }}</a>
-                    <a href="{{ config('domains.front') }}/community-votes">{{ __('front/community-votes.title') }}</a>
-                    <a href="{{ config('domains.front') }}/hall-of-fame">{{ __('front/hall-of-fame.title') }}</a>
+                    <a href="{{ Domain::toFront('campaigns') }}">{{ __('footer.public-campaigns') }}</a>
+                    <a href="{{ Domain::toFront('community-votes') }}">{{ __('front/community-votes.title') }}</a>
+                    <a href="{{ Domain::toFront('hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
                 </div>
 
                 <div class="flex flex-col gap-3 text-sm">
                     <span class="block text-nav uppercase">{{ __('footer.company') }}</span>
-                    <a href="{{ config('domains.front') }}/about">{{ __('footer.about') }}</a>
-                    <a href="{{ config('domains.front') }}/contact">{{ __('footer.contact') }}</a>
-                    <a href="{{ config('domains.front') }}/press-kit">{{ __('footer.press-kit') }}</a>
-                    <a href="{{ config('domains.front') }}/security">{{ __('footer.security') }}</a>
-                    <a href="{{ config('domains.front') }}/privacy-policy">{{ __('footer.privacy') }}</a>
-                    <a href="{{ config('domains.front') }}/terms-and-conditions">{{ __('footer.terms') }}</a>
+                    <a href="{{ Domain::toFront('about') }}">{{ __('footer.about') }}</a>
+                    <a href="{{ Domain::toFront('contact') }}">{{ __('footer.contact') }}</a>
+                    <a href="{{ Domain::toFront('press-kit') }}">{{ __('footer.press-kit') }}</a>
+                    <a href="{{ Domain::toFront('security') }}">{{ __('footer.security') }}</a>
+                    <a href="{{ Domain::toFront('privacy-policy') }}">{{ __('footer.privacy') }}</a>
+                    <a href="{{ Domain::toFront('terms-and-conditionsZ') }}">{{ __('footer.terms') }}</a>
                 </div>
             </div>
             <div class="lg:hidden flex flex-col gap-5 text-center">
