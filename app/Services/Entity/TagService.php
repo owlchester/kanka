@@ -29,7 +29,7 @@ class TagService
         /** @var Tag|null $tag */
         $tag = Tag::find($id);
         // Create the tag if the user has permission to do so
-        if (empty($tag) && $this->canCreate) {
+        if (empty($tag) && $this->isAllowed()) {
             $tag = $this->create($id, $campaignID);
         }
 
