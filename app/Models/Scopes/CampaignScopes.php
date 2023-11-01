@@ -232,11 +232,11 @@ trait CampaignScopes
                 break;
             case 'date_joined':
                 // @phpstan-ignore-next-line
-                //$query->withPivot('created_at')->orderBy('pivot_created_at', 'asc');
+                $query->orderBy('pivot_created_at', 'asc');
                 break;
             case 'r_date_joined':
                 // @phpstan-ignore-next-line
-                //$query->withPivot('created_at')->orderBy('pivot_created_at', 'desc');
+                $query->orderBy('pivot_created_at', 'desc');
                 break;
             case 'r_date_created':
                 $query->orderBy('created_at', 'desc');

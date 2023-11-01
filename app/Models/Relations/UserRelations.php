@@ -57,6 +57,7 @@ trait UserRelations
     public function campaigns()
     {
         return $this->belongsToMany('App\Models\Campaign', 'campaign_user')
+            ->withPivot('created_at')
             ->using('App\Models\CampaignUser');
     }
 
@@ -65,6 +66,7 @@ trait UserRelations
     public function following()
     {
         return $this->belongsToMany('App\Models\Campaign', 'campaign_followers')
+            ->withPivot('created_at')
             ->using('App\Models\CampaignFollower');
     }
 

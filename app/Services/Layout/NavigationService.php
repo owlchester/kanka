@@ -103,7 +103,6 @@ class NavigationService
             return $data;
         }
 
-        $campaigns = $this->user->campaigns;
         $member = 0;
         foreach (UserCache::campaigns() as $campaign) {
             $data['member'][] = [
