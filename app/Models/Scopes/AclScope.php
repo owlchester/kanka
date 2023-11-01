@@ -77,9 +77,9 @@ class AclScope implements Scope
         if (auth()->check()) {
             Permissions::user(auth()->user());
         }
-        if ($model instanceof MiscModel) {
+        /*if ($model instanceof MiscModel) {
             Permissions::entityTypeID($model->entityTypeId());
-        }
+        }*/
 
         if (Permissions::isAdmin()) {
             // Check if this is a visibility entity or a global kanka entity

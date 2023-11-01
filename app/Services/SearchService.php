@@ -253,7 +253,7 @@ class SearchService
             }
             $img = '';
             if (!empty($model->image_path)) {
-                $img = '<span class="entity-image" style="background-image: url(\''
+                $img = '<span class="entity-image cover-background" style="background-image: url(\''
                     . Avatar::entity($model)->size(120)->thumbnail() . '\');"></span> ';
             }
 
