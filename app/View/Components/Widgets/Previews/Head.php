@@ -47,7 +47,7 @@ class Head extends Component
                 'wide_sm' => $this->entity->thumbnail(480, 270, 'header_image'),
                 'square' => $this->entity->thumbnail(800, 800, 'header_image'),
             ];
-        } elseif ($this->widget->conf('entity-header') && $this->campaign->boosted() && $this->widget->entity->header) {
+        } elseif ($this->widget->conf('entity-header') && $this->campaign->boosted() && $this->entity->header) {
             return [
                 'wide_xl' => $this->entity->header->getUrl(800, 450),
                 'wide_sm' => $this->entity->header->getUrl(480, 270),
