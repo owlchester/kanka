@@ -493,6 +493,7 @@ class PluginVersion extends Model
         $abilities = $entity
             ->abilities()
             ->has('ability')
+            ->has('ability.entity')
             ->with(['ability', 'ability.parent', 'ability.entity', 'ability.entity.image', 'ability.entity.tags'])
             ->get();
         $data = [];
