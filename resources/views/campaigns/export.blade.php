@@ -26,7 +26,7 @@
 
         @if ($campaign->exportable())
         <div class="text-center">
-            <button class="btn2 btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process', $campaign) }}">
+            <button class="btn2 btn-primary btn-large campaign-export-btn pull-right" data-url="{{ route('campaign.export-process', $campaign) }}">
                 <i class="fa-solid fa-download" aria-hidden="true"></i>
                 {{ __('campaigns/export.actions.export') }}
             </button>
@@ -36,5 +36,11 @@
             {{ __('campaigns/export.errors.limit') }}
         </x-alert>
         @endif
+
+        <div class="box box-solid">
+            <div id="datagrid-parent" class="table-responsive">
+                @include('layouts.datagrid._table')
+            </div>
+        </div>
     </div>
 @endsection

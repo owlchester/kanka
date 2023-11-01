@@ -213,7 +213,7 @@ class ExportService
             'download',
             'green',
             [
-                'link' => Storage::url($this->exportPath),
+                'link' => route('campaign.export', $this->campaign),
                 'time' => 60,
                 'campaign' => $this->campaign->name,
             ]

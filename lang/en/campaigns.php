@@ -468,4 +468,18 @@ TEXT
         'public'    => 'Public campaign',
         'review'    => 'Awaiting Review',
     ],
+    'exports'                      => [
+        'name'            => 'Created by',
+        'size'            => 'Size',
+        'type'            => 'Type',
+        'status'          => 'Status',
+        'status_finished' => 'Finished',
+        'status_scheduled'=> 'Scheduled',
+        'status_failed'   => 'Failed',
+        'status_running'  => 'Running',
+        'type_assets'     => 'Assets',
+        'type_entities'   => 'Entities',
+        'expired'         => 'Link expired',
+        'download'        => 'Download',
+    ],
 ];

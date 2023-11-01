@@ -28,6 +28,7 @@ use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Map;
 use App\Models\Bookmark;
+use App\Models\CampaignExport;
 use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\Plugin;
@@ -343,6 +344,11 @@ trait CampaignRelations
     public function dashboards()
     {
         return $this->hasMany(CampaignDashboard::class);
+    }
+
+    public function campaignExports()
+    {
+        return $this->hasMany(CampaignExport::class);
     }
 
     public function styles()
