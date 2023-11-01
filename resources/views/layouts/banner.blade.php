@@ -4,7 +4,7 @@
             <a href="{{ route('settings.subscription') }}">
                 {!! __('banners.kanka4years', ['code' => '<code>KANKA5YEAR</code>']) !!}
             </a>
-        </p>
+        </span>
     </div>
 @endif
 
