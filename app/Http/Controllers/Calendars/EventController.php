@@ -6,9 +6,11 @@ use App\Exceptions\TranslatableException;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCalendarEvent;
+use App\Http\Requests\ValidateReminderLength;
 use App\Models\Campaign;
 use App\Models\Calendar;
 use App\Services\CalendarService;
+use App\Services\LengthValidatorService;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -23,10 +25,12 @@ class EventController extends Controller
     use HasSubview;
 
     protected CalendarService $service;
+    protected LengthValidatorService $lengthValidatorService;
 
-    public function __construct(CalendarService $calendarService)
+    public function __construct(CalendarService $calendarService, LengthValidatorService $lengthValidatorService)
     {
         $this->service = $calendarService;
+        $this->lengthValidatorService = $lengthValidatorService;
     }
 
     public function index(Campaign $campaign, Calendar $calendar)
@@ -118,5 +122,15 @@ class EventController extends Controller
         } catch (Exception $e) {
             return redirect()->route('entities.show', $routeOptions);
         }
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function eventLength(Campaign $campaign, Calendar $calendar, ValidateReminderLength $request)
+    {
+        $this->authorize('view', $calendar);
+        return response()->json($this->lengthValidatorService->validateLength($calendar, $request));
     }
 }

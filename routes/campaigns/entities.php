@@ -119,7 +119,7 @@ Route::post('/w/{campaign}/calendars/{calendar}/event', 'Calendars\EventControll
 Route::get('/w/{campaign}/calendars/{calendar}/month-list', 'Crud\CalendarController@monthList')->name('calendars.month-list');
 Route::get('/w/{campaign}/calendars/{calendar}/events', 'Calendars\EventController@index')->name('calendars.events');
 Route::get('/w/{campaign}/calendars/{calendar}/today', 'Crud\CalendarController@today')->name('calendars.today');
-Route::get('/w/{campaign}/calendars/{calendar}/validate-length', [\App\Http\Controllers\CalendarController::class, 'eventLength'])->name('calendars.event-length');
+Route::get('/w/{campaign}/calendars/{calendar}/validate-length', [\App\Http\Controllers\Calendars\EventController::class, 'eventLength'])->name('calendars.event-length');
 
 //        Route::get('/w/{campaign}/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
 //        Route::post('/w/{campaign}/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');

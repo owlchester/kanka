@@ -22,7 +22,6 @@ class CalendarController extends CrudController
     protected string $route = 'calendars';
     protected $module = 'calendars';
 
-    protected LengthValidatorService $lengthValidatorService;
 
     /** @var string */
     protected $model = \App\Models\Calendar::class;
@@ -31,15 +30,6 @@ class CalendarController extends CrudController
     protected string $filter = CalendarFilter::class;
 
     protected string $sanitizer = CalendarSanitizer::class;
-
-    /**
-     * CalendarController constructor.
-     */
-    public function __construct(LengthValidatorService $lengthValidatorService)
-    {
-        parent::__construct();
-        $this->lengthValidatorService = $lengthValidatorService;
-    }
 
     /**
      * Store the new calendar in the db
@@ -112,15 +102,5 @@ class CalendarController extends CrudController
 
         return redirect()->back()
             ->with('success', __('calendars.edit.today'));
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function eventLength(Campaign $campaign, Calendar $calendar, ValidateReminderLength $request)
-    {
-        $this->authorize('view', $calendar);
-        return response()->json($this->lengthValidatorService->validateLength($calendar, $request));
     }
 }

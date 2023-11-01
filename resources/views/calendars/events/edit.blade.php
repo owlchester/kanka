@@ -15,7 +15,13 @@
     'centered' => true,
 ])
 @section('content')
-    {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $campaign, $entity->id, $entityEvent->id], 'data-shortcut' => '1', 'class' => 'ajax-subform', 'data-maintenance' => 1]) !!}
+    {!! Form::model($entityEvent, [
+    'method' => 'PATCH',
+    'route' => ['entities.entity_events.update', $campaign, $entity->id, $entityEvent->id],
+    'data-shortcut' => '1',
+    'class' => 'ajax-subform entity-calendar-subform',
+    'data-maintenance' => 1
+ ]) !!}
 
     @include('partials.forms.form', [
         'title' => __('calendars.event.edit.title', ['name' => link_to($entity->url(), $entity->name)]),

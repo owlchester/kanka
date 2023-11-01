@@ -15,7 +15,7 @@
         'route' => ['calendars.event.store', $campaign, $calendar->id],
         'method'=>'POST',
         'data-shortcut' => 1,
-        'class' => 'ajax-subform',
+        'class' => 'ajax-subform entity-calendar-subform',
         'data-maintenance' => 1
     ]) !!}
 
