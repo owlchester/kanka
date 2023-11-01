@@ -36,7 +36,7 @@
     'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('footer.documentation', ['target' => '_blank']))
     ]) !!}</x-helper>
                 @if (isset($model))
-                    @if (!$model->legacyBoosted())
+                    @if ($model->legacyBoosted())
                         <a href="{{ route('settings.boost') }}">Switch to premium campaigns to unlock vanity urls on campaigns.</a>
                     @else
                         <a href="{{ route('settings.premium') }}">{{ __('callouts.premium.unlock', ['campaign' => $campaign->name]) }}</a>
