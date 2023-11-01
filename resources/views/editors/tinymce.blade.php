@@ -29,11 +29,11 @@
                 delay: 250,
                 source: function(query, process, delimiter) {
                     if (delimiter === '#') {
-                        $.getJSON('{{ route('search.calendar-months') }}?q='+ query, function(data) {
+                        $.getJSON('{{ route('search.calendar-months', $campaign) }}?q='+ query, function(data) {
                             process(data)
                         })
                     } @if(!empty($model) && method_exists($model, 'hasEntity') && $model->hasEntity() && $model->entity)else if(delimiter === '{') {
-                        $.getJSON('{{ route('search.attributes', $model->entity) }}?q='+ query, function(data) {
+                        $.getJSON('{{ route('search.attributes', [$campaign, $model->entity]) }}?q='+ query, function(data) {
                             process(data)
                         })
                     }@endif else {
@@ -42,7 +42,7 @@
                         } else {
                             advancedRequest = false;
                         }
-                        $.getJSON('{{ route('search.live') }}?q='+ query + '&new=1', function(data) {
+                        $.getJSON('{{ route('search.live', $campaign) }}?q='+ query + '&new=1', function(data) {
                             process(data)
                         })
                     }
