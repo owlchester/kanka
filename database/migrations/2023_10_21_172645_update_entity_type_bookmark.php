@@ -9,6 +9,9 @@ return new class () extends Migration {
     public function up(): void
     {
         $type = \App\Models\EntityType::find(config('entities.ids.bookmark'));
+        if (!$type) {
+            return;
+        }
         $type->code = 'bookmark';
         $type->save();
     }
