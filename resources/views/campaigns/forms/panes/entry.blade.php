@@ -35,8 +35,15 @@
     'example' => '<code>w/exandria-unlimited</code>',
     'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('footer.documentation', ['target' => '_blank']))
     ]) !!}</x-helper>
-
-                <input type="text" maxlength="45" name="" class="w-full" readonly="readonly" />
+                @if (isset($model))
+                    @if (!$model->legacyBoosted())
+                        <a href="{{ route('settings.boost') }}">Switch to premium campaigns to unlock vanity urls on campaigns.</a>
+                    @else
+                        <a href="{{ route('settings.premium') }}">{{ __('callouts.premium.unlock', ['campaign' => $campaign->name]) }}</a>
+                    @endif
+                @else
+                    <input type="text" maxlength="45" name="" class="w-full" readonly="readonly" />
+                @endif
             @endif
         </x-forms.field>
 

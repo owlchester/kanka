@@ -33,6 +33,11 @@ trait Boosted
         return $this->boosted(true);
     }
 
+    public function legacyBoosted(): bool
+    {
+        return $this->boost_count > 0 && $this->boost_count < 4;
+    }
+
     /**
      * Determine if a campaign is premium
      */
