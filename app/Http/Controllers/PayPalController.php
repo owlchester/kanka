@@ -44,7 +44,6 @@ class PayPalController extends Controller
 
     /**
      * Process a successful transaction
-     * @param Request $request
      */
     public function successTransaction(Request $request)
     {

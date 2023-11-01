@@ -72,6 +72,7 @@ TEXT
         'superboosted'                      => 'Superboosté par',
         'system'                            => 'Système',
         'theme'                             => 'Thème',
+        'vanity'                            => 'URL unique',
         'visibility'                        => 'Visibilité',
     ],
     'following'                         => 'Suivant',
@@ -154,7 +155,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Aide',
             'remove'        => 'Retirer de la campagne',
             'switch'        => 'Basculer',
             'switch-back'   => 'Retour à mon compte',
@@ -174,10 +174,8 @@ TEXT
             'role'          => 'Rôle',
             'roles'         => 'Rôles',
         ],
-        'help'                  => 'Il n\'y a pas de limite sur le nombre de membres dans une campagne. En tant qu\'Admin d\'une campagne, tu peux retirer un membre qui n\'est plus actif à tout moment.',
         'helpers'               => [
-            'admin' => 'En tant que membre du rôle admin de la campagne, tu peux inviter de nouveaux membres, enlever ceux qui sont inactifs, et changer leurs permissions. Pour tester les permissions d\'un membre, utilise le bouton Basculer. Plus d\'infos sous :link.',
-            'switch'=> 'Basculer vers cet utilisateur',
+            'switch'    => 'Basculer vers cet utilisateur',
         ],
         'impersonating'         => [
             'message'   => 'Tu visualises la campagne en tant qu\'un autre utilisateur. Certaines fonctionnalités ont été désactivées, mais le reste réagit exactement tel que l\'utilisateur le verrait. Tu peux revenir à ton utilisateur en cliquant sur le bouton "Retour à mon compte" situé à l\'emplacement du bouton de déconnexion.',
@@ -368,6 +366,7 @@ TEXT
         ],
         'helpers'       => [
             'abilities'         => 'Créer des pouvoirs, compétences, sorts, etc. qui peuvent être assignés aux entités.',
+            'bookmarks'         => 'Créer des',
             'calendars'         => 'Un endroit pour définir les calendriers de ton monde.',
             'characters'        => 'Les personnages de ton monde.',
             'conversations'     => 'Conversations fictives entre des personnages ou entre membres de la campagne.',
@@ -381,7 +380,6 @@ TEXT
             'journals'          => 'Observations écrites par des personnages, ou préparation de session pour le maître de jeu.',
             'locations'         => 'Planètes, plaines, continents, rivières, pays, temples, tavernes.',
             'maps'              => 'Ajouter des cartes et y ajouter des couches et des marqueurs pointant vers des entités de la campagne.',
-            'menu_links'        => 'Liens personnalisés dans la navigation.',
             'notes'             => 'Histoires, légendes, religions, magie, races.',
             'organisations'     => 'Cultes, unités militaires, factions, guildes.',
             'quests'            => 'Gestionnaire de quêtes avec personnages et lieux.',
@@ -409,14 +407,16 @@ TEXT
             'achievements'      => 'Accomplissements',
             'applications'      => 'Applications',
             'campaign'          => 'Campagne',
+            'customisation'     => 'Personnalisation',
             'default-images'    => 'Image par défaut',
             'export'            => 'Export',
             'information'       => 'Information',
+            'management'        => 'Gestion',
             'members'           => 'Membres',
+            'modules'           => 'Modules',
             'plugins'           => 'Plugins',
             'recovery'          => 'Récupération',
             'roles'             => 'Rôles',
-            'settings'          => 'Modules',
             'sidebar'           => 'Navigation',
             'styles'            => 'Thèmage',
         ],
@@ -474,9 +474,5 @@ TEXT
         'public'    => 'Publique',
         'review'    => 'En attente de revue',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Quelqu\'un d\'autre est en train de modifier la campagne! Souhaites-tu revenir en arrière ou ignorer cet avertissement, au risque de perdre des données? Les membres éditant actuellement cette campagne sont:',
-        ],
-    ],
+    'warning'                           => [],
 ];

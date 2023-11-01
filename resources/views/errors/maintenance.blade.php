@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    @include('layouts._tracking', ['noads' => true])
+    @include('layouts.tracking.tracking', ['noads' => true])
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,8 +30,7 @@
     <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
-    <!-- Bootstrap core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppin">
 </head>
 
 <body id="page-top">
@@ -41,75 +40,33 @@
 <noscript id="deferred-styles">
 </noscript>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="{{ (auth()->check() ? route('front.home') : route('home')) }}">
-            <img class="d-none d-lg-block" src="{{ Img::crop(95, 32)->new()->url('app/logos/text-white.png') }}" title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
-            <img class="d-xl-none d-lg-none" src="{{ Img::crop(95, 32)->new()->url('app/logos/text-blue.png') }}" title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
-        </a>
+@include('layouts.front.nav', ['minimal' => true])
 
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-    </div>
-</nav>
+<section class="bg-purple text-white gap-16">
+    <div class="px-6 py-20 lg:max-w-7xl mx-auto text-center flex flex-col gap-8">
+        <div class="hidden">
+            <h2 id="maintenance">Server maintenance</h2>
 
-<section class="error" id="error-503">
-    <div class="container">
-        <div class="section-body mt-5">
-            <div class="row">
-                <div class="col-12 col-sm-6" style="display: none">
-                    <h1 class="display-4" id="maintenance">Server maintenance</h1>
+            <p class="lg:max-w-2xl mx-auto text-center">Kanka is currently unavailable due to planned server maintenance.</p>
+            <p class="lg:max-w-2xl mx-auto text-center">This maintenance is planned to last from <a href="https://everytimezone.com/s/fce7c091" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 14:00 UTC</a> to 16:00 UTC.</p>
 
-                    <p class="lead">Kanka is currently unavailable due to planned server maintenance.</p>
-                    <p class="lead">This maintenance is planned to last from <a href="https://everytimezone.com/s/fce7c091" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 14:00 UTC</a> to 16:00 UTC.</p>
+            <p class="lg:max-w-2xl mx-auto text-center">Join us over on our {!! link_to(config('social.discord'), 'Discord') !!} to be notified as soon as the maintenance is over.</p>
+        </div>
+        <div>
+            <h2 id="maintenance">{{ __('errors.503.title') }}</h2>
 
-                    <p class="lead">Join us over on our {!! link_to(config('social.discord'), 'Discord') !!} to be notified as soon as the maintenance is over.</p>
-                </div>
-
-                <div class="col-12 col-sm-6">
-
-                    <h1 class="display-4" id="maintenance">{{ __('errors.503.title') }}</h1>
-
-                    <p class="lead">{{ __('errors.503.body.1') }}</p>
-                    <p class="lead">{{ __('errors.503.body.2') }}</p>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <img src="/images/svgs/503.svg" alt="Error 503 image" />
-                </div>
-            </div>
+            <p class="lg:max-w-2xl mx-auto text-center">{{ __('errors.503.body.1') }}</p>
+            <p  class="lg:max-w-2xl mx-auto text-center">{{ __('errors.503.body.2') }}</p>
         </div>
     </div>
+</section>
+
+<section class="max-w-2xl mx-auto flex flex-col gap-10 lg:gap-10 py-10 lg:py-12 px-4 xl:px-0 text-dark">
+    <img src="/images/errors/maintenance.jpeg" alt="Maintenance" class="rounded-2xl" />
 </section>
 
 @yield('content')
 
 @includeWhen(Route::has('home'), 'front.footer')
-
-
-<!-- Bootstrap core JavaScript -->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
-<script>
-    WebFont.load({
-        google: {
-            families: ['Lato', 'Catamaran:100,200,300,400,500,600,700,800,900']
-        }
-    });
-    var loadDeferredStyles = function() {
-        var addStylesNode = document.getElementById("deferred-styles");
-        var replacement = document.createElement("div");
-        replacement.innerHTML = addStylesNode.textContent;
-        document.body.appendChild(replacement);
-        addStylesNode.parentElement.removeChild(addStylesNode);
-    };
-    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-            webkitRequestAnimationFrame || msRequestAnimationFrame;
-    if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-    else window.addEventListener('load', loadDeferredStyles);
-</script>
 </body>
 </html>

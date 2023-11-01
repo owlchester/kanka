@@ -1,33 +1,44 @@
 {{ csrf_field() }}
 
 <x-grid>
-    <div class="field-weather col-span-2 required">
-        <label>{{ __('calendars/weather.fields.weather') }}</label>
-        {!! Form::select('weather', __('calendars/weather.options.weather'), null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="field-name col-span-2">
-        <label>{{ __('calendars/weather.fields.name') }}</label>
-        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('calendars/weather.placeholders.name'), 'maxlength' => 40]) !!}
-    </div>
-    <div class="field-temperature">
-        <label>{{ __('calendars/weather.fields.temperature') }}</label>
-        {!! Form::text('temperature', null, ['class' => 'form-control', 'placeholder' => __('calendars/weather.placeholders.temperature')]) !!}
-    </div>
+    <x-forms.field
+        field="weather"
+        css="col-span-2"
+        :required="true"
+        :label="__('calendars/weather.fields.weather')">
+        {!! Form::select('weather', __('calendars/weather.options.weather'), null, ['class' => 'w-full']) !!}
+    </x-forms.field>
 
-    <div class="field-precipitation">
-        <label>{{ __('calendars/weather.fields.precipitation') }}</label>
-        {!! Form::text('precipitation', null, ['class' => 'form-control', 'placeholder' => __('calendars/weather.placeholders.precipitation')]) !!}
-    </div>
+    <x-forms.field
+        field="name"
+        css="col-span-2"
+        :label="__('calendars/weather.fields.name')">
+        {!! Form::text('name', null, ['class' => 'w-full', 'placeholder' => __('calendars/weather.placeholders.name'), 'maxlength' => 40]) !!}
+    </x-forms.field>
 
-    <div class="field-winds">
-        <label>{{ __('calendars/weather.fields.wind') }}</label>
-        {!! Form::text('wind', null, ['class' => 'form-control', 'placeholder' => __('calendars/weather.placeholders.wind')]) !!}
-    </div>
+    <x-forms.field
+        field="temperature"
+        :label="__('calendars/weather.fields.temperature')">
+        {!! Form::text('temperature', null, ['class' => 'w-full', 'placeholder' => __('calendars/weather.placeholders.temperature')]) !!}
+    </x-forms.field>
 
-    <div class="field-effect">
-        <label>{{ __('calendars/weather.fields.effect') }}</label>
-        {!! Form::text('effect', null, ['class' => 'form-control', 'placeholder' => __('calendars/weather.placeholders.effect')]) !!}
-    </div>
+    <x-forms.field
+        field="precipitation"
+        :label="__('calendars/weather.fields.precipitation')">
+        {!! Form::text('precipitation', null, ['class' => 'w-full', 'placeholder' => __('calendars/weather.placeholders.precipitation')]) !!}
+    </x-forms.field>
+
+    <x-forms.field
+        field="winds"
+        :label="__('calendars/weather.fields.wind')">
+        {!! Form::text('wind', null, ['class' => 'w-full', 'placeholder' => __('calendars/weather.placeholders.wind')]) !!}
+    </x-forms.field>
+
+    <x-forms.field
+        field="effect"
+        :label="__('calendars/weather.fields.effect')">
+        {!! Form::text('effect', null, ['class' => 'w-full', 'placeholder' => __('calendars/weather.placeholders.effect')]) !!}
+    </x-forms.field>
 
 @include('cruds.fields.visibility_id', ['model' => $weather ?? null])
 </x-grid>

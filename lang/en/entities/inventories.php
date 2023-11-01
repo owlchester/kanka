@@ -22,6 +22,7 @@ return [
     ],
     'helpers'       => [
         'copy_entity_entry' => 'Display the item\'s entry instead of the custom description.',
+        'is_equipped'       => 'Mark this items as being equipped.',
     ],
     'placeholders'  => [
         'amount'        => 'Any amount',
@@ -34,6 +35,7 @@ return [
         'title'     => ':name Inventory',
         'unsorted'  => 'Unsorted',
     ],
+    'tutorial'      => 'Keep track of what an entity processes with by adding items to its inventory.',
     'update'        => [
         'success'   => 'Item :item updated for :entity.',
         'title'     => 'Update an item on :name',

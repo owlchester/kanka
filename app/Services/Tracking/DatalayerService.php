@@ -8,19 +8,18 @@ class DatalayerService
     protected $group = false;
 
     /** @var array Extra parameters to pass */
-    protected $additional = [];
+    protected array $additional = [];
 
     /** @var bool If the user is newly created */
-    protected $newAccount = false;
+    protected bool $newAccount = false;
 
     /** @var bool If the user is newly registered */
-    protected $newSubcriber = false;
+    protected bool $newSubcriber = false;
 
     /** @var bool If the user is newly cancelled */
-    protected $newCancelledSubcriber = false;
+    protected bool $newCancelledSubcriber = false;
 
     /**
-     * @return string
      */
     public function base(): string
     {
@@ -49,7 +48,6 @@ class DatalayerService
     }
 
     /**
-     * @return string
      */
     public function userGroup(): string
     {
@@ -74,7 +72,6 @@ class DatalayerService
     }
 
     /**
-     * @return bool
      */
     public function groupB(): bool
     {
@@ -82,8 +79,6 @@ class DatalayerService
     }
 
     /**
-     * @param string $key
-     * @param mixed $value
      * @return $this
      */
     public function add(string $key, mixed $value): self
@@ -93,7 +88,6 @@ class DatalayerService
     }
 
     /**
-     * @return string
      */
     protected function route(): string
     {

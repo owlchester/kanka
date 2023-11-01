@@ -9,8 +9,6 @@ class SetupService
     /**
      * Get the icon associated to an entity type. Later one, we can
      * hook the campaign sidebar config to get the icon instead.
-     * @param int $type
-     * @return string
      */
     public function icon(int $type): string
     {
@@ -51,7 +49,7 @@ class SetupService
                 return 'fa-solid fa-map';
             case 18: // timeline
                 return 'fa-solid fa-hourglass-half';
-            case 19: // menu link
+            case 19: // bookmark
                 return 'fa-solid fa-star';
             case 20: // creature
                 return 'ra ra-raven';
@@ -62,8 +60,6 @@ class SetupService
 
     /**
      * Get the plural name of an entity
-     * @param int $entity
-     * @return string
      */
     public function plural(int $entity): string
     {
@@ -77,8 +73,6 @@ class SetupService
 
     /**
      * Get the singular name of an entity
-     * @param int $entity
-     * @return string
      */
     public function singular(int $entity): string
     {

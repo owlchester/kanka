@@ -2,28 +2,30 @@
     'title' => trans('entities/abilities.update.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => $entity->url(), 'label' => $entity->name],
-        ['url' => route('entities.entity_abilities.index', $entity->id), 'label' => trans('crud.tabs.abilities')],
-    ]
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
+        ['url' => route('entities.entity_abilities.index', [$campaign, $entity]), 'label' => __('entities.ability')],
+    ],
+    'centered' => true,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     {!! Form::model($ability, [
-        'route' => ['entities.entity_abilities.update', $entity->id, $ability],
+        'route' => ['entities.entity_abilities.update', $campaign, $entity->id, $ability],
         'method' => 'PATCH',
-        'data-shortcut' => 1
+        'data-shortcut' => 1,
+        'class' => 'ajax-subform',
     ]) !!}
 
     @include('partials.forms.form', [
             'title' => __('entities/abilities.update.title', ['name' => $entity->name]),
             'content' => 'entities.pages.abilities._edit_form',
             'deleteID' => '#delete-ability-' . $ability->id,
+        'dialog' => true,
         ])
     {!! Form::close() !!}
 
-    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_abilities.destroy', 'entity' => $entity, 'entity_ability' => $ability], 'style' => 'display:inline', 'id' => 'delete-ability-' . $ability->id]) !!}
+    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_abilities.destroy', $campaign, 'entity' => $entity, 'entity_ability' => $ability], 'style' => 'display:inline', 'id' => 'delete-ability-' . $ability->id]) !!}
     {!! Form::close() !!}
 @endsection

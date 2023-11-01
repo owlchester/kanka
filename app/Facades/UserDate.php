@@ -5,8 +5,8 @@ namespace App\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @mixin \App\Services\UserDateService
- * @see \App\Services\UserDateService
+ * @mixin \App\Services\Users\DateService
+ * @see \App\Services\Users\DateService
  */
 class UserDate extends Facade
 {

@@ -16,7 +16,7 @@
                         {{ __('crud.fields.entity') }}
                         <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
                     @else
-                        <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'name']) }}">
+                        <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'name']) }}">
                             {{ __('crud.fields.name') }}
                         </a>
                     @endif
@@ -27,7 +27,7 @@
 
                         <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
                     @else
-                    <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'type_id']) }}">
+                    <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'type_id']) }}">
                         {{ __('crud.fields.entity_type') }}
                     </a>
                     @endif
@@ -45,7 +45,7 @@
                         {!! $connection->tooltipedLink() !!}
 
                         @if ($connection->type() == 'map')
-                            <a href="{{ route('maps.explore', $connection->entity_id) }}" class="btn2 btn-xs btn-primary" target="_blank">
+                            <a href="{{ route('maps.explore', [$campaign, $connection->entity_id]) }}" class="btn2 btn-xs btn-primary" target="_blank">
                                 <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
                             </a>
                         @endif

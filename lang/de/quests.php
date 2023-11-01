@@ -23,16 +23,12 @@ return [
             'entity_or_name'    => 'Wählen Sie entweder ein Objekt der Kampagne aus oder geben Sie diesem Element einen Namen.',
             'name'              => 'Name',
         ],
-        'warning'   => [
-            'editing'   => [
-                'description'   => 'Es sieht so aus, als ob gerade jemand anderes diese Quest bearbeitet! Möchtest du zurückgehen oder diese Warnung ignorieren, auf die Gefahr hin, dass Daten verloren gehen? Mitglieder, die diese Quest derzeit bearbeiten:',
-            ],
-        ],
     ],
     'fields'        => [
         'copy_elements' => 'Kopiere Elemente, die an die Queste angehängt sind',
         'date'          => 'Datum',
         'element_role'  => 'Rolle',
+        'instigator'    => 'Impulsgeber',
         'is_completed'  => 'Abgeschlossen',
         'role'          => 'Rolle',
     ],

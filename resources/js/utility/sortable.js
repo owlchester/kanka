@@ -1,26 +1,22 @@
 import Sortable from 'sortablejs';
 
 window.initSortable = function() {
-
-    var dragndropArea = document.querySelectorAll('.sortable-elements'), i;
+    let dragndropArea = document.querySelectorAll('.sortable-elements');
     if (dragndropArea.length === 0) {
         return;
     }
-    for (i = 0; i < dragndropArea.length; ++i) {
+    dragndropArea.forEach((el) => {
         let options = {};
 
         // Handle?
-        let handle = dragndropArea[i].getAttribute('data-handle');
+        let handle = el.dataset.handle;
         if (handle) {
             options.handle = handle;
         }
 
-        //console.log('re-init', dragndropArea[i]);
-        Sortable.create(dragndropArea[i], options);
-    }
-}
+        Sortable.create(el, options);
+    });
+};
 
-$(document).ready(() => {
-    window.initSortable();
-});
+window.initSortable();
 

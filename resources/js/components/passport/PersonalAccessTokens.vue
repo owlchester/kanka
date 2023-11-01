@@ -3,53 +3,49 @@
 
 <template>
     <div class="">
-        <div>
-            <div class="">
-                <div class="">
-                    <div class="flex justify-between items-center">
-                        <span class="text-lg">
-                            Personal Access Tokens
-                        </span>
+        <div class="flex flex-col gap-5">
+            <div class="flex justify-between items-center">
+                <span class="text-lg">
+                    Personal Access Tokens
+                </span>
 
-                        <a class="btn2 btn-primary btn-outline btn-sm" tabindex="-1" @click="showCreateTokenForm">
-                            Create New Token
-                        </a>
-                    </div>
-                </div>
-
-                <div class="">
-                    <!-- No Tokens Notice -->
-                    <p class="mb-0" v-if="tokens.length === 0">
-                        You have not created any personal access tokens.
-                    </p>
-
-                    <!-- Personal Access Tokens -->
-                    <table class="table table-borderless mb-0 w-full" v-if="tokens.length > 0">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr v-for="token in tokens">
-                                <!-- Client Name -->
-                                <td style="vertical-align: middle;">
-                                    {{ token.name }}
-                                </td>
-
-                                <!-- Delete Button -->
-                                <td class="text-right" style="vertical-align: middle;">
-                                    <a class="btn2 btn-error btn-outline btn-xs" @click="revoke(token)">
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <a class="btn2 btn-primary btn-outline btn-sm" tabindex="-1" @click="showCreateTokenForm">
+                    Create New Token
+                </a>
             </div>
+
+            <!-- No Tokens Notice -->
+            <p class="" v-if="tokens.length === 0">
+                You have not created any personal access tokens.
+            </p>
+
+            <!-- Personal Access Tokens -->
+            <table class="table table-borderless mb-0 w-full" v-if="tokens.length > 0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr v-for="token in tokens">
+                        <!-- Client Name -->
+                        <td style="vertical-align: middle;">
+                            {{ token.name }}
+                        </td>
+
+                        <td class="text-right" style="vertical-align: middle;">
+                            <a class="btn2 btn-error btn-outline btn-xs" @click="deleteConfirm(token)" v-if="!this.confirmToken || this.confirmToken.id != token.id">
+                                Delete
+                            </a>
+                            <a class="btn2 btn-error btn-xs" @click="deleteConfirm(token)" v-else>
+                                Confirm delete
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Create Token Modal -->
@@ -77,7 +73,7 @@
                 </div>
 
                 <!-- Create Token Form -->
-                <form role="form" class="w-full mb-5" @submit.prevent="store">
+                <form role="form" class="w-full mb-5" @submit.prevent="store" autocomplete="off">
                     <!-- Name -->
                     <label class="font-extrabold required">Token name</label>
 
@@ -85,7 +81,7 @@
 
 
                     <!-- Scopes -->
-                    <div class="form-group row" v-if="scopes.length > 0">
+                    <div class="form-group grid grid-cols-2 gap-4" v-if="scopes.length > 0">
                         <label class="col-md-4 col-form-label">Scopes</label>
 
                         <div class="col-md-6">
@@ -149,6 +145,7 @@
 
                 tokens: [],
                 scopes: [],
+                confirmToken: null,
 
                 form: {
                     name: '',
@@ -272,6 +269,7 @@
                 axios.delete('/oauth/personal-access-tokens/' + token.id)
                         .then(response => {
                             this.getTokens();
+                            window.showToast('API token deleted succesfully.');
                         });
             },
 
@@ -290,6 +288,12 @@
             closeModal(ref) {
                 this.$refs[ref].close();
             },
+            deleteConfirm(token) {
+                if(this.confirmToken && token.id === this.confirmToken.id) {
+                    return this.revoke(token);
+                }
+                this.confirmToken = token;
+            }
         }
     }
 </script>

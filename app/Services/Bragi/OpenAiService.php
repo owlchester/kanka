@@ -8,10 +8,10 @@ use Orhanerday\OpenAi\OpenAi;
 
 class OpenAiService
 {
-    /** @var string */
+    /**  */
     protected string $prompt;
 
-    /** @var string */
+    /**  */
     protected ?string $name;
     protected ?string $pronouns = null;
     protected ?string $gender = null;
@@ -19,8 +19,6 @@ class OpenAiService
     protected mixed $output;
 
     /**
-     * @param string $prompt
-     * @param array $context
      */
     public function input(string $prompt, array $context = []): self
     {
@@ -33,7 +31,6 @@ class OpenAiService
     }
 
     /**
-     * @return array
      */
     public function generate(): array
     {
@@ -66,7 +63,6 @@ class OpenAiService
 
     /**
      * Generate the prompt to send to ChatGTP
-     * @return array
      */
     protected function preparePrompt(): array
     {

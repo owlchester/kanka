@@ -28,7 +28,7 @@ class CampaignSetting extends Model
         'calendars',
         'tags',
         'dice_rolls',
-        'menu_links',
+        'bookmarks',
         'conversations',
         'races',
         'maps',
@@ -47,7 +47,6 @@ class CampaignSetting extends Model
 
     /**
      * Count the number of activated modules
-     * @return int
      */
     public function countEnabledModules(): int
     {

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Traits\VisibilityIDTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 class Inventory extends Model
 {
     use VisibilityIDTrait;
+
     /**
      * Fillable fields
      */
@@ -42,7 +43,6 @@ class Inventory extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -50,7 +50,6 @@ class Inventory extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function item(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -68,23 +67,19 @@ class Inventory extends Model
 
     /**
      * List of recently used positions for the form suggestions
-     * @return mixed
      */
-    public static function positionList()
+    public function scopePositionList(Builder $builder, Campaign $campaign): Builder
     {
-        $campaign = CampaignLocalization::getCampaign();
-        return self::groupBy('position')
+        return $builder->groupBy('position')
             ->whereNotNull('position')
             ->leftJoin('entities as e', 'e.id', 'inventories.entity_id')
             ->where('e.campaign_id', $campaign->id)
             ->orderBy('position', 'ASC')
             ->limit(20)
-            ->pluck('position')
-            ->all();
+        ;
     }
 
     /**
-     * @return string
      */
     public function itemName(): string
     {
@@ -96,7 +91,6 @@ class Inventory extends Model
 
     /**
      * Copy an entity inventory to another target
-     * @param Entity $target
      */
     public function copyTo(Entity $target)
     {

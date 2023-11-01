@@ -32,8 +32,6 @@ class SubscriptionCreatedEmailJob implements ShouldQueue
 
     /**
      * WelcomeEmailJob constructor.
-     * @param User $user
-     * @param string $period
      * @param bool $new if it's a new sub or a changed sub
      */
     public function __construct(User $user, string $period = 'monthly', bool $new = true)

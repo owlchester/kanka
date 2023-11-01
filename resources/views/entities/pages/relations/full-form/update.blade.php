@@ -1,14 +1,22 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __($langKey . '.update.title', ['name' => $relation->relation]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $langKey)],
+        ['url' => Breadcrumb::index($name), 'label' => __('entities.relations')],
         __('crud.update'),
-    ]
+    ],
+    'centered' => true,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
-    {!! Form::model($relation, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['relations.update', $relation], 'data-shortcut' => '1', 'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null), 'id' => 'entity-form', 'data-maintenance' => 1]) !!}
+    {!! Form::model($relation, [
+    'method' => 'PATCH',
+    'enctype' => 'multipart/form-data',
+    'route' => ['relations.update', $campaign, $relation],
+    'data-shortcut' => '1',
+    'class' => 'entity-form',
+    'id' => 'entity-form',
+    'data-maintenance' => 1
+    ]) !!}
 @endsection
 
 @section('content')

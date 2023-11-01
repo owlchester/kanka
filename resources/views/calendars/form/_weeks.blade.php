@@ -1,19 +1,14 @@
 <?php /** @var \App\Models\Calendar $model */?>
 
 <x-grid>
-    <div>
-        <div class="flex flex-col xl:flex-row gap-2 mb-2 items-center">
-            <div class="required grow mb-0">
-                <label>{{ __('calendars.fields.weekdays') }}</label>
-                <p class="help-block">{{ __('calendars.hints.weekdays') }}</p>
-                <input type="hidden" name="weekday" />
-            </div>
-            <div>
-                <button class="btn2 btn-sm dynamic-row-add" data-template="template_weekday" data-target="calendar-weekdays" title="{{ __('calendars.actions.add_weekday') }}">
-                    <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_weekday') }}
-                </button>
-            </div>
-        </div>
+    <x-grid type="1/1">
+        <x-forms.field field="weeks" :required="true" :label="__('calendars.fields.weekdays')" :helper="__('calendars.hints.weekdays')">
+            <input type="hidden" name="weekday" />
+        </x-forms.field>
+
+        <button class="btn2 btn-sm dynamic-row-add" data-template="template_weekday" data-target="calendar-weekdays" title="{{ __('calendars.actions.add_weekday') }}">
+            <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_weekday') }}
+        </button>
 
         <?php
         $weekdays = [];
@@ -31,14 +26,14 @@
         } ?>
         <div class="calendar-weekdays sortable-elements" data-handle=".sortable-handler">
             @foreach ($weekdays as $weekday)
-                <div class="parent-delete-row mb-1">
+                <div class="parent-delete-row">
                     <div class="flex items-center gap-2">
                         <div class="sortable-handler p-2 cursor-move">
                             <x-icon class="fa-solid fa-grip-vertical" />
                         </div>
-                        <div class="grow">
+                        <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
-                            {!! Form::text('weekday[]', $weekday, ['class' => 'form-control']) !!}
+                            {!! Form::text('weekday[]', $weekday, ['class' => 'w-full']) !!}
                         </div>
                         <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                             <x-icon class="trash"></x-icon>
@@ -48,23 +43,17 @@
                 </div>
             @endforeach
         </div>
-    </div>
-    <div>
-        <div class="flex flex-col xl:flex-row gap-2 mb-2 items-center">
-            <div class="grow mb-0">
-                <label>{{ __('calendars.fields.week_names') }}</label>
-                <p class="help-block">{{ __('calendars.hints.weeks') }}</p>
-            </div>
-            <div>
-                <button class="btn2 btn-sm btn-sm dynamic-row-add" data-template="template_week" data-target="calendar-weeks" title="{{ __('calendars.actions.add_week') }}">
-                    <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_week') }}
-                </button>
-            </div>
-        </div>
-        <x-grid>
-            <div>{{ __('calendars.parameters.weeks.number') }}</div>
-            <div>{{ __('calendars.parameters.weeks.name') }}</div>
-        </x-grid>
+    </x-grid>
+
+    <x-grid type="1/1">
+        <x-forms.field field="week-names" :label="__('calendars.fields.week_names')" :helper="__('calendars.hints.weeks')">
+        </x-forms.field>
+
+        <button class="btn2 btn-sm dynamic-row-add" data-template="template_week" data-target="calendar-weeks" title="{{ __('calendars.actions.add_week') }}">
+            <x-icon class="plus"></x-icon>
+            {{ __('calendars.actions.add_week') }}
+        </button>
+
         <?php
         $weeks = [];
         $numbers = old('week_number');
@@ -82,23 +71,27 @@
         } elseif (isset($source)) {
             $weeks = $source->weeks();
         } ?>
-        <div class="calendar-weeks sortable-elements"  data-handle=".sortable-handler">
+        <div class="flex flex-col gap-2 calendar-weeks sortable-elements"  data-handle=".sortable-handler">
+            <x-grid>
+                <div>{{ __('calendars.parameters.weeks.number') }}</div>
+                <div>{{ __('calendars.parameters.weeks.name') }}</div>
+            </x-grid>
             @foreach ($weeks as $week => $name)
-                <div class="parent-delete-row mb-1">
+                <div class="parent-delete-row ">
                     <div class="grid grid-cols-2 gap-2">
                         <div class="flex items-center gap-2">
                             <div class="sortable-handler p-2 cursor-move">
                                 <x-icon class="fa-solid fa-grip-vertical" />
                             </div>
-                            <div class="grow">
+                            <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.weeks.number') }}</label>
-                                {!! Form::text('week_number[]', $week, ['class' => 'form-control']) !!}
+                                {!! Form::text('week_number[]', $week, ['class' => 'w-full']) !!}
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            <div class="grow">
+                            <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
-                                {!! Form::text('week_name[]', $name, ['class' => 'form-control']) !!}
+                                {!! Form::text('week_name[]', $name, ['class' => 'w-full']) !!}
                             </div>
                             <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                                 <x-icon class="trash" />
@@ -109,44 +102,44 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </x-grid>
 </x-grid>
 
 @section('modals')
     @parent
-    <div id="template_weekday" style="display: none">
-        <div class="parent-delete-row mb-1">
+    <template id="template_weekday">
+        <div class="parent-delete-row">
             <div class="flex items-center gap-2">
                 <div class="sortable-handler p-2 cursor-move">
                     <x-icon class="fa-solid fa-grip-vertical" />
                 </div>
-                <div class="grow">
+                <div class="grow field">
                     <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
-                    {!! Form::text('weekday[]', null, ['class' => 'form-control', 'aria-label' => __('calendars.parameters.weeks.name')]) !!}
+                    {!! Form::text('weekday[]', null, ['class' => 'w-full', 'aria-label' => __('calendars.parameters.weeks.name')]) !!}
                 </div>
                 <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                     <x-icon class="trash" />
                 </div>
             </div>
         </div>
-    </div>
+    </template>
 
-    <div id="template_week" style="display: none">
-        <div class="parent-delete-row mb-1">
+    <template id="template_week">
+        <div class="parent-delete-row ">
             <div class="grid grid-cols-2 gap-2">
                 <div class="flex items-center gap-2">
                     <div class="sortable-handler p-2 cursor-move">
                         <x-icon class="fa-solid fa-grip-vertical" />
                     </div>
-                    <div class="grow">
+                    <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.weeks.number') }}</label>
-                        {!! Form::number('week_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.number')]) !!}
+                        {!! Form::number('week_number[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.weeks.number')]) !!}
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
-                    <div class="grow">
+                    <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
-                        {!! Form::text('week_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.name')]) !!}
+                        {!! Form::text('week_name[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.weeks.name')]) !!}
                     </div>
                     <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                         <x-icon class="trash" />
@@ -155,5 +148,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </template>
 @endsection

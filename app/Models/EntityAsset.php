@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id
@@ -30,8 +31,10 @@ class EntityAsset extends Model
 {
     use Blameable;
     use EntityAssetScopes;
+    use HasFactory;
     use Pinnable;
     use VisibilityIDTrait;
+
     public const TYPE_FILE = 1;
     public const TYPE_LINK = 2;
     public const TYPE_ALIAS = 3;
@@ -59,7 +62,6 @@ class EntityAsset extends Model
 
     /**
      * Determine if the asset is a file
-     * @return bool
      */
     public function isFile(): bool
     {
@@ -68,7 +70,6 @@ class EntityAsset extends Model
 
     /**
      * Determine if the asset is a link
-     * @return bool
      */
     public function isLink(): bool
     {
@@ -77,7 +78,6 @@ class EntityAsset extends Model
 
     /**
      * Determine if the asset is an alias
-     * @return bool
      */
     public function isAlias(): bool
     {
@@ -86,7 +86,6 @@ class EntityAsset extends Model
 
     /**
      * Determine if the file is an image
-     * @return bool
      */
     public function isImage(): bool
     {
@@ -95,7 +94,6 @@ class EntityAsset extends Model
 
     /**
      * Get the image's url
-     * @return string
      */
     public function imageUrl(): string
     {
@@ -104,7 +102,6 @@ class EntityAsset extends Model
 
     /**
      * Get the fontawesome custom icon
-     * @return string
      */
     public function icon(): string
     {
@@ -121,7 +118,6 @@ class EntityAsset extends Model
 
     /**
      * A virtual getter for the image path for the image observer delete loop
-     * @return string
      */
     public function getImagePathAttribute(): string
     {
@@ -130,8 +126,6 @@ class EntityAsset extends Model
 
     /**
      * Copy the asset to another target
-     * @param Entity $target
-     * @return bool
      */
     public function copyTo(Entity $target): bool
     {
@@ -142,7 +136,6 @@ class EntityAsset extends Model
 
     /**
      * Get the url's domain (skip the rest)
-     * @return string
      */
     public function urlDomain(): string
     {

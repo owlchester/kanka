@@ -2,6 +2,7 @@
 
 namespace App\Providers\Logs;
 
+use App\Facades\CampaignLocalization;
 use App\Services\Logs\ApiLogService;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,10 +16,13 @@ class ApiLogServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(\App\Services\Logs\ApiLogService::class, function () {
-            return new ApiLogService();
+            $service = new ApiLogService();
+            if (CampaignLocalization::hasCampaign()) {
+                $service->campaign(CampaignLocalization::getCampaign());
+            }
+            return $service;
         });
 
         $this->app->alias(ApiLogService::class, 'api_log');
     }
-
 }

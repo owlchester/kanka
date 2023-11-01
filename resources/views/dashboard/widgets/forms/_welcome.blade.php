@@ -1,3 +1,1 @@
-<p class="help-block mb-0">
-    {{ __('dashboard.widgets.welcome.helper') }}
-</p>
+<x-helper :text="__('dashboard.widgets.welcome.helper')" />

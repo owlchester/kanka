@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\RelationDatagridActions;
 use App\Datagrids\Filters\RelationFilter;
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreRelation;
+use App\Models\Campaign;
 use App\Models\Relation;
 
 class RelationController extends CrudController
@@ -31,8 +31,8 @@ class RelationController extends CrudController
     /** @var string Disable the sanitizer, handled by the observer */
     protected string $sanitizer = '';
 
-    /** @var string  */
-    protected $filter = RelationFilter::class;
+    /**  */
+    protected string $filter = RelationFilter::class;
 
     public string $titleKey;
 
@@ -48,21 +48,15 @@ class RelationController extends CrudController
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create()
+    public function create(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('relations', $campaign);
 
         $model = new $this->model();
 
-        $params['ajax'] = request()->ajax();
-        $params['tabPermissions'] = false;
-        $params['tabAttributes'] = false;
-        $params['tabCopy'] = false;
-        $params['tabBoosted'] = false;
+        $params['campaign'] = $campaign;
         $params['entityAttributeTemplates'] = [];
         $params['entityType'] = $model->getEntityType();
-        $params['horizontalForm'] = $this->horizontalForm;
         $params['source'] = null;
         $params['langKey'] = $this->langKey;
 
@@ -70,13 +64,11 @@ class RelationController extends CrudController
     }
 
     /**
-     * @param StoreRelation $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StoreRelation $request)
+    public function store(StoreRelation $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('relations', $campaign);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
@@ -106,23 +98,23 @@ class RelationController extends CrudController
             session()->flash('success_raw', $success);
 
             if ($request->has('submit-new')) {
-                $route = route($this->route . '.create');
+                $route = route($this->route . '.create', $campaign);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
-                $route = route($this->route . '.edit', $new);
+                $route = route($this->route . '.edit', [$campaign, $new]);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view')) {
-                $route = route($this->route . '.show', $new);
+                $route = route($this->route . '.show', [$campaign, $new]);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
-                $route = route($this->route . '.create', ['copy' => $new->id]);
+                $route = route($this->route . '.create', [$campaign, 'copy' => $new->id]);
                 return response()->redirectTo($route);
             } elseif (auth()->user()->new_entity_workflow == 'created') {
-                $route = route($this->route . '.show', $new);
+                $route = route($this->route . '.show', [$campaign, $new]);
                 return response()->redirectTo($route);
             }
 
-            $route = route($this->route . '.index');
+            $route = route($this->route . '.index', $campaign);
             return response()->redirectTo($route);
         } catch (\LogicException $exception) {
             $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));
@@ -134,36 +126,29 @@ class RelationController extends CrudController
     }
 
     /**
-     * @param Relation $relation
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(Relation $relation)
+    public function show(Campaign $campaign, Relation $relation)
     {
         return redirect()
-            ->route('relations.index');
+            ->route('relations.index', $campaign);
     }
 
     /**
-     * @param Relation $relation
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Relation $relation)
+    public function edit(Campaign $campaign, Relation $relation)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('relations', $campaign);
 
         $params = [
+            'campaign' => $campaign,
             'model' => $relation,
             'relation' => $relation,
             'name' => $this->view,
-            'tabPermissions' => false,
-            'tabAttributes' => false,
-            'tabBoosted' => false,
             'source' => null,
-            'tabCopy' => false,
             'entityType' => $relation->getEntityType(),
-            'horizontalForm' => $this->horizontalForm,
             'langKey' => $this->langKey,
         ];
 
@@ -171,14 +156,11 @@ class RelationController extends CrudController
     }
 
     /**
-     * @param StoreRelation $request
-     * @param Relation $relation
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreRelation $request, Relation $relation)
+    public function update(StoreRelation $request, Campaign $campaign, Relation $relation)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('relations', $campaign);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
@@ -191,7 +173,7 @@ class RelationController extends CrudController
         $relation->refresh();
 
         return redirect()
-            ->route('relations.index')
+            ->route('relations.index', $campaign)
             ->with('success', __('entities/relations' . '.update.success', [
                 'target' => $relation->target->name,
                 'entity' => $relation->owner->name

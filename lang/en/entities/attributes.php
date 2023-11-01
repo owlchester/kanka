@@ -28,10 +28,8 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Are you sure you want to delete all of this entity\'s attributes?',
+        'is_private'    => 'Only allow members of the :admin-role role to see this entity\'s attributes.',
         'setup'         => 'You can represent elements like HP or intelligence of an entity with attributes. Add attributes manually by clicking on the :manage button, or apply those from an attribute template.',
-    ],
-    'hints'         => [
-        'is_private2'   => 'If selected, only members of the :admin-role role can see the attributes of this entity.',
     ],
     'index'         => [
         'success'   => 'Attributes for :entity updated.',
@@ -81,6 +79,7 @@ return [
         'unlock'    => 'Attribute unlocked',
         'unpin'     => 'Attribute unpinned',
     ],
+    'tutorial'      => 'Attributes are little bits of information attached to an entity. For example, a character might have an :hp and :str stat, while a location might have a :pop one. This can easily be tracked with attributes.',
     'types'         => [
         'attribute' => 'Attribute',
         'block'     => 'Block',

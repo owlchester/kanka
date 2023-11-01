@@ -14,6 +14,7 @@ class AddCharacterRaceTable extends Migration
     public function up()
     {
         Schema::create('character_race', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('character_id');
             $table->unsignedInteger('race_id');
             $table->timestamps();

@@ -12,6 +12,5 @@ return [
     'destroy'   => [
         'success'   => 'S\'ha eliminat la imatge per defecte per a :type.',
     ],
-    'helper'    => 'Agrega imatges personalitzades per defecte a les entitats de la campanya. Es mostraran a les llistes, però no a l\'entitat en sí.',
     'index'     => [],
 ];

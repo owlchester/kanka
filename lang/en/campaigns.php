@@ -17,7 +17,7 @@ TEXT
         'title'                 => 'New Campaign',
     ],
     'destroy'                           => [
-        'action'            => 'Delete campaign',
+        'action'            => 'Delete',
         'confirm'           => 'Are you sure you want to delete :campaign? This action is permanent and can\'t be recovered.',
         'confirm-button'    => 'Permanently delete the campaign',
         'helper-v2'         => 'This campaign can\'t be deleted while there are other members in it. Remove the other members first and try again.',
@@ -69,6 +69,7 @@ TEXT
         'superboosted'                      => 'Superboosted by',
         'system'                            => 'System',
         'theme'                             => 'Theme',
+        'vanity'                            => 'Vantity URL',
         'visibility'                        => 'Visibility',
     ],
     'following'                         => 'Following',
@@ -151,7 +152,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Help',
             'remove'        => 'Remove from campaign',
             'switch'        => 'View campaign as user',
             'switch-back'   => 'Back to my user',
@@ -171,10 +171,8 @@ TEXT
             'role'          => 'Role',
             'roles'         => 'Roles',
         ],
-        'help'                  => 'Campaigns can have an unlimited amount of members in them.',
         'helpers'               => [
-            'admin' => 'As a member of the campaign\'s admin role, you can invite new users, remove inactive one, and change their permissions. To test the permissions of a member, use the :button button. You can read more about this feature in the :link.',
-            'switch'=> 'View the campaign as this user',
+            'switch'    => 'View the campaign as this user',
         ],
         'impersonating'         => [
             'message'   => 'You are viewing the campaign as another user. Some features have been disabled, but the rest acts exactly as the user would see it.',
@@ -363,6 +361,7 @@ TEXT
         ],
         'helpers'       => [
             'abilities'         => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
+            'bookmarks'         => 'Create bookmarks to entities or filtered lists that appear in the sidebar.',
             'calendars'         => 'A place to define the calendars of your world.',
             'characters'        => 'Create and keep track of the people inhabiting the world with characters.',
             'conversations'     => 'Fictional conversations between characters or between campaign users.',
@@ -376,7 +375,6 @@ TEXT
             'journals'          => 'Observations written by characters, or session prep for the dungeon master.',
             'locations'         => 'Planets, planes, continents, rivers, states, settlements, temples, taverns.',
             'maps'              => 'Upload maps with layers and markers pointing to other entities in the campaign.',
-            'menu_links'        => 'Custom menu links in the side bar.',
             'notes'             => 'Lore, nature, history, magic, cultures.',
             'organisations'     => 'Cults, religions, factions, guilds.',
             'quests'            => 'To keep track of various quests with characters and locations.',
@@ -392,8 +390,8 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'edit'  => 'Edit Campaign',
-            'leave' => 'Leave campaign',
+            'edit'  => 'Edit',
+            'leave' => 'Leave',
         ],
         'menus'     => [
             'configuration'     => 'Configuration',
@@ -404,15 +402,17 @@ TEXT
             'achievements'      => 'Achievements',
             'applications'      => 'Applications',
             'campaign'          => 'Campaign',
+            'customisation'     => 'Customisation',
             'default-images'    => 'Default thumbnails',
             'export'            => 'Export',
             'information'       => 'Information',
+            'management'        => 'Management',
             'members'           => 'Members',
+            'modules'           => 'Modules',
             'plugins'           => 'Plugins',
             'recovery'          => 'Recovery',
             'roles'             => 'Roles',
-            'settings'          => 'Modules',
-            'sidebar'           => 'Sidebar setup',
+            'sidebar'           => 'Sidebar',
             'styles'            => 'Theming',
         ],
         'title'     => 'Overview - :name',
@@ -468,9 +468,7 @@ TEXT
         'public'    => 'Public campaign',
         'review'    => 'Awaiting Review',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Looks like someone else is currently editing this campaign! Do you want to go back or ignore this warning, at the risk of losing data? Members currently editing this campaign:',
-        ],
+    'exports'                      => [
+
     ],
 ];

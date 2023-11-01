@@ -46,19 +46,18 @@ class Group extends Layout
 
     /**
      * Available actions on each row
-     * @return array
      */
     public function actions(): array
     {
         return [
-            self::ACTION_EDIT_AJAX,
+            self::ACTION_EDIT_DIALOG,
             self::ACTION_DELETE
         ];
     }
     public function bulks(): array
     {
         return [
-            self::ACTION_EDIT,
+            self::ACTION_EDIT_DIALOG,
             self::ACTION_DELETE,
         ];
     }

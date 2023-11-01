@@ -34,6 +34,7 @@ return [
     'helpers'   => [
         'css_moved' => 'The CSS field was moved to a new flexible interface that can be found in the campaign\'s menu :link.',
         'here'      => 'on our blog',
+        'is_enabled'=> 'Enable this theme on every page.',
         'main'      => 'You can create custom CSS styling for your premium campaign. These styles are loaded after any themes from the marketplace that are enabled for the campaign. You can learn more about styling your campaign :here.',
     ],
     'pitch'     => 'Create custom CSS styling to fully customise the look and feel of the campaign.',

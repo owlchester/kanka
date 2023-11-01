@@ -37,8 +37,6 @@ class WelcomeEmailJob implements ShouldQueue
 
     /**
      * WelcomeEmailJob constructor.
-     * @param User $user
-     * @param string $language
      */
     public function __construct(User $user, string $language = 'en')
     {

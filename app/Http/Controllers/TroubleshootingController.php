@@ -9,8 +9,7 @@ use App\Services\TroubleshootingService;
 
 class TroubleshootingController extends Controller
 {
-    /** @var TroubleshootingService */
-    protected $service;
+    protected TroubleshootingService $service;
 
     public function __construct(TroubleshootingService $service)
     {
@@ -34,7 +33,6 @@ class TroubleshootingController extends Controller
     }
 
     /**
-     * @param SaveUserHelp $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function saveInvite(SaveUserHelp $request)

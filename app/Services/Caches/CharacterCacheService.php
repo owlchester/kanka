@@ -3,13 +3,15 @@
 namespace App\Services\Caches;
 
 use App\Models\Character;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class CharacterCacheService extends BaseCache
 {
+    use CampaignAware;
+
     /**
-     * @return array
      */
     public function genderSuggestion(): array
     {
@@ -45,7 +47,6 @@ class CharacterCacheService extends BaseCache
 
     /**
      * Type suggestion cache key
-     * @return string
      */
     protected function genderSuggestionKey(): string
     {

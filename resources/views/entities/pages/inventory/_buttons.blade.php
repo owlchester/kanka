@@ -1,6 +1,6 @@
-<a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn2 btn-accent btn-sm"
-    data-toggle="ajax-modal" data-target="#entity-modal"
-    data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
+<a href="{{ route('entities.inventories.create', [$campaign, 'entity' => $entity]) }}" class="btn2 btn-sm"
+    data-toggle="dialog" data-target="inventory-dialog"
+    data-url="{{ route('entities.inventories.create', [$campaign, 'entity' => $entity]) }}"
 >
     <x-icon class="plus"></x-icon>
     {{ __('entities/inventories.actions.add') }}

@@ -13,7 +13,6 @@ class TimelineService
     protected Timeline $timeline;
 
     /**
-     * @param Timeline $timeline
      * @return $this
      */
     public function timeline(Timeline $timeline): self
@@ -23,7 +22,6 @@ class TimelineService
     }
 
     /**
-     * @param TimelineElement $timelineElement
      * @param boolean $replace
      */
     public function reorderElements(TimelineElement $timelineElement, bool $replace = false)
@@ -49,8 +47,6 @@ class TimelineService
     }
 
     /**
-     * @param ReorderTimeline $request
-     * @return bool
      */
     public function reorder(ReorderTimeline $request): bool
     {

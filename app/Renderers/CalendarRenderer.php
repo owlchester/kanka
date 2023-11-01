@@ -5,19 +5,20 @@ namespace App\Renderers;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\EntityEvent;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class CalendarRenderer
 {
+    use CampaignAware;
+
     /**
-     * @var Calendar
      */
     protected Calendar $calendar;
 
     /**
      * Segments of the date
-     * @var bool
      */
     protected bool $segments = false;
 
@@ -35,61 +36,51 @@ class CalendarRenderer
 
     /**
      * Full moons
-     * @var array
      */
     protected array $moons = [];
 
     /**
      * Weather
-     * @var array
      */
     protected array $weather = [];
 
     /**
      * Season Changes
-     * @var array
      */
     protected array $seasons = [];
 
     /**
      * Named Weeks
-     * @var array
      */
     protected array $weeks = [];
 
     /**
      * Array of weirdly recurring events
-     * @var array
      */
     protected array $recurring = [];
 
     /**
      * Layout option
-     * @var string
      */
     protected string $layout = 'year';
 
     /**
      * Events displayed on the calendar view
-     * @var array
      */
     protected array $events = [];
 
     /**
      * Start date of events displayed on the calendar view
-     * @var array
      */
     protected array $eventStart = [];
 
     /**
      * End date of events displayed on the calendar view
-     * @var array
      */
     protected array $eventEnd = [];
 
     /**
      * Initializer
-     * @param Calendar $calendar
      */
     public function setCalendar(Calendar $calendar)
     {
@@ -99,7 +90,6 @@ class CalendarRenderer
 
     /**
      * Get previous month link
-     * @return string
      */
     public function previous(bool $title = false): string
     {
@@ -117,8 +107,8 @@ class CalendarRenderer
                 return (string) $year;
             } else {
                 return route(
-                    'calendars.show',
-                    ['calendar' => $this->calendar, 'layout' => 'year', 'year' => $year]
+                    'entities.show',
+                    [$this->campaign, 'entity' => $this->calendar->entity, 'layout' => 'year', 'year' => $year]
                 );
             }
         }
@@ -135,21 +125,19 @@ class CalendarRenderer
             return $months[$month - 1]['name'] . " {$year}";
         }
 
-        $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
+        $routeOptions = [$this->campaign, 'entity' => $this->calendar->entity, 'month' => $month, 'year' => $year];
         if ($this->calendar->defaultLayout() === 'year') {
             // @phpstan-ignore-next-line
             $routeOptions['layout'] = $this->isYearlyLayout() ? 'year' : 'month';
         }
         return route(
-            'calendars.show',
+            'entities.show',
             $routeOptions
         );
     }
 
     /**
      * Build a link to a year
-     * @param bool $next
-     * @return string
      */
     public function linkToYear(bool $next = true): string
     {
@@ -164,7 +152,8 @@ class CalendarRenderer
         }
 
         $options = [
-            'calendar' => $this->calendar,
+            'campaign' => $this->campaign,
+            'entity' => $this->calendar->entity,
             'month' => $month,
             'year' => $year,
         ];
@@ -178,15 +167,13 @@ class CalendarRenderer
         }
 
         return route(
-            'calendars.show',
+            'entities.show',
             $options
         );
     }
 
     /**
      * Get the title to a year
-     * @param bool $next
-     * @return string
      */
     public function titleToYear(bool $next = true): string
     {
@@ -210,7 +197,6 @@ class CalendarRenderer
 
     /**
      * Get current year-month
-     * @return string
      */
     public function currentMonthName(): string
     {
@@ -236,7 +222,6 @@ class CalendarRenderer
     }
 
     /**
-     * @return string
      */
     public function monthAlias(): string
     {
@@ -254,7 +239,6 @@ class CalendarRenderer
 
     /**
      * Get next month link
-     * @return string
      */
     public function next($title = false): string
     {
@@ -272,8 +256,8 @@ class CalendarRenderer
                 return (string) $year;
             } else {
                 return route(
-                    'calendars.show',
-                    ['calendar' => $this->calendar, 'layout' => 'year', 'year' => $year]
+                    'entities.show',
+                    [$this->campaign, 'entity' => $this->calendar->entity, 'layout' => 'year', 'year' => $year]
                 );
             }
         }
@@ -290,13 +274,13 @@ class CalendarRenderer
             return $months[$month - 1]['name'] . " {$year}";
         }
 
-        $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
+        $routeOptions = [$this->campaign, 'entity' => $this->calendar->entity, 'month' => $month, 'year' => $year];
         if ($this->calendar->yearlyLayout()) {
             // @phpstan-ignore-next-line
             $routeOptions['layout'] = $this->isYearlyLayout() ? 'year' : 'month';
         }
         return route(
-            'calendars.show',
+            'entities.show',
             $routeOptions
         );
     }
@@ -466,7 +450,6 @@ class CalendarRenderer
 
     /**
      * Build the calendar for the yearly view
-     * @return array
      */
     public function buildForYear(): array
     {
@@ -671,7 +654,6 @@ class CalendarRenderer
     }
 
     /**
-     * @return mixed
      */
     public function currentMonthId()
     {
@@ -693,9 +675,9 @@ class CalendarRenderer
         }
 
         return link_to_route(
-            'calendars.show',
+            'entities.show',
             trans('calendars.actions.today'),
-            [$this->calendar, 'month' => $calendarMonth, 'year' => $calendarYear],
+            [$this->campaign, 'entity' => $this->calendar->entity, 'month' => $calendarMonth, 'year' => $calendarYear],
             $options
         );
     }
@@ -759,7 +741,6 @@ class CalendarRenderer
 
     /**
      * Calculate the month starting offset
-     * @return int
      */
     protected function weekStartOffset(): int
     {
@@ -785,7 +766,6 @@ class CalendarRenderer
 
     /**
      * Load events of the year and month
-     * @return array
      */
     protected function events(): array
     {
@@ -801,14 +781,13 @@ class CalendarRenderer
     }
 
     /**
-     * @param Calendar $calendar
      * @return \Illuminate\Database\Eloquent\Collection
      */
     protected function getReminders(Calendar $calendar)
     {
         return $calendar->calendarEvents()
             ->has('entity')
-            ->with(['entity', 'entity.tags'])
+            ->with(['entity', 'entity.tags', 'entity.image'])
             ->where(function ($query) {
                 $query
                     // Where it's the current year , or current year and current month
@@ -854,7 +833,6 @@ class CalendarRenderer
     }
 
     /**
-     * @param Collection $reminders
      */
     protected function parseReminders(Collection $reminders): void
     {
@@ -910,8 +888,6 @@ class CalendarRenderer
 
     /**
      * For multi-day event, add it to each day the event lasts
-     * @param EntityEvent $reminder
-     * @param string $date
      */
     protected function addMultidayEvent(EntityEvent $reminder, string $date)
     {
@@ -939,7 +915,6 @@ class CalendarRenderer
 
     /**
      * Add an extra day to a date.
-     * @param string $date
      */
     protected function addDay(string $date)
     {
@@ -973,9 +948,6 @@ class CalendarRenderer
     }
 
     /**
-     * @param int $year
-     * @param int $month
-     * @return array
      */
     protected function subMonth(int $year, int $month): array
     {
@@ -991,7 +963,6 @@ class CalendarRenderer
 
     /**
      * Get the current year
-     * @return int
      */
     protected function getYear($add = 0): int
     {
@@ -1004,7 +975,6 @@ class CalendarRenderer
     /**
      * Get the current month
      * @param int $add
-     * @return int
      */
     protected function getMonth($add = 0): int
     {
@@ -1012,7 +982,6 @@ class CalendarRenderer
     }
 
     /**
-     * @param int $year
      */
     protected function setYear(int $year): self
     {
@@ -1021,7 +990,6 @@ class CalendarRenderer
     }
 
     /**
-     * @param int $month
      */
     protected function setMonth(int $month): self
     {
@@ -1031,7 +999,6 @@ class CalendarRenderer
 
     /**
      * Split the date into segments. Handle negative years
-     * @param string $date
      * @return array
      */
     protected function splitDate(string $date)
@@ -1044,7 +1011,6 @@ class CalendarRenderer
     }
 
     /**
-     * @return bool
      */
     public function isYearlyLayout(): bool
     {
@@ -1052,7 +1018,6 @@ class CalendarRenderer
     }
 
     /**
-     * @return int
      */
     public function currentYear(): int
     {
@@ -1060,8 +1025,6 @@ class CalendarRenderer
     }
 
     /**
-     * @param int $week
-     * @return bool
      */
     public function isNamedWeek(int $week): bool
     {
@@ -1069,8 +1032,6 @@ class CalendarRenderer
     }
 
     /**
-     * @param int $week
-     * @return string
      */
     public function namedWeek(int $week): string
     {
@@ -1211,8 +1172,6 @@ class CalendarRenderer
     }
 
     /**
-     * @param float $start
-     * @param array $moon
      */
     protected function addMoonPhases(float $start, array $moon): void
     {
@@ -1231,10 +1190,6 @@ class CalendarRenderer
     }
 
     /**
-     * @param float $nextFullMoon
-     * @param array $moon
-     * @param string $type
-     * @param string $class
      */
     protected function addMoonPhase(float $nextFullMoon, array $moon, string $type = 'full', string $class = 'fa-regular fa-circle'): void
     {
@@ -1316,7 +1271,6 @@ class CalendarRenderer
 
     /**
      * Calculate the starting week number
-     * @return int
      */
     protected function startingWeekNumber(): int
     {
@@ -1360,7 +1314,6 @@ class CalendarRenderer
     /**
      * Get the number of days since the beginning of the year. This is used to calculate the month start offset on
      * calendars with first days resetting on the year.
-     * @return int
      */
     protected function daysToDateForYear(): int
     {
@@ -1385,9 +1338,6 @@ class CalendarRenderer
 
     /**
      * Checks if date is the start of an event
-     * @param EntityEvent $event
-     * @param string $date
-     * @return bool
      */
     public function isEventStartDate(EntityEvent $event, string $date): bool
     {
@@ -1396,9 +1346,6 @@ class CalendarRenderer
 
     /**
      * Checks if date is the end of an event
-     * @param EntityEvent $event
-     * @param string $date
-     * @return bool
      */
     public function isEventEndDate(EntityEvent $event, string $date): bool
     {

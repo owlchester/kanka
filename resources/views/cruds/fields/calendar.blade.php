@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('calendars'))
+@if (!$campaign->enabled('calendars'))
     <?php return ?>
 @endif
 
@@ -13,13 +13,14 @@
 @endphp
 @endif
 <x-forms.foreign
+    :campaign="$campaign"
     name="calendar_id"
     key="calendar"
     entityType="calendars"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('calendars.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route('calendars.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Calendar::class"
     :selected="$preset"
     :helper="$helper ?? null"

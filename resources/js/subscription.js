@@ -14,7 +14,7 @@ $(document).ready(function() {
     initStripe();
     initPeriodToggle();
     subscribeModal = $('#subscribe-confirm');
-    subscribeModal.on('shown.bs.modal', () => {
+    $(document).on('shown.bs.modal', () => {
         initConfirmListener();
     });
 });
@@ -151,41 +151,39 @@ function checkCoupon() {
     if (!coupon) {
         formSubmitBtn.removeClass('disabled').prop('disabled', false);
     }
+    fetch(url + '?coupon=' + coupon)
+        .then((response) => response.json())
+        .then((result) => {
+            couponBtn
+                .prop('disabled', false)
+                .find('.check').show()
+                .parent().find('.spinner').hide();
 
-    $.ajax({
-        url: url + '?coupon=' + coupon,
-        context: this
-    }).done(function (result) {
-        couponBtn
-            .prop('disabled', false)
-            .find('.check').show()
-            .parent().find('.spinner').hide();
+            formSubmitBtn.removeClass('disabled').prop('disabled', false);
 
-        formSubmitBtn.removeClass('disabled').prop('disabled', false);
+            if (!result.valid) {
+                couponSuccess.hide();
+                couponError.html(result.error).show();
+                couponId.val('');
+                subscribeModal.removeClass('valid-coupon');
 
-        if (!result.valid) {
-            couponSuccess.hide();
-            couponError.html(result.error).show();
-            couponId.val('');
-            subscribeModal.removeClass('valid-coupon');
+                return;
+            }
 
-            return;
-        }
+            couponError.hide();
+            couponSuccess.html(result.discount).show();
+            couponId.val(result.coupon);
+            subscribeModal.addClass('valid-coupon');
+        }).catch((result) => {
+            couponBtn
+                .prop('disabled', false)
+                .find('.check').show()
+                .parent().find('.spinner').hide();
 
-        couponError.hide();
-        couponSuccess.html(result.discount).show();
-        couponId.val(result.coupon);
-        subscribeModal.addClass('valid-coupon');
-    }).fail(function (result) {
-        couponBtn
-            .prop('disabled', false)
-            .find('.check').show()
-            .parent().find('.spinner').hide();
-
-        if (result.responseJSON) {
-            couponError.html(result.responseJSON.message).show();
-        }
-    });
+            if (result.responseJSON) {
+                couponError.html(result.responseJSON.message).show();
+            }
+        });
 }
 
 function initPeriodToggle() {

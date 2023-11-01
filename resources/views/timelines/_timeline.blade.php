@@ -12,9 +12,9 @@ $loadedElements = [];
     $position = 1;
     @endphp
 
-    <x-box css="flex gap-2 flex-col p-2 timeline-era entity-note" :padding="0" id="era{{ $era->id }}">
+    <x-box css="flex gap-2 flex-col p-2 timeline-era post entity-note" :padding="0" id="era{{ $era->id }}">
         <div class="timeline-era-head flex gap-2 items-center">
-            <h3 class="cursor-pointer grow element-toggle m-0 text-base {{ $era->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}">
+            <h3 class="grow cursor-pointer flex gap-2 items-center element-toggle text-base m-0 {{ $era->collapsed() ? 'animate-collapsed' : null }}" data-animate="collapse" data-target="#era-items-{{ $era->id }}">
 
                 <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
                 <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
@@ -26,9 +26,9 @@ $loadedElements = [];
                 </span>
             </h3>
 
-            <div class="flex items-center gap-2">
+            <div class="flex-none flex items-center gap-2">
                 @can('update', $timeline)
-                    <a href="{{ route('timelines.timeline_eras.edit', [$timeline, $era, 'from' => 'view']) }}"
+                    <a href="{{ route('timelines.timeline_eras.edit', [$campaign, $timeline, $era, 'from' => 'view']) }}"
                        class="btn2 btn-ghost btn-xs " role="button"
                        title="{{ __('crud.edit') }}"
                     >
@@ -36,15 +36,15 @@ $loadedElements = [];
                         <span class="sr-only">{{ __('crud.edit') }}</span>
                     </a>
 
-                    <a href="#" class="btn2 btn-ghost btn-xs text-red delete-confirm"
-                       data-toggle="modal" data-name="{{ $era->name }}" role="button"
-                       data-target="#delete-confirm" data-delete-target="delete-form-timeline-era-{{ $era->id }}"
+                    <a href="#" class="btn2 btn-ghost btn-xs text-error
+                       role="button"
+                       data-toggle="dialog"
+                       data-target="primary-dialog"
+                       data-url="{{ route('confirm-delete', [$campaign, 'route' => route('timelines.timeline_eras.destroy', [$campaign, $timeline, $era, 'from' => 'view']), 'name' => $era->name, 'permanent' => true]) }}"
                        title="{{ __('crud.remove') }}">
                         <x-icon class="trash"></x-icon>
                         <span class="sr-only">{{ __('crud.remove') }}</span>
                     </a>
-                    {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $timeline, $era, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-era-' . $era->id]) !!}
-                    {!! Form::close() !!}
                 @endcan
             </div>
         </div>
@@ -53,7 +53,7 @@ $loadedElements = [];
         </div>
     </x-box>
 
-    <ul class="timeline relative m-0 p-0 list-none collapse {{ $era->is_collapsed ? 'out' : 'in' }} !visible" id="era-items-{{ $era->id }}">
+    <ul class="timeline relative m-0 p-0 list-none overflow-hidden @if ($era->collapsed()) hidden @endif" id="era-items-{{ $era->id }}">
     @foreach($era->orderedElements as $element)
         @php
             $position = $element->position + 1;
@@ -64,31 +64,37 @@ $loadedElements = [];
     </ul>
 
     @can('update', $timeline)
-        <div class="text-center mb-5">
-            <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn2 btn-primary btn-sm"
+        <div class="text-center">
+            <a href="{{ route('timelines.timeline_elements.create', [$campaign, $model, 'era_id' => $era, 'position' => $position]) }}" class="btn2 btn-primary btn-sm"
                 title="{{ __('crud.create') }}"
             >
                 <x-icon class="plus"></x-icon>
-                <span class="hidden-xs inline">{!! __('timelines.actions.add_element', ['era' => $era->name]) !!}</span>
+                <span class="hidden lg:inline">{!! __('timelines.actions.add_element', ['era' => $era->name]) !!}</span>
             </a>
         </div>
     @endcan
     </ul>
 @empty
     <x-alert type="warning">
-        <div class = "mb-2" >{{ __('timelines.helpers.no_era_v2') }} </div>
-        @can('update', $timeline)
-        <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn2 btn-accent btn-sm">
-            <x-icon class="plus"></x-icon> {{ __('timelines/eras.actions.add') }}
-        </a>
-        @endcan
+        <x-grid type="1/1">
+            <p>
+                {{ __('timelines.helpers.no_era_v2') }}
+            </p>
+            @can('update', $timeline)
+                <div>
+            <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model, 'from' => 'view']) }}" class="btn2 btn-sm">
+                <x-icon class="plus"></x-icon> {{ __('timelines/eras.actions.add') }}
+            </a></div>
+            @endcan
+        </x-grid>
     </x-alert>
 @endforelse
 @if (!$timeline->eras->isEmpty())
     @can('update', $timeline)
-        <div class="text-center mb-5">
-            <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn2 btn-primary btn-sm">
-                <x-icon class="plus"></x-icon> {{ __('timelines/eras.actions.add') }}
+        <div class="text-center">
+            <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model, 'from' => 'view']) }}" class="btn2 btn-primary btn-sm">
+                <x-icon class="plus"></x-icon>
+                {{ __('timelines/eras.actions.add') }}
             </a>
         </div>
     @endcan
@@ -118,19 +124,3 @@ $loadedElements = [];
     @endcan
 @endif
 
-
-@section('modals')
-    @can('update', $timeline)
-        @foreach($loadedElements as $element)
-            @php
-                $position = $element->position + 1;
-            @endphp
-            @if(!empty($element->entity_id) && empty($element->entity->child))
-                @continue
-            @endif
-
-            {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_elements.destroy', $timeline, $element, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-element-' . $element->id]) !!}
-            {!! Form::close() !!}
-        @endforeach
-    @endcan
-@endsection

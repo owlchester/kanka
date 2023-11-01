@@ -225,7 +225,7 @@ function hintEntities(keyword, callback) {
         .done(callback)
         .fail(function (response) {
             if (response.status === 503) {
-                window.showToast(response.responseJSON.message, 'toast-error');
+                window.showToast(response.responseJSON.message, 'error');
             }
     });
 }
@@ -415,21 +415,16 @@ function uploadImage($summernote, file) {
             //console.log(textStatus + " " + errorThrown);
             //console.log(jqXHR);
             let error = $('#campaign-imageupload-error');
-            let boosted = $('#campaign-imageupload-boosted');
             let permission = $('#campaign-imageupload-permission');
 
             error.hide();
-            boosted.hide();
             permission.hide();
 
             if (jqXHR.status === 422) {
                 error.text(buildErrors(jqXHR.responseJSON.errors)).show();
             } else if (jqXHR.status === 403) {
                 permission.show();
-            } else {
-                boosted.show();
             }
-            //$('#superboosted-error').text(buildErrors(jqXHR.responseJSON.errors));
             modal.modal();
         }
     });

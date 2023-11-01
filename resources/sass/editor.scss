@@ -55,9 +55,11 @@ img.note-float-left {
     float: left;
 }
 
-.note-btn i.fa, .note-btn i.fas, .note-btn i.fa-brands, .note-btn i.far, .note-btn i.fa-solid {
-    min-height: 15px;
-    line-height: 18px;
+.note-btn i.fa, .note-btn i.fas, .note-btn i.fa-brands, .note-btn i.far, .note-btn i.fa-solid, .note-btn i.fa-sharp, .note-icon-code {
+    min-height: 18px;
+    line-height: 20px;
+    height: 18px;
+    display: inline-block;
     &:before {
         height: 20px;
         display: inline-block;
@@ -68,6 +70,9 @@ img.note-float-left {
         text-transform: none;
         vertical-align: middle;
     }
+}
+.note-hint-popover {
+    background-color: hsl(var(--b1)/1);
 }
 .note-hint-item {
     .entity-hint {
@@ -89,18 +94,7 @@ img.note-float-left {
 // Gallery
 .images-list {
     .img-item {
-        overflow: hidden;
-        margin: 10px 0;
-
         .img-thumbnail {
-            height: 120px;
-            overflow: hidden;
-            line-height: 120px;
-            background-color: hsl(var(--b1)/1);
-            color: hsl(var(--bc)/1);
-            border: none;
-            cursor: pointer;
-
             .text {
                 display: inline-block;
                 vertical-align: middle;
@@ -109,13 +103,6 @@ img.note-float-left {
                 i {
                     display: block;
                 }
-            }
-
-            &:focus,
-            &:hover {
-                box-shadow: 0 0 0 1px hsl(var(--bc)/1), 0 0 2px 1px rgba(30, 140, 190, 0.8);
-                color: hsl(var(--bc)/1);
-                outline: 1px solid transparent;
             }
         }
     }
@@ -130,6 +117,10 @@ img.note-float-left {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--p)/var(--tw-bg-opacity)) !important;
     color: hsl(var(--pc)) !important
+}
+.note-placeholder {
+    --tw-text-opacity: .5;
+    color: hsl(var(--bc)/var(--tw-text-opacity)) !important;
 }
 
 

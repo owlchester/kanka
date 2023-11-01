@@ -9,6 +9,7 @@ return [
     'edit'                  => [],
     'fields'                => [
         'attributes'    => 'Attribute',
+        'auto_apply'    => 'automatisch übernehmen',
     ],
     'hints'                 => [
         'automatic'                 => 'Attribute wurden automatisch aus der Attribut-Vorlage ":link" erstellt.',

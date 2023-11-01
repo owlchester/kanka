@@ -19,12 +19,22 @@ return [
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas las líneas de tiempo sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
+        'no_era_v2'         => 'Actualmente, esta línea de tiempo no tiene ninguna era. Añádele una o varias eras, tras lo cual podrás añadir elementos a las eras aquí.',
         'reverse_order'     => 'Habilitar para mostrar las eras en orden cronológico inverso (la era más antigua primero)',
     ],
     'index'         => [],
     'placeholders'  => [
         'type'  => 'Primaria, Crónica del mundo, Legado del reino...',
     ],
-    'show'          => [],
+    'reorder'       => [
+        'empty'     => 'Añade eras y elementos a la línea de tiempo para poder reordenarla.',
+        'success'   => ':name reordenado con éxito.',
+        'title'     => 'Reordenar :name',
+    ],
+    'show'          => [
+        'tabs'  => [
+            'reorder'   => 'Reordenar',
+        ],
+    ],
     'timelines'     => [],
 ];

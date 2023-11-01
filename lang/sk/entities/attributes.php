@@ -30,9 +30,7 @@ return [
         'delete_all'    => 'Naozaj chceš odstrániť všetky atribúty tohto objektu?',
         'setup'         => 'Prvky ako HP alebo Inteligenciu nejakého objektu s atribútmi je možné referencovať. Atribúty pridáš ručne kliknutím na tlačidlo :manage alebo aplikovaním niektorej zo šablón atribútov.',
     ],
-    'hints'         => [
-        'is_private2'   => 'Ak aktivované, iba členovia role :admin-role budú vidieť atribúty tohto objektu.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Atribúty pre :entity upravené.',
         'title'     => 'Atribúty pre :name',

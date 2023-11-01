@@ -2,15 +2,17 @@
 
 namespace App\Services\Families;
 
+use App\Facades\Avatar;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\FamilyTree;
-use App\Facades\CampaignLocalization;
-use App\Models\Visibility;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Str;
 
 class FamilyTreeService
 {
+    use CampaignAware;
+
     protected Family $family;
 
     protected FamilyTree $familyTree;
@@ -40,7 +42,6 @@ class FamilyTreeService
 
     /**
      * Return all data required to generate the family tree
-     * @return array
      */
     public function tree(): array
     {
@@ -54,7 +55,6 @@ class FamilyTreeService
 
     /**
      * Get an entity's representation for the rendering engine
-     * @param Entity $entity
      * @return array|string[]
      */
     public function entity(Entity $entity): array
@@ -100,7 +100,6 @@ class FamilyTreeService
 
     /**
      * Get all the unique entity ids from the family tree
-     * @return void
      */
     protected function prepareEntities(): void
     {
@@ -151,8 +150,6 @@ class FamilyTreeService
 
     /**
      * Format an entity for the rendering engine
-     * @param Entity $entity
-     * @return array
      */
     protected function formatEntity(Entity $entity): array
     {
@@ -161,12 +158,27 @@ class FamilyTreeService
             $tags[] = 'kanka-tag-' . $tag->id;
             $tags[] = 'kanka-tag-' . $tag->slug;
         }
+        $elapsed = $entity->elapsedEvents;
+
+        // Prepare birth and death events
+        $birth = null;
+        $death = null;
+        foreach ($elapsed as $event) {
+            if ($event->isBirth() && null === $birth) {
+                $birth = $event->year;
+            } elseif ($event->isDeath() && null === $death) {
+                $death = $event->year;
+            }
+        }
+
         return [
             'id' => $entity->id,
             'name' => $entity->name,
             'url' => $entity->url(),
-            'thumb' => $entity->avatarSize(40)->avatarV2(),
+            'thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
             'is_dead' => (bool)$entity->character->is_dead,
+            'death' => $birth,
+            'birth' => $death,
             'tags' => $tags,
         ];
     }
@@ -218,13 +230,11 @@ class FamilyTreeService
 
     protected function isVisible($relation): bool
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         return (bool)(
             !isset($relation['visibility']) ||
-            $relation['visibility'] == Visibility::VISIBILITY_ALL ||
-            ($relation['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
-            ($relation['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember())
+            $relation['visibility'] == \App\Enums\Visibility::All ||
+            ($relation['visibility'] == \App\Enums\Visibility::Admin && auth()->user()->isAdmin()) ||
+            ($relation['visibility'] == \App\Enums\Visibility::Member && $this->campaign->userIsMember())
         );
     }
 
@@ -297,8 +307,6 @@ class FamilyTreeService
 
     /**
      * Return an error handled by the frontend
-     * @param string $code
-     * @return array
      */
     protected function error(string $code): array
     {
@@ -310,7 +318,6 @@ class FamilyTreeService
 
     /**
      * Save a new tree config to the database
-     * @param array $data
      * @return $this
      */
     public function save(array $data = []): self
@@ -333,7 +340,6 @@ class FamilyTreeService
 
     /**
      * Prepare a new config for the database by adding a uuid everywhere
-     * @param array $data
      * @return array
      */
     protected function prepareForSave(array $data)//: array

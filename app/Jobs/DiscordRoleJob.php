@@ -50,7 +50,7 @@ class DiscordRoleJob implements ShouldQueue
      */
     public function handle()
     {
-        $this->discord = app()->make('App\Services\DiscordService');
+        $this->discord = app()->make(\App\Services\DiscordService::class);
         try {
             if ($this->add) {
                 $this->discord->user($this->user)->addRoles();

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Http\Requests\StoreCharacter;
 use App\Models\Campaign;
@@ -10,6 +9,7 @@ use App\Models\MiscModel;
 use App\Models\Entity;
 use App\Models\Tag;
 use App\Models\Post;
+use App\Services\Entity\PopularService;
 use App\Services\Entity\TagService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
@@ -19,47 +19,48 @@ class EntityCreatorController extends Controller
 {
     protected EntityService $entityService;
     protected Campaign $campaign;
+    protected PopularService $popularService;
 
-    public function __construct(EntityService $entityService)
+    public function __construct(EntityService $entityService, PopularService $popularService)
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
         $this->entityService = $entityService;
+        $this->popularService = $popularService;
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function selection()
+    public function selection(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
+        $this->campaign = $campaign;
         $entities = $this->creatableEntities();
         $orderedEntityTypes = $this->orderedEntityTypes();
         return view('entities.creator.selection', [
+            'campaign' => $campaign,
             'entities' => $entities,
             'types' => $orderedEntityTypes,
-            'popular' => $this->entityService->popularEntityTypes(),
-            'campaign' => $campaign
+            'popular' => $this->popularService->get(),
         ]);
     }
 
     /**
-     * @param Request $request
      * @param string $type
      */
-    public function form(Request $request, $type)
+    public function form(Request $request, Campaign $campaign, $type)
     {
-        return $this->renderForm($request, $type);
+        return $this->renderForm($request, $campaign, $type);
     }
 
     /**
      *
      */
-    public function store(Request $request, $type)
+    public function store(Request $request, Campaign $campaign, $type)
     {
         // Make sure the user is allowed to create this kind of entity
         $class = null;
-        $this->campaign = CampaignLocalization::getCampaign();
+        $this->campaign = $campaign;
         if ($type == 'posts') {
             $this->authorize('recover', $this->campaign);
         } else {
@@ -166,7 +167,7 @@ class EntityCreatorController extends Controller
         // Redirect the user to the edit form
         if ($request->get('action') === 'edit' && isset($new)) {
             if ($new instanceof Post) {
-                $editUrl = route('entities.posts.edit', [$new->entity_id, $new->id]);
+                $editUrl = route('entities.posts.edit', [$this->campaign, $new->entity_id, $new->id]);
             } else {
                 $editUrl = $createdEntities[0]->getLink('edit');
             }
@@ -185,35 +186,33 @@ class EntityCreatorController extends Controller
 
         // Continue creating more of the same kind
         if ($request->get('action') === 'more') {
-            return $this->renderForm(new Request(), $type, $success);
+            return $this->renderForm(new Request(), $campaign, $type, $success);
         }
         // Content for the selector
         $entities = $this->creatableEntities();
         $orderedEntityTypes = $this->orderedEntityTypes();
 
         return view('entities.creator.selection', [
+            'campaign' => $this->campaign,
             'entities' => $entities,
             'types' => $orderedEntityTypes,
             'new' => $success,
-            'popular' => $this->entityService->popularEntityTypes(),
-            'campaign' => $this->campaign,
+            'popular' => $this->popularService->get(),
         ]);
     }
 
     /**
      * Build a list of entities the user has permission to create
-     * @return array
      */
     protected function creatableEntities(): array
     {
         $entities = [];
-        $this->campaign = CampaignLocalization::getCampaign();
 
         // Loop through the entities, check those enabled in the campaign, and where the user has create access.
         $ignoredTypes = [
-            'menu_links'
+            'bookmarks'
         ];
-        foreach ($this->entityService->entities($ignoredTypes) as $name => $class) {
+        foreach ($this->entityService->exclude($ignoredTypes)->entities() as $name => $class) {
             if ($this->campaign->enabled($name)) {
                 if (auth()->user()->can('create', $class)) {
                     $entities[$name] = $class;
@@ -230,10 +229,6 @@ class EntityCreatorController extends Controller
 
     /**
      * Validate an entity's request to make sure data doesn't contain erroneous info
-     * @param array $data
-     * @param array $rules
-     * @param array $messages
-     * @param array $customAttributes
      * @return array
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -248,19 +243,16 @@ class EntityCreatorController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param string $type
-     * @param string|null $success
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function renderForm(Request $request, string $type, string $success = null)
+    protected function renderForm(Request $request, Campaign $campaign, string $type, string $success = null)
     {
+        $this->campaign = $campaign;
         // Make sure the user is allowed to create this kind of entity
-        $this->campaign = CampaignLocalization::getCampaign();
         $model = null;
         if ($type == 'posts') {
-            $this->authorize('recover', $this->campaign);
+            $this->authorize('recover', $campaign);
         } else {
             $model = $this->entityService->getClass($type);
             $this->authorize('create', $model);
@@ -299,6 +291,7 @@ class EntityCreatorController extends Controller
         }
 
         return view('entities.creator.' . $view, compact(
+            'campaign',
             'type',
             'singularType',
             'entityType',
@@ -320,7 +313,6 @@ class EntityCreatorController extends Controller
 
     /**
      * Ordered entity types alphabetically to the user's local
-     * @return array
      */
     protected function orderedEntityTypes(): array
     {

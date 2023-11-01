@@ -18,27 +18,27 @@ class CreateEntityEvents extends Migration
             $table->integer('calendar_id')->unsigned();
             $table->integer('entity_id')->unsigned();
             $table->unsignedInteger('created_by')->nullable();
-            $table->string('date');
-            $table->boolean('is_recurring')->defaultValue(false);
+            $table->smallInteger('length')->unsigned()->default(1);
+            $table->boolean('is_recurring')->default(false);
             $table->string('comment')->nullable();
-            $table->string('colour', 12);
-
-            $table->string('visibility', 10)->default('all');
+            $table->string('colour', 12)->nullable();
+            $table->unsignedBigInteger('visibility_id');
             $table->unsignedMediumInteger('day');
             $table->unsignedMediumInteger('month');
             $table->integer('year');
-
+            $table->string('recurring_until', 12)->nullable();
+            $table->string('recurring_periodicity', 5)->nullable();
 
             $table->timestamps();
 
-            $table->index(['date', 'is_recurring']);
-            $table->index(['visibility']);
+            $table->index(['is_recurring']);
             $table->index(['day', 'month', 'year']);
 
             // Foreign
-            $table->foreign('calendar_id')->references('id')->on('calendars')->onDelete('cascade');
-            $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
-            $table->foreign('created_by')->on('users')->references('id')->onDelete('set null');
+            $table->foreign('calendar_id')->references('id')->on('calendars')->cascadeOnDelete();
+            $table->foreign('entity_id')->references('id')->on('entities')->cascadeOnDelete();
+            $table->foreign('created_by')->on('users')->references('id')->nullOnDelete();
+            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete();
         });
     }
 

@@ -4,7 +4,7 @@ $(document).ready(function () {
 });
 
 function initQuickLinksForm() {
-    let selector = $('#quick-link-selector');
+    let selector = $('#bookmark-selector');
     if (selector.length === 0) {
         return false;
     }
@@ -12,10 +12,10 @@ function initQuickLinksForm() {
         e.preventDefault();
         let selected = $(this).find(":selected");
 
-        $('.quick-link-subform').hide();
+        $('.bookmark-subform').addClass('hidden');
 
         let target = selected.data('target');
-        $(target).show();
+        $(target).removeClass('hidden');
     });
 }
 

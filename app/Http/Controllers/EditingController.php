@@ -12,12 +12,51 @@ use Illuminate\Database\Eloquent\Model;
 
 class EditingController extends Controller
 {
-    /** @var MultiEditingService */
-    protected $service;
+    protected MultiEditingService $service;
 
     public function __construct(MultiEditingService $service)
     {
         $this->service = $service;
+    }
+
+    public function index(Campaign $campaign)
+    {
+        $model = request()->get('model');
+        $id = request()->get('id');
+        if (empty($model)) {
+            $model = $campaign;
+        } else {
+            $modelName = app()->make('App\Models\\' . $model);
+            $model = new $modelName();
+            $model = $model->findOrFail($id);
+        }
+
+        $editingUsers = $this->service
+            ->model($model)
+            ->user(auth()->user())
+            ->users();
+
+        if ($model instanceof \App\Models\Post) {
+            $url = route('posts.confirm-editing', [$campaign, 'post' => $model, 'entity' => $model->entity]);
+            $show = $model->entity->url();
+        } elseif ($model instanceof \App\Models\Campaign) {
+            $url = route('campaigns.confirm-editing', $model);
+            $show = route('overview', $campaign);
+        } elseif ($model instanceof \App\Models\TimelineElement) {
+            $url = route('timeline-elements.confirm-editing', [$campaign, $model]);
+            $show = $model->timeline->getLink();
+        } elseif ($model instanceof \App\Models\QuestElement) {
+            $url = route('quest-elements.confirm-editing', [$campaign, $model]);
+            $show = $model->quest->getLink();
+        } else {
+            $url = route('entities.confirm-editing', [$campaign, $model]);
+            $show = $model->url();
+        }
+
+        return view('confirms.editing')
+            ->with('url', $url)
+            ->with('show', $show)
+            ->with('editingUsers', $editingUsers);
     }
 
     private function confirmHandle(Model $model)
@@ -42,7 +81,7 @@ class EditingController extends Controller
             ]);
     }
 
-    public function confirm(Entity $entity)
+    public function confirm(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -56,28 +95,28 @@ class EditingController extends Controller
         return $this->confirmHandle($campaign);
     }
 
-    public function confirmPost(Entity $entity, Post $post)
+    public function confirmPost(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'edit', $post]);
 
         return $this->confirmHandle($post);
     }
 
-    public function confirmQuestElement(QuestElement $questElement)
+    public function confirmQuestElement(Campaign $campaign, QuestElement $questElement)
     {
         $this->authorize('update', $questElement->quest()->first());
 
         return $this->confirmHandle($questElement);
     }
 
-    public function confirmTimelineElement(TimelineElement $timelineElement)
+    public function confirmTimelineElement(Campaign $campaign, TimelineElement $timelineElement)
     {
         $this->authorize('update', $timelineElement->timeline()->first());
 
         return $this->confirmHandle($timelineElement);
     }
 
-    public function keepAlive(Entity $entity)
+    public function keepAlive(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -91,21 +130,21 @@ class EditingController extends Controller
         return $this->keepAliveHandle($campaign);
     }
 
-    public function keepAlivePost(Entity $entity, Post $post)
+    public function keepAlivePost(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'edit', $post]);
 
         return $this->keepAliveHandle($post);
     }
 
-    public function keepAliveTimelineElement(TimelineElement $timelineElement)
+    public function keepAliveTimelineElement(Campaign $campaign, TimelineElement $timelineElement)
     {
         $this->authorize('update', $timelineElement->timeline()->first());
 
         return $this->keepAliveHandle($timelineElement);
     }
 
-    public function keepAliveQuestElement(QuestElement $questElement)
+    public function keepAliveQuestElement(Campaign $campaign, QuestElement $questElement)
     {
         $this->authorize('update', $questElement->quest()->first());
 

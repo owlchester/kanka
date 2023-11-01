@@ -5,25 +5,19 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\EntityService;
+use App\Services\Entity\TemplateService;
 use Illuminate\Support\Facades\DB;
 
 class EntityTemplateApiController extends ApiController
 {
-    /** @var EntityService */
-    protected $service;
+    protected TemplateService $service;
 
-    /**
-     * EntityApiController constructor.
-     * @param EntityService $service
-     */
-    public function __construct(EntityService $service)
+    public function __construct(TemplateService $templateService)
     {
-        $this->service = $service;
+        $this->service = $templateService;
     }
 
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -42,8 +36,6 @@ class EntityTemplateApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -52,7 +44,7 @@ class EntityTemplateApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
 
-        $entity = $this->service->toggleTemplate($entity);
+        $this->service->entity($entity)->toggle();
 
         $resource = new Resource($entity);
         return $resource->withMisc();

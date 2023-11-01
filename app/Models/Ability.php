@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
@@ -47,13 +46,12 @@ class Ability extends MiscModel
         'slug',
         'type',
         'entry',
-        'image',
         'ability_id',
         'is_private',
         'charges'
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'ability.name',
@@ -61,9 +59,8 @@ class Ability extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'ability.name',
     ];
 
@@ -71,15 +68,14 @@ class Ability extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'ability_id',
     ];
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'ability';
+    protected string $entityType = 'ability';
 
     /**
      * Parent ID used for the Node Trait
@@ -101,14 +97,12 @@ class Ability extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -130,7 +124,6 @@ class Ability extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -175,12 +168,9 @@ class Ability extends MiscModel
 
     /**
      * Menu items for the entity
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $items['second']['abilities'] = [
             'name' => Module::plural($this->entityTypeId(), 'entities.abilities'),
             'route' => 'abilities.abilities',
@@ -196,7 +186,6 @@ class Ability extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -204,7 +193,6 @@ class Ability extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function entryWithAttributes()
     {
@@ -213,8 +201,6 @@ class Ability extends MiscModel
 
     /**
      * Attach an entity to the tag
-     * @param array $request
-     * @return bool
      */
     public function attachEntity(array $request): bool
     {
@@ -231,7 +217,7 @@ class Ability extends MiscModel
         $entityAbility = EntityAbility::create([
             'ability_id' => $this->id,
             'entity_id' => $entityId,
-            'visibility_id' => Arr::get($request, 'visibility_id', Visibility::VISIBILITY_ALL),
+            'visibility_id' => Arr::get($request, 'visibility_id', \App\Enums\Visibility::All),
         ]);
 
         return $entityAbility !== false;
@@ -239,7 +225,6 @@ class Ability extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {

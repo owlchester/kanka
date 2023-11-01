@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\MiscModel $model */?>
 
-@inject('campaignService', 'App\Services\CampaignService')
+
 @php
 $headerImage = true;
 @endphp
@@ -15,26 +15,26 @@ $headerImage = true;
 ])
 
 @section('og')
-@if ($tooltip = $model->entity->mappedPreview())<meta property="og:description" content="{{ $tooltip }}" />@endif
-@if ($model->image)<meta property="og:image" content="{{ $model->thumbnail(200)  }}" />@endif
+@if ($tooltip = $entity->mappedPreview())<meta property="og:description" content="{{ $tooltip }}" />@endif
+@if ($entity->image_path)<meta property="og:image" content="{{ \App\Facades\Avatar::entity($entity)->size(200)->thumbnail()  }}" />@endif
     <meta property="og:url" content="{{ $model->getLink()  }}" />
     <meta name="twitter:card" content="summary_large_image" />
 @endsection
 
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
+    <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
         @include('entities.headers.toggle')
+        @can('post', [$model, 'add'])
+            <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-sm btn-new-post"
+               data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">
+                <x-icon class="plus"></x-icon> {{ __('crud.actions.new_post') }}
+            </a>
+        @endcan
         @can('update', $model)
             <a href="{{ $model->getLink('edit') }}" class="btn2 btn-primary btn-sm ">
                 <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
             </a>
-        @endcan
-        @can('post', [$model, 'add'])
-        <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn2 btn-accent btn-sm btn-new-post"
-           data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
-            <x-icon class="plus"></x-icon> {{ __('crud.actions.new_post') }}
-        </a>
         @endcan
     </div>
 @endsection

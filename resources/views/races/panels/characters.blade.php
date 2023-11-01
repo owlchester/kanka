@@ -6,6 +6,7 @@
 
 $allMembers = true;
 $datagridOptions = [
+    $campaign,
     $model,
     'init' => 1
 ];
@@ -16,33 +17,29 @@ if (request()->has('race_id')) {
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 
-<div class="flex gap-2 items-center mb-2">
-    <h3 class="grow m-0">
+<div class="flex gap-2 items-center">
+    <h3 class="grow">
         {!! \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')) !!}
     </h3>
-    <div>
-        <a href="#" class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="help-modal">
-            <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
-        </a>
-
+    <div class="flex gap-2 flex-wrap overflow-auto">
         @if (request()->has('race_id'))
-            <a href="{{ route('races.show', $model) }}" class="btn2 btn-sm">
+            <a href="{{ $entity->url() }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->allCharacters()->count() }})
             </a>
         @else
-            <a href="{{ route('races.show', [$model, 'race_id' => $model->id]) }}" class="btn2 btn-sm">
+            <a href="{{ route('entities.show', [$campaign, $entity, 'race_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->characters()->count() }})
             </a>
         @endif
         @can('update', $model)
-            <a href="{{ route('races.members.create', ['race' => $model->id]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('races.members.create', $model->id) }}">
+            <a href="{{ route('races.members.create', [$campaign, $model]) }}" class="btn2 btn-primary btn-sm"
+               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('races.members.create', [$campaign, $model]) }}">
                 <x-icon class="plus"></x-icon>
-                <span class="hidden-sm hidden-xs">{{ __('crud.add') }}</span>
+                <span class="hidden xl:inline">{{ __('crud.add') }}</span>
             </a>
         @endcan
     </div>
@@ -52,16 +49,3 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         @include('layouts.datagrid._table', ['datagridUrl' => route('races.characters', $datagridOptions)])
     </div>
 </div>
-
-
-
-@section('modals')
-    @parent
-    @include('partials.helper-modal', [
-        'id' => 'help-modal',
-        'title' => __('crud.actions.help'),
-        'textes' => [
-            __('races.characters.helpers.' . ($allMembers ? 'all_' : null) . 'characters')
-        ]
-    ])
-@endsection

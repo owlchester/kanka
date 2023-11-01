@@ -54,7 +54,7 @@ class Quest extends MiscModel
         'date',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'date',
@@ -63,15 +63,13 @@ class Quest extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'quest';
+    protected string $entityType = 'quest';
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'date',
         'instigator.name',
         'is_completed',
@@ -83,14 +81,13 @@ class Quest extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'instigator_id',
         'quest_id',
     ];
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
     protected array $foreignExport = [
         'elements',
@@ -103,8 +100,6 @@ class Quest extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -126,10 +121,6 @@ class Quest extends MiscModel
 
     /**
      * Filter quests on specific elements (entities)
-     * @param Builder $query
-     * @param string|null $value
-     * @param FilterOption $filter
-     * @return Builder
      */
     public function scopeElement(Builder $query, string|null $value, FilterOption $filter): Builder
     {
@@ -159,10 +150,6 @@ class Quest extends MiscModel
 
     /**
      * Filter quests on specific element roles
-     * @param Builder $query
-     * @param string $value
-     * @param string $operator
-     * @return Builder
      */
     public function scopeElementRole(Builder $query, string $value, string $operator): Builder
     {
@@ -182,7 +169,6 @@ class Quest extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -199,7 +185,6 @@ class Quest extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function shortDescription()
     {
@@ -272,8 +257,6 @@ class Quest extends MiscModel
     }
 
     /**
-     * @param array $items
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -288,7 +271,6 @@ class Quest extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -297,7 +279,6 @@ class Quest extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -325,7 +306,6 @@ class Quest extends MiscModel
 
     /**
      * Get the value of the is_complete variable
-     * @return bool
      */
     public function isCompleted(): bool
     {
@@ -334,7 +314,6 @@ class Quest extends MiscModel
 
     /**
      * Grid mode sortable fields
-     * @return array
      */
     public function datagridSortableColumns(): array
     {

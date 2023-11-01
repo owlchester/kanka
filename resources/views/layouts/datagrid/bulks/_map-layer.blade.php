@@ -6,10 +6,10 @@
         2 => __('maps/layers.types.overlay_shown'),
     ];
 ?>
+<x-grid type="1/1">
+    <x-forms.field field="type" :label="__('maps/layers.fields.type')">
+        {{ Form::select('type_id', $typeOptions, null, ['class' => '', 'id' => 'type_id']) }}
+    </x-forms.field>
 
-<div class="field-type">
-    <label>{{ __('maps/layers.fields.type') }}</label>
-    {{ Form::select('type_id', $typeOptions, null, ['class' => 'form-control', 'id' => 'type_id']) }}
-</div>
-
-@include('cruds.fields.visibility_id', ['bulk' => true])
+    @include('cruds.fields.visibility_id', ['bulk' => true])
+</x-grid>

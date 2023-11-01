@@ -10,6 +10,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -30,10 +31,10 @@ class Creature extends MiscModel
     use Acl;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
-    use SortableTrait
-    ;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -41,7 +42,6 @@ class Creature extends MiscModel
         'campaign_id',
         'slug',
         'type',
-        'image',
         'entry',
         'is_private',
         'creature_id',
@@ -49,15 +49,14 @@ class Creature extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'creature';
+    protected string $entityType = 'creature';
 
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'creature.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'creature.name',
@@ -67,15 +66,14 @@ class Creature extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'creature_id',
     ];
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'locations',
     ];
 
@@ -100,14 +98,12 @@ class Creature extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -127,10 +123,6 @@ class Creature extends MiscModel
 
     /**
      * Filter on creatures in specific locations
-     * @param Builder $query
-     * @param int|null $location
-     * @param FilterOption $filter
-     * @return Builder
      */
     public function scopeLocation(Builder $query, int|null $location, FilterOption $filter): Builder
     {
@@ -165,7 +157,6 @@ class Creature extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {

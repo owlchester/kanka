@@ -7,25 +7,13 @@ use App\Models\Entity;
 use App\Facades\Identity;
 use App\Models\EntityLog;
 use App\Models\Post;
+use App\Traits\EntityAware;
 
 class StoryService
 {
-    /** @var Entity */
-    protected $entity;
+    use EntityAware;
 
     /**
-     * @param Entity $entity
-     * @return $this
-     */
-    public function entity(Entity $entity): self
-    {
-        $this->entity = $entity;
-        return $this;
-    }
-
-    /**
-     * @param ReorderStories $request
-     * @return bool
      */
     public function reorder(ReorderStories $request): bool
     {

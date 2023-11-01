@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use App\Rules\EntityFileRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,7 +29,7 @@ class StoreEntityFile extends FormRequest
             'file' => [
                 'required',
                 'file',
-                'max:' . auth()->user()->maxUploadSize(),
+                'max:' . Limit::upload(),
                 new EntityFileRule()
             ],
             'name' => 'nullable|string|max:45',

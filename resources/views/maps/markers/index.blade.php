@@ -7,19 +7,18 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
     @can('update', $model)
-        <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+        <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
             <a href="https://docs.kanka.io/en/latest/entities/maps/markers.html" class="btn2 btn-sm" target="_blank">
-                <x-icon class="question"></x-icon>
-                {{ __('crud.actions.help') }}
+                <x-icon class="question" />
+                <span class="hidden xl:inline">{{ __('crud.actions.help') }}</span>
             </a>
             @if ($model->explorable())
-                <a href="{{ route('maps.explore', ['map' => $model]) }}" class="btn2 btn-primary btn-sm">
-                    <x-icon class="map"></x-icon>
-                    {{ __('maps.actions.explore') }}
+                <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="btn2 btn-primary btn-sm">
+                    <x-icon class="map" />
+                    <span class="hidden xl:inline">{{ __('maps.actions.explore') }}</span>
                 </a>
             @endif
         </div>
@@ -27,18 +26,10 @@
 @endsection
 
 @section('content')
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
-                __('maps.panels.markers')
-            ]
-        ])
-        @include('entities.components.menu_v2', ['active' => 'markers'])
-        <div class="entity-main-block flex flex-col">
-            @include('maps.form._markers', ['source' => null])
-            @include('maps.panels.markers')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'markers',
+        'breadcrumb' => __('maps.panels.markers'),
+        'view' => 'maps.panels.markers',
+        'entity' => $model->entity,
+    ])
 @endsection

@@ -10,9 +10,6 @@ class ConversationMessagePolicy
 {
     /**
      * Allow deleting a message for up to one hour by the author
-     * @param User|null $user
-     * @param ConversationMessage $message
-     * @return bool
      */
     public function delete(?User $user, ConversationMessage $message): bool
     {
@@ -21,9 +18,6 @@ class ConversationMessagePolicy
     }
 
     /**
-     * @param User|null $user
-     * @param ConversationMessage $message
-     * @return bool
      */
     public function edit(?User $user, ConversationMessage $message): bool
     {

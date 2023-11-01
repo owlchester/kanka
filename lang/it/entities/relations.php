@@ -6,14 +6,11 @@ return [
         'mode-table'    => 'Tabella dei legami e degli elementi correlati',
     ],
     'bulk'              => [
-        'delete'            => '{0} Rimossi :count legami|{1} Rimosso :count legame.|[2,*] Rimossi :count legami.',
-        'delete_mirrored'   => 'Elimini anche i legami speculari.',
-        'success'           => [
+        'delete'    => '{0} Rimossi :count legami|{1} Rimosso :count legame.|[2,*] Rimossi :count legami.',
+        'success'   => [
             'editing'           => '{0} :count legami sono stati aggiornati|{1} :count legame è stato aggiornato.|[2,*] :count legami sono stati aggiornati.',
             'editing_partial'   => '{0} :count/:total legami sono stati aggiornati|{1} :count/:total legame è stato aggiornato.|[2,*] :count/:total legami sono stati aggiornati.',
         ],
-        'unmirror'          => 'Scollega i legami speculari.',
-        'update_mirrored'   => 'Aggiorna anche i legami speculari.',
     ],
     'call-to-action'    => 'Esplora visivamente i legami di questa entità e il modo in cui è collegata al resto della campagna.',
     'connections'       => [

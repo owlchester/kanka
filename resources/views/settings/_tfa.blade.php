@@ -5,9 +5,7 @@
         <p class="hep-block">{{ __('settings.account.2fa.enabled') }}</p>
 
         <div class="text-right">
-
             <x-buttons.confirm type="danger" outline="true" target="deactivate-2fa">
-
                 {{ __('settings.account.2fa.actions.disable') }}
             </x-buttons.confirm>
         </div>
@@ -25,7 +23,6 @@
                 ]) !!}</p>
             {!! Form::open(['route' => 'settings.security.generate-2fa', 'method' => 'POST']) !!}
                 <div class="text-right">
-
                     <x-buttons.confirm type="primary">
                         {{ __('settings.account.2fa.generate_qr') }}
                     </x-buttons.confirm>
@@ -33,22 +30,23 @@
             {!! Form::close() !!}
         @elseif(!$user->passwordSecurity->google2fa_enable)
             {!! Form::open(['route' => 'settings.security.enable-2fa', 'method' => 'POST']) !!}
-                <p>{{ __('settings.account.2fa.activation_helper') }}</p>
+                <x-grid type="1/1">
+                    <p>{{ __('settings.account.2fa.activation_helper') }}</p>
 
-                <div class="field-qr-code mb-5 required">
-                    <label>{{ __('settings.account.2fa.fields.qrcode') }}</label><br />
-                    {!! $user->passwordSecurity->getGoogleQR() !!}
-                </div>
-                <div class="field-otp mb-5 required">
-                    <label>{{ __('settings.account.2fa.fields.otp') }}</label>
-                    {!! Form::password('otp', ['class' => 'form-control', 'maxlength' => 12]) !!}
-                </div>
+                    <x-forms.field field="qr-code" :required="true" :label="__('settings.account.2fa.fields.qrcode')">
+                        {!! $user->passwordSecurity->getGoogleQR() !!}
+                    </x-forms.field>
 
-                <div class="text-right">
-                    <x-buttons.confirm type="primary">
-                        {{ __('settings.account.2fa.actions.finish') }}
-                    </x-buttons.confirm>
-                </div>
+                    <x-forms.field field="otp" :required="true" :label="__('settings.account.2fa.fields.otp')">
+                        {!! Form::password('otp', ['class' => '', 'maxlength' => 12]) !!}
+                    </x-forms.field>
+
+                    <div class="text-right">
+                        <x-buttons.confirm type="primary">
+                            {{ __('settings.account.2fa.actions.finish') }}
+                        </x-buttons.confirm>
+                    </div>
+                </x-grid>
             {!! Form::close() !!}
        @endif
   @endif
@@ -60,7 +58,7 @@
     @if($user->passwordSecurity?->google2fa_enable)
     {!! Form::model($user, ['method' => 'POST', 'route' => ['settings.security.disable-2fa']]) !!}
     <x-dialog id="deactivate-2fa" :title="__('settings.account.2fa.disable.title')">
-        <p class="mb-2">
+        <p class="">
             {{ __('settings.account.2fa.disable.helper') }}
         </p>
         <div class="w-full">

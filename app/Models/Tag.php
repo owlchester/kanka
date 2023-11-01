@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
@@ -45,13 +44,12 @@ class Tag extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'tag';
+    protected string $entityType = 'tag';
 
     protected $explicitFilters = ['tag_id'];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'tag.name',
         'type',
@@ -62,9 +60,8 @@ class Tag extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'tag.name',
         'colour',
         'is_auto_applied',
@@ -77,7 +74,6 @@ class Tag extends MiscModel
         'slug',
         'type',
         'colour',
-        'image',
         'entry',
         'tag_id',
         'campaign_id',
@@ -90,7 +86,7 @@ class Tag extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'tag_id',
     ];
 
@@ -133,14 +129,12 @@ class Tag extends MiscModel
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -169,7 +163,6 @@ class Tag extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -194,7 +187,6 @@ class Tag extends MiscModel
 
     /**
      * Get all the children
-     * @param bool $withTags
      * @return Builder
      */
     public function allChildren(bool $withTags = false)
@@ -241,13 +233,9 @@ class Tag extends MiscModel
     }
 
     /**
-     * @param array $items
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $count = $this->descendants->count();
         if ($count > 0) {
             $items['second']['tags'] = [
@@ -261,7 +249,6 @@ class Tag extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -275,7 +262,7 @@ class Tag extends MiscModel
     public function colourClass(): string
     {
         if (!$this->hasColour()) {
-            return 'text-white !border-0';
+            return '!border-0';
         }
 
         $mappings = config('colours.mappings');
@@ -283,22 +270,23 @@ class Tag extends MiscModel
         if (isset($mappings[$this->colour])) {
             $colour = $mappings[$this->colour];
         }
+        $text = null;
+        if (in_array($colour, ['navy', 'black'])) {
+            $text = 'text-white';
+        }
 
-        return 'bg-' . $colour . ' color-palette color-tag !border-0 ';
+        return 'bg-' . $colour . ' color-palette color-tag !border-0 ' . $text . ' ';
     }
 
     /**
-     * @return bool
      */
-    public function hasColour()
+    public function hasColour(): bool
     {
         return !empty($this->colour);
     }
 
     /**
      * Attach an entity to the tag
-     * @param array $request
-     * @return bool
      */
     public function attachEntity(array $request): bool
     {
@@ -322,7 +310,6 @@ class Tag extends MiscModel
 
     /**
      * Get the tag's html
-     * @return string
      */
     public function html(): string
     {
@@ -331,18 +318,7 @@ class Tag extends MiscModel
     }
 
     /**
-     * @return string
-     */
-    public function bubble(): string
-    {
-        return '<span class="badge ' .
-            ($this->hasColour() ? $this->colourClass() : 'color-tag') . '" title="' .
-            e($this->name) . '">' . ucfirst(mb_substr($this->slug, 0, 1)) . '</span>';
-    }
-
-    /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -351,7 +327,6 @@ class Tag extends MiscModel
 
     /**
      * Determine if the model is a tag that has to be applied to all newly created entities
-     * @return bool
      */
     public function isAutoApplied(): bool
     {
@@ -360,7 +335,6 @@ class Tag extends MiscModel
 
     /**
      * Determine if the model is a tag that is hidden
-     * @return bool
      */
     public function isHidden(): bool
     {

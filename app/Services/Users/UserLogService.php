@@ -8,7 +8,8 @@ class UserLogService
 {
     public function deleteOldLogs(): self
     {
-        UserLog::where('created_at', '<=', \Carbon\Carbon::today()->subDays(30)->format('Y-m-d'))->update(['ip' => null, 'country' => null]);
+        UserLog::where('created_at', '<=', \Carbon\Carbon::today()->subDays(30)->format('Y-m-d'))
+            ->update(['ip' => null, 'country' => null]);
         return $this;
     }
 }

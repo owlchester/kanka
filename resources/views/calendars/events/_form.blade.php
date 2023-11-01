@@ -1,3 +1,10 @@
+
+@if (!empty($from))
+    <x-alert type="warning">
+        {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
+    </x-alert>
+@endif
+
 {{ csrf_field() }}
 @if (empty($entityEvent))
     <x-grid id="calendar-event-first">
@@ -12,28 +19,30 @@
         </span>
     </x-grid>
 @else
-    <div class="mb-5">
-        @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id', 'dropdownParent' => '#entity-modal', 'allowClear' => false])
-    </div>
+    <x-grid type="1/1">
+        @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id', 'dropdownParent' => $dropdownParent ?? '#primary-dialog', 'allowClear' => false])
+    </x-grid>
 @endif
 
-<div id="calendar-event-subform" style="{{ empty($entityEvent) ? 'display:none' : null }}">
+<div id="calendar-event-subform" class="flex flex-col gap-5" style="{{ empty($entityEvent) ? 'display:none' : null }}">
     @if (empty($entityEvent))
-        <div class="flex gap-2 md:gap-4 mb-2 md:mb-4 items-center">
+        <div class="flex gap-2 md:gap-4 items-center">
             <div class="grow calendar-existing-event-field">
                 @include('cruds.fields.entity', [
-                    'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+                    'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#primary-dialog' : null),
                     'required' => true
                 ])
             </div>
             <div class="grow calendar-new-event-field">
-                <div class="field-name">
-                    <label>{{ __('crud.fields.name') }}</label>
-                    {!! Form::text('name', null, ['placeholder' => __('crud.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                <x-forms.field
+                    field="name"
+                    :label="__('crud.fields.name')">
+                    {!! Form::text('name', null, ['placeholder' => __('crud.placeholders.name'), 'maxlength' => 191]) !!}
+                </x-forms.field>
             </div>
-            <div class="">
-                <a href="#" id="calendar-event-switch" class="btn2 btn-sm">
+            <div class="self-start">
+                <a href="#" id="calendar-event-switch" class="btn2 btn-xs">
+                    <x-icon class="fa-solid fa-exchange-alt" />
                     {{ __('calendars.event.actions.switch') }}
                 </a>
             </div>

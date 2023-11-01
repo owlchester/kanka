@@ -1,6 +1,7 @@
 <div class="grid gap-2 md:gap-4 grid-cols-4">
     <div class="col-span-3">
         <x-forms.tags
+            :campaign="$campaign"
             label=""
             allowClear="true"
             :options="$value"
@@ -16,7 +17,7 @@
                 'none' => __('crud.filters.options.none'),
             ],
             $filterService->single($field['field'] . '_option'), [
-                'class' => 'form-control  entity-list-filter',
+                'class' => 'w-full entity-list-filter',
         ]) !!}
     </div>
 </div>

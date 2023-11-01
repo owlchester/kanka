@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -33,7 +34,7 @@ class StoreEvent extends FormRequest
             'location_id' => 'nullable|integer|exists:locations,id',
             'event_id' => 'nullable|integer|exists:events,id',
             'date' => 'nullable|max:191',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
         ]);

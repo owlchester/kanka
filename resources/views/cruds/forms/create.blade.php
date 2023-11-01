@@ -3,17 +3,18 @@
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($name), 'label' => $plural],
         __('crud.create'),
-    ]
+    ],
+    'mainTitle' => false,
+    'centered' => true,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
 {!! Form::open([
     'method' => 'POST',
     'enctype' => 'multipart/form-data',
-    'route' => [$name . '.store'],
+    'route' => [$name . '.store', $campaign],
     'data-shortcut' => '1',
-    'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null),
+    'class' => 'entity-form',
     'id' => 'entity-form',
     'data-max-fields' => ini_get('max_input_vars'),
     'data-unload' => 1,
@@ -22,12 +23,13 @@
 @endsection
 
 @section('content')
+    <x-grid type="1/1">
     @include('cruds.forms._errors')
 
     <div class="nav-tabs-custom">
         <div class="flex gap-2 items-center ">
             <div class="grow overflow-x-auto">
-                <ul class="nav-tabs flex inline-flex items-stretch w-full" role="tablist">
+                <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                     <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
 
                     @includeIf($name . '.form._tabs', ['source' => $source])
@@ -53,33 +55,43 @@
 
         <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
             <div class="tab-pane pane-entry {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
-                {{ csrf_field() }}
-                @include($name . '.form._entry', ['source' => $source])
+                <x-grid type="1/1">
+                    @include($name . '.form._entry', ['source' => $source])
+                </x-grid>
             </div>
             @includeIf($name . '.form._panes', ['source' => $source])
 
             @if ($tabBoosted)
                 <div class="tab-pane pane-premium {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
-                    @include('cruds.forms._premium', ['source' => $source])
+                    <x-grid type="1/1">
+                        @include('cruds.forms._premium', ['source' => $source])
+                    </x-grid>
                 </div>
             @endif
             @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
                 <div class="tab-pane pane-copy {{ (request()->get('tab') == 'copy' ? ' active' : '') }}" id="form-copy">
-                    @include('cruds.forms._copy', ['source' => $source])
+                    <x-grid type="1/1">
+                        @include('cruds.forms._copy', ['source' => $source])
+                    </x-grid>
                 </div>
             @endif
             @if ($tabAttributes)
             <div class="tab-pane pane-attributes {{ (request()->get('tab') == 'attributes' ? ' active' : '') }}" id="form-attributes">
-                @include('cruds.forms._attributes', ['source' => $source])
+                <x-grid type="1/1">
+                    @include('cruds.forms._attributes', ['source' => $source])
+                </x-grid>
             </div>
             @endif
             @if ($tabPermissions)
             <div class="tab-pane pane-permissions {{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" id="form-permissions">
-                @include('cruds.forms._permission', ['source' => $source])
+                <x-grid type="1/1">
+                    @include('cruds.forms._permission', ['source' => $source])
+                </x-grid>
             </div>
             @endif
         </div>
     </div>
+    </x-grid>
     {!! Form::close() !!}
 @endsection
 

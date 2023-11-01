@@ -27,7 +27,6 @@ return [
     'title'         => ':campaign kampány galériája',
     'update'        => [
         'success'   => '\':name\' képet frissítettük.',
-        'title'     => 'Kép tulajdonságok',
     ],
     'uploader'      => [
         'add'           => 'Új hozzáadása',

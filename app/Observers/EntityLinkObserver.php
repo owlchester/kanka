@@ -12,7 +12,6 @@ class EntityLinkObserver
     use PurifiableTrait;
 
     /**
-     * @param EntityLink $entityLink
      */
     public function saving(EntityLink $entityLink)
     {
@@ -34,7 +33,6 @@ class EntityLinkObserver
     }
 
     /**
-     * @param EntityLink $entityLink
      */
     public function creating(EntityLink $entityLink)
     {

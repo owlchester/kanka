@@ -10,23 +10,25 @@
 
         {!! Form::open(['route' => 'troubleshooting.generate', 'method' => 'POST']) !!}
         <x-box>
-            <p class="mb-5">
-                {{ __('helpers.troubleshooting.description') }}
-            </p>
+            <x-grid type="1/1">
+                <p class="">
+                    {{ __('helpers.troubleshooting.description') }}
+                </p>
 
             @if($token)
                 <x-alert type="success">
-                    <p class="mb-5">{{ __('helpers.troubleshooting.success') }}</p>
-                    <a href="#" data-clipboard="{{ $token }}" data-toggle="tooltip" data-toast="Token copied to the clipboard" title="{{__('campaigns.invites.actions.copy') }}">
-                        <i class="fa-solid fa-copy" aria-hidden="true"></i>
-                        {{ $token }}
-                    </a>
+                    <x-grid type="1/1">
+                        <p class="">{{ __('helpers.troubleshooting.success') }}</p>
+                        <a href="#" data-clipboard="{{ $token }}" data-toggle="tooltip" data-toast="Token copied to the clipboard" data-title="{{__('campaigns.invites.actions.copy') }}">
+                            <x-icon class="fa-solid fa-copy" />
+                            {{ $token }}
+                        </a>
+                    </x-grid>
                 </x-alert>
             @else
-                <div class="field-campaign mb-5">
-                    <label>{{ __('entities/move.fields.campaign') }}</label>
-                    {!! Form::select('campaign', $campaigns, null, ['class' => 'form-control']) !!}
-                </div>
+                <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
+                    {!! Form::select('campaign', $campaigns, null, ['class' => '']) !!}
+                </x-forms.field>
             @endif
 
             @if(!$token)
@@ -34,6 +36,7 @@
                     <input type="submit" class="btn2 btn-primary" value="{{ __('helpers.troubleshooting.save_btn') }}" />
                 </div>
             @endif
+            </x-grid>
         </x-box>
         {!! Form::close() !!}
     </div>

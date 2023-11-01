@@ -43,6 +43,9 @@ class Race extends Layout
                     return $model->characters->count();
                 }
             ],
+            'tags' => [
+                'render' => Standard::TAGS
+            ]
         ];
 
         return $columns;

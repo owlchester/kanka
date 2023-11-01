@@ -11,8 +11,6 @@ use App\Models\Inventory;
 class EntityInventoryApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -24,9 +22,6 @@ class EntityInventoryApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param Inventory $inventory
      * @return Resource
      */
     public function show(Campaign $campaign, Entity $entity, Inventory $inventory)
@@ -37,8 +32,6 @@ class EntityInventoryApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -53,10 +46,6 @@ class EntityInventoryApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param Inventory $inventory
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Entity $entity, Inventory $inventory)
@@ -70,9 +59,6 @@ class EntityInventoryApiController extends ApiController
 
     /**
      * @param Request $request
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param Inventory $inventory
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

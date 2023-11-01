@@ -32,8 +32,6 @@ class PasswordConfirm
     /**
      * Create a new middleware instance.
      *
-     * @param  \Illuminate\Contracts\Routing\ResponseFactory  $responseFactory
-     * @param  \Illuminate\Contracts\Routing\UrlGenerator  $urlGenerator
      * @param  int|null  $passwordTimeout
      * @return void
      */
@@ -48,9 +46,7 @@ class PasswordConfirm
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @param  string|null  $redirectToRoute
-     * @return mixed
      */
     public function handle($request, Closure $next, $redirectToRoute = null)
     {

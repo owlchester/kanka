@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignDashboardWidget;
+use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Services\EntityService;
 
 class DashboardWidgetController extends Controller
 {
-    /**
-     * @var EntityService
-     */
-    protected $entityService;
+    protected EntityService $entityService;
 
     /**
      * Create a new controller instance.
@@ -29,15 +26,18 @@ class DashboardWidgetController extends Controller
         $this->entityService = $entityService;
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
-        return redirect()->route('dashboard.setup');
+        $dashboard = null;
+        if (request()->get('dashboard')) {
+            $dashboard = \App\Models\CampaignDashboard::findOrFail(request()->get('dashboard'));
+        }
+
+        return view('dashboard.widgets.selection')
+            ->with('campaign', $campaign)
+            ->with('dashboard', $dashboard);
     }
 
     /**
@@ -46,21 +46,21 @@ class DashboardWidgetController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function create()
+    public function create(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
         $widget = request()->get('widget', 'preview');
         if (!view()->exists('dashboard.widgets.forms._' . $widget)) {
             abort(404);
         }
-        $entities = $this->buildEntities();
+        $entities = $this->buildEntities($campaign);
 
         $dashboard = request()->has('dashboard') ?
             CampaignDashboard::where('id', request()->get('dashboard'))->first() : null;
 
         return view('dashboard.widgets.forms.create', [
+            'campaign' => $campaign,
             'widget' => $widget,
             'entities' => $entities,
             'dashboard' => $dashboard
@@ -68,13 +68,11 @@ class DashboardWidgetController extends Controller
     }
 
     /**
-     * @param StoreCampaignDashboardWidget $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StoreCampaignDashboardWidget $request)
+    public function store(StoreCampaignDashboardWidget $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
         $data = $request->all();
@@ -82,29 +80,26 @@ class DashboardWidgetController extends Controller
         $widget = CampaignDashboardWidget::create($data);
 
         return redirect()
-            ->route('dashboard.setup', $widget->dashboard_id ? ['dashboard' => $widget->dashboard_id] : null)
+            ->route('dashboard.setup', $widget->dashboard_id ? [$campaign, 'dashboard' => $widget->dashboard_id] : $campaign)
             ->with('success', __('dashboard.widgets.create.success'));
     }
 
     /**
-     * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(CampaignDashboardWidget $campaignDashboardWidget)
+    public function show(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard', $campaign);
     }
 
     /**
-     * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(CampaignDashboardWidget $campaignDashboardWidget)
+    public function edit(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
-        $entities = $this->buildEntities();
+        $entities = $this->buildEntities($campaign);
 
         $dashboards = [null => __('dashboard.dashboards.default.title')];
         foreach (CampaignDashboard::orderBy('name')->pluck('name', 'id')->toArray() as $id => $dashboard) {
@@ -112,22 +107,20 @@ class DashboardWidgetController extends Controller
         }
 
         return view('dashboard.widgets.forms.edit', [
+            'campaign' => $campaign,
             'model' => $campaignDashboardWidget,
-            'widget' => $campaignDashboardWidget->widget,
+            'widget' => $campaignDashboardWidget->widget->value,
             'entities' => $entities,
             'dashboards' => $dashboards,
         ]);
     }
 
     /**
-     * @param StoreCampaignDashboardWidget $request
-     * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreCampaignDashboardWidget $request, CampaignDashboardWidget $campaignDashboardWidget)
+    public function update(StoreCampaignDashboardWidget $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
         //get all request data
@@ -138,34 +131,24 @@ class DashboardWidgetController extends Controller
         $campaignDashboardWidget->update($input);
 
         return redirect()
-            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
+            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : $campaign)
             ->with('success', __('dashboard.widgets.update.success'));
     }
 
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param CampaignDashboardWidget $campaignDashboardWidget
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function destroy(\Illuminate\Http\Request $request, CampaignDashboardWidget $campaignDashboardWidget)
+    public function destroy(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
-
         $campaignDashboardWidget->delete();
 
         return redirect()
-            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
+            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : $campaign)
             ->with('success', __('dashboard.widgets.delete.success'));
     }
 
     /**
      * Get a list of available entities
-     * @return array
      */
-    private function buildEntities(): array
+    private function buildEntities(Campaign $campaign): array
     {
         $entities = [
             '' => 'All',
@@ -173,7 +156,7 @@ class DashboardWidgetController extends Controller
 
         $enabledEntities = $this
             ->entityService
-            ->getEnabledEntities(CampaignLocalization::getCampaign(), ['menu_links']);
+            ->getEnabledEntities($campaign, ['bookmarks']);
         foreach ($enabledEntities as $entity) {
             $entities[$entity] = __('entities.' . $entity);
         }

@@ -10,11 +10,11 @@
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['campaign_users.destroy', $campaignUser->id],
+        'route' => ['campaign_users.destroy', [$campaign, $campaignUser->id]],
          'class' => 'w-full'
      ]) !!}
 
-    <p class="mt-3">
+    <p class="">
         {!! __('campaigns.members.removal', ['member' => '<strong>' . $campaignUser->user->name. '</strong>']) !!}<br />
         <span class="permanent">
             {{ __('crud.delete_modal.permanent') }}

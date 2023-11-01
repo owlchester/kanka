@@ -60,81 +60,84 @@
 
         </div>
     </div>
-    <div class="modal fade" id="family-tree-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel" ref="modal" v-if="!isLoading">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header flex gap-2">
-                    <h4 class="modal-title grow" v-if="isAddingChild">{{ this.texts.modals.entity.child.title }}</h4>
-                    <h4 class="modal-title grow" v-else-if="isAddingCharacter">{{ this.texts.modals.entity.add.title }}</h4>
-                    <h4 class="modal-title grow" v-else-if="isEditingEntity">{{ this.texts.modals.entity.edit.title }}</h4>
-                    <h4 class="modal-title grow" v-else-if="isAddingRelation">{{ this.texts.modals.relation.add.title }}</h4>
-                    <h4 class="modal-title grow" v-else-if="isEditingRelation">{{ this.texts.modals.relation.edit.title }}</h4>
-                    <button type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" v-on:click="closeModal()">
-                        <i class="fa-solid fa-times" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="flex flex-col gap-5 mb-5">
-                        <div class="field-character" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter">
-                            <label>{{ this.texts.modals.fields.character }}</label>
-                            <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
-                        </div>
-                        <div class="field-member" v-show="isAddingCharacter && this.showMembers()">
-                            <label>{{ this.texts.modals.fields.member }}</label>
-                            <ul>
-                                <li v-for="(suggestion) in this.suggestions"
-                                >
-                                    <a class="cursor-pointer" v-on:click="this.saveSuggestion(suggestion.id)"> {{ suggestion.name }} </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="flex flex-col gap-5" v-show="isEditingRelation || isAddingRelation || isAddingChild || isEditingEntity">
-                        <div v-if="isAddingRelation || isEditingEntity" class="field-unkown checkbox">
-                            <label>
-                                <input type="checkbox" v-model="isUnknown" id="family_tree_unknown" name="isUnknown" value="isUnknown" />
-                                {{ this.texts.modals.fields.unknown }}
-                            </label>
-                            <p class="help-block">{{ this.texts.modals.entity.edit.helper }}</p>
-                        </div>
 
-                        <div class="field-relation">
-                            <label>{{ this.texts.modals.fields.relation }}</label>
-                            <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" @keyup.enter="saveModal()"/>
-                        </div>
+  <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="family-tree-modal" aria-modal="true" v-if="!isLoading">
+    <header class="bg-base-200 sm:rounded-t">
+      <h4 v-if="isAddingChild">{{ this.texts.modals.entity.child.title }}</h4>
+      <h4 v-else-if="isAddingCharacter">{{ this.texts.modals.entity.add.title }}</h4>
+      <h4 v-else-if="isEditingEntity">{{ this.texts.modals.entity.edit.title }}</h4>
+      <h4 v-else-if="isAddingRelation">{{ this.texts.modals.relation.add.title }}</h4>
+      <h4 v-else-if="isEditingRelation">{{ this.texts.modals.relation.edit.title }}</h4>
 
-                        <div class="grid grid-cols-2 gap-5" v-show="isAddingRelation || isAddingChild || isEditingEntity">
-                            <div class="field-colour">
-                                <label>{{ this.texts.modals.fields.colour }}</label>
-                                <div>
-                                    <input v-model="colour" name="colour" type="text" maxlength="7" class="form-control spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
-                                </div>
-                            </div>
-
-                            <div class="field-visibility">
-                                <label>{{ this.texts.modals.fields.visibility.title }}</label>
-                                <select v-model="visibility" name="visibility" id="family_tree_visibility" class="form-control">
-                                    <option value="1">{{ this.texts.modals.fields.visibility.all }}</option>
-                                    <option value="2">{{ this.texts.modals.fields.visibility.admins }}</option>
-                                    <option value="5">{{ this.texts.modals.fields.visibility.members }}</option>
-                                </select>
-                            </div>
-
-                            <div class="field-css">
-                                <label>{{ this.texts.modals.fields.css }}</label>
-                                <input v-model="cssClass" type="text" maxlength="70" class="form-control" id="family_tree_class" @keyup.enter="saveModal()"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn2 btn-primary" @click="saveModal()">
-                        Save
-                    </button>
-                </div>
-            </div>
+      <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closeModal()">
+        <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
+        <span class="sr-only">Close</span>
+      </button>
+    </header>
+    <article>
+      <div class="flex flex-col gap-5 w-full">
+        <div class="field field-character flex flex-col gap-1 w-full" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter">
+          <label>{{ this.texts.modals.fields.character }}</label>
+          <select class="select2 w-full" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
         </div>
-    </div>
+        <div class="field field-member flex flex-col gap-1" v-show="isAddingCharacter && this.showMembers()">
+          <label>{{ this.texts.modals.fields.member }}</label>
+          <ul>
+            <li v-for="(suggestion) in this.suggestions"
+            >
+              <a class="cursor-pointer" v-on:click="this.saveSuggestion(suggestion.id)"> {{ suggestion.name }} </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col gap-5 w-full" v-show="isEditingRelation || isAddingRelation || isAddingChild || isEditingEntity">
+        <div v-if="isAddingRelation || isEditingEntity" class="field field-unknown checkbox flex flex-col gap-1">
+          <label>
+            <input type="checkbox" v-model="isUnknown" id="family_tree_unknown" name="isUnknown" value="isUnknown" />
+            {{ this.texts.modals.fields.unknown }}
+          </label>
+          <p class="help-block text-neutral-content">{{ this.texts.modals.entity.edit.helper }}</p>
+        </div>
+
+        <div v-if="!isAddingChild" class="field field-relation flex flex-col gap-1">
+          <label>{{ this.texts.modals.fields.relation }}</label>
+          <input v-model="relation" type="text" maxlength="70" class="w-full" id="family_tree_relation" @keyup.enter="saveModal()"/>
+        </div>
+
+        <div class="grid grid-cols-2 gap-5" v-show="isAddingRelation || isAddingChild || isEditingEntity">
+          <div class="field field field-colour flex flex-col gap-1">
+            <label>{{ this.texts.modals.fields.colour }}</label>
+            <div>
+              <input v-model="colour" name="colour" type="text" maxlength="7" class="w-full spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
+            </div>
+          </div>
+
+          <div class="field field-visibility flex flex-col gap-1">
+            <label>{{ this.texts.modals.fields.visibility.title }}</label>
+            <select v-model="visibility" name="visibility" id="family_tree_visibility" class="w-full">
+              <option value="1">{{ this.texts.modals.fields.visibility.all }}</option>
+              <option value="2">{{ this.texts.modals.fields.visibility.admins }}</option>
+              <option value="5">{{ this.texts.modals.fields.visibility.members }}</option>
+            </select>
+          </div>
+
+          <div class="field field-css flex flex-col gap-1">
+            <label>{{ this.texts.modals.fields.css }}</label>
+            <input v-model="cssClass" type="text" maxlength="70" class="w-full" id="family_tree_class" @keyup.enter="saveModal()"/>
+          </div>
+        </div>
+      </div>
+    </article>
+    <footer class="bg-base-200 flex flex-wrap gap-3 justify-end items-center p-3 md:rounded-b">
+        <menu class="flex flex-wrap gap-3 ps-0">
+          <div class="submit-group">
+            <button class="btn2 btn-primary" @click="saveModal()">
+              Save
+            </button>
+          </div>
+        </menu>
+    </footer>
+  </dialog>
 </template>
 
 <script>
@@ -182,7 +185,7 @@ export default {
             maxY: 0,
 
             colourField: 'input[name="colour"]',
-            modal: '#family-tree-modal',
+            modal: 'family-tree-modal',
             entityField: 'select[name="character_id_ft"]',
             newUuid: 1,
         }
@@ -268,11 +271,12 @@ export default {
             this.visibility = undefined;
             this.isUnknown = undefined;
 
-            $(this.modal).modal('hide');
+            window.closeDialog(this.modal);
             $(this.entityField).val(null).trigger('change');
         },
         showDialog() {
-            $(this.modal).modal('show')
+          window.openDialog(this.modal);
+          window.initForeignSelect();
         },
         resetVariables() {
             this.isAddingChild = false;
@@ -288,7 +292,7 @@ export default {
             this.isUnknown = undefined;
             this.entity = undefined;
 
-            $(this.modal).modal('hide');
+            window.closeDialog(this.modal);
             $(this.entityField).val(null).trigger('change');
         },
         saveSuggestion: function(character) {

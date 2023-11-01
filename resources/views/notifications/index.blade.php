@@ -21,7 +21,7 @@
 
         <x-box :padding="0">
             @if ($notifications->count() === 0)
-                <p class="help-block p-4">{{ __('notifications.no_notifications') }}</p>
+                <x-helper :text="__('notifications.no_notifications')" />
             @else
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
@@ -38,6 +38,8 @@
         if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
             $url = url(app()->getLocale() . '/' . $url);
         }
+        // Fix to new links?
+        //$url = \Illuminate\Support\Str::replace(['/campaign/'], ['/w/'], $url);
         @endphp
                                         <a href="{{ $url }}">
                                             {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
@@ -70,7 +72,7 @@
 
 @section('modals')
     <x-dialog id="delete-confirm-notifications" :title="__('notifications.clear.title')">
-        <p class="mb-2">
+        <p class="">
             {{ __('crud.delete_modal.permanent') }}
         </p>
 

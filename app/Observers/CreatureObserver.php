@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\MiscModel;
 use App\Models\Creature;
 use App\Observers\Concerns\HasLocations;
 
@@ -11,7 +10,6 @@ class CreatureObserver extends MiscObserver
     use HasLocations;
 
     /**
-     * @param Creature $creature
      */
     public function crudSaved(Creature $creature)
     {
@@ -22,15 +20,6 @@ class CreatureObserver extends MiscObserver
     }
 
     /**
-     * @param MiscModel $model
-     */
-    public function saved(MiscModel $model)
-    {
-        parent::saved($model);
-    }
-
-    /**
-     * @param Creature $creature
      */
     public function deleting(Creature $creature)
     {

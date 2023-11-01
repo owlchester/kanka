@@ -7,12 +7,11 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-abilities'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('entity-header-actions')
     @can('update', $entity->child)
-        <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
+        <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
             <a href="https://docs.kanka.io/en/latest/entities/abilities.html#entity-abilities" target="_blank" class="btn2 btn-ghost btn-sm">
                 <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
             </a>
@@ -21,29 +20,17 @@
     @endcan
 @endsection
 
-
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
+    @include('entities.pages.subpage', [
+        'active' => 'abilities',
+        'breadcrumb' => __('entities.abilities'),
+        'view' => 'entities.pages.abilities.render',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
+@endsection
 
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-                \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities'))
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'abilities',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block">
-            @include('entities.pages.abilities._abilities')
-        </div>
-    </div>
-
+@section('modals')
+    @parent
+    <x-dialog id="abilities-dialog" :loading="true" />
 @endsection

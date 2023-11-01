@@ -1,10 +1,10 @@
 <template>
-    <div class="viewport box-abilities relative">
+    <div class="viewport box-abilities relative flex flex-col gap-5">
         <div v-if="loading" class="load more text-center">
             <i class="fa-solid fa-spin fa-spinner"></i>
         </div>
 
-        <div class="flex gap-5 flex-wrap mb-5">
+        <div class="flex gap-5 flex-wrap">
             <parent v-for="parent in parents"
                 :key="parent.id"
                 :ability="parent">
@@ -85,10 +85,12 @@
 
         methods: {
             getAbilities: function() {
-                axios.get(this.api).then(response => {
-                    this.abilities = response.data.data.abilities;
-                    this.parents = response.data.data.parents;
-                    this.meta = response.data.data.meta;
+              fetch(this.api)
+                  .then(response => response.json())
+                  .then(response => {
+                    this.abilities = response.data.abilities;
+                    this.parents = response.data.parents;
+                    this.meta = response.data.meta;
                     this.loading = false;
                     this.waiting = false;
 

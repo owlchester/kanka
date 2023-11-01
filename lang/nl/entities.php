@@ -32,8 +32,6 @@ return [
     'locations'             => 'Locaties',
     'map'                   => 'Kaart',
     'maps'                  => 'Kaarten',
-    'menu_link'             => 'Snelle Link',
-    'menu_links'            => 'Snelle Links',
     'new'                   => [
         'character'     => 'Nieuwe personage',
         'event'         => 'Nieuwe gebeurtenis',

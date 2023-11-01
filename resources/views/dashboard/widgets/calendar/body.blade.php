@@ -1,3 +1,4 @@
+@inject ('reminderService', 'App\Services\Calendars\ReminderService')
 <?php
 /**
  * @var \App\Models\CampaignDashboardWidget $widget
@@ -5,15 +6,17 @@
  * @var \App\Models\Calendar $calendar
  * @var \App\Models\EntityEvent $event
  * @var \App\Models\EntityEvent $reminder
+ * @var \App\Models\EntityEvent $event
+ * @var \App\Services\Calendars\ReminderService $reminderService
  */
 $entity = $widget->entity;
 if (empty($entity)) {
     return;
 }
-$calendar = $entity->child;
+$calendar = $calendar ?? $entity->child;
 
-$upcomingEvents = $calendar->upcomingReminders();
-$previousEvents = $calendar->pastReminders();
+$upcomingEvents = $reminderService->calendar($calendar)->upcoming();
+$previousEvents = $reminderService->past();
 //$previousEvents = new \Illuminate\Support\Collection();
 
 // Get the current day's weather effect.
@@ -24,17 +27,17 @@ $weather = $calendar->calendarWeather()
     ->first();
 
 
-/** @var \App\Models\EntityEvent $event */
 ?>
-<div class="current-date text-center text-2xl flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
+<x-grid>
+<div class="col-span-2 current-date text-center text-xl flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
-        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', $widget) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" role="button">
+        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" data-title="{{ __('dashboard.widgets.calendar.actions.previous') }}" role="button">
             <i class="fa-solid fa-chevron-circle-left" aria-hidden="true"></i>
             <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.previous') }}</span>
         </a>
         <span>{{ $calendar->niceDate() }}</span>
 
-        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.add', $widget) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.next') }}" role="button">
+        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.add', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" data-title="{{ __('dashboard.widgets.calendar.actions.next') }}" role="button">
             <i class="fa-solid fa-chevron-circle-right" aria-hidden="true"></i>
             <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.next') }}</span>
         </a>
@@ -45,20 +48,19 @@ $weather = $calendar->calendarWeather()
 </div>
 
 @if ($weather)
-    <div class="text-center">
-        <div class="weather weather-{{ $weather->weather }}" data-html="true" data-toggle="tooltip" title="{!! $weather->tooltip() !!}">
+    <div class="col-span-2 text-center">
+        <div class="weather weather-{{ $weather->weather }}" data-html="true" data-toggle="tooltip" data-title="{!! $weather->tooltip() !!}">
             <i class="fa-solid fa-{{ $weather->weather }}"></i>
             {{ $weather->weatherName() }}
         </div>
     </div>
 @endif
 
-<x-grid>
     @if ($previousEvents->isNotEmpty())
-        <div class="">
-            <div class="text-lg mb-2">
+        <div class="flex flex-col gap-2 @if ($upcomingEvents->isEmpty()) col-span-2 @endif">
+            <div class="text-lg">
                 {{ __('dashboard.widgets.calendar.previous_events') }}
-                <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}">
+                <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" data-title="{{ __('helpers.calendar-widget.info') }}">
                     <x-icon class="question"></x-icon>
                     <span class="sr-only">{{ __('helpers.calendar-widget.info') }}</span>
                 </a>
@@ -72,10 +74,10 @@ $weather = $calendar->calendarWeather()
     @endif
 
     @if ($upcomingEvents->isNotEmpty())
-        <div class="">
-            <div class="text-lg mb-2">
+        <div class="flex flex-col gap-2 @if ($previousEvents->isEmpty()) col-span-2 @endif">
+            <div class="text-lg">
                 {{ __('dashboard.widgets.calendar.upcoming_events') }}
-                <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}">
+                <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" data-title="{{ __('helpers.calendar-widget.info') }}">
                     <x-icon class="question"></x-icon>
                     <span class="sr-only">{{ __('helpers.calendar-widget.info') }}</span>
                 </a>

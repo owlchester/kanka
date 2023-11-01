@@ -5,29 +5,21 @@
     >{{ __('crud.actions.apply') }}</button>
 
         <div class="dropdown">
-            <button type="button" class="btn2 join-item btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <span class="caret"></span>
+            <button type="button" class="btn2 join-item btn-primary" data-dropdown aria-expanded="false">
+                <x-icon class="fa-solid fa-caret-down" />
+                <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </button>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                <li>
-                    <a href="#" class="dropdown-item form-submit-actions">
+            <div class="dropdown-menu hidden" role="menu">
+                <x-dropdowns.item link="#" css="form-submit-actions">
                     {{ __('crud.actions.apply') }}
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
+                </x-dropdowns.item>
+                <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'update']">
                     {{ __('entities/attributes.actions.save_and_edit') }}
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-item form-submit-actions" data-action="submit-story">
-                        {{ __('entities/attributes.actions.save_and_story') }}
-                    </a>
-                </li>
-            </ul>
+                </x-dropdowns.item>
+                <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'story']">
+                    {{ __('entities/attributes.actions.save_and_story') }}
+                </x-dropdowns.item>
+            </div>
         </div>
     </div>
-</div>
-<div class="submit-animation" style="display: none;">
-    <button class="btn2 btn-primary" disabled><i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i></button>
 </div>

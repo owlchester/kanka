@@ -59,8 +59,6 @@ class EntityLink extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return mixed
      */
     public function scopeOrdered(Builder $query)
     {
@@ -68,7 +66,6 @@ class EntityLink extends Model
     }
 
     /**
-     * @return string
      */
     public function iconName(): string
     {
@@ -81,7 +78,6 @@ class EntityLink extends Model
 
     /**
      * Copy an entity link to another target
-     * @param Entity $target
      */
     public function copyTo(Entity $target)
     {

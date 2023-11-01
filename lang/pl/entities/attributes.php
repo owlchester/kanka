@@ -30,9 +30,7 @@ return [
         'delete_all'    => 'Czy na pewno chcesz usunąć cechy tego elementu?',
         'setup'         => 'Element może posiadać cechy, na przykład Punkty Wytrzymałości albo Inteligencję. Cechę możesz ustalić i dodać ręcznie klikając na :manage albo zastosować szablon.',
     ],
-    'hints'         => [
-        'is_private2'   => 'Po zaznaczeniu tylko członkowie w roli :admin-role będą widzieć cechy tej postaci.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Zaktualizowano cechy :entity',
         'title'     => 'Cechy :name',

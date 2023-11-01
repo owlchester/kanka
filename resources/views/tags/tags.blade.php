@@ -9,20 +9,20 @@
 ])
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block pull-right ml-auto">
+    <div class="header-buttons inline-block ml-auto">
         <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </a>
         @if (request()->has('tag_id'))
-            <a href="{{ route('tags.tags', [$model, '#tag-tags']) }}" class="btn2 btn-sm">
+            <a href="{{ route('tags.tags', [$campaign, $model, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                <span class="hidden md:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->descendants()->count() }})
             </a>
         @else
-            <a href="{{ route('tags.tags', [$model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn2 btn-sm">
+            <a href="{{ route('tags.tags', [$campaign, $model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                <span class="hidden md:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->tags()->count() }})
             </a>
         @endif
@@ -30,20 +30,10 @@
 @endsection
 
 @section('content')
-    @include('partials.errors')
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index('tags'), 'label' => $plural],
-                $plural
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'tags'])
-
-        <div class="entity-main-block">
-            @include('tags.panels.tags')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'tags',
+        'breadcrumb' => $plural,
+        'view' => 'tags.panels.tags',
+        'entity' => $model->entity,
+    ])
 @endsection

@@ -1,4 +1,7 @@
-<div class="field-name">
-    <label>{{ __('dashboard.widgets.fields.name') }}@if(isset($random)) <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('dashboard.widgets.random.helpers.name') }}" aria-hidden="true"></i>@endif</label>
-    {!! Form::text('config[text]', null, ['class' => 'form-control']) !!}
-</div>
+<x-forms.field
+    field="name"
+    :label="__('dashboard.widgets.fields.name')"
+    :tooltip="true"
+    :helper="isset($random) ?__('dashboard.widgets.random.helpers.name') : null">
+    {!! Form::text('config[text]', null, ['class' => '']) !!}
+</x-forms.field>

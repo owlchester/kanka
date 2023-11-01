@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreConversationMessage;
 use App\Http\Resources\Conversation\ConversationMessageResource;
 use App\Http\Resources\Conversation\ConversationResource;
+use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
 use Illuminate\Support\Facades\Auth;
@@ -12,10 +13,9 @@ use Illuminate\Support\Facades\Auth;
 class ConversationMessageController extends Controller
 {
     /**
-     * @param Conversation $conversation
      * @return ConversationResource
      */
-    public function index(Conversation $conversation)
+    public function index(Campaign $campaign, Conversation $conversation)
     {
         return new ConversationResource(
             $conversation
@@ -23,12 +23,10 @@ class ConversationMessageController extends Controller
     }
 
     /**
-     * @param StoreConversationMessage $request
-     * @param Conversation $conversation
      * @return ConversationResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StoreConversationMessage $request, Conversation $conversation)
+    public function store(StoreConversationMessage $request, Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('update', $conversation);
 
@@ -46,7 +44,7 @@ class ConversationMessageController extends Controller
         );
     }
 
-    public function update(StoreConversationMessage $request, Conversation $conversation, ConversationMessage $conversationMessage)
+    public function update(StoreConversationMessage $request, Campaign $campaign, Conversation $conversation, ConversationMessage $conversationMessage)
     {
         $this->authorize('update', $conversation);
         $this->authorize('edit', $conversationMessage);
@@ -59,12 +57,10 @@ class ConversationMessageController extends Controller
     }
 
     /**
-     * @param Conversation $conversation
-     * @param ConversationMessage $conversationMessage
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Conversation $conversation, ConversationMessage $conversationMessage)
+    public function destroy(Campaign $campaign, Conversation $conversation, ConversationMessage $conversationMessage)
     {
         $this->authorize('update', $conversation);
         $this->authorize('delete', $conversationMessage);
@@ -80,7 +76,7 @@ class ConversationMessageController extends Controller
         }
 
         return redirect()
-            ->route('conversations.show', $conversation)
+            ->route('entities.show', [$campaign, $conversation->entity])
             ->with('success', trans('conversations.messages.destroy.success', [
                 'name' => $conversationMessage->author(),
                 'conversation' => $conversation->name

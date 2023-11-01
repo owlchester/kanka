@@ -1,41 +1,37 @@
 @extends('layouts.app', [
     'title' => __('campaigns/recovery.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.recovery')
     ],
     'mainTitle' => false,
+    'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('content')
-    @include('partials.errors')
 
-    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
-        <div class="lg:flex-none lg:w-60">
-            @include('campaigns._menu', ['active' => 'recovery'])
+    <div class="flex gap-5 flex-col">
+        @include('partials.errors')
+        <div class="flex gap-2 items-center">
+            <h3 class="inline-block grow">
+                {{ __('campaigns.show.tabs.recovery') }}
+            </h3>
+            <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
+                    data-target="recovery-help">
+                <x-icon class="question"></x-icon>
+                {{ __('crud.actions.help') }}
+            </button>
         </div>
-        <div class="grow max-w-7xl">
-            <div class="flex gap-2 items-center mb-5">
-                <h3 class="m-0 inline-block grow">
-                    {{ __('campaigns.show.tabs.recovery') }}
-                </h3>
-                <button class="btn2 btn-sm" data-toggle="dialog"
-                        data-target="recovery-help">
-                    <x-icon class="question"></x-icon>
-                    {{ __('campaigns.members.actions.help') }}
-                </button>
-            </div>
-            @if (session()->get('boosted-pitch'))
-                <x-cta :campaign="$campaign">
-                </x-cta>
-            @endif
+        @if (session()->get('boosted-pitch'))
+            <x-cta :campaign="$campaign">
+            </x-cta>
+        @endif
 
-            @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'recovery.save']) !!} @endif
-            <div id="datagrid-parent">
-                @include('layouts.datagrid._table')
-            </div>
-            @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+        @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['recovery.save', $campaign]]) !!} @endif
+        <div id="datagrid-parent">
+            @include('layouts.datagrid._table')
         </div>
+        @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
     </div>
 @endsection
 

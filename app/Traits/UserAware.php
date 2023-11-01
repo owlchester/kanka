@@ -9,16 +9,17 @@ use App\User;
  */
 trait UserAware
 {
-    /** @var null|User user model */
-    public $user;
+    /**  */
+    public User|null $user;
 
-    /**
-     * @param User $user
-     * @return $this
-     */
     public function user(User $user): self
     {
         $this->user = $user;
         return $this;
+    }
+
+    public function hasUser(): bool
+    {
+        return !empty($this->user);
     }
 }

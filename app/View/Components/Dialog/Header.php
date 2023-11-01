@@ -10,6 +10,7 @@ class Header extends Component
 {
     public ?string $id;
     public ?string $title;
+    public bool $dismissible = true;
 
     /**
      * Create a new component instance.
@@ -17,9 +18,11 @@ class Header extends Component
     public function __construct(
         string $id = null,
         string $title = null,
+        bool $dismissible = true,
     ) {
         $this->id = $id;
         $this->title = $title;
+        $this->dismissible = $dismissible;
     }
 
     /**

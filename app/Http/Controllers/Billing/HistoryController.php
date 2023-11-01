@@ -17,7 +17,6 @@ class HistoryController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
@@ -32,9 +31,7 @@ class HistoryController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param string $invoice
-     * @return mixed
      */
     public function download(Request $request, $invoice)
     {

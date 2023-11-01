@@ -12,12 +12,9 @@ var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
 var entityCalendarModalForm;
 
-var oldEra;
-
 var entityName;
 
 $(document).ready(function () {
-
     registerDynamicRows();
 
     ajaxModal();
@@ -32,14 +29,12 @@ $(document).ready(function () {
 
     registerFormSubmitAnimation();
     registerEntityCalendarForm();
-    registerEraForm();
     registerFormMaintenance();
     registerEntityCalendarModal();
     registerModalLoad();
     registerPermissionToggler();
     registerStoryActions();
     registerStoryLoadMore();
-    registerSidebarActions();
     registerTrustDomain();
     registerPrivacyToggle();
 });
@@ -68,32 +63,30 @@ function registerEntityNameCheck() {
         if (!$(this).val()) {
             return;
         }
-        let entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
-        let currentEntityID = $(this).data('id');
+        let block = $(this).data('duplicate');
+        let entityCreatorDuplicateWarning = $(block);
         let url = $(this).data('live') +
             '?q=' + encodeURIComponent($(this).val()) +
             '&type=' + $(this).data('type') +
             '&exclude=' + $(this).data('id');
-
         entityCreatorDuplicateWarning.hide();
-        // Check if an entity of the same type already exists, and warn when it does.
-        $.ajax(
-            url
-        ).done(function (res) {
-            if (res.length > 0) {
-                let entities = Object.keys(res)
-                    // Filter out what isn't itself
-                    .filter(function (k) { return !currentEntityID || currentEntityID != res[k].id; })
-                    .map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'; });
+        const field = entityCreatorDuplicateWarning.find('.duplicates');
 
-                if (entities.length > 0) {
-                    $('#duplicate-entities').html(entities.join(', '));
-                    entityCreatorDuplicateWarning.fadeIn();
+        // Check if an entity of the same type already exists, and warn when it does.
+        fetch(url)
+            .then((response) => response.json())
+            .then((res) => {
+                field.innerHTML = '';
+                res.forEach(entity => {
+                    let link = document.createElement('a');
+                    link.href = entity.url;
+                    link.text = entity.name;
+                    field.append(link);
+                });
+                if (res.length > 0) {
+                    entityCreatorDuplicateWarning.show();
                 }
-            } else {
-                entityCreatorDuplicateWarning.hide();
-            }
-        });
+            });
     });
 }
 
@@ -106,7 +99,6 @@ function registerEntityFormActions() {
     if (entityFormActions.length === 0) {
         return;
     }
-    //console.log('RegisterEntityFormActions', entityFormActions);
     let entityFormMainButton = $('#form-submit-main');
     let entityFormSubmitMode = $('#submit-mode');
     if (entityFormSubmitMode === undefined) {
@@ -143,7 +135,7 @@ function registerFormSubmitAnimation() {
             var submit = $(this).find('.btn-primary');
             if (submit.length > 0) {
                 $.each(submit, function () {
-                    if ($(this).hasClass('dropdown-toggle')) {
+                    if ($(this).parent().hasClass('dropdown') || $(this).hasClass('quick-creator-subform')) {
                         $(this).prop('disabled', true);
                     } else {
                         $(this)
@@ -184,7 +176,7 @@ function registerEntityCalendarForm() {
             if (defaultCalendarId) {
                 entityCalendarField.val(defaultCalendarId);
                 entityCalendarCancel.show();
-                entityCalendarSubForm.fadeIn();
+                entityCalendarSubForm.show();
                 loadCalendarDates(defaultCalendarId);
             }
             return false;
@@ -249,44 +241,48 @@ function registerEntityCalendarModal() {
     //var defaultCalendarId = entityCalendarAdd.data('default-calendar');
     if (entityCalendarField.val()) {
         entityCalendarCancel.show();
-        entityCalendarSubForm.fadeIn();
+        entityCalendarSubForm.show();
         loadCalendarDates(entityCalendarField.val());
     }
-}
 
+    $('.entity-calendar-subform input[name="length"]').focusout(function () {
+        if (!$(this).val()) {
+            return;
+        }
+        let url = $(this).data('url').replace('/0/', '/' + entityCalendarField.val() + '/')
 
-function registerEraForm() {
-    if ($('#era-form-add').length === 0) {
-        return;
-    }
-    entityCalendarAdd = $('#era-form-add');
-    let eraField = $('[name="era_id"]');
+        let params = {
+            day: entityCalendarDayField.val(),
+            month: entityCalendarMonthField.val(),
+            year: entityCalendarYearField.val(),
+            length: $(this).val(),
+        }
 
-    oldEra = eraField.val();
-    if (entityCalendarField.val()) {
-        loadTimelineEra(eraField.val());
-    }
-
-    if (eraField.length === 1) {
-        eraField.on('change', function () {
-            // Load era list
-            let positionField = $('select[name="position"]');
-            loadTimelineEra(eraField.val());
+        $.ajax(url, {data: params}).done(function (data) {
+            if (data.overflow == true) {
+                $('.length-warning').show();
+            } else {
+                $('.length-warning').hide();
+            }
         });
-    }
+    });
 }
+
+
+
 
 /**
  *
  * @param calendarID
  */
-function loadCalendarDates(calendarID) {
+const loadCalendarDates = (calendarID) => {
     entityCalendarLoading.show();
 
     calendarID = parseInt(calendarID);
     var url = $('input[name="calendar-data-url"]').data('url').replace('/0/', '/' + calendarID + '/');
-    $.ajax(url)
-        .done(function (data) {
+    fetch(url)
+        .then((response) => response.json())
+        .then(data => {
             let selectedDay = entityCalendarDayField.val();
             entityCalendarYearField.html('');
             entityCalendarMonthField.html('');
@@ -318,10 +314,11 @@ function loadCalendarDates(calendarID) {
             //entityCalendarDayField.val(data.current.day);
             entityCalendarYearField.val(data.current.year);
 
-            $('select[name="calendar_recurring_periodicity"] option').remove();
+            // Put new options
+            $('select.reminder-periodicity option').remove();
             $.each(data.recurring, function (key, value) {
                 //console.log('moon', key, value);
-                $('select[name="calendar_recurring_periodicity"]').append('<option value="' + key + '">' + value + '</option>');
+                $('select.reminder-periodicity').append('<option value="' + key + '">' + value + '</option>');
             });
 
             $('input[name="length"]').val(1);
@@ -333,36 +330,8 @@ function loadCalendarDates(calendarID) {
 
             initSpectrum();
         });
-}
+};
 
-
-/**
- *
- * @param calendarID
- */
-function loadTimelineEra(eraID) {
-    eraID = parseInt(eraID);
-    var url = $('input[name="era-data-url"]').data('url').replace('/0/', '/' + eraID + '/');
-    var oldPosition = $('input[name="oldPosition"]').data('url');
-    $.ajax(url)
-        .done(function (data) {
-            let eraField = $('select[name="position"]');
-            eraField.html('');
-            let id = 1;
-            $.each(data.positions, function (i) {
-                let position = data.positions[i];
-                let selected = ' selected="selected"';
-
-                if (oldPosition && !i && (oldEra == eraID)) {
-                    eraField.append('<option value="" data-length="' + position.length + '" ' + selected + '>' + position + '</option>');
-                }
-                if (i) {
-                    eraField.append('<option value="' + id + '" data-length="' + position.length + '" ' + selected + '>' + position + '</option>');
-                }
-                id++;
-            });
-        });
-}
 
 /**
  *
@@ -375,7 +344,6 @@ function calendarHideSubform() {
     $('input[name="calendar_month"]').val(null);
     $('input[name="calendar_year"]').val(null);
     $('input[name="calendar_id"]').val(null);
-    console.log('finished?');
 }
 
 /**
@@ -433,7 +401,8 @@ function registerFormMaintenance() {
                 data: $(this).serialize(),
                 context: this,
             };
-            if ($(this).find('input[type="file"]').length > 0) {
+            // If the form has files (ignoring the summernote one), include it
+            if ($(this).find('input[type="file"]').not('.note-image-input').length > 0) {
                 let formData = new FormData(this);
                 ajaxData = {
                     url: $(this).attr('action'),
@@ -490,43 +459,23 @@ function registerStoryActions() {
     let posts = $('.entity-story-block .collapse');
     let togglers = $('.entity-story-block .element-toggle');
     $('.btn-post-collapse').unbind('click').click(function () {
-        posts.collapse('hide');
-        togglers.addClass('collapsed');
+        let elements = document.querySelectorAll('.element-toggle');
+        elements.forEach((e) => {
+            e.classList.add('animate-collapsed');
+            let target = document.querySelector(e.dataset.target);
+            target.classList.add('h-0');
+        });
         return false;
     });
 
     $('.btn-post-expand').unbind('click').click(function () {
-        posts.collapse('show');
-        togglers.removeClass('collapsed');
-        /*posts.each(function () {
-            let body = $(this).find('.entity-content');
-            if (!body.hasClass('in')) {
-                body.addClass('in');
-                body.prev().find('.fa-chevron-up').show();
-                body.prev().find('.fa-chevron-down').hide();
-                body.css('height', '');
-            }
-            let header = $(this).find('.post-toggle');
-            if (header.hasClass('collapsed')) {
-                header.removeClass('collapsed');
-            }
-        });*/
+        let elements = document.querySelectorAll('.element-toggle');
+        elements.forEach((e) => {
+            e.classList.remove('animate-collapsed');
+            let target = document.querySelector(e.dataset.target);
+            target.classList.remove('h-0');
+        });
         return false;
-    });
-}
-
-/**
- * Sidebars (right-side profile) elements can be collapsed after the page has been loaded
- */
-function registerSidebarActions() {
-    $('.sidebar-section-title').click(function () {
-        if ($(this).next().hasClass('in')) {
-            $(this).find('.fa-chevron-down').hide();
-            $(this).find('.fa-chevron-right').show();
-        } else {
-            $(this).find('.fa-chevron-right').hide();
-            $(this).find('.fa-chevron-down').show();
-        }
     });
 }
 
@@ -535,34 +484,30 @@ function registerSidebarActions() {
  */
 function registerStoryLoadMore() {
     $('.story-load-more').click(function (e) {
+        e.preventDefault();
         let btn = $(this);
 
-        e.preventDefault();
+        $(this).addClass('loading');
 
-        $('#story-more-spinner').show();
-        $(this).hide();
-
-        $.ajax({
-            url: $(this).data('url')
-        }).done(function (result) {
-            btn.parent().remove();
-            if (result) {
+        fetchMorePosts($(this).data('url'))
+            .then(result => {
+                btn.parent().remove();
                 $('.entity-posts').append(result);
                 registerStoryLoadMore();
                 registerStoryActions();
-                window.ajaxTooltip();
-            }
-        }).fail(function () {
-            //console.log('modal ajax error', result);
-            $('#story-more-spinner').hide();
-            btn.show();
-        });
-
+                $(document).trigger('shown.bs.modal');
+            })
+            .catch(() => {
+                btn.removeClass('loading');
+            });
         return false;
     });
 }
 
-
+async function fetchMorePosts(url) {
+    const result = await fetch(url);
+    return await result.text();
+}
 
 function registerTrustDomain() {
     $('.domain-trust').click(function () {
@@ -596,13 +541,12 @@ function registerDynamicRows() {
 
         let target = $(this).data('target');
         let template = $(this).data('template');
-        //console.log('target', target, $('.' + target));
-        //console.log('template', template, $('#' + template));
         $('.' + target).append('<div class="">' +
             $('#' + template).html() +
             '</div>');
 
         registerDynamicRowDelete();
+        $(document).trigger('shown.bs.modal');
         return false;
     });
     registerDynamicRowDelete();
@@ -616,8 +560,7 @@ function registerDynamicRowDelete() {
         if ($(this).data('init') === 1) {
             return;
         }
-        $(this).data('init', 1);
-        $(this).on('click', function (e) {
+        $(this).data('init', 1).on('click', function (e) {
             e.preventDefault();
             $(this).closest('.parent-delete-row').remove();
         }).on('keydown', function (e) {

@@ -2,6 +2,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->nested()
     ->service($filterService)
     ->models($models)
@@ -20,7 +21,7 @@
         ],
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count();
             },

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\CampaignLocalization;
 use App\Services\Permissions\EntityPermission;
 use App\Services\Permissions\RolePermission;
 use App\Services\Permissions\PermissionService;
@@ -43,7 +44,11 @@ class PermissionsServiceProvider extends ServiceProvider
     protected function registerMain(): self
     {
         $this->app->singleton(PermissionService::class, function () {
-            return new PermissionService();
+            $service = new PermissionService();
+            if (CampaignLocalization::hasCampaign()) {
+                $service->campaign(CampaignLocalization::getCampaign());
+            }
+            return $service;
         });
         $this->app->alias(PermissionService::class, 'permissions');
         return $this;

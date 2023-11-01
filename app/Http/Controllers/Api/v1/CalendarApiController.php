@@ -18,7 +18,6 @@ class CalendarApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -34,8 +33,6 @@ class CalendarApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Calendar $calendar
      * @return Resource
      */
     public function show(Campaign $campaign, Calendar $calendar)
@@ -46,8 +43,6 @@ class CalendarApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -66,9 +61,6 @@ class CalendarApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Calendar $calendar
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Calendar $calendar)
@@ -83,8 +75,6 @@ class CalendarApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Calendar $calendar
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

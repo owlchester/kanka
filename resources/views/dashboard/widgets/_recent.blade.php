@@ -15,36 +15,49 @@ $entities = $widget->entities($offset);
 if (($widget->conf('singular'))) {
     $entityString = !empty($entityType) ? (!$widget->conf('singular') ? $entityType : $moduleService->singular($entityType, 'entities.' . Str::plural($entityType))) : null;
 
+    if ($entities->count() > 0) {
+        $entity = $entities[0];
+        if ($entity->child) {
+            ?>
+            @include('dashboard.widgets._preview', [
+    'entity' => $entity,
+    'model' => $entity->child,
+])
+            <?php
+            return;
+        }
+    }
 } else {
     $entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType : $moduleService->plural($entityType, 'entities.' . Str::plural($entityType))) : null;
 }
 ?>
-<div class="panel panel-default {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            @if (!empty($widget->conf('text')))
-                {{ $widget->conf('text') }}
-            @else
-                @if ($widget->conf('entity'))
-                    {{ __($entityString) }} -
-                @endif{{ __('dashboard.widgets.recent.title') }}
-            @endif
+<x-box padding="0" css="widget-list {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+    <h4 class="text-lg mb-3 px-4 pt-4 flex gap-2">
+        <span class="grow">
+        @if (!empty($widget->conf('text')))
+            {{ $widget->conf('text') }}
+        @else
+            @if ($widget->conf('entity'))
+                {{ __($entityString) }} -
+            @endif{{ __('dashboard.widgets.recent.title') }}
+        @endif
+        </span>
 
-            @if (!empty($widget->tags))
-                <span class="pull-right">
-                    @foreach ($widget->tags as $tag)
-                        {!! $tag->bubble() !!}
-                    @endforeach
-                </span>
-            @endif
-        </h3>
-    </div>
+        @if (!empty($widget->tags))
+            <span class="flex-none flex gap-1">
+                @foreach ($widget->tags as $tag)
+                    <x-tags.bubble :tag="$tag" />
+                @endforeach
+            </span>
+        @endif
+    </h4>
     @if (!empty($widget->conf('singular')))
-    <div class="panel-body widget-recent-body">
+    <div class="widget-body widget-recent-body p-4">
         @include('dashboard.widgets._recent_singular', ['entities' => $entities])
-    @else
-    <div class="panel-body widget-recent-list overflow-auto max-h-[400px]">
-        @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
-    @endif
     </div>
-</div>
+    @else
+    <div class="widget-recent-list overflow-auto max-h-[400px]">
+        @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
+    </div>
+    @endif
+</x-box>

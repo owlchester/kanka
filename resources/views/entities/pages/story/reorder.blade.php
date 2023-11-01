@@ -1,7 +1,7 @@
 <?php /**
  * @var \App\Models\Entity $entity
- * @var \App\Models\EntityNote[]|\Illuminate\Support\Collection $notes
- * @var \App\Models\EntityNote $first
+ * @var \App\Models\Post[]|\Illuminate\Support\Collection $notes
+ * @var \App\Models\Post $first
  */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
@@ -12,29 +12,13 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-story-reorder'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-                __('entities/story.reorder.panel_title')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'story',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block">
-            @include('entities.pages.story._reorder')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'story',
+        'breadcrumb' => __('entities/story.reorder.panel_title'),
+        'view' => 'entities.pages.story._reorder',
+        'entity' => $entity,
+    ])
 @endsection

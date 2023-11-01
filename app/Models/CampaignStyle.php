@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 
 /**
@@ -31,6 +32,7 @@ use Illuminate\Support\Str;
 class CampaignStyle extends Model
 {
     use CampaignTrait;
+    use HasFactory;
     use SoftDeletes;
     use SortableTrait;
 
@@ -60,8 +62,6 @@ class CampaignStyle extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param bool $enabled
      * @return Builder
      */
     public function scopeEnabled(Builder $query, bool $enabled = true)
@@ -70,8 +70,6 @@ class CampaignStyle extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param bool $theme
      * @return Builder
      */
     public function scopeTheme(Builder $query, bool $theme = true)
@@ -80,7 +78,6 @@ class CampaignStyle extends Model
     }
 
     /**
-     * @return string
      */
     public function length(): string
     {
@@ -88,8 +85,6 @@ class CampaignStyle extends Model
     }
 
     /**
-     * @param string $sub
-     * @return string
      */
     public function url(string $sub): string
     {

@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Facades\Limit;
 use App\Models\Entity;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Sanitizers\SvgAllowedAttributes;
+use App\Traits\EntityAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -14,22 +16,17 @@ use Intervention\Image\Facades\Image;
 use enshrined\svgSanitize\Sanitizer;
 use Exception;
 
+/**
+ * This should be a proper laravel facade 🥲
+ */
 class ImageService
 {
-    /**
-     * @param MiscModel|Map|Model $model
-     * @param string $folder
-     * @param string $field
-     */
-    public static function handle(MiscModel|Map|Model $model, string $folder = '', string $field = 'image')
-    {
-        // A user can create entities and tags dynamically when creating or updating another entity, so make sure
-        // the loop is only called when sending the data for this specific entity type
-        // @phpstan-ignore-next-line
-        if ($model->saveImageObserver === false) {
-            return;
-        }
+    use EntityAware;
 
+    /**
+     */
+    public static function handle(MiscModel|Map|Model|Entity $model, string $folder = '', string $field = 'image')
+    {
         // Remove the old image
         if (request()->post('remove-' . $field) == '1') {
             self::cleanup($model, $field);
@@ -66,7 +63,7 @@ class ImageService
 
                 // Check if file is too big
                 $copiedFileSize = ceil(filesize($tempImage) / 1000);
-                if ($copiedFileSize > auth()->user()->maxUploadSize()) {
+                if ($copiedFileSize > Limit::upload()) {
                     unlink($tempImage);
                     throw new \Exception('image_url target too big');
                 }
@@ -117,7 +114,11 @@ class ImageService
                 } else {
                     $path = request()->file($field)->storePublicly($folder);
                 }
-                $model->$field = $path;
+                if ($model instanceof Entity) {
+                    $model->image_path = $path;
+                } else {
+                    $model->$field = $path;
+                }
 
                 if (!empty($sizes) && array_key_exists('height', $model->getAttributes())) {
                     $model->width = $sizes[0]; // @phpstan-ignore-line
@@ -127,14 +128,11 @@ class ImageService
         } catch (Exception $e) {
             //throw $e;
             // There was an error getting the image. Could be the url, could be the request.
-            session()->flash('warning', trans('crud.image.error', ['size' => auth()->user()->maxUploadSize(true)]));
+            session()->flash('warning', trans('crud.image.error', ['size' => Limit::readable()->upload()]));
         }
     }
 
     /**
-     * @param Entity $entity
-     * @param string $folder
-     * @param string $field
      */
     public static function entity(Entity $entity, string $folder = '', string $field = 'header_image')
     {
@@ -156,7 +154,7 @@ class ImageService
 
                     // Check if file is too big
                     $copiedFileSize = ceil(filesize($tempImage) / 1000);
-                    if ($copiedFileSize > auth()->user()->maxUploadSize()) {
+                    if ($copiedFileSize > Limit::upload()) {
                         unlink($tempImage);
                         throw new \Exception('image_url target too big');
                     }
@@ -195,7 +193,7 @@ class ImageService
                 }
             } catch (Exception $e) {
                 // There was an error getting the image. Could be the url, could be the request.
-                session()->flash('warning', trans('crud.image.error', ['size' => auth()->user()->maxUploadSize(true)]));
+                session()->flash('warning', trans('crud.image.error', ['size' => Limit::readable()->upload()]));
             }
         } elseif (request()->post('remove-' . $field) == '1') {
             // Remove old
@@ -209,6 +207,9 @@ class ImageService
      */
     public static function cleanup($model, $field = 'image')
     {
+        if ($model instanceof Entity) {
+            $field = 'image_path';
+        }
         if (empty($model->$field)) {
             return;
         }

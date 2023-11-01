@@ -43,8 +43,6 @@ return [
     'locations'             => 'Lugares',
     'map'                   => 'Mapa',
     'maps'                  => 'Mapas',
-    'menu_link'             => 'Acceso directo',
-    'menu_links'            => 'Accesos directos',
     'new'                   => [
         'ability'       => 'Nova habilidade',
         'character'     => 'Nova personaxe',

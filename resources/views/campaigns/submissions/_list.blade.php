@@ -2,17 +2,17 @@
 /** @var \App\Models\CampaignSubmission[] $submissions */
 ?>
 
-<div class="grid grid-cols-1 xl:grid-cols-2 gap-2 xl:gap-5">
+<div class="grid grid-cols-2 xl:grid-cols-4 gap-2 xl:gap-5">
     @foreach($submissions as $submission)
         <x-box>
             <h4 class="text-lg">{{ $submission->user->name }}</h4>
-            <p class="help-block">{!! nl2br($submission->text) !!}</p>
+            <x-helper>{!! nl2br($submission->text) !!}</x-helper>
 
             <div class="grid grid-cols-2 gap-5">
                 <a class="btn2 btn-error "
                     href="#"
                     data-toggle="dialog-ajax"
-                    data-url="{{ route('campaign_submissions.edit', [$submission->id, 'action' => 'reject']) }}"
+                    data-url="{{ route('campaign_submissions.edit', [$campaign, $submission->id, 'action' => 'reject']) }}"
                     data-target="submission-dialog"
                     title="{{ __('campaigns/submissions.actions.reject') }}">
                     <i class="fa-solid fa-times" aria-hidden="true"></i>
@@ -22,10 +22,10 @@
                 <a class="btn2 btn-primary"
                    href="#"
                    data-toggle="dialog-ajax"
-                   data-url="{{ route('campaign_submissions.edit', [$submission->id, 'action' => 'approve']) }}"
+                   data-url="{{ route('campaign_submissions.edit', [$campaign, $submission->id, 'action' => 'approve']) }}"
                    data-target="submission-dialog"
                    title="{{ __('campaigns/submissions.actions.accept') }}">
-                    <i class="fa-solid fa-check" aria-hidden="true"></i>
+                    <x-icon class="check" />
                     <span class="sr-only">{{ __('campaigns/submissions.actions.accept') }}</span>
                 </a>
             </div>

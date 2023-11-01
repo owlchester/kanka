@@ -6,15 +6,12 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
-
-
 @section('entity-header-actions')
     @can('update', $model)
-        <div class="header-buttons inline-block pull-right ml-auto">
-            <a href="{{ route('abilities.entity-add', $model) }}" class="btn2 btn-accent btn-sm"
-               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('abilities.entity-add', $model) }}">
-                <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('abilities.children.actions.add') }}</span>
+        <div class="header-buttons inline-block ml-auto">
+            <a href="{{ route('abilities.entity-add', [$campaign, $model]) }}" class="btn2 btn-sm"
+               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('abilities.entity-add', [$campaign, $model]) }}">
+                <x-icon class="plus"></x-icon> <span class="hidden md:inline">{{ __('abilities.children.actions.add') }}</span>
             </a>
         </div>
     @endcan
@@ -22,21 +19,10 @@
 
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index('abilities'), 'label' => \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities'))],
-                __('abilities.show.tabs.entities')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'entities'])
-
-        <div class="entity-main-block">
-            @include('abilities.panels.entities')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'entities',
+        'breadcrumb' => __('abilities.show.tabs.entities'),
+        'view' => 'abilities.panels.entities',
+        'entity' => $model->entity,
+    ])
 @endsection

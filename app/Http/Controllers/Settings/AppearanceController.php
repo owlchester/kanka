@@ -44,7 +44,6 @@ class AppearanceController extends Controller
     }
 
     /**
-     * @param StoreSettingsLayout $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreSettingsLayout $request)
@@ -61,8 +60,7 @@ class AppearanceController extends Controller
 
         //refresh user campaigns in cache if order by has changed
         if ($request->has('campaign_switcher_order_by')) {
-            \App\Facades\UserCache::clearCampaigns();
-            \App\Facades\UserCache::clearFollows();
+            \App\Facades\UserCache::clear();
         }
 
         if ($request->filled('from')) {

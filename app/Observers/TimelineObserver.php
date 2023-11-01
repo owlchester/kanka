@@ -9,7 +9,6 @@ use App\Models\MiscModel;
 class TimelineObserver extends MiscObserver
 {
     /**
-     * @param MiscModel $timeline
      */
     public function created(MiscModel $timeline)
     {

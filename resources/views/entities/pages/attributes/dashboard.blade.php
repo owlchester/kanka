@@ -8,7 +8,6 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-attributes'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 

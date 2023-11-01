@@ -3,15 +3,17 @@
 namespace App\Services;
 
 use App\Facades\Attributes;
+use App\Facades\Domain;
 use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
-use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Quest;
+use App\Services\Entity\NewService;
 use App\Services\TOC\TocSlugify;
+use App\Traits\CampaignAware;
 use App\Traits\MentionTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +24,7 @@ use TOC\MarkupFixer;
 
 class MentionsService
 {
+    use CampaignAware;
     use MentionTrait;
 
     /** @var string The text that is being parsed, usualy an entry field */
@@ -57,9 +60,6 @@ class MentionsService
     /** @var string Class used to inject and strip advanced mention name helpers */
     public const ADVANCED_MENTION_CLASS = 'advanced-mention-name';
 
-    /** @var EntityService */
-    protected EntityService $entityService;
-
     /** @var bool When false, parsing field:entry won't render mentions */
     protected bool $enableEntryField = true;
 
@@ -68,20 +68,10 @@ class MentionsService
 
     protected MarkupFixer $markupFixer;
 
-    /**
-     * Mentions Service constructor
-     * @param EntityService $entityService
-     */
-    public function __construct(EntityService $entityService)
-    {
-        $this->entityService = $entityService;
-    }
+    protected NewService $newService;
 
     /**
      * Map the mentions in an entity
-     * @param MiscModel $model
-     * @param string $field
-     * @return string
      */
     public function map(MiscModel $model, string $field = 'entry'): string
     {
@@ -91,8 +81,6 @@ class MentionsService
 
     /**
      * Map a string
-     * @param string|null $text
-     * @return string
      */
     public function mapText(string $text = null): string
     {
@@ -102,9 +90,6 @@ class MentionsService
 
     /**
      * Map the mentions in an entity's tooltip (boosted feature)
-     * @param Entity $entity
-     * @param string $field
-     * @return string
      */
     public function mapEntity(Entity $entity, string $field = 'tooltip'): string
     {
@@ -114,10 +99,9 @@ class MentionsService
 
     /**
      * Map the mentions in a post
-     * @param Post|EntityNote $post
      * @return string|string[]|null
      */
-    public function mapPost(Post|EntityNote $post)
+    public function mapPost(Post $post)
     {
         $this->text = (string) $post->entry;
         return $this->extractAndReplace();
@@ -125,8 +109,6 @@ class MentionsService
 
     /**
      * Map the mentions in any model
-     * @param Model $model
-     * @param string $field
      * @return string|string[]|null
      */
     public function mapAny(Model $model, string $field = 'entry')
@@ -137,7 +119,6 @@ class MentionsService
 
     /**
      * Map the mentions in an attribute
-     * @param Attribute $attribute
      * @return string|string[]|null
      */
     public function mapAttribute(Attribute $attribute, string $text = null)
@@ -165,7 +146,6 @@ class MentionsService
 
     /**
      * If new entities were created from the mentions
-     * @return bool
      */
     public function hasNewEntities(): bool
     {
@@ -175,9 +155,6 @@ class MentionsService
     /**
      * Parse a model's text for editing (transform mentions into advanced mentions, normal
      * mentions visually, etc)
-     * @param Model $model
-     * @param string $field
-     * @return string
      */
     public function parseForEdit(Model $model, string $field = 'entry'): string
     {
@@ -185,9 +162,6 @@ class MentionsService
     }
 
     /**
-     * @param Model $model
-     * @param string $field
-     * @return string
      */
     protected function editEntity(Model $model, string $field): string
     {
@@ -198,8 +172,6 @@ class MentionsService
 
     /**
      * Replace span mentions into [entity:123] blocks
-     * @param string|null $text
-     * @return string
      */
     public function codify(string|null $text): string
     {
@@ -268,8 +240,6 @@ class MentionsService
 
     /**
      * Parse an entity and create the advanced mention helper bubble
-     * @param string $name
-     * @return string
      */
     public function advancedMentionHelper(string $name): string
     {
@@ -361,9 +331,9 @@ class MentionsService
                         } elseif ($page === 'assets') {
                             $page = 'entity_assets.index';
                         }
-                        $url = route('entities.' . $page, array_merge([$entity->id], $routeOptions));
+                        $url = route('entities.' . $page, [$this->campaign, $entity->id] + $routeOptions);
                     } else {
-                        $url = $entity->url($data['page'], $routeOptions);
+                        $url = $entity->url($data['page'], [$this->campaign] + $routeOptions);
                     }
                 }
                 // An alias was used for this mention, so let's try and find it. ACL is handled directly
@@ -378,13 +348,12 @@ class MentionsService
                     $url .= '#' . $data['anchor'];
                 }
 
-                $dataUrl = route('entities.tooltip', $entity);
+                $dataUrl = route('entities.tooltip', [$this->campaign, $entity]);
 
                 // If this request is through the API, we need to inject the language in the url
-                if (request()->is('api/*')) {
-                    $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
-                    $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
-                    $dataUrl = Str::replaceFirst('campaign/', $lang . '/campaign/', $dataUrl);
+                if (request()->is('api/*') || Domain::isApi()) {
+                    $url = Str::replaceFirst('/campaign/', '/w/', $url);
+                    $dataUrl = Str::replaceFirst('/w/', '/w/', $dataUrl);
                 }
 
                 // Add tags as a class
@@ -510,7 +479,6 @@ class MentionsService
     }
 
     /**
-     * @return string
      */
     protected function replaceForEdit(): string
     {
@@ -614,8 +582,6 @@ class MentionsService
     }
 
     /**
-     * @param int $id
-     * @return Entity|null
      */
     protected function entity(int $id): Entity|null
     {
@@ -627,8 +593,6 @@ class MentionsService
     }
 
     /**
-     * @param int $id
-     * @return EntityAsset|null
      */
     protected function alias(int $id): EntityAsset|null
     {
@@ -640,8 +604,6 @@ class MentionsService
     }
 
     /**
-     * @param int $id
-     * @return Attribute|null
      */
     protected function attribute(int $id): Attribute|null
     {
@@ -677,7 +639,7 @@ class MentionsService
     }
 
     /**
-     * Pre fetch the attributes of the entity
+     * Pre-fetch the attributes of the entity
      */
     protected function prepareAttributes()
     {
@@ -701,8 +663,6 @@ class MentionsService
 
     /**
      * Validate the entity type that was inserted in the mention block
-     * @param string $type
-     * @return bool
      */
     protected function validEntityType(string $type): bool
     {
@@ -711,7 +671,6 @@ class MentionsService
 
     /**
      * List of valid entity types
-     * @return array
      */
     protected function validEntityTypes(): array
     {
@@ -756,7 +715,7 @@ class MentionsService
                     $replace = '<i class="unknown-mention unknown-attribute">' . $fallback . '</i>';
                 }
             } else {
-                $replace = '<span class="attribute attribute-mention" title="' . e($attribute->name)
+                $replace = '<span class="attribute attribute-mention" data-title="' . e($attribute->name)
                     . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
             }
             return $replace;
@@ -793,9 +752,6 @@ class MentionsService
 
     /**
      * Replace new entity mentions with entities.
-     * @param string $type
-     * @param string $name
-     * @return string
      */
     protected function newEntityMention(string $type, string $name): string
     {
@@ -803,7 +759,10 @@ class MentionsService
             return $name;
         }
 
-        $types = $this->entityService->newEntityTypes();
+        if (!isset($this->newService)) {
+            $this->newService = app()->make(NewService::class);
+        }
+        $types = $this->newService->campaign($this->campaign)->available();
 
         // Invalid type
         if (!isset($types[$type])) {
@@ -820,7 +779,11 @@ class MentionsService
         /** @var MiscModel $newMisc */
         $newMisc = new $types[$type]();
 
-        $new = $this->entityService->makeNewMentionEntity($newMisc, $name);
+        $new = $this->newService
+            ->campaign($this->campaign)
+            ->user(auth()->user())
+            ->model($newMisc)
+            ->create($name);
         $this->newEntityMentions[$key] = $new->entity->id;
         $this->createdNewEntities = true;
 
@@ -829,7 +792,6 @@ class MentionsService
 
     /**
      * Protect from rendering future field:entry mentions to avoid endless loops
-     * @return void
      */
     protected function lockEntryRendering(): void
     {
@@ -838,7 +800,6 @@ class MentionsService
 
     /**
      * Re-enable rendering field:entry mentions
-     * @return void
      */
     protected function unlockEntryRendering(): void
     {
@@ -847,8 +808,6 @@ class MentionsService
 
     /**
      * Extract html attributes from a link if it's a Kanka "mention" from the text editor
-     * @param string $html
-     * @return array
      */
     protected function linkAttributes(string $html): array
     {

@@ -20,16 +20,21 @@ $(document).ready(function () {
     registerBulkActions();
     toggleCrudMultiDelete();
     registerDatagrids2();
+
+    $(document).on('shown.bs.modal', function () {
+        registerBulkActions();
+        initDatagrid2Bulk();
+    });
 });
 
 /**
  * Register button handeling for bulk actions
  */
 function registerBulkActions() {
-    $('[data-bulk-action]').on('click', function() {
+    $('[data-bulk-action]').unbind('click').on('click', function() {
         setBulkModels($(this).data('bulk-action'));
     });
-    $('.bulk-print').on('click', function (e) {
+    $('.bulk-print').unbind('click').on('click', function (e) {
         e.preventDefault();
         let form = $(this).closest('form');
         form.find();
@@ -76,7 +81,13 @@ function setBulkModels(modelField) {
         }
     });
 
-    $('#datagrid-bulk-' + modelField + '-models').val(values.toString());
+    if (modelField === 'ajax') {
+        $(document).on('shown.bs.modal', function () {
+            $('#primary-dialog').find('input[name="models"]').val(values.toString());
+        });
+    } else {
+        $('#datagrid-bulk-' + modelField + '-models').val(values.toString());
+    }
 }
 
 
@@ -109,12 +120,11 @@ function registerDatagrids2() {
     initDatagrid2Ajax();
     initDatagrid2OnLoad();
     toggleCrudMultiDelete();
-    initDatagrid2Bulk();
 }
 
 function initDatagrid2Bulk() {
     // Bulk edit multiple models at the same time
-    $('.datagrid-bulk').click(function (e) {
+    $('.datagrid-bulk').unbind('click').click(function (e) {
         e.preventDefault();
 
         datagrid2Form = $(this).closest('form');
@@ -131,8 +141,9 @@ function initDatagrid2Bulk() {
             method: 'POST',
             data: {model: models}
         }).done(function (response) {
-            $('#entity-modal').find('.modal-content').html(response);
-            $('#entity-modal').modal();
+            let target = document.getElementById('primary-dialog');
+            target.innerHTML = response;
+            target.show();
         });
     });
 
@@ -147,7 +158,7 @@ function initDatagrid2Bulk() {
 
         if ($(this).data('action') === 'delete') {
             if (datagrid2DeleteConfirm === false) {
-                $('#datagrid-bulk-delete').modal();
+                window.openDialog('datagrid-bulk-delete');
                 return false;
             }
         }
@@ -159,7 +170,7 @@ function initDatagrid2Bulk() {
     });
 
     $('#datagrid-action-confirm').click(function () {
-        $('#datagrid-bulk-delete').modal('hide');
+        window.closeDialog('datagrid-bulk-delete');
         datagrid2Form.submit();
     });
 }
@@ -201,7 +212,7 @@ function initDatagrid2OnLoad() {
 function datagrid2Reorder(ele) {
     datagrid2Table.find('thead').hide();
     datagrid2Table.find('tbody').hide();
-    datagrid2Table.find('tfoot').fadeIn();
+    datagrid2Table.find('tfoot').show();
 
     let url = ele.attr('href');
     let dataUrl = ele.data('url');
@@ -227,7 +238,7 @@ function datagrid2Reorder(ele) {
         initDatagrid2Ajax();
         $(document).trigger('shown.bs.modal'); // Get tooltips to re-generate
         // Needed for ajax buttons in campaigns/plugins
-        ajaxModal();
+        //ajaxModal();
     }).fail(function (err) {
         console.error('datagrid2', err);
         datagrid2Table.find('tfoot').addClass('bg-danger');

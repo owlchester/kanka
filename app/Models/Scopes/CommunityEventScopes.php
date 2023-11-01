@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Builder;
 trait CommunityEventScopes
 {
     /**
-     * @param Builder $builder
      * @return Builder
      */
     public function scopeOngoing(Builder $builder)
@@ -29,7 +28,6 @@ trait CommunityEventScopes
     }
 
     /**
-     * @param Builder $builder
      */
     public function scopeFinished(Builder $builder)
     {
@@ -37,7 +35,6 @@ trait CommunityEventScopes
     }
 
     /**
-     * @param Builder $builder
      */
     public function scopeVoting(Builder $builder)
     {
@@ -48,8 +45,6 @@ trait CommunityEventScopes
     }
 
     /**
-     * @param Builder $builder
-     * @return mixed
      */
     public function scopeRecent(Builder $builder)
     {

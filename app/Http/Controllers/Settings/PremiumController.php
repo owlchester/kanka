@@ -6,19 +6,19 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Services\CampaignBoostService;
+use App\Services\Campaign\BoostService;
 use App\User;
 
 class PremiumController extends Controller
 {
-    protected CampaignBoostService $service;
+    protected BoostService $service;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CampaignBoostService $campaignBoostService)
+    public function __construct(BoostService $campaignBoostService)
     {
         $this->middleware(['auth', 'identity']);
         $this->service = $campaignBoostService;

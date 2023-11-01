@@ -67,7 +67,6 @@ return [
         'date'                  => 'Data actual',
         'day'                   => 'Día',
         'default_layout'        => 'Disposición por defecto',
-        'has_leap_year'         => 'Ten anos bisestos',
         'intercalary'           => 'Días intercalares',
         'is_incrementing'       => 'Data incremental',
         'is_recurring'          => 'Recorrente',

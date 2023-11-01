@@ -69,7 +69,6 @@ return [
         'date'                  => 'Data Atual',
         'day'                   => 'Dia',
         'default_layout'        => 'Layout padrão',
-        'has_leap_year'         => 'Tem anos bissextos',
         'intercalary'           => 'Dias Intercalares',
         'is_incrementing'       => 'Avançando data',
         'is_recurring'          => 'Recorrente',

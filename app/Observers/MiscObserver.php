@@ -20,10 +20,10 @@ abstract class MiscObserver
     use Copiable;
     use PurifiableTrait;
 
-    /** @var EntityMappingService Service to build the mention "map" of the entity */
+    /**Service to build the mention "map" of the entity */
     protected EntityMappingService $entityMappingService;
 
-    /** @var LogService Service for logging changes to an entity */
+    /** Service for logging changes to an entity */
     protected LogService $logService;
 
     public function __construct(EntityMappingService $entityMappingService, LogService $logService)
@@ -33,7 +33,6 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
      */
     public function saving(MiscModel $model)
     {
@@ -61,9 +60,6 @@ abstract class MiscObserver
             }
         }
 
-        // Handle image. Let's use a service for this.
-        ImageService::handle($model, $model->getTable());
-
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($model->is_private)) {
             $model->is_private = false;
@@ -71,7 +67,6 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
      */
     public function saved(MiscModel $model)
     {
@@ -87,20 +82,24 @@ abstract class MiscObserver
         $entity->is_private = $model->is_private;
         $entity->name = $model->name;
         $entity->type_id = $model->entityTypeId();
+        ImageService::handle($entity, 'w/' . $entity->campaign_id);
 
         // Once saved, refresh the model so that we can call $model->entity
         if ($entity->save()) {
+            // Handle image. Let's use a service for this.
+
             // Take care of mentions for the entity.
             $this->syncMentions($model, $entity);
             $model->refresh();
 
             // Clear some cache
             EntityCache::clearSuggestion($model);
+
+
         }
     }
 
     /**
-     * @param MiscModel $model
      */
     public function created(MiscModel $model)
     {
@@ -111,7 +110,6 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
      */
     public function deleted(MiscModel $model)
     {
@@ -130,7 +128,6 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel $model
      */
     public function updated(MiscModel $model)
     {
@@ -159,7 +156,6 @@ abstract class MiscObserver
 
     /**
      * When saving an entity, we can to update our mentions if they have been changed
-     * @param Entity $entity
      */
     protected function syncMentions(MiscModel $model, Entity $entity)
     {
@@ -174,7 +170,6 @@ abstract class MiscObserver
 
     /**
      * @param MiscModel|Location $model
-     * @param string $field
      */
     protected function cleanupTree(MiscModel $model, string $field = 'parent_id')
     {

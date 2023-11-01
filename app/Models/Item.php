@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
@@ -43,7 +42,6 @@ class Item extends MiscModel
         'campaign_id',
         'slug',
         'type',
-        'image',
         'entry',
         'price',
         'size',
@@ -52,7 +50,7 @@ class Item extends MiscModel
         'location_id',
         'is_private',
     ];
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'price',
@@ -62,15 +60,13 @@ class Item extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'item';
+    protected string $entityType = 'item';
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'price',
         'size',
         'location.name',
@@ -90,7 +86,7 @@ class Item extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'character_id',
         'item_id',
@@ -99,15 +95,13 @@ class Item extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
 
     ];
 
     /**
      * Tooltip subtitle (item price/size)
-     * @return string
      */
     public function tooltipSubtitle(): string
     {
@@ -132,14 +126,13 @@ class Item extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
      * @return Builder mixed
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -167,7 +160,6 @@ class Item extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -207,6 +199,21 @@ class Item extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function entities()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Entity',
+            'App\Models\Inventory',
+            'item_id',
+            'id',
+            'id',
+            'entity_id'
+        );
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function items()
@@ -231,12 +238,9 @@ class Item extends MiscModel
         return $this->belongsTo('App\Models\Item', 'item_id', 'id');
     }
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $inventoryCount = $this->inventories()->with('item')->has('entity')->count();
         if ($inventoryCount > 0) {
             $items['second']['inventories'] = [
@@ -251,7 +255,6 @@ class Item extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -260,7 +263,6 @@ class Item extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -288,7 +290,6 @@ class Item extends MiscModel
 
     /**
      * Grid mode sortable fields
-     * @return array
      */
     public function datagridSortableColumns(): array
     {

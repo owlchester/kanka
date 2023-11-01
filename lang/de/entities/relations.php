@@ -6,14 +6,11 @@ return [
         'mode-table'    => 'Tabelle der Beziehungen und Verbindungen',
     ],
     'bulk'              => [
-        'delete'            => '{1} :count Beziehung gelöscht.|[2,*] :count Beziehungen gelöscht.',
-        'delete_mirrored'   => 'Lösche auch gespiegelte Beziehungen.',
-        'success'           => [
+        'delete'    => '{1} :count Beziehung gelöscht.|[2,*] :count Beziehungen gelöscht.',
+        'success'   => [
             'editing'           => '{1} :count Beziehung wurde aktualisiert.|[2,*] :count Beziehungen wurden aktualisiert.',
             'editing_partial'   => '{1} :count/:total Beziehung wurde aktualisiert.|[2,*] :count/:total Beziehungen wurden aktualisiert.',
         ],
-        'unmirror'          => 'Verknüpfung von gespiegelten Beziehungen aufheben.',
-        'update_mirrored'   => 'Aktualisiere auch gespiegelte Beziehungen.',
     ],
     'call-to-action'    => 'Untersuche visuell die Beziehungen dieses Objekts und wie es mit dem Rest der Kampagne verbunden ist.',
     'connections'       => [

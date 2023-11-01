@@ -1,13 +1,13 @@
 @if (!empty($datagridUrl))
     <x-box css="text-center datagrid-onload" href="{!! $datagridUrl !!}">
         <table class="table table-hover" data-render="datagrid2"></table>
-        <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+        <x-icon class="load" />
     </x-box>
 <?php return; ?>
 @endif
 
 @if (isset($responsive))<div class="table-responsive">@endif
-<table class="table table-hover mb-0 w-full shadow-xs bg-box mb-2 rounded" data-render="datagrid2">
+<table class="table table-hover m-0 mb-2 w-full shadow-xs bg-box rounded " data-render="datagrid2">
     <thead>
         <tr>
             @foreach (Datagrid::headers() as $header)
@@ -35,8 +35,8 @@
     </tbody>
     <tfoot style="display: none">
     <tr>
-        <th class="text-center">
-            <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+        <th class="text-center text-lg">
+            <x-icon class="load" />
         </th>
     </tr>
     </tfoot>
@@ -44,7 +44,6 @@
 
 @if (isset($responsive))</div>@endif
 @if ($rows->hasPages() || Datagrid::hasBulks() )
-    <div class=" clearfix"></div>
     <div class="flex gap-2 w-full">
         @includeWhen(Datagrid::hasBulks(), 'layouts.datagrid.bulks')
         {!! $rows->appends(Datagrid::paginationFilters())->links() !!}

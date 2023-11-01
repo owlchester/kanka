@@ -19,7 +19,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Exception;
 use Illuminate\Support\Str;
 
@@ -48,8 +47,7 @@ use Illuminate\Support\Str;
 abstract class MiscModel extends Model
 {
     use HasFilters;
-    use LastSync
-    ;
+    use LastSync;
     use Orderable;
     use Paginatable;
     use Searchable;
@@ -58,26 +56,18 @@ abstract class MiscModel extends Model
     use SourceCopiable;
     use SubEntityScopes;
 
-    /**
-     * @var bool|Entity Performance based entity
-     */
-    protected $cachedEntity = false;
+    /** @var Entity Performance based entity */
+    protected Entity $cachedEntity;
 
     /**
      * @var string Entity type
      */
-    protected $entityType;
-
-    /**
-     * @var string Entity image path
-     */
-    public $entityImagePath;
+    protected string $entityType;
 
     /**
      * Fields that can be ordered on
-     * @var array
      */
-    protected $sortableColumns = [];
+    protected array $sortableColumns = [];
 
     /**
      * Explicit fields for filtering.
@@ -90,7 +80,7 @@ abstract class MiscModel extends Model
      * Fields that can be set to null (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [];
+    public array $nullableForeignKeys = [];
 
     /**
      * Default ordering
@@ -116,27 +106,13 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Create a short name for the interface
-     * @return mixed|string
-     */
-    public function shortName()
-    {
-        if (mb_strlen($this->name) > 30) {
-            return '<span title="' . e($this->name) . '">' . mb_substr(e($this->name), 0, 28) . '...</span>';
-        }
-        return $this->name;
-    }
-
-    /**
      * Get the thumbnail (or default image) of an entity
      * @param int $width If 0, get the full-sized version
-     * @param int|null $height
-     * @param string $field
      * @return string
      */
     public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
     {
-        $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
+        $entity = $this->cachedEntity ?? $this->entity;
         if (empty($this->$field) || $entity->$field) {
             return $this->getImageFallback($width);
         }
@@ -155,38 +131,18 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Get the original image url (for prod: aws cloudfront)
-     * @param string $field
-     * @return mixed
-     */
-    public function getOriginalImageUrl(string $field = 'image')
-    {
-        $cloudfront = config('filesystems.disks.cloudfront.url');
-        if ($cloudfront) {
-            return Storage::disk('cloudfront')->url($this->$field);
-        }
-        return Storage::url($this->$field);
-    }
-
-    /**
      * Get the image fallback image
-     * @return string
      */
     protected function getImageFallback(int $size = 40): string
     {
         // Campaign could have something set up
         $campaign = CampaignLocalization::getCampaign();
-        // If campaign is empty, we might be calling the api/campaigns of the user.
-        if (empty($campaign) && $this instanceof Campaign) {
-            CampaignCache::campaign($this);
-            $campaign = $this;
-        }
 
-        $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
-        if ($campaign->superboosted() && !empty($entity->image)) {
+        $entity = $this->cachedEntity ?? $this->entity;
+        if (!empty($entity->image)) {
             return $entity->image->getUrl($size, $size);
         } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
-            return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
+            return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {
             // Goblins and above have nicer icons
             return '/images/defaults/patreon/' . $this->getTable() . '_thumb.png';
@@ -207,7 +163,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasEntity(): bool
     {
@@ -223,17 +178,28 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @param string $route = 'show'
-     * @return string
+     * Deterine of the model has an associated entity (bookmarks don't)
+     */
+    public function hasEntityType(): bool
+    {
+        return isset($this->entityType);
+    }
+
+    /**
+     * @param string $action = 'show'
      * @throws Exception
      */
-    public function getLink(string $route = 'show'): string
+    public function getLink(string $action = 'show'): string
     {
         if (empty($this->entity)) {
             return '#';
         }
         try {
-            return route($this->entity->pluralType() . '.' . $route, $this->id);
+            $campaign = CampaignLocalization::getCampaign();
+            if (in_array($action, ['show', 'update'])) {
+                return route('entities.' . $action, [$campaign, $this->entity]);
+            }
+            return route($this->entity->pluralType() . '.' . $action, [$campaign, $this->id]);
         } catch (Exception $e) {
             return '#';
         }
@@ -255,7 +221,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasEntry(): bool
     {
@@ -268,8 +233,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @param array $items
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -277,10 +240,11 @@ abstract class MiscModel extends Model
 
         $items['first']['story'] = [
             'name' => 'crud.tabs.story',
-            'route' => $this->entity->pluralType() . '.show',
+            'route' => 'entities.show',
+            'entity' => true,
             'button' => auth()->check() && auth()->user()->can('update', $this) ? [
-                'url' => route('entities.story.reorder', $this->entity->id),
-                'icon' => 'fa-solid fa-cog',
+                'url' => route('entities.story.reorder', [$campaign, $this->entity->id]),
+                'icon' => 'fa-solid fa-arrow-up-arrow-down',
                 'tooltip' => __('entities/story.reorder.icon_tooltip'),
             ] : null,
         ];
@@ -408,7 +372,6 @@ abstract class MiscModel extends Model
     /**
      * List of types as suggestions for the type field
      * @param int $take = 20
-     * @return array
      */
     public function entityTypeSuggestion(int $take = 20): array
     {
@@ -423,7 +386,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return mixed
      */
     public function entry()
     {
@@ -431,7 +393,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return mixed
      */
     public function getEntryForEditionAttribute()
     {
@@ -442,8 +403,6 @@ abstract class MiscModel extends Model
     /**
      * Get the entity link with ajax tooltip.
      * When coming from an entity first, call this method on the entity. It avoids some back and worth.
-     * @param null|string $displayName
-     * @return string
      */
     public function tooltipedLink(string $displayName = null): string
     {
@@ -451,8 +410,9 @@ abstract class MiscModel extends Model
             return e($this->name);
         }
 
+        $campaign = CampaignLocalization::getCampaign();
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
-            'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
+            'data-url="' . route('entities.tooltip', [$campaign, $this->entity->id]) . '" href="' .
             $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : $this->name) .
         '</a>';
@@ -483,7 +443,6 @@ abstract class MiscModel extends Model
 
     /**
      * Create the model's Entity
-     * @return Entity
      */
     public function createEntity(): Entity
     {
@@ -500,7 +459,6 @@ abstract class MiscModel extends Model
 
     /**
      * Touch a model (update the timestamps) without any observers/events
-     * @return mixed
      */
     public function touchSilently()
     {
@@ -527,7 +485,6 @@ abstract class MiscModel extends Model
 
     /**
      * Parse the entity object to the child to avoid multiple db calls
-     * @param Entity $entity
      * @return $this
      */
     public function withEntity(Entity $entity): self
@@ -538,7 +495,6 @@ abstract class MiscModel extends Model
 
     /**
      * Copy related elements to new target. Override this in individual models (ex maps)
-     * @param MiscModel $target
      */
     public function copyRelatedToTarget(MiscModel $target)
     {
@@ -546,7 +502,6 @@ abstract class MiscModel extends Model
 
     /**
      * Available datagrid actions
-     * @param Campaign $campaign
      * @return string[]
      * @throws Exception
      */
@@ -556,31 +511,28 @@ abstract class MiscModel extends Model
 
         // Relations & Inventory
         if (!isset($this->hasRelations)) {
-            $actions[] = '<li>
-                <a href="' . route('entities.relations.index', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="relations">
+            $actions[] = '
+                <a href="' . route('entities.relations.index', [$campaign, $this->entity]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm">
                     <i class="fa-solid fa-users" aria-hidden="true"></i> ' . __('crud.tabs.connections') . '
-                </a>
-            </li>';
+                </a>';
 
             if ($campaign->enabled('inventories')) {
-                $actions[] = '<li>
-                <a href="' . route('entities.inventory', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="inventory">
+                $actions[] = '
+                <a href="' . route('entities.inventory', [$campaign, $this->entity]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm text-base-conten" data-name="inventory">
                     <i class="ra ra-round-bottom-flask" aria-hidden="true"></i> ' . __('crud.tabs.inventory') . '
-                </a>
-            </li>';
+                </a>';
             }
         }
 
 
         if (auth()->check() && auth()->user()->can('update', $this)) {
             if (!empty($actions)) {
-                $actions[] = '<li class="divider"></li>';
+                $actions[] = '<hr class="m-0" />';
             }
-            $actions[] = '<li>
-                <a href="' . $this->getLink('edit') . '" class="dropdown-item datagrid-dropdown-item" data-name="edit">
+            $actions[] = '
+                <a href="' . $this->getLink('edit') . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm text-base-conten" data-name="edit">
                     <i class="fa-solid fa-edit" aria-hidden="true"></i> ' . __('crud.edit') . '
-                </a>
-            </li>';
+                </a>';
         }
 
         return $actions;
@@ -588,7 +540,6 @@ abstract class MiscModel extends Model
 
     /**
      * Generate the entity's body css classes
-     * @return string
      */
     public function bodyClasses(?Entity $entity = null): string
     {
@@ -637,7 +588,6 @@ abstract class MiscModel extends Model
 
     /**
      * To be overwritten by the model instance
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -646,7 +596,6 @@ abstract class MiscModel extends Model
 
     /**
      * Row classes for entities
-     * @return string
      */
     public function rowClasses(): string
     {
@@ -658,7 +607,6 @@ abstract class MiscModel extends Model
 
     /**
      * Boilerplate
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -667,7 +615,6 @@ abstract class MiscModel extends Model
 
     /**
      * Boilerplate for sortable columns in the datagrid dropdowns
-     * @return array
      */
     public function datagridSortableColumns(): array
     {

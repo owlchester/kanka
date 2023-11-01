@@ -4,7 +4,7 @@
  */
 ?>
 @if ($attributeTemplate->hasVisibleAttributes($existingAttributeNames))
-    <p class="help-block">
+    <p class="text-neutral-content m-0">
         {!! __('attribute_templates.hints.automatic', [
             'link' => link_to($attributeTemplate->getLink(), e($attributeTemplate->name))
         ]) !!}

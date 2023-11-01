@@ -19,22 +19,21 @@ use Illuminate\Support\Facades\Log;
  */
 class DiscordService
 {
-    /** @var User */
+    /**  */
     protected User $user;
 
     /** @var UserApp|null */
     protected $app;
 
-    /** @var string  */
+    /**  */
     protected string $url = 'https://discord.com/api/v6/';
 
-    /** @var mixed */
+    /**  */
     protected $me = false;
 
     protected array $logs = [];
 
     /**
-     * @param User $user
      * @return $this
      */
     public function user(User $user): self
@@ -45,7 +44,6 @@ class DiscordService
     }
 
     /**
-     * @param string $code
      */
     public function validate(string $code): self
     {
@@ -90,7 +88,6 @@ class DiscordService
     }
 
     /**
-     * @return mixed
      */
     public function me()
     {
@@ -263,10 +260,6 @@ class DiscordService
 
     /**
      * Make a post request on the discord api
-     * @param string $api
-     * @param array $body
-     * @param array|null $headers
-     * @return mixed
      */
     protected function post(string $api, array $body = [], array $headers = null)
     {
@@ -285,10 +278,6 @@ class DiscordService
 
     /**
      * @param string $action post, get, put, delete
-     * @param string $api
-     * @param array $body
-     * @param array|null $headers
-     * @return mixed
      */
     protected function call(string $action, string $api, array $body = [], array $headers = null)
     {
@@ -311,7 +300,6 @@ class DiscordService
     }
 
     /**
-     * @return array
      */
     public function logs(): array
     {

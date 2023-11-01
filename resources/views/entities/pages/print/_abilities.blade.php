@@ -1,9 +1,9 @@
-@inject('abilities', 'App\Services\Entity\AbilityService')
-@php $entityAbilities = $abilities->entity($entity)->abilities() @endphp
+@inject('abilities', 'App\Services\Abilities\AbilityService')
+@php $entityAbilities = $abilities->campaign($campaign)->entity($entity)->abilities() @endphp
 
 <div class="print-box-abilities">
 
-    <h2>{{ __('crud.tabs.abilities') }}</h2>
+    <h2>{{ __('entities.abilities') }}</h2>
 
     @foreach ($entityAbilities['parents'] as $parent)
         <h3 class="box-title">{{ $parent['name'] }}</h3>
@@ -19,7 +19,7 @@
                         {!! $ability['entry'] !!}
 
                         @if ($ability['note'])
-                            <p class="help-block">{!! $ability['note'] !!}</p>
+                            <x-helper>{!! $ability['note'] !!}</x-helper>
                         @endif
 
                         @if(!empty($ability['charges']))
@@ -51,7 +51,7 @@
                 {!! $ability['entry'] !!}
 
                 @if ($ability['note'])
-                    <p class="help-block">{!! $ability['note'] !!}</p>
+                    <x-helper>{!! $ability['note'] !!}</x-helper>
                 @endif
 
                 @if(!empty($ability['charges']))

@@ -2,18 +2,20 @@
     'title' => __('entities/aliases.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
-        ['url' => route('entities.entity_assets.index', $entity->id), 'label' => __('crud.tabs.assets')],
-    ]
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
+        ['url' => route('entities.entity_assets.index', [$campaign, $entity->id]), 'label' => __('crud.tabs.assets')],
+    ],
+    'centered' => true,
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['entities.entity_assets.store', $entity], 'method' => 'POST', 'data-shortcut' => 1]) !!}
+    {!! Form::open(['route' => ['entities.entity_assets.store', $campaign, $entity], 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
 
     @include('partials.forms.form', [
             'title' => __('entities/aliases.create.title', ['name' => $entity->name]),
             'content' => 'entities.pages.aliases._form',
+            'dialog' => true,
         ])
     {!! Form::close() !!}
 @endsection

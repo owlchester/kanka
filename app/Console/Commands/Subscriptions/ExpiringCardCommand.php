@@ -2,14 +2,16 @@
 
 namespace App\Console\Commands\Subscriptions;
 
-use App\Models\JobLog;
 use App\Jobs\Emails\Subscriptions\ExpiringCardAlert;
+use App\Traits\HasJobLog;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class ExpiringCardCommand extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      *
@@ -59,20 +61,12 @@ class ExpiringCardCommand extends Command
         $this->info('Alerted ' . $this->count . ' subscribers.');
         $log .= '<br />' . 'Alerted ' . $this->count . ' subscribers.';
 
-        if (!config('app.log_jobs')) {
-            return 0;
-        }
-
-        JobLog::create([
-            'name' => $this->signature,
-            'result' => $log,
-        ]);
+        $this->log($log);
 
         return 0;
     }
 
     /**
-     * @param User $user
      */
     protected function notify(User $user): void
     {

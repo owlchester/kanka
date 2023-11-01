@@ -1,4 +1,4 @@
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars.event.edit.title', ['name' => $entity->name]),
     'breadcrumbs' => isset($next) && $next == 'entity.events' ? [
         __('entities.' . $entity->pluralType()),
@@ -6,39 +6,26 @@
         __('crud.tabs.reminders'),
         __('crud.update'),
     ] : [
-        ['url' => route('calendars.index'), 'label' => __('entities.calendars')],
-        ['url' => $entityEvent->calendar->getLink(), 'label' => $entityEvent->calendar->name],
+        Breadcrumb::entity($entityEvent->calendar->entity)->list(),
+        Breadcrumb::show($entityEvent->calendar),
         __('crud.tabs.reminders'),
         __('crud.update'),
     ],
     'canonical' => true,
+    'centered' => true,
 ])
 @section('content')
-    {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $entity->id, $entityEvent->id], 'data-shortcut' => '1', 'class' => 'ajax-validation', 'data-maintenance' => 1]) !!}
+    {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $campaign, $entity->id, $entityEvent->id], 'data-shortcut' => '1', 'class' => 'ajax-subform', 'data-maintenance' => 1]) !!}
 
-    <div class="modal-body">
-        @include('partials.errors')
+    @include('partials.forms.form', [
+        'title' => __('calendars.event.edit.title', ['name' => link_to($entity->url(), $entity->name)]),
+        'content' => 'calendars.events._form',
+        'deleteID' => '#delete-reminder-' . $entityEvent->id,
+        'dialog' => true,
+        'dropdownParent' => '#primary-dialog',
+        'colourAppendTo' => '#primary-dialog',
+    ])
 
-        @if (!empty($from))
-            <x-alert type="warning">
-                {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
-            </x-alert>
-        @endif
-
-        @include('calendars.events._form', ['colourAppendTo' => '#entity-modal'])
-
-    </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn2 btn-primary">
-            <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-            <span>{{ __('crud.save') }}</span>
-        </button>
-        <div class="pull-left">
-            @include('partials.footer_cancel')
-
-            <x-button.delete-confirm target="#delete-reminder-{{ $entityEvent->id}}" />
-        </div>
-    </div>
 
     @if (!empty($next))
         <input type="hidden" name="next" value="{{ $next }}" />
@@ -50,7 +37,7 @@
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['entities.entity_events.destroy', $entity->id, $entityEvent->id],
+        'route' => ['entities.entity_events.destroy', $campaign, $entity->id, $entityEvent->id],
         'id' => 'delete-reminder-' . $entityEvent->id]) !!}
     @if (request()->has('layout'))
         {!! Form::hidden('layout', request()->get('layout')) !!}

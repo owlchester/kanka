@@ -10,7 +10,6 @@ use App\Http\Resources\LocationResource as Resource;
 class LocationApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -26,8 +25,6 @@ class LocationApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Location $location
      * @return Resource
      */
     public function show(Campaign $campaign, Location $location)
@@ -39,8 +36,6 @@ class LocationApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -58,9 +53,6 @@ class LocationApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Location $location
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Location $location)
@@ -74,8 +66,6 @@ class LocationApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Location $location
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

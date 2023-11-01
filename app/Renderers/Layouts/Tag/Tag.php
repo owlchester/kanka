@@ -5,6 +5,7 @@ namespace App\Renderers\Layouts\Tag;
 use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
+use Illuminate\Support\Facades\Blade;
 
 class Tag extends Layout
 {
@@ -30,7 +31,9 @@ class Tag extends Layout
             'colour' => [
                 'key' => 'colour',
                 'label' => 'crud.fields.colour',
-                'render' => 'bubble()',
+                'render' => function ($tag) {
+                    return Blade::render('<x-tags.bubble :tag="$tag" />', ['tag' => $tag]);
+                },
             ],
             'tag' => [
                 'key' => 'tag.name',

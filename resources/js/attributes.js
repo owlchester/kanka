@@ -4,9 +4,11 @@ import Sortable from "sortablejs";
  * When adding a new attribute, we give it a negative id to avoid issues with checkboxes losing information
  * @type {number}
  */
-var attribute_id_count = -1000;
-var maxFields = false;
-var maxFieldAlert;
+let attribute_id_count = -1000;
+let maxFields = false;
+let maxFieldAlert;
+
+const target = $('#add_attribute_target');
 
 import dynamicMentions from "./mention";
 
@@ -27,35 +29,9 @@ $(document).ready(function() {
 /**
  * Initiate on click handles for attribute interface
  */
-function initAttributeUI()
-{
-    var target = $('#add_attribute_target');
-
+const initAttributeUI = () => {
     initAttributeHandlers();
-
-    $('.add_attribute').click(function (e) {
-        e.preventDefault();
-
-        if (maxFields !== false) {
-            let fieldCount = $('form :input').length + 4;
-            //console.log('checking', fieldCount, 'vs', maxFields);
-            if (fieldCount > maxFields) {
-                maxFieldAlert.show();
-                return;
-            } else {
-                maxFieldAlert.hide();
-            }
-        }
-        attribute_id_count -= 1;
-
-        let body = $($(this).data('template')).clone().removeClass('hidden').removeAttr('id');
-        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-        body.html(html).insertBefore(target);
-        initAttributeHandlers();
-        dynamicMentions();
-
-        return false;
-    });
+    initAddAttribute();
 
     // Delete all visible attributes
     $('#attributes-delete-all-confirm-submit').click(function(e) {
@@ -82,13 +58,42 @@ function initAttributeUI()
             $(this).prop('title', $(this).data('public'));
         }
     });
-}
+
+    $(document).on('shown.bs.modal', function () {
+        initAddAttribute();
+    });
+};
+
+const initAddAttribute = () => {
+    $('[data-attribute-template]').unbind('click').click(function (e) {
+        e.preventDefault();
+
+        if (maxFields !== false) {
+            let fieldCount = $('form :input').length + 4;
+            //console.log('checking', fieldCount, 'vs', maxFields);
+            if (fieldCount > maxFields) {
+                maxFieldAlert.show();
+                return;
+            } else {
+                maxFieldAlert.hide();
+            }
+        }
+        attribute_id_count -= 1;
+
+        let template = $(this).data('attribute-template');
+        let html = $(template).html().replace(/\$TMP_ID\$/g, attribute_id_count);
+        target.append(html);
+        initAttributeHandlers();
+        dynamicMentions();
+
+        return false;
+    });
+};
 
 /**
  * This function rebinds the delete on all buttons
  */
-function initAttributeHandlers() {
-
+const initAttributeHandlers = () => {
     $.each($('.attribute_delete'), function() {
         $(this).unbind('click');
         $(this).on('click', function() {
@@ -127,20 +132,17 @@ function initAttributeHandlers() {
             window.showToast($(this).data('unpin'));
         }
     });
+};
 
-    //window.initSelect2();
-}
-
-
-var liveEditURL, liveEditModal, liveEditCurrentUID;
-function initLiveAttributes() {
+let liveEditURL, liveEditModal, liveEditCurrentUID;
+const initLiveAttributes = () => {
     let config = $('[name="live-attribute-config"]');
     if (config.length === 0) {
         return;
     }
 
     liveEditURL = config.data('live');
-    liveEditModal = $('#live-attribute-modal');
+    liveEditModal = $('#live-attribute-dialog');
 
     // Add the live-edit-parsed attribute to variables to confirm that they are valid
     let uid = 1;
@@ -157,48 +159,49 @@ function initLiveAttributes() {
         liveEditCurrentUID = $(this).data('uid');
 
         let url = liveEditURL + '?id=' + id + '&uid=' + $(this).data('uid');
-        $.ajax({
-            url: url
-        }).done(function (result) {
-            let params = {};
-            liveEditModal.find('.modal-content').html(result);
-            liveEditModal.modal(params);
 
-            //console.log('child', liveEditModal.find('form'));
-            liveEditModal.find('form').submit(function (e) {
-                e.preventDefault();
-
-                $.ajax({
-                    method: 'POST',
-                    context: this,
-                    url: $(this).attr('action'),
-                    data: $(this).serialize()
-                }).done(function (result) {
-
-                    liveEditModal.find('.modal-content').html('');
-                    liveEditModal.modal('hide');
-
-                    let target = $('[data-uid="' + result.uid + '"]');
-                    //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
-                    target.html(result.value);
-                    if (result.value) {
-                        target.removeClass('empty-value');
-                    } else {
-                        target.addClass('empty-value');
-                    }
-
-                    window.showToast(result.success);
-
-                }).fail(function (result) {
-                    //alert('error! check console logs');
-                    console.error('live-edit-error', result);
-
-                    liveEditModal.find('.modal-content').html('');
-                    liveEditModal.modal('hide');
-                });
-
-                return false;
-            });
+        $(document).on('shown.bs.modal', function () {
+            listenToLiveForm();
         });
+        window.openDialog('live-attribute-dialog', url);
+
     });
-}
+};
+
+const listenToLiveForm = () => {
+    liveEditModal.find('form').submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            method: 'POST',
+            context: this,
+            url: $(this).attr('action'),
+            data: $(this).serialize()
+        }).done(function (result) {
+
+            liveEditModal.find('article').html('');
+            let dialog = document.getElementById('live-attribute-dialog');
+            dialog.close();
+
+            let target = $('[data-uid="' + result.uid + '"]');
+            //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
+            target.attr('data-attribute', result.attribute)
+            target.html(result.value);
+            if (result.value) {
+                target.removeClass('empty-value');
+            } else {
+                target.addClass('empty-value');
+            }
+
+            window.showToast(result.success);
+
+        }).fail(function (result) {
+            //alert('error! check console logs');
+            //console.error('live-edit-error', result);
+            let dialog = document.getElementById('live-attribute-dialog');
+            dialog.close();
+        });
+
+        return false;
+    });
+};

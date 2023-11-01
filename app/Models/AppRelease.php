@@ -45,7 +45,6 @@ class AppRelease extends Model
 
     /**
      * Release's category
-     * @return string
      */
     public function category(): string
     {
@@ -65,7 +64,6 @@ class AppRelease extends Model
 
     /**
      * Check if the user has already read this release
-     * @return bool
      */
     public function alreadyRead(): bool
     {
@@ -80,7 +78,6 @@ class AppRelease extends Model
 
     /**
      * Check if the release shouldn't be shown anymore
-     * @return bool
      */
     public function isPast(): bool
     {

@@ -6,10 +6,7 @@ return [
     ],
     'call-to-action'    => 'Zmieniaj kolejność, ikony i nazwy elementów w menu kampanii.',
     'helpers'           => [
-        'here'          => 'w dokumentacji',
-        'icons'         => 'Używaj klas ikon dostępnych pod :link',
         'reordering'    => 'Zmień kolejność elementów menu przeciągając ikony po lewej.',
-        'setup'         => 'Zmieniaj kolejność, ikony i nazwy elementów w menu bocznym kampanii. Możesz zawsze cofnąć zmiany, używając przycisku :reset na dole tej strony.',
     ],
     'reset'             => [
         'success'   => 'Przywrócono domyślną postać menu bocznego.',

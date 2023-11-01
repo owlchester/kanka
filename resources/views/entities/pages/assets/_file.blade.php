@@ -11,8 +11,8 @@
 
             <div class="text-lg">
             @if(auth()->check() && auth()->user()->can('update', $entity->child))
-                <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.edit', [$entity, $asset]) }}">
-                    <i class="fa-solid fa-pencil" aria-hidden="true" aria-label="{{ __('crud.edit') }}"></i>
+                <a href="#" data-toggle="dialog-ajax" data-target="asset-update-dialog" data-url="{{ route('entities.entity_assets.edit', [$campaign, $entity, $asset]) }}">
+                    <x-icon class="pencil" title="{{ __('crud.edit') }}" :tooltip="true" />
                 </a>
             @endif
             {!! $asset->visibilityIcon() !!}

@@ -1,4 +1,4 @@
-@php $boosted = $campaignService->campaign()->boosted() @endphp
+@php $boosted = $campaign->boosted() @endphp
 <div class="nav-tabs-custom">
     <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
         <li class="active">
@@ -28,10 +28,11 @@
                     2 => __('crud.tabs.attributes'),
                 ];
                 @endphp
-                <div class="field-display">
-                    <label>{{ __('dashboard.widgets.preview.fields.display') }}</label>
-                    {!! Form::select('config[full]', $displayOptions, null, ['class' => 'form-control']) !!}
-                </div>
+                <x-forms.field
+                    field="display"
+                    :label="__('dashboard.widgets.preview.fields.display')">
+                    {!! Form::select('config[full]', $displayOptions, null, ['class' => '']) !!}
+                </x-forms.field>
 
                 @include('dashboard.widgets.forms._name')
 

@@ -12,25 +12,12 @@ if (empty($calendar)) {
     return;
 }
 ?>
-<div class="panel panel-default {{ $widget->customClass($campaign) }} widget-render" id="dashboard-widget-{{ $widget->id }}" data-url="{{ route('dashboard.calendar.render', $widget->id) }}">
-    @if (!$calendar->image)
-    <div class="panel-heading">
-       <h3 class="panel-title">
-           {{ link_to($calendar->getLink(), (!empty($widget->conf('text')) ? $widget->conf('text') : $entity->name)) }}
-       </h3>
-    </div>
-    @else
-        <div class="panel-heading panel-heading-entity" style="background-image: url('{{ $widget->entity->child->thumbnail(600) }}')">
-            <h3 class="panel-title">
-                {{ link_to($calendar->getLink(), $entity->name) }}
-            </h3>
+<x-box padding="0" css="widget-calendar widget-list {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+    <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity" />
+    <div class="p-4" data-render="{{ route('dashboard.calendar.render', [$campaign, $widget->id]) }}" data-id="{{ $widget->id }}">
+        <div class="text-center py-10 text-2xl" id="widget-loading-{{ $widget->id }}">
+            <x-icon class="load" />
         </div>
-    @endif
-    <div class="panel-body" id="widget-body-{{ $widget->id }}">
-        <div class="widget-loading text-center">
-            <i class="fa-solid fa-spin fa-spinner fa-4x"></i>
-        </div>
-        <div class="widget-body"></div>
+        <div id="widget-body-{{ $widget->id }}"></div>
     </div>
-
-</div>
+</x-box>

@@ -42,7 +42,6 @@ return [
     'title'         => 'Galeria da Campanha :campaign',
     'update'        => [
         'success'   => 'Imagem modificada.',
-        'title'     => 'Detalhes da imagem',
     ],
     'uploader'      => [
         'add'           => 'Adicionar nova',

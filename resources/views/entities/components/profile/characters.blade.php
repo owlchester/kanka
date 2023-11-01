@@ -11,7 +11,7 @@
 @endphp
 
 <x-sidebar.profile>
-    @if ($campaignService->enabled('families') && !$model->families->isEmpty())
+    @if ($campaign->enabled('families') && !$model->families->isEmpty())
         <div class="element profile-family">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!}

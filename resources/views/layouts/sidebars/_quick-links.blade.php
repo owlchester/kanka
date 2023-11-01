@@ -1,4 +1,4 @@
-@foreach ($links as $menuLink)
-    <?php /** @var \App\Models\MenuLink $menuLink */ ?>
-    @include('layouts.sidebars._quick-link', ['menuLink' => $menuLink])
+@foreach ($links as $bookmark)
+        <?php /** @var \App\Models\Bookmark $bookmark */ ?>
+    @include('layouts.sidebars._quick-link', ['bookmark' => $bookmark])
 @endforeach

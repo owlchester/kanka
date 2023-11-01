@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers\Search;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
-use Response;
 
 class EntityController extends Controller
 {
-    /**
-     * @var SearchService
-     */
-    protected $search;
+    protected SearchService $search;
 
     /**
      * LiveController constructor.
-     * @param SearchService $searchService
      */
     public function __construct(SearchService $searchService)
     {
@@ -26,15 +21,12 @@ class EntityController extends Controller
 
     /**
      * Only find calendar entities
-     * @param Request $request
-     * @return mixed
      */
-    public function calendars(Request $request)
+    public function calendars(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
-        return Response::json(
+        return response()->json(
             $this->search
                 ->term($term)
                 ->campaign($campaign)

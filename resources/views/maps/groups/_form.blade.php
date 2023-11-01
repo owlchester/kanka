@@ -1,25 +1,30 @@
     <x-grid>
-    <div class="field-name col-span-2 required">
-        <label>{{ __('crud.fields.name') }}</label>
-        {!! Form::text('name', null, ['placeholder' => __('maps/groups.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required' => true]) !!}
-    </div>
+    <x-forms.field
+        :required="true"
+        :label="__('crud.fields.name')"
+        field="name"
+        css="col-span-2">
+        {!! Form::text('name', null, ['placeholder' => __('maps/groups.placeholders.name'), 'class' => '', 'maxlength' => 191, 'required' => true]) !!}
+    </x-forms.field>
 
-    <div class="field-shown">
+    <x-forms.field
+        field="shown col-span-2"
+        :label="__('maps/groups.fields.is_shown')">
         {!! Form::hidden('is_shown', 0) !!}
-        <label>{!! Form::checkbox('is_shown', 1, isset($model) ? $model->is_shown : 1) !!}
-            {{ __('maps/groups.fields.is_shown') }}
-        </label>
-        <p class="help-block m-0">{{ __('maps/groups.hints.is_shown') }}</p>
-    </div>
+        <x-checkbox :text="__('maps/groups.hints.is_shown')">
+            {!! Form::checkbox('is_shown', 1, isset($model) ? $model->is_shown : 1) !!}
+        </x-checkbox>
+    </x-forms.field>
 
     @php
         $options = $map->groupPositionOptions(!empty($model->position) ? $model->position : null);
         $last = array_key_last($options);
     @endphp
-    <div class="field-position">
-        <label>{{ __('maps/groups.fields.position') }}</label>
-        {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
-    </div>
+    <x-forms.field
+        field="position"
+        :label="__('maps/groups.fields.position')">
+        {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => '']) !!}
+    </x-forms.field>
 
     @include('cruds.fields.visibility_id')
 </x-grid>

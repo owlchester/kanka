@@ -27,6 +27,8 @@ return [
     'fields'        => [
         'copy_elements' => 'Copiar elementos vinculados a la misión',
         'date'          => 'Fecha',
+        'element_role'  => 'Rol',
+        'instigator'    => 'Instigador',
         'is_completed'  => 'Completada',
         'role'          => 'Rol',
     ],
@@ -39,9 +41,10 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'date'  => 'Fecha real de la misión',
-        'role'  => 'El papel que juega la entidad en la misión',
-        'type'  => 'Historia Principal, Arco de Personaje, Misión Secundaria...',
+        'date'      => 'Fecha real de la misión',
+        'entity'    => 'Nombre de un elemento de la misión',
+        'role'      => 'El papel que juega la entidad en la misión',
+        'type'      => 'Historia Principal, Arco de Personaje, Misión Secundaria...',
     ],
     'show'          => [
         'actions'   => [

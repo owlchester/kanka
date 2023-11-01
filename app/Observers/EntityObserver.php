@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
 use App\Models\CampaignPermission;
@@ -13,24 +12,15 @@ use App\Services\Entity\TagService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
 use Illuminate\Support\Str;
-use Stevebauman\Purify\Facades\Purify;
+use App\Facades\Domain;
 
 class EntityObserver
 {
-    /**
-     * Purify trait
-     */
     use PurifiableTrait;
 
-    /**
-     * @var PermissionService
-     */
-    protected $permissionService;
+    protected PermissionService $permissionService;
 
-    /**
-     * @var AttributeService
-     */
-    protected $attributeService;
+    protected AttributeService $attributeService;
 
     /**
      * @var bool
@@ -39,7 +29,6 @@ class EntityObserver
 
     /**
      * PermissionController constructor.
-     * @param PermissionService $permissionService
      */
     public function __construct(PermissionService $permissionService, AttributeService $attributeService)
     {
@@ -107,7 +96,6 @@ class EntityObserver
 
     /**
      * Save permissions sent to the controller
-     * @param Entity $entity
      */
     public function savePermissions(Entity $entity)
     {
@@ -137,7 +125,6 @@ class EntityObserver
     }
 
     /**
-     * @param Entity $entity
      * @return $this
      * @throws \Exception
      */
@@ -181,7 +168,6 @@ class EntityObserver
     }
 
     /**
-     * @param Entity $entity
      */
     public function created(Entity $entity)
     {
@@ -224,7 +210,6 @@ class EntityObserver
     }
 
     /**
-     * @param Entity $entity
      */
     public function updated(Entity $entity)
     {
@@ -235,16 +220,20 @@ class EntityObserver
     }
 
     /**
-     * @param Entity $entity
-     * @return void
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function saveBoosted(Entity $entity): void
     {
+        // Gallery is now available to all
+        if (request()->has('entity_image_uuid')) {
+            $entity->image_uuid = request()->get('entity_image_uuid');
+        } elseif (Domain::isApp()) {
+            $entity->image_uuid = null;
+        }
         // No changed for non-boosted campaigns
-        $campaign = CampaignLocalization::getCampaign();
-        if (!$campaign->boosted()) {
+        if (!$entity->campaign->boosted()) {
+            $entity->save();
             return;
         }
 
@@ -257,15 +246,10 @@ class EntityObserver
         ImageService::entity($entity, 'campaign/' . $entity->campaign_id, 'header_image');
 
         // Superboosted image gallery selection
-        if ($campaign->superboosted()) {
-            if (request()->has('entity_image_uuid')) {
-                $entity->image_uuid = request()->get('entity_image_uuid');
-            } else {
-                $entity->image_uuid = null;
-            }
+        if ($entity->campaign->superboosted()) {
             if (request()->has('entity_header_uuid')) {
                 $entity->header_uuid = request()->get('entity_header_uuid');
-            } else {
+            } elseif (Domain::isApp()) {
                 $entity->header_uuid = null;
             }
         }
@@ -274,7 +258,6 @@ class EntityObserver
     }
 
     /**
-     * @param Entity $entity
      */
     public function deleted(Entity $entity)
     {

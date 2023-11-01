@@ -31,7 +31,7 @@ If your token is invalid or malformed, you will get the following response.
 }
 ```
 
-Generate a new token in your [Api settings](https://kanka.io/en/settings/api) and use that new token for your request.
+Generate a new token in your [Api settings](https://app.kanka.io/settings/api) and use that new token for your request.
 
 ### What causes an invalid token?
 

@@ -4,13 +4,12 @@
         __('search.title'),
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
-    {!! Form::open(['route' => 'search', 'method' => 'GET']) !!}
+    {!! Form::open(['route' => ['search', $campaign], 'method' => 'GET']) !!}
         <x-box>
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ request()->get('q') }}">
+                <input type="text" name="q" class="" placeholder="Search..." value="{{ request()->get('q') }}">
 
                 <div class="input-group-btn">
                     <button type="submit" class="btn2 btn-primary">
@@ -31,7 +30,7 @@
                 @endif
                     <h3 class="">
                         {{ __('entities.' . $element) }}
-                        <span class="badge bg-blue">{{ count($values) }}</span>
+                        <span class="badge bg-blue-500">{{ count($values) }}</span>
                     </h3>
                     <x-box>
                         @include($element . '.datagrid', ['models' => $values])

@@ -1,0 +1,1 @@
+window.onload=function(o){console.log("loaded");const e=document.getElementById("nav-mobile-toggler");console.debug(e),e.addEventListener("click",()=>{console.debug("clicked"),e.classList.toggle("open")})};

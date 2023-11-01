@@ -9,8 +9,6 @@ use App\Http\Resources\EntityEventResource as Resource;
 class CalendarEventApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
-     * @param Calendar $calendar
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

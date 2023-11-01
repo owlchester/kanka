@@ -20,24 +20,26 @@ use App\Models\OrganisationMember;
 use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
+use App\Traits\CampaignAware;
+use App\Traits\EntityAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class EntityRelationService
 {
-    /** @var Entity */
-    protected Entity $entity;
+    use CampaignAware;
+    use EntityAware;
 
-    /** @var array Entities */
+    /** Entities */
     protected array $entities = [];
 
-    /** @var array Relations */
+    /** Relations */
     protected array $relations = [];
 
-    /** @var array Loaded relation IDS */
+    /** Loaded relation IDS */
     protected array $relationIds = [];
 
-    /** @var array Loaded org members to avoid things getting messy */
+    /** Loaded org members to avoid things getting messy */
     protected array $orgMembers = [];
 
     /** @var array Mirrored IDs */
@@ -55,18 +57,8 @@ class EntityRelationService
     /** @var bool Enable loading entities on relations */
     protected bool $withEntity = false;
 
-    /** @var string|null */
+    /**  */
     protected string|null $option = null;
-
-    /**
-     * @param Entity $entity
-     * @return $this
-     */
-    public function entity(Entity $entity): self
-    {
-        $this->entity = $entity;
-        return $this;
-    }
 
     public function option(string $option = null): self
     {
@@ -102,7 +94,6 @@ class EntityRelationService
     }
 
     /**
-     * @return array
      */
     public function map(): array
     {
@@ -151,8 +142,6 @@ class EntityRelationService
     }
 
     /**
-     * @param Entity $entity
-     * @param string|null $image
      * @return $this
      */
     protected function addEntity(Entity $entity, string $image = null): self
@@ -170,7 +159,7 @@ class EntityRelationService
             // Fallback?
             $img = '';
         }
-        $params = [$entity->id, 'mode' => 'map'];
+        $params = [$this->campaign, $entity->id, 'mode' => 'map'];
         if ($this->option) {
             $params['option'] = $this->option;
         }
@@ -185,7 +174,6 @@ class EntityRelationService
     }
 
     /**
-     * @param Entity $entity
      * @return $this
      */
     protected function addRelations(Entity $entity): self
@@ -235,6 +223,7 @@ class EntityRelationService
                 'is_mirrored' => $relation->isMirrored(),
                 'shape' => $relation->isMirrored() && $relation->mirror && $relation->relation == $relation->mirror->relation ? 'none' : 'triangle',
                 'edit_url' => route('entities.relations.edit', [
+                    'campaign' => $this->campaign,
                     'entity' => $relation->owner_id,
                     'relation' => $relation,
                     'from' => $this->entity->id,
@@ -271,7 +260,6 @@ class EntityRelationService
 
     /**
      * Add the family or a character and the family's members
-     * @param Family $family
      */
     protected function addFamilyRelations(Family $family)
     {
@@ -301,7 +289,6 @@ class EntityRelationService
     }
 
     /**
-     * @param Organisation|null $organisation
      */
     protected function addOrganisationRelations(Organisation $organisation = null)
     {
@@ -362,7 +349,6 @@ class EntityRelationService
     }
 
     /**
-     * @param Family $family
      * @return $this
      */
     protected function addFamilyMembers(Family $family): self
@@ -797,7 +783,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $related->map->entity->id,
-                'text' => __('crud.tabs.map-points'),
+                'text' => __('maps/markers.tabs.marker'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'entity-map-marker',
@@ -987,7 +973,6 @@ class EntityRelationService
     }
 
     /**
-     * @return bool
      */
     protected function withRelations(): bool
     {
@@ -995,7 +980,6 @@ class EntityRelationService
     }
 
     /**
-     * @return bool
      */
     protected function withRelated(): bool
     {
@@ -1003,7 +987,6 @@ class EntityRelationService
     }
 
     /**
-     * @return bool
      */
     protected function withMentions(): bool
     {
@@ -1011,7 +994,6 @@ class EntityRelationService
     }
 
     /**
-     * @return bool
      */
     protected function onlyRelations(): bool
     {

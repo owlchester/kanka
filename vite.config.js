@@ -30,7 +30,6 @@ export default defineConfig({
         laravel([
             'resources/js/app.js',
             'resources/js/auth.js',
-            'resources/js/ajax-subforms.js',
             'resources/js/location/map-v3.js',
             'resources/js/api.js',
             'resources/js/attributes.js',
@@ -44,7 +43,7 @@ export default defineConfig({
             'resources/js/dashboard.js',
             'resources/js/front.js',
             'resources/js/settings.js',
-            'resources/js/timeline.js',
+            //'resources/js/timeline.js',
             'resources/js/profile.js',
             'resources/js/cookieconsent.js',
             'resources/js/relations.js',

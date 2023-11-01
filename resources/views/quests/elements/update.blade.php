@@ -1,18 +1,18 @@
 @extends('layouts.app', [
     'title' => __('quests.elements.edit.title', ['name' => $quest->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('quests'), 'label' => \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests'))],
-        ['url' => $quest->getLink(), 'label' => $quest->name],
-        ['url' => route('quests.quest_elements.index', $quest->id), 'label' => __('quests.show.tabs.elements')],
+        Breadcrumb::entity($quest->entity)->list(),
+        Breadcrumb::show($quest),
+        ['url' => route('quests.quest_elements.index', [$campaign, $quest->id]), 'label' => __('quests.show.tabs.elements')],
         __('crud.update'),
-    ]
+    ],
+    'centered' => true,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     {!! Form::model($model, [
         'method' => 'PATCH',
-        'route' => ['quests.quest_elements.update', $quest, $model->id],
+        'route' => ['quests.quest_elements.update', $campaign, $quest, $model->id],
         'data-shortcut' => 1,
         'data-maintenance' => 1,
     ]) !!}
@@ -24,34 +24,37 @@
                 <button class="btn2 btn-primary join-item" id="form-submit-main">
                     {{ __('crud.save') }}
                 </button>
-                <div class="dropdown dropdown-menu-right">
-                    <button type="button" class="btn2 btn-primary dropdown-toggle join-item" data-toggle="dropdown" aria-expanded="false">
-                        <span class="caret"></span>
+                <div class="dropdown ">
+                    <button type="button" class="btn2 btn-primary join-item" data-dropdown aria-expanded="false">
+                        <x-icon class="fa-solid fa-caret-down" />
+                        <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li>
-                            <a href="#" class="dropdown-item form-submit-actions">
-                                {{ __('crud.save') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
-                                {{ __('crud.save_and_update') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item form-submit-actions" data-action="submit-new">
-                                {{ __('crud.save_and_new') }}
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="dropdown-menu hidden" role="menu">
+                        <x-dropdowns.item
+                            link="#"
+                            css="form-submit-actions">
+                            {{ __('crud.save') }}
+                        </x-dropdowns.item>
+                        <x-dropdowns.item
+                            link="#"
+                            css="form-submit-actions"
+                            :data="['action' => 'submit-update']">
+                            {{ __('crud.save_and_update') }}
+                        </x-dropdowns.item>
+                        <x-dropdowns.item
+                            link="#"
+                            css="form-submit-actions"
+                            :data="['action' => 'submit-new']">
+                            {{ __('crud.save_and_new') }}
+                        </x-dropdowns.item>
+                    </div>
                 </div>
             </div>
         </x-dialog.footer>
     </x-box>
     {!! Form::close() !!}
-    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('quest-elements.keep-alive', $model->id) }}" />
+    @if(!empty($model) && $campaign->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('quest-elements.keep-alive', [$campaign, $model->id]) }}" />
     @endif
 @endsection
 

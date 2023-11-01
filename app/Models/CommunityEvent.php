@@ -40,7 +40,6 @@ class CommunityEvent extends Model
 
     /**
      * Determine if the event can be participated in
-     * @return bool
      */
     public function isOngoing(): bool
     {
@@ -49,7 +48,6 @@ class CommunityEvent extends Model
 
     /**
      * Determine if the event is in the future
-     * @return bool
      */
     public function isScheduled(): bool
     {
@@ -58,9 +56,6 @@ class CommunityEvent extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @param int $width
-     * @param int|null $height
-     * @param string $field
      * @return string|null
      */
     public function thumbnail(int $width = 400, int $height = null, string $field = 'image')
@@ -80,7 +75,6 @@ class CommunityEvent extends Model
     }
 
     /**
-     * @return string
      */
     public function getSlug(): string
     {
@@ -88,7 +82,6 @@ class CommunityEvent extends Model
     }
 
     /**
-     * @param int $userId
      * @return Model|\Illuminate\Database\Eloquent\Relations\HasMany|object|null
      */
     public function userEntry(int $userId)
@@ -114,7 +107,6 @@ class CommunityEvent extends Model
 
     /**
      * Determine if the event is finished & has a winner
-     * @return bool
      */
     public function hasRankedResults(): bool
     {

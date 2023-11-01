@@ -12,6 +12,7 @@ return [
         ],
     ],
     'helper'        => 'Lleva cuenta de tu progreso desbloqueando varios logros en tu campaña. Estos números se actualizan una vez cada 24 horas.',
+    'pitch'         => 'Haz un seguimiento de tu progreso en la construcción del mundo comparándolo con los logros de campaña.',
     'placeholder'   => ':amount de :target',
     'targets'       => [
         'calendars' => 'Crea :target calendarios',

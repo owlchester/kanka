@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use App\Models\EntityAsset;
 use App\Rules\EntityFileRule;
 use App\Rules\FontAwesomeIcon;
@@ -31,11 +32,11 @@ class StoreEntityAsset extends FormRequest
     {
         return $this->clean([
             'name' => 'required_unless:type_id,' . EntityAsset::TYPE_FILE . '|max:45',
-            'visibility_id' => 'integer',
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'file' => [
                 'required_if:type_id,' . EntityAsset::TYPE_FILE,
                 'file',
-                'max:' . auth()->user()->maxUploadSize(),
+                'max:' . Limit::upload(),
                 new EntityFileRule()
             ],
             'metadata.url' => 'required_if:type_id,' . EntityAsset::TYPE_LINK . '|string|url',

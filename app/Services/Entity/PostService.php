@@ -27,7 +27,7 @@ class PostService
     }
 
     /**
-     * Move or copy an entity note to another entity
+     * Move or copy a post to another entity
      */
     public function handle(MovePostRequest $request): Post
     {
@@ -56,7 +56,6 @@ class PostService
     /**
      * Move the post to another entity
      *
-     * @return Post
      */
     protected function move(): Post
     {

@@ -4,15 +4,35 @@ namespace App\Traits;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
+use App\Models\CampaignPermission;
+use App\Models\Entity;
 use App\Models\MiscModel;
 
 trait GuestAuthTrait
 {
+    public function authView(MiscModel $model): void
+    {
+        if (auth()->check()) {
+            $this->authorize('view', $model);
+        } else {
+            $this->authorizeForGuest(CampaignPermission::ACTION_READ, $model);
+        }
+    }
+
+    public function authEntityView(Entity $entity): void
+    {
+        if (!$entity->child) {
+            abort(404);
+        }
+        if (auth()->check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
+        }
+    }
+
     /**
      * Secondary Authentication for Guest users
-     * @param int $action
-     * @param MiscModel|null $model
-     * @param int|null $modelType
      * @return void
      */
     protected function authorizeForGuest(int $action, MiscModel $model = null, int $modelType = null)
@@ -25,7 +45,12 @@ trait GuestAuthTrait
             $mainModel = new $this->model();
             $modelType = $mainModel->entityTypeId();
         }
+        //        dump($modelType);
+        //        dump($action);
+        //        dump($model);
+        //        dump($campaign);
         $permission = EntityPermission::hasPermission($modelType, $action, null, $model, $campaign);
+        //        dd($permission);
 
         if ($campaign->id != $model->campaign_id || !$permission) {
             // Raise an error
@@ -35,8 +60,6 @@ trait GuestAuthTrait
 
     /**
      * Secondary Authentication for Guest users
-     * @param int $action
-     * @param MiscModel|null $model
      * @return void
      */
     protected function authorizeEntityForGuest(int $action, MiscModel $model = null)

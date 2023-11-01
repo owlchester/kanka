@@ -58,7 +58,6 @@ return [
         'current_month'         => 'Trenutni mjesec',
         'current_year'          => 'Trenutna godina',
         'date'                  => 'Trenutni datum',
-        'has_leap_year'         => 'Ima prijestupne godine',
         'intercalary'           => 'Interkalarni dani',
         'is_incrementing'       => 'Pomični datum',
         'is_recurring'          => 'Ponavljajući',

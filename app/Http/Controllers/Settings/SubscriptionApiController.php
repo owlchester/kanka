@@ -14,15 +14,12 @@ use Stripe\Card;
 
 class SubscriptionApiController extends Controller
 {
-    /** @var SubscriptionService */
-    protected $service;
+    protected SubscriptionService $service;
 
-    /** @var CouponService */
-    protected $couponService;
+    protected CouponService $couponService;
 
     /**
      * SubscriptionApiController constructor.
-     * @param SubscriptionService $service
      */
     public function __construct(SubscriptionService $service, CouponService $couponService)
     {
@@ -44,7 +41,6 @@ class SubscriptionApiController extends Controller
 
     /**
      * Adds a payment method to the current user.
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Laravel\Cashier\Exceptions\CustomerAlreadyCreated
      */

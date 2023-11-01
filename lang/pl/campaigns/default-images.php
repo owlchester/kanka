@@ -13,6 +13,5 @@ return [
     'destroy'           => [
         'success'   => 'Usunięto domyślną ilustrację dla elementu :type.',
     ],
-    'helper'            => 'Ustaw domyślne ikony dla typów elementów kampanii. Pojawią się one na różnych listach, ale nie w poszczególnych wpisach.',
     'index'             => [],
 ];

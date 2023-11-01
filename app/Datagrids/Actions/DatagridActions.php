@@ -32,7 +32,6 @@ abstract class DatagridActions
 
     /**
      * Determine if the datagrid has bulk permissions.
-     * @return bool
      */
     public function hasBulkPermissions(): bool
     {
@@ -41,7 +40,6 @@ abstract class DatagridActions
 
     /**
      * Determine if the datagrid has bulk permissions.
-     * @return bool
      */
     public function hasBulkEditing(): bool
     {
@@ -50,7 +48,6 @@ abstract class DatagridActions
 
     /**
      * Determine if the datagrid has bulk copy to campaign.
-     * @return bool
      */
     public function hasBulkCopy(): bool
     {
@@ -59,7 +56,6 @@ abstract class DatagridActions
 
     /**
      * Determine if the datagrid has bulk transforming entities.
-     * @return bool
      */
     public function hasBulkTransform(): bool
     {
@@ -68,7 +64,6 @@ abstract class DatagridActions
 
     /**
      * Determine if the datagrid has bulk transforming entities.
-     * @return bool
      */
     public function hasBulkTemplate(): bool
     {
@@ -77,7 +72,6 @@ abstract class DatagridActions
 
     /**
      * Determine if the datagrid has bulk entity printing.
-     * @return bool
      */
     public function hasBulkPrint(): bool
     {

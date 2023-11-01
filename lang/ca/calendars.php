@@ -58,7 +58,6 @@ return [
         'current_month'         => 'Mes actual',
         'current_year'          => 'Any actual',
         'date'                  => 'Data actual',
-        'has_leap_year'         => 'Té anys de traspàs',
         'intercalary'           => 'Dies intercalars',
         'is_incrementing'       => 'Data incremental',
         'is_recurring'          => 'Recurrent',

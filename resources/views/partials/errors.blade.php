@@ -2,7 +2,7 @@
     <x-alert type="error">
         <strong>{{ __('partials.errors.title') }}</strong>
         {{ __('partials.errors.description') }}<br>
-        <ul>
+        <ul class="list-disc">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach

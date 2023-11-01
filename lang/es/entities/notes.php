@@ -6,9 +6,14 @@ return [
         'add_role'  => 'Añadir rol',
         'add_user'  => 'Añadir usuario',
     ],
+    'collapsed'     => [
+        'closed'    => 'El post se reduce sólo a la cabecera',
+        'open'      => 'El post está expandido',
+    ],
     'copy_mention'  => [
-        'copy'      => 'Copiar mención avanzada',
-        'success'   => 'Se ha copiado la mención avanzada de este post.',
+        'copy'              => 'Copiar mención avanzada',
+        'copy_with_name'    => 'Copiar mención avanzada con el nombre del post',
+        'success'           => 'Se ha copiado la mención avanzada de este post.',
     ],
     'create'        => [
         'success'   => 'Se ha añadido el post ":name" a :entity.',
@@ -23,8 +28,10 @@ return [
     ],
     'fields'        => [
         'creator'   => 'Creador',
+        'display'   => 'Mostrar',
         'entry'     => 'Entrada',
         'name'      => 'Nombre',
+        'position'  => 'Posición',
     ],
     'footer'        => [
         'created'   => 'Creado por :user el :date',

@@ -65,6 +65,9 @@ class Character extends Layout
                     return implode(', ', $models);
                 }
             ],
+            'tags' => [
+                'render' => Standard::TAGS
+            ]
         ];
 
         return $columns;

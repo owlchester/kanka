@@ -45,7 +45,6 @@ class Journal extends MiscModel
         'campaign_id',
         'slug',
         'type',
-        'image',
         'entry',
         'date',
         'character_id',
@@ -57,20 +56,18 @@ class Journal extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'journal';
+    protected string $entityType = 'journal';
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'date',
         'calendar_date',
         'author.name',
     ];
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'date',
         'character.name',
@@ -81,7 +78,7 @@ class Journal extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         //'character_id',
         'calendar_id',
@@ -96,14 +93,12 @@ class Journal extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -133,7 +128,6 @@ class Journal extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -141,7 +135,6 @@ class Journal extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -206,7 +199,6 @@ class Journal extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -233,7 +225,6 @@ class Journal extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -266,7 +257,6 @@ class Journal extends MiscModel
 
     /**
      * Grid mode sortable fields
-     * @return array
      */
     public function datagridSortableColumns(): array
     {

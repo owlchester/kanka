@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\Searchable;
-use App\Models\Concerns\Sortable;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -20,15 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AdminInvite extends Model
 {
-    use Searchable;
-    use Sortable;
-
-    public $sortableColumns = [
-        'token',
-        'created_by',
-        'campaign_id'
-    ];
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -46,9 +35,6 @@ class AdminInvite extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param int $campaignId
-     * @return Builder
      */
     public function scopeCheck(Builder $query, int $campaignId): Builder
     {

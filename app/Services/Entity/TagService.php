@@ -4,6 +4,7 @@ namespace App\Services\Entity;
 
 use App\Models\Tag;
 use App\Traits\EntityAware;
+use App\Traits\UserAware;
 use App\User;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
@@ -11,18 +12,16 @@ use Stevebauman\Purify\Facades\Purify;
 class TagService
 {
     use EntityAware;
+    use UserAware;
 
-    protected bool $canCreate = false;
-
-    public function user(User $user): self
-    {
-        $this->canCreate = $user->can('create', Tag::class);
-        return $this;
-    }
+    protected bool $canCreate;
 
     public function isAllowed(): bool
     {
-        return $this->canCreate;
+        if (!empty($this->canCreate)) {
+            return $this->canCreate;
+        }
+        return $this->canCreate = $this->user->can('create', Tag::class);
     }
 
     public function fetch(mixed $id, int $campaignID): Tag|null
@@ -38,9 +37,6 @@ class TagService
     }
 
     /**
-     * @param mixed $name
-     * @param int $campaignID
-     * @return Tag
      */
     public function create(mixed $name, int $campaignID): Tag
     {

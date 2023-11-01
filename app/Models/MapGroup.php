@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\VisibilityIDTrait;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class MapGroup
@@ -26,11 +28,12 @@ use Illuminate\Database\Eloquent\Builder;
 class MapGroup extends Model
 {
     use Blameable;
+    use HasFactory;
     use Paginatable;
     use SortableTrait;
     use VisibilityIDTrait;
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'position',
     ];
@@ -53,7 +56,6 @@ class MapGroup extends Model
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeOrdered(Builder $query)
@@ -72,7 +74,6 @@ class MapGroup extends Model
     }
 
     /**
-     * @return string
      */
     public function markerGroupHtml(): string
     {
@@ -90,7 +91,6 @@ class MapGroup extends Model
 
     /**
      * Functions for the datagrid2
-     * @return string
      */
     public function url(string $where): string
     {
@@ -98,13 +98,11 @@ class MapGroup extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->map_id, $this->id];
+        return $options + ['map' => $this->map_id, 'map_group' => $this->id];
     }
 
     /**
      * Patch an entity from the datagrid2 batch editing
-     * @param array $data
-     * @return bool
      */
     public function patch(array $data): bool
     {
@@ -113,17 +111,15 @@ class MapGroup extends Model
 
     /**
      * Override the get link
-     * @return string
      */
     public function getLink(): string
     {
-        return route('maps.map_groups.edit', ['map' => $this->map_id, $this->id]);
+        $campaign = CampaignLocalization::getCampaign();
+        return route('maps.map_groups.edit', [$campaign, 'map' => $this->map_id, $this->id]);
     }
 
     /**
      * Override the tooltiped link for the datagrid
-     * @param string|null $displayName
-     * @return string
      */
     public function tooltipedLink(string $displayName = null): string
     {

@@ -70,7 +70,6 @@ return [
         'date'                  => 'Obecna data',
         'day'                   => 'Dzień',
         'default_layout'        => 'Domyślny układ',
-        'has_leap_year'         => 'Ma lata przestępne',
         'intercalary'           => 'Dni dodatkowe',
         'is_incrementing'       => 'Upływ czasu',
         'is_recurring'          => 'Cykliczne',

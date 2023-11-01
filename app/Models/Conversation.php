@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Conversation
@@ -22,12 +23,12 @@ class Conversation extends MiscModel
     use Acl
     ;
     use CampaignTrait;
+    use HasFactory;
     use SoftDeletes;
 
     /** @var string[]  */
     protected $fillable = [
         'name',
-        'image',
         'slug',
         'type',
         'campaign_id',
@@ -41,21 +42,18 @@ class Conversation extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'conversation';
+    protected string $entityType = 'conversation';
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns  = ['name'];
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'target_id',
         'colour',
     ];
@@ -69,7 +67,7 @@ class Conversation extends MiscModel
     /**
      * @var string[] Extra relations loaded for the API endpoint
      */
-    public $apiWith = ['messages', 'participants'];
+    public array $apiWith = ['messages', 'participants'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -91,11 +89,13 @@ class Conversation extends MiscModel
      * Get a list of participants
      * @return array
      */
-    public function participantsList($withNames = true)
+    public function participantsList($withNames = true, $users = false)
     {
         $participants = [];
         foreach ($this->participants as $participant) {
             if (auth()->check() && auth()->user()->can('update', $participant->character)) {
+                $participants[$participant->id()] = $participant->name();
+            } elseif ($users == true) {
                 $participants[$participant->id()] = $participant->name();
             }
         }
@@ -117,7 +117,6 @@ class Conversation extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -125,7 +124,6 @@ class Conversation extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function entry()
     {
@@ -133,7 +131,6 @@ class Conversation extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function forCharacters(): bool
     {
@@ -142,7 +139,6 @@ class Conversation extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {

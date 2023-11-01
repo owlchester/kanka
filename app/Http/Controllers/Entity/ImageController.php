@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
+use App\Models\Campaign;
 use App\Models\Entity;
 
 class ImageController extends Controller
 {
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function focus(Entity $entity)
+    public function focus(Campaign $campaign, Entity $entity)
     {
         if (!auth()->check()) {
             return abort(400);
@@ -23,17 +23,16 @@ class ImageController extends Controller
         }
 
         return view('entities.pages.image.focus')
+            ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('model', $entity->child);
     }
 
     /**
-     * @param StoreImageFocus $request
-     * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function saveFocus(StoreImageFocus $request, Entity $entity)
+    public function saveFocus(StoreImageFocus $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -48,11 +47,10 @@ class ImageController extends Controller
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function replace(Entity $entity)
+    public function replace(Campaign $campaign, Entity $entity)
     {
         if (!auth()->check()) {
             return abort(400);
@@ -61,38 +59,35 @@ class ImageController extends Controller
         }
 
         return view('entities.pages.image.replace')
+            ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('model', $entity->child);
     }
 
-    /**
-     * @param UpdateEntityImage $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function update(UpdateEntityImage $request, Entity $entity)
+    public function update(UpdateEntityImage $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
-        $oldImage = $entity->child->image;
+        $oldImage = $entity->image_path;
         $oldBoostedImage = $entity->image_uuid;
 
         $entity->child->update(
             []
         );
 
-        if ($entity->campaign->superboosted()) {
-            if (request()->has('entity_image_uuid')) {
-                $entity->image_uuid = request()->get('entity_image_uuid');
-            } else {
-                $entity->image_uuid = null;
-            }
-            $entity->save();
+        if (request()->has('entity_image_uuid')) {
+            $entity->image_uuid = request()->get('entity_image_uuid');
+        } else {
+            $entity->image_uuid = null;
         }
+        $entity->save();
+
 
         $resetFocus = false;
-        if ($oldImage != $entity->child->image || $oldBoostedImage != $request->get('entity_image_uuid')) {
+        if ($oldImage != $entity->image_path || $oldBoostedImage != $request->get('entity_image_uuid')) {
             $resetFocus = true;
         }
 

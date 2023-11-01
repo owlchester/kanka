@@ -7,6 +7,10 @@ $(document).ready(function() {
     });
     initKeyboardShortcuts();
     initPasting();
+
+    $(document).on('shown.bs.modal', () => {
+        initPasting();
+    });
 });
 
 function initKeyboardShortcuts() {
@@ -68,7 +72,7 @@ function initSaveKeyboardShortcut(form) {
         //console.log((e.ctrlKey || e.metaKey), e.key.toLowerCase(), e.key.toLowerCase() === 's', e.shiftKey);
         // Need to check on lowercase key, because shirt will uppercase it
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
-            console.log('hey');
+            //console.log('hey');
             window.entityFormHasUnsavedChanges = false;
 
             if (e.shiftKey) {
@@ -108,7 +112,7 @@ function setFormAction(action) {
  * Strip HTML from fontAwesome or RPGAwesome and just keep the class to make people's lives
  * easier.
  */
-function initPasting() {
+const initPasting = () => {
     $('input[data-paste="fontawesome"]').on('paste', function(e) {
         e.preventDefault();
         let text;

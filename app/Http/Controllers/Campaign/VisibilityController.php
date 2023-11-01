@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\StoreCampaignVisibility;
 use App\Http\Requests\ReorderStyles;
+use App\Models\Campaign;
 use App\Models\CampaignStyle;
 
 class VisibilityController extends Controller
@@ -21,17 +21,15 @@ class VisibilityController extends Controller
         $this->middleware('auth');
     }
 
-    public function edit()
+    public function edit(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
         $from = request()->get('from');
         return view('campaigns.forms.modals.public', compact('campaign', 'from'));
     }
 
-    public function save(StoreCampaignVisibility $request)
+    public function save(StoreCampaignVisibility $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $campaign->update([
@@ -39,12 +37,12 @@ class VisibilityController extends Controller
         ]);
 
         $success = __('campaigns/public.update.' . ($campaign->isPublic() ? 'public' : 'private'), [
-            'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), [], ['target' => '_blank']),
+            'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), ['target' => '_blank']),
         ]);
 
         if ($request->get('from') === 'overview') {
             return redirect()
-                ->route('campaign')
+                ->route('overview', $campaign)
                 ->with('success_raw', $success)
             ;
         }
@@ -60,13 +58,13 @@ class VisibilityController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function bulk()
+    public function bulk(Campaign $campaign)
     {
         $action = request()->get('action');
         $models = request()->get('model');
         if (!in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
             return redirect()
-                ->route('campaign_styles.index');
+                ->route('campaign_styles.index', $campaign);
         }
 
         $count = 0;
@@ -89,15 +87,15 @@ class VisibilityController extends Controller
                 $count++;
             }
         }
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', trans_choice('campaigns/styles.bulks.' . $action, $count, ['count' => $count]))
         ;
     }
 
-    public function reorder(ReorderStyles $request)
+    public function reorder(ReorderStyles $request, Campaign $campaign)
     {
         $order = 1;
         $ids = $request->get('style');
@@ -111,11 +109,11 @@ class VisibilityController extends Controller
             $style->update();
             $order++;
         }
-        CampaignCache::clearStyles();
+        CampaignCache::clearStyles()->clear();
 
         $order--;
         return redirect()
-            ->route('campaign_styles.index')
+            ->route('campaign_styles.index', $campaign)
             ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]))
         ;
     }

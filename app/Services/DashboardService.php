@@ -18,13 +18,8 @@ class DashboardService
     /** @var array IDs of entities displayed */
     protected array $displayedEntities = [];
 
-    /** @var CampaignDashboard */
     protected CampaignDashboard $dashboard;
 
-    /**
-     * @param CampaignDashboard $dashboard
-     * @return $this
-     */
     public function dashboard(CampaignDashboard $dashboard): self
     {
         $this->dashboard = $dashboard;
@@ -33,7 +28,6 @@ class DashboardService
 
     /**
      * Get the current or default dashboard for the user
-     * @param int|null $dashboard
      * @return null|CampaignDashboard
      */
     public function getDashboard(int $dashboard = null)
@@ -64,7 +58,7 @@ class DashboardService
      * Get the available dashboards for the user
      * @return array[]
      */
-    public function getDashboards()
+    public function getDashboards(): array
     {
         // Only available for boosted campaigns
         if (!$this->campaign->boosted()) {
@@ -93,12 +87,12 @@ class DashboardService
         $roles = UserCache::roles();
         $dashboards = [];
         foreach ($roles as $role) {
-            $key = 'role_' . $role->id;
+            $key = 'role_' . $role['id'];
             if (!isset($available[$key])) {
                 continue;
             }
-            foreach ($available[$key] as $role) {
-                $dashboards[] = $role->dashboard;
+            foreach ($available[$key] as $r) {
+                $dashboards[] = $r->dashboard;
             }
         }
 
@@ -106,7 +100,6 @@ class DashboardService
     }
 
     /**
-     * @param Entity $entity
      * @return $this
      */
     public function add(Entity $entity): self
@@ -116,7 +109,6 @@ class DashboardService
     }
 
     /**
-     * @return array
      */
     public function excluding(): array
     {
@@ -125,8 +117,6 @@ class DashboardService
 
     /**
      * Create a dashboard and it's permissions
-     * @param StoreCampaignDashboard $request
-     * @return CampaignDashboard
      */
     public function create(StoreCampaignDashboard $request): CampaignDashboard
     {
@@ -158,14 +148,12 @@ class DashboardService
             ]);
         }
 
-        CampaignCache::clearDashboards();
+        CampaignCache::clear();
 
         return $dashboard;
     }
 
     /**
-     * @param StoreCampaignDashboard $request
-     * @return CampaignDashboard
      * @throws \Exception
      */
     public function update(StoreCampaignDashboard $request): CampaignDashboard
@@ -216,14 +204,13 @@ class DashboardService
             $role->delete();
         }
 
-        CampaignCache::clearDashboards();
+        CampaignCache::clear();
 
         return $this->dashboard;
     }
 
     /**
      * Get the default dashboards for the various roles
-     * @return array
      */
     protected function availableDashboards(): array
     {
@@ -232,8 +219,6 @@ class DashboardService
 
     /**
      * Get the default dashboard of a user
-     * @param array $available
-     * @return null
      */
     protected function defaultDashboard(array $available)
     {
@@ -260,13 +245,13 @@ class DashboardService
         // Member of the campaign, check dashboards for roles of them
         $roles = UserCache::roles();
         foreach ($roles as $role) {
-            $key = 'role_' . $role->id;
+            $key = 'role_' . $role['id'];
             if (!isset($available[$key])) {
                 continue;
             }
-            foreach ($available[$key] as $role) {
-                if ($role->is_default) {
-                    return $role->dashboard;
+            foreach ($available[$key] as $r) {
+                if ($r->is_default) {
+                    return $r->dashboard;
                 }
             }
         }
@@ -276,8 +261,6 @@ class DashboardService
 
     /**
      * Validate that a requested dashboard is available to the user
-     * @param array $available
-     * @param int $dashboard
      * @return null|CampaignDashboard
      */
     protected function validateDashboard(array $available, int $dashboard)
@@ -300,13 +283,13 @@ class DashboardService
 
         $roles = UserCache::roles();
         foreach ($roles as $role) {
-            $key = 'role_' . $role->id;
+            $key = 'role_' . $role['id'];
             if (empty($available[$key])) {
                 continue;
             }
-            foreach ($available[$key] as $role) {
-                if ($role->campaign_dashboard_id == $dashboard) {
-                    return $role->dashboard;
+            foreach ($available[$key] as $r) {
+                if ($r->campaign_dashboard_id == $dashboard) {
+                    return $r->dashboard;
                 }
             }
         }

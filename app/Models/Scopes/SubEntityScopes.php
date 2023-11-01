@@ -22,8 +22,6 @@ trait SubEntityScopes
     /**
      * This call should be adapted in each entity model to add required "with()" statements to the query for performance
      * on the datagrids.
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -40,15 +38,13 @@ trait SubEntityScopes
      *
      * This function builds a default list of fields available on all models, and each model
      * can add extra fields in the datagridSelectFields() method declared on the models.
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedSelect(Builder $query): Builder
     {
         if (!method_exists($this, 'datagridSelectFields')) {
             return $query;
         }
-        $defaults = ['id', 'name', 'type', 'image', 'is_private'];
+        $defaults = ['id', 'name', 'type', 'is_private'];
         $fields = array_merge($defaults, $this->datagridSelectFields());
 
         $tableName = $this->getTable();
@@ -60,8 +56,6 @@ trait SubEntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeRecent(Builder $query): Builder
     {
@@ -69,8 +63,6 @@ trait SubEntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeStandardWith(Builder $query): Builder
     {
@@ -78,14 +70,12 @@ trait SubEntityScopes
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeWithApi(Builder $query): Builder
     {
         $relations = [
             'entity',
-            'entity.tags', 'entity.notes', 'entity.events',
+            'entity.tags', 'entity.posts', 'entity.events',
             'entity.relationships', 'entity.attributes', 'entity.inventories',
             'entity.assets'
         ];
@@ -96,7 +86,7 @@ trait SubEntityScopes
         }
 
         $campaign = CampaignLocalization::getCampaign();
-        if ($campaign->superboosted()) {
+        if ($campaign && $campaign->superboosted()) {
             $relations[] = 'entity.header';
             $relations[] = 'entity.image';
         }

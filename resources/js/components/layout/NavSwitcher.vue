@@ -1,7 +1,7 @@
 <template>
     <div class="nav-switcher flex items-center justify-center h-12">
         <div class="campaigns inline cursor-pointer text-center px-3 text-2xl" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
-            <i v-bind:class="campaignIcon()" aria-hidden="true"></i>
+            <GridSvg :size="7" />
             <span class="sr-only">Campaigns</span>
         </div>
         <div class="profile inline cursor-pointer text-center uppercase pt-1" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
@@ -21,25 +21,25 @@
         <div class="" v-else>
             <div class="header flex">
                 <div :class="blockClass(view_campaigns)" v-on:click="openCampaigns()" tabindex="0" role="button" aria-label="Campaign list">
-                    <div class="full flex items-center" v-if="view_campaigns">
-                        <div class="flex-none mr-4 text-2xl">
-                            <i  v-bind:class="campaignIcon()" aria-hidden="true"></i>
+                    <div class="full flex items-center gap-4" v-if="view_campaigns">
+                        <div class="flex-none">
+                            <GridSvg :size="6" />
                         </div>
                         <div class="flex-grow">
                             <div class="font-bold">{{ campaigns.texts.campaigns }}</div>
                             <div>{{campaigns.texts.count }}</div>
                         </div>
                     </div>
-                    <div class="flex items-center justify-center h-full text-2xl" :title="campaigns.texts.campaigns" v-else>
-                        <i  v-bind:class="campaignIcon()" aria-hidden="true"></i>
+                    <div class="flex items-center justify-center h-full" :title="campaigns.texts.campaigns" v-else>
+                        <GridSvg :size="6" />
                     </div>
                 </div>
                 <div :class="blockClass(view_profile)" v-on:click="openProfile()" tabindex="0" role="button" aria-label="Profile pane">
-                    <div class="full flex items-center" v-if="view_profile">
-                        <div class="flex-none mr-4 profile-box rounded-lg p-2 text-center uppercase font-bold" v-if="showInitials()">
+                    <div class="full flex items-center gap-4" v-if="view_profile">
+                        <div class="flex-none profile-box rounded-lg p-2 text-center uppercase font-bold" v-if="showInitials()">
                             {{ initials }}
                         </div>
-                        <div class="flex-none mr-4 w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
+                        <div class="flex-none w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
 
                         <div class="flex-grow">
                             <div class="font-bold">{{ profile.name }}</div>
@@ -54,8 +54,8 @@
                     </div>
                 </div>
             </div>
-            <div class="profile p-5" v-if="view_profile">
-                <div class="notifications mb-5" v-if="notifications.title">
+            <div class="profile p-5 flex flex-col gap-5" v-if="view_profile">
+                <div class="notifications" v-if="notifications.title">
                     <div class="flex w-full py-2">
                         <div class="flex-grow uppercase font-bold">
                             {{ notifications.title }}
@@ -67,27 +67,31 @@
                         </div>
                     </div>
 
-                    <Notification v-for="notification in notifications.messages"
-                                  :notification="notification">
-                    </Notification>
-                    <div class="no-notifications help-block italic" v-if="notifications.messages.length === 0">
+                    <div class="flex flex-col gap-2">
+                      <Notification v-for="notification in notifications.messages"
+                                    :notification="notification">
+                      </Notification>
+                    </div>
+                    <div class="no-notifications help-block text-neutral-content italic" v-if="notifications.messages.length === 0">
                         {{  notifications.none }}
                     </div>
                 </div>
 
-                <div class="releases mb-5" v-if="releases.title && releases.releases.length > 0">
+                <div class="releases" v-if="releases.title && releases.releases.length > 0">
                     <div class="flex w-full py-2">
                         <div class="flex-grow uppercase font-bold">
                             {{ releases.title }}
                         </div>
                     </div>
 
-                    <Release v-for="release in releases.releases"
-                                  :release="release">
-                    </Release>
+                    <div class="flex flex-col gap-2">
+                      <Release v-for="release in releases.releases"
+                                    :release="release">
+                      </Release>
+                    </div>
                 </div>
 
-                <div class="marketplace mb-5" v-if="!profile.is_impersonating && marketplace.title">
+                <div class="marketplace" v-if="!profile.is_impersonating && marketplace.title">
 
                     <div class="flex w-full py-2">
                         <div class="flex-grow uppercase font-bold">
@@ -101,23 +105,23 @@
                     </div>
 
                     <div class="grid grid-cols-3 gap-2">
-                        <a v-bind:href="marketplace.themes.url" class="border py-2 text-center justify-center rounded-md hover:shadow-md" target="_blank">
-                            <div class="icon bg-base-200 rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
-                                <i class="fa-solid fa-palette mt-3" aria-hidden="true"></i>
+                        <a v-bind:href="marketplace.themes.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1" target="_blank">
+                            <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
+                                <i class="fa-solid fa-palette" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.themes.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.themes.number }}</div>
                         </a>
-                        <a v-bind:href="marketplace.sheets.url" class="border py-2 text-center justify-center rounded-md hover:shadow-md" target="_blank">
-                            <div class="icon bg-base-200 rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
-                            <i class="fa-solid fa-columns mt-3" aria-hidden="true"></i>
+                        <a v-bind:href="marketplace.sheets.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1" target="_blank">
+                            <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
+                            <i class="fa-solid fa-columns" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.sheets.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.sheets.number }}</div>
                         </a>
-                        <a v-bind:href="marketplace.content.url" class="border py-2 text-center justify-center rounded-md hover:shadow-md" target="_blank">
-                            <div class="icon bg-base-200 rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
-                                <i class="fa-solid fa-dice-d20 mt-3" aria-hidden="true"></i>
+                        <a v-bind:href="marketplace.content.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1" target="_blank">
+                            <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
+                                <i class="fa-solid fa-dice-d20" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.content.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.content.number }}</div>
@@ -125,7 +129,7 @@
                     </div>
                 </div>
 
-                <div class="subscription mb-5" v-if="!profile.is_impersonating">
+                <div class="subscription" v-if="!profile.is_impersonating">
                     <div class="uppercase font-bold py-2">{{ profile.subscription.title }}</div>
                     <a class="border rounded-lg flex justify-center items-center hover:shadow-md" v-bind:href="profile.urls.subscription">
                         <div class="flex-none p-2">
@@ -147,35 +151,35 @@
                     </a>
                 </div>
 
-                <ul class="m-0 p-0 list-none" v-if="!profile.is_impersonating">
+                <ul class="m-0 p-0 list-none flex flex-col gap-2" v-if="!profile.is_impersonating">
                     <li>
-                        <a v-bind:href="profile.urls.settings.url" class="p-2 mb-2 block">
+                        <a v-bind:href="profile.urls.settings.url" class="p-2 block">
                             <i class="fa-solid fa-cog mr-3" aria-hidden="true"></i>
                             {{ profile.urls.settings.name }}
                         </a>
                     </li>
                     <li>
-                        <a v-bind:href="profile.urls.profile.url" class="p-2 mb-2 block">
+                        <a v-bind:href="profile.urls.profile.url" class="p-2 block">
                             <i class="fa-solid fa-user mr-3" aria-hidden="true"></i>
                             {{ profile.urls.profile.name }}
                         </a>
                     </li>
                     <li>
-                        <a v-bind:href="profile.urls.help.url" class="p-2 mb-2 block" target="_blank">
+                        <a v-bind:href="profile.urls.help.url" class="p-2 block" target="_blank">
                             <i class="fa-solid fa-question-circle mr-3" aria-hidden="true"></i>
                             {{ profile.urls.help.name }}
                         </a>
                     </li>
                     <li>
-                        <a href="#" v-on:click="logout()" class="p-2 mb-2 block">
+                        <a href="#" v-on:click="logout()" class="p-2 block">
                             <i class="fa-solid fa-sign-out mr-3" aria-hidden="true"></i>
                             {{ profile.urls.logout.name }}
                         </a>
                     </li>
                 </ul>
-                <ul class="m-0 p-0 list-none" v-else>
+                <ul class="m-0 p-0 list-none flex flex-col gap-2" v-else>
                     <li>
-                        <a v-bind:href="profile.return.url" class="p-2 mb-2">
+                        <a v-bind:href="profile.return.url" class="">
                             <i class="fa-solid fa-sign-out-alt mr-3" aria-hidden="true"></i>
                             {{ profile.return.name }}
                         </a>
@@ -183,10 +187,11 @@
                 </ul>
             </div>
             <div class="campaigns p-5" v-else>
-                <div v-if="!profile.is_impersonating">
-
-                    <div class="flex w-full py-2">
-                        <div class="flex-grow uppercase font-bold">{{campaigns.texts.campaigns }}
+                <div v-if="!profile.is_impersonating" class="campaigns flex flex-col gap-5">
+                  <div class="flex flex-col gap-2">
+                    <div class="flex w-full">
+                        <div class="flex-grow uppercase font-bold">
+                          {{campaigns.texts.campaigns }}
                         </div>
                         <div class="flex-grow text-right" v-if="campaigns.member.length > 0">
                             <a v-bind:href="campaigns.urls.reorder">
@@ -207,24 +212,26 @@
                             </span>
                         </a>
                     </div>
+                  </div>
 
-                    <div class="following" v-if="!profile.is_impersonating">
-                        <hr />
-                        <p class="uppercase">{{ campaigns.texts.followed }}</p>
+                  <hr v-if="!profile.is_impersonating" />
 
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
-                            <Campaign v-for="campaign in campaigns.following"
-                                      :campaign="campaign">
-                            </Campaign>
+                  <div class="flex flex-col gap-2">
+                    <p class="uppercase" v-if="!profile.is_impersonating">{{ campaigns.texts.followed }}</p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 following"  v-if="!profile.is_impersonating">
+                        <Campaign v-for="campaign in campaigns.following"
+                                  :campaign="campaign">
+                        </Campaign>
 
 
-                            <a v-bind:href="campaigns.urls.follow" class="new-campaign flex items-center text-center border-dashed border rounded-lg h-24 p-2 overflow-hidden">
-                            <span class="text-xs uppercase text-break">
-                                {{ campaigns.texts.follow }}
-                            </span>
-                            </a>
-                        </div>
+                        <a v-bind:href="campaigns.urls.follow" class="new-campaign flex items-center text-center border-dashed border rounded-lg h-24 p-2 overflow-hidden">
+                        <span class="text-xs uppercase text-break">
+                            {{ campaigns.texts.follow }}
+                        </span>
+                        </a>
                     </div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -236,6 +243,7 @@ import Campaign from './Campaign.vue';
 import Notification from './Notification.vue';
 import Release from './Release.vue';
 import vClickOutside from "click-outside-vue3"
+import GridSvg from "../icons/GridSvg.vue";
 
 export default {
 
@@ -270,13 +278,10 @@ export default {
         has_alerts: {
             type: Boolean,
         },
-        /* Bool to define if using the fontawesome pro or free license */
-        pro: {
-            type: Boolean,
-        }
     },
 
     components: {
+        GridSvg,
         Campaign,
         Notification,
         Release,
@@ -324,13 +329,15 @@ export default {
                 return;
             }
             this.is_loading = true;
-            axios.get(this.api).then(response => {
-                this.profile = response.data.profile;
-                this.campaigns = response.data.campaigns;
-                this.notifications = response.data.notifications;
-                this.marketplace = response.data.marketplace;
-                this.releases = response.data.releases;
-                this.show_alerts = response.data.has_unread;
+            fetch(this.api)
+                .then(response => response.json())
+                .then(response => {
+                this.profile = response.profile;
+                this.campaigns = response.campaigns;
+                this.notifications = response.notifications;
+                this.marketplace = response.marketplace;
+                this.releases = response.releases;
+                this.show_alerts = response.has_unread;
                 this.has_data = true;
                 this.is_loading = false;
                 this.is_loaded = true;
@@ -406,11 +413,13 @@ export default {
             localStorage.setItem('last_notification-' + this.user_id, now);
 
             //console.log('fetch', this.fetch);
-            axios.get(this.fetch).then(response => {
+            fetch(this.fetch)
+                .then(response => response.json())
+                .then(response => {
                 //console.log('responses', response);
                 /*localStorage.setItem('notification-notifications-' + this.user_id, response.data.notifications);
                 localStorage.setItem('notification-releases-' + this.user_id, response.data.releases);*/
-                localStorage.setItem('notification-has-alerts-' + this.user_id, response.data.has_alerts);
+                localStorage.setItem('notification-has-alerts-' + this.user_id, response.has_alerts);
                 this.updateAlerts();
             });
         },
@@ -425,9 +434,6 @@ export default {
         profilePictureUrl: function() {
             return 'url(' + this.avatar + ')'
         },
-        campaignIcon: function() {
-            return this.pro ? 'fa-solid fa-grid' : 'fa-solid fa-grip';
-        }
     },
     mounted() {
         this.emitter.on('read_release', (release) => {

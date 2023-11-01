@@ -1,34 +1,38 @@
 {{ csrf_field() }}
 
-<p class="help-block">
+<x-helper>
  {{ __('quests.elements.fields.entity_or_name') }}
-</p>
+</x-helper>
 <x-grid>
-    <div class="field-entity required">
+    <x-forms.field field="entity" :required="true">
         <input type="hidden" name="entity_id" value="" />
         @include('cruds.fields.entity')
-    </div>
-    <div class="field-name required">
-        <label>{{ __('quests.elements.fields.name') }}</label>
-        {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100, 'spellcheck' => 'true']) !!}
-    </div>
+    </x-forms.field>
+    <x-forms.field field="name" :required="true" :label="__('quests.elements.fields.name')">
+        {!! Form::text('name', null, ['class' => '', 'maxlength' => 100, 'spellcheck' => 'true']) !!}
+    </x-forms.field>
 
-    <hr />
+    <hr class="col-span-2" />
 
-    <div class="field-role col-span-2">
-        <label>{{ __('quests.fields.role') }}</label>
-        {!! Form::text('role', null, ['class' => 'form-control', 'maxlength' => 45, 'spellcheck' => 'true']) !!}
-    </div>
+    <x-forms.field
+        field="role"
+        css="col-span-2"
+        :label="__('quests.fields.role')">
+        {!! Form::text('role', null, ['class' => '', 'maxlength' => 45, 'spellcheck' => 'true']) !!}
+    </x-forms.field>
 
-    <div class="field-description col-span-2">
-        <label>{{ __('quests.elements.fields.description') }}</label>
-    {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'description', 'name' => 'description']) !!}
-    </div>
+    <x-forms.field
+        field="description"
+        css="col-span-2"
+        :label="__('quests.elements.fields.description')">
+        {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'description', 'name' => 'description']) !!}
+    </x-forms.field>
 
-    <div class="field-colour">
-        <label>{{ __('calendars.fields.colour') }}</label>
-        {!! Form::select('colour', FormCopy::colours(), null, ['class' => 'form-control select2-colour']) !!}
-    </div>
+    <x-forms.field
+        field="colour"
+        :label=" __('calendars.fields.colour')">
+        {!! Form::select('colour', FormCopy::colours(), null, ['class' => ' select2-colour']) !!}
+    </x-forms.field>
 
     @include('cruds.fields.visibility_id')
 </x-grid>

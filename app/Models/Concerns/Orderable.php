@@ -12,9 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 trait Orderable
 {
     /**
-     * @param Builder $query
-     * @param array|null $data
-     * @return mixed
      */
     public function scopeOrder(Builder $query, array|null $data)
     {

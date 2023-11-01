@@ -3,66 +3,51 @@ use App\Facades\Datagrid;
 $hasOthers = false;
 ?>
 <div class="dropdown datagrid-bulk-actions">
-    <a class="dropdown-toggle btn2 btn-disabled break-keep" data-toggle="dropdown" aria-expanded="false" data-tree="escape">
+    <a class="btn2 btn-disabled break-keep" data-dropdown aria-expanded="false" data-tree="escape">
         {{ __('crud.bulk.buttons.label') }}
         <x-icon class="fa-solid fa-caret-down"></x-icon>
     </a>
-    <ul class="dropdown-menu" role="menu">
+    <div class="dropdown-menu hidden" role="menu">
         @foreach (\App\Facades\Datagrid::bulks() as $bulk)
             @if ($bulk === \App\Renderers\Layouts\Layout::ACTION_EDIT)
-                <li>
-                    <a href="#" class="datagrid-bulk" data-action="edit">
-                        <x-icon class="pencil"></x-icon>
-                        {{ __('crud.bulk.actions.edit') }}
-                    </a>
-                </li>
+                <x-dropdowns.item link="#" css="datagrid-bulk" :data="['action' => 'edit']" icon="pencil">
+                    {{ __('crud.bulk.actions.edit') }}
+                </x-dropdowns.item>
             @elseif ($bulk === \App\Renderers\Layouts\Layout::ACTION_DELETE)
-                @if ($hasOthers) <li class="divider"></li> @endif
-            <li>
-                <a href="#" class="text-red datagrid-submit" data-action="delete">
-                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-                </a>
-            </li>
+                @if ($hasOthers) <hr class="m-0" /> @endif
+                <x-dropdowns.item link="#" css="text-error text-error hover:bg-error hover:text-error-content datagrid-submit" :data="['action' => 'delete']" icon="trash">
+                    {{ __('crud.remove') }}
+                </x-dropdowns.item>
             @elseif (is_array($bulk))
                 @php $hasOthers = true; @endphp
-            <li>
-                <a href="#" class="datagrid-submit" data-action="{{ $bulk['action'] }}">
-                    @if (!empty($bulk['icon'])) <i class="{{ $bulk['icon'] }}"></i>@endif
+                <x-dropdowns.item link="#" css="datagrid-submit" :data="['action' => $bulk['action']]" :icon="$bulk['icon'] ?? null">
                     {{ __($bulk['label']) }}
-                </a>
-            </li>
+                </x-dropdowns.item>
             @endif
         @endforeach
-    </ul>
+    </div>
 </div>
-<a href="#" class="btn2 btn-disabled datagrid-spinner" style="display:none">
-    <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+<a href="#" class="btn2 btn-disabled datagrid-spinner text-lg" style="display:none">
+    <x-icon class="load" />
 </a>
 <input type="hidden" name="action" value="" />
 
 @section('modals')
     @parent
-    <div class="modal fade" id="datagrid-bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100 rounded-2xl">
-                <div class="modal-body text-center">
+    <x-dialog id="datagrid-bulk-delete" :title="__('crud.delete_modal.title')">
+        <x-grid type="1/1">
+            <p class="m-0">
+                {{ __('crud.bulk.delete.warning') }}</p>
+            <p>
+                {{ __('crud.delete_modal.permanent') }}
+            </p>
+        </x-grid>
 
-                    <x-dialog.close />
-                    <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
-
-                    <p class="mt-3">
-                        {{ __('crud.bulk.delete.warning') }}<br />
-                        {{ __('crud.delete_modal.permanent') }}
-                    </p>
-
-                    <x-dialog.footer :modal="true">
-                        <button type="button" class="btn2 btn-error btn-outline" id="datagrid-action-confirm">
-                            <x-icon class="trash"></x-icon>
-                            <span class="remove-button-label">{{ __('crud.remove') }}</span>
-                        </button>
-                    </x-dialog.footer>
-                </div>
-            </div>
-        </div>
-    </div>
+        <x-dialog.footer :dialog="true">
+            <button type="button" class="btn2 btn-error btn-outline" id="datagrid-action-confirm">
+                <x-icon class="trash" />
+                <span class="remove-button-label">{{ __('crud.remove') }}</span>
+            </button>
+        </x-dialog.footer>
+    </x-dialog>
 @endsection

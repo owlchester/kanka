@@ -1,19 +1,18 @@
 <?php /**
  * @var \App\Models\Journal $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->journal || $model->date)
-    <div class="entity-header-sub pull-left">
+    <div class="entity-header-sub pull-left flex items-center gap-2">
         @if($model->journal)
-        <span title="{{ __('crud.fields.parent') }}" data-toggle="tooltip" class="mr-2">
-            <x-icon class="ra ra-quill-ink"></x-icon>
+        <span>
+            <x-icon entity="journal" :title="__('crud.fields.parent')"/>
             {!! $model->journal->tooltipedLink() !!}
         </span>
         @endif
 
         @if($model->date)
-            <span title="{{ __('journals.fields.date') }}" data-toggle="tooltip">
+            <span data-title="{{ __('journals.fields.date') }}" data-toggle="tooltip">
                 <x-icon class="fa-solid fa-calendar-day"></x-icon>
                 {{ $model->date }}
             </span>

@@ -42,7 +42,6 @@ class AttributeService
 
     /**
      * Apply a template to an entity
-     * @param Entity $entity
      * @param int|string $templateId
      * @return string|bool
      */
@@ -161,7 +160,6 @@ class AttributeService
     }
 
     /**
-     * @param bool $privateAttributes
      * @return $this
      */
     public function updateVisibility(bool $privateAttributes): self
@@ -177,9 +175,6 @@ class AttributeService
 
     /**
      * Apply attribute templates to a new entity
-     * @param Entity $entity
-     * @param int $order
-     * @return int
      */
     public function applyEntityTemplates(Entity $entity, int $order = 0): int
     {
@@ -194,8 +189,6 @@ class AttributeService
 
     /**
      * Deprecated?
-     * @param Campaign $campaign
-     * @return array
      */
     public function templates(Campaign $campaign): array
     {
@@ -225,7 +218,6 @@ class AttributeService
      * Build a list of templates:
      * - First display attribute templates from the campaign
      * - Then display character sheets from the marketplace installed on the campaign
-     * @return array
      */
     public function templateList(): array
     {
@@ -241,11 +233,11 @@ class AttributeService
         }
 
         // Kanka templates - deprecated as of 1.30
-//        $key = __('attributes/templates.list.kanka');
-//        foreach (config('attribute-templates.templates') as $code => $class) {
-//            $template = new $class();
-//            $templates[$key][$code] = $template->name();
-//        }
+        //        $key = __('attributes/templates.list.kanka');
+        //        foreach (config('attribute-templates.templates') as $code => $class) {
+        //            $template = new $class();
+        //            $templates[$key][$code] = $template->name();
+        //        }
 
         // If the campaign isn't boosted, or the marketplace isn't enable, end here
         if (!$this->campaign->boosted() || !config('marketplace.enabled')) {
@@ -275,7 +267,6 @@ class AttributeService
     /**
      * Prepare a custom HTML purifying config for attributes. We remove all custom fields that are added to purify.php
      * and in PurifySetupProvider.
-     * @return self
      */
     protected function purifyConfig(): self
     {

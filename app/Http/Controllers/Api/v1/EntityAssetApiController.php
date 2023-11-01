@@ -7,11 +7,11 @@ use App\Models\Entity;
 use App\Http\Requests\StoreEntityAsset as Request;
 use App\Http\Resources\EntityAssetResource as Resource;
 use App\Models\EntityAsset;
+use App\Services\EntityFileService;
 
 class EntityAssetApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -23,9 +23,6 @@ class EntityAssetApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param EntityAsset $entityAsset
      * @return Resource
      */
     public function show(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
@@ -36,8 +33,6 @@ class EntityAssetApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -47,15 +42,21 @@ class EntityAssetApiController extends ApiController
         $this->authorize('update', $entity->child);
         $data = $request->all();
         $data['entity_id'] = $entity->id;
+
+        if (request()->get('type_id') == EntityAsset::TYPE_FILE) {
+            /** @var EntityFileService $service */
+            $service = app()->make(EntityFileService::class);
+            $file = $service
+                ->entity($entity)
+                ->campaign($campaign)
+                ->upload($request);
+            return new Resource($file);
+        }
         $model = EntityAsset::create($data);
         return new Resource($model);
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param EntityAsset $entityAsset
      * @return Resource
      */
     public function update(Request $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
@@ -69,9 +70,6 @@ class EntityAssetApiController extends ApiController
 
     /**
      * @param Request $request
-     * @param Campaign $campaign
-     * @param Entity $entity
-     * @param EntityAsset $entityAsset
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

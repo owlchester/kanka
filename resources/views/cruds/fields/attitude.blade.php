@@ -1,9 +1,7 @@
-
-<div class="field-attitude">
-    <label for="attitude">
-        {{ __('entities/relations.fields.attitude') }}
-        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.attitude') }}" data-toggle="tooltip"></i>
-    </label>
-    {!! Form::number('attitude', null, ['placeholder' => __('entities/relations.placeholders.attitude'), 'class' => 'form-control', 'min' => -100, 'max' => 100]) !!}
-    <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.attitude') }}</p>
-</div>
+<x-forms.field
+    field="attitude"
+    :label="__('entities/relations.fields.attitude')"
+    :helper="__('entities/relations.hints.attitude')"
+    :tooltip="true">
+    {!! Form::number('attitude', null, ['placeholder' => __('entities/relations.placeholders.attitude'), 'class' => 'w-full', 'min' => -100, 'max' => 100]) !!}
+</x-forms.field>

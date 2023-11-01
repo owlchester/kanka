@@ -1,16 +1,15 @@
 <?php /**
  * @var \App\Models\MiscModel $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
-@if ($campaignService->enabled('locations') && $model->location)
+@if ($campaign->enabled('locations') && $model->location)
     <div class="entity-header-sub pull-left">
-        <x-icon :class="\App\Facades\Module::icon(config('entities.ids.location'), 'ra ra-tower')" :tooltip="\App\Facades\Module::singular(config('entities.ids.location'), __('entities.location'))"></x-icon>
+        <x-icon entity="location" />
 
-        @if ($model->location->parentLocation)
+        @if ($model->location->location)
             {!! __('crud.fields.locations', [
                 'first' => $model->location->tooltipedLink(),
-                'second' => $model->location->parentLocation->tooltipedLink(),
+                'second' => $model->location->location->tooltipedLink(),
             ]) !!}
         @else
             {!! $model->location->tooltipedLink() !!}

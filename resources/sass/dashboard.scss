@@ -7,103 +7,7 @@
     }
 }
 
-.panel {
-    h1 {
-        font-size: 20pt;
-    }
-    h2 {
-        font-size: 18pt;
-    }
-    h3, h4, h5, h6 {
-        font-size: 12pt;
-    }
-
-    .panel-heading-entity {
-        transition: all 3s ease;
-        padding: 0;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 50% 10%;
-
-        &:hover {
-            background-position: 50% 50%;
-        }
-
-        h3 {
-            transition: none;
-            background-color: rgba(0, 0, 0, 0.2);
-
-            a {
-                padding: 30px 20px;
-                display: inline-block;
-                width: 100%;
-                color: white !important;
-                text-shadow: rgba(0, 0, 0, 0.9) 0 1px 4px;
-                font-size: 18px;
-            }
-        }
-    }
-
-    .panel-body {
-        .pinned-entity {
-            transition: all 0.5s ease;
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-        }
-
-        .preview {
-            max-height: 200px;
-            position: relative;
-            overflow: hidden;
-            padding-top: 0;
-
-            &:before {
-                content: '';
-                width: 100%;
-                height: 30%;
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient, hsl(var(--b1)/1)));
-            }
-        }
-
-        .full {
-            max-height: unset;
-        }
-        .entity-content {
-            ul {
-                padding-left: 25px;
-            }
-        }
-    }
-}
-
-.widget-recent, .widget-unmentioned {
-    .panel-body {
-        padding: 5px;
-    }
-    .elapsed {
-        --tw-text-opacity: .6;
-        color: hsl(var(--bc)/var(--tw-text-opacity));
-    }
-}
-
-.widget-preview {
-    .panel-title {
-        vertical-align: middle;
-        .entity-image {
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 6px;
-        }
-    }
-    .panel-body {
-        overflow: hidden;
-    }
-
+.widget {
     table {
         max-width: 100% !important;
         word-break: break-all;
@@ -111,11 +15,9 @@
     iframe, img {
         max-width: 100% !important;
     }
-
-    /* can we remove this?
-    div[data-toggle="preview"] {
-      max-height: 200px;
-    }*/
+    .entity-attributes {
+        min-height: 24rem;
+    }
 }
 
 .campaign-header.campaign-imaged-header {
@@ -132,9 +34,6 @@
     }
 }
 
-.entity-attributes {
-    min-height: 24rem;
-}
 
 /** mobile **/
 

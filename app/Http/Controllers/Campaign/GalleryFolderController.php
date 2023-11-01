@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\GalleryImageFolderStore;
+use App\Models\Campaign;
 use App\Services\Campaign\GalleryService;
 
 class GalleryFolderController extends Controller
 {
-    /** @var GalleryService */
-    protected $service;
+    protected GalleryService $service;
 
     public function __construct(GalleryService $service)
     {
@@ -20,17 +19,19 @@ class GalleryFolderController extends Controller
         $this->service = $service;
     }
 
-    public function store(GalleryImageFolderStore $request)
+    public function store(GalleryImageFolderStore $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $folder = $this->service
             ->campaign($campaign)
             ->createFolder($request);
 
         return redirect()
-            ->route('campaign.gallery.index')
+            ->route('campaign.gallery.index', $campaign)
             ->withSuccess(__('campaign/gallery.folders.create.success', ['name' => $folder->name]));
     }
 }

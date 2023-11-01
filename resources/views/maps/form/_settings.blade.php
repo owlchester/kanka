@@ -12,26 +12,23 @@ if (isset($model) && $model->isChunked()) {
 }
 ?>
 <x-grid>
-    <div class="field-real checkbox">
+    <x-forms.field
+        field="real"
+        :label="__('maps.fields.is_real')">
         <input type="hidden" name="is_real" value="0" />
-        <label>
+        <x-checkbox :text="__('maps.helpers.is_real')">
             {!! Form::checkbox('is_real') !!}
-            {{ __('maps.fields.is_real') }}
-        </label>
-        <p class="help-block">
-            {!! __('maps.helpers.is_real') !!}
-        </p>
-    </div>
-    <div class="field-clustering checkbox">
+        </x-checkbox>
+    </x-forms.field>
+
+    <x-forms.field
+        field="clustering"
+        :label="__('maps.fields.has_clustering')">
         <input type="hidden" name="has_clustering" value="0" />
-        <label>
+        <x-checkbox :text="__('maps.helpers.has_clustering')">
             {!! Form::checkbox('has_clustering', 1, !isset($model) ? true : $model->has_clustering) !!}
-            {{ __('maps.fields.has_clustering') }}
-        </label>
-        <p class="help-block">
-            {!! __('maps.helpers.has_clustering') !!}
-        </p>
-    </div>
+        </x-checkbox>
+    </x-forms.field>
 
     <hr class="m-0 col-span-2"/>
 
@@ -40,108 +37,109 @@ if (isset($model) && $model->isChunked()) {
         <p>{{ __('maps.helpers.chunked_zoom') }}</p>
     </x-alert>
 @else
-    <div class="field-max-zoom">
-        <label>{{ __('maps.fields.max_zoom') }}</label>
+    <x-forms.field
+        field="max-zoom"
+        :label="__('maps.fields.max_zoom')"
+        :helper="__('maps.helpers.max_zoom', ['max' => Map::MAX_ZOOM, 'default' => 5])">
         {!! Form::number(
         'max_zoom',
         FormCopy::field('max_zoom')->string(),
         [
         'placeholder' => 5,
-        'class' => 'form-control',
+        'class' => '',
         'min' => 1,
         'max' => Map::MAX_ZOOM,
         ]
         ) !!}
-        <p class="help-block">
-            {{ __('maps.helpers.max_zoom', ['max' => Map::MAX_ZOOM, 'default' => 5]) }}</p>
-    </div>
+    </x-forms.field>
 
-    <div class="field-min-zoom">
-        <label>{{ __('maps.fields.min_zoom') }}</label>
+    <x-forms.field
+        field="min-zoom"
+        :label="__('maps.fields.min_zoom')"
+        :helper="__('maps.helpers.min_zoom', ['min' => Map::MIN_ZOOM, 'default' => -2])"
+    >
         {!! Form::number(
         'min_zoom',
         FormCopy::field('min_zoom')->string(),
         [
         'placeholder' => -2,
-        'class' => 'form-control',
+        'class' => '',
         'min' => Map::MIN_ZOOM,
         'max' => Map::MAX_ZOOM_REAL,
         ]
         ) !!}
-        <p class="help-block">
-            {{ __('maps.helpers.min_zoom', ['min' => Map::MIN_ZOOM, 'default' => -2]) }}</p>
-    </div>
+    </x-forms.field>
 @endif
 
-    <div class="field-initial-zoom">
-        <label>{{ __('maps.fields.initial_zoom') }}</label>
+    <x-forms.field
+        field="initial-zoom"
+        :label="__('maps.fields.initial_zoom')"
+        :helper=" __('maps.helpers.initial_zoom', ['min' => $minInitial, 'max' => $maxInitial, 'default' => $defaultInitial])">
         {!! Form::number(
         'initial_zoom',
         FormCopy::field('initial_zoom')->string(),
         [
         'placeholder' => 5,
-        'class' => 'form-control',
+        'class' => '',
         'min' => $minInitial,
         'max' => $maxInitial,
         ]
         ) !!}
-        <p class="help-block">
-            {{ __('maps.helpers.initial_zoom', ['min' => $minInitial, 'max' => $maxInitial, 'default' => $defaultInitial]) }}
-        </p>
-    </div>
+    </x-forms.field>
 
-    <div class="field-grid">
-        <label>{{ __('maps.fields.grid') }}</label>
+    <x-forms.field
+        field="grid"
+        :label="__('maps.fields.grid')"
+        :helper=" __('maps.helpers.grid')">
         {!! Form::number(
         'grid',
         FormCopy::field('grid')->string(),
         [
         'placeholder' => __('maps.placeholders.grid'),
-        'class' => 'form-control',
+        'class' => '',
         'maxlength' => 4
         ]
         ) !!}
-        <p class="help-block">{{ __('maps.helpers.grid') }}</p>
-    </div>
+    </x-forms.field>
 
     <hr class="col-span-2 m-0" />
 
-    <div class="field-distance-name">
-        <label>{{ __('maps.fields.distance_name') }}</label>
+    <x-forms.field
+        field="distance-name"
+        :label="__('maps.fields.distance_name')">
         {!! Form::text(
             'config[distance_name]',
             FormCopy::field('config[distance_name]')->string(),
             [
                 'placeholder' => __('maps.placeholders.distance_name'),
-                'class' => 'form-control',
+                'class' => '',
                 'maxlength' => 20
             ]
             ) !!}
-    </div>
+    </x-forms.field>
 
-    <div class="field-distance-measure">
-        <label>
-            {{ __('maps.fields.distance_measure') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2')}}"></i>
-        </label>
+    <x-forms.field
+        field="distance-measure"
+        :label="__('maps.fields.distance_measure')"
+        :tooltip="true"
+        :helper="__('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2')"
+        >
         {!! Form::number(
         'config[distance_measure]',
         FormCopy::field('config[distance_measure]')->string(),
         [
-            'class' => 'form-control',
+            'class' => '',
             'min' => 0.0001,
             'max' => 100.99,
             'step' => 0.0001,
         ]
         ) !!}
-        <p class="help-block visible-xs visible-sm">{{ __('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2') }}</p>
-    </div>
+    </x-forms.field>
 
     <hr class="col-span-2 m-0" />
 
-    <div class="field-centering col-span-2">
-        <label>{{ __('maps.fields.centering') }}</label>
-        <p class="help-block">
+    <x-forms.field field="centering col-span-2" :label="__('maps.fields.centering') ">
+        <p class="text-neutral-content">
             {{ __('maps.helpers.centering') }}
         </p>
 
@@ -161,37 +159,33 @@ if (isset($model) && $model->isChunked()) {
             </ul>
             <div class="tab-content bg-base-100 p-4">
                 <div id="coordinates" class="tab-pane fade in active">
-                    <p class="help-block">
-                        {{ __('maps.helpers.center') }}
-                    </p>
+                    <x-helper  :text="__('maps.helpers.center')" />
                     <x-grid>
-                        <div class="field-center-y">
-                            <label>{{ __('maps.fields.center_y') }}</label>
+                        <x-forms.field field="center-y" :label="__('maps.fields.center_y')">
                             {!! Form::number(
                             'center_y',
                             FormCopy::field('center_y')->string(),
                             [
                             'placeholder' => __('maps.placeholders.center_y'),
-                            'class' => 'form-control',
+                            'class' => '',
                             'min' => -90,
                             'step' => 0.001
                             ]
                             ) !!}
-                        </div>
+                        </x-forms.field>
 
-                        <div class="field-center-x">
-                            <label>{{ __('maps.fields.center_x') }}</label>
+                        <x-forms.field field="center-x" :label="__('maps.fields.center_x')">
                             {!! Form::number(
                             'center_x',
                             FormCopy::field('center_x')->string(),
                             [
                             'placeholder' => __('maps.placeholders.center_x'),
-                            'class' => 'form-control',
+                            'class' => '',
                             'min' => -180,
                             'step' => 0.001
                             ]
                             ) !!}
-                        </div>
+                        </x-forms.field>
                     </x-grid>
                 </div>
                 <div id="marker" class="tab-pane fade">
@@ -208,16 +202,16 @@ if (isset($model) && $model->isChunked()) {
                         :label="__('maps.fields.center_marker')"
                         :placeholder="__('maps.placeholders.center_marker')"
                         :allowClear="true"
-                        :route="route('markers.find', ['include' => $model->id])"
+                        :route="route('markers.find', [$campaign, 'include' => $model->id])"
                         :selected="$preset">
                     </x-forms.foreign>
                     @else
-                        <p class="help-block">
+                        <p class="text-neutral-content">
                             Add markers to the map first.
                         </p>
                     @endif
                 </div>
             </div>
         </div>
-    </div>
+    </x-forms.field>
 </x-grid>

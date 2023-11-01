@@ -8,12 +8,11 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-attributes'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('entity-header-actions')
     @can('attribute', [$entity->child, 'add'])
-        <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
+        <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
             <a href="https://docs.kanka.io/en/latest/features/attributes.html" target="_blank" class="btn2 btn-ghost btn-sm">
                 <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
             </a>
@@ -24,30 +23,11 @@
 
 
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-                __('crud.tabs.attributes')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'attributes',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block">
-            <x-box css="box-entity-attributes">
-                @include('entities.pages.attributes.render')
-            </x-box>
-        </div>
-
-        <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', $entity) }}" />
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'attributes',
+        'breadcrumb' => __('crud.tabs.attributes'),
+        'view' => 'entities.pages.attributes.main',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection

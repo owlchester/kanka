@@ -2,10 +2,10 @@
 
 namespace App\Observers;
 
+use App\Enums\Visibility;
 use App\Facades\Mentions;
 use App\Facades\QuestCache;
 use App\Models\QuestElement;
-use App\Models\Visibility;
 use App\Services\EntityMappingService;
 
 class QuestElementObserver
@@ -17,14 +17,12 @@ class QuestElementObserver
 
     /**
      * Service used to build the map of the entity
-     * @var EntityMappingService
      */
     protected EntityMappingService $entityMappingService;
 
 
     /**
      * CharacterObserver constructor.
-     * @param EntityMappingService $entityMappingService
      */
     public function __construct(EntityMappingService $entityMappingService)
     {
@@ -32,7 +30,6 @@ class QuestElementObserver
     }
 
     /**
-     * @param QuestElement $questElement
      */
     public function saving(QuestElement $questElement)
     {
@@ -41,12 +38,11 @@ class QuestElementObserver
         $questElement->name = $this->purify($questElement->name);
 
         if (empty($questElement->visibility_id)) {
-            $questElement->visibility_id = Visibility::VISIBILITY_ALL;
+            $questElement->visibility_id = Visibility::All;
         }
     }
 
     /**
-     * @param QuestElement $questElement
      */
     public function saved(QuestElement $questElement)
     {

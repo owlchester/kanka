@@ -40,6 +40,9 @@ class Map extends Layout
                     return !request()->has('map_id');
                 }
             ],
+            'tags' => [
+                'render' => Standard::TAGS
+            ]
         ];
 
         return $columns;

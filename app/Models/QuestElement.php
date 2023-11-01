@@ -61,7 +61,6 @@ class QuestElement extends Model
     }
 
     /**
-     * @return mixed
      */
     public function entry()
     {
@@ -69,7 +68,6 @@ class QuestElement extends Model
     }
 
     /**
-     * @return mixed
      */
     public function getEntryForEditionAttribute()
     {
@@ -78,7 +76,6 @@ class QuestElement extends Model
     }
 
     /**
-     * @return string
      */
     public function colourClass(): string
     {
@@ -90,7 +87,6 @@ class QuestElement extends Model
     }
 
     /**
-     * @return string
      */
     public function name(): string
     {
@@ -103,7 +99,6 @@ class QuestElement extends Model
 
     /**
      * For the legacy editor
-     * @return bool
      */
     public function hasEntity(): bool
     {
@@ -120,7 +115,6 @@ class QuestElement extends Model
     }
 
     /**
-     * @return mixed
      */
     public function editingUsers()
     {

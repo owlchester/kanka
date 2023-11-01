@@ -6,35 +6,24 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
     @can('update', $model)
-        <div class="header-buttons inline-block flex gap-2 items-center justify-end">
-            <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn2 btn-accent btn-sm"
+        <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
+            <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model]) }}" class="btn2 btn-sm"
             >
                 <x-icon class="plus"></x-icon>
-                {{ __('timelines/eras.actions.add') }}
+                <span class="hidden lg:inline">{{ __('timelines/eras.actions.add') }}</span>
             </a>
         </div>
     @endcan
 @endsection
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
-                __('timelines.fields.eras')
-            ]
-        ])
-        @include('entities.components.menu_v2', ['active' => 'eras'])
-        <div class="entity-main-block">
-            @include('timelines.panels.eras')
-            @includeWhen(false && $rows->count() > 1, 'timelines.eras._reorder')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'eras',
+        'breadcrumb' => __('timelines.fields.eras'),
+        'view' => 'timelines.panels.eras',
+        'entity' => $model->entity,
+    ])
 @endsection

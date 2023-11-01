@@ -13,7 +13,6 @@ abstract class Bulk
 {
     /**
      * The fields available for bulk edit, fallsback to a set of defaults
-     * @return array
      */
     public function fields(): array
     {
@@ -26,7 +25,6 @@ abstract class Bulk
 
     /**
      * The mapping, used for is_/has_ fields to be able to unset a value. For example a character's is_dead status
-     * @return array
      */
     public function booleans(): array
     {
@@ -39,7 +37,6 @@ abstract class Bulk
 
     /**
      * The list of fields that are foreign fields, to be able to properly unset(detach) them if needed
-     * @return array
      */
     public function foreignRelations(): array
     {
@@ -52,7 +49,6 @@ abstract class Bulk
 
     /**
      * Attributes that can support basic math
-     * @return array
      */
     public function maths(): array
     {
@@ -65,7 +61,6 @@ abstract class Bulk
 
     /**
      * Default fields that are available in the bulk edit interface if no other are defined.
-     * @return array
      */
     protected function defaults(): array
     {

@@ -35,11 +35,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property Collection|ConversationParticipant[] $conversationParticipants
  * @property Collection|Journal[] $journals
  * @property Collection|Item[] $items
+ * @property Collection|CharacterTrait[] $appearances
+ * @property Collection|CharacterTrait[] $personality
  */
 class Character extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
@@ -57,7 +58,6 @@ class Character extends MiscModel
         'age',
         'sex',
         'pronouns',
-        'image',
         'is_private',
         'type',
         'is_dead',
@@ -68,16 +68,15 @@ class Character extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'title',
         'location.name',
         'age',
         'sex',
         'is_dead'
     ];
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'location.name',
@@ -86,13 +85,11 @@ class Character extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'character';
+    protected string $entityType = 'character';
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns = ['name', 'title', 'type', 'entry'];
 
@@ -114,36 +111,33 @@ class Character extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'characterTraits', 'families', 'races'
     ];
 
     /**
      * @var string[] Extra relations loaded for the API endpoint
      */
-    public $apiWith = ['characterTraits'];
+    public array $apiWith = ['characterTraits'];
 
     /**
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'is_personality_visible', // checkbox
     ];
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -164,10 +158,6 @@ class Character extends MiscModel
     }
     /**
      * Filter for characters in a specific list of organisations
-     * @param Builder $query
-     * @param string|null $value
-     * @param FilterOption $filter
-     * @return Builder
      */
     public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
     {
@@ -206,7 +196,6 @@ class Character extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -316,6 +305,15 @@ class Character extends MiscModel
         return $this->hasMany('App\Models\CharacterTrait', 'character_id', 'id');
     }
 
+    public function appearances()
+    {
+        return $this->characterTraits()->appearance()->orderBy('default_order');
+    }
+    public function personality()
+    {
+        return $this->characterTraits()->personality()->orderBy('default_order');
+    }
+
     /**
      */
     public function pinnedMembers()
@@ -348,12 +346,11 @@ class Character extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
         $canEdit = auth()->check() && auth()->user()->can('update', $this);
+        $campaign = CampaignLocalization::getCampaign();
 
         $items['second']['profile'] = [
             'name' => 'entities/profile.show.tab_name',
@@ -381,7 +378,6 @@ class Character extends MiscModel
 
     /**
      * Tooltip subtitle (character title)
-     * @return string
      */
     public function tooltipSubtitle(): string
     {
@@ -393,7 +389,6 @@ class Character extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -402,13 +397,14 @@ class Character extends MiscModel
 
     /**
      * Determine if the character has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
         // Test text fields first
-        if (!empty($this->type) || !empty($this->age) || !empty($this->sex)
-            || !empty($this->pronouns)) {
+        if (
+            !empty($this->type) || !empty($this->age) || !empty($this->sex)
+            || !empty($this->pronouns)
+        ) {
             return true;
         }
         if (!$this->races->isEmpty() || !$this->families->isEmpty()) {
@@ -419,7 +415,6 @@ class Character extends MiscModel
 
     /**
      * Determine if the character has an age. 0 counts as a valide age.
-     * @return bool
      */
     public function hasAge(): bool
     {
@@ -428,7 +423,6 @@ class Character extends MiscModel
 
     /**
      * Row classes for entities
-     * @return string
      */
     public function rowClasses(): string
     {
@@ -461,7 +455,6 @@ class Character extends MiscModel
 
     /**
      * Available sorting on the grid view
-     * @return array
      */
     public function datagridSortableColumns(): array
     {
@@ -484,7 +477,6 @@ class Character extends MiscModel
 
     /**
      * Get the value of the is_dead variable
-     * @return bool
      */
     public function isDead(): bool
     {
@@ -492,14 +484,12 @@ class Character extends MiscModel
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeFilteredCharacters(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'image', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
+            ->select(['id', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
             ->has('entity');

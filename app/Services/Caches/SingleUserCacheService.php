@@ -2,7 +2,7 @@
 
 namespace App\Services\Caches;
 
-use App\User;
+use App\Traits\UserAware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -12,17 +12,7 @@ use Illuminate\Support\Facades\Log;
  */
 class SingleUserCacheService
 {
-    protected User $user;
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
+    use UserAware;
 
     public function entitiesCreatedCount(): int
     {
@@ -40,8 +30,6 @@ class SingleUserCacheService
 
     /**
      * Wrapper for the cache get method
-     * @param string $key
-     * @return mixed
      */
     protected function get(string $key)
     {
@@ -51,10 +39,6 @@ class SingleUserCacheService
     /**
      * Wrapper for the cache forever method. Don't actually store forever as data from inactive users doesn't
      * need to be kept somewhere.
-     * @param string $key
-     * @param mixed $data
-     * @param int $days
-     * @return bool
      */
     protected function forever(string $key, $data, int $days = 7): bool
     {
@@ -66,8 +50,6 @@ class SingleUserCacheService
 
     /**
      * Wrapper for the cache has metho
-     * @param string $key
-     * @return bool
      */
     protected function has(string $key): bool
     {

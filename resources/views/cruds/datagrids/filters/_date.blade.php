@@ -1,1 +1,1 @@
-<input type="date" class="form-control entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
+<input type="date" class="w-full entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />

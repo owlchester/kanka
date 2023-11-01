@@ -6,30 +6,16 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
-use App\Services\CampaignBoostService;
-use App\Services\CampaignService;
+use App\Services\Campaign\BoostService;
 
 class CampaignBoostController extends Controller
 {
-    /**
-     * @var CampaignBoostService
-     */
-    protected CampaignBoostService $campaignBoostService;
+    protected BoostService $campaignBoostService;
 
-    /**
-     * @var CampaignService
-     */
-    protected CampaignService $campaignService;
-
-    /**
-     * @param CampaignBoostService $campaignBoostService
-     * @param CampaignService $campaignService
-     */
-    public function __construct(CampaignBoostService $campaignBoostService, CampaignService $campaignService)
+    public function __construct(BoostService $campaignBoostService)
     {
         $this->middleware(['auth', 'identity']);
         $this->campaignBoostService = $campaignBoostService;
-        $this->campaignService = $campaignService;
     }
 
     public function create()
@@ -56,7 +42,6 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -81,18 +66,6 @@ class CampaignBoostController extends Controller
                     ->boost();
 
                 $superboost = $action == 'superboost';
-
-                $this->campaignService->notify(
-                    $campaign,
-                    'boost.' . ($superboost ? 'superboost' : 'add'),
-                    'rocket',
-                    'maroon',
-                    [
-                        'user' => auth()->user()->name,
-                        'campaign' => $campaign->name
-                    ]
-                );
-
                 return redirect()
                     ->route('settings.boost')
                     ->with('success_raw', __('settings/boosters.' . ($superboost ? 'superboost' : 'boost') . '.success', ['campaign' => $campaign->name]));
@@ -108,17 +81,6 @@ class CampaignBoostController extends Controller
                 ->user(auth()->user())
                 ->campaign($campaign)
                 ->premium();
-
-            $this->campaignService->notify(
-                $campaign,
-                'premium.add',
-                'rocket',
-                'maroon',
-                [
-                    'user' => auth()->user()->name,
-                    'campaign' => $campaign->name
-                ]
-            );
 
             return redirect()
                 ->route('settings.premium')
@@ -151,8 +113,6 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param CampaignBoost $campaignBoost
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -175,17 +135,6 @@ class CampaignBoostController extends Controller
                 ->action($request->post('action'))
                 ->boost();
 
-            $this->campaignService->notify(
-                $campaign,
-                'boost.superboost',
-                'rocket',
-                'maroon',
-                [
-                    'user' => auth()->user()->name,
-                    'campaign' => $campaign->name
-                ]
-            );
-
             return redirect()
                 ->route('settings.boost')
                 ->with('success_raw', __('settings/boosters.superboost.success', ['campaign' => $campaign->name]));
@@ -198,7 +147,6 @@ class CampaignBoostController extends Controller
 
 
     /**
-     * @param CampaignBoost $campaignBoost
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -217,7 +165,6 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @param CampaignBoost $campaignBoost
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -230,32 +177,10 @@ class CampaignBoostController extends Controller
             ->unboost($campaignBoost);
 
         if (auth()->user()->hasBoosterNomenclature()) {
-            $this->campaignService->notify(
-                $campaignBoost->campaign,
-                'boost.remove',
-                'rocket',
-                'red',
-                [
-                    'user' => auth()->user()->name,
-                    'campaign' => $campaignBoost->campaign->name
-                ]
-            );
-
             return redirect()
                 ->route('settings.boost')
                 ->with('success_raw', __('settings/boosters.unboost.success', ['campaign' => $campaignBoost->campaign->name]));
         }
-
-        $this->campaignService->notify(
-            $campaignBoost->campaign,
-            'premium.remove',
-            'rocket',
-            'red',
-            [
-                'user' => auth()->user()->name,
-                'campaign' => $campaignBoost->campaign->name
-            ]
-        );
 
         return redirect()
             ->route('settings.premium')

@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignDashboard;
+use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Services\DashboardService;
 
 class DashboardController extends Controller
 {
-    /** @var DashboardService  */
-    protected $service;
+    protected DashboardService $service;
 
     public function __construct(DashboardService $dashboardsService)
     {
@@ -36,10 +35,8 @@ class DashboardController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function create()
+    public function create(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         if (!$campaign->boosted()) {
             return view('dashboard.dashboards.unboosted')
                 ->with('campaign', $campaign);
@@ -57,27 +54,21 @@ class DashboardController extends Controller
     }
 
     /**
-     * @param StoreCampaignDashboard $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StoreCampaignDashboard $request)
+    public function store(StoreCampaignDashboard $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
         $dashboard = $this->service->campaign($campaign)->create($request);
 
-        //if (!empty($dashboard)) {
-        return redirect()->route('dashboard.setup', ['dashboard' => $dashboard->id])
+        return redirect()->route('dashboard.setup', [$campaign, 'dashboard' => $dashboard->id])
             ->with('success', __('dashboard.dashboards.create.success', ['name' => $dashboard->name]));
-        /*}
-        return redirect()->route('campaign_dashboards.create');*/
     }
 
-    public function edit(CampaignDashboard $campaignDashboard)
+    public function edit(Campaign $campaign, CampaignDashboard $campaignDashboard)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
         return view('dashboard.dashboards.update')
@@ -85,28 +76,26 @@ class DashboardController extends Controller
             ->with('dashboard', $campaignDashboard);
     }
 
-    public function update(CampaignDashboard $campaignDashboard, StoreCampaignDashboard $request)
+    public function update(Campaign $campaign, CampaignDashboard $campaignDashboard, StoreCampaignDashboard $request)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
         $dashboard = $this->service->campaign($campaign)
             ->dashboard($campaignDashboard)
             ->update($request);
 
-        return redirect()->route('dashboard.setup', ['dashboard' => $dashboard->id])
+        return redirect()->route('dashboard.setup', [$campaign, 'dashboard' => $dashboard->id])
             ->with('success', __('dashboard.dashboards.update.success', ['name' => $dashboard->name]));
     }
 
-    public function destroy(CampaignDashboard $campaignDashboard)
+    public function destroy(Campaign $campaign, CampaignDashboard $campaignDashboard)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
         $campaignDashboard->delete();
-        CampaignCache::clearDashboards();
+        CampaignCache::clear();
 
-        return redirect()->route('dashboard.setup')
+        return redirect()->route('dashboard.setup', $campaign)
             ->with('success', __('dashboard.dashboards.delete.success', ['name' => $campaignDashboard->name]));
     }
 }

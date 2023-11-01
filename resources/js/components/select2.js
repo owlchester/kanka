@@ -51,7 +51,7 @@ $(document).ready(function() {
                     error: function(response) {
                         console.log('error', response);
                         if (response.status === 503) {
-                            window.showToast(response.responseJSON.message, 'toast-error');
+                            window.showToast(response.responseJSON.message, 'error');
                         }
                         return { results: [] }; // Return dataset to load after error
                     },
@@ -96,7 +96,7 @@ function select2ColourState (state) {
         return state.text;
     }
 
-    var $state = $(
+    let $state = $(
         '<span><div class="badge label bg-' + state.id + '"> </div>' + state.text + '</span>'
     );
     return $state;
@@ -108,7 +108,6 @@ import "select2/dist/js/i18n/de.js";
 import "select2/dist/js/i18n/en.js";
 import "select2/dist/js/i18n/es.js";
 import "select2/dist/js/i18n/fr.js";
-import "select2/dist/js/i18n/hr.js";
 import "select2/dist/js/i18n/hu.js";
 import "select2/dist/js/i18n/it.js";
 import "select2/dist/js/i18n/nl.js";

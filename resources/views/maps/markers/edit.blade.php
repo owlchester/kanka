@@ -4,19 +4,19 @@
 * @var \App\Models\MapMarker $model
 */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('maps/markers.edit.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
-        ['url' => $map->entity->url(), 'label' => $map->name],
+        Breadcrumb::entity($map->entity)->list(),
+        Breadcrumb::show($map),
         __('maps/markers.edit.title', ['name' => $model->name])
-    ]
+    ],
+    'centered' => true,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
     <x-box>
-        @if ($ajax)
+        @if (request()->ajax())
             <div class="modal-heading">
                 <x-dialog.close />
                 <h4>
@@ -32,35 +32,28 @@
             <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @include('partials.errors')
 
-            {!! Form::model($model, ['route' => ['maps.map_markers.update', 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
-            @include('maps.markers._form')
+            {!! Form::model($model, ['route' => ['maps.map_markers.update', $campaign, 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+            <x-grid type="1/1">
+                @include('maps.markers._form')
 
-            <x-box.footer>
-                <div class="submit-group">
-                    <div class="inline-block">
-                        <x-button.delete-confirm target="#delete-marker-confirm-form-{{ $model->id}}" />
-                    </div>
-                    <input id="submit-mode" type="hidden" value="true"/>
-                    <div class="pull-right">
+                <x-box.footer>
+                    <div class="submit-group flex items-center gap-2">
+                        <div class="inline-block grow">
+                            <x-button.delete-confirm target="#delete-marker-confirm-form-{{ $model->id}}" />
+                        </div>
+                        @include('partials.footer_cancel', ['ajax' => null])
+
                         @include('maps.markers._actions')
                     </div>
-                    <div class="pull-right mr-2">
-                        @include('partials.footer_cancel', ['ajax' => null])
-                    </div>
-                </div>
-                <div class="submit-animation" style="display: none;">
-                    <button class="btn2 btn-primary btn-sm" disabled>
-                        <i class="fa-solid fa-spinner fa-spin"></i>
-                    </button>
-                </div>
-            </x-box.footer>
+                </x-box.footer>
+            </x-grid>
             {!! Form::close() !!}
             @endif
     </x-box>
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['maps.map_markers.destroy', $model->map_id, $model->id],
+        'route' => ['maps.map_markers.destroy', $campaign, $model->map_id, $model->id],
         'style' => 'display:inline',
         'id' => 'delete-marker-confirm-form-' . $model->id]) !!}
     {!! Form::close() !!}
@@ -79,7 +72,6 @@
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
     @vite([
         'resources/js/location/map-v3.js',
-        'resources/js/ajax-subforms.js'
     ])
 
     @include('maps._setup', ['single' => true, 'editable' => true])

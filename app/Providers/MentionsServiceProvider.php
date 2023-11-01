@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\EntityService;
+use App\Facades\CampaignLocalization;
 use App\Services\MentionsService;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +16,11 @@ class MentionsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(MentionsService::class, function () {
-            return new MentionsService(new EntityService());
+            $service = new MentionsService();
+            if (CampaignLocalization::hasCampaign()) {
+                $service->campaign(CampaignLocalization::getCampaign());
+            }
+            return $service;
         });
 
         $this->app->alias(MentionsService::class, 'mentions');

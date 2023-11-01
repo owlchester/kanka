@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('entities.campaign'),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')]
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')]
     ],
     'canonical' => true,
 ])

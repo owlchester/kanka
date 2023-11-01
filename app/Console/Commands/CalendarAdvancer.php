@@ -3,12 +3,15 @@
 namespace App\Console\Commands;
 
 use App\Models\Calendar;
-use App\Models\JobLog;
+use App\Services\Calendars\AdvancerService;
+use App\Traits\HasJobLog;
 use Exception;
 use Illuminate\Console\Command;
 
 class CalendarAdvancer extends Command
 {
+    use HasJobLog;
+
     /**
      * The name and signature of the console command.
      *
@@ -29,13 +32,15 @@ class CalendarAdvancer extends Command
     /** @var array Errors that happened */
     protected array $errors = [];
 
+    protected AdvancerService $service;
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AdvancerService $advancerService)
     {
+        $this->service = $advancerService;
         parent::__construct();
     }
 
@@ -50,7 +55,7 @@ class CalendarAdvancer extends Command
             /** @var Calendar $calendar*/
             foreach ($calendars as $calendar) {
                 try {
-                    $calendar->addDay();
+                    $this->service->calendar($calendar)->advance();
                     $this->count++;
                 } catch (Exception $e) {
                     $this->errors[$calendar->id] = $e->getMessage();
@@ -68,15 +73,7 @@ class CalendarAdvancer extends Command
             $log .= '<br />' . 'Errors for ' . count($this->errors) . ' calendars.';
             $log .= '<br />' . implode(', ', array_keys($this->errors));
         }
-
-        if (!config('app.log_jobs')) {
-            return 0;
-        }
-
-        JobLog::create([
-            'name' => $this->signature,
-            'result' => $log,
-        ]);
+        $this->log($log);
 
         return 0;
     }

@@ -27,7 +27,8 @@ use App\Models\Item;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Map;
-use App\Models\MenuLink;
+use App\Models\Bookmark;
+use App\Models\CampaignExport;
 use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\Plugin;
@@ -69,11 +70,12 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignStyle[] $styles
  * @property Collection|RpgSystem[] $rpgSystems
  * @property Collection|Genre[] $genres
+ * @property Collection|CampaignExport[] $campaignExports
+ * @property Collection|CampaignExport[] $queuedCampaignExports
  */
 trait CampaignRelations
 {
     /**
-     * @return mixed
      */
     public function users()
     {
@@ -81,7 +83,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function followers()
     {
@@ -89,7 +90,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function rpgSystems()
     {
@@ -97,7 +97,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function setting()
     {
@@ -105,7 +104,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function members()
     {
@@ -113,7 +111,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function roles()
     {
@@ -233,11 +230,11 @@ trait CampaignRelations
     }
 
     /**
-     * @return MenuLink|\Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Bookmark|\Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function menuLinks()
+    public function bookmarks()
     {
-        return $this->hasMany(MenuLink::class)
+        return $this->hasMany(Bookmark::class)
             ->with(['dashboard']);
     }
 
@@ -317,7 +314,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function entityRelations()
     {
@@ -325,7 +321,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function plugins()
     {
@@ -337,7 +332,6 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
      */
     public function campaignPlugins()
     {
@@ -354,19 +348,36 @@ trait CampaignRelations
         return $this->hasMany(CampaignDashboard::class);
     }
 
+    public function campaignExports()
+    {
+        return $this->hasMany(CampaignExport::class);
+    }
+
+    public function queuedCampaignExports()
+    {
+        return $this->campaignExports()
+            ->whereIn('status', [CampaignExport::STATUS_SCHEDULED, CampaignExport::STATUS_RUNNING]);
+    }
+
     public function styles()
     {
         return $this->hasMany(CampaignStyle::class);
     }
 
     /**
-     * @return mixed
      */
     public function editingUsers()
     {
         return $this->belongsToMany(User::class, 'entity_user')
             ->using(EntityUser::class)
             ->withPivot('type_id');
+    }
+
+    /**
+     */
+    public function invites()
+    {
+        return $this->hasMany('App\Models\CampaignInvite');
     }
 
     /**

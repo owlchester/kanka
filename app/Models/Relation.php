@@ -65,7 +65,7 @@ class Relation extends Model
         'colour',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'relation',
         'target.name',
         'attitude',
@@ -74,9 +74,8 @@ class Relation extends Model
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    public $sortableColumns = [
+    public array $sortableColumns = [
         'owner_id',
         'target_id',
         'relation',
@@ -89,11 +88,9 @@ class Relation extends Model
     public $defaultOrderField = 'relation';
 
     /**
-     * @param Builder $query
      * @param string $order
-     * @return Builder
      */
-    public function scopeOrdered(Builder$query, $order = 'asc'): Builder
+    public function scopeOrdered(Builder $query, $order = 'asc'): Builder
     {
         return $query
             ->orderBy('relation', $order)
@@ -126,7 +123,6 @@ class Relation extends Model
 
     /**
      * Check if a relation is mirrored
-     * @return bool
      */
     public function isMirrored(): bool
     {
@@ -157,8 +153,6 @@ class Relation extends Model
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -174,8 +168,6 @@ class Relation extends Model
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedSelect(Builder $query): Builder
     {
@@ -225,7 +217,6 @@ class Relation extends Model
 
     /**
      * Functions for the datagrid2
-     * @return string
      */
     public function deleteName(): string
     {
@@ -237,16 +228,15 @@ class Relation extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->owner_id, $this->id, 'mode' => 'table'];
+        return $options + ['entity' => $this->owner_id, 'relation' => $this->id, 'mode' => 'table'];
     }
-    public function actionDeleteConfirmOptions(): string
+    public function actionDeleteConfirmOptions(): array
     {
-        return 'data-mirrored="' . $this->isMirrored() . '"';
+        return ['mirrored' => $this->isMirrored()];
     }
 
     /**
      * Relations don't use the default filterable columns available to entities
-     * @return array
      */
     protected function defaultFilterableColumns(): array
     {
@@ -271,6 +261,11 @@ class Relation extends Model
     }
 
     public function hasSearchableFields(): bool
+    {
+        return false;
+    }
+
+    public function hasEntityType(): bool
     {
         return false;
     }

@@ -1,4 +1,4 @@
-<div class="instigator">
+<x-forms.field field="instigator">
     <input type="hidden" name="instigator_id" value="" />
         @include('cruds.fields.entity', [
         'name' => 'instigator_id',
@@ -6,4 +6,4 @@
         'relation' => 'instigator',
         'label' => __('quests.fields.instigator'),
     ])
-</div>
+</x-forms.field>

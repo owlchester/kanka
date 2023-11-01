@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of
  *
@@ -17,8 +18,6 @@ class CommunityVotePolicy
 
     /**
      * Determine if a user can view a vote
-     * @param User $user
-     * @param CommunityVote $communityVote
      */
     public function show(?User $user, CommunityVote $communityVote): bool
     {
@@ -41,9 +40,6 @@ class CommunityVotePolicy
 
     /**
      * Determine if a user can participate in a vote
-     * @param User $user
-     * @param CommunityVote $communityVote
-     * @return bool
      */
     public function vote(User $user, CommunityVote $communityVote): bool
     {

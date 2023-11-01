@@ -34,9 +34,5 @@ return [
         'name'      => 'Richiesto se nessuna entità è selezionata',
         'position'  => 'Posizione nella lista degli elementi dell\'era. Lasciare vuoto per aggiungere alla fine.',
     ],
-    'warning'       => [
-        'editing'   => [
-            'description'   => 'Sembra che qualcun altro stia modificando questo elemento della linea temporale! Vuoi tornare indietro o ignorare questo avviso, con il rischio di perdere i dati? Membri che stanno modificando questo elemento della linea temporale:',
-        ],
-    ],
+    'warning'       => [],
 ];

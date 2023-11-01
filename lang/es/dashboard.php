@@ -41,6 +41,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Duplica los widgets del tablero :name a este.',
         ],
+        'pitch'         => 'Crea múltiples cuadros de mando con permisos personalizados para cada función de la campaña.',
         'placeholders'  => [
             'name'  => 'Nombre del tablero',
         ],
@@ -76,6 +77,10 @@ return [
             'add'               => 'Añadir widget',
             'back_to_dashboard' => 'Volver al tablero',
             'edit'              => 'Editar widget',
+            'new'               => 'Nuevo widget :type',
+        ],
+        'reorder'   => [
+            'success'   => 'Widgets reordenados.',
         ],
         'title'     => 'Configurar el tablero de campaña',
         'tutorial'  => [
@@ -90,15 +95,17 @@ return [
             'random'        => 'Entidad aleatoria',
             'recent'        => 'Reciente',
             'unmentioned'   => 'Entidades sin mención',
+            'welcome'       => 'Bienvenid@',
         ],
     ],
     'title'         => 'Tablero de',
     'welcome'       => [],
     'widgets'       => [
-        'actions'       => [
+        'actions'                   => [
             'advanced-options'  => 'Opciones avanzadas',
         ],
-        'calendar'      => [
+        'advanced_options_boosted'  => 'Habilita más opciones como mostrar pines con una :boosted_campaign.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Cambiar fecha al día siguiente',
                 'previous'  => 'Cambiar fecha al día anterior',
@@ -107,38 +114,50 @@ return [
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Próximo',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Este widget muestra el encabezado de la campaña. Siempre se muestra en el tablero por defecto.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Widget añadido al tablero.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Widget eliminado del tablero.',
         ],
-        'fields'        => [
+        'fields'                    => [
             'class'             => 'Clase CSS',
             'dashboard'         => 'Tablero',
             'name'              => 'Nombre personalizado del widget',
             'optional-entity'   => 'Link a la entidad',
             'order'             => 'Orden',
+            'size'              => 'Tamaño',
             'text'              => 'Texto',
             'width'             => 'Anchura',
         ],
-        'helpers'       => [
-            'class' => 'Define una clase CSS personalizada para este widget.',
+        'helpers'                   => [
+            'class'     => 'Define una clase CSS personalizada para este widget.',
+            'filters'   => 'Haz clic para conocer las opciones de filtro disponibles.',
         ],
-        'orders'        => [
+        'orders'                    => [
             'name_asc'  => 'Ascendente por nombre',
             'name_desc' => 'Descendiente por nombre',
+            'oldest'    => 'Modificación más antigua',
             'recent'    => 'Recientemente modificadas',
         ],
-        'random'        => [
+        'preview'                   => [
+            'displays'  => [
+                'expand'    => 'Entrada expandible',
+                'full'      => 'Entrada completa',
+            ],
+            'fields'    => [
+                'display'   => 'Mostrar',
+            ],
+        ],
+        'random'                    => [
             'helpers'   => [
                 'name'  => 'Puedes referenciar el nombre de la entidad aleatoria con {name}',
             ],
         ],
-        'recent'        => [
+        'recent'                    => [
             'advanced_filter'   => 'Filtro avanzado',
             'advanced_filters'  => [
                 'mentionless'   => 'Sin menciones (entidades que no mencionan a otras)',
@@ -160,17 +179,20 @@ return [
             'tags'              => 'Filtra la lista de las entidades recientemente modificadas con etiquetas específicas.',
             'title'             => 'Modificado recientemente',
         ],
-        'tabs'          => [
+        'tabs'                      => [
             'advanced'  => 'Avanzado',
             'setup'     => 'Configuración',
         ],
-        'unmentioned'   => [
+        'unmentioned'               => [
             'title' => 'Entidades no mencionadas',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Widget modificado.',
         ],
-        'widths'        => [
+        'welcome'                   => [
+            'helper'    => 'Este widget muestra un mensaje de bienvenida en el panel de control que incluye enlaces útiles para los nuevos usuarios de Kanka.',
+        ],
+        'widths'                    => [
             '0' => 'Auto',
             '12'=> 'Completa (100%)',
             '3' => 'Cuarto (25%)',

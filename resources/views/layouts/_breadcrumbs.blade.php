@@ -2,9 +2,9 @@
     @if (!isset($breadcrumbsDashboard) || $breadcrumbsDashboard === true)
         @if ($campaign)
             <li class="inline-block">
-                <a href="{{ route('dashboard') }}" class="text-base-content">
+                <a href="{{ route('dashboard', $campaign) }}" class="text-base-content">
                     <x-icon class="fa-solid fa-globe"></x-icon>
-                    <span class="hidden-xs hidden-sm">
+                    <span class="hidden md:inline">
                         {!! $campaign->name !!}
                     </span>
                 </a>
@@ -13,7 +13,7 @@
             <li class="inline-block">
                 <a href="{{ route('home') }}" class="text-base-content">
                     <x-icon class="fa-solid fa-dashboard"></x-icon>
-                    <span class="hidden-xs hidden-sm">
+                    <span class="hidden md:inline">
                         {{ __('dashboard.title') }}
                     </span>
                 </a>

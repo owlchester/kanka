@@ -1,34 +1,34 @@
-<?php /** @var \App\Models\MenuLink $menuLink */ ?>
-@if ($menuLink->dashboard && $currentCampaign->boosted() && $menuLink->isValidDashboard())
-    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($currentCampaign) }}">
+<?php /** @var \App\Models\Bookmark $bookmark */ ?>
+@if ($bookmark->dashboard && $campaign->boosted() && $bookmark->isValidDashboard())
+    <li class="{{ $css ?? null }} p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $sidebar->activeBookmark($bookmark) }} {{ $bookmark->customClass($campaign) }}">
         <x-sidebar.element
-            :url="$menuLink->getRoute()"
-            :icon="$menuLink->icon()"
-            :text="$menuLink->name"
+                :url="$bookmark->getRoute()"
+                :icon="$bookmark->icon()"
+                :text="$bookmark->name"
         ></x-sidebar.element>
     </li>
-@elseif ($menuLink->target)
-    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($currentCampaign) }}">
+@elseif ($bookmark->target)
+    <li class="p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $sidebar->activeBookmark($bookmark) }} {{ $bookmark->customClass($campaign) }}">
         <x-sidebar.element
-            :url="$menuLink->getRoute()"
-            :icon="$menuLink->icon()"
-            :text="$menuLink->name"
+                :url="$bookmark->getRoute()"
+                :icon="$bookmark->icon()"
+                :text="$bookmark->name"
         ></x-sidebar.element>
     </li>
-@elseif ($menuLink->type)
-    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($currentCampaign) }}">
+@elseif ($bookmark->type)
+    <li class="p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $sidebar->activeBookmark($bookmark) }} {{ $bookmark->customClass($campaign) }}">
         <x-sidebar.element
-            :url="$menuLink->getRoute()"
-            :icon="$menuLink->icon()"
-            :text="$menuLink->name"
+                :url="$bookmark->getRoute()"
+                :icon="$bookmark->icon()"
+                :text="$bookmark->name"
         ></x-sidebar.element>
     </li>
-@elseif ($menuLink->isRandom())
-    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($currentCampaign) }}">
+@elseif ($bookmark->isRandom())
+    <li class="p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $sidebar->activeBookmark($bookmark) }} {{ $bookmark->customClass($campaign) }}">
         <x-sidebar.element
-            :url="$menuLink->getRoute()"
-            :icon="$menuLink->icon()"
-            :text="$menuLink->name"
+                :url="$bookmark->getRoute()"
+                :icon="$bookmark->icon()"
+                :text="$bookmark->name"
         ></x-sidebar.element>
     </li>
 @endif

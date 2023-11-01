@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->nested()
     ->service($filterService)
     ->models($models)
@@ -14,7 +15,7 @@
         'type',
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations')),
@@ -25,7 +26,7 @@
         ],
         [
             'label' => '<i class="fa-solid fa-users" title="' . __('organisations.fields.members') . '"></i>',
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->members->count();
             },
@@ -50,7 +51,6 @@
         'route' => 'organisations.tree',
         'baseRoute' => 'organisations',
         'trans' => 'organisations.fields.',
-        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

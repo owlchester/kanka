@@ -3,11 +3,12 @@
  * @var \App\Models\Tag $model
  */
 $allMembers = true;
-$addEntityUrl = route('tags.entity-add', $model);
+$addEntityUrl = route('tags.entity-add', [$campaign, $model]);
 $datagridOptions = [];
 
 if (!empty($onload)) {
     $routeOptions = [
+        $campaign,
         $model,
         'init' => 1,
     ];
@@ -21,59 +22,63 @@ if (!empty($onload)) {
     ;
 }
 
-$existing = $model->allChildren()->count();
+$all = $model->allChildren()->count();
+$direct = $model->entities()->count();
 ?>
-<div class="flex gap-2 items-center mb-2">
-    <h3 class="grow m-0">
+<div class="flex flex-col xl:flex-row gap-2 items-center">
+    <h3 class="grow">
         {{ __('tags.show.tabs.children') }}
     </h3>
-    <div>
-        <a href="#" class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="help-modal">
-            <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
-        </a>
-
-        <a href="{{ route('tags.transfer', $model->id) }}" class="btn2 btn-sm">
+    <div class="flex gap-2 flex-wrap overflow-auto">
+        <button data-url="{{ route('tags.transfer', [$campaign, $model->id]) }}" data-toggle="dialog" data-target="primary-dialog" class="btn2 btn-sm">
             <x-icon class="fa-solid fa-arrow-right"/>
-            <span class="hidden-sm hidden-xs">{{ __('tags.transfer.transfer') }}</span>
-        </a>
+            <span class="hidden xl:inline">{{ __('tags.transfer.transfer') }}</span>
+        </button>
 
         @if (request()->has('tag_id'))
-            <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn2 btn-sm">
+            <a href="{{ $entity->url() }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
-                ({{ $model->allChildren()->count() }})
+                <span class="hidden xl:inline">
+                    {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
+                </span>
+                <span class="xl:hidden">
+                    {{ $all }}
+                </span>
             </a>
         @else
-            <a href="{{ route('tags.show', [$model, 'tag_id' => $model->id, '#tag-children']) }}" class="btn2 btn-sm">
+            <a href="{{ route('entities.show', [$campaign, $entity, 'tag_id' => $model->id, '#tag-children']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
-                ({{ $model->entities()->count() }})
+                <span class="hidden xl:inline">
+                    {{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}
+                </span>
+                <span class="xl:hidden">
+                    {{ $direct  }}
+                </span>
             </a>
         @endif
 
-        @if ($existing > 0)
+        @if ($all > 0)
             @can('update', $model)
                 <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
-                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
-                    <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
+                   data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">
+                    <x-icon class="plus"></x-icon>
+                    <span class="hidden xl:inline">{{ __('tags.children.actions.add') }}</span>
                 </a>
             @endcan
         @endif
     </div>
 </div>
-@if ($existing === 0)
+@if ($all === 0)
 <div class="" id="tag-children">
-        <x-box>
-            <p class="help-block">
-                {{ __('tags.helpers.no_children') }}
-            </p>
-            @can('update', $model)
-                <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
-                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
-                    <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
-                </a>
-            @endcan
-        </x-box>
+    <x-box>
+        <x-helper :text="__('tags.helpers.no_children')" />
+        @can('update', $model)
+            <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
+                data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">
+                <x-icon class="plus"></x-icon> <span class="hidden xl:inline">{{ __('tags.children.actions.add') }}</span>
+            </a>
+        @endcan
+    </x-box>
 </div>
 @else
 <div class="" id="tag-children">
@@ -82,15 +87,3 @@ $existing = $model->allChildren()->count();
     </div>
 </div>
 @endif
-
-
-@section('modals')
-    @parent
-    @include('partials.helper-modal', [
-        'id' => 'help-modal',
-        'title' => __('crud.actions.help'),
-        'textes' => [
-            __('tags.hints.children')
-        ]
-    ])
-@endsection

@@ -16,7 +16,6 @@ class DefaultImageService
     protected string $type;
 
     /**
-     * @param string $type
      * @return $this
      */
     public function type(string $type): self
@@ -26,8 +25,6 @@ class DefaultImageService
     }
 
     /**
-     * @param Request $request
-     * @return bool
      */
     public function save(Request $request): bool
     {
@@ -67,14 +64,13 @@ class DefaultImageService
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
-        CampaignCache::clearDefaultImages();
+        CampaignCache::clear();
 
         return true;
     }
 
     /**
      * Remove a default image
-     * @return bool
      */
     public function destroy(): bool
     {
@@ -94,7 +90,7 @@ class DefaultImageService
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
-        CampaignCache::clearDefaultImages();
+        CampaignCache::clear();
 
         return true;
     }

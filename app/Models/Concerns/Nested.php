@@ -36,14 +36,12 @@ trait Nested
     /**
      * Pending operation.
      *
-     * @var mixed
      */
     protected $pending;
 
     /**
      * Whether the node has moved since last save.
      *
-     * @var bool
      */
     protected bool $moved = false;
 
@@ -55,7 +53,6 @@ trait Nested
     /**
      * Keep track of the number of performed operations.
      *
-     * @var int
      */
     public static int $actionsPerformed = 0;
 
@@ -153,7 +150,6 @@ trait Nested
 
     /**
      * Force a node as root. Useful when moving an entity to another campaign
-     * @return void
      */
     public function forceAsRoot(): void
     {
@@ -222,7 +218,6 @@ trait Nested
     /**
      * Append or prepend a node to the parent.
      *
-     * @param self $parent
      * @param bool $prepend
      *
      * @return bool
@@ -260,7 +255,6 @@ trait Nested
     /**
      * Insert node before or after another node.
      *
-     * @param self $node
      * @param bool $after
      *
      * @return bool
@@ -346,7 +340,6 @@ trait Nested
     /**
      * Get query for the node siblings and the node itself.
      *
-     * @param  array $columns
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -439,7 +432,6 @@ trait Nested
     /**
      * Append and save a node.
      *
-     * @param self $node
      *
      * @return bool
      */
@@ -451,7 +443,6 @@ trait Nested
     /**
      * Prepend and save a node.
      *
-     * @param self $node
      *
      * @return bool
      */
@@ -463,7 +454,6 @@ trait Nested
     /**
      * Append a node to the new parent.
      *
-     * @param self $parent
      *
      * @return $this
      */
@@ -476,7 +466,6 @@ trait Nested
     /**
      * Prepend a node to the new parent.
      *
-     * @param self $parent
      *
      * @return $this
      */
@@ -487,8 +476,6 @@ trait Nested
     }
 
     /**
-     * @param self $parent
-     * @param bool $prepend
      *
      * @return self
      */
@@ -506,7 +493,6 @@ trait Nested
     /**
      * Insert self after a node.
      *
-     * @param self $node
      *
      * @return self
      */
@@ -518,7 +504,6 @@ trait Nested
     /**
      * Insert self before node.
      *
-     * @param self $node
      *
      * @return self
      */
@@ -528,7 +513,6 @@ trait Nested
     }
 
     /**
-     * @param self $node
      * @param bool $after
      *
      * @return self
@@ -551,7 +535,6 @@ trait Nested
     /**
      * Insert self after a node and save.
      *
-     * @param self $node
      *
      * @return bool
      */
@@ -563,7 +546,6 @@ trait Nested
     /**
      * Insert self before a node and save.
      *
-     * @param self $node
      *
      * @return bool
      */
@@ -580,9 +562,6 @@ trait Nested
     }
 
     /**
-     * @param mixed $lft
-     * @param mixed $rgt
-     * @param mixed $parentId
      *
      * @return $this
      */
@@ -724,7 +703,6 @@ trait Nested
     /**
      * Restore the descendants.
      *
-     * @param string $deletedAt
      */
     protected function restoreDescendants(string $deletedAt)
     {
@@ -761,8 +739,6 @@ trait Nested
     }
 
     /**
-     * @param string|null $table
-     * @return mixed
      */
     public function newScopedQuery(string $table = null)
     {
@@ -770,10 +746,8 @@ trait Nested
     }
 
     /**
-     * @param mixed $query
      * @param string $table
      *
-     * @return mixed
      */
     public function applyNestedSetScope($query, $table = null)
     {
@@ -799,7 +773,6 @@ trait Nested
     }
 
     /**
-     * @return null
      */
     protected function getScopeAttributes()
     {
@@ -807,7 +780,6 @@ trait Nested
     }
 
     /**
-     * @param array $attributes
      *
      * @return self
      */
@@ -833,7 +805,6 @@ trait Nested
      *
      * Use `children` key on `$attributes` to create child nodes.
      *
-     * @param self $parent
      */
     public static function create(array $attributes = [], self $parent = null)
     {
@@ -991,7 +962,6 @@ trait Nested
      *
      * This can be either a next sibling or a next sibling of the parent node.
      *
-     * @param array $columns
      *
      * @return Model|null
      */
@@ -1005,7 +975,6 @@ trait Nested
      *
      * This can be either a prev sibling or parent node.
      *
-     * @param array $columns
      *
      * @return Model|null
      */
@@ -1015,7 +984,6 @@ trait Nested
     }
 
     /**
-     * @param array $columns
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -1025,7 +993,6 @@ trait Nested
     }
 
     /**
-     * @param array $columns
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -1035,7 +1002,6 @@ trait Nested
     }
 
     /**
-     * @param array $columns
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -1045,7 +1011,6 @@ trait Nested
     }
 
     /**
-     * @param array $columns
      */
     public function getNextSiblings(array $columns = ['*'])
     {
@@ -1053,7 +1018,6 @@ trait Nested
     }
 
     /**
-     * @param array $columns
      */
     public function getPrevSiblings(array $columns = ['*'])
     {
@@ -1061,7 +1025,6 @@ trait Nested
     }
 
     /**
-     * @param array $columns
      * @return Model|QueryBuilder|object|null
      */
     public function getNextSibling(array $columns = ['*'])
@@ -1070,7 +1033,6 @@ trait Nested
     }
 
     /**
-     * @param array $columns
      * @return Model|QueryBuilder|object|null
      */
     public function getPrevSibling(array $columns = ['*'])
@@ -1081,7 +1043,6 @@ trait Nested
     /**
      * Get whether a node is a descendant of other node.
      *
-     * @param self $other
      *
      * @return bool
      */
@@ -1094,7 +1055,6 @@ trait Nested
     /**
      * Get whether a node is itself or a descendant of other node.
      *
-     * @param self $other
      *
      * @return bool
      */
@@ -1107,7 +1067,6 @@ trait Nested
     /**
      * Get whether the node is immediate children of other node.
      *
-     * @param self $other
      *
      * @return bool
      */
@@ -1119,7 +1078,6 @@ trait Nested
     /**
      * Get whether the node is a sibling of another node.
      *
-     * @param self $other
      *
      * @return bool
      */
@@ -1131,7 +1089,6 @@ trait Nested
     /**
      * Get whether the node is an ancestor of other node, including immediate parent.
      *
-     * @param self $other
      *
      * @return bool
      */
@@ -1143,7 +1100,6 @@ trait Nested
     /**
      * Get whether the node is itself or an ancestor of other node, including immediate parent.
      *
-     * @param self $other
      *
      * @return bool
      */
@@ -1194,7 +1150,6 @@ trait Nested
     }
 
     /**
-     * @param int $value
      *
      * @return $this
      */
@@ -1206,7 +1161,6 @@ trait Nested
     }
 
     /**
-     * @param int $value
      *
      * @return $this
      */
@@ -1218,7 +1172,6 @@ trait Nested
     }
 
     /**
-     * @param int|null $value
      *
      * @return $this
      */
@@ -1241,7 +1194,6 @@ trait Nested
     }
 
     /**
-     * @param self $node
      *
      * @return $this
      */
@@ -1260,7 +1212,6 @@ trait Nested
     }
 
     /**
-     * @param self $node
      *
      * @return $this
      */
@@ -1278,7 +1229,6 @@ trait Nested
     }
 
     /**
-     * @param self $node
      */
     protected function assertSameScope(self $node)
     {
@@ -1295,7 +1245,6 @@ trait Nested
     }
 
     /**
-     * @param array|null $except
      *
      * @return \Illuminate\Database\Eloquent\Model
      */

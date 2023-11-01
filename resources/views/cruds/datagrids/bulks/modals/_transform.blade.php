@@ -1,24 +1,12 @@
-
-<div class="modal-header">
-    <x-dialog.close :modal="true" />
-    <h4 class="modal-title" id="clickModalLabel">{{ __('entities/transform.panel.bulk_title') }}</h4>
-</div>
-<div class="modal-body">
-    <p class="help-block">
-        {{ __('entities/transform.panel.bulk_description') }}
-    </p>
-
-    <div class="field-target">
-        <label>{{ __('entities/transform.fields.target') }}</label>
-        {!! Form::select('target', $entities, null, ['class' => 'form-control']) !!}
-    </div>
-
-    <x-dialog.footer :modal="true">
-        <button class="btn2 btn-primary" type="submit">
-            <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
-            {{ __('entities/transform.actions.transform') }}
-        </button>
-    </x-dialog.footer>
-</div>
-
-<input type="hidden" name="datagrid-action" value="transform" />
+{!! Form::open([
+    'url' => route('bulk.transform.apply', [$campaign, $entityType]),
+    'method' => 'POST'
+]) !!}
+@include('partials.forms.form', [
+    'title' => __('entities/transform.panel.bulk_title'),
+    'content' => 'cruds.datagrids.bulks.modals.forms._transform',
+    'submit' => __('entities/transform.actions.transform'),
+    'dialog' => true,
+])
+<input type="hidden" name="models" />
+{!! Form::close() !!}

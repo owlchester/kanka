@@ -40,4 +40,11 @@ return [
         ],
     ],
     'tags'          => [],
+    'transfer'      => [
+        'description'   => 'Presunie objekty tejto kategórie pod inú kategóriu.',
+        'fail'          => 'Nepodarilo sa presunúť objekty z :tag na :newTag',
+        'success'       => 'Presun objektov z :tag na :newTag bol úspešný',
+        'title'         => 'Presun :name',
+        'transfer'      => 'Presun',
+    ],
 ];

@@ -2,70 +2,69 @@
 
 namespace App\Services;
 
+use App\Facades\Avatar;
 use App\Facades\Mentions;
 use App\Facades\Module;
 use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\MiscModel;
+use App\Services\Entity\NewService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Str;
 
+/**
+ * "Old" search that looks in misc models for data
+ */
 class SearchService
 {
     use CampaignAware;
     use UserAware;
 
-    /** @var string The search term */
+    /** The search term */
     protected string $term;
 
-    /** @var string The search entity type */
+    /** The search entity type */
     protected string $type;
 
-    /** @var int Amount of results (sql limit) */
+    /** Amount of results (sql limit) */
     protected int $limit = 10;
 
-    /** @var EntityService */
     protected EntityService $entityService;
 
-    /** @var array List of excluded entity types */
+    protected NewService $newService;
+
+    /** List of excluded entity types */
     protected array $excludedTypes = [];
 
-    /** @var array List of excluded entity ids */
+    /** List of excluded entity ids */
     protected array $excludeIds = [];
 
-    /** @var array List of the only entity types desired */
+    /** List of the only entity types desired */
     protected array $onlyTypes = [];
 
-    /** @var bool If true, adds more info for the nav header lookup */
+    /** If true, adds more info for the nav header lookup */
     protected bool $v2 = false;
 
     /**
      * Set to true for a full result (rather than id => name)
-     * @var bool
      */
     protected bool $full = false;
 
     /**
      * Set to true to return new entity options
-     * @var bool
      */
     protected bool $new = false;
 
-    /**
-     * SearchService constructor.
-     * @param EntityService $entityService
-     */
-    public function __construct(EntityService $entityService)
+    public function __construct(EntityService $entityService, NewService $newService)
     {
         $this->entityService = $entityService;
+        $this->newService = $newService;
     }
 
     /**
      * The search term as requested by the user
-     * @param string|null $term
-     * @return $this
      */
     public function term(string $term = null): self
     {
@@ -75,7 +74,6 @@ class SearchService
 
     /**
      * Sets the service to return data in the "v2" format, used for the header lookup
-     * @return $this
      */
     public function v2(): self
     {
@@ -85,8 +83,6 @@ class SearchService
 
     /**
      * The search entity type as requested by the user
-     * @param int|null $type
-     * @return $this
      */
     public function type(int $type = null): self
     {
@@ -97,8 +93,6 @@ class SearchService
     }
 
     /**
-     * @param bool $new = false
-     * @return $this
      */
     public function new(bool $new = false): self
     {
@@ -107,8 +101,6 @@ class SearchService
     }
 
     /**
-     * @param int $limit
-     * @return $this
      */
     public function limit(int $limit = 10): self
     {
@@ -117,8 +109,6 @@ class SearchService
     }
 
     /**
-     * @param array|string|null $types
-     * @return $this
      */
     public function exclude($types): self
     {
@@ -127,8 +117,6 @@ class SearchService
     }
 
     /**
-     * @param array|string $ids
-     * @return $this
      */
     public function excludeIds($ids): self
     {
@@ -144,8 +132,6 @@ class SearchService
     }
 
     /**
-     * @param array|string $types = null
-     * @return $this
      */
     public function only(array|string $types = null): self
     {
@@ -159,7 +145,6 @@ class SearchService
 
     /**
      * Set the result as full (live search, mentions)
-     * @return $this
      */
     public function full(): self
     {
@@ -169,7 +154,6 @@ class SearchService
 
     /**
      * List of entities matching the request
-     * @return array
      */
     public function find()
     {
@@ -226,6 +210,7 @@ class SearchService
 
             // Exact name match comes first
             // Only do this when the input string is utf8
+            $cleanTerm = preg_replace("/[^a-zA-Z0-9_\-\.\s]/", "", $cleanTerm);
             if (mb_strlen($cleanTerm, 'UTF-8') === mb_strlen($cleanTerm)) {
                 $escapedTerm = preg_replace('/&/', '\\&', preg_quote($cleanTerm));
                 $query->orderByRaw('FIELD(entities.name, ?) DESC', [$cleanTerm]);
@@ -267,9 +252,9 @@ class SearchService
                 continue;
             }
             $img = '';
-            if (!empty($child->image)) {
+            if (!empty($model->image_path)) {
                 $img = '<span class="entity-image" style="background-image: url(\''
-                    . $child->thumbnail() . '\');"></span> ';
+                    . Avatar::entity($model)->size(120)->thumbnail() . '\');"></span> ';
             }
 
             $parsedName = str_replace(['&#039;', '&amp;'], ['\'', '&'], $model->name);
@@ -343,7 +328,6 @@ class SearchService
 
     /**
      * List of months in the calendars
-     * @return array
      */
     public function monthList(): array
     {
@@ -369,13 +353,13 @@ class SearchService
 
     /**
      * List of elements that can be created on the fly
-     * @return array
      */
     protected function newOptions(): array
     {
         $options = [];
         $term = str_replace('_', ' ', $this->term);
-        foreach ($this->entityService->newEntityTypes() as $type => $class) {
+        $available = $this->newService->campaign($this->campaign)->available();
+        foreach ($available as $type => $class) {
             /** @var MiscModel $misc */
             $misc = new $class();
             $label = __('entities.new.' . $type);
@@ -398,31 +382,9 @@ class SearchService
         return $options;
     }
 
-    public function recent(): array
-    {
-        $recentIds = $this->recentEntityIds();
-        if (empty($recentIds)) {
-            return [];
-        }
-
-        $orderedIds = implode(',', $recentIds);
-        $entities = Entity::whereIn('id', $recentIds)
-            ->orderByRaw("FIELD(id, {$orderedIds})")
-            ->get();
-        $recent = [];
-
-        /** @var Entity $entity */
-        foreach ($entities as $entity) {
-            $recent[] = $this->formatForLookup($entity);
-        }
-
-        return $recent;
-    }
-
     /**
      * Format an entity for the lookup/search/recent dropdown
-     * @param Entity $entity
-     * @return array
+     * Todo: switch to train and share with SearchService
      */
     protected function formatForLookup(Entity $entity): array
     {
@@ -430,41 +392,11 @@ class SearchService
             'id' => $entity->id,
             'name' => $entity->name,
             'is_private' => $entity->is_private,
-            'image' => $entity->avatarSize(64)->avatarV2(),
+            'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
             'link' => $entity->url(),
             // @phpstan-ignore-next-line
             'type' => Module::singular($entity->typeId(), __('entities.' . $entity->type())),
-            'preview' => route('entities.preview', $entity)
+            'preview' => route('entities.preview', [$this->campaign, $entity]),
         ];
-    }
-
-    public function logView(Entity $entity): void
-    {
-        $recents = $original = $this->recentEntityIds();
-        $recents = array_diff($recents, [$entity->id]);
-        $recents = [$entity->id, ...$recents];
-
-        // Limit the array to five
-        $recents = array_splice($recents, 0, 5);
-
-        if ($recents == $original) {
-            return;
-        }
-        $key = $this->recentEntityCacheKey();
-        cache()->put($key, $recents, 7 * 86400);
-    }
-
-    protected function recentEntityIds(): array
-    {
-        $key = $this->recentEntityCacheKey();
-        if (!cache()->has($key)) {
-            return [];
-        }
-        return (array) cache()->get($key);
-    }
-
-    protected function recentEntityCacheKey(): string
-    {
-        return 'recent_c' . $this->campaign->id . '_u' . $this->user->id;
     }
 }

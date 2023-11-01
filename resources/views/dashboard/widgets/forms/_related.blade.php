@@ -1,36 +1,27 @@
 
 <div class="">
     {!! Form::hidden('config[attributes]', 0) !!}
-    <div class="field-attributes checkbox">
-        <label>
+    <x-forms.field field="attributes" :label="__('dashboard.widgets.recent.show_attributes')">
+        <x-checkbox :text="__('dashboard.widgets.recent.helpers.show_attributes')">
             {!! Form::checkbox('config[attributes]', 1, (!empty($model) ? $model->conf('attributes') : null), ['id' => 'config-attributes', 'disabled' => !$boosted ? 'disabled' : null]) !!}
-            {{ __('dashboard.widgets.recent.show_attributes') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.show_attributes') }}" aria-hidden="true"></i>
-        </label>
-    </div>
-    <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.show_attributes') }}</p>
+        </x-checkbox>
+    </x-forms.field>
 </div>
 
 <div class="">
     {!! Form::hidden('config[relations]', 0) !!}
-    <div class="field-relations checkbox">
-        <label>
+    <x-forms.field field="relations" :label="__('dashboard.widgets.recent.show_relations')">
+        <x-checkbox :text="__('dashboard.widgets.recent.helpers.show_relations')">
             {!! Form::checkbox('config[relations]', 1, (!empty($model) ? $model->conf('relations') : null), ['id' => 'config-relations', 'disabled' => !$boosted ? 'disabled' : null]) !!}
-            {{ __('dashboard.widgets.recent.show_relations') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.show_relations') }}" aria-hidden="true"></i>
-        </label>
-    </div>
-    <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.show_relations') }}</p>
+        </x-checkbox>
+    </x-forms.field>
 </div>
 
 <div class="">
     {!! Form::hidden('config[members]', 0) !!}
-    <div class="field-members checkbox">
-        <label>
+    <x-forms.field field="members" :label="__('dashboard.widgets.recent.show_members')">
+        <x-checkbox :text="__('dashboard.widgets.recent.helpers.show_members')">
             {!! Form::checkbox('config[members]', 1, (!empty($model) ? $model->conf('members') : null), ['id' => 'config-members', 'disabled' => !$boosted ? 'disabled' : null]) !!}
-            {{ __('dashboard.widgets.recent.show_members') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.show_members') }}" aria-hidden="true"></i>
-        </label>
-    </div>
-    <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.show_members') }}</p>
+        </x-checkbox>
+    </x-forms.field>
 </div>

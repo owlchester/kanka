@@ -6,15 +6,12 @@
     @include('cruds.fields.instigator')
 
     @include('cruds.fields.date')
-    <div class="field-completed checkbox">
+    <x-forms.field field="completed" :label="__('quests.fields.is_completed')">
         {!! Form::hidden('is_completed', 0) !!}
-        <label>{!! Form::checkbox('is_completed', 1, (!empty($model) ? $model->is_completed : (!empty($source) ? FormCopy::field('is_completed')->boolean() : 0))) !!}
-            {{ __('quests.fields.is_completed') }}
-        </label>
-        <p class="help-block">
-            {{ __('quests.helpers.is_completed') }}
-        </p>
-    </div>
+        <x-checkbox :text="__('quests.helpers.is_completed')">
+            {!! Form::checkbox('is_completed', 1, (!empty($model) ? $model->is_completed : (!empty($source) ? FormCopy::field('is_completed')->boolean() : 0))) !!}
+        </x-checkbox>
+    </x-forms.field>
 
     @include('cruds.fields.entry2')
 

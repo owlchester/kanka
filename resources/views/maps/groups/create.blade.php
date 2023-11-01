@@ -7,22 +7,24 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('maps/groups.create.title', ['name' => $map->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
-        ['url' => $map->entity->url(), 'label' => $map->name],
-        ['url' => route('maps.map_groups.index', [$map]), 'label' => __('maps.panels.groups')],
+        Breadcrumb::entity($map->entity)->list(),
+        Breadcrumb::show($map),
+        ['url' => route('maps.map_groups.index', [$campaign, $map]), 'label' => __('maps.panels.groups')],
         __('maps/groups.create.title')
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')
 
-    {!! Form::open(['route' => ['maps.map_groups.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+    {!! Form::open(['route' => ['maps.map_groups.store', $campaign, $map], 'method' => 'POST', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
 
     @include('partials.forms.form', [
         'title' => __('maps/groups.create.title', ['name' => $map->name]),
         'content' => 'maps.groups._form',
         'formParams' => ['model' => null, 'map' => $map],
-        'actions' => 'maps.groups._actions'
+        'actions' => 'maps.groups._actions',
+        'dialog' => true,
     ])
 
     {!! Form::close() !!}

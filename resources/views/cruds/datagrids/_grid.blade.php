@@ -17,17 +17,17 @@
 @endphp
 @if ($stacked > 0)
     <div class="stack inline-grid items-center align-items-end w-[47%] xs:w-[25%] sm:w-48 " data-stack="{{ $stacked }}">
-        <div class="entity block overflow-hidden rounded shadow-sm hover:shadow-md aspect-square w-full flex flex-col bg-box" title="{{ $model->name }}" @foreach ($dataAttributes as $att) data-{{ $att }}="true" @endforeach data-entity="{{ $model->entity->id }}" data-entity-type="{{ $model->getEntityType() }}" @if (!empty($model->type)) data-type="{{ \Illuminate\Support\Str::slug($model->type) }}" @endif>
-            <a href="{{ route($route . '.' . $sub, ['m' => $mode ?? 'grid', 'parent_id' => $model->id]) }}"  class="block avatar grow relative cover-background overflow-hidden text-center" style="background-image: url('{{ $model->entity->avatarSize(192, 144)->avatarV2($model) }}')">
+        <div class="entity overflow-hidden rounded shadow-sm hover:shadow-md aspect-square w-full flex flex-col bg-box" title="{{ $model->name }}" @foreach ($dataAttributes as $att) data-{{ $att }}="true" @endforeach data-entity="{{ $model->entity->id }}" data-entity-type="{{ $model->getEntityType() }}" @if (!empty($model->type)) data-type="{{ \Illuminate\Support\Str::slug($model->type) }}" @endif>
+            <a href="{{ route($route . '.' . $sub, [$campaign, 'm' => $mode ?? 'grid', 'parent_id' => $model->id]) }}"  class="block avatar grow relative cover-background overflow-hidden text-center" style="background-image: url('{{ Avatar::entity($model->entity)->child($model)->fallback()->size(192, 144)->thumbnail() }}')">
 
                 @if ($model->is_private)
-                    <div class="bubble-private absolute left-1.5 top-1.5 text-base shadow-xs flex justify-center align-items-center items-center inline-block aspect-square rounded-full w-6 h-6 text-xs bg-box text-base opacity-80">
+                    <div class="bubble-private absolute left-1.5 top-1.5 text-base shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 bg-box opacity-80">
                         <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')"></x-icon>
                     </div>
                 @endif
             </a>
             @if ($model instanceof \App\Models\Map && $model->explorable())
-                <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', $model->entity->id) }}">
+                <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
                     <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow">
                         {!! $model->name !!}
                     </a>
@@ -38,7 +38,7 @@
                 </div>
             @else
             <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 p-4" data-toggle="tooltip-ajax" data-id="{{ $model->entity->id }}"
-               data-url="{{ route('entities.tooltip', $model->entity->id) }}">
+               data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
                 {!! $model->name !!}
             </a>
             @endif
@@ -52,7 +52,7 @@
     </div>
 @else
     <div class="entity block overflow-hidden rounded shadow-sm hover:shadow-md w-[47%] xs:w-[25%] sm:w-48 aspect-square flex flex-col bg-box @if (isset($isParent)) shadow-lg stacking-parent font-bold @endif" title="{{ $model->name }}" @foreach ($dataAttributes as $att) data-{{ $att }}="true" @endforeach data-entity="{{ $model->entity->id }}" data-entity-type="{{ $model->getEntityType() }}" @if (!empty($model->type)) data-type="{{ \Illuminate\Support\Str::slug($model->type) }}" @endif>
-        <a href="{{ $model->getLink() }}" class="block avatar grow relative cover-background" style="background-image: url('{{ $model->entity->avatarSize(192, 144)->avatarV2($model) }}')">
+        <a href="{{ $model->getLink() }}" class="block avatar grow relative cover-background" style="background-image: url('{{ Avatar::entity($model->entity)->child($model)->fallback()->size(192, 144)->thumbnail() }}')">
             @if ($model->is_private)
                 <div class="bubble-private absolute left-1.5 top-1.5 text-base shadow-xs flex justify-center align-items-center items-center inline-block aspect-square rounded-full w-6 h-6 text-xs bg-box text-base opacity-80">
                     <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')"></x-icon>
@@ -60,7 +60,7 @@
             @endif
         </a>
         @if ($model instanceof \App\Models\Map && $model->explorable())
-            <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', $model->entity->id) }}">
+            <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
                 <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow" >
                     {!! $model->name !!}
                 </a>
@@ -71,7 +71,7 @@
             </div>
         @else
         <a href="{{ $model->getLink() }}" class="block truncate text-center px-2 py-4 h-12" data-toggle="tooltip-ajax" data-id="{{ $model->entity->id }}"
-        data-url="{{ route('entities.tooltip', $model->entity->id) }}">
+        data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
             {!! $model->name !!}
         </a>
         @endif

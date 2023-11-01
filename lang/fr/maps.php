@@ -41,7 +41,7 @@ return [
         'max_zoom'          => 'Zoom maximal',
         'min_zoom'          => 'Zoom minimal',
         'tabs'              => [
-            'coordinates'   => 'Coordinnées',
+            'coordinates'   => 'Coordonnées',
             'marker'        => 'Marqueur',
         ],
     ],

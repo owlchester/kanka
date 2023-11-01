@@ -67,7 +67,6 @@ return [
         'date'                  => 'Текущая дата',
         'day'                   => 'День',
         'default_layout'        => 'Основной вид',
-        'has_leap_year'         => 'Есть високосные годы',
         'intercalary'           => 'Промежуточные дни',
         'is_incrementing'       => 'Автообновление даты',
         'is_recurring'          => 'Повторяющееся',

@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('tags'))
+@if (!$campaign->enabled('tags'))
     <?php return ?>
 @endif
 
@@ -12,6 +12,7 @@ if (isset($model) && $model->tag) {
 @endphp
 
 <x-forms.foreign
+    :campaign="$campaign"
     name="tag_id"
     key="tag"
     entityType="tags"
@@ -19,7 +20,7 @@ if (isset($model) && $model->tag) {
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('tags.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route('tags.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Tag::class"
     :selected="$preset"
     :helper="$helper ?? null"

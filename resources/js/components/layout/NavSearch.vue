@@ -1,7 +1,7 @@
 <template>
     <div v-click-outside="onClickOutside" class="flex grow mr-2">
-        <div class="relative grow">
-            <input type="text" class="form-control leading-4 w-20 md:w-full" maxlength="25"
+        <div class="relative grow field flex items-center">
+            <input type="text" class="leading-4 w-20 md:w-full" maxlength="25"
                 ref="searchField"
                 id="entity-lookup"
                 v-model="term"
@@ -10,8 +10,10 @@
                 @keydown.esc="escape()"
                 :placeholder="placeholder"
             />
-            <span class="form-control-feedback hidden-xs hidden-sm">
-                <span class="flex-none keyboard-shortcut py-1" id="lookup-kb-shortcut" data-toggle="tooltip" v-bind:title="keyboard_tooltip" data-html="true" data-placement="bottom" >K</span>
+            <span class="absolute right-1  hidden md:inline">
+                <span class="flex-none keyboard-shortcut py-1" id="lookup-kb-shortcut" data-toggle="tooltip" v-bind:data-title="keyboard_tooltip" data-html="true" data-placement="bottom">
+                    K
+                </span>
             </span>
         </div>
 
@@ -25,11 +27,11 @@
                         {{ texts.hint}}
                     </p>
                 </div>
-                <div class="grow">
-                    <div class="search-results mb-2" v-if="show_results">
-                        <div class="text-sm uppercase mb-2 my-2 mx-1">{{ texts.results }}</div>
+                <div class="grow flex flex-col gap-5 p-2">
+                    <div class="search-results flex flex-col gap-2" v-if="show_results">
+                        <div class="text-sm uppercase">{{ texts.results }}</div>
 
-                        <div class="italic m-2" v-if="results.length === 0">
+                        <div class="text-neutral-content text-sm" v-if="results.length === 0">
                             {{ texts.empty_results }}
                         </div>
                         <LookupEntity v-else v-for="entity in results"
@@ -38,13 +40,49 @@
                         </LookupEntity>
                     </div>
 
-                    <div class="recent-searches" v-if="recent.length > 0">
-                        <div class="text-sm uppercase my-2 mx-1">{{ texts.recents }}</div>
+                    <div class="recent-searches flex flex-col gap-2" v-if="recent.length > 0">
+                        <div class="text-sm uppercase ">{{ texts.recents }}</div>
 
                         <LookupEntity v-for="entity in recent"
                                       :entity="entity"
                         >
                         </LookupEntity>
+                    </div>
+
+                    <div class="flex gap-5 justify-center" v-if="bookmarks.length > 0">
+                        <button class="grow text-sm uppercase hover:underline"
+                                v-bind:class="this.modeClass(true)"
+                                v-if="bookmarks.length > 0"
+                                @click="showBookmarks()">{{ texts.bookmarks }}
+                        </button>
+                        <button class="grow text-sm uppercase hover:underline"
+                                v-bind:class="this.modeClass(false)"
+                                @click="showIndexes()">
+                            {{ texts.index }}
+                        </button>
+                    </div>
+
+                    <div class="flex flex-col gap-4" v-if="show_bookmarks">
+                        <a
+                            v-for="bookmark in bookmarks"
+                            v-bind:href="bookmark.url"
+                            v-on:click.stop
+                            :title="bookmark.text"
+                            class="flex gap-2 items-center ">
+                            <i class="w-4" v-bind:class="bookmark.icon" aria-hidden="true"></i>
+                            {{ bookmark.text }}
+                        </a>
+                    </div>
+                    <div class="flex flex-col gap-4" v-else>
+                        <a
+                            v-for="link in indexes"
+                            v-bind:href="link.url"
+                            v-on:click.stop
+                            :title="link.name"
+                            class="flex gap-2 items-center ">
+                            <i class="w-4 text-center" v-bind:class="link.icon" aria-hidden="true"></i>
+                            {{ link.name }}
+                        </a>
                     </div>
                 </div>
 
@@ -94,7 +132,10 @@ export default {
             show_recent: false,
             show_preview: false,
             show_results: false,
+            show_bookmarks: false,
             recent: [],
+            bookmarks: [],
+            indexes: [],
             results: [],
             cached: {},
             has_recent: false,
@@ -131,9 +172,9 @@ export default {
                 return this.displayCached(cacheKey);
             }
 
-            axios.get(this.api_lookup, {params: {q: term, v2: true}}).then(response => {
-                this.parseLookupResponse(response, cacheKey);
-            });
+            fetch(this.api_lookup + '?' + new URLSearchParams({q: term, v2: true}))
+                .then(response => response.json())
+                .then(response => this.parseLookupResponse(response, cacheKey));
         },
         focus() {
             // Unlogged in users don't get a recent list pop out when focusing on the search field
@@ -160,18 +201,29 @@ export default {
             }
 
             this.show_loading = true;
-            axios.get(this.api_recent).then(response => {
-                this.recent = response.data.recent;
-                this.texts.recents = response.data.texts.recents;
-                this.texts.results = response.data.texts.results;
-                this.texts.hint = response.data.texts.hint;
-                this.texts.keyboard = response.data.texts.keyboard;
-                this.texts.empty_results = response.data.texts.empty_results;
+            fetch(this.api_recent)
+                .then(response => response.json())
+                .then(response => {
+                this.recent = response.recent;
+                this.bookmarks = response.bookmarks;
+                this.indexes = response.indexes;
+                this.texts.recents = response.texts.recents;
+                this.texts.results = response.texts.results;
+                this.texts.hint = response.texts.hint;
+                this.texts.bookmarks = response.texts.bookmarks;
+                this.texts.index = response.texts.index;
+                this.texts.keyboard = response.texts.keyboard;
+                this.texts.empty_results = response.texts.empty_results;
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = true;
+                if (this.bookmarks.length > 0) {
+                    this.show_bookmarks = true;
+                } else {
+                    this.show_bookmarks = false;
+                }
             }).catch(error => {
-                // Probably unlogged user
+                // Probably un-logged user
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = false;
@@ -179,8 +231,8 @@ export default {
         },
         // Load results from a search
         parseLookupResponse(response, cacheKey) {
-            this.results = response.data.entities;
-            this.cached[cacheKey] = response.data.entities;
+            this.results = response.entities;
+            this.cached[cacheKey] = response.entities;
             this.showResults();
         },
         displayCached(key) {
@@ -196,18 +248,18 @@ export default {
         // Preview an entity
         loadPreview(entity) {
             this.show_loading = true;
-            axios.get(entity.preview).then(response => {
-                this.parsePreviewResponse(response);
-            });
+          fetch(entity.preview)
+              .then(response => response.json())
+              .then(response => this.parsePreviewResponse(response));
         },
         parsePreviewResponse(response) {
-            this.preview_entity = response.data;
+            this.preview_entity = response;
             //console.log('preview_entity', this.preview_entity);
             this.show_loading = false;
             this.show_preview = true;
             this.show_recent = false;
         },
-        // When clicking outside of the area, close the search pannel
+        // When clicking outside  the area, close the search panel
         onClickOutside (event) {
             //console.log('Clicked outside. Event: ', event)
             this.close();
@@ -217,6 +269,20 @@ export default {
             this.show_loading = false;
             this.show_preview = false;
             this.$refs.searchField.blur();
+        },
+        showBookmarks() {
+            this.show_bookmarks = true;
+        },
+        showIndexes() {
+            this.show_bookmarks = false;
+        },
+        modeClass(bookmark) {
+            if (bookmark && this.show_bookmarks) {
+                return ' underline';
+            } else if (!bookmark && !this.show_bookmarks) {
+                return ' underline';
+            }
+            return '';
         }
     },
     mounted() {

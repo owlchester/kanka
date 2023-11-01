@@ -7,7 +7,6 @@ use App\Models\Conversation;
 class ConversationObserver extends MiscObserver
 {
     /**
-     * @param Conversation $model
      */
     public function updating(Conversation $model)
     {

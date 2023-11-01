@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->nested()
     ->service($filterService)
     ->models($models)
@@ -15,7 +16,7 @@
         /*[
             'label' => __('entities.races'),
             'field' => 'race.name',
-            'visible' => $campaignService->enabled('races'),
+            'visible' => $campaign->enabled('races'),
             'render' => function($model) {
                 if ($model->race) {
                     return $model->race->tooltipedLink();
@@ -31,7 +32,7 @@
         ],
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count() . ' / ' . $model->allCharacters(true)->count();
             },
@@ -45,7 +46,6 @@
         'route' => 'races.tree',
         'baseRoute' => 'races',
         'trans' => 'races.fields.',
-        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

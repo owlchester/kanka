@@ -19,7 +19,8 @@ class CampaignRole extends Layout
                 'label' => 'campaigns.roles.fields.name',
                 'render' => function ($model) {
                     /** @var \App\Models\CampaignRole $model */
-                    $html = '<a href="' . route('campaign_roles.show', ['campaign_role' => $model])
+                    $campaign = CampaignLocalization::getCampaign();
+                    $html = '<a href="' . route('campaign_roles.show', [$campaign, 'campaign_role' => $model])
                         . '">' . $model->name
                         . '</a><br />';
 
@@ -50,7 +51,7 @@ class CampaignRole extends Layout
 
                     /** @var \App\Models\CampaignRole $model */
                     if (!$model->is_admin) {
-                        $html = '<a href="' . route('campaign_roles.show', ['campaign_role' => $model])
+                        $html = '<a href="' . route('campaign_roles.show', [$campaign, 'campaign_role' => $model])
                             . '" title="'
                             . __('campaigns.roles.actions.permissions')
                             . '">'
@@ -58,7 +59,7 @@ class CampaignRole extends Layout
                             . '</a>';
                     }
                     if ($model->is_public && !$campaign->isPublic() && $model->permissions->whereNull('entity_id')->count() > 0) {
-                        $html .= '<div class="hidden-xs"> <i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" title="'
+                        $html .= '<div class="sm:hidden"> <i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" data-title="'
                             . __('campaigns.roles.hints.campaign_not_public')
                             . '"></i></div> <div class="visible-xs">
                                 <i class="fa-solid fa-exclamation-triangle" data-toggle="collapse" data-target="#campaign-public-warning"></i>
@@ -78,7 +79,6 @@ class CampaignRole extends Layout
 
     /**
      * Available actions on each row
-     * @return array
      */
     public function actions(): array
     {
@@ -87,7 +87,7 @@ class CampaignRole extends Layout
                 'label' => 'campaigns.roles.actions.rename',
                 'icon' => 'fa-solid fa-edit',
                 'can' => 'update',
-                'type' => 'ajax-modal',
+                'type' => 'dialog-ajax',
                 'route' => 'campaign_roles.edit',
             ],
             'show' => [
@@ -99,7 +99,7 @@ class CampaignRole extends Layout
                 'label' => 'campaigns.roles.actions.duplicate',
                 'icon' => 'fa-solid fa-copy',
                 'can' => 'update',
-                'type' => 'ajax-modal',
+                'type' => 'dialog-ajax',
                 'route' => 'campaign_roles.duplicate',
             ],
             Layout::ACTION_DELETE,

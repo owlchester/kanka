@@ -1,20 +1,21 @@
 <?php /** @var \App\Models\Map $model */?>
 
-<div class="entity-grid">
+<div class="entity-grid flex flex-col gap-5">
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
+            Breadcrumb::entity($model->entity)->list(),
             null
         ]
     ])
 
-    @include('entities.components.menu_v2', ['active' => 'story'])
+    <div class="entity-body flex flex-col md:flex-row gap-5">
+        @include('entities.components.menu_v2', ['active' => 'story'])
 
-    <div class="entity-story-block">
-        @include('entities.components.posts', ['withEntry' => true])
+        <div class="entity-main-block grow flex flex-col gap-5">
+            @include('entities.components.posts', ['withEntry' => true])
 
-        @if (!empty($model->image) || $model->isReal())
+            @if (!$model->explorable())
                 @if ($model->isChunked() && $model->chunkingError())
                     <x-alert type="error">
                         {!! __('maps.errors.chunking.error', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
@@ -26,15 +27,14 @@
                     </x-alert>
                 @else
                 <p>
-                    <a href="{{ route('maps.explore', $model) }}" class="btn2 btn-block btn-primary" target="_blank">
+                    <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="btn2 btn-block btn-primary" target="_blank">
                         <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
                     </a>
                 </p>
                 @endif
-        @endif
-    </div>
+            @endif
+        </div>
 
-    <div class="entity-sidebar">
         @include('entities.components.pins')
     </div>
 </div>

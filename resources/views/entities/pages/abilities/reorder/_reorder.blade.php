@@ -1,12 +1,12 @@
 <?php /** @var \App\Models\TimelineEra[] $abilities */?>
 {!! Form::open([
-        'route' => ['entities.entity_abilities.reorder-save', $entity],
+        'route' => ['entities.entity_abilities.reorder-save', $campaign, $entity],
         'method' => 'POST',
     ]) !!}
-<div class="box-entity-story-reorder w-max-4xl">
+<div class="box-abilities-reorder w-max-4xl flex flex-col gap-5">
     @foreach($parents as $key => $parent)
-        <div class="element-live-reorder">
-            <div class="element bg-base-200">
+        <div class="element-live-reorder flex flex-col gap-1">
+            <div class="element bg-base-200 rounded flex flex-col gap-2 p-2">
                 <div class="name overflow-hidden flex-grow">
                     @if ($key === "")
                         {{ __('entities/abilities.reorder.parentless') }}
@@ -14,20 +14,22 @@
                         {{ $parent[0]->ability->ability?->name }}
                     @endif
                 </div>
-                <div class="children sortable-elements">
+                <div class="children sortable-elements flex flex-col gap-1">
                     @foreach($parent as $ability)
-                        <div class="element bg-base-100" data-id="{{ $ability->id }}">
+                        <x-reorder.child id="$ability->id">
                             {!! Form::hidden('ability[]', $ability->id) !!}
-                            <div class="dragger pr-3">
+                            <div class="dragger relative pr-3">
                                 <span class="fa-solid fa-sort" aria-hidden="true"></span>
                             </div>
-                            <div class="name">
+                            <div class="name grow">
                                 {!! $ability->ability->name !!}
-                                <span class="text-sm">
-                                    {!! $ability->ability->type!!}
+                                @if ($ability->ability->type)
+                                <span class="text-xs text-neutral-content">
+                                    ({!! $ability->ability->type!!})
                                 </span>
+                                @endif
                             </div>
-                        </div>
+                        </x-reorder.child>
                     @endforeach
                 </div>
             </div>

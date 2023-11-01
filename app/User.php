@@ -11,7 +11,6 @@ use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
-use App\Models\Concerns\Tutorial;
 use App\Models\Concerns\UserBoosters;
 use App\Models\Concerns\UserTokens;
 use App\Models\Pledge;
@@ -20,6 +19,7 @@ use App\Models\UserLog;
 use App\Models\UserSetting;
 use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -34,6 +34,7 @@ use App\Models\Concerns\LastSync;
  * @property int $id
  * @property string $name
  * @property string $email
+ * @property string $locale
  * @property integer|null $last_campaign_id
  * @property string|null $avatar
  * @property string $provider
@@ -64,17 +65,14 @@ class User extends \Illuminate\Foundation\Auth\User
 {
     use Billable;
     use HasApiTokens;
+    use HasFactory;
     use LastSync;
     use Notifiable;
-    use Tutorial;
     use UserBoosters;
     use UserRelations;
     use UserScope;
     use UserSetting;
     use UserTokens;
-
-
-    protected static $currentCampaign = false;
 
     /**
      * The attributes that are mass assignable.
@@ -116,7 +114,6 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     protected $casts = [
         'settings' => 'array',
-        'tutorial' => 'array',
         'profile' => 'array',
         'card_expires_at' => 'datetime',
         'last_login_at' => 'date',
@@ -124,41 +121,12 @@ class User extends \Illuminate\Foundation\Auth\User
     ];
 
     /**
-     * Get the user's campaign.
-     * This is the equivalent of calling user->campaign or user->getCampaign
-     * @return Campaign|null
-     */
-    public function getCampaignAttribute()
-    {
-        // We use a dirty static system because relying on the last_campaign_id doesn't work when two sessions
-        // are active form the same user.
-        if (self::$currentCampaign === false) {
-            self::$currentCampaign = CampaignLocalization::getCampaign();
-        }
-        return self::$currentCampaign;
-    }
-
-    /**
-     * Change the current campaign (when creating a new one)
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function setCurrentCampaign(Campaign $campaign): self
-    {
-        self::$currentCampaign = $campaign;
-        return $this;
-    }
-
-
-    /**
      * Get the other campaigns of the user
-     * @param bool $hasEmpty
-     * @return array
      */
-    public function moveCampaignList(bool $hasEmpty = true): array
+    public function moveCampaignList(Campaign $campaign, bool $hasEmpty = true): array
     {
         $campaigns = $hasEmpty ? [0 => ''] : [];
-        foreach ($this->campaigns()->whereNotIn('campaign_id', [$this->campaign->id])->get() as $campaign) {
+        foreach ($this->campaigns()->whereNotIn('campaign_id', [$campaign->id])->get() as $campaign) {
             $campaigns[$campaign->id] = $campaign->name;
         }
         return $campaigns;
@@ -166,7 +134,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * @param int $size = 40
-     * @return string
      */
     public function getAvatarUrl(int $size = 40): string
     {
@@ -178,21 +145,16 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * @param int|null $campaignId
-     * @return string
+     * List of roles a user has in a campaign
      */
-    public function rolesList(int $campaignId = null): string
+    public function rolesList(Campaign $campaign): string
     {
-        if ($campaignId === null && !empty($this->campaign)) {
-            $campaignId = $this->campaign->id;
-        }
-
         /** @var CampaignRole[] $roles */
-        $roles = $this->campaignRoles->where('campaign_id', $campaignId);
+        $roles = $this->campaignRoles->where('campaign_id', $campaign->id);
         $roleLinks = [];
         foreach ($roles as $role) {
             if (auth()->user()->isAdmin()) {
-                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, [$role->id]);
+                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, [$campaign, $role->id]);
             } else {
                 $roleLinks[] = $role->name;
             }
@@ -200,12 +162,12 @@ class User extends \Illuminate\Foundation\Auth\User
         return (string) implode(', ', $roleLinks);
     }
 
-    public function hasCampaignRole(int $roleId)
+    /**
+     * Determine if a user has a specific role
+     */
+    public function hasCampaignRole(int $roleId): bool
     {
-        $campaignId = $this->campaign->id;
-        $roleIds = $this->campaignRoles->where('campaign_id', $campaignId)->pluck('id')->toArray();
-
-        return in_array($roleId, $roleIds);
+        return $this->campaignRoles->where('id', $roleId)->count() > 0;
     }
 
     /**
@@ -213,12 +175,12 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isAdmin(): bool
     {
-        return UserCache::user($this)->campaign($this->campaign)->admin();
+        $campaign = CampaignLocalization::getCampaign();
+        return UserCache::user($this)->campaign($campaign)->admin();
     }
 
     /**
      * Check if a user has campaigns
-     * @return bool
      */
     public function hasCampaigns($count = 0): bool
     {
@@ -227,8 +189,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Check if the user has other campaigns than the current one
-     * @param int $campaignId
-     * @return bool
      */
     public function hasOtherCampaigns(int $campaignId): bool
     {
@@ -237,56 +197,7 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Get max file size of user
-     * @param bool $readable
-     * @return string|int
-     */
-    public function maxUploadSize(bool $readable = false): string|int
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
-            $min = config('limits.filesize.image');
-            return $readable ? $min . 'MB' : ($min * 1024);
-        } elseif ($this->isElemental()) {
-            // Anders gets higher upload sizes until we handle this in the db.
-            if ($this->id === 34122) {
-                return $readable ? '100MB' : 102400;
-            }
-            return $readable ? '25MB' : 25600;
-        } elseif ($this->isWyvern()) {
-            return $readable ? '15MB' : 15360;
-        }
-        // Allow kobolds and goblins to have the Owlbear sizes
-        return $readable ? '8MB' : 8192;
-    }
-
-    /**
-     * Determine the max upload size for a map
-     * @param bool $readable
-     * @return string|int
-     */
-    public function mapUploadSize(bool $readable = false): string|int
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        // Not a subscriber and not in a boosted campaign get the default
-        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
-            return $readable ? '3MB' : 3072;
-        } elseif ($this->isElemental()) {
-            // Anders gets higher upload sizes until we handle this in the db.
-            if ($this->id === 34122) {
-                return $readable ? '100MB' : 102400;
-            }
-            return $readable ? '50MB' : 51200;
-        } elseif ($this->isWyvern()) {
-            return $readable ? '20mb' : 20480;
-        }
-        // We allow Kobolds and Goblins to have 10MB
-        return $readable ? '10MB' : 10240;
-    }
-
-    /**
      * Determine if a user is a subscriber
-     * @return bool
      */
     public function isSubscriber(): bool
     {
@@ -295,7 +206,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user has a legacy patreon sync set up
-     * @return bool
      */
     public function isLegacyPatron(): bool
     {
@@ -304,7 +214,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user is a goblin (deprecated)
-     * @return bool
      */
     public function isGoblin(): bool
     {
@@ -313,20 +222,13 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user is an elemental
-     * @return bool
      */
     public function isElemental(): bool
     {
-        if (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL) {
-            return true;
-        }
-        // We check the campaign and roles for 61105 because of a special Elemental subscriber.
-        $campaign = CampaignLocalization::getCampaign(false);
-        return (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
+        return (bool) (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL);
     }
 
     /**
-     * @return bool
      */
     public function isOwlbear(): bool
     {
@@ -334,7 +236,6 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * @return bool
      */
     public function isWyvern(): bool
     {
@@ -343,7 +244,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * API throttling is increased for subscribers
-     * @return int
      */
     public function getRateLimitAttribute(): int
     {
@@ -352,7 +252,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Currency symbol
-     * @return string
      */
     public function currencySymbol(): string
     {
@@ -364,7 +263,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if the user is billed in EUR.
-     * @return bool
      */
     public function billedInEur(): bool
     {
@@ -372,23 +270,6 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Determine if ads should be shown for the user or campaign
-     * @return bool
-     */
-    public function showAds(): bool
-    {
-        // Patrons and subs don't have ads
-        if ($this->isSubscriber()) {
-            return false;
-        }
-
-        // Campaigns that are boosted don't either
-        $campaign = CampaignLocalization::getCampaign(false);
-        return !empty($campaign) && !$campaign->boosted();
-    }
-
-    /**
-     * @return array
      */
     public function adminCampaigns(): array
     {
@@ -410,7 +291,6 @@ class User extends \Illuminate\Foundation\Auth\User
      *
      * @param string|array $name The role(s) to check.
      *
-     * @return bool
      */
     public function hasRole($name): bool
     {
@@ -427,7 +307,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user is using a social login
-     * @return bool
      */
     public function isSocialLogin(): bool
     {
@@ -436,7 +315,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Number of entities the user has created
-     * @return string
      */
     public function createdEntitiesCount(): string
     {
@@ -450,7 +328,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Get the Discord app of the user
-     * @return mixed
      */
     public function discord()
     {
@@ -459,22 +336,21 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Get the user's role IDs based on the campaign
-     * @param int $campaignID
-     * @return array
      */
     public function campaignRoleIDs(int $campaignID): array
     {
-        $roles = UserCache::roles()->where('campaign_id', $campaignID);
-        return $roles->pluck('id')->toArray();
+        return UserCache::roles()->pluck('id')->toArray();
     }
 
     /**
      * Log an event on the user
-     * @param int $type
      * @return $this
      */
     public function log(int $type): self
     {
+        if (!config('logging.enabled')) {
+            return $this;
+        }
         UserLog::create([
             'user_id' => $this->id,
             'type_id' => $type,
@@ -484,7 +360,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if the user is banned
-     * @return bool
      */
     public function isBanned(): bool
     {
@@ -493,7 +368,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if the user has achievements to display on their profile page
-     * @return bool
      */
     public function hasAchievements(): bool
     {
@@ -502,7 +376,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if a user has the Wordsmith role
-     * @return bool
      */
     public function isWordsmith(): bool
     {
@@ -528,7 +401,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Determine if the user has unread notifications or kanka alerts
-     * @return bool
      */
     public function hasUnread(): bool
     {
@@ -550,7 +422,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Fraud detection system
-     * @return bool
      */
     public function isFrauding(): bool
     {
@@ -563,19 +434,18 @@ class User extends \Illuminate\Foundation\Auth\User
             return false;
         }
         // If the account was created recently, add some small checks
-        if ($this->created_at->isAfter(Carbon::now()->subHour())) {
+        /*if ($this->created_at->isAfter(Carbon::now()->subHour())) {
             // User's name is directly in the campaign name
             if (Str::startsWith($this->email, $this->name . '@')) {
                 return true;
             } elseif ($this->campaigns()->count() === 1) {
                 $campaign = $this->campaigns()->first();
                 // Only the 4 starting entities
-                // @phpstan-ignore-next-line
                 if ($campaign->entities()->withInvisible()->count() === 4) {
                     return true;
                 }
             }
-        }
+        }*/
         // Recent fails are a clear indicator of someone cycling through cards
         return $this->logs()
             ->where('type_id', UserLog::TYPE_FAILED_CHARGE_EMAIL)
@@ -585,7 +455,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * List of campaigns the user is the only admin of. This is used for the automatic purge warning emails
-     * @return array
      */
     public function onlyAdminCampaigns(): array
     {
@@ -616,5 +485,27 @@ class User extends \Illuminate\Foundation\Auth\User
         }
 
         return $campaigns;
+    }
+
+    /**
+     * Check if user is subscribed via PayPal
+     */
+    public function hasPayPal(): bool
+    {
+        // @phpstan-ignore-next-line
+        return $this->subscribed('kanka') && $this->subscriptions()->first() && str_contains($this->subscriptions()->first()->stripe_price, 'paypal');
+    }
+
+    public function isStripeYearly(): bool
+    {
+        $prices = [
+            config('subscription.owlbear.usd.yearly'),
+            config('subscription.owlbear.eur.yearly'),
+            config('subscription.wyvern.usd.yearly'),
+            config('subscription.wyvern.eur.yearly'),
+            config('subscription.elemental.usd.yearly'),
+            config('subscription.elemental.eur.yearly'),
+        ];
+        return $this->subscribedToPrice($prices);
     }
 }

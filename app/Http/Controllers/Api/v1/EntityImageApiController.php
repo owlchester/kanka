@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Facades\Avatar;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\UploadEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\Services\ImageService;
 
 class EntityImageApiController extends Controller
@@ -16,25 +16,19 @@ class EntityImageApiController extends Controller
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
 
-        /** @var MiscModel $child */
-        $child = $entity->child;
-
         // Let the service handle everything
-        ImageService::handle($child);
-        $child->update(['image' => $child->image]);
+        ImageService::handle($entity);
+        $entity->update();
 
         return response()->json([
             'entity_id' => $entity->id,
-            'child_id' => $child->id,
-            'image_full' => !empty($child->image) ? $child->thumbnail(0) :
-                (!empty($entity->image) ? $entity->image->getImagePath(0) : null),
-            'image_thumb' => $child->thumbnail(),
+            'child_id' => $entity->child->id,
+            'image_full' => Avatar::entity($entity)->original(),
+            'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
         ]);
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Entity $entity
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -43,20 +37,16 @@ class EntityImageApiController extends Controller
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
 
-        /** @var MiscModel $child */
-        $child = $entity->child;
-
         // Let the service handle everything
-        ImageService::cleanup($child);
+        ImageService::cleanup($entity);
 
-        $child->update(['image' => $child->image]);
+        $entity->update(['image_path' => '']);
 
         return response()->json([
             'entity_id' => $entity->id,
-            'child_id' => $child->id,
-            'image_full' => !empty($child->image) ? $child->thumbnail(0) :
-                (!empty($entity->image) ? $entity->image->getImagePath(0) : null),
-            'image_thumb' => $child->thumbnail(),
+            'child_id' => $entity->child->id,
+            'image_full' => Avatar::entity($entity)->original(),
+            'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
         ], 200);
     }
 }

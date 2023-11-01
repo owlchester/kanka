@@ -42,7 +42,6 @@ class ChunkingService
     }
 
     /**
-     * @return bool
      */
     public function chunk(): bool
     {
@@ -84,8 +83,6 @@ class ChunkingService
     }
 
     /**
-     * @param int $level
-     * @return float
      */
     protected function scale(int $level): float
     {
@@ -94,7 +91,6 @@ class ChunkingService
     }
 
     /**
-     * @param float $scale
      * @return int[]
      */
     protected function dimension(float $scale): array
@@ -139,11 +135,6 @@ class ChunkingService
     }
 
     /**
-     * @param int $width
-     * @param int $height
-     * @param int $level
-     * @param string $levelFolder
-     * @return void
      */
     protected function createTile(int $width, int $height, int $level, string $levelFolder): void
     {
@@ -207,8 +198,6 @@ class ChunkingService
 
     /**
      * Define the minimum and maximum zoom level based on the image dimensions
-     * @param int $max
-     * @return self
      */
     protected function zoomLevels(int $max): self
     {

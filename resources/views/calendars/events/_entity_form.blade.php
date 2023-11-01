@@ -1,33 +1,34 @@
 <?php
-$calendars = \App\Models\Calendar::get();
 $onlyOneCalendar = count($calendars) == 1;
 ?>
 {{ csrf_field() }}
-
-<div id="entity-calendar-modal-form">
-    <div class="field-calendar entity-calendar-selector">
-        <x-forms.foreign
-            name="calendar_id"
-            key="calendar"
-            :allowNew="false"
-            :allowClear="true"
-            :route="route('calendars.find', isset($model) ? ['exclude' => $model->id] : null)"
-            :selected="$onlyOneCalendar ? $calendars->first() : null"
-            :dropdownParent="request()->ajax() ? '#entity-modal' : null"
-            :entityTypeID="config('entities.ids.calendar')">
-        </x-forms.foreign>
+<x-grid type="1/1">
+    <div id="entity-calendar-modal-form w-full">
+        <div class="field-calendar entity-calendar-selector w-full">
+            <x-forms.foreign
+                :campaign="$campaign"
+                name="calendar_id"
+                key="calendar"
+                :allowNew="false"
+                :allowClear="true"
+                :route="route('calendars.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+                :selected="$onlyOneCalendar ? $calendars->first() : null"
+                :dropdownParent="$dropdownParent ?? (request()->ajax() ? '#primary-dialog' : null)"
+                :entityTypeID="config('entities.ids.calendar')">
+            </x-forms.foreign>
+        </div>
     </div>
-</div>
+</x-grid>
 
 
 <div class="entity-calendar-subform" style="{{ $onlyOneCalendar ? '' : 'display: none;' }}">
-    @include('calendars.events._subform', ['colourAppendTo' => '#entity-modal'])
+    @include('calendars.events._subform', ['colourAppendTo' => $dropdownParent ?? '#primary-dialog'])
 </div>
 
 <div class="entity-calendar-loading" style="display: none">
     <p class="text-center">
-        <i class="fa-solid fa-spin fa-spinner"></i>
+        <x-icon class="load" />
     </p>
 </div>
 
-<input type="hidden" name="calendar-data-url" data-url="{{ route('calendars.month-list', ['calendar' => 0]) }}">
+<input type="hidden" name="calendar-data-url" data-url="{{ route('calendars.month-list', [$campaign, 'calendar' => 0]) }}">

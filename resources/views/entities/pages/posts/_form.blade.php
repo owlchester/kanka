@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \App\Models\EntityNotePermission $perm
+ * @var \App\Models\PostPermission $perm
  */
 
 use App\Models\PostLayout;
@@ -10,9 +10,8 @@ $permissions = [
     1 => __('crud.edit'),
     2 => __('crud.permissions.actions.bulk.deny')
 ];
-$currentCampaign = \App\Facades\CampaignLocalization::getCampaign();
 $defaultCollapsed = null;
-if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
+if (!isset($model) && !empty($campaign->ui_settings['post_collapsed'])) {
     $defaultCollapsed = 1;
 }
 if (isset($model)) {
@@ -53,58 +52,46 @@ $layoutOptions = $layoutDefault + $layoutOptions
     <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
         <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
-                <div class="field-name required">
-                    {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
-                </div>
-                <div class="field-layout" @if(isset($hideLayout)) style="display: none" @endif>
-                    {!! Form::select('layout_id', $layoutOptions, isset($model) ? $model->layout_id : '',['class' => 'form-control', 'id' => 'post-layout-selector']) !!}
+                <x-forms.field field="name" :required="true">
+                    {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => '', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
+                </x-forms.field>
+
+                <x-forms.field field="layout" :hidden="isset($layoutHelper)">
+                    {!! Form::select('layout_id', $layoutOptions, isset($model) ? $model->layout_id : '',['class' => '', 'id' => 'post-layout-selector']) !!}
                     <div id="post-layout-subform" style="display: none">
-                        @includeWhen(!$currentCampaign->superboosted(), 'entities.pages.posts._boosted')
+                        @includeWhen(!$campaign->superboosted(), 'entities.pages.posts._boosted')
                     </div>
-                </div>
+                </x-forms.field>
                 @if (isset($layoutHelper))
-                    <div class="field-layout-helper">
-                        <p class="help-block">{{ $layoutHelper }}</p>
-                    </div>
+                    <p class="text-neutral-content m-0">{{ $layoutHelper }}</p>
                 @endif
-                <div class="field-entry md:col-span-2" id="field-entry" @if(isset($layoutHelper)) style="display: none" @endif>
-                    {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
-                </div>
-                <div class="field-location" id="field-location" @if(isset($layoutHelper)) style="display: none" @endif>
-                    <input type="hidden" name="location_id" value="" />
+
+                <x-forms.field field="entry" css="md:col-span-2" id="field-entry" :hidden="isset($layoutHelper)">
+                    {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+                </x-forms.field>
+                <x-forms.field field="location" id="field-location" :hidden="isset($layoutHelper)">
                     @include('cruds.fields.location', ['from' => null])
-                </div>
+                </x-forms.field>
 
                 @include('cruds.fields.visibility_id')
 
-                <div class="field-position">
-                    <label>{{ __('crud.fields.position') }}</label>
-                    {!! Form::select('position', $options, (!empty($model->position) ? -9999 : $last), ['class' => 'form-control']) !!}
-                </div>
+                <x-forms.field field="position" :label="__('crud.fields.position')">
+                    {!! Form::select('position', $options, (!empty($model->position) ? -9999 : $last), ['class' => '']) !!}
+                </x-forms.field>
                 @php
                     $collapsedOptions = [
                         0 => __('entities/notes.collapsed.open'),
                         1 => __('entities/notes.collapsed.closed')
                     ];
                 @endphp
-                <div class="field-display" id="field-display" @if(isset($layoutHelper)) style="display: none" @endif>
-                    <label>
-                        {{ __('entities/notes.fields.display') }}
-                    </label>
-                    {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => 'form-control']) !!}
-                </div>
+                <x-forms.field field="display" id="field-display" :hidden="isset($layoutHelper)" :label="__('entities/notes.fields.display')">
+                    {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => '']) !!}
+                </x-forms.field>
 
-                <div class="field-class">
-                    <label for="config[class]">
-                        {{ __('dashboard.widgets.fields.class') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
-                    </label>
-                    {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
-                    <p class="help-block visible-xs visible-sm">
-                        {{ __('dashboard.widgets.helpers.class') }}
-                    </p>
-                    @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
-                </div>
+                <x-forms.field field="class" :label=" __('dashboard.widgets.fields.class')" :tooltip="true" :helper="__('dashboard.widgets.helpers.class')">
+                    {!! Form::text('settings[class]', null, ['class' => '', 'id' => 'config[class]', 'disabled' => !$campaign->boosted() ? 'disabled' : null]) !!}
+                    @includeWhen(!$campaign->boosted(), 'entities.pages.posts._boosted')
+                </x-forms.field>
             </x-grid>
         </div>
 

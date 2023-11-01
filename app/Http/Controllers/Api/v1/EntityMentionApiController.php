@@ -9,7 +9,6 @@ use App\Http\Resources\EntityMentionResource as Resource;
 class EntityMentionApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

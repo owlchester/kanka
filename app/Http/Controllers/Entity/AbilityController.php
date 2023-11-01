@@ -5,46 +5,18 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAbility;
 use App\Models\Ability;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAbility;
-use App\Services\Entity\AbilityService;
 use App\Traits\GuestAuthTrait;
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AbilityController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
-    /** @var AbilityService */
-    protected $service;
-
-    /**
-     * AbilityController constructor.
-     * @param AbilityService $service
-     */
-    public function __construct(AbilityService $service)
+    public function index(Campaign $campaign, Entity $entity)
     {
-        $this->service = $service;
-    }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function index(Entity $entity)
-    {
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         $translations = [
             'all' => __('crud.visibilities.all'),
@@ -58,33 +30,28 @@ class AbilityController extends Controller
         $translations = json_encode($translations);
 
         return view('entities.pages.abilities.index', compact(
+            'campaign',
             'entity',
             'translations'
         ));
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function create(Entity $entity)
+    public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
         return view('entities.pages.abilities.create', compact(
+            'campaign',
             'entity'
         ));
     }
 
-    /**
-     * @param StoreEntityAbility $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(StoreEntityAbility $request, Entity $entity)
+    public function store(StoreEntityAbility $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only(['abilities', 'ability_id', 'visibility_id']);
         $data['entity_id'] = $entity->id;
@@ -121,49 +88,34 @@ class AbilityController extends Controller
         }
 
         return redirect()
-            ->route('entities.entity_abilities.index', $entity)
+            ->route('entities.entity_abilities.index', [$campaign, $entity])
             ->with('success', $success);
     }
 
-    /**
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function show(Entity $entity, EntityAbility $entityAbility)
+    public function show(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         return redirect()
-            ->route('entities.entity_abilities.index', [$entity->id]);
+            ->route('entities.entity_abilities.index', [$campaign, $entity->id]);
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function edit(Entity $entity, EntityAbility $entityAbility)
+    public function edit(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
         $ability = $entityAbility;
-        $ajax = request()->ajax();
 
         return view('entities.pages.abilities.update', compact(
+            'campaign',
             'entity',
-            'ability',
-            'ajax'
+            'ability'
         ));
     }
 
-    /**
-     * @param StoreEntityAbility $request
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function update(StoreEntityAbility $request, Entity $entity, EntityAbility $entityAbility)
+    public function update(StoreEntityAbility $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only(['ability_id', 'visibility_id', 'note']);
 
@@ -176,14 +128,10 @@ class AbilityController extends Controller
         }
 
         return redirect()
-            ->route('entities.entity_abilities.index', $entity->id);
+            ->route('entities.entity_abilities.index', [$campaign, $entity->id]);
     }
 
-    /**
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
-     */
-    public function destroy(Entity $entity, EntityAbility $entityAbility)
+    public function destroy(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
 
@@ -198,71 +146,6 @@ class AbilityController extends Controller
         }
 
         return redirect()
-            ->route('entities.entity_abilities.index', $entity);
-    }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function api(Entity $entity)
-    {
-        return response()->json([
-            'data' => $this->service->entity($entity)->abilities()
-        ]);
-    }
-
-    /**
-     * @param Request $request
-     * @param Entity $entity
-     * @param EntityAbility $entityAbility
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function useCharge(Request $request, Entity $entity, EntityAbility $entityAbility)
-    {
-        $this->authorize('update', $entity->child);
-
-        return response()->json([
-            'success' => $this->service
-                ->entity($entity)
-                ->useCharge($entityAbility, (int) $request->post('used'))
-        ]);
-    }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function resetCharges(Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-
-        $this->service
-            ->entity($entity)
-            ->resetCharges();
-
-        return redirect()->route('entities.entity_abilities.index', $entity);
-    }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function import(Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-
-        try {
-            $count = $this->service
-                ->entity($entity)
-                ->import();
-
-            return redirect()->route('entities.entity_abilities.index', $entity)
-                ->with('success', trans_choice('entities/abilities.import.success', $count, ['count' => $count]));
-        } catch (Exception $e) {
-            return redirect()->route('entities.entity_abilities.index', $entity)
-                ->with('error', __('entities/abilities.import.errors.' . $e->getMessage()));
-        }
+            ->route('entities.entity_abilities.index', [$campaign, $entity]);
     }
 }

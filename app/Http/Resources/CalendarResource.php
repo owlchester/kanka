@@ -28,6 +28,7 @@ class CalendarResource extends EntityResource
             'moons' => json_decode($calendar->moons),
             'start_offset' => $calendar->start_offset, // X year is a leap year
             'suffix' => $calendar->suffix,
+            'format' => $calendar->format,
             'has_leap_year' => $calendar->has_leap_year,
             'skip_year_zero' => $calendar->skip_year_zero,
             'leap_year_amount' => $calendar->leap_year_amount, // Add X number of days

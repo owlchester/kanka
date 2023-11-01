@@ -3,11 +3,14 @@
 namespace App\Renderers\Layouts\Columns;
 
 use App\Renderers\Layouts\Layout;
+use App\Traits\CampaignAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 class Action extends Column
 {
+    use CampaignAware;
+
     /** @var array Available actions to render */
     protected $actions = [];
 
@@ -15,9 +18,6 @@ class Action extends Column
     protected $params = [];
 
     /**
-     * @param Model $model
-     * @param array $config
-     * @param bool $permissions
      */
     public function __construct(Model $model, array $config, bool $permissions)
     {
@@ -25,7 +25,7 @@ class Action extends Column
 
         // Validate actions?
         foreach ($this->config as $action) {
-            if (in_array($action, [Layout::ACTION_EDIT, Layout::ACTION_EDIT_AJAX, Layout::ACTION_COPY])) {
+            if (in_array($action, [Layout::ACTION_EDIT, Layout::ACTION_COPY, Layout::ACTION_EDIT_DIALOG])) {
                 if (!$permissions) {
                     $this->actions[] = $action;
                 } elseif (auth()->user()->can('update', $this->model)) {
@@ -45,7 +45,6 @@ class Action extends Column
     }
 
     /**
-     * @param array $params
      * @return $this
      */
     public function params(array $params): self
@@ -60,6 +59,7 @@ class Action extends Column
             ->with('actions', $this->actions)
             ->with('model', $this->model)
             ->with('params', $this->params)
+            ->with('campaign', $this->campaign)
             ->render()
         ;
         return $html;
@@ -67,7 +67,7 @@ class Action extends Column
 
     public function css(): string|null
     {
-        return 'text-center table-actions';
+        return 'text-center table-actions w-8 h-8';
     }
 
     public function hasDelete(): bool
@@ -76,7 +76,6 @@ class Action extends Column
     }
 
     /**
-     * @param array $action
      * @return $this
      */
     protected function import(array $action): self

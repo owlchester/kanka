@@ -2,17 +2,17 @@
     'title' => __('entities/notes.edit.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => $entity->url(), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('crud.update'),
-    ]
+    ],
+    'centered' => true,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
     {!! Form::model($model, [
         'method' => 'PATCH',
-        'route' => ['entities.posts.update', $entity->id, $model->id],
+        'route' => ['entities.posts.update', $campaign, $entity->id, $model->id],
         'data-shortcut' => '1',
         'class' => 'entity-note-form post-form entity-form',
         'id' => 'entity-form',
@@ -23,14 +23,16 @@
 
 @section('content')
 
+    <x-grid type="1/1">
     @include('entities.pages.posts._form')
 
-    <div class="mt-5">
+    <div class="">
         <x-button.delete-confirm target="#delete-form-note-{{ $model->id}}" />
     </div>
+    </x-grid>
 
-    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('posts.keep-alive', ['post' => $model, 'entity' => $entity]) }}" />
+    @if(!empty($model) && $campaign->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('posts.keep-alive', [$campaign, 'post' => $model, 'entity' => $entity]) }}" />
     @endif
 @endsection
 
@@ -45,7 +47,7 @@
 
 @section('modals')
     @parent
-    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.posts.destroy', 'entity' => $entity, 'post' => $model], 'style' => 'display:inline', 'id' => 'delete-form-note-' . $model->id]) !!}
+    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.posts.destroy', $campaign, 'entity' => $entity, 'post' => $model], 'style' => 'display:inline', 'id' => 'delete-form-note-' . $model->id]) !!}
     {!! Form::close() !!}
 
     @includeWhen(!empty($editingUsers) && !empty($model), 'cruds.forms.edit_warning', ['model' => $model, 'entity' => $entity])

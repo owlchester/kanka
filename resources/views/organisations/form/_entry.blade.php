@@ -7,23 +7,22 @@
 
     @include('cruds.fields.entry2')
 
-@if ($campaignService->enabled('characters'))
-    <div class="field-members">
+@if ($campaign->enabled('characters'))
+    <x-forms.field field="member">
         <input type="hidden" name="sync_org_members" value="1">
         @include('components.form.members', ['options' => [
             'model' => $model ?? FormCopy::model(),
             'source' => $source ?? null
         ]])
-    </div>
+    </x-forms.field>
 @endif
 
-    <div class="field-defunct">
+    <x-forms.field field="defunct" :label="__('organisations.fields.is_defunct')">
         {!! Form::hidden('is_defunct', 0) !!}
-        <label>{!! Form::checkbox('is_defunct', 1, $model->is_defunct ?? '' )!!}
-            {{ __('organisations.fields.is_defunct') }}
-        </label>
-        <p class="help-block">{{ __('organisations.hints.is_defunct') }}</p>
-    </div>
+        <x-checkbox :text="__('organisations.hints.is_defunct')">
+            {!! Form::checkbox('is_defunct', 1, $model->is_defunct ?? '' )!!}
+        </x-checkbox>
+    </x-forms.field>
 
     @include('cruds.fields.tags')
     @include('cruds.fields.image')

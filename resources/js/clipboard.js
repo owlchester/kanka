@@ -1,37 +1,27 @@
-$(document).ready(function () {
-    initCopyToClipboard();
-
-    $(document).on('shown.bs.modal shown.bs.popover', function() {
-        initCopyToClipboard();
-    });
-});
-
-
 /**
  * Handler for copying content to the clipboard
  */
-function initCopyToClipboard() {
-    if ($('[data-clipboard]').length === 0) {
-        return;
-    }
-
-    $.each($('[data-clipboard]'), function (i) {
-        let me = $(this);
-        if (me.data('loaded') == 1) {
+const initCopyToClipboard = () => {
+    const elements = document.querySelectorAll('[data-clipboard]');
+    elements.forEach((el) => {
+        /*if (el.dataset.loaded == 1) {
             return;
         }
-        me.data('loaded', 1);
-        me.click(function (e) {
-            copyToClipboard($(this).data('clipboard'), $(this));
-
-            let toast = $(this).data('toast');
-            if (toast) {
-                window.showToast(toast);
-                return false;
-            }
-            return false;
-        });
+        el.dataset.loaded = 1;*/
+        el.addEventListener('click', clickToastHandler, false);
     });
+};
+
+function clickToastHandler (e) {
+    e.preventDefault();
+    copyToClipboard(this.dataset.clipboard, this);
+
+    let toast = this.dataset.toast;
+    if (toast) {
+        window.showToast(toast);
+        return false;
+    }
+    return false;
 }
 
 async function copyToClipboard(textToCopy, el) {
@@ -60,3 +50,8 @@ async function copyToClipboard(textToCopy, el) {
         }
     }
 }
+
+initCopyToClipboard();
+$(document).on('shown.bs.modal', function (e) {
+    initCopyToClipboard();
+});

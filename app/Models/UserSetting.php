@@ -35,7 +35,6 @@ trait UserSetting
     }
 
     /**
-     * @return mixed
      */
     public function getPatreonEmailAttribute()
     {
@@ -43,7 +42,6 @@ trait UserSetting
     }
 
     /**
-     * @return mixed
      */
     public function getReleaseAttribute()
     {
@@ -59,7 +57,6 @@ trait UserSetting
     }
 
     /**
-     * @return mixed
      */
     public function getEditorAttribute()
     {
@@ -75,7 +72,6 @@ trait UserSetting
     }
 
     /**
-     * @return mixed
      */
     public function getNewEntityWorkflowAttribute()
     {
@@ -91,7 +87,6 @@ trait UserSetting
     }
 
     /**
-     * @return mixed
      */
     public function getDefaultNestedAttribute()
     {
@@ -99,7 +94,6 @@ trait UserSetting
     }
 
     /**
-     * @return mixed
      */
     public function getEntityExploreAttribute()
     {
@@ -115,7 +109,6 @@ trait UserSetting
     }
 
     /**
-     * @return mixed
      */
     public function getCampaignSwitcherOrderByAttribute()
     {
@@ -131,7 +124,6 @@ trait UserSetting
     }
 
     /**
-     * @return mixed
      */
     public function getAdvancedMentionsAttribute()
     {
@@ -147,7 +139,6 @@ trait UserSetting
     }
 
     /**
-     * @return mixed
      */
     public function getMailReleaseAttribute()
     {
@@ -164,7 +155,6 @@ trait UserSetting
     }
 
     /**
-     * @return mixed
      */
     public function getMailVoteAttribute()
     {
@@ -182,7 +172,6 @@ trait UserSetting
 
     /**
      * Save the user settings into the array mutator
-     * @param array $data
      * @return $this
      */
     public function saveSettings(array $data): self
@@ -212,6 +201,9 @@ trait UserSetting
     public function resetTutorials(): self
     {
         $settings = $this->settings;
+        if (!is_array($settings)) {
+            return $this;
+        }
 
         foreach ($settings as $key => $setting) {
             if (str_starts_with($key, 'tutorial_')) {
@@ -260,7 +252,6 @@ trait UserSetting
 
     /**
      * Get the user's public display name
-     * @return string
      */
     public function displayName(): string
     {
@@ -272,7 +263,6 @@ trait UserSetting
 
     /**
      * Determine if a user only wants advance mentions in their text editor
-     * @return bool
      */
     public function alwaysAdvancedMentions(): bool
     {
@@ -296,7 +286,6 @@ trait UserSetting
 
     /**
      * Determine if a user is subsribed to the newsletter
-     * @return bool
      */
     public function hasNewsletter(): bool
     {
@@ -305,7 +294,6 @@ trait UserSetting
 
     /**
      * Determine if a user has the old booster nomenclature
-     * @return bool
      */
     public function hasBoosterNomenclature(): bool
     {

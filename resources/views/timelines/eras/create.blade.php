@@ -8,17 +8,17 @@
     'title' => __('timelines/eras.create.title', ['name' => $timeline->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
-        ['url' => $timeline->entity->url(), 'label' => $timeline->name],
+        Breadcrumb::entity($timeline->entity)->list(),
+        Breadcrumb::show($timeline),
         __('timelines/eras.create.title')
-    ]
+    ],
+    'centered' => true,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
     @include('partials.errors')
 
     {!! Form::open([
-        'route' => ['timelines.timeline_eras.store', $timeline],
+        'route' => ['timelines.timeline_eras.store', $campaign, $timeline],
         'method' => 'POST',
         'id' => 'timeline-era-form',
         'class' => 'ajax-subform',
@@ -33,9 +33,6 @@
             <div class="form-era">
                 <div class="submit-group">
                     <button class="btn2 btn-primary">{{ __('crud.save') }}</button>
-                </div>
-                <div class="submit-animation" style="display: none;">
-                    <button class="btn2 btn-primary" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
         </x-dialog.footer>

@@ -20,7 +20,7 @@ class Relation extends Layout
                 'render' => function ($relation) {
                     $icon = '';
                     if ($relation->isPinned()) {
-                        $icon = '<i class="fa-solid fa-star" title="' . __('crud.fields.is_star') . '" data-toggle="tooltip"></i> ';
+                        $icon = '<i class="fa-solid fa-star" data-title="' . __('crud.fields.is_star') . '" data-toggle="tooltip"></i> ';
                     }
 
                     return $icon . $relation->relation;
@@ -32,7 +32,7 @@ class Relation extends Layout
                 'render' => function ($relation) {
                     $icon = '';
                     if ($relation->target->is_private) {
-                        $icon = '<i class="fa-solid fa-lock" title="' . __('crud.is_private') . '" data-toggle="tooltip"></i> ';
+                        $icon = '<i class="fa-solid fa-lock" data-title="' . __('crud.is_private') . '" data-toggle="tooltip"></i> ';
                     }
                     return $icon . $relation->target->tooltipedLink();
                 }
@@ -72,12 +72,11 @@ class Relation extends Layout
 
     /**
      * Available actions on each row
-     * @return array
      */
     public function actions(): array
     {
         return [
-            self::ACTION_EDIT_AJAX,
+            self::ACTION_EDIT_DIALOG,
             self::ACTION_DELETE
         ];
     }

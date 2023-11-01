@@ -16,7 +16,6 @@ class FormService
     protected $source;
 
     /**
-     * @param MiscModel|null $source
      * @return $this
      */
     public function source(MiscModel $source = null)
@@ -29,7 +28,6 @@ class FormService
      * Prefill the field with the copies values
      * @param string $field
      * @param MiscModel|Entity|null $entity
-     * @param null $default
      * @return mixed|null
      */
     public function prefill($field, $entity = null, $default = null)
@@ -47,7 +45,6 @@ class FormService
      * @param string $field
      * @param null|MiscModel|Model $entity
      * @param bool $checkForParent
-     * @param null $parentClass
      * @return array
      */
     public function prefillSelect($field, $entity = null, $checkForParent = false, $parentClass = null)
@@ -146,9 +143,7 @@ class FormService
 
     /**
      * Prefill a value based on an attribute
-     * @param string $field
      * @param MiscModel|null $entity
-     * @return mixed
      */
     public function prefillEntity(string $field, $entity = null)
     {

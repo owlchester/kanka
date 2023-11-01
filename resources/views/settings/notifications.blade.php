@@ -4,25 +4,24 @@
     'breadcrumbs' => false,
     'sidebar' => 'settings',
     'noads' => true,
+    'centered' => true,
 ])
 
 @section('content')
-    @include('partials.errors')
-    <h1 class="mb-3">
-        {{ __('profiles.newsletter.title') }}
-    </h1>
-    <p class="text-lg">
-        {{ __('profiles.newsletter.helpers.header') }}
-    </p>
-    <div class="field-mail-release checkbox">
-        <label>
-            {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
-            {!! __('profiles.newsletter.options.monthly') !!}
-        </label>
-        <p class="help-block">
-            {{ __('front/newsletter.groups.all') }}
+    <x-grid type="1/1">
+        @include('partials.errors')
+        <h1 class="">
+            {{ __('profiles.newsletter.title') }}
+        </h1>
+        <p class="text-lg">
+            {{ __('profiles.newsletter.helpers.header') }}
         </p>
-    </div>
+        <x-forms.field field="mail-release" :label="__('profiles.newsletter.options.monthly')">
+            <x-checkbox :text="__('front/newsletter.groups.all')">
+                {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
+            </x-checkbox>
+        </x-forms.field>
+    </x-grid>
 
     <input type="hidden" id="newsletter-api" value="{{ route('settings.newsletter-api') }}" />
 @endsection

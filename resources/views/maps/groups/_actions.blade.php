@@ -4,35 +4,34 @@
         {{ __('crud.save') }}
     </button>
     <div class="dropdown">
-        <button type="button" class="btn2 btn-primary btn-sm join-item dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <span class="caret"></span>
+        <button type="button" class="btn2 btn-primary join-item" data-dropdown aria-expanded="false">
+            <x-icon class="fa-solid fa-caret-down" />
+            <span class="sr-only">{{ __('crud.actions.actions') }}</span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li>
-                <a href="#" class="form-submit-actions flex">
-                    <span class="flex-grow">{{ __('crud.save') }}</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="form-submit-actions flex" data-action="submit-new">
-                    <span class="flex-grow">{{ __('crud.save_and_new') }}</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="form-submit-actions flex" data-action="submit-update">
-                    <span class="flex-grow">{{ __('crud.save_and_update') }}</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="form-submit-actions flex" data-action="submit-explore">
-                    <span class="flex-grow">
-                        {{ __('maps/markers.actions.save_and_explore') }}
-                    </span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="submit-animation" style="display: none;">
-        <button class="btn2 btn-sm btn-primary" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+        <div class="dropdown-menu hidden" role="menu">
+            <x-dropdowns.item
+                link="#"
+                css="form-submit-actions">
+                {{ __('crud.save') }}
+            </x-dropdowns.item>
+            <x-dropdowns.item
+                link="#"
+                css="form-submit-actions"
+                :data="['action' => 'submit-new']">
+                {{ __('crud.save_and_new') }}
+            </x-dropdowns.item>
+            <x-dropdowns.item
+                link="#"
+                css="form-submit-actions"
+                :data="['action' => 'submit-update']">
+                {{ __('crud.save_and_update') }}
+            </x-dropdowns.item>
+            <x-dropdowns.item
+                link="#"
+                css="form-submit-actions"
+                :data="['action' => 'submit-explore']">
+                {{ __('maps/markers.actions.save_and_explore') }}
+            </x-dropdowns.item>
+        </div>
     </div>
 </div>

@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property string $system
@@ -14,9 +15,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class DiceRoll extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
+    use HasFactory;
     use SoftDeletes;
 
     /** @var string[]  */
@@ -32,15 +33,13 @@ class DiceRoll extends MiscModel
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns  = ['name'];
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'parameters',
         'character.name',
     ];
@@ -49,15 +48,14 @@ class DiceRoll extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'character_id',
     ];
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'dice_roll';
+    protected string $entityType = 'dice_roll';
 
     /**
      * Who created this entry
@@ -78,7 +76,6 @@ class DiceRoll extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -95,7 +92,6 @@ class DiceRoll extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -114,14 +110,12 @@ class DiceRoll extends MiscModel
     }
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Attribute;
+use App\Traits\CampaignAware;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -10,15 +11,14 @@ use Exception;
 
 class AttributeMentionService
 {
+    use CampaignAware;
+
     protected array $loadedAttributes = [];
     protected mixed $loadedEntity = null;
     protected Collection|null $calculatedAttributes = null;
 
     /**
      * Replace references in an attribute name with attribute values for ranges
-     * @param Attribute $attribute
-     * @param string $field
-     * @return string
      * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
      * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
      */
@@ -48,9 +48,6 @@ class AttributeMentionService
     }
 
     /**
-     * @param Attribute $attribute
-     * @param string $field
-     * @return string
      */
     public function parse(Attribute $attribute, string $field = 'value'): string
     {
@@ -73,8 +70,6 @@ class AttributeMentionService
 
     /**
      * Determine if the text contains a valid attribute mention using {}
-     * @param string $value
-     * @return bool
      */
     protected function validField(string $value = null): bool
     {
@@ -130,9 +125,6 @@ class AttributeMentionService
     }
     /**
      * Replace any attribute mentions in a string and result any math calculations in the resulting string
-     * @param array $data
-     * @param array $from
-     * @return string
      * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
      * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
      */
@@ -191,7 +183,6 @@ class AttributeMentionService
 
     /**
      * Calculate the value of an attribute by performing math on it
-     * @param array $data
      * @return array
      */
     protected function calculateAttribute(array $data)
@@ -214,8 +205,6 @@ class AttributeMentionService
 
     /**
      * Check if a given attribute is flaged as being in a loop
-     * @param string $name
-     * @return bool
      */
     public function isLoop(string $name): bool
     {

@@ -1,13 +1,10 @@
+<x-dialog.header>
+    {{ __('settings.subscription.change.title') }}
+</x-dialog.header>
 
+<article class="text-center max-w-xl">
 
-<div class="modal-body">
-    @include('partials.modals.close')
-    <div class="quick-creator-header mt-8 pb-4 mb-4">
-        <div class="text-2xl">
-            {{ __('settings.subscription.change.title') }}
-        </div>
-    </div>
-
+    <x-grid type="1/1">
     @if ($user->isFrauding())
         <x-alert type="warning">
             {{ __('settings.subscription.errors.failed', ['email' => config('app.email')]) }}
@@ -15,24 +12,40 @@
     @endif
 
     @if (!$cancel)
-        <h4>{!! __('settings.subscription.change.text.' . $period, ['tier' => "<strong>$tier</strong>", 'amount' => "<strong>$amount</strong>"]) !!}</h4>
+            <h4>
+        @if ($user->hasPayPal())
+            {!! __('settings.subscription.change.text.upgrade_paypal', [
+                'upgrade' => "<strong>$upgrade</strong>",
+                'tier' => "<strong>$tier</strong>",
+                'amount' => "<strong>$amount</strong>",
+                'date' => $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y')
+            ]) !!}
+        @else
+            {!! __('settings.subscription.change.text.upgrade_' . $period, [
+                'upgrade' => "<strong>$upgrade</strong>",
+                'tier' => "<strong>$tier</strong>",
+                'amount' => "<strong>$amount</strong>"
+            ]) !!}
+        @endif
+            </h4>
     @else
         <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
     @endif
 
     <x-alert type="error" :hidden="true"></x-alert>
 
-
     @if (!$cancel)
         @if ($hasPromo)
-            <label>{{ __('settings.subscription.coupon.label') }}</label>
-            <div class="join mb-5">
-                <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control join-item" data-url="{{ route('subscription.check-coupon') }}" />
+            <div class="field">
+                <label>{{ __('settings.subscription.coupon.label') }}</label>
+                <div class="join">
+                    <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class=" join-item" data-url="{{ route('subscription.check-coupon') }}" />
 
-                <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline join-item" title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
-                    <i class="fa-solid fa-check check"></i>
-                    <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
-                </button>
+                    <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline join-item" data-title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
+                        <i class="fa-solid fa-check check"></i>
+                        <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
+                    </button>
+                </div>
             </div>
             <x-alert type="success" :hidden="true" id="coupon-success"></x-alert>
             <x-alert type="warning" :hidden="true" id="coupon-invalid">
@@ -40,8 +53,7 @@
             </x-alert>
         @endif
         <div class="card" style="margin: 0">
-
-            <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
+            <ul class="nav-tabs bg-base-300 !p-1 rounded " role="tablist">
                 @if (! $limited)
                 <li role="presentation" class="active">
                     <a href="#card" aria-controls="home" role="tab" data-toggle="tab">
@@ -74,20 +86,17 @@
                 <div role="tabpanel" class="tab-pane active" id="card">
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
 
+                    <x-grid type="1/1" css="text-left">
                     @if (!$card)
-                        <div class="field-card-name mb-5">
-                            <label>{{ __('settings.subscription.payment_method.card_name' )}}</label>
-                            {!! Form::text('card-holder-name', null, ['class' => 'form-control']) !!}
-                        </div>
+                        <x-forms.field field="card-name" :label="__('settings.subscription.payment_method.card_name')">
+                            {!! Form::text('card-holder-name', null, ['class' => '']) !!}
+                        </x-forms.field>
 
-                        <div class="field-card-number">
-                            <label>{{ __('settings.subscription.payment_method.card' )}}</label>
-                            <div id="card-element" class="mb-5">
-                        </div>
-
-                        </div>
+                        <x-forms.field field="card-number" :label="__('settings.subscription.payment_method.card')">
+                            <div id="card-element" class=""></div>
+                        </x-forms.field>
                     @else
-                        <div class="text-center mb-5">
+                        <div class="text-center">
                             <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
                             <i class="fa-solid fa-credit-card"></i> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
                             <p><a href="{{ route('billing.payment-method') }}">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
@@ -98,7 +107,7 @@
                                 {!! __('settings.subscription.upgrade_downgrade.downgrade.provide_reason')!!}
                             </p>
 
-                            <div class="ffield-reason mb-5">
+                            <div class="ffield-reason">
                                 <label>{{ __('settings.subscription.fields.reason') }}</label>
                                 {!! Form::select('reason', [
                                     '' => __('crud.select'),
@@ -106,13 +115,13 @@
                                     'not_using' => __('settings.subscription.cancel.options.not_using'),
                                     'missing_features' => __('settings.subscription.cancel.options.missing_features'),
                                     'custom' => __('settings.subscription.cancel.options.custom')
-                                ], null, ['class' => 'form-control mb-5 select-reveal-field', 'data-change-target' => '#downgrade-reason-custom']) !!}
+                                ], null, ['class' => 'w-full select-reveal-field', 'data-change-target' => '#downgrade-reason-custom']) !!}
                                 {!! Form::textarea(
                                     'reason_custom',
                                     null,
                                     [
                                         'placeholder' => __('settings.subscription.placeholders.downgrade_reason'),
-                                        'class' => 'form-control',
+                                        'class' => '',
                                         'style' => 'display: none',
                                         'rows' => 4,
                                         'id' => 'downgrade-reason-custom'
@@ -128,6 +137,7 @@
                             <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                         </button>
                     </div>
+                    </x-grid>
 
                     <input type="hidden" name="tier" value="{{ $tier }}" />
                     <input type="hidden" name="coupon" id="coupon" value="" />
@@ -155,18 +165,17 @@
                             </x-alert>
                         @else
                         {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
-                        <label for="sofort-country">
-                            {{ __('settings.subscription.payment_method.country') }}
-                        </label>
-                        <select id="sofort-country"  name="sofort-country" class="form-control mb-5">
-                            <option value="">{{ __('crud.select') }}</option>
-                            <option value="at">{{ __('settings.countries.austria') }}</option>
-                            <option value="be">{{ __('settings.countries.belgium') }}</option>
-                            <option value="de">{{ __('settings.countries.germany') }}</option>
-                            <option value="it">{{ __('settings.countries.italy') }}</option>
-                            <option value="nl">{{ __('settings.countries.netherlands') }}</option>
-                            <option value="es">{{ __('settings.countries.spain') }}</option>
-                        </select>
+                        <x-forms.field css="mb-5" field="sofort-country" :label="__('settings.subscription.payment_method.country')">
+                            <select id="sofort-country"  name="sofort-country" class="w-full">
+                                <option value="">{{ __('crud.select') }}</option>
+                                <option value="at">{{ __('settings.countries.austria') }}</option>
+                                <option value="be">{{ __('settings.countries.belgium') }}</option>
+                                <option value="de">{{ __('settings.countries.germany') }}</option>
+                                <option value="it">{{ __('settings.countries.italy') }}</option>
+                                <option value="nl">{{ __('settings.countries.netherlands') }}</option>
+                                <option value="es">{{ __('settings.countries.spain') }}</option>
+                            </select>
+                        </x-forms.field>
 
                         <div class="text-center">
                             <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
@@ -205,13 +214,12 @@
                             </x-alert>
                         @else
                         {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
-                        <label for="accountholder-name">
-                            {{ __('settings.subscription.payment_method.card_name') }}
-                        </label>
-                        <input id="accountholder-name"  name="accountholder-name" class="form-control mb-5">
+                        <x-forms.field css="mb-5" field="accountholder-name" :label="__('settings.subscription.payment_method.card_name')">
+                            <input id="accountholder-name"  name="accountholder-name" class="w-full">
+                        </x-forms.field>
 
                         <div class="text-center">
-                            <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                            <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                 <span>{{ __('settings.subscription.actions.subscribe') }}</span>
                                 <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                             </button>
@@ -236,7 +244,7 @@
                         </x-alert>
                     @elseif (config('paypal.enabled'))
 
-                        @if ($user->subscribed('kanka'))
+                        @if ($user->subscribed('kanka') && !str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))
                             <x-alert type="warning">
                                 {{ __('settings.subscription.helpers.alternatives_warning') }}
                             </x-alert>
@@ -246,12 +254,11 @@
                                 {!! __('settings.subscription.helpers.paypal_v3', ['email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}
                             </p>
                             <div class="text-center">
-                                <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                                <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                     <span>{{ __('settings.subscription.actions.subscribe') }}</span>
                                     <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                                 </button>
                             </div>
-
                             <input type="hidden" name="tier" value="{{ $tier }}" />
                             <input type="hidden" name="coupon" id="coupon" value="" />
                             <input type="hidden" name="period" value="{{ $period }}" />
@@ -275,5 +282,5 @@
     @else
         @include('settings.subscription._cancel')
     @endif
-    </div>
-</div>
+    </div></x-grid>
+</article>

@@ -42,7 +42,7 @@ use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\MapMarker;
-use App\Models\MenuLink;
+use App\Models\Bookmark;
 use App\Models\Post;
 use App\Models\Preset;
 use App\Models\Quest;
@@ -116,6 +116,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        if ($this->app->environment('local')) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 
     protected function registerDevelopWarning()
@@ -210,7 +214,7 @@ class AppServiceProvider extends ServiceProvider
         MapLayer::observe('App\Observers\MapLayerObserver');
         MapGroup::observe('App\Observers\MapGroupObserver');
         MapMarker::observe('App\Observers\MapMarkerObserver');
-        MenuLink::observe('App\Observers\MenuLinkObserver');
+        Bookmark::observe('App\Observers\BookmarkObserver');
         Journal::observe(JournalObserver::class);
         Organisation::observe(OrganisationObserver::class);
         OrganisationMember::observe(OrganisationMemberObserver::class);

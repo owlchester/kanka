@@ -1,6 +1,6 @@
 @php
 $fieldOptions = [
-    'class' => 'form-control spectrum',
+    'class' => 'spectrum',
     'maxlength' => 7
 ];
 if (isset($dropdownParent)) {
@@ -8,8 +8,10 @@ if (isset($dropdownParent)) {
 }
 
 @endphp
-
-<div class="field-colour">
-    <label class="block w-full">{{ __('crud.fields.colour') }}</label>
-    {!! Form::text('colour', null, $fieldOptions ) !!}
-</div>
+<x-forms.field
+    field="colour"
+    :label="__('crud.fields.colour')">
+    <span>
+    {!! Form::text('colour', $default ?? null, $fieldOptions ) !!}
+    </span>
+</x-forms.field>

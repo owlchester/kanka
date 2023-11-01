@@ -1,17 +1,14 @@
 @extends('layouts.app', [
     'title' => $titleKey ?? __('entities.' . $langKey),
-    'seoTitle' => $titleKey ?? __('entities.' . $langKey) . ' - ' . CampaignLocalization::getCampaign()->name,
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => $titleKey ?? __('entities.' . $langKey)],
-    ],
+    'seoTitle' => $titleKey ?? __('entities.' . $langKey) . ' - ' . $campaign->name,
+    'breadcrumbs' => false,
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header')
-    <div class="flex items-center mb-2">
-        <h1 class="grow m-0">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
+    <div class="flex gap-2 items-center mb-5">
+        <h1 class="grow text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex-none flex gap-2">
             @include('layouts.datagrid._togglers', ['route' => 'tree'])
             @include('cruds.lists._actions')
@@ -24,16 +21,17 @@
 
     @include('partials.errors')
 
+    <div class="flex flex-col gap-5">
     @if (auth()->guest())
-        <div class="text-muted grow mb-5">
+        <div class="text-muted grow">
             <i class="fa-solid fa-filter" aria-hidden="true"></i>
             {{ __('filters.helpers.guest') }}
         </div>
     @else
-    <div class="mb-3 flex flex-stretch gap-2 items-center">
-        @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index')])
-        @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index'])
-    </div>
+        <div class="flex flex-stretch gap-2 items-center">
+            @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
+            @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index'])
+        </div>
     @endif
 
     @include('partials.ads.top')
@@ -41,7 +39,7 @@
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['nested' => true, 'sub' => 'tree'])
     @else
-        {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
+        {!! Form::open(['url' => route('bulk.process', $campaign), 'method' => 'POST', 'class' => 'flex flex-col gap-5']) !!}
         <x-box :padding="false">
             <div class="table-responsive">
                 @include($name . '._tree')
@@ -53,12 +51,12 @@
         @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
 
         @if ($unfilteredCount != $filteredCount)
-            <p class="help-block">
+            <x-helper>
                 {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
-            </p>
+            </x-helper>
         @endif
         @if($models->hasPages())
-        <div class="pull-right">
+        <div class="">
             {{ $models->appends('parent_id', request()->get('parent_id'))->appends('m', 'table')->onEachSide(0)->links() }}
         </div>
         @endif
@@ -69,8 +67,9 @@
         {!! Form::close() !!}
 
     @endif
+    </div>
 
-    <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.tree') }}">
+    <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.tree', $campaign) }}">
 @endsection
 
 @section('modals')

@@ -1,6 +1,3 @@
-import deleteConfirm from "../components/delete-confirm";
-
-
 let mapPageBody;
 let sidebarMap, sidebarMarker;
 let markerModal, markerModalContent, markerModalTitle;
@@ -11,13 +8,14 @@ let polygonStrokeWeight, polygonStrokeColour, polygonStrokeOpacity, polygonColou
 
 let tickerTimeout, tickerUrl, tickerTs;
 
+const isMobile = window.matchMedia("only screen and (max-width: 760px)");
+
 $(document).ready(function() {
 
     window.map.invalidateSize();
-    //deleteConfirm();
 
     window.map.on('popupopen', function (ev) {
-        deleteConfirm();
+        window.initDialogs();
     });
 
     // Event fired when clicking on an existing map point
@@ -75,30 +73,26 @@ function initMapExplore()
 
     window.markerDetails = function(url) {
         showSidebar();
-        if (window.kankaIsMobile.matches) {
+        if (isMobile.matches) {
             url = url + '?mobile=1';
         }
-        $.ajax({
-            url: url,
-            type: 'GET',
-            async: true,
-            success: function (result) {
-                if (result) {
-                    if (window.kankaIsMobile.matches) {
-                        markerModalTitle.html(result.name);
-                        markerModalContent.find('.content').html(result.body).show();
-                        markerModalContent.find('.spinner').hide();
-                    } else {
-                        sidebarMarker.html(result.body).show()
-                            .parent().find('.spinner').hide();
 
-                        handleCloseMarker();
-                        mapPageBody.addClass('sidebar-open');
-                    }
-                    deleteConfirm();
+        fetch(url)
+            .then((response) => response.json())
+            .then((result) => {
+                if (isMobile.matches) {
+                    markerModalTitle.html(result.name);
+                    markerModalContent.find('.content').html(result.body).show();
+                    markerModalContent.find('.spinner').hide();
+                } else {
+                    sidebarMarker.html(result.body).show()
+                        .parent().find('.spinner').hide();
+
+                    handleCloseMarker();
+                    mapPageBody.addClass('sidebar-open');
                 }
-            }
-        });
+                $(document).trigger('shown.bs.modal');
+            });
     };
 
     initTicker();
@@ -139,7 +133,7 @@ function initMapForms()
 function showSidebar()
 {
     // On mobile use the modal instead of the sidebar
-    if (window.kankaIsMobile.matches) {
+    if (isMobile.matches) {
         markerModalContent.find('.spinner').show();
         markerModalContent.find('.content').hide();
         markerModal.modal('toggle');
@@ -163,21 +157,17 @@ function handleCloseMarker()
 }
 
 const initTicker = () => {
-    let config = $('#ticker-config');
-    tickerTimeout = config.data('timeout');
-    tickerUrl = config.data('url');
-    tickerTs = config.data('ts');
-    $(document).ready(function() {
-        setTimeout(mapTicker, tickerTimeout);
-    });
+    let config = document.getElementById('ticker-config');
+    tickerTimeout = config.dataset.timeout;
+    tickerUrl = config.dataset.url;
+    tickerTs = config.dataset.ts;
+    setTimeout(mapTicker, tickerTimeout);
 };
 
 const mapTicker = () => {
-    $.ajax(tickerUrl + '?ts=' + tickerTs)
-        .done(function(data) {
-            if (!data) {
-                return;
-            }
+    fetch(tickerUrl + '?ts=' + tickerTs)
+        .then(response => response.json())
+        .then(data => {
             tickerTs = data.ts;
             for (let id in data.markers) {
                 let changedMarker = data.markers[id];
@@ -243,7 +233,7 @@ function registerModes() {
 function endDrawing() {
     window.drawingPolygon = false;
     $('body').removeClass('map-drawing-mode');
-    $('#marker-modal').modal('show');
+    window.openDialog('marker-modal');
 }
 function initPolygonDrawing() {
 
@@ -253,7 +243,8 @@ function initPolygonDrawing() {
         window.startNewPolygon();
         window.showToast($(this).data('toast'));
         $('body').addClass('map-drawing-mode');
-        $('#marker-modal').modal('hide');
+
+        window.closeDialog('marker-modal');
     });
 
     eraseTempPolygonBtn = $('#reset-polygon');
@@ -435,12 +426,12 @@ function loadPresets(url) {
     }
 
     //console.log('load from', url);
-    $.ajax({
-        url: url
-    }).done(function (data) {
-        $('.marker-preset-list').html(data);
-        handlePresetClick();
-    });
+    fetch(url)
+        .then(response => response.text())
+        .then(response => {
+            $('.marker-preset-list').html(response);
+            handlePresetClick();
+        });
 }
 
 function handlePresetClick() {
@@ -475,3 +466,29 @@ function handlePresetClick() {
         });
     });
 }
+
+/**
+ * Why is this here?
+ */
+const handleExploreMapClick = (ev) => {
+    if (!window.exploreEditMode) {
+        return;
+    }
+    // return false;
+    let position = ev.latlng;
+
+    let lat = position.lat.toFixed(3);
+    let lng = position.lng.toFixed(3);
+    if (window.drawingPolygon) {
+        window.addPolygonPosition(lat, lng);
+        return;
+    }
+    //console.log('Click', 'lat', position.lat, 'lng', position.lng);
+    // AJAX request
+    //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
+    $('#marker-latitude').val(lat);
+    $('#marker-longitude').val(lng);
+    window.openDialog('marker-modal');
+};
+
+window.handleExploreMapClick = handleExploreMapClick;

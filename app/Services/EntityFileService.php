@@ -4,32 +4,16 @@ namespace App\Services;
 
 use App\Exceptions\EntityFileException;
 use App\Http\Requests\StoreEntityAsset;
-use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Traits\CampaignAware;
+use App\Traits\EntityAware;
 
 class EntityFileService
 {
     use CampaignAware;
-
-    /** @var Entity */
-    protected $entity;
+    use EntityAware;
 
     /**
-     * @param Entity $entity
-     * @return $this
-     */
-    public function entity(Entity $entity): self
-    {
-        $this->entity = $entity;
-        return $this;
-    }
-
-    /**
-     * @param StoreEntityAsset $request
-     * @param string $field
-     * @param string $folder
-     * @return EntityAsset
      * @throws EntityFileException
      */
     public function upload(StoreEntityAsset $request, string $field = 'file', string $folder = 'entities/files'): EntityAsset

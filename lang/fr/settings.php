@@ -157,8 +157,11 @@ return [
         'cancelled'             => 'L\'abonnement a été annulé. Un nouvel abonnement peut être fait dès que celui-ci arrive à terme le :date.',
         'change'                => [
             'text'  => [
-                'monthly'   => 'Abonnement au niveau :tier, facturé mensuellement pour :amount.',
-                'yearly'    => 'Abonnement au niveau :tier, facturé annuellement pour :amount.',
+                'monthly'           => 'Abonnement au niveau :tier, facturé mensuellement pour :amount.',
+                'upgrade_monthly'   => 'Tu passes au niveau :tier pour :upgrade, ensuite facturé mensuellement pour :amount.',
+                'upgrade_paypal'    => 'Tu passes au niveau :tier pour :upgrade jusqu\'au :date.',
+                'upgrade_yearly'    => 'Tu passes au niveau :tier pour :upgrade, ensuite facturé annuellement pour :amount.',
+                'yearly'            => 'Abonnement au niveau :tier, facturé annuellement pour :amount.',
             ],
             'title' => 'Changement d\'abonnement',
         ],
@@ -195,8 +198,6 @@ return [
             'alternatives_warning'  => 'La mise à niveau de l\'abonnement lors de l\'utilisation de cette méthode n\'est pas possible. Veuillez créer un nouvel abonnement à la fin de votre abonnement actuel.',
             'alternatives_yearly'   => 'En raison des restrictions entourant les paiements récurrents, :method n\'est disponible que pour les abonnements annuels',
             'currency_blocked'      => 'Il n\'est pas possible de changer de devise une fois que tu as un abonnement Kanka actif. Prière de nous contacter à l\'adresse :email pour obtenir de l\'aide.',
-            'paypal'                => 'Tu préfères utiliser Paypal? Contactes nous à :email si tu souhaites souscrire à un abonnement annuel en utilisant Paypal.',
-            'paypal_v2'             => 'Nous acceptons PayPal pour les abonnements annuels. Contactes-nous à :email avec ton email de compte Kanka, l\'abonnement que tu désires, et la monnaie (USD ou EUR) dans laquelle tu souhaites être facturé.',
             'paypal_v3'             => 'Payer en toute sécurité pour ton abonnement annuel avec PayPal.',
             'stripe'                => 'La facturation est traité en toute securité par :stripe.',
         ],

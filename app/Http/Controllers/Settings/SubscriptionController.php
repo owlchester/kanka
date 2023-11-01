@@ -10,6 +10,7 @@ use App\Models\Pledge;
 use App\Models\SubscriptionCancellation;
 use Carbon\Carbon;
 use App\Services\SubscriptionService;
+use App\Services\SubscriptionUpgradeService;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -19,15 +20,16 @@ use Laravel\Cashier\Exceptions\IncompletePayment;
 class SubscriptionController extends Controller
 {
     protected SubscriptionService $subscription;
+    protected SubscriptionUpgradeService $subscriptionUpgrade;
 
     /**
      * SubscriptionController constructor.
-     * @param SubscriptionService $service
      */
-    public function __construct(SubscriptionService $service)
+    public function __construct(SubscriptionService $service, SubscriptionUpgradeService $subscriptionUpgradeService)
     {
         $this->middleware(['auth', 'identity', 'subscriptions']);
         $this->subscription = $service;
+        $this->subscriptionUpgrade = $subscriptionUpgradeService;
     }
 
     /**
@@ -72,7 +74,6 @@ class SubscriptionController extends Controller
     /**
      * Change subscription modal
      *
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
      */
@@ -93,6 +94,10 @@ class SubscriptionController extends Controller
         $isYearly = $period === 'yearly';
         $hasPromo = $isYearly && \Carbon\Carbon::create(2022, 10, 31)->isFuture();
         $limited = $this->subscription->isLimited();
+        if ($user->hasPayPal()) {
+            $limited = true;
+        }
+        $upgrade = $this->subscriptionUpgrade->user($user)->upgradePrice($period, $tier);
 
         return view('settings.subscription.change', compact(
             'tier',
@@ -102,6 +107,7 @@ class SubscriptionController extends Controller
             'intent',
             'cancel',
             'user',
+            'upgrade',
             'isDowngrading',
             'hasPromo',
             'limited',
@@ -164,7 +170,6 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * @param UserAltSubscribeStore $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Stripe\Exception\ApiErrorException
      */
@@ -181,7 +186,6 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Stripe\Exception\ApiErrorException
      */
@@ -200,8 +204,6 @@ class SubscriptionController extends Controller
 
     /**
      * Stripe secure 3d callback page handler
-     * @param Request $request
-     * @return mixed
      */
     public function callback(Request $request)
     {

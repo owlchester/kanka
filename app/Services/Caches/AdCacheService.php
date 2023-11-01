@@ -25,7 +25,6 @@ class AdCacheService
     }
 
     /**
-     * @return string
      */
     public function show(): string
     {
@@ -34,8 +33,6 @@ class AdCacheService
 
     /**
      * Check if there is an ad to be displayed
-     * @param int $section
-     * @return bool
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
@@ -50,7 +47,6 @@ class AdCacheService
 
     /**
      * Load the ad in memory
-     * @param int $section
      * @return $this
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
@@ -77,8 +73,6 @@ class AdCacheService
 
     /**
      * Ad cache key for section
-     * @param int $section
-     * @return string
      */
     protected function cacheKey(int $section): string
     {

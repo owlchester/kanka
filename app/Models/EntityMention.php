@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Concerns\SortableTrait;
@@ -12,7 +13,7 @@ use Illuminate\Support\Arr;
  * @package App\Models
  *
  * @property integer $entity_id
- * @property integer|null $entity_note_id
+ * @property integer|null $post_id
  * @property integer|null $quest_element_id
  * @property integer|null $timeline_element_id
  * @property integer|null $campaign_id
@@ -32,14 +33,14 @@ class EntityMention extends Model
 
     public $fillable = [
         'entity_id',
-        'entity_note_id',
+        'post_id',
         'timeline_element_id',
         'quest_element_id',
         'campaign_id',
         'target_id'
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
     ];
@@ -65,7 +66,7 @@ class EntityMention extends Model
      */
     public function post()
     {
-        return $this->belongsTo('App\Models\Post', 'entity_note_id', 'id');
+        return $this->belongsTo('App\Models\Post', 'post_id', 'id');
     }
 
     /**
@@ -94,16 +95,14 @@ class EntityMention extends Model
 
     /**
      * Determine if the mention goes to a post
-     * @return bool
      */
     public function isPost(): bool
     {
-        return !empty($this->entity_note_id);
+        return !empty($this->post_id);
     }
 
     /**
      * Determine if the mention goes to an entity
-     * @return bool
      */
     public function isEntity(): bool
     {
@@ -112,7 +111,6 @@ class EntityMention extends Model
 
     /**
      * Determine if the mention goes to a timeline element
-     * @return bool
      */
     public function isTimelineElement(): bool
     {
@@ -121,7 +119,6 @@ class EntityMention extends Model
 
     /**
      * Determine if the mention goes to a quest element
-     * @return bool
      */
     public function isQuestElement(): bool
     {
@@ -130,7 +127,6 @@ class EntityMention extends Model
 
     /**
      * Determine if the mention goes to a campaign
-     * @return bool
      */
     public function isCampaign(): bool
     {
@@ -140,8 +136,6 @@ class EntityMention extends Model
     /**
      * Build the query that will loop on the various mentions to get the total count.
      * The AclTrait on entities and posts makes sure only visible things get added to the query.
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePrepareCount(Builder $query): Builder
     {
@@ -175,8 +169,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeEntity(Builder $query): Builder
     {
@@ -184,17 +176,13 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePost(Builder $query): Builder
     {
-        return $query->whereNotNull('entity_mentions.entity_note_id');
+        return $query->whereNotNull('entity_mentions.post_id');
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeTimelineElement(Builder $query): Builder
     {
@@ -202,8 +190,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeQuestElement(Builder $query): Builder
     {
@@ -211,8 +197,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeCampaign(Builder $query): Builder
     {
@@ -220,8 +204,6 @@ class EntityMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeDatagridElements(Builder $query, array $options): Builder
     {
@@ -244,16 +226,16 @@ class EntityMention extends Model
     }
 
     /**
-     * @return string
      */
     public function getLink(): string
     {
+        $campaign = CampaignLocalization::getCampaign();
         if ($this->isQuestElement()) {
-            return route('quests.quest_elements.index', [$this->entity->entity_id, '#quest-element-' . $this->quest_element_id]);
+            return route('quests.quest_elements.index', [$campaign, $this->entity->entity_id, '#quest-element-' . $this->quest_element_id]);
         } elseif ($this->isTimelineElement()) {
-            return route('timelines.show', [$this->entity->entity_id, '#timeline-element-' . $this->timeline_element_id]);
+            return route('entities.show', [$campaign, $this->entity, '#timeline-element-' . $this->timeline_element_id]);
         } elseif ($this->isPost()) {
-            return route($this->post->entity->pluralType() . '.show', [$this->entity->entity_id, '#post-' . $this->entity_note_id]);
+            return route('entities.show', [$campaign, $this->entity, '#post-' . $this->post_id]);
         }
         return '#';
     }
@@ -261,7 +243,6 @@ class EntityMention extends Model
     /**
      * Determine if the mention is linked to an entity.
      * In theory, this is true for everything except a campaign mention, but in practice it's more complicated.
-     * @return bool
      */
     public function hasEntity(): bool
     {
@@ -271,7 +252,6 @@ class EntityMention extends Model
     /**
      * Get the entity link with ajax tooltip.
      * When coming from an entity first, call this method on the entity. It avoids some back and worth.
-     * @return string
      */
     public function mentionLink(): string
     {
@@ -307,7 +287,7 @@ class EntityMention extends Model
             return $this->entity->tooltipedLink();
         } elseif ($this->isCampaign()) {
             return '<a class="name" href="' .
-                route('campaign') . '">' .
+                route('overview', $campaign) . '">' .
                 $this->campaign->name .
                 '</a>';
         }

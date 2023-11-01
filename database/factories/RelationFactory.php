@@ -22,7 +22,8 @@ class RelationFactory extends Factory
     public function definition(): array
     {
         return [
-            'relation' => fake()->text(10),
+            'relation' => fake()->text(20),
+            'is_pinned' => 0,
         ];
     }
 }

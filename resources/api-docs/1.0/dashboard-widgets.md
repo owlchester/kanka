@@ -13,7 +13,7 @@
 
 You can get a list of all the dashboard Widgets of a campaign by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |
@@ -88,7 +88,7 @@ To create a dashboard Widget, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `widget` | `string` (Required) | The widget type: `preview`, `recent`, `random`, `calendar`, `header` or `campaign`'  |
-| `entity_id` | `int` | The related entity ID (required for and calendar) |
+| `entity_id` | `int` | The related entity ID (required for preview and calendar) |
 | `config` | `object` | Config of the widget: boolean `singular`, boolean `full`, boolean `entity-header` |
 | `position` | `int` | Position of the widget. If empty, placed at end |
 | `tags` | `array` | Array of tag ids |

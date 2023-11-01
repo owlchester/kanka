@@ -34,7 +34,6 @@ class Note extends MiscModel
         'name',
         'slug',
         'entry',
-        'image',
         'type',
         'is_private',
         'note_id',
@@ -42,15 +41,14 @@ class Note extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'note';
+    protected string $entityType = 'note';
 
     /**
      * Fields that can be set to null (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'note_id',
     ];
 
@@ -58,14 +56,12 @@ class Note extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -87,7 +83,6 @@ class Note extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -96,7 +91,6 @@ class Note extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {

@@ -55,6 +55,7 @@ TEXT
         'excerpt'                           => 'Texto do dashboard da campanha',
         'featured'                          => 'Campanha em destaque',
         'followers'                         => 'Seguidores',
+        'genre'                             => 'Gênero(s)',
         'header_image'                      => 'Background do dashboard da campanha',
         'image'                             => 'Imagem da barra lateral',
         'locale'                            => 'Local',
@@ -153,7 +154,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Ajuda',
             'remove'        => 'Remover da campanha',
             'switch'        => 'Visualizar campanha como usuário',
             'switch-back'   => 'Voltar para meu usuário',
@@ -173,10 +173,8 @@ TEXT
             'role'          => 'Cargo',
             'roles'         => 'Cargos',
         ],
-        'help'                  => 'Não há limite para o número de membros que uma campanha pode ter, e como Administrador da campanha, você pode remover membros que não estão mais ativos nela.',
         'helpers'               => [
-            'admin' => 'Como membro com o cargo de administrador da campanha, você pode convidar novos usuários, remover os inativos e alterar suas permissões. Para testar as permissões de um membro, use o botão Alternar. Você pode ler mais sobre esse recurso no :link.',
-            'switch'=> 'Trocar para este usuário',
+            'switch'    => 'Trocar para este usuário',
         ],
         'impersonating'         => [
             'message'   => 'Você está vendo a campanha como outro usuário. Alguns recursos foram desabilitados, mas o resto age exatamente como o usuário veria. Para voltar ao seu usuário, use o botão Trocar de Volta localizado onde o botão Logout normalmente está localizado.',
@@ -240,6 +238,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Criar cargo',
+            'duplicate'     => 'Duplicar cargo',
             'permissions'   => 'Gerenciar permissões',
             'rename'        => 'Renomear função',
             'save'          => 'Salvar função',
@@ -261,16 +260,18 @@ TEXT
             'title'     => 'Editar cargo :name',
         ],
         'fields'        => [
-            'name'          => 'Nome',
-            'permissions'   => 'Permissões',
-            'type'          => 'Tipo',
-            'users'         => 'Usuários',
+            'copy_permissions'  => 'Copiar permissões',
+            'name'              => 'Nome',
+            'permissions'       => 'Permissões',
+            'type'              => 'Tipo',
+            'users'             => 'Usuários',
         ],
         'helper'        => [
-            '1' => 'Uma campanha pode ter quantos cargos quiser. O cargo de "Administrador" tem automaticamente acesso a tudo de uma campanha, mas cada outro cargo pode ter permissões específicas em cada tipo de entidade (personagem, local, etc).',
-            '2' => 'Entidades podem ter permissões mais refinadas visualizando a aba "Permissões" dessa entidade. Essa aba aparece uma vez que sua campanha tenha vários cargos ou membros.',
-            '3' => 'Pode-se optar pelo sistema de "exclusão", onde o acesso para visualização de todas as entidades é dado aos cargos, e usar a caixa de seleção "Privado" nas entidades para escondê-las. Ou pode-se optar por não dar aos cargos muitas permissões, mas configurar cada entidade ser visível individualmente.',
-            '4' => 'Campanhas impulsionadas podem ter uma quantidade ilimitada de cargos.',
+            '1'                     => 'Uma campanha pode ter quantos cargos quiser. O cargo de "Administrador" tem automaticamente acesso a tudo de uma campanha, mas cada outro cargo pode ter permissões específicas em cada tipo de entidade (personagem, local, etc).',
+            '2'                     => 'Entidades podem ter permissões mais refinadas visualizando a aba "Permissões" dessa entidade. Essa aba aparece uma vez que sua campanha tenha vários cargos ou membros.',
+            '3'                     => 'Pode-se optar pelo sistema de "exclusão", onde o acesso para visualização de todas as entidades é dado aos cargos, e usar a caixa de seleção "Privado" nas entidades para escondê-las. Ou pode-se optar por não dar aos cargos muitas permissões, mas configurar cada entidade ser visível individualmente.',
+            '4'                     => 'Campanhas impulsionadas podem ter uma quantidade ilimitada de cargos.',
+            'permissions_helper'    => 'Duplique todas as permissões do cargo, tanto nos módulos quanto nas entidades.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'A função pública tem permissões, mas a campanha é privada. Você pode alterar essa configuração na guia Compartilhamento ao editar a campanha.',
@@ -377,7 +378,6 @@ TEXT
             'journals'          => 'Observações escritas por personagens, ou preparações de sessões para o mestre do jogo.',
             'locations'         => 'Planetas, planos, continentes, rios, estados, acampamentos, templos, tavernas.',
             'maps'              => 'Faça upload de mapas com camadas e marcadores apontando para outras entidades na campanha.',
-            'menu_links'        => 'Links de menus personalizados na barra lateral.',
             'notes'             => 'Conhecimento, natureza, história, magia, culturas.',
             'organisations'     => 'Cultos, religiões, facções, guildas.',
             'quests'            => 'Para manter controle de várias missões com personagens e locais.',
@@ -412,7 +412,6 @@ TEXT
             'plugins'           => 'Plugins',
             'recovery'          => 'Restaurar',
             'roles'             => 'Cargos',
-            'settings'          => 'Módulos',
             'sidebar'           => 'Configurar barra lateral',
             'styles'            => 'Temas',
         ],
@@ -470,9 +469,5 @@ TEXT
         'public'    => 'Campanha pública',
         'review'    => 'Aguardando Revisão',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Parece que outra pessoa está editando esta campanha no momento! Deseja voltar atrás ou ignorar este aviso, correndo o risco de perder dados? Membros atualmente editando esta campanha:',
-        ],
-    ],
+    'warning'                           => [],
 ];

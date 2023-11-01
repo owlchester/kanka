@@ -22,13 +22,11 @@ class OrganisationMemberPolicy
     /**
      * Determine whether the user can update the entity.
      *
-     * @param  \App\User  $user
      * @param  \App\Models\Entity  $entity
-     * @return mixed
      */
     public function update(User $user, $entity)
     {
-        if (auth()->guest() || $entity->organisation->campaign_id != $user->campaign->id) {
+        if (auth()->guest()) {
             return false;
         }
         return auth()->user()->can('update', $entity->organisation) ||
@@ -39,13 +37,11 @@ class OrganisationMemberPolicy
     /**
      * Determine whether the user can update the entity.
      *
-     * @param  \App\User  $user
      * @param  \App\Models\Entity  $entity
-     * @return mixed
      */
     public function delete(User $user, $entity)
     {
-        if (auth()->guest() || $entity->organisation->campaign_id != $user->campaign->id) {
+        if (auth()->guest()) {
             return false;
         }
         return auth()->user()->can('delete', $entity->organisation) ||

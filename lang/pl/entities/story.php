@@ -17,13 +17,5 @@ return [
     'update'    => [
         'title' => 'Aktualizacja elementu :entity',
     ],
-    'warning'   => [
-        'editing'   => [
-            'back'          => 'Do tyłu',
-            'description'   => 'Chyba ktoś jeszcze edytuje właśnie ten element! Wolisz się cofnąć czy kontynuować, ryzykując utratę danych? Uczestnicy zmieniający obecnie ten element:',
-            'ignore'        => 'Edytuj mimo to',
-            'title'         => 'Uwaga',
-            'user'          => ':user od :since',
-        ],
-    ],
+    'warning'   => [],
 ];

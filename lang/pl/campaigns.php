@@ -55,6 +55,7 @@ TEXT
         'excerpt'                           => 'Podsumowanie',
         'featured'                          => 'Wyróżniona kampania',
         'followers'                         => 'Obserwujący',
+        'genre'                             => 'Gatunek',
         'header_image'                      => 'Ilustracja okładkowa',
         'image'                             => 'Obraz',
         'locale'                            => 'Język kampanii',
@@ -153,7 +154,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Pomoc',
             'remove'        => 'Usuń z kampanii',
             'switch'        => 'Przełącz',
             'switch-back'   => 'Powrót do profilu',
@@ -173,10 +173,8 @@ TEXT
             'role'          => 'Rola',
             'roles'         => 'Role',
         ],
-        'help'                  => 'W kampaniach może brać udział dowolnie dużo uczestników.',
         'helpers'               => [
-            'admin' => 'Jako administrator, możesz zapraszać nowych graczy, usuwać nieaktywnych i zmieniać ich uprawnienia. By przetestować uprawnienia gracza, użyj funkcji Przełącz. Jej dokładny opis znajdziesz tutaj: :link.',
-            'switch'=> 'Przełącz uczestnika',
+            'switch'    => 'Przełącz uczestnika',
         ],
         'impersonating'         => [
             'message'   => 'Oglądasz kampanię z perspektywy innego uczestnika. Niektóre funkcje mogą nie działać, ale reszta wygląda dokładnie tak, jak widzi ją ta osoba. By wrócić do własnego profilu użyj opcji Powrót do profilu, znajdującej się w miejscu opcji Wyloguj.',
@@ -240,6 +238,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Dodaj rolę',
+            'duplicate'     => 'Powiel rolę',
             'permissions'   => 'Zarządzaj uprawnieniami',
             'rename'        => 'Zmień nazwę',
             'save'          => 'Zapisz rolę',
@@ -261,16 +260,18 @@ TEXT
             'title'     => 'Edycja roli :name',
         ],
         'fields'        => [
-            'name'          => 'Nazwa',
-            'permissions'   => 'Uprawnienia',
-            'type'          => 'Rodzaj',
-            'users'         => 'Posiadacze',
+            'copy_permissions'  => 'Kopiuj uprawnienia',
+            'name'              => 'Nazwa',
+            'permissions'       => 'Uprawnienia',
+            'type'              => 'Rodzaj',
+            'users'             => 'Posiadacze',
         ],
         'helper'        => [
-            '1' => 'Kampania może posiadać dowodnie dużo ról. "Administrator" posiada automatycznie dostęp do wszystkich elementów kampanii, ale inne role mogą być ograniczone tylko do części elementów (postaci, miejsc, itd.).',
-            '2' => 'Uprawnienia rozmaitych elementów można dodatkowo modyfikować w zakładce "Uprawnienia". Pojawi się ona, kiedy w kampanii przybędzie ról lub członków.',
-            '3' => 'Ustawieniami można zarządzać globalnie, zapewniając rolom uprawienia dostępu do całych kategorii elementów kampanii i ukrywając część z nich za pomocą opcji "Tajne", albo lokalnie, włączając ręcznie widoczność konkretnych elementów.',
-            '4' => 'Liczba ról w kampaniach doładowanych nie jest ograniczona.',
+            '1'                     => 'Kampania może posiadać dowodnie dużo ról. "Administrator" posiada automatycznie dostęp do wszystkich elementów kampanii, ale inne role mogą być ograniczone tylko do części elementów (postaci, miejsc, itd.).',
+            '2'                     => 'Uprawnienia rozmaitych elementów można dodatkowo modyfikować w zakładce "Uprawnienia". Pojawi się ona, kiedy w kampanii przybędzie ról lub członków.',
+            '3'                     => 'Ustawieniami można zarządzać globalnie, zapewniając rolom uprawienia dostępu do całych kategorii elementów kampanii i ukrywając część z nich za pomocą opcji "Tajne", albo lokalnie, włączając ręcznie widoczność konkretnych elementów.',
+            '4'                     => 'Liczba ról w kampaniach doładowanych nie jest ograniczona.',
+            'permissions_helper'    => 'Powiela wszystkie uprawnienia roli dotyczące modułów i elementów kampanii.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Ustawiono uprawnienia roli Publiczność, ale kampania jest prywatna. Możesz to zmienić z pomocą zakładki Udostępnij w menu edycji kampanii.',
@@ -377,7 +378,6 @@ TEXT
             'journals'          => 'Rozmaite spostrzeżenia spisane przez postaci oraz notatki MG.',
             'locations'         => 'Planety, wymiary, kontynenty, państwa, miasta, rzeki, świątynie, gospody.',
             'maps'              => 'Dodaj do kampanii mapę i oznacz położenie innych elementów z pomocą warstw i znaczników.',
-            'menu_links'        => 'Zbiór własnych odnośników w dodatkowym menu.',
             'notes'             => 'Tajemnice, religie, historia, magia, rasy.',
             'organisations'     => 'Kulty, oddziały wojskowe, frakcje polityczne, gildie.',
             'quests'            => 'Zadania, które realizuje drużyna, z opisem zaangażowanych miejsc i postaci.',
@@ -412,7 +412,6 @@ TEXT
             'plugins'           => 'Dodatki',
             'recovery'          => 'Odzyskiwanie',
             'roles'             => 'Role',
-            'settings'          => 'Moduły',
             'sidebar'           => 'Ustawienia menu bocznego',
             'styles'            => 'Motywy',
         ],
@@ -470,9 +469,5 @@ TEXT
         'public'    => 'Publiczna',
         'review'    => 'Oczekuje na recenzję',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Najwyraźniej ktoś inny edytuje właśnie tę kampanię! Chcesz się wycofać czy zignorować to ostrzeżenie, ryzykując utratę danych? Członkowie obecnie edytujący kampanię:',
-        ],
-    ],
+    'warning'                           => [],
 ];

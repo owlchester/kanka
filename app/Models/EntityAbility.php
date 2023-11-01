@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Traits\VisibilityIDTrait;
 use Carbon\Carbon;
@@ -49,7 +48,6 @@ class EntityAbility extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -57,7 +55,6 @@ class EntityAbility extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function ability(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -74,24 +71,6 @@ class EntityAbility extends Model
     }
 
     /**
-     * List of recently used positions for the form suggestions
-     * @return mixed
-     */
-    public static function positionList()
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        return self::groupBy('a.type')
-            ->leftJoin('entities as e', 'e.id', 'inventories.entity_id')
-            ->leftJoin('abilities as a', 'a.id', 'inventories.ability_id')
-            ->where('e.campaign_id', $campaign->id)
-            ->orderBy('a.type', 'ASC')
-            ->limit(20)
-            ->pluck('a.type')
-            ->all();
-    }
-
-    /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeDefaultOrder(Builder $query)
@@ -105,7 +84,6 @@ class EntityAbility extends Model
 
     /**
      * Copy an entity ability to another target
-     * @param Entity $target
      */
     public function copyTo(Entity $target)
     {

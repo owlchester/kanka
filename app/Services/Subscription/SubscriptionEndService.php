@@ -17,7 +17,6 @@ class SubscriptionEndService
      * Find users with expired subscriptions and dispatch a cleanup job for each one
      * @param bool $dispatch set as false to not dispatch the job, just listing the expired subscriptions
      * in the admin job log.
-     * @return int
      */
     public function run(bool $dispatch = true): int
     {
@@ -27,7 +26,7 @@ class SubscriptionEndService
         $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
             ->where(function ($sub) {
                 $sub->where('stripe_id', 'like', 'sofort_%')
-                ->orWhere('stripe_id', 'like', 'giropay_%');
+                    ->orWhere('stripe_id', 'like', 'giropay_%');
             })
             ->where('stripe_status', 'active')
             ->whereDate('ends_at', '<', Carbon::today()->toDateString())
@@ -37,7 +36,7 @@ class SubscriptionEndService
         // Now do the same thing for manual subs which ended on the current day, as manual subs end at midnight server time
         $this->logs[] = 'Manual';
         $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
-            ->where('stripe_id', 'manual_sub', '')
+            ->whereLike('stripe_id', 'manual_sub%', '')
             ->where('stripe_status', 'canceled')
             ->whereDate('ends_at', '=', Carbon::today()->toDateString())
             ->get();

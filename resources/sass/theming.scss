@@ -1,90 +1,4 @@
-@layer theme {
-    html {
-        color-scheme: light;
-        accent-color: hsl(var(--a)/1);
-    }
-    :root {
-        // Background colour behind the UI elements
-        --content-wrapper-background: #f3f3f3;
-        --boosted: 338 78% 48%;
-
-        // Primary colour, used for buttons and links
-        --p: 202 52% 49%;
-        // Primary colour when focused
-        --pf: 202 52% 34%;
-        // Foreground content colour to use on primary colour
-        --pc: 243 100% 96%;
-
-        // Secondary colour, currently unused
-        --s: 215 26% 59%;
-        // Secondary colour when focused
-        --sf: 215 26% 52%;
-        // Foreground content colour to use on secondary colour
-        --sc: 216 13% 13%;
-
-        // Accent colour, used for some important buttons like "new post"
-        --a: 41 74% 53%;
-        // Accent colour when focused
-        --af: 41 74% 46%;
-        // Text colour for accent
-        --ac: 151 21% 13%;
-
-        // Neutral colour, for example for the page's background, code and pre elements, tooltip borders
-        --n: 233 27% 13%;
-        // Neutral colour when focused
-        --nf: 233 27% 6%;
-        // Text colour for elements with the neutral colour background
-        --nc: 210 38% 95%;
-
-        // Base background colours, used for boxes, panels, modals
-        --b1: 0 0% 100%;
-        --b2: 0 0% 93%;
-        --b3: 0 0% 86%;
-        // Text colour for elements on a base background
-        --bc: 233 27% 13%;
-
-        // Info messages background and foreground
-        --in: 198 93% 80%;
-        --inc: 198 100% 12%;
-
-        // Warning messages
-        --wa: 43 96% 76%;
-        --wac: 43 100% 11%;
-
-        // Error messages
-        --er: 0 91% 71%;
-        --erc: 0 100% 14%;
-
-        // Success messages
-        --su: 158 64% 52%;
-        --suc: 158 100% 10%;
-
-        // Sidebar
-        --si: 0 0% 20%;
-        --sif: 0 0% 10%;
-        --sic: 0 0% 90%;
-
-        // Border radius for buttons
-        --rounded-btn: .25rem;
-        // Border radius for badges (tags)
-        --rounded-badge: .25rem;
-        // Animation duration when a button is focused
-        --animation-btn: 0;
-        // Scale effect on buttons when focused
-        --btn-focus-scale: 1;
-
-        // Button border width
-        --border-btn: 1px;
-        // Button text transform
-        --btn-text-case: uppercase;
-
-        // Border radius for tabs
-        --tab-radius: .25rem;
-
-        // Border thickness for tabs
-        --tab-border: 0px;
-    }
-}
+@import "themes/light";
 
 *,
 ::before,
@@ -106,12 +20,12 @@ a, .text-link {
 
     &:hover {
         --tw-text-opacity: 1;
-        color: hsl(var(--link-text, var(--pf))/var(--tw-text-opacity));
+        color: var(--link-text, hsl(var(--pf)/var(--tw-text-opacity)));
     }
 
     &:focus {
         --tw-text-opacity: 1;
-        color: hsl(var(--link-focus, var(--pf))/var(--tw-text-opacity));
+        color: var(--link-focus, hsl(var(--pf)/var(--tw-text-opacity)));
     }
 }
 
@@ -137,18 +51,21 @@ input, textarea, .select2, select, .form-control {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b1)/var(--tw-bg-opacity));
     border-radius: var(--rounded-btn,.5rem);
-    line-height: 1.5rem;
+    line-height: normal;
     box-shadow: none;
     color: inherit;
+}
+input, textarea, select {
+    padding: 0.5rem 0.5rem;
 }
 input::placeholder, textarea::placeholder, select::placeholder, .form-control::placeholder {
     --tw-text-opacity: .5;
     color: hsl(var(--bc)/var(--tw-text-opacity));
 }
 input[type="text"], input[type="date"], input[type="number"], input[type="file"], select {
-    min-height: 2.2rem;
+    min-height: 2.1rem;
 }
-input:focus, .textarea:focus, .form-control:focus {
+input:focus, select:focus, .textarea:focus, .form-control:focus {
     outline-style: solid;
     outline-width: 2px;
     outline-offset: 2px;
@@ -163,7 +80,27 @@ input:focus, .textarea:focus, .form-control:focus {
     background-color: hsl(var(--b2)/var(--tw-bg-opacity));
     --tw-text-opacity: .2;
 }
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    --tw-accent-opacity: 1;
+    accent-color: hsl(var(--p)/var(--tw-accent-opacity));
+    position: relative;
+    margin: 0;
 
+}
+input[type="checkbox"]:checked {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--p)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--pc)/var(--tw-text-opacity));
+}
+input[type="checkbox"]:checked:after {
+    content: var(--checkbox-content, '\2714');
+    font-size: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0.1rem;
+}
 /**, ::before, ::after {
     --tw-border-opacity: 0.2;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
@@ -189,69 +126,11 @@ input:focus, .textarea:focus, .form-control:focus {
 }
 
 
-hr {
-    border-color: hsl(var(--bc)/var(--tw-bg-opacity));
-    --tw-bg-opacity: .2;
-}
 
-.select2 {
-    .select2-selection {
-        .select2-selection__rendered {
-            color: inherit;
-        }
-    }
-
-    // Tags
-    .select2-container--default .select2-selection--single {
-        --tw-bg-opacity: 1;
-        background-color: hsl(var(--b1)/var(--tw-bg-opacity));
-    }
-}
-.select2-dropdown {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
-}
-.select2-container--default .select2-selection--multiple {
-
-    --tw-border-opacity: .2;
-    border-color: hsl(var(--bc)/var(--tw-border-opacity))  !important;
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
-}
-.select2-container--default .select2-results__option[aria-selected="true"] {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--p)/var(--tw-bg-opacity));
-    color: hsl(var(--pc))
-}
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--p)/var(--tw-bg-opacity));
-    color: hsl(var(--pc))
-}
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--n)/var(--tw-bg-opacity));
-    --tw-border-opacity: 1;
-    border-color: hsl(var(--n)/var(--tw-border-opacity));
-    --tw-text-opacity: 1;
-    color: hsl(var(--nc)/var(--tw-text-opacity));
-
-    .select2-selection__choice__remove {
-        --tw-text-opacity: .8;
-        color: hsl(var(--nc)/var(--tw-text-opacity));
-    }
-}
-.select2-container--default .select2-search--dropdown .select2-search__field {
-    --tw-border-opacity: 1;
-    border-color: hsl(var(--b2)/var(--tw-border-opacity)) !important;
-}
-.select2-container--default .select2-results__option[aria-disabled="true"] {
-    color: hsl(var(--n)/.8);
-}
 
 /** Dropdown menus **/
 
-.dropdown-menu {
+/*.dropdown-menu, .dropdown-elements {
     background: hsl(var(--b1)/var(--tw-bg-opacity, 1));
     --tw-bg-opacity: 1;
     border: 0;
@@ -272,7 +151,7 @@ hr {
         --tw-text-opacity: 1;
         color: hsl(var(--bc)/var(--tw-text-opacity));
     }
-}
+}*/
 
 .modal-content {
     .modal-body {
@@ -313,26 +192,16 @@ hr {
 
 }
 
-/** Boxes, Panels, Timelines **/
-:root {
-
-  --box-header-background: transparent;
-
-  --popover-border: rgba(0, 0, 0, 0.2);
-  --popover-header-background: #f7f7f7;
-}
-
-
 /**
  * All of the boxes follow a similar design in our themes
  */
-.box, .panel, .timeline-item, .popover {
+.box, .panel, .timeline-item {
     border: var(--box-border, none);
     --tw-background-opacity: 1;
     background-color: var(--box-background, hsl(var(--b1)/1));
 
     .box-header, .panel-heading, .timeline-header {
-        background-color: var(--box-header-background);
+        background-color: var(--box-header-background, transparent);
         color: var(--box-header-text);
     }
 
@@ -352,22 +221,21 @@ hr {
     --tw-border-opacity: 0.1;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
 }
-.popover {
-    border: 1px solid var(--popover-border);
-
-    .popover-title {
-        --tw-border-opacity: 0.2;
-        border-color: hsl(var(--bc)/var(--tw-border-opacity));
-        background-color: var(--popover-header-background);
-    }
-}
 blockquote {
     --tw-border-opacity: 1;
     border-color: hsl(var(--b3)/var(--tw-border-opacity));
+    padding: 0.6rem 1.1rem;
+    font-size: 1.1rem;
+    border-left-sytle: solid;
+    border-left-width: 0.25rem;
+}
+.dd-menu {
+    min-width: 160px;
 }
 
 
 /** Tables */
+
 .table-striped > tbody > tr:nth-of-type(odd) {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b3)/var(--tw-bg-opacity));
@@ -377,7 +245,7 @@ blockquote {
         tr {
             &:hover {
                 --tw-bg-opacity: 1;
-                background-color: hsl(var(--b3)/var(--tw-bg-opacity));
+                background-color: hsl(var(--b2)/var(--tw-bg-opacity));
             }
         }
     }

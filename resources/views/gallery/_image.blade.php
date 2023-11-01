@@ -4,15 +4,18 @@
 */
 ?>
 
-<li tabindex="0" class="block overflow-hidden rounded shadow-sm aspect-square w-[47%] xs:w-[25%] sm:w-48 cursor-pointer flex flex-col bg-box select-none hover:shadow-md focus:shadow-md  @if ($image->is_folder) items-center justify-center @endif"
-    role="checkbox" aria-label="{{ $image->name }}" aria-checked="false" data-id="{{ $image->id }}"
-    data-url="{{ route('images.edit', $image) }}" @if ($image->is_folder) data-folder="{{ route('campaign.gallery.index', ['folder_id' => $image->id]) }}" @endif title="{{ $image->name }}">
+<li tabindex="0" class="overflow-hidden rounded shadow-sm aspect-square w-[25%] sm:w-48 cursor-pointer flex flex-col bg-box select-none hover:shadow-md focus:shadow-md  @if ($image->is_folder) items-center justify-center @endif"
+    aria-label="{{ $image->name }}"
+    data-id="{{ $image->id }}"
+    data-url="{{ route('images.edit', [$campaign, $image]) }}"
+    @if ($image->is_folder) data-folder="{{ route('campaign.gallery.index', [$campaign, 'folder_id' => $image->id]) }}" @endif
+    title="{{ $image->name }}">
     @if ($image->isFolder())
         <div class="w-full flex flex-col items-center gap-2">
-            <x-icon class="fa-regular fa-folder text-4xl"></x-icon>
+            <x-icon class="fa-regular fa-folder text-lg md:text-4xl"></x-icon>
             <div class="text-base overflow-hidden text-center px-2">
 
-                @if ($image->visibility_id != \App\Models\Visibility::VISIBILITY_ALL)
+                @if ($image->visibility_id != \App\Enums\Visibility::All)
                     {!! $image->visibilityIcon() !!}
                 @endif
                 {{ $image->name }}
@@ -20,7 +23,7 @@
         </div>
     @else
         @if ($image->isFont())
-            <div class="block grow w-full flex flex-col justify-center items-center gap-2">
+            <div class="grow w-full flex flex-col justify-center items-center gap-2">
                 <x-icon class="fa-regular fa-file text-4xl"></x-icon>
             </div>
         @else

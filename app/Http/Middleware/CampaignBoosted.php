@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Domain;
 use Closure;
 
 class CampaignBoosted
@@ -11,8 +12,6 @@ class CampaignBoosted
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
      */
     public function handle($request, Closure $next)
     {
@@ -24,12 +23,12 @@ class CampaignBoosted
         }
 
         if (!$campaign->boosted()) {
-            if ($request->is('api/*')) {
+            if ($request->is('api/*') || Domain::isApi()) {
                 return response()->json([
                     'error' => 'This feature is reserved to boosted campaigns.'
                 ]);
             }
-            return redirect()->route('dashboard')->withErrors(__('crud.errors.boosted_campaigns', ['boosted' => __('concept.premium-campaigns')]));
+            return redirect()->route('dashboard', $campaign)->withErrors(__('crud.errors.boosted_campaigns', ['boosted' => __('concept.premium-campaigns')]));
         }
 
         return $next($request);

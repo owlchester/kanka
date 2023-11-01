@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 class UuidObserver
 {
     /**
-     * @param Model $model
      * @return void
      */
     public function creating(Model $model)

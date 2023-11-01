@@ -31,16 +31,13 @@ class PermissionService
 
     /**
      * Permissions setup on the campaign
-     * @var bool|array
      */
-    private $basePermissions = false;
+    private array $basePermissions;
 
-    /** @var bool|array  */
-    protected $cachedPermissions = false;
+    protected array $cachedPermissions;
 
     /**
      * Set the entity type
-     * @param int $type
      * @return $this
      */
     public function type(int $type): self
@@ -51,7 +48,6 @@ class PermissionService
 
     /**
      * Set the role
-     * @param CampaignRole $role
      * @return $this
      */
     public function role(CampaignRole $role): self
@@ -62,8 +58,6 @@ class PermissionService
 
     /**
      * Get the campaign role permissions. First key is the entity type
-     * @param CampaignRole $role
-     * @return array
      */
     public function permissions(CampaignRole $role): array
     {
@@ -132,12 +126,11 @@ class PermissionService
     }
 
     /**
-     * @return array
      */
     public function entityTypes(): array
     {
         $types = [];
-        $excludedEntities = ['menu_link', 'relation'];
+        $excludedEntities = ['bookmark', 'relation'];
 
         foreach (config('entities.ids') as $name => $id) {
             if (in_array($name, $excludedEntities)) {
@@ -152,8 +145,6 @@ class PermissionService
     /**
      * Determine if the loaded role has the permission to do a specific action on the
      * specified entity type (->type())
-     * @param int $action
-     * @return bool
      */
     public function can(int $action = CampaignPermission::ACTION_READ): bool
     {
@@ -166,8 +157,6 @@ class PermissionService
 
     /**
      * Campaign Permissions
-     * @param CampaignRole $role
-     * @return array
      */
     public function campaignPermissions(CampaignRole $role): array
     {
@@ -221,8 +210,6 @@ class PermissionService
     }
 
     /**
-     * @param array $request
-     * @param Entity $entity
      */
     public function saveEntity(array $request, Entity $entity)
     {
@@ -339,8 +326,6 @@ class PermissionService
 
     /**
      * @param array $request
-     * @param Entity $entity
-     * @param bool $override
      */
     public function change($request, Entity $entity, bool $override = true)
     {
@@ -462,12 +447,10 @@ class PermissionService
 
     /**
      * Get the permissions of an entity
-     * @param Entity $entity
-     * @return array
      */
     public function entityPermissions(Entity $entity): array
     {
-        if (!empty($this->cachedPermissions)) {
+        if (isset($this->cachedPermissions)) {
             return $this->cachedPermissions;
         }
 
@@ -487,15 +470,11 @@ class PermissionService
      */
     protected function clearEntityPermissions(): self
     {
-        $this->cachedPermissions = false;
+        unset($this->cachedPermissions);
         return $this;
     }
 
     /**
-     * @param int $action
-     * @param int $role
-     * @param int $user
-     * @return bool
      */
     public function inherited(int $action, int $role = 0, int $user = 0): bool
     {
@@ -503,7 +482,7 @@ class PermissionService
             return false;
         }
 
-        if ($this->basePermissions === false) {
+        if (!isset($this->basePermissions)) {
             $this->basePermissions = [
                 'roles' => [],
                 'users' => []
@@ -538,9 +517,6 @@ class PermissionService
     }
 
     /**
-     * @param int $action
-     * @param int $user
-     * @return string
      */
     public function inheritedRoleName(int $action, int $user): string
     {
@@ -549,9 +525,6 @@ class PermissionService
     }
 
     /**
-     * @param int $action
-     * @param int $user
-     * @return bool
      */
     public function inheritedRoleAccess(int $action, int $user): bool
     {
@@ -560,13 +533,12 @@ class PermissionService
     }
 
     /**
-     * @param string $type
-     * @param int $user
-     * @param int $action
-     * @return string
      */
     public function selected(string $type, int $user, int $action): string
     {
+        if (!isset($this->cachedPermissions)) {
+            return 'inherit';
+        }
         $value = Arr::get($this->cachedPermissions, $type . '.' . $user . '.' . $action, null);
         if ($value === null) {
             return 'inherit';
@@ -590,8 +562,6 @@ class PermissionService
     }
 
     /**
-     * @param int $entityType
-     * @return string
      */
     public function entityType(int $entityType): string
     {

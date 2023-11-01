@@ -13,7 +13,6 @@ class TimelineEraObserver
     use PurifiableTrait;
 
     /**
-     * @param TimelineEra $timelineEra
      */
     public function saving(TimelineEra $timelineEra)
     {

@@ -1,11 +1,12 @@
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('campaigns/plugins.info.title', ['plugin' => $plugin->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
-        ['url' => route('campaign_plugins.index'), 'label' => __('campaigns.show.tabs.plugins')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
+        ['url' => route('campaign_plugins.index', $campaign), 'label' => __('campaigns.show.tabs.plugins')],
         __('campaigns/plugins.info.title', ['plugin' => $plugin->name]),
     ],
     'canonical' => true,
+    'sidebar' => 'campaign',
 ])
 
 
@@ -25,7 +26,7 @@
 
             @if($plugin->hasUpdate())
                 <div>
-                    {!! Form::open(['route' => ['campaign_plugins.update', $plugin], 'method' => 'POST', 'class' => 'inline-block']) !!}
+                    {!! Form::open(['route' => ['campaign_plugins.update', [$campaign, $plugin]], 'method' => 'POST', 'class' => 'inline-block']) !!}
                     <button type="submit" class="btn2 btn-primary btn-sm">
                         <i class="fa-solid fa-download"></i>
                         {{ __('campaigns/plugins.actions.update') }}
@@ -65,7 +66,7 @@
         @endforeach
 
         @if ($versions->hasPages())
-        <div class="mt-5">
+        <div class="">
             {!! $versions->onEachSide(0)->links() !!}
         </div>
         @endif

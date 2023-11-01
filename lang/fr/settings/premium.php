@@ -31,6 +31,7 @@ return [
     ],
     'remove'        => [
         'confirm'   => 'Ouais, je suis sûr',
+        'cooldown'  => 'Les fonctionnalités premiums pour :campaign peuvent être retirées après :date.',
         'success'   => 'Les fonctionnalités premium ont été supprimées de la campagne :campaign. Tu peux maintenant débloquer les fonctionnalités Premium dans une autre campagne.',
         'title'     => 'Bloquer les fonctionnalités Premium',
         'warning'   => 'Es-tu sûr de vouloir supprimer les fonctionnalités Premium de :campaign? Cela te permettra de débloquer une autre campagne et de masquer tout le contenu et toutes les fonctionnalités liés aux avantages jusqu\'à ce que le statut Premium de la campagne soit réactivé.',

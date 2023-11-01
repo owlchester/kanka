@@ -1,8 +1,8 @@
 @php
 $options = [
     '' => __('organisations.members.pinned.none'),
-    \App\Models\OrganisationMember::PIN_CHARACTER => __('organisations.members.pinned.character'),
-    \App\Models\OrganisationMember::PIN_ORGANISATION => __('organisations.members.pinned.organisation'),
+    \App\Models\OrganisationMember::PIN_CHARACTER => \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')),
+    \App\Models\OrganisationMember::PIN_ORGANISATION => \App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation')),
     \App\Models\OrganisationMember::PIN_BOTH => __('organisations.members.pinned.both'),
 ];
 $statuses = [
@@ -18,13 +18,13 @@ $statuses = [
     <div class="col-span-2">
         @include('cruds.fields.character', [
             'required' => true,
-            'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+            'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
             'allowNew' => false,
             'allowClear' => false,
         ])
     </div>
 
-    <div class="field-character col-span-2">
+    <div class="col-span-2">
         <input type="hidden" name="parent_id" value="" />
 
         @include('cruds.fields.character', [
@@ -32,28 +32,21 @@ $statuses = [
             'label' => __('organisations.members.fields.parent'),
             'placeholder' => __('organisations.members.placeholders.parent'),
             'route' => 'search.organisation-member',
-            'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+            'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
             'allowNew' => false,
             'allowClear' => false,
         ])
     </div>
-    <div class="field-role col-span-2">
-        <label>{{ __('organisations.members.fields.role') }}</label>
-        {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-    </div>
-    <div class="field-status">
-        <label>
-            {{ __('organisations.members.fields.status') }}
-        </label>
-        {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="field-pinned">
-        <label>
-            {{ __('organisations.members.fields.pinned') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
-        </label>
-        {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
-    </div>
+    <x-forms.field field="role" css="col-span-2" :label="__('organisations.members.fields.role')">
+        {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => '', 'maxlength' => 45]) !!}
+    </x-forms.field>
+    <x-forms.field field="status" css="col-span-2" :label="__('organisations.members.fields.status')">
+        {!! Form::select('status_id', $statuses, null, ['class' => '']) !!}
+    </x-forms.field>
+
+    <x-forms.field field="pinned" css="col-span-2" :label="__('organisations.members.fields.pinned')" :helper="__('organisations.members.helpers.pinned')" :tooltip="true">
+        {!! Form::select('pin_id', $options, null, ['class' => '']) !!}
+    </x-forms.field>
 </x-grid>
 
 

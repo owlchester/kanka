@@ -35,12 +35,11 @@ trait Picture
     }
 
     /**
-     * @param bool $thumb
-     * @param string $field
      * @return string
      */
     public function avatar(bool $thumb = false, string $field = 'image')
     {
+        dd('deprecated Picture::avatar() call');
         $size = $thumb ? '_thumb' : ($this->avatarWidth != 40 ? '_mid' : null);
         $avatar = Cache::get($this->avatarCacheKey($field, $size), false);
         if ($avatar === false) {
@@ -50,8 +49,6 @@ trait Picture
     }
 
     /**
-     * @param bool $thumb
-     * @param string $field
      * @return string
      */
     protected function cacheAvatar(string $field, string $size = null)
@@ -67,7 +64,6 @@ trait Picture
     }
 
     /**
-     * @param string $avatar
      * @return string
      */
     protected function avatarUrl(string $avatar)
@@ -79,7 +75,7 @@ trait Picture
             $campaign = CampaignLocalization::getCampaign();
             if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
                 return Img::crop($this->avatarWidth, $this->avatarHeight)
-                    ->url(CampaignCache::defaultImages()[$this->type()]['path']);
+                    ->url(CampaignCache::defaultImages());
             }
 
             if (auth()->check() && auth()->user()->isGoblin()) {
@@ -115,9 +111,6 @@ trait Picture
     }
 
     /**
-     * @param bool $thumb
-     * @param string $field
-     * @return string
      */
     protected function avatarCacheKey(string $field, string $size = null): string
     {
@@ -127,7 +120,6 @@ trait Picture
     /**
      * V2 of avatars, where instead of saving the full path, we only save the relative path, so that
      * we can get any image size
-     * @return string
      */
     public function avatarV2(MiscModel $child = null): string
     {
@@ -141,7 +133,7 @@ trait Picture
             // No valid attached child
             if (!$child) {
                 //$avatar = '';
-            } elseif ($campaign->superboosted() && $this->image) {
+            } elseif ($this->image) {
                 $avatar = $this->image->path;
                 if (!empty($this->image->focus_x) && !empty($this->image->focus_y)) {
                     $focus = [$this->image->focus_x, $this->image->focus_y];
@@ -164,11 +156,11 @@ trait Picture
         // If the image is empty, look if the user has a nice picture
         if (empty($avatar)) {
             // Superboosted and with image?
-            if ($campaign->superboosted() && $this->image) {
+            if ($this->image) {
                 return Img::crop($this->avatarWidth, $this->avatarHeight)->url($this->image->path);
             } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
                 // Fallback, boosted default image?
-                return Img::crop($this->avatarWidth, $this->avatarHeight)->url(CampaignCache::defaultImages()[$this->type()]['path']);
+                return Img::crop($this->avatarWidth, $this->avatarHeight)->url(CampaignCache::defaultImages()[$this->type()]);
             }
 
             if (auth()->check() && auth()->user()->isGoblin()) {

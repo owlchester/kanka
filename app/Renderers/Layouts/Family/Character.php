@@ -53,6 +53,9 @@ class Character extends Layout
                     return !request()->has('family_id');
                 }
             ],
+            'tags' => [
+                'render' => Standard::TAGS
+            ]
         ];
 
         return $columns;

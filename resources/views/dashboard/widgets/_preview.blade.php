@@ -3,8 +3,8 @@
  * @var \App\Models\CampaignDashboardWidget $widget
  * @var \App\Models\MiscModel $model
  */
-$model = $widget->entity->child;
-$entity = $widget->entity;
+$model = $model ?? $widget->entity->child;
+$entity = $entity ?? $widget->entity;
 
 if (empty($model)) {
     return;
@@ -15,83 +15,11 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
 
 \App\Facades\Dashboard::add($entity);
 ?>
+<x-box padding="0" css="widget-calendar widget-list {{ $widget->customClass($campaign) }} entity-{{ $entity->id }}" id="dashboard-widget-{{ $widget->id }}">
 @if(view()->exists($specificPreview))
     @include($specificPreview, ['entity' => $entity])
 @else
-
-<div class="panel panel-default widget-preview {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
-    <div
-    @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image)
-        class="panel-heading panel-heading-entity"
-        style="background-image: url('{{ $entity->thumbnail(1200, 400, 'header_image') }}')"
-    @elseif ($widget->conf('entity-header') && $campaign->superboosted() && $entity->header)
-        class="panel-heading panel-heading-entity"
-        style="background-image: url('{{ Img::crop(1200, 400)->url($entity->header->path) }}')"
-    @elseif ($model->image)
-        class="panel-heading panel-heading-entity"
-        style="background-image: url('{{ $widget->entity->child->thumbnail(400) }}')"
-    @elseif($campaign->superboosted() && !empty($entity->image))
-        class="panel-heading panel-heading-entity"
-        style="background-image: url('{{ Img::crop(1200, 400)->url($entity->image->path) }}')"
-    @else
-        class="panel-heading"
-    @endif
-    >
-        <h3 class="panel-title">
-            <a href="{{ $widget->entity->url() }}">
-                @if ($model->is_private)
-                    <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
-                @endif
-                @if (!empty($widget->conf('text')))
-                    {{ $customName }}
-                @else
-                    {!! $entity->name !!}
-                @endif
-            </a>
-
-        </h3>
-    </div>
-    <div class="panel-body @if ($widget->conf('full') === '2') !p-0 @endif ">
-        @if ($widget->conf('full') === '1')
-            <div class="entity-content">
-            {!! $model->entry() !!}
-            </div>
-
-            @include('dashboard.widgets.previews._members')
-            @include('dashboard.widgets.previews._relations')
-            @include('dashboard.widgets.previews._attributes')
-        @elseif ($widget->conf('full') === '2')
-            <iframe src="{{ route('entities.attributes-dashboard', [$model->entity]) }}" class="entity-attributes w-full"></iframe>
-        @else
-        <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
-
-            <div class="entity-content">
-            {!! $model->entry() !!}
-            </div>
-
-            @include('dashboard.widgets.previews._members')
-            @include('dashboard.widgets.previews._relations')
-            @include('dashboard.widgets.previews._attributes')
-        </div>
-        <a href="#" class="preview-switch w-full inline-block text-center hidden"
-           id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
-            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-            <span class="sr-only">{{ __('Show more') }}</span>
-        </a>
-        @endif
-
-    </div>
-
-    @if ($entity->isLocation())
-        @if (!$widget->entity->child->maps->isEmpty())
-            <div class="p-4 flex gap-4 flex-wrap items-center justify-center">
-                @foreach ($entity->child->maps as $map)
-                <a href="{{ $map->getLink('explore') }}">
-                    <x-icon class="map"></x-icon> {!! $map->name !!}
-                </a>
-                @endforeach
-            </div>
-        @endif
-    @endif
-</div>
+        <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity" />
+        <x-widgets.previews.body :widget="$widget" :campaign="$campaign" :entity="$entity" :model="$model" />
 @endif
+</x-box>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
@@ -9,7 +10,6 @@ use App\Models\Item;
 use App\Models\MiscModel;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 class EntityResource extends JsonResource
 {
@@ -50,8 +50,6 @@ class EntityResource extends JsonResource
         $entity = $this->resource;
 
         $url = $entity->url();
-        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
-        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
         $apiViewUrl = 'campaigns.' . $entity->pluralType() . '.show';
 
         $data = [
@@ -75,7 +73,6 @@ class EntityResource extends JsonResource
             'updated_at' => $entity->updated_at,
             'updated_by' => $entity->updated_by,
 
-
             'urls' => [
                 'view' => $url,
                 'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$entity->campaign_id, $entity->entity_id]) : null,
@@ -84,8 +81,7 @@ class EntityResource extends JsonResource
 
         if (request()->get('related', false)) {
             $data['attributes'] = AttributeResource::collection($entity->attributes);
-            $data['entity_notes'] = PostResource::collection($entity->posts);
-            $data['posts'] = $data['entity_notes'];
+            $data['posts'] = PostResource::collection($entity->posts);
             $data['entity_events'] = EntityEventResource::collection($entity->events);
             //$data['entity_files'] = EntityFileResource::collection($this->files);
             $data['relations'] = RelationResource::collection($entity->relationships);
@@ -98,13 +94,12 @@ class EntityResource extends JsonResource
             if (empty($entity->child)) {
                 $data['child'] = 'Invalid child, please contact Jay on Discord with the following: EntityResource for #' . $entity->id;
             } else {
-                $campaign = CampaignLocalization::getCampaign();
-                $image = $campaign->superboosted() && !empty($entity->image);
+                $image = !empty($entity->image);
                 $data['child'] = [
-                    'image' => $image ? $entity->image->path : $entity->child->image,
-                    'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : $entity->fullsize()->avatarV2(),
-                    'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatarSize(40)->avatarV2(),
-                    'has_custom_image' => $image || !empty($entity->child->image),
+                    'image' => $image ? $entity->image->path : $entity->image_path,
+                    'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : Avatar::entity($entity)->original(),
+                    'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : Avatar::entity($entity)->size(40)->thumbnail(),
+                    'has_custom_image' => $image || !empty($entity->image_path),
                 ];
 
                 /*if (request()->get('entry')) {
@@ -132,7 +127,6 @@ class EntityResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  array $prepared
      * @return array|string
      */
     public function entity(array $prepared = [])
@@ -149,8 +143,6 @@ class EntityResource extends JsonResource
         $boosted = $campaign->boosted();
 
         $url = $misc->getLink();
-        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
-        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
         $apiViewUrl = 'campaigns.' . $misc->entity->pluralType() . '.show';
 
         $merged = [
@@ -159,15 +151,14 @@ class EntityResource extends JsonResource
             'entry' => $misc->hasEntry() ? $misc->entry : null,
             'entry_parsed' => $misc->hasEntry() ? Mentions::map($misc) : null,
             'tooltip' => $boosted ? ($misc->entity->tooltip ?: null) : null,
-            'image' => $misc->image,
+            'image' => $misc->entity->image_path,
             'focus_x' => $misc->entity->focus_x,
             'focus_y' => $misc->entity->focus_y,
 
             // Image
-            // @phpstan-ignore-next-line
-            'image_full' => !empty($misc->image) ? $misc->thumbnail(0) : $misc->entity->image?->getImagePath(0),
-            'image_thumb' => $misc->thumbnail(),
-            'has_custom_image' => !empty($misc->image) || !empty($galleryImage),
+            'image_full' => Avatar::entity($misc->entity)->original(),
+            'image_thumb' => Avatar::size(40)->thumbnail(),
+            'has_custom_image' => !empty($misc->entity->image_path) || !empty($galleryImage),
             'image_uuid' => $superboosted && $misc->entity->image ? $misc->entity->image->id : null,
 
             // Header
@@ -206,7 +197,6 @@ class EntityResource extends JsonResource
         if (request()->get('related', false) || $this->withRelated) {
             $merged['attributes'] = AttributeResource::collection($misc->entity->attributes);
             $merged['posts'] = PostResource::collection($misc->entity->posts);
-            $merged['entity_notes'] = $merged['posts'];
             $merged['entity_events'] = EntityEventResource::collection($misc->entity->events);
             $merged['relations'] = RelationResource::collection($misc->entity->relationships);
             $merged['inventory'] = InventoryResource::collection($misc->entity->inventories);

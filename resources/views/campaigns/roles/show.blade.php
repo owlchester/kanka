@@ -6,11 +6,12 @@
 @extends('layouts.app', [
     'title' => __('campaigns/roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
-        ['url' => route('campaign_roles.index'), 'label' => __('campaigns.show.tabs.roles')],
+        ['url' => route('campaign_roles.index', $campaign), 'label' => __('campaigns.show.tabs.roles')],
         $role->name,
     ],
     'mainTitle' => false,
+    'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('content')
@@ -20,52 +21,52 @@
     @if ($role->isPublic())
         @include('campaigns.roles._public')
     @else
-    <div class="flex gap-2 lg:gap-5 flex-col lg:flex-row max-w-7xl">
-        <div class="lg:flex-none lg:w-60">
+    <div class="flex flex-col gap-5">
         @include('campaigns.roles._members')
+
+        <div class="flex gap-2 items-center">
+            <h3 class="grow">{{ __('crud.permissions.title') }}</h3>
+            <button class="btn2 btn-sm btn-ghost" data-target="permission-modal" data-toggle="dialog">
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+            </button>
         </div>
-        <div class="grow">
-            <div class="flex gap-2 items-center mb-5">
-                <h3 class="m-0 grow">{{ __('crud.permissions.title') }}</h3>
-                <button class="btn2 btn-sm" data-target="permission-modal" data-toggle="dialog">
-                    <x-icon class="question"></x-icon> {{ __('campaigns.members.actions.help') }}
+        @if (!$role->isAdmin())
+            <x-alert type="info">
+                <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<code>' . $role->name . '</code>']) !!}</p>
+            </x-alert>
+        @else
+            <x-alert type="info">
+                <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<code>' . $role->name . '</code>']) !!} </p>
+            </x-alert>
+        @endif
+        @if (!$role->isAdmin())
+        <x-box>
+            @can('permission', $role)
+            {{ Form::open(['route' => ['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role], 'data-shortcut' => '1']) }}
+                    <div class="w-full overflow-y-auto flex flex-col gap-5 pb-5">
+                @include('campaigns.roles._pretty')
+                    </div>
+            @endif
+            @can('permission', $role)
+            <div class="text-right">
+                <button class="btn2 btn-primary">
+                    <x-icon class="save"></x-icon>
+                    {{ __('crud.save') }}
                 </button>
             </div>
-            <x-box>
-                @if (!$role->isAdmin())
-                    <p class="help-block">
-                        {!! __('campaigns.roles.hints.role_permissions', ['name' => '<strong>' . $role->name . '</strong>']) !!}
-                    </p>
-                @else
-                    <p class="help-block">{!! __('campaigns.roles.hints.role_admin', ['name' => '<code>' . $role->name . '</code>']) !!} </p>
-                @endif
-                @can('permission', $role)
-                {{ Form::open(['route' => ['campaign_roles.savePermissions', 'campaign_role' => $role], 'data-shortcut' => '1']) }}
-                        <div class="w-full overflow-y-auto">
-                    @include('campaigns.roles._pretty')
-                        </div>
-                @endif
-                @can('permission', $role)
-                <div class="text-right mt-5">
-                    <button class="btn2 btn-primary">
-                        <x-icon class="save"></x-icon>
-                        {{ __('crud.save') }}
-                    </button>
-                </div>
-                    {{ Form::close() }}
-                @endif
-            </x-box>
-        </div>
+                {{ Form::close() }}
+            @endif
+        </x-box>
+        @endif
     </div>
     @endif
 @endsection
 
 @section('modals')
     <x-dialog id="permission-modal" :title="__('campaigns.roles.modals.details.title')">
-        <p>
+        <p class="m-0">
             {!! __('campaigns.roles.modals.details.entities') !!}
         </p>
-
         <ul>
             <li>
                 <code>{{ __('campaigns.roles.permissions.actions.read') }}</code>:
@@ -93,10 +94,9 @@
             </li>
         </ul>
 
-        <p>
+        <p class="m-0">
             {!! __('campaigns.roles.modals.details.campaign') !!}
         </p>
-
 
         <ul>
             <li>
@@ -117,7 +117,7 @@
             </li>
         </ul>
 
-        <p>
+        <p class="m-0">
             <a href="https://www.youtube.com/watch?v=ikNPzNgjYmg" target="_blank" class="inline-block py-5">
                 {{ __('campaigns.roles.modals.details.more') }}
             </a>

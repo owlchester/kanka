@@ -9,6 +9,7 @@ use App\Models\Concerns\Paginatable;
 use App\Traits\SourceCopiable;
 use App\Traits\VisibilityIDTrait;
 use App\Models\Concerns\SortableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -44,6 +45,7 @@ use Illuminate\Support\Str;
 class MapMarker extends Model
 {
     use Blameable;
+    use HasFactory;
     use Paginatable;
     use SortableTrait;
     use SourceCopiable;
@@ -79,7 +81,7 @@ class MapMarker extends Model
         'polygon_style',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'entity_id',
         'type',
@@ -130,7 +132,6 @@ class MapMarker extends Model
 
     /**
      * Get the marker's size, and make it 20 times bigger for a "pixel" size equivalent
-     * @return int
      */
     public function size(): int
     {
@@ -139,7 +140,6 @@ class MapMarker extends Model
 
     /**
      * Determine if the marker is of the label type
-     * @return bool
      */
     public function isLabel(): bool
     {
@@ -148,7 +148,6 @@ class MapMarker extends Model
 
     /**
      * Determine if the marker is of the circle type
-     * @return bool
      */
     public function isCircle(): bool
     {
@@ -157,7 +156,6 @@ class MapMarker extends Model
 
     /**
      * Determine if the marker is of the polygon type and has a custom shape
-     * @return bool
      */
     public function isPolygon(): bool
     {
@@ -166,7 +164,6 @@ class MapMarker extends Model
 
     /**
      * Determine the type of the marker
-     * @return string
      */
     public function typeLabel(): string
     {
@@ -182,7 +179,6 @@ class MapMarker extends Model
 
     /**
      * Determine the icon of the marker for the datagrid.
-     * @return string
      */
     public function datagridMarkerIcon(): string
     {
@@ -212,7 +208,6 @@ class MapMarker extends Model
 
     /**
      * Generate the marker for leaflet
-     * @return string
      */
     public function marker(): string
     {
@@ -252,7 +247,6 @@ class MapMarker extends Model
 
     /**
      * Generate a circle marker
-     * @return string
      */
     protected function circleMarker(): string
     {
@@ -269,7 +263,6 @@ class MapMarker extends Model
 
     /**
      * Generate a label marker
-     * @return string
      */
     protected function labelMarker(): string
     {
@@ -295,6 +288,7 @@ class MapMarker extends Model
         }
 
         $body = null;
+        $campaign = CampaignLocalization::getCampaign();
         if (!empty($this->entity)) {
             if (!empty($this->name)) { // Name is set, include link to the entity
                 $url = $this->entity->url();
@@ -324,20 +318,20 @@ class MapMarker extends Model
             </div>`)
                 ' . $this->tooltipPopup . '
             .on(`click`, function (ev) {
-                window.markerDetails(`' . route('maps.markers.details', [$this->map_id, $this->id]) . '`)
+                window.markerDetails(`' . route('maps.markers.details', [$campaign, $this->map_id, $this->id]) . '`)
             })';
         }
 
         $editButton = $copyButton = $deleteButton = '';
         if (auth()->check()) {
             if (auth()->user()->can('update', $this)) {
-                $editButton = '<a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.edit') . '</a>';
-                $copyButton = '<a href="' . route('maps.map_markers.create', [$this->map_id, 'source' => $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.actions.copy') . '</a>';
+                $editButton = '<a href="' . route('maps.map_markers.edit', [$campaign, $this->map_id, $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.edit') . '</a>';
+                $copyButton = '<a href="' . route('maps.map_markers.create', [$campaign, $this->map_id, 'source' => $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.actions.copy') . '</a>';
             }
             if (auth()->user()->can('delete', $this)) {
-                $deleteButton = '<a href="#" class="btn2 btn-xs btn-error delete-confirm" data-toggle="modal" data-name="' .
-                    str_replace('`', '\'', $this->markerTitle(false)) . '"
-                        data-target="#delete-confirm" data-delete-target="delete-form-marker-' . $this->id . '"
+                $route = route('confirm-delete', [$campaign, 'route' => route('maps.map_markers.destroy', [$campaign, $this->map_id, $this->id]), 'name' => $this->markerTitle(), 'permanent' => true]);
+                $deleteButton = '<a href="#" class="btn2 btn-xs btn-error"
+                data-url="' . $route . '" data-toggle="dialog" data-target="primary-dialog"
                         title="' . __('crud.remove') . '">
                     ' . __('crud.remove') . '
                 </a>';
@@ -358,7 +352,6 @@ class MapMarker extends Model
 
     /**
      * Determine if a marker is draggable
-     * @return bool
      */
     protected function isDraggable(): bool
     {
@@ -370,7 +363,6 @@ class MapMarker extends Model
 
     /**
      * Generate the draggable event for a marker
-     * @return string
      */
     protected function draggable(): string
     {
@@ -380,6 +372,7 @@ class MapMarker extends Model
 
         // Exploring and moving? Update through ajax
         if ($this->isExploring() && $this->is_draggable) {
+            $campaign = CampaignLocalization::getCampaign();
             return '.on(`dragstart`, function() {
                 this.closePopup();
             })
@@ -388,7 +381,7 @@ class MapMarker extends Model
                 var coordinates = marker' . $this->id . '.getLatLng();
                 console.log(`dragend`, coordinates);
                 $.ajax({
-                    url: `' . route('maps.markers.move', [$this->map_id, $this->id]) . '`,
+                    url: `' . route('maps.markers.move', [$campaign, $this->map_id, $this->id]) . '`,
                     type: `post`,
                     data: {latitude: coordinates.lat.toFixed(3), longitude: coordinates.lng.toFixed(3)}
                 }).done(function (data) {
@@ -417,7 +410,6 @@ class MapMarker extends Model
 
     /**
      * Marker icon as shown in explore and edit mode
-     * @return string
      */
     protected function markerIcon(): string
     {
@@ -467,8 +459,6 @@ class MapMarker extends Model
     }
 
     /**
-     * @param bool $withPx
-     * @return string
      */
     public function pinSize(bool $withPx = true): string
     {
@@ -479,7 +469,6 @@ class MapMarker extends Model
     /**
      * The name of the marker: name or entity
      * @param bool $link = false
-     * @return string
      */
     public function markerTitle(bool $link = false): string
     {
@@ -523,7 +512,6 @@ class MapMarker extends Model
     /**
      * Determine if the marker is being viewed in the "explore" page.
      * Refactor potential: move all of the rendering logic to a separate class.
-     * @return bool
      */
     public function isExploring(): bool
     {
@@ -543,7 +531,6 @@ class MapMarker extends Model
 
     /**
      * Get the opacity of a point. Users input a %, convert it to a float for leaflet
-     * @return float
      */
     protected function floatOpacity(): float
     {
@@ -561,7 +548,6 @@ class MapMarker extends Model
 
     /**
      * Get the polygon's stroke opacity
-     * @return float
      */
     protected function strokeOpacity(): float
     {
@@ -576,7 +562,6 @@ class MapMarker extends Model
 
     /**
      * Resize any custom svg icon to be limited in height and width to the pin
-     * @return string
      */
     protected function resizedCustomIcon(): string
     {
@@ -587,7 +572,6 @@ class MapMarker extends Model
 
     /**
      * Marker background colour
-     * @return string
      */
     public function backgroundColour(): string
     {
@@ -596,7 +580,7 @@ class MapMarker extends Model
         }
 
         // Entity with no image?
-        if ($this->icon == 4 && empty($this->entity->child->image)) {
+        if ($this->icon == 4 && empty($this->entity->image_path)) {
             return '#ccc';
         }
 
@@ -608,7 +592,6 @@ class MapMarker extends Model
 
     /**
      * Check if a marker is visible (pointing to an entity that shouldn't be visible)
-     * @return bool
      */
     public function visible(): bool
     {
@@ -625,7 +608,6 @@ class MapMarker extends Model
 
     /**
      * Calculate the circle radius
-     * @return int
      */
     protected function circleRadius(): int
     {
@@ -638,7 +620,6 @@ class MapMarker extends Model
 
     /**
      * Determine if the marker has a filled out entry
-     * @return bool
      */
     public function hasEntry(): bool
     {
@@ -649,7 +630,6 @@ class MapMarker extends Model
 
     /**
      * For legacy tinymce editor
-     * @return bool
      */
     public function hasEntity(): bool
     {
@@ -658,7 +638,6 @@ class MapMarker extends Model
 
     /**
      * Functions for the datagrid2
-     * @return string
      */
     public function url(string $where): string
     {
@@ -666,16 +645,14 @@ class MapMarker extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->map_id, $this->id];
+        return $options + ['map' => $this->map_id, 'map_marker' => $this->id];
     }
     public function routeCopyParams(array $options = []): array
     {
-        return [$this->map_id, 'source' => $this->id];
+        return $options + ['map' => $this->map_id, 'source' => $this->id];
     }
     /**
      * Patch an entity from the datagrid2 batch editing
-     * @param array $data
-     * @return bool
      */
     public function patch(array $data): bool
     {
@@ -687,17 +664,15 @@ class MapMarker extends Model
 
     /**
      * Override the get link
-     * @return string
      */
     public function getLink(): string
     {
-        return route('maps.map_markers.edit', ['map' => $this->map_id, $this->id]);
+        $campaign = CampaignLocalization::getCampaign();
+        return route('maps.map_markers.edit', [$campaign, 'map' => $this->map_id, $this->id]);
     }
 
     /**
      * Generate link for the datagrid
-     * @param string|null $displayName
-     * @return string
      */
     public function markerLink(string $displayName = null): string
     {

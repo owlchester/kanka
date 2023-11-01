@@ -1,30 +1,29 @@
 <?php
 $nameBlock = '';
 $textBlock = 'grow';
-$actionBlock = 'flex gap-2';
-$flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
+$actionBlock = 'flex gap-3';
+$flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 ?>
-    <!-- Attribute Section -->
 @section('modals')
     @parent
-    <div class="attribute-templates hidden">
-        <div class="{{ $flex }} attribute_row" id="attribute_template">
+    <template id="attribute_template">
+        <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
             <div class="{{ $nameBlock }}">
-                <div class="">
+                <div class="field">
                     <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
                     {!! Form::text('attr_name[$TMP_ID$]', null, [
                         'placeholder' => __('entities/attributes.placeholders.attribute'),
-                        'class' => 'form-control',
+                        'class' => 'w-full',
                         'maxlength' => 191
                     ]) !!}
                 </div>
             </div>
-            <div class="{{ $textBlock }}">
+            <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
-                {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live')]) !!}
+                {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'w-full kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live', $campaign)]) !!}
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
@@ -46,20 +45,21 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_STANDARD_ID) !!}
         </div>
-        <!-- Text Section -->
-        <div class="{{ $flex }} attribute_row" id="text_template">
+    </template>
+    <template id="text_template">
+        <div class="{{ $flex }} attribute_row" >
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
             <div class="{{ $nameBlock }}">
-                <div class="">
+                <div class="field">
                     <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
-                    {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.block'), 'class' => 'w-full', 'maxlength' => 191]) !!}
                 </div>
             </div>
-            <div class="{{ $textBlock }}">
+            <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
-                {!! Form::textarea('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 3, 'data-remote' => route('search.live')]) !!}
+                {!! Form::textarea('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'w-full kanka-mentions', 'rows' => 3, 'data-remote' => route('search.live', $campaign)]) !!}
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
@@ -73,7 +73,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
                 @endif
-                <a class="text-error attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                <a class="text-error attribute_delete" title="{{ __('crud.remove') }}">
                     <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
@@ -81,18 +81,20 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
 
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_TEXT_ID) !!}
         </div>
-        <!-- Number Section -->
-        <div class="{{ $flex }} attribute_row" id="number_template">
+    </template>
+
+    <template id="number_template">
+        <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
-            <div class="{{ $nameBlock }}">
+            <div class="field {{ $nameBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
-                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'w-full', 'maxlength' => 191]) !!}
             </div>
-            <div class="{{ $textBlock }}">
+            <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
-                {!! Form::number('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control']) !!}
+                {!! Form::number('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'w-full']) !!}
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
@@ -106,7 +108,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
                 @endif
-                <a class="text-error attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                <a class="text-error attribute_delete" title="{{ __('crud.remove') }}">
                     <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
@@ -114,14 +116,15 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
 
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_NUMBER_ID) !!}
         </div>
-
-        <div class="{{ $flex }} attribute_row" id="checkbox_template">
+    </template>
+    <template id="checkbox_template">
+        <div class="{{ $flex }} attribute_row items-center">
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
-            <div class="{{ $nameBlock }}">
+            <div class="field {{ $nameBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.checkbox') }}</label>
-                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.checkbox'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.checkbox'), 'class' => 'w-full', 'maxlength' => 191]) !!}
             </div>
             <div class="{{ $textBlock }}">
                 {!! Form::checkbox('attr_value[$TMP_ID$]', 1, false) !!}
@@ -147,18 +150,18 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
 
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_CHECKBOX_ID) !!}
         </div>
-        <!-- Section -->
-        <div class="{{ $flex }} attribute_row" id="section_template">
+    </template>
+
+    <template id="section_template">
+        <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
-            <div class="{{ $textBlock }}">
+            <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.section') }}</label>
-                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.section'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.section'), 'class' => 'w-full', 'maxlength' => 191]) !!}
             </div>
-            <div class="{{ $textBlock }}">
-                {!! Form::hidden('attr_value[$TMP_ID$]', null) !!}
-            </div>
+            {!! Form::hidden('attr_value[$TMP_ID$]', null) !!}
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
@@ -178,22 +181,24 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_SECTION_ID) !!}
         </div>
-        <!-- Random -->
-        <div class="{{ $flex }} attribute_row"  id="random_template">
+    </template>
+
+    <template id="random_template">
+        <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
                 <x-icon class="fa-solid fa-grip-vertical" />
             </div>
-            <div class="{{ $nameBlock }}">
+            <div class="field {{ $nameBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
                 {!! Form::text('attr_name[$TMP_ID$]', null, [
                     'placeholder' => __('entities/attributes.placeholders.random.name'),
-                    'class' => 'form-control',
+                    'class' => 'w-full',
                     'maxlength' => 191
                 ]) !!}
             </div>
-            <div class="{{ $textBlock }}">
+            <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
-                {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.random.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.random.value'), 'class' => 'w-full', 'maxlength' => 191]) !!}
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
@@ -214,5 +219,5 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1 mb-5 md:mb-2';
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_RANDOM_ID) !!}
         </div>
-    </div>
+    </template>
 @endsection

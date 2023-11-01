@@ -4,24 +4,30 @@
     'breadcrumbs' => false,
     'sidebar' => 'settings',
     'noads' => true,
+    'centered' => true,
 ])
 
 @section('content')
-    <h1 class="mb-3">
-        {{ __('settings.patreon.title') }}
-    </h1>
-    @include('partials.errors')
+    <x-grid type="1/1">
+        <h1 class="">
+            {{ __('settings.patreon.title') }}
+        </h1>
+        @include('partials.errors')
 
     @if(auth()->user()->isLegacyPatron())
         <x-box>
-            @includeIf('settings.tiers._' . strtolower(auth()->user()->pledge ?: 'kobold'))
+            <x-grid type="1/1">
+                @includeIf('settings.tiers._' . strtolower(auth()->user()->pledge ?: 'kobold'))
 
-            <x-buttons.confirm type="danger" outline="true" target="remove-patreon">
-                <i class="fa-solid fa-link-slash" aria-hidden="true"></i>
-                <span>
-                    {{ __('settings.patreon.remove.button') }}
-                </span>
-            </x-buttons.confirm>
+                <div>
+                    <x-buttons.confirm type="danger" outline="true" target="remove-patreon">
+                        <i class="fa-solid fa-link-slash" aria-hidden="true"></i>
+                        <span>
+                            {{ __('settings.patreon.remove.button') }}
+                        </span>
+                    </x-buttons.confirm>
+                </div>
+            </x-grid>
         </x-box>
     @else
         <x-alert type="warning">
@@ -30,14 +36,15 @@
             </p>
         </x-alert>
     @endif
+    </x-grid>
 @endsection
 
 @section('modals')
     <x-dialog id="remove-patreon" :title="__('settings.patreon.remove.title')">
-        <p class="mb-2">
+        <p class="">
             {{ __('settings.patreon.remove.text') }}
         </p>
-        {!! Form::model(auth()->user(), ['method' => 'DELETE', 'route' => ['settings.patreon.unlink'], 'class' => 'text-center mb-5 w-full']) !!}
+        {!! Form::model(auth()->user(), ['method' => 'DELETE', 'route' => ['settings.patreon.unlink'], 'class' => 'text-center w-full']) !!}
         <x-buttons.confirm type="danger" outline="true" full="true">
             {{ __('crud.click_modal.confirm') }}
         </x-buttons.confirm>

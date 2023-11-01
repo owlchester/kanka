@@ -1,6 +1,6 @@
 <template>
     <div class="entity-header p-3 bg-entity-focus">
-        <div class="block w-full flex items-center">
+        <div class="w-full flex items-center">
 
             <a class="text-2xl font-extrabold entity-name" v-bind:href="entity.link" :title="entity.name">
               {{ entity.name }}
@@ -15,7 +15,7 @@
         <div class="block w-full" v-if="hasTitle()">
             {{ entity.title}}
         </div>
-        <div class="my-1 w-full" v-if="entity.tags.length > 0">
+        <div class="my-1 w-full flex flex-wrap gap-1" v-if="entity.tags.length > 0">
             <a :class="tagClass(tag)" v-for="tag in entity.tags"
                 v-bind:href="tag.link"
                 >
@@ -27,7 +27,7 @@
            v-bind:href="entity.location.link"
            :data-tag="entity.id"
         >
-            <i class="ra ra-tower" aria-hidden="true" aria-label="Location"></i>
+            <i class="fa-duotone circle-location-arrow" aria-hidden="true" aria-label="Location"></i>
             {{ entity.location.name }}
         </a>
         <a
@@ -44,17 +44,18 @@
             <div v-bind:class="tabClass('links')" v-on:click="switchTab('links')">{{ entity.texts.connections }}</div>
             <div v-bind:class="tabClass('access')" v-on:click="switchTab('access')"></div>
         </div>
-        <div class="tab-profile p-5" v-if="focus_profile">
-            <div class="entity-pinned-attributes" v-if="entity.attributes.length > 0">
-                <div v-for="attribute in entity.attributes" class="mb-3" v-bind:data-attribute="attribute.name" v-bind:data-target="attribute.id">
+        <div class="tab-profile p-5 flex flex-col gap-5" v-if="focus_profile">
+            <div class="entity-pinned-attributes flex flex-col gap-3" v-if="entity.attributes.length > 0">
+                <div v-for="attribute in entity.attributes" class="" v-bind:data-attribute="attribute.name" v-bind:data-target="attribute.id">
                     <span class="inline-block uppercase font-extrabold mr-1">
                         {{ attribute.name }}
                     </span>
                     <span v-html="attribute.value"></span>
                 </div>
-                <hr />
             </div>
-            <div v-for="profile in entity.profile" class="mb-3" v-bind:class="profileClass(profile)">
+          <hr  v-if="entity.attributes.length > 0" />
+          <div class="flex flex-col gap-3">
+            <div v-for="profile in entity.profile" class="" v-bind:class="profileClass(profile)">
                 <div class="uppercase font-extrabold truncate">
                     {{ profile.field }}
                 </div>
@@ -62,6 +63,7 @@
                     {{ profile.value }}
                 </div>
             </div>
+          </div>
         </div>
         <div class="tab-links p-3" v-if="focus_pins">
             <LookupEntity  v-for="relation in entity.connections"
@@ -96,7 +98,7 @@ export default {
             return this.entity.title;
         },
         tagClass(tag) {
-            let cls = 'inline-block rounded-xl px-3 py-1 mr-2 bg-base-100 text-black text-xs mb-1';
+            let cls = 'inline-block rounded-xl px-3 py-1 bg-base-100 text-base-content text-xs';
             if (tag.colour) {
                 cls += ' bg-' + tag.colour;
                 if (tag.colour === 'black') {

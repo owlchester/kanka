@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Domain;
 use Closure;
 
 class CampaignSuperBoosted
@@ -11,8 +12,6 @@ class CampaignSuperBoosted
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
      */
     public function handle($request, Closure $next)
     {
@@ -23,12 +22,12 @@ class CampaignSuperBoosted
         }
 
         if (!$campaign->superboosted()) {
-            if ($request->is('api/*')) {
+            if ($request->is('api/*') || Domain::isApi()) {
                 return response()->json([
                     'error' => 'This feature is reserved to premium campaign.'
                 ]);
             }
-            return redirect()->route('dashboard')->withErrors(__('campaigns.errors.premium'));
+            return redirect()->route('dashboard', $campaign)->withErrors(__('campaigns.errors.premium'));
         }
 
         return $next($request);

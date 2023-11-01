@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\HistoryRequest;
 use App\User;
 use Carbon\Carbon;
@@ -89,11 +90,10 @@ class EntityLog extends Model
      */
     public function post()
     {
-        return $this->belongsTo('App\Models\EntityNote', 'post_id');
+        return $this->belongsTo('App\Models\Post', 'post_id');
     }
 
     /**
-     * @return string
      */
     public function actionCode(): string
     {
@@ -135,21 +135,20 @@ class EntityLog extends Model
     public function actionBackground(): string
     {
         if ($this->action == self::ACTION_CREATE || $this->action == self::ACTION_CREATE_POST) {
-            return 'bg-green';
+            return 'bg-green-300';
         } elseif ($this->action == self::ACTION_UPDATE || $this->action == self::ACTION_UPDATE_POST) {
-            return 'bg-blue';
+            return 'bg-blue-200';
         } elseif ($this->action == self::ACTION_REORDER_POST) {
-            return 'bg-yellow';
+            return 'bg-yellow-300';
         } elseif ($this->action == self::ACTION_DELETE || $this->action == self::ACTION_DELETE_POST) {
-            return 'bg-red';
+            return 'bg-red-300';
         } elseif ($this->action == self::ACTION_RESTORE) {
-            return 'bg-orange';
+            return 'bg-orange-300';
         }
         return 'bg-gray';
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeRecent(Builder $query)
@@ -158,8 +157,6 @@ class EntityLog extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param int $action
      * @return Builder
      */
     public function scopeAction(Builder $query, int $action)
@@ -169,9 +166,6 @@ class EntityLog extends Model
 
     /**
      * Replace the field edited with it's translated name
-     * @param string $transKey
-     * @param string $attribute
-     * @return string
      */
     public function attributeKey(string $transKey, string $attribute): string
     {
@@ -201,7 +195,6 @@ class EntityLog extends Model
 
     /**
      * Automatically prune old elements from the db
-     * @return Builder
      */
     public function prunable(): Builder
     {
@@ -225,7 +218,8 @@ class EntityLog extends Model
     public function entityLink(): string
     {
         if (!$this->entity) {
-            return link_to_route('recovery', __('history.unknown.entity'));
+            $campaign = CampaignLocalization::getCampaign();
+            return link_to_route('recovery', __('history.unknown.entity'), [$campaign]);
         }
         return $this->entity->tooltipedLink($this->entity->name, false);
     }
@@ -245,9 +239,6 @@ class EntityLog extends Model
     }
 
     /**
-     * @param Builder $builder
-     * @param HistoryRequest $request
-     * @return Builder
      */
     public function scopeFilter(Builder $builder, HistoryRequest $request): Builder
     {

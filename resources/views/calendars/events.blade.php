@@ -6,22 +6,20 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
-
 @section('entity-header-actions')
-    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+    <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
         @if (!request()->has('before_id'))
-            <a href="{{ route('calendars.events', [$model, 'before_id' => 1]) }}" class="btn2 btn-sm">
+            <a href="{{ route('calendars.events', [$campaign, $model, 'before_id' => 1]) }}" class="btn2 btn-sm">
                 {{ __('calendars.events.filters.show_before') }}
             </a>
         @endif
         @if (!request()->has('after_id'))
-            <a href="{{ route('calendars.events', [$model, 'after_id' => 1]) }}" class="btn2 btn-sm">
+            <a href="{{ route('calendars.events', [$campaign, $model, 'after_id' => 1]) }}" class="btn2 btn-sm">
                 {{ __('calendars.events.filters.show_after') }}
             </a>
         @endif
         @if (request()->has('after_id') || request()->has('before_id'))
-            <a href="{{ route('calendars.events', [$model]) }}" class="btn2 btn-sm">
+            <a href="{{ route('calendars.events', [$campaign, $model]) }}" class="btn2 btn-sm">
                 {{ __('calendars.events.filters.show_all') }}
             </a>
         @endif
@@ -29,21 +27,10 @@
 @endsection
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index('calendars'), 'label' => \App\Facades\Module::plural(config('entities.ids.calendar'), __('entities.calendars'))],
-                null
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'events'])
-
-        <div class="entity-main-block">
-            @include('calendars.panels.events')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'events',
+        'breadcrumb' => __('entities.entities'),
+        'view' => 'calendars.panels.events',
+        'entity' => $model->entity,
+    ])
 @endsection

@@ -3,25 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\DefaultDatagridActions;
+use App\Datagrids\Filters\DatagridFilter;
 use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\Breadcrumb;
-use App\Facades\CampaignLocalization;
-use App\Facades\Datagrid;
 use App\Facades\FormCopy;
 use App\Facades\Module;
 use App\Facades\Permissions;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
-use App\Models\MenuLink;
+use App\Models\Bookmark;
 use App\Models\MiscModel;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\MultiEditingService;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
+use App\Traits\CampaignAware;
+use App\Traits\Controllers\HasDatagrid;
+use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use LogicException;
@@ -29,7 +31,10 @@ use LogicException;
 class CrudController extends Controller
 {
     use BulkControllerTrait;
+    use CampaignAware;
     use GuestAuthTrait;
+    use HasDatagrid;
+    use HasSubview;
 
     /** @var string The view where to find the resources */
     protected string $view = '';
@@ -40,9 +45,7 @@ class CrudController extends Controller
     /** @var MiscModel|Model|string|null */
     protected $model = null;
 
-    /** @var array */
-    protected array $filters = [];
-    protected $filter;
+    protected string $filter;
 
     /** @var FilterService */
     protected $filterService;
@@ -58,9 +61,6 @@ class CrudController extends Controller
 
     /** @var bool If the boosted tab and pane is enabled or not */
     protected bool $tabBoosted = true;
-
-    /** @var bool Control if the form is "horizontal" (css class) */
-    protected bool $horizontalForm = false;
 
     /** @var array List of navigation actions on top of the datagrids */
     protected array $navActions = [];
@@ -80,9 +80,6 @@ class CrudController extends Controller
     /** @var string The datagrid actions, set to null to disable */
     protected string $datagridActions = DefaultDatagridActions::class;
 
-    /** @var array|LengthAwarePaginator|\Illuminate\Contracts\Pagination\LengthAwarePaginator */
-    protected $rows = [];
-
     /** @var bool Determine if the create/store procedure has a limit checking in place */
     protected bool $hasLimitCheck = false;
 
@@ -97,15 +94,15 @@ class CrudController extends Controller
         $this->filterService = new FilterService();
     }
 
-    public function index(Request $request)
+    public function index(Request $request, Campaign $campaign)
     {
-        return $this->crudIndex($request);
+        return $this->campaign($campaign)->crudIndex($request);
     }
 
     public function crudIndex(Request $request)
     {
         if (!$this->moduleEnabled()) {
-            return redirect()->route('dashboard')->with(
+            return redirect()->route('dashboard', $this->campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
                     // @phpstan-ignore-next-line
@@ -119,14 +116,18 @@ class CrudController extends Controller
          * @var MiscModel $model
          */
         $model = new $this->model();
+        $campaign = $this->campaign;
         $this->filterService
             ->request($request)
             ->model($model)
             ->make($this->view);
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
-        $filters = $this->filters;
+        /** @var DatagridFilter|null $filter */
         $filter = !empty($this->filter) ? new $this->filter() : null;
+        if (!empty($filter)) {
+            $filter->campaign($this->campaign)->build();
+        }
         $filterService = $this->filterService;
         $route = $this->route;
         $bulk = $this->bulkModel();
@@ -169,6 +170,7 @@ class CrudController extends Controller
         // If the current page is higher than the max amount of pages, redirect the user
         if ((int) request()->get('page', 1) > $models->lastPage()) {
             return redirect()->route($this->route . '.index', [
+                $this->campaign,
                 'page' => $models->lastPage(),
                 'order' => request()->get('order')
             ]);
@@ -187,22 +189,23 @@ class CrudController extends Controller
         // Add a button to the tree view if the controller has it
         if (method_exists($this, 'tree') && $mode === 'table') {
             $this->addNavAction(
-                route($this->route . '.tree', ['m' => 'table']),
+                route($this->route . '.tree', [$this->campaign, 'm' => 'table']),
                 '<i class="fa-solid fa-share-nodes" aria-hidden="true"></i> ' . __('crud.actions.explore_view')
             );
         }
+        $this->getNavActions();
         $actions = $this->navActions;
         $entityTypeId = $model->entityTypeId();
         $singular = Module::singular($entityTypeId, __('entities.' . \Illuminate\Support\Str::singular($route)));
 
         $data = compact(
+            'campaign',
             'models',
             'name',
             'langKey',
             'model',
             'actions',
             'filter',
-            'filters',
             'filterService',
             'filteredCount',
             'unfilteredCount',
@@ -229,21 +232,20 @@ class CrudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Campaign $campaign)
     {
-        return $this->crudCreate();
+        return $this->campaign($campaign)->crudCreate();
     }
     public function crudCreate($params = [])
     {
         $this->authorize('create', $this->model);
-        $campaign = CampaignLocalization::getCampaign();
 
         if ($this->hasLimitCheck) {
             // @phpstan-ignore-next-line
             if ($this->limitCheckReached()) {
-                $key = $this->view == 'menu_links' ? 'quick-links' : 'entities';
+                $key = $this->view == 'bookmarks' ? 'bookmarks' : 'entities';
                 return view('cruds.forms.limit')
-                    ->with('campaign', $campaign)
+                    ->with('campaign', $this->campaign)
                     ->with('key', $key)
                     ->with('name', $this->view);
             }
@@ -262,14 +264,13 @@ class CrudController extends Controller
         $model = new $this->model();
         $templates = $this->buildAttributeTemplates($model->entityTypeId());
 
-        $params['ajax'] = request()->ajax();
+        $params['campaign'] = $this->campaign;
         $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
-        $params['tabAttributes'] = $this->tabAttributes && $campaign->enabled('entity_attributes');
+        $params['tabAttributes'] = $this->tabAttributes && $this->campaign->enabled('entity_attributes');
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
         $params['entityAttributeTemplates'] = $templates;
-        $params['entityType'] = $model->getEntityType();
-        $params['horizontalForm'] = $this->horizontalForm;
+        $params['entityType'] = $model->hasEntityType() ? $model->getEntityType() : null;
         $params['title'] = __($this->view . '.create.title');
 
         // Custom module names shenanigans
@@ -303,7 +304,6 @@ class CrudController extends Controller
             }
         }
 
-        $campaign = CampaignLocalization::getCampaign();
         try {
             // Sanitize the data
             if (!empty($this->sanitizer)) {
@@ -313,7 +313,7 @@ class CrudController extends Controller
             }
 
             $data = $request->all();
-            $data['campaign_id'] = $campaign->id;
+            $data['campaign_id'] = $this->campaign->id;
 
             /** @var MiscModel $model */
             $model = new $this->model();
@@ -329,42 +329,40 @@ class CrudController extends Controller
             }
 
             $success = __('general.success.created', [
-                'name' => link_to_route(
+                'name' => $new->entity ? link_to_route(
+                    'entities.show',
+                    $new->name,
+                    [$this->campaign, $new->entity]
+                ) : link_to_route(/** Menu link **/
                     $this->view . '.show',
                     $new->name,
-                    [$new->id]
+                    [$this->campaign, $new->id]
                 )
             ]);
 
             session()->flash('success_raw', $success);
 
             if ($request->has('submit-new')) {
-                $route = route($this->route . '.create');
+                $route = route($this->route . '.create', $this->campaign);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
-                $route = route($this->route . '.edit', $new);
+                $route = route($this->route . '.edit', [$this->campaign, $new]);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view')) {
-                $route = route($this->route . '.show', $new);
+                $route = route('entities.show', [$this->campaign, $new->entity]);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
-                $route = route($this->route . '.create', ['copy' => $new->id]);
-                return response()->redirectTo($route);
-            } elseif (auth()->user()->new_entity_workflow == 'created') {
-                $redirectToCreated = true;
-            } elseif ($model->getEntityType() == 'maps') {
-                // If creating a map, go to edit it directly
-                $route = route($this->route . '.edit', $new);
+                $route = route($this->route . '.create', [$this->campaign, 'copy' => $new->id]);
                 return response()->redirectTo($route);
             }
 
-            if ($redirectToCreated) {
-                $route = route($this->route . '.show', $new);
+            if ($new->entity) {
+                $route = route('entities.show', [$this->campaign, $new->entity]);
                 return response()->redirectTo($route);
             }
-
             $route = Breadcrumb::index($this->route);
             return response()->redirectTo($route);
+
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));
             return redirect()
@@ -375,29 +373,23 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Model|MiscModel $model
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function crudShow(Model|MiscModel $model)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $model);
-        } else {
-            /** @var MiscModel $model */
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
-        }
+        /** @var MiscModel $model */
+        $this->authView($model);
         $name = $this->view;
-        // @phpstan-ignore-next-line
+        $campaign = $this->campaign;
         $entity_type_id = $model->entityTypeId();
 
         // Fix for models without an entity
-        if (empty($model->entity) && !($model instanceof MenuLink)) {
+        if (empty($model->entity) && !($model instanceof Bookmark)) {
             if (auth()->guest()) {
                 abort(404);
             }
-            if (Permissions::user(auth()->user())->campaign(CampaignLocalization::getCampaign())->isAdmin()) {
+            if (Permissions::user(auth()->user())->campaign($this->campaign)->isAdmin()) {
                 dd('CCS16 - Error');
             } else {
                 abort(404);
@@ -406,12 +398,11 @@ class CrudController extends Controller
 
         return view(
             'cruds.show',
-            compact('model', 'name', 'entity_type_id')
+            compact('campaign', 'model', 'name', 'entity_type_id')
         );
     }
 
     /**
-     * @param Model|MiscModel $model
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -421,10 +412,9 @@ class CrudController extends Controller
         $this->authorize('update', $model);
 
         /** @var MiscModel $model */
-        $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
 
-        if ($campaign->hasEditingWarning() && $model->entity) {
+        if ($this->campaign->hasEditingWarning() && $model->entity) {
             /** @var MultiEditingService $editingService */
             $editingService = app()->make(MultiEditingService::class);
             $editingUsers = $editingService->model($model->entity)->user(auth()->user())->users();
@@ -435,25 +425,25 @@ class CrudController extends Controller
         }
 
         $params = [
+            'campaign' => $this->campaign,
             'model' => $model,
             'name' => $this->view,
-            'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && auth()->user()->can('permission', $model),
-            'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity) && $campaign->enabled('entity_attributes'),
+            'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity) && $this->campaign->enabled('entity_attributes'),
             'tabBoosted' => $this->tabBoosted,
             'tabCopy' => $this->tabCopy,
             'entityType' => $model->getEntityType(),
-            'horizontalForm' => $this->horizontalForm,
             'editingUsers' => $editingUsers,
             'entityTypeId' => $model->entityTypeId()
         ];
+        if ($model->entity) {
+            $params['entity'] = $model->entity;
+        }
 
         return view('cruds.forms.edit', $params);
     }
 
     /**
-     * @param Request $request
-     * @param Model|MiscModel $model
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -490,10 +480,14 @@ class CrudController extends Controller
             }
 
             $success = __('general.success.updated', [
-                'name' => link_to_route(
-                    $this->route . '.show',
+                'name' => $model->entity ? link_to_route(
+                    'entities.show',
                     $model->name,
-                    [$model]
+                    [$this->campaign, $model->entity]
+                ) : link_to_route(/** Menu link **/
+                    $this->view . '.show',
+                    $model->name,
+                    [$this->campaign, $model]
                 )
             ]);
 
@@ -507,7 +501,7 @@ class CrudController extends Controller
 
             session()->flash('success_raw', $success);
 
-            $options = [$model];
+            $options = [];
             if (request()->has('redirect')) {
                 $redirect = explode('&', request()->get('redirect'));
                 foreach ($redirect as $option) {
@@ -515,21 +509,25 @@ class CrudController extends Controller
                     $options[$vals[0]] = $vals[1];
                 }
             }
-            $route = route($this->route . '.show', $options);
+            if ($model->entity) {
+                $route = route('entities.show', $options + [$this->campaign, $model->entity]);
+            } else {
+                $options = [$this->campaign, $model] + $options;
+                $route = route($this->view . '.show', $options + [$model]);
+            }
             if ($request->has('submit-new')) {
-                $route = route($this->route . '.create');
+                $route = route($this->route . '.create', $this->campaign);
             } elseif ($request->has('submit-update')) {
-                $route = route($this->route . '.edit', $model->id);
+                $route = route($this->route . '.edit', [$this->campaign, $model->id]);
             } elseif ($request->has('submit-close')) {
                 $subroute = 'index';
-                $campaign = CampaignLocalization::getCampaign();
-                $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+                $defaultNested = auth()->user()->defaultNested || $this->campaign->defaultToNested();
                 if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
                     $subroute = 'tree';
                 }
-                $route = route($this->route . '.' . $subroute);
+                $route = route($this->route . '.' . $subroute, [$this->campaign]);
             } elseif ($request->has('submit-copy')) {
-                $route = route($this->route . '.create', ['copy' => $model->id]);
+                $route = route($this->route . '.create', [$this->campaign, 'copy' => $model->id]);
                 return response()->redirectTo($route);
             }
             return response()->redirectTo($route);
@@ -540,7 +538,6 @@ class CrudController extends Controller
     }
 
     /**
-     * @param Model|MiscModel $model
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -552,52 +549,16 @@ class CrudController extends Controller
         $model->delete();
 
         $subroute = 'index';
-        $campaign = CampaignLocalization::getCampaign();
-        $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+        $defaultNested = auth()->user()->defaultNested || $this->campaign->defaultToNested();
         if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
             $subroute = 'tree';
         }
 
-        return redirect()->route($this->route . '.' . $subroute)
+        return redirect()->route($this->route . '.' . $subroute, $this->campaign)
             ->with('success', __('general.success.deleted', ['name' => $model->name]));
     }
 
     /**
-     * @param MiscModel $model
-     * @param string $view
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    protected function menuView($model, $view, $directView = false)
-    {
-        // Policies will always fail if they can't resolve the user.
-        $this->authCheck($model);
-
-        $name = $this->view;
-        $fullview = $this->view . '.' . $view;
-        if ($directView) {
-            $fullview = 'cruds.subpage.' . $view;
-        }
-
-        $data = $markers = [];
-        $datagridSorter = $this->datagridSorter;
-
-        $rows = $this->rows;
-
-        return view('cruds.subview', compact(
-            'fullview',
-            'model',
-            'name',
-            'datagridSorter',
-            'data',
-            'view',
-            'rows'
-        ));
-    }
-
-    /**
-     * @param Request $request
-     * @param MiscModel $model
      * @return array
      */
     protected function prepareData(Request $request, MiscModel $model)
@@ -614,7 +575,6 @@ class CrudController extends Controller
     /**
      * Get a list of all attribute templates available for this entity type.
      * @param string $type
-     * @return array
      */
     protected function buildAttributeTemplates($type): array
     {
@@ -641,7 +601,6 @@ class CrudController extends Controller
 
     /**
      * Set the datagrid sorter for sub views
-     * @param string $datagridSorter
      * @return $this
      */
     protected function datagridSorter(string $datagridSorter): self
@@ -660,54 +619,21 @@ class CrudController extends Controller
         if ($this->alreadyAuthChecked) {
             return;
         }
-        if (auth()->check()) {
-            $this->authorize('view', $model);
-        } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
-        }
+        $this->authView($model);
         $this->alreadyAuthChecked = true;
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function datagridAjax()
-    {
-        $html = view('layouts.datagrid._table')
-            ->with('rows', $this->rows)
-            ->render();
-        $deletes = view('layouts.datagrid.delete-forms')
-            ->with('models', Datagrid::deleteForms())
-            ->with('params', Datagrid::getActionParams())
-            ->render();
-
-        $data = [
-            'success' => true,
-            'html' => $html,
-            'deletes' => $deletes,
-        ];
-        if (!request()->has('init')) {
-            //$data['url'] = request()->fullUrl();
-        }
-
-        return response()->json($data);
-    }
-
-    /**
      * Detect if a module is enabled
-     * @return bool
      */
     protected function moduleEnabled(): bool
     {
-        $campaign = CampaignLocalization::getCampaign();
-        return empty($this->module) || $campaign->enabled($this->module);
+        return empty($this->module) || $this->campaign->enabled($this->module);
     }
 
     /**
      * Add a button to the top of a datagrid
      * @param string $route
-     * @param string $label
-     * @param string $class
      * @return $this
      */
     protected function addNavAction($route, string $label, string $class = '', bool $blank = false): self
@@ -718,6 +644,11 @@ class CrudController extends Controller
             'label' => $label,
             'blank' => $blank,
         ];
+        return $this;
+    }
+
+    protected function getNavActions(): self
+    {
         return $this;
     }
 
@@ -734,7 +665,6 @@ class CrudController extends Controller
     /**
      * Load a list of templates the user can create new entities from
      * @param MiscModel $model
-     * @return Collection
      */
     protected function loadTemplates($model): Collection
     {

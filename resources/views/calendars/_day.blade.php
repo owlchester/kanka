@@ -2,65 +2,68 @@
  * @var \App\Models\Calendar $model
  * @var \App\Models\EntityEvent $event
  */?>
-@if (empty($day))
+@if(empty($day))
     <td class="h-24"></td>
 @else
+
+    @php
+        $routeOptions = [
+            $campaign,
+            $model,
+            'date' => $day['date']
+    ];
+    if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
+        $routeOptions['layout'] = 'year';
+    } elseif (!$renderer->isYearlyLayout() && $model->yearlyLayout()) {
+        $routeOptions['layout'] = 'month';
+    }
+    @endphp
+
     <td class="h-24 text-center break-words align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}">
+        <div class="flex flex-col gap-1">
         @if ($day['day'])
-            <h5 class="m-0 pull-left {{ $day['isToday'] ? "badge badge-primary" : null}}">
-                <span class="day-number">{{ $day['day'] }}</span>
-                <span class="julian-number">{{ $day['julian'] }}</span>
-            </h5>
-            @if ($canEdit)
-                <div class="dropdown pull-right">
-                    <a class="dropdown-toggle btn2 btn-xs" data-toggle="dropdown" aria-expanded="false" data-placement="right">
+            <div class="flex items-center items-stretch gap-1">
+                <h5 class="m-0 {{ $day['isToday'] ? "badge badge-primary" : null}}">
+                    <span class="day-number">{{ $day['day'] }}</span>
+                    <span class="julian-number">{{ $day['julian'] }}</span>
+                </h5>
+                <div class="grow">
+                @if ($day['day'] == 1 && !empty($showMonth))
+                    <span class="hidden md:inline">{{ $day['month'] }}</span>
+                @endif
+                </div>
+                @if ($canEdit)
+                <div class="dropdown">
+                    <a class="btn2 btn-xs" data-dropdown aria-expanded="false" data-placement="right">
                         <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                     </a>
-@php
-    $routeOptions = [
-    $model, 'date' => $day['date']
-];
-if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
-    $routeOptions['layout'] = 'year';
-} elseif (!$renderer->isYearlyLayout() && $model->yearlyLayout()) {
-    $routeOptions['layout'] = 'month';
-}
-@endphp
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li>
-                            <a href="{{ route('calendars.event.create', $routeOptions) }}" data-toggle="ajax-modal"
-                               data-target="#entity-modal" data-url="{{ route('calendars.event.create', $routeOptions) }}"
-                               class="" data-date="{{ $day['date'] }}">
-                                <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_reminder') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('calendars.calendar_weather.create', $routeOptions) }}" data-toggle="ajax-modal"
-                               data-target="#entity-modal" data-url="{{ route('calendars.calendar_weather.create', $routeOptions) }}"
-                               class="" data-date="{{ $day['date'] }}">
-                                <i class="fa-solid fa-snowflake"></i> {{ __('calendars.actions.' .  (!empty($day['weather']) ? 'update_weather' : 'add_weather')) }}
-                            </a>
-                        </li>
+
+                    <div class="dropdown-menu hidden" role="menu">
+                        @php $data = ['toggle' => 'dialog', 'date' => $day['date'], 'target' => 'primary-dialog', 'url' => route('calendars.event.create', $routeOptions)]; @endphp
+                        <x-dropdowns.item link="#" :data="$data" icon="plus">
+                            {{ __('calendars.actions.add_reminder') }}
+                        </x-dropdowns.item>
+
+                        @php $data = ['toggle' => 'dialog', 'date' => $day['date'], 'target' => 'primary-dialog', 'url' => route('calendars.calendar_weather.create', $routeOptions)]; @endphp
+                        <x-dropdowns.item link="#" :data="$data" icon="fa-solid fa-snowflake">
+                            {{ __('calendars.actions.' .  (!empty($day['weather']) ? 'update_weather' : 'add_weather')) }}
+                        </x-dropdowns.item>
 
                         @if (!\Illuminate\Support\Arr::get($day, 'isToday', false))
-                            <li class="divider"></li>
-                            <li>
-                                <a href="{{ route('calendars.today', $routeOptions) }}"
-                                   class="" data-date="{{ $day['date'] }}">
-                                    <i class="fa-solid fa-check"></i> {{ __('calendars.actions.set_today') }}
-                                </a>
-                            </li>
+                            <hr class="m-0" />
+                            @php $data = ['date' => $day['date']]; @endphp
+                            <x-dropdowns.item :link="route('calendars.today', $routeOptions)" :data="$data" icon="check">
+                                {{ __('calendars.actions.set_today') }}
+                            </x-dropdowns.item>
                         @endif
-                    </ul>
+                    </div>
                 </div>
-            @endif
-            @if ($day['day'] == 1 && !empty($showMonth))
-            <span class="hidden-xs hidden-sm">{{ $day['month'] }}</span>
-            @endif
+               @endif
+            </div>
             @if (!empty($day['moons']))
                 @foreach ($day['moons'] as $moon)
-                    <i class="moon {{ $moon['class'] }} text-{{ \Illuminate\Support\Arr::get($moon, 'colour', 'grey') }}" title="{{ __('calendars.show.moon_' . $moon['type'], ['moon' => $moon['name']]) }}" data-toggle="tooltip"></i>
+                    <i class="moon {{ $moon['class'] }} text-{{ \Illuminate\Support\Arr::get($moon, 'colour', 'grey') }}" data-title="{{ __('calendars.show.moon_' . $moon['type'], ['moon' => $moon['name']]) }}" data-toggle="tooltip"></i>
                 @endforeach
             @endif
             @if (!empty($day['season']))
@@ -69,39 +72,38 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                 </div>
             @endif
 
-            <p class="text-left mb-0">
-                @if (!empty($day['weather']))
-                    <div class="weather block w-full weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" title="{!! $day['weather']->tooltip() !!}">
-                        <i class="fa-solid fa-{{ $day['weather']->weather }}"></i>
-                        {{ $day['weather']->weatherName() }}
-                    </div>
-                @endif
-                @if (!empty($day['events']))
-                    @foreach ($day['events'] as $event)
-                        <div class="calendar-event-block block text-left my-1 p-1 rounded overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
-                            @if ($canEdit)
+            @if (!empty($day['weather']))
+                <div class="weather weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" data-title="{!! $day['weather']->tooltip() !!}">
+                    <i class="fa-solid fa-{{ $day['weather']->weather }}" aria-hidden="true"></i>
+                    {{ $day['weather']->weatherName() }}
+                </div>
+            @endif
+            @if (!empty($day['events']))
+                @foreach ($day['events'] as $event)
+                    <div class="calendar-event-block rounded-sm text-left p-1 relative overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
+                        @if ($canEdit)
 @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
-                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', array_merge(($event->calendar_id !== $model->id ? [$event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$event->entity->id, $event->id]), $routeOptions)) }}"
-                            @else
-                                data-url="{{ $event->entity->url() }}"
+                            data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.entity_events.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->entity->id, $event->id]) + $routeOptions) }}"
+                        @else
+                            data-url="{{ $event->entity->url() }}"
+                        @endif
+                        >
+                        @if (Avatar::entity($event->entity)->child($event->entity->child)->hasImage())
+                            <a href="{{ $event->entity->url() }}" class="hidden md:inline-block entity-image !w-7 !h-7 pull-left mr-1 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
+                        @endif
+                        <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->entity]) }}" class="block">
+                            {{ $event->entity->name }}
+                            @if ($renderer->isEventStartDate($event, $day['date']))
+                                <span class="text-xs">{{ __('calendars.events.start')}}</span>
+                            @elseif ($renderer->isEventEndDate($event, $day['date']))
+                                <span class="text-xs">{{ __('calendars.events.end')}}</span>
                             @endif
-                            >
-                            @if (!empty($event->entity->child->image))
-                            <a href="{{ $event->entity->url() }}" class="hidden-xs hidden-sm entity-image pull-left mr-1 cover-background inline-block" style="background-image: url('{{ $event->entity->avatarSize(40)->avatarV2() }}');"></a>
-                            @endif
-                            <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', $event->entity->id) }}" class="block">
-                                {{ $event->entity->name }}
-                                @if ($renderer->isEventStartDate($event, $day['date']))
-                                    <span class="text-xs">{{ __('calendars.events.start')}}</span>
-                                @elseif ($renderer->isEventEndDate($event, $day['date']))
-                                    <span class="text-xs">{{ __('calendars.events.end')}}</span>
-                                @endif
-                            </span>
-                            {!! $event->getLabel() !!}
-                        </div>
-                    @endforeach
-                @endif
-            </p>
+                        </span>
+                        {!! $event->getLabel() !!}
+                    </div>
+                @endforeach
+            @endif
         @endif
+        </div>
     </td>
 @endif

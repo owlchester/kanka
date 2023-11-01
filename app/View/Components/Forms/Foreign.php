@@ -3,6 +3,7 @@
 namespace App\View\Components\Forms;
 
 use App\Facades\Module;
+use App\Models\Campaign;
 use App\Models\Entity;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -11,6 +12,7 @@ use Illuminate\View\Component;
 
 class Foreign extends Component
 {
+    public Campaign $campaign;
     public string $name;
     public string $id;
     public ?string $key;
@@ -35,6 +37,7 @@ class Foreign extends Component
      * Create a new component instance.
      */
     public function __construct(
+        Campaign $campaign,
         string $name,
         string $id = null,
         mixed $selected = null,
@@ -70,6 +73,7 @@ class Foreign extends Component
         $this->id = $id ?? $name . '_' . uniqid();
         $this->className = $class;
         $this->entityTypeID = $entityTypeID;
+        $this->campaign = $campaign;
     }
 
     /**
@@ -112,7 +116,7 @@ class Foreign extends Component
             }
         } else {
             if (empty($this->label)) {
-                $this->label = __('crud.users.unknown');
+                $this->label = '';
             }
             if (empty($this->placeholder)) {
                 $this->placeholder = '';

@@ -1,5 +1,6 @@
-<div class="field-size">
-    <label>{{ __('dashboard.widgets.fields.size') }}</label>
+<x-forms.field
+    field="size"
+    :label="__('dashboard.widgets.fields.size')">
     {!! Form::select('config[size]', [
         'h1' => 'H1',
         'h2' => 'H2',
@@ -7,5 +8,5 @@
         'h4' => 'H4',
         'h5' => 'H5',
         'h6' => 'H6',
-    ], null, ['class' => 'form-control']) !!}
-</div>
+    ], null, ['class' => '']) !!}
+</x-forms.field>

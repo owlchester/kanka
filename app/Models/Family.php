@@ -41,7 +41,6 @@ class Family extends MiscModel
         'name',
         'slug',
         'entry',
-        'image',
         'location_id',
         'family_id',
         'is_private',
@@ -50,14 +49,13 @@ class Family extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'family.name',
         'location.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'location.name',
@@ -66,9 +64,8 @@ class Family extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'members',
     ];
 
@@ -76,16 +73,15 @@ class Family extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'family_id',
     ];
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'family';
+    protected string $entityType = 'family';
 
     /**
      * Parent ID used for the Node Trait
@@ -107,14 +103,12 @@ class Family extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -140,10 +134,6 @@ class Family extends MiscModel
 
     /**
      * Filter for family with specific member
-     * @param Builder $query
-     * @param string|null $value
-     * @param FilterOption $filter
-     * @return Builder
      */
     public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
     {
@@ -175,7 +165,6 @@ class Family extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -221,7 +210,6 @@ class Family extends MiscModel
 
     /**
      * All members of a family and descendants
-     * @return mixed
      */
     public function allMembers()
     {
@@ -258,7 +246,6 @@ class Family extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -280,7 +267,6 @@ class Family extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -289,7 +275,6 @@ class Family extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {

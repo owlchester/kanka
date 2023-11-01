@@ -24,7 +24,7 @@ if (isset($single) && $single) {
     @if ($map->isReal())
     var baseLayer{{ $map->id }} = L.imageOverlay('', bounds{{ $map->id }});
     @else
-    var baseLayer{{ $map->id }} = L.imageOverlay('{{ Storage::url($map->image) }}', bounds{{ $map->id }});
+    var baseLayer{{ $map->id }} = L.imageOverlay('{{ \App\Facades\Avatar::entity($map->entity)->original() }}', bounds{{ $map->id }});
     @endif
 
     /** Layers Init **/
@@ -106,7 +106,7 @@ if (isset($single) && $single) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map{{ $map->id }});
     @else
-    L.tileLayer('{{ route('maps.chunks', $map->id) }}/?z={z}&x={x}&y={y}', {
+    L.tileLayer('{{ route('maps.chunks', [$campaign, $map->id]) }}/?z={z}&x={x}&y={y}', {
         attribution: '&copy; Kanka',
     }).addTo(map{{ $map->id }});
     @endif

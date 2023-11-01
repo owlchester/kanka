@@ -69,7 +69,6 @@ return [
         'date'                  => 'Aktuelles Datum',
         'day'                   => 'Tag',
         'default_layout'        => 'Standardlayout',
-        'has_leap_year'         => 'Hat Schaltjahre',
         'intercalary'           => 'Schalttage',
         'is_incrementing'       => 'Vorausdatierung',
         'is_recurring'          => 'Wiederkehrend',

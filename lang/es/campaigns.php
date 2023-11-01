@@ -39,6 +39,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'No tienes acceso a esta campaña.',
+        'premium'       => 'Esta función sólo está disponible para las campañas premium.',
         'unknown_id'    => 'Campaña desconocida.',
     ],
     'export'                            => [],
@@ -54,6 +55,7 @@ TEXT
         'excerpt'                           => 'Extracto',
         'featured'                          => 'Campaña destacada',
         'followers'                         => 'Seguidores',
+        'genre'                             => 'Género(s)',
         'header_image'                      => 'Imagen de cabecera',
         'image'                             => 'Imagen',
         'locale'                            => 'Idioma',
@@ -62,6 +64,7 @@ TEXT
         'open'                              => 'Inscripciones abiertas',
         'past_featured'                     => 'Campaña destacada previamente',
         'post_collapsed'                    => 'Los nuevos posts en las entidades están colapsados por defecto.',
+        'premium'                           => 'Premium desbloqueado por :name',
         'public'                            => 'Visibilidad de la campaña',
         'public_campaign_filters'           => 'Filtros de las campañas públicas',
         'related_visibility'                => 'Visibilidad de elementos relacionados',
@@ -87,6 +90,7 @@ TEXT
         'name'                              => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
         'no_entry'                          => '¡Parece que la campaña aún no tiene una descripción! Arreglemos eso.',
         'permissions_tab'                   => 'Controla la privacidad y visibilidad de nuevos elementos mediante las opciones siguientes.',
+        'premium'                           => 'Algunas funciones están disponibles porque las funciones premium de esta campaña están desbloqueadas. Más información en la página de :settings.',
         'public_campaign_filters'           => 'Facilita que otros encuentren tu campaña entre las demás proporcionando la siguiente información.',
         'public_no_visibility'              => '¡Ojo! Tu campaña es pública, pero el rol público no tiene acceso a nada. :fix.',
         'related_visibility'                => 'La visibilidad por defecto al crear un elemento con este campo (notas de entidad, relaciones, habilidades, etc.)',
@@ -150,7 +154,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Ayuda',
             'remove'        => 'Quitar de la campaña',
             'switch'        => 'Ver como',
             'switch-back'   => 'Volver a mi usuario',
@@ -170,10 +173,8 @@ TEXT
             'role'          => 'Rol',
             'roles'         => 'Roles',
         ],
-        'help'                  => 'No hay límite de miembros que puede tener una campaña.',
         'helpers'               => [
-            'admin' => 'Como administrador de la campaña, puedes invitar a nuevos usuarios, eliminar usuarios inactivos y cambiar sus permisos. Para probar los permisos de un miembro, haz clic en "Ver como". Puedes leer más sobre esta herramienta en :link.',
-            'switch'=> 'Ver como este usuario',
+            'switch'    => 'Ver como este usuario',
         ],
         'impersonating'         => [
             'message'   => 'Estás viendo la campaña como otro usuario. Algunas funcionalidades están deshabilitadas, pero el resto actúa exactamente como el usuario lo vería. Para volver a tu usuario, usa el botón "Volver a mi usuario" cerca del botón de Cerrar Sesión.',
@@ -237,6 +238,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Añadir un rol',
+            'duplicate'     => 'Duplicar rol',
             'permissions'   => 'Configurar permisos',
             'rename'        => 'Renombrar rol',
             'save'          => 'Guardar rol',
@@ -258,16 +260,18 @@ TEXT
             'title'     => 'Editar rol :name',
         ],
         'fields'        => [
-            'name'          => 'Nombre',
-            'permissions'   => 'Permisos',
-            'type'          => 'Tipo',
-            'users'         => 'Usuarios',
+            'copy_permissions'  => 'Copiar permisos',
+            'name'              => 'Nombre',
+            'permissions'       => 'Permisos',
+            'type'              => 'Tipo',
+            'users'             => 'Usuarios',
         ],
         'helper'        => [
-            '1' => 'Una campaña puede tener tantos roles como se quiera. El rol "Administrador" tiene acceso automáticamente a todo dentro de una campaña, pero cada uno de los demás roles puede tener permisos específicos en diferentes tipos de entidades (personajes, lugares, etc).',
-            '2' => 'Las entidades pueden tener permisos más afinados mediante la pestaña "Permisos" de una entidad. Esta pestaña aparece cuando tu campaña tiene varios roles o miembros.',
-            '3' => 'Se puede usar un sistema de "exclusión", donde los roles tienen acceso a todas las entidades, y usar la casilla de "Privado" en las entidades que se quieran ocultar. O bien, pueden darse pocos permisos a los roles, y configurar cada entidad para que sea visible individualmente.',
-            '4' => 'Las campañas mejoradas pueden tener una cantidad ilimitada de roles.',
+            '1'                     => 'Una campaña puede tener tantos roles como se quiera. El rol "Administrador" tiene acceso automáticamente a todo dentro de una campaña, pero cada uno de los demás roles puede tener permisos específicos en diferentes tipos de entidades (personajes, lugares, etc).',
+            '2'                     => 'Las entidades pueden tener permisos más afinados mediante la pestaña "Permisos" de una entidad. Esta pestaña aparece cuando tu campaña tiene varios roles o miembros.',
+            '3'                     => 'Se puede usar un sistema de "exclusión", donde los roles tienen acceso a todas las entidades, y usar la casilla de "Privado" en las entidades que se quieran ocultar. O bien, pueden darse pocos permisos a los roles, y configurar cada entidad para que sea visible individualmente.',
+            '4'                     => 'Las campañas mejoradas pueden tener una cantidad ilimitada de roles.',
+            'permissions_helper'    => 'Duplicar todos los permisos del rol, tanto en módulos como en entidades.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'El rol "Público" tiene permisos pero la campaña es privada. Puedes ajustar esto en la pestaña Compartir al editar la campaña.',
@@ -374,7 +378,6 @@ TEXT
             'journals'          => 'Observaciones escritas por los personajes, o preparación de la sesión del máster.',
             'locations'         => 'Planetas, planos, continentes, ríos, estados, asentamientos, templos, tabernas...',
             'maps'              => 'Sube mapas con diferentes capas y marcadores que señalen a otras entidades de la campaña.',
-            'menu_links'        => 'Enlaces de menú personalizados en la barra lateral.',
             'notes'             => 'Tradiciones, religiones, historia, magia, razas...',
             'organisations'     => 'Sectas, unidades militares, facciones, gremios...',
             'quests'            => 'Para llevar un seguimiento de varias misiones con personajes y localizaciones.',
@@ -409,7 +412,6 @@ TEXT
             'plugins'           => 'Plugins',
             'recovery'          => 'Recuperación',
             'roles'             => 'Roles',
-            'settings'          => 'Módulos',
             'sidebar'           => 'Configuración de la barra lateral',
             'styles'            => 'Personalización',
         ],
@@ -467,9 +469,5 @@ TEXT
         'public'    => 'Pública',
         'review'    => 'Esperando revisión',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => '¡Parece que alguien más está editando esta campaña! ¿Deseas retroceder o ignorar esta advertencia, a riesgo de perder datos? Miembros que actualmente editan esta campaña:',
-        ],
-    ],
+    'warning'                           => [],
 ];

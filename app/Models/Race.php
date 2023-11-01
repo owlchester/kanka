@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
-use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
@@ -43,7 +42,6 @@ class Race extends MiscModel
         'campaign_id',
         'slug',
         'type',
-        'image',
         'entry',
         'is_private',
         'race_id',
@@ -51,15 +49,14 @@ class Race extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'race';
+    protected string $entityType = 'race';
 
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'race.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'race.name',
@@ -69,15 +66,14 @@ class Race extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'race_id',
     ];
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'locations',
     ];
 
@@ -102,14 +98,12 @@ class Race extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -129,10 +123,6 @@ class Race extends MiscModel
     }
     /**
      * Filter on races in specific locations
-     * @param Builder $query
-     * @param int|null $race
-     * @param FilterOption $filter
-     * @return Builder
      */
     public function scopeLocation(Builder $query, int|null $race, FilterOption $filter): Builder
     {
@@ -167,7 +157,6 @@ class Race extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -221,10 +210,8 @@ class Race extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $count = $this->descendants()->count();
-        if ($campaign->enabled('races') && $count > 0) {
+        if ($count > 0) {
             $items['second']['races'] = [
                 'name' => Module::plural($this->entityTypeId(), 'entities.races'),
                 'route' => 'races.races',

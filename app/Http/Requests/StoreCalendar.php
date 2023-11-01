@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use App\Rules\CalendarMoonOffset;
+use App\Rules\CalendarFormat;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,7 +34,7 @@ class StoreCalendar extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|max:191',
             'calendar_id' => 'nullable|integer|exists:calendars,id',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'month_name' => 'required|array|min:1',
             'month_length' => 'required|array|min:1',
@@ -43,6 +45,7 @@ class StoreCalendar extends FormRequest
             'epoch_name' => 'nullable|array',
             'season_name' => 'nullable|array',
             'template_id' => 'nullable',
+            'format'      => ['nullable', new CalendarFormat(), 'string', 'max:20'],
             'moon_offset' => [
                 '*' => new CalendarMoonOffset()
             ]

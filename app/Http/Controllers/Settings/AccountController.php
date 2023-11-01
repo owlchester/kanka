@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Facades\Domain;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteSettingsAccount;
 use App\Http\Requests\StoreSettingsAccount;
@@ -35,7 +36,6 @@ class AccountController extends Controller
     }
 
     /**
-     * @param StoreSettingsAccount $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function password(StoreSettingsAccount $request)
@@ -49,7 +49,6 @@ class AccountController extends Controller
     }
 
     /**
-     * @param StoreSettingsAccountEmail $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function email(StoreSettingsAccountEmail $request)
@@ -63,7 +62,6 @@ class AccountController extends Controller
     }
 
     /**
-     * @param StoreSettingsAccountSocial $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function social(StoreSettingsAccountSocial $request)
@@ -86,7 +84,6 @@ class AccountController extends Controller
     }
 
     /**
-     * @param DeleteSettingsAccount $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(DeleteSettingsAccount $request)
@@ -94,6 +91,6 @@ class AccountController extends Controller
         $this->deletionService
             ->user($request->user())
             ->delete();
-        return redirect()->route('front.goodbye', ['deleted' => true]);
+        return redirect()->to(Domain::toFront('goodbye') . '?deleted=true');
     }
 }

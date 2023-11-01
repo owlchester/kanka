@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\UserDateService;
+use App\Services\Users\DateService;
 use Illuminate\Support\ServiceProvider;
 
 class UserDateServiceProvider extends ServiceProvider
@@ -14,10 +14,10 @@ class UserDateServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(UserDateService::class, function () {
-            return new UserDateService();
+        $this->app->singleton(DateService::class, function () {
+            return new DateService();
         });
 
-        $this->app->alias(UserDateService::class, 'userdate');
+        $this->app->alias(DateService::class, 'userdate');
     }
 }

@@ -16,30 +16,30 @@ if (isset($toggle) && $toggle) {
 }
 @endphp
 
-<div class="">
+<div class="flex flex-col gap-2">
     @if($currentPlan === \App\Models\Pledge::KOBOLD)
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-accent " data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::KOBOLD]) }}">
+        <a class="btn2 btn-block btn-sm " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::KOBOLD]) }}">
             {{ __('settings.subscription.subscription.actions.cancel') }}<br />
             ({{ __('settings.subscription.subscription.actions.rollback') }})
         </a>
     @endif
 </div>
-<div class="">
+<div class="flex flex-col gap-2">
     @if ($user->subscribedToPrice($service->elementalPlans(), 'kanka'))
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else
         @if($user->subscribedToPrice([config('subscription.owlbear.eur.monthly'), config('subscription.owlbear.usd.monthly')], 'kanka'))
-            <a class="btn2 btn-block btn-sm disabled mb-2">
+            <a class="btn2 btn-block btn-sm disabled">
                 {{ __('tiers.current') }}
             </a>
         @else
-            <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::OWLBEAR, 'period' => 'monthly']) }}">
+            <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::OWLBEAR, 'period' => 'monthly']) }}">
                 {{ __($monthlyKey, ['tier' => 'Owlbear']) }}
             </a>
         @endif
@@ -49,23 +49,23 @@ if (isset($toggle) && $toggle) {
                 {{ __('tiers.current') }}
             </a>
         @else
-            <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::OWLBEAR, 'period' => 'yearly']) }}">
+            <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::OWLBEAR, 'period' => 'yearly']) }}">
                 {{ __($yearlyKey, ['tier' => 'Owlbear']) }}
             </a>
         @endif
     @endif
 </div>
-<div class="">
+<div class="flex flex-col gap-2">
     @if($user->subscribedToPrice([config('subscription.wyvern.eur.monthly'), config('subscription.wyvern.usd.monthly')], 'kanka'))
-        <a class="btn2 btn-block btn-sm disabled mb-2">
+        <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
         </a>
     @elseif ($user->subscribedToPrice($service->wyvernPlans(), 'kanka'))
-        <a class="btn2 btn-block btn-sm disabled mb-2">
+        <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::WYVERN, 'period' => 'monthly']) }}">
+        <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::WYVERN, 'period' => 'monthly']) }}">
             {{ __($monthlyKey, ['tier' => 'Wyvern']) }}
         </a>
     @endif
@@ -76,22 +76,22 @@ if (isset($toggle) && $toggle) {
             {{ __('tiers.current') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::WYVERN, 'period' => 'yearly']) }}">
+        <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::WYVERN, 'period' => 'yearly']) }}">
             {{ __($yearlyKey, ['tier' => 'Wyvern']) }}
         </a>
     @endif
 </div>
-<div class="">
+<div class="flex flex-col gap-2">
     @if($user->subscribedToPrice([config('subscription.elemental.eur.monthly'), config('subscription.elemental.usd.monthly')], 'kanka'))
-        <a class="btn2 btn-block btn-sm disabled mb-2">
+        <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
         </a>
     @elseif ($user->subscribedToPrice($service->elementalPlans(), 'kanka'))
-        <a class="btn2 btn-block btn-sm disabled mb-2">
+        <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::ELEMENTAL, 'period' => 'monthly']) }}">
+        <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::ELEMENTAL, 'period' => 'monthly']) }}">
             {{ __($monthlyKey, ['tier' => 'Elemental']) }}
         </a>
     @endif
@@ -101,7 +101,7 @@ if (isset($toggle) && $toggle) {
             {{ __('tiers.current') }}
         </a>
     @else
-        <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::ELEMENTAL, 'period' => 'yearly']) }}">
+        <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Pledge::ELEMENTAL, 'period' => 'yearly']) }}">
             {{ __($yearlyKey, ['tier' => 'Elemental']) }}
         </a>
     @endif

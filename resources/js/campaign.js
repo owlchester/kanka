@@ -6,9 +6,9 @@ $(document).ready(function() {
     registerUserRoles();
     registerCodeMirror();
     registerSidebarSetup();
-    registerCampaignExport();
     registerRoles();
     registerCampaignThemes();
+    registerVanityUrl();
 });
 
 /**
@@ -39,21 +39,20 @@ function registerModules() {
         }
         header.addClass('loading');
 
-        $.ajax({
-            method: 'post',
-            url: $(this).data('url'),
-            context: this,
-        }).done(function (res) {
-            if (res.success) {
-                if (res.status) {
-                    $(this).closest('.box-module').addClass('module-enabled');
-                } else {
-                    $(this).closest('.box-module').removeClass('module-enabled');
+        axios
+            .post($(this).data('url'))
+            .then(response => {
+                let el = $(this);
+                el.closest('.box-module').find('h3').removeClass('loading');
+                if (!response.data.success) {
+                    return;
                 }
-
-                window.showToast(res.toast);
-            }
-            $(this).closest('.box-module').find('h3').removeClass('loading');
+                if (response.data.status) {
+                    el.closest('.box-module').addClass('module-enabled');
+                } else {
+                    el.closest('.box-module').removeClass('module-enabled');
+                }
+                window.showToast(response.data.toast);
         });
     });
 }
@@ -71,27 +70,28 @@ function registerUserRoles() {
 
 /** Toggling an action on a permission **/
 function registerRoles() {
-    $('.public-permission').click(function (e) {
-        e.preventDefault();
-        $(this).addClass('loading');
+    let elements = document.querySelectorAll('.public-permission');
+    elements.forEach(el => {
+        el.addEventListener('click', togglePublicRole);
+    });
+}
 
-        $.ajax({
-            method: 'post',
-            url: $(this).data('url'),
-            context: this,
-        }).done(function (res) {
-            $(this).removeClass('loading');
-            if (res.success) {
-                if (res.status) {
+function togglePublicRole(e) {
+    e.preventDefault();
+    this.classList.add('loading');
+
+    axios.post(this.dataset.url)
+        .then(res => {
+            this.classList.remove('loading');
+            if (res.data.success) {
+                if (res.data.status) {
                     $(this).addClass('enabled');
                 } else {
                     $(this).removeClass('enabled');
                 }
-                window.showToast(res.toast);
+                window.showToast(res.data.toast);
             }
         });
-
-    });
 }
 
 /**
@@ -136,32 +136,6 @@ function registerSidebarSetup() {
     }
 }
 
-function registerCampaignExport() {
-    let exportBtn = $('.campaign-export-btn');
-    if (exportBtn.length === 0) {
-        return;
-    }
-
-    exportBtn.click(function (e) {
-        e.preventDefault();
-        $(this).addClass('loading');
-
-        $.ajax({
-            url: exportBtn.data('url'),
-            method: 'POST',
-            context: this,
-        }).done (function (res) {
-            $(this).removeClass('loading').hide();
-            if (res.error) {
-                window.showToast(res.error, 'toast-error');
-            } else {
-                window.showToast(res.success);
-            }
-        }).fail (function (res) {
-            console.error('campaign export call', res);
-        });
-    });
-}
 
 /**
  * Register events for campaign themes, notably the max size of a css field
@@ -186,5 +160,42 @@ function registerCampaignThemes() {
         $('form .submit-group .btn').prop('disabled', false);
 
         return false;
+    });
+}
+
+function registerVanityUrl() {
+    $('input[name="vanity"]').focusout(function (e) {
+        let vanity = $(this).val();
+        let errBlock = $('#vanity-error');
+        let successBlock = $('#vanity-success');
+        let loading = $('#vanity-loading');
+        errBlock.html('').hide();
+        successBlock.hide();
+        if (!vanity) {
+            return;
+        }
+
+        loading.show();
+        let data = {};
+        data.vanity = vanity;
+        $.post({
+            url: $(this).data('url'),
+            method: 'POST',
+            context: this,
+            data: data
+        }).done(function (res) {
+            $(this).val(res.vanity);
+            successBlock.find('code').html(res.vanity);
+            successBlock.show();
+            errBlock.hide();
+            loading.hide();
+        }).fail(function (err) {
+            //console.error(err);
+            let errorString = '';
+            err.responseJSON.errors.vanity.forEach(error => errorString += error + ' ');
+            errBlock.html(errorString).show();
+            successBlock.hide();
+            loading.hide();
+        });
     });
 }

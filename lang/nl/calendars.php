@@ -56,7 +56,6 @@ return [
         'current_month'         => 'Huidige Maand',
         'current_year'          => 'Huidig Jaar',
         'date'                  => 'Huidige Datum',
-        'has_leap_year'         => 'Heeft schrikkeljaren',
         'intercalary'           => 'Schrikkeldagen',
         'is_incrementing'       => 'Vooruitgaande Datum',
         'is_recurring'          => 'Terugkerend',

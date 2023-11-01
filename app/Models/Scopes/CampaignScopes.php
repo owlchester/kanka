@@ -2,9 +2,12 @@
 
 namespace App\Models\Scopes;
 
+use App\Facades\Identity;
 use App\Models\Campaign;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Arr;
 
 /**
@@ -21,13 +24,58 @@ use Illuminate\Support\Arr;
  * @method static self|Builder open()
  * @method static self|Builder unboosted()
  * @method static self|Builder hidden()
+ * @method static self|Builder slug(string|int $slug)
+ * @method static self|Builder acl(string|int $slug)
+ * @method static self|Builder userOrdered(User $user)
  */
 trait CampaignScopes
 {
     /**
-     * @param Builder $query
-     * @param int $visibility
-     * @return Builder
+     * We bind the campaign model on the slug in the url, so we need to ensure
+     * that the user can only access valid campaigns. This means for either
+     * public campaigns, or campaigns that the user is a member of.
+     */
+    public function scopeAcl(Builder $query, string|int $slug): Builder
+    {
+        if (auth()->guest()) {
+            return $this->public()->slug($slug);
+        }
+
+        // If we are impersonating, that gives us only a single choice
+        if (Identity::isImpersonating()) {
+            return $this
+                ->slug($slug)
+                // Use ID and not slug to avoid shenanigans when updating the slug
+                ->where($this->getTable() . '.id', Identity::getCampaignId());
+        }
+
+        // Limit to the campaigns the user is in
+        return $this
+            ->select($this->getTable() . '.*')
+            ->leftJoin('campaign_user as cu', function (JoinClause $sub) {
+                return $sub->on('cu.campaign_id', $this->getTable() . '.id')
+                    ->where('cu.user_id', auth()->user()->id);
+            })
+            ->slug($slug)
+            ->where(function ($sub) {
+                return $sub
+                    ->public()
+                    ->orWhereNotNull('cu.user_id');
+            });
+    }
+
+    /**
+     * Filter on a campaign's ID or slug. Since slugs always require at least one letter,
+     * we can have this is_numeric logic to differentiate between the two. We also need
+     * this for the APIs, as those work on the ID and not the slug.
+     */
+    public function scopeSlug(Builder $query, string|int $slug): Builder
+    {
+        $key = is_numeric($slug) ? 'id' : 'slug';
+        return $query->where($this->getTable() . '.' . $key, '=', $slug);
+    }
+
+    /**
      */
     public function scopeVisibility(Builder $query, int $visibility): Builder
     {
@@ -35,9 +83,6 @@ trait CampaignScopes
     }
 
     /**
-     * @param Builder $query
-     * @param bool $open
-     * @return Builder
      */
     public function scopeOpen(Builder $query, bool $open = true): Builder
     {
@@ -46,8 +91,6 @@ trait CampaignScopes
 
     /**
      * Admin crud datagrid
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeAdmin(Builder $query): Builder
     {
@@ -56,8 +99,6 @@ trait CampaignScopes
 
     /**
      * Featured Campaigns
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeFeatured(Builder $query, $featured = true): Builder
     {
@@ -78,8 +119,6 @@ trait CampaignScopes
 
     /**
      * Public campaigns
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePublic(Builder $query): Builder
     {
@@ -89,9 +128,6 @@ trait CampaignScopes
 
     /**
      * Filtered campaigns for the front end
-     * @param Builder $query
-     * @param int|null $sort
-     * @return Builder
      */
     public function scopeFront(Builder $query, int $sort = null): Builder
     {
@@ -109,9 +145,6 @@ trait CampaignScopes
     }
 
     /**
-     * @param Builder|Campaign $query
-     * @param array $options
-     * @return Builder
      */
     public function scopeFilterPublic(Builder $query, array $options): Builder
     {
@@ -149,9 +182,9 @@ trait CampaignScopes
 
         $open = Arr::get($options, 'is_open');
         if ($open === '1') {
-            $query->open();
+            $query->open();// @phpstan-ignore-line
         } elseif ($open === '0') {
-            $query->open(false);
+            $query->open(false);// @phpstan-ignore-line
         }
 
         $featured = Arr::get($options, 'featured_until');
@@ -165,8 +198,6 @@ trait CampaignScopes
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -175,8 +206,6 @@ trait CampaignScopes
 
     /**
      * Unboosted campaigns
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeUnboosted(Builder $query): Builder
     {
@@ -186,12 +215,33 @@ trait CampaignScopes
         });
     }
     /**
-     * @param Builder $query
-     * @param int $hidden
-     * @return Builder
      */
     public function scopeHidden(Builder $query, int $hidden = 1): Builder
     {
         return $query->where(['is_hidden' => $hidden]);
+    }
+
+    public function scopeUserOrdered(Builder $query, User $user): Builder
+    {
+        switch ($user->campaignSwitcherOrderBy) {
+            case 'alphabetical':
+                $query->orderBy('name', 'asc');
+                break;
+            case 'r_alphabetical':
+                $query->orderBy('name', 'desc');
+                break;
+            case 'date_joined':
+                // @phpstan-ignore-next-line
+                $query->withPivot('created_at')->orderBy('pivot_created_at', 'asc');
+                break;
+            case 'r_date_joined':
+                // @phpstan-ignore-next-line
+                $query->withPivot('created_at')->orderBy('pivot_created_at', 'desc');
+                break;
+            case 'r_date_created':
+                $query->orderBy('created_at', 'desc');
+                break;
+        }
+        return $query;
     }
 }

@@ -1,6 +1,3 @@
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 @font-face {
   font-family: Verdana, sans-serif;
   font-display: fallback;
@@ -16,27 +13,7 @@
 
 @import "theming";
 
-// Surrounds the whole body
-.wrapper {
-    background: none;
-    height: 100%;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
-    // AdminLTE wants this but it becomes weird with the min-height computed on firefox
-    //overflow: unset !important;
-}
-
-.content {
-    min-height: 250px;
-    padding: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
 .content-header {
-    padding: 15px 15px 0 15px;
-
     .breadcrumb {
         background: transparent;
 
@@ -83,12 +60,6 @@ tr.tr-hover {
     }
 }
 
-.input-error {
-    border: 1px inset red;
-}
-
-
-
 .bg-pink {
     color: #fff !important;
     background-color: #ebbde9 !important;
@@ -96,6 +67,15 @@ tr.tr-hover {
 .bg-brown {
     color: #fff !important;
     background-color: #a35831 !important;
+}
+
+.field {
+    > input, > select, > textarea {
+        padding: 0.5rem 0.5rem;
+        &:placeholder-shown {
+            text-overflow: ellipsis;
+        }
+    }
 }
 
 
@@ -139,6 +119,10 @@ button.dropdown-item {
         background-color: var(--dropdown-hover-background);
     }
 }
+.dropdown-menu-top {
+    top: unset;
+    bottom: 100%;
+}
 
 .banner-notification {
     a {
@@ -148,9 +132,6 @@ button.dropdown-item {
 
 // UX
 .skip-nav-link {
-    border-radius: 0 0 0.25rem 0.25rem;
-    background-color: white;
-    color: blue;
     transform: translateY(-120%);
     transition: transform 325ms ease-in;
     z-index: 1040;
@@ -161,12 +142,6 @@ button.dropdown-item {
     }
 }
 
-
-.booster-block {
-    .booster-callout, img {
-        max-width: 480px;
-    }
-}
 .bg-boost {
     background-color: hsl(var(--kanka-boost-accent)/1);
     --b1: var(--kanka-boost-accent);
@@ -185,6 +160,9 @@ button.dropdown-item {
     margin: 0;
 }
 
+button.loading {
+    cursor: wait;
+}
 .loading, .loading:hover {
     pointer-events: none;
 }
@@ -203,10 +181,7 @@ button.dropdown-item {
 }
 
 /** Cancel some of tw's resets **/
-hr {
-    margin-top: 1.1rem;
-    margin-bottom: 1.1rem;
-}
+
 ul {
     list-style: disc;
     padding: 0 1.5rem;
@@ -246,42 +221,28 @@ ol, ul {
     display: flow-root;
 }
 
+/** Old DatagridRenderer **/
 .table-entities {
     td {
         vertical-align: middle !important;
     }
 }
 
-ul.pagination {
-    margin: 0;
-    padding: 0;
+.input-error {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--er)/var(--tw-border-opacity));
 }
 
+/*ul.pagination {
+    margin: 0;
+    padding: 0;
+}*/
+
 ul.entity-menu {
-    /*display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    font-size: .875rem;
-    line-height: 1.25rem;
-    padding: .5rem;*/
-
     li {
-        /*position: relative;
-        display: flex;
-        flex-shrink: 0;
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-items: stretch;*/
-
         a {
-            /*user-select: none;
-            gap: .5rem;
-            padding: .5rem 1rem;
-            transition: all 0.3s;
-            border-radius: 0.5rem;*/
 
             &:hover {
-                cursor: pointer;
                 background-color: hsl(var(--bc)/.1);
             }
         }
@@ -328,6 +289,7 @@ ul.entity-menu {
     text-shadow: 0 1px rgb(0 0 0/var(--glass-text-shadow-opacity,5%));
 }
 
+@import "typography";
 @import "alerts";
 @import "buttons";
 @import "badge";
@@ -357,7 +319,8 @@ ul.entity-menu {
 @import "dialog";
 @import "adminlte";
 @import "print/general";
-@import "toast";
 @import "colour";
+@import "dl";
 
+@import 'freyja/freyja';
 @import 'cookieconsent/build/cookieconsent.min.css';

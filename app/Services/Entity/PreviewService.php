@@ -2,7 +2,7 @@
 
 namespace App\Services\Entity;
 
-use App\Facades\Img;
+use App\Facades\Avatar;
 use App\Facades\Module;
 use App\Models\Attribute;
 use App\Models\Character;
@@ -50,7 +50,6 @@ class PreviewService
 
     /**
      * Load specific stuff from the child for the profile
-     * @return array
      */
     protected function profile(): array
     {
@@ -72,19 +71,14 @@ class PreviewService
 
     protected function image(): mixed
     {
-        if ($this->entity->child->image) {
-            return $this->entity->child->thumbnail(250);
-        } elseif ($this->campaign->superboosted() && $this->entity->image) {
-            return Img::crop(250, 250)->url($this->entity->image->path);
-        }
-        return null;
+        return Avatar::entity($this->entity)->size(276)->thumbnail();
     }
 
     protected function attributes(): array
     {
         $attributes = [];
         /** @var Attribute $attr */
-        foreach($this->entity->starredAttributes() as $attr) {
+        foreach ($this->entity->starredAttributes() as $attr) {
             if ($attr->isCheckbox()) {
                 $val = __('general.no');
                 if ($attr->value) {
@@ -110,7 +104,7 @@ class PreviewService
     protected function tags(): array
     {
         $tags = [];
-        foreach ($this->entity->tags as $tag) {
+        foreach ($this->entity->tags()->with('entity')->get() as $tag) {
             $tags[] = [
                 'id' => $tag->id,
                 'name' => $tag->name,
@@ -153,7 +147,7 @@ class PreviewService
                 'id' => $relation->target->id,
                 'name' => $relation->target->name,
                 'type' => $relation->relation,
-                'image' => $relation->target->avatarSize(64)->avatarV2(),
+                'image' => Avatar::entity($relation->target)->size(64)->thumbnail(),
                 'link' => $relation->target->url(),
             ];
 

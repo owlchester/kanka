@@ -4,6 +4,7 @@ namespace App\Services\Caches;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 
 /**
@@ -12,15 +13,14 @@ use Illuminate\Support\Facades\Cache;
  */
 class EntityCacheService extends BaseCache
 {
+    use CampaignAware;
+
     /**
      * In-memory entity cache
-     * @var array
      */
     protected array $entities = [];
 
     /**
-     * @param MiscModel $model
-     * @return array
      */
     public function typeSuggestion(MiscModel $model): array
     {
@@ -37,7 +37,6 @@ class EntityCacheService extends BaseCache
     }
 
     /**
-     * @param MiscModel $model
      * @return $this
      */
     public function clearSuggestion(MiscModel $model): self
@@ -51,7 +50,6 @@ class EntityCacheService extends BaseCache
     }
 
     /**
-     * @param Entity $entity
      * @return MiscModel|mixed
      */
     public function child(Entity $entity)
@@ -67,46 +65,8 @@ class EntityCacheService extends BaseCache
         return $this->entities[$key] = $child;
     }
 
-    //    /**
-    //     * @param int $id
-    //     * @return null|Entity
-    //     */
-    //    public function entity(int $id)
-    //    {
-    //        $key = $this->entityKey($id);
-    //        if ($this->user->isAdmin() && $this->has($key)) {
-    //            return $this->get($key);
-    //        }
-    //
-    //        $data = Entity::where(['id' => $id])->first();
-    //        $this->forever($key, $data);
-    //        return $data;
-    //    }
-    //
-    //    /**
-    //     * @param int $id
-    //     * @return bool
-    //     */
-    //    public function clearEntity(int $id): bool
-    //    {
-    //        return $this->forget(
-    //            $this->entityKey($id)
-    //        );
-    //    }
-    //
-    //    /**
-    //     * @param int $id
-    //     * @return string
-    //     */
-    //    protected function entityKey(int $id): string
-    //    {
-    //        return 'entity_' . $id;
-    //    }
-
     /**
      * Type suggestion cache key
-     * @param string $type
-     * @return string
      */
     protected function typeSuggestionKey(string $type): string
     {

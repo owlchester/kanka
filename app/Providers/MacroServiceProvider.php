@@ -33,35 +33,12 @@ class MacroServiceProvider extends ServiceProvider
     protected function addCustomBladeDirectives()
     {
         $this
-            ->addTutorials()
             ->addAds()
             ->addNativeAds()
             ->addSubscribers();
     }
 
-    protected function addTutorials(): self
-    {
-        // Tutorial modal handler
-        Blade::if('tutorial', function (string $tutorial) {
-            // Not logged in? Don't bother
-            if (!auth()->check()) {
-                return false;
-            }
-
-            /** @var User $user */
-            $user = auth()->user();
-
-            // If disabled tutorials, remove all
-            if ($user->disabledTutorial()) {
-                return false;
-            }
-
-            return !$user->readTutorial($tutorial);
-        });
-        return $this;
-    }
-
-    protected function addAds(): self
+    protected function addAds(bool $requestedSkip = false): self
     {
         /** @ads() to show ads */
         Blade::if('ads', function (string $section = null) {
@@ -90,8 +67,7 @@ class MacroServiceProvider extends ServiceProvider
             }
 
             // Boosted campaigns don't either have ads displayed to their members
-            $campaign = CampaignLocalization::getCampaign(false);
-            return !empty($campaign) && !$campaign->boosted();
+            return CampaignLocalization::hasCampaign() && !CampaignLocalization::getCampaign()->boosted();
         });
         return $this;
     }
@@ -125,8 +101,7 @@ class MacroServiceProvider extends ServiceProvider
             }
 
             // Boosted campaigns don't either have ads displayed to their members
-            $campaign = CampaignLocalization::getCampaign(false);
-            return !empty($campaign) && !$campaign->boosted();
+            return CampaignLocalization::hasCampaign() && !CampaignLocalization::getCampaign()->boosted();
         });
 
         return $this;

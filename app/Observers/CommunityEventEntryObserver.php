@@ -12,7 +12,6 @@ class CommunityEventEntryObserver
     use PurifiableTrait;
 
     /**
-     * @param CommunityEventEntry $communityEventEntry
      */
     public function creating(CommunityEventEntry $communityEventEntry)
     {

@@ -12,6 +12,8 @@ use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -25,7 +27,6 @@ use Illuminate\Support\Collection;
  * @property string $locale
  * @property string $entry
  * @property string $image
- * @property string|null $export_path
  * @property Carbon|string $export_date
  * @property int $visibility_id
  * @property bool $entity_visibility
@@ -58,12 +59,13 @@ use Illuminate\Support\Collection;
  * @property bool $hide_history
  *
  */
-class Campaign extends MiscModel
+class Campaign extends Model
 {
     use Boosted;
     use CampaignLimit;
     use CampaignRelations;
     use CampaignScopes;
+    use HasFactory;
     use LastSync;
 
     /**
@@ -84,7 +86,6 @@ class Campaign extends MiscModel
         'entry',
         'excerpt',
         'image',
-        'export_path',
         'export_date',
         'visibility_id',
         'entity_visibility',
@@ -106,18 +107,13 @@ class Campaign extends MiscModel
         'export_date' => 'date',
     ];
 
-    /**
-     * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
-     * @return bool
-     */
-    public function hasPermissions(): bool
+    public function getRouteKeyName()
     {
-        return $this->roles()->count() > 1;
+        return 'slug';
     }
 
     /**
      * Does the campaign has a preview text that can be displayed
-     * @return bool
      */
     public function hasPreview(): bool
     {
@@ -126,7 +122,6 @@ class Campaign extends MiscModel
 
     /**
      * Preview text for the dashboard
-     * @return string
      */
     public function preview(): string
     {
@@ -140,7 +135,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function membersList($removedIds = []): array
     {
@@ -153,22 +147,6 @@ class Campaign extends MiscModel
         }
 
         return $members;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function invites()
-    {
-        return $this->hasMany('App\Models\CampaignInvite');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function unusedInvites()
-    {
-        return $this->invites()->where('is_active', true);
     }
 
     /**
@@ -190,44 +168,31 @@ class Campaign extends MiscModel
 
     /**
      * Count the number of admins in a campaign. Used by the CampaignPolicy
-     * @return int
      */
     public function adminCount(): int
     {
-        return count(CampaignCache::campaign($this)->admins());
+        return $this->roles()
+            ->admin()
+            ->first()
+            ->users
+            ->count();
     }
 
     /**
      * Determine if the user is in the campaign
-     * @return bool
      */
     public function userIsMember(User $user = null): bool
     {
         if (empty($user)) {
             $user = auth()->user();
         }
-        return CampaignCache::members()->where('user_id', $user->id)->count() == 1;
-    }
 
-    /**
-     * @return int
-     */
-    public function role()
-    {
-        $member = $this->members()
-            ->where('user_id', auth()->user()->id)
-            ->first();
-        if ($member) {
-            return $member->role;
-        }
-        return 0;
+        return CampaignCache::members()->where('id', $user->id)->count() == 1;
     }
 
     /**
      * Determine if a campaign has a module enabled or not
      *
-     * @param string $module
-     * @return bool
      */
     public function enabled(string $module): bool
     {
@@ -235,16 +200,7 @@ class Campaign extends MiscModel
             $module = 'entity_attributes';
         }
 
-        $settings = CampaignCache::settings();
-        return (bool) $settings->$module;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMiddlewareLink(): string
-    {
-        return 'campaign/' . $this->id;
+        return (bool) CampaignCache::settings()->get($module);
     }
 
     /**
@@ -257,7 +213,6 @@ class Campaign extends MiscModel
 
     /**
      * Determine if the user is currently following the campaign
-     * @return bool
      */
     public function isFollowing(): bool
     {
@@ -266,7 +221,6 @@ class Campaign extends MiscModel
 
     /**
      * Determine if a campaign is public
-     * @return bool
      */
     public function isPublic(): bool
     {
@@ -275,7 +229,6 @@ class Campaign extends MiscModel
     /**
      *
      * Determine if a campaign is open to submissions
-     * @return bool
      */
     public function isOpen(): bool
     {
@@ -283,24 +236,7 @@ class Campaign extends MiscModel
     }
 
     /**
-     * Determine if a campaign is featured or was featured in the past
-     * @param bool $past
-     * @return bool
-     */
-    public function isFeatured(bool $past = false): bool
-    {
-        return (bool) $this->is_featured && (
-            empty($this->featured_until) || (
-                $past ?
-                    $this->featured_until->isBefore(Carbon::today()) :
-                    $this->featured_until->isAfter(Carbon::today())
-            )
-        );
-    }
-
-    /**
      * Determine if a campaign is hidden
-     * @return bool
      */
     public function isHidden(): bool
     {
@@ -308,7 +244,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function entry()
     {
@@ -316,7 +251,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function getEntryForEditionAttribute()
     {
@@ -324,7 +258,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function excerpt()
     {
@@ -332,7 +265,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function getExcerptForEditionAttribute()
     {
@@ -341,7 +273,6 @@ class Campaign extends MiscModel
 
     /**
      * Determine if the campaign has images in tooltips.
-     * @return mixed
      */
     public function getTooltipImageAttribute()
     {
@@ -349,7 +280,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function defaultToNested(): bool
     {
@@ -357,7 +287,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function defaultToConnection(): bool
     {
@@ -365,7 +294,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return int
      */
     public function defaultToConnectionMode(): int
     {
@@ -373,7 +301,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return mixed
      */
     public function getHideMembersAttribute()
     {
@@ -382,7 +309,6 @@ class Campaign extends MiscModel
 
 
     /**
-     * @return mixed
      */
     public function getHideHistoryAttribute()
     {
@@ -391,7 +317,6 @@ class Campaign extends MiscModel
 
     /**
      * Number of layers a map of a campaign can have
-     * @return int
      */
     public function maxMapLayers(): int
     {
@@ -402,7 +327,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return int
      */
     public function maxEntityFiles(): int
     {
@@ -418,7 +342,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function existingDefaultImages(): array
     {
@@ -431,7 +354,6 @@ class Campaign extends MiscModel
 
     /**
      * Prepare the default entity images
-     * @return array
      */
     public function defaultImages(): array
     {
@@ -446,7 +368,7 @@ class Campaign extends MiscModel
         foreach ($this->default_images as $type => $uuid) {
             /** @var Image|null $image */
             $image = $images->where('id', $uuid)->first();
-            if (empty($image) || in_array($type, ['relations', 'menu_links'])) {
+            if (empty($image) || in_array($type, ['relations', 'bookmarks'])) {
                 continue;
             }
 
@@ -462,7 +384,6 @@ class Campaign extends MiscModel
 
     /**
      * Determine if a campaign has plugins of the theme type
-     * @return bool
      */
     public function hasPluginTheme(): bool
     {
@@ -480,28 +401,26 @@ class Campaign extends MiscModel
 
     /**
      * Determine the campaign's default visibility_id select option
-     * @return int
      */
     public function defaultVisibilityID(): int
     {
         $visibility = $this->default_visibility;
 
         if ($visibility == 'admin') {
-            return Visibility::VISIBILITY_ADMIN;
+            return \App\Enums\Visibility::Admin->value;
         } elseif ($visibility == 'admin-self') {
-            return Visibility::VISIBILITY_ADMIN_SELF;
+            return (int) \App\Enums\Visibility::AdminSelf->value;
         } elseif ($visibility == 'members') {
-            return Visibility::VISIBILITY_MEMBERS;
+            return (int) \App\Enums\Visibility::Member->value;
         } elseif ($visibility == 'self') {
-            return Visibility::VISIBILITY_SELF;
+            return (int) \App\Enums\Visibility::Self->value;
         }
 
-        return Visibility::VISIBILITY_ALL;
+        return (int) \App\Enums\Visibility::All->value;
     }
 
     /**
      * Checks if the campaign's public role has no read permissions
-     * @return bool
      */
     public function publicHasNoVisibility(): bool
     {
@@ -517,7 +436,6 @@ class Campaign extends MiscModel
     /**
      * Determine if a campaign has editing warnings (when multiple people are trying to edit
      * the same entity). This is enabled if the campaign has several members.
-     * @return bool
      */
     public function hasEditingWarning(): bool
     {
@@ -527,7 +445,6 @@ class Campaign extends MiscModel
 
     /**
      * Send a notification to the campaign's admins
-     * @param Notification $notification
      * @return $this
      */
     public function notifyAdmins(Notification $notification): self
@@ -540,9 +457,6 @@ class Campaign extends MiscModel
 
     /**
      * Get the campaign's thumbnail url
-     * @param int $width
-     * @param int|null $height
-     * @param string $field
      * @return string
      */
     public function thumbnail(int $width = 400, int $height = null, string $field = 'image')
@@ -557,20 +471,18 @@ class Campaign extends MiscModel
 
     /**
      * Determine if a campaign can be exported, or if it already hit the daily maximum
-     * @return bool
      */
     public function exportable(): bool
     {
         if (!app()->isProduction()) {
-            return true;
+            return $this->queuedCampaignExports->count() === 0;
         }
 
-        return empty($this->export_date) || !$this->export_date->isToday();
+        return empty($this->export_date) || !$this->export_date->isToday() && $this->queuedCampaignExports->count() === 0;
     }
 
     /**
      * Get the value of the follower variable
-     * @return int
      */
     public function follower(): int
     {
@@ -601,5 +513,10 @@ class Campaign extends MiscModel
         $key = 'modules.' . $type . '.i';
         $val = Arr::get($this->settings, $key);
         return $val;
+    }
+
+    public function hasVanity(): bool
+    {
+        return $this->slug != $this->id;
     }
 }

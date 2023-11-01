@@ -8,7 +8,6 @@ trait TagScopes
 {
     /**
      * Performance with for datagrids
-     * @param Builder $query
      * @return mixed
      */
     public function scopePreparedWith(Builder $query): Builder
@@ -25,8 +24,6 @@ trait TagScopes
 
     /**
      * Get tags that are auto applied to entities
-     * @param Builder $query
-     * @return mixed
      */
     public function scopeAutoApplied(Builder $query)
     {

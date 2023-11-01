@@ -2,9 +2,9 @@
     'title' => __('maps/groups.create.title', ['name' => $map->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('maps.index'), 'label' => __('entities.maps')],
-        ['url' => $map->entity->url('show'), 'label' => $map->name],
-        ['url' => route('maps.map_groups.index', [$map]), 'label' => __('maps.panels.groups')],
+        Breadcrumb::entity($map->entity)->list(),
+        Breadcrumb::show($map),
+        ['url' => route('maps.map_groups.index', [$campaign, $map]), 'label' => __('maps.panels.groups')],
         __('maps/groups.create.title')
     ]
 ])

@@ -9,14 +9,14 @@ class HistoryFilter extends DatagridFilter
     /**
      * Filters available for relations
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add([
                 'field' => 'entity_id',
                 'label' => __('crud.fields.entity'),
                 'type' => 'select2',
-                'route' => route('search.entities-with-relations'),
+                'route' => route('search.entities-with-relations', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.entity'),
                 'model' => Entity::class,
             ])
@@ -24,7 +24,7 @@ class HistoryFilter extends DatagridFilter
                 'field' => 'created_by',
                 'label' => __('crud.permissions.fields.member'),
                 'type' => 'select2',
-                'route' => route('users.find'),
+                'route' => route('users.find', $this->campaign),
                 'placeholder' =>  __('crud.permissions.fields.member'),
                 'model' => Entity::class,
             ])

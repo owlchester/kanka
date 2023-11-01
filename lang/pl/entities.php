@@ -14,33 +14,34 @@ return [
     'conversation'          => 'Rozmowa',
     'conversations'         => 'Rozmowy',
     'creator'               => [
-        'actions'           => [
+        'actions'                   => [
             'create'    => 'Stwórz :type',
             'full'      => 'Przejdź do wersji pełnej',
             'more'      => 'Szczegóły',
         ],
-        'back'              => 'Powrót do menu wyboru',
-        'bulk_names'        => 'Jedna nazwa na wiersz',
-        'duplicate'         => 'Istnieje inny element tego typu o tej samej nazwie.',
-        'helper_v2'         => 'Szybko stwórz szkic nowego elementu nie przerywając obecnej pracy.',
-        'missing_v2'        => 'W tym panelu widoczne są tylko włączone moduły, w których masz prawo tworzyć elementy. :learn-more.',
-        'modes'             => [
+        'back'                      => 'Powrót do menu wyboru',
+        'bulk_names'                => 'Jedna nazwa na wiersz',
+        'duplicate'                 => 'Istnieje inny element tego typu o tej samej nazwie.',
+        'helper_v2'                 => 'Szybko stwórz szkic nowego elementu nie przerywając obecnej pracy.',
+        'missing_v2'                => 'W tym panelu widoczne są tylko włączone moduły, w których masz prawo tworzyć elementy. :learn-more.',
+        'modes'                     => [
             'bulk'      => 'Stwórz wiele',
             'default'   => 'Stwórz szybko',
             'templates' => 'Wybór szablon',
         ],
-        'name'              => [
+        'name'                      => [
             'new'       => 'Nowa nazwa',
             'remove'    => 'Usuń',
         ],
-        'success_multiple'  => '{1} Stworzono nowy element :link.|[2,*] Stworzono nowe elementy :link.',
-        'title'             => 'Nowy element',
-        'titles'            => [
+        'success_multiple'          => '{1} Stworzono nowy element :link.|[2,*] Stworzono nowe elementy :link.',
+        'success_multiple_posts'    => '{1} Dodano komentarz: :link.|[2,*] Dodano komentarze: :link.',
+        'title'                     => 'Nowy element',
+        'titles'                    => [
             'everything'    => 'Wszystko',
             'quick-access'  => 'Szybki dostęp',
         ],
-        'tooltip'           => 'Stwórz nowy element bez opuszczania obecnej strony',
-        'tooltips'          => [
+        'tooltip'                   => 'Stwórz nowy element bez opuszczania obecnej strony',
+        'tooltips'                  => [
             'create'        => 'Stwórz element i wróć do ekranu wyboru elementów.',
             'create_more'   => 'Stwórz element i zacznij tworzyć kolejny element tego typu',
             'edit'          => 'Stwórz element i rozpocznij jego edycję',
@@ -64,8 +65,6 @@ return [
     'locations'             => 'Miejsca',
     'map'                   => 'Mapa',
     'maps'                  => 'Mapy',
-    'menu_link'             => 'Skrót',
-    'menu_links'            => 'Skróty',
     'new'                   => [
         'ability'       => 'Nowa zdolność',
         'character'     => 'Nowa postać',

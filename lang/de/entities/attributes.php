@@ -33,9 +33,7 @@ return [
         'delete_all'    => 'Möchten Sie wirklich alle Attribute dieses Objekts löschen?',
         'setup'         => 'Sie können Elemente wie TP oder Intelligenz eines Objekts mittels Attributen darstellen. Attribute können Sie manuell hinzufügen, indem sie auf den :manage Button klicken oder Sie wenden eine Attributsvorlage an.',
     ],
-    'hints'         => [
-        'is_private2'   => 'Wenn diese Option ausgewählt ist, können nur Mitglieder der Rolle :admin-role die Attribute dieses Objekts sehen.',
-    ],
+    'hints'         => [],
     'index'         => [
         'success'   => 'Attribute für :entity aktualisiert',
         'title'     => 'Attribute für :name',
@@ -77,6 +75,12 @@ return [
     'template'      => [
         'success'   => 'Attributvorlage :name wird auf :entity angewendet',
         'title'     => 'Wende eine Attributvorlage auf :name an',
+    ],
+    'toasts'        => [
+        'lock'      => 'Attribut gesperrt',
+        'pin'       => 'Attribut angepinnt',
+        'unlock'    => 'Attribut freigeschaltet',
+        'unpin'     => 'Attribut nicht angepinnt',
     ],
     'types'         => [
         'attribute' => 'Attribute',

@@ -18,12 +18,14 @@ class CreateEntityNotePermissions extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('entity_note_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('role_id')->nullable();
 
             $table->tinyInteger('permission');
 
             $table->foreign('entity_note_id')->references('id')->on('entity_notes')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('campaign_roles')->onDelete('cascade');
 
         });
     }

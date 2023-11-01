@@ -36,8 +36,8 @@
     }
     .module-enabled {
         .header {
-            background-color: #008347;
-            color: white;
+            background-color: hsl(var(--su)/1);
+            color: hsl(var(--suc)/1);
         }
         .module-actions {
             .btn-module-enable {
@@ -46,16 +46,6 @@
             .btn-module-disable {
                 display: block;
             }
-        }
-    }
-}
-
-@media(max-width: 767px) {
-    // Campaign sidebar setup UI
-    .form-mobile-inline {
-        .form-control {
-            display: inline;
-            width: auto;
         }
     }
 }

@@ -139,6 +139,7 @@ return [
         'orders'                    => [
             'name_asc'  => 'Názov vzostupne',
             'name_desc' => 'Názov zostupne',
+            'oldest'    => 'Najstaršie upravené',
             'recent'    => 'Posledne upravené',
         ],
         'preview'                   => [

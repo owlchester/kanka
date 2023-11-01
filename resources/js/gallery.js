@@ -6,6 +6,8 @@ var galleryForm;
 var maxFiles;
 var maxError;
 
+let bulkDelete, bulkForm;
+
 $(document).ready(function() {
     initGallery();
     initUploader();
@@ -16,6 +18,8 @@ function initGallery() {
     loader = $('#gallery-loader');
     gallery = $('#gallery-images');
     search = $('#gallery-search');
+    bulkDelete = $('#bulk-delete');
+    bulkForm = $('form#gallery-bulk');
 
     galleryForm = document.getElementById('gallery-form');
 
@@ -81,6 +85,41 @@ function initGallery() {
         galleryForm.classList.remove('drop-shadow', 'dropping');
     };
 
+    bulkForm.submit(function (e) {
+        e.preventDefault();
+
+        var data = new FormData();
+        $.each($('li[data-selected="1"]'), function (i) {
+            data.append('file[]', $(this).data('id'));
+        });
+
+        let folder = $('input[name="folder_id"]');
+        if (folder) {
+            data.append('folder_id', folder.val());
+        }
+
+        $.ajax({
+            url: $(this).attr('action'),
+            method: 'POST',
+            context: this,
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false
+        }).done(function(res) {
+            $('li[data-selected="1"]').remove();
+            let target = document.getElementById('bulk-destroy-dialog');
+            target.close();
+
+            bulkDelete.addClass('btn-disabled');
+
+            window.showToast(res.toast);
+            return false;
+        });
+
+        return false;
+    });
+
 }
 
 /**
@@ -133,7 +172,7 @@ function initUploader() {
 }
 
 const alertTooManyFiles = () => {
-    window.showToast(maxError, 'toast-error');
+    window.showToast(maxError, 'error');
 };
 
 const uploadFiles = (data) => {
@@ -170,7 +209,7 @@ const uploadFiles = (data) => {
                         gallery.prepend(image);
                     }
                 });
-
+                updateStorage(res.data.storage);
                 registerEvents();
             }
         })
@@ -179,6 +218,12 @@ const uploadFiles = (data) => {
 
             if (err.response && err.response.data.message) {
                 fileError.text(err.response.data.message).fadeToggle();
+
+                let errors = err.response.data.errors;
+                let errorKeys = Object.keys(errors);
+                errorKeys.forEach(k => {
+                    window.showToast(errors[k], 'error');
+                });
             }
 
             registerEvents();
@@ -189,18 +234,43 @@ const uploadFiles = (data) => {
 function registerEvents() {
     $('#gallery-images li')
         .unbind('click')
-        .on('click', function () {
+        .on('click', function (e) {
+            if (e.shiftKey) {
+                if (!$(this).data('id')) {
+                    return;
+                }
+                $(this).toggleClass('border-2 border-blue-500');
+                if ($(this).attr('data-selected') === '1') {
+                    $(this).attr('data-selected', '');
+                } else {
+                    $(this).attr('data-selected', 1);
+                }
+                registerShift();
+                return;
+            }
             let folder = $(this).data('folder');
             if (folder) {
                 window.location = folder;
                 return;
             }
 
-            $.ajax({
-                url: $(this).data('url')
-            }).done(function(data) {
-                $('#large-modal-content').html(data);
-                $('#large-modal').modal('show');
-            });
+            window.openDialog('primary-dialog', $(this).data('url'));
     });
 }
+const registerShift = () => {
+    let selected = $('li[data-selected="1"]');
+    if (selected.length === 0) {
+        bulkDelete.addClass('btn-disabled');
+    } else {
+        bulkDelete.removeClass('btn-disabled');
+    }
+};
+
+const updateStorage = (storage) => {
+    let progress = document.getElementById('storage-progress');
+    progress.style.width = storage.percentage + '%';
+    progress.className = storage.progress;
+
+    let used = document.getElementById('storage-used');
+    used.innerHTML = storage.used;
+};

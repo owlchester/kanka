@@ -19,10 +19,6 @@ class MultiEditingService
     /** @var Model|Post|Entity */
     protected $model;
 
-    /**
-     * @param Model $model
-     * @return $this
-     */
     public function model(Model $model): self
     {
         $this->model = $model;
@@ -53,7 +49,6 @@ class MultiEditingService
 
     /**
      * Check if the user is editing the entity
-     * @return bool
      */
     public function isEditing(): bool
     {

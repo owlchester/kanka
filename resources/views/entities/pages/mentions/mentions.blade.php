@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\EntityMention $mention */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/mentions.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => false,
@@ -9,41 +9,25 @@
     'bodyClass' => 'entity-mentions'
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
-        <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
-            <button class="btn2 btn-sm" data-toggle="dialog"
+        <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
+            <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                     data-target="dialog-help">
                 <x-icon class="question"></x-icon>
-                {{ __('campaigns.members.actions.help') }}
+                {{ __('crud.actions.help') }}
             </button>
         </div>
 @endsection
 
 @section('content')
-    @include('partials.errors')
-    @include('partials.ads.top')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $entity->child,
-            'entity' => $entity,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-                __('crud.tabs.mentions')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', [
-            'active' => 'mentions',
-            'model' => $entity->child,
-        ])
-
-        <div class="entity-main-block">
-            @include('entities.pages.mentions.render')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'mentions',
+        'breadcrumb' => __('crud.tabs.mentions'),
+        'view' => 'entities.pages.mentions.render',
+        'entity' => $entity,
+        'model' => $entity->child,
+    ])
 @endsection
 
 

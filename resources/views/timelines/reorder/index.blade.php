@@ -7,25 +7,14 @@
     'miscModel' => $timeline,
     'bodyClass' => 'timeline-eras-reorder'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $timeline,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
-                __('crud.actions.reorder')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'reorder', 'model' => $timeline])
-
-        <div class="entity-main-block">
-            @include('timelines.reorder._reorder')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'reorder',
+        'breadcrumb' => __('crud.actions.reorder'),
+        'model' => $timeline,
+        'view' => 'timelines.reorder._reorder',
+        'entity' => $timeline->entity,
+    ])
 @endsection

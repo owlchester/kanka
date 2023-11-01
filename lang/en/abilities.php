@@ -3,11 +3,11 @@
 return [
     'children'      => [
         'actions'       => [
-            'add'   => 'Add ability to entity',
+            'add'   => 'Attach entity',
         ],
         'create'        => [
-            'success'   => 'Added the ability :name to the entity.',
-            'title'     => 'Add an entity to :name',
+            'success'   => 'Attached the ability :name to the entity.',
+            'title'     => 'Attach :name to an entity',
         ],
         'description'   => 'Entities having the ability',
         'title'         => 'Ability :name Entities',

@@ -1,18 +1,20 @@
 <?php /** @var \App\Models\Ability $model */ ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('abilities.children.create.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('abilities'), 'label' => __('entities.abilities')],
-        ['url' => route('abilities.show', $model->id), 'label' => $model->name]
-    ]
+        Breadcrumb::entity($model->entity)->list(),
+        Breadcrumb::show($model),
+    ],
+    'centered' => true,
 ])
 
 @section('content')
     {!! Form::open(['route' => $formOptions, 'method' => 'POST']) !!}
     @include('partials.forms.form', [
-            'title' => __('abilities.children.create.title', ['name' => $model->name]),
-            'content' => 'abilities.entities._form',
-        ])
+        'title' => __('abilities.children.create.title', ['name' => $model->name]),
+        'content' => 'abilities.entities._form',
+        'dialog' => true,
+    ])
     {!! Form::hidden('ability_id', $model->entity->id) !!}
     {!! Form::close() !!}
 

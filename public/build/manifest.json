@@ -5,20 +5,14 @@
   "__plugin-vue_export-helper-c420bb3b.js": {
     "file": "assets/_plugin-vue_export-helper-c420bb3b.js"
   },
-  "_ajax-modal-1230002e.js": {
-    "file": "assets/ajax-modal-1230002e.js"
-  },
-  "_delete-confirm-fec6aa52.js": {
-    "file": "assets/delete-confirm-fec6aa52.js"
-  },
   "_index-0b481a1e.js": {
     "file": "assets/index-0b481a1e.js",
     "imports": [
       "__commonjsHelpers-725317a4.js"
     ]
   },
-  "_mention-5d95822d.js": {
-    "file": "assets/mention-5d95822d.js"
+  "_mention-6dbb4e38.js": {
+    "file": "assets/mention-6dbb4e38.js"
   },
   "_mitt-f7ef348c.js": {
     "file": "assets/mitt-f7ef348c.js"
@@ -49,7 +43,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-9c9c61eb.js",
+    "file": "assets/abilities-aceb04ef.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
@@ -59,11 +53,6 @@
     "isEntry": true,
     "src": "resources/js/abilities.js"
   },
-  "resources/js/ajax-subforms.js": {
-    "file": "assets/ajax-subforms-d2e4905a.js",
-    "isEntry": true,
-    "src": "resources/js/ajax-subforms.js"
-  },
   "resources/js/api.css": {
     "file": "assets/api-bb386fc3.css",
     "src": "resources/js/api.css"
@@ -72,7 +61,7 @@
     "css": [
       "assets/api-bb386fc3.css"
     ],
-    "file": "assets/api-d35ef985.js",
+    "file": "assets/api-3c6e087f.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js"
     ],
@@ -80,11 +69,9 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-56f9e212.js",
+    "file": "assets/app-8949a3bb.js",
     "imports": [
-      "_delete-confirm-fec6aa52.js",
-      "_mention-5d95822d.js",
-      "_ajax-modal-1230002e.js",
+      "_mention-6dbb4e38.js",
       "_sortable.esm-be94e56d.js",
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
@@ -95,10 +82,10 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes.js": {
-    "file": "assets/attributes-ead9b2d6.js",
+    "file": "assets/attributes-6b4fbadc.js",
     "imports": [
       "_sortable.esm-be94e56d.js",
-      "_mention-5d95822d.js"
+      "_mention-6dbb4e38.js"
     ],
     "isEntry": true,
     "src": "resources/js/attributes.js"
@@ -109,7 +96,7 @@
     "src": "resources/js/auth.js"
   },
   "resources/js/billing.js": {
-    "file": "assets/billing-8e2378c3.js",
+    "file": "assets/billing-849b45de.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js"
     ],
@@ -122,7 +109,7 @@
     "src": "resources/js/campaigns/theme-builder.js"
   },
   "resources/js/conversation.js": {
-    "file": "assets/conversation-4ccc53d8.js",
+    "file": "assets/conversation-aaf96a7d.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
@@ -138,21 +125,20 @@
     "src": "resources/js/cookieconsent.js"
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-9bdcae2f.js",
+    "file": "assets/dashboard-1fd95307.js",
     "imports": [
-      "_ajax-modal-1230002e.js",
       "_sortable.esm-be94e56d.js"
     ],
     "isEntry": true,
     "src": "resources/js/dashboard.js"
   },
   "resources/js/editors/summernote.js": {
-    "file": "assets/summernote-bf69beff.js",
+    "file": "assets/summernote-7a641397.js",
     "isEntry": true,
     "src": "resources/js/editors/summernote.js"
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-1aee7346.js",
+    "file": "assets/family-tree-vue-7a895d8a.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
@@ -173,12 +159,12 @@
     "src": "resources/js/forms/character.js"
   },
   "resources/js/front.js": {
-    "file": "assets/front-cb360dd0.js",
+    "file": "assets/front-7c0b43b6.js",
     "isEntry": true,
     "src": "resources/js/front.js"
   },
   "resources/js/gallery.js": {
-    "file": "assets/gallery-374c5b68.js",
+    "file": "assets/gallery-2dea31e9.js",
     "imports": [
       "_index-0b481a1e.js",
       "__commonjsHelpers-725317a4.js"
@@ -192,10 +178,7 @@
     "src": "resources/js/history.js"
   },
   "resources/js/location/map-v3.js": {
-    "file": "assets/map-v3-95219783.js",
-    "imports": [
-      "_delete-confirm-fec6aa52.js"
-    ],
+    "file": "assets/map-v3-e1c3a88b.js",
     "isEntry": true,
     "src": "resources/js/location/map-v3.js"
   },
@@ -205,7 +188,7 @@
     "src": "resources/js/profile.js"
   },
   "resources/js/relations.js": {
-    "file": "assets/relations-0f4ff6d3.js",
+    "file": "assets/relations-6cbf65d6.js",
     "imports": [
       "__commonjsHelpers-725317a4.js"
     ],
@@ -223,17 +206,9 @@
     "src": "resources/js/story.js"
   },
   "resources/js/subscription.js": {
-    "file": "assets/subscription-f2f82c9b.js",
+    "file": "assets/subscription-d5b27177.js",
     "isEntry": true,
     "src": "resources/js/subscription.js"
-  },
-  "resources/js/timeline.js": {
-    "file": "assets/timeline-39548315.js",
-    "imports": [
-      "_sortable.esm-be94e56d.js"
-    ],
-    "isEntry": true,
-    "src": "resources/js/timeline.js"
   },
   "resources/js/vendor-final.js": {
     "file": "assets/vendor-final-1230e4cf.js",
@@ -246,22 +221,22 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-e087539e.css",
+    "file": "assets/app-a177122a.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-69b7019e.css",
+    "file": "assets/auth-05f0b9d9.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
   "resources/sass/dashboard.scss": {
-    "file": "assets/dashboard-3e35efb7.css",
+    "file": "assets/dashboard-849a8e8e.css",
     "isEntry": true,
     "src": "resources/sass/dashboard.scss"
   },
   "resources/sass/export.scss": {
-    "file": "assets/export-3f377166.css",
+    "file": "assets/export-db603cd7.css",
     "isEntry": true,
     "src": "resources/sass/export.scss"
   },
@@ -271,12 +246,12 @@
     "src": "resources/sass/family-tree.scss"
   },
   "resources/sass/freyja/freyja.scss": {
-    "file": "assets/freyja-75ea27fd.css",
+    "file": "assets/freyja-ed9d5ad4.css",
     "isEntry": true,
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-53a4412f.css",
+    "file": "assets/front-1694f62b.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
@@ -306,7 +281,7 @@
     "src": "resources/sass/subscription.scss"
   },
   "resources/sass/themes/dark.scss": {
-    "file": "assets/dark-c3ebe278.css",
+    "file": "assets/dark-f02b9e80.css",
     "isEntry": true,
     "src": "resources/sass/themes/dark.scss"
   },
@@ -321,7 +296,7 @@
     "src": "resources/sass/tinymce.scss"
   },
   "resources/sass/vendor.scss": {
-    "file": "assets/vendor-228be7d1.css",
+    "file": "assets/vendor-a92e0ace.css",
     "isEntry": true,
     "src": "resources/sass/vendor.scss"
   }

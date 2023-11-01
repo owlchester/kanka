@@ -33,9 +33,9 @@
                     :text="__('settings.menu.appearance')"
                 ></x-sidebar.element>
             </li>
-            <li class="px-2 {{ $sidebar->settings('notification') }}">
+            <li class="px-2 {{ $sidebar->settings('newsletter') }}">
                 <x-sidebar.element
-                    :url="route('settings.notifications')"
+                    :url="route('settings.newsletter')"
                     icon="fa-solid fa-bell"
                     :text="__('settings.menu.notifications')"
                 ></x-sidebar.element>
@@ -75,14 +75,14 @@
                     @endif
 
                     @if (config('services.stripe.enabled'))
-                        <li class="{{ $sidebar->settings('payment-method', 4) }} subsection">
+                        <li class="{{ $sidebar->settings('payment-method', 3) }} subsection">
                             <x-sidebar.element
                                 :url="route('billing.payment-method')"
                                 icon="fa-solid fa-credit-card"
                                 :text="__('billing/menu.payment-method')"
                             ></x-sidebar.element>
                         </li>
-                        <li class="{{ $sidebar->settings('history', 4) }} subsection">
+                        <li class="{{ $sidebar->settings('history', 3) }} subsection">
                             <x-sidebar.element
                                 :url="route('billing.history')"
                                 icon="fa-solid fa-receipt"

@@ -27,8 +27,6 @@ trait CompositeKey
     /**
      * Get the primary key value for a save query.
      *
-     * @param mixed $keyName
-     * @return mixed
      */
     protected function getKeyForSaveQuery($keyName = null)
     {

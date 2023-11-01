@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignCache;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
 use Illuminate\Database\Eloquent\Collection;
@@ -50,7 +51,6 @@ class CampaignRole extends Model
     ];
     /**
      * Determine if the campaign role is the campaign's public role
-     * @return bool
      */
     public function isPublic(): bool
     {
@@ -59,7 +59,6 @@ class CampaignRole extends Model
 
     /**
      * Determine if the campaign role is the campaign's admin role
-     * @return bool
      */
     public function isAdmin(): bool
     {
@@ -93,9 +92,6 @@ class CampaignRole extends Model
 
     /**
      * Filter on a campaign role's public status
-     * @param Builder $query
-     * @param int $value
-     * @return Builder
      */
     public function scopePublic(Builder $query, int $value = 1): Builder
     {
@@ -104,8 +100,6 @@ class CampaignRole extends Model
 
     /**
      * Get all roles except admin
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeWithoutAdmin(Builder $query): Builder
     {
@@ -115,9 +109,6 @@ class CampaignRole extends Model
 
     /**
      * Get the admin role
-     * @param Builder $query
-     * @param bool $with
-     * @return Builder
      */
     public function scopeAdmin(Builder $query, bool $with = true): Builder
     {
@@ -142,7 +133,6 @@ class CampaignRole extends Model
     }
 
     /**
-     * @param array $permissions
      */
     public function savePermissions(array $permissions = [])
     {
@@ -186,9 +176,6 @@ class CampaignRole extends Model
     }
 
     /**
-     * @param Builder $builder
-     * @param string|null $search
-     * @return Builder
      */
     public function scopeSearch(Builder $builder, string $search = null): Builder
     {
@@ -198,9 +185,6 @@ class CampaignRole extends Model
 
     /**
      * Toggle an entity's action permission
-     * @param int $entityType
-     * @param int $action
-     * @return bool
      */
     public function toggle(int $entityType, int $action): bool
     {
@@ -221,9 +205,6 @@ class CampaignRole extends Model
 
     /**
      * Add a campaign permission for the role
-     * @param int $entityType
-     * @param int $action
-     * @return CampaignPermission
      */
     protected function add(int $entityType, int $action): CampaignPermission
     {
@@ -241,8 +222,6 @@ class CampaignRole extends Model
         ]);
     }
     /**
-     * @param string $sub
-     * @return string
      */
     public function url(string $sub): string
     {

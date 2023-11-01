@@ -38,7 +38,10 @@ return [
         'destroy'   => 'Reminder removed from calendar \':name\'.',
         'edit'      => [
             'success'   => 'Reminder updated.',
-            'title'     => 'Update Reminder for :name',
+            'title'     => 'Updating :name\'s reminder',
+        ],
+        'errors'    => [
+            'invalid_entity'    => 'Invalid entity selection',
         ],
         'helpers'   => [
             'add'               => 'Add an existing event to this calendar.',
@@ -68,10 +71,11 @@ return [
         'date'                  => 'Current Date',
         'day'                   => 'Day',
         'default_layout'        => 'Default layout',
-        'has_leap_year'         => 'Has leap years',
+        'format'                => 'Format',
         'intercalary'           => 'Intercalary Days',
         'is_incrementing'       => 'Advancing date',
         'is_recurring'          => 'Recurring',
+        'leap_year'             => 'Leap years',
         'leap_year_amount'      => 'Add Days',
         'leap_year_month'       => 'Month',
         'leap_year_offset'      => 'Every',
@@ -95,6 +99,7 @@ return [
     ],
     'helpers'       => [
         'default_layout'    => 'Select which layout the calendar should use by default when viewed.',
+        'format'            => 'Add custom date formatting for calendar entities.',
         'month_type'        => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
         'moon_offset'       => 'By default, the first fullmoon appears on the first day of year 0. Changing the offset will alter when the first full moon is displayed. This value can negative (up to the length of the first month) or positive (up to the length of the first month).',
         'nested_without'    => 'Displaying all calendars that don\'t have a parent calendar. Click on a row to see the children calendars.',
@@ -103,8 +108,9 @@ return [
     'hints'         => [
         'event_length'      => 'How long an event is set to last. An event can\'t span over more than two months.',
         'intercalary'       => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.',
-        'is_incrementing'   => 'Advancing calendars will automatically have their current date incremented at 00:00 UTC.',
+        'is_incrementing'   => 'Automatically switch to the next day at 00:00 UTC.',
         'is_recurring'      => 'An event can be set to recurring. It will reappear every year on the same date.',
+        'leap_year'         => 'Set up leap years for the calendar.',
         'months'            => 'Your calendar should have at least 2 months.',
         'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, first and third quarter moons will also be displayed.',
         'parent_calendar'   => 'Giving the calendar a parent calendar will include the reminders and weather effects of the parent calendar.',
@@ -219,6 +225,10 @@ return [
         'before'=> 'Today & before',
     ],
     'validators'    => [
+        'format'        => 'The date format is invalid.',
         'moon_offset'   => 'The moon first fullmoon offset can\'t be bigger than the length of the calendar\'s first month.',
+    ],
+    'warnings'      => [
+        'event_length'  => 'Reminders that span multiple years are only visible on the first two years. Learn more in our :documentation.',
     ],
 ];

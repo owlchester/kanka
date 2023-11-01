@@ -16,7 +16,6 @@ trait Boosted
     /**
      * Determine if the campaign is boosted
      * @param bool $superboosted false
-     * @return bool
      */
     public function boosted(bool $superboosted = false): bool
     {
@@ -28,7 +27,6 @@ trait Boosted
 
     /**
      * Determine if a campaign is superboosted
-     * @return bool
      */
     public function superboosted(): bool
     {
@@ -37,7 +35,6 @@ trait Boosted
 
     /**
      * Determine if a campaign is premium
-     * @return bool
      */
     public function premium(): bool
     {

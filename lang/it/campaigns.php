@@ -54,6 +54,7 @@ TEXT
         'excerpt'                           => 'Estratto',
         'featured'                          => 'Campagna in Primo Piano',
         'followers'                         => 'Followers',
+        'genre'                             => 'Genere(i)',
         'header_image'                      => 'Immagine di copertina',
         'image'                             => 'Immagine',
         'locale'                            => 'Lingua',
@@ -152,7 +153,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Aiuto',
             'remove'        => 'Rimuovi dalla campagna',
             'switch'        => 'Passa a',
             'switch-back'   => 'Torna al mio utente',
@@ -172,10 +172,8 @@ TEXT
             'role'          => 'Ruolo',
             'roles'         => 'Ruoli',
         ],
-        'help'                  => 'Le campagne possono avere una quantità illimitata di membri.',
         'helpers'               => [
-            'admin' => 'Come membro del ruolo di amministratore della campagna, puoi invitare nuovi utenti, rimuovere quelli inattivi e cambiare i loro permessi. Per provare i permessi di un membro, utilizza il pulsante "Passa a". Puoi leggere di più su questa funzionalità qui :link.',
-            'switch'=> 'Passa a questo utente',
+            'switch'    => 'Passa a questo utente',
         ],
         'impersonating'         => [
             'message'   => 'Stai visualizzando la campagna come un altro utente. Alcune caratteristiche sono state disabilitate, ma il resto viene mostrato esattamente come lo vedrebbe quell\'utente. Per tornare al tuo utente usa il bottone "Torna al mio utente", posizionato dove normalmente si trova il bottone di Logout.',
@@ -237,6 +235,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Aggiungi un ruolo',
+            'duplicate'     => 'Duplica ruolo',
             'permissions'   => 'Gestire le autorizzazioni',
             'rename'        => 'Rinomina ruolo',
             'save'          => 'Salva ruolo',
@@ -258,16 +257,18 @@ TEXT
             'title'     => 'Modifica il ruolo :name',
         ],
         'fields'        => [
-            'name'          => 'Nome',
-            'permissions'   => 'Permessi',
-            'type'          => 'Tipo',
-            'users'         => 'Utenti',
+            'copy_permissions'  => 'Copia autorizzazioni',
+            'name'              => 'Nome',
+            'permissions'       => 'Permessi',
+            'type'              => 'Tipo',
+            'users'             => 'Utenti',
         ],
         'helper'        => [
-            '1' => 'Una campagna può avere tanti ruoli quanti ne desideri. Il ruolo "Proprietario" ti dà automaticamente accesso a tutto nella campagna, ma ogni altro ruolo può avere permessi specifici su diversi tipi di entità (personaggio, luogo, ecc).',
-            '2' => 'I permessi delle entità possono essere perfezionati utilizzando la tabella "Permessi" di unl\'entità. Questa tabella appare quando la tua campagna ha più ruoli o membri.',
-            '3' => 'Puoi usare un sistema "opt-out", dove ai ruoli è dato il permesso di vedere tutte le entità, e usare la spunta "Privato" sull\'entità per nasconderla. Oppure puoi dare ai ruoli pochi permessi, ma impostare ogni entità come visibile.',
-            '4' => 'Campagne Potenziate possono avere un numero illimitato di ruoli',
+            '1'                     => 'Una campagna può avere tanti ruoli quanti ne desideri. Il ruolo "Proprietario" ti dà automaticamente accesso a tutto nella campagna, ma ogni altro ruolo può avere permessi specifici su diversi tipi di entità (personaggio, luogo, ecc).',
+            '2'                     => 'I permessi delle entità possono essere perfezionati utilizzando la tabella "Permessi" di unl\'entità. Questa tabella appare quando la tua campagna ha più ruoli o membri.',
+            '3'                     => 'Puoi usare un sistema "opt-out", dove ai ruoli è dato il permesso di vedere tutte le entità, e usare la spunta "Privato" sull\'entità per nasconderla. Oppure puoi dare ai ruoli pochi permessi, ma impostare ogni entità come visibile.',
+            '4'                     => 'Campagne Potenziate possono avere un numero illimitato di ruoli',
+            'permissions_helper'    => 'Duplica tutte le autorizzazioni del ruolo, sia dei moduli che delle entità',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Il ruolo pubblico ha dei permessi, ma la campagna è privata. Puoi cambiare questa impostazione sulla tabella Condivisione mentre modifichi la campagna.',
@@ -374,7 +375,6 @@ TEXT
             'journals'          => 'Osservazioni scritte dai personaggi, o preparazione per le sessioni del dungeon master.',
             'locations'         => 'Pianeti, piani, continenti, fiumi, stati, insediamenti, templi, taverne.',
             'maps'              => 'Carica mappe con livelli e marcatori che puntano ad altre entità nella campagna.',
-            'menu_links'        => 'Collegamenti personalizzati nel menu laterale.',
             'notes'             => 'Tradizioni, religioni, storia, magia, razze.',
             'organisations'     => 'Culti, unità militari, fazioni, gilde.',
             'quests'            => 'Per tener traccia di varie missioni con personaggi e luoghi.',
@@ -409,7 +409,6 @@ TEXT
             'plugins'           => 'Plugin',
             'recovery'          => 'Recupero',
             'roles'             => 'Ruoli',
-            'settings'          => 'Moduli',
             'sidebar'           => 'Configurazione della barra laterale',
             'styles'            => 'Tema',
         ],
@@ -466,9 +465,5 @@ TEXT
         'public'    => 'Pubblica',
         'review'    => 'In attesa di revisione',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Sembra che qualcun altro stia modificando questa campagna! Vuoi tornare indietro o ignorare questo avviso, con il rischio di perdere i dati? Membri che stanno modificando attualmente questa campagna:',
-        ],
-    ],
+    'warning'                           => [],
 ];

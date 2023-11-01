@@ -5,12 +5,10 @@
         1 => __('general.yes'),
     ];
 ?>
+<x-grid type="1/1">
+    <x-forms.field field="group-shown" :label="__('maps/groups.fields.is_shown')">
+        {{ Form::select('is_shown',  $typeOptions, null, ['class' => '', 'id' => 'type_id']) }}
+    </x-forms.field>
 
-<div class="field-group-shown">
-    <label>
-        {{ __('maps/groups.fields.is_shown') }}
-    </label>
-    {{ Form::select('is_shown',  $typeOptions, null, ['class' => 'form-control', 'id' => 'type_id']) }}
-</div>
-
-@include('cruds.fields.visibility_id', ['bulk' => true])
+    @include('cruds.fields.visibility_id', ['bulk' => true])
+</x-grid>

@@ -10,41 +10,77 @@ if (isset($size) && $size == 'map') {
     $max = 50;
 }
 $label = $imageLabel ?? 'crud.fields.image';
-?>
-<div class="field-image">
-    <div class="@if (!empty($imageRequired) && $imageRequired) required @endif">
-        <label>{{ __($label) }}</label>
-        {!! Form::hidden('remove-image') !!}
-    </div>
 
-    <x-grid type="3/4">
-        <div class="{{ empty($model->image) && !isset($campaignImage) ? 'col-span-4' : 'col-span-3' }} grid flex-row gap-2">
-            <div class="image-file">
-                {!! Form::file('image', array('class' => 'image form-control')) !!}
+$previewThumbnail = null;
+$canDelete = true;
+if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($model->entity->image)) {
+    $previewThumbnail = $model->entity->image->getUrl(192, 144);
+    $canDelete = false;
+} elseif (!empty($entity) && !empty($entity->image_path)) {
+    $previewThumbnail = Avatar::entity($entity)->size(120)->thumbnail();
+}
+?>
+{!! Form::hidden('remove-image') !!}
+<div class="field field-image flex flex-col gap-1 @if (!empty($imageRequired) && $imageRequired) required @endif">
+
+    <label>{{ __($label) }}</label>
+
+    <div class="flex flex-row gap-2">
+        <div class="grow flex flex-col gap-2 w-full">
+            <div class="image-file field">
+                {!! Form::file('image', ['class' => 'image w-full  ']) !!}
             </div>
-            <div class="image-url">
-            {!! Form::text('image_url', ((!empty($source) && $source->image) ? $source->getOriginalImageUrl() : ''), ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
-                <p class="help-block">
-                    {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? auth()->user()->mapUploadSize(true) : auth()->user()->maxUploadSize(true))]) }}
-                    @include('cruds.fields.helpers.share')
-                </p>
+            <div class="image-url field">
+                {!! Form::text(
+                    'image_url',
+                    ((!empty($source) && $source->entity->image_path) ? Avatar::entity($source->entity)->original() : ''),
+                    ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full'])
+ !!}
             </div>
+
+            @php
+                $preset = null;
+                if (isset($model) && $model->entity && $model->entity->image_uuid) {
+                    $preset = $model->entity->image;
+                } else {
+                    $preset = FormCopy::field('image')->entity()->select();
+                }
+            @endphp
+            <x-forms.foreign
+                :campaign="$campaign"
+                name="entity_image_uuid"
+                label=""
+                :allowClear="true"
+                :route="route('images.find', $campaign)"
+                :placeholder="__('fields.gallery.placeholder')"
+                :dropdownParent="$dropdownParent ?? null"
+                :selected="$preset">
+            </x-forms.foreign>
+            @if (!empty($model->entity) && !empty($model->entity->image_uuid) && empty($model->entity->image))
+                <input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" />
+            @endif
         </div>
-        @if (!empty($model->image))
-            <div class="preview">
+        @if (!empty($previewThumbnail))
+            <div class="preview w-32">
                 @include('cruds.fields._image_preview', [
-                    'image' => $model->thumbnail(120),
+                    'image' => $previewThumbnail,
                     'title' => $model->name,
-                    'target' => empty($imageRequired) || !$imageRequired ? 'remove-image' : null,
+                    'target' => $canDelete && (empty($imageRequired) || !$imageRequired) ? 'remove-image' : null,
                 ])
             </div>
         @elseif (isset($campaignImage) && $campaignImage)
-            <div class="preview">
+            <div class="preview w-32">
                 @include('cruds.fields._image_preview', [
                     'image' => 'https://th.kanka.io/UngNKwPxKUPKSZ4z_Qjc9QiyeQs=/280x210/smart/src/app/backgrounds/mountain-background-medium.jpg',
                     'title' => 'Default',
                 ])
             </div>
         @endif
-    </x-grid>
+    </div>
+
+
+    <p class="text-neutral-content m-0">
+        {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }}
+        @include('cruds.fields.helpers.share')
+    </p>
 </div>

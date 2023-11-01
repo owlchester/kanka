@@ -4,49 +4,40 @@
  * @var \App\Models\CampaignDashboard $dashboard
  */
 ?>
-<div class="field-entity required">
-    <label for="config-entity">
-        {{ __('dashboard.dashboards.fields.name') }}
-    </label>
-    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('dashboard.dashboards.placeholders.name')]) !!}
-</div>
+<div class="flex flex-col gap-5 w-full">
 
+    <x-forms.field
+        field="name"
+        :required="true"
+        :label="__('dashboard.dashboards.fields.name')">
+        {!! Form::text('name', null, ['class' => '', 'placeholder' => __('dashboard.dashboards.placeholders.name')]) !!}
+    </x-forms.field>
 
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th>{{ __('campaigns.members.fields.role') }}</th>
-        <th>{{ __('dashboard.dashboards.fields.visibility') }}</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach($campaign->roles as $role)
-        <tr>
-            <td>{{$role->name}}</td>
-            <td>
-                <select name="roles[{{ $role->id }}]" class="form-control">
-                    @if(!$role->is_admin)
-                    <option value="">{{ __('dashboard.dashboards.visibility.none') }}</option>
-                    @endif
+    <div class="field grid grid-cols-2 gap-5">
+        <div class="font-extrabold">{{ __('campaigns.members.fields.role') }}</div>
+        <div class="font-extrabold">{{ __('dashboard.dashboards.fields.visibility') }}</div>
 
-                    <option value="visible" @if(!empty($dashboard) && $dashboard->permission($role)) selected="selected" @endif>{{ __('dashboard.dashboards.visibility.visible') }}</option>
-                    <option value="default" @if(!empty($dashboard) && $dashboard->permission($role, true)) selected="selected" @endif>{{ __('dashboard.dashboards.visibility.default') }}</option>
-                </select>
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
+        @foreach($campaign->roles as $role)
+            <div class="truncate">{{$role->name}}</div>
+            <select name="roles[{{ $role->id }}]">
+                @if(!$role->is_admin)
+                <option value="">{{ __('dashboard.dashboards.visibility.none') }}</option>
+                @endif
 
-</table>
+                <option value="visible" @if(!empty($dashboard) && $dashboard->permission($role)) selected="selected" @endif>{{ __('dashboard.dashboards.visibility.visible') }}</option>
+                <option value="default" @if(!empty($dashboard) && $dashboard->permission($role, true)) selected="selected" @endif>{{ __('dashboard.dashboards.visibility.default') }}</option>
+            </select>
+        @endforeach
+    </div>
 
 
 @if(!empty($source))
-    <div class="field-copy">
-        {!! Form::hidden('copy_widgets', null) !!}
-        <label>{!! Form::checkbox('copy_widgets', 1, true) !!}
-            {{ __('dashboard.dashboards.fields.copy_widgets') }}
-        </label>
-        <p class="help-block">{{ __('dashboard.dashboards.helpers.copy_widgets', ['name' => $source->name]) }}</p>
+    {!! Form::hidden('copy_widgets', null) !!}
+    <x-forms.field field="copy" :label="__('dashboard.dashboards.fields.copy_widgets')">
+        <x-checkbox :text="__('dashboard.dashboards.helpers.copy_widgets', ['name' => $source->name])">
+            {!! Form::checkbox('copy_widgets', 1, true) !!}
+        </x-checkbox>
         {!! Form::hidden('source', $source->id) !!}
-    </div>
+    </x-forms.field>
 @endif
+</div>

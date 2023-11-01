@@ -1,9 +1,8 @@
-<div class="option flex">
+<div class="option flex gap-2">
 
     @include('entities.creator.selection._main', [
         'singular' => 'race',
         'plural' => 'races',
-        'icon' => 'ra ra-wyvern',
         'id' => config('entities.ids.race'),
     ])
     @include('entities.creator.selection._full', ['key' => 'races'])

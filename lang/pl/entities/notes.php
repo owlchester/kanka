@@ -65,9 +65,5 @@ return [
         'collapsed' => 'Zwinięte',
         'expanded'  => 'Rozwinięte',
     ],
-    'warning'       => [
-        'editing'   => [
-            'description'   => 'Najwyraźniej ktoś inny edytuje właśnie tę notatkę! Chcesz się wycofać czy zignorować to ostrzeżenie, ryzykując utratę danych? Członkowie obecnie edytujący notatkę:',
-        ],
-    ],
+    'warning'       => [],
 ];

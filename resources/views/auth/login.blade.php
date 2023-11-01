@@ -60,43 +60,35 @@
             @endif
         </div>
 
-        <div class="flex gap-2 items-center">
-            <div class="grow">
-                <label>
-                    <input type="checkbox" class="minimal" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                    {{ __('auth.login.remember_me') }}
-                </label>
-            </div>
-            <div class="self-end">
-                <button type="submit" class="rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white dark:bg-slate-800">
-                    {{ __('auth.login.submit') }}
-                </button>
-            </div>
-        </div>
+        <input type="hidden" name="remember" value="1" />
+
+        <button type="submit" class="w-full rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white dark:bg-slate-800">
+            {{ __('auth.login.submit') }}
+        </button>
     </form>
 
 @if(config('auth.register_enabled'))
     <div class="social-auth-links text-center mb-3">
-        <p class="mb-2 text-gray-500 dark:text-slate-200">- {{ __('auth.login.or') }} -</p>
+        <p class="mb-2 text-gray-500 dark:text-slate-200 m-3">- {{ __('auth.login.or') }} -</p>
 
         <div class="flex flex-col gap-2">
             @if(config('services.facebook.client_id'))
             <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="rounded border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_facebook') }}">
-                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                <x-icon class="fa-brands fa-facebook-f" />
                 Facebook
             </a>
             @endif
 
             @if(config('services.google.client_id'))
             <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="rounded border border-red-400 text-red-400 hover:text-white hover:bg-red-400 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_google') }}">
-                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                <x-icon class="fa-brands fa-google" />
                 Google
             </a>
             @endif
 
             @if(config('services.twitter.client_id'))
             <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="rounded border border-blue-300 text-blue-300 hover:text-white hover:bg-blue-300 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_twitter') }}">
-                <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                <x-icon class="fa-brands fa-twitter" />
                 Twitter
             </a>
             @endif

@@ -15,7 +15,6 @@ class MapLayerObserver
     use ReorderTrait;
 
     /**
-     * @param MapLayer $mapLayer
      */
     public function saving(MapLayer $mapLayer)
     {
@@ -49,7 +48,6 @@ class MapLayerObserver
     }
 
     /**
-     * @param MapLayer $mapLayer
      */
     public function deleted(MapLayer $mapLayer)
     {
@@ -58,7 +56,6 @@ class MapLayerObserver
     }
 
     /**
-     * @param MapLayer $mapLayer
      */
     public function saved(MapLayer $mapLayer)
     {

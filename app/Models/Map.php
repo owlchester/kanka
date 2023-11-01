@@ -11,6 +11,7 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -47,6 +48,7 @@ class Map extends MiscModel
     use Acl;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
     use SortableTrait;
@@ -69,7 +71,6 @@ class Map extends MiscModel
         'slug',
         'type',
         'entry',
-        'image',
         'map_id',
         'location_id',
         'grid',
@@ -91,7 +92,7 @@ class Map extends MiscModel
         'config' => 'array',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'map.name',
@@ -101,17 +102,17 @@ class Map extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'map_id',
+        'location_id',
         'center_marker_id'
     ];
 
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'layers',
         'groups',
         'markers'
@@ -119,15 +120,14 @@ class Map extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'map';
+    protected string $entityType = 'map';
 
     /**
      * Extra relations loaded for the API endpoint
      * @var string[]
      */
-    public $apiWith = ['groups', 'layers'];
+    public array $apiWith = ['groups', 'layers'];
 
     /**
      * Parent ID used for the Node Trait
@@ -149,14 +149,12 @@ class Map extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -184,7 +182,6 @@ class Map extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -237,7 +234,7 @@ class Map extends MiscModel
     public function markers()
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
-            ->with(['entity', 'group']);
+            ->with(['entity', 'group', 'map']);
     }
 
     /**
@@ -262,12 +259,9 @@ class Map extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $items['second']['maps'] = [
             'name' => Module::plural($this->entityTypeId(), 'entities.maps'),
             'route' => 'maps.maps',
@@ -295,7 +289,6 @@ class Map extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -303,7 +296,6 @@ class Map extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function grids(): array
     {
@@ -374,8 +366,6 @@ class Map extends MiscModel
     }
 
     /**
-     * @param bool $groups
-     * @return string
      */
     public function activeLayers(bool $groups = true): string
     {
@@ -397,7 +387,6 @@ class Map extends MiscModel
 
     /**
      * List of markers for the map legend (ordered by "name")
-     * @return array
      */
     public function legendMarkers(bool $link = true): array
     {
@@ -457,7 +446,6 @@ class Map extends MiscModel
 
     /**
      * Minimum zoom of a map
-     * @return int
      */
     public function minZoom(): int
     {
@@ -482,7 +470,6 @@ class Map extends MiscModel
 
     /**
      * Maximum zoom of a map
-     * @return float
      */
     public function maxZoom(): float
     {
@@ -505,7 +492,6 @@ class Map extends MiscModel
 
     /**
      * Initiall zoom of a map
-     * @return int
      */
     public function initialZoom(): int
     {
@@ -526,7 +512,6 @@ class Map extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function centerFocus(): string
     {
@@ -565,7 +550,6 @@ class Map extends MiscModel
      * Build the image's bounds for leaflet.
      * If the height or width is 0, which can happen with an svg with no height/width property,
      * we just assume 1000/1000 and wait for a user to come in discord for help.
-     * @return string
      */
     public function bounds(bool $extend = false): string
     {
@@ -579,7 +563,6 @@ class Map extends MiscModel
 
     /**
      * Copy related elements to the target
-     * @param MiscModel $target
      */
     public function copyRelatedToTarget(MiscModel $target)
     {
@@ -631,11 +614,10 @@ class Map extends MiscModel
 
     /**
      * Determine if a map can be explored
-     * @return bool
      */
     public function explorable(): bool
     {
-        if (empty($this->image) && !$this->isReal()) {
+        if (empty($this->entity->image_path) && !$this->isReal()) {
             return false;
         }
         return ! ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));
@@ -643,7 +625,6 @@ class Map extends MiscModel
 
     /**
      * The explore link for a map, or the chunking process icon
-     * @return string
      */
     public function exploreLink(): string
     {
@@ -652,22 +633,22 @@ class Map extends MiscModel
         }
         if ($this->isChunked()) {
             if ($this->chunkingError()) {
-                return '<i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" title="' .
+                return '<i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" data-title="' .
                     __('maps.errors.chunking.error', ['discord' => 'Discord']) . '"></i>';
             } elseif ($this->chunkingRunning()) {
-                return '<i class="fa-solid fa-spin fa-spinner" data-toggle="tooltip" title="' .
+                return '<i class="fa-solid fa-spin fa-spinner" data-toggle="tooltip" data-title="' .
                     __('maps.tooltips.chunking.running') . '"></i>';
             }
         }
-        return '<a href="' . route('maps.explore', $this->id) . '" target="_blank" ' .
-            'data-toggle="tooltip" title="' . __('maps.actions.explore') . '">' .
+        $campaign = CampaignLocalization::getCampaign();
+        return '<a href="' . route('maps.explore', [$campaign, $this->id]) . '" target="_blank" ' .
+            'data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '">' .
             '<i class="fa-solid fa-map" data-tree="escape"></i>' .
             '</a>';
     }
 
     /**
      * Prepare groups for clustering
-     * @return string
      */
     public function checkinGroups(): string
     {
@@ -684,7 +665,6 @@ class Map extends MiscModel
 
     /**
      * Check if a map is using the "real" world (openstreetmaps)
-     * @return bool
      */
     public function isReal(): bool
     {
@@ -693,7 +673,6 @@ class Map extends MiscModel
 
     /**
      * Check if a map has a chunked tileset
-     * @return bool
      */
     public function isChunked(): bool
     {
@@ -702,7 +681,6 @@ class Map extends MiscModel
 
     /**
      * Check if a map is currently being chunked
-     * @return bool
      */
     public function chunkingReady(): bool
     {
@@ -711,7 +689,6 @@ class Map extends MiscModel
 
     /**
      * Check if a map encountered a chunking error
-     * @return bool
      */
     public function chunkingError(): bool
     {
@@ -719,7 +696,6 @@ class Map extends MiscModel
     }
     /**
      * Check if a map encountered a chunking error
-     * @return bool
      */
     public function chunkingRunning(): bool
     {
@@ -728,7 +704,6 @@ class Map extends MiscModel
 
     /**
      * Determine if the map uses marker clustering or not
-     * @return bool
      */
     public function isClustered(): bool
     {
@@ -762,22 +737,20 @@ class Map extends MiscModel
         $actions = parent::datagridActions($campaign);
 
         if (auth()->check() && auth()->user()->can('update', $this)) {
-            $newActions[] = '<li class="divider"></li>';
-            $newActions[] = '<li>
-                <a href="' . route('maps.map_layers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="layers">
+            $newActions[] = '<hr class="m-0" />';
+            $newActions[] = '
+                <a href="' . route('maps.map_layers.index', [$campaign, $this]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm" data-name="layers">
                     <i class="fa-solid fa-layer-group" aria-hidden="true"></i> ' . __('maps.panels.layers') . '
                 </a>
-            </li>';
-            $newActions[] = '<li>
-                <a href="' . route('maps.map_groups.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="groups">
+            ';
+            $newActions[] = '
+                <a href="' . route('maps.map_groups.index', [$campaign, $this]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm" data-name="groups">
                     <i class="fa-solid fa-map-signs" aria-hidden="true"></i> ' . __('maps.panels.groups') . '
-                </a>
-            </li>';
-            $newActions[] = '<li>
-                <a href="' . route('maps.map_markers.index', $this->id) . '" class="dropdown-item datagrid-dropdown-item" data-name="markers">
+                </a>';
+            $newActions[] = '
+                <a href="' . route('maps.map_markers.index', [$campaign, $this]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm" data-name="markers">
                     <i class="fa-solid fa-map-pin" aria-hidden="true"></i> ' . __('maps.panels.markers') . '
-                </a>
-            </li>';
+                </a>';
         }
         array_splice($actions, 2, 0, $newActions);
 

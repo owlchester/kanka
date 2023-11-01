@@ -8,7 +8,6 @@ use App\User;
 class ProfileController extends Controller
 {
     /**
-     * @param User $user
      */
     public function show(User $user)
     {

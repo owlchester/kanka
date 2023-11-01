@@ -41,6 +41,9 @@ return [
             'success'   => 'Evénement de calendrier modifié.',
             'title'     => 'Modifier un événement de calendrier pour :name',
         ],
+        'errors'    => [
+            'invalid_entity'    => 'Choix invalide d\'entité.',
+        ],
         'helpers'   => [
             'add'               => 'Ajouter un événement à ce calendrier en utilisant la liste à choix.',
             'new'               => 'Ou créer un nouveu événement en indiquant un nom.',
@@ -69,10 +72,11 @@ return [
         'date'                  => 'Date actuelle',
         'day'                   => 'Jour',
         'default_layout'        => 'Mise en page par défaut',
-        'has_leap_year'         => 'Année bissextile',
+        'format'                => 'Format',
         'intercalary'           => 'Jours Intercalaires',
         'is_incrementing'       => 'Incrément de date',
         'is_recurring'          => 'Récurrent',
+        'leap_year'             => 'Années bissextiles',
         'leap_year_amount'      => 'Jours à ajouter',
         'leap_year_month'       => 'Mois',
         'leap_year_offset'      => 'Chaque',
@@ -96,6 +100,7 @@ return [
     ],
     'helpers'       => [
         'default_layout'    => 'Choix de la mise en page par défaut du calendrier.',
+        'format'            => 'Ajouter un format d\'affichage personnalisé pour les entités du calendrier.',
         'month_type'        => 'Les mois intercalaires n\'utilisent pas les jours de la semaine, mais ont quand-même une influence sur les lunes et saisons.',
         'moon_offset'       => 'Par défaut, la première pleine lune apparait lors du premier jour de l\'année 0. Modifier ce champ permet de définir quand la première pleine lune apparaitra. Cette valeur peut être négative (jusqu\'à la durée du premier mois) ou positive (jusqu\'à la durée du premier mois).',
         'nested_without'    => 'Affichage des calendriers sans parent. Cliquer sur une rangée pour afficher les calendriers enfants.',
@@ -106,6 +111,7 @@ return [
         'intercalary'       => 'Les jours tombants hors des mois et semaines standards. Ils n\'influenceronts pas le jour de semaine.',
         'is_incrementing'   => 'Un calendrier avec cette option vera son jour actuel automatiquement avancer chaque jour à 00:00 UTC.',
         'is_recurring'      => 'Un événement peut être récurrent. Il réapparaitera chaque année à la même date.',
+        'leap_year'         => 'Définir les années bissextiles du calendrier.',
         'months'            => 'Le calendrier doit avoir au moins 2 mois.',
         'moons'             => 'Chaque lune sera affichée dans le calendrier lors de la pleine lune.',
         'parent_calendar'   => 'Définir un calendrier parent inclura les événements et la météo du celui-ci.',
@@ -221,6 +227,10 @@ return [
         'before'=> 'Aujourd\'hui et avant',
     ],
     'validators'    => [
+        'format'        => 'Le format de calendrier est invalid.',
         'moon_offset'   => 'Le décalage de début de lune ne peut pas être plus grand que la durée du premier mois du calendrier.',
+    ],
+    'warnings'      => [
+        'event_length'  => 'Les évènements de plusieurs années ne s\'affichent que durant les deux premières années. En savoir plus dans notre :documentation.',
     ],
 ];

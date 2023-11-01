@@ -24,8 +24,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string|null $map
  * @property boolean $is_private
  * @property boolean $is_map_private
- * @property integer|null $parent_location_id
- * @property Location|null $parentLocation
+ * @property integer|null $location_id
  * @property Map[]|Collection $maps
  * @property Location[]|Collection $descendants
  * @property Location[]|Collection $locations
@@ -36,8 +35,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Location extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
@@ -50,22 +48,20 @@ class Location extends MiscModel
         'name',
         'slug',
         'type',
-        'image',
         'entry',
-        'parent_location_id',
+        'location_id',
         'campaign_id',
         'is_private',
     ];
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
-        'parentLocation.name',
+    protected array $sortableColumns = [
+        'location.name',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'location.name',
@@ -73,16 +69,14 @@ class Location extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'location';
+    protected string $entityType = 'location';
 
     /**
      * Nullable values (foreign keys)
-     * @var string[]
      */
-    public $nullableForeignKeys = [
-        'parent_location_id',
+    public array $nullableForeignKeys = [
+        'location_id',
     ];
 
     /**
@@ -90,34 +84,32 @@ class Location extends MiscModel
      */
     public function getParentIdName()
     {
-        return 'parent_location_id';
+        return 'location_id';
     }
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'parentLocation' => function ($sub) {
+            'location' => function ($sub) {
                 $sub->select('id', 'name');
             },
             'children' => function ($sub) {
-                $sub->select('id', 'parent_location_id');
+                $sub->select('id', 'location_id');
             },
-            'parentLocation.entity' => function ($sub) {
+            'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'locations' => function ($sub) {
-                $sub->select('id', 'parent_location_id');
+                $sub->select('id', 'location_id');
             },
             'characters' => function ($sub) {
                 $sub->select('id', 'location_id');
@@ -128,19 +120,10 @@ class Location extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
-        return ['parent_location_id'];
-    }
-
-    /**
-     *
-     */
-    public function parentLocation()
-    {
-        return $this->belongsTo('App\Models\Location', 'parent_location_id', 'id');
+        return ['location_id'];
     }
 
     /**
@@ -148,7 +131,7 @@ class Location extends MiscModel
      */
     public function location()
     {
-        return $this->belongsTo('App\Models\Location', 'parent_location_id', 'id');
+        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     /**
@@ -194,7 +177,7 @@ class Location extends MiscModel
     public function maps()
     {
         return $this->hasMany('App\Models\Map', 'location_id', 'id')
-            ->select(['id', 'name', 'image', 'is_real']);
+            ->select(['id', 'name', 'is_real']);
     }
 
     /**
@@ -202,7 +185,7 @@ class Location extends MiscModel
      */
     public function locations()
     {
-        return $this->hasMany('App\Models\Location', 'parent_location_id', 'id');
+        return $this->hasMany('App\Models\Location', 'location_id', 'id');
     }
 
     /**
@@ -284,7 +267,7 @@ class Location extends MiscModel
      * Specify parent id attribute mutator
      * @param int $value
      */
-    public function setParentLocationIdAttribute($value)
+    public function setLocationIdAttribute($value)
     {
         $this->setParentIdAttribute($value);
     }
@@ -300,7 +283,7 @@ class Location extends MiscModel
         }
 
         foreach ($this->locations as $child) {
-            $child->parent_location_id = null;
+            $child->location_id = null;
             $child->save();
         }
 
@@ -324,7 +307,6 @@ class Location extends MiscModel
 
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -360,7 +342,6 @@ class Location extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -369,7 +350,6 @@ class Location extends MiscModel
 
     /**
      * If the profile is shown
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -383,7 +363,7 @@ class Location extends MiscModel
     public function filterableColumns(): array
     {
         return [
-            'parent_location_id',
+            'location_id',
         ];
     }
 }

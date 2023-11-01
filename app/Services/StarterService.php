@@ -2,26 +2,30 @@
 
 namespace App\Services;
 
+use App\Enums\Widget;
+use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
+use App\Facades\CharacterCache;
+use App\Facades\EntityCache;
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
 use App\Models\Location;
+use App\Observers\CharacterObserver;
+use App\Observers\LocationObserver;
+use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Exception;
 
 class StarterService
 {
+    use CampaignAware;
     use UserAware;
 
-    /** @var Campaign */
-    protected $campaign;
-
-
     /**
-     * @return Campaign
+     * Create a new campaign for the user when they register their account
      */
-    public function createCampaign(): Campaign
+    public function create(): Campaign
     {
         $data = [
             'name' => __('starter.campaign.name', ['user' => $this->user->name]),
@@ -29,33 +33,34 @@ class StarterService
             'excerpt' => '',
             'ui_settings' => ['nested' => true]
         ];
-        /** @var Campaign $campaign */
-        $campaign = Campaign::create($data);
-        $this->user->setCurrentCampaign($campaign);
+        $this->campaign = Campaign::create($data);
+        CampaignCache::campaign($this->campaign);
+        UserCache::campaign($this->campaign);
 
-        try {
-            $this->generateBoilerplate($campaign);
-        } catch (Exception $e) {
-            // Don't block the user if the boilerplate crashes
-        }
+        $this->populate();
 
-        return $campaign;
+        return $this->campaign;
     }
 
-    /**
-     * @param Campaign $campaign
-     */
-    public function generateBoilerplate(Campaign $campaign)
+    public function bind(): self
     {
-        CampaignLocalization::forceCampaign($campaign);
-        $this->campaign = $campaign;
+        Location::observe(LocationObserver::class);
+        Character::observe(CharacterObserver::class);
+        return $this;
+    }
+
+    public function populate()
+    {
+        CampaignLocalization::forceCampaign($this->campaign);
+        EntityCache::campaign($this->campaign);
+        CharacterCache::campaign($this->campaign);
 
         // Generate locations
         $kingdom = new Location([
             'name' => __('starter.kingdom1.name'),
             'type' => __('starter.kingdom1.type'),
             'entry' => '<p>' . __('starter.kingdom1.description') . '</p>',
-            'campaign_id' => $campaign->id,
+            'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $kingdom->save();
@@ -63,9 +68,9 @@ class StarterService
         $city = new Location([
             'name' => __('starter.kingdom2.name'),
             'type' => __('starter.kingdom2.type'),
-            'parent_location_id' => $kingdom->id,
+            'location_id' => $kingdom->id,
             'entry' => '<p>' . __('starter.kingdom2.description') . '</p>',
-            'campaign_id' => $campaign->id,
+            'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $city->save();
@@ -78,7 +83,7 @@ class StarterService
             'sex' => __('starter.character1.sex'),
             'entry' => '<p>' . __('starter.character1.history') . '</p>',
             'location_id' => $city->id,
-            'campaign_id' => $campaign->id,
+            'campaign_id' => $this->campaign->id,
             'fears' => __('starter.character1.fears'),
             'traits' => __('starter.character1.traits'),
             'is_private' => false,
@@ -92,7 +97,7 @@ class StarterService
             'sex' => __('starter.character2.sex'),
             'entry' => '<p>' . __('starter.character2.history') . '</p>',
             'location_id' => $city->id,
-            'campaign_id' => $campaign->id,
+            'campaign_id' => $this->campaign->id,
             'fears' => __('starter.character2.fears'),
             'traits' => __('starter.character2.traits'),
             'is_private' => false,
@@ -110,7 +115,7 @@ class StarterService
         // Note for the dashboard
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
-            'widget' => CampaignDashboardWidget::WIDGET_WELCOME,
+            'widget' => Widget::Welcome->value,
             'width' => 6, // half
             'position' => 1,
         ]);
@@ -119,7 +124,7 @@ class StarterService
         // Recent widget
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
-            'widget' => CampaignDashboardWidget::WIDGET_RECENT,
+            'widget' => Widget::Recent->value,
             'width' => 0,
             'position' => 2,
         ]);

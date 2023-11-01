@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAlias;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAlias;
 
@@ -16,38 +16,36 @@ class AliasController extends Controller
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         return redirect()
-            ->route('entities.entity_assets.index', $entity);
+            ->route('entities.entity_assets.index', [$campaign, $entity]);
     }
 
     /**
-     * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create(Entity $entity)
+    public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->boosted()) {
             return view('entities.pages.aliases.unboosted')
                 ->with('campaign', $campaign);
         }
 
         return view('entities.pages.aliases.create', compact(
+            'campaign',
             'entity'
         ));
     }
 
     /**
      */
-    public function store(StoreEntityAlias $request, Entity $entity)
+    public function store(StoreEntityAlias $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -58,17 +56,18 @@ class AliasController extends Controller
         $link = EntityAlias::create($data);
 
         return redirect()
-            ->route('entities.entity_assets.index', $entity)
+            ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __('entities/aliases.create.success', ['name' => $link->name, 'entity' => $entity->name]));
     }
 
     /**
      */
-    public function edit(Entity $entity, EntityAlias $entityAlias)
+    public function edit(Campaign $campaign, Entity $entity, EntityAlias $entityAlias)
     {
         $this->authorize('update', $entity->child);
 
         return view('entities.pages.aliases.update', compact(
+            'campaign',
             'entity',
             'entityAlias'
         ));
@@ -77,15 +76,15 @@ class AliasController extends Controller
     /**
      * Show exists but doesn't do anything, redirect to main view
      */
-    public function show(Entity $entity, EntityAlias $entityAlias)
+    public function show(Campaign $campaign, Entity $entity, EntityAlias $entityAlias)
     {
         return redirect()
-            ->route('entities.entity_assets.index', $entity);
+            ->route('entities.entity_assets.index', [$campaign, $entity]);
     }
 
     /**
      */
-    public function update(StoreEntityAlias $request, Entity $entity, EntityAlias $entityAlias)
+    public function update(StoreEntityAlias $request, Campaign $campaign, Entity $entity, EntityAlias $entityAlias)
     {
         $this->authorize('update', $entity->child);
 
@@ -99,13 +98,13 @@ class AliasController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.entity_assets.index', $entity)
+            ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __('entities/aliases.update.success', ['name' => $entityAlias->name, 'entity' => $entity->name]));
     }
 
     /**
      */
-    public function destroy(Entity $entity, EntityAlias $entityAlias)
+    public function destroy(Campaign $campaign, Entity $entity, EntityAlias $entityAlias)
     {
         $this->authorize('update', $entity->child);
 
@@ -119,7 +118,7 @@ class AliasController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.entity_assets.index', $entity)
+            ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __('entities/aliases.destroy.success', ['name' => $entityAlias->name, 'entity' => $entity->name]));
     }
 }

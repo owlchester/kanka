@@ -29,7 +29,6 @@ trait CalendarDateTrait
     }
 
     /**
-     * @return bool
      */
     public function hasCalendar(): bool
     {
@@ -42,7 +41,6 @@ trait CalendarDateTrait
     }
 
     /**
-     * @return string
      */
     public function getDate(): string
     {
@@ -67,7 +65,6 @@ trait CalendarDateTrait
     }
 
     /**
-     * @return null|int
      */
     public function getCalendarIdAttribute(): int|null
     {
@@ -78,7 +75,6 @@ trait CalendarDateTrait
     }
 
     /**
-     * @return null|int
      */
     public function getCalendarYearAttribute(): int|null
     {
@@ -89,7 +85,6 @@ trait CalendarDateTrait
     }
 
     /**
-     * @return null|int
      */
     public function getCalendarMonthAttribute(): int|null
     {
@@ -100,7 +95,6 @@ trait CalendarDateTrait
     }
 
     /**
-     * @return null|int
      */
     public function getCalendarDayAttribute(): int|null
     {
@@ -111,7 +105,6 @@ trait CalendarDateTrait
     }
 
     /**
-     * @return null|int
      */
     public function getCalendarLengthAttribute(): int|null
     {
@@ -123,7 +116,6 @@ trait CalendarDateTrait
 
     /**
      * recurring_periodicity
-     * @return string|null
      */
     public function getCalendarRecurringPeriodicityAttribute(): string|null
     {

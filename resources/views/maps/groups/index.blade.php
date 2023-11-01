@@ -6,45 +6,37 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
     @can('update', $model)
-        <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+        <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
             <a href="https://docs.kanka.io/en/latest/entities/maps/groups.html" class="btn2 btn-sm" target="_blank">
                 <x-icon class="question"></x-icon>
-                {{ __('crud.actions.help') }}
+                <span class="hidden xl:inline">{{ __('crud.actions.help') }}</span>
             </a>
             @if ($model->explorable())
-                <a href="{{ route('maps.explore', ['map' => $model]) }}" class="btn2 btn-primary btn-sm">
+                <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="btn2 btn-primary btn-sm">
                     <x-icon class="map"></x-icon>
-                    {{ __('maps.actions.explore') }}
+                    <span class="hidden xl:inline">{{ __('maps.actions.explore') }}</span>
                 </a>
             @endif
-            <a href="{{ route('maps.map_groups.create', ['map' => $model]) }}" class="btn2 btn-accent btn-sm"
-                data-toggle="ajax-modal" data-target="#entity-modal"
-                data-url="{{ route('maps.map_groups.create', ['map' => $model]) }}"
+            <a href="{{ route('maps.map_groups.create', [$campaign, $model]) }}" class="btn2 btn-sm"
+                data-toggle="dialog" data-target="primary-dialog"
+                data-url="{{ route('maps.map_groups.create', [$campaign, $model]) }}"
             >
                 <x-icon class="plus"></x-icon>
-                {{ __('maps/groups.actions.add') }}
+                <span class="hidden xl:inline">{{ __('maps/groups.actions.add') }}</span>
             </a>
         </div>
     @endcan
 @endsection
 
 @section('content')
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
-                __('maps.panels.groups')
-            ]
-        ])
-        @include('entities.components.menu_v2', ['active' => 'groups'])
-        <div class="entity-main-block">
-            @include('maps.panels.groups')
-            @includeWhen($rows->count() > 1, 'maps.groups._reorder')
-        </div>
-    </div>
+
+    @include('entities.pages.subpage', [
+        'active' => 'groups',
+        'breadcrumb' => __('maps.panels.groups'),
+        'view' => 'maps.panels.groups',
+        'entity' => $model->entity,
+    ])
 @endsection

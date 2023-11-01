@@ -8,7 +8,6 @@ trait ExportableTrait
 {
     /**
      * Prepares the data of an entity to json.
-     * @return string
      * @throws Exception
      */
     public function export(): string
@@ -32,10 +31,14 @@ trait ExportableTrait
         // Entity values
         if (!empty($this->entity)) {
             // Todo: put these in with()
-            $foreigns = ['notes', 'relationships', 'abilities', 'events', 'tags', 'assets', 'entityAttributes'];
+            $foreigns = ['posts', 'relationships', 'abilities', 'events', 'tags', 'assets', 'entityAttributes', 'image', 'header'];
             foreach ($foreigns as $foreign) {
-                foreach ($this->entity->$foreign as $model) {
-                    $json[$foreign][] = $model->toArray();
+                if (($foreign == 'image' || $foreign == 'header') && $this->entity->$foreign) {
+                    $json[$foreign] = ['id' => $this->entity->$foreign->id, 'focus_x' =>  $this->entity->$foreign->focus_x, 'focus_y' =>  $this->entity->$foreign->focus_y];
+                } elseif ($foreign != 'image' && $foreign != 'header') {
+                    foreach ($this->entity->$foreign as $model) {
+                        $json[$foreign][] = $model->toArray();
+                    }
                 }
             }
             /*$foreigns = ['attributes'];

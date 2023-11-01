@@ -13,7 +13,7 @@
 
 You can get a list of all the era effects of a timeline by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |
@@ -39,8 +39,8 @@ You can get a list of all the era effects of a timeline by using the following e
         }
     ],
     "links": {
-        "first": "https://kanka.io/api/{{version}}/campaigns/1/timelines/1/timeline_eras?page=1",
-        "last": "https://kanka.io/api/{{version}}/campaigns/1/timelines/1/timeline_eras?page=1",
+        "first": "https://api.kanka.io/{{version}}/campaigns/1/timelines/1/timeline_eras?page=1",
+        "last": "https://api.kanka.io/{{version}}/campaigns/1/timelines/1/timeline_eras?page=1",
         "prev": null,
         "next": null
     },
@@ -48,7 +48,7 @@ You can get a list of all the era effects of a timeline by using the following e
         "current_page": 1,
         "from": 1,
         "last_page": 1,
-        "path": "https://kanka.io/api/{{version}}/campaigns/1/timelines/1/timeline_eras",
+        "path": "https://api.kanka.io/{{version}}/campaigns/1/timelines/1/timeline_eras",
         "per_page": 15,
         "to": 1,
         "total": 1
@@ -99,7 +99,6 @@ To create a timeline era, use the following endpoint.
 
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
-| `timeline_id` | `int` (Required) | Timeline ID |
 | `era` | `string` (Required) | Name of the era |
 | `abbreviation` | `string` | Abbreviation of the era |
 | `start_year` | `integer` | Year the era starts |

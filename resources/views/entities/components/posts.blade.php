@@ -3,26 +3,23 @@
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  * @var \App\Models\Post $post
- * @var \Illuminate\Database\Eloquent\Collection $pinnedPosts
+ * @var \Illuminate\Database\Eloquent\Collection $posts
  */
 if (empty($entity)) {
     $entity = $model->entity;
 }
 $wrapper = false;
 $entryShown = false;
-if (!isset($pinnedPosts)) {
-    $pinnedPosts = $entity->posts()->with(['permissions', 'location'])->ordered()->paginate(15);
+if (!isset($posts)) {
+    $posts = $entity->posts()->with(['permissions', 'location', 'layout'])->ordered()->paginate(15);
     $wrapper = true;
 }
-if (!isset($campaign)) {
-    $campaign = \App\Facades\CampaignLocalization::getCampaign();
-}
 
-$first = $pinnedPosts->first();
+$first = $posts->first();
 $postCount = 0;
 @endphp
 
-@if(isset($withEntry) && ($pinnedPosts->count() === 0 || (!empty($first) && $first->position >= 0)))
+@if(isset($withEntry) && ($posts->count() === 0 || (!empty($first) && $first->position >= 0)))
     @include('entities.components.entry')
     @php $entryShown = true; @endphp
     @include('partials.ads.inline')
@@ -30,9 +27,9 @@ $postCount = 0;
 
 
 @if($wrapper)
-<div class="entity-posts entity-notes">
+<div class="entity-posts entity-notes flex flex-col gap-5">
 @endif
-    @foreach ($pinnedPosts as $post)
+    @foreach ($posts as $post)
         @if ($post->layout_id && isset($printing) && $printing === true)
             @continue
         @endif
@@ -40,11 +37,11 @@ $postCount = 0;
             @include('entities.components.entry')
             @php $entryShown = true @endphp
         @endif
-        @if ($post->layout && !$campaign->superboosted())
+        @if ($post->layout_id && !$campaign->superboosted())
             @continue
         @endif
-        @includeWhen($post->layout && $campaign->superboosted(), 'entities.components._post_layouts')
-        @includeWhen(!$post->layout, 'entities.components._post')
+        @includeWhen($post->layout_id && $campaign->superboosted(), 'entities.components._post_layouts')
+        @includeWhen(!$post->layout_id, 'entities.components._post')
         @includeWhen($postCount > 0 && $postCount % 3 === 0, 'partials.ads.inline')
         @php $postCount++; @endphp
     @endforeach
@@ -56,10 +53,10 @@ $postCount = 0;
         @include('partials.ads.inline')
     @endif
 
-    @if ($pinnedPosts->currentPage() < $pinnedPosts->lastPage())
-        <div class="text-center mb-5">
+    @if ($posts->currentPage() < $posts->lastPage())
+        <div class="text-center">
             @if (auth()->check())
-            <a href="#" class="btn2  btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$entity, 'page' => $pinnedPosts->currentPage() + 1]) }}">
+            <a href="#" class="btn2  btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$campaign, $entity, 'page' => $posts->currentPage() + 1]) }}">
                 <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 
@@ -79,9 +76,9 @@ $postCount = 0;
 
 @if (!request()->ajax() && $entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
 @can('post', [$model, 'add'])
-    <div class="mb-5 text-center row-add-note-button">
-        <a href="{{ route('entities.posts.create', $entity) }}" class="btn2 btn-accent btn-sm btn-new-post"
-           data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
+    <div class="text-center row-add-note-button">
+        <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-sm btn-new-post  btn-block"
+           data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">
             <x-icon class="plus"></x-icon>
             {{ __('crud.actions.new_post') }}
         </a>

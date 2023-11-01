@@ -11,9 +11,7 @@ trait LastSync
 {
     /**
      * Used by the API to get models updated since a previous date
-     * @param Builder $query
      * @param string $lastSync
-     * @return Builder
      */
     public function scopeLastSync(Builder $query, $lastSync = null): Builder
     {

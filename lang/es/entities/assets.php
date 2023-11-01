@@ -1,12 +1,15 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'alias' => 'Alias',
         'file'  => 'Archivo',
         'link'  => 'Enlace',
     ],
-    'show'      => [
+    'copy_alias'    => [
+        'success'   => 'Mención del alias copiada en el portapapeles.',
+    ],
+    'show'          => [
         'title' => 'Archivos de :name',
     ],
 ];

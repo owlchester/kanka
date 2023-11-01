@@ -13,11 +13,11 @@
 
     <div class="flex gap-1 items-center">
         @if (!empty($reminder->comment))
-            <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+            <i class="fa-solid fa-comment" data-title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
         @endif
         @if ($reminder->is_recurring)
-            <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
+            <i class="fa-solid fa-arrows-rotate" data-title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
         @endif
-        <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+        <i class="fa-solid fa-calendar" data-title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
     </div>
 </li>

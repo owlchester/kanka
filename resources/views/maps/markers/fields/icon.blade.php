@@ -8,7 +8,8 @@
     ];
     $iconOptions = $default + $iconOptions;
 @endphp
-<div class="field-icon">
-    <label for="icon">{{ __('maps/markers.fields.icon') }}</label>
-    {!! Form::select($fieldname ?? 'icon', $iconOptions, \App\Facades\FormCopy::field('icon')->string(), ['class' => 'form-control', 'id' => 'icon']) !!}
-</div>
+<x-forms.field
+    field="icon"
+    :label="__('maps/markers.fields.icon')">
+    {!! Form::select($fieldname ?? 'icon', $iconOptions, \App\Facades\FormCopy::field('icon')->string(), ['class' => '', 'id' => 'icon']) !!}
+</x-forms.field>

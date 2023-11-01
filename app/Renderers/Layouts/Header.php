@@ -4,11 +4,14 @@ namespace App\Renderers\Layouts;
 
 use App\Facades\Datagrid;
 use App\Renderers\Layouts\Columns\Standard;
+use App\Traits\CampaignAware;
 use Exception;
 use Illuminate\Support\Arr;
 
 class Header
 {
+    use CampaignAware;
+
     /** @var array|string */
     protected $data;
 
@@ -28,6 +31,9 @@ class Header
         if (empty($this->data['label'])) {
             if (Arr::get($this->data, 'render') === Standard::IMAGE) {
                 return '';
+            }
+            if (Arr::get($this->data, 'render') === Standard::TAGS) {
+                return __('entities.tags');
             }
 
             return !isset($this->data['label']) ? '<i>no label</i>' : '';
@@ -71,7 +77,6 @@ class Header
     }
 
     /**
-     * @return bool
      */
     public function sortable(): bool
     {
@@ -79,7 +84,6 @@ class Header
     }
 
     /**
-     * @return string|null
      */
     public function icon(): null|string
     {
@@ -94,19 +98,19 @@ class Header
     }
 
     /**
-     * @return string
      */
     public function route(): string
     {
         $route = Datagrid::routeName();
         $options = [
+            'campaign' => $this->campaign,
             'k' => $this->data['key'],
             'o' => 'asc'
         ];
         if ($this->orderField == $this->data['key']) {
             // Already desc? we want to reset
             if ($this->orderDir == 'desc') {
-                $options = [];
+                $options = ['campaign' => $this->campaign];
             } else {
                 $options['o'] = 'desc';
             }
@@ -125,7 +129,6 @@ class Header
     }
 
     /**
-     * @return string
      */
     public function label(): string
     {

@@ -18,7 +18,6 @@ trait UserTokens
 
     /**
      * Get the max amount of tokens for Bragi
-     * @return int
      */
     public function maxTokens(): int
     {
@@ -37,7 +36,6 @@ trait UserTokens
 
     /**
      * Count the number of recently used tokens (calls to the API). These reset every month for the user
-     * @return int
      */
     public function usedTokens(): int
     {
@@ -56,7 +54,6 @@ trait UserTokens
 
     /**
      * Get the next date the token count resets
-     * @return string
      */
     public function tokenRenewalDate(): string
     {
@@ -76,7 +73,6 @@ trait UserTokens
 
     /**
      * Get the day the renewal of tokens is based on
-     * @return int
      */
     protected function tokenRenewalDay(): int
     {

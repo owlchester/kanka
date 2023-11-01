@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\CampaignLocalization;
+use App\Services\Campaign\LocalisationService;
 use Illuminate\Support\ServiceProvider;
 
 class CampaignLocalizationServiceProvider extends ServiceProvider
@@ -33,10 +33,10 @@ class CampaignLocalizationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(CampaignLocalization::class, function () {
-            return new CampaignLocalization();
+        $this->app->singleton(LocalisationService::class, function () {
+            return new LocalisationService();
         });
 
-        $this->app->alias(CampaignLocalization::class, 'campaignlocalization');
+        $this->app->alias(LocalisationService::class, 'campaignlocalization');
     }
 }

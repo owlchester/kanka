@@ -2,13 +2,11 @@
 
 namespace App\Services\Permissions;
 
-use App\Facades\CampaignCache;
 use App\Facades\UserCache;
-use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
-use App\Models\EntityNotePermission;
+use App\Models\PostPermission;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use App\User;
@@ -19,29 +17,30 @@ class PermissionService
     use UserAware;
 
     /** @var int CampaignPermission::ACTION_READ etc */
-    protected $action;
+    protected int $action;
 
     /** @var array Entity IDs and Types the user can access */
-    protected $entityIds = [];
-    protected $entityTypes = [];
-    protected $entityTypesIds = [];
-    protected $deniedIds = [];
-    protected $allowedModels = [];
-    protected $deniedModels = [];
-    protected $loadedPermissions = false;
+    protected array $entityIds = [];
+    protected array $entityTypes = [];
+    protected array $entityTypesIds = [];
+    protected array $deniedIds = [];
+    protected array $allowedModels = [];
+    protected array $deniedModels = [];
+    protected bool $loadedPermissions = false;
 
     /** @var array Permissions for posts */
-    protected $allowedPostIDs = [];
-    protected $deniedPostIDs = [];
-    protected $loadedPosts = false;
+    protected array $allowedPostIDs = [];
+    protected array $deniedPostIDs = [];
+    protected bool $loadedPosts = false;
 
-    protected $loadedRoles = false;
-    protected $admin = false;
+    protected int $loadedRoles;
+    protected bool $admin = false;
 
-    protected $granted = false;
+    protected bool $granted = false;
 
-    /** @var null|int the entity type if provided to limit queries */
-    protected $entityType = null;
+    /** @var int the entity type if provided to limit queries */
+    protected int $entityType;
+    protected int $entityTypeID;
 
     public function isAdmin(): bool
     {
@@ -49,9 +48,14 @@ class PermissionService
         return $this->admin;
     }
 
+    public function entityTypeID(int $id): self
+    {
+        $this->entityTypeID = $id;
+        return $this;
+    }
+
     /**
      * Set the desired action
-     * @param int $action
      * @return $this
      */
     public function action(int $action): self
@@ -66,7 +70,7 @@ class PermissionService
         $this->entityTypes = [];
         $this->entityTypesIds = [];
         $this->deniedIds = [];
-        $this->loadedRoles = false;
+        unset($this->loadedRoles);
         $this->admin = false;
         return $this;
     }
@@ -79,7 +83,6 @@ class PermissionService
 
     /**
      * List of post ids the user has access to
-     * @return array
      */
     public function allowedPosts(): array
     {
@@ -89,7 +92,6 @@ class PermissionService
 
     /**
      * List of post ids the user doesn't have access to
-     * @return array
      */
     public function deniedPosts(): array
     {
@@ -145,7 +147,6 @@ class PermissionService
 
     /**
      * Grant a permission ad-hoc
-     * @param Entity $entity
      * @return $this
      */
     public function grant(Entity $entity): self
@@ -158,7 +159,6 @@ class PermissionService
 
     /**
      * Was a permission granted?
-     * @return bool
      */
     public function granted(): bool
     {
@@ -166,7 +166,7 @@ class PermissionService
     }
 
     /**
-     * Load the permissions for posts (entity notes)
+     * Load the permissions for posts
      * @return $this
      */
     protected function loadPostPermissions(): self
@@ -178,8 +178,8 @@ class PermissionService
 
         // Get the user's individual and role permissions
         $roles = $this->user->campaignRoleIDs($this->campaign->id);
-        $perms = EntityNotePermission::select(['post_id', 'permission'])
-            ->leftJoin('entity_notes as p', 'p.id', 'entity_note_permissions.post_id')
+        $perms = PostPermission::select(['post_id', 'permission'])
+            ->leftJoin('posts as p', 'p.id', 'post_permissions.post_id')
             ->leftJoin('entities as e', 'e.id', 'p.entity_id')
             ->where(function ($sub) use ($roles) {
                 $sub->where('user_id', $this->user->id)
@@ -187,7 +187,7 @@ class PermissionService
             })
             ->where('e.campaign_id', $this->campaign->id)
             ->get();
-        /** @var EntityNotePermission $perm */
+        /** @var PostPermission $perm */
         foreach ($perms as $perm) {
             if ($perm->permission === 2) {
                 $this->deniedPostIDs[] = $perm->post_id;
@@ -211,17 +211,25 @@ class PermissionService
         $this->loadedPermissions = true;
 
         // Valid user: load their roles
-        if ($this->user) {
+        if ($this->hasUser()) {
             $this->loadRoles();
             $this->loadUserPermissions();
         }
 
         // If the user had no loaded roles, we need a public role
-        if ($this->loadedRoles > 0) {
+        if (isset($this->loadedRoles) && $this->loadedRoles > 0) {
             return $this;
         }
         $this->loadPublicRole();
 
+        return $this;
+    }
+
+    public function reset(): self
+    {
+        $this->loadedPermissions = false;
+        unset($this->loadedRoles);
+        $this->admin = false;
         return $this;
     }
 
@@ -231,21 +239,22 @@ class PermissionService
      */
     protected function loadRoles(): self
     {
-        if ($this->loadedRoles !== false) {
+        if (isset($this->loadedRoles)) {
             return $this;
         }
         $this->loadedRoles = 0;
 
-        $roles = UserCache::user($this->user)->roles()->where('campaign_id', $this->campaign->id);
+        $roles = UserCache::user($this->user)->roles();
+
         $roleIDs = [];
         foreach ($roles as $role) {
             $this->loadedRoles++;
             // If one of the roles is an admin, we don't need to figure any more stuff, we're good.
-            if ($role->is_admin) {
+            if ($role['is_admin']) {
                 $this->admin = true;
                 return $this;
             }
-            $roleIDs[] = $role->id;
+            $roleIDs[] = $role['id'];
         }
         $this->parseRoles($roleIDs);
 
@@ -254,12 +263,11 @@ class PermissionService
     }
 
     /**
-     * Load public role permissions as a fall back for non-members of the campaign.
+     * Load public role permissions as a fall-back for non-members of the campaign.
      */
     protected function loadPublicRole(): void
     {
-        // Go and get the Public role from the cache.
-        $publicRole = CampaignCache::campaign($this->campaign)
+        $publicRole = $this->campaign
             ->roles()
             ->where('is_public', true)
             ->first();
@@ -270,7 +278,6 @@ class PermissionService
 
     /**
      * Load the permissions of a role into the service
-     * @param CampaignRole $role
      */
     protected function parseRole(CampaignRole $role): void
     {
@@ -282,13 +289,12 @@ class PermissionService
     }
     /**
      * Load the permissions of several roles into the service
-     * @param array $roleIDs
      */
     protected function parseRoles(array $roleIDs): void
     {
         // Loop through the permissions of the role to get any blanket _read permissions on entities
-        $permissions =
         $permissions = \App\Facades\RolePermission::rolesPermissions($roleIDs);
+        //dump($permissions);
         //CampaignPermission::whereIn('campaign_role_id', $roleIDs)->get();
         foreach ($permissions as $permission) {
             $this->parseRolePermission($permission);
@@ -297,15 +303,17 @@ class PermissionService
 
     /**
      * Parse a role permission
-     * @param CampaignPermission $permission
      */
     protected function parseRolePermission(CampaignPermission $permission)
     {
-        // Only test permissions who's action is being requested
+        // Only test permissions whose action is being requested
         if (!$permission->isAction($this->action)) {
             return;
         }
-        if (!empty($this->entityType) && $permission->entity_type_id !== $this->entityType) {
+        if (isset($this->entityType) && !empty($this->entityType) && $permission->entity_type_id !== $this->entityType) {
+            return;
+        }
+        if (isset($this->entityTypeID) && !empty($permission->entity_type_id) && $permission->entity_type_id !== $this->entityTypeID) {
             return;
         }
 
@@ -346,7 +354,6 @@ class PermissionService
 
     /**
      * Parse a permission
-     * @param CampaignPermission $permission
      */
     protected function parseUserPermission(CampaignPermission $permission)
     {

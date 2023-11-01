@@ -3,13 +3,15 @@
 namespace App\Services\Caches;
 
 use App\Models\QuestElement;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class QuestCacheService extends BaseCache
 {
+    use CampaignAware;
+
     /**
-     * @return array
      */
     public function roleSuggestion(): array
     {
@@ -45,7 +47,6 @@ class QuestCacheService extends BaseCache
 
     /**
      * Type suggestion cache key
-     * @return string
      */
     protected function roleSuggestionKey(): string
     {

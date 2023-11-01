@@ -6,7 +6,6 @@ trait CampaignLimit
 {
     /**
      * Get the member limit for the campaign
-     * @return int|null
      */
     public function memberLimit(): null|int
     {
@@ -18,7 +17,6 @@ trait CampaignLimit
 
     /**
      * Get the role limit for the campaign
-     * @return int|null
      */
     public function roleLimit(): null|int
     {
@@ -30,19 +28,17 @@ trait CampaignLimit
 
     /**
      * Get the quick link limit for the campaign
-     * @return int|null
      */
-    public function quickLinkLimit(): null|int
+    public function bookmarkLimit(): null|int
     {
         if ($this->boosted()) {
             return null;
         }
-        return config('limits.campaigns.quick-links');
+        return config('limits.campaigns.bookmarks');
     }
 
     /**
      * Determine if the campaign can have more roles added to it
-     * @return bool
      */
     public function canHaveMoreRoles(): bool
     {
@@ -55,7 +51,6 @@ trait CampaignLimit
 
     /**
      * Determine if the campaign can have more members added to it
-     * @return bool
      */
     public function canHaveMoreMembers(): bool
     {
@@ -68,14 +63,13 @@ trait CampaignLimit
 
     /**
      * Determine if the campaign can have more quick links added
-     * @return bool
      */
-    public function canHaveMoreQuickLinks(): bool
+    public function canHaveMoreBookmarks(): bool
     {
-        $limit = $this->quickLinkLimit();
+        $limit = $this->bookmarkLimit();
         if (empty($limit)) {
             return true;
         }
-        return $this->menuLinks()->count() < $limit;
+        return $this->bookmarks()->count() < $limit;
     }
 }

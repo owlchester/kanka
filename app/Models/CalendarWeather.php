@@ -61,7 +61,6 @@ class CalendarWeather extends Model
     }
 
     /**
-     * @return string
      */
     public function tooltip(): string
     {
@@ -74,7 +73,6 @@ class CalendarWeather extends Model
     }
 
     /**
-     * @return string
      */
     public function weatherName(): string
     {

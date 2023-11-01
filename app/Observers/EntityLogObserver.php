@@ -15,7 +15,6 @@ use App\Models\EntityLog;
 class EntityLogObserver
 {
     /**
-     * @param Entity $entity
      */
     public function created(Entity $entity)
     {
@@ -30,7 +29,6 @@ class EntityLogObserver
     }
 
     /**
-     * @param Entity $entity
      */
     public function updated(Entity $entity)
     {
@@ -48,7 +46,6 @@ class EntityLogObserver
     }
 
     /**
-     * @param Entity $entity
      */
     public function deleted(Entity $entity)
     {
@@ -67,7 +64,6 @@ class EntityLogObserver
 
 
     /**
-     * @param Entity $entity
      */
     public function restored(Entity $entity)
     {

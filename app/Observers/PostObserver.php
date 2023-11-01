@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\Mentions;
-use App\Models\EntityNotePermission;
+use App\Models\PostPermission;
 use App\Models\Post;
 use App\Services\EntityMappingService;
 use App\Facades\Identity;
@@ -20,7 +20,6 @@ class PostObserver
     protected EntityMappingService $entityMappingService;
 
     /**
-     * @param EntityMappingService $entityMappingService
      */
     public function __construct(EntityMappingService $entityMappingService)
     {
@@ -28,11 +27,14 @@ class PostObserver
     }
 
     /**
-     * @param Post $post
      */
     public function saving(Post $post)
     {
-        $post->entry = $this->purify(Mentions::codify($post->entry));
+
+        // When creating a timeline element on the API, we might not have an entry
+        if (property_exists($post, 'entry')) {
+            $post->entry = $this->purify(Mentions::codify($post->entry));
+        }
 
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($post->is_private)) {
@@ -51,7 +53,6 @@ class PostObserver
     }
 
     /**
-     * @param Post $post
      */
     public function created(Post $post)
     {
@@ -62,7 +63,6 @@ class PostObserver
     }
 
     /**
-     * @param Post $post
      */
     public function updated(Post $post)
     {
@@ -75,7 +75,6 @@ class PostObserver
     }
 
     /**
-     * @param Post $post
      */
     public function saved(Post $post)
     {
@@ -83,25 +82,24 @@ class PostObserver
         if (request()->filled('position')) {
             $this->reorder($post);
         }
-        // When adding or changing an entity note to an entity, we want to update the
+        // When adding or changing a post to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
         $post->entity->touchSilently();
         $post->entity->child->touchSilently();
 
-        // If the entity note's entry has changed, we need to re-build it's map.
+        // If the post's entry has changed, we need to re-build it's map.
         if ($post->isDirty('entry')) {
             $this->entityMappingService->mapPost($post);
         }
     }
 
     /**
-     * @param Post $post
      */
     public function deleted(Post $post)
     {
         $this->log($post, EntityLog::ACTION_DELETE_POST);
 
-        // When deleting an entity note, we want to update the entity's last update
+        // When deleting a post, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
         if ($post->entity) {
@@ -110,8 +108,6 @@ class PostObserver
         }
     }
     /**
-     * @param Post $post
-     * @param int $action
      */
     private function log(Post $post, int $action)
     {
@@ -126,8 +122,6 @@ class PostObserver
         $log->save();
     }
     /**
-     * @param Post $post
-     * @return bool
      */
     public function savePermissions(Post $post): bool
     {
@@ -157,7 +151,7 @@ class PostObserver
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;
             } elseif (!in_array($existingKey, $parsed)) {
-                EntityNotePermission::create([
+                PostPermission::create([
                     'post_id' => $post->id,
                     'user_id' => $user,
                     'permission' => $perms[$key]
@@ -182,7 +176,7 @@ class PostObserver
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;
             } elseif (!in_array($existingKey, $parsed)) {
-                EntityNotePermission::create([
+                PostPermission::create([
                     'post_id' => $post->id,
                     'role_id' => $user,
                     'permission' => $perms[$key]

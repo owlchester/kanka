@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->models($models)
     ->columns([
@@ -12,7 +13,7 @@
         'name',
         'type',
         [
-            'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" title="' . __('maps.actions.explore') . '"></i>',
+            'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '"></i>',
             'render' => function($model) {
                 return $model->exploreLink();
             },
@@ -20,7 +21,7 @@
         ],
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => __('crud.fields.parent'),
@@ -46,6 +47,5 @@
         'route' => 'maps.index',
         'baseRoute' => 'maps',
         'trans' => 'maps.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

@@ -29,7 +29,7 @@ class ImageMention extends Model
         'post_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
     ];
@@ -52,7 +52,6 @@ class ImageMention extends Model
 
     /**
      * Determine if the mention goes to a post
-     * @return bool
      */
     public function isPost(): bool
     {
@@ -62,8 +61,6 @@ class ImageMention extends Model
     /**
      * Build the query that will loop on the various mentions to get the total count.
      * The AclTrait on entities and posts makes sure only visible things get added to the query.
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePrepareCount(Builder $query): Builder
     {
@@ -84,8 +81,6 @@ class ImageMention extends Model
         });
     }
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeEntity(Builder $query): Builder
     {
@@ -93,11 +88,9 @@ class ImageMention extends Model
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePost(Builder $query): Builder
     {
-        return $query->whereNotNull('image_mentions.entity_note_id');
+        return $query->whereNotNull('image_mentions.post_id');
     }
 }

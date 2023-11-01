@@ -43,7 +43,6 @@ class Event extends MiscModel
         'name',
         'slug',
         'type',
-        'image',
         'date',
         'entry',
         'is_private',
@@ -51,7 +50,7 @@ class Event extends MiscModel
         'event_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'date',
         'type',
@@ -60,9 +59,8 @@ class Event extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'date',
         'location.name',
     ];
@@ -71,21 +69,19 @@ class Event extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'event_id',
     ];
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -117,7 +113,6 @@ class Event extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -126,9 +121,8 @@ class Event extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'event';
+    protected string $entityType = 'event';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -164,7 +158,6 @@ class Event extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -189,7 +182,6 @@ class Event extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -204,7 +196,6 @@ class Event extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -230,7 +221,6 @@ class Event extends MiscModel
 
     /**
      * Grid mode sortable fields
-     * @return array
      */
     public function datagridSortableColumns(): array
     {

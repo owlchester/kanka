@@ -7,8 +7,9 @@ $targets = [
 <x-grid>
     @include('cruds.fields.type', ['base' => \App\Models\Conversation::class, 'trans' => 'conversations'])
 
-    <div class="field-participants">
-        <label>{{ __('conversations.fields.participants') }}</label>
-        {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => 'form-control']) !!}
-    </div>
+    <x-forms.field
+        field="participants"
+        :label="__('conversations.fields.participants')">
+        {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => '']) !!}
+    </x-forms.field>
 </x-grid>

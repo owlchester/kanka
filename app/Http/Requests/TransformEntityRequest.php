@@ -2,23 +2,18 @@
 
 namespace App\Http\Requests;
 
-use App\Services\EntityService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TransformEntityRequest extends FormRequest
 {
-    protected $entities = '';
+    protected string $entities;
 
-    /**
-     * MoveEntityRequest constructor.
-     * @param EntityService $entityService
-     */
-    public function __construct(EntityService $entityService)
+    public function __construct()
     {
         parent::__construct();
 
         $entities = [];
-        foreach ($entityService->entities() as $entity => $class) {
+        foreach (config('entities.classes') as $entity => $class) {
             $entities[] = $entity;
         }
 

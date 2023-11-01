@@ -6,17 +6,20 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
-use App\Models\EntityNote;
+use App\Models\Post;
 use App\Models\MiscModel;
-use App\Models\Visibility;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
+use App\Enums\Visibility;
 
+/**
+ * @method static self|Builder withInvisible()
+ */
 class AclScope implements Scope
 {
     /**
-     * All of the extensions to be added to the builder.
+     * All the extensions to be added to the builder.
      *
      * @var array
      */
@@ -25,7 +28,6 @@ class AclScope implements Scope
     /**
      * Extend the query builder with the needed functions.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
      * @return void
      */
     public function extend(Builder $builder)
@@ -38,7 +40,6 @@ class AclScope implements Scope
     /**
      * Add the with-invisible extension to the builder.
      *
-     * @param  Builder $builder
      * @return void
      */
     protected function addWithInvisible(Builder $builder)
@@ -55,20 +56,18 @@ class AclScope implements Scope
 
     /**
      * Our main logic for this scope: filtering on elements the user has access to.
-     * @param Builder $query
-     * @param Model $model
      * @return Builder|void
      */
     public function apply(Builder $query, Model $model)
     {
         // No permission engine on console for the time being. In the future, we might want
         // to build a system to limit exposing private stuff on a campaign export.
-        if (app()->runningInConsole()) {
+        if (app()->runningInConsole() && !app()->environment('testing')) {
             return $query;
         }
 
         // For posts, we need a different hook because they can be private even for an admin
-        if ($model instanceof EntityNote) {
+        if ($model instanceof Post) {
             return $this->applyToPost($query, $model);
         }
 
@@ -77,6 +76,9 @@ class AclScope implements Scope
             ->action(CampaignPermission::ACTION_READ);
         if (auth()->check()) {
             Permissions::user(auth()->user());
+        }
+        if ($model instanceof MiscModel) {
+            Permissions::entityTypeID($model->entityTypeId());
         }
 
         if (Permissions::isAdmin()) {
@@ -95,9 +97,6 @@ class AclScope implements Scope
 
     /**
      * Permission scope on an Entity model
-     * @param Builder $query
-     * @param Model $model
-     * @return Builder
      */
     protected function applyToEntity(Builder $query, Model $model): Builder
     {
@@ -117,9 +116,6 @@ class AclScope implements Scope
 
     /**
      * Permission scope on a Misc model
-     * @param Builder $query
-     * @param MiscModel $model
-     * @return Builder
      */
     protected function applyToMisc(Builder $query, MiscModel $model): Builder
     {
@@ -167,13 +163,11 @@ class AclScope implements Scope
             $query->whereNotIn($table . '.' . $primaryKey, $denied);
         }
 
-        return $query;
+        return $query->private(false); // @phpstan-ignore-line
     }
 
     /**
      * Map the misc model to the entity type. Should move this somewhere else?
-     * @param MiscModel $model
-     * @return int
      */
     protected function entityType(MiscModel $model): int
     {
@@ -182,8 +176,6 @@ class AclScope implements Scope
 
     /**
      * Apply the ACL scope to posts.
-     * @param Builder $query
-     * @param Model $model
      * @return Builder
      */
     protected function applyToPost(Builder $query, Model $model)
@@ -192,7 +184,7 @@ class AclScope implements Scope
         $table = $model->getTable();
         // Guest, or not part of the campaign either, just get the all visibility
         if (auth()->guest() || !$campaign->userIsMember()) {
-            return $query->where($table . '.visibility_id', Visibility::VISIBILITY_ALL);
+            return $query->where($table . '.visibility_id', Visibility::All);
         }
 
         Permissions::campaign($campaign);
@@ -203,15 +195,15 @@ class AclScope implements Scope
             ->withoutGlobalScope(VisibilityIDScope::class)
             ->where(function ($sub) use ($table) {
                 $visibilities = Permissions::isAdmin()
-                    ? [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_ADMIN,
-                        Visibility::VISIBILITY_ADMIN_SELF, Visibility::VISIBILITY_MEMBERS]
-                    : [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_MEMBERS];
+                    ? [Visibility::All, Visibility::Admin,
+                        Visibility::AdminSelf, Visibility::Member]
+                    : [Visibility::All, Visibility::Member];
                 $sub
                     ->where(function ($self) use ($table) {
                         $self
                             ->whereIn($table . '.visibility_id', [
-                                Visibility::VISIBILITY_SELF,
-                                Visibility::VISIBILITY_ADMIN_SELF,
+                                Visibility::Self,
+                                Visibility::AdminSelf,
                             ])
                             ->where($table . '.created_by', auth()->user()->id);
                     })

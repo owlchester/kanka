@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use App\Enums\Widget;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class CampaignDashboardWidget
@@ -20,7 +22,7 @@ use Illuminate\Support\Str;
  * @property integer $campaign_id
  * @property integer $entity_id
  * @property int $dashboard_id
- * @property string $widget
+ * @property Widget $widget
  * @property array $config
  * @property integer $width
  * @property integer $position
@@ -34,29 +36,9 @@ use Illuminate\Support\Str;
 class CampaignDashboardWidget extends Model
 {
     use CampaignTrait;
+    use HasFactory;
     use LastSync;
     use Taggable;
-
-    /**
-     * Widget Constants
-     */
-    public const WIDGET_PREVIEW = 'preview';
-    public const WIDGET_RECENT = 'recent';
-    public const WIDGET_CALENDAR = 'calendar';
-    public const WIDGET_UNMENTIONED = 'unmentioned';
-    public const WIDGET_RANDOM = 'random';
-    public const WIDGET_HEADER = 'header';
-    public const WIDGET_CAMPAIGN = 'campaign';
-    public const WIDGET_WELCOME = 'welcome';
-
-    // Widgets that are automatically visible on the dashboard
-    public const WIDGET_VISIBLE = [
-        self::WIDGET_RECENT,
-        self::WIDGET_UNMENTIONED,
-        self::WIDGET_RANDOM,
-        self::WIDGET_HEADER,
-        self::WIDGET_WELCOME,
-    ];
 
     /** @var string[]  */
     protected $fillable = [
@@ -71,6 +53,7 @@ class CampaignDashboardWidget extends Model
 
     protected $casts = [
         'config' => 'array',
+        'widget' => Widget::class,
     ];
 
     /**
@@ -117,34 +100,29 @@ class CampaignDashboardWidget extends Model
 
     /**
      * Get the column size
-     * @return int
      */
     public function colSize(): int
     {
-        if ($this->widget == self::WIDGET_CAMPAIGN) {
+        if ($this->widget == Widget::Campaign) {
             return 12;
         }
         if (!empty($this->width)) {
             return $this->width;
         }
-        return ($this->widget == self::WIDGET_PREVIEW || $this->widget == self::WIDGET_RANDOM ||
-            ($this->widget == self::WIDGET_RECENT && $this->conf('singular')))
+        return ($this->widget == Widget::Preview || $this->widget == Widget::Random ||
+            ($this->widget == Widget::Recent && $this->conf('singular')))
             ? 4 : 6;
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePositioned(Builder $query): Builder
     {
-        return $query->with(['entity', 'tags'])
+        return $query->with(['entity', 'entity.image', 'tags'])
             ->orderBy('position', 'asc');
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeOnDashboard(Builder $query, CampaignDashboard $dashboard = null): Builder
     {
@@ -165,7 +143,6 @@ class CampaignDashboardWidget extends Model
 
     /**
      * Copy a dashboard to another target
-     * @param CampaignDashboard $target
      */
     public function copyTo(CampaignDashboard $target)
     {
@@ -181,7 +158,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasAdvancedOptions(): bool
     {
@@ -193,17 +169,16 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return bool
      */
     public function showAttributes(): bool
     {
         if ($this->conf('attributes') != '1') {
             return false;
         }
-        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT, self::WIDGET_RANDOM])) {
+        if (!in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
             return false;
         }
-        if ($this->widget == self::WIDGET_RECENT) {
+        if ($this->widget == Widget::Recent) {
             return true;
         }
 
@@ -211,17 +186,16 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return bool
      */
     public function showRelations(): bool
     {
         if ($this->conf('relations') != '1') {
             return false;
         }
-        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT, self::WIDGET_RANDOM])) {
+        if (!in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
             return false;
         }
-        if ($this->widget == self::WIDGET_RECENT) {
+        if ($this->widget == Widget::Recent) {
             return true;
         }
 
@@ -238,7 +212,7 @@ class CampaignDashboardWidget extends Model
         if ($this->conf('members') !== '1') {
             return false;
         }
-        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT, self::WIDGET_RANDOM])) {
+        if (!in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
             return false;
         }
         $types = [
@@ -320,7 +294,6 @@ class CampaignDashboardWidget extends Model
     /**
      * Get a random entity
      * Todo: refactor this code with the code from the quick link?
-     * @return mixed
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function randomEntity()
@@ -366,7 +339,6 @@ class CampaignDashboardWidget extends Model
 
     /**
      * Get the widget filters
-     * @return array
      */
     private function filterOptions(): array
     {
@@ -396,7 +368,6 @@ class CampaignDashboardWidget extends Model
 
     /**
      * A way to set the entity, typically for the random widget
-     * @param Entity $entity
      * @return $this
      */
     public function setEntity(Entity $entity): self
@@ -406,22 +377,21 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return string
      */
     public function widgetIcon(): string
     {
         $icon = null;
-        if ($this->widget === self::WIDGET_RECENT) {
+        if ($this->widget === Widget::Recent) {
             $icon = 'fa-solid fa-list';
-        } elseif ($this->widget === self::WIDGET_HEADER) {
+        } elseif ($this->widget === Widget::Header) {
             $icon = 'fa-solid fa-heading';
-        } elseif ($this->widget === self::WIDGET_PREVIEW) {
+        } elseif ($this->widget === Widget::Preview) {
             $icon = 'fa-solid fa-align-justify';
-        } elseif ($this->widget === self::WIDGET_CALENDAR) {
+        } elseif ($this->widget === Widget::Calendar) {
             $icon = 'ra ra-moon-sun';
-        } elseif ($this->widget === self::WIDGET_RANDOM) {
+        } elseif ($this->widget === Widget::Random) {
             $icon = 'fa-solid fa-dice-d20';
-        } elseif ($this->widget === self::WIDGET_CAMPAIGN) {
+        } elseif ($this->widget === Widget::Campaign) {
             $icon = 'fa-solid fa-th-list';
         }
 
@@ -432,8 +402,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @param Campaign $campaign
-     * @return string
      */
     public function customClass(Campaign $campaign): string
     {
@@ -448,7 +416,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return string
      */
     public function customSize(): string
     {
@@ -460,7 +427,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return bool
      */
     protected function filterUnmentioned(): bool
     {
@@ -468,7 +434,6 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return bool
      */
     protected function filterMentionless(): bool
     {

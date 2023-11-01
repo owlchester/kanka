@@ -9,7 +9,7 @@
 <a name="request"></a>
 ## API Request
 
-Before you can start interacting with the Kanka API, you need to generate a Key by navigating to your [Profile > API](https://kanka.io/en/settings/api) page in the app to generate a `key`.
+Before you can start interacting with the Kanka API, you need to generate a Key by navigating to your [Profile > API](https://app.kanka.io/settings/api) page in the app to generate a `key`.
 
 ![Api Request](/images/api-docs/api-request.png)
 
@@ -31,13 +31,13 @@ When calling the API, add the following headers:
 <a name="endpoints"></a>
 ### Endpoints
 
-> {warning} Please note that all endpoints documented here need to be prefixed with `api/{{version}}/`. For example, if an endpoint is listed as `campaigns`, you should use `https://kanka.io/api/{{version}}/campaigns`.
+> {warning} Please note that all endpoints documented here need to be prefixed with `{{version}}/`. For example, if an endpoint is listed as `campaigns`, you should use `https://api.kanka.io/{{version}}/campaigns`.
 
 ### Throttling
 
 The API is set up to allow a maximum of 30 requests per minute per client. When you exceed this limit, you will be greeted with a `429` error code.
 
-You can increase this limit to 90 requests per minute by becoming a [Subscriber](https://kanka.io/en-US/pricing).
+You can increase this limit to 90 requests per minute by becoming a [Subscriber](https://kanka.io/pricing).
 
 ---
 Next up: [Profile](/api-docs/{{version}}/profile)

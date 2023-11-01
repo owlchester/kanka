@@ -46,7 +46,6 @@ trait HasFilters
     /**
      * Get all available filterable columns of the entity. Merge the custom
      * with the default ones (if not overwritten)
-     * @return array
      */
     public function getFilterableColumns(): array
     {
@@ -84,9 +83,6 @@ trait HasFilters
 
 
     /**
-     * @param Builder $query
-     * @param array $params
-     * @return Builder
      */
     public function scopeFilter(Builder $query, array $params = []): Builder
     {
@@ -183,8 +179,6 @@ trait HasFilters
 
     /**
      * @param string|array $value (array for tags)
-     * @param string $key
-     * @return void
      */
     protected function extractSearchOperator($value, string $key): void
     {
@@ -211,7 +205,6 @@ trait HasFilters
 
     /**
      * Add a left join on the entity to the query. Only do this once
-     * @param Builder $query
      * @return Builder
      */
     /*protected function joinEntity(Builder $query): Builder
@@ -237,10 +230,6 @@ trait HasFilters
 
     /**
      * Add a query on a foreign relationship of the model
-     * @param Builder $query
-     * @param string $relationName
-     * @param string $key
-     * @return void
      */
     protected function foreign(Builder $query, string $relationName, string $key): void
     {
@@ -260,8 +249,6 @@ trait HasFilters
 
     /**
      * Determine if the filter option is the one required
-     * @param string $condition
-     * @return bool
      */
     protected function filterOption(string $condition): bool
     {
@@ -270,9 +257,6 @@ trait HasFilters
 
     /**
      * Filter on the attributes of an entity
-     * @param Builder $query
-     * @param string $key
-     * @return void
      */
     protected function filterAttributes(Builder $query, string $key): void
     {
@@ -307,9 +291,6 @@ trait HasFilters
 
     /**
      * General fallback filter for what wasn't cought in specific cases
-     * @param Builder $query
-     * @param string $key
-     * @return void
      */
     protected function filterFallback(Builder $query, string $key): void
     {
@@ -346,9 +327,6 @@ trait HasFilters
 
     /**
      * Filter on entities with files
-     * @param Builder $query
-     * @param string|null $value
-     * @return void
      */
     protected function filterHasFiles(Builder $query, string $value = null): void
     {
@@ -366,24 +344,19 @@ trait HasFilters
 
     /**
      * Filter on entities with or without an uploaded image
-     * @param Builder $query
-     * @param string|null $value
-     * @return void
      */
     protected function filterHasImage(Builder $query, string $value = null): void
     {
+        $query->joinEntity();
         if ($value) {
-            $query->whereNotNull($this->getTable() . '.image');
+            $query->whereNotNull('e.image_path');
         } else {
-            $query->whereNull($this->getTable() . '.image');
+            $query->whereNull('e.image_path');
         }
     }
 
     /**
      * Filter on entities that are or aren't templates
-     * @param Builder $query
-     * @param string|null $value
-     * @return void
      */
     protected function filterTemplate(Builder $query, string $value = null): void
     {
@@ -401,28 +374,22 @@ trait HasFilters
 
     /**
      * Filter on entities with posts
-     * @param Builder $query
-     * @param string|null $value
-     * @return void
      */
     protected function filterHasPosts(Builder $query, string $value = null): void
     {
         $query
             ->joinEntity()
-            ->leftJoin('entity_notes', 'entity_notes.entity_id', 'e.id');
+            ->leftJoin('posts', 'posts.entity_id', 'e.id');
 
         if ($value) {
-            $query->whereNotNull('entity_notes.id');
+            $query->whereNotNull('posts.id');
         } else {
-            $query->whereNull('entity_notes.id');
+            $query->whereNull('posts.id');
         }
     }
 
     /**
      * Filter on entities with attributes
-     * @param Builder $query
-     * @param string|null $value
-     * @return void
      */
     protected function filterHasAttributes(Builder $query, string $value = null): void
     {
@@ -439,9 +406,6 @@ trait HasFilters
 
     /**
      * Filter on characters on multiple races
-     * @param Builder $query
-     * @param string|array|null $value
-     * @return void
      */
     protected function filterRaces(Builder $query, string|array $value = null): void
     {
@@ -479,10 +443,6 @@ trait HasFilters
 
     /**
      * Filter on characters on multiple locations
-     * @param Builder $query
-     * @param string|null $value
-     * @param string|null $key
-     * @return void
      */
     protected function filterLocations(Builder $query, string $value = null, string $key = null): void
     {
@@ -507,9 +467,6 @@ trait HasFilters
 
     /**
      * Filter characters on a single race
-     * @param Builder $query
-     * @param string|null $value
-     * @return void
      */
     protected function filterRace(Builder $query, string $value = null): void
     {
@@ -536,9 +493,6 @@ trait HasFilters
 
     /**
      * Filter characters on a single family
-     * @param Builder $query
-     * @param string|null $value
-     * @return void
      */
     protected function filterFamily(Builder $query, string $value = null): void
     {
@@ -565,9 +519,6 @@ trait HasFilters
 
     /**
      * Filter on entities with specific tags
-     * @param Builder $query
-     * @param string|array|null $value
-     * @return void
      */
     protected function filterTags(Builder $query, string|array $value = null): void
     {
@@ -612,10 +563,6 @@ trait HasFilters
 
     /**
      * Filter on models at or between given real dates
-     * @param Builder $query
-     * @param string $key
-     * @param array $params
-     * @return void
      */
     protected function filterDateRange(Builder $query, string $key, array $params = []): void
     {
@@ -637,9 +584,6 @@ trait HasFilters
 
     /**
      * Filter for elements with a specific member (character) in them
-     * @param Builder $query
-     * @param string|null $value
-     * @return void
      */
     protected function filterMember(Builder $query, string $value = null): void
     {
@@ -649,10 +593,6 @@ trait HasFilters
 
     /**
      * Filter on entities that have one of the targets as "none" selected
-     * @param Builder $query
-     * @param string $key
-     * @param array $fields
-     * @return void
      */
     protected function filterNoneOptions(Builder $query, string $key, array $fields = []): void
     {
@@ -696,7 +636,6 @@ trait HasFilters
 
     /**
      * Get the filter option enum
-     * @return FilterOption
      */
     protected function getFilterOption(): FilterOption
     {

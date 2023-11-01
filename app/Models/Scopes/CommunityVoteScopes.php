@@ -17,8 +17,6 @@ use Illuminate\Database\Eloquent\Builder;
 trait CommunityVoteScopes
 {
     /**
-     * @param Builder $builder
-     * @return Builder
      */
     public function scopeVisible(Builder $builder): Builder
     {
@@ -27,7 +25,6 @@ trait CommunityVoteScopes
     }
 
     /**
-     * @param Builder $builder
      */
     public function scopePublished(Builder $builder): Builder
     {
@@ -35,7 +32,6 @@ trait CommunityVoteScopes
     }
 
     /**
-     * @param Builder $builder
      */
     public function scopeVoting(Builder $builder): Builder
     {
@@ -46,8 +42,6 @@ trait CommunityVoteScopes
     }
 
     /**
-     * @param Builder $builder
-     * @return Builder
      */
     public function scopeRecent(Builder $builder): Builder
     {

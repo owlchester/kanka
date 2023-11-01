@@ -3,6 +3,7 @@
 /**
  * Discord config
  */
+
 return [
     /**
      * The Discord URL to join the Kanka server.

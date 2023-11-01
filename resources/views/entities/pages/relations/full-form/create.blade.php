@@ -1,14 +1,22 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __($langKey . '.create.new_title'),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $langKey)],
+        ['url' => Breadcrumb::index($name), 'label' => __('entities.relations')],
         __('crud.create'),
-    ]
+    ],
+    'centered' => true,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
-    {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data', 'route' => ['relations.store'], 'data-shortcut' => '1', 'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null), 'id' => 'entity-form', 'data-maintenance' => 1]) !!}
+    {!! Form::open([
+        'method' => 'POST',
+        'enctype' => 'multipart/form-data',
+        'route' => ['relations.store', $campaign],
+        'data-shortcut' => '1',
+        'class' => 'entity-form',
+        'id' => 'entity-form',
+        'data-maintenance' => 1,
+        ]) !!}
 @endsection
 
 @section('content')

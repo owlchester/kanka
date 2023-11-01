@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Exceptions\TranslatableException;
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TransformEntityRequest;
+use App\Models\Campaign;
 use App\Models\Entity;
+use App\Services\Entity\TransformService;
+use App\Services\Entity\TypeService;
 use App\Services\EntityService;
 use App\Traits\GuestAuthTrait;
 
@@ -15,63 +17,53 @@ class TransformController extends Controller
     use GuestAuthTrait;
 
     protected EntityService $service;
+    protected TransformService $transformService;
+    protected TypeService $typeService;
 
-    /**
-     * AbilityController constructor.
-     * @param EntityService $service
-     */
-    public function __construct(EntityService $service)
+    public function __construct(EntityService $service, TransformService $transformService, TypeService $typeService)
     {
         $this->service = $service;
+        $this->transformService = $transformService;
+        $this->typeService = $typeService;
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         // Policies will always fail if they can't resolve the user.
         $this->authorize('move', $entity->child);
 
-        // Check that the campaign isn't full
-        $campaign = CampaignLocalization::getCampaign();
-
-        $entities = $this->service
+        $entities = $this->typeService
             ->campaign($campaign)
-            ->labelledEntities(true, [$entity->pluralType(), 'menu_links', 'relations'], true);
+            // @phpstan-ignore-next-line
+            ->exclude([$entity->type(), 'bookmark', 'relation'])
+            ->labelled();
 
         $entities[''] = __('entities/transform.fields.select_one');
 
 
         return view('entities.pages.transform.index', compact(
+            'campaign',
             'entity',
             'entities',
             'campaign',
         ));
     }
 
-    /**
-     * @param TransformEntityRequest $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function transform(TransformEntityRequest $request, Entity $entity)
+    public function transform(TransformEntityRequest $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('move', $entity->child);
 
         try {
-            $this->service
-                ->transform($entity, $request->get('target'));
+            $this->transformService
+                ->entity($entity)
+                ->transform($request->get('target'));
 
             return redirect()
                 ->to($entity->url())
                 ->with('success', __('entities/transform.success', ['name' => $entity->name]));
         } catch (TranslatableException $ex) {
             return redirect()
-                ->route($entity->pluralType() . '.show', $entity->entity_id)
+                ->route('entities.show', [$campaign, $entity])
                 ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
         }
     }

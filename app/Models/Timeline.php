@@ -10,6 +10,7 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Collection;
 
 /**
@@ -24,6 +25,7 @@ class Timeline extends MiscModel
     use Acl;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
     use SortableTrait;
@@ -36,11 +38,10 @@ class Timeline extends MiscModel
         'slug',
         'entry',
         'is_private',
-        'image',
         'timeline_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'timeline.name',
@@ -48,9 +49,8 @@ class Timeline extends MiscModel
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'calendar.name',
         'timeline.name',
     ];
@@ -59,25 +59,23 @@ class Timeline extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'calendar_id',
         'timeline_id',
     ];
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'eras',
         'elements',
     ];
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'timeline';
+    protected string $entityType = 'timeline';
 
     protected array $apiWith = [
         'eras',
@@ -86,14 +84,12 @@ class Timeline extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -116,7 +112,6 @@ class Timeline extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -183,7 +178,6 @@ class Timeline extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -209,7 +203,6 @@ class Timeline extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {

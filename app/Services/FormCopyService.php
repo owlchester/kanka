@@ -26,7 +26,6 @@ class FormCopyService
 
     /**
      * If the field comes from the entity
-     * @var bool
      */
     protected bool $entity = false;
 
@@ -41,8 +40,6 @@ class FormCopyService
     }
 
     /**
-     * @param string $field
-     * @return FormCopyService
      */
     public function field(string $field): self
     {
@@ -52,7 +49,6 @@ class FormCopyService
 
     /**
      * Set the request to be on the entity
-     * @return FormCopyService
      */
     public function entity(): self
     {
@@ -75,8 +71,6 @@ class FormCopyService
 
     /**
      * Get values for a select field
-     * @param bool $checkForParent
-     * @param string|null $parentClass
      * @return array
      */
     public function select(bool $checkForParent = false, string $parentClass = null)
@@ -146,8 +140,6 @@ class FormCopyService
     }
 
     /**
-     * @param bool $default
-     * @return bool
      */
     public function boolean(bool $default = false): bool
     {
@@ -161,7 +153,6 @@ class FormCopyService
 
     /**
      * Prefill model for custom blade directives
-     * @return null
      */
     public function model()
     {
@@ -174,7 +165,6 @@ class FormCopyService
 
     /**
      * Prefill model for custom blade directives
-     * @return null
      */
     public function related()
     {
@@ -187,7 +177,6 @@ class FormCopyService
 
     /**
      * @param bool $withNull include "none" option
-     * @return array
      */
     public function colours(bool $withNull = true): array
     {
@@ -204,7 +193,6 @@ class FormCopyService
     }
 
     /**
-     * @return string
      */
     public function __toString(): string
     {
@@ -212,7 +200,6 @@ class FormCopyService
     }
 
     /**
-     * @return bool
      */
     private function valid(): bool
     {
@@ -223,7 +210,6 @@ class FormCopyService
     }
 
     /**
-     * @return mixed
      */
     private function getValue()
     {
@@ -240,7 +226,6 @@ class FormCopyService
     }
 
     /**
-     * @return mixed
      */
     private function getValues()
     {

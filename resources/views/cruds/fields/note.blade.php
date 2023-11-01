@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('notes'))
+@if (!$campaign->enabled('notes'))
     <?php return ?>
 @endif
 
@@ -12,13 +12,14 @@ if (isset($model) && $model->note) {
 @endphp
 
 <x-forms.foreign
+    :campaign="$campaign"
     name="note_id"
     key="note"
     entityType="notes"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('notes.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route('notes.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Note::class"
     :selected="$preset"
     :helper="$helper ?? null"

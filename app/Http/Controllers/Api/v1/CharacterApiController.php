@@ -10,7 +10,6 @@ use App\Http\Resources\CharacterResource;
 class CharacterApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -26,8 +25,6 @@ class CharacterApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Character $character
      * @return CharacterResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -39,8 +36,6 @@ class CharacterApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
      * @return CharacterResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -59,9 +54,6 @@ class CharacterApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Character $character
      * @return CharacterResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -76,8 +68,6 @@ class CharacterApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param Character $character
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

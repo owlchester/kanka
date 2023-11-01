@@ -21,8 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class AttributeTemplate extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use Nested;
     use SoftDeletes;
@@ -42,30 +41,23 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'attribute_template';
+    protected string $entityType = 'attribute_template';
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns  = ['name'];
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
-        'attributeTemplate.name',
-        'entity_type_id',
-    ];
 
     /**
      * Fields that can be set to null (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'attribute_template_id',
         'entity_type_id'
     ];
@@ -120,8 +112,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedSelect(Builder $query): Builder
     {
@@ -131,14 +121,12 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
@@ -152,7 +140,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Apply a template to an entity
-     * @param Entity $entity
      * @param int $startingOrder
      * @return int
      */
@@ -223,7 +210,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -233,7 +219,6 @@ class AttributeTemplate extends MiscModel
     /**
      * Determine if the attribute templates has visible (to show on the entity creation _attributes tab) attributes
      * @param array $names
-     * @return bool
      */
     public function hasVisibleAttributes($names = []): bool
     {
@@ -260,7 +245,6 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {

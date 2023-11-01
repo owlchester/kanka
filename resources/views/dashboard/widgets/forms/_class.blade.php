@@ -1,10 +1,8 @@
-<div class="field-class">
-    <label for="config[class]">
-        {{ __('dashboard.widgets.fields.class') }}
-        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}" aria-hidden="true"></i>
-    </label>
-    {!! Form::text('config[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$boosted ? 'disabled' : null]) !!}
-    <p class="help-block visible-xs visible-sm">
-        {{ __('dashboard.widgets.helpers.class') }}
-    </p>
-</div>
+<x-forms.field
+    field="class"
+    :label="__('dashboard.widgets.fields.class')"
+    :helper="__('dashboard.widgets.helpers.class')"
+    :tooltip="true"
+>
+    {!! Form::text('config[class]', null, ['class' => '', 'id' => 'config[class]', 'disabled' => !$boosted ? 'disabled' : null]) !!}
+</x-forms.field>

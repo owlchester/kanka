@@ -1,12 +1,13 @@
-<div class="field-size">
-    <label>{{ __($trans . '.fields.size') }}</label>
+<x-forms.field
+    field="size"
+    :label="__($trans . '.fields.size')">
     {!! Form::text(
         'size',
         FormCopy::field('size')->string(),
         [
             'placeholder' => __($trans . '.placeholders.size'),
-            'class' => 'form-control',
+            'class' => 'w-full',
             'maxlength' => 191
         ]
     ) !!}
-</div>
+</x-forms.field>

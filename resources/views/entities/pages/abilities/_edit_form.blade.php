@@ -1,24 +1,22 @@
 
+<x-grid type="1/1">
+    <x-forms.field
+        field="ability"
+        :label="__('entities.ability')">
+        {!! $ability->ability->tooltipedLink() !!}
+        {!! Form::hidden('ability_id', $ability->ability_id) !!}
+    </x-forms.field>
 
-<div class="field-ability mb-5">
-    <label>{{ __('entities.ability') }}</label><br />
-    {!! $ability->ability->tooltipedLink() !!}
-    {!! Form::hidden('ability_id', $ability->ability_id) !!}
-</div>
+    <x-forms.field
+        field="note"
+        :label="__('entities/abilities.fields.note')"
+        :helper="__('entities/abilities.helpers.note', [
+        'code' => '<code>[character:4096]</code>',
+        'attr' => '<code>{Strength}</code>'
+    ])"
+        :tooltip="true">
+        {!! Form::textarea('note', null, ['class' => '', 'rows' => 4]) !!}
+    </x-forms.field>
 
-<div class="field-note mb-5">
-    <div class="pull-right hidden-xs">
-        <i class="fa-solid fa-question-circle" aria-hidden="true" title="{!! __('entities/abilities.helpers.note', [
-    'code' => '<code>[character:4096]</code>',
-    'attr' => '<code>{Strength}</code>'
-]) !!}" data-toggle="tooltip" data-html="true" data-placement="left"></i>
-    </div>
-    <label>{{ __('entities/abilities.fields.note') }}</label>
-    {!! Form::textarea('note', null, ['class' => 'form-control', 'rows' => 4]) !!}
-    <p class="help-block hidden-sm hidden-md hidden-lg hidden-xl">{!! __('entities/abilities.helpers.note', [
-    'code' => '<code>[character:4096]</code>',
-    'attr' => '<code>{Strength}</code>'
-]) !!}</p>
-</div>
-
-@include('cruds.fields.visibility_id', ['model' => $ability])
+    @include('cruds.fields.visibility_id', ['model' => $ability])
+</x-grid>

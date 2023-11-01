@@ -11,7 +11,9 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('relations', function (Blueprint $table) {
-            $table->renameColumn('is_star', 'is_pinned');
+            if (Schema::hasColumn('relations', 'is_star')) {
+                $table->renameColumn('is_star', 'is_pinned');
+            }
         });
     }
 

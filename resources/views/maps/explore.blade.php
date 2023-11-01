@@ -3,7 +3,6 @@
 * @var \App\Models\Map $map
 */
 ?>
-@inject('campaignService', 'App\Services\CampaignService')
 
 @extends('layouts.map', [
     'title' => $map->name,
@@ -13,15 +12,15 @@
 @section('content')
     @can('update', $map)
         <div class="map-actions absolute bottom-0 right-0 m-2">
-            <button class="btn2 btn-warning btn-mode-enable">
-                <x-icon class="plus"></x-icon>
+            <button class="btn2 btn-mode-enable">
+                <x-icon class="plus" />
                 {{ __('maps/explore.actions.enter-edit-mode') }}
             </button>
             <button class="btn2 btn-default btn-mode-disable">
-                <x-icon class="fa-solid fa-ban"></x-icon>
+                <x-icon class="fa-solid fa-ban" />
                 {{ __('maps/explore.actions.exit-edit-mode') }}
             </button>
-            <button class="btn2 btn-warning btn-mode-drawing">
+            <button class="btn2 btn-mode-drawing">
                 <x-icon class="pencil"></x-icon>
                 {{ __('maps/explore.actions.finish-drawing') }}
             </button>
@@ -31,7 +30,7 @@
 
     </div>
 
-    <input type="hidden" id="ticker-config" data-timeout="20000" data-url="{{ route('maps.ticker', $map) }}" data-ts="{{ \Carbon\Carbon::now() }}" />
+    <input type="hidden" id="ticker-config" data-timeout="20000" data-url="{{ route('maps.ticker', [$campaign, $map, $campaign]) }}" data-ts="{{ \Carbon\Carbon::now() }}" />
 @endsection
 
 @section('scripts')
@@ -108,9 +107,7 @@
             window.handleExploreMapClick(ev);
         });
     @endcan
-
     </script>
-    @vite(['resources/js/ajax-subforms.js'])
     <script type="text/javascript">
         @if (!empty($map->grid))
             // Leaflet grid
@@ -119,7 +116,6 @@
                 {{ $line[3] }}]], {color: 'grey', opacity: 0.5}).addTo(map{{ $map->id }});
             @endforeach
         @endif
-
     </script>
 @endsection
 
@@ -174,7 +170,7 @@
                 <x-dialog.close />
             </div>
             <div class="modal-body bg-base-100" id="map-marker-modal-content">
-                <i class="fa-solid fa-spinner fa-spin spinner"></i>
+                <x-icon class="load" />
                 <div class="content p-0"></div>
             </div>
         </div>
@@ -182,67 +178,20 @@
 </div>
 
 @can('update', $map)
-    <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content bg-base-100">
-                {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
-                    <div class="modal-header">
-                        <x-dialog.close :modal="true" />
-                        <h4 class="modal-title">
-                            {{ __('maps/markers.create.title', ['name' => $map->name]) }}
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        @include('partials.errors')
-                        @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.explore:' . $map->id)])
-                    </div>
-                    <div class="modal-footer" id="marker-footer">
-                        <div class="pull-left">
-                            @include('partials.footer_cancel', ['ajax' => true])
-                        </div>
-                        <div class="submit-group">
-                            <input id="submit-mode" type="hidden" value="true"/>
-                            <div class="join">
-                                <button class="btn2 btn-primary join-item form-submit-main" id="form-submit-main"
-                                    data-target="{{ isset($target) ? $target : null }}">
-                                    <span>{{ __('crud.save') }}</span>
-                                </button>
-                                <div class="dropdown dropdown-menu-right">
-                                    <button type="button" class="btn2 join-item btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#" class="dropdown-item form-submit-actions">
-                                                {{ __('crud.save') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="dropdown-item form-submit-actions"
-                                                data-action="submit-update">
-                                                {{ __('crud.save_and_update') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="dropdown-item form-submit-actions"
-                                                data-action="submit-explore">
-                                                {{ __('maps/markers.actions.save_and_explore') }}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="submit-animation" style="display: none;">
-                            <button class="btn2 btn-primary btn-sm" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
-                        </div>
-                    </div>
-                </div>
+    <x-dialog
+        id="marker-modal"
+        :title="__('maps/markers.create.title', ['name' => $map->name])"
+        footer="maps.markers._new-footer"
+        :form="['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']">
+        @include('partials.errors')
+        @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.explore:' . $map->id)])
+
+    </x-dialog>
+
                 {!! Form::hidden('from', 'explore') !!}
                 {!! Form::close() !!}
             </div>
         </div>
-    </input>
+    </div>
 @endcan
 @endsection

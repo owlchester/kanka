@@ -39,10 +39,12 @@ class Quest extends Layout
                     if (!$model->is_completed) {
                         return '';
                     }
-                    return '<i class="fa-solid fa-check-circle" title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
+                    return '<i class="fa-solid fa-check-circle" data-title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
                 },
-
             ],
+            'tags' => [
+                'render' => Standard::TAGS
+            ]
         ];
 
         return $columns;

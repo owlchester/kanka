@@ -1,55 +1,70 @@
 @extends('layouts.app', [
     'title' => __('campaigns/export.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.export')
     ],
     'canonical' => true,
     'mainTitle' => false,
+    'sidebar' => 'campaign',
+    'centered' => true,
 ])
 
 @section('content')
-    @include('partials.ads.top')
-    @include('partials.errors')
-    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
-        <div class="lg:flex-none lg:w-60">
-            @include('campaigns._menu', ['active' => 'export'])
-        </div>
-        <div class="grow max-w-7xl">
-            <h3 class="mt-0">
-                <button class="btn2 btn-sm pull-right" data-toggle="dialog"
-                        data-target="export-help">
-                    <x-icon class="question"></x-icon>
-                    {{ __('campaigns.members.actions.help') }}
-                </button>
+    <div class="flex gap-5 flex-col">
+        @include('partials.ads.top')
+        @include('partials.errors')
 
+        <div class="flex gap-2 items-center">
+            <h3 class="grow">
                 {{ __('campaigns/export.title') }}
             </h3>
-
+            <a href="https://docs.kanka.io/en/latest/features/campaigns/export.html" target="_blank" class="btn2 btn-sm btn-ghost">
+                <x-icon class="question"></x-icon>
+                {{ __('crud.actions.help') }}
+            </a>
             @if ($campaign->exportable())
-            <div class="text-center my-5">
-                <button class="btn2 btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process') }}">
-                    <i class="fa-solid fa-download" aria-hidden="true"></i>
+                <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">
+                    <x-icon class="fa-solid fa-download" />
                     {{ __('campaigns/export.actions.export') }}
-                </button>
-            </div>
-            @else
-            <x-alert type="warning">
-                {{ __('campaigns/export.errors.limit') }}
-            </x-alert>
+                </a>
             @endif
+        </div>
+
+        @if (!$campaign->exportable() && !session()->has('success'))
+        <x-alert type="warning">
+            {{ __('campaigns/export.errors.limit') }}
+        </x-alert>
+        @endif
+
+        <div class="box box-solid">
+            <div id="datagrid-parent" class="table-responsive">
+                @include('layouts.datagrid._table')
+            </div>
         </div>
     </div>
 @endsection
 
 @section('modals')
     @parent
-    <x-dialog id="export-help" :title="__('campaigns.show.tabs.export')">
-        <p>{{ __('campaigns/export.helpers.intro') }}</p>
-        <p>{{ __('campaigns/export.helpers.json') }}</p>
-        <p>{!! __('campaigns/export.helpers.import', [
-                'api' => link_to('/' . app()->getLocale() . config('larecipe.docs.route') . '/1.0/overview', __('front.features.api.link'), null, ['target' => '_blank'])
-        ]) !!}</p>
-    </x-dialog>
+    <x-dialog id="export-confirm" :title="__('campaigns/export.confirm.title')">
+        <p>{{ __('campaigns/export.confirm.warning') }}</p>
 
+        <div class="grid grid-cols-2 gap-2 w-full">
+            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                {{ __('crud.cancel') }}
+            </x-buttons.confirm>
+
+            {!! Form::open([
+                'method' => 'POST',
+                'route' => [
+                    'campaign.export-process',
+                    $campaign
+                ]
+            ]) !!}
+            <x-buttons.confirm type="primary" full="true">
+                {{ __('crud.click_modal.confirm') }}
+            </x-buttons.confirm>
+            {!! Form::close() !!}
+        </div>
+    </x-dialog>
 @endsection

@@ -21,7 +21,6 @@ class MiscPolicy
     /**
      * If a whole model requires a boosted campaign, for example if it's early access, set the child policy's
      * $boosted property to true.
-     * @var bool
      */
     protected bool $boosted = false;
 
@@ -40,9 +39,6 @@ class MiscPolicy
         }
 
         return
-            // The entity's campaign must be the same as the current user campaign
-            $user->campaign->id == $entity->campaign_id
-            &&
             // The user must have access.
             // isAdmin could be cached for performance, but needs to trigger a release when changing permissions
             // other permissions should also be cacheable with a release trigger
@@ -63,13 +59,13 @@ class MiscPolicy
 
     public function update(User $user, MiscModel $entity): bool
     {
-        return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
+        return auth()->check()
             && $this->checkPermission(CampaignPermission::ACTION_EDIT, $user, $entity);
     }
 
     public function delete(User $user, MiscModel $entity): bool
     {
-        return Auth::check() &&  (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
+        return auth()->check()
             && $this->checkPermission(CampaignPermission::ACTION_DELETE, $user, $entity);
     }
 
@@ -115,8 +111,6 @@ class MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @return bool
      */
     public function move(User $user, $entity): bool
     {
@@ -124,8 +118,6 @@ class MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @return bool
      */
     public function events(User $user, $entity): bool
     {
@@ -133,8 +125,6 @@ class MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @return bool
      */
     public function inventory(User $user, $entity): bool
     {
@@ -142,11 +132,7 @@ class MiscPolicy
     }
 
     /**
-     * @param int $action
-     * @param User $user
      * @param Entity|MiscModel|null $entity
-     * @param Campaign|null $campaign
-     * @return bool
      */
     protected function checkPermission(int $action, User $user, $entity = null, Campaign $campaign = null): bool
     {
@@ -155,9 +141,6 @@ class MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @param Post $post
-     * @return bool
      */
     protected function checkPostPermission(User $user, Post $post): bool
     {

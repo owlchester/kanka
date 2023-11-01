@@ -11,7 +11,6 @@ class HashValidator extends Validator
      * @param string $attribute
      * @param string $value
      * @param array $parameters
-     * @return mixed
      */
     public function validateHash($attribute, $value, $parameters)
     {

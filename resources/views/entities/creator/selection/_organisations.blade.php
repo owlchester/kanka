@@ -1,9 +1,8 @@
-<div class="option flex">
+<div class="option flex gap-2">
 
     @include('entities.creator.selection._main', [
         'singular' => 'organisation',
         'plural' => 'organisations',
-        'icon' => 'ra ra-hood',
         'id' => config('entities.ids.organisation'),
     ])
 

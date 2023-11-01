@@ -9,7 +9,6 @@ class ApiController extends Controller
 {
     /**
      * Hook for MiscModel and Entity objects
-     * @param MiscModel $model
      */
     protected function crudSave(MiscModel $model)
     {

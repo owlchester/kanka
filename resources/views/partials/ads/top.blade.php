@@ -6,7 +6,7 @@
     @php $subscribingUrl = auth()->check() ? 'settings.subscription' : 'front.pricing'; @endphp
 {!! __('misc.ads.remove_v3', [
     'subscribing' => link_to_route($subscribingUrl, __('misc.ads.subscribing')),
-    'boosting' => link_to_route('front.premium', __('misc.ads.premium')),
+    'boosting' => link_to('https://kanka.io/premium', __('misc.ads.premium')),
 ]) !!}
 </p>
 @else
@@ -17,7 +17,7 @@
 <p class="text-center text-muted">
 {!! __('misc.ads.remove_v3', [
     'subscribing' => link_to_route('settings.subscription', __('misc.ads.subscribing')),
-    'boosting' => link_to_route('front.premium', __('misc.ads.premium')),
+    'boosting' => link_to('https://kanka.io/premium', __('misc.ads.premium')),
 ]) !!}
 </p>
 @endads

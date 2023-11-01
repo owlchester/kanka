@@ -7,40 +7,40 @@
     <?php return; ?>
 @endif
 {!! Form::open([
-        'route' => ['timelines.reorder-save', $timeline],
+        'route' => ['timelines.reorder-save', $campaign, $timeline],
         'method' => 'POST',
     ]) !!}
-<div class="max-w-4xl box-entity-story-reorder">
-    <div class="element-live-reorder sortable-elements">
+<div class="max-w-4xl box-timeline-reorder flex flex-col gap-5">
+    <div class="element-live-reorder sortable-elements flex flex-col gap-5">
         @foreach($eras as $era)
-            <div class="element bg-base-200" data-id="{{ $era->id }}">
+            <div class="element bg-base-200 rounded flex flex-col gap-2 p-2" data-id="{{ $era->id }}">
                 {!! Form::hidden('timeline_era[]', $era->id) !!}
                 <div class="dragger pr-3">
                     <span class="fa-solid fa-sort"></span>
                 </div>
                 <div class="name overflow-hidden flex-grow">
                     {!! $era->name !!}
-                    <span class="text-sm">
+                    <span class="text-xs text-neutral-content">
                         {!! $era->ages()!!}
                     </span>
                 </div>
 
                 @if (!$era->orderedElements->isEmpty())
-                <div class="sortable-elements mt-3 children">
+                    <div class="children sortable-elements flex flex-col gap-1">
                     @foreach ($era->orderedElements as $element)
                         @if ($element->invisibleEntity())
                             @continue
                         @endif
-                        <div class="element bg-base-100" data-id="element-{{ $element->id }}">
-                            {!! Form::hidden('timeline_element[' . $era->id . '][]', $element->id) !!}
-                            <div class="dragger relative dragger pr-3 rounded-icon">
-                                {!! $element->htmlIcon(false) !!}
-                            </div>
-                            <div class="name overflow-hidden flex-grow">
-                                {!! $element->htmlName(false) !!}
-                                @if (isset($element->date))<span class="text-sm">({{ $element->date }})</span>@endif
-                            </div>
-                        </div>
+                            <x-reorder.child id="element-{{ $element->id }}">
+                                {!! Form::hidden('timeline_element[' . $era->id . '][]', $element->id) !!}
+                                <div class="dragger relative dragger pr-3 rounded-icon">
+                                    {!! $element->htmlIcon(false) !!}
+                                </div>
+                                <div class="name overflow-hidden flex-grow">
+                                    {!! $element->htmlName(false) !!}
+                                    @if (isset($element->date))<span class="text-xs text-neutral-content">({{ $element->date }})</span>@endif
+                                </div>
+                            </x-reorder.child>
                     @endforeach
                 </div>
                 @endif

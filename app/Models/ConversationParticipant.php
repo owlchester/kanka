@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id
@@ -16,6 +17,8 @@ use App\User;
  */
 class ConversationParticipant extends MiscModel
 {
+    use HasFactory;
+
     /**
      * @var bool|Character|User
      */
@@ -31,9 +34,8 @@ class ConversationParticipant extends MiscModel
 
     /**
      * We want to use the dice_roll entity type for permissions
-     * @var string
      */
-    protected $entityType = 'conversation_participants';
+    protected string $entityType = 'conversation_participants';
 
     /**
      * Who created this entry
@@ -78,9 +80,9 @@ class ConversationParticipant extends MiscModel
             return $this->user->name;
         } elseif (!empty($this->character_id)) {
             return link_to_route(
-                'characters.show',
+                'entities.show',
                 $this->character->name,
-                [$this->character]
+                [$this->character->entity]
             );
         } else {
             return trans('conversations.messages.author_unknown');

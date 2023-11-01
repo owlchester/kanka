@@ -7,7 +7,6 @@ use App\Models\Entity;
 use App\Models\Image;
 use App\Models\ImageMention;
 use App\Models\EntityMention;
-use App\Models\EntityNote;
 use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
@@ -23,13 +22,11 @@ class EntityMappingService
 
     /**
      * If exceptions should be thrown. Probably not.
-     * @var bool
      */
     protected bool $throwExceptions = true;
 
     /**
      * If the app is verbose
-     * @var bool
      */
     public bool $verbose = false;
 
@@ -46,7 +43,6 @@ class EntityMappingService
 
 
     /**
-     * @param Entity $entity
      * @return int
      * @throws Exception
      */
@@ -57,7 +53,6 @@ class EntityMappingService
     }
 
     /**
-     * @param Post $post
      * @throws Exception
      */
     public function mapPost(Post $post)
@@ -66,7 +61,6 @@ class EntityMappingService
     }
 
     /**
-     * @param QuestElement $questElement
      * @throws Exception
      */
     public function mapQuestElement(QuestElement $questElement)
@@ -75,7 +69,6 @@ class EntityMappingService
     }
 
     /**
-     * @param TimelineElement $timelineElement
      * @throws Exception
      */
     public function mapTimelineElement(TimelineElement $timelineElement)
@@ -89,8 +82,7 @@ class EntityMappingService
     }
 
     /**
-     * @param MiscModel|Entity|EntityNote|Campaign|mixed $model
-     * @return int
+     * @param MiscModel|Entity|Post|Campaign|mixed $model
      * @throws Exception
      */
     protected function map($model): int
@@ -133,7 +125,7 @@ class EntityMappingService
             $campaignId = $model->campaign_id;
             if ($model instanceof Campaign) {
                 $campaignId = $model->id;
-            } elseif ($model instanceof EntityNote) {
+            } elseif ($model instanceof Post) {
                 $campaignId = $model->entity->campaign_id;
             } elseif ($model instanceof TimelineElement) {
                 $campaignId = $model->timeline->campaign_id;
@@ -171,8 +163,7 @@ class EntityMappingService
     }
 
     /**
-     * @param MiscModel|EntityNote|TimelineElement|QuestElement|Campaign $model
-     * @param int $target
+     * @param MiscModel|Post|TimelineElement|QuestElement|Campaign $model
      */
     protected function createNewMention($model, int $target)
     {
@@ -181,8 +172,8 @@ class EntityMappingService
         // Determine what kind of entity this is
         if ($model instanceof Campaign) {
             $mention->campaign_id = $model->id;
-        } elseif ($model instanceof EntityNote) {
-            $mention->entity_note_id = $model->id;
+        } elseif ($model instanceof Post) {
+            $mention->post_id = $model->id;
             $mention->entity_id = $model->entity_id;
 
             // If we are making a reference to ourselves, no need to save it
@@ -218,7 +209,7 @@ class EntityMappingService
     }
 
     /**
-     * @param Model|EntityNote|Entity $model
+     * @param Model|Post|Entity $model
      * @return $this
      */
     protected function images(Model $model): self
@@ -249,7 +240,7 @@ class EntityMappingService
 
             // Determine the real campaign id from the model.
             // Todo: why can't we use CampaignLocalization? Because this was used by the migration script?
-            if ($model instanceof EntityNote) {
+            if ($model instanceof Post) {
                 $campaignId = $model->entity->campaign_id;
             } else {
                 $campaignId = $model->campaign_id;
@@ -262,7 +253,7 @@ class EntityMappingService
             if ($target) {
                 // Do we already have this mention mapped?
                 if (!empty($existingTargets[$target->id])) {
-                    if ($model instanceof EntityNote && $existingTargets[$target->id]->post_id == $model->id) {
+                    if ($model instanceof Post && $existingTargets[$target->id]->post_id == $model->id) {
                         unset($existingTargets[$target->id]);
                         $existingMappings++;
                         continue;
@@ -288,18 +279,16 @@ class EntityMappingService
     }
 
     /**
-     * @param MiscModel|EntityNote|TimelineElement|QuestElement|Campaign $model
-     * @param string $target
+     * @param MiscModel|Post|TimelineElement|QuestElement|Campaign $model
      */
     protected function createNewImageMention($model, string $target)
     {
         $mention = new ImageMention();
 
         // Determine what kind of entity this is
-        if ($model instanceof EntityNote) {
+        if ($model instanceof Post) {
             $mention->post_id = $model->id;
             $mention->entity_id = $model->entity_id;
-
         } else {
             $mention->entity_id = $model->id;
         }
@@ -308,7 +297,6 @@ class EntityMappingService
     }
 
     /**
-     * @param string|null $message
      */
     protected function log(string $message = null)
     {

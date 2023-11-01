@@ -22,6 +22,7 @@
         "modernize_strpos": true,
         "new_with_braces": true,
         "no_empty_comment": true,
+        "no_superfluous_phpdoc_tags": true,
         "no_unused_imports": true,
         "not_operator_with_space": false,
         "ordered_traits": true,

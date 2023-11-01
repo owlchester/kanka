@@ -57,7 +57,6 @@ class Marker extends Layout
 
     /**
      * Available actions on each row
-     * @return array
      */
     public function actions(): array
     {
@@ -67,6 +66,7 @@ class Marker extends Layout
             self::ACTION_DELETE,
         ];
     }
+
     public function bulks(): array
     {
         return [

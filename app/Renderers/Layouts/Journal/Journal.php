@@ -57,6 +57,9 @@ class Journal extends Layout
                     return !request()->has('parent_id');
                 }
             ],
+            'tags' => [
+                'render' => Standard::TAGS
+            ]
         ];
 
         return $columns;

@@ -1,29 +1,32 @@
-<div class="field-icon">
-    <label>{{ __('maps/markers.fields.custom_icon') }}</label>
+@php $helper = __('maps/markers.helpers.custom_icon_v2', [
+        'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>',
+'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>',
+'docs' => link_to('https://docs.kanka.io/en/latest/entities/maps/markers.html#custom-icon', __('footer.documentation'), ['target' => '_blank'])
+]); @endphp
+<x-forms.field
+    field="icon"
+    :label="__('maps/markers.fields.custom_icon')"
+    :helper="$helper"
+    >
     {!! Form::text(
         $fieldname ?? 'custom_icon',
-        \App\Facades\FormCopy::field('custom_icon')->string(),
-        ['class' => 'form-control',
+        \App\Facades\FormCopy::field($fieldname ?? 'custom_icon')->string(),
+        ['class' => '',
         'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-aura"']),
         'list' => 'map-marker-icon-list',
         'autocomplete' => 'off',
         'data-paste' => 'fontawesome',
-        ($campaignService->campaign()->boosted() ? null : 'disabled')])
+        ($campaign->boosted() ? null : 'disabled')])
     !!}
-    <p class="help-block">{!! __('maps/markers.helpers.custom_icon_v2', [
-        'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>',
-        'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>',
-        'docs' => link_to('https://docs.kanka.io/en/latest/entities/maps/markers.html#custom-icon', __('front.menu.documentation'), ['target' => '_blank'])
-        ]) !!}</p>
-    @if (!$campaignService->campaign()->boosted())
+    @if (!$campaign->boosted())
         @subscriber()
-        <p class="help-block">
-            <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
-        </p>
+        <x-helper>
+            <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
+        </x-helper>
     @else
-        <p class="help-block">
-            <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.premium', __('concept.boosted-campaign'))]) !!}
-        </p>
+        <x-helper>
+            <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to('https://kanka.io/premium', __('concept.boosted-campaign'))]) !!}
+        </x-helper>
         @endsubscriber
     @endif
 
@@ -34,4 +37,4 @@
             @endforeach
         </datalist>
     </div>
-</div>
+</x-forms.field>

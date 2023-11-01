@@ -3,22 +3,23 @@
  * @var \App\Models\Attribute $attribute
  * @var \App\Models\Entity $entity
  */
-$isAdmin = Auth::user()->isAdmin();
+$isAdmin = auth()->user()->isAdmin();
 ?>
 @extends('layouts.app', [
     'title' => __('entities/attributes.index.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('crud.tabs.attributes'),
     ],
     'mainTitle' => false,
+    'centered' => true,
 ])
 
 @section('fullpage-form')
 {!! Form::open([
-    'url' => route('entities.attributes.save', ['entity' => $entity]),
+    'url' => route('entities.attributes.save', [$campaign, $entity]),
     'method' => 'POST',
     'data-shortcut' => 1,
     'data-max-fields' => ini_get('max_input_vars'),

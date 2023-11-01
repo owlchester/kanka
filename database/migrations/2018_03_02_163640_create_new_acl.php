@@ -60,10 +60,10 @@ class CreateNewAcl extends Migration
             // A key is a simple concept that allows us to easily get everything
             // browse_characters => Allow browsing characters
             // edit_locations_4 => Allow editing location id 4
-            $table->string('key', 191)->notNull();
+            //$table->string('key', 191)->notNull();
 
             // The table name
-            $table->string('table_name', 191)->notNull();
+            //$table->string('table_name', 191)->notNull();
 
             $table->boolean('access')->default(true);
 
@@ -75,7 +75,7 @@ class CreateNewAcl extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             // Indexes
-            $table->index(['key', 'table_name']);
+            //$table->index(['key', 'table_name']);
         });
     }
 

@@ -4,8 +4,22 @@ return [
     'actions'       => [
         'entry'             => 'Escribir una entrada personalizada para este marcador.',
         'remove'            => 'Eliminar marcador',
+        'reset-polygon'     => 'Restablecer posiciones',
         'save_and_explore'  => 'Guardar y explorar',
+        'start-drawing'     => 'Empezar a dibujar',
         'update'            => 'Editar marcador',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} Se ha eliminado :count marcador.|[2,*] Se han eliminado :count marcadores.',
+        'patch'     => '{1} Se ha actualizado :count marcador.|[2,*] Se han actualizado :count marcadores.',
+    ],
+    'circle_sizes'  => [
+        'custom'    => 'Personalizado',
+        'huge'      => 'Enorme',
+        'large'     => 'Grande',
+        'small'     => 'Pequeño',
+        'standard'  => 'Estándar',
+        'tiny'      => 'Diminuto',
     ],
     'create'        => [
         'success'   => 'Marcador :name creado.',
@@ -19,12 +33,14 @@ return [
         'title'     => 'Editar marcador :name',
     ],
     'fields'        => [
+        'bg_colour'     => 'Color del fondo',
         'circle_radius' => 'Radio circular',
         'copy_elements' => 'Copiar elementos',
         'custom_icon'   => 'Icono personalizado',
         'custom_shape'  => 'Forma personalizada',
         'font_colour'   => 'Color del icono',
         'group'         => 'Grupo de marcadores',
+        'icon'          => 'Ícono',
         'is_draggable'  => 'Arrastrable',
         'latitude'      => 'Latitud',
         'longitude'     => 'Longitud',
@@ -35,11 +51,13 @@ return [
             'stroke-opacity'    => 'Opacidad del trazo',
             'stroke-width'      => 'Grosor del trazo',
         ],
+        'size'          => 'Tamaño',
     ],
     'helpers'       => [
         'base'                      => 'Añade marcadores al mapa haciendo clic en cualquier lugar.',
         'copy_elements'             => 'Copiar grupos, capas y marcadores.',
         'copy_elements_to_campaign' => 'Copiar grupos, capas y marcadores de los mapas. Los marcadores vinculados a una entidad se convertirán en marcadores normales.',
+        'custom_icon_v2'            => 'Utiliza iconos de :fontawesome, :rpgawesome o un icono SVG personalizado. Descubre cómo en la  :docs.',
         'custom_radius'             => 'Selecciona la opción de tamaño personalizado en el desplegable para definir un tamaño.',
         'draggable'                 => 'Actívalo para poder mover el marcador en el modo de exploración.',
         'label'                     => 'Las etiquetas se muestran como un bloque de texto en el mapa. El contenido será el nombre del marcador.',
@@ -54,9 +72,19 @@ return [
         'marker'        => 'Marcador',
         'question'      => 'Interrogación',
     ],
+    'index'         => [
+        'title' => 'Marcadores de :name',
+    ],
+    'pitches'       => [
+        'poly'  => 'Dibuje formas poligonales personalizadas para representar fronteras y otras formas irregulares.',
+    ],
     'placeholders'  => [
+        'custom_icon'   => 'Prueba con :example1 o :example2',
         'custom_shape'  => '100, 100 200, 240 340, 110',
         'name'          => 'Nombre del marcador',
+    ],
+    'presets'       => [
+        'helper'    => 'Haz clic en un preajuste para cargarlo o crea uno nuevo.',
     ],
     'shapes'        => [
         '0' => 'Círculo',
@@ -76,5 +104,6 @@ return [
         'label'     => 'Etiqueta',
         'marker'    => 'Marcador',
         'polygon'   => 'Polígono',
+        'preset'    => 'Preestablecido',
     ],
 ];

@@ -11,7 +11,7 @@ window.formErrorHandler = function(err, form) {
     // If we have a 503 error status, let's assume it's from cloudflare and help the user
     // properly save their data.
     if (err.status === 503) {
-        window.showToast(err.responseJSON.message, 'toast-error');
+        window.showToast(err.responseJSON.message, 'error');
         return;
     }
 
@@ -36,7 +36,7 @@ window.formErrorHandler = function(err, form) {
             logs.push(errors[i][0]);
         }
 
-        window.showToast(errors[i][0], 'toast-error');
+        window.showToast(errors[i][0], 'error');
     });
 
     // If not all error fields could be found, show a generic error message on top of the form.

@@ -11,7 +11,6 @@ use App\Http\Resources\QuestElementResource as Resource;
 class QuestElementApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -23,8 +22,6 @@ class QuestElementApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param QuestElement $questElement
      * @return Resource
      */
     public function show(Campaign $campaign, Quest $quest, QuestElement $questElement)
@@ -35,8 +32,6 @@ class QuestElementApiController extends ApiController
     }
 
     /**
-     * @param RequestElement $requestElement
-     * @param Campaign $campaign
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -47,13 +42,11 @@ class QuestElementApiController extends ApiController
         $data = $requestElement->all();
         $data['quest_id'] = $quest->id;
         $model = QuestElement::create($data);
+        $model->refresh();
         return new Resource($model);
     }
 
     /**
-     * @param RequestElement $requestElement
-     * @param Campaign $campaign
-     * @param QuestElement $questElement
      * @return Resource
      */
     public function update(
@@ -70,9 +63,6 @@ class QuestElementApiController extends ApiController
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param Campaign $campaign
-     * @param QuestElement $questElement
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

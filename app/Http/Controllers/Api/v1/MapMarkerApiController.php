@@ -11,7 +11,6 @@ use App\Http\Resources\MapMarkerResource as Resource;
 class MapMarkerApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -23,8 +22,6 @@ class MapMarkerApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param MapMarker $mapMarker
      * @return Resource
      */
     public function show(Campaign $campaign, Map $map, MapMarker $mapMarker)
@@ -35,9 +32,6 @@ class MapMarkerApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Map $map
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -52,10 +46,6 @@ class MapMarkerApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Map $map
-     * @param MapMarker $mapMarker
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -73,10 +63,6 @@ class MapMarkerApiController extends ApiController
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param Campaign $campaign
-     * @param Map $map
-     * @param MapMarker $mapMarker
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

@@ -1,24 +1,23 @@
 
-<div class="entity-grid">
+<div class="entity-grid flex flex-col gap-5">
 
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
+            Breadcrumb::entity($model->entity)->list(),
             null
         ]
     ])
 
-    @include('entities.components.menu_v2', ['active' => 'story'])
+    <div class="entity-body flex flex-col md:flex-row gap-5">
+        @include('entities.components.menu_v2', ['active' => 'story'])
 
-    <div class="entity-story-block">
+        <div class="entity-main-block grow flex flex-col gap-5">
+            @include('dice_rolls._results')
+            @include('entities.components.posts')
 
-        @include('entities.components.posts')
+        </div>
 
-        @include('dice_rolls._results')
-    </div>
-
-    <div class="entity-sidebar">
         @include('entities.components.pins')
     </div>
 </div>

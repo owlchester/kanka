@@ -4,19 +4,27 @@ return [
     'actions'       => [
         'close'         => 'Close',
         'file-link'     => 'File link',
-        'focus_point'   => 'Set focus point',
+        'focus_point'   => 'Focus point',
         'image-link'    => 'Image link',
         'reset_focus'   => 'Reset focus point',
         'save'          => 'Save',
     ],
     'breadcrumb'    => 'Gallery',
+    'bulk'          => [
+        'destroy'   => [
+            'confirm'   => 'Are you sure you want to permanently remove the selected elements? This action cannot be undone.',
+            'success'   => '{0}No files removed.|{1}One file removed.|{2,*} :count files removed.',
+        ],
+    ],
     'cta'           => 'Manage and reuse images throughout the campaign.',
     'destroy'       => [
-        'success'   => 'Image :name deleted.',
+        'folder'    => 'Folder :name deleted.',
+        'success'   => 'File :name deleted.',
     ],
     'errors'        => [
         'max'           => 'Please only select up to :count files at a time.',
         'permissions'   => 'Your campaign roles are missing the :permission permission to be allowed to upload images to the campaign gallery.',
+        'storage'       => 'There is not enough storage space to upload the selected image(s). Available storage space: :available.',
     ],
     'fields'        => [
         'created_by'            => 'Uploaded by',
@@ -41,8 +49,8 @@ return [
     ],
     'title'         => 'Campaign :campaign Gallery',
     'update'        => [
-        'success'   => 'Image modified.',
-        'title'     => 'Image details',
+        'folder'    => 'Folder modified.',
+        'success'   => 'File modified.',
     ],
     'uploader'      => [
         'add'           => 'Add new',

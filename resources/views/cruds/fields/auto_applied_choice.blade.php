@@ -1,8 +1,9 @@
-<div class="field-auto-apply">
-    <label for="is_auto_applied">{{ __('tags.fields.is_auto_applied') }}</label>
-    <select name="is_auto_applied" class="form-control">
+<x-forms.field
+    field="auto-apply"
+    :label="__('tags.fields.is_auto_applied')">
+    <select name="is_auto_applied">
         <option value=""></option>
         <option value="0">{{ __('general.no') }}</option>
         <option value="1">{{ __('general.yes') }}</option>
     </select>
-</div>
+</x-forms.field>

@@ -69,13 +69,11 @@ class Attribute extends Model
 
     /**
      * Trigger for filtering based on the order request.
-     * @var string
      */
     protected string $orderTrigger = 'attributes/';
 
     /**
      * Searchable fields
-     * @var array
      */
     protected array $searchableColumns = [
         'name'
@@ -108,7 +106,6 @@ class Attribute extends Model
 
     /**
      * Get an entity's value parsed of mentions
-     * @return string
      */
     public function mappedValue(): string
     {
@@ -120,7 +117,6 @@ class Attribute extends Model
 
     /**
      * Get an entity's name parsed of mentions
-     * @return string
      */
     public function mappedName(): string
     {
@@ -133,7 +129,6 @@ class Attribute extends Model
 
     /**
      * Determine if an attribute is of the standard input field type
-     * @return bool
      */
     public function isDefault(): bool
     {
@@ -142,7 +137,6 @@ class Attribute extends Model
 
     /**
      * Determine if an attribute is of the "checkbox" type
-     * @return bool
      */
     public function isCheckbox(): bool
     {
@@ -151,7 +145,6 @@ class Attribute extends Model
 
     /**
      * Determine if an attribute is of the "text" type
-     * @return bool
      */
     public function isText(): bool
     {
@@ -160,7 +153,6 @@ class Attribute extends Model
 
     /**
      * Determine if an attribute is of the "section" type
-     * @return bool
      */
     public function isSection(): bool
     {
@@ -169,7 +161,6 @@ class Attribute extends Model
 
     /**
      * Determine if an attribute is of the "number" type
-     * @return bool
      */
     public function isNumber(): bool
     {
@@ -178,7 +169,6 @@ class Attribute extends Model
 
     /**
      * Determine if an attribute is of the "list" type
-     * @return bool
      */
     public function isList(): bool
     {
@@ -187,7 +177,6 @@ class Attribute extends Model
 
     /**
      * Copy an attribute to another target
-     * @param Entity $target
      * @return bool
      */
     public function copyTo(Entity $target)
@@ -198,9 +187,6 @@ class Attribute extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param string $order
-     * @return Builder
      */
     public function scopeOrdered(Builder $query, string $order = 'asc'): Builder
     {
@@ -208,9 +194,6 @@ class Attribute extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param bool $hidden
-     * @return Builder
      */
     public function scopeHidden(Builder $query, bool $hidden = false): Builder
     {
@@ -218,7 +201,6 @@ class Attribute extends Model
     }
 
     /**
-     * @return string
      */
     public function name(): string
     {
@@ -230,7 +212,6 @@ class Attribute extends Model
 
     /**
      * Set the value of the attribute. Validates if there are constraints
-     * @param mixed $value
      * @return $this
      */
     public function setValue($value): self
@@ -272,7 +253,6 @@ class Attribute extends Model
 
     /**
      * Generate the attribute's mention syntax
-     * @return string
      */
     public function mentionName(): string
     {
@@ -281,7 +261,6 @@ class Attribute extends Model
 
     /**
      * Determine if an attribute's value is inside its numeric constraints (for ranged attributes)
-     * @return bool
      */
     public function validConstraints(): bool
     {
@@ -371,7 +350,6 @@ class Attribute extends Model
     }
 
     /**
-     * @return array
      */
     public function listRange(): array
     {
@@ -382,7 +360,6 @@ class Attribute extends Model
     }
 
     /**
-     * @return string
      */
     public function listRangeText(): string
     {

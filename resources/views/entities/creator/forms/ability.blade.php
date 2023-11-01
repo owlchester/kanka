@@ -3,17 +3,18 @@
 
     @include('cruds.fields.ability', ['isParent' => true])
 
-    <div class="field-charges">
-        <label>{{ __('abilities.fields.charges') }}</label>
+    <x-forms.field
+        field="charges"
+        :label="__('abilities.fields.charges')">
         {!! Form::text(
             'charges',
             FormCopy::field('charges')->string(),
             [
                 'placeholder' => __('abilities.placeholders.charges'),
-                'class' => 'form-control',
+                'class' => '',
                 'maxlength' => 120,
                 'autocomplete' => 'off'
             ]
         ) !!}
-    </div>
+    </x-forms.field>
 </x-grid>

@@ -6,21 +6,10 @@
 ])
 
 @section('content')
-    @include('partials.errors')
-
-    <div class="entity-grid">
-        @include('entities.components.header', [
-            'model' => $model,
-            'breadcrumb' => [
-                ['url' => Breadcrumb::index('tags'), 'label' => \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags'))],
-                __('tags.show.tabs.children')
-            ]
-        ])
-
-        @include('entities.components.menu_v2', ['active' => 'entities'])
-
-        <div class="entity-main-block">
-            @include('tags.panels.children')
-        </div>
-    </div>
+    @include('entities.pages.subpage', [
+        'active' => 'entities',
+        'breadcrumb' => __('tags.show.tabs.children'),
+        'view' => 'tags.panels.children',
+        'entity' => $model->entity,
+    ])
 @endsection

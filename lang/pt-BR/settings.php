@@ -195,8 +195,6 @@ return [
             'alternatives_warning'  => 'Não é possível atualizar sua assinatura ao usar este método. Faça uma nova assinatura quando a atual terminar.',
             'alternatives_yearly'   => 'Devido às restrições em torno dos pagamentos recorrentes, :method está disponível apenas para assinaturas anuais',
             'currency_blocked'      => 'Não é possível alterar a moeda depois de ter uma assinatura Kanka ativa. Entre em contato conosco em :email para obter assistência.',
-            'paypal'                => 'Quer usar o Paypal em vez disso? Contate-nos em :email se pretender assinar um plano anual através do Paypal.',
-            'paypal_v2'             => 'Aceitamos PayPal para assinaturas anuais. Entre em contato conosco em :email com o e-mail da sua conta Kanka, o nível que deseja assinar e a moeda (USD ou EUR) na qual deseja ser cobrado.',
             'paypal_v3'             => 'Pague com segurança pela sua assinatura anual usando o PayPal.',
             'stripe'                => 'Suas informações de cobrança são processadas e armazenadas com segurança por meio de :stripe.',
         ],

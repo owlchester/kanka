@@ -42,7 +42,6 @@ class Organisation extends MiscModel
         'name',
         'slug',
         'entry',
-        'image',
         'location_id',
         'organisation_id',
         'type',
@@ -50,7 +49,7 @@ class Organisation extends MiscModel
         'is_defunct'
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'type',
         'organisation.name',
@@ -59,15 +58,13 @@ class Organisation extends MiscModel
 
     /**
      * Entity type
-     * @var string
      */
-    protected $entityType = 'organisation';
+    protected string $entityType = 'organisation';
 
     /**
      * Fields that can be sorted on
-     * @var array
      */
-    protected $sortableColumns = [
+    protected array $sortableColumns = [
         'organisation.name',
         'location.name',
         'is_defunct',
@@ -75,9 +72,8 @@ class Organisation extends MiscModel
 
     /**
      * Foreign relations to add to export
-     * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'members',
     ];
 
@@ -85,7 +81,7 @@ class Organisation extends MiscModel
      * Nullable values (foreign keys)
      * @var string[]
      */
-    public $nullableForeignKeys = [
+    public array $nullableForeignKeys = [
         'location_id',
         'organisation_id'
     ];
@@ -94,8 +90,6 @@ class Organisation extends MiscModel
 
     /**
      * Performance with for datagrids
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -116,10 +110,6 @@ class Organisation extends MiscModel
 
     /**
      * Filter for organisations with specific member
-     * @param Builder $query
-     * @param string|null $value
-     * @param FilterOption $filter
-     * @return Builder
      */
     public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
     {
@@ -150,7 +140,6 @@ class Organisation extends MiscModel
 
     /**
      * Only select used fields in datagrids
-     * @return array
      */
     public function datagridSelectFields(): array
     {
@@ -261,7 +250,6 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return array
      */
     public function menuItems(array $items = []): array
     {
@@ -279,7 +267,6 @@ class Organisation extends MiscModel
 
     /**
      * Get the entity_type id from the entity_types table
-     * @return int
      */
     public function entityTypeId(): int
     {
@@ -288,7 +275,6 @@ class Organisation extends MiscModel
 
     /**
      * Determine if the model has profile data to be displayed
-     * @return bool
      */
     public function showProfileInfo(): bool
     {
@@ -297,7 +283,6 @@ class Organisation extends MiscModel
 
     /**
      * Get the value of the is_defunct variable
-     * @return bool
      */
     public function isDefunct(): bool
     {

@@ -15,7 +15,7 @@ class ResetUserPassword extends Command
      *
      * @var string
      */
-    protected $signature = 'user:reset-password {user} {password=auto}';
+    protected $signature = 'users:reset-password {user} {password=auto}';
 
     /**
      * The console command description.

@@ -1,5 +1,7 @@
-<div class="field-copy-elements">
-    <label>{!! Form::checkbox('copy_elements', 1, true) !!}
-        {{ __('quests.fields.copy_elements') }}
-    </label>
-</div>
+<x-forms.field
+    field="copy-posts">
+    {!! Form::hidden('copy_elements', null) !!}
+    <x-checkbox :text="__('quests.fields.copy_elements')">
+        {!! Form::checkbox('copy_elements', 1, true) !!}
+    </x-checkbox>
+</x-forms.field>

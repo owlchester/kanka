@@ -1,5 +1,5 @@
 <div class="tab-pane" id="form-system">
-    <p class="help-block">{{ __('campaigns.helpers.systems') }}</p>
+    <x-helper :text="__('campaigns.helpers.systems')" />
 
     <div class="field-rpg">
 

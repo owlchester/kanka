@@ -67,8 +67,7 @@ class CleanupService
     {
         UserCache::user($this->user)
             ->clearName()
-            ->clearCampaigns()
-            ->clearRoles();
+            ->clear();
         return $this;
     }
 

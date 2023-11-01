@@ -14,16 +14,16 @@ if ($attribute->isSection()) {
 }
 ?>
 
-<div class="flex flex-wrap md:flex-no-wrap items-start gap-1 attribute_row mb-5 md:mb-2">
+<div class="flex flex-wrap md:flex-no-wrap items-start gap-1 attribute_row ">
     <div class="sortable-handler p-2 cursor-move">
         <x-icon class="fa-solid fa-grip-vertical" />
     </div>
-    <div class="">
+    <div class="field @if ($attribute->isSection()) grow @endif ">
         <label class="sr-only">{{ __('entities/attributes.labels.' . ($attribute->isSection() ? 'section' : 'name')) }}</label>
         @if($attribute->name == '_layout')
             {!! Form::text('attr_name[' . $id . ']', $attribute->name, [
             'placeholder' => __('entities/attributes.placeholders.attribute'),
-            'class' => 'form-control',
+            'class' => 'w-full',
             'maxlength' => 191,
             'disabled' => 'disabled'
         ]) !!}
@@ -31,13 +31,16 @@ if ($attribute->isSection()) {
         @else
         {!! Form::text('attr_name[' . $id . ']', $attribute->name, [
             'placeholder' => $placeholder,
-            'class' => 'form-control',
+            'class' => 'w-full',
             'maxlength' => 191,
             'aria-label' => __('entities/attributes.labels.name')
         ]) !!}
         @endif
     </div>
-    <div class="grow">
+    @if ($attribute->isSection())
+        {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
+    @else
+    <div class="grow field">
         <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
         @if ($attribute->isCheckbox())
             {!! Form::hidden('attr_value[' . $id . ']', 0) !!}
@@ -45,28 +48,31 @@ if ($attribute->isSection()) {
         @elseif ($attribute->isText())
             {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, [
                 'placeholder' => __('entities/attributes.placeholders.value'),
-                'class' => 'form-control kanka-mentions',
+                'class' => 'w-full kanka-mentions',
                 'rows' => 4,
-                'data-remote' => route('search.live'),
+                'data-remote' => route('search.live', $campaign),
                 'aria-label' => __('entities/attributes.fields.value')
             ]) !!}
         @elseif ($attribute->isSection())
             {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
         @elseif($attribute->name == '_layout')
             {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
+            <div class="rounded bg-base-200 p-2">
             {{ $attribute->value }}
+            </div>
         @elseif ($attribute->isNumber())
-            {!! Form::number('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::number('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'w-full', 'maxlength' => 191]) !!}
         @else
             {!! Form::text('attr_value[' . $id . ']', $attribute->value, [
                 'placeholder' => __('entities/attributes.placeholders.value'),
-                'class' => 'form-control kanka-mentions',
+                'class' => 'w-full kanka-mentions',
                 'maxlength' => 191,
-                'data-remote' => route('search.live'),
+                'data-remote' => route('search.live', $campaign),
                 'aria-label' => __('entities/attributes.labels.value')
             ]) !!}
         @endif
     </div>
+    @endif
     <div class="flex gap-3">
         {!! Form::hidden('attr_is_pinned[' . $id . ']', $attribute->isPinned()) !!}
         <i class="cursor-pointer fa-star @if($attribute->isPinned()) fa-solid @else fa-regular @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="@if($attribute->isPinned()) {{ __('entities/attributes.visibility.entry') }} @else  {{ __('entities/attributes.visibility.tab') }} @endif"

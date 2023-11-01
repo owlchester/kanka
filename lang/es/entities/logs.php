@@ -1,18 +1,24 @@
 <?php
 
 return [
-    'actions'       => [
-        'create'    => 'Crear',
-        'delete'    => 'Eliminar',
-        'restore'   => 'Restaurar',
-        'update'    => 'Actualizar',
+    'actions'           => [
+        'create'        => 'Crear',
+        'create_post'   => 'Entrada creada ":post"',
+        'delete'        => 'Eliminar',
+        'delete_post'   => 'Entrada eliminada',
+        'reorder_post'  => 'Entradas reordenadas',
+        'restore'       => 'Restaurar',
+        'update'        => 'Actualizar',
+        'update_post'   => 'Entrada ":post" actualizada',
+        'view'          => 'Ver cambios',
     ],
-    'fields'        => [
+    'call-to-action'    => 'Registros de cambios completos de hasta :amount días en campañas premium.',
+    'fields'            => [
         'action'    => 'Acción',
         'date'      => 'Fecha',
     ],
-    'impersonated'  => 'Hecho pasar por :name',
-    'show'          => [
+    'impersonated'      => 'Hecho pasar por :name',
+    'show'              => [
         'title' => 'Historial de :name',
     ],
 ];

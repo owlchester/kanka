@@ -222,6 +222,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+        App\Providers\AvatarServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
@@ -240,6 +241,8 @@ return [
         App\Providers\UserDateServiceProvider::class,
         App\Providers\ModuleServiceProvider::class,
         App\Providers\Logs\ApiLogServiceProvider::class,
+        App\Providers\DomainServiceProvider::class,
+        App\Providers\LimitServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
 
     ],
@@ -300,7 +303,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
 
-        // Custom
+        // Kanka
+        'Avatar' => App\Facades\Avatar::class,
         'CampaignLocalization' => App\Facades\CampaignLocalization::class,
         'EntityPermission' => App\Facades\EntityPermission::class,
         'Mentions' => App\Facades\Mentions::class,
@@ -318,6 +322,8 @@ return [
         'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
         'UserDate' => App\Facades\UserDate::class,
         'ApiLog' => App\Facades\ApiLog::class,
+        'Domain' => App\Facades\Domain::class,
+        'Limit' => App\Facades\Limit::class,
     ],
 
 ];

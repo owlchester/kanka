@@ -13,47 +13,45 @@ $weekNumber = 1;
 @inject('renderer', 'App\Renderers\CalendarRenderer')
 @inject('colours', 'App\Services\ColourService')
 <?php $canEdit = auth()->check() && auth()->user()->can('update', $model) ?>
-{{ $renderer->setCalendar($model) }}
-<div class="calendar-toolbar flex gap-2 items-center mb-5">
+{{ $renderer->campaign($campaign)->setCalendar($model) }}
+<div class="calendar-toolbar flex gap-2 items-center">
     {{ $renderer->todayButton() }}
 
     @if (!$renderer->isYearlyLayout())
     <div class="join">
-        <a href="{{ $renderer->previous() }}" class="btn2 join-item btn-sm" data-shortcut="previous" title="{{ $renderer->previous(true) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" data-toggle="tooltip">
-            <i class="fa-solid fa-angle-left"></i>
+        <a href="{{ $renderer->previous() }}" class="btn2 join-item btn-sm" data-shortcut="previous" data-title="{{ $renderer->previous(true) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" data-toggle="tooltip">
+            <x-icon class="fa-solid fa-chevron-left" />
         </a>
         <div class="btn2 join-item btn-sm btn-disabled" disabled>
             {!! $renderer->currentMonthName() !!}
         </div>
-        <a href="{{ $renderer->next() }}" class="btn2 join-item btn-sm"  data-shortcut="next" title="{{ $renderer->next(true) }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" data-toggle="tooltip">
-            <i class="fa-solid fa-angle-right"></i>
+        <a href="{{ $renderer->next() }}" class="btn2 join-item btn-sm" data-shortcut="next" data-title="{{ $renderer->next(true) }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" data-toggle="tooltip">
+            <x-icon class="fa-solid fa-chevron-right" />
         </a>
     </div>
     @endif
-    <div class="join">
-        <a href="{{ $renderer->linkToYear(false) }}" class="btn2 join-item btn-sm" @if ($renderer->isYearlyLayout()) data-shortcut="previous" title="{{ $renderer->titleToYear(false) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" @else title="{{ $renderer->titleToYear(false) }}" @endif data-toggle="tooltip">
-            <i class="fa-solid fa-angle-left"></i>
+    <div class="join grow">
+        <a href="{{ $renderer->linkToYear(false) }}" class="btn2 join-item btn-sm" @if ($renderer->isYearlyLayout()) data-shortcut="previous" data-title="{{ $renderer->titleToYear(false) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear(false) }}" @endif data-toggle="tooltip">
+            <x-icon class="fa-solid fa-chevron-left" />
         </a>
-        <div data-toggle="modal" data-target="#calendar-year-switcher" title="{{ __('calendars.modals.switcher.title') }}"
+        <div data-toggle="dialog" data-target="calendar-year-switcher" title="{{ __('calendars.modals.switcher.title') }}"
              class="btn2 join-item btn-sm">
             {!! $renderer->currentYearName() !!}
         </div>
-        <a href="{{ $renderer->linkToYear() }}" class="btn2 join-item btn-sm" @if ($renderer->isYearlyLayout()) data-shortcut="next" title="{{ $renderer->titleToYear() }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" @else title="{{ $renderer->titleToYear() }}" @endif data-toggle="tooltip">
-            <i class="fa-solid fa-angle-right"></i>
+        <a href="{{ $renderer->linkToYear() }}" class="btn2 join-item btn-sm" @if ($renderer->isYearlyLayout()) data-shortcut="next" data-title="{{ $renderer->titleToYear() }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear() }}" @endif data-toggle="tooltip">
+            <x-icon class="fa-solid fa-chevron-right" />
         </a>
     </div>
 
-    <div class="grow text-right">
-        <div class="join">
-            <a href="{{ route('calendars.show', [$model, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}"
-               class="btn2 join-item btn-sm  <?=($renderer->isYearlyLayout() ? 'btn-disabled" disabled="disabled' : null)?>">
-                {{ __('calendars.layouts.year') }}
-            </a>
-            <a href="{{ route('calendars.show', array_merge([$model, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [])) }}"
-               class="btn2 join-item btn-sm <?=(!$renderer->isYearlyLayout() ? ' btn-disabled" disabled="disabled' : null)?>">
-                {{ __('calendars.layouts.month') }}
-            </a>
-        </div>
+    <div class="join">
+        <a href="{{ route('calendars.show', [$campaign, $model, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}"
+           class="btn2 join-item btn-sm  <?=($renderer->isYearlyLayout() ? 'btn-disabled" disabled="disabled' : null)?>">
+            {{ __('calendars.layouts.year') }}
+        </a>
+        <a href="{{ route('calendars.show', array_merge([$campaign, $model, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [])) }}"
+           class="btn2 join-item btn-sm <?=(!$renderer->isYearlyLayout() ? ' btn-disabled" disabled="disabled' : null)?>">
+            {{ __('calendars.layouts.month') }}
+        </a>
     </div>
     <div class="month-alias help-block m-0">{!! $renderer->monthAlias() !!}</div>
 </div>
@@ -109,33 +107,20 @@ $weekNumber = 1;
 
 @section('modals')
     @parent
-    <div class="modal fade" id="calendar-year-switcher" tabindex="-1" role="dialog" aria-labelledby="deleteYearSwitcherLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100">
-                <div class="modal-header">
-                    <x-dialog.close />
-                    <h4 class="modal-title" id="myModalLabel">{{ __('calendars.modals.switcher.title') }}</h4>
-                </div>
-                <div class="modal-body">
-                    {!! Form::open(['route' => ['calendars.show', $model], 'method' => 'GET']) !!}
-                    <div class="field-year">
-                        <label>{{ __('calendars.fields.year') }}</label>
-                        {!! Form::number('year', null, ['class' => 'form-control', 'placeholder' => e($renderer->currentYear())]) !!}
-                    </div>
-                    @if ($renderer->isYearlyLayout() && !$model->yearlyLayout())
-                        <input type="hidden" name="layout" value="year">
-                    @else
-                        @if ($model->yearlyLayout())
-                            <input type="hidden" name="layout" value="month">
-                        @endif
-                        {!! Form::hidden('month', $renderer->currentMonthId()) !!}
-                    @endif
+    {!! Form::open(['route' => ['calendars.show', $campaign, $model], 'method' => 'GET']) !!}
+    <x-dialog id="calendar-year-switcher" :title="__('calendars.modals.switcher.title')" footer="calendars.year-switcher._footer">
+        <x-forms.field field="year" :label="__('calendars.fields.year')">
+            {!! Form::number('year', null, ['placeholder' => e($renderer->currentYear())]) !!}
+        </x-forms.field>
 
-                    <x-dialog.footer :modal="true">
-                        <button type="submit" class="btn2 btn-primary"> {{ __('crud.click_modal.confirm') }}</button>
-                    </x-dialog.footer>
-                </div>
-            </div>
-        </div>
-    </div>
+        @if ($renderer->isYearlyLayout() && !$model->yearlyLayout())
+            <input type="hidden" name="layout" value="year">
+        @else
+            @if ($model->yearlyLayout())
+                <input type="hidden" name="layout" value="month">
+            @endif
+            {!! Form::hidden('month', $renderer->currentMonthId()) !!}
+        @endif
+    </x-dialog>
+    {!! Form::close() !!}
 @endsection

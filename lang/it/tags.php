@@ -40,4 +40,11 @@ return [
         ],
     ],
     'tags'          => [],
+    'transfer'      => [
+        'description'   => 'Sposta le entità di questo tag in un altro tag.',
+        'fail'          => 'Impossibile trasferire le entità da :tag a :newTag',
+        'success'       => 'Spostate con successo le entità da :tag a :newTag',
+        'title'         => 'Sposta :name',
+        'transfer'      => 'Sposta',
+    ],
 ];

@@ -59,8 +59,11 @@
 
                             <!-- Delete Button -->
                             <td class="text-right" style="vertical-align: middle;">
-                                <a class="btn2 btn-error btn-outline btn-xs" @click="destroy(client)">
+                                <a class="btn2 btn-error btn-outline btn-xs" @click="deleteConfirm(client)" v-if="!this.confirmClient || this.confirmClient.id != client.id">
                                     Delete
+                                </a>
+                                <a class="btn2 btn-error btn-xs" @click="deleteConfirm(client)" v-else>
+                                    Confirm delete
                                 </a>
                             </td>
                         </tr>
@@ -93,7 +96,7 @@
                 </div>
 
                 <!-- Create Client Form -->
-                <form role="form" class="w-full" @submit.prevent="store">
+                <form role="form" class="w-full" @submit.prevent="store" autocomplete="off">
                     <!-- Name -->
                     <div class="mb-5">
                         <label class="font-extrabold required">Client name</label>
@@ -117,7 +120,7 @@
                         </span>
                     </div>
                 </form>
-                <form role="form" class="w-full mb-5" @submit.prevent="store">
+                <form role="form" class="w-full mb-5" @submit.prevent="store" autocomplete="off">
                     <!-- Name -->
 
                 </form>
@@ -156,9 +159,9 @@
                 </div>
 
                 <!-- Edit Client Form -->
-                <form role="form">
+                <form role="form" autocomplete="off">
                     <!-- Name -->
-                    <div class="form-group row">
+                    <div class="form-group grid grid-cols-2 gap-5">
                         <label class="col-md-3 col-form-label">Name</label>
 
                         <div class="col-md-9">
@@ -172,7 +175,7 @@
                     </div>
 
                     <!-- Redirect URL -->
-                    <div class="form-group row">
+                    <div class="form-group grid grid-cols-2 gap-5">
                         <label class="col-md-3 col-form-label">Redirect URL</label>
 
                         <div class="col-md-9">
@@ -206,6 +209,7 @@
         data() {
             return {
                 clients: [],
+                confirmClient: null,
 
                 createForm: {
                     errors: [],
@@ -327,6 +331,7 @@
                 axios.delete('/oauth/clients/' + client.id)
                         .then(response => {
                             this.getClients();
+                            window.showToast('OAuth client deleted succesfully.');
                         });
             },
 
@@ -345,6 +350,12 @@
             closeModal(ref) {
                 this.$refs[ref].close();
             },
+            deleteConfirm(client) {
+                if(this.confirmClient && client.id === this.confirmClient.id) {
+                    return this.destroy(client);
+                }
+                this.confirmClient = client;
+            }
         }
     }
 </script>

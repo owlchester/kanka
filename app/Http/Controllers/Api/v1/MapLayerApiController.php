@@ -11,7 +11,6 @@ use App\Http\Resources\MapLayerResource as Resource;
 class MapLayerApiController extends ApiController
 {
     /**
-     * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -23,8 +22,6 @@ class MapLayerApiController extends ApiController
     }
 
     /**
-     * @param Campaign $campaign
-     * @param MapLayer $mapLayer
      * @return Resource
      */
     public function show(Campaign $campaign, Map $map, MapLayer $mapLayer)
@@ -35,9 +32,6 @@ class MapLayerApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Map $map
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -46,14 +40,11 @@ class MapLayerApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $map);
         $model = MapLayer::create($request->all());
+        $model->refresh();
         return new Resource($model);
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param Map $map
-     * @param MapLayer $mapLayer
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -71,10 +62,6 @@ class MapLayerApiController extends ApiController
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param Campaign $campaign
-     * @param Map $map
-     * @param MapLayer $mapLayer
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

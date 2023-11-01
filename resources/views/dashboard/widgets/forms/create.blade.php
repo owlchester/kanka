@@ -1,23 +1,15 @@
-@include('partials.errors')
-@inject('campaignService', 'App\Services\CampaignService')
-
 {!! Form::open([
-    'route' => ['campaign_dashboard_widgets.store'],
+    'route' => ['campaign_dashboard_widgets.store', $campaign],
     'method'=>'POST',
     'data-shortcut' => '1',
 ]) !!}
 
-@php $dropdownParent = '#new-widget'; @endphp
-@include('dashboard.widgets.forms._' . $widget, [
+@php $mode = 'create'; @endphp
+@include('partials.forms.form', [
     'dialog' => true,
-    'mode' => 'create'
+    'title' => __('dashboard.setup.actions.add'),
+    'content' => 'dashboard.widgets.forms._' . $widget,
 ])
-
-<x-dialog.footer>
-    <button type="submit" class="btn2 btn-primary">
-        {{ __('crud.save') }}
-    </button>
-</x-dialog.footer>
 
 <input type="hidden" name="widget" value="{{ $widget }}">
 @if(empty($dashboards) && !empty($dashboard))

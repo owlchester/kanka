@@ -12,7 +12,6 @@ class CampaignDashboardObserver
     use PurifiableTrait;
 
     /**
-     * @param CampaignDashboard $model
      */
     public function saving(CampaignDashboard $model)
     {
@@ -20,7 +19,6 @@ class CampaignDashboardObserver
     }
 
     /**
-     * @param CampaignDashboard $model
      */
     public function saved(CampaignDashboard $model)
     {

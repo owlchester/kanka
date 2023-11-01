@@ -4,9 +4,14 @@ namespace App\Services;
 
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
+use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\Relation;
 use App\Models\Tag;
+use App\Services\Entity\MoveService;
 use App\Services\Entity\TagService;
+use App\Services\Entity\TransformService;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use App\Models\MiscModel;
@@ -16,15 +21,16 @@ use Stevebauman\Purify\Facades\Purify;
 
 class BulkService
 {
-    /**
-     * @var EntityService
-     */
+    use CampaignAware;
+
     protected EntityService $entityService;
 
-    /**
-     * @var PermissionService
-     */
     protected PermissionService $permissionService;
+
+    protected TransformService $transformService;
+
+    protected MoveService $moveService;
+
 
     /** @var string Entity name */
     protected string $entityName;
@@ -38,19 +44,19 @@ class BulkService
     /** @var int Total entities that were updated */
     protected int $count = 0;
 
-    /**
-     * BulkService constructor.
-     * @param EntityService $entityService
-     * @param PermissionService $permissionService
-     */
-    public function __construct(EntityService $entityService, PermissionService $permissionService)
-    {
+    public function __construct(
+        EntityService $entityService,
+        PermissionService $permissionService,
+        TransformService $transformService,
+        MoveService $moveService
+    ) {
         $this->entityService = $entityService;
         $this->permissionService = $permissionService;
+        $this->transformService = $transformService;
+        $this->moveService = $moveService;
     }
 
     /**
-     * @param string $entityName
      * @return $this
      */
     public function entity(string $entityName): self
@@ -60,7 +66,6 @@ class BulkService
     }
 
     /**
-     * @param array $ids
      * @return $this
      */
     public function entities(array $ids = []): self
@@ -71,7 +76,6 @@ class BulkService
 
     /**
      * Total updated entities submitted (can be different from the total that was updated)
-     * @return int
      */
     public function total(): int
     {
@@ -80,7 +84,6 @@ class BulkService
 
     /**
      * Delete several entities
-     * @return int
      * @throws Exception
      */
     public function delete(): int
@@ -103,7 +106,6 @@ class BulkService
     }
 
     /**
-     * @return array
      * @throws Exception
      */
     public function export(): array
@@ -118,8 +120,6 @@ class BulkService
 
     /**
      * Set permissions for several entities
-     * @param array $permissions
-     * @param bool $override
      * @return int number of updated entities
      */
     public function permissions(array $permissions = [], bool $override = true): int
@@ -138,8 +138,6 @@ class BulkService
     }
 
     /**
-     * @param int $campaignId
-     * @return int
      * @throws TranslatableException
      */
     public function copyToCampaign(int $campaignId): int
@@ -152,17 +150,21 @@ class BulkService
             throw new TranslatableException('crud.move.errors.unknown_campaign');
         }
 
-        $options = [
-            'campaign' => $campaignId,
-            'copy' => 'on'
-        ];
+        $this->moveService
+            ->campaign($this->campaign)
+            ->copy(true)
+            ->to($campaign);
 
-        foreach ($this->ids as $id) {
-            $entity = $model->findOrFail($id);
-            if (auth()->user()->can('update', $entity)) {
-                if ($this->entityService->move($entity->entity, $options)) {
-                    $this->count++;
-                }
+        $entities = $model->whereIn('id', $this->ids)->get();
+        foreach ($entities as $entity) {
+            if (!auth()->user()->can('update', $entity)) {
+                continue;
+            }
+            if (empty($entity->entity)) {
+                dd(CampaignLocalization::getCampaign());
+            }
+            if ($this->moveService->entity($entity->entity)->process()) {
+                $this->count++;
             }
         }
 
@@ -170,8 +172,6 @@ class BulkService
     }
 
     /**
-     * @param string|null $type
-     * @return int
      * @throws TranslatableException
      */
     public function transform(string $type = null): int
@@ -181,7 +181,9 @@ class BulkService
         }
 
         // Validate the type
-        $validTypes = $this->entityService->entities(['menu_links', 'relations']);
+        $validTypes = config('entities.classes');
+        unset($validTypes['bookmark'], $validTypes['relation']);
+
         if (!isset($validTypes[$type])) {
             throw new TranslatableException('entities/transform.bulk.errors.unknown_type');
         }
@@ -190,7 +192,9 @@ class BulkService
         foreach ($this->ids as $id) {
             $entity = $model->findOrFail($id);
             if (auth()->user()->can('update', $entity)) {
-                $this->entityService->transform($entity->entity, $type, $entity);
+                $this->transformService
+                    ->child($entity)
+                    ->transform($type);
                 $this->count++;
             }
         }
@@ -199,9 +203,6 @@ class BulkService
     }
 
     /**
-     * @param array $fields
-     * @param Bulk $bulk
-     * @return int
      * @throws Exception
      */
     public function editing(array $fields, Bulk $bulk): int
@@ -314,7 +315,7 @@ class BulkService
                 $entity->{$relation}()->syncWithoutDetaching($ids);
             }
 
-            // We have to still update the entity object (except for menu links)
+            // We have to still update the entity object (except for bookmarks)
             // Todo: refactor into a trait or function
             if (!empty($entity->entity)) {
                 $realEntity = $entity->entity;
@@ -372,7 +373,6 @@ class BulkService
     /**
      * Bulk apply attribute templates
      * @param string $template
-     * @return int
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function templates($template): int
@@ -395,27 +395,28 @@ class BulkService
     }
 
     /**
-     * @return mixed
      * @throws Exception
      */
     protected function getEntity()
     {
-        $entity = $this->entityService->getClass($this->entityName);
-        if (empty($entity)) {
+        if ($this->entityName === 'relations') {
+            return new Relation();
+        }
+        $classes = config('entities.classes');
+        if (!isset($classes[$this->entityName])) {
             throw new Exception("Unknown entity name {$this->entityName}.");
         }
 
         /** @var MiscModel|null $model */
-        $model = new $entity();
+        $model = new $classes[$this->entityName]();
         if (empty($model)) {
-            throw new Exception("Couldn't create a class from {$entity}.");
+            throw new Exception("Couldn't create a class from {$this->entityName}.");
         }
 
         return $model;
     }
 
     /**
-     * @param array $filledFields
      * @param array $mirrorOptions
      * @return int
      */

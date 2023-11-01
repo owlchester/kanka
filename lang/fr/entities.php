@@ -5,6 +5,8 @@ return [
     'ability'               => 'Pouvoir',
     'attribute_template'    => 'Modèle d\'attributs',
     'attribute_templates'   => 'Modèles d\'attributs',
+    'bookmark'              => 'Favori',
+    'bookmarks'             => 'Favoris',
     'calendar'              => 'Calendrier',
     'calendars'             => 'Calendriers',
     'campaign'              => 'Campagne',
@@ -65,8 +67,6 @@ return [
     'locations'             => 'Lieux',
     'map'                   => 'Carte',
     'maps'                  => 'Cartes',
-    'menu_link'             => 'Lien personnalisé',
-    'menu_links'            => 'Liens personnalisés',
     'new'                   => [
         'ability'       => 'Nouveau pouvoir',
         'character'     => 'Nouveau personnage',

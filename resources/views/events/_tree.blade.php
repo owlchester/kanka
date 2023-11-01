@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->nested()
     ->service($filterService)
     ->models($models)
@@ -13,7 +14,7 @@
         'date',
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.event'), __('entities.events')),
@@ -31,7 +32,6 @@
         'route' => 'events.tree',
         'baseRoute' => 'events',
         'trans' => 'events.fields.',
-        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

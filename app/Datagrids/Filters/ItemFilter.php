@@ -9,7 +9,7 @@ class ItemFilter extends DatagridFilter
     /**
      * Filters available for items
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -20,7 +20,7 @@ class ItemFilter extends DatagridFilter
                 'field' => 'item_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('items.find'),
+                'route' => route('items.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Item::class,
             ])

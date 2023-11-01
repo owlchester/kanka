@@ -55,6 +55,7 @@ TEXT
         'excerpt'                           => 'Krátky popis',
         'featured'                          => 'Zvýraznená kampaň',
         'followers'                         => 'Odberatelia',
+        'genre'                             => 'Žáner',
         'header_image'                      => 'Titulný obrázok',
         'image'                             => 'Obrázok',
         'locale'                            => 'Jazyk',
@@ -153,7 +154,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Pomoc',
             'remove'        => 'Odstrániť z kampane',
             'switch'        => 'Prepnúť',
             'switch-back'   => 'Prepnúť späť',
@@ -173,10 +173,8 @@ TEXT
             'role'          => 'Rola',
             'roles'         => 'Roly',
         ],
-        'help'                  => 'Kampane môžu mať nekonečný počet členov. Ako administrátor vieš odstrániť členov, ktorí už nie sú aktívni.',
         'helpers'               => [
-            'admin' => 'Ako člen kampane s rolou administrátora môžeš pozývať nových užívateľov, odstraňovať neaktívnych a meniť ich oprávnenia. Otestovať oprávnenia člena môžeš cez tlačidlo Prepnúť. Viac o tejto funkcionalite si môžeš prečítať na: :link.',
-            'switch'=> 'Prepnúť na tohto užívateľa',
+            'switch'    => 'Prepnúť na tohto užívateľa',
         ],
         'impersonating'         => [
             'message'   => 'Kampaň teraz vidíš ako iný užívateľ. Niektoré funkcionality boli deaktivované, ale ostatok vyzerá rovnako, ako by to videl daný užívateľ. Aby si sa prepol/a späť na tvojho užívateľa, použi tlačidlo Prepnúť, ktoré sa nachádza na mieste, kde je bežne tlačidlo Logout.',
@@ -240,6 +238,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Pridať rolu',
+            'duplicate'     => 'Duplikovať rolu',
             'permissions'   => 'Spravovať oprávnenia',
             'rename'        => 'Premenovať rolu',
             'save'          => 'Uložiť rolu',
@@ -261,16 +260,18 @@ TEXT
             'title'     => 'Upraviť rolu :name',
         ],
         'fields'        => [
-            'name'          => 'Názov',
-            'permissions'   => 'Oprávnenia',
-            'type'          => 'Typ',
-            'users'         => 'Užívateľ',
+            'copy_permissions'  => 'Kopírovať oprávnenia',
+            'name'              => 'Názov',
+            'permissions'       => 'Oprávnenia',
+            'type'              => 'Typ',
+            'users'             => 'Užívateľ',
         ],
         'helper'        => [
-            '1' => 'Kampani môže byť priradených viacero rolí. Rola "Admin" má automaticky prístup ku všetkému v kampani, ale každej inej roli môžu byť pridelené špecifické oprávnenia na rôzne typy objektov (postavy, miesta, atď.)',
-            '2' => 'Objekty môžu mať oveľa detailnejšie nastavenie oprávnení, ktoré vieš nastaviť v karte "Oprávnenia" objektu. Táto karta sa zobrazí, ak máš v kampani viacero rolí alebo členov.',
-            '3' => 'Môžeš použiť "opt-out" systém, v ktorom všetky roly dostanú práva na čítanie na všetky objekty a niektoré objekty potom nastavíš ako "Súkromné", čím ich skryješ. Alebo rolám nedáš veľa oprávnení a následne ich nastavíš individuálne pre každý objekt.',
-            '4' => 'Boostnuté kampane môžu mať neobmedzený počet rolí.',
+            '1'                     => 'Kampani môže byť priradených viacero rolí. Rola "Admin" má automaticky prístup ku všetkému v kampani, ale každej inej roli môžu byť pridelené špecifické oprávnenia na rôzne typy objektov (postavy, miesta, atď.)',
+            '2'                     => 'Objekty môžu mať oveľa detailnejšie nastavenie oprávnení, ktoré vieš nastaviť v karte "Oprávnenia" objektu. Táto karta sa zobrazí, ak máš v kampani viacero rolí alebo členov.',
+            '3'                     => 'Môžeš použiť "opt-out" systém, v ktorom všetky roly dostanú práva na čítanie na všetky objekty a niektoré objekty potom nastavíš ako "Súkromné", čím ich skryješ. Alebo rolám nedáš veľa oprávnení a následne ich nastavíš individuálne pre každý objekt.',
+            '4'                     => 'Boostnuté kampane môžu mať neobmedzený počet rolí.',
+            'permissions_helper'    => 'Duplikuje všetky oprávnenia danej roly v moduloch a objektoch.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Verejná rola má oprávnenia, ale kampaň je súkromná. Tieto nastavenia počas úpravy kampane nájdeš na karte Zdieľanie.',
@@ -377,7 +378,6 @@ TEXT
             'journals'          => 'Zistenia a pozorovania spísané postavami alebo príprava na hry pre Rozprávača.',
             'locations'         => 'Planéty, sféry, kontinenty, rieky, štáty, osídlia, chrámy, hostince.',
             'maps'              => 'Nahraj mapy s úrovňami a značkami, ktoré sú prelinkované s inými objektami tvojej kampane.',
-            'menu_links'        => 'Vlastné linky v menu.',
             'notes'             => 'Báje, náboženstvá, dejiny, mágia, rasy.',
             'organisations'     => 'Kulty, vojenské jednotky, frakcie, cechy.',
             'quests'            => 'Aby si vedel/a sledovať plnenie úloh a cieľov postáv.',
@@ -412,7 +412,6 @@ TEXT
             'plugins'           => 'Pluginy',
             'recovery'          => 'Obnovenie',
             'roles'             => 'Roly',
-            'settings'          => 'Moduly',
             'sidebar'           => 'Bočné menu',
             'styles'            => 'Témy',
         ],
@@ -470,9 +469,5 @@ TEXT
         'public'    => 'Verejný',
         'review'    => 'Čaká na schválenie',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Zdá sa, že iná osoba upravuje súčasne túto kampaň! Chceš sa vrátiť a ignorovať toto varovanie aj s rizikom straty dát? Členstvo súčasne editujúce túto kampaň:',
-        ],
-    ],
+    'warning'                           => [],
 ];

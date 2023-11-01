@@ -2,7 +2,9 @@
 
 namespace App\Jobs\Copyright;
 
+use App\Facades\Avatar;
 use App\Models\Campaign;
+use App\Services\Campaign\Notifications\ImageRemoveService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -56,23 +58,24 @@ class DeleteEntityImage implements ShouldQueue
 
     private function deleteImage(string $field)
     {
+        /** @var Entity $entity */
         $entity = Entity::find($this->entityId);
 
         if (empty($entity) || empty($entity->child)) {
             // Entity was deleted
             return;
         }
-        $service = app()->make(\App\Services\CampaignService::class);
+        /** @var ImageRemoveService $service */
+        $service = app()->make(ImageRemoveService::class);
         $campaign = Campaign::find($entity->campaign_id);
 
-        $service->removedImage($campaign, $entity);
-        $child = $entity->child;
+        $service->campaign($campaign)->entity($entity)->notify();
 
         if ($campaign->superboosted() && $entity->image && $field == 'image') {
             $entity->image->delete();
-        } elseif (!empty($entity->child->image) && $field == 'image') {
-            ImageService::cleanup($child, $field);
-            $child->update(['image' => $child->image]);
+        } elseif (!empty($entity->image_path) && $field == 'image') {
+            ImageService::cleanup($entity, $field);
+            $entity->updateQuietly(['image_path' => '']);
         }
 
         if ($campaign->superboosted() && $entity->header && $field == 'header_image') {
@@ -83,8 +86,6 @@ class DeleteEntityImage implements ShouldQueue
         }
 
         // Whenever an entity is updated, we always want to re-calculate the cached image.
-        if (method_exists($entity, 'clearAvatarCache')) {
-            $entity->clearAvatarCache();
-        }
+        Avatar::entity($entity)->forget();
     }
 }

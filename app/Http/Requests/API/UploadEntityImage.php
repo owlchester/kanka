@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\API;
 
+use App\Facades\Limit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UploadEntityImage extends FormRequest
@@ -24,7 +25,7 @@ class UploadEntityImage extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required|mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'required|mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
         ];
     }
 }

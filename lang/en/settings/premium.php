@@ -31,6 +31,7 @@ return [
     ],
     'remove'        => [
         'confirm'   => 'Yes, I\'m sure',
+        'cooldown'  => 'The premium features from :campaign can be removed after :date.',
         'success'   => 'Premium features have been removed from the :campaign campaign. You can now unlock premium features on another campaign.',
         'title'     => 'Removing premium features',
         'warning'   => 'Are you sure you want to remove premium features from :campaign? This will allow you to unlock another campaign, and hide all content and features related to the perks until the campaign\'s premium status is re-enabled.',

@@ -4,6 +4,7 @@ namespace App\Services\Account;
 
 use App\Jobs\Users\DeleteUser;
 use App\Traits\UserAware;
+use App\User;
 
 class DeletionService
 {
@@ -26,7 +27,6 @@ class DeletionService
 
     /**
      * Remove the user from stripe
-     * @return void
      */
     protected function subscription(): void
     {

@@ -10,7 +10,7 @@ class OrganisationFilter extends DatagridFilter
     /**
      * Filters available for organisations
      */
-    public function __construct()
+    public function build()
     {
         $name = Module::singular(config('entities.ids.timeline'));
         $this
@@ -21,7 +21,7 @@ class OrganisationFilter extends DatagridFilter
                 'field' => 'organisation_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('organisations.find'),
+                'route' => route('organisations.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Organisation::class,
             ])

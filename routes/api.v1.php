@@ -14,6 +14,7 @@
 Route::apiResources([
     'campaigns' => 'CampaignApiController',
     'campaigns.abilities' => 'AbilityApiController',
+    'campaigns.bookmarks' => 'BookmarkApiController',
     //'campaigns.campaign_users' => 'CampaignUserApiController',
     'campaigns.calendars' => 'CalendarApiController',
     'campaigns.calendars.calendar_weather' => 'CalendarWeatherApiController',
@@ -47,7 +48,6 @@ Route::apiResources([
 
     // Entity elements
     'campaigns.entities.attributes' => 'EntityAttributeApiController',
-    'campaigns.entities.entity_notes' => 'EntityNoteApiController',
     'campaigns.entities.posts' => 'PostApiController',
     'campaigns.entities.entity_events' => 'EntityEventApiController',
     'campaigns.entities.relations' => 'EntityRelationApiController',
@@ -90,10 +90,25 @@ Route::delete('campaigns/{campaign}/users', [\App\Http\Controllers\Api\v1\Campai
 Route::post('campaigns/{campaign}/permissions/test', [\App\Http\Controllers\Api\v1\EntityPermissionApiController::class, 'test']);
 
 Route::get('campaigns/{campaign}/calendars/{calendar}/reminders', [\App\Http\Controllers\Api\v1\CalendarEventApiController::class, 'index']);
+Route::post('campaigns/{campaign}/calendars/{calendar}/advance', [\App\Http\Controllers\Api\v1\Calendars\AdvancerApiController::class, 'advance']);
+Route::post('campaigns/{campaign}/calendars/{calendar}/retreat', [\App\Http\Controllers\Api\v1\Calendars\AdvancerApiController::class, 'retreat']);
 
 Route::get('entity-types', [\App\Http\Controllers\Api\v1\EntityTypeApiController::class, 'index']);
 Route::get('visibilities', [\App\Http\Controllers\Api\v1\VisibilityController::class, 'index']);
 Route::get('post-layouts', [\App\Http\Controllers\Api\v1\PostLayoutApiController::class, 'index']);
 
+Route::get('campaigns/{campaign}/recovery', [\App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'index']);
+Route::post('campaigns/{campaign}/recover', [\App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'recover']);
+
+Route::post('campaigns/{campaign}/transform', [\App\Http\Controllers\Api\v1\EntityTransformApiController::class, 'transform']);
+
+Route::post('campaigns/{campaign}/transfer', [\App\Http\Controllers\Api\v1\EntityMoveApiController::class, 'transfer']);
+
+Route::get('campaigns/{campaign}/default-thumbnails', [\App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'index']);
+Route::post('campaigns/{campaign}/default-thumbnails', [\App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'upload']);
+Route::delete('campaigns/{campaign}/default-thumbnails', [\App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'delete']);
+
 Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
-Route::get('version', function () { return config('app.version'); });
+Route::get('version', function () {
+    return config('app.version');
+});

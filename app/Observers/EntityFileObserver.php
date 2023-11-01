@@ -10,7 +10,6 @@ class EntityFileObserver
     use PurifiableTrait;
 
     /**
-     * @param EntityFile $entityFile
      */
     public function creating(EntityFile $entityFile)
     {
@@ -18,7 +17,6 @@ class EntityFileObserver
     }
 
     /**
-     * @param EntityFile $entityFile
      */
     public function saving(EntityFile $entityFile)
     {
@@ -26,23 +24,21 @@ class EntityFileObserver
     }
 
     /**
-     * @param EntityFile $entityFile
      */
     public function saved(EntityFile $entityFile)
     {
-        // When adding or changing an entity note to an entity, we want to update the
+        // When adding or changing a file to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
         $entityFile->entity->child->touchQuietly();
     }
 
     /**
-     * @param EntityFile $entityFile
      */
     public function deleted(EntityFile $entityFile)
     {
         ImageService::cleanup($entityFile, 'path');
 
-        // When deleting an entity note, we want to update the entity's last update
+        // When deleting a file, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
         if ($entityFile->entity) {

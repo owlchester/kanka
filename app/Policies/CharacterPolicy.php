@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Facades\UserCache;
 use App\User;
 use App\Models\Character;
 
@@ -13,18 +14,14 @@ class CharacterPolicy extends MiscPolicy
     }
 
     /**
-     * @param User $user
-     * @param Character $entity
      * @return bool
      */
     public function personality(User $user, Character $entity)
     {
-        return $entity->is_personality_visible || $user->isAdmin();
+        return $entity->is_personality_visible || UserCache::user($user)->admin() ;
     }
 
     /**
-     * @param User $user
-     * @param Character $entity
      * @return bool|mixed
      */
     public function organisation(User $user, Character $entity)

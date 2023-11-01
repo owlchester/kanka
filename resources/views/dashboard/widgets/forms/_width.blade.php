@@ -1,5 +1,6 @@
-<div class="field-width">
-    <label>{{ __('dashboard.widgets.fields.width') }}</label>
+<x-forms.field
+    field="width"
+    :label="__('dashboard.widgets.fields.width')">
     {!! Form::select('width', [
         0 => __('dashboard.widgets.widths.0'),
         12 => __('dashboard.widgets.widths.12'),
@@ -8,5 +9,5 @@
         6 => __('dashboard.widgets.widths.6'),
         8 => __('dashboard.widgets.widths.8'),
         9 => __('dashboard.widgets.widths.9')
-    ], null, ['class' => 'form-control']) !!}
-</div>
+    ], null, ['class' => '']) !!}
+</x-forms.field>

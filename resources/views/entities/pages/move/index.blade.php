@@ -1,51 +1,48 @@
 @extends('layouts.app', [
     'title' => __('entities/move.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => route($entity->pluralType() . '.show', [$entity->entity_id]), 'label' => $entity->name],
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show(),
         __('crud.actions.move'),
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['entities.move', $entity->id], 'method' => 'POST']) !!}
+    {!! Form::open(['route' => ['entities.move', $campaign, $entity->id], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
-    <div class="max-w-3xl">
-        <x-box>
-            <p class="help-block mb-5">
+    <x-box>
+        <x-grid type="1/1">
+            <p class="text-neutral-content">
                 {{ __('entities/move.panel.description') }}
             </p>
 
-            <div class="field-campaign mb-5">
-                <label>{{ __('entities/move.fields.campaign') }}</label>
-                {!! Form::select('campaign', $campaigns, null, ['class' => 'form-control']) !!}
-            </div>
+            <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
+                {!! Form::select('campaign', $campaigns, null, ['class' => '']) !!}
+            </x-forms.field>
 
             @can('update', $entity->child)
-                <div class="field-copy form-check">
-                    <label>{!! Form::checkbox('copy', 1, true) !!}
-                        {{ __('entities/move.fields.copy') }}
-                    </label>
-                    <p class="help-block">
-                        {{ __('entities/move.helpers.copy') }}
-                    </p>
-                </div>
+                <x-forms.field field="copy" css="form-check" :label="__('entities/move.fields.copy')">
+                    <x-checkbox :text="__('entities/move.helpers.copy')">
+                        {!! Form::checkbox('copy', 1, true) !!}
+                    </x-checkbox>
+                </x-forms.field>
             @else
                 {!! Form::hidden('copy', 1) !!}
             @endcan
 
             @includeIf($entity->pluralType() . '.bulk.modals._copy_to_campaign')
+        </x-grid>
 
-            <x-dialog.footer>
-                <button class="btn2 btn-primary">
-                    <i class="fa-solid fa-copy" aria-hidden="true"></i>
-                    @can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan
-                </button>
-            </x-dialog.footer>
-        </x-box>
-    </div>
+        <x-dialog.footer>
+            <button class="btn2 btn-primary">
+                <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                @can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan
+            </button>
+        </x-dialog.footer>
+    </x-box>
 
     {!! Form::close() !!}
 @endsection

@@ -77,42 +77,47 @@ function initCytoscape() {
 }
 
 function loadMap() {
-    $.ajax({
+    fetch(cySelector.data('url'))
+        .then((response) => response.json())
+        .then((res) => {
+            parseMap(res);
+        });
+    /*$.ajax({
         url: cySelector.data('url'),
         type: 'GET',
         dataType: 'json',
         success: parseMap
-    });
+    });*/
 }
 
-function parseMap(json) {
-    //console.log('result from map api', json);
+function parseMap(res) {
+    //console.log('result from map api', res);
 
-    for(entity in json.entities) {
+    for(entity in res.entities) {
         let element = {
             group: 'nodes',
             data: {
-                id: json.entities[entity].id,
-                name: json.entities[entity].name,
-                image: json.entities[entity].image,
-                link: json.entities[entity].link,
+                id: res.entities[entity].id,
+                name: res.entities[entity].name,
+                image: res.entities[entity].image,
+                link: res.entities[entity].link,
                 //tooltip: json.entities[entity].tooltip,
             }
         };
         elementList.push(element);
     }
 
-    for (relation in json.relations) {
+    for (relation in res.relations) {
         let element = {
             group: 'edges',
             data: {
-                source: json.relations[relation].source,
-                target: json.relations[relation].target,
-                name: json.relations[relation].text,
-                colour: json.relations[relation].colour,
-                attitude: json.relations[relation].attitude,
-                shape: json.relations[relation].shape,
-                edit_url: json.relations[relation].edit_url,
+                source: res.relations[relation].source,
+                target: res.relations[relation].target,
+                name: res.relations[relation].text,
+                colour: res.relations[relation].colour,
+                attitude: res.relations[relation].attitude,
+                shape: res.relations[relation].shape,
+                edit_url: res.relations[relation].edit_url,
             }
         };
         // if the relation does not have a colour, use the default
@@ -192,12 +197,7 @@ function addListeners() {
             return;
         }
 
-        $.ajax({
-            url: editUrl,
-        }).done(function (data) {
-            $('#entity-modal .modal-content').html(data);
-            $('#entity-modal').modal();
-        });
+        window.openDialog('connection-dialog', editUrl);
     });
 
     // highlight edges on hover to show relation

@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 class SearchApiController extends ApiController
 {
     /**
-     * @var EntityService
      */
     protected EntityService $entity;
 
@@ -25,9 +24,6 @@ class SearchApiController extends ApiController
     }
 
     /**
-     * @param Request $request
-     * @param Campaign $campaign
-     * @param string|null $search
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

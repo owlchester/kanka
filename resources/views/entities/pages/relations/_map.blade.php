@@ -10,29 +10,29 @@ $options = [
 ];
 
 ?>
-@if(!$campaignService->campaign()->boosted())
-    <x-cta :campaign="$campaignService->campaign()">
+@if(!$campaign->boosted())
+    <x-cta :campaign="$campaign">
         <p>{{ __('entities/relations.call-to-action') }}</p>
     </x-cta>
     <?php return ?>
 @endif
 
 {!! Form::open([
-    'route' => ['entities.relations.index', $entity],
+    'route' => ['entities.relations.index', $campaign, $entity],
     'method' => 'GET',
 ]) !!}
-    <div class="join mb-5 w-full">
-        {!! Form::select('option', $options, $option, ['class' => 'form-control join-item']) !!}
+    <div class="join w-full">
+        {!! Form::select('option', $options, $option, ['class' => 'w-full join-item']) !!}
         <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn2 btn-primary btn-sm join-item" />
     </div>
 {!! Form::hidden('mode', 'map') !!}
 {!! Form::close() !!}
 
 <x-box css="box box-solid box-entity-relations box-entity-relations-explorer">
-    <div class="loading text-center" id="spinner">
-        <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
+    <div class="text-center text-xg" id="spinner">
+        <x-icon class="load" />
     </div>
-    <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$entity, 'option' => $option]) }}"></div>
+    <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$campaign, $entity, 'option' => $option]) }}"></div>
 </x-box>
 
 @section('scripts')

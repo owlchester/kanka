@@ -2,58 +2,56 @@
 
 namespace App\Services;
 
+use App\Exceptions\TranslatableException;
 use App\Http\Requests\AddCalendarWeather;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Models\Event;
-use Exception;
 use Illuminate\Support\Arr;
 use Stevebauman\Purify\Facades\Purify;
 
 class CalendarService
 {
-    /**
-     * Add an event to a calendar, and return the new calendar_event model
-     * @param Calendar $calendar
-     * @param array $data
-     * @return EntityEvent|bool
-     */
-    public function addEvent(Calendar $calendar, $data = [])
+    protected Calendar $calendar;
+
+    public function calendar(Calendar $calendar): self
     {
-        $entity = $this->entity($data);
-        if ($entity) {
-            $link = new EntityEvent();
-            $link->calendar_id = $calendar->id;
-            $link->entity_id = $entity->id;
-            $link->year = $data['year'];
-            $link->month = $data['month'];
-            $link->day = $data['day'];
-            $link->length = $data['length'];
-            $link->comment = Purify::clean($data['comment']);
-            $link->is_recurring = Arr::get($data, 'is_recurring', false);
-            $link->colour = Arr::get($data, 'colour', null);
-            $link->recurring_until = Arr::get($data, 'recurring_until', null);
-            $link->recurring_periodicity = Arr::get($data, 'recurring_periodicity', null);
-            $link->visibility_id = Arr::get($data, 'visibility_id', 1);
-            if ($link->save()) {
-                return $link;
-            }
-        }
-        return false;
+        $this->calendar = $calendar;
+        return $this;
     }
 
     /**
-     * @param Calendar $calendar
-     * @param AddCalendarWeather $request
-     * @return CalendarWeather
+     * Add an event to a calendar, and return the new calendar_event model
      */
-    public function saveWeather(Calendar $calendar, AddCalendarWeather $request): CalendarWeather
+    public function addEvent(array $data = []): EntityEvent
+    {
+        $entity = $this->entity($data);
+        $link = new EntityEvent();
+        $link->calendar_id = $this->calendar->id;
+        $link->entity_id = $entity->id;
+        $link->year = $data['year'];
+        $link->month = $data['month'];
+        $link->day = $data['day'];
+        $link->length = $data['length'];
+        $link->comment = Purify::clean($data['comment']);
+        $link->is_recurring = Arr::get($data, 'is_recurring', false);
+        $link->colour = Arr::get($data, 'colour', null);
+        $link->recurring_until = Arr::get($data, 'recurring_until', null);
+        $link->recurring_periodicity = Arr::get($data, 'recurring_periodicity', null);
+        $link->visibility_id = Arr::get($data, 'visibility_id', 1);
+        $link->save();
+        return $link;
+    }
+
+    /**
+     * Save the weather on the requested date
+     */
+    public function saveWeather(AddCalendarWeather $request): CalendarWeather
     {
         // Make sure we don't already have a weather effect on this date
         $weather = $this->findWeather(
-            $calendar,
             (int) $request->post('year'),
             (int) $request->post('month'),
             (int) $request->post('day')
@@ -61,7 +59,7 @@ class CalendarService
 
         if (!$weather) {
             $weather = new CalendarWeather([
-                'calendar_id' => $calendar->id,
+                'calendar_id' => $this->calendar->id,
                 'year' => $request->post('year'),
                 'month' => $request->post('month'),
                 'day' => $request->post('day'),
@@ -85,16 +83,12 @@ class CalendarService
     }
 
     /**
-     * @param Calendar $calendar
-     * @param int $year
-     * @param int $month
-     * @param int $day
-     * @return mixed
+     * Find the saved weather for a specific date
      */
-    public function findWeather(Calendar $calendar, int $year, int $month, int $day)
+    public function findWeather(int $year, int $month, int $day)
     {
         return CalendarWeather::dated(
-            $calendar->id,
+            $this->calendar->id,
             $year,
             $month,
             $day
@@ -102,11 +96,10 @@ class CalendarService
     }
 
     /**
-     * @param array $data
-     * @return Entity|bool|null
-     * @throws Exception
+     * Create a new event if it's just a name and no entity id. Otherwise, validate the entity
+     * @throws TranslatableException
      */
-    protected function entity(array $data = [])
+    protected function entity(array $data = []): Entity
     {
         if (empty($data['entity_id']) && !empty($data['name'])) {
             // Create an event
@@ -120,6 +113,6 @@ class CalendarService
             return Entity::findOrFail($data['entity_id']);
         }
 
-        return false;
+        throw new TranslatableException(__('calendars.event.errors.invalid_entity'));
     }
 }

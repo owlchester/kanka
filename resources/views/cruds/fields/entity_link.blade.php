@@ -1,7 +1,6 @@
 <?php /** @var \App\Models\Entity $entity */?>
 @if ($entity)
-    <div class="entity">
-        <label>{{ __('crud.fields.entity') }}</label><br />
+    <x-forms.field field="entity" :label="__('crud.fields.entity')">
         {!! $entity->tooltipedLink(null, true, 'data-placement="bottom"') !!}
-    </div>
+    </x-forms.field>
 @endif

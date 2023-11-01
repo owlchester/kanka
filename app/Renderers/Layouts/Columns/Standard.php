@@ -14,9 +14,9 @@ class Standard extends Column
     public const VISIBILITY = 'visibility';
     public const VISIBILITY_PIVOT = 'visibility_pivot';
     public const DATE = 'date';
+    public const TAGS = 'tags';
 
     /**
-     * @return string
      */
     public function __toString(): string
     {
@@ -40,14 +40,13 @@ class Standard extends Column
 
     /**
      * If this is a defined view
-     * @param string $render
-     * @return bool
      */
     protected function defined(string $render): bool
     {
         return in_array($render, [
             self::CHARACTER,
             self::IMAGE,
+            self::TAGS,
             self::ENTITYLINK,
             self::VISIBILITY,
             self::VISIBILITY_PIVOT,
@@ -57,9 +56,6 @@ class Standard extends Column
 
     /**
      * Render a defined view
-     * @param string $view
-     * @param array|null $extra
-     * @return string
      */
     protected function view(string $view, array $extra = null): string
     {

@@ -1,49 +1,27 @@
 import './tags.js';
 import './components/select2.js';
-
-import deleteConfirm from './components/delete-confirm.js';
 import dynamicMentions from "./mention";
 
 
 $(document).ready(function() {
-
-    // Inject the isMobile variable into the window. We don't want ALL of the javascript
-    // for mobiles, namely the tooltip tool.
-    window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
-    if (!window.kankaIsMobile.matches) {
-        initTooltips();
-    }
-
     initPageHeight();
 
     window.initForeignSelect();
+    window.initDialogs();
     initSpectrum();
     initSubmenuSwitcher();
-
-    let deleteConfirmForms = $('#delete-confirm-form');
-    if (deleteConfirmForms.length > 0) {
-        deleteConfirmForms.on('keyup keypress', function (e) {
-            var keyCode = e.keyCode || e.which;
-            if (keyCode === 13) {
-                e.preventDefault();
-                return false;
-            }
-        });
-    }
 
     // Treeview for locations
     treeViewInit();
 
     manageTabs();
 
-    deleteConfirm();
     dynamicMentions();
     initAjaxPagination();
     initDynamicDelete();
     initImageRemoval();
-    initDialogs();
-    initSidebarHelper();
     initFeedbackButtons();
+    initDismissible();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -51,15 +29,16 @@ $(document).ready(function() {
     $(document).on('shown.bs.modal shown.bs.popover', function() {
         // Also re-bind select2 elements on modal show
         window.initForeignSelect();
-        window.initTags(); // Need this for the abilities popup on entities
+        window.initTags();
+        window.initDialogs();
+        window.initTooltips();
+        window.initDropdowns();
         initAjaxPagination();
-        initTooltips();
         initSpectrum();
         initDynamicDelete();
         initImageRemoval();
-        deleteConfirm();
         initFeedbackButtons();
-        initDialogs();
+        initDismissible();
     });
 });
 
@@ -82,14 +61,6 @@ function initSpectrum() {
             appendTo: $(this).data('append-to') ?? null,
         });
     });
-}
-
-/**
- * Register the tooltip and tooltip-ajax helper
- */
-function initTooltips() {
-    $('[data-toggle="tooltip"]').tooltip();
-    window.ajaxTooltip();
 }
 
 
@@ -155,11 +126,11 @@ function manageTabs() {
 }
 
 function initImageRemoval() {
-    $.each($('.img-delete'), function () {
+    $.each($('[data-img="delete"]'), function () {
         $(this).unbind('click').click(function (e) {
             e.preventDefault();
             $('input[name=' + $(this).data('target') + ']')[0].value = 1;
-            $(this).parent().parent().hide();
+            $(this).closest('.preview').hide();
         });
     });
 }
@@ -170,16 +141,17 @@ function initImageRemoval() {
 function initAjaxPagination() {
     $('.pagination-ajax-links a').on('click', function(e) {
         e.preventDefault();
-        var paginationAjaxBody = $('.pagination-ajax-body');
-        paginationAjaxBody.find('.loading').show();
+        let paginationAjaxBody = $('.pagination-ajax-body');
+        paginationAjaxBody.find('.modal-loading').show();
         paginationAjaxBody.find('.pagination-ajax-content').hide();
 
-        $.ajax(
-            $(this).attr('href')
-        ).done(function (res) {
-            paginationAjaxBody.parent().html(res);
-            initAjaxPagination();
-        });
+        fetch($(this).attr('href'))
+            .then(response => response.text())
+            .then(response => {
+                paginationAjaxBody.parent().html(response);
+                initAjaxPagination();
+                $(document).trigger('shown.bs.modal');
+            });
         return false;
     });
 }
@@ -189,14 +161,18 @@ function initAjaxPagination() {
  * in a modal.
  */
 function initDynamicDelete() {
-    $('[data-toggle="confirm-delete"]').on('click', function (e) {
+    $('[data-toggle="confirm-delete"]').unbind('click').on('click', function (e) {
         e.preventDefault();
         if ($(this).data('confirming') === 1) {
             $(this).addClass('loading');
             $(this).html('');
             let target = $(this).data('target');
-            //console.log('target', target);
-            $(target).submit();
+            if ($(target).length === 0) {
+                console.error('Unknown target', target);
+            } else {
+                $(target).submit();
+            }
+
             return;
         }
 
@@ -223,75 +199,7 @@ function initSubmenuSwitcher() {
 }
 
 
-function initDialogs() {
-    $('[data-toggle="dialog"]').click(function (e) {
-        e.preventDefault();
 
-        let target = $(this).data('target');
-        target = document.getElementById(target);
-        target.removeAttribute('open');
-        target.showModal();
-
-        target.addEventListener('click', function (event) {
-            let rect = target.getBoundingClientRect();
-            let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-                rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
-            if (!isInDialog && event.target.tagName === 'DIALOG') {
-                target.close();
-            }
-        });
-    });
-    $('[data-toggle="dialog-ajax"]').click(function (e) {
-        e.preventDefault();
-
-        let target = $(this).data('target');
-        let url = $(this).data('url');
-        target = document.getElementById(target);
-        target.removeAttribute('open');
-        target.showModal();
-
-        target.addEventListener('click', function (event) {
-            let rect = target.getBoundingClientRect();
-            let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-                rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
-            if (!isInDialog && event.target.tagName === 'DIALOG') {
-                target.close();
-            }
-        });
-
-        $.ajax({
-            url: url
-        }).done(function (success) {
-            $(target).html(success).show();
-            $(document).trigger('shown.bs.modal'); // Get tooltips to re-generate
-
-            $('.btn-manage-perm').click(function (e) {
-                e.preventDefault();
-                target.close();
-                let permTarget = $(this).data('target');
-                $(permTarget).click();
-            });
-
-            // We should move this to a custom event handler?
-            $('#quick-privacy-select').change(function () {
-                let toggleUrl = $(this).data('url');
-
-                $.ajax({
-                    url: toggleUrl,
-                    type: 'POST'
-                }).done( function (success) {
-                    window.showToast(success.toast);
-                    if (!success.status) {
-                        $('body').addClass('kanka-entity-private');
-                    } else {
-                        $('body').removeClass('kanka-entity-private');
-                    }
-                    //target.close();
-                });
-            });
-        });
-    });
-}
 
 /**
  * AdminLTE legacy. The CSS is a bit weird, for small pages we need to force a min-height
@@ -333,38 +241,65 @@ function heighestValue(numbers) {
     return max;
 }
 
-function initSidebarHelper() {
-    $('.campaign-head[data-toggle="popover"]').popover();
-}
-
 /**
  * When clicking on these buttons, adds a "loading" spinner to indicate that something is happening
  */
 const initFeedbackButtons = () => {
-    $.each($('.btn-feedback'), function () {
-        if ($(this).data('feedback') === 1) {
+    document.querySelectorAll('.btn-feedback').forEach((el) => {
+        let feedback = el.dataset.feedback;
+        if (feedback) {
             return;
         }
+        el.dataset.feedback = 1;
+        el.addEventListener('click', (e) => {
+            e.target.classList.add('loading');
+        }, false);
+    });
 
-        $(this).data('feedback', 1);
-        $(this).on('click', function () {
-            $(this).addClass('loading');
+    // We should move this to a custom event handler?
+    $('#quick-privacy-select').change(function () {
+        let toggleUrl = $(this).data('url');
+
+        axios
+            .post(toggleUrl)
+            .then(response => {
+                window.showToast(response.data.success.toast);
+                let body = document.querySelector('body');
+                if (!response.data.success.status) {
+                    body.classList.add('kanka-entity-private');
+                } else {
+                    body.classList.remove('kanka-entity-private');
+                }
+            });
+    });
+};
+
+const initDismissible = () => {
+    const elements = document.querySelectorAll('[data-dismisses]');
+    elements.forEach(el => {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            let target = document.querySelector(this.dataset.dismisses);
+            target.classList.remove('opacity-100');
+            target.classList.add('opacity-0');
+
+            setTimeout(function () {
+                target.remove();
+            }, 150);
         });
     });
 };
 
 // Splitting off the js files into logical blocks
-import './helpers';
 import './keyboard';
 import './crud';
 import './post';
 import './calendar';
 import './keep-alive';
 //import './search');
-//import './notification');
 import './quick-creator';
-//import './tutorial')
 import './datagrids';
+import './animations';
 import './quick-links';
 import './post-layouts';
 import './members';
@@ -373,11 +308,14 @@ import './clipboard';
 import './toast';
 import './sidebar';
 import './banner';
-import './timeline';
+import './timelines';
 import './utility/sortable';
 import './utility/formError';
+import './utility/dialog';
 
 // VueJS elements
 //import './navigation');
 import './header';
 //import './ads');
+import './utility/tippy';
+import './ajax-subforms';

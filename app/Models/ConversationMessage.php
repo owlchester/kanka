@@ -6,6 +6,7 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\LastSync;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
 class ConversationMessage extends MiscModel
 {
     use Blameable;
+    use HasFactory;
     use LastSync;
 
     public $isGroupped = false;
@@ -51,9 +53,8 @@ class ConversationMessage extends MiscModel
 
     /**
      * We want to use the dice_roll entity type for permissions
-     * @var string
      */
-    protected $entityType = 'conversation_messages';
+    protected string $entityType = 'conversation_messages';
 
     /**
      * Who created this entry
@@ -111,7 +112,6 @@ class ConversationMessage extends MiscModel
         return null;
     }
     /**
-     * @return int|null
      */
     public function authorID(): int|null
     {
@@ -124,7 +124,6 @@ class ConversationMessage extends MiscModel
     }
 
     /**
-     * @param Builder $query
      * @param null|int $oldestId
      * @param null|int $newestId
      */
@@ -142,7 +141,6 @@ class ConversationMessage extends MiscModel
     }
 
     /**
-     * @return bool
      */
     public function isMine(): bool
     {

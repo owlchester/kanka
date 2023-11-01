@@ -1,12 +1,11 @@
 <?php /**
  * @var \App\Models\Tag $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->tag)
     <div class="entity-header-sub pull-left">
-        <span title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
-        <i class="fa-solid fa-tag" aria-hidden="true"></i>
+        <span data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
+        <x-icon class="fa-solid fa-tag" />
         {!! $model->tag->tooltipedLink() !!}
         </span>
     </div>

@@ -3,12 +3,14 @@
 ?>
 @extends('layouts.app', [
     'title' => __('history.title'),
-    'breadcrumbs' => [['url' => route('history.index'), 'label' => __('history.title')]],
+    'breadcrumbs' => [['url' => route('history.index', $campaign), 'label' => __('history.title')]],
     'bodyClass' => 'campaign-history',
     'mainTitle' => false,
+    'centered' => true,
 ])
 
 @section('content')
+    <x-grid type="1/1">
     @if (!$superboosted)
         <x-cta :campaign="$campaign" superboost="true">
             <p>{{ __('history.cta') }}</p>
@@ -19,15 +21,14 @@
         </x-tutorial>
     @endif
 
-
     @if ($superboosted)
-        {!! Form::open(['method' => 'GET', 'route' => 'history.index', 'class' => 'history-filters']) !!}
-        <div class="flex items-center flex-row-reverse mb-5 gap-2">
-            <div class="flex-none">
-                {!! Form::select('action', $actions, $action, ['class' => 'form-control']) !!}
+        {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters flex flex-col gap-5']) !!}
+        <div class="flex items-center flex-row-reverse gap-2">
+            <div class="field flex-none">
+                {!! Form::select('action', $actions, $action, ['class' => '']) !!}
             </div>
-            <div class="flex-none">
-                <select class="form-control" name="user">
+            <div class="field flex-none">
+                <select class="" name="user">
                     <option value="">{{ __('history.filters.all-users') }}</option>
                     @foreach ($users as $member)
                         <option value="{{ $member->user_id }}" @if (isset($user) && $user == $member->user_id) selected="selected" @endif>{!! $member->user->name !!}</option>
@@ -36,31 +37,32 @@
             </div>
             @if (count($filters) > 0)
                 <div class="flex-none">
-                    <a href="{{ route('history.index') }}" role="button" class="btn2 btn-sm">{{ __('crud.actions.reset') }}</a>
+                    <a href="{{ route('history.index', $campaign) }}" role="button" class="btn2 btn-sm">{{ __('crud.actions.reset') }}</a>
                 </div>
             @endif
             <div class="flex-none filters-loading" style="display: none">
-                <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+                <x-icon class="load" />
             </div>
         </div>
         {!! Form::close() !!}
     @endif
 
     @if ($models->count() > 0)
+        @php $count = 0; @endphp
         @foreach ($models as $log)
             @if ($log->action < 7 || $log->post)
                 @if ($log->day() !== $previous)
                     @if ($previous !== null) </div> @endif
-                    <div class="{{ !$superboosted ? 'blur' : null }} font-bold mb-2">{{ $log->created_at->format('M d, Y') }}</div>
-                    <div class="rounded bg-box mb-5 border border-b-0 ">
+                    <div class="font-bold">{{ $log->created_at->format('M d, Y') }}</div>
+                    <div class="rounded bg-box border border-b-0 ">
                 @endif
-                <div class="p-2 border-solid border-b {{ !$superboosted ? 'blur' : null }}">
-                    <div class="flex justify-center items-center gap-2">
+                <div class="p-2 border-solid border-b">
+                    <div class="flex justify-center items-center gap-2 {{ $count > 0 && !$superboosted ? 'blur' : null }}">
                         <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
                             <i class="fa-solid {{ $log->actionIcon() }}" aria-hidden="true"></i>
                         </div>
                         <div class="flex-grow">
-                            @if ($superboosted)
+                            @if ($superboosted || $count === 0)
                                 {!! __('history.log.' . $log->actionCode(), [
                                     'user' => $log->userLink(),
                                     'entity' => $log->entityLink(),
@@ -78,15 +80,15 @@
                         </div>
                         @if(!empty($log->changes))
                             <div class="flex-end">
-                                <a href="#log-{{ $log->id }}" data-toggle="collapse">
+                                <a href="#log-{{ $log->id }}" data-animate="collapse" data-target="#log-{{ $log->id }}">
                                     <i class="fa-solid fa-eye" aria-hidden="true"></i>
                                     {{ __('history.actions.show-old') }}
                                 </a>
                             </div>
                         @endif
                         <div class="text-xs text-muted flex-end text-right">
-                            @if ($superboosted)
-                                <span data-toggle="tooltip" title="{{ $log->created_at }} UTC">
+                            @if ($superboosted || $count === 0)
+                                <span data-toggle="tooltip" data-title="{{ $log->created_at }} UTC">
                                     {{ $log->created_at->diffForHumans() }}
                                 </span>
                             @else
@@ -95,11 +97,11 @@
                         </div>
                     </div>
                     @if (!empty($log->changes) && $superboosted)
-                    <div id="log-{{ $log->id }}" class="collapse !visible my-5">
-                        <p class="text-muted">{{ __('history.helpers.changes') }}</p>
+                    <div id="log-{{ $log->id }}" class="py-2 flex flex-col gap-2 hidden">
+                        <p class="text-neutral-content">{{ __('history.helpers.changes') }}</p>
                         @foreach ($log->changes as $attribute => $value)
                             @if (is_array($value)) @continue @endif
-                            <div class="flex mb-2">
+                            <div class="flex">
                                 <div class="flex-initial w-32 font-bold" data-attribute="{{ $attribute }}">
                                     {!! $log->attributeKey($log->entity->pluralType(), $attribute) !!}
                                 </div>
@@ -117,7 +119,7 @@
                     </div>
                     @endif
                 </div>
-                @php $previous = $log->day(); @endphp
+                @php $previous = $log->day(); $count++; @endphp
             @endif
         @endforeach
         </div>
@@ -132,6 +134,8 @@
             {!! $models->appends($filters)->onEachSide(0)->links() !!}
         </div>
     @endif
+
+    </x-grid>
 @endsection
 
 @section('scripts')

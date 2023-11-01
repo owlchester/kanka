@@ -11,7 +11,7 @@ Bevor Sie fortfahren, müssen Sie einen Kampagnennamen auswählen. Das ist der N
 
 Vielen Dank, dass Sie sich Kanka angeschlossen haben, und willkommen in unserer florierenden Community!
 TEXT
-            ,
+,
         ],
         'success'               => 'Kampagne erstellt.',
         'success_first_time'    => 'Deine Kampagne wurde erstellt! Da es deine erste Kampagne ist, haben wir ein paar Dinge für dich erstellt, die dir helfen sollen, loszulegen und hoffentlich ein bisschen Inspiration liefern, was du alles machen kannst.',
@@ -39,6 +39,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Du hast keinen Zugang zu dieser Kampagne.',
+        'premium'       => 'Diese Funktion ist nur für Premium-Kampagnen verfügbar.',
         'unknown_id'    => 'Unbekannte Kampagne.',
     ],
     'export'                            => [],
@@ -54,6 +55,7 @@ TEXT
         'excerpt'                           => 'Zusammenfassung',
         'featured'                          => 'Vorgestellte Kampagne',
         'followers'                         => 'Abonnenten',
+        'genre'                             => 'Genre(s)',
         'header_image'                      => 'Header Bild',
         'image'                             => 'Bild',
         'locale'                            => 'Sprache',
@@ -62,6 +64,7 @@ TEXT
         'open'                              => 'Offen für Bewerbungen',
         'past_featured'                     => 'Zuvor vorgestellte Kampagne',
         'post_collapsed'                    => 'Neue Beiträge zu Objekten werden standardmäßig minimiert.',
+        'premium'                           => 'Premium freigeschaltet von :name',
         'public'                            => 'Sichtbarkeit der Kampagne',
         'public_campaign_filters'           => 'Öffentliche Kampagnenfilter',
         'related_visibility'                => 'Verwandte Elemente Sichtbarkeit',
@@ -87,6 +90,7 @@ TEXT
         'name'                              => 'Deine Kampagne/Welt kann einen beliebigen Namen haben, solange dieser mindestens 4 Buchstaben oder Zahlen enthält.',
         'no_entry'                          => 'Anscheinend hat die Kampagne noch keine Beschreibung! Lasst uns das beheben.',
         'permissions_tab'                   => 'Steuern Sie die standardmäßigen Datenschutz- und Sichtbarkeitseinstellungen neuer Elemente mit den folgenden Optionen.',
+        'premium'                           => 'Einige Funktionen sind verfügbar, da die Premiumfunktionen dieser Kampagne freigeschaltet sind. Weitere Informationen findest du auf der Seite :settings.',
         'public_campaign_filters'           => 'Helfen Sie anderen, die Kampagne unter anderen öffentlichen Kampagnen zu finden, indem Sie die folgenden Informationen bereitstellen.',
         'public_no_visibility'              => 'Kopf hoch! Ihre Kampagne ist öffentlich, aber die öffentliche Rolle der Kampagne kann auf nichts zugreifen. :fix.',
         'related_visibility'                => 'Standardwert für die Sichtbarkeit beim Erstellen eines neuen Elements mit diesem Feld (Objektnotizen, Beziehungen, Fähigkeiten usw.)',
@@ -150,7 +154,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Hilfe',
             'remove'        => 'aus Kampagne entfernen',
             'switch'        => 'Wechseln',
             'switch-back'   => 'Zurück zu meinem User',
@@ -170,17 +173,15 @@ TEXT
             'role'          => 'Rolle',
             'roles'         => 'Rollen',
         ],
-        'help'                  => 'Es gibt kein Limit der Anzahl der Mitglieder einer Kampagne und als ein Admin kannst du Mitglieder entfernen, die nicht mehr aktiv sind.',
         'helpers'               => [
-            'admin' => 'Als Mitglied der Administratorrolle der Kampagne können Sie neue Benutzer einladen, inaktive Benutzer entfernen und deren Berechtigungen ändern. Verwenden Sie die Schaltfläche Wechseln, um die Berechtigungen eines Mitglieds zu testen. Weitere Informationen zu dieser Funktion finden Sie unter :link.',
-            'switch'=> 'Zu diesem User wechseln',
+            'switch'    => 'Zu diesem User wechseln',
         ],
         'impersonating'         => [
             'message'   => <<<'TEXT'
 Du siehst die Kampagne jetzt als ein anderer User.
 Einige Funktionen wurden deaktiviert, aber ansonsten sieht es genau so aus wie es der User sehen würde. Um zurück zu deinem User zu wechseln, benutze den "Zurück zu meinem User" Button, wo sonst der Logout Button zu finden ist.
 TEXT
-            ,
+,
             'title'     => 'Ansicht von :name',
         ],
         'invite'                => [
@@ -241,6 +242,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Rolle hinzufügen',
+            'duplicate'     => 'Rolle dupliziert',
             'permissions'   => 'Berechtigungen verwalten',
             'rename'        => 'Rolle umbenennen',
             'save'          => 'Rolle speichern',
@@ -262,16 +264,18 @@ TEXT
             'title'     => 'Rolle :name bearbeiten',
         ],
         'fields'        => [
-            'name'          => 'Name',
-            'permissions'   => 'Berechtigungen',
-            'type'          => 'Typ',
-            'users'         => 'Nutzer',
+            'copy_permissions'  => 'Kopierberechtigungen',
+            'name'              => 'Name',
+            'permissions'       => 'Berechtigungen',
+            'type'              => 'Typ',
+            'users'             => 'Nutzer',
         ],
         'helper'        => [
-            '1' => 'Eine Kampagne kann so viele Rollen haben, wie du willst. Die "Admin" Rolle hat automatisch Zugriff auf alles in einer Kampagne, aber jede andere Rolle kann spezielle Berechtigungen auf unterschiedliche Typen von Objekten (Charaktere, Orte, etc.) haben.',
-            '2' => 'Objekte können feiner abgestimmte Berechtigungen haben, die du im "Berechtigungen" Tab des Objekts einstellen kannst. Dieser Tab erscheint, wenn du mehrere Rollen in deiner Kampagne hast.',
-            '3' => 'Man kann entweder ein "opt-out" System verwenden, in dem Rollen lesenden Zugriff auf alle Objekte bekommen und mit der "Privat" Checkbox bestimmte Objekte ausgeblendet werden. Oder man gibt Rollen wenige Berechtigungen und setzt jedes Objekt explizit auf sichtbar.',
-            '4' => 'Boosted-Kampagnen können eine unbegrenzte Anzahl von Rollen haben.',
+            '1'                     => 'Eine Kampagne kann so viele Rollen haben, wie du willst. Die "Admin" Rolle hat automatisch Zugriff auf alles in einer Kampagne, aber jede andere Rolle kann spezielle Berechtigungen auf unterschiedliche Typen von Objekten (Charaktere, Orte, etc.) haben.',
+            '2'                     => 'Objekte können feiner abgestimmte Berechtigungen haben, die du im "Berechtigungen" Tab des Objekts einstellen kannst. Dieser Tab erscheint, wenn du mehrere Rollen in deiner Kampagne hast.',
+            '3'                     => 'Man kann entweder ein "opt-out" System verwenden, in dem Rollen lesenden Zugriff auf alle Objekte bekommen und mit der "Privat" Checkbox bestimmte Objekte ausgeblendet werden. Oder man gibt Rollen wenige Berechtigungen und setzt jedes Objekt explizit auf sichtbar.',
+            '4'                     => 'Boosted-Kampagnen können eine unbegrenzte Anzahl von Rollen haben.',
+            'permissions_helper'    => 'Dupliziere alle Berechtigungen der Rolle, sowohl für Module als auch für Objekte.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Die öffentliche Rolle hat Berechtigungen, aber die Kampagne ist privat. Sie können diese Einstellung auf der Registerkarte Freigabe ändern, wenn Sie die Kampagne bearbeiten.',
@@ -378,7 +382,6 @@ TEXT
             'journals'          => 'Beobachtungen von Spielern oder Spielvorbereitungen vom Spielleiter.',
             'locations'         => 'Planeten, Ebenen, Kontinente, Flüsse, Staaten, Siedlungen, Tempel, Tavernen.',
             'maps'              => 'Laden Sie Karten mit Ebenen und Markierungen hoch, die auf andere Objekte in der Kampagne verweisen.',
-            'menu_links'        => 'Selbsterstellte Menü Links in der Seitenleiste.',
             'notes'             => 'Sagen, Religionen, Geschichte, Magie, Spezies.',
             'organisations'     => 'Kulte, Militäreinheiten, Fraktionen, Gilden.',
             'quests'            => 'Um Aufgaben mit Charakteren und Ort zu verfolgen.',
@@ -413,7 +416,6 @@ TEXT
             'plugins'           => 'Plugins',
             'recovery'          => 'Wiederherstellen',
             'roles'             => 'Rollen',
-            'settings'          => 'Einstellungen',
             'sidebar'           => 'Einrichtung der Seitenleiste',
             'styles'            => 'Thematisierung',
         ],
@@ -471,10 +473,5 @@ TEXT
         'public'    => 'Öffentlich',
         'review'    => 'Wartet auf Überprüfung',
     ],
-    'warning'                           => [
-        'editing'   => [
-            'description'   => 'Anscheinend bearbeitet gerade jemand anderes diese Kampagne! Möchtest du zurückgehen oder diese Warnung ignorieren, auf die Gefahr hin, dass Daten verloren gehen? Mitglieder, die diese Kampagne derzeit bearbeiten:',
-        ],
-    ],
+    'warning'                           => [],
 ];
-

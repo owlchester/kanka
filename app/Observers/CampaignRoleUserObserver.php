@@ -10,21 +10,19 @@ use App\Models\CampaignRoleUser;
 class CampaignRoleUserObserver
 {
     /**
-     * @param CampaignRoleUser $campaignRoleUser
      */
     public function created(CampaignRoleUser $campaignRoleUser)
     {
         CampaignRoleUserJob::dispatch($campaignRoleUser, true);
-        UserCache::user($campaignRoleUser->user)->clearRoles();
+        UserCache::user($campaignRoleUser->user)->clear();
     }
 
     /**
-     * @param CampaignRoleUser $campaignRoleUser
      */
     public function deleted(CampaignRoleUser $campaignRoleUser)
     {
         CampaignRoleUserJob::dispatch($campaignRoleUser, false);
-        UserCache::user($campaignRoleUser->user)->clearRoles();
-        CampaignCache::campaign($campaignRoleUser->campaignRole->campaign)->clearAdmins();
+        UserCache::user($campaignRoleUser->user)->clear();
+        CampaignCache::campaign($campaignRoleUser->campaignRole->campaign)->clear();
     }
 }

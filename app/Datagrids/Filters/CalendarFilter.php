@@ -7,7 +7,7 @@ class CalendarFilter extends DatagridFilter
     /**
      * Filters available for calendars
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')

@@ -40,4 +40,11 @@ return [
         ],
     ],
     'tags'          => [],
+    'transfer'      => [
+        'description'   => 'Verschiebe das Objeklt dieses Tags in ein anderes Tag.',
+        'fail'          => 'Die Übertragung von Objekten von :tag nach :newTag ist fehlgeschlagen',
+        'success'       => 'Objekte wurden erfolgreich von :tag nach :newTag übertragen',
+        'title'         => 'übertrage :name',
+        'transfer'      => 'übertrage',
+    ],
 ];

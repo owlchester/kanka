@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class StartController extends Controller
 {
-    /**
-     * @var string
-     */
     protected string $view = 'campaigns';
 
     /**
@@ -25,7 +22,6 @@ class StartController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -47,7 +43,6 @@ class StartController extends Controller
     }
 
     /**
-     * @param StoreCampaign $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -59,10 +54,7 @@ class StartController extends Controller
         $options = $request->all();
         $options['entry'] = '';
         $options['excerpt'] = '';
-        $campaign = Campaign::create($options);
-
-        $user = auth()->user();
-        $user->save();
+        Campaign::create($options);
 
         if ($first) {
             return redirect()->route('home');

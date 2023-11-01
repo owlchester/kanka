@@ -27,7 +27,6 @@ return [
     'title'         => 'Galerija kampanje :campaign',
     'update'        => [
         'success'   => 'Slika modificirana.',
-        'title'     => 'Detalji slike',
     ],
     'uploader'      => [
         'add'           => 'Dodaj novo',

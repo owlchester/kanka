@@ -10,10 +10,12 @@ $targets = [
     @include('cruds.fields.name', ['trans' => 'conversations'])
     @include('cruds.fields.type', ['base' => \App\Models\Conversation::class, 'trans' => 'conversations'])
 
-    <div class="field-participants required ">
-        <label>{{ __('conversations.fields.participants') }}</label>
-        {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => 'form-control']) !!}
-    </div>
+    <x-forms.field
+        field="participants"
+        :required="true"
+        :label="__('conversations.fields.participants')">
+        {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => 'w-full']) !!}
+    </x-forms.field>
 
     @include('cruds.fields.tags')
     @include('cruds.fields.closed')

@@ -34,8 +34,6 @@ class PostLayout extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param int $type
      * @return Builder
      */
     public function scopeEntity(Builder $query, int $type)
@@ -44,7 +42,6 @@ class PostLayout extends Model
     }
 
     /**
-     * @return string
      */
     public function name(): string
     {

@@ -42,7 +42,6 @@ return [
     'title'         => 'Galéria kampane :campaign',
     'update'        => [
         'success'   => 'Obrázok zmenený.',
-        'title'     => 'Detaily obrázku',
     ],
     'uploader'      => [
         'add'           => 'Pridať nový',

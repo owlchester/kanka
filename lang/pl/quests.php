@@ -23,11 +23,6 @@ return [
             'entity_or_name'    => 'Wybierz inny element kampanii albo nadaj nazwę temu elementowi.',
             'name'              => 'Nazwa',
         ],
-        'warning'   => [
-            'editing'   => [
-                'description'   => 'Najwyraźniej ktoś inny edytuje właśnie to zadanie! Chcesz się wycofać czy zignorować to ostrzeżenie, ryzykując utratę danych? Członkowie obecnie edytujący zadanie:',
-            ],
-        ],
     ],
     'fields'        => [
         'copy_elements' => 'Kopiuj elementy związane z zadaniem',

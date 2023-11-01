@@ -16,11 +16,13 @@ if ($layout && !empty($campaign)) {
 ?>
 
 @if (!empty($template))
-    @include($template->view())
+    <x-box css="box-entity-attributes">
+        @include($template->view())
+    </x-box>
 @elseif (!empty($marketplaceTemplate))
-    @include('cruds.attributes.marketplace_template', ['plugin' => $marketplaceTemplate])
+    @include('entities.pages.attributes.rendering.marketplace', ['plugin' => $marketplaceTemplate])
 @else
-    @include('entities.pages.attributes._attributes', [
+    @include('entities.pages.attributes.rendering.default', [
         'attributes' => $entity->attributes()->with('entity')->ordered()->get()
     ])
 @endif
@@ -32,9 +34,5 @@ if ($layout && !empty($campaign)) {
 
 @section('modals')
     @parent
-    <div class="modal fade" id="live-attribute-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100"></div>
-        </div>
-    </div>
+    <x-dialog id="live-attribute-dialog" :loading="true"></x-dialog>
 @endsection

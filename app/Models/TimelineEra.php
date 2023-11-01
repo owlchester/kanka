@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class TimelineEra
@@ -29,6 +31,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class TimelineEra extends Model
 {
+    use HasFactory;
     use SortableTrait;
 
     /** @var string[]  */
@@ -42,7 +45,7 @@ class TimelineEra extends Model
         'is_collapsed',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'name',
         'position',
         'abbreviation',
@@ -77,7 +80,6 @@ class TimelineEra extends Model
     }
 
     /**
-     * @param Builder $query
      * @return Builder
      */
     public function scopeOrdered(Builder $query)
@@ -90,7 +92,6 @@ class TimelineEra extends Model
     }
 
     /**
-     * @return bool
      */
     public function collapsed(): bool
     {
@@ -99,7 +100,6 @@ class TimelineEra extends Model
 
     /**
      * Get the age header of the era
-     * @return string
      */
     public function ages(): string
     {
@@ -121,7 +121,6 @@ class TimelineEra extends Model
     }
 
     /**
-     * @return bool
      */
     public function hasEntity(): bool
     {
@@ -130,7 +129,6 @@ class TimelineEra extends Model
 
     /**
      * Functions for the datagrid2
-     * @return string
      */
     public function url(string $where): string
     {
@@ -138,22 +136,20 @@ class TimelineEra extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->timeline_id, $this->id];
+        return $options + ['timeline' => $this->timeline_id, 'timeline_era' => $this->id];
     }
 
     /**
      * Override the get link
-     * @return string
      */
     public function getLink(): string
     {
-        return route('timelines.timeline_eras.edit', ['timeline' => $this->timeline_id, $this->id]);
+        $campaign = CampaignLocalization::getCampaign();
+        return route('timelines.timeline_eras.edit', [$campaign, 'timeline' => $this->timeline_id, $this->id]);
     }
 
     /**
      * Override the tooltiped link for the datagrid
-     * @param string|null $displayName
-     * @return string
      */
     public function tooltipedLink(string $displayName = null): string
     {
@@ -163,7 +159,6 @@ class TimelineEra extends Model
     }
 
     /**
-     * @return mixed
      */
     public function getEntryForEditionAttribute()
     {

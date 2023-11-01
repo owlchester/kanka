@@ -12,13 +12,14 @@
     @php $allowClear = false;@endphp
 @endif
 <x-forms.foreign
+    :campaign="$campaign"
     :name="$name ?? 'entity_id'"
     :key="$key ?? 'entity'"
     :required="$required ?? false"
     :label="$label ?? null"
     :placeholder="$placeholder ?? null"
     :allowClear="$allowClear ?? true"
-    :route="route($route ?? 'search.entities-with-relations', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route($route ?? 'search.entities-with-relations', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :selected="$preset"
     :helper="$helper ?? null"
     :dropdownParent="$dropdownParent ?? null">

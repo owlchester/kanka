@@ -1,6 +1,7 @@
-{{ csrf_field() }}
-<div class="field-abilities mb-5 required">
-    @include('components.form.abilities', ['options' => ['exclude-entity' => $entity->id]])
-</div>
+<x-grid type="1/1">
+    <x-forms.field field="abilities" :required="true" >
+        @include('components.form.abilities', ['options' => ['exclude-entity' => $entity->id], 'dropdownParent' => '#abilities-dialog'])
+    </x-forms.field>
 
-@include('cruds.fields.visibility_id')
+    @include('cruds.fields.visibility_id')
+</x-grid>

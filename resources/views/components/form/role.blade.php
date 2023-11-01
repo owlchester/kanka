@@ -8,7 +8,7 @@ $dropdownParent = Arr::get($options, 'dropdownParent');
 
 ?>
 <select name="role" id="role"
-    class="form-control select2 form-role" style="width: 100%"
-    data-url="{{ route('roles.find') }}"
+    class=" select2 form-role w-100"
+    data-url="{{ route('roles.find', $campaign) }}"
     @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif>
 </select>

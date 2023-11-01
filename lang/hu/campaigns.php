@@ -127,7 +127,6 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'help'          => 'Segítség',
             'remove'        => 'Eltávolítás a kampányból',
             'switch'        => 'Váltás',
             'switch-back'   => 'Vissza a saját felhasználómhoz',
@@ -145,10 +144,8 @@ TEXT
             'role'          => 'Szerep',
             'roles'         => 'Szerep',
         ],
-        'help'                  => 'Nincs korlátozva, hogy hány tagja lehet egy kampánynak, és mint a kampány Adminja, el is távolíthatod azokat a tagokat, akik már nem aktívak.',
         'helpers'               => [
-            'admin' => 'A kampány Adminjaként lehetőséged van meghívni új felhasználókat, eltávolítani inaktívakat, valamint a jogosultságaikat szerkeszteni. Hogy letesztelhesd egy tag jogosultságait, használd a Váltás gombot. További információt erről a funkcióról az alábbi linken olvashatsz :link',
-            'switch'=> 'Válts erre a felhasználóra',
+            'switch'    => 'Válts erre a felhasználóra',
         ],
         'impersonating'         => [
             'message'   => 'Jelenleg úgy látod ezt a kampányt, mintha egy másik felhasználó lennél. Néhány funkció nem elérhető, de a többi pontosan úgy viselkedik, ahogy a felhasználó látná. A visszalépéshez kattints a "Vissza a saját felhasználómhoz" gombra, ami a Kijelentkezés gomb helyén található.',
@@ -305,7 +302,6 @@ TEXT
             'journals'      => 'A karakterek által írt hozzászólások vagy a játékülésre való előkészület a mesélő részéről.',
             'locations'     => 'Bolygók, síkok, kontinensek, folyók, államok, települések, templomok, kocsmák.',
             'maps'          => 'Tölts fel több rétegű térképeket, melyek különböző entitásokra mutatnak a kampányodban.',
-            'menu_links'    => 'Egyedi menülinkek az oldalsó sávban.',
             'notes'         => 'Ismeretek, egyházak, történelem, mágia, fajok.',
             'organisations' => 'Kultuszok, katonai egységek, frakciók, céhek.',
             'quests'        => 'Számon tudod tartani a különböző küldetéseket a karakterekhez és a helyszínekhez kapcsolódóan.',
@@ -335,7 +331,6 @@ TEXT
             'plugins'           => 'Pluginok',
             'recovery'          => 'Visszaállítás',
             'roles'             => 'Szerepek',
-            'settings'          => 'Modulok',
             'styles'            => 'Témázás',
         ],
         'title'     => ':name kampány',

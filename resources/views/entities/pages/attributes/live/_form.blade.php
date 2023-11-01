@@ -1,0 +1,21 @@
+<x-forms.field field="name">
+    <label for="name">{!! $attribute->name() !!}</label>
+    @if ($attribute->isCheckbox())
+        <input type="hidden" name="value" value="" />
+        <input type="checkbox" name="value" @if($attribute->value) checked="checked" @endif />
+    @elseif ($attribute->isText())
+        {!! Form::textarea('value', $attribute->value, ['class' => '', 'rows' => 4]) !!}
+    @elseif ($attribute->isNumber())
+        <input type="number" name="value" class="" maxlength="20" value="{{ $attribute->value }}"
+               @if ($attribute->validConstraints()) max="{{ $attribute->numberMax() }}" min="{{ $attribute->numberMin() }}" @endif />
+    @elseif ($attribute->validConstraints())
+        <select name="value" class="">
+            @foreach ($attribute->listRange() as $option)
+                <option value="{{ $option }}" @if ($option == $attribute->value) selected="selected" @endif>{{ \App\Facades\Mentions::onlyName()->mapText($option) }}</option>
+            @endforeach
+        </select>
+        <x-helper>{{ __('entities/attributes.ranges.text', ['options' => $attribute->listRangeText()]) }}</x-helper>
+    @else
+        <input type="text" name="value" class="" maxlength="191" value="{{ $attribute->value }}" />
+    @endif
+</x-forms.field>

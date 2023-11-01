@@ -2,11 +2,12 @@
 
 namespace App\Services\Plugins;
 
+use App\Enums\Visibility;
 use App\Models\CampaignPlugin;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
-use App\Models\EntityNote;
+use App\Models\Post;
 use App\Models\EntityTag;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
@@ -29,10 +30,10 @@ class ImporterService
 
     protected Plugin $plugin;
 
-    /** @var array */
+    /**  */
     protected array $loadedRelations = [];
 
-    /** @var array */
+    /**  */
     protected array $loadedPosts = [];
 
     /** @var null|Collection */
@@ -61,7 +62,6 @@ class ImporterService
     protected mixed $model;
 
     /**
-     * @param Plugin $plugin
      * @return $this
      */
     public function plugin(Plugin $plugin): self
@@ -71,7 +71,6 @@ class ImporterService
     }
 
     /**
-     * @param array $options
      * @return $this
      */
     public function options(array $options): self
@@ -125,7 +124,6 @@ class ImporterService
     }
 
     /**
-     * @param PluginVersionEntity $pluginEntity
      */
     protected function importModel(PluginVersionEntity $pluginEntity)
     {
@@ -175,7 +173,6 @@ class ImporterService
     }
 
     /**
-     * @param PluginVersionEntity $pluginEntity
      */
     protected function importFields(PluginVersionEntity $pluginEntity)
     {
@@ -221,7 +218,7 @@ class ImporterService
         //dump("field $field => $value");
         // parent mapping
         if ($field == 'location_id' && $pluginEntity->type_id == config('entities.ids.location')) {
-            $field = 'parent_location_id';
+            $field = 'location_id';
         } elseif ($field == 'gender') {
             $field = 'sex';
         }
@@ -292,9 +289,6 @@ class ImporterService
     }
     /**
      * Create or update a relation
-     * @param array $data
-     * @param string $uuid
-     * @param int $ownerId
      */
     protected function saveRelation(array $data, string $uuid, int $ownerId)
     {
@@ -325,10 +319,6 @@ class ImporterService
     }
 
     /**
-     * @param array $data
-     * @param string $uuid
-     * @param int $characterId
-     * @param PluginVersionEntity $pluginEntity
      */
     protected function saveOrganisationMember(array $data, string $uuid, int $characterId, PluginVersionEntity $pluginEntity)
     {
@@ -359,10 +349,6 @@ class ImporterService
     }
 
     /**
-     * @param array $data
-     * @param string $uuid
-     * @param int $questId
-     * @param PluginVersionEntity $pluginEntity
      */
     protected function saveQuestElement(array $data, string $uuid, int $questId, PluginVersionEntity $pluginEntity)
     {
@@ -377,15 +363,13 @@ class ImporterService
         try {
             $element = QuestElement::where('quest_id', $questId)->where('entity_id', $target)->first();
             if (empty($element)) {
-                /** @var QuestElement $element */
                 $element = new QuestElement();
                 $element->quest_id = $questId;
                 $element->entity_id = $target;
             }
             $element->role = Arr::get($data, 'role', null);
             $element->description = $this->mentions(Arr::get($data, 'description', ''));
-            $element->visibility = 'all';
-            //dd($element);
+            $element->visibility_id = Visibility::All;
             $element->save();
         } catch (Exception $e) {
             Log::error('Invalid quest element ' . $uuid . ' for plugin entity #' . $pluginEntity->id
@@ -394,8 +378,6 @@ class ImporterService
     }
 
     /**
-     * @param MiscModel $model
-     * @param PluginVersionEntity $entity
      * @return MiscModel
      */
     protected function importImage(MiscModel $model, PluginVersionEntity $entity)
@@ -420,8 +402,6 @@ class ImporterService
     }
 
     /**
-     * @param string $block
-     * @param array|null $values
      */
     protected function importBlock(string $block, array $values = null)
     {
@@ -488,7 +468,6 @@ class ImporterService
         }
     }
     /**
-     * @param int $id
      */
     protected function getEntityId(int $id)
     {
@@ -497,7 +476,6 @@ class ImporterService
 
     /**
      * Load
-     * @param MiscModel $misc
      */
     protected function loadRelations(MiscModel $misc)
     {
@@ -512,24 +490,21 @@ class ImporterService
     }
 
     /**
-     * @param int $entityId
      */
     protected function loadPosts(int $entityId)
     {
         $this->loadedPosts = [];
-        $posts = EntityNote::where('entity_id', $entityId)
+        $posts = Post::where('entity_id', $entityId)
             ->whereNotNull('marketplace_uuid')
             ->get();
 
-        /** @var EntityNote $post */
+        /** @var Post $post */
         foreach ($posts as $post) {
             $this->loadedPosts[$post->marketplace_uuid] = $post;
         }
     }
 
     /**
-     * @param string $text
-     * @return string
      */
     protected function mentions(string $text): string
     {
@@ -545,7 +520,6 @@ class ImporterService
 
     /**
      * List of created entities
-     * @return string
      */
     public function created(): string
     {
@@ -555,7 +529,6 @@ class ImporterService
 
     /**
      * List of created entities
-     * @return string
      */
     public function updated(): string
     {
@@ -563,8 +536,6 @@ class ImporterService
     }
 
     /**
-     * @param PluginVersionEntity $entity
-     * @param int $entityId
      */
     protected function importPosts(PluginVersionEntity $entity, int $entityId)
     {
@@ -577,14 +548,26 @@ class ImporterService
         foreach ($entity->posts as $uuid => $data) {
             $post = $this->loadedPosts[$uuid] ?? null;
             if (empty($post)) {
-                $post = new EntityNote();
+                $post = new Post();
                 $post->entity_id = $entityId;
                 $post->marketplace_uuid = $uuid;
             }
 
+            $visibility = \App\Enums\Visibility::All->value;
+
+            if (Arr::get($data, 'visibility') == 'admin') {
+                $visibility = \App\Enums\Visibility::Admin->value;
+            } elseif (Arr::get($data, 'visibility') == 'admin-self') {
+                $visibility = \App\Enums\Visibility::AdminSelf->value;
+            } elseif (Arr::get($data, 'visibility') == 'members') {
+                $visibility = \App\Enums\Visibility::Member->value;
+            } elseif (Arr::get($data, 'visibility') == 'self') {
+                $visibility = \App\Enums\Visibility::Self->value;
+            }
+
             $post->name = Arr::get($data, 'name');
             $post->entry = $this->mentions(Arr::get($data, 'entry'));
-            $post->visibility = Arr::get($data, 'visibility');
+            $post->visibility_id = $visibility;
             $post->save();
         }
     }

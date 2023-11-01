@@ -12,12 +12,12 @@
                 <div class="flex p-4 gap-2 items-center border-b h-20 {{ $element->colourClass() }}">
                     @if ($element->entity)
                         <div class="widget-user-image">
-                            <img class="flex-none entity-image rounded-full pull-left" src="{{ $element->entity->avatarSize(40)->avatarV2() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
+                            <img class="flex-none entity-image rounded-full pull-left" src="{{ Avatar::entity($element->entity)->cached()->size(40)->thumbnail() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
                         </div>
                     @endif
 
                     <div class="grow">
-                        <h3 class="widget-user-username m-0 text-2xl ">
+                        <h3 class="widget-user-username text-2xl ">
                             @if($element->entity)
                                 @if ($element->entity->is_private)
                                     <i class="fa-solid fa-lock" aria-hidden="true" aria-label="{{ __('crud.is_private') }}" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
@@ -45,7 +45,7 @@
                         <div class="flex gap-2 items-center">
                             <x-button.delete-confirm target="#delete-form-{{ $element->id }}" size="sm" />
 
-                            <a href="{{ route('quests.quest_elements.edit', [$model, $element]) }}" class="btn2 btn-sm btn-primary">
+                            <a href="{{ route('quests.quest_elements.edit', [$campaign, $model, $element]) }}" class="btn2 btn-sm btn-primary">
                                 <x-icon class="edit"></x-icon>
                                 {{ __('crud.edit') }}
                             </a>
@@ -55,6 +55,7 @@
                             'method' => 'DELETE',
                             'route' => [
                                 'quests.quest_elements.destroy',
+                                $campaign,
                                 $model,
                                 $element
                             ],

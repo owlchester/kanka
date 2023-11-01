@@ -1,7 +1,7 @@
 .join {
     display: inline-flex;
     align-items: stretch;
-    border-radius: var(--rounded-btn,.5rem);
+    border-radius: var(--rounded-btn, .5rem);
 
     .join-item:first-child:not(:last-child), :first-child:not(:last-child) .join-item {
         border-top-right-radius: 0;
@@ -19,51 +19,48 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         border-right: none;
+        min-height: 2.3rem;
     }
 
     .quick-creator-subform.join-item {
-        height: 2.2rem;
+        height: 2.3rem;
         padding-left:.75rem;
         padding-right:.75rem;
-        min-height:2.2rem;
+        min-height:2.3rem;
         font-size:1rem
-    }
-
-    .select2 {
-        line-height: 1.1rem;
     }
 }
 
 .btn2 {
-    display:inline-flex;
-    flex-shrink:0;
-    cursor:pointer;
-    -webkit-user-select:none;
-    user-select:none;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    border-color:transparent;
-    border-color:hsl(var(--b2)/var(--tw-border-opacity));
-    text-align:center;
-    transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;
-    transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
-    transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
-    transition-duration:.2s;
-    transition-timing-function:cubic-bezier(.4,0,.2,1);
-    border-radius:var(--rounded-btn,.25rem);
-    padding-left:1rem;
-    padding-right:1rem;
-    font-size:.875rem;
-    line-height:1.25rem;
-    line-height:1em;
-    min-height:3rem;
-    gap:.5rem;
+    display: inline-flex;
+    flex-shrink: 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-color: transparent;
+    border-color: hsl(var(--b2)/var(--tw-border-opacity));
+    text-align: center;
+    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;
+    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
+    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    border-radius: var(--rounded-btn,.25rem);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    line-height: 1em;
+    min-height: 3rem;
+    gap: .5rem;
     //font-weight:600;
-    text-decoration-line:none;
-    border-width:var(--border-btn,1px);
-    animation:button-pop var(--animation-btn,.25s) ease-out;
-    text-transform:var(--btn-text-case,uppercase);
+    text-decoration-line: none;
+    border-width: var(--border-btn, 0px);
+    animation: button-pop var(--animation-btn,.25s) ease-out;
+    text-transform: var(--btn-text-case,uppercase);
     --tw-border-opacity: 1;
     --tw-bg-opacity: 1;
     background-color:hsl(var(--b2)/var(--tw-bg-opacity));
@@ -184,7 +181,8 @@
     .btn2.btn-link:hover {
         border-color:transparent;
         background-color:transparent;
-        text-decoration-line:underline
+        text-decoration-line:underline;
+        color: hsl(var(--pf)/1);
     }
     .btn2.btn-outline:hover {
         --tw-border-opacity: 1;

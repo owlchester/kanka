@@ -29,7 +29,7 @@ class TimelineElementResource extends JsonResource
             'date' => $model->date,
             'colour' => $model->colour,
             'position' => $model->position,
-            'visibility' => $model->visibility,
+            'visibility_id' => $model->visibility_id,
             'icon' => $model->icon,
             'is_collapsed' => $model->collapsed(),
             'use_entity_entry' => $model->use_entity_entry,

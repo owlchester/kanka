@@ -10,8 +10,11 @@ class Dialog extends Component
 {
     public string $id;
     public ?string $title;
+    public ?string $footer;
     public bool $full;
     public bool $loading;
+    public bool $dismissible = true;
+    public array $form;
 
     /**
      * Create a new component instance.
@@ -19,13 +22,19 @@ class Dialog extends Component
     public function __construct(
         string $title = null,
         string $id = null,
+        string $footer = null,
+        array $form = [],
         bool $full = false,
         bool $loading = false,
+        bool $dismissible = true,
     ) {
         $this->id = $id ?? uniqid();
         $this->title = $title;
         $this->full = $full;
         $this->loading = $loading;
+        $this->footer = $footer;
+        $this->dismissible = $dismissible;
+        $this->form = $form;
     }
 
     /**

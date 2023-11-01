@@ -17,11 +17,12 @@ foreach ($attributes as $attribute) {
     $existingAttributeNames[] = $attribute->name;
 }
 ?>
+<x-grid type="1/1">
 
 @include('cruds.fields.attribute_template')
 
 <div id="entity-attributes-all">
-    <div class="entity-attributes sortable-elements" data-handle=".sortable-handler">
+    <div class="flex flex-col gap-2 entity-attributes sortable-elements" data-handle=".sortable-handler" id="add_attribute_target">
         @foreach ($attributes as $attribute)
             @if (!$attribute->is_hidden)
                 @include('cruds.forms.attributes._attribute')
@@ -32,14 +33,13 @@ foreach ($attributes as $attribute) {
                 @include('cruds.forms.attributes._template')
             @endforeach
         @endif
-        <div id="add_attribute_target"></div>
     </div>
 </div>
 <input type="hidden" name="save-attributes" value="1" />
 
 @include('cruds.forms.attributes._blocks', ['existing' => count($attributes)])
 @include('cruds.forms.attributes._buttons', ['model' => isset($entity) ? $entity->child : null, 'existing' => count($attributes)])
-
+</x-grid>
 @section('scripts')
     @parent
     @vite('resources/js/attributes.js')

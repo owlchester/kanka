@@ -11,7 +11,6 @@ class ImageObserver
     use PurifiableTrait;
 
     /**
-     * @param Image $image
      */
     public function saving(Image $image)
     {
@@ -30,21 +29,19 @@ class ImageObserver
         }
     }
     /**
-     * @param Image $image
      */
     public function deleted(Image $image)
     {
         Storage::disk(config('images.disk'))
             ->delete($image->path);
 
-        CampaignCache::clearDefaultImages();
+        CampaignCache::clear();
     }
 
     /**
-     * @param Image $image
      */
     public function saved(Image $image)
     {
-        CampaignCache::clearDefaultImages();
+        CampaignCache::clear();
     }
 }

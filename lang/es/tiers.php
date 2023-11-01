@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'actions'   => [
+        'subscribe' => [
+            'monthly'   => ':tier mensual',
+            'yearly'    => ':tier anual',
+        ],
+    ],
     'current'   => 'Tu suscripción actual',
     'features'  => [
         'api_requests'      => ':amount solicitudes API / minuto',
@@ -16,5 +22,16 @@ return [
         'pagination'        => 'Máximo de hasta :amount resultados en una página',
         'vote_influence'    => 'Influencia en las votaciones comunitarias',
     ],
+    'periods'   => [
+        'monthly'   => 'Mensual',
+        'yearly'    => 'Anual',
+    ],
     'pricing'   => ':amount / mes :currency',
+    'ribbons'   => [
+        'best-value'    => 'Mejor relación calidad-precio',
+        'popular'       => 'Popular',
+    ],
+    'toggle'    => [
+        'yearly'    => 'Anual (¡un mes gratis!)',
+    ],
 ];

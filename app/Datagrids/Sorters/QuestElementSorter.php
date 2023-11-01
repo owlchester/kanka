@@ -11,7 +11,6 @@ class QuestElementSorter extends DatagridSorter
     public $default = 'role';
 
     /**
-     * @var array
      */
     public array $options = [
         'entity.name' => 'crud.fields.name',

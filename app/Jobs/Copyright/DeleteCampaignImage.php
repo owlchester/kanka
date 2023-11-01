@@ -34,7 +34,6 @@ class DeleteCampaignImage implements ShouldQueue
 
     private function deleteImage()
     {
-        $service = app()->make(\App\Services\CampaignService::class);
         $campaign = Campaign::find($this->campaignId);
 
         if (empty($campaign) || !(Storage::exists($campaign->image))) {

@@ -14,6 +14,7 @@ class MapMarkerPolicy
     {
         return $user && $user->can('update', $mapMarker->map);
     }
+
     public function delete(?User $user, MapMarker $mapMarker)
     {
         return $user && $user->can('update', $mapMarker->map);

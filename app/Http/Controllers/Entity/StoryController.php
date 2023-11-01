@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderStories;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\StoryService;
 use App\Traits\GuestAuthTrait;
@@ -20,16 +20,17 @@ class StoryController extends Controller
         $this->service = $service;
     }
 
-    public function edit(Entity $entity)
+    public function edit(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
         return view('entities.pages.story.reorder', compact(
+            'campaign',
             'entity'
         ));
     }
 
-    public function save(ReorderStories $request, Entity $entity)
+    public function save(ReorderStories $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -38,17 +39,16 @@ class StoryController extends Controller
             ->reorder($request);
 
         return redirect()
-            ->to($entity->url('show'))
+            ->to($entity->url())
             ->with('success', __('entities/story.reorder.success'));
     }
 
     /**
      * Load more posts to display to the user (partial view)
      */
-    public function more(Entity $entity)
+    public function more(Campaign $campaign, Entity $entity)
     {
         $this->authorize('view', $entity->child);
-        $campaign = CampaignLocalization::getCampaign();
 
         $posts = $entity->posts()->ordered()->paginate(15);
 
@@ -57,6 +57,6 @@ class StoryController extends Controller
             ->with('model', $entity->child)
             ->with('more', true)
             ->with('campaign', $campaign)
-            ->with('pinnedPosts', $posts);
+            ->with('posts', $posts);
     }
 }

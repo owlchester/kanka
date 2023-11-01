@@ -29,11 +29,11 @@ class Badge extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.badge')
-            ->with('colour', $this->colour());
+        return view('components.badge');
+        // ->with('colour', $this->colour());
     }
 
-    protected function colour(): string
+    public function colour(): string
     {
         if ($this->type === 'default') {
             return '';

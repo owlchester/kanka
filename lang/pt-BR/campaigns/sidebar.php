@@ -6,10 +6,7 @@ return [
     ],
     'call-to-action'    => 'Personalize a ordem, os ícones e os nomes dos elementos na barra lateral da campanha.',
     'helpers'           => [
-        'here'          => 'em nossa documentação',
-        'icons'         => 'Use a classe de ícones em :link.',
         'reordering'    => 'Reordene a barra lateral arrastando e soltando os ícones do lado esquerdo.',
-        'setup'         => 'Personalize a ordem, os ícones e os nomes dos elementos na barra lateral da campanha. Você sempre pode redefinir para a configuração padrão usando o botão :reset no final da página.',
     ],
     'reset'             => [
         'success'   => 'Redefinição da configuração da barra lateral da campanha.',

@@ -9,16 +9,25 @@ if (!empty($id)) {
 
 @endphp
 
-<li class="@if ($dropType == $type) disabled @endif">
-    @if ($dropType == $type)
-        <a href="#">
-            <i class="fa-solid fa-check" aria-hidden="true"></i>
-            {!! $trans !!}
-        </a>
-    @else
-    <a href="#" class="" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => $dropType, 'mode' => $mode ?? null]) }}" data-entity-type="character" data-type="inline">
-        <i class="fa-solid" aria-hidden="true"></i>
+@if ($dropType == $type)
+    <x-dropdowns.item
+        css="disabled"
+        link="#"
+        icon="check">
         {!! $trans !!}
-    </a>
-    @endif
-</li>
+    </x-dropdowns.item>
+@else
+
+@endif
+@php $data = [
+     'toggle' => 'entity-creator',
+     'url' => route('entity-creator.form', [$campaign, 'type' => $dropType, 'mode' => $mode ?? null]),
+     'entity-type' => 'entity',
+     'type' => 'inline',
+]; @endphp
+<x-dropdowns.item
+    link="#"
+    :data="$data"
+    icon="fa-solid">
+{!! $trans !!}
+</x-dropdowns.item>

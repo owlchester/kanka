@@ -4,10 +4,10 @@ namespace App\Renderers\Layouts;
 
 abstract class Layout
 {
-    public const ONLY_DESKTOP = 'hidden-xs hidden-sm';
+    public const ONLY_DESKTOP = 'hidden lg:table-cell';
 
     public const ACTION_EDIT = 'edit';
-    public const ACTION_EDIT_AJAX = 'edit-ajax';
+    public const ACTION_EDIT_DIALOG = 'edit-dialog';
     public const ACTION_DELETE = 'delete';
     public const ACTION_COPY = 'copy';
 
@@ -30,7 +30,6 @@ abstract class Layout
     }
 
     /**
-     * @return array
      */
     public function visibleColumns(): array
     {

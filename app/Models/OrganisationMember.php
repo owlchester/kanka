@@ -59,7 +59,7 @@ class OrganisationMember extends Model
         'parent_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'organisation.name',
         'character.name',
         'parent_id',
@@ -91,8 +91,12 @@ class OrganisationMember extends Model
         return $this->belongsTo('App\Models\OrganisationMember', 'parent_id');
     }
 
+    public function tags()
+    {
+        return $this->organisation->entity->tags;
+    }
+
     /**
-     * @return bool
      */
     public function pinned(): bool
     {
@@ -100,7 +104,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function pinnedToCharacter(): bool
     {
@@ -108,7 +111,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function pinnedToOrganisation(): bool
     {
@@ -116,7 +118,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function pinnedToBoth(): bool
     {
@@ -124,7 +125,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function inactive(): bool
     {
@@ -132,7 +132,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return bool
      */
     public function unknown(): bool
     {
@@ -140,8 +139,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param int $pin
      * @return Builder
      */
     public function scopePinned(Builder $query, int $pin)
@@ -151,7 +148,6 @@ class OrganisationMember extends Model
 
     /**
      * Datagrid2: delete name
-     * @return string
      */
     public function deleteName(): string
     {
@@ -160,7 +156,6 @@ class OrganisationMember extends Model
 
     /**
      * Foreign selected
-     * @return string
      */
     public function getNameAttribute(): string
     {
@@ -169,8 +164,6 @@ class OrganisationMember extends Model
 
     /**
      * Datagrid2: url
-     * @param string $where
-     * @return string
      */
     public function url(string $where): string
     {
@@ -179,17 +172,13 @@ class OrganisationMember extends Model
 
     /**
      * Datagrid2: route options
-     * @param array $options
-     * @return array
      */
     public function routeParams(array $options = []): array
     {
-        return array_merge([$this->character_id, $this->id], $options);
+        return $options + ['character' => $this->character, 'character_organisation' => $this];
     }
 
     /**
-     * @param Builder $query
-     * @return Builder
      */
     public function scopeRows(Builder $query): Builder
     {

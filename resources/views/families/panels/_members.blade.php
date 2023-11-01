@@ -5,6 +5,7 @@
  */
 $allMembers = true;
 $datagridOptions = [
+    $campaign,
     $model,
     'init' => 1
 ];
@@ -14,26 +15,27 @@ if (request()->has('family_id')) {
 }
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
-<div class="flex gap-2 items-center mb-2">
-    <h3 class="grow m-0">
+<div class="flex gap-2 items-center">
+    <h3 class="grow ">
         {{ __('families.show.tabs.members') }}
     </h3>
-    <div class="flex gap-2 overflow-auto">
+    <div class="flex gap-2 flex-wrap overflow-auto">
         @if (!$allMembers)
-            <a href="{{ route('families.show', [$model]) }}" class="btn2 btn-sm">
+            <a href="{{ $entity->url() }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span> ({{ $model->allMembers()->count() }})
+                <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span> ({{ $model->allMembers()->count() }})
             </a>
         @else
-            <a href="{{ route('families.show', [$model, 'family_id' => $model->id]) }}" class="btn2 btn-sm">
+            <a href="{{ route('entities.show', [$campaign, $entity, 'family_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span> ({{ $model->members()->count() }})
+                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span> ({{ $model->members()->count() }})
             </a>
         @endif
         @can('update', $model)
-            <a href="{{ route('families.members.create', ['family' => $model->id]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('families.members.create', $model->id) }}">
-                <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
+            <a href="{{ route('families.members.create', [$campaign, 'family' => $model->id]) }}" class="btn2 btn-primary btn-sm"
+               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('families.members.create', [$campaign, $model->id]) }}">
+                <x-icon class="plus"></x-icon>
+                <span class="hidden xl:inline">{{ __('organisations.members.actions.add') }}</span>
             </a>
         @endcan
     </div>

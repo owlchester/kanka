@@ -3,87 +3,67 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Exceptions\EntityFileException;
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAsset;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Services\EntityFileService;
 use App\Traits\GuestAuthTrait;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 
 class AssetController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
-    public function __construct()
-    {
-        //$this->middleware('campaign.boosted');
-    }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         $assets = $entity->assets;
 
         return view('entities.pages.assets.index', compact(
+            'campaign',
             'entity',
             'assets'
         ));
     }
 
-    /**
-     * No unique "show", redirect
-     * @param Entity $entity
-     * @param EntityAsset $entityAsset
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function show(Entity $entity, EntityAsset $entityAsset)
+    public function show(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
-        return redirect()->route('entities.entity_assets.index', $entity);
+        return redirect()->route('entities.entity_assets.index', [$campaign, $entity]);
     }
 
-    public function create(Entity $entity)
+    public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
         $typeID = (int) request()->get('type');
         if ($typeID == EntityAsset::TYPE_FILE) {
-            return $this->createFile($entity);
+            return $this->createFile($campaign, $entity);
         } elseif ($typeID == EntityAsset::TYPE_LINK) {
-            return $this->createLink($entity);
+            return $this->createLink($campaign, $entity);
         } elseif ($typeID == EntityAsset::TYPE_ALIAS) {
-            return $this->createAlias($entity);
+            return $this->createAlias($campaign, $entity);
         }
         abort(404);
     }
 
-    public function store(StoreEntityAsset $request, Entity $entity)
+    public function store(StoreEntityAsset $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = [];
         $type = '';
         $typeId = null;
         if (request()->get('type_id') == EntityAsset::TYPE_FILE) {
-            return $this->storeFile($request, $entity);
+            return $this->storeFile($request, $campaign, $entity);
         } elseif (request()->get('type_id') == EntityAsset::TYPE_LINK) {
             $data = $request->only(['name', 'position', 'visibility_id', 'metadata']);
             $type = 'links';
@@ -99,16 +79,15 @@ class AssetController extends Controller
         $asset = EntityAsset::create($data);
 
         return redirect()
-            ->route('entities.entity_assets.index', $entity)
+            ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __(
                 'entities/' . $type . '.create.success',
                 ['name' => $asset->name, 'entity' => $entity->name]
             ));
     }
 
-    protected function storeFile(StoreEntityAsset $request, Entity $entity)
+    protected function storeFile(StoreEntityAsset $request, Campaign $campaign, Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
         /** @var EntityFileService $service */
         $service = app()->make(EntityFileService::class);
 
@@ -119,20 +98,20 @@ class AssetController extends Controller
                 ->upload($request);
 
             return redirect()
-                ->route('entities.entity_assets.index', $entity)
+                ->route('entities.entity_assets.index', [$campaign, $entity])
                 ->with('success', __('entities/files.create.success', ['file' => $file->name]));
         } catch (EntityFileException $e) {
             return redirect()
-                ->route('entities.entity_assets.index', $entity)
+                ->route('entities.entity_assets.index', [$campaign, $entity])
                 ->with('error', __('crud.files.errors.' . $e->getMessage(), ['max' => $campaign->maxEntityFiles()]));
         } catch (Exception $e) {
             return redirect()
-                ->route('entities.entity_assets.index', $entity)
+                ->route('entities.entity_assets.index', [$campaign, $entity])
                 ->with('error', $e->getMessage());
         }
     }
 
-    public function edit(Entity $entity, EntityAsset $entityAsset)
+    public function edit(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('update', $entity->child);
 
@@ -144,13 +123,17 @@ class AssetController extends Controller
         }
 
         return view('entities.pages.' . $file . '.update')
+            ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('entityAsset', $entityAsset);
     }
 
-    public function update(StoreEntityAsset $request, Entity $entity, EntityAsset $entityAsset)
+    public function update(StoreEntityAsset $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $type = 'files';
         if ($entityAsset->isAlias()) {
@@ -172,12 +155,12 @@ class AssetController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.entity_assets.index', $entity)
+            ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __('entities/' . $type . '.update.success', ['name' => $entityAsset->name, 'entity' => $entity->name]));
     }
 
 
-    public function destroy(Request $request, Entity $entity, EntityAsset $entityAsset)
+    public function destroy(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('update', $entity->child);
 
@@ -197,18 +180,16 @@ class AssetController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.entity_assets.index', $entity)
+            ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __('entities/' . $type . '.destroy.success', ['name' => $entityAsset->name, 'entity' => $entity->name]));
     }
 
     /**
      * Create a new file
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    protected function createFile(Entity $entity)
+    protected function createFile(Campaign $campaign, Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $max = $campaign->maxEntityFiles();
         if ($entity->assets()->file()->count() >= $max) {
             return view('entities.pages.files.max')
@@ -217,60 +198,52 @@ class AssetController extends Controller
         }
 
         return view('entities.pages.files.create')
+            ->with('campaign', $campaign)
             ->with('entity', $entity);
     }
 
     /**
      * Create a new link
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    protected function createLink(Entity $entity)
+    protected function createLink(Campaign $campaign, Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->boosted()) {
             return view('entities.pages.links.unboosted')
                 ->with('campaign', $campaign);
         }
 
         return view('entities.pages.links.create', compact(
+            'campaign',
             'entity'
         ));
     }
 
     /**
      * Create a new alias
-     * @param Entity $entity
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    protected function createAlias(Entity $entity)
+    protected function createAlias(Campaign $campaign, Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->boosted()) {
             return view('entities.pages.aliases.unboosted')
                 ->with('campaign', $campaign);
         }
 
         return view('entities.pages.aliases.create', compact(
+            'campaign',
             'entity'
         ));
     }
 
 
     /**
-     * @param Entity $entity
-     * @param EntityAsset $entityAsset
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function go(Entity $entity, EntityAsset $entityAsset)
+    public function go(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (auth()->check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
-        }
+        $this->authEntityView($entity);
 
         if ($entityAsset->entity_id !== $entity->id || !$entityAsset->isLink()) {
             abort(404);
@@ -292,6 +265,7 @@ class AssetController extends Controller
         }
 
         return view('entities.pages.links.go', compact(
+            'campaign',
             'entity',
             'entityAsset'
         ));

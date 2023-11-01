@@ -1,21 +1,21 @@
 <?php /** @var \App\Models\Campaign $campaign */
-$boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-center gap-3 flex-col';
+$boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-center gap-3 flex-col w-40 break-words';
 ?>
-<div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-5">
+<div class="flex flex-wrap gap-5">
 
     @can ('update', $campaign)
-        <a href="#" role="button" class="{{ $boxClass }}" data-url="{{ route('campaign-visibility', ['from' => 'overview']) }}" data-target="campaign-visibility" data-toggle="dialog-ajax">
+        <a href="#" role="button" class="{{ $boxClass }}" data-url="{{ route('campaign-visibility', [$campaign, 'from' => 'overview']) }}" data-target="campaign-visibility" data-toggle="dialog-ajax">
     @else
         <div class="{{ $boxClass }}">
     @endcan
         @if ($campaign->isPublic())
             <i class="fa-solid fa-eye fa-2x" aria-hidden="true"></i>
-            <div class="break-all">
+            <div class="">
                 {{ __('campaigns.visibilities.public') }}
             </div>
         @else
             <i class="fa-solid fa-lock fa-2x" aria-hidden="true"></i>
-            <div class="break-all">
+            <div class="">
                 {{ __('campaigns.visibilities.private') }}
             </div>
         @endif
@@ -28,7 +28,7 @@ $boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-
     <a href="#" class="{{ $boxClass }}" data-toggle="dialog"
          data-target="entity-count">
         <i class="fa-solid fa-globe fa-2x" aria-hidden="true"></i>
-        <div class="break-all">
+        <div class="">
             {{ trans_choice('campaigns.overview.entity-count', \App\Facades\CampaignCache::entityCount(), ['amount' => number_format(\App\Facades\CampaignCache::entityCount())]) }}
         </div>
     </a>
@@ -36,21 +36,29 @@ $boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-
     @if ($campaign->isPublic())
         <div class="{{ $boxClass }}">
             <i class="fa-solid fa-users fa-2x" aria-hidden="true"></i>
-            <div class="break-all">
+            <div class="">
                 {{ trans_choice('campaigns.overview.follower-count', $campaign->follower(), ['amount' => number_format($campaign->follower())]) }}
             </div>
         </div>
     @endif
 
     @if ($campaign->boosted())
+        @php
+        $booster = $campaign->boosts->first();
+        if ($booster) {
+            $link = link_to_route('users.profile', $booster->user->name, [$booster->user]);
+        } else {
+            $link = __('crud.unknown');
+        }
+        @endphp
         <div class="{{ $boxClass }}">
             <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
-            <div class="break-all">
+            <div class="">
                 @if ($campaign->premium())
-                    {{ __('campaigns.fields.premium', ['name' => $campaign->boosts->first()?->user->name]) }}
+                    {!! __('campaigns.fields.premium', ['name' => $link]) !!}
                 @else
                     {{ __('campaigns.fields.' . ($campaign->superboosted() ? 'superboosted' : 'boosted')) }}
-                    {{ $campaign->boosts->first()?->user->name }}
+                    {!! $link !!}
                 @endif
             </div>
         </div>
@@ -59,10 +67,27 @@ $boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-
     @if (!empty($campaign->locale))
         <div class="{{ $boxClass }}">
             <i class="fa-solid fa-language fa-2x" aria-hidden="true"></i>
-            <div class="break-all">
+            <div class="">
                 {{ __('languages.codes.' . $campaign->locale) }}
             </div>
         </div>
+    @endif
+    @if (!$campaign->boosted())
+        @if (auth()->check() && auth()->user()->hasBoosterNomenclature()) {
+        <a href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}" class="btn2 bg-boost text-white">
+            <div class="flex flex-col gap-3">
+            <x-icon class="premium" size="fa-2x" />
+            {{ __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) }}
+            </div>
+        </a>
+        @else
+        <a href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" class="btn2 bg-boost text-white">
+            <div class="flex flex-col gap-3">
+            <x-icon class="premium" size="fa-2x" />
+            {{  __('settings/premium.actions.unlock') }}
+            </div>
+        </a>
+        @endif
     @endif
 </div>
 

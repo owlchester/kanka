@@ -2,8 +2,8 @@
 
 namespace App\Models\Scopes;
 
+use App\Enums\Visibility;
 use App\Facades\CampaignLocalization;
-use App\Models\Visibility;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,8 +13,6 @@ class VisibilityIDScope implements Scope
     /**
      * Apply the scope to a given Eloquent query builder.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return void
      */
     public function apply(Builder $builder, Model $model)
@@ -29,27 +27,27 @@ class VisibilityIDScope implements Scope
 
         // If we aren't authenticated, just see what is set to all
         if (!auth()->check()) {
-            $builder->where($model->getTable() . '.visibility_id', Visibility::VISIBILITY_ALL);
+            $builder->where($model->getTable() . '.visibility_id', Visibility::All);
             return;
         }
         $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->userIsMember()) {
-            $builder->where($model->getTable() . '.visibility_id', Visibility::VISIBILITY_ALL);
+            $builder->where($model->getTable() . '.visibility_id', Visibility::All);
             return;
         }
 
         // Either mine (self && created_by = me) or (if admin: !self, else: all)
         $builder->where(function ($sub) use ($model) {
             $visibilities = auth()->user()->isAdmin()
-                ? [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_ADMIN,
-                    Visibility::VISIBILITY_ADMIN_SELF, Visibility::VISIBILITY_MEMBERS]
-                : [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_MEMBERS];
+                ? [Visibility::All, Visibility::Admin,
+                    Visibility::AdminSelf, Visibility::Member]
+                : [Visibility::All, Visibility::Member];
             $sub
                 ->where(function ($self) use ($model) {
                     $self
                         ->whereIn($model->getTable() . '.visibility_id', [
-                            Visibility::VISIBILITY_SELF,
-                            Visibility::VISIBILITY_ADMIN_SELF,
+                            Visibility::Self,
+                            Visibility::AdminSelf,
                         ])
                         ->where($model->getTable() . '.created_by', auth()->user()->id);
                 })

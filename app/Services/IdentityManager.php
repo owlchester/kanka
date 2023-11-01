@@ -4,13 +4,15 @@ namespace App\Services;
 
 use App\Models\CampaignUser;
 use App\Models\UserLog;
+use App\Traits\CampaignAware;
 use App\User;
 use Exception;
 use Illuminate\Foundation\Application;
-use App\Facades\CampaignLocalization;
 
 class IdentityManager
 {
+    use CampaignAware;
+
     /**
      * @var Application
      */
@@ -19,7 +21,6 @@ class IdentityManager
     /**
      * IdentityManager constructor.
      *
-     * @param Application $app
      */
     public function __construct(Application $app)
     {
@@ -27,15 +28,13 @@ class IdentityManager
     }
 
     /**
-     * @param CampaignUser $campaignUser
-     * @return bool
      */
     public function switch(CampaignUser $campaignUser): bool
     {
         try {
             // Save the current user in the session to know we have limitation on the current user.
             session()->put($this->getSessionKey(), $this->app['auth']->user()->id);
-            session()->put($this->getSessionCampaignKey(), CampaignLocalization::getCampaign()->id);
+            session()->put($this->getSessionCampaignKey(), $this->campaign->id);
 
             // Log this action
             auth()->user()->log(UserLog::TYPE_USER_SWITCH);
@@ -51,7 +50,6 @@ class IdentityManager
     }
 
     /**
-     * @return bool
      */
     public function back(): bool
     {
@@ -79,7 +77,6 @@ class IdentityManager
 
     /**
      * Determine if we are someone else that we usually are.
-     * @return bool
      */
     public function isImpersonating(): bool
     {
@@ -87,8 +84,6 @@ class IdentityManager
     }
 
     /**
-     * @param int $id
-     * @return User
      */
     protected function findUserById(int $id): User
     {
@@ -97,7 +92,6 @@ class IdentityManager
 
     /**
      * The Key used to determine where our original user is stored
-     * @return string
      */
     public function getSessionKey(): string
     {
@@ -106,7 +100,6 @@ class IdentityManager
 
     /**
      * The Key used to determine where our original campaign is stored
-     * @return string
      */
     public function getSessionCampaignKey(): string
     {
@@ -114,7 +107,6 @@ class IdentityManager
     }
 
     /**
-     * @return mixed
      */
     public function getImpersonatorId()
     {
@@ -122,7 +114,6 @@ class IdentityManager
     }
 
     /**
-     * @return mixed
      */
     public function getCampaignId()
     {
@@ -131,7 +122,6 @@ class IdentityManager
 
     /**
      * Forget the saved user identity.
-     * @return bool
      */
     protected function clear(): bool
     {

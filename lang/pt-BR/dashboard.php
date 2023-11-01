@@ -139,6 +139,7 @@ return [
         'orders'                    => [
             'name_asc'  => 'Nome ascendente',
             'name_desc' => 'Nome descendente',
+            'oldest'    => 'Mais antigo modificado',
             'recent'    => 'Recentemente modificado',
         ],
         'preview'                   => [

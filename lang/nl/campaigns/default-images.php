@@ -12,6 +12,5 @@ return [
     'destroy'   => [
         'success'   => 'Standaard entiteitsafbeelding voor :type verwijderd.',
     ],
-    'helper'    => 'Stel aangepaste standaard entiteitsafbeeldingen in voor jouw campaign. Deze worden in de verschillende lijsten getoond, maar niet op de entiteit zelf.',
     'index'     => [],
 ];

@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use App\Models\Scopes\EntityEventScopes;
 use Exception;
-use Illuminate\Database\Eloquent\Builder;
 use App\Models\Concerns\SortableTrait;
-use App\Traits\OrderableTrait;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class EntityEvent
@@ -36,16 +36,10 @@ use Illuminate\Support\Str;
 class EntityEvent extends MiscModel
 {
     use Blameable;
-    use OrderableTrait;
+    use EntityEventScopes;
+    use HasFactory;
     use SortableTrait;
     use VisibilityIDTrait;
-
-    /**
-     * Trigger for filtering based on the order request.
-     * @var string
-     */
-    protected string $orderTrigger = 'events/';
-    protected string $orderDefaultDir = 'desc';
 
     /** @var string */
     public $table = 'entity_events';
@@ -71,7 +65,7 @@ class EntityEvent extends MiscModel
         'visibility_id',
     ];
 
-    protected $sortable = [
+    protected array $sortable = [
         'entity.name',
         'length',
         'date',
@@ -79,11 +73,11 @@ class EntityEvent extends MiscModel
         'visibility_id',
     ];
 
-    /** @var bool|int Last occurence of the reminder */
-    protected mixed $cachedLast = false;
+    /** @var int Last occurence of the reminder */
+    protected int $cachedLast;
 
-    /** @var bool|int Next occurence of the reminder */
-    protected mixed $cachedNext = false;
+    /** @var int Next occurence of the reminder */
+    protected int $cachedNext;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -110,84 +104,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * All events before the current calendar's date
-     * @param Builder $query
-     * @param Calendar $calendar
-     * @return Builder
-     */
-    public function scopeBefore(Builder $query, Calendar $calendar)
-    {
-        $year = $calendar->currentDate('year');
-        $month = $calendar->currentDate('month');
-        $day = $calendar->currentDate('date');
-
-        return $query->where('year', '<', $year)
-            ->orWhere(function ($sub) use ($year, $month) {
-                $sub->where('year', '=', $year)
-                    ->where('month', '<', $month);
-            })
-            ->orWhere(function ($sub) use ($year, $month, $day) {
-                $sub->where('year', '=', $year)
-                    ->where('month', '=', $month)
-                    ->where('day', '<=', $day);
-            });
-    }
-
-    /**
-     * All events today and after today
-     * @param Builder $query
-     * @param Calendar $calendar
-     * @return Builder
-     */
-    public function scopeAfter(Builder $query, Calendar $calendar)
-    {
-        $year = $calendar->currentDate('year');
-        $month = $calendar->currentDate('month');
-        $day = $calendar->currentDate('date');
-
-        return $query->where('year', '>', $year)
-            ->orWhere(function ($sub) use ($year, $month) {
-                $sub->where('year', '=', $year)
-                    ->where('month', '>', $month);
-            })
-            ->orWhere(function ($sub) use ($year, $month, $day) {
-                $sub->where('year', '=', $year)
-                    ->where('month', '=', $month)
-                    ->where('day', '>=', $day);
-            });
-    }
-
-    /**
-     * Sort order for the datagrid page
-     * @param Builder $query
-     * @param string|null $order
-     * @return Builder
-     */
-    public function scopeCustomSortDate(Builder $query, string $order = null)
-    {
-        return $query
-            ->orderBy('year', $order)
-            ->orderBy('month', $order)
-            ->orderBy('day', $order);
-    }
-
-    public function scopeEntity(Builder $query, int $entity_id)
-    {
-        return $query->where('entity_id', $entity_id);
-    }
-
-    public function scopeCalendar(Builder $query, int $calendar_id)
-    {
-        return $query->where('calendar_id', $calendar_id);
-    }
-
-    public function scopeCalendarDate(Builder $query)
-    {
-        return $query->where('type_id', EntityEventType::CALENDAR_DATE);
-    }
-
-    /**
-     * @return string
      */
     public function readableDate(): string
     {
@@ -197,11 +113,18 @@ class EntityEvent extends MiscModel
             $years = $this->calendar->years();
 
             try {
-                $this->readableDate = $this->day . ' ' .
-                    (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
-                    ($years[$this->year] ?? $this->year) . ' ' .
-                    $this->calendar->suffix;
-                // @phpstan-ignore-next-line
+                if ($this->calendar->format) {
+                    $this->readableDate = Str::replace(
+                        ['d', 's', 'y', 'm', 'M'],
+                        [$this->day, $this->calendar->suffix, $years[$this->year] ?? $this->year, $this->month, isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month],
+                        $this->calendar->format
+                    );
+                } else {
+                    $this->readableDate = $this->day . ' ' .
+                        (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
+                        ($years[$this->year] ?? $this->year) . ' ' .
+                        $this->calendar->suffix;
+                }
             } catch (Exception $e) {
                 $this->readableDate = $this->date();
             }
@@ -211,7 +134,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Length of the event in a readable format (appends "days")
-     * @return string
      */
     public function readableLength(): string
     {
@@ -219,8 +141,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @param Calendar $calendar
-     * @return bool
      */
     public function isToday(Calendar $calendar): bool
     {
@@ -228,7 +148,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function date(): string
     {
@@ -236,7 +155,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function getLabelColour(): string
     {
@@ -247,7 +165,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @return string
      */
     public function getLabelBackgroundColour(): string
     {
@@ -260,18 +177,18 @@ class EntityEvent extends MiscModel
 
     /**
      * Generate the Entity Event label for the calendar
-     * @return string
      */
     public function getLabel(): string
     {
         $label = '';
 
         if ($this->is_recurring) {
-            $label .= '<i class="fa-solid fa-arrows-rotate pull-right margin-l-5" data-toggle="tooltip" title="'
-                . __('calendars.fields.is_recurring') . '"></i>';
+            $label .= '<span class="absolute top-1 right-1" data-toggle="tooltip" data-title="' . __('calendars.fields.is_recurring') . '">
+            <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
+            </span>';
         }
         if ($this->comment) {
-            $label .= '<span class="calendar-event-comment" data-toggle="tooltip" title="'
+            $label .= '<span class="calendar-event-comment" data-toggle="tooltip" data-title="'
                 . e($this->comment) . '">' . e($this->comment) . '</span>';
         }
 
@@ -280,8 +197,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Check if a reminder is after the current date of a given calendar
-     * @param Calendar $calendar
-     * @return bool
      */
     public function isPast(Calendar $calendar): bool
     {
@@ -304,10 +219,6 @@ class EntityEvent extends MiscModel
     }
 
     /**
-     * @param int $year
-     * @param int $month
-     * @param int $day
-     * @return bool
      */
     public function isPastDate(int $year, int $month, int $day): bool
     {
@@ -325,18 +236,6 @@ class EntityEvent extends MiscModel
 
         return $this->day <= $day;
     }
-
-    /**
-     * @return mixed|null
-     */
-    /*public function getRecurringPeriodicityAttribute()
-    {
-        if (!$this->is_recurring) {
-            return null;
-        }
-
-        return $this->attributes['recurring_periodicity'];
-    }*/
 
     /**
      * Calculate the elapsed time since the event happened
@@ -385,7 +284,7 @@ class EntityEvent extends MiscModel
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->entity_id, $this->id];
+        return $options + ['entity' => $this->entity_id, 'entity_event' => $this->id, 'next' => 'entity.events'];
     }
 
     public function getNameAttribute(): string
@@ -395,12 +294,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Calculate how long ago the event happened
-     * @param int $year
-     * @param int $month
-     * @param int $day
-     * @param array $months
-     * @param int $daysInYear
-     * @return int
      */
     public function mostRecentOccurrence(int $year, int $month, int $day, array $months, int $daysInYear): int
     {
@@ -492,16 +385,10 @@ class EntityEvent extends MiscModel
      * Calculate when this reminder happens next. We want the YYYYYYYMMMMDDDD format, and use that as a string to
      * order by, instead of doing complicated math. Or do we? I don't know, I'm so confused. This is all super
      * hard to calculate :(
-     * @param int $calendarYear
-     * @param int $calendarMonth
-     * @param int $day
-     * @param array $months
-     * @param int $daysInYear
-     * @return int
      */
     public function nextUpcomingOccurrence(int $calendarYear, int $calendarMonth, int $day, array $months, int $daysInYear): int
     {
-        if ($this->cachedNext !== false) {
+        if (isset($this->cachedNext)) {
             return $this->cachedNext;
         }
         //dump($this->entity->name);
@@ -586,7 +473,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if a reminder is recurring every year
-     * @return bool
      */
     public function recurringYearly(): bool
     {
@@ -595,7 +481,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if a reminder is recurring every month
-     * @return bool
      */
     public function recurringMonthly(): bool
     {
@@ -604,7 +489,6 @@ class EntityEvent extends MiscModel
 
     /**
      * How many days ago the last occurrence was
-     * @return int
      */
     public function daysAgo(): int
     {
@@ -613,7 +497,6 @@ class EntityEvent extends MiscModel
 
     /**
      * In how many days the next reminder is
-     * @return int
      */
     public function inDays(): int
     {
@@ -622,7 +505,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if an event is of the character birth type
-     * @return bool
      */
     public function isBirth(): bool
     {
@@ -631,7 +513,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if an event is of the entity foundation type
-     * @return bool
      */
     public function isFounded(): bool
     {
@@ -640,7 +521,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if an event is of the character death type
-     * @return bool
      */
     public function isDeath(): bool
     {
@@ -649,7 +529,6 @@ class EntityEvent extends MiscModel
 
     /**
      * Determine if an event is of the calendar date type
-     * @return bool
      */
     public function isCalendarDate(): bool
     {
@@ -658,14 +537,11 @@ class EntityEvent extends MiscModel
 
     /**
      * Reduce the month by one, making sure it's still in the bounds of a valid month
-     * @param int $month
-     * @param int $min
-     * @return int
      */
     protected function previousMonth(int $month, int $min): int
     {
         if ($month >= $min) {
-            return $min-1;
+            return $min - 1;
         }
         return $month--;
     }

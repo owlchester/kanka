@@ -3,7 +3,6 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\MiscModel $miscModel
  */
-$campaign = \App\Facades\CampaignLocalization::getCampaign();
 $themeOverride = request()->get('_theme');
 $specificTheme = null;
 $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
@@ -20,10 +19,10 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <meta property="og:title" content="{!! $seoTitle !!} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 @if (isset($canonical))
-    <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, $campaign->locale) }}" />
+    <link rel="canonical" href="{{ request()->fullUrl() }}" />
 @endif
 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-    <link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $localeCode) }}" hreflang="{{ $localeCode }}">
+    <link rel="alternate" href="{{ request()->fullUrl() . '?lang=' . $localeCode }}" hreflang="{{ $localeCode }}">
 @endforeach
 
     @yield('og')
@@ -45,16 +44,9 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     @endif
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
-
-    @if (config('app.asset_url'))
-        <link href="{{ config('app.asset_url') }}/vendor/bootstrap/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    @else
-        <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    @endif
     @vite([
         'resources/sass/vendor.scss',
         'resources/sass/app.scss',
-        'resources/sass/freyja/freyja.scss'
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @yield('styles')
@@ -81,13 +73,12 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 <body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses($entity ?? null) }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
 @include('layouts.tracking.fallback')
 
-<a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute py-2 px-4 top-0" tabindex="1">
+<a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="1">
     {{ __('crud.navigation.skip_to_content') }}
 </a>
-    <div id="app" class="wrapper mt-12">
+    <div id="app" class="wrapper h-full relative mt-12">
         @include('layouts.header', ['toggle' => $showSidebar])
-
-        @include('layouts.sidebars.' . ($sidebar ?? 'app'))
+        @includeWhen(isset($campaign) || isset($sidebar) && $sidebar == 'settings', 'layouts.sidebars.' . ($sidebar ?? 'app'))
 
         @yield('fullpage-form')
 
@@ -99,14 +90,13 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
             @include('layouts.banner')
 
             @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))
-                <section class="content-header">
+                <section class="content-header p-4 pb-0 @if (isset($centered) && $centered) max-w-7xl mx-auto @endif">
                     @includeWhen(!isset($breadcrumbs) || $breadcrumbs !== false, 'layouts._breadcrumbs')
                     @if (!view()->hasSection('entity-header'))
                         @if (isset($mainTitle))
                         @else
                             <h1 class="truncate m-0 text-lg">
                                 {!! $title ?? "Page Title" !!}
-                                <span class="text-sm text-green-500 hidden-xs hidden-sm">{{ $description ?? null }}</span>
                             </h1>
                         @endif
                     @endif
@@ -115,10 +105,9 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
             @yield('content-header')
 
-            <section class="content" role="main">
-                @if (isset($sidebar) && $sidebar === 'settings') <div class="max-w-4xl"> @endif
+            <section class="content p-4 flex flex-col gap-2 lg:flex-gap-5 @if (isset($centered) && $centered) max-w-7xl mx-auto  @endif" role="main">
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
-                    <div class=" alert p-4 rounded alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5 mb-5">
+                    <div class=" alert p-4 rounded alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5">
                         <div class="grow">
                             <div class="m-0 p-0 text-lg">
                                 <i class="icon fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
@@ -128,7 +117,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                                 {{ __('campaigns.members.impersonating.message') }}
                             </p>
                         </div>
-                        <a href="{{ route('identity.back') }}" class="btn2 btn-sm switch-back">
+                        <a href="{{ route('identity.back', $campaign) }}" class="btn2 btn-sm switch-back">
                             <x-icon class="fa-solid fa-sign-out-alt"></x-icon>
                             {{ __('campaigns.members.actions.switch-back') }}
                         </a>
@@ -136,11 +125,9 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                 @endif
                 @include('partials.success')
 
-                @yield('entity-actions')
                 @yield('entity-header')
-                @yield('content')
 
-                @if (isset($sidebar) && $sidebar === 'settings') </div> @endif
+                @yield('content')
             </section>
         </div>
 
@@ -151,29 +138,23 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     </div>
 
     <!-- Default modal used throughout the app -->
-    <div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100 rounded-2xl"></div>
-            <div class="modal-spinner" style="display: none">
-                <div class="modal-body text-center">
-                    <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">--}}
+{{--        <div class="modal-dialog" role="document">--}}
+{{--            <div class="modal-content bg-base-100 rounded-2xl"></div>--}}
+{{--            <div class="modal-spinner" style="display: none">--}}
+{{--                <div class="modal-body text-center text-lg">--}}
+{{--                    <x-icon class="load" />--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
-    <!-- Extra-large modal on desktop for more data -->
-    <div class="modal fade z-[9900]" id="large-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content bg-base-100 rounded-2xl" id="large-modal-content"></div>
-        </div>
-    </div>
-
-    @includeWhen(auth()->check(), 'layouts.modals.delete')
+    <x-dialog id="primary-dialog" :loading="true" />
+    <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
 
     @yield('modals')
 
-    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full"></div>
+    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full flex flex-col gap-2"></div>
 
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>

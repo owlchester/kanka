@@ -8,6 +8,8 @@ month_length# Calendars
 - [Update a Calendar](#update-calendar)
 - [Delete a Calendar](#delete-calendar)
 - [Reminders](#reminders)
+- [Advance Date](#advance)
+- [Retreat Date](#retreat)
 - [Weather](#weather)
 
 <a name="all-calendars"></a>
@@ -15,7 +17,7 @@ month_length# Calendars
 
 You can get a list of all the calendars of a campaign by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |
@@ -101,6 +103,7 @@ The list of returned calendars can be filtered. The available filters are availa
               }
             ],
             "suffix": "BC",
+            "format": "d M, y s",
             "has_leap_year": true,
             "leap_year_amount": 4,
             "leap_year_month": 2,
@@ -110,8 +113,8 @@ The list of returned calendars can be filtered. The available filters are availa
         }
     ],
     "links": {
-        "first": "https://kanka.io/api/{{version}}/campaigns/1/calendars?page=1",
-        "last": "https://kanka.io/api/{{version}}/campaigns/1/calendars?page=1",
+        "first": "https://api.kanka.io/{{version}}/campaigns/1/calendars?page=1",
+        "last": "https://api.kanka.io/{{version}}/campaigns/1/calendars?page=1",
         "prev": null,
         "next": null
     },
@@ -119,7 +122,7 @@ The list of returned calendars can be filtered. The available filters are availa
         "current_page": 1,
         "from": 1,
         "last_page": 1,
-        "path": "https://kanka.io/api/{{version}}/campaigns/1/calendars",
+        "path": "https://api.kanka.io/{{version}}/campaigns/1/calendars",
         "per_page": 100,
         "to": 1,
         "total": 1
@@ -210,6 +213,7 @@ To get the details of a single calendar, use the following endpoint.
           }
         ],
         "suffix": "BC",
+        "format": "d M, y s",
         "has_leap_year": true,
         "leap_year_amount": 4,
         "leap_year_month": 2,
@@ -254,6 +258,7 @@ To create a calendar, use the following endpoint.
 | `season_name` | `array` | Array of season names |
 | `season_month` | `array` | Array of seasons month start |
 | `season_day` | `array` | Array of seasons day start |
+| `format` | `string` | The rendering format for the calendar dates |
 | `has_leap_year` | `boolean` | Whether the calendar has leap years |
 | `leap_year_amount` | `integer` | The amount of leap days |
 | `leap_year_offset` | `integer` | Every how many years the leap days occur |
@@ -361,6 +366,32 @@ You can get a list of all the reminders of a calendar by using the following end
         },
 }
 ```
+
+<a name="advance"></a>
+## Advance Date
+
+You can advance the date of the calendar by one day using the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `calendars/{calendar.id}/advance` | Default |
+
+### Results
+
+> {success} Code 200 with JSON.
+
+<a name="retreat"></a>
+## Retreat Date
+
+You can turn back the date of the calendar by one day using the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `calendars/{calendar.id}/retreat` | Default |
+
+### Results
+
+> {success} Code 200 with JSON.
 
 <a name="weather"></a>
 ## Weather

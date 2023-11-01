@@ -135,10 +135,8 @@ TEXT
             'role'          => 'Uloga',
             'roles'         => 'Uloge',
         ],
-        'help'                  => 'Kampanje mogu imati neograničeni broj članova u njima.',
         'helpers'               => [
-            'admin' => 'Kao član uloge administratora kampanje, možeš pozivati nove korisnike, maknuti neaktivne, te promijeniti njihove ovlasti. Kako bi testirao dopuštenja člana, iskoristi "Imitiraj" gumb. Više o tome pročitaj na :link.',
-            'switch'=> 'Imitiraj ovog korisnika',
+            'switch'    => 'Imitiraj ovog korisnika',
         ],
         'impersonating'         => [
             'message'   => 'Gledaš kampanju kao drugi korisnik. Neke funkcionalnosti su onemogućene, ali ostatak se ponaša jednako onako kako bi ih taj korisnik vidio. Da se vratiš nazad na svog korisnika, iskoristi "Prekini imitaciju" gumb koji se nalazi tamo gdje se inače nalazi gumb za odjavu.',
@@ -276,7 +274,6 @@ TEXT
             'journals'      => 'Opažanja napisana od strane likova ili priprema za sesiju za voditelja igre.',
             'locations'     => 'Planeti, ravni postojanja, kontinenti, rijeke, države, naselja, hramovi, krčme.',
             'maps'          => 'Prenesi karte sa slojevima i markerima koji upućuju na druge entitete u kampanji.',
-            'menu_links'    => 'Proizvoljne poveznice izbornika u bočnoj traci.',
             'notes'         => 'Legende, religije, povijest, magija, rase.',
             'organisations' => 'Kultovi, vojne jedinice, frakcije, cehovi.',
             'quests'        => 'Za praćenje raznih zadataka s likovima i lokacijama.',
@@ -306,7 +303,6 @@ TEXT
             'plugins'           => 'Dodaci',
             'recovery'          => 'Oporavak',
             'roles'             => 'Uloge',
-            'settings'          => 'Moduli',
         ],
         'title'     => 'Kampanja :name',
     ],
