@@ -11,6 +11,9 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('calendars', function (Blueprint $table) {
+            if (Schema::hasColumn('calendars', 'format')) {
+                return;
+            }
             $table->string('format', 20)->nullable();
         });
     }
