@@ -71,4 +71,9 @@ class CampaignExport extends Model
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
+
+    public function finished(): bool
+    {
+        return $this->status === CampaignExport::STATUS_FINISHED;
+    }
 }

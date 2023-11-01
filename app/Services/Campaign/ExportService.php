@@ -228,7 +228,6 @@ class ExportService
             $saveFolder = storage_path($this->exportPath);
             $this->archive->saveTo($saveFolder);
             $this->filesize = (int) floor(filesize($this->path) / pow(1024, 2));
-
         } catch (Exception $e) {
             // The export might fail if the zip is too big.
             $this->files = 0;

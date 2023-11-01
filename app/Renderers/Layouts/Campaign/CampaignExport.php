@@ -14,26 +14,6 @@ class CampaignExport extends Layout
     public function columns(): array
     {
         $columns = [
-            'created_by' => [
-                'key' => 'user.name',
-                'label' => 'campaigns.exports.name',
-                'render' => function ($model) {
-                    if (!$model->created_by) {
-                        return '';
-                    }
-                    $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
-                    return $html;
-                },
-            ],
-            'size' => [
-                'label' => 'campaigns.exports.size',
-                'render' => function ($model) {
-                    if ($model->size == 0) {
-                        return '<1 MB';
-                    }
-                    return number_format($model->size) . ' MB';
-                }
-            ],
             'type' => [
                 'key' => 'type',
                 'label' => 'campaigns.exports.type',
@@ -49,7 +29,7 @@ class CampaignExport extends Layout
             ],
             'status' => [
                 'key' => 'status',
-                'label' => 'campaigns.exports.status',
+                'label' => 'campaigns/plugins.fields.status',
                 'render' => function ($model) {
                     $key = 'running';
                     /** @var \App\Models\CampaignExport $model */
@@ -61,10 +41,20 @@ class CampaignExport extends Layout
                         $key = 'finished';
                     }
 
-                    return __('campaigns.exports.status_' . $key);
+                    return __('campaigns.exports.status.' . $key);
                 },
             ],
-
+            'created_by' => [
+                'key' => 'user.name',
+                'label' => 'campaigns.members.fields.name',
+                'render' => function ($model) {
+                    if (!$model->created_by) {
+                        return '';
+                    }
+                    $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
+                    return $html;
+                },
+            ],
             'created_at' => [
                 'key' => 'created_at',
                 'label' => 'campaigns.invites.fields.created',
@@ -73,9 +63,24 @@ class CampaignExport extends Layout
                     return $html;
                 },
             ],
+            'size' => [
+                'label' => 'campaigns.exports.size',
+                'render' => function ($model) {
+                    if (!$model->finished()) {
+                        return '';
+                    }
+                    if (empty($model->size)) {
+                        return '<1 MB';
+                    }
+                    return number_format($model->size) . ' MB';
+                }
+            ],
             'download' => [
                 'label' => 'campaigns.exports.download',
                 'render' => function ($model) {
+                    if (!$model->finished()) {
+                        return '';
+                    }
                     if ($model->path && Storage::exists($model->path)) {
                         $html = '<a class="block break-all truncate" href="' . Storage::url($model->path) . '" target="_blank">' . __('campaigns.exports.download') . '</a>';
                         return $html;

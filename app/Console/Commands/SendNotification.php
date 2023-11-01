@@ -43,7 +43,7 @@ class SendNotification extends Command
         $url = $this->argument('url');
 
         if ($url !== '0') {
-            $url = config('app.url') . '/en/pricing';
+            $url = config('app.url') . '/pricing';
         }
 
         /** @var User $user */

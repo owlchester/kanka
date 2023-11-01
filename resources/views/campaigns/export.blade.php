@@ -26,7 +26,7 @@
 
         @if ($campaign->exportable())
         <div class="text-center">
-            <button class="btn2 btn-primary btn-large campaign-export-btn pull-right" data-url="{{ route('campaign.export-process', $campaign) }}">
+            <button class="btn2 btn-primary campaign-export-btn pull-right" data-url="{{ route('campaign.export-process', $campaign) }}">
                 <i class="fa-solid fa-download" aria-hidden="true"></i>
                 {{ __('campaigns/export.actions.export') }}
             </button>
