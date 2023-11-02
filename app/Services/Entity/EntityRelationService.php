@@ -155,7 +155,7 @@ class EntityRelationService
             return $this;
         }
 
-        $img = $image ?? Avatar::entity($entity)->size(80, 80)->thumbnail();
+        $img = $image ?? Avatar::entity($entity)->size(80, 80)->fallback()->thumbnail();
         if (empty($img)) {
             // Fallback?
             $img = '';
