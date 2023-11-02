@@ -195,12 +195,12 @@ input[type="checkbox"]:checked:after {
 /**
  * All of the boxes follow a similar design in our themes
  */
-.box, .panel, .timeline-item {
+.box, .panel {
     border: var(--box-border, none);
     --tw-background-opacity: 1;
     background-color: var(--box-background, hsl(var(--b1)/1));
 
-    .box-header, .panel-heading, .timeline-header {
+    .box-header, .panel-heading {
         background-color: var(--box-header-background, transparent);
         color: var(--box-header-text);
     }

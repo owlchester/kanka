@@ -8,7 +8,7 @@
 <li id="timeline-element-{{ $element->id }}" class="relative mr-2">
     {!! $element->htmlIcon() !!}
 
-    <div class="timeline-item p-0 relative rounded-sm ml-16 mr-4">
+    <div class="timeline-item p-0 pb-2 relative rounded-sm ml-16 mr-4">
         <x-box css="flex gap-2 flex-col p-2" :padding="0">
             <div class="timeline-item-head flex gap-2 items-center">
                 <h3 class="grow flex gap-2 items-center cursor-pointer element-toggle m-0 {{ $element->collapsed() ? 'animate-collapsed' : null }} text-base" data-animate="collapse" data-target="#timeline-element-body-{{ $element->id }}">
@@ -74,7 +74,7 @@
                     @endcan
                 </div>
             </div>
-            <div class="timeline-item-body entity-content overflow-hidden @if ($element->collapsed()) hidden @endif" id="timeline-element-body-{{ $element->id }}">
+            <div class="timeline-item-body entity-content overflow-hidden @if ($element->collapsed()) h-0 @endif" id="timeline-element-body-{{ $element->id }}">
                 {!! \App\Facades\Mentions::mapAny($element) !!}
 
                 @if ($element->use_entity_entry && $element->entity && $element->entity->child->hasEntry())
