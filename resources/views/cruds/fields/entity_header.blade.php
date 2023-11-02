@@ -6,7 +6,6 @@ if (isset($model) && $model->entity && $model->entity->header_uuid) {
     $preset = FormCopy::field('header')->entity()->select();
 }
 @endphp
-
 <x-forms.field
     field="header-gallery"
     :label="__('fields.gallery-header.description')">
@@ -23,7 +22,7 @@ if (isset($model) && $model->entity && $model->entity->header_uuid) {
             </x-forms.foreign>
         </div>
 
-        <div class="">
+        <div class="preview">
             @if (!empty($model->entity) && !empty($model->entity->header_uuid) && !empty($model->entity->header))
                 @include('cruds.fields._image_preview', [
                     'image' => $model->entity->header->getUrl(80, null, 'header_image'),

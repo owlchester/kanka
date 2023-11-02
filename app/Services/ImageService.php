@@ -207,7 +207,7 @@ class ImageService
      */
     public static function cleanup($model, $field = 'image')
     {
-        if ($model instanceof Entity) {
+        if ($model instanceof Entity && $field === 'image') {
             $field = 'image_path';
         }
         if (empty($model->$field)) {
