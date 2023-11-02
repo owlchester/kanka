@@ -170,4 +170,4 @@ Route::post('/w/{campaign}/bragi', [\App\Http\Controllers\Bragi\BragiController:
 
 
 Route::get('/w/{campaign}/confirm-delete', [\App\Http\Controllers\ConfirmController::class, 'index'])->name('confirm-delete');
-Route::post('/w/{campaign}/vanity-validate', [\App\Http\Controllers\Calendars\Api\VanityController::class, 'index'])->name('campaign.vanity-validate');
+Route::post('/w/{campaign}/vanity-validate', [\App\Http\Controllers\Campaign\VanityController::class, 'index'])->name('campaign.vanity-validate');

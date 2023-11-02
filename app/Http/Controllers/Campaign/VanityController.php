@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Calendars\Api;
+namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\Vanity;
