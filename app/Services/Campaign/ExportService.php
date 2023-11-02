@@ -261,6 +261,7 @@ class ExportService
         // Save all the content.
         try {
             $saveFolder = storage_path($this->exportPath);
+            Log::info('Campaign export', ['path' => $saveFolder, 'exportPath' => $this->exportPath]);
             $this->archive->saveTo($saveFolder);
             $this->filesize = (int) floor(filesize($this->path) / pow(1024, 2));
         } catch (Exception $e) {
