@@ -15,7 +15,7 @@ class Vanity implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $value = trim($value);
-        if (strpos($value, '/')) {
+        if (mb_strpos($value, '/')) {
             $fail(__('campaigns/vanity.rule2', ['field' => $attribute]));
         }
 
