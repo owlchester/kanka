@@ -29,6 +29,11 @@ class SubscriptionUpgradeService
             if ($period == 'monthly') {
                 $price = "25.00";
             }
+        } elseif ($tier === 'Owlbear') {
+            $price = "55.00";
+            if ($period == 'monthly') {
+                $price = "5.00";
+            }
         }
 
         if (!$this->user->isSubscriber()) {
