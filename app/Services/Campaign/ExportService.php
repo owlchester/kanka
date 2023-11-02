@@ -125,7 +125,7 @@ class ExportService
 
     protected function prepare(): self
     {
-        $this->exportPath = '/exports/campaigns/' . $this->campaign->id . '/';
+        $this->exportPath = '/exports';
         $saveFolder = storage_path($this->exportPath);
         File::ensureDirectoryExists($saveFolder);
 
