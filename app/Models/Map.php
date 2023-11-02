@@ -554,8 +554,10 @@ class Map extends MiscModel
     public function bounds(bool $extend = false): string
     {
         $extra = $extend ? 50 : 0;
-        $height = floor((empty($this->height) ? 1000 : $this->height) / 1) + $extra;
-        $width = floor((empty($this->width) ? 1000 : $this->width) / 1) + $extra;
+        $height = empty($this->height) ? 1000 : $this->height;
+        $width = empty($this->width) ? 1000 : $this->width;
+        $height = floor(($height) / 1) + $extra;
+        $width = floor(($width) / 1) + $extra;
 
         $min = $extend ? -50 : 0;
         return "[[{$min}, {$min}], [{$height}, {$width}]]";

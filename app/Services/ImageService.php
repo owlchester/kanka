@@ -120,9 +120,10 @@ class ImageService
                     $model->$field = $path;
                 }
 
-                if (!empty($sizes) && array_key_exists('height', $model->getAttributes())) {
-                    $model->width = $sizes[0]; // @phpstan-ignore-line
-                    $model->height = $sizes[1]; // @phpstan-ignore-line
+                if (!empty($sizes) && $model instanceof Entity && $model->isMap()) {
+                    $model->map->height = $sizes[0]; // @phpstan-ignore-line
+                    $model->map->height = $sizes[1]; // @phpstan-ignore-line
+                    $model->map->saveQuietly();
                 }
             }
         } catch (Exception $e) {
