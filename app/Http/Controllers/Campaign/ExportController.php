@@ -18,9 +18,6 @@ class ExportController extends Controller
         $this->service = $exportService;
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index(Campaign $campaign)
     {
         $this->authorize('setting', $campaign);
