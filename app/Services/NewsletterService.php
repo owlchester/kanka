@@ -38,7 +38,7 @@ class NewsletterService
     public function isSubscribed(): bool
     {
         try {
-            $email = $this->user ? $this->user->email : $this->email;
+            $email = isset($this->user) ? $this->user->email : $this->email;
             $this->userID = $this->fetch($email);
             return true;
         } catch (Exception $e) {
