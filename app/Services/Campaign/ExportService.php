@@ -11,6 +11,7 @@ use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Zip;
@@ -63,6 +64,12 @@ class ExportService
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
+        Log::info('Scheduled campaign export', [
+            'campaign' => $this->campaign->id,
+            'id' => $entitiesExport->id,
+            'type' => 'entities'
+        ]);
+
         Export::dispatch($this->campaign, $this->user, $entitiesExport, false);
 
         $assetExport = CampaignExport::create([
@@ -70,6 +77,12 @@ class ExportService
             'created_by' => $this->user->id,
             'type' => CampaignExport::TYPE_ASSETS,
             'status' => CampaignExport::STATUS_SCHEDULED,
+        ]);
+
+        Log::info('Scheduled campaign export', [
+            'campaign' => $this->campaign->id,
+            'id' => $entitiesExport->id,
+            'type' => 'assets'
         ]);
 
         Export::dispatch($this->campaign, $this->user, $assetExport, true);
