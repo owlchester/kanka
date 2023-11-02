@@ -29,6 +29,7 @@ $previousRelation = null;
                 {!! $member->character->tooltipedLink() !!}
            @endif
         </div>
+    </div>
 @php $previousRelation = $member->role @endphp
     @endif
 @endforeach
