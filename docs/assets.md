@@ -26,3 +26,9 @@ For the api docs to work, the same needs to be done for the `public/vendor/binar
 For leaflet, summernote etc, the same needs to be done for the `public/js/` folder.
 
 > aws s3 sync public/vendor/leaflet/ s3://kanka-user-assets/vendor/leaflet/ --include "*" --acl public-read --delete
+
+## Images
+
+Stuff like default thumbnails, sub thumbnails
+
+> aws s3 sync public/images/ s3://kanka-user-assets/images/ --include "*" --acl public-read --delete

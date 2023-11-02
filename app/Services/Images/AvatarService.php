@@ -140,7 +140,7 @@ class AvatarService
             return $this->return($url);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {
             // Goblins and above have nicer icons
-            return $this->return($cloudfront . '/images/defaults/patreon/' . $this->getChild()->getTable() . '_thumb.png');
+            return $this->return($cloudfront . '/images/defaults/subscribers/' . $this->getChild()->getTable() . '.jpeg');
         }
 
         // Default fallback
