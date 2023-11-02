@@ -130,7 +130,11 @@ class ExportService
     {
         $this->archive->addRaw($this->campaign->toJson(), 'campaign.json');
         $this->files++;
+        if (!$this->assets) {
+            return $this;
+        }
         if (!empty($this->campaign->image) && Storage::exists($this->campaign->image)) {
+            Log::info("wat");
             $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($this->campaign->image), $this->campaign->image);
             $this->files++;
         }
