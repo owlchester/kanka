@@ -267,8 +267,8 @@ class ExportService
         }
 
         // Move to ?
-        //$this->exportPath = Storage::putFileAs('exports/campaigns/' . $this->campaign->id, $this->path, $this->file, 'public');
-        //unlink($this->path);
+        $this->exportPath = Storage::putFileAs('exports/campaigns/' . $this->campaign->id, $this->path, $this->file, 'public');
+        unlink($this->path);
 
         return $this;
     }
