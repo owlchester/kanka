@@ -64,12 +64,6 @@ class ExportService
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
-        Log::info('Scheduled campaign export', [
-            'campaign' => $this->campaign->id,
-            'id' => $entitiesExport->id,
-            'type' => 'entities'
-        ]);
-
         Export::dispatch($this->campaign, $this->user, $entitiesExport, false);
 
         $assetExport = CampaignExport::create([
@@ -77,12 +71,6 @@ class ExportService
             'created_by' => $this->user->id,
             'type' => CampaignExport::TYPE_ASSETS,
             'status' => CampaignExport::STATUS_SCHEDULED,
-        ]);
-
-        Log::info('Scheduled campaign export', [
-            'campaign' => $this->campaign->id,
-            'id' => $assetExport->id,
-            'type' => 'assets'
         ]);
 
         Export::dispatch($this->campaign, $this->user, $assetExport, true);
@@ -125,7 +113,7 @@ class ExportService
 
     protected function prepare(): self
     {
-        $this->exportPath = '/exports';
+        $this->exportPath = '/exports/campaigns';
         $saveFolder = storage_path($this->exportPath);
         File::ensureDirectoryExists($saveFolder);
 
@@ -266,6 +254,7 @@ class ExportService
             $this->archive->saveTo($saveFolder);
             $this->filesize = (int) floor(filesize($this->path) / pow(1024, 2));
         } catch (Exception $e) {
+            Log::error('Campaign export', ['err' => $e->getMessage()]);
             throw $e;
             // The export might fail if the zip is too big.
             $this->files = 0;
