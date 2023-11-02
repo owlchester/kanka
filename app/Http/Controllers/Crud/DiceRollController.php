@@ -34,7 +34,7 @@ class DiceRollController extends CrudController
     protected function getNavActions(): CrudController
     {
         $this->addNavAction(
-            route('campaigns.dice_roll_results.index', $this->campaign),
+            route('dice_roll_results.index', $this->campaign),
             '<i class="fa-solid fa-list"></i> ' . __('dice_rolls.index.actions.results')
         );
         $this->addNavAction(
