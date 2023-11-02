@@ -26,7 +26,7 @@ class UpdateEntityImage extends FormRequest
     {
         $rules = [
             'image' => 'required_without_all:image_url,entity_image_uuid|mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'image_url' => 'required_without_all:image,entity_image_uuid|url',
+            'image_url' => 'required_without_all:image,entity_image_uuid|nullable|url',
             'entity_image_uuid' => 'required_without_all:image_url,image|exists:images,id',
         ];
 
