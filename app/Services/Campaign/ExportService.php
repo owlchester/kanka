@@ -66,14 +66,14 @@ class ExportService
 
         Export::dispatch($this->campaign, $this->user, $entitiesExport, false);
 
-        $assetExport = CampaignExport::create([
+        /*$assetExport = CampaignExport::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
             'type' => CampaignExport::TYPE_ASSETS,
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
-        Export::dispatch($this->campaign, $this->user, $assetExport, true);
+        Export::dispatch($this->campaign, $this->user, $assetExport, true);*/
 
         return $this;
     }
@@ -264,8 +264,8 @@ class ExportService
         }
 
         // Move to ?
-        $this->exportPath = Storage::putFileAs('exports/campaigns/' . $this->campaign->id, $this->path, $this->file, 'public');
-        unlink($this->path);
+        //$this->exportPath = Storage::putFileAs('exports/campaigns/' . $this->campaign->id, $this->path, $this->file, 'public');
+        //unlink($this->path);
 
         return $this;
     }
