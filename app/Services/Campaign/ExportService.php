@@ -81,7 +81,7 @@ class ExportService
 
         Log::info('Scheduled campaign export', [
             'campaign' => $this->campaign->id,
-            'id' => $entitiesExport->id,
+            'id' => $assetExport->id,
             'type' => 'assets'
         ]);
 
