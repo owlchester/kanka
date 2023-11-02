@@ -176,6 +176,7 @@ class ExportService
                     $this->process($entity, $model);
                 }
             } catch (Exception $e) {
+                Log::error('Campaign export', ['err' => $e->getMessage()]);
                 $saveFolder = storage_path($this->exportPath);
                 $this->archive->saveTo($saveFolder);
                 unlink($this->path);
