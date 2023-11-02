@@ -130,12 +130,12 @@ class ExportService
     {
         $this->archive->addRaw($this->campaign->toJson(), 'campaign.json');
         $this->files++;
-        Log::info("wat", ['path' => 's3://' . env('AWS_BUCKET') . '/' . Storage::path($this->campaign->image)]);
+        Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
         if (!$this->assets) {
             return $this;
         }
         if (!empty($this->campaign->image) && Storage::exists($this->campaign->image)) {
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($this->campaign->image), $this->campaign->image);
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image), $this->campaign->image);
             $this->files++;
         }
 
@@ -207,7 +207,7 @@ class ExportService
         }
 
         if (!$image->isFolder()) {
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
             $this->files++;
         }
         return $this;
@@ -223,12 +223,12 @@ class ExportService
 
         $path = $model->entity->image_path;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($path), $path);
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
             $this->files++;
         }
         $path = $model->entity->header_image;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($path), $path);
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
             $this->files++;
         }
         return $this;
