@@ -32,9 +32,17 @@ class ExportService
     protected int $files = 0;
     protected int $filesize = 0;
 
+    protected CampaignExport $log;
+
     public function exportPath(): string
     {
         return $this->exportPath;
+    }
+
+    public function log(CampaignExport $campaignExport): self
+    {
+        $this->log = $campaignExport;
+        return $this;
     }
 
     public function assets(bool $assets): self
@@ -71,14 +79,27 @@ class ExportService
 
     public function export(): self
     {
-        $this
-            ->prepare()
-            ->campaignJson()
-            ->entities()
-            ->gallery()
-            ->finish()
-            ->notify()
-        ;
+        try {
+            $this
+                ->prepare()
+                ->campaignJson()
+                ->entities()
+                ->gallery()
+                ->finish()
+                ->notify();
+
+            $this->log
+                ->update([
+                    'status' => CampaignExport::STATUS_FINISHED,
+                    'size' => $this->filesize(),
+                    'path' => $this->exportPath()
+                ]);
+        } catch (Exception $e) {
+            $this->log
+                ->update([
+                    'status' => CampaignExport::STATUS_FAILED,
+                ]);
+        }
 
         return $this;
     }
@@ -229,6 +250,7 @@ class ExportService
             $this->archive->saveTo($saveFolder);
             $this->filesize = (int) floor(filesize($this->path) / pow(1024, 2));
         } catch (Exception $e) {
+            throw $e;
             // The export might fail if the zip is too big.
             $this->files = 0;
         }

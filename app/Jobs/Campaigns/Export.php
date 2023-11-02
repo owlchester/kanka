@@ -78,13 +78,8 @@ class Export implements ShouldQueue
             ->user($user)
             ->campaign($campaign)
             ->assets($this->assets)
+            ->log($campaignExport)
             ->export();
-
-        $campaignExport->update([
-            'status' => CampaignExport::STATUS_FINISHED,
-            'size' => $service->filesize(),
-            'path' => $service->exportPath()
-        ]);
 
         // Don't delete in "sync" mode as there is no delay.
         $queue = config('queue.default');
