@@ -22,6 +22,7 @@
     <x-forms.field field="comment" css="col-span-2" :label="__('calendars.fields.comment')">
         {!! Form::text('comment', null, ['placeholder' => __('calendars.placeholders.comment'), 'maxlength' => 191]) !!}
     </x-forms.field>
+    <span id="entity-calendar-modal-add">
 
     <x-forms.field
         field="length"
@@ -33,7 +34,7 @@
             {!!  __('calendars.warnings.event_length', ['documentation' => link_to('https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation'), ['target' => '_blank'], null, false)])!!}
         </p>
     </x-forms.field>
-
+</span>
     @include('cruds.fields.colour_picker', ['default' => (!empty($entityEvent) ? null : '#cccccc')])
 
     <x-forms.field
