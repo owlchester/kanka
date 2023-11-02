@@ -112,6 +112,7 @@ class ExportService
                 ->update([
                     'status' => CampaignExport::STATUS_FAILED,
                 ]);
+            throw $e;
         }
 
         return $this;
