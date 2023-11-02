@@ -66,14 +66,14 @@ class ExportService
 
         Export::dispatch($this->campaign, $this->user, $entitiesExport, false);
 
-        /*$assetExport = CampaignExport::create([
+        $assetExport = CampaignExport::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
             'type' => CampaignExport::TYPE_ASSETS,
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
-        Export::dispatch($this->campaign, $this->user, $assetExport, true);*/
+        Export::dispatch($this->campaign, $this->user, $assetExport, true);
 
         return $this;
     }
@@ -130,7 +130,7 @@ class ExportService
     {
         $this->archive->addRaw($this->campaign->toJson(), 'campaign.json');
         $this->files++;
-        Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
+        //Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
         if (!$this->assets) {
             return $this;
         }
@@ -259,7 +259,6 @@ class ExportService
             $this->filesize = (int) floor(filesize($this->path) / pow(1024, 2));
         } catch (Exception $e) {
             Log::error('Campaign export', ['err' => $e->getMessage()]);
-            throw $e;
             // The export might fail if the zip is too big.
             $this->files = 0;
         }
