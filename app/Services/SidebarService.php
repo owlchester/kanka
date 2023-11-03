@@ -104,6 +104,7 @@ class SidebarService
         ],
         'dice_rolls' => [
             'dice_rolls',
+            'dice_roll_results'
         ],
         'bookmarks' => [
             'bookmarks',
