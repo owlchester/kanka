@@ -121,8 +121,8 @@ class ImageService
                 }
 
                 if (!empty($sizes) && $model instanceof Entity && $model->isMap()) {
-                    $model->map->width = $sizes[0]; // @phpstan-ignore-line
-                    $model->map->height = $sizes[1]; // @phpstan-ignore-line
+                    $model->map->width = $sizes[0];
+                    $model->map->height = $sizes[1];
                     $model->map->saveQuietly();
                 }
             }
