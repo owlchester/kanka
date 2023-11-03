@@ -18,7 +18,7 @@ Next, sync the build folder to s3
 
 
 If doing an update, first do sync without --delete.
-
+ 
 For the api docs to work, the same needs to be done for the `public/vendor/binarytorch` folder.
 
 > aws s3 sync public/vendor/binarytorch/ s3://kanka-user-assets/vendor/binarytorch/ --include "*" --acl public-read --delete
