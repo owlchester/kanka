@@ -22,19 +22,18 @@
     <x-forms.field field="comment" css="col-span-2" :label="__('calendars.fields.comment')">
         {!! Form::text('comment', null, ['placeholder' => __('calendars.placeholders.comment'), 'maxlength' => 191]) !!}
     </x-forms.field>
-    <span id="entity-calendar-modal-add">
-
-    <x-forms.field
-        field="length"
-        :label="__('calendars.fields.length')"
-        :helper="__('calendars.hints.event_length')"
-        :tooltip="true">
-        {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'maxlength' => 1, 'data-url' => route('calendars.event-length', [$campaign, 'calendar' => isset($calendar) ? $calendar : 0])]) !!}
-        <p class="length-warning hidden text-error">
-            {!!  __('calendars.warnings.event_length', ['documentation' => link_to('https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation'), ['target' => '_blank'], null, false)])!!}
-        </p>
-    </x-forms.field>
-</span>
+    <div id="entity-calendar-modal-add">
+        <x-forms.field
+            field="length"
+            :label="__('calendars.fields.length')"
+            :helper="__('calendars.hints.event_length')"
+            :tooltip="true">
+            {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'maxlength' => 1, 'data-url' => route('calendars.event-length', [$campaign, 'calendar' => isset($calendar) ? $calendar : 0])]) !!}
+            <p class="length-warning hidden text-error">
+                {!!  __('calendars.warnings.event_length', ['documentation' => link_to('https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation'), ['target' => '_blank'], null, false)])!!}
+            </p>
+        </x-forms.field>
+</div>
     @include('cruds.fields.colour_picker', ['default' => (!empty($entityEvent) ? null : '#cccccc')])
 
     <x-forms.field
