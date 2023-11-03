@@ -13,6 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class Export implements ShouldQueue
@@ -54,10 +55,13 @@ class Export implements ShouldQueue
      */
     public function handle()
     {
+        Log::info('Campaign export', ['init', 'id' => $this->campaignExportId]);
         $campaignExport = CampaignExport::find($this->campaignExportId);
         if (!$campaignExport) {
+            Log::info('Campaign export', ['empty', 'id' => $this->campaignExportId]);
             return 0;
         }
+        Log::info('Campaign export', ['running', 'id' => $this->campaignExportId]);
         $campaignExport->update(['status' => CampaignExport::STATUS_RUNNING]);
 
         /** @var Campaign|null $campaign */
@@ -78,13 +82,8 @@ class Export implements ShouldQueue
             ->user($user)
             ->campaign($campaign)
             ->assets($this->assets)
+            ->log($campaignExport)
             ->export();
-
-        $campaignExport->update([
-            'status' => CampaignExport::STATUS_FINISHED,
-            'size' => $service->filesize(),
-            'path' => $service->exportPath()
-        ]);
 
         // Don't delete in "sync" mode as there is no delay.
         $queue = config('queue.default');

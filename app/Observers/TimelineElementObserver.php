@@ -25,7 +25,7 @@ class TimelineElementObserver
     {
         $timelineElement->name = $this->purify($timelineElement->name);
         // When creating a timeline element on the API, we might not have an entry
-        if (property_exists($timelineElement, 'entry')) {
+        if (isset($timelineElement->entry)) {
             $timelineElement->entry = $this->purify(Mentions::codify($timelineElement->entry));
         }
 

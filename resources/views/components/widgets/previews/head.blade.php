@@ -10,14 +10,14 @@
     class="widget-header"
 >
     @if (!empty($images['wide_xl']))
-        <div
+        <a href="{{ $entity->child->getLink() }}"
             class="widget-image cover-background bg-center aspect-video rounded-t "
             >
             <picture class="entity-image-wide">
                 <source srcset="{{ $images['wide_xl'] }}" media="(min-width: 768px)" />
-                <img src="{{ $images['wide_sm'] }}" />
+                <img src="{{ $images['wide_sm'] }}" class="w-full" />
             </picture>
-        </div>
+        </a>
     @endif
     <a href="{{ $entity->child->getLink() }}" class="flex gap-1 text-xl p-4 pb-0">
         @if ($entity->is_private)

@@ -124,15 +124,7 @@
 @section('modals')
     @parent
     @if ($focus)
-        <div class="modal fade" id="focus-modal" tabindex="-1" role="dialog" >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content bg-base-100 rounded-2xl">
-                    @include('settings.premium.create', [
-                        'campaign' => $focus
-                    ])
-                </div>
-            </div>
-        </div>
+        <input type="hidden" id="focus-modal" data-url="{{ route('campaign_boosts.create', ['campaign' => $focus, 'boost' => 1]) }}" data-target="primary-dialog" />
     @endif
 @endsection
 

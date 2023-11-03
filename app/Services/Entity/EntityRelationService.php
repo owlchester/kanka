@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\Avatar;
 use App\Facades\Module;
 use App\Models\Character;
 use App\Models\Conversation;
@@ -154,7 +155,7 @@ class EntityRelationService
             return $this;
         }
 
-        $img = $image ?? $entity->child->thumbnail(80, 80);
+        $img = $image ?? Avatar::entity($entity)->size(80, 80)->fallback()->thumbnail();
         if (empty($img)) {
             // Fallback?
             $img = '';

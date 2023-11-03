@@ -368,7 +368,7 @@ class Campaign extends Model
         foreach ($this->default_images as $type => $uuid) {
             /** @var Image|null $image */
             $image = $images->where('id', $uuid)->first();
-            if (empty($image) || in_array($type, ['relations', 'bookmarks'])) {
+            if (empty($image) || in_array($type, ['relations', 'bookmarks', 'menu_links'])) {
                 continue;
             }
 

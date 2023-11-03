@@ -18,9 +18,6 @@ class ExportController extends Controller
         $this->service = $exportService;
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index(Campaign $campaign)
     {
         $this->authorize('setting', $campaign);
@@ -48,7 +45,6 @@ class ExportController extends Controller
 
     /**
      * Dispatch the campaign export jobs and have the user wait for a bit
-     * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function export(Request $request, Campaign $campaign)

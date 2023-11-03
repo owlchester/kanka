@@ -29,7 +29,7 @@ class MentionController extends Controller
             ->datagridElements(request()->only(['o', 'k']))
             ->with([
                 'campaign' => function ($sub) {
-                    $sub->select('id', 'name');
+                    $sub->select('id', 'name', 'slug');
                 },
                 'post' => function ($sub) {
                     $sub->select('id', 'entity_id', 'name', 'visibility_id');

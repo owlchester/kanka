@@ -120,9 +120,10 @@ class ImageService
                     $model->$field = $path;
                 }
 
-                if (!empty($sizes) && array_key_exists('height', $model->getAttributes())) {
-                    $model->width = $sizes[0]; // @phpstan-ignore-line
-                    $model->height = $sizes[1]; // @phpstan-ignore-line
+                if (!empty($sizes) && $model instanceof Entity && $model->isMap()) {
+                    $model->map->width = $sizes[0];
+                    $model->map->height = $sizes[1];
+                    $model->map->saveQuietly();
                 }
             }
         } catch (Exception $e) {
@@ -207,7 +208,7 @@ class ImageService
      */
     public static function cleanup($model, $field = 'image')
     {
-        if ($model instanceof Entity) {
+        if ($model instanceof Entity && $field === 'image') {
             $field = 'image_path';
         }
         if (empty($model->$field)) {

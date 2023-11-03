@@ -122,6 +122,9 @@ img.note-float-left {
     --tw-text-opacity: .5;
     color: hsl(var(--bc)/var(--tw-text-opacity)) !important;
 }
+.note-editor.fullscreen {
+    background-color: hsl(var(--b1)/1);
+}
 
 
 /**

@@ -37,7 +37,7 @@
             @endphp
             <p class="text-neutral-content">{{ __('fields.header-image.description') }}</p>
             {!! Form::hidden('remove-header_image') !!}
-            <x-grid type="3/4">
+            <div class="flex flex-row gap-2">
                 <div class="flex flex-col gap-2 @if ((!empty($model->entity) && !empty($model->entity->header_image))) col-span-3 @else col-span-4 @endif">
                     <x-forms.field field="header-file">
                         {!! Form::file('header_image', array('class' => 'image')) !!}
@@ -49,15 +49,15 @@
 
                 @if (!empty($model->entity) && !empty($model->entity->header_image))
 
+                    <div class="preview w-32">
                     @include('cruds.fields._image_preview', [
                         'image' => $model->entity->thumbnail(120),
                         'title' => $model->name,
                         'target' => 'remove-header_image',
                     ])
+                    </div>
                 @endif
-
-            </x-grid>
-
+            </div>
             @include('cruds.fields.entity_header')
         @else
             @include('cruds.fields.helpers.boosted', ['key' => 'fields.header-image.boosted-description'])

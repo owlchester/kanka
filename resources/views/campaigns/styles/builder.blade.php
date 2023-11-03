@@ -28,9 +28,8 @@
 
             @include('partials.errors')
             <x-box>
-
                 <div class="grid grid-cols-2 gap-4">
-                    <div>
+                    <div class="grid gap-2">
                         <div class="flex items-center gap-2">
                             <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-primary" data-toggle="tooltip" data-title="Click me to change the colour" data-target="p"></div>
                             Primary
@@ -58,7 +57,7 @@
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="grid gap-2">
                         <div class="flex items-center gap-2">
                             <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-info" data-toggle="tooltip" data-title="Click me to change the colour" id="picker-info" data-target="in"></div>
                             Information alert

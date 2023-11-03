@@ -22,5 +22,7 @@
     }
 @endphp
 <x-alert type="info">
+    <p>
     {!! __($key, ['boosted-campaign' => link_to('https://' . config('domains.front') . '/pricing', __('concept.premium-campaign'), $pricingOptions)]) !!}
+    </p>
 </x-alert>

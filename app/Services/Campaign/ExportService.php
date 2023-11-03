@@ -11,6 +11,7 @@ use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Zip;
@@ -32,9 +33,17 @@ class ExportService
     protected int $files = 0;
     protected int $filesize = 0;
 
+    protected CampaignExport $log;
+
     public function exportPath(): string
     {
         return $this->exportPath;
+    }
+
+    public function log(CampaignExport $campaignExport): self
+    {
+        $this->log = $campaignExport;
+        return $this;
     }
 
     public function assets(bool $assets): self
@@ -71,14 +80,28 @@ class ExportService
 
     public function export(): self
     {
-        $this
-            ->prepare()
-            ->campaignJson()
-            ->entities()
-            ->gallery()
-            ->finish()
-            ->notify()
-        ;
+        try {
+            $this
+                ->prepare()
+                ->campaignJson()
+                ->entities()
+                ->gallery()
+                ->finish()
+                ->notify();
+
+            $this->log
+                ->update([
+                    'status' => CampaignExport::STATUS_FINISHED,
+                    'size' => $this->filesize(),
+                    'path' => $this->exportPath()
+                ]);
+        } catch (Exception $e) {
+            $this->log
+                ->update([
+                    'status' => CampaignExport::STATUS_FAILED,
+                ]);
+            throw $e;
+        }
 
         return $this;
     }
@@ -90,7 +113,7 @@ class ExportService
 
     protected function prepare(): self
     {
-        $this->exportPath = '/exports/campaigns/' . $this->campaign->id . '/';
+        $this->exportPath = '/exports/campaigns/';
         $saveFolder = storage_path($this->exportPath);
         File::ensureDirectoryExists($saveFolder);
 
@@ -107,8 +130,12 @@ class ExportService
     {
         $this->archive->addRaw($this->campaign->toJson(), 'campaign.json');
         $this->files++;
+        //Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
+        if (!$this->assets) {
+            return $this;
+        }
         if (!empty($this->campaign->image) && Storage::exists($this->campaign->image)) {
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($this->campaign->image), $this->campaign->image);
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image), $this->campaign->image);
             $this->files++;
         }
 
@@ -141,6 +168,7 @@ class ExportService
                     $this->process($entity, $model);
                 }
             } catch (Exception $e) {
+                Log::error('Campaign export', ['err' => $e->getMessage()]);
                 $saveFolder = storage_path($this->exportPath);
                 $this->archive->saveTo($saveFolder);
                 unlink($this->path);
@@ -179,7 +207,7 @@ class ExportService
         }
 
         if (!$image->isFolder()) {
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
             $this->files++;
         }
         return $this;
@@ -195,12 +223,12 @@ class ExportService
 
         $path = $model->entity->image_path;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($path), $path);
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
             $this->files++;
         }
         $path = $model->entity->header_image;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
-            $this->archive->add('s3://' . env('AWS_BUCKET') . '/' . Storage::path($path), $path);
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
             $this->files++;
         }
         return $this;
@@ -226,9 +254,11 @@ class ExportService
         // Save all the content.
         try {
             $saveFolder = storage_path($this->exportPath);
+            Log::info('Campaign export', ['path' => $saveFolder, 'exportPath' => $this->exportPath]);
             $this->archive->saveTo($saveFolder);
             $this->filesize = (int) floor(filesize($this->path) / pow(1024, 2));
         } catch (Exception $e) {
+            Log::error('Campaign export', ['err' => $e->getMessage()]);
             // The export might fail if the zip is too big.
             $this->files = 0;
         }

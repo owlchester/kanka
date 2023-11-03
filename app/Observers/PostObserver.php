@@ -31,7 +31,7 @@ class PostObserver
     public function saving(Post $post)
     {
 
-        // When creating a timeline element on the API, we might not have an entry
+        // When creating a post on the API, we might not have an entry
         if (isset($post->entry)) {
             $post->entry = $this->purify(Mentions::codify($post->entry));
         }

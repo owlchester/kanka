@@ -7,6 +7,6 @@ $(document).ready(function () {
 function registerBoosters() {
     let focusModal = $('#focus-modal');
     if (focusModal.length === 1) {
-        focusModal.modal('show');
+        window.openDialog(focusModal.data('target'), focusModal.data('url'));
     }
 }
