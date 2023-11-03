@@ -125,7 +125,7 @@
     "src": "resources/js/cookieconsent.js"
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-1fd95307.js",
+    "file": "assets/dashboard-cb1e1518.js",
     "imports": [
       "_sortable.esm-be94e56d.js"
     ],
