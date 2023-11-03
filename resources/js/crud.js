@@ -456,14 +456,12 @@ function initSpectrum() {
  * Expand/Collapse all posts on the overview of an entity
  */
 function registerStoryActions() {
-    let posts = $('.entity-story-block .collapse');
-    let togglers = $('.entity-story-block .element-toggle');
     $('.btn-post-collapse').unbind('click').click(function () {
         let elements = document.querySelectorAll('.element-toggle');
         elements.forEach((e) => {
             e.classList.add('animate-collapsed');
             let target = document.querySelector(e.dataset.target);
-            target.classList.add('h-0');
+            target.classList.add('hidden');
         });
         return false;
     });
@@ -473,7 +471,7 @@ function registerStoryActions() {
         elements.forEach((e) => {
             e.classList.remove('animate-collapsed');
             let target = document.querySelector(e.dataset.target);
-            target.classList.remove('h-0');
+            target.classList.remove('hidden');
         });
         return false;
     });

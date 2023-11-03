@@ -74,7 +74,7 @@
                     @endcan
                 </div>
             </div>
-            <div class="timeline-item-body entity-content overflow-hidden @if ($element->collapsed()) h-0 @endif" id="timeline-element-body-{{ $element->id }}">
+            <div class="timeline-item-body entity-content overflow-hidden @if ($element->collapsed()) hidden @endif" id="timeline-element-body-{{ $element->id }}">
                 {!! \App\Facades\Mentions::mapAny($element) !!}
 
                 @if ($element->use_entity_entry && $element->entity && $element->entity->child->hasEntry())

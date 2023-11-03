@@ -13,9 +13,7 @@ Now rebuild the assets
 > sail yarn build
 
 Next, sync the build folder to s3
-@media (min-width: 768px) {
 
-}
 > aws s3 sync public/build/ s3://kanka-user-assets/build/ --include "*" --acl public-read --delete
 
 
