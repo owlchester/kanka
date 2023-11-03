@@ -19,14 +19,14 @@ $first = $posts->first();
 $postCount = 0;
 @endphp
 
-@if(isset($withEntry) && ($posts->count() === 0 || (!empty($first) && $first->position >= 0)))
+@if (isset($withEntry) && ($posts->count() === 0 || (!empty($first) && $first->position >= 0)))
     @include('entities.components.entry')
     @php $entryShown = true; @endphp
     @include('partials.ads.inline')
 @endif
 
 
-@if($wrapper)
+@if ($wrapper && $posts->count() > 0)
 <div class="entity-posts entity-notes flex flex-col gap-5">
 @endif
     @foreach ($posts as $post)
@@ -70,7 +70,7 @@ $postCount = 0;
         </div>
     @endif
 
-@if($wrapper)
+@if ($wrapper && $posts->count() > 0)
 </div>
 @endif
 
