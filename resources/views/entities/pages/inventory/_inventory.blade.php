@@ -1,5 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Inventory $item */?>
+
 <div class="table-responsive">
 <table class="table table-striped table-entity-inventory mb-0">
     <thead>
@@ -16,20 +17,21 @@
     </tr>
     </thead>
     <tbody>
-    <?php $previousPosition = null; ?>
+    <?php $previousPosition = null; $posCount = 0 ?>
     @foreach ($inventory as $item)
         @if (!empty($item->item_id) && empty($item->item))
             @continue
         @endif
         @if ($previousPosition != $item->position)
-            <tr class="active cursor-pointer" data-animate="collapse" data-target=".inventory-group-{{ \Illuminate\Support\Str::slug($item->position) }}">
+            @php $posCount++; @endphp
+            <tr class="active cursor-pointer" data-animate="collapse" data-target=".inventory-group-{{ $posCount }}">
                 <th colspan="@if (auth()->check())5 @else 4 @endif" class="text-neutral-content text-left">
                     {!! $item->position ?: '<i>' . __('entities/inventories.show.unsorted') . '</i>' !!}
                 </th>
             </tr>
             <?php $previousPosition = $item->position; ?>
         @endif
-        <tr class="overflow-hidden inventory-group-{{ \Illuminate\Support\Str::slug($item->position) }}">
+        <tr class="overflow-hidden inventory-group-{{ $posCount }}">
             <td style="width: 50px">
                 @if ($item->is_equipped)
                     <i class="fa-solid fa-check" data-title="{{ __('entities/inventories.fields.is_equipped') }}" data-animate="collapse" aria-hidden="true"></i>
