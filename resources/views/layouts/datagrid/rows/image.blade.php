@@ -5,5 +5,5 @@
     <x-entities.thumbnail :entity="$model->entity" :title="$model->name"></x-entities.thumbnail>
 @elseif (!empty($with))
     @php $target = \Illuminate\Support\Arr::get($with, 'target', false); @endphp
-    <a class="entity-image cover-background" style="background-image: url('{{ \App\Facades\Avatar::entity($model->$target->entity)->size(40)->thumbnail() }}');" title="{{ $model->$target->name }}" href="{{ $model->$target->getLink() }}"></a>
+    <a class="entity-image cover-background" style="background-image: url('{{ \App\Facades\Avatar::entity($model->$target->entity)->size(40)->fallback()->thumbnail() }}');" title="{{ $model->$target->name }}" href="{{ $model->$target->getLink() }}"></a>
 @endif
