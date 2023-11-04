@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Facades\CampaignCache;
 use App\Http\Requests\UpdateModuleName;
 use App\Models\EntityType;
 use App\Observers\PurifiableTrait;
@@ -71,6 +72,7 @@ class ModuleEditService
         }
         $this->campaign->settings = $settings;
         $this->campaign->saveQuietly();
+        CampaignCache::clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
         return $this;
     }
@@ -85,6 +87,7 @@ class ModuleEditService
 
         $this->campaign->setting->{$module} = !$this->campaign->setting->{$module};
         $this->campaign->setting->saveQuietly();
+        CampaignCache::clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
         return (bool) $this->campaign->setting->{$module};
     }
