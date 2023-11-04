@@ -20,7 +20,7 @@ class CharacterController extends Controller
 
     public function index(Campaign $campaign, Location $location)
     {
-        $this->campaign($campaign)->authView($location);
+        $this->campaign($campaign)->authEntityView($location->entity);
 
         $options = ['campaign' => $campaign, 'location' => $location];
         $filters = [];

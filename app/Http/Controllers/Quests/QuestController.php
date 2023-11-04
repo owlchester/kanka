@@ -20,7 +20,7 @@ class QuestController extends Controller
 
     public function index(Campaign $campaign, Quest $quest)
     {
-        $this->campaign($campaign)->authView($quest);
+        $this->campaign($campaign)->authEntityView($quest->entity);
 
         $options = ['campaign' => $campaign, 'quest' => $quest];
         $filters = [];

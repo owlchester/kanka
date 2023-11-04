@@ -20,7 +20,7 @@ class TimelineController extends Controller
 
     public function index(Campaign $campaign, Timeline $timeline)
     {
-        $this->campaign($campaign)->authView($timeline);
+        $this->campaign($campaign)->authEntityView($timeline->entity);
 
         $options = ['campaign' => $campaign, 'timeline' => $timeline];
         $filters = [];

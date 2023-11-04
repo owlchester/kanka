@@ -20,7 +20,7 @@ class JournalController extends Controller
 
     public function index(Campaign $campaign, Journal $journal)
     {
-        $this->campaign($campaign)->authView($journal);
+        $this->campaign($campaign)->authEntityView($journal->entity);
 
         $options = ['campaign' => $campaign, 'journal' => $journal];
         $filters = [];

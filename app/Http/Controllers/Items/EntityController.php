@@ -20,7 +20,7 @@ class EntityController extends Controller
 
     public function index(Campaign $campaign, Item $item)
     {
-        $this->campaign($campaign)->authView($item);
+        $this->campaign($campaign)->authEntityView($item->entity);
 
         $options = ['campaign' => $campaign, 'item' => $item];
 

@@ -20,7 +20,7 @@ class CreatureController extends Controller
 
     public function index(Campaign $campaign, Creature $creature)
     {
-        $this->campaign($campaign)->authView($creature);
+        $this->campaign($campaign)->authEntityView($creature->entity);
 
         $options = ['campaign' => $campaign, 'creature' => $creature];
         $filters = [];

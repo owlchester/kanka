@@ -26,7 +26,7 @@ class MemberController extends Controller
 
     public function index(Campaign $campaign, Organisation $organisation)
     {
-        $this->campaign($campaign)->authView($organisation);
+        $this->campaign($campaign)->authEntityView($organisation->entity);
 
         $options = ['campaign' => $campaign, 'organisation' => $organisation];
         $base = 'members';

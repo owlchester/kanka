@@ -23,7 +23,7 @@ class ElementController extends Controller
             abort(404);
         }
         // Policies will always fail if they can't resolve the user.
-        $this->campaign($campaign)->authView($quest);
+        $this->campaign($campaign)->authEntityView($quest->entity);
 
         $datagridSorter = new QuestElementSorter();
         $datagridSorter->request(request()->all());

@@ -20,7 +20,7 @@ class OrganisationController extends Controller
 
     public function organisations(Campaign $campaign, Organisation $organisation)
     {
-        $this->campaign($campaign)->authView($organisation);
+        $this->campaign($campaign)->authEntityView($organisation->entity);
 
         $options = ['campaign' => $campaign, 'organisation' => $organisation];
         $filters = [];
