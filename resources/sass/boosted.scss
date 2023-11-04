@@ -136,6 +136,18 @@
     }
 }
 
+/** Stop tables from being stupid wide **/
+/*.entity-main-block {
+    flex: 1;
+    min-width: 0;
+}*/
+.entity-content table {
+    max-width: 100%;
+    width: auto;
+    overflow-x: auto;
+    display: inline-block;
+}
+
 /**
  * Everything is a grid now
  */

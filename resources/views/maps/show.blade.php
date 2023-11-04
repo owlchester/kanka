@@ -12,7 +12,7 @@
     <div class="entity-body flex flex-col md:flex-row gap-5">
         @include('entities.components.menu_v2', ['active' => 'story'])
 
-        <div class="entity-main-block grow flex flex-col gap-5">@if ($model->explorable())
+        <div class="entity-main-block grow flex flex-col gap-5 min-w-0">@if ($model->explorable())
                 @if ($model->isChunked() && $model->chunkingError())
                     <x-alert type="error">
                         {!! __('maps.errors.chunking.error', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
