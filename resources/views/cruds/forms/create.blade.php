@@ -34,7 +34,7 @@
 
                     @includeIf($name . '.form._tabs', ['source' => $source])
 
-                    @if ($tabBoosted)
+                    @if ($tabBoosted && config('services.stripe.enabled'))
                         <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
                     @endif
                     @if ($tabAttributes)
@@ -61,7 +61,7 @@
             </div>
             @includeIf($name . '.form._panes', ['source' => $source])
 
-            @if ($tabBoosted)
+            @if ($tabBoosted && config('services.stripe.enabled'))
                 <div class="tab-pane pane-premium {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
                     <x-grid type="1/1">
                         @include('cruds.forms._premium', ['source' => $source])

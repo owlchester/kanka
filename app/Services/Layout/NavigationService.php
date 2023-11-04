@@ -79,6 +79,9 @@ class NavigationService
             ];
         }
         $data['subscription']['title'] = __('settings.menu.subscription');
+        if (!config('services.stripe.enabled')) {
+            unset($data['subscription']);
+        }
 
         $data['urls'] = [
             'settings' => ['url' => route('settings.profile'), 'name' => __('header.user.settings')],

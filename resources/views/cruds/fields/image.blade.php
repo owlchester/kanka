@@ -78,9 +78,8 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
         @endif
     </div>
 
-
     <p class="text-neutral-content m-0">
         {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }}
-        @include('cruds.fields.helpers.share')
+        @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')
     </p>
 </div>

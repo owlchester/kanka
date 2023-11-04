@@ -39,7 +39,7 @@
                         <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
 
                         @includeIf($name . '.form._tabs', ['source' => null])
-                        @if ($tabBoosted)
+                        @if ($tabBoosted && config('services.stripe.enabled'))
                             <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
                         @endif
                         @if ($tabAttributes)
@@ -62,7 +62,7 @@
                     @include($name . '.form._entry', ['source' => null])
                 </div>
                 @includeIf($name . '.form._panes', ['source' => null])
-                @if ($tabBoosted)
+                @if ($tabBoosted && config('services.stripe.enabled'))
                     <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
                         @include('cruds.forms._premium', ['source' => null])
                     </div>
