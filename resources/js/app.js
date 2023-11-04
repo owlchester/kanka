@@ -263,9 +263,9 @@ const initFeedbackButtons = () => {
         axios
             .post(toggleUrl)
             .then(response => {
-                window.showToast(response.data.success.toast);
+                window.showToast(response.data.toast);
                 let body = document.querySelector('body');
-                if (!response.data.success.status) {
+                if (!response.data.status) {
                     body.classList.add('kanka-entity-private');
                 } else {
                     body.classList.remove('kanka-entity-private');
