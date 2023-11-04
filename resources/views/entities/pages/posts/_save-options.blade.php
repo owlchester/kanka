@@ -8,14 +8,14 @@
         </button>
         <div class="dropdown-menu hidden" role="menu">
             <x-dropdowns.item link="#" css="form-submit-actions">
-                <span class="flex-grow">{{ __('crud.save') }}</span>
+                <span class="grow w-40">{{ __('crud.save') }}</span>
                 <span class="keyboard-shortcut flex-none ml-2 hidden sm:inline">CTRL+S</span>
             </x-dropdowns.item>
             <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-new']">
                 {{ __('crud.save_and_new') }}
             </x-dropdowns.item>
             <x-dropdowns.item link="#" css="form-submit-actions" :data="['action' => 'submit-update']">
-                <span class="flex-grow">{{ __('crud.save_and_update') }}</span>
+                <span class="grow w-40">{{ __('crud.save_and_update') }}</span>
                 <span class="keyboard-shortcut flex-none ml-2 hidden sm:inline">CTRL+SHIFT+S</span>
             </x-dropdowns.item>
         </div>

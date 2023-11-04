@@ -14,7 +14,7 @@
                     <div class="pr-3">
                         <span class="fa-solid fa-ellipsis-v"></span>
                     </div>
-                    <div class="name overflow-hidden flex-grow">
+                    <div class="name overflow-hidden grow">
                         {!! $style->name !!}
                     </div>
                     <div class="self-end">

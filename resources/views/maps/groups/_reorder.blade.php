@@ -14,7 +14,7 @@
                 <div class="dragger pr-3">
                     <span class="fa-solid fa-ellipsis-v"></span>
                 </div>
-                <div class="name overflow-hidden flex-grow">
+                <div class="name overflow-hidden grow">
                     {!! $group->name !!}
                     @if ($group->type)
                         <span class="text-neutral-content text-xs">

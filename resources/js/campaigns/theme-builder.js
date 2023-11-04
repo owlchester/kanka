@@ -1,4 +1,5 @@
 import { colord } from "colord";
+import tippy from "tippy.js";
 
 let fieldTheme;
 let theme = {};
@@ -109,17 +110,15 @@ const darken = (hsl, percentage = 0.2) => {
 };
 
 const initDemoTooltip = () => {
-    $('[data-toggle="tooltip-demo"]').tooltip({
-        title: tooltipContent,
-        delay: 0,
-        trigger: 'hover',
-        placement: 'auto',
-        template: '<div class="tooltip" role="tooltip">' +
-            '<div class="tooltip-arrow"></div>' +
-            '<div class="tooltip-inner tooltip-ajax text-left p-1"></div>' +
-            '</div>',
-        html: true,
-        sanitize: false
+    let e = document.querySelector('[data-toggle="tooltip-demo"]');
+    tippy(e, {
+        content: '<div class="dd-menu flex flex-col gap-1 max-w-2xl">' + tooltipContent() + '</div>',
+        theme: 'kanka',
+        delay: 250,
+        placement: e.dataset.direction ?? 'bottom',
+        arrow: true,
+        allowHTML: true,
+        interactive: true,
     });
 };
 

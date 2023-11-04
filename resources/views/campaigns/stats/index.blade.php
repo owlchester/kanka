@@ -40,7 +40,7 @@ use \Illuminate\Support\Arr;
                     <i class="{{ $stat['icon'] }}"></i><br />
                 </div>
 
-                <div class="py-1 flex-grow">
+                <div class="py-1 grow">
                     <span class="px-2 text-uppercase truncate block">{{  __('campaigns/stats.titles.' . $key, ['level' => Arr::get($stat, 'level', 0)])}}</span>
                     <span class="px-2 block font-bold text-lg">{{ __('campaigns/stats.targets.' . $key, [
                     'target' => Arr::get($stat, 'target', 0),

@@ -61,7 +61,7 @@
                         <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
                             <i class="fa-solid {{ $log->actionIcon() }}" aria-hidden="true"></i>
                         </div>
-                        <div class="flex-grow">
+                        <div class="grow">
                             @if ($superboosted || $count === 0)
                                 {!! __('history.log.' . $log->actionCode(), [
                                     'user' => $log->userLink(),

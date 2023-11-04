@@ -20,6 +20,9 @@
   "_sortable.esm-be94e56d.js": {
     "file": "assets/sortable.esm-be94e56d.js"
   },
+  "_tippy.esm-e500460f.js": {
+    "file": "assets/tippy.esm-e500460f.js"
+  },
   "_v-click-outside.umd-d5c5f7b0.js": {
     "file": "assets/v-click-outside.umd-d5c5f7b0.js",
     "imports": [
@@ -69,13 +72,14 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-70f5d496.js",
+    "file": "assets/app-3237324c.js",
     "imports": [
       "_mention-6dbb4e38.js",
       "_sortable.esm-be94e56d.js",
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
       "_v-click-outside.umd-d5c5f7b0.js",
+      "_tippy.esm-e500460f.js",
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
@@ -104,7 +108,10 @@
     "src": "resources/js/billing.js"
   },
   "resources/js/campaigns/theme-builder.js": {
-    "file": "assets/theme-builder-51131d7f.js",
+    "file": "assets/theme-builder-2dc1a087.js",
+    "imports": [
+      "_tippy.esm-e500460f.js"
+    ],
     "isEntry": true,
     "src": "resources/js/campaigns/theme-builder.js"
   },

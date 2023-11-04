@@ -32,7 +32,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
-                <p class="text-sm flex-grow">
+                <p class="text-sm grow">
                     {{ __('settings/appearance.helpers.theme')}}
                     {{ __('settings/appearance.helpers.overridable')}}
                 </p>
@@ -54,7 +54,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
-                <p class="text-sm flex-grow">
+                <p class="text-sm grow">
                     {{ __('settings/appearance.helpers.pagination')}}
                 </p>
                 {!! Form::select('pagination', $paginationOptions, null, ['class' => ' flex self-end w-full border rounded p-2'], $paginationDisabled) !!}
@@ -73,7 +73,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                     </a>
                 </div>
 
-                <p class="text-sm flex-grow">
+                <p class="text-sm grow">
                     {{ __('settings/appearance.helpers.date-format')}}
                 </p>
                 {!! Form::select('date_format', [
@@ -99,7 +99,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                     </a>
                 </div>
 
-                <p class="text-sm flex-grow">
+                <p class="text-sm grow">
                     {{ __('settings/appearance.helpers.campaign-order')}}
                 </p>
                 {!! Form::select('campaign_switcher_order_by', [
@@ -124,7 +124,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
                     </div>
-                    <p class="text-sm flex-grow">{{ __('settings/appearance.helpers.editor') }}</p>
+                    <p class="text-sm grow">{{ __('settings/appearance.helpers.editor') }}</p>
                     {!! Form::select('editor', [
                         '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
                         'legacy' => __('settings/appearance.editors.legacy', ['name' => 'TinyMCE 4']),
@@ -144,7 +144,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
-                <p class="text-sm flex-grow">
+                <p class="text-sm grow">
                     {{ __('settings/appearance.helpers.entity-explore') }}
                 </p>
                 {!! Form::select('entity_explore', [
@@ -164,7 +164,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
-                <p class="text-sm flex-grow">
+                <p class="text-sm grow">
                     {{ __('settings/appearance.helpers.default-nested') }}
                     {{ __('settings/appearance.helpers.overridable')}}
                 </p>
@@ -185,7 +185,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
-                <p class="text-sm flex-grow">
+                <p class="text-sm grow">
                     {!! __('settings/appearance.helpers.advanced-mentions') !!}
                 </p>
                 {!! Form::select('advanced_mentions', [
