@@ -539,7 +539,9 @@ class SidebarService
             }
         }
 
-        Cache::put($key, $layout, 7 * 86400);
+        if (!$this->withDisabled) {
+            Cache::put($key, $layout, 7 * 86400);
+        }
         return $layout;
     }
 
