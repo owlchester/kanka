@@ -41,7 +41,7 @@ class GalleryController extends Controller
 
     public function show(Campaign $campaign)
     {
-        return redirect('gallery.index', $campaign);
+        return redirect()->route('gallery.index', $campaign);
     }
 
     /**
