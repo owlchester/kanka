@@ -409,6 +409,9 @@ class DatagridRenderer
                 /** @var Journal $model */
                 if ($model->entity->calendarDate) {
                     $reminder = $model->entity->calendarDate;
+                    if (!$reminder->calendar || !$reminder->calendar->entity) {
+                        return null;
+                    }
                     $content = link_to_route(
                         'entities.show',
                         $reminder->readableDate(),
