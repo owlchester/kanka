@@ -203,9 +203,23 @@ class EntityResource extends JsonResource
             $merged['entity_abilities'] = EntityAbilityResource::collection($misc->entity->abilities);
             $merged['entity_assets'] = EntityAssetResource::collection($misc->entity->assets);
         }
-
+        if ($misc->ancestors) {
+            $ancestors = [];
+            foreach ($misc->getAncestors(['id']) as $ancestor) {
+                $ancestors[] = $ancestor->id;
+            }
+            $merged['parents'] = $ancestors;
+        }
+        if ($misc->children) {
+            $descendants = [];
+            foreach ($misc->children as $descendant) {
+                $descendants[] = $descendant->id;
+            }
+            $merged['children'] = $descendants;
+        }
         $final = array_merge($merged, $prepared);
         //ksort($final);
         return $final;
     }
+
 }
