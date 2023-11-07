@@ -175,7 +175,7 @@ class FamilyTreeService
             'id' => $entity->id,
             'name' => $entity->name,
             'url' => $entity->url(),
-            'thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
+            'thumb' => Avatar::entity($entity)->size(40)->fallback()->thumbnail(),
             'is_dead' => (bool)$entity->character->is_dead,
             'death' => $birth,
             'birth' => $death,

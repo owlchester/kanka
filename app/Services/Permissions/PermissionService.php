@@ -307,7 +307,7 @@ class PermissionService
     protected function parseRolePermission(CampaignPermission $permission)
     {
         // Only test permissions whose action is being requested
-        if (!$permission->isAction($this->action)) {
+        if (isset($this->action) && !$permission->isAction($this->action)) {
             return;
         }
         if (isset($this->entityType) && !empty($this->entityType) && $permission->entity_type_id !== $this->entityType) {
@@ -357,7 +357,7 @@ class PermissionService
      */
     protected function parseUserPermission(CampaignPermission $permission)
     {
-        if (!$permission->isAction($this->action)) {
+        if (isset($this->action) && !$permission->isAction($this->action)) {
             return;
         }
 

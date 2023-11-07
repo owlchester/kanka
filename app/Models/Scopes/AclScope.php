@@ -188,6 +188,7 @@ class AclScope implements Scope
         }
 
         Permissions::campaign($campaign);
+        Permissions::user(auth()->user());
 
         // Either mine (self && created_by = me) or (if admin: !self, else: all)
         return $query
