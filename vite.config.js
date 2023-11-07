@@ -52,6 +52,7 @@ export default defineConfig({
             'resources/js/editors/summernote.js',
             'resources/js/family-tree-vue.js',
             'resources/js/campaigns/theme-builder.js',
+            'resources/js/campaigns/import.js',
 
             'resources/sass/vendor.scss',
             'resources/sass/app.scss',

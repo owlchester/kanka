@@ -405,6 +405,8 @@ TEXT
             'customisation'     => 'Customisation',
             'default-images'    => 'Default thumbnails',
             'export'            => 'Export',
+            'import'            => 'Import',
+            'data'              => 'Data',
             'information'       => 'Information',
             'management'        => 'Management',
             'members'           => 'Members',
