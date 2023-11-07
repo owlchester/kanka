@@ -190,8 +190,7 @@ class Entity extends Model
                 return (string)strip_tags($text);
             }
         }
-        $text = Str::limit($this->child->entry(), 500);
-        return (string)strip_tags($text);
+        return Str::limit(strip_tags($this->child->entry()), 500);
     }
 
 

@@ -18,10 +18,10 @@
                 <select name="entity" class=" select2" data-tags="true" data-url="{{ route('search.entities-with-relations', $campaign) }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
             </x-forms.field>
 
-            <x-forms.field field="copy" css="form-check" :label="__('entities/notes.move.copy')">
+            <x-forms.field field="copy" css="form-check" :label="__('entities/notes.move.copy_title')">
                 <x-checkbox :text="__('entities/notes.move.copy')">
                     {!! Form::checkbox('copy', 1, true) !!}
-                </x-checkbox>>
+                </x-checkbox>
             </x-forms.field>
         </x-grid>
 
