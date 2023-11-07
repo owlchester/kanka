@@ -1,7 +1,7 @@
 <?php
 if ($model instanceof \App\Models\Post) {
     $modelName = 'Post';
-    $modelId = $entity->id;
+    $modelId = $model->id;
 } elseif ($model instanceof \App\Models\Campaign) {
     $modelName = null;
     $modelId = $model->id;

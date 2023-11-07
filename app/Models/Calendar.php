@@ -419,7 +419,7 @@ class Calendar extends MiscModel
         return [
             $isNegativeYear ? '-' . $date[0] : $date[0],
             max($date[1], 1),
-            max($date[2], 2)
+            max($date[2], 1)
         ];
     }
 
