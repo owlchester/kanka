@@ -27,22 +27,23 @@
         <form id="campaign-import-form" method="post" action="{{ \App\Facades\Domain::importer() }}">
             {{ csrf_field() }}
             <x-grid type="1/1">
-                <h4>{{ __('campaigns/import.uploader.well') }}</h4>
+                <h4>{{ __('campaigns/import.form') }}</h4>
 
                 <div class="field field-entities">
-                    <label>Export files</label>
+                    <label>{{ __('campaigns/import.fields.file') }}</label>
                     {!! Form::file('file', ['class' => 'w-full ', 'multiple', 'id' => 'export-files']) !!}
                 </div>
 
                 <button type="submit" class="btn2 btn-primary">
-                    Upload campaign export
+                    {{ __('campaigns/import.actions.import') }}
                 </button>
 
                 <input type="hidden" name="campaign" value="{{ $campaign->id }}" />
+                <input type="hidden" name="token" value="{{ $token->id }}" />
             </x-grid>
         </form>
 
-        <div class="progress h-0.5 w-full bg-gray" style="display: none">
+        <div class="progress w-full bg-gray" style="display: none">
             <div class="text-center text-2xl py-4">
                 <x-icon class="loading" />
             </div>
@@ -52,7 +53,9 @@
         </div>
 
         <div class="box box-solid">
-
+            <div id="datagrid-parent" class="table-responsive">
+                @include('layouts.datagrid._table')
+            </div>
         </div>
     </div>
 @endsection

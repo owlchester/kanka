@@ -27,6 +27,10 @@ const initExport = () => {
                 data.append('files[]', file);
             }
         });
+        let campaign =  document.querySelector('input[name="campaign"]');
+        data.append('campaign', campaign.value);
+        let token =  document.querySelector('input[name="token"]');
+        data.append('token', token.value);
 
         // Two files submitted? Do the thing
         if (count > 0 && count < 2) {
@@ -60,9 +64,9 @@ const startProcess = (form, data) => {
     fileProgress.show();
 
     axios
-        .post(url, data, config)
+        .post(form.action, data, config)
         .then(function (res) {
-
+            console.log('yo?');
             fileProgress.hide();
 
             if (res.data.success) {
@@ -70,6 +74,7 @@ const startProcess = (form, data) => {
             }
         })
         .catch(function (err) {
+            alert('oops');
             fileProgress.hide();
 
             if (err.response && err.response.data.message) {

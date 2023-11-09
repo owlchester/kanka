@@ -66,14 +66,14 @@ class ExportService
 
         Export::dispatch($this->campaign, $this->user, $entitiesExport, false);
 
-        $assetExport = CampaignExport::create([
+        /*$assetExport = CampaignExport::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
             'type' => CampaignExport::TYPE_ASSETS,
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
-        Export::dispatch($this->campaign, $this->user, $assetExport, true);
+        Export::dispatch($this->campaign, $this->user, $assetExport, true);*/
 
         return $this;
     }
@@ -132,10 +132,14 @@ class ExportService
         $this->files++;
         //Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
         if (!$this->assets) {
-            return $this;
+            //return $this;
         }
         if (!empty($this->campaign->image) && Storage::exists($this->campaign->image)) {
             $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image), $this->campaign->image);
+            $this->files++;
+        }
+        if (!empty($this->campaign->header_image) && Storage::exists($this->campaign->header_image)) {
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->header_image), $this->campaign->header_image);
             $this->files++;
         }
 
@@ -155,7 +159,7 @@ class ExportService
             'entity.entityAttributes',
         ];
         if ($this->assets) {
-            $entityWith = ['entity'];
+            //$entityWith = ['entity'];
         }
         $entities = config('entities.classes-plural');
         foreach ($entities as $entity => $class) {
@@ -203,7 +207,7 @@ class ExportService
         if (!$this->assets) {
             $this->archive->add($image->export(), 'gallery/' . $image->id . '.json');
             $this->files++;
-            return $this;
+            //return $this;
         }
 
         if (!$image->isFolder()) {
@@ -218,7 +222,7 @@ class ExportService
         if (!$this->assets) {
             $this->archive->add($model->export(), $entity . '/' . Str::slug($model->name) . '.json', );
             $this->files++;
-            return $this;
+            //return $this;
         }
 
         $path = $model->entity->image_path;
