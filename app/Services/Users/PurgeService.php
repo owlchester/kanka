@@ -188,7 +188,7 @@ class PurgeService
                         FirstWarningJob::dispatch($user->id);
                     }
 
-                    $this->count ++;
+                    $this->count++;
                 }
             }, 'users.id', 'id');
         return $this->count;
@@ -245,7 +245,7 @@ class PurgeService
                         SecondWarningJob::dispatch($user->id);
                     }
 
-                    $this->count ++;
+                    $this->count++;
                 }
             }, 'users.id', 'id');
         return $this->count;
@@ -292,7 +292,7 @@ class PurgeService
                         DeleteUser::dispatch($user);
                     }
 
-                    $this->count ++;
+                    $this->count++;
                 }
             });
         return $this->count;
