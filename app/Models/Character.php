@@ -45,9 +45,9 @@ class Character extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
+    use Searchable;
     use SoftDeletes;
     use SortableTrait;
-    use Searchable;
 
     /** @var string[]  */
     protected $fillable = [

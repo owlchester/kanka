@@ -168,7 +168,7 @@ class DatagridRenderer2
                     }
                     continue;
                 }
-                // More specific use cases?
+            // More specific use cases?
             } elseif ($bulk === Layout::ACTION_DELETE) {
                 if (auth()->check() && auth()->user()->isAdmin()) {
                     $this->bulks[] = $bulk;
