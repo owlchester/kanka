@@ -20,7 +20,7 @@ class TagController extends Controller
 
     public function index(Campaign $campaign, Tag $tag)
     {
-        $this->campaign($campaign)->authView($tag);
+        $this->campaign($campaign)->authEntityView($tag->entity);
 
         $options = ['campaign' => $campaign, 'tag' => $tag];
         $filters = [];

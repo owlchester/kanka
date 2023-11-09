@@ -60,7 +60,7 @@ use App\Enums\Widget;
             @endforeach
         </div>
 
-        @can('update', $campaign)
+        @can('dashboard', $campaign)
             <div class="text-center mt-6">
                 <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-lg btn-primary" title="{{ __('dashboard.settings.title') }}">
                     <x-icon class="cog"></x-icon>
@@ -71,9 +71,11 @@ use App\Enums\Widget;
             @if($widgets->count() === 0)
                 <div class="mt-6"></div>
                 <x-alert type="info">
+                    <p>
                     {!! __('dashboard.setup.tutorial.text', [
         'blog' => link_to('https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/', __('dashboard.setup.tutorial.blog'), ['target' => '_blank'])
     ]) !!}
+                    </p>
                 </x-alert>
             @endif
         @endcan

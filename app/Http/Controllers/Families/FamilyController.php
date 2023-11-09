@@ -20,7 +20,7 @@ class FamilyController extends Controller
 
     public function index(Campaign $campaign, Family $family)
     {
-        $this->campaign($campaign)->authView($family);
+        $this->campaign($campaign)->authEntityView($family->entity);
 
         $options = ['campaign' => $campaign, 'family' => $family];
         $filters = [];

@@ -174,6 +174,9 @@ class MarkerController extends Controller
             return redirect()
                 ->route('maps.map_markers.edit', [$campaign, $map, $mapMarker])
                 ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
+        } elseif ($request->get('from') == 'explore') {
+            return redirect()
+                ->route('maps.explore', [$campaign, $map, 'focus' => $mapMarker->id]);
         }
         return redirect()
             ->route('maps.map_markers.index', [$campaign, $map, '#tab_form-markers'])
@@ -193,7 +196,7 @@ class MarkerController extends Controller
 
         $mapMarker->delete();
 
-        if (request()->get('from') == 'map') {
+        if (request()->get('from') == 'explore') {
             return redirect()
                 ->route('maps.explore', [$campaign, $map]);
         }

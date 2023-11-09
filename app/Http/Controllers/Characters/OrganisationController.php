@@ -20,7 +20,7 @@ class OrganisationController extends Controller
 
     public function index(Campaign $campaign, Character $character)
     {
-        $this->campaign($campaign)->authView($character);
+        $this->campaign($campaign)->authEntityView($character->entity);
 
         Datagrid::layout(\App\Renderers\Layouts\Character\Organisation::class)
             ->route('characters.organisations', [$character]);

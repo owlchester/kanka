@@ -20,7 +20,7 @@ class MapController extends Controller
 
     public function index(Campaign $campaign, Map $map)
     {
-        $this->campaign($campaign)->authView($map);
+        $this->campaign($campaign)->authEntityView($map->entity);
 
         $options = ['campaign' => $campaign, 'map' => $map];
         $base = 'descendants';

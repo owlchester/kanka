@@ -154,7 +154,7 @@ TEXT
         'actions'               => [
             'remove'        => 'Remove from campaign',
             'switch'        => 'View campaign as user',
-            'switch-back'   => 'Back to my user',
+            'switch-back'   => 'Back to my account',
             'switch-entity' => 'View as',
         ],
         'create'                => [

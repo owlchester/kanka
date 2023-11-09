@@ -7,7 +7,7 @@
     @foreach($parents as $key => $parent)
         <div class="element-live-reorder flex flex-col gap-1">
             <div class="element bg-base-200 rounded flex flex-col gap-2 p-2">
-                <div class="name overflow-hidden flex-grow">
+                <div class="name overflow-hidden grow">
                     @if ($key === "")
                         {{ __('entities/abilities.reorder.parentless') }}
                     @else

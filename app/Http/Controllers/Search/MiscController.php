@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Search;
 
+use App\Facades\Avatar;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Character;
@@ -322,7 +323,7 @@ class MiscController extends Controller
                 $format['colour'] = $model->colourClass();
             }
             if (method_exists($model, 'thumbnail')) {
-                $format['image'] = $model->thumbnail();
+                $format['image'] = Avatar::entity($model->entity)->fallback()->size(40)->thumbnail();
             }
 
             $formatted[] = $format;

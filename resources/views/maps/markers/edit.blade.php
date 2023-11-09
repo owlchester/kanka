@@ -47,6 +47,9 @@
                     </div>
                 </x-box.footer>
             </x-grid>
+            @if (isset($from) && $from === 'explore')
+                <input type="hidden" name="from" value="explore" />
+            @endif
             {!! Form::close() !!}
             @endif
     </x-box>

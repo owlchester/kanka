@@ -39,6 +39,10 @@ class GalleryController extends Controller
             ->with('galleryService', $this->service->campaign($campaign));
     }
 
+    public function show(Campaign $campaign)
+    {
+        return redirect()->route('campaign.gallery.index', $campaign);
+    }
 
     /**
      * Uploading multiple images in the gallery

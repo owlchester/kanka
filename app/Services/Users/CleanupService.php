@@ -6,6 +6,7 @@ use App\Facades\UserCache;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Models\CampaignFollower;
 use App\Models\CampaignUser;
+use App\Models\CommunityEventEntry;
 use App\Services\ImageService;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Log;
@@ -19,6 +20,7 @@ class CleanupService
         $this
             ->removeCampaigns()
             ->removeFollows()
+            ->removeWorldbuilding()
             ->removeAvatar()
             ->cleanCache()
             ->removeNewsletter()
@@ -52,6 +54,12 @@ class CleanupService
             //Log::info('Removing follower', ['follower' => $follower->id]);
             $follower->delete();
         }
+        return $this;
+    }
+
+    protected function removeWorldbuilding(): self
+    {
+        CommunityEventEntry::where('created_by', $this->user->id)->delete();
         return $this;
     }
 

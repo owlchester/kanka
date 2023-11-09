@@ -206,7 +206,6 @@ function renderWidget(widget) {
 
         /*$('[data-toggle="tooltip"]').tooltip();*/
         window.ajaxTooltip();
-        ajaxModal();
         initDashboardCalendars();
     });
 }

@@ -17,7 +17,7 @@
             'model' => $model ?? $entity->child,
         ])
 
-        <div class="entity-main-block grow flex flex-col gap-5">
+        <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
             @includeIf($view)
         </div>
     </div>

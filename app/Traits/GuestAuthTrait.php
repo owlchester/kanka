@@ -19,8 +19,11 @@ trait GuestAuthTrait
         }
     }
 
-    public function authEntityView(Entity $entity): void
+    public function authEntityView(Entity $entity = null): void
     {
+        if (empty($entity)) {
+            abort(403);
+        }
         if (!$entity->child) {
             abort(404);
         }

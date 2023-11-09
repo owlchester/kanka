@@ -18,7 +18,7 @@
                 <div class="dragger pr-3">
                     <span class="fa-solid fa-sort"></span>
                 </div>
-                <div class="name overflow-hidden flex-grow">
+                <div class="name overflow-hidden grow">
                     {!! $era->name !!}
                     <span class="text-xs text-neutral-content">
                         {!! $era->ages()!!}
@@ -36,7 +36,7 @@
                                 <div class="dragger relative dragger pr-3 rounded-icon">
                                     {!! $element->htmlIcon(false) !!}
                                 </div>
-                                <div class="name overflow-hidden flex-grow">
+                                <div class="name overflow-hidden grow">
                                     {!! $element->htmlName(false) !!}
                                     @if (isset($element->date))<span class="text-xs text-neutral-content">({{ $element->date }})</span>@endif
                                 </div>

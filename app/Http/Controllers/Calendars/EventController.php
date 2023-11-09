@@ -35,7 +35,7 @@ class EventController extends Controller
 
     public function index(Campaign $campaign, Calendar $calendar)
     {
-        $this->campaign($campaign)->authView($calendar);
+        $this->campaign($campaign)->authEntityView($calendar->entity);
 
         $options = [$campaign, 'calendar' => $calendar];
         $after = $before = false;

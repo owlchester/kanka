@@ -21,7 +21,10 @@ class ExploreController extends Controller
      */
     public function index(Campaign $campaign, Map $map)
     {
-        $this->campaign($campaign)->authView($map);
+        if (empty($map->entity)) {
+            abort(404);
+        }
+        $this->campaign($campaign)->authEntityView($map->entity);
 
         if (!$map->explorable()) {
             return redirect()

@@ -50,6 +50,7 @@ class DiceRollResultController extends CrudController
 
         $base = $model
             ->search(request()->get('search'))
+            ->with(['diceRoll', 'diceRoll.entity', 'user', 'diceRoll.character'])
             ->order($this->filterService->order())
         ;
         $unfilteredCount = $base->count();

@@ -20,7 +20,7 @@ class AbilityController extends Controller
 
     public function index(Campaign $campaign, Ability $ability)
     {
-        $this->campaign($campaign)->authView($ability);
+        $this->campaign($campaign)->authEntityView($ability->entity);
 
         $options = ['campaign' => $campaign, 'ability' => $ability];
         $filters = [];

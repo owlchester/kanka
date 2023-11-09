@@ -50,14 +50,7 @@ class ConversationController extends CrudController
      */
     public function show(Campaign $campaign, Conversation $conversation)
     {
-        $this->authView($conversation);
-        $name = $this->view;
-        $model = $conversation;
-
-        return view(
-            'cruds.show',
-            compact('campaign', 'model', 'name')
-        );
+        return $this->campaign($campaign)->crudShow($conversation);
     }
 
     /**

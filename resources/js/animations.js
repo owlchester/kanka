@@ -14,11 +14,11 @@ function toggle(e) {
     if (!selector) {
         selector = this.hash;
     }
-    let target = document.querySelector(selector);
-    //console.log('target', target);
-
+    let targets = document.querySelectorAll(selector);
+    targets.forEach((e) => {
+        e.classList.toggle('hidden');
+    });
     this.classList.toggle('animate-collapsed');
-    target.classList.toggle('hidden');
 };
 
 $(document).on('shown.bs.modal', function (){

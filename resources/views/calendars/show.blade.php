@@ -45,7 +45,7 @@ if (!empty($redirect)) {
     <div class="entity-body flex flex-col md:flex-row gap-5">
         @include('entities.components.menu_v2', ['active' => 'story', 'withPins'])
 
-        <div class="entity-main-block grow flex flex-col gap-5">
+        <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
             @include('entities.components.entry')
             @include('calendars._calendar')
             @includeWhen($model->entity->posts()->count() > 0, 'entities.components.posts')

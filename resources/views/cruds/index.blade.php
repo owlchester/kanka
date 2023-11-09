@@ -33,13 +33,14 @@
     </div>
     @endif
 
-
     @include('partials.ads.top')
 
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['sub' => 'index'])
     @else
+        @if (isset($entityTypeId))
         {!! Form::open(['url' => route('bulk.print', [$campaign, 'entity_type' => $entityTypeId]), 'method' => 'POST', 'class' => 'flex flex-col gap-5']) !!}
+        @endif
         <x-box :padding="false" >
             <div class="table-responsive">
                 @include($name . '.datagrid')
@@ -47,7 +48,7 @@
         </x-box>
 
         @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'index'])
-        @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
+        @includeWhen(auth()->check() && $filteredCount > 0 && isset($entityTypeId), 'cruds.datagrids.bulks.actions')
 
         @if ($unfilteredCount != $filteredCount)
             <x-helper>
@@ -60,8 +61,10 @@
             {{ $models->appends($filterService->pagination())->onEachSide(0)->links() }}
         </div>
         @endif
+        @if (isset($entityTypeId))
         {!! Form::hidden('page', request()->get('page')) !!}
         {!! Form::close() !!}
+        @endif
 
     @endif
     </div>

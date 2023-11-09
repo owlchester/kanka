@@ -17,8 +17,8 @@
 ])
 
 @section('content')
+    <x-box>
     {!! Form::open(['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
-    <div class="modal-content bg-base-100">
         @if (request()->ajax())
             <div class="modal-header">
                 <x-dialog.close />
@@ -27,24 +27,22 @@
                 </h4>
             </div>
         @endif
-        <div class="modal-body">
+        <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @include('partials.errors')
 
-            @if (!request()->ajax())
-                <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
-            @endif
 
+        <x-grid type="1/1">
             @include('maps.markers._form', ['model' => null])
-
-        </div>
-        <div class="modal-footer">
-
-            <div class="pull-left">
-                @include('partials.footer_cancel', ['ajax' => null])
-            </div>
-            @include('maps.markers._actions')
-        </div>
-    </div>
+            <x-box.footer>
+                <div class="submit-group flex items-center gap-2">
+                    <div class="inline-block grow">
+                    @include('partials.footer_cancel', ['ajax' => null])
+                    </div>
+                    @include('maps.markers._actions')
+                </div>
+            </x-box.footer>
+        </x-grid>
+    </x-box>
     {!! Form::close() !!}
 @endsection
 

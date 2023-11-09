@@ -24,11 +24,13 @@
         @include('maps.layers._form')
 
         <x-box.footer>
-            @include('maps.groups._actions')
-
-            <div class="">
-                @include('partials.footer_cancel')
+            <div class="flex gap-2">
+                <div class="grow">
+                    @include('partials.footer_cancel')
+                </div>
+                @include('maps.groups._actions')
             </div>
+
         </x-box.footer>
     </x-box>
 

@@ -129,7 +129,7 @@
                     </div>
                 </div>
 
-                <div class="subscription" v-if="!profile.is_impersonating">
+                <div class="subscription" v-if="!profile.is_impersonating && profile.subscription">
                     <div class="uppercase font-bold py-2">{{ profile.subscription.title }}</div>
                     <a class="border rounded-lg flex justify-center items-center hover:shadow-md" v-bind:href="profile.urls.subscription">
                         <div class="flex-none p-2">

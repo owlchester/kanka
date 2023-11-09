@@ -20,6 +20,9 @@
   "_sortable.esm-be94e56d.js": {
     "file": "assets/sortable.esm-be94e56d.js"
   },
+  "_tippy.esm-e500460f.js": {
+    "file": "assets/tippy.esm-e500460f.js"
+  },
   "_v-click-outside.umd-d5c5f7b0.js": {
     "file": "assets/v-click-outside.umd-d5c5f7b0.js",
     "imports": [
@@ -69,13 +72,14 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-99d6e27f.js",
+    "file": "assets/app-7c926c7f.js",
     "imports": [
       "_mention-6dbb4e38.js",
       "_sortable.esm-be94e56d.js",
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
       "_v-click-outside.umd-d5c5f7b0.js",
+      "_tippy.esm-e500460f.js",
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
@@ -104,7 +108,10 @@
     "src": "resources/js/billing.js"
   },
   "resources/js/campaigns/theme-builder.js": {
-    "file": "assets/theme-builder-51131d7f.js",
+    "file": "assets/theme-builder-2dc1a087.js",
+    "imports": [
+      "_tippy.esm-e500460f.js"
+    ],
     "isEntry": true,
     "src": "resources/js/campaigns/theme-builder.js"
   },
@@ -125,7 +132,7 @@
     "src": "resources/js/cookieconsent.js"
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-1fd95307.js",
+    "file": "assets/dashboard-cb1e1518.js",
     "imports": [
       "_sortable.esm-be94e56d.js"
     ],
@@ -221,12 +228,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-40dbc466.css",
+    "file": "assets/app-a98a0299.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-05f0b9d9.css",
+    "file": "assets/auth-b02ed8c9.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -251,7 +258,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-1694f62b.css",
+    "file": "assets/front-4f9ed986.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
@@ -281,7 +288,7 @@
     "src": "resources/sass/subscription.scss"
   },
   "resources/sass/themes/dark.scss": {
-    "file": "assets/dark-f02b9e80.css",
+    "file": "assets/dark-701f2b1f.css",
     "isEntry": true,
     "src": "resources/sass/themes/dark.scss"
   },

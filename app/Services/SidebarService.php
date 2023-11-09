@@ -104,6 +104,7 @@ class SidebarService
         ],
         'dice_rolls' => [
             'dice_rolls',
+            'dice_roll_results'
         ],
         'bookmarks' => [
             'bookmarks',
@@ -538,7 +539,9 @@ class SidebarService
             }
         }
 
-        Cache::put($key, $layout, 7 * 86400);
+        if (!$this->withDisabled) {
+            Cache::put($key, $layout, 7 * 86400);
+        }
         return $layout;
     }
 

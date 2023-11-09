@@ -20,7 +20,7 @@ class RaceController extends Controller
 
     public function index(Campaign $campaign, Race $race)
     {
-        $this->campaign($campaign)->authView($race);
+        $this->campaign($campaign)->authEntityView($race->entity);
 
         $options = ['campaign' => $campaign, 'race' => $race];
         $filters = [];

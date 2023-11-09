@@ -8,7 +8,7 @@ $map = $entity->child;
 ?>
 
 
-@if(empty($map->image))
+@if(!$map->explorable())
     <x-alert type="warning">
         <a href="{{ $entity->url() }}">{!! $entity->name !!}</a>
         <p class="">{{ __('maps.errors.dashboard.missing') }}</p>

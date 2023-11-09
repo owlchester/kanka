@@ -32,7 +32,7 @@
                         <div class="dragger pr-3">
                             <span class="fa-solid fa-ellipsis-v" aria-hidden="true"></span>
                         </div>
-                        <div class="name overflow-hidden flex-grow">
+                        <div class="name overflow-hidden grow">
                             <i class="{{ $link->icon() }}"></i> {!! $link->name !!}
                         </div>
                         <div class="self-end">
