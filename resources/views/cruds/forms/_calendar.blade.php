@@ -33,6 +33,7 @@ if (!empty($oldCalendarID)) {
         @if (count($calendars) == 1)
             {!! Form::hidden('calendar_id', isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : FormCopy::field('calendar_id')->string(), ['id' => 'calendar_id']) !!}
         @else
+            <input type="hidden" name="calendar_id" />
             <div class="grid gap-2 md:gap-4 md:grid-cols-3 mb-4">
                 <div class="field-calendar entity-calendar-selector">
                     <x-forms.foreign
