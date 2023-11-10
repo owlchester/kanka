@@ -4,8 +4,10 @@ namespace App\Services\Campaign\Import;
 
 use App\Enums\CampaignImportStatus;
 use App\Models\CampaignImport;
+use App\Services\Campaign\Import\Mappers\CalendarMapper;
 use App\Services\Campaign\Import\Mappers\CampaignMapper;
 use App\Services\Campaign\Import\Mappers\GalleryMapper;
+use App\Services\Campaign\Import\Mappers\TagMapper;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Log;
@@ -24,8 +26,11 @@ class ImportService
     protected CampaignImport $job;
 
     protected GalleryMapper $gallery;
+    protected TagMapper $tags;
+    protected CalendarMapper $calendars;
 
     protected string $dataPath;
+
 
     public function job(CampaignImport $job)
     {
@@ -89,6 +94,8 @@ class ImportService
         try {
             $this->importCampaign()
                 ->gallery()
+                ->tags()
+                ->calendars()
             ;
             $this->job->status_id = CampaignImportStatus::FINISHED;
         } catch (Exception $e) {
@@ -125,7 +132,8 @@ class ImportService
     protected function gallery(): self
     {
         $this->gallery = app()->make(GalleryMapper::class);
-        $this->gallery->campaign($this->campaign)->prepare();
+        $this->gallery->campaign($this->campaign)
+            ->prepare();
 
         $path = $this->dataPath . '/gallery';
         if (!Storage::disk('local')->exists($path)) {
@@ -147,6 +155,77 @@ class ImportService
             unset($data);
         }
         $this->gallery->tree()->clear();
+
+        return $this;
+    }
+
+
+    protected function tags(): self
+    {
+        dump('Processing tags');
+        $this->tags = app()->make(TagMapper::class);
+        $this->tags
+            ->campaign($this->campaign)
+            ->prepare()
+            ->galleryMapping($this->gallery->mapping())
+        ;
+
+        $path = $this->dataPath . '/tags';
+        if (!Storage::disk('local')->exists($path)) {
+            dd('no tags');
+            return $this;
+        }
+
+        $files = Storage::disk('local')->files($path);
+        foreach ($files as $file) {
+            if (!Str::endsWith($file, '.json')) {
+                continue;
+            }
+            $filePath = Str::replace($this->dataPath, null, $file);
+            $data = $this->open($filePath);
+            $this->tags
+                ->path($path)
+                ->data($data)
+                ->import()
+            ;
+            unset($data);
+        }
+        $this->tags->tree()->clear();
+
+        return $this;
+    }
+
+    protected function calendars(): self
+    {
+        dump('Processing calendars');
+        $this->calendars = app()->make(CalendarMapper::class);
+        $this->calendars
+            ->campaign($this->campaign)
+            ->prepare()
+            ->galleryMapping($this->gallery->mapping())
+        ;
+
+        $path = $this->dataPath . '/calendars';
+        if (!Storage::disk('local')->exists($path)) {
+            dd('no calendars');
+            return $this;
+        }
+
+        $files = Storage::disk('local')->files($path);
+        foreach ($files as $file) {
+            if (!Str::endsWith($file, '.json')) {
+                continue;
+            }
+            $filePath = Str::replace($this->dataPath, null, $file);
+            $data = $this->open($filePath);
+            $this->calendars
+                ->path($path)
+                ->data($data)
+                ->import()
+            ;
+            unset($data);
+        }
+        $this->tags->tree()->clear();
 
         return $this;
     }

@@ -30,6 +30,11 @@ class GalleryMapper
         return $this->mapping[$uuid];
     }
 
+    public function mapping(): array
+    {
+        return $this->mapping;
+    }
+
     public function prepare(): self
     {
         $this->campaign->images()->delete();
