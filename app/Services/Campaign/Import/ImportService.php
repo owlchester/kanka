@@ -125,7 +125,7 @@ class ImportService
     protected function gallery(): self
     {
         $this->gallery = app()->make(GalleryMapper::class);
-        $this->gallery->campaign($this->campaign);
+        $this->gallery->campaign($this->campaign)->prepare();
 
         $path = $this->dataPath . '/gallery';
         if (!Storage::disk('local')->exists($path)) {
@@ -140,12 +140,13 @@ class ImportService
             $filePath = Str::replace($this->dataPath, null, $file);
             $data = $this->open($filePath);
             $this->gallery
+                ->path($path)
                 ->data($data)
                 ->import()
             ;
             unset($data);
         }
-        $this->gallery->clear();
+        $this->gallery->tree()->clear();
 
         return $this;
     }

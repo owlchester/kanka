@@ -19,6 +19,10 @@ trait ImportMapper
         return $this;
     }
 
+    public function prepare(): self
+    {
+        return $this;
+    }
     public function clear(): void
     {
         unset($this->path);
