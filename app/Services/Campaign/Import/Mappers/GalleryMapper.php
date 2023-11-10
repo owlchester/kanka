@@ -7,6 +7,7 @@ use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class GalleryMapper
 {
@@ -39,7 +40,7 @@ class GalleryMapper
     {
         $this->image = new Image();
         $this->image->campaign_id = $this->campaign->id;
-        $this->image->id = uniqid();
+        $this->image->id = Str::uuid();
         $this->mapping[$this->data['id']] = $this->image->id;
 
         if (!empty($this->data['folder_id'])) {
