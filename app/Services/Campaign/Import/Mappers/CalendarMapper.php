@@ -43,7 +43,7 @@ class CalendarMapper
 
     public function prepare(): self
     {
-        $this->campaign->calendars()->delete();
+        $this->campaign->calendars()->forceDelete();
         return $this;
     }
 

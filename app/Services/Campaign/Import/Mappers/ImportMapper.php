@@ -23,6 +23,7 @@ trait ImportMapper
     {
         return $this;
     }
+
     public function clear(): void
     {
         unset($this->path);

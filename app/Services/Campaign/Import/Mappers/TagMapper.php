@@ -48,7 +48,7 @@ class TagMapper
 
     public function prepare(): self
     {
-        $this->campaign->tags()->delete();
+        $this->campaign->tags()->forceDelete();
         return $this;
     }
 
