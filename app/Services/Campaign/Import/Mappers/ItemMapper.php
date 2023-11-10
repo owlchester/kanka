@@ -2,28 +2,27 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
-use App\Models\Calendar;
-use App\Services\Campaign\Import\GalleryAware;
+use App\Models\Item;
 use App\Traits\CampaignAware;
 
-class CalendarMapper
+class ItemMapper
 {
     use CampaignAware;
     use ImportMapper;
     use EntityMapper;
 
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'calendar_id', 'created_at', 'updated_at'];
+    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'item_id', 'created_at', 'updated_at'];
 
     public function first(): void
     {
         $this
-            ->prepareModel(Calendar::class)
-            ->trackMappings('calendars', 'calendar_id');
+            ->prepareModel(Item::class)
+            ->trackMappings('items', 'item_id');
     }
 
     public function prepare(): self
     {
-        $this->campaign->calendars()->forceDelete();
+        $this->campaign->items()->forceDelete();
         return $this;
     }
 
@@ -33,10 +32,10 @@ class CalendarMapper
             if (!isset($this->mapping[$parent])) {
                 continue;
             }
-            // We need the nested trait to trigger for this so it's going to be inefficient
-            $models = Calendar::whereIn('id', $children)->get();
+            // We need the nested trait to trigger for this, so it's going to be inefficient
+            $models = Item::whereIn('id', $children)->get();
             foreach ($models as $model) {
-                $model->setParentId($this->mapping[$parent]);
+                $model->item_id = $this->mapping[$parent];
                 $model->save();
             }
         }

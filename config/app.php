@@ -243,6 +243,7 @@ return [
         App\Providers\Logs\ApiLogServiceProvider::class,
         App\Providers\DomainServiceProvider::class,
         App\Providers\LimitServiceProvider::class,
+        App\Providers\ImporterServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
 
     ],
@@ -324,6 +325,7 @@ return [
         'ApiLog' => App\Facades\ApiLog::class,
         'Domain' => App\Facades\Domain::class,
         'Limit' => App\Facades\Limit::class,
+        'ImportIdMapper' => App\Facades\ImportIdMapper::class,
     ],
 
 ];

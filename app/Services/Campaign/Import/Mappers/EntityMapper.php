@@ -2,14 +2,46 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use App\Facades\ImportIdMapper;
 use App\Models\Entity;
+use App\Models\EntityTag;
+use App\Models\Post;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 trait EntityMapper
 {
+    protected array $mapping = [];
+    protected array $parents = [];
     protected Entity $entity;
+    protected mixed $model;
+
+    protected function prepareModel(string $model): self
+    {
+        $this->model = app()->make($model);
+        $this->model->campaign_id = $this->campaign->id;
+        foreach ($this->data as $field => $value) {
+            if (is_array($value) || in_array($field, $this->ignore)) {
+                continue;
+            }
+            $this->model->$field = $value;
+        }
+
+        $this->model->save();
+        $this->entity();
+
+        return $this;
+    }
+
+    protected function trackMappings(string $class, string $parent = null): void
+    {
+        $this->mapping[$this->data['id']] = $this->model->id;
+        ImportIdMapper::put($class, $this->data['id'], $this->model->id);
+        if ($parent && !empty($this->data[$parent])) {
+            $this->parents[$this->data[$parent]][] = $this->model->id;
+        }
+    }
 
     protected function entity(): void
     {
@@ -26,44 +58,48 @@ trait EntityMapper
         }
 
         $this->image();
-        $this->gallery()
-            ->posts()
-            ->assets()
-            ->attributes();
+        $this->gallery();
         $this->entity->save();
+
+        ImportIdMapper::putEntity($this->data['entity']['id'], $this->entity->id);
+        $this->posts()
+            ->assets()
+            ->attributes()
+            ->tags();
     }
 
     protected function image(): void
     {
-        if (empty($this->data['entity.image_path'])) {
+        $img = Arr::get($this->data, 'entity.image_path');
+        if (empty($img)) {
             return;
         }
 
         // An image needs the image saved locally
-        $imageName = Str::after($this->data['entity.image_path'], '/');
-        $folder = Str::before($this->data['entity.image_path'], '/');
+        $imageName = Str::after($img, '/');
+        $folder = Str::before($img, '/');
 
         $imagePath = $this->path . '/' . $imageName;
-        $destination = 'w/' . $this->campaign->id . '/' . $folder . '/' . $imageName;
+        $destination = 'w/' . $this->campaign->id . '/' . $imageName;
 
-        if (!Storage::disk('local')->exists($imagePath)) {
-            dd('image ' . $imagePath . ' doesnt exist');
+        if (!Storage::disk('local')->exists($this->path . $img)) {
+            dd('image ' . $this->path . $img . ' doesnt exist');
             return;
         }
 
         // Upload the file to s3 using streams
-        Storage::writeStream($destination, Storage::disk('local')->readStream($imagePath));
+        Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
         $this->entity->image_path = $destination;
     }
     protected function gallery(): self
     {
         $image = Arr::get($this->data, 'entity.image_uuid');
         if (!empty($image)) {
-            $this->entity->image_uuid = $this->mapGallery($image);
+            $this->entity->image_uuid = ImportIdMapper::getGallery($image);;
         }
         $image = Arr::get($this->data, 'entity.header_uuid');
         if (!empty($image)) {
-            $this->entity->header_uuid = $this->mapGallery($image);
+            $this->entity->header_uuid = ImportIdMapper::getGallery($image);;
         }
         return $this;
     }
@@ -74,7 +110,27 @@ trait EntityMapper
             return $this;
         }
 
-        dd('what now? its posting time');
+        $import = [
+            'name',
+            'entry',
+            'is_private',
+            'visibility_id',
+            'position',
+            'settings',
+            'layout_id',
+            // todo: location_id
+            //'location_id',
+        ];
+        foreach ($this->data['entity']['posts'] as $data) {
+            $post = new Post();
+            $post->entity_id = $this->entity->id;
+            foreach ($import as $field) {
+                $post->$field = $data[$field];
+            }
+            $post->save();
+        }
+
+        return $this;
     }
 
     protected function assets(): self
@@ -93,5 +149,21 @@ trait EntityMapper
         }
 
         dd('what now? its attributes time');
+    }
+    protected function tags(): self
+    {
+        if (empty($this->data['entity']['tags'])) {
+            return $this;
+        }
+
+        foreach ($this->data['entity']['tags'] as $data) {
+            $tagID = ImportIdMapper::get('tags', $data['id']);
+            $entityTag = new EntityTag();
+            $entityTag->entity_id = $this->entity->id;
+            $entityTag->tag_id = $tagID;
+            $entityTag->save();
+        }
+
+        return $this;
     }
 }

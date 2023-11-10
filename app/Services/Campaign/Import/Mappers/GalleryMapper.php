@@ -2,9 +2,9 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use App\Facades\ImportIdMapper;
 use App\Models\Image;
 use App\Traits\CampaignAware;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -47,6 +47,7 @@ class GalleryMapper
         $this->image->campaign_id = $this->campaign->id;
         $this->image->id = Str::uuid();
         $this->mapping[$this->data['id']] = $this->image->id;
+        ImportIdMapper::putGallery($this->data['id'], $this->image->id);
 
         if (!empty($this->data['folder_id'])) {
             $this->parents[$this->data['folder_id']][] = $this->image->id;

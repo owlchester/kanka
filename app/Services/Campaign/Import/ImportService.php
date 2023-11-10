@@ -4,9 +4,18 @@ namespace App\Services\Campaign\Import;
 
 use App\Enums\CampaignImportStatus;
 use App\Models\CampaignImport;
+use App\Services\Campaign\Import\Mappers\AbilityMapper;
 use App\Services\Campaign\Import\Mappers\CalendarMapper;
 use App\Services\Campaign\Import\Mappers\CampaignMapper;
+use App\Services\Campaign\Import\Mappers\CreatureMapper;
+use App\Services\Campaign\Import\Mappers\EventMapper;
+use App\Services\Campaign\Import\Mappers\FamilyMapper;
 use App\Services\Campaign\Import\Mappers\GalleryMapper;
+use App\Services\Campaign\Import\Mappers\ItemMapper;
+use App\Services\Campaign\Import\Mappers\JournalMapper;
+use App\Services\Campaign\Import\Mappers\NoteMapper;
+use App\Services\Campaign\Import\Mappers\OrganisationMapper;
+use App\Services\Campaign\Import\Mappers\RaceMapper;
 use App\Services\Campaign\Import\Mappers\TagMapper;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -94,8 +103,9 @@ class ImportService
         try {
             $this->importCampaign()
                 ->gallery()
-                ->tags()
-                ->calendars()
+                ->entities()
+                //->tags()
+                //->calendars()
             ;
             $this->job->status_id = CampaignImportStatus::FINISHED;
         } catch (Exception $e) {
@@ -160,72 +170,54 @@ class ImportService
     }
 
 
-    protected function tags(): self
+    protected function entities(): self
     {
-        dump('Processing tags');
-        $this->tags = app()->make(TagMapper::class);
-        $this->tags
-            ->campaign($this->campaign)
-            ->prepare()
-            ->galleryMapping($this->gallery->mapping())
-        ;
-
-        $path = $this->dataPath . '/tags';
-        if (!Storage::disk('local')->exists($path)) {
-            dd('no tags');
-            return $this;
-        }
-
-        $files = Storage::disk('local')->files($path);
-        foreach ($files as $file) {
-            if (!Str::endsWith($file, '.json')) {
-                continue;
-            }
-            $filePath = Str::replace($this->dataPath, null, $file);
-            $data = $this->open($filePath);
-            $this->tags
-                ->path($path)
-                ->data($data)
-                ->import()
+        $setup = [
+            'tags' => TagMapper::class,
+//            'calendars' => CalendarMapper::class,
+//            'creatures' => CreatureMapper::class,
+//            'notes' => NoteMapper::class,
+//            'races' => RaceMapper::class,
+//            'events' => EventMapper::class,
+//            'items' => ItemMapper::class,
+//            'journals' => JournalMapper::class,
+//            'abilities' => AbilityMapper::class,
+//            'families' => FamilyMapper::class,
+            'organisations' => OrganisationMapper::class,
+        ];
+        foreach ($setup as $model => $mapperClass) {
+            dump('Processing ' . $model);
+            $this->$model = app()->make($mapperClass);
+            $this->$model
+                ->campaign($this->campaign)
+                ->prepare()
             ;
-            unset($data);
-        }
-        $this->tags->tree()->clear();
 
-        return $this;
-    }
-
-    protected function calendars(): self
-    {
-        dump('Processing calendars');
-        $this->calendars = app()->make(CalendarMapper::class);
-        $this->calendars
-            ->campaign($this->campaign)
-            ->prepare()
-            ->galleryMapping($this->gallery->mapping())
-        ;
-
-        $path = $this->dataPath . '/calendars';
-        if (!Storage::disk('local')->exists($path)) {
-            dd('no calendars');
-            return $this;
-        }
-
-        $files = Storage::disk('local')->files($path);
-        foreach ($files as $file) {
-            if (!Str::endsWith($file, '.json')) {
-                continue;
+            $path = $this->dataPath . '/' . $model;
+            if (!Storage::disk('local')->exists($path)) {
+                dump('No ' . $model);
+                return $this;
             }
-            $filePath = Str::replace($this->dataPath, null, $file);
-            $data = $this->open($filePath);
-            $this->calendars
-                ->path($path)
-                ->data($data)
-                ->import()
-            ;
-            unset($data);
+
+            $files = Storage::disk('local')->files($path);
+            $count = 0;
+            foreach ($files as $file) {
+                if (!Str::endsWith($file, '.json')) {
+                    continue;
+                }
+                $filePath = Str::replace($this->dataPath, null, $file);
+                $data = $this->open($filePath);
+                $this->$model
+                    ->path($this->dataPath . '/')
+                    ->data($data)
+                    ->first()
+                ;
+                $count++;
+                unset($data);
+            }
+            dump('- ' . $count . ' ' . $model);
+            $this->$model->tree()->clear();
         }
-        $this->tags->tree()->clear();
 
         return $this;
     }

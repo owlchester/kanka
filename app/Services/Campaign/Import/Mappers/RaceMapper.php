@@ -2,28 +2,28 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
-use App\Models\Calendar;
+use App\Models\Race;
 use App\Services\Campaign\Import\GalleryAware;
 use App\Traits\CampaignAware;
 
-class CalendarMapper
+class RaceMapper
 {
     use CampaignAware;
     use ImportMapper;
     use EntityMapper;
 
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'calendar_id', 'created_at', 'updated_at'];
+    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'race_id', 'created_at', 'updated_at'];
 
     public function first(): void
     {
         $this
-            ->prepareModel(Calendar::class)
-            ->trackMappings('calendars', 'calendar_id');
+            ->prepareModel(Race::class)
+            ->trackMappings('races', 'race_id');
     }
 
     public function prepare(): self
     {
-        $this->campaign->calendars()->forceDelete();
+        $this->campaign->races()->forceDelete();
         return $this;
     }
 
@@ -34,7 +34,7 @@ class CalendarMapper
                 continue;
             }
             // We need the nested trait to trigger for this so it's going to be inefficient
-            $models = Calendar::whereIn('id', $children)->get();
+            $models = Race::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->setParentId($this->mapping[$parent]);
                 $model->save();
