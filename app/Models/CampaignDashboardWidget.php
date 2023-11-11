@@ -118,7 +118,11 @@ class CampaignDashboardWidget extends Model
      */
     public function scopePositioned(Builder $query): Builder
     {
-        return $query->with(['entity', 'entity.image', 'tags'])
+        return $query->with([
+            'entity', 'entity.image',
+            'tags',
+            'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug'
+        ])
             ->orderBy('position', 'asc');
     }
 
@@ -450,6 +454,6 @@ class CampaignDashboardWidget extends Model
             return true;
         }
         // Linked but no entity or no child? Permission issue or deleted entity
-        return !empty($this->entity) && !empty($this->entity->child);
+        return !empty($this->entity);
     }
 }

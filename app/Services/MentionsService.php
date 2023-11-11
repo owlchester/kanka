@@ -593,6 +593,14 @@ class MentionsService
         return Arr::get($this->entities, $id);
     }
 
+    public function preloadEntity(Entity $entity): void
+    {
+        if (Arr::has($this->entities, (string) $entity->id)) {
+            return;
+        }
+        $this->entities[$entity->id] = $entity;
+    }
+
     /**
      */
     protected function alias(int $id): EntityAsset|null
