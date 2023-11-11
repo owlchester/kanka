@@ -18,7 +18,6 @@ foreach ($entity->mentions as $mention) {
     if (!$mention->isEntity() || !$mention->target) {
         continue;
     }
-    echo 'Preloading ' . $mention->target->id . '<br />';
     \App\Facades\Mentions::preloadEntity($mention->target);
 }
 ?>
