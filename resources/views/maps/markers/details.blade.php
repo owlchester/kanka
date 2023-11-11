@@ -19,7 +19,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
         <div class="marker-header-lower grow self-end">
             <div class="marker-name overflow-hidden text-2xl text-bold grow p-2 {{ $markerNameCss }}">
             @if ($marker->entity)
-                <a href="{{ $marker->entity->url() }}" target="_blank">
+                <a href="{{ $marker->entity->url() }}" target="_blank" class="text-sidebar-content">
                     @if (!empty($marker->name))
                         {!! $marker->name !!}
                     @else
@@ -43,7 +43,8 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
     @if($marker->entity->isMap())
         <div class="marker-map-link text-center m-3">
             <a href="{{ $marker->entity->url('explore') }}" target="_blank" class="btn2 btn-primary btn-sm">
-                <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
+                <x-icon class="map" />
+                {{ __('maps.actions.explore') }}
             </a>
         </div>
     @endif
@@ -52,7 +53,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
         <div class="marker-explore-links text-center m-3">
             @foreach ($marker->entity->child->maps as $map)
                 <a href="{{ route('maps.explore', [$campaign, $map]) }}" class="btn2 btn-block btn-primary btn-sm" target="_blank">
-                    <x-icon class="map"></x-icon>
+                    <x-icon class="map" />
                     {{ __('maps.actions.explore') }} {!! $map->name !!}
                 </a>
             @endforeach
@@ -72,9 +73,9 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
 @endif
 
 @can('update', $marker->map)
-    <div class="marker-actions text-center">
+    <div class="marker-actions text-center sm:rounded-t">
         <div class="join">
-            <a href="{{ route('maps.map_markers.edit', [$campaign, $marker->map, $marker, 'from' => 'explore']) }}" class="btn2 btn-primary btn-outline btn-sm join-item">
+            <a href="{{ route('maps.map_markers.edit', [$campaign, $marker->map, $marker, 'from' => 'explore']) }}" class="btn2 btn-ghost btn-sm join-item">
                 <x-icon class="fa-solid fa-map-pin"></x-icon>
                 {{ __('maps/markers.actions.update') }}
             </a>

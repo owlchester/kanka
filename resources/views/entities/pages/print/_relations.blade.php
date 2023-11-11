@@ -8,7 +8,7 @@ $rows = $entity
     ->paginate()
     ->withPath(route('entities.relations_table', [$campaign, $entity, 'mode' => 'table']));
 @endphp
-<div class="print-box-relations">
+<div class="print-box-relations p-4">
     <h2>{{ __('crud.tabs.connections') }}</h2>
 
     <div id="datagrid-parent" class="table-responsive">

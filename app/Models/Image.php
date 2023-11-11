@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class Image
@@ -269,5 +270,15 @@ class Image extends Model
         }
 
         return Img::url($this->path);
+    }
+
+    public function url(): string
+    {
+        $path = $this->path;
+        $cloudfront = config('filesystems.disks.cloudfront.url');
+        if ($cloudfront) {
+            return Storage::disk('cloudfront')->url($path);
+        }
+        return Storage::url($path);
     }
 }

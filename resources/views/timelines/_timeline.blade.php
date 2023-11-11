@@ -53,7 +53,7 @@ $loadedElements = [];
         </div>
     </x-box>
 
-    <ul class="timeline relative m-0 p-0 list-none overflow-hidden @if ($era->collapsed()) hidden @endif" id="era-items-{{ $era->id }}">
+    <ul class="timeline relative m-0 p-0 list-none @if ($era->collapsed()) hidden @endif" id="era-items-{{ $era->id }}">
     @foreach($era->orderedElements as $element)
         @php
             $position = $element->position + 1;

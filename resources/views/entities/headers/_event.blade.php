@@ -6,8 +6,8 @@
     <div class="entity-header-sub pull-left">
         @if($model->event)
         <span data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip" class="mr-2">
-        <i class="fa-solid fa-bolt" aria-hidden="true"></i>
-        {!! $model->event->tooltipedLink() !!}
+            <x-icon :class="\App\Facades\Module::duoIcon('event')" :title="__('crud.fields.parent')" />
+            {!! $model->event->tooltipedLink() !!}
         </span>
         @endif
 
