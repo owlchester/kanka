@@ -21,7 +21,7 @@
                     @endforeach
                 </ul>
             @else
-                <a href="#" class="map-legend-marker !text-sidebar-content " data-lng="{{ $marker['longitude'] }}" data-lat="{{ $marker['latitude'] }}" data-id="marker{{ $marker['id'] }}">
+                <a href="#" class="map-legend-marker " data-lng="{{ $marker['longitude'] }}" data-lat="{{ $marker['latitude'] }}" data-id="marker{{ $marker['id'] }}">
                     {!! stripcslashes($marker['name']) !!}
                     @if (\Illuminate\Support\Arr::has($marker, 'visibility')) {!! $marker['visibility'] !!}@endif
                 </a>
