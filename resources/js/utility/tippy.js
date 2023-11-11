@@ -24,7 +24,8 @@ const initAjaxTooltips = () => {
             onShow(instance) {
                 let id = e.dataset.id;
                 if (id && id in entityTooltips) {
-                    return entityTooltips[id];
+                    instance.setContent(entityTooltips[id]);
+                    return;
                 }
                 fetch(e.dataset.url)
                     .then((response) => response.json())

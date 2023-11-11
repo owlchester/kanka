@@ -6,7 +6,7 @@
     <div class="entity-header-sub pull-left flex items-center gap-2">
         @if($model->journal)
         <span>
-            <x-icon entity="journal" :title="__('crud.fields.parent')"/>
+            <x-icon :class="\App\Facades\Module::duoIcon('journal')" :title="__('crud.fields.parent') />
             {!! $model->journal->tooltipedLink() !!}
         </span>
         @endif

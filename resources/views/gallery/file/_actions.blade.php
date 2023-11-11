@@ -7,7 +7,7 @@
     </a>
 @endif
 @if (!$image->isFolder() )
-<a class="btn2 btn-ghost" href="{{ Storage::url($image->path) }}" target="_blank">
+<a class="btn2 btn-ghost" href="{{ $image->url() }}" target="_blank">
     <x-icon class="fa-regular fa-link"></x-icon>
     <span class="hidden md:inline">
         {{ __('crud.actions.open') }}

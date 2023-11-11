@@ -4,9 +4,9 @@
 ?>
 @if ($model->tag)
     <div class="entity-header-sub pull-left">
-        <span data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
-        <x-icon class="fa-solid fa-tag" />
-        {!! $model->tag->tooltipedLink() !!}
+        <span>
+            <x-icon :class="\App\Facades\Module::duoIcon('tag')" :title="__('crud.fields.parent')" />
+            {!! $model->tag->tooltipedLink() !!}
         </span>
     </div>
 @endif

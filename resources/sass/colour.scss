@@ -15,6 +15,15 @@
     --tw-text-opacity: 1;
     color:hsl(var(--bc)/var(--tw-text-opacity));
 }
+.text-sidebar-content {
+    --tw-text-opacity: 1;
+    color:hsl(var(--sic)/var(--tw-text-opacity));
+}
+.\!text-sidebar-content {
+    // Can be removed when we remove `main-sidebar a` from app.scss
+    --tw-text-opacity: 1;
+    color:hsl(var(--sic)/var(--tw-text-opacity)) !important;
+}
 
 .text-error {
     --tw-text-opacity: 1;
