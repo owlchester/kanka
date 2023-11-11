@@ -19,7 +19,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
         <div class="marker-header-lower grow self-end">
             <div class="marker-name overflow-hidden text-2xl text-bold grow p-2 {{ $markerNameCss }}">
             @if ($marker->entity)
-                <a href="{{ $marker->entity->url() }}" target="_blank">
+                <a href="{{ $marker->entity->url() }}" target="_blank" class="text-sidebar-content">
                     @if (!empty($marker->name))
                         {!! $marker->name !!}
                     @else

@@ -132,13 +132,6 @@ $mapSidebarWidth: 380px;
         z-index: 1040;
         --sidebar-link: hsl(var(--bc)/1);
 
-        .marker-header, .marker-entry {
-            a {
-                --tw-text-opacity: 1;
-                color: var(--link-text, hsl(var(--p)/var(--tw-text-opacity)));
-            }
-        }
-
     }
     header {
         z-index: 1050;
