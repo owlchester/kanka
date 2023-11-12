@@ -109,9 +109,15 @@ class AclScope implements Scope
             ->where(function ($subquery) {
                 return $subquery
                     ->where(function ($sub) {
-                        return $sub
-                            ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = entities.id)'))
-                            ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
+                        if (request()->filled('_perm_v2')) {
+                            return $sub
+                                ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = entities.id)'))
+                                ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
+                        } else {
+                            return $sub
+                                ->whereIn('entities.id', Permissions::allowedEntities())
+                                ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
+                        }
                     })
                     ->whereNotIn('entities.id', Permissions::deniedEntities())
                 ;
