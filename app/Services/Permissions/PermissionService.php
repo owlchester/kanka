@@ -121,22 +121,25 @@ class PermissionService
         if ($this->tempPermissionCreated) {
             return $this;
         }
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('tmp_permissions', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->temporary();
         });
         $batch = [];
         foreach ($this->entityIds as $id) {
+            $batch[] = $id;
             if (count($batch) > 900) {
-                DB::statement("INSERT INTO permissions (id) VALUES (" . implode('), (', $batch) . ")");
+                DB::statement("INSERT INTO tmp_permissions (id) VALUES (" . implode(') ,(', $batch) . ")");
                 $batch = [];
             }
-            $batch[] = $id;
         }
         if (count($batch) > 0) {
-            //DB::statement("INSERT INTO temp_permissions (id) VALUES (" . implode(') ,(', $batch) . ")");
+            DB::statement("INSERT INTO tmp_permissions (id) VALUES (" . implode(') ,(', $batch) . ")");
         }
-        $wa = DB::table('permissions')->limit(5)->get();
+//        dump(in_array(329259, $batch));
+//        $wa = DB::table('tmp_permissions')
+//            ->where('id', 329259)->get();
+//        dd($wa);
         $this->tempPermissionCreated = true;
         return $this;
     }
@@ -352,8 +355,10 @@ class PermissionService
                 $this->entityTypesIds[] = $permission->entity_type_id;
             }
         } elseif ($permission->access && !in_array($permission->entity_id, $this->entityIds)) {
+
             // This permission targets an entity directly
             $this->entityIds[] = $permission->entity_id;
+
             $this->allowedModels[] = $permission->misc_id;
         } elseif (!$permission->access && !in_array($permission->entity_id, $this->deniedIds)) {
             // This permission targets an entity directly
