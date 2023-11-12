@@ -10,6 +10,9 @@ use App\Models\PostPermission;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use App\User;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class PermissionService
 {
@@ -27,6 +30,8 @@ class PermissionService
     protected array $allowedModels = [];
     protected array $deniedModels = [];
     protected bool $loadedPermissions = false;
+
+    protected bool $tempPermissionCreated = false;
 
     /** @var array Permissions for posts */
     protected array $allowedPostIDs = [];
@@ -109,6 +114,31 @@ class PermissionService
     {
         $this->loadPermissions();
         return $this->entityTypesIds;
+    }
+
+    public function createTemporaryTable(): self
+    {
+        if ($this->tempPermissionCreated) {
+            return $this;
+        }
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->unsignedInteger('id');
+            $table->temporary();
+        });
+        $batch = [];
+        foreach ($this->entityIds as $id) {
+            if (count($batch) > 900) {
+                DB::statement("INSERT INTO permissions (id) VALUES (" . implode('), (', $batch) . ")");
+                $batch = [];
+            }
+            $batch[] = $id;
+        }
+        if (count($batch) > 0) {
+            //DB::statement("INSERT INTO temp_permissions (id) VALUES (" . implode(') ,(', $batch) . ")");
+        }
+        $wa = DB::table('permissions')->limit(5)->get();
+        $this->tempPermissionCreated = true;
+        return $this;
     }
 
     public function deniedEntities(): array
