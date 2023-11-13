@@ -81,7 +81,7 @@ class FamilyTreeService
 
     protected function loadFamily(): void
     {
-        $familyMembers = $this->family->allMembers()->orderBy('name')->take(10)->get();
+        $familyMembers = $this->family->allMembers()->with(['entity'])->orderBy('name')->take(10)->get();
         foreach ($familyMembers as $member) {
             $this->characterSuggestions[] = ['id' => $member->entity->id, 'name' => $member->name];
         }
@@ -128,7 +128,9 @@ class FamilyTreeService
                 'character' => function ($sub) {
                     return $sub->select('id', 'is_dead');
                 },
-                'tags'
+                'tags',
+                'image',
+                'elapsedEvents',
             ])
             ->find($this->entityIds);
         foreach ($entities as $entity) {
