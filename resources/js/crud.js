@@ -155,7 +155,7 @@ function registerFormSubmitAnimation() {
 
 function registerEntityCalendarForm() {
     entityCalendarAdd = $('#entity-calendar-form-add');
-    entityCalendarField = $('[name="calendar_id"]');
+    entityCalendarField = $('select[name="calendar_id"]');
     entityCalendarModalForm = $('.entity-calendar-modal-form');
     entityCalendarSubForm = $('.entity-calendar-subform');
     entityCalendarCancel = $('#entity-calendar-form-cancel');
@@ -196,7 +196,7 @@ function registerEntityCalendarForm() {
             // No new calendar selected? hide everything again
             if (!$(this).val()) {
                 calendarHideSubform();
-                return;
+                return false;
             }
             // Load month list
             entityCalendarYearField = $('input[name="calendar_year"]');
@@ -343,7 +343,7 @@ function calendarHideSubform() {
     $('input[name="calendar_day"]').val(null);
     $('input[name="calendar_month"]').val(null);
     $('input[name="calendar_year"]').val(null);
-    $('input[name="calendar_id"]').val(null);
+    $('select[name="calendar_id"]').val(null);
 }
 
 /**

@@ -294,7 +294,7 @@ class PurgeService
 
                     $this->count ++;
                 }
-            });
+            }, 'users.id', 'id');
         return $this->count;
     }
 }

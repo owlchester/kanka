@@ -4,7 +4,7 @@
  * @var \App\Models\MapMarker $marker
  */
 ?>
-<h4>{{ __('maps.panels.legend') }}</h4>
+<h4 class="text-sidebar-content">{{ __('maps.panels.legend') }}</h4>
 <ul>
     @foreach ($map->legendMarkers(false) as $marker)
         <li>
@@ -14,14 +14,14 @@
                 <ul class="hidden overflow-hidden" id="map-legend-group-{{ $marker['id'] }}">
                     @foreach ($marker['markers'] as $mk)
                         <li>
-                            <a href="#" class="map-legend-marker" data-lng="{{ $mk['longitude'] }}" data-lat="{{ $mk['latitude'] }}" data-id="marker{{ $mk['id'] }}">
+                            <a href="#" class="!text-sidebar-content map-legend-marker" data-lng="{{ $mk['longitude'] }}" data-lat="{{ $mk['latitude'] }}" data-id="marker{{ $mk['id'] }}">
                                 {!! $mk['name'] !!}
                             </a>
                         </li>
                     @endforeach
                 </ul>
             @else
-                <a href="#" class="map-legend-marker" data-lng="{{ $marker['longitude'] }}" data-lat="{{ $marker['latitude'] }}" data-id="marker{{ $marker['id'] }}">
+                <a href="#" class="map-legend-marker " data-lng="{{ $marker['longitude'] }}" data-lat="{{ $marker['latitude'] }}" data-id="marker{{ $marker['id'] }}">
                     {!! stripcslashes($marker['name']) !!}
                     @if (\Illuminate\Support\Arr::has($marker, 'visibility')) {!! $marker['visibility'] !!}@endif
                 </a>

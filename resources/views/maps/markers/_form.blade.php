@@ -225,4 +225,4 @@ $sizeOptions = [
 
 {!! Form::hidden('shape_id', (!isset($model) ? !empty($source) ? $source->shape_id : 1 : null)) !!}
 
-@includeWhen(isset($modal), 'editors.editor')
+@includeWhen(isset($model), 'editors.editor')

@@ -4,7 +4,8 @@
 ?>
 @if ($model->race)
     <div class="entity-header-sub pull-left">
-            <x-icon entity="race" :title="__('crud.fields.parent')"/>
+        <span>
+            <x-icon :class="\App\Facades\Module::duoIcon('race')" :title="__('crud.fields.parent')" />
             {!! $model->race->tooltipedLink() !!}
         </span>
     </div>

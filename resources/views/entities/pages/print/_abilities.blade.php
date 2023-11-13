@@ -1,7 +1,7 @@
 @inject('abilities', 'App\Services\Abilities\AbilityService')
 @php $entityAbilities = $abilities->campaign($campaign)->entity($entity)->abilities() @endphp
 
-<div class="print-box-abilities">
+<div class="print-box-abilities p-4">
 
     <h2>{{ __('entities.abilities') }}</h2>
 

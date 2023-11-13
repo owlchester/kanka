@@ -130,12 +130,8 @@ $mapSidebarWidth: 380px;
     .main-sidebar {
         padding-top: 0;
         z-index: 1040;
-    }
-    .sidebar-content {
-        h1, h2, h3, h4, h5, h6, p {
-            --tw-text-opacity: 1;
-            color: hsl(var(--sic)/var(--tw-text-opacity));
-        }
+        --sidebar-link: hsl(var(--bc)/1);
+
     }
     header {
         z-index: 1050;

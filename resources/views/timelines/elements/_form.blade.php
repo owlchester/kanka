@@ -12,8 +12,7 @@ if (!empty($era)) {
 
 
 <x-grid>
-
-    <x-forms.field field="era" css="col-span-2" :required="true" :label="__('timelines/elements.fields.era')">
+    <x-forms.field field="era" css="md:col-span-2" :required="true" :label="__('timelines/elements.fields.era')">
         {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => '', 'id' => 'element-era-id']) !!}
     </x-forms.field>
 
@@ -23,7 +22,7 @@ if (!empty($era)) {
 
     @include('cruds.fields.entity')
 
-    <x-forms.field field="entry" css="col-span-2" :label="__('crud.fields.entry')">
+    <x-forms.field field="entry" css="md:col-span-2" :label="__('crud.fields.entry')">
         {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'element-entry', 'name' => 'entry']) !!}
         {!! Form::hidden('use_entity_entry', 0) !!}
         <x-checkbox :text="__('timelines/elements.fields.use_entity_entry')">

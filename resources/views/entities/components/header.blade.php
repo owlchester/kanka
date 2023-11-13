@@ -11,10 +11,10 @@ if (!isset($entity)) {
 }
 
 $imageUrl = $imagePath = $headerImageUrl = $imagePathXL = $imagePathMobile = null;
-$imageUrl = Avatar::entity($entity ?? $model->entity)->child($model)->original();
-$imagePath = Avatar::entity($entity ?? $model->entity)->child($model)->size(192)->thumbnail();
-$imagePathXL = Avatar::entity($entity ?? $model->entity)->child($model)->size(400)->thumbnail();
-$imagePathMobile = Avatar::entity($entity ?? $model->entity)->child($model)->size(100)->thumbnail();
+$imageUrl = Avatar::entity($entity ?? $model->entity)->original();
+$imagePath = Avatar::entity($entity ?? $model->entity)->size(192)->thumbnail();
+$imagePathXL = Avatar::entity($entity ?? $model->entity)->size(400)->thumbnail();
+$imagePathMobile = Avatar::entity($entity ?? $model->entity)->size(192)->thumbnail();
 
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();
@@ -40,7 +40,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
 
 ?>
 
-<div class="entity-header flex gap-5 items-end @if ($hasBanner) with-entity-banner p-4 text-white @endif" @if ($hasBanner) style="background-image: url('{{ $headerImageUrl }}');" @endif>
+<div class="entity-header flex gap-5 items-end @if ($hasBanner) with-entity-banner p-4 text-white cover-background @endif" @if ($hasBanner) style="background-image: url('{{ $headerImageUrl }}');" @endif>
 
     @if ($imageUrl)
     <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto">

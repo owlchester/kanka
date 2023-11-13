@@ -1,6 +1,6 @@
 <?php $enableNew = true; ?>
 
-<form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', [$campaign, 'type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }}">
+<form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', [$campaign, 'type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }} w-full">
     @csrf
 
 @if (isset($origin))

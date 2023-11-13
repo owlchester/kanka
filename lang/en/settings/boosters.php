@@ -52,11 +52,11 @@ return [
         ],
         'description'   => 'Assign boosters to campaigns and help unlock amazing features for everyone involved. Not impressed by boosted campaigns? We\'ve got you covered with superboosted campaigns!',
         'more'          => 'Check out the full list of perks on our :boosters page.',
-        'title'         => 'Take a campaign to the next level with customisation and perks for all of it\'s members',
+        'title'         => 'Take a campaign to the next level with customisation and perks for all of its members',
     ],
     'ready'     => [
         'available'         => 'Your available campaign boosters.',
-        'pricing'           => 'All of our subscription levels include at least one campaign boosters and start :amount per month.',
+        'pricing'           => 'All of our subscription levels include at least one campaign booster and start at:amount per month.',
         'pricing-amount'    => ':currency:amount',
         'title'             => 'Boost a campaign',
     ],

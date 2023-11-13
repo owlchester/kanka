@@ -432,6 +432,7 @@ class MentionsService
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
+                    . ' data-entity-type="' . $entity->type() . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
                     . ' data-url="' . $dataUrl . '"'
@@ -590,6 +591,14 @@ class MentionsService
         }
 
         return Arr::get($this->entities, $id);
+    }
+
+    public function preloadEntity(Entity $entity): void
+    {
+        if (Arr::has($this->entities, (string) $entity->id)) {
+            return;
+        }
+        $this->entities[$entity->id] = $entity;
     }
 
     /**

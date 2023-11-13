@@ -124,7 +124,7 @@ $specificTheme = null;
                         </div>
 
                         <div class="map-legend text-center">
-                            <a href="{{ $map->getLink() }}" class="btn2 btn-primary btn-sm">{{ __('maps.actions.back', ['name' => $map->name]) }}</a>
+                            <a href="{{ $map->getLink() }}" class="btn2 btn-ghost btn-sm">{{ __('maps.actions.back', ['name' => $map->name]) }}</a>
                         </div>
                     </div>
 

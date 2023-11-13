@@ -4,7 +4,7 @@
 ?>
 @if ($model->organisation)
     <div class="entity-header-sub pull-left">
-        <x-icon entity="organisation" :title="__('crud.fields.parent')"/>
+        <x-icon :class="\App\Facades\Module::duoIcon('organisation')" :title="__('crud.fields.parent')" />
         {!! $model->organisation->tooltipedLink() !!}
     </div>
 @endif
