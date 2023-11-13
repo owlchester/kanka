@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Calendar;
-use App\Services\Campaign\Import\GalleryAware;
 use App\Traits\CampaignAware;
 
 class CalendarMapper

@@ -7,16 +7,21 @@ use App\Models\CampaignImport;
 use App\Services\Campaign\Import\Mappers\AbilityMapper;
 use App\Services\Campaign\Import\Mappers\CalendarMapper;
 use App\Services\Campaign\Import\Mappers\CampaignMapper;
+use App\Services\Campaign\Import\Mappers\CharacterMapper;
 use App\Services\Campaign\Import\Mappers\CreatureMapper;
 use App\Services\Campaign\Import\Mappers\EventMapper;
 use App\Services\Campaign\Import\Mappers\FamilyMapper;
 use App\Services\Campaign\Import\Mappers\GalleryMapper;
 use App\Services\Campaign\Import\Mappers\ItemMapper;
 use App\Services\Campaign\Import\Mappers\JournalMapper;
+use App\Services\Campaign\Import\Mappers\LocationMapper;
+use App\Services\Campaign\Import\Mappers\MapMapper;
 use App\Services\Campaign\Import\Mappers\NoteMapper;
 use App\Services\Campaign\Import\Mappers\OrganisationMapper;
+use App\Services\Campaign\Import\Mappers\QuestMapper;
 use App\Services\Campaign\Import\Mappers\RaceMapper;
 use App\Services\Campaign\Import\Mappers\TagMapper;
+use App\Services\Campaign\Import\Mappers\TimelineMapper;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Log;
@@ -183,7 +188,12 @@ class ImportService
 //            'journals' => JournalMapper::class,
 //            'abilities' => AbilityMapper::class,
 //            'families' => FamilyMapper::class,
-            'organisations' => OrganisationMapper::class,
+//            'organisations' => OrganisationMapper::class,
+//            'timelines' => TimelineMapper::class,
+//            'quests' => QuestMapper::class,
+//            'maps' => MapMapper::class,
+//            'locations' => LocationMapper::class,
+            'characters' => CharacterMapper::class,
         ];
         foreach ($setup as $model => $mapperClass) {
             dump('Processing ' . $model);

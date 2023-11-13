@@ -4,6 +4,7 @@ namespace App\Services\Campaign\Import\Mappers;
 
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
+use App\Models\EntityAsset;
 use App\Models\EntityTag;
 use App\Models\Post;
 use Illuminate\Support\Arr;
@@ -139,7 +140,37 @@ trait EntityMapper
             return $this;
         }
 
-        dd('what now? its assets time');
+        $import = [
+            'type_id',
+            'visibility_id',
+            'name',
+            'position',
+            'is_pinned'
+        ];
+        foreach ($this->data['entity']['assets'] as $data) {
+            $asset = new EntityAsset();
+            $asset->entity_id = $this->entity->id;
+
+            foreach ($import as $field) {
+                $asset->$field = $data[$field];
+            }
+            if (!empty($data['metadata'])) {
+                if (!empty($data['metadata']['path'])) {
+                    $img = $data['metadata']['path'];
+                    $ext = Str::afterLast($img, '.');
+                    $destination = 'w/' . $this->campaign->id . '/entity-assets/' . uniqid() . '.' . $ext;
+
+                    if (!Storage::disk('local')->exists($this->path . $img)) {
+                        dd('image ' . $this->path . $img . ' doesnt exist');
+                        continue;
+                    }
+                    Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
+                } else {
+                    $asset->metadata = $data['metadata'];
+                }
+            }
+            $asset->save();
+        }
     }
 
     protected function attributes(): self

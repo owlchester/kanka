@@ -2,27 +2,28 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
-use App\Models\Note;
+use App\Models\Tag;
+use App\Models\Map;
 use App\Traits\CampaignAware;
 
-class NoteMapper
+class MapMapper
 {
     use CampaignAware;
     use ImportMapper;
     use EntityMapper;
 
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'note_id', 'created_at', 'updated_at'];
+    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'map_id', 'created_at', 'updated_at'];
 
     public function first(): void
     {
         $this
-            ->prepareModel(Note::class)
-            ->trackMappings('notes', 'note_id');
+            ->prepareModel(Map::class)
+            ->trackMappings('maps', 'map_id');
     }
 
     public function prepare(): self
     {
-        $this->campaign->notes()->forceDelete();
+        $this->campaign->maps()->forceDelete();
         return $this;
     }
 
@@ -33,10 +34,11 @@ class NoteMapper
                 continue;
             }
             // We need the nested trait to trigger for this so it's going to be inefficient
-            $models = Note::whereIn('id', $children)->get();
-            foreach ($models as $model) {
-                $model->setParentId($this->mapping[$parent]);
-                $model->save();
+            $maps = Map::whereIn('id', $children)->get();
+            /** @var Map $map */
+            foreach ($maps as $map) {
+                $map->setParentId($this->mapping[$parent]);
+                $map->save();
             }
         }
 

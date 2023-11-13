@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Tag;
-use App\Services\Campaign\Import\GalleryAware;
 use App\Traits\CampaignAware;
 
 class TagMapper

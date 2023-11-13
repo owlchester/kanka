@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Creature;
-use App\Services\Campaign\Import\GalleryAware;
 use App\Traits\CampaignAware;
 
 class CreatureMapper
