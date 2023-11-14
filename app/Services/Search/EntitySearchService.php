@@ -10,7 +10,6 @@ use App\Models\Post;
 use App\Traits\CampaignAware;
 use Meilisearch\Client;
 
-
 class EntitySearchService
 {
     use CampaignAware;
@@ -18,7 +17,6 @@ class EntitySearchService
 
     /**
      * Send search request
-     * @param string|null $query Search term
      */
     public function search(string $term = null): array
     {
@@ -33,21 +31,21 @@ class EntitySearchService
 
         foreach ($results as $result) {
             if ($result['type'] == 'quest_element') {
-                $id = substr($result['id'], -1, strrpos($result['id'], '_'));
+                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
                 $questElementIds[$result['entity_id']] = $id;
-                //dd($result);
+            //dd($result);
             } elseif ($result['type'] == 'timeline_element') {
-                $id = substr($result['id'], -1, strrpos($result['id'], '_'));
+                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
                 $timelineElementIds[$result['entity_id']] = $id;
-                //dd($result);
+            //dd($result);
             } elseif ($result['type'] == 'post') {
-                $id = substr($result['id'], -1, strrpos($result['id'], '_'));
+                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
                 $postIds[$result['entity_id']] = $id;
-                //dd($result);
+            //dd($result);
             } elseif ($result['type'] == 'attribute') {
-                $id = substr($result['id'], -1, strrpos($result['id'], '_'));
+                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
                 $attributeIds[$result['entity_id']] = $id;
-                //dd($result);
+            //dd($result);
             } else {
                 $ids[$result['entity_id']] = $result['entity_id'];
             }

@@ -371,7 +371,6 @@ class Attribute extends Model
     /**
      * Get the value used to index the model.
      *
-     * @return mixed
      */
     public function getScoutKey()
     {
@@ -389,7 +388,7 @@ class Attribute extends Model
     protected function makeAllSearchableUsing($query)
     {
         return $query
-        ->leftJoin('entities', 'attributes.entity_id', '=', 'entities.id');
+            ->leftJoin('entities', 'attributes.entity_id', '=', 'entities.id');
     }
 
     public function toSearchableArray()

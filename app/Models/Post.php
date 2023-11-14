@@ -48,8 +48,8 @@ class Post extends Model
     use Blameable;
     use HasFactory;
     use Paginatable;
-    use VisibilityIDTrait;
     use Searchable;
+    use VisibilityIDTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -194,7 +194,6 @@ class Post extends Model
     /**
      * Get the value used to index the model.
      *
-     * @return mixed
      */
     public function getScoutKey()
     {
@@ -212,10 +211,10 @@ class Post extends Model
     protected function makeAllSearchableUsing($query)
     {
         return $query
-        ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
-        ->leftJoin('entities', function ($join) { 
-            $join->on('entities.entity_id', $this->getTable() . '.id');
-        });
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->leftJoin('entities', function ($join) {
+                $join->on('entities.entity_id', $this->getTable() . '.id');
+            });
     }
 
     public function toSearchableArray()

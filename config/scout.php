@@ -135,7 +135,7 @@ return [
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
             'entities' => [
-                'filterableAttributes'=> ['id', 'campaign_id'],
+                'filterableAttributes' => ['id', 'campaign_id'],
             ],
         ],
     ],

@@ -28,12 +28,12 @@ class QuestElement extends Model
 {
     use Blameable;
     use HasFactory;
+    use Searchable;
     /**
      * Traits
      */
     use SimpleSortableTrait;
     use VisibilityIDTrait;
-    use Searchable;
 
     /** @var string[]  */
     protected $fillable = [
@@ -128,7 +128,6 @@ class QuestElement extends Model
     /**
      * Get the value used to index the model.
      *
-     * @return mixed
      */
     public function getScoutKey()
     {
@@ -147,12 +146,12 @@ class QuestElement extends Model
     {
 
         return $query
-        ->leftJoin('quests', 'quests.id', '=', 'quest_elements.quest_id')
-        ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
-        ->leftJoin('entities', function ($join) { 
-            $join->on('entities.entity_id', $this->getTable() . '.id');
-            //->where('entities.type_id', $this->entityTypeId());
-        });
+            ->leftJoin('quests', 'quests.id', '=', 'quest_elements.quest_id')
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->leftJoin('entities', function ($join) {
+                $join->on('entities.entity_id', $this->getTable() . '.id');
+                //->where('entities.type_id', $this->entityTypeId());
+            });
     }
 
     public function toSearchableArray()
