@@ -37,5 +37,6 @@ return [
     ],
     'update'    => [
         'title' => 'Entity Ability for :name',
+        'success' => 'Entity ability :ability updated.',
     ],
 ];
