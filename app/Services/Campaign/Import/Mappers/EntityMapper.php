@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use _PHPStan_c6b09fbdf\Nette\PhpGenerator\Attribute;
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -156,6 +157,8 @@ trait EntityMapper
             }
             if (!empty($data['metadata'])) {
                 if (!empty($data['metadata']['path'])) {
+                    dump('assets files need to be added to the export first');
+                    continue;
                     $img = $data['metadata']['path'];
                     $ext = Str::afterLast($img, '.');
                     $destination = 'w/' . $this->campaign->id . '/entity-assets/' . uniqid() . '.' . $ext;
@@ -171,12 +174,32 @@ trait EntityMapper
             }
             $asset->save();
         }
+        return $this;
     }
 
     protected function attributes(): self
     {
-        if (empty($this->data['entity']['attributes'])) {
+        if (empty($this->data['entityAttributes'])) {
             return $this;
+        }
+
+        $import = [
+            'name',
+            'value',
+            'is_private',
+            'default_order',
+            'is_pinned',
+            'type_id',
+            'is_hidden',
+        ];
+        foreach ($this->data['entityAttributes'] as $data) {
+            $attr = new Attribute();
+            $attr->entity_id = $this->entity->id;
+
+            foreach ($import as $field) {
+                $attr->$field = $data[$field];
+            }
+            $attr->save();
         }
 
         dd('what now? its attributes time');

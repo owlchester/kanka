@@ -365,4 +365,17 @@ class Attribute extends Model
     {
         return implode(', ', $this->listRange);
     }
+
+    public function exportFields(): array
+    {
+        return [
+            'name',
+            'value',
+            'is_private',
+            'default_order',
+            'is_pinned',
+            'type_id',
+            'is_hidden',
+        ];
+    }
 }

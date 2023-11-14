@@ -37,7 +37,15 @@ trait ExportableTrait
                     $json[$foreign] = ['id' => $this->entity->$foreign->id, 'focus_x' =>  $this->entity->$foreign->focus_x, 'focus_y' =>  $this->entity->$foreign->focus_y];
                 } elseif ($foreign != 'image' && $foreign != 'header') {
                     foreach ($this->entity->$foreign as $model) {
-                        $json[$foreign][] = $model->toArray();
+                        if (method_exists($model, 'exportFields')) {
+                            $export = [];
+                            foreach ($model->exportFields as $field) {
+                                $export[$field] = $model->$field;
+                            }
+                            $json[$foreign][] = $export;
+                        } else {
+                            $json[$foreign][] = $model->toArray();
+                        }
                     }
                 }
             }
