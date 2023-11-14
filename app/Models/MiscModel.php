@@ -21,6 +21,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable as Scout;
 
 /**
  * Class MiscModel
@@ -55,6 +56,8 @@ abstract class MiscModel extends Model
     use Sortable;
     use SourceCopiable;
     use SubEntityScopes;
+    use Scout;
+
 
     /** @var Entity Performance based entity */
     protected Entity $cachedEntity;
@@ -627,5 +630,48 @@ abstract class MiscModel extends Model
             $columns['is_private'] = __('crud.fields.is_private');
         }
         return $columns;
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     * @return mixed
+     */
+    public function getScoutKey()
+    {
+        return $this->getTable() . '_' . $this->id;
+    }
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'entities';
+    }
+
+    protected function makeAllSearchableUsing($query)
+    {
+        return $query
+        ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+        ->leftJoin('entities', function ($join) { 
+            $join->on('entities.entity_id', $this->getTable() . '.id')
+            ->where('entities.type_id', $this->entityTypeId());
+        });
+    }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $entity = $this->entity->toArray();
+
+        return [
+            'campaign_id' => $array['campaign_id'],
+            'entity_id' => $entity['id'],
+            'entity_name' => $entity['name'],
+            'name' => $array['name'],
+            'type'  => $array['type'],
+            'entry' => $array['entry'],
+        ];
     }
 }

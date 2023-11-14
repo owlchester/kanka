@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Laravel\Scout\Searchable;
 
 /**
  * Class Attribute
@@ -48,6 +49,7 @@ class Post extends Model
     use HasFactory;
     use Paginatable;
     use VisibilityIDTrait;
+    use Searchable;
 
     /** @var string[]  */
     protected $fillable = [
@@ -187,5 +189,47 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'entity_user', 'post_id')
             ->using(EntityUser::class)
             ->withPivot('type_id');
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     * @return mixed
+     */
+    public function getScoutKey()
+    {
+        return $this->getTable() . '_' . $this->id;
+    }
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'entities';
+    }
+
+    protected function makeAllSearchableUsing($query)
+    {
+        return $query
+        ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+        ->leftJoin('entities', function ($join) { 
+            $join->on('entities.entity_id', $this->getTable() . '.id');
+        });
+    }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $entity = $this->entity->toArray();
+
+        return [
+            'campaign_id' => $entity['campaign_id'],
+            'entity_id' => $entity['id'],
+            'entity_name' => $entity['name'],
+            'name' => $array['name'],
+            'type'  => 'post',
+            'entry' => $array['entry'],
+        ];
     }
 }

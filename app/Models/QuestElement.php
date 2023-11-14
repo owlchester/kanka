@@ -9,6 +9,7 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 /**
  * Class QuestCharacter
@@ -32,6 +33,7 @@ class QuestElement extends Model
      */
     use SimpleSortableTrait;
     use VisibilityIDTrait;
+    use Searchable;
 
     /** @var string[]  */
     protected $fillable = [
@@ -121,5 +123,50 @@ class QuestElement extends Model
         return $this->belongsToMany(User::class, 'entity_user')
             ->using(EntityUser::class)
             ->withPivot('type_id');
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     * @return mixed
+     */
+    public function getScoutKey()
+    {
+        return $this->getTable() . '_' . $this->id;
+    }
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'entities';
+    }
+
+    protected function makeAllSearchableUsing($query)
+    {
+
+        return $query
+        ->leftJoin('quests', 'quests.id', '=', 'quest_elements.quest_id')
+        ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+        ->leftJoin('entities', function ($join) { 
+            $join->on('entities.entity_id', $this->getTable() . '.id');
+            //->where('entities.type_id', $this->entityTypeId());
+        });
+    }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $entity = $this->quest->entity->toArray();
+
+        return [
+            'campaign_id' => $entity['campaign_id'],
+            'entity_id' => $entity['id'],
+            'entity_name' => $entity['name'],
+            'name' => $array['name'],
+            'type'  => 'quest_element',
+            'entry' => $array['description'],
+        ];
     }
 }

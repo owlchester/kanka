@@ -108,6 +108,8 @@ Route::get('campaigns/{campaign}/default-thumbnails', [\App\Http\Controllers\Api
 Route::post('campaigns/{campaign}/default-thumbnails', [\App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'upload']);
 Route::delete('campaigns/{campaign}/default-thumbnails', [\App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'delete']);
 
+Route::get('campaigns/{campaign}/fulltext-search', [\App\Http\Controllers\Api\v1\FullTextSearchApiController::class, 'index']);
+
 Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
 Route::get('version', function () {
     return config('app.version');

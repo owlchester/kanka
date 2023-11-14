@@ -276,4 +276,17 @@ class AttributeTemplate extends MiscModel
         }
         return $columns;
     }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $entity = $this->entity->toArray();
+
+        return [
+            'campaign_id' => $entity['campaign_id'],
+            'entity_id' => $entity['id'],
+            'entity_name' => $entity['name'],
+            'name' => $array['name'],
+        ];
+    }
 }

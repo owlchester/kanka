@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 /**
  * Class Attribute
@@ -37,6 +38,7 @@ class Attribute extends Model
     use Paginatable;
     use Pinnable;
     use Privatable;
+    use Searchable;
 
     public const TYPE_CHECKBOX = 'checkbox';
     public const TYPE_SECTION = 'section';
@@ -364,5 +366,44 @@ class Attribute extends Model
     public function listRangeText(): string
     {
         return implode(', ', $this->listRange);
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     * @return mixed
+     */
+    public function getScoutKey()
+    {
+        return $this->getTable() . '_' . $this->id;
+    }
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'entities';
+    }
+
+    protected function makeAllSearchableUsing($query)
+    {
+        return $query
+        ->leftJoin('entities', 'attributes.entity_id', '=', 'entities.id');
+    }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $entity = $this->entity->toArray();
+
+        return [
+            'campaign_id' => $entity['campaign_id'],
+            'entity_id' => $entity['id'],
+            'entity_name' => $entity['name'],
+            'name' => $array['name'],
+            'type' => 'attribute',
+            'value'  => $array['value'],
+        ];
     }
 }

@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Laravel\Scout\Searchable;
 
 /**
  * Class Character
@@ -45,7 +44,6 @@ class Character extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Searchable;
     use SoftDeletes;
     use SortableTrait;
 
@@ -495,15 +493,5 @@ class Character extends MiscModel
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
             ->has('entity');
-    }
-
-    public function toSearchableArray()
-    {
-        $array = $this->toArray();
-
-        return [
-            'id' => $array['id'],
-            'name' => $array['name'],
-        ];
     }
 }

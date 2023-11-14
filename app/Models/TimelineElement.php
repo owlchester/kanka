@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 /**
  * Class TimelineElement
@@ -40,6 +41,7 @@ class TimelineElement extends Model
     use Blameable;
     use HasFactory;
     use VisibilityIDTrait;
+    use Searchable;
 
     /** @var string[]  */
     protected $fillable = [
@@ -201,5 +203,48 @@ class TimelineElement extends Model
             return true;
         }
         return !empty($this->entity->child);
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     * @return mixed
+     */
+    public function getScoutKey()
+    {
+        return $this->getTable() . '_' . $this->id;
+    }
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'entities';
+    }
+
+    protected function makeAllSearchableUsing($query)
+    {
+        return $query
+        ->leftJoin('timelines', 'timelines.id', '=', 'timeline_elements.timeline_id')
+        ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+        ->leftJoin('entities', function ($join) { 
+            $join->on('entities.entity_id', $this->getTable() . '.id');
+        });
+    }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $entity = $this->timeline->entity->toArray();
+
+        return [
+            'campaign_id' => $entity['campaign_id'],
+            'entity_id' => $entity['id'],
+            'entity_name' => $entity['name'],
+            'name' => $array['name'],
+            'type'  => 'timeline_element',
+            'entry' => $array['entry'],
+        ];
     }
 }
