@@ -45,7 +45,7 @@
                     </span>
                     @endif
                 </div>
-                <div class="entity-note-body post-body">
+                <div class="entity-note-body post-body  overflow-x-auto">
                     {!! $post->entry() !!}
                 </div>
 
