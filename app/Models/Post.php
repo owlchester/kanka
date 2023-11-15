@@ -211,8 +211,8 @@ class Post extends Model
     protected function makeAllSearchableUsing($query)
     {
         return $query
-        ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
-        ->leftJoin('entities', 'posts.entity_id', '=', 'entities.id');
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->leftJoin('entities', 'posts.entity_id', '=', 'entities.id');
     }
 
     public function toSearchableArray()

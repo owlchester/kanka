@@ -145,11 +145,11 @@ class QuestElement extends Model
     protected function makeAllSearchableUsing($query)
     {
         return $query
-        ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
-        ->leftJoin('quests', 'quests.id', '=', 'quest_elements.quest_id')
-        ->leftJoin('entities', function ($join) { 
-            $join->on('entities.entity_id', $this->getTable() . '.id');
-        });
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->leftJoin('quests', 'quests.id', '=', 'quest_elements.quest_id')
+            ->leftJoin('entities', function ($join) {
+                $join->on('entities.entity_id', $this->getTable() . '.id');
+            });
     }
 
     public function toSearchableArray()

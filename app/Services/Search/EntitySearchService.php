@@ -29,7 +29,7 @@ class EntitySearchService
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
         $results = $client->index('entities')->search($term, ['filter' => 'campaign_id = ' . $this->campaign->id, 'attributesToRetrieve' => ['id', 'entity_id', 'type'], 'attributesToSearchOn' => ['name', 'entry', 'entity_name', 'value'], 'limit' => 20])->getHits();
-        
+
         return $this->process($results)->fetch();
     }
 
@@ -41,21 +41,21 @@ class EntitySearchService
     {
         foreach ($results as $result) {
             if ($result['type'] == 'quest_element') {
-                $id = substr($result['id'], -1, strrpos($result['id'], '_'));
+                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
                 $questElementIds[$result['entity_id']] = $id;
-                //dd($result);
+            //dd($result);
             } elseif ($result['type'] == 'timeline_element') {
-                $id = substr($result['id'], -1, strrpos($result['id'], '_'));
+                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
                 $timelineElementIds[$result['entity_id']] = $id;
-                //dd($result);
+            //dd($result);
             } elseif ($result['type'] == 'post') {
-                $id = substr($result['id'], -1, strrpos($result['id'], '_'));
+                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
                 $postIds[$result['entity_id']] = $id;
-                //dd($result);
+            //dd($result);
             } elseif ($result['type'] == 'attribute') {
-                $id = substr($result['id'], -1, strrpos($result['id'], '_'));
+                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
                 $attributeIds[$result['entity_id']] = $id;
-                //dd($result);
+            //dd($result);
             } else {
                 $this->ids[$result['entity_id']] = $result['entity_id'];
             }
@@ -66,7 +66,7 @@ class EntitySearchService
         $this->timelineElementIds = array_diff_key($this->timelineElementIds, $this->ids);
         $this->questElementIds = array_diff_key($this->questElementIds, $this->ids);
         $this->postIds = array_diff_key($this->postIds, $this->ids);
-        
+
         return $this;
     }
 

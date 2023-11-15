@@ -225,11 +225,11 @@ class TimelineElement extends Model
     protected function makeAllSearchableUsing($query)
     {
         return $query
-        ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
-        ->leftJoin('timelines', 'timelines.id', '=', 'timeline_elements.timeline_id')
-        ->leftJoin('entities', function ($join) { 
-            $join->on('entities.entity_id', $this->getTable() . '.id');
-        });
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->leftJoin('timelines', 'timelines.id', '=', 'timeline_elements.timeline_id')
+            ->leftJoin('entities', function ($join) {
+                $join->on('entities.entity_id', $this->getTable() . '.id');
+            });
     }
 
     public function toSearchableArray()
