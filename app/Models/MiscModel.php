@@ -662,16 +662,13 @@ abstract class MiscModel extends Model
 
     public function toSearchableArray()
     {
-        $array = $this->toArray();
-        $entity = $this->entity->toArray();
-
         return [
-            'campaign_id' => $array['campaign_id'],
-            'entity_id' => $entity['id'],
-            'entity_name' => $entity['name'],
-            'name' => $array['name'],
-            'type'  => $array['type'],
-            'entry' => $array['entry'],
+            'campaign_id' => $this->entity->campaign_id,
+            'entity_id' => $this->entity->id,
+            'entity_name' => $this->entity->name,
+            'name' => $this->name,
+            'type'  => $this->type,
+            'entry'  => $this->entry,
         ];
     }
 }

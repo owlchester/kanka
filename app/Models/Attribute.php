@@ -394,16 +394,13 @@ class Attribute extends Model
 
     public function toSearchableArray()
     {
-        $array = $this->toArray();
-        $entity = $this->entity->toArray();
-
         return [
-            'campaign_id' => $entity['campaign_id'],
-            'entity_id' => $entity['id'],
-            'entity_name' => $entity['name'],
-            'name' => $array['name'],
-            'type' => 'attribute',
-            'value'  => $array['value'],
+            'campaign_id' => $this->entity->campaign_id,
+            'entity_id' => $this->entity->id,
+            'entity_name' => $this->entity->name,
+            'name' => $this->name,
+            'type'  => 'attribute',
+            'value'  => $this->entry,
         ];
     }
 }

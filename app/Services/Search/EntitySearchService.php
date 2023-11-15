@@ -10,11 +10,15 @@ use App\Models\Post;
 use App\Traits\CampaignAware;
 use Meilisearch\Client;
 
-
 class EntitySearchService
 {
     use CampaignAware;
 
+    protected array $ids = [];
+    protected array $attributeIds = [];
+    protected array $timelineElementIds = [];
+    protected array $postIds = [];
+    protected array $questElementIds = [];
 
     /**
      * Send search request
@@ -22,48 +26,62 @@ class EntitySearchService
      */
     public function search(string $term = null): array
     {
-        $client = new Client('http://meilisearch:7700', 'password');
+        //Get results from Meilisearch
+        $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
-        $ids = [];
-        $results = $client->index('entities')->search($term, ['filter' => 'campaign_id = ' . $this->campaign->id, 'attributesToRetrieve' => ['id', 'entity_id', 'type'], 'limit' => 20])->getHits();
-        $attributeIds = [];
-        $timelineElementIds = [];
-        $postIds = [];
-        $questElementIds = [];
+        $results = $client->index('entities')->search($term, ['filter' => 'campaign_id = ' . $this->campaign->id, 'attributesToRetrieve' => ['id', 'entity_id', 'type'], 'attributesToSearchOn' => ['name', 'entry', 'entity_name', 'value'], 'limit' => 20])->getHits();
+        
+        return $this->process($results)->fetch();
+    }
 
+    /**
+     * Process results to fetch entities from db
+     * @param array $results Search term
+     */
+    protected function process(array $results = []): self
+    {
         foreach ($results as $result) {
             if ($result['type'] == 'quest_element') {
                 $id = substr($result['id'], -1, strrpos($result['id'], '_'));
-                $questElementIds[$result['entity_id']] = $id;
-                //dd($result);
+                $this->questElementIds[$result['entity_id']] = $id;
             } elseif ($result['type'] == 'timeline_element') {
                 $id = substr($result['id'], -1, strrpos($result['id'], '_'));
-                $timelineElementIds[$result['entity_id']] = $id;
-                //dd($result);
+                $this->timelineElementIds[$result['entity_id']] = $id;
             } elseif ($result['type'] == 'post') {
                 $id = substr($result['id'], -1, strrpos($result['id'], '_'));
-                $postIds[$result['entity_id']] = $id;
-                //dd($result);
+                $this->postIds[$result['entity_id']] = $id;
             } elseif ($result['type'] == 'attribute') {
                 $id = substr($result['id'], -1, strrpos($result['id'], '_'));
-                $attributeIds[$result['entity_id']] = $id;
-                //dd($result);
+                $this->attributeIds[$result['entity_id']] = $id;
             } else {
-                $ids[$result['entity_id']] = $result['entity_id'];
+                $this->ids[$result['entity_id']] = $result['entity_id'];
             }
         }
+
         //If the search also threw the entity as a possible result dont bother loading the other models
-        $attributeIds = array_diff_key($attributeIds, $ids);
-        $timelineElementIds = array_diff_key($timelineElementIds, $ids);
-        $questElementIds = array_diff_key($questElementIds, $ids);
-        $postIds = array_diff_key($postIds, $ids);
+        $this->attributeIds = array_diff_key($this->attributeIds, $this->ids);
+        $this->timelineElementIds = array_diff_key($this->timelineElementIds, $this->ids);
+        $this->questElementIds = array_diff_key($this->questElementIds, $this->ids);
+        $this->postIds = array_diff_key($this->postIds, $this->ids);
+        
+        return $this;
+    }
 
-        $posts = Post::whereIn('id', $postIds)->get();
-        $attributes = Attribute::with('entity')->has('entity')->whereIn('id', $attributeIds)->get();
-        $questElements = QuestElement::with(['quest', 'quest.entity'])->has('quest')->has('quest')->whereIn('id', $questElementIds)->get();
-        $timelineElements = TimelineElement::with(['timeline', 'timeline.entity'])->has('timeline')->whereIn('id', $timelineElementIds)->get();
+    /**
+     * Fetch entities from DB
+     */
+    protected function fetch(): array
+    {
+        $posts = Post::whereIn('id', $this->postIds)->get();
+        $attributes = Attribute::with('entity')->has('entity')->whereIn('id', $this->attributeIds)->get();
+        $questElements = QuestElement::with(['quest', 'quest.entity'])->has('quest')->whereIn('id', $this->questElementIds)->get();
+        $timelineElements = TimelineElement::with(['timeline', 'timeline.entity'])->has('timeline')->whereIn('id', $this->timelineElementIds)->get();
 
-        $entities = Entity::whereIn('id', $ids)->get();
+        //Get entities from db
+        $entities = Entity::whereIn('id', $this->ids)->get();
+
+        //Process entities for output
+        $output = [];
         foreach ($entities as $entity) {
             $output[$entity->id] = ['id' => $entity->id, 'entity' => $entity->name, 'url' => $entity->url()];
         }
@@ -71,7 +89,7 @@ class EntitySearchService
             $output[$attribute->entity->id] = ['id' => $attribute->entity->id, 'entity' => $attribute->entity->name, 'url' => $attribute->entity->url()];
         }
         foreach ($posts as $post) {
-            $output[$post->entity->id] = ['id' => $post->entity->id, 'entity' => $post->entity->name, 'url' => $post->url()];
+            $output[$post->entity->id] = ['id' => $post->entity->id, 'entity' => $post->entity->name, 'url' => $post->entity->url()];
         }
         foreach ($questElements as $questElement) {
             $output[$questElement->quest->entity->id] = ['id' => $questElement->quest->entity->id, 'entity' => $questElement->quest->name, 'url' => $questElement->quest->entity->url()];
