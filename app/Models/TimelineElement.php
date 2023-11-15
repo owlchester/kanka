@@ -40,8 +40,8 @@ class TimelineElement extends Model
 {
     use Blameable;
     use HasFactory;
-    use VisibilityIDTrait;
     use Searchable;
+    use VisibilityIDTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -208,7 +208,6 @@ class TimelineElement extends Model
     /**
      * Get the value used to index the model.
      *
-     * @return mixed
      */
     public function getScoutKey()
     {

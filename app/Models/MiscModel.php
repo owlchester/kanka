@@ -51,12 +51,12 @@ abstract class MiscModel extends Model
     use LastSync;
     use Orderable;
     use Paginatable;
+    use Scout;
     use Searchable;
     //Tooltip,
     use Sortable;
     use SourceCopiable;
     use SubEntityScopes;
-    use Scout;
 
 
     /** @var Entity Performance based entity */
@@ -635,7 +635,6 @@ abstract class MiscModel extends Model
     /**
      * Get the value used to index the model.
      *
-     * @return mixed
      */
     public function getScoutKey()
     {
@@ -653,11 +652,11 @@ abstract class MiscModel extends Model
     protected function makeAllSearchableUsing($query)
     {
         return $query
-        ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
-        ->leftJoin('entities', function ($join) { 
-            $join->on('entities.entity_id', $this->getTable() . '.id')
-            ->where('entities.type_id', $this->entityTypeId());
-        });
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->leftJoin('entities', function ($join) {
+                $join->on('entities.entity_id', $this->getTable() . '.id')
+                    ->where('entities.type_id', $this->entityTypeId());
+            });
     }
 
     public function toSearchableArray()

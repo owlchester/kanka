@@ -22,7 +22,6 @@ class EntitySearchService
 
     /**
      * Send search request
-     * @param string|null $query Search term
      */
     public function search(string $term = null): array
     {
@@ -43,16 +42,20 @@ class EntitySearchService
         foreach ($results as $result) {
             if ($result['type'] == 'quest_element') {
                 $id = substr($result['id'], -1, strrpos($result['id'], '_'));
-                $this->questElementIds[$result['entity_id']] = $id;
+                $questElementIds[$result['entity_id']] = $id;
+                //dd($result);
             } elseif ($result['type'] == 'timeline_element') {
                 $id = substr($result['id'], -1, strrpos($result['id'], '_'));
-                $this->timelineElementIds[$result['entity_id']] = $id;
+                $timelineElementIds[$result['entity_id']] = $id;
+                //dd($result);
             } elseif ($result['type'] == 'post') {
                 $id = substr($result['id'], -1, strrpos($result['id'], '_'));
-                $this->postIds[$result['entity_id']] = $id;
+                $postIds[$result['entity_id']] = $id;
+                //dd($result);
             } elseif ($result['type'] == 'attribute') {
                 $id = substr($result['id'], -1, strrpos($result['id'], '_'));
-                $this->attributeIds[$result['entity_id']] = $id;
+                $attributeIds[$result['entity_id']] = $id;
+                //dd($result);
             } else {
                 $this->ids[$result['entity_id']] = $result['entity_id'];
             }
