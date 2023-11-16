@@ -14,11 +14,14 @@ class LocationMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'location_id', 'created_at', 'updated_at'];
 
+    protected string $className = Location::class;
+    protected string $mappingName = 'locations';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Location::class)
-            ->trackMappings('locations', 'location_id');
+            ->prepareModel()
+            ->trackMappings('location_id');
     }
 
     public function prepare(): self

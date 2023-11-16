@@ -13,11 +13,14 @@ class JournalMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'journal_id', 'created_at', 'updated_at'];
 
+    protected string $className = Journal::class;
+    protected string $mappingName = 'journals';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Journal::class)
-            ->trackMappings('journals', 'journal_id');
+            ->prepareModel()
+            ->trackMappings('journal_id');
     }
 
     public function prepare(): self

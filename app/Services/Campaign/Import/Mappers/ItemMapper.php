@@ -13,11 +13,14 @@ class ItemMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'item_id', 'created_at', 'updated_at'];
 
+    protected string $className = Item::class;
+    protected string $mappingName = 'items';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Item::class)
-            ->trackMappings('items', 'item_id');
+            ->prepareModel()
+            ->trackMappings('item_id');
     }
 
     public function prepare(): self

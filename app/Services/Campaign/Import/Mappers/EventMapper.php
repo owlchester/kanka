@@ -13,11 +13,14 @@ class EventMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'event_id', 'created_at', 'updated_at'];
 
+    protected string $className = Event::class;
+    protected string $mappingName = 'events';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Event::class)
-            ->trackMappings('events', 'event_id');
+            ->prepareModel()
+            ->trackMappings('event_id');
     }
 
     public function prepare(): self

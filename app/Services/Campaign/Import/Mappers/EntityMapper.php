@@ -5,10 +5,12 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Models\Attribute;
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
+use App\Models\EntityAbility;
 use App\Models\EntityAsset;
 use App\Models\EntityTag;
 use App\Models\MiscModel;
 use App\Models\Post;
+use App\Models\Relation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -20,9 +22,9 @@ trait EntityMapper
     protected Entity $entity;
     protected mixed $model;
 
-    protected function prepareModel(string $model): self
+    protected function prepareModel(): self
     {
-        $this->model = app()->make($model);
+        $this->model = app()->make($this->className);
         $this->model->campaign_id = $this->campaign->id;
         foreach ($this->data as $field => $value) {
             if (is_array($value) || in_array($field, $this->ignore)) {
@@ -37,18 +39,18 @@ trait EntityMapper
         return $this;
     }
 
-    protected function loadModel(string $modelClass, string $model): self
+    protected function loadModel(): self
     {
-        $builder = app()->make($modelClass);
-        $id = ImportIdMapper::get($model, $this->data['id']);
+        $builder = app()->make($this->className);
+        $id = ImportIdMapper::get($this->mappingName, $this->data['id']);
         $this->model = $builder->where('id', $id)->firstOrFail();
         return $this;
     }
 
-    protected function trackMappings(string $class, string $parent = null): void
+    protected function trackMappings(string $parent = null): void
     {
         $this->mapping[$this->data['id']] = $this->model->id;
-        ImportIdMapper::put($class, $this->data['id'], $this->model->id);
+        ImportIdMapper::put($this->mappingName, $this->data['id'], $this->model->id);
         if ($parent && !empty($this->data[$parent])) {
             $this->parents[$this->data[$parent]][] = $this->model->id;
         }
@@ -73,10 +75,29 @@ trait EntityMapper
         $this->entity->save();
 
         ImportIdMapper::putEntity($this->data['entity']['id'], $this->entity->id);
-        $this->posts()
+
+        $this
             ->assets()
-            ->attributes()
             ->tags();
+    }
+
+    public function second(): void
+    {
+        $this
+            ->loadModel()
+            ->entitySecond();
+    }
+
+    protected function entitySecond(): void
+    {
+        $this->entity = $this->model->entity;
+        $this->posts()
+            ->attributes()
+            ->relations()
+            ->reminders()
+            ->abilities()
+            ->inventory()
+        ;
     }
 
     protected function image(): void
@@ -129,14 +150,18 @@ trait EntityMapper
             'position',
             'settings',
             'layout_id',
-            // todo: location_id
-            //'location_id',
         ];
         foreach ($this->data['entity']['posts'] as $data) {
             $post = new Post();
             $post->entity_id = $this->entity->id;
             foreach ($import as $field) {
                 $post->$field = $data[$field];
+            }
+            if (!empty($data['location_id'])) {
+                $locationID = ImportIdMapper::get('locations', $data['location_id']);
+                if (!empty($locationID)) {
+                    $post->location_id = $locationID;
+                }
             }
             $post->save();
         }
@@ -155,7 +180,7 @@ trait EntityMapper
             'visibility_id',
             'name',
             'position',
-            'is_pinned'
+            'is_pinned',
         ];
         foreach ($this->data['entity']['assets'] as $data) {
             $asset = new EntityAsset();
@@ -175,6 +200,8 @@ trait EntityMapper
                         continue;
                     }
                     Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
+                    $data['metadata']['path'] = $destination;
+                    $asset->metadata = $data['metadata'];
                 } else {
                     $asset->metadata = $data['metadata'];
                 }
@@ -250,6 +277,81 @@ trait EntityMapper
             }
             $this->model->{$model}()->attach($foreignID);
         }
+        return $this;
+    }
+
+    protected function relations(): self
+    {
+
+        if (empty($this->data['entity']['relationships'])) {
+            return $this;
+        }
+
+        $fields = [
+            'relation', 'visibility_id', 'attitude', 'is_pinned', 'colour', 'marketplace_uuid'
+        ];
+        foreach ($this->data['entity']['relationships'] as $data) {
+            $targetID = ImportIdMapper::getEntity($data['target_id']);
+            if (empty($targetID)) {
+                continue;
+            }
+
+            $rel = new Relation();
+            $rel->owner_id = $this->entity->id;
+            $rel->target_id = $targetID;
+            $rel->campaign_id = $this->campaign->id;
+            foreach ($fields as $field) {
+                $rel->$field = $data[$field];
+            }
+            $rel->save();
+        }
+        return $this;
+    }
+
+    protected function reminders(): self
+    {
+
+        if (empty($this->data['entity']['reminders'])) {
+            return $this;
+        }
+
+        dd('reminders, uh oh');
+        return $this;
+    }
+    protected function abilities(): self
+    {
+
+        if (empty($this->data['entity']['abilities'])) {
+            return $this;
+        }
+
+        $fields = [
+            'visibility_id', 'charges', 'position', 'note'
+        ];
+        foreach ($this->data['entity']['abilities'] as $data) {
+            $abilityID = ImportIdMapper::get('abilities', $data['ability_id']);
+            if (empty($abilityID)) {
+                continue;
+            }
+
+            $ab = new EntityAbility();
+            $ab->entity_id = $this->entity->id;
+            $ab->ability_id = $abilityID;
+            foreach ($fields as $field) {
+                $ab->$field = $data[$field];
+            }
+            $ab->save();
+        }
+        return $this;
+    }
+    protected function inventory(): self
+    {
+
+        if (empty($this->data['entity']['inventory'])) {
+            return $this;
+        }
+
+        dd('inventory, uh oh');
         return $this;
     }
 }

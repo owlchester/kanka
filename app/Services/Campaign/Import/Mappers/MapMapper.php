@@ -14,11 +14,14 @@ class MapMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'map_id', 'created_at', 'updated_at'];
 
+    protected string $className = Map::class;
+    protected string $mappingName = 'maps';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Map::class)
-            ->trackMappings('maps', 'map_id');
+            ->prepareModel()
+            ->trackMappings('map_id');
     }
 
     public function prepare(): self

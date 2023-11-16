@@ -14,11 +14,14 @@ class QuestMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'quest_id', 'created_at', 'updated_at'];
 
+    protected string $className = Quest::class;
+    protected string $mappingName = 'quests';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Quest::class)
-            ->trackMappings('quests', 'quest_id');
+            ->prepareModel()
+            ->trackMappings('quest_id');
     }
 
     public function prepare(): self

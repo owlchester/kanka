@@ -13,11 +13,25 @@ class FamilyMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'family_id', 'created_at', 'updated_at'];
 
+    protected string $className = Family::class;
+    protected string $mappingName = 'families';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Family::class)
-            ->trackMappings('families', 'family_id');
+            ->prepareModel()
+            ->trackMappings('family_id');
+    }
+
+    public function second(): void
+    {
+        $this
+            ->loadModel()
+            ->foreign('locations', 'location_id');
+        $this->model->save();
+
+        /*$this
+            ->familyTree();*/
     }
 
     public function prepare(): self

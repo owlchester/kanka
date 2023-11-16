@@ -13,11 +13,14 @@ class OrganisationMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'organisation_id', 'created_at', 'updated_at'];
 
+    protected string $className = Organisation::class;
+    protected string $mappingName = 'organisations';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Organisation::class)
-            ->trackMappings('organisations', 'organisation_id');
+            ->prepareModel()
+            ->trackMappings('organisation_id');
     }
 
     public function prepare(): self

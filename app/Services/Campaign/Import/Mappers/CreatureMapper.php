@@ -13,11 +13,14 @@ class CreatureMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'creature_id', 'created_at', 'updated_at'];
 
+    protected string $className = Creature::class;
+    protected string $mappingName = 'creatures';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Creature::class)
-            ->trackMappings('creatures', 'creature_id');
+            ->prepareModel()
+            ->trackMappings('creature_id');
     }
 
     public function prepare(): self

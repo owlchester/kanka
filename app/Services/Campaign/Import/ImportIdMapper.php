@@ -31,9 +31,9 @@ class ImportIdMapper
         return $this->misc[$type][$old];
     }
 
-    public function getEntity(string $type, int $old): int
+    public function getEntity(int $old): int
     {
-        return $this->entities[$type][$old];
+        return $this->entities[$old];
     }
 
     public function getGallery(string $old): string

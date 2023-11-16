@@ -13,11 +13,14 @@ class NoteMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'note_id', 'created_at', 'updated_at'];
 
+    protected string $className = Note::class;
+    protected string $mappingName = 'notes';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Note::class)
-            ->trackMappings('notes', 'note_id');
+            ->prepareModel()
+            ->trackMappings('note_id');
     }
 
     public function prepare(): self

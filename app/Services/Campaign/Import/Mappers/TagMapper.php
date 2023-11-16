@@ -13,11 +13,14 @@ class TagMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'tag_id', 'created_at', 'updated_at'];
 
+    protected string $className = Tag::class;
+    protected string $mappingName = 'tags';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Tag::class)
-            ->trackMappings('tags', 'tag_id');
+            ->prepareModel()
+            ->trackMappings('tag_id');
     }
 
     public function prepare(): self

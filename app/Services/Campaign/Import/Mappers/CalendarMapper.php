@@ -13,11 +13,13 @@ class CalendarMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'calendar_id', 'created_at', 'updated_at'];
 
+    protected string $className = Calendar::class;
+    protected string $mappingName = 'calendars';
     public function first(): void
     {
         $this
-            ->prepareModel(Calendar::class)
-            ->trackMappings('calendars', 'calendar_id');
+            ->prepareModel()
+            ->trackMappings('calendar_id');
     }
 
     public function prepare(): self

@@ -14,17 +14,20 @@ class CharacterMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'created_at', 'location_id', 'updated_at'];
 
+    protected string $className = Character::class;
+    protected string $mappingName = 'characters';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Character::class)
-            ->trackMappings('characters', 'character_id');
+            ->prepareModel()
+            ->trackMappings('character_id');
     }
 
     public function second(): void
     {
         $this
-            ->loadModel(Character::class, 'characters')
+            ->loadModel()
             ->foreign('locations', 'location_id')
             ->pivot('characterFamilies', 'families', 'family_id')
             ->pivot('characterRaces', 'races', 'race_id');
@@ -32,7 +35,8 @@ class CharacterMapper
 
         $this
             ->traits()
-            ->memberships();
+            ->memberships()
+            ->entitySecond();
     }
 
     public function prepare(): self

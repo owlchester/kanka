@@ -2,8 +2,10 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
-use App\Models\Tag;
+use App\Facades\ImportIdMapper;
 use App\Models\Timeline;
+use App\Models\TimelineElement;
+use App\Models\TimelineEra;
 use App\Traits\CampaignAware;
 
 class TimelineMapper
@@ -14,11 +16,25 @@ class TimelineMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'timeline_id', 'created_at', 'updated_at', 'calendar_id'];
 
+    protected string $className = Timeline::class;
+    protected string $mappingName = 'timelines';
+
+    protected array $eras;
+
     public function first(): void
     {
         $this
-            ->prepareModel(Timeline::class)
-            ->trackMappings('timelines', 'timeline_id');
+            ->prepareModel()
+            ->trackMappings('timeline_id');
+    }
+
+    public function second(): void
+    {
+        $this->loadModel()
+            ->eras()
+            ->elements()
+            ->entitySecond()
+        ;
     }
 
     public function prepare(): self
@@ -42,6 +58,44 @@ class TimelineMapper
             }
         }
 
+        return $this;
+    }
+
+    protected function eras(): self
+    {
+        $fields = [
+            'name', 'abbreviation', 'start_year', 'end_year', 'entry', 'is_collapsed', 'position'
+        ];
+        $this->eras = [];
+        foreach ($this->data['eras'] as $data) {
+            $er = new TimelineEra();
+            $er->timeline_id = $this->model->id;
+            foreach ($fields as $field) {
+                $er->$field = $data[$field];
+            }
+            $er->save();
+            $this->eras[$data['id']] = $er->id;
+        }
+        return $this;
+    }
+
+    protected function elements(): self
+    {
+        $fields = [
+            'position', 'name', 'date', 'entry', 'colour', 'visibility_id', 'icon', 'is_collapsed', 'use_entity_entry', 'use_event_date'
+        ];
+        foreach ($this->data['elements'] as $data) {
+            $el = new TimelineElement();
+            $el->timeline_id = $this->model->id;
+            $el->era_id = $this->eras[$data['era_id']];
+            if (!empty($data['entity_id'])) {
+                $el->entity_id = ImportIdMapper::getEntity($data['entity_id']);
+            }
+            foreach ($fields as $field) {
+                $el->$field = $data[$field];
+            }
+            $el->save();
+        }
         return $this;
     }
 }

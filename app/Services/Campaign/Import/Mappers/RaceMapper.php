@@ -13,11 +13,14 @@ class RaceMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'race_id', 'created_at', 'updated_at'];
 
+    protected string $className = Race::class;
+    protected string $mappingName = 'races';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Race::class)
-            ->trackMappings('races', 'race_id');
+            ->prepareModel()
+            ->trackMappings('race_id');
     }
 
     public function prepare(): self

@@ -13,11 +13,14 @@ class AbilityMapper
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'ability_id', 'created_at', 'updated_at'];
 
+    protected string $className = Ability::class;
+    protected string $mappingName = 'abilities';
+
     public function first(): void
     {
         $this
-            ->prepareModel(Ability::class)
-            ->trackMappings('abilities', 'ability_id');
+            ->prepareModel()
+            ->trackMappings('ability_id');
     }
 
     public function prepare(): self
