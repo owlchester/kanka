@@ -74,8 +74,10 @@ trait EntityMapper
             $this->entity->$field = $this->data['entity'][$field];
         }
 
-        $this->image();
-        $this->gallery();
+        $this
+            ->image()
+            ->header()
+            ->gallery();
         $this->entity->save();
 
         ImportIdMapper::putEntity($this->data['entity']['id'], $this->entity->id);
@@ -108,29 +110,50 @@ trait EntityMapper
         ;
     }
 
-    protected function image(): void
+    protected function image(): self
     {
         $img = Arr::get($this->data, 'entity.image_path');
         if (empty($img)) {
-            return;
+            return $this;
         }
 
         // An image needs the image saved locally
         $imageName = Str::after($img, '/');
-        $folder = Str::before($img, '/');
-
-        $imagePath = $this->path . '/' . $imageName;
         $destination = 'w/' . $this->campaign->id . '/' . $imageName;
 
         if (!Storage::disk('local')->exists($this->path . $img)) {
             dd('image ' . $this->path . $img . ' doesnt exist');
-            return;
+            return $this;
         }
 
         // Upload the file to s3 using streams
         Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
         $this->entity->image_path = $destination;
+        return $this;
     }
+
+    protected function header(): self
+    {
+        $img = Arr::get($this->data, 'entity.header_image');
+        if (empty($img)) {
+            return $this;
+        }
+
+        // An image needs the image saved locally
+        $imageName = Str::afterLast($img, '/');
+        $destination = 'w/' . $this->campaign->id . '/' . $imageName;
+
+        if (!Storage::disk('local')->exists($this->path . $img)) {
+            dd('header image ' . $this->path . $img . ' doesnt exist');
+            return $this;
+        }
+
+        // Upload the file to s3 using streams
+        Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
+        $this->entity->header_image = $destination;
+        return $this;
+    }
+
     protected function gallery(): self
     {
         $image = Arr::get($this->data, 'entity.image_uuid');
