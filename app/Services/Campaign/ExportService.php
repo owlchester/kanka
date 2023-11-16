@@ -35,6 +35,8 @@ class ExportService
     protected int $files = 0;
     protected int $filesize = 0;
 
+    protected string $version = '3.0.0';
+
     protected CampaignExport $log;
 
     public function exportPath(): string
@@ -68,15 +70,6 @@ class ExportService
 
         Export::dispatch($this->campaign, $this->user, $entitiesExport, false);
 
-        /*$assetExport = CampaignExport::create([
-            'campaign_id' => $this->campaign->id,
-            'created_by' => $this->user->id,
-            'type' => CampaignExport::TYPE_ASSETS,
-            'status' => CampaignExport::STATUS_SCHEDULED,
-        ]);
-
-        Export::dispatch($this->campaign, $this->user, $assetExport, true);*/
-
         return $this;
     }
 
@@ -85,6 +78,7 @@ class ExportService
         try {
             $this
                 ->prepare()
+                ->info()
                 ->campaignJson()
                 ->entities()
                 ->gallery()
@@ -128,6 +122,16 @@ class ExportService
         return $this;
     }
 
+    protected function info(): self
+    {
+        $info = [
+            'kanka_version' => config('app.version'),
+            'export_version' => $this->version,
+            'started' => date('Y-m-d H:i:s'),
+        ];
+        $this->archive->addRaw(json_encode($info), 'info.json');
+        return $this;
+    }
     protected function campaignJson(): self
     {
         $this->archive->addRaw($this->campaign->toJson(), 'campaign.json');
