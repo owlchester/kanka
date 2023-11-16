@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    use GuestAuthTrait;
     use CampaignAware;
+    use GuestAuthTrait;
 
     protected FamilyTreeService $service;
 

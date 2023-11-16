@@ -232,7 +232,7 @@ trait EntityRelations
             'id',
             'id'
         )
-        ->orderBy('tags.name');
+            ->orderBy('tags.name');
     }
 
     /**
