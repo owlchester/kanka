@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use App\Services\Campaign\Import\ImportMentions;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 
@@ -11,6 +12,7 @@ abstract class MiscMapper
     use ImportMapper;
     use EntityMapper;
     use UserAware;
+    use ImportMentions;
 
     protected array $mapping = [];
     protected array $parents = [];
@@ -21,6 +23,15 @@ abstract class MiscMapper
     public function prepare(): self
     {
         $this->campaign->{$this->mappingName}()->forceDelete();
+        return $this;
+    }
+
+    public function third(): self
+    {
+        $this
+            ->loadModel()
+            ->entityThird()
+        ;
         return $this;
     }
 

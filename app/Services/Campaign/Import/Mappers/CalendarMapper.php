@@ -3,6 +3,7 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Calendar;
+use App\Models\CalendarWeather;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 
@@ -20,6 +21,14 @@ class CalendarMapper extends MiscMapper
             ->trackMappings('calendar_id');
     }
 
+    public function second(): void
+    {
+        $this->loadModel()
+            ->weather()
+            ->entitySecond()
+        ;
+    }
+
     public function tree(): self
     {
         foreach ($this->parents as $parent => $children) {
@@ -34,6 +43,25 @@ class CalendarMapper extends MiscMapper
             }
         }
 
+        return $this;
+    }
+    protected function weather(): self
+    {
+        if (empty($this->data['calendarWeather'])) {
+            return $this;
+        }
+        $fields = [
+            'weather', 'temperature', 'precipitation', 'wind', 'effect', 'name', 'day', 'month', 'year', 'visibility_id'
+        ];
+        foreach ($this->data['calendarWeather'] as $data) {
+            $el = new CalendarWeather();
+            $el->calendar_id = $this->model->id;
+            foreach ($fields as $field) {
+                $el->$field = $data[$field];
+            }
+            $el->created_by = $this->user->id;
+            $el->save();
+        }
         return $this;
     }
 }

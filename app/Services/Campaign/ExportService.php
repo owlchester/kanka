@@ -7,6 +7,7 @@ use App\Jobs\Campaigns\Export;
 use App\Models\EntityAsset;
 use App\Models\Image;
 use App\Models\CampaignExport;
+use App\Models\Map;
 use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -157,6 +158,7 @@ class ExportService
             'entity.image',
             'entity.header',
             'entity.assets',
+            'entity.mentions',
             'entity.inventories',
             'entity.entityAttributes',
         ];
@@ -242,6 +244,16 @@ class ExportService
                 continue;
             }
             $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
+        }
+
+        if ($model instanceof Map) {
+            foreach ($model->layers as $layer) {
+                $path = $layer->image;
+                if (!Storage::exists($path)) {
+                    continue;
+                }
+                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
+            }
         }
 
         return $this;

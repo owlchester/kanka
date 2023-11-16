@@ -7,6 +7,9 @@ class ImportIdMapper
     protected array $misc = [];
     protected array $entities = [];
     protected array $gallery = [];
+    protected array $posts = [];
+    protected array $timelineElements = [];
+    protected array $questElements = [];
 
     public function put(string $type, int $old, int $new): self
     {
@@ -23,6 +26,21 @@ class ImportIdMapper
     public function putGallery(string $old, string $new): self
     {
         $this->gallery[$old] = $new;
+        return $this;
+    }
+    public function putPost(int $old, int $new): self
+    {
+        $this->posts[$old] = $new;
+        return $this;
+    }
+    public function putQuestElement(int $old, int $new): self
+    {
+        $this->questElements[$old] = $new;
+        return $this;
+    }
+    public function putTimelineElement(int $old, int $new): self
+    {
+        $this->timelineElements[$old] = $new;
         return $this;
     }
 
@@ -44,5 +62,18 @@ class ImportIdMapper
     public function getGallery(string $old): string
     {
         return $this->gallery[$old];
+    }
+
+    public function getPost(int $old): int
+    {
+        return $this->posts[$old];
+    }
+    public function getTimelineElement(int $old): int
+    {
+        return $this->timelineElements[$old];
+    }
+    public function getQuestElement(int $old): int
+    {
+        return $this->questElements[$old];
     }
 }

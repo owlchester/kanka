@@ -69,6 +69,7 @@ class QuestMapper extends MiscMapper
             }
             $el->description = $this->mentions($el->description);
             $el->save();
+            ImportIdMapper::putQuestElement($data['id'], $el->id);
         }
         return $this;
     }

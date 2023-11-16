@@ -90,6 +90,8 @@ class TimelineMapper extends MiscMapper
             }
             $el->entry = $this->mentions($el->entry);
             $el->save();
+
+            ImportIdMapper::putTimelineElement($data['id'], $el->id);
         }
         return $this;
     }

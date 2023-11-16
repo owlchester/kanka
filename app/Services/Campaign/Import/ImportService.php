@@ -22,6 +22,7 @@ use App\Services\Campaign\Import\Mappers\QuestMapper;
 use App\Services\Campaign\Import\Mappers\RaceMapper;
 use App\Services\Campaign\Import\Mappers\TagMapper;
 use App\Services\Campaign\Import\Mappers\TimelineMapper;
+use App\Services\EntityMappingService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Log;
@@ -34,6 +35,7 @@ class ImportService
 {
     use CampaignAware;
     use UserAware;
+    use ImportMentions;
 
     protected ZipArchive $archive;
 
@@ -41,9 +43,16 @@ class ImportService
 
     protected GalleryMapper $gallery;
 
+    protected EntityMappingService $entityMappingService;
+
     protected string $dataPath;
 
     protected array $mappers;
+
+    public function __construct(EntityMappingService $entityMappingService) {
+
+        $this->entityMappingService = $entityMappingService;
+    }
 
     public function job(CampaignImport $job)
     {
@@ -141,8 +150,7 @@ class ImportService
             $this->importCampaign()
                 ->gallery()
                 ->entities()
-                //->tags()
-                //->calendars()
+                ->secondCampaign()
             ;
             $this->job->status_id = CampaignImportStatus::FINISHED;
         /*} catch (Exception $e) {
@@ -254,6 +262,32 @@ class ImportService
             dump('- ' . $count . ' ' . $model);
         }
 
+        foreach ($this->mappers as $model => $mapper) {
+            if (!method_exists($mapper, 'third')) {
+                continue;
+            }
+            dump('Third round ' . $model);
+            $count = 0;
+            foreach ($this->files($model) as $file) {
+                if (!Str::endsWith($file, '.json')) {
+                    continue;
+                }
+                $filePath = Str::replace($this->dataPath, null, $file);
+                $data = $this->open($filePath);
+                if (empty($data['entity']['mentions'])) {
+                    continue;
+                }
+                $mapper
+                    ->path($this->dataPath . '/')
+                    ->data($data)
+                    ->third()
+                ;
+                $count++;
+                unset($data);
+            }
+            dump('- ' . $count . ' ' . $model);
+        }
+
         return $this;
     }
 
@@ -281,4 +315,13 @@ class ImportService
         return $data;
     }
 
+    protected function secondCampaign(): self
+    {
+        $this->campaign->entry = $this->mentions($this->campaign->entry);
+        $this->campaign->excerpt = $this->mentions($this->campaign->excerpt);
+        $this->campaign->save();
+
+        $this->entityMappingService->silent()->mapCampaign($this->campaign);
+        return $this;
+    }
 }

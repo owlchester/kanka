@@ -10,6 +10,8 @@ use App\Models\Tag;
 use App\Models\Map;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class MapMapper extends MiscMapper
 {
@@ -74,6 +76,7 @@ class MapMapper extends MiscMapper
             foreach ($fields as $field) {
                 $el->$field = $data[$field];
             }
+            $el->created_by = $this->user->id;
             $el->save();
             $this->groups[$data['id']] = $el->id;
         }
@@ -99,6 +102,20 @@ class MapMapper extends MiscMapper
                 $el->$field = $data[$field];
             }
             $el->entry = $this->mentions($el->entry);
+            $el->created_by = $this->user->id;
+
+            // Move image
+            $imageName = Str::afterLast($el->image, '/');
+            $destination = 'w/' . $this->campaign->id . '/maps/' . $el->map_id . '/' . $imageName;
+
+            if (!Storage::disk('local')->exists($this->path . $el->image)) {
+                dd('map layer image ' . $this->path . $el->image . ' doesnt exist');
+                return $this;
+            }
+
+            // Upload the file to s3 using streams
+            Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $el->image));
+            $el->image = $destination;
             $el->save();
             $this->layers[$data['id']] = $el->id;
         }
@@ -127,6 +144,7 @@ class MapMapper extends MiscMapper
                 $marker->group_id = $this->groups[$data['group_id']];
             }
 
+            $marker->created_by = $this->user->id;
             $marker->entry = $this->mentions($marker->entry);
             $marker->save();
         }

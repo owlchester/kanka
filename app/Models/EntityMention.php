@@ -293,4 +293,16 @@ class EntityMention extends Model
         }
         return __('crud.hidden');
     }
+
+    public function exportFields(): array
+    {
+        return [
+            'entity_id',
+            'campaign_id',
+            'post_id',
+            'timeline_element_id',
+            'quest_element_id',
+            'target_id'
+        ];
+    }
 }

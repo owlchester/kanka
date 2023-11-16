@@ -8,10 +8,11 @@ use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
 use App\Models\EntityEvent;
+use App\Models\EntityMention;
 use App\Models\EntityTag;
-use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Relation;
+use App\Services\EntityMappingService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -22,6 +23,13 @@ trait EntityMapper
     protected array $parents = [];
     protected Entity $entity;
     protected mixed $model;
+
+    protected EntityMappingService $entityMappingService;
+
+    public function __construct(EntityMappingService $entityMappingService)
+    {
+        $this->entityMappingService = $entityMappingService;
+    }
 
     protected function prepareModel(): self
     {
@@ -107,6 +115,15 @@ trait EntityMapper
             ->reminders()
             ->abilities()
             ->inventory()
+        ;
+    }
+
+    protected function entityThird(): void
+    {
+        $this->entity = $this->model->entity;
+
+        $this
+            ->foreignMentions()
         ;
     }
 
@@ -198,6 +215,8 @@ trait EntityMapper
             $post->entry = $this->mentions($post->entry);
             $post->created_by = $this->user->id;
             $post->save();
+
+            ImportIdMapper::putPost($data['id'], $post->id);
         }
 
         return $this;
@@ -324,6 +343,7 @@ trait EntityMapper
     {
         $this->model->entry = $this->mentions($this->model->entry);
         $this->model->save();
+
         return $this;
     }
 
@@ -412,41 +432,39 @@ trait EntityMapper
         }
         return $this;
     }
+
     protected function inventory(): self
     {
-        if (empty($this->data['entity']['inventory'])) {
+        if (empty($this->data['entity']['inventories'])) {
             return $this;
         }
 
-        dd('inventory, uh oh');
+        dd('inventories, uh oh');
         return $this;
     }
 
-    protected function mentions(string|null $text): string|null
+    protected function foreignMentions(): self
     {
-        if (empty($text)) {
-            return $text;
+        if (empty($this->data['entity']['mentions'])) {
+            return $this;
         }
 
-        return preg_replace_callback(
-            '`\[([a-z_]+):(.*?)\]`i',
-            function ($matches) {
-                $segments = explode('|', $matches[2]);
-                $oldEntityID = (int) $segments[0];
-                $entityType = $matches[1];
-
-                if (!ImportIdMapper::hasEntity($oldEntityID)) {
-                    return $matches[0];
-                }
-                $entityID = ImportIdMapper::getEntity($oldEntityID);
-
-                if (Str::contains($matches[2], '|')) {
-                    return '[' . $entityType . ':' . Str::replace($oldEntityID . '|', $entityID . '|', $matches[2]);
-                }
-                return '[' . $entityType . ':' . $entityID . ']';
-            },
-            $text
-        );
+        foreach ($this->data['entity']['mentions'] as $data) {
+            $men = new EntityMention();
+            $men->entity_id = $this->entity->id;
+            $men->target_id = ImportIdMapper::getEntity($data['target_id']);
+            if (!empty($data['campaign_id'])) {
+                $men->campaign_id = $this->campaign->id;
+            } elseif (!empty($data['post_id'])) {
+                $men->post_id = ImportIdMapper::getPost($data['post_id']);
+            } elseif (!empty($data['timeline_element_id'])) {
+                $men->timeline_element_id = ImportIdMapper::getTimelineElement($data['timeline_element_id']);
+            } elseif (!empty($data['quest_element_id'])) {
+                $men->quest_element_id = ImportIdMapper::getQuestElement($data['quest_element_id']);
+            }
+            $men->save();
+        }
+        return $this;
     }
 
     public function fixTree(): self

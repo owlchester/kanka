@@ -82,6 +82,10 @@ class Calendar extends MiscModel
         'parameters' => 'array'
     ];
 
+    protected array $foreignExport = [
+        'calendarWeather',
+    ];
+
     protected array $loadedMonths;
 
     protected array $loadedWeekdays;
