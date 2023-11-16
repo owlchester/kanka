@@ -112,11 +112,11 @@ trait Nested
     {
         $this->moved = false;
 
-        if (! $this->pending && ! $this->exists) {
+        if (!$this->pending && !$this->exists) {
             $this->makeRoot();
         }
 
-        if (! $this->pending) {
+        if (!$this->pending) {
             return;
         }
 
@@ -189,7 +189,7 @@ trait Nested
     protected function actionRoot()
     {
         // Simplest case that do not affect other nodes.
-        if (! $this->exists) {
+        if (!$this->exists) {
             $cut = $this->getLowerBound() + 1;
 
             $this->setLft($cut);
@@ -228,7 +228,7 @@ trait Nested
 
         $cut = $prepend ? $parent->getLft() + 1 : $parent->getRgt();
 
-        if (! $this->insertAt($cut)) {
+        if (!$this->insertAt($cut)) {
             return false;
         }
 
@@ -271,7 +271,7 @@ trait Nested
      */
     public function refreshNode()
     {
-        if (! $this->exists || static::$actionsPerformed === 0) {
+        if (!$this->exists || static::$actionsPerformed === 0) {
             return;
         }
 
@@ -523,7 +523,7 @@ trait Nested
             ->assertNotDescendant($node)
             ->assertSameScope($node);
 
-        if (! $this->isSiblingOf($node)) {
+        if (!$this->isSiblingOf($node)) {
             $this->setParent($node->getRelationValue('parent'));
         }
 
@@ -551,7 +551,7 @@ trait Nested
      */
     public function insertBeforeNode(self $node)
     {
-        if (! $this->beforeNode($node)->save()) {
+        if (!$this->beforeNode($node)->save()) {
             return false;
         }
 
@@ -587,7 +587,7 @@ trait Nested
             ->skip($amount - 1)
             ->first();
 
-        if (! $sibling) {
+        if (!$sibling) {
             return false;
         }
 
@@ -609,7 +609,7 @@ trait Nested
             ->skip($amount - 1)
             ->first();
 
-        if (! $sibling) {
+        if (!$sibling) {
             return false;
         }
 
@@ -752,12 +752,12 @@ trait Nested
     public function applyNestedSetScope($query, $table = null)
     {
         // @phpstan-ignore-next-line
-        if (! $scoped = $this->getScopeAttributes()) {
+        if (!$scoped = $this->getScopeAttributes()) {
             return $query;
         }
 
         // @phpstan-ignore-next-line
-        if (! $table) {
+        if (!$table) {
             $table = $this->getTable();
         }
 
@@ -839,7 +839,7 @@ trait Nested
      */
     public function getNodeHeight()
     {
-        if (! $this->exists) {
+        if (!$this->exists) {
             return 2;
         }
 
@@ -1138,7 +1138,7 @@ trait Nested
      */
     protected function hardDeleting()
     {
-        return ! $this->usesSoftDelete() || $this->forceDeleting;
+        return !$this->usesSoftDelete() || $this->forceDeleting;
     }
 
     /**
@@ -1217,7 +1217,7 @@ trait Nested
      */
     protected function assertNodeExists(self $node)
     {
-        if (! $node->getLft() || ! $node->getRgt()) {
+        if (!$node->getLft() || !$node->getRgt()) {
             $field = $node->getParentIdName();
             $error = \Illuminate\Validation\ValidationException::withMessages([
                 $field => [__('crud.errors.invalid_node')]

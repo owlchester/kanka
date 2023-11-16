@@ -76,7 +76,7 @@ class AttributeMentionService
         if (!Str::contains($value, ['{', '}'])) {
             return false;
         }
-        return ! (Str::contains($value, ['<', '>']));
+        return !(Str::contains($value, ['<', '>']));
     }
     /**
      * Load all the entity attributes and pre-calculate the values
