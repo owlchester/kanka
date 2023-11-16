@@ -8,12 +8,8 @@ use App\Models\Tag;
 use App\Models\Quest;
 use App\Traits\CampaignAware;
 
-class QuestMapper
+class QuestMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'quest_id', 'created_at', 'updated_at'];
 
     protected string $className = Quest::class;
@@ -34,12 +30,6 @@ class QuestMapper
             ->elements()
             ->entitySecond()
         ;
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->quests()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

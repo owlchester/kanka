@@ -5,12 +5,8 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Models\Item;
 use App\Traits\CampaignAware;
 
-class ItemMapper
+class ItemMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'item_id', 'created_at', 'updated_at'];
 
     protected string $className = Item::class;
@@ -31,12 +27,6 @@ class ItemMapper
             ->foreign('characters', 'character_id')
             ->saveModel()
             ->entitySecond();
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->items()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

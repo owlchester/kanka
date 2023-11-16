@@ -3,14 +3,9 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Creature;
-use App\Traits\CampaignAware;
 
-class CreatureMapper
+class CreatureMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'creature_id', 'created_at', 'updated_at'];
 
     protected string $className = Creature::class;
@@ -30,12 +25,6 @@ class CreatureMapper
             ->saveModel()
             ->entitySecond()
         ;
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->creatures()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

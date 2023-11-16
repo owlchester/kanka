@@ -5,12 +5,8 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Models\Note;
 use App\Traits\CampaignAware;
 
-class NoteMapper
+class NoteMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'note_id', 'created_at', 'updated_at'];
 
     protected string $className = Note::class;
@@ -21,12 +17,6 @@ class NoteMapper
         $this
             ->prepareModel()
             ->trackMappings('note_id');
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->notes()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

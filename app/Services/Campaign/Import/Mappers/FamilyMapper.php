@@ -3,14 +3,9 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Family;
-use App\Traits\CampaignAware;
 
-class FamilyMapper
+class FamilyMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'family_id', 'created_at', 'updated_at'];
 
     protected string $className = Family::class;
@@ -32,12 +27,6 @@ class FamilyMapper
 
         /*$this
             ->familyTree();*/
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->families()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

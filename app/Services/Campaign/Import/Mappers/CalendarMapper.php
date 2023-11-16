@@ -4,12 +4,10 @@ namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Calendar;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 
-class CalendarMapper
+class CalendarMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'calendar_id', 'created_at', 'updated_at'];
 
@@ -20,12 +18,6 @@ class CalendarMapper
         $this
             ->prepareModel()
             ->trackMappings('calendar_id');
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->calendars()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

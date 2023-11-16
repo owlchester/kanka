@@ -8,12 +8,8 @@ use App\Models\TimelineElement;
 use App\Models\TimelineEra;
 use App\Traits\CampaignAware;
 
-class TimelineMapper
+class TimelineMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'timeline_id', 'created_at', 'updated_at', 'calendar_id'];
 
     protected string $className = Timeline::class;
@@ -35,12 +31,6 @@ class TimelineMapper
             ->elements()
             ->entitySecond()
         ;
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->timelines()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

@@ -23,11 +23,6 @@ class EntityObserver
     protected AttributeService $attributeService;
 
     /**
-     * @var bool
-     */
-    protected $permissionGrantSelf = false;
-
-    /**
      * PermissionController constructor.
      */
     public function __construct(PermissionService $permissionService, AttributeService $attributeService)

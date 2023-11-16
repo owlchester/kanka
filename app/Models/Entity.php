@@ -7,6 +7,7 @@ use App\Facades\EntityCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
@@ -22,7 +23,6 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
-use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Entity
@@ -55,7 +55,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 class Entity extends Model
 {
     use Acl;
-    use BlameableTrait;
+    use Blameable;
     use CampaignTrait;
     use EntityLogs;
     use EntityRelations;

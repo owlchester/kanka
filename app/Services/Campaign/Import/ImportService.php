@@ -97,6 +97,7 @@ class ImportService
             $mapper = app()->make($mapperClass);
             $this->mappers[$model] = $mapper
                 ->campaign($this->campaign)
+                ->user($this->user)
                 ->prepare();
         }
         return $this;
@@ -226,7 +227,7 @@ class ImportService
                 unset($data);
             }
             dump('- ' . $count . ' ' . $model);
-            $mapper->tree()->clear();
+            $mapper->tree()->fixTree()->clear();
         }
 
         // Second parse

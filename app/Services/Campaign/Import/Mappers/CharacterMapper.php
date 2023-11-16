@@ -6,14 +6,9 @@ use App\Facades\ImportIdMapper;
 use App\Models\Character;
 use App\Models\CharacterOrganisation;
 use App\Models\CharacterTrait;
-use App\Traits\CampaignAware;
 
-class CharacterMapper
+class CharacterMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'created_at', 'location_id', 'updated_at'];
 
     protected string $className = Character::class;
@@ -37,17 +32,6 @@ class CharacterMapper
             ->traits()
             ->memberships()
             ->entitySecond();
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->characters()->forceDelete();
-        return $this;
-    }
-
-    public function tree(): self
-    {
-        return $this;
     }
 
     protected function traits(): self

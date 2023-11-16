@@ -65,6 +65,8 @@ trait EntityMapper
         $this->entity = new Entity();
         $this->entity->entity_id = $this->model->id;
         $this->entity->type_id = $this->model->entityTypeId();
+        $this->entity->created_by = $this->user->id;
+        $this->entity->updated_by = $this->user->id;
         foreach ($mapping as $field) {
             $this->entity->$field = $this->model->$field;
         }
@@ -171,6 +173,7 @@ trait EntityMapper
             }
 
             $post->entry = $this->mentions($post->entry);
+            $post->created_by = $this->user->id;
             $post->save();
         }
 
@@ -214,6 +217,7 @@ trait EntityMapper
                     $asset->metadata = $data['metadata'];
                 }
             }
+            $asset->created_by = $this->user->id;
             $asset->save();
         }
         return $this;
@@ -319,6 +323,7 @@ trait EntityMapper
             $rel->owner_id = $this->entity->id;
             $rel->target_id = $targetID;
             $rel->campaign_id = $this->campaign->id;
+            $rel->created_by = $this->user->id;
             foreach ($fields as $field) {
                 $rel->$field = $data[$field];
             }
@@ -353,6 +358,7 @@ trait EntityMapper
             foreach ($fields as $field) {
                 $rem->$field = $data[$field];
             }
+            $rem->created_by = $this->user->id;
             $rem->save();
         }
         return $this;
@@ -375,6 +381,7 @@ trait EntityMapper
             $ab = new EntityAbility();
             $ab->entity_id = $this->entity->id;
             $ab->ability_id = $abilityID;
+            $ab->created_by = $this->user->id;
             foreach ($fields as $field) {
                 $ab->$field = $data[$field];
             }
@@ -417,5 +424,15 @@ trait EntityMapper
             },
             $text
         );
+    }
+
+    public function fixTree(): self
+    {
+        $base = app()->make($this->className);
+        if (!method_exists($base, 'recalculateTreeBounds')) {
+            return $this;
+        }
+        $base->fixCampaignTree($this->campaign->id);
+        return $this;
     }
 }

@@ -5,12 +5,8 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Models\Tag;
 use App\Traits\CampaignAware;
 
-class TagMapper
+class TagMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'tag_id', 'created_at', 'updated_at'];
 
     protected string $className = Tag::class;
@@ -21,12 +17,6 @@ class TagMapper
         $this
             ->prepareModel()
             ->trackMappings('tag_id');
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->tags()->forceDelete();
-        return $this;
     }
 
     public function tree(): self
@@ -43,7 +33,6 @@ class TagMapper
                 $tag->save();
             }
         }
-
         return $this;
     }
 }

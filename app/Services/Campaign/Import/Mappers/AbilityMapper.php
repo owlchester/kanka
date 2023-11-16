@@ -4,13 +4,10 @@ namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Ability;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 
-class AbilityMapper
+class AbilityMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'ability_id', 'created_at', 'updated_at'];
 
     protected string $className = Ability::class;
@@ -21,12 +18,6 @@ class AbilityMapper
         $this
             ->prepareModel()
             ->trackMappings('ability_id');
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->abilities()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

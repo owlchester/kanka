@@ -5,12 +5,8 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Models\Journal;
 use App\Traits\CampaignAware;
 
-class JournalMapper
+class JournalMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'journal_id', 'created_at', 'updated_at'];
 
     protected string $className = Journal::class;
@@ -31,12 +27,6 @@ class JournalMapper
             ->foreign('entities', 'author_id')
             ->saveModel()
             ->entitySecond();
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->journals()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

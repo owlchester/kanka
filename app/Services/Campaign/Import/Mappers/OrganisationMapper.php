@@ -5,12 +5,8 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Models\Organisation;
 use App\Traits\CampaignAware;
 
-class OrganisationMapper
+class OrganisationMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'organisation_id', 'created_at', 'updated_at'];
 
     protected string $className = Organisation::class;
@@ -30,12 +26,6 @@ class OrganisationMapper
             ->foreign('locations', 'location_id')
             ->saveModel()
             ->entitySecond();
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->organisations()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

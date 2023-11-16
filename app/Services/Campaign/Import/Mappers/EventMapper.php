@@ -3,13 +3,9 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Event;
-use App\Traits\CampaignAware;
 
-class EventMapper
+class EventMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
 
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'event_id', 'created_at', 'updated_at'];
 
@@ -30,12 +26,6 @@ class EventMapper
             ->foreign('locations', 'location_id')
             ->saveModel()
             ->entitySecond();
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->events()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

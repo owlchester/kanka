@@ -5,12 +5,8 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Models\Race;
 use App\Traits\CampaignAware;
 
-class RaceMapper
+class RaceMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'race_id', 'created_at', 'updated_at'];
 
     protected string $className = Race::class;
@@ -30,12 +26,6 @@ class RaceMapper
             ->saveModel()
             ->entitySecond()
         ;
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->races()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

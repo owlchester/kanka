@@ -6,12 +6,8 @@ use App\Models\Tag;
 use App\Models\Location;
 use App\Traits\CampaignAware;
 
-class LocationMapper
+class LocationMapper extends MiscMapper
 {
-    use CampaignAware;
-    use ImportMapper;
-    use EntityMapper;
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'location_id', 'created_at', 'updated_at'];
 
     protected string $className = Location::class;
@@ -22,12 +18,6 @@ class LocationMapper
         $this
             ->prepareModel()
             ->trackMappings('location_id');
-    }
-
-    public function prepare(): self
-    {
-        $this->campaign->locations()->forceDelete();
-        return $this;
     }
 
     public function tree(): self

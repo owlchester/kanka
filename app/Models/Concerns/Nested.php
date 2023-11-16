@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Models\Concerns\TreeQueryBuilder;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
@@ -14,7 +15,6 @@ use Kalnoy\Nestedset\AncestorsRelation;
 use Kalnoy\Nestedset\Collection;
 use Kalnoy\Nestedset\DescendantsRelation;
 use Kalnoy\Nestedset\NestedSet;
-use Kalnoy\Nestedset\QueryBuilder;
 use LogicException;
 
 /**
@@ -719,7 +719,7 @@ trait Nested
      */
     public function newEloquentBuilder($query)
     {
-        return new QueryBuilder($query);
+        return new TreeQueryBuilder($query);
     }
 
     /**
