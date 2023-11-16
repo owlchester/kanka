@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\CreatureLocation;
+use App\Models\Journal;
 use Exception;
 
 trait ExportableTrait
@@ -39,8 +40,8 @@ trait ExportableTrait
             'is_private',
         ];
         foreach ($this->exportFields as $field) {
-            if (!$field === 'base') {
-                $this->exportData[$field] = $field;
+            if ($field !== 'base') {
+                $this->exportData[$field] = $this->$field;
                 continue;
             }
             foreach ($baseFields as $baseField) {
@@ -50,6 +51,11 @@ trait ExportableTrait
         if (method_exists($this, 'getParentIdName')) {
             $this->exportData[$this->getParentIdName()] = $this->getAttribute($this->getParentIdName());
         }
+
+//        if ($this instanceof Journal) {
+//            dump($this->exportFields);
+//            dd($this->exportData);
+//        }
 
         return $this;
     }

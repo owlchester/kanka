@@ -36,6 +36,11 @@ class ImportIdMapper
         return $this->entities[$old];
     }
 
+    public function hasEntity(int $old): bool
+    {
+        return !empty($this->entities[$old]);
+    }
+
     public function getGallery(string $old): string
     {
         return $this->gallery[$old];

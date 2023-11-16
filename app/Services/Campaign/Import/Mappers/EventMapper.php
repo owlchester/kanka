@@ -23,6 +23,15 @@ class EventMapper
             ->trackMappings('event_id');
     }
 
+    public function second(): void
+    {
+        $this
+            ->loadModel()
+            ->foreign('locations', 'location_id')
+            ->saveModel()
+            ->entitySecond();
+    }
+
     public function prepare(): self
     {
         $this->campaign->events()->forceDelete();

@@ -7,6 +7,7 @@ use App\Facades\ImportIdMapper;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
+use App\Models\EntityEvent;
 use App\Models\EntityTag;
 use App\Models\MiscModel;
 use App\Models\Post;
@@ -33,6 +34,7 @@ trait EntityMapper
             $this->model->$field = $value;
         }
 
+        $this->model->slug = Str::slug($this->model->name);
         $this->model->save();
         $this->entity();
 
@@ -91,6 +93,10 @@ trait EntityMapper
     protected function entitySecond(): void
     {
         $this->entity = $this->model->entity;
+
+        $this->entity->tooltip = $this->mentions($this->entity->tooltip);
+        $this->entity->save();
+
         $this->posts()
             ->attributes()
             ->relations()
@@ -163,6 +169,8 @@ trait EntityMapper
                     $post->location_id = $locationID;
                 }
             }
+
+            $post->entry = $this->mentions($post->entry);
             $post->save();
         }
 
@@ -233,6 +241,7 @@ trait EntityMapper
             foreach ($import as $field) {
                 $attr->$field = $data[$field];
             }
+            $attr->value = $this->mentions($attr->value);
             $attr->save();
         }
 
@@ -260,7 +269,11 @@ trait EntityMapper
         if (empty($this->data[$field])) {
             return $this;
         }
-        $foreignID = ImportIdMapper::get($model, $this->data[$field]);
+        if ($model === 'entities') {
+            $foreignID = ImportIdMapper::getEntity($this->data[$field]);
+        } else {
+            $foreignID = ImportIdMapper::get($model, $this->data[$field]);
+        }
         if (!$foreignID) {
             return $this;
         }
@@ -280,9 +293,15 @@ trait EntityMapper
         return $this;
     }
 
+    protected function saveModel(): self
+    {
+        $this->model->entry = $this->mentions($this->model->entry);
+        $this->model->save();
+        return $this;
+    }
+
     protected function relations(): self
     {
-
         if (empty($this->data['entity']['relationships'])) {
             return $this;
         }
@@ -311,16 +330,35 @@ trait EntityMapper
     protected function reminders(): self
     {
 
-        if (empty($this->data['entity']['reminders'])) {
+        if (empty($this->data['entity']['events'])) {
             return $this;
         }
-
-        dd('reminders, uh oh');
+        $fields = [
+            'length',
+            'comment',
+            'is_recurring',
+            'recurring_until',
+            'recurring_periodicity',
+            'colour',
+            'day',
+            'month',
+            'year',
+            'type_id',
+            'visibility_id',
+        ];
+        foreach ($this->data['entity']['events'] as $data) {
+            $rem = new EntityEvent();
+            $rem->entity_id = $this->entity->id;
+            $rem->calendar_id = ImportIdMapper::get('calendars', $data['calendar_id']);
+            foreach ($fields as $field) {
+                $rem->$field = $data[$field];
+            }
+            $rem->save();
+        }
         return $this;
     }
     protected function abilities(): self
     {
-
         if (empty($this->data['entity']['abilities'])) {
             return $this;
         }
@@ -346,12 +384,38 @@ trait EntityMapper
     }
     protected function inventory(): self
     {
-
         if (empty($this->data['entity']['inventory'])) {
             return $this;
         }
 
         dd('inventory, uh oh');
         return $this;
+    }
+
+    protected function mentions(string|null $text): string|null
+    {
+        if (empty($text)) {
+            return $text;
+        }
+
+        return preg_replace_callback(
+            '`\[([a-z_]+):(.*?)\]`i',
+            function ($matches) {
+                $segments = explode('|', $matches[2]);
+                $oldEntityID = (int) $segments[0];
+                $entityType = $matches[1];
+
+                if (!ImportIdMapper::hasEntity($oldEntityID)) {
+                    return $matches[0];
+                }
+                $entityID = ImportIdMapper::getEntity($oldEntityID);
+
+                if (Str::contains($matches[2], '|')) {
+                    return '[' . $entityType . ':' . Str::replace($oldEntityID . '|', $entityID . '|', $matches[2]);
+                }
+                return '[' . $entityType . ':' . $entityID . ']';
+            },
+            $text
+        );
     }
 }

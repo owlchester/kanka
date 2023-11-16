@@ -73,6 +73,7 @@ class TimelineMapper
             foreach ($fields as $field) {
                 $er->$field = $data[$field];
             }
+            $er->entry = $this->mentions($er->entry);
             $er->save();
             $this->eras[$data['id']] = $er->id;
         }
@@ -89,11 +90,15 @@ class TimelineMapper
             $el->timeline_id = $this->model->id;
             $el->era_id = $this->eras[$data['era_id']];
             if (!empty($data['entity_id'])) {
+                if (!ImportIdMapper::hasEntity($data['entity_id'])) {
+                    continue;
+                }
                 $el->entity_id = ImportIdMapper::getEntity($data['entity_id']);
             }
             foreach ($fields as $field) {
                 $el->$field = $data[$field];
             }
+            $el->entry = $this->mentions($el->entry);
             $el->save();
         }
         return $this;

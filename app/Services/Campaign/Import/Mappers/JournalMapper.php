@@ -23,6 +23,16 @@ class JournalMapper
             ->trackMappings('journal_id');
     }
 
+    public function second(): void
+    {
+        $this
+            ->loadModel()
+            ->foreign('locations', 'location_id')
+            ->foreign('entities', 'author_id')
+            ->saveModel()
+            ->entitySecond();
+    }
+
     public function prepare(): self
     {
         $this->campaign->journals()->forceDelete();

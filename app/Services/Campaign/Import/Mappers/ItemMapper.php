@@ -23,6 +23,16 @@ class ItemMapper
             ->trackMappings('item_id');
     }
 
+    public function second(): void
+    {
+        $this
+            ->loadModel()
+            ->foreign('locations', 'location_id')
+            ->foreign('characters', 'character_id')
+            ->saveModel()
+            ->entitySecond();
+    }
+
     public function prepare(): self
     {
         $this->campaign->items()->forceDelete();

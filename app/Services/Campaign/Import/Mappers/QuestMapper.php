@@ -2,6 +2,8 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use App\Facades\ImportIdMapper;
+use App\Models\QuestElement;
 use App\Models\Tag;
 use App\Models\Quest;
 use App\Traits\CampaignAware;
@@ -22,6 +24,16 @@ class QuestMapper
         $this
             ->prepareModel()
             ->trackMappings('quest_id');
+    }
+
+    public function second(): void
+    {
+        $this->loadModel()
+            ->foreign('locations', 'location_id')
+            ->saveModel()
+            ->elements()
+            ->entitySecond()
+        ;
     }
 
     public function prepare(): self
@@ -45,6 +57,29 @@ class QuestMapper
             }
         }
 
+        return $this;
+    }
+
+    protected function elements(): self
+    {
+        $fields = [
+            'role', 'description', 'visibility_id', 'colour', 'name'
+        ];
+        foreach ($this->data['elements'] as $data) {
+            $el = new QuestElement();
+            $el->quest_id = $this->model->id;
+            if (!empty($data['entity_id'])) {
+                if (!ImportIdMapper::hasEntity($data['entity_id'])) {
+                    continue;
+                }
+                $el->entity_id = ImportIdMapper::getEntity($data['entity_id']);
+            }
+            foreach ($fields as $field) {
+                $el->$field = $data[$field];
+            }
+            $el->description = $this->mentions($el->description);
+            $el->save();
+        }
         return $this;
     }
 }

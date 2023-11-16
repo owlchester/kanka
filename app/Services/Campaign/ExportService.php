@@ -157,11 +157,9 @@ class ExportService
             'entity.image',
             'entity.header',
             'entity.assets',
+            'entity.inventories',
             'entity.entityAttributes',
         ];
-        if ($this->assets) {
-            //$entityWith = ['entity'];
-        }
         $entities = config('entities.classes-plural');
         foreach ($entities as $entity => $class) {
             if (!$this->campaign->enabled($entity) || !method_exists($class, 'export')) {

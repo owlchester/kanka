@@ -2,7 +2,9 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use App\Facades\ImportIdMapper;
 use App\Models\Character;
+use App\Models\CharacterOrganisation;
 use App\Models\CharacterTrait;
 use App\Traits\CampaignAware;
 
@@ -30,10 +32,8 @@ class CharacterMapper
             ->loadModel()
             ->foreign('locations', 'location_id')
             ->pivot('characterFamilies', 'families', 'family_id')
-            ->pivot('characterRaces', 'races', 'race_id');
-        $this->model->save();
-
-        $this
+            ->pivot('characterRaces', 'races', 'race_id')
+            ->saveModel()
             ->traits()
             ->memberships()
             ->entitySecond();
@@ -73,6 +73,22 @@ class CharacterMapper
         if (empty($this->data['organisationMemberships'])) {
             return $this;
         }
-        dd('oops organisationMemberships');
+        $parents = [];
+        foreach ($this->data['organisationMemberships'] as $data) {
+            $member = new CharacterOrganisation();
+            $member->character_id = $this->model->id;
+            $member->organisation_id = ImportIdMapper::get('organisations', $data['organisation_id']);
+            $member->role = $data['role'];
+            $member->is_private = $data['is_private'];
+            $member->pin_id = $data['pin_id'];
+            $member->status_id = $data['status_id'];
+            if (!empty($data['parent_id']) && isset($parents[$data['parent_id']])) {
+                $member->parent_id = $parents[$data['parent_id']];
+            }
+            $member->save();
+
+            $parents[$data['id']] = $member->id;
+        }
+        return $this;
     }
 }

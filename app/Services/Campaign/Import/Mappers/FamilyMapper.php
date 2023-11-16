@@ -27,8 +27,8 @@ class FamilyMapper
     {
         $this
             ->loadModel()
-            ->foreign('locations', 'location_id');
-        $this->model->save();
+            ->foreign('locations', 'location_id')
+            ->saveModel();
 
         /*$this
             ->familyTree();*/

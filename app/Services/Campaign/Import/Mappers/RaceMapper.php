@@ -23,6 +23,15 @@ class RaceMapper
             ->trackMappings('race_id');
     }
 
+    public function second(): void
+    {
+        $this->loadModel()
+            ->pivot('pivotLocations', 'locations', 'location_id')
+            ->saveModel()
+            ->entitySecond()
+        ;
+    }
+
     public function prepare(): self
     {
         $this->campaign->races()->forceDelete();

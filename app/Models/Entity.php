@@ -458,6 +458,7 @@ class Entity extends Model
             'updated_by',
             'image_path',
             'image_uuid',
+            'header_image',
             'header_uuid',
             'marketplace_uuid',
         ];
