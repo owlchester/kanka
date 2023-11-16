@@ -91,4 +91,16 @@ class EntityAbility extends Model
         $new->entity_id = $target->id;
         return $new->save();
     }
+
+    public function exportFields(): array
+    {
+        return [
+            'ability_id',
+            'visibility_id',
+            'created_by',
+            'charges',
+            'position',
+            'note',
+        ];
+    }
 }

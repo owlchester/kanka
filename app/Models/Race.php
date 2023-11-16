@@ -74,7 +74,7 @@ class Race extends MiscModel
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-        'locations',
+        'pivotLocations',
     ];
 
     /**
@@ -248,6 +248,11 @@ class Race extends MiscModel
     public function locations()
     {
         return $this->belongsToMany('App\Models\Location', 'race_location');
+    }
+
+    public function pivotLocations()
+    {
+        return $this->hasMany('App\Models\RaceLocation');
     }
 
     /**

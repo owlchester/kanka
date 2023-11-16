@@ -32,8 +32,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Tag extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
@@ -88,6 +87,13 @@ class Tag extends MiscModel
      */
     public array $nullableForeignKeys = [
         'tag_id',
+    ];
+
+    protected array $exportFields = [
+        'base',
+        'colour',
+        'is_auto_applied',
+        'is_hidden',
     ];
 
     /**

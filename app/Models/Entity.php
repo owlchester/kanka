@@ -438,4 +438,53 @@ class Entity extends Model
         }*/
         return $options;
     }
+
+    public function export(): array
+    {
+        $fields = [
+            'id',
+            'entity_id',
+            'type_id',
+            'name',
+            'is_private',
+            'tooltip',
+            'is_template',
+            'is_attributes_private',
+            'focus_x',
+            'focus_y',
+            'created_at',
+            'updated_at',
+            'created_by',
+            'updated_by',
+            'image_path',
+            'image_uuid',
+            'header_uuid',
+            'marketplace_uuid',
+        ];
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $this->$field;
+        }
+
+        // Entity relations
+        $relations = [
+            'entityTags', 'relationships', 'posts', 'abilities', 'events', 'entityAttributes', 'assets',
+        ];
+        foreach ($relations as $relation) {
+            foreach ($this->$relation as $model) {
+                if (method_exists($model, 'exportFields')) {
+                    $export = [];
+                    foreach ($model->exportFields() as $field) {
+                        $export[$field] = $model->$field;
+                    }
+                    $data[$relation][] = $export;
+                } elseif (method_exists($model, 'export')) {
+                    $data[$relation][] = $model->export();
+                } else {
+                    $data[$relation][] = $model->toArray();
+                }
+            }
+        }
+        return $data;
+    }
 }

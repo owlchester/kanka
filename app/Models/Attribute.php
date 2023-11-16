@@ -369,12 +369,13 @@ class Attribute extends Model
     public function exportFields(): array
     {
         return [
+            'id',
+            'type_id',
             'name',
             'value',
             'is_private',
             'default_order',
             'is_pinned',
-            'type_id',
             'is_hidden',
         ];
     }

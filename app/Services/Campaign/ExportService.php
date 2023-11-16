@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
+use App\Models\EntityAsset;
 use App\Models\Image;
 use App\Models\CampaignExport;
 use App\Notifications\Header;
@@ -93,7 +94,7 @@ class ExportService
                 ->update([
                     'status' => CampaignExport::STATUS_FINISHED,
                     'size' => $this->filesize(),
-                    'path' => $this->exportPath()
+                    'path' => $this->exportPath(),
                 ]);
         } catch (Exception $e) {
             $this->log
@@ -150,8 +151,8 @@ class ExportService
     {
         $entityWith = [
             'entity',
-            'entity.tags', 'entity.relationships',
-            'entity.posts', 'entity.abilities',
+            'entity.entityTags', 'entity.relationships',
+            'entity.posts', 'entity.abilities', 'entity.abilities.ability',
             'entity.events',
             'entity.image',
             'entity.header',
@@ -168,7 +169,7 @@ class ExportService
             }
             try {
                 $property = Str::camel($entity);
-                foreach ($this->campaign->$property()->with($entityWith)->get() as $model) {
+                foreach ($this->campaign->$property()->with($entityWith)->has('entity')->get() as $model) {
                     $this->process($entity, $model);
                 }
             } catch (Exception $e) {
@@ -235,6 +236,16 @@ class ExportService
             $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
             $this->files++;
         }
+
+        /** @var EntityAsset $file */
+        foreach ($model->entity->files as $file) {
+            $path = $file->metadata['path'];
+            if (!Storage::exists($path)) {
+                continue;
+            }
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
+        }
+
         return $this;
     }
 
@@ -285,7 +296,7 @@ class ExportService
     {
         if (!$this->assets) {
             $this->campaign->updateQuietly([
-                'export_date' => null
+                'export_date' => null,
             ]);
         }
 

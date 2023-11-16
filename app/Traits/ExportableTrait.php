@@ -2,62 +2,90 @@
 
 namespace App\Traits;
 
+use App\Models\CreatureLocation;
 use Exception;
 
 trait ExportableTrait
 {
+    protected array $exportData;
     /**
      * Prepares the data of an entity to json.
      * @throws Exception
      */
     public function export(): string
     {
-        $json = $this->toArray();
+        $this
+            ->baseExportData()
+            ->entityExportData()
+            ->foreignExportData();
 
-        // Foreign attributes? character's traits and stuff
-        if (property_exists($this, 'foreignExport')) {
-            foreach ($this->foreignExport as $foreign) {
-                $json[$foreign] = [];
+        return json_encode($this->exportData);
+    }
+
+    protected function baseExportData(): self
+    {
+        if (!isset($this->exportFields)) {
+            $this->exportData = $this->toArray();
+            return $this;
+        }
+        $this->exportData = [];
+        $baseFields = [
+            'id',
+            'name',
+            'type',
+            'entry',
+            'created_at',
+            'updated_at',
+            'is_private',
+        ];
+        foreach ($this->exportFields as $field) {
+            if (!$field === 'base') {
+                $this->exportData[$field] = $field;
+                continue;
+            }
+            foreach ($baseFields as $baseField) {
+                $this->exportData[$baseField] = $this->$baseField;
+            }
+        }
+        if (method_exists($this, 'getParentIdName')) {
+            $this->exportData[$this->getParentIdName()] = $this->getAttribute($this->getParentIdName());
+        }
+
+        return $this;
+    }
+
+    protected function entityExportData(): self
+    {
+        if ($this->entity) {
+            $this->exportData['entity'] = $this->entity->export();
+        }
+        return $this;
+    }
+
+    protected function foreignExportData(): self
+    {
+        if (!property_exists($this, 'foreignExport')) {
+            return $this;
+        }
+        foreach ($this->foreignExport as $foreign) {
+            $this->exportData[$foreign] = [];
+            foreach ($this->$foreign as $model) {
                 try {
-                    foreach ($this->$foreign as $model) {
-                        $json[$foreign][] = $model->toArray();
+                    if (method_exists($model, 'exportFields')) {
+                        $foreignData = [];
+                        foreach ($model->exportFields() as $field) {
+                            $foreignData[$field] = $model->$field;
+                        }
+                        $this->exportData[$foreign][] = $foreignData;
+                    } else {
+                        $this->exportData[$foreign][] = $model->toArray();
                     }
                 } catch (Exception $e) {
+                    dd('e');
                     throw new Exception("Unknown relation '{$foreign}' on model " . get_class($this));
                 }
             }
         }
-
-        // Entity values
-        if (!empty($this->entity)) {
-            // Todo: put these in with()
-            $foreigns = ['posts', 'relationships', 'abilities', 'events', 'tags', 'assets', 'entityAttributes', 'image', 'header'];
-            foreach ($foreigns as $foreign) {
-                if (($foreign == 'image' || $foreign == 'header') && $this->entity->$foreign) {
-                    $json[$foreign] = ['id' => $this->entity->$foreign->id, 'focus_x' =>  $this->entity->$foreign->focus_x, 'focus_y' =>  $this->entity->$foreign->focus_y];
-                } elseif ($foreign != 'image' && $foreign != 'header') {
-                    foreach ($this->entity->$foreign as $model) {
-                        if (method_exists($model, 'exportFields')) {
-                            $export = [];
-                            foreach ($model->exportFields as $field) {
-                                $export[$field] = $model->$field;
-                            }
-                            $json[$foreign][] = $export;
-                        } else {
-                            $json[$foreign][] = $model->toArray();
-                        }
-                    }
-                }
-            }
-            /*$foreigns = ['attributes'];
-            foreach ($foreigns as $foreign) {
-                // Have to do the ()->get because of attributes being otherwise something else
-                foreach ($this->entity->$foreign()->get() as $model) {
-                    $json[$foreign][] = $model->toArray();
-                }
-            }*/
-        }
-
-        return json_encode($json);
+        return $this;
     }
 }

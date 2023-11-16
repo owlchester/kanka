@@ -98,6 +98,13 @@ class Quest extends MiscModel
         'elements',
     ];
 
+    protected array $exportFields = [
+        'base',
+        'instigator_id',
+        'is_completed',
+        'date',
+    ];
+
     /**
      * Performance with for datagrids
      */
