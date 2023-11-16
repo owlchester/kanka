@@ -24,41 +24,61 @@
             </a>
         </div>
 
-        @if ($token->isPrepared())
-        <form id="campaign-import-form" method="post" action="{{ \App\Facades\Domain::importer() }}">
-            {{ csrf_field() }}
-            <x-grid type="1/1">
-                <h4>{{ __('campaigns/import.form') }}</h4>
+        <p class="max-w-2xl">{{ __('campaigns/import.description') }}</p>
 
-                <div class="field field-entities">
-                    <label>{{ __('campaigns/import.fields.file') }}</label>
-                    {!! Form::file('file', ['class' => 'w-full ', 'multiple', 'id' => 'export-files']) !!}
+        @if (auth()->check() && auth()->user()->hasRole('admin'))
+            @if (empty($token))
+                <div class="flex gap-2 items-center rounded bg-base-100 text-base-content p-4">
+                    <p class="grow">
+                    {!! __('Include with all subscription levels to Kanka.') !!}
+                    </p>
+                    <a href="{{ route('settings.subscription') }}" class="btn2 btn-primary btn-sm">{{ __('upgrade') }}</a>
                 </div>
+            @else
+                @if($token->isPrepared())
+                    <form id="campaign-import-form" method="post" action="{{ \App\Facades\Domain::importer() }}">
+                        <x-box>
+                        {{ csrf_field() }}
+                            <x-grid type="1/1">
+                                <h4>{{ __('campaigns/import.form') }}</h4>
 
-                <button type="submit" class="btn2 btn-primary">
-                    {{ __('campaigns/import.actions.import') }}
-                </button>
+                                <div class="field field-entities flex flex-col gap-1">
+                                    <label>{{ __('campaigns/import.fields.file') }}</label>
+                                    {!! Form::file('file', ['class' => 'w-full ', 'multiple', 'id' => 'export-files']) !!}
+                                    <x-helper>{{ __('campaigns/import.limitation') }}</x-helper>
+                                </div>
 
-                <input type="hidden" name="campaign" value="{{ $campaign->id }}" />
-                <input type="hidden" name="token" value="{{ $token->id }}" />
-            </x-grid>
-        </form>
+                                <button type="submit" class="btn2 btn-primary">
+                                    {{ __('campaigns/import.actions.import') }}
+                                </button>
 
-        <div class="progress w-full bg-gray" style="display: none">
-            <div class="text-center text-2xl py-4">
-                <x-icon class="loading" />
-            </div>
-            <div class="h-0.5 bg-aqua" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                <span class="sr-only"></span>
-            </div>
-        </div>
+                                <input type="hidden" name="campaign" value="{{ $campaign->id }}" />
+                                <input type="hidden" name="token" value="{{ $token->id }}" />
+                            </x-grid>
+                        </x-box>
+                    </form>
+
+                    <div class="progress w-full bg-gray" style="display: none">
+                        <div class="text-center text-2xl py-4">
+                            <x-icon class="loading" />
+                        </div>
+                        <div class="h-0.5 bg-aqua" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="box box-solid">
+                    <div id="datagrid-parent" class="table-responsive">
+                        @include('layouts.datagrid._table')
+                    </div>
+                </div>
+            @endif
+        @else
+        <x-box>
+            <p class="text-2xl">Coming soon! Stay tuned on our <a href="{{ config('social.discord') }}" rel="discord">Discord</a> to find out more.</p>
+        </x-box>
         @endif
-
-        <div class="box box-solid">
-            <div id="datagrid-parent" class="table-responsive">
-                @include('layouts.datagrid._table')
-            </div>
-        </div>
     </div>
 @endsection
 

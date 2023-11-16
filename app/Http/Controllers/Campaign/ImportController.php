@@ -40,10 +40,14 @@ class ImportController extends Controller
             ]);
         }
 
-        $token = $this->service
-            ->campaign($campaign)
-            ->user(auth()->user())
-            ->token();
+        $token = null;
+        if (auth()->user()->isSubscriber()) {
+            $token = $this->service
+                ->campaign($campaign)
+                ->user(auth()->user())
+                ->token();
+        }
+
 
 
         return view('campaigns.import.index')
