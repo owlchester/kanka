@@ -2,11 +2,12 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
-use _PHPStan_c6b09fbdf\Nette\PhpGenerator\Attribute;
+use App\Models\Attribute;
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\EntityTag;
+use App\Models\MiscModel;
 use App\Models\Post;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -33,6 +34,14 @@ trait EntityMapper
         $this->model->save();
         $this->entity();
 
+        return $this;
+    }
+
+    protected function loadModel(string $modelClass, string $model): self
+    {
+        $builder = app()->make($modelClass);
+        $id = ImportIdMapper::get($model, $this->data['id']);
+        $this->model = $builder->where('id', $id)->firstOrFail();
         return $this;
     }
 
@@ -157,8 +166,6 @@ trait EntityMapper
             }
             if (!empty($data['metadata'])) {
                 if (!empty($data['metadata']['path'])) {
-                    dump('assets files need to be added to the export first');
-                    continue;
                     $img = $data['metadata']['path'];
                     $ext = Str::afterLast($img, '.');
                     $destination = 'w/' . $this->campaign->id . '/entity-assets/' . uniqid() . '.' . $ext;
@@ -179,7 +186,7 @@ trait EntityMapper
 
     protected function attributes(): self
     {
-        if (empty($this->data['entityAttributes'])) {
+        if (empty($this->data['entity']['entityAttributes'])) {
             return $this;
         }
 
@@ -192,7 +199,7 @@ trait EntityMapper
             'type_id',
             'is_hidden',
         ];
-        foreach ($this->data['entityAttributes'] as $data) {
+        foreach ($this->data['entity']['entityAttributes'] as $data) {
             $attr = new Attribute();
             $attr->entity_id = $this->entity->id;
 
@@ -202,22 +209,47 @@ trait EntityMapper
             $attr->save();
         }
 
-        dd('what now? its attributes time');
+        return $this;
     }
     protected function tags(): self
     {
-        if (empty($this->data['entity']['tags'])) {
+        if (empty($this->data['entity']['entityTags'])) {
             return $this;
         }
 
-        foreach ($this->data['entity']['tags'] as $data) {
-            $tagID = ImportIdMapper::get('tags', $data['id']);
+        foreach ($this->data['entity']['entityTags'] as $data) {
+            $tagID = ImportIdMapper::get('tags', $data['tag_id']);
             $entityTag = new EntityTag();
             $entityTag->entity_id = $this->entity->id;
             $entityTag->tag_id = $tagID;
             $entityTag->save();
         }
 
+        return $this;
+    }
+
+    protected function foreign(string $model, string $field): self
+    {
+        if (empty($this->data[$field])) {
+            return $this;
+        }
+        $foreignID = ImportIdMapper::get($model, $this->data[$field]);
+        if (!$foreignID) {
+            return $this;
+        }
+        $this->model->$field = $foreignID;
+        return $this;
+    }
+
+    protected function pivot(string $relation, string $model, string $field): self
+    {
+        foreach ($this->data[$relation] as $pivot) {
+            $foreignID = ImportIdMapper::get($model, $pivot[$field]);
+            if (!$foreignID) {
+                continue;
+            }
+            $this->model->{$model}()->attach($foreignID);
+        }
         return $this;
     }
 }

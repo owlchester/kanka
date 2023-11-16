@@ -40,11 +40,10 @@ class ImportService
     protected CampaignImport $job;
 
     protected GalleryMapper $gallery;
-    protected TagMapper $tags;
-    protected CalendarMapper $calendars;
 
     protected string $dataPath;
 
+    protected array $mappers;
 
     public function job(CampaignImport $job)
     {
@@ -59,6 +58,7 @@ class ImportService
     {
         $this
             ->init()
+            ->mappers()
             ->download()
             ->process()
             ->cleanup();
@@ -68,6 +68,37 @@ class ImportService
     {
         $this->job->status_id = CampaignImportStatus::RUNNING;
         $this->job->save();
+        return $this;
+    }
+
+    protected function mappers(): self
+    {
+        $this->mappers = [];
+        $setup = [
+            'tags' => TagMapper::class,
+//            'calendars' => CalendarMapper::class,
+//            'creatures' => CreatureMapper::class,
+//            'notes' => NoteMapper::class,
+            'races' => RaceMapper::class,
+//            'events' => EventMapper::class,
+//            'items' => ItemMapper::class,
+//            'journals' => JournalMapper::class,
+//            'abilities' => AbilityMapper::class,
+            'families' => FamilyMapper::class,
+//            'organisations' => OrganisationMapper::class,
+//            'timelines' => TimelineMapper::class,
+//            'quests' => QuestMapper::class,
+//            'maps' => MapMapper::class,
+            'locations' => LocationMapper::class,
+            'characters' => CharacterMapper::class,
+        ];
+        foreach ($setup as $model => $mapperClass) {
+            dump('Init mapper ' . $model);
+            $mapper = app()->make($mapperClass);
+            $this->mappers[$model] = $mapper
+                ->campaign($this->campaign)
+                ->prepare();
+        }
         return $this;
     }
 
@@ -105,7 +136,7 @@ class ImportService
 
     protected function process()
     {
-        try {
+        //try {
             $this->importCampaign()
                 ->gallery()
                 ->entities()
@@ -113,11 +144,11 @@ class ImportService
                 //->calendars()
             ;
             $this->job->status_id = CampaignImportStatus::FINISHED;
-        } catch (Exception $e) {
+        /*} catch (Exception $e) {
             dump($e->getMessage());
             Log::error('Import', ['error' => $e->getMessage()]);
             $this->job->status_id = CampaignImportStatus::FAILED;
-        }
+        }*/
 
         return $this;
     }
@@ -177,47 +208,16 @@ class ImportService
 
     protected function entities(): self
     {
-        $setup = [
-            'tags' => TagMapper::class,
-//            'calendars' => CalendarMapper::class,
-//            'creatures' => CreatureMapper::class,
-//            'notes' => NoteMapper::class,
-//            'races' => RaceMapper::class,
-//            'events' => EventMapper::class,
-//            'items' => ItemMapper::class,
-//            'journals' => JournalMapper::class,
-//            'abilities' => AbilityMapper::class,
-//            'families' => FamilyMapper::class,
-//            'organisations' => OrganisationMapper::class,
-//            'timelines' => TimelineMapper::class,
-//            'quests' => QuestMapper::class,
-//            'maps' => MapMapper::class,
-//            'locations' => LocationMapper::class,
-            'characters' => CharacterMapper::class,
-        ];
-        foreach ($setup as $model => $mapperClass) {
+        foreach ($this->mappers as $model => $mapper) {
             dump('Processing ' . $model);
-            $this->$model = app()->make($mapperClass);
-            $this->$model
-                ->campaign($this->campaign)
-                ->prepare()
-            ;
-
-            $path = $this->dataPath . '/' . $model;
-            if (!Storage::disk('local')->exists($path)) {
-                dump('No ' . $model);
-                return $this;
-            }
-
-            $files = Storage::disk('local')->files($path);
             $count = 0;
-            foreach ($files as $file) {
+            foreach ($this->files($model) as $file) {
                 if (!Str::endsWith($file, '.json')) {
                     continue;
                 }
                 $filePath = Str::replace($this->dataPath, null, $file);
                 $data = $this->open($filePath);
-                $this->$model
+                $mapper
                     ->path($this->dataPath . '/')
                     ->data($data)
                     ->first()
@@ -226,10 +226,45 @@ class ImportService
                 unset($data);
             }
             dump('- ' . $count . ' ' . $model);
-            $this->$model->tree()->clear();
+            $mapper->tree()->clear();
+        }
+
+        // Second parse
+        foreach ($this->mappers as $model => $mapper) {
+            if (!method_exists($mapper, 'second')) {
+                continue;
+            }
+            dump('Second round ' . $model);
+            $count = 0;
+            foreach ($this->files($model) as $file) {
+                if (!Str::endsWith($file, '.json')) {
+                    continue;
+                }
+                $filePath = Str::replace($this->dataPath, null, $file);
+                $data = $this->open($filePath);
+                $mapper
+                    ->path($this->dataPath . '/')
+                    ->data($data)
+                    ->second()
+                ;
+                $count++;
+                unset($data);
+            }
+            dump('- ' . $count . ' ' . $model);
         }
 
         return $this;
+    }
+
+    protected function files(string $model): array
+    {
+        $path = $this->dataPath . '/' . $model;
+        if (!Storage::disk('local')->exists($path)) {
+            dump('No ' . $model);
+            return [];
+        }
+
+        return Storage::disk('local')->files($path);
     }
 
     protected function open(string $file): array

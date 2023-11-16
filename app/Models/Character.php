@@ -113,7 +113,7 @@ class Character extends MiscModel
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-        'characterTraits', 'characterFamilies', 'characterRaces'
+        'characterTraits', 'characterFamilies', 'characterRaces', 'organisationMemberships'
     ];
 
     /**
