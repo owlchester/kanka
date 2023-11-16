@@ -2,17 +2,17 @@
 <div class="tab-pane" id="form-public">
     <x-grid type="1/1">
         @if (isset($campaign))
-            <x-alert type="info">
+            <x-tutorial code="public_campaign_helper">
                 <p>
                     {!! __('campaigns/public.helpers.main', [
-            'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), null, ['target' => '_blank']),
-            'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), $campaign, ['target' => '_blank'])
-        ]) !!}
+                        'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), null, ['target' => '_blank']),
+                        'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), $campaign, ['target' => '_blank'])
+                    ]) !!}
                 </p>
                 <p>
                     <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
                 </p>
-            </x-alert>
+            </x-tutorial>
         @endif
 
         <x-grid type="1/1">
