@@ -7,6 +7,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Campaign\Import\PrepareService;
+use Exception;
 
 class ImportController extends Controller
 {
@@ -44,6 +45,7 @@ class ImportController extends Controller
             ->campaign($campaign)
             ->user(auth()->user())
             ->token();
+
 
         return view('campaigns.import.index')
             ->with('campaign', $campaign)

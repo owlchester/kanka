@@ -16,7 +16,7 @@ class PrepareService
     {
         $token = CampaignImport::where('campaign_id', $this->campaign->id)
             ->where('user_id', $this->user->id)
-            ->where('status_id', CampaignImportStatus::PREPARED)
+            ->whereNotIn('status_id', [CampaignImportStatus::FINISHED, CampaignImportStatus::FAILED])
             ->first();
         if ($token) {
             return $token;

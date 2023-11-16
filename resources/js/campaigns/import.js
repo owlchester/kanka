@@ -45,7 +45,7 @@ const initExport = () => {
 };
 
 const startProcess = (form, data) => {
-    console.log('start');
+    form.classList.add('hidden');
 
     // Now upload to the real endpoint
     let config = {
@@ -66,15 +66,14 @@ const startProcess = (form, data) => {
     axios
         .post(form.action, data, config)
         .then(function (res) {
-            console.log('yo?');
             fileProgress.hide();
 
             if (res.data.success) {
-
+                window.location.reload();
             }
         })
         .catch(function (err) {
-            alert('oops');
+            form.classList.remove('hidden');
             fileProgress.hide();
 
             if (err.response && err.response.data.message) {

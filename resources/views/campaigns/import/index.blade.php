@@ -24,6 +24,7 @@
             </a>
         </div>
 
+        @if ($token->isPrepared())
         <form id="campaign-import-form" method="post" action="{{ \App\Facades\Domain::importer() }}">
             {{ csrf_field() }}
             <x-grid type="1/1">
@@ -51,6 +52,7 @@
                 <span class="sr-only"></span>
             </div>
         </div>
+        @endif
 
         <div class="box box-solid">
             <div id="datagrid-parent" class="table-responsive">
