@@ -44,7 +44,7 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
 
     @if ($campaign->boosted())
         @php
-        $booster = $campaign->boosts->first();
+        $booster = $campaign->boosts()->first();
         if ($booster) {
             $link = link_to_route('users.profile', $booster->user->name, [$booster->user]);
         } else {

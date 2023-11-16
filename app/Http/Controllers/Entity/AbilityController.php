@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAbility;
+use App\Http\Requests\UpdateEntityAbility;
 use App\Models\Ability;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -110,7 +111,7 @@ class AbilityController extends Controller
         ));
     }
 
-    public function update(StoreEntityAbility $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
+    public function update(UpdateEntityAbility $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
         if ($request->ajax()) {
@@ -128,7 +129,8 @@ class AbilityController extends Controller
         }
 
         return redirect()
-            ->route('entities.entity_abilities.index', [$campaign, $entity->id]);
+            ->route('entities.entity_abilities.index', [$campaign, $entity->id])
+            ->with('success', __('entities/abilities.update.success', ['ability' => $entityAbility->ability->name]));
     }
 
     public function destroy(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)

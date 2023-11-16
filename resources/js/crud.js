@@ -7,7 +7,7 @@ import ajaxModal from "./components/ajax-modal";
 var entityFormActions;
 
 // Entity Calendar
-var entityCalendarAdd, entityCalendarForm, entityCalendarField;
+var entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarHiddenField;
 var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
 var entityCalendarModalForm;
@@ -156,6 +156,7 @@ function registerFormSubmitAnimation() {
 function registerEntityCalendarForm() {
     entityCalendarAdd = $('#entity-calendar-form-add');
     entityCalendarField = $('select[name="calendar_id"]');
+    entityCalendarHiddenField = $('input[name="calendar_id"]'); // Campaigns with a single calendar
     entityCalendarModalForm = $('.entity-calendar-modal-form');
     entityCalendarSubForm = $('.entity-calendar-subform');
     entityCalendarCancel = $('#entity-calendar-form-cancel');
@@ -174,7 +175,7 @@ function registerEntityCalendarForm() {
 
             let defaultCalendarId = $(this).data('default-calendar');
             if (defaultCalendarId) {
-                entityCalendarField.val(defaultCalendarId);
+                entityCalendarHiddenField.val(defaultCalendarId);
                 entityCalendarCancel.show();
                 entityCalendarSubForm.show();
                 loadCalendarDates(defaultCalendarId);
@@ -185,6 +186,7 @@ function registerEntityCalendarForm() {
         entityCalendarCancel.on('click', function (e) {
             e.preventDefault();
             entityCalendarField.val(null);
+            entityCalendarHiddenField.val(null);
             entityCalendarCancel.hide();
             calendarHideSubform();
         });

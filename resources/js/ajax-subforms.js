@@ -1,7 +1,7 @@
 /**
  * Contains standard ajax process for forms.
  *
- * Wartning /!\ : This will replace submit events on the form itself!
+ * Warning /!\ : This will replace submit events on the form itself!
  * Usage: <form> tag must have class : 'ajax-subforms'
  *        Submit button or button group must be enclosed in a <div> that has the class : 'submit-group'
  */
@@ -77,12 +77,14 @@ const displayErrors = (form, error) => {
     let errors = error.responseJSON.errors;
 
     let errorKeys = Object.keys(errors);
+    //console.log('errorKeys', errorKeys);
     let foundAllErrors = true;
     errorKeys.forEach(function (i) {
-        let errorSelector = $('[name="' + i + '"]');
-        //console.log('error field', '[name="' + i + '"]');
+        // This doesn't work for select2 tag fields
+        let errorSelector = form.find('[name="' + i + '"]');
+        //console.log('error field', '[name="' + i + '"]', errorSelector);
         if (errorSelector.length > 0) {
-            form.find('[name="' + i + '"]').addClass('input-error')
+            errorSelector.addClass('input-error')
                 .parent()
                 .append('<div class="text-error">' + errors[i][0] + '</div>');
         } else {

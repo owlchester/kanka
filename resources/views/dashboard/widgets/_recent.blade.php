@@ -56,7 +56,7 @@ if (($widget->conf('singular'))) {
         <p class="italic">{{ __('search.lookup.empty') }}</p>
     </div>
     @else
-    <div class="widget-recent-list overflow-auto max-h-[400px]">
+    <div class="widget-recent-list overflow-auto px-4 pb-4 max-h-[400px]">
         @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
     </div>
     @endif

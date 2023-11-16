@@ -53,6 +53,6 @@
             {!! Form::textarea('entryForEdition', null, ['class' => 'w-full html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
         </x-forms.field>
 
-        @includeWhen(isset($campaign), 'cruds.fields.image', ['campaignImage' => true, 'imageLabel' => 'campaigns.fields.image'])
+        @includeWhen(isset($campaign), 'cruds.fields.image', ['model' => $campaign ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image'])
     </x-grid>
 </div>

@@ -148,6 +148,7 @@ function quickCreatorSubformHandler() {
                 $('#qq-modal-form').html('').show();
                 $('#qq-modal-loading').hide();
                 $('#qq-modal-selection').show();
+
                 let target = document.getElementById('primary-dialog');
                 target.close();
 
@@ -156,7 +157,7 @@ function quickCreatorSubformHandler() {
                 return;
             }
 
-            let target = document.getElementById('primary-dialog');
+            let target = document.getElementById('qq-modal-form');
             target.innerHTML = result;
 
             //$('#qq-modal-form').html(result).show();

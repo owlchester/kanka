@@ -88,7 +88,7 @@
                             data-url="{{ $event->entity->url() }}"
                         @endif
                         >
-                        @if (Avatar::entity($event->entity)->child($event->entity->child)->hasImage())
+                        @if (Avatar::entity($event->entity)->hasImage())
                             <a href="{{ $event->entity->url() }}" class="hidden md:inline-block entity-image !w-7 !h-7 pull-left mr-1 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
                         @endif
                         <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->entity]) }}" class="block">

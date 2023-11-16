@@ -235,6 +235,7 @@ class SearchService
         }
 
         $query
+            ->with('image')
             ->limit($this->limit);
 
         $searchResults = $foundEntityIds = [];

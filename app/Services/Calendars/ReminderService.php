@@ -23,7 +23,7 @@ class ReminderService
     public function upcoming(int $needle = 10): Collection
     {
         $reminders = $this->calendar->calendarEvents()
-            ->with(['entity'])
+            ->with(['entity', 'calendar'])
             ->has('entity')
             ->where(function ($primary) {
                 $primary->where(function ($sub) {
@@ -90,7 +90,7 @@ class ReminderService
     public function past(int $needle = 10): Collection
     {
         $reminders = $this->calendar->calendarEvents()
-            ->with(['entity'])
+            ->with(['entity', 'calendar'])
             ->has('entity')
             ->where(function ($primary) {
                 $primary->where(function ($sub) {

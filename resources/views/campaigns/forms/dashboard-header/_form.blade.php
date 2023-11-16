@@ -28,15 +28,15 @@
                         @include('cruds.fields.helpers.share', ['max' => 25])
                     </x-helper>
                 </div>
-                <div class="">
-                    @if (!empty($model->header_image))
+                @if (!empty($campaign->header_image))
+                    <div class="basis-1/4 preview">
                         @include('cruds.fields._image_preview', [
-                            'image' => $model->thumbnail(200, 160, 'header_image'),
-                            'title' => $model->name,
+                            'image' => $campaign->thumbnail(200, 160, 'header_image'),
+                            'title' => $campaign->name,
                             'target' => 'remove-header_image'
                         ])
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
         </x-forms.field>
     </x-grid>
