@@ -63,6 +63,10 @@ class ImportIdMapper
     {
         return $this->gallery[$old];
     }
+    public function hasGallery(string $old): bool
+    {
+        return !empty($this->gallery[$old]);
+    }
 
     public function getPost(int $old): int
     {

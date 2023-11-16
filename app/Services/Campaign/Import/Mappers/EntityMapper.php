@@ -10,6 +10,7 @@ use App\Models\EntityAsset;
 use App\Models\EntityEvent;
 use App\Models\EntityMention;
 use App\Models\EntityTag;
+use App\Models\Inventory;
 use App\Models\Post;
 use App\Models\Relation;
 use App\Services\EntityMappingService;
@@ -217,6 +218,7 @@ trait EntityMapper
             $post->save();
 
             ImportIdMapper::putPost($data['id'], $post->id);
+            $this->mapImageMentions($post);
         }
 
         return $this;
@@ -343,7 +345,7 @@ trait EntityMapper
     {
         $this->model->entry = $this->mentions($this->model->entry);
         $this->model->save();
-
+        $this->mapImageMentions($this->model);
         return $this;
     }
 
@@ -438,8 +440,32 @@ trait EntityMapper
         if (empty($this->data['entity']['inventories'])) {
             return $this;
         }
+        $fields = [
+            'name',
+            'amount',
+            'position',
+            'description',
+            'visibility_id',
+            'is_equipped',
+            'copy_item_entry',
+        ];
+        foreach ($this->data['entity']['inventories'] as $data) {
 
-        dd('inventories, uh oh');
+            $inv = new Inventory();
+            $inv->entity_id = $this->entity->id;
+            if (!empty($data['item_id'])) {
+                $itemID = ImportIdMapper::get('items', $data['item_id']);
+                if (empty($itemID)) {
+                    continue;
+                }
+                $inv->item_id = $itemID;
+            }
+            $inv->created_by = $this->user->id;
+            foreach ($fields as $field) {
+                $inv->$field = $data[$field];
+            }
+            $inv->save();
+        }
         return $this;
     }
 

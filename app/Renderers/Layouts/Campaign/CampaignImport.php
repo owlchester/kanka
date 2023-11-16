@@ -32,22 +32,22 @@ class CampaignImport extends Layout
                     return __('campaigns/import.status.' . $key);
                 },
             ],
-            'created_by' => [
+            'user_id' => [
                 'key' => 'user.name',
                 'label' => 'campaigns.members.fields.name',
                 'render' => function ($model) {
-                    if (!$model->created_by) {
+                    if (!$model->user_id) {
                         return '';
                     }
                     $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
                     return $html;
                 },
             ],
-            'created_at' => [
-                'key' => 'created_at',
-                'label' => 'campaigns.invites.fields.created',
+            'updated_at' => [
+                'key' => 'updated_at',
+                'label' => 'campaigns/import.fields.updated',
                 'render' => function ($model) {
-                    $html = '<span data-title="' . $model->created_at . 'UTC" data-toggle="tooltip">' . $model->created_at->diffForHumans() . '</span>';
+                    $html = '<span data-title="' . $model->updated_at . 'UTC" data-toggle="tooltip">' . $model->updated_at->diffForHumans() . '</span>';
                     return $html;
                 },
             ],

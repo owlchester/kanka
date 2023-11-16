@@ -55,4 +55,9 @@ class CampaignImport extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function isFailed(): bool
+    {
+        return $this->status_id == CampaignImportStatus::FAILED;
+    }
 }

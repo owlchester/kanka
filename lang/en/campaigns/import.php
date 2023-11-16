@@ -7,6 +7,7 @@ return [
     'title' => 'Import',
     'fields' => [
         'file' => 'Export ZIP file',
+        'updated' => 'Last updated',
     ],
     'status' => [
         'running' => 'Running',

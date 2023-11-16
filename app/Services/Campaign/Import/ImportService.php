@@ -4,6 +4,7 @@ namespace App\Services\Campaign\Import;
 
 use App\Enums\CampaignImportStatus;
 use App\Models\CampaignImport;
+use App\Notifications\Header;
 use App\Services\Campaign\Import\Mappers\AbilityMapper;
 use App\Services\Campaign\Import\Mappers\CalendarMapper;
 use App\Services\Campaign\Import\Mappers\CampaignMapper;
@@ -48,6 +49,8 @@ class ImportService
     protected string $dataPath;
 
     protected array $mappers;
+
+    protected array $logs = [];
 
     public function __construct(EntityMappingService $entityMappingService) {
 
@@ -102,7 +105,7 @@ class ImportService
             'characters' => CharacterMapper::class,
         ];
         foreach ($setup as $model => $mapperClass) {
-            dump('Init mapper ' . $model);
+            $this->logs[]  = 'Init mapper ' . $model;
             $mapper = app()->make($mapperClass);
             $this->mappers[$model] = $mapper
                 ->campaign($this->campaign)
@@ -146,26 +149,47 @@ class ImportService
 
     protected function process()
     {
-        //try {
+        try {
             $this->importCampaign()
                 ->gallery()
                 ->entities()
                 ->secondCampaign()
             ;
             $this->job->status_id = CampaignImportStatus::FINISHED;
-        /*} catch (Exception $e) {
+        } catch (Exception $e) {
             dump($e->getMessage());
             Log::error('Import', ['error' => $e->getMessage()]);
             $this->job->status_id = CampaignImportStatus::FAILED;
-        }*/
+        }
 
         return $this;
     }
 
     protected function cleanup(): self
     {
-        Storage::deleteDirectory(storage_path('/app/' . $this->dataPath));
+        Storage::disk('local')->deleteDirectory($this->dataPath);
+        $config = $this->job->config;
+        $config['logs'] = $this->logs;
+        $this->job->config = $config;
         $this->job->save();
+
+        $key = 'failed';
+        $colour = 'red';
+        if (!$this->job->isFailed()) {
+            $key = 'success';
+            $colour = 'green';
+        }
+        $this->campaign->notifyAdmins(
+            new Header(
+                'campaign.import.' . $key,
+                'upload',
+                $colour,
+                [
+                    'campaign' => $this->campaign->name,
+                    'link' => route('dashboard', $this->campaign),
+                ]
+            )
+        );
         return $this;
     }
 
@@ -192,7 +216,8 @@ class ImportService
 
         $path = $this->dataPath . '/gallery';
         if (!Storage::disk('local')->exists($path)) {
-            dd('no gallery');
+            $this->logs[] = 'No gallery';
+            return $this;
         }
 
         $files = Storage::disk('local')->files($path);
@@ -218,7 +243,7 @@ class ImportService
     protected function entities(): self
     {
         foreach ($this->mappers as $model => $mapper) {
-            dump('Processing ' . $model);
+            $this->logs[] = 'Processing ' . $model;
             $count = 0;
             foreach ($this->files($model) as $file) {
                 if (!Str::endsWith($file, '.json')) {
@@ -234,7 +259,7 @@ class ImportService
                 $count++;
                 unset($data);
             }
-            dump('- ' . $count . ' ' . $model);
+            $this->logs[] = $count;
             $mapper->tree()->fixTree()->clear();
         }
 
@@ -243,7 +268,7 @@ class ImportService
             if (!method_exists($mapper, 'second')) {
                 continue;
             }
-            dump('Second round ' . $model);
+            $this->logs[] = 'Second round ' . $model;
             $count = 0;
             foreach ($this->files($model) as $file) {
                 if (!Str::endsWith($file, '.json')) {
@@ -259,14 +284,14 @@ class ImportService
                 $count++;
                 unset($data);
             }
-            dump('- ' . $count . ' ' . $model);
+            $this->logs[] = $count;
         }
 
         foreach ($this->mappers as $model => $mapper) {
             if (!method_exists($mapper, 'third')) {
                 continue;
             }
-            dump('Third round ' . $model);
+            $this->logs[] = 'Third round ' . $model;
             $count = 0;
             foreach ($this->files($model) as $file) {
                 if (!Str::endsWith($file, '.json')) {
@@ -285,7 +310,7 @@ class ImportService
                 $count++;
                 unset($data);
             }
-            dump('- ' . $count . ' ' . $model);
+            $this->logs[] = '- ' . $count;
         }
 
         return $this;
@@ -295,7 +320,7 @@ class ImportService
     {
         $path = $this->dataPath . '/' . $model;
         if (!Storage::disk('local')->exists($path)) {
-            dump('No ' . $model);
+            $this->logs[] = 'No ' . $model;
             return [];
         }
 
@@ -306,7 +331,8 @@ class ImportService
     {
         $path = $this->dataPath . '/' . $file;
         if (!Storage::disk('local')->exists($path)) {
-            dd('file ' . $path . ' doesnt exist');
+            $this->logs[] = 'file ' . $path . ' doesnt exist';
+            return [];
         }
 
         $fullpath = Storage::disk('local')->path($path);
