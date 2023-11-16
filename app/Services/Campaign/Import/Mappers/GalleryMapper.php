@@ -37,7 +37,7 @@ class GalleryMapper
 
     public function prepare(): self
     {
-        $this->campaign->images()->delete();
+        //$this->campaign->images()->delete();
         return $this;
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Models\Journal;
 use Exception;
 
 trait ExportableTrait
@@ -50,11 +49,6 @@ trait ExportableTrait
         if (method_exists($this, 'getParentIdName')) {
             $this->exportData[$this->getParentIdName()] = $this->getAttribute($this->getParentIdName());
         }
-
-        //        if ($this instanceof Journal) {
-        //            dump($this->exportFields);
-        //            dd($this->exportData);
-        //        }
 
         return $this;
     }

@@ -6,8 +6,10 @@ use App\Enums\CampaignImportStatus;
 use App\Models\Concerns\SortableTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\MassPrunable;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
@@ -17,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CampaignImport extends Model
 {
-    use MassPrunable;
+    use Prunable;
     use SortableTrait;
 
     public $fillable = [
@@ -47,8 +49,8 @@ class CampaignImport extends Model
      */
     public function prunable(): Builder
     {
-        return static::where('updated_at', '<=', now()->subDays(1))
-            ->where('status_id', CampaignImportStatus::PREPARED);
+        return static::/*where('updated_at', '<=', now()->subDays(1))
+            ->*/whereIn('status_id', [CampaignImportStatus::PREPARED, CampaignImportStatus::QUEUED]);
     }
 
     public function user()
@@ -64,5 +66,15 @@ class CampaignImport extends Model
     public function isFailed(): bool
     {
         return $this->status_id == CampaignImportStatus::FAILED;
+    }
+    protected function pruning(): void
+    {
+        $files = Arr::get($this->config, 'files');
+        if (empty($files)) {
+            return;
+        }
+        foreach ($files as $file) {
+            Storage::disk('s3')->delete($file);
+        }
     }
 }

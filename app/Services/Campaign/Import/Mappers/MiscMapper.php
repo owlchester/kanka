@@ -22,7 +22,7 @@ abstract class MiscMapper
 
     public function prepare(): self
     {
-        $this->campaign->{$this->mappingName}()->forceDelete();
+        //$this->campaign->{$this->mappingName}()->forceDelete();
         return $this;
     }
 
