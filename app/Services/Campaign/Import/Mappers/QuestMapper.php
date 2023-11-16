@@ -4,9 +4,7 @@ namespace App\Services\Campaign\Import\Mappers;
 
 use App\Facades\ImportIdMapper;
 use App\Models\QuestElement;
-use App\Models\Tag;
 use App\Models\Quest;
-use App\Traits\CampaignAware;
 
 class QuestMapper extends MiscMapper
 {

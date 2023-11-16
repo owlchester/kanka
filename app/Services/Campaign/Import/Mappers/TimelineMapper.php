@@ -6,7 +6,6 @@ use App\Facades\ImportIdMapper;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Models\TimelineEra;
-use App\Traits\CampaignAware;
 
 class TimelineMapper extends MiscMapper
 {

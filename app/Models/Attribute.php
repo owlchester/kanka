@@ -353,7 +353,7 @@ class Attribute extends Model
      */
     public function listRange(): array
     {
-        if (! is_array($this->listRange)) {
+        if (!is_array($this->listRange)) {
             return [];
         }
         return $this->listRange;

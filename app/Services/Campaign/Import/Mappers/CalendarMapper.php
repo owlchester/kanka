@@ -4,12 +4,9 @@ namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
-use App\Traits\CampaignAware;
-use App\Traits\UserAware;
 
 class CalendarMapper extends MiscMapper
 {
-
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'calendar_id', 'created_at', 'updated_at'];
 
     protected string $className = Calendar::class;

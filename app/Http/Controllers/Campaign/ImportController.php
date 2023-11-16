@@ -7,7 +7,6 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Campaign\Import\PrepareService;
-use Exception;
 
 class ImportController extends Controller
 {

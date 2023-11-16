@@ -9,10 +9,10 @@ use App\Traits\UserAware;
 abstract class MiscMapper
 {
     use CampaignAware;
-    use ImportMapper;
     use EntityMapper;
-    use UserAware;
+    use ImportMapper;
     use ImportMentions;
+    use UserAware;
 
     protected array $mapping = [];
     protected array $parents = [];

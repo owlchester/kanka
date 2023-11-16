@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Item;
-use App\Traits\CampaignAware;
 
 class ItemMapper extends MiscMapper
 {

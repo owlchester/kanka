@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Note;
-use App\Traits\CampaignAware;
 
 class NoteMapper extends MiscMapper
 {

@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Journal;
-use App\Traits\CampaignAware;
 
 class JournalMapper extends MiscMapper
 {

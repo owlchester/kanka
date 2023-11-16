@@ -3,8 +3,6 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Ability;
-use App\Traits\CampaignAware;
-use App\Traits\UserAware;
 
 class AbilityMapper extends MiscMapper
 {

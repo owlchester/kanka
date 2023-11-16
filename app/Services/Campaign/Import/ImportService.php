@@ -35,8 +35,8 @@ use Exception;
 class ImportService
 {
     use CampaignAware;
-    use UserAware;
     use ImportMentions;
+    use UserAware;
 
     protected ZipArchive $archive;
 
@@ -52,7 +52,8 @@ class ImportService
 
     protected array $logs = [];
 
-    public function __construct(EntityMappingService $entityMappingService) {
+    public function __construct(EntityMappingService $entityMappingService)
+    {
 
         $this->entityMappingService = $entityMappingService;
     }

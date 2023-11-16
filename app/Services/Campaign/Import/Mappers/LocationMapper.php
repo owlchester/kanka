@@ -2,9 +2,7 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
-use App\Models\Tag;
 use App\Models\Location;
-use App\Traits\CampaignAware;
 
 class LocationMapper extends MiscMapper
 {

@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Models\CreatureLocation;
 use App\Models\Journal;
 use Exception;
 
@@ -52,10 +51,10 @@ trait ExportableTrait
             $this->exportData[$this->getParentIdName()] = $this->getAttribute($this->getParentIdName());
         }
 
-//        if ($this instanceof Journal) {
-//            dump($this->exportFields);
-//            dd($this->exportData);
-//        }
+        //        if ($this instanceof Journal) {
+        //            dump($this->exportFields);
+        //            dd($this->exportData);
+        //        }
 
         return $this;
     }

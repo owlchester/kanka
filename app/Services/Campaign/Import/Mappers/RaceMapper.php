@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Race;
-use App\Traits\CampaignAware;
 
 class RaceMapper extends MiscMapper
 {

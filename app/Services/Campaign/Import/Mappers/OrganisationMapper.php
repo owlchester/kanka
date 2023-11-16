@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Models\Organisation;
-use App\Traits\CampaignAware;
 
 class OrganisationMapper extends MiscMapper
 {

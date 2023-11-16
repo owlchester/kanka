@@ -176,11 +176,13 @@ trait EntityMapper
     {
         $image = Arr::get($this->data, 'entity.image_uuid');
         if (!empty($image)) {
-            $this->entity->image_uuid = ImportIdMapper::getGallery($image);;
+            $this->entity->image_uuid = ImportIdMapper::getGallery($image);
+            ;
         }
         $image = Arr::get($this->data, 'entity.header_uuid');
         if (!empty($image)) {
-            $this->entity->header_uuid = ImportIdMapper::getGallery($image);;
+            $this->entity->header_uuid = ImportIdMapper::getGallery($image);
+            ;
         }
         return $this;
     }

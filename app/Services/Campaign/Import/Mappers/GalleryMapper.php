@@ -89,7 +89,7 @@ class GalleryMapper
         }
         // An image needs the image saved locally
         $imagePath = $this->path . '/' . $this->data['id'] . '.' . $this->data['ext'];
-        $destination = 'campaigns/' . $this->campaign->id . '/' . $this->image->id . '.'. $this->data['ext'];
+        $destination = 'campaigns/' . $this->campaign->id . '/' . $this->image->id . '.' . $this->data['ext'];
 
         if (!Storage::disk('local')->exists($imagePath)) {
             dd('image ' . $imagePath . ' doesnt exist');

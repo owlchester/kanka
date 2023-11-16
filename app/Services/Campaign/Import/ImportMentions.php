@@ -3,7 +3,6 @@
 namespace App\Services\Campaign\Import;
 
 use App\Facades\ImportIdMapper;
-use App\Jobs\Campaigns\Import;
 use App\Models\ImageMention;
 use App\Models\Post;
 use Illuminate\Support\Str;

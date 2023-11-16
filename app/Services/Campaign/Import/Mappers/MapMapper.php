@@ -6,10 +6,7 @@ use App\Facades\ImportIdMapper;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\MapMarker;
-use App\Models\Tag;
 use App\Models\Map;
-use App\Traits\CampaignAware;
-use App\Traits\UserAware;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
