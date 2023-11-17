@@ -24,7 +24,7 @@ use Illuminate\Support\Str;
  */
 class Faq extends Model
 {
-    use  Orderable;
+    use Orderable;
     use Searchable;
     use Sortable;
     public $table = 'faq';
