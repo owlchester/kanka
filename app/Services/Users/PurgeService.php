@@ -72,7 +72,7 @@ class PurgeService
                         DeleteUser::dispatch($user);
                     }
                 }
-            }, 'users.id', 'id');
+            });
         return $this->count;
     }
 

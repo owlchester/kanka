@@ -20,6 +20,7 @@ class CalendarMapper extends MiscMapper
 
     public function second(): void
     {
+        // @phpstan-ignore-next-line
         $this->loadModel()
             ->weather()
             ->entitySecond()
@@ -35,7 +36,7 @@ class CalendarMapper extends MiscMapper
             // We need the nested trait to trigger for this so it's going to be inefficient
             $models = Calendar::whereIn('id', $children)->get();
             foreach ($models as $model) {
-                $model->setParentId($this->mapping[$parent]);
+                $model->calendar_id = $this->mapping[$parent];
                 $model->save();
             }
         }

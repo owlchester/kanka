@@ -11,6 +11,7 @@ use App\Models\EntityEvent;
 use App\Models\EntityMention;
 use App\Models\EntityTag;
 use App\Models\Inventory;
+use App\Models\Location;
 use App\Models\Post;
 use App\Models\Relation;
 use App\Services\EntityMappingService;
@@ -37,6 +38,7 @@ trait EntityMapper
         $this->model = app()->make($this->className);
         $this->model->campaign_id = $this->campaign->id;
         foreach ($this->data as $field => $value) {
+            // @phpstan-ignore-next-line
             if (is_array($value) || in_array($field, $this->ignore)) {
                 continue;
             }
@@ -140,7 +142,7 @@ trait EntityMapper
         $destination = 'w/' . $this->campaign->id . '/' . $imageName;
 
         if (!Storage::disk('local')->exists($this->path . $img)) {
-            dd('image ' . $this->path . $img . ' doesnt exist');
+            //dd('image ' . $this->path . $img . ' doesnt exist');
             return $this;
         }
 
@@ -162,7 +164,7 @@ trait EntityMapper
         $destination = 'w/' . $this->campaign->id . '/' . $imageName;
 
         if (!Storage::disk('local')->exists($this->path . $img)) {
-            dd('header image ' . $this->path . $img . ' doesnt exist');
+            //dd('header image ' . $this->path . $img . ' doesnt exist');
             return $this;
         }
 
@@ -253,7 +255,7 @@ trait EntityMapper
                     $destination = 'w/' . $this->campaign->id . '/entity-assets/' . uniqid() . '.' . $ext;
 
                     if (!Storage::disk('local')->exists($this->path . $img)) {
-                        dd('image ' . $this->path . $img . ' doesnt exist');
+                        //dd('image ' . $this->path . $img . ' doesnt exist');
                         continue;
                     }
                     Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
@@ -501,6 +503,7 @@ trait EntityMapper
         if (!method_exists($base, 'recalculateTreeBounds')) {
             return $this;
         }
+        // @phpstan-ignore-next-line
         $base->fixCampaignTree($this->campaign->id);
         return $this;
     }

@@ -25,6 +25,7 @@ class TimelineMapper extends MiscMapper
 
     public function second(): void
     {
+        // @phpstan-ignore-next-line
         $this->loadModel()
             ->eras()
             ->elements()

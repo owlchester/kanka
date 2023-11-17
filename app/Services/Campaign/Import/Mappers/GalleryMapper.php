@@ -6,6 +6,7 @@ use App\Facades\ImportIdMapper;
 use App\Models\Image;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -92,7 +93,7 @@ class GalleryMapper
         $destination = 'campaigns/' . $this->campaign->id . '/' . $this->image->id . '.' . $this->data['ext'];
 
         if (!Storage::disk('local')->exists($imagePath)) {
-            dd('image ' . $imagePath . ' doesnt exist');
+            Log::info('image ' . $imagePath . ' doesnt exist');
             return;
         }
 

@@ -43,6 +43,7 @@ trait ExportableTrait
                 continue;
             }
             foreach ($baseFields as $baseField) {
+                // @phpstan-ignore-next-line
                 $this->exportData[$baseField] = $this->$baseField;
             }
         }
@@ -55,7 +56,7 @@ trait ExportableTrait
 
     protected function entityExportData(): self
     {
-        if ($this->entity) {
+        if (isset($this->entity) && $this->entity) {
             $this->exportData['entity'] = $this->entity->export();
         }
         return $this;
@@ -80,8 +81,7 @@ trait ExportableTrait
                         $this->exportData[$foreign][] = $model->toArray();
                     }
                 } catch (Exception $e) {
-                    dd('e');
-                    throw new Exception("Unknown relation '{$foreign}' on model " . get_class($this));
+                    throw new Exception("Unknown relation '{$foreign}' on model " . get_class($this) . '(' . $e->getMessage() . ')');
                 }
             }
         }

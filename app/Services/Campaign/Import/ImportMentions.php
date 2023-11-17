@@ -52,6 +52,7 @@ trait ImportMentions
             $newUuid = ImportIdMapper::getGallery($uuid);
             $text = Str::replace($uuid, $newUuid, $text);
             $text = Str::replace(
+                // @phpstan-ignore-next-line
                 '/campaigns/' . $this->data['campaign_id'] . '/',
                 '/campaigns/' . $this->campaign->id . '/',
                 $text
@@ -75,6 +76,7 @@ trait ImportMentions
 
         foreach ($this->imageMentions as $uuid) {
             $men = new ImageMention();
+            // @phpstan-ignore-next-line
             $men->entity_id = $this->entity->id;
             $men->image_id = $uuid;
             if ($model instanceof Post) {

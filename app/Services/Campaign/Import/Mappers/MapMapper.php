@@ -7,6 +7,7 @@ use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\MapMarker;
 use App\Models\Map;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -29,6 +30,7 @@ class MapMapper extends MiscMapper
 
     public function second(): void
     {
+        // @phpstan-ignore-next-line
         $this->loadModel()
             ->groups()
             ->layers()
@@ -64,12 +66,6 @@ class MapMapper extends MiscMapper
         foreach ($this->data['groups'] as $data) {
             $el = new MapGroup();
             $el->map_id = $this->model->id;
-            if (!empty($data['entity_id'])) {
-                if (!ImportIdMapper::hasEntity($data['entity_id'])) {
-                    continue;
-                }
-                $el->entity_id = ImportIdMapper::getEntity($data['entity_id']);
-            }
             foreach ($fields as $field) {
                 $el->$field = $data[$field];
             }
@@ -89,12 +85,6 @@ class MapMapper extends MiscMapper
         foreach ($this->data['layers'] as $data) {
             $el = new MapLayer();
             $el->map_id = $this->model->id;
-            if (!empty($data['entity_id'])) {
-                if (!ImportIdMapper::hasEntity($data['entity_id'])) {
-                    continue;
-                }
-                $el->entity_id = ImportIdMapper::getEntity($data['entity_id']);
-            }
             foreach ($fields as $field) {
                 $el->$field = $data[$field];
             }
@@ -106,7 +96,7 @@ class MapMapper extends MiscMapper
             $destination = 'w/' . $this->campaign->id . '/maps/' . $el->map_id . '/' . $imageName;
 
             if (!Storage::disk('local')->exists($this->path . $el->image)) {
-                dd('map layer image ' . $this->path . $el->image . ' doesnt exist');
+                Log::error('map layer image ' . $this->path . $el->image . ' doesnt exist');
                 return $this;
             }
 

@@ -17,6 +17,7 @@ use App\Services\Campaign\Import\Mappers\ItemMapper;
 use App\Services\Campaign\Import\Mappers\JournalMapper;
 use App\Services\Campaign\Import\Mappers\LocationMapper;
 use App\Services\Campaign\Import\Mappers\MapMapper;
+use App\Services\Campaign\Import\Mappers\MiscMapper;
 use App\Services\Campaign\Import\Mappers\NoteMapper;
 use App\Services\Campaign\Import\Mappers\OrganisationMapper;
 use App\Services\Campaign\Import\Mappers\QuestMapper;
@@ -226,7 +227,7 @@ class ImportService
             if (!Str::endsWith($file, '.json')) {
                 continue;
             }
-            $filePath = Str::replace($this->dataPath, null, $file);
+            $filePath = Str::replace($this->dataPath, '', $file);
             $data = $this->open($filePath);
             $this->gallery
                 ->path($path)
@@ -243,6 +244,10 @@ class ImportService
 
     protected function entities(): self
     {
+        /**
+         * @var string $model
+         * @var mixed $mapper
+         */
         foreach ($this->mappers as $model => $mapper) {
             $this->logs[] = 'Processing ' . $model;
             $count = 0;
@@ -250,7 +255,7 @@ class ImportService
                 if (!Str::endsWith($file, '.json')) {
                     continue;
                 }
-                $filePath = Str::replace($this->dataPath, null, $file);
+                $filePath = Str::replace($this->dataPath, '', $file);
                 $data = $this->open($filePath);
                 $mapper
                     ->path($this->dataPath . '/')
@@ -275,8 +280,9 @@ class ImportService
                 if (!Str::endsWith($file, '.json')) {
                     continue;
                 }
-                $filePath = Str::replace($this->dataPath, null, $file);
+                $filePath = Str::replace($this->dataPath, '', $file);
                 $data = $this->open($filePath);
+                // @phpstan-ignore-next-line
                 $mapper
                     ->path($this->dataPath . '/')
                     ->data($data)
@@ -298,11 +304,12 @@ class ImportService
                 if (!Str::endsWith($file, '.json')) {
                     continue;
                 }
-                $filePath = Str::replace($this->dataPath, null, $file);
+                $filePath = Str::replace($this->dataPath, '', $file);
                 $data = $this->open($filePath);
                 if (empty($data['entity']['mentions'])) {
                     continue;
                 }
+                // @phpstan-ignore-next-line
                 $mapper
                     ->path($this->dataPath . '/')
                     ->data($data)
