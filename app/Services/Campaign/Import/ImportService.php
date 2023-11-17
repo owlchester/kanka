@@ -17,7 +17,6 @@ use App\Services\Campaign\Import\Mappers\ItemMapper;
 use App\Services\Campaign\Import\Mappers\JournalMapper;
 use App\Services\Campaign\Import\Mappers\LocationMapper;
 use App\Services\Campaign\Import\Mappers\MapMapper;
-use App\Services\Campaign\Import\Mappers\MiscMapper;
 use App\Services\Campaign\Import\Mappers\NoteMapper;
 use App\Services\Campaign\Import\Mappers\OrganisationMapper;
 use App\Services\Campaign\Import\Mappers\QuestMapper;

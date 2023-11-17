@@ -11,7 +11,6 @@ use App\Models\EntityEvent;
 use App\Models\EntityMention;
 use App\Models\EntityTag;
 use App\Models\Inventory;
-use App\Models\Location;
 use App\Models\Post;
 use App\Models\Relation;
 use App\Services\EntityMappingService;
