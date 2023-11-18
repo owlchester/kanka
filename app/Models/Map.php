@@ -108,7 +108,6 @@ class Map extends MiscModel
         'center_marker_id'
     ];
 
-
     /**
      * Foreign relations to add to export
      */
@@ -116,6 +115,23 @@ class Map extends MiscModel
         'layers',
         'groups',
         'markers'
+    ];
+
+    protected array $exportFields = [
+        'base',
+        'location_id',
+        'grid',
+        'height',
+        'width',
+        'min_zoom',
+        'max_zoom',
+        'initial_zoom',
+        'center_x',
+        'center_y',
+        'center_marker_id',
+        'is_real',
+        'has_clustering',
+        'config',
     ];
 
     /**

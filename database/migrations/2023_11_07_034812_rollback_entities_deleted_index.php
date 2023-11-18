@@ -11,7 +11,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('entities', function (Blueprint $table) {
-            $table->dropIndex('entities_deleted_at_index');
+            //$table->dropIndex('entities_deleted_at_index');
         });
     }
 

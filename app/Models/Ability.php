@@ -77,6 +77,11 @@ class Ability extends MiscModel
      */
     protected string $entityType = 'ability';
 
+    protected array $exportFields = [
+        'base',
+        'charges'
+    ];
+
     /**
      * Parent ID used for the Node Trait
      * @return string

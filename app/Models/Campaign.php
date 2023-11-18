@@ -475,7 +475,7 @@ class Campaign extends Model
     public function exportable(): bool
     {
         if (!app()->isProduction()) {
-            return $this->queuedCampaignExports->count() === 0;
+            return true; //$this->queuedCampaignExports->count() === 0;
         }
 
         return empty($this->export_date) || !$this->export_date->isToday() && $this->queuedCampaignExports->count() === 0;

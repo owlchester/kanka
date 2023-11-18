@@ -50,6 +50,7 @@ class Item extends MiscModel
         'location_id',
         'is_private',
     ];
+
     protected array $sortable = [
         'name',
         'type',
@@ -98,6 +99,15 @@ class Item extends MiscModel
      */
     protected array $foreignExport = [
 
+    ];
+
+    protected array $exportFields = [
+        'base',
+        'item_id',
+        'price',
+        'size',
+        'location_id',
+        'character_id'
     ];
 
     /**
