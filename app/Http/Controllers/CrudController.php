@@ -348,7 +348,7 @@ class CrudController extends Controller
             } elseif ($request->has('submit-update')) {
                 $route = route($this->route . '.edit', [$this->campaign, $new]);
                 return response()->redirectTo($route);
-            } elseif ($request->has('submit-view')) {
+            } elseif ($request->has('submit-view') && $new->entity) {
                 $route = route('entities.show', [$this->campaign, $new->entity]);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
