@@ -231,8 +231,7 @@ trait EntityRelations
             'tag_id',
             'id',
             'id'
-        )
-        ->orderBy('tags.name');
+        );
     }
 
     /**
