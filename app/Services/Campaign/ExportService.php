@@ -306,6 +306,7 @@ class ExportService
             Log::error('Campaign export', ['err' => $e->getMessage()]);
             // The export might fail if the zip is too big.
             $this->files = 0;
+            throw new Exception($e->getMessage());
         }
         if ($this->files === 0) {
             return $this;
