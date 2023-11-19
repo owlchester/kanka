@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
+use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\Image;
 use App\Models\CampaignExport;
@@ -38,6 +39,9 @@ class ExportService
     protected string $version = '3.0.0';
 
     protected CampaignExport $log;
+
+    protected int $totalElements;
+    protected int $currentElements;
 
     public function exportPath(): string
     {
@@ -119,6 +123,14 @@ class ExportService
         $this->path = $saveFolder . $this->file;
         $this->archive = Zip::create($this->file);
 
+        // Count the number of elements to export to get a rough idea of progress
+        $this->totalElements =
+            Entity::where('campaign_id', $this->campaign->id)->count() +
+            Image::where('campaign_id', $this->campaign->id)->count() +
+            1 // Campaign json;
+        ;
+        $this->currentElements = 0;
+
         return $this;
     }
 
@@ -148,6 +160,8 @@ class ExportService
             $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->header_image), $this->campaign->header_image);
             $this->files++;
         }
+
+        $this->progress();
 
         return $this;
     }
@@ -219,6 +233,7 @@ class ExportService
             $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
             $this->files++;
         }
+        $this->progress();
         return $this;
     }
 
@@ -260,6 +275,7 @@ class ExportService
             }
         }
 
+        $this->progress();
         return $this;
     }
 
@@ -325,5 +341,23 @@ class ExportService
         ));
 
         return $this;
+    }
+
+    /**
+     * Each time an element is added to the zip, there is a chance that the progress is increased
+     * @return void
+     */
+    protected function progress(): void
+    {
+        $this->currentElements++;
+
+        $total = round($this->currentElements / $this->totalElements, 2) * 100;
+
+        // Only track in 1 percentage point increments
+        if ($total < ($this->log->progress + 1)) {
+            return;
+        }
+        $this->log->progress = $total;
+        $this->log->save();
     }
 }

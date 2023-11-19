@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $created_by
  * @property int $status
  * @property string $path
+ * @property float $progress
  *
  */
 class CampaignExport extends Model
@@ -75,5 +76,9 @@ class CampaignExport extends Model
     public function finished(): bool
     {
         return $this->status === CampaignExport::STATUS_FINISHED;
+    }
+    public function running(): bool
+    {
+        return $this->status === CampaignExport::STATUS_RUNNING;
     }
 }

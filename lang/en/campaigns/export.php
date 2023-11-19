@@ -16,6 +16,7 @@ return [
     'title'     => 'Campaign Export',
     'size'            => 'Size',
     'type'            => 'Type',
+    'progress'        => 'Progress',
     'status' => [
         'finished'  => 'Finished',
         'scheduled' => 'Scheduled',
