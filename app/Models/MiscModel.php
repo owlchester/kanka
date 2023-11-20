@@ -656,7 +656,8 @@ abstract class MiscModel extends Model
             ->leftJoin('entities', function ($join) {
                 $join->on('entities.entity_id', $this->getTable() . '.id')
                     ->where('entities.type_id', $this->entityTypeId());
-            });
+            })
+            ->has('entity');
     }
 
     public function toSearchableArray()

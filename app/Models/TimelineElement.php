@@ -229,7 +229,9 @@ class TimelineElement extends Model
             ->leftJoin('timelines', 'timelines.id', '=', 'timeline_elements.timeline_id')
             ->leftJoin('entities', function ($join) {
                 $join->on('entities.entity_id', $this->getTable() . '.id');
-            });
+            })
+            ->has('timeline')
+            ->has('timeline.entity');
     }
 
     public function toSearchableArray()

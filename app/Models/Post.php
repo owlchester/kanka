@@ -212,7 +212,8 @@ class Post extends Model
     {
         return $query
             ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
-            ->leftJoin('entities', 'posts.entity_id', '=', 'entities.id');
+            ->leftJoin('entities', 'posts.entity_id', '=', 'entities.id')
+            ->has('entity');
     }
 
     public function toSearchableArray()

@@ -149,7 +149,9 @@ class QuestElement extends Model
             ->leftJoin('quests', 'quests.id', '=', 'quest_elements.quest_id')
             ->leftJoin('entities', function ($join) {
                 $join->on('entities.entity_id', $this->getTable() . '.id');
-            });
+            })
+            ->has('quest')
+            ->has('quest.entity');
     }
 
     public function toSearchableArray()
