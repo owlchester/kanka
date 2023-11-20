@@ -388,18 +388,20 @@ class Attribute extends Model
     protected function makeAllSearchableUsing($query)
     {
         return $query
-            ->leftJoin('entities', 'attributes.entity_id', '=', 'entities.id');
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->leftJoin('entities', $this->getTable() . '.entity_id', '=', 'entities.id')
+            ->has('entity');
     }
 
     public function toSearchableArray()
     {
         return [
             'campaign_id' => $this->entity->campaign_id,
-            'entity_id' => $this->entity->id,
+            'entity_id' => $this->entity_id,
             'entity_name' => $this->entity->name,
             'name' => $this->name,
             'type'  => 'attribute',
-            'value'  => $this->entry,
+            'entry'  => $this->value,
         ];
     }
 }

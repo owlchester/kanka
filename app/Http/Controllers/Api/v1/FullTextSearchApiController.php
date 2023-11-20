@@ -23,7 +23,9 @@ class FullTextSearchApiController extends ApiController
     {
         $this->authorize('access', $campaign);
 
-        $results = $this->service->campaign($campaign)->search(request()->term);
+        $results = $this->service
+            ->campaign($campaign)
+            ->search(request()->term);
         //dd($results);
         return $results;
 

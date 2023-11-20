@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Ability;
+use App\Models\Attribute;
 use App\Models\Calendar;
 use App\Models\Character;
 use App\Models\Creature;
@@ -48,6 +49,7 @@ class SetupMeilisearch extends Command
     public function handle()
     {
         $models = [
+            Attribute::class,
             Ability::class,
             Calendar::class,
             Character::class,

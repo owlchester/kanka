@@ -35,7 +35,11 @@ This has to be run for each model type we wish to import to the Meilisearch data
 
 It's also important to run this following command the first time meilisearch is set up and whenever any of the index settings on `config/scout.php` are modified:
 
-> sail artisan scout:sync-index-settings   
+> sail artisan scout:sync-index-settings
 
+# Testing
 
+Call the following api endpoint with a valid token
+
+> http://api.kanka.test:8081/1.0/campaigns/xxx/fulltext-search?term=adam
 

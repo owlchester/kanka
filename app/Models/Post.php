@@ -212,22 +212,19 @@ class Post extends Model
     {
         return $query
             ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
-            ->leftJoin('entities', 'posts.entity_id', '=', 'entities.id')
+            ->leftJoin('entities', $this->getTable() . '.entity_id', '=', 'entities.id')
             ->has('entity');
     }
 
     public function toSearchableArray()
     {
-        $array = $this->toArray();
-        $entity = $this->entity->toArray();
-
         return [
-            'campaign_id' => $entity['campaign_id'],
-            'entity_id' => $entity['id'],
-            'entity_name' => $entity['name'],
-            'name' => $array['name'],
+            'campaign_id' => $this->entity->campaign_id,
+            'entity_id' => $this->entity_id,
+            'entity_name' => $this->entity->name,
+            'name' => $this->name,
             'type'  => 'post',
-            'entry' => $array['entry'],
+            'entry' => $this->entry,
         ];
     }
 }

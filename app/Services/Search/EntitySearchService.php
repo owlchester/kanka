@@ -8,6 +8,7 @@ use App\Models\QuestElement;
 use App\Models\TimelineElement;
 use App\Models\Post;
 use App\Traits\CampaignAware;
+use Illuminate\Support\Str;
 use Meilisearch\Client;
 
 class EntitySearchService
@@ -28,7 +29,17 @@ class EntitySearchService
         //Get results from Meilisearch
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
-        $results = $client->index('entities')->search($term, ['filter' => 'campaign_id = ' . $this->campaign->id, 'attributesToRetrieve' => ['id', 'entity_id', 'type'], 'attributesToSearchOn' => ['name', 'entry', 'entity_name', 'value'], 'limit' => 20])->getHits();
+        $results = $client->index('entities')
+            ->search($term, [
+                'filter' => 'campaign_id = ' . $this->campaign->id,
+                'attributesToRetrieve' => [
+                    'id', 'entity_id', 'type'
+                ],
+                'attributesToSearchOn' => [
+                    'name', 'entry', 'entity_name', 'value'
+                ],
+                'limit' => 20
+            ])->getHits();
 
         return $this->process($results)->fetch();
     }
@@ -41,27 +52,27 @@ class EntitySearchService
     {
         foreach ($results as $result) {
             if ($result['type'] == 'quest_element') {
-                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
-                $questElementIds[$result['entity_id']] = $id;
+                $id = Str::afterLast($result['id'], '_');
+                $this->questElementIds[$result['entity_id']] = $id;
             //dd($result);
             } elseif ($result['type'] == 'timeline_element') {
-                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
-                $timelineElementIds[$result['entity_id']] = $id;
+                $id = Str::afterLast($result['id'], '_');
+                $this->timelineElementIds[$result['entity_id']] = $id;
             //dd($result);
             } elseif ($result['type'] == 'post') {
-                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
-                $postIds[$result['entity_id']] = $id;
+                $id = Str::afterLast($result['id'], '_');
+                $this->postIds[$result['entity_id']] = $id;
             //dd($result);
             } elseif ($result['type'] == 'attribute') {
-                $id = mb_substr($result['id'], -1, mb_strrpos($result['id'], '_'));
-                $attributeIds[$result['entity_id']] = $id;
+                $id = Str::afterLast($result['id'], '_');
+                $this->attributeIds[$result['entity_id']] = $id;
             //dd($result);
             } else {
                 $this->ids[$result['entity_id']] = $result['entity_id'];
             }
         }
 
-        //If the search also threw the entity as a possible result dont bother loading the other models
+        //If the search also threw the entity as a possible result don't bother loading the other models
         $this->attributeIds = array_diff_key($this->attributeIds, $this->ids);
         $this->timelineElementIds = array_diff_key($this->timelineElementIds, $this->ids);
         $this->questElementIds = array_diff_key($this->questElementIds, $this->ids);
@@ -103,5 +114,4 @@ class EntitySearchService
 
         return $output;
     }
-
 }
