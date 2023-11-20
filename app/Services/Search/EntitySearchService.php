@@ -92,7 +92,7 @@ class EntitySearchService
         $timelineElements = TimelineElement::with(['timeline', 'timeline.entity'])->has('timeline')->whereIn('id', $this->timelineElementIds)->get();
 
         //Get entities from db
-        $entities = Entity::whereIn('id', $this->ids)->get();
+        $entities = Entity::whereIn('id', $this->ids)->orderBy('name')->get();
 
         //Process entities for output
         $output = [];

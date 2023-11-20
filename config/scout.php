@@ -136,6 +136,7 @@ return [
         'index-settings' => [
             'entities' => [
                 'filterableAttributes' => ['id', 'campaign_id'],
+                'sortableAttributes' => ['name', 'entry'],
             ],
         ],
     ],
