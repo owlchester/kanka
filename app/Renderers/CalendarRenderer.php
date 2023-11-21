@@ -5,6 +5,7 @@ namespace App\Renderers;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\EntityEvent;
+use App\Models\EntityEventType;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -53,6 +54,16 @@ class CalendarRenderer
      * Named Weeks
      */
     protected array $weeks = [];
+
+    /**
+     * Death events
+     */
+    protected array $deaths = [];
+
+    /**
+     * Birthday events
+     */
+    protected array $births = [];
 
     /**
      * Array of weirdly recurring events
@@ -777,6 +788,7 @@ class CalendarRenderer
             $reminders = $this->getReminders($this->calendar->calendar);
             $this->parseReminders($reminders);
         }
+        //dd($this->events);
         return $this->events;
     }
 
@@ -805,6 +817,18 @@ class CalendarRenderer
                         } else {
                             $sub->where('month', $this->getMonth())
                                 ->where('is_recurring', true);
+                        }
+                    })
+                    ->orWhere(function ($sub) {
+                        if ($this->calendar->show_birthdays) {
+                            $sub->where('year', '<=', $this->getYear());
+
+                            if ($this->isYearlyLayout()) {
+                                $sub->whereIn('type_id', [EntityEventType::BIRTH, EntityEventType::DEATH]);
+                            } else {
+                                $sub->where('month', $this->getMonth())
+                                    ->whereIn('type_id', [EntityEventType::BIRTH, EntityEventType::DEATH]);
+                            }
                         }
                     })
                     // Events from previous year or month that spill over
@@ -846,7 +870,7 @@ class CalendarRenderer
 
             // If the event is recurring, get the year to make sure it should start showing. This was previously
             // done in the query, but it didn't work on all systems.
-            if ($event->is_recurring) {
+            if ($event->is_recurring || $event->type_id == EntityEventType::BIRTH) {
                 if ($event->year > $this->getYear()) {
                     continue;
                 }
@@ -878,9 +902,22 @@ class CalendarRenderer
                     $this->recurring[$event->recurring_periodicity][] = $event;
                 }
             } else {
+                if ($event->type_id == EntityEventType::DEATH) {
+                    $this->deaths[$event->entity_id] = $event;
+                } elseif ($event->type_id == EntityEventType::BIRTH) {
+                    $this->births[$event->entity_id] = $event;
+                    continue;
+                }
                 // Only add it once
                 $this->events[$date][] = $event;
                 $this->addMultidayEvent($event, $date);
+            }
+        }
+
+        foreach ($this->births as $key => $birth) {
+            if (!isset($this->deaths[$key]) || ($this->deaths[$key]->month > $birth->month || ($this->deaths[$key]->month == $birth->month && $this->deaths[$key]->day > $birth->day))) {
+                $date = $this->getYear() . '-' . $birth->month . '-' . $birth->day;
+                $this->events[$date][] = $birth;
             }
         }
         //should end the first day of the month

@@ -44,6 +44,13 @@
                 {!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
             </x-checkbox>
         </x-forms.field>
+
+        <x-forms.field field="birthdays" :label="__('calendars.fields.show_birthdays')">
+            {!! Form::hidden('show_birthdays', 0) !!}
+            <x-checkbox :text="__('calendars.hints.show_birthdays')">
+                {!! Form::checkbox('show_birthdays', 1, FormCopy::field('show_birthdays')->string()) !!}
+            </x-checkbox>
+        </x-forms.field>
     </div>
     <div class="flex gap-5 flex-col">
         <x-forms.field field="years" :label=" __('calendars.panels.years')" :helper="__('calendars.hints.years')">
