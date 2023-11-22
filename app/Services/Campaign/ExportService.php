@@ -346,7 +346,6 @@ class ExportService
 
     /**
      * Each time an element is added to the zip, there is a chance that the progress is increased
-     * @return void
      */
     protected function progress(): void
     {
