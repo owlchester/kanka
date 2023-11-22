@@ -799,7 +799,7 @@ class CalendarRenderer
     {
         return $calendar->calendarEvents()
             ->has('entity')
-            ->with(['entity', 'entity.tags', 'entity.image'])
+            ->with(['entity', 'entity.tags', 'entity.image', 'death'])
             ->where(function ($query) {
                 $query
                     // Where it's the current year , or current year and current month
@@ -821,13 +821,10 @@ class CalendarRenderer
                     })
                     ->orWhere(function ($sub) {
                         if ($this->calendar->show_birthdays) {
-                            $sub->where('year', '<=', $this->getYear());
-
-                            if ($this->isYearlyLayout()) {
-                                $sub->whereIn('type_id', [EntityEventType::BIRTH, EntityEventType::DEATH]);
-                            } else {
-                                $sub->where('month', $this->getMonth())
-                                    ->whereIn('type_id', [EntityEventType::BIRTH, EntityEventType::DEATH]);
+                            $sub->where('year', '<=', $this->getYear())
+                                ->whereIn('type_id', [EntityEventType::BIRTH, EntityEventType::DEATH]);
+                            if (!$this->isYearlyLayout()) {
+                                $sub->where('month', $this->getMonth());
                             }
                         }
                     })
@@ -870,7 +867,7 @@ class CalendarRenderer
 
             // If the event is recurring, get the year to make sure it should start showing. This was previously
             // done in the query, but it didn't work on all systems.
-            if ($event->is_recurring || $event->type_id == EntityEventType::BIRTH) {
+            if ($event->is_recurring || $event->isBirth()) {
                 if ($event->year > $this->getYear()) {
                     continue;
                 }
@@ -902,10 +899,7 @@ class CalendarRenderer
                     $this->recurring[$event->recurring_periodicity][] = $event;
                 }
             } else {
-                if ($event->type_id == EntityEventType::DEATH) {
-                    $this->deaths[$event->entity_id] = $event;
-                } elseif ($event->type_id == EntityEventType::BIRTH) {
-                    $this->births[$event->entity_id] = $event;
+                if ($event->isBirth() && $event->death && $event->death->isPastDate($this->getYear(), $event->month, $event->day)) {
                     continue;
                 }
                 // Only add it once

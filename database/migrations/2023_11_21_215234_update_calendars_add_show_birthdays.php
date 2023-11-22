@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('calendars', function (Blueprint $table) {
-            $table->boolean('show_birthdays')->default(true);
+            $table->boolean('show_birthdays')->default(false);
         });
     }
 

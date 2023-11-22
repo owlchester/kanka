@@ -545,6 +545,10 @@ class EntityEvent extends MiscModel
         return $month--;
     }
 
+    public function death() {
+        return $this->hasOne(EntityEvent::class, 'entity_id', 'entity_id')->whereColumn('calendar_id', 'entity_events.calendar_id')->where('type_id', EntityEventType::DEATH);
+    }
+
     public function exportFields(): array
     {
         return [
