@@ -36,7 +36,7 @@ class SubscriptionUpgradeService
             }
         }
 
-        if (!$this->user->isSubscriber()) {
+        if (!$this->user->subscribed('kanka')) {
             return $price;
         }
         if ($this->user->isStripeYearly() || $this->user->hasPayPal()) {
@@ -63,7 +63,7 @@ class SubscriptionUpgradeService
                 $oldPrice = "110.00";
             }
         }
-        $endPeriod = Carbon::createFromTimestamp($this->user->subscription('kanka')->asStripeSubscription()->current_period_end);
+        $endPeriod = $this->endPeriod();
         if ($period == 'yearly') {
             // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Number of Days in a Full Year)
             $price = round((floatval($price) - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / 365), 2);
@@ -79,5 +79,16 @@ class SubscriptionUpgradeService
 
         $price = $currency . number_format(max(0, $price), 2);
         return $price;
+    }
+
+    protected function endPeriod(): Carbon
+    {
+        // Stripe provides us with this information easily
+        if (!$this->user->hasPayPal()) {
+            return Carbon::createFromTimestamp($this->user->subscription('kanka')->asStripeSubscription()->current_period_end);
+        }
+
+        // For paypal, we need the subscription's end date
+        return $this->user->subscription('kanka')->ends_at;
     }
 }
