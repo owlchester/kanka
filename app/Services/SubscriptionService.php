@@ -382,7 +382,7 @@ class SubscriptionService
             $amount *= 11;
         }
 
-        return $this->user->currencySymbol() . ' ' . $amount . '.00';
+        return number_format($amount, 2);
     }
 
     /**
