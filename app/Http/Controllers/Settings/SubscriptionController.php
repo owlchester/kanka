@@ -92,12 +92,13 @@ class SubscriptionController extends Controller
         $cancel = $tier == Pledge::KOBOLD;
         $isDowngrading = $this->subscription->downgrading();
         $isYearly = $period === 'yearly';
-        $hasPromo = $isYearly && \Carbon\Carbon::create(2022, 10, 31)->isFuture();
+        $hasPromo = !$user->subscribed('kanka') && \Carbon\Carbon::create(2023, 11, 28)->isFuture();
         $limited = $this->subscription->isLimited();
         if ($user->hasPayPal()) {
             $limited = true;
         }
         $upgrade = $this->subscriptionUpgrade->user($user)->upgradePrice($period, $tier);
+        $currency = $user->currencySymbol();
 
         return view('settings.subscription.change', compact(
             'tier',
@@ -106,6 +107,7 @@ class SubscriptionController extends Controller
             'card',
             'intent',
             'cancel',
+            'currency',
             'user',
             'upgrade',
             'isDowngrading',

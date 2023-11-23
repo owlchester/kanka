@@ -2,6 +2,7 @@
 
 namespace App\Services\Subscription;
 
+use App\Enums\Tier;
 use App\Traits\UserAware;
 use Exception;
 use Stripe\PromotionCode;
@@ -12,6 +13,7 @@ class CouponService
     use UserAware;
 
     protected string $code;
+    protected Tier $tier;
 
     /**
      * @return $this
@@ -19,6 +21,19 @@ class CouponService
     public function code(string $code): self
     {
         $this->code = strip_tags(trim($code, ' '));
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function tier(string $tier): self
+    {
+        $this->tier = match($tier) {
+            'Owlbear' => Tier::Owlbear,
+            'Wyvern' => Tier::Wyvern,
+            'Elemental' => Tier::Elemental
+        };
         return $this;
     }
 
@@ -67,10 +82,24 @@ class CouponService
                 'promotion' => $promo->id,
                 'coupon' => $promo->coupon->id,
                 'discount' => __('settings.subscription.coupon.percent_off', ['percent' => $promo->coupon->percent_off]),
+                'price' => $this->price($promo)
             ];
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
+    }
+
+    protected function price($promo): string
+    {
+        $price = match ($this->tier) {
+            Tier::Owlbear => 55,
+            Tier::Wyvern => 110,
+            Tier::Elemental => 275,
+        };
+
+        $discount = round($price * ($promo->coupon->percent_off / 100), 2);
+        $newPrice = $price - $discount;
+        return '<del>' . number_format($price, 2) . '</del> ' . number_format($newPrice, 2);
     }
 
     /**

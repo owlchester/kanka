@@ -2,7 +2,7 @@
     {{ __('settings.subscription.change.title') }}
 </x-dialog.header>
 
-<article class="text-center max-w-xl">
+<article class="text-center max-w-xl container">
 
     <x-grid type="1/1">
     @if ($user->isFrauding())
@@ -15,16 +15,16 @@
             <h4>
         @if ($user->hasPayPal())
             {!! __('settings.subscription.change.text.upgrade_paypal', [
-                'upgrade' => "<strong>$upgrade</strong>",
+                'upgrade' => "<strong>$currency$upgrade</strong>",
                 'tier' => "<strong>$tier</strong>",
-                'amount' => "<strong>$amount</strong>",
+                'amount' => "<strong>$currency$amount</strong>",
                 'date' => $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y')
             ]) !!}
         @else
             {!! __('settings.subscription.change.text.upgrade_' . $period, [
-                'upgrade' => "<strong>$upgrade</strong>",
+                'upgrade' => "<strong>$currency<span id='pricing-now'>$upgrade</span></strong>",
                 'tier' => "<strong>$tier</strong>",
-                'amount' => "<strong>$amount</strong>"
+                'amount' => "<strong>$currency$amount</strong>"
             ]) !!}
         @endif
             </h4>
@@ -36,21 +36,23 @@
 
     @if (!$cancel)
         @if ($hasPromo)
-            <div class="field">
+            @if ($isYearly)
+            <div class="field text-left">
                 <label>{{ __('settings.subscription.coupon.label') }}</label>
-                <div class="join">
-                    <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class=" join-item" data-url="{{ route('subscription.check-coupon') }}" />
-
-                    <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline join-item" data-title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
-                        <i class="fa-solid fa-check check"></i>
-                        <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
-                    </button>
-                </div>
+                    <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="w-full" data-url="{{ route('subscription.check-coupon', ['tier' => $tier]) }}" />
+            </div>
+            <div id="coupon-validating" class="p-2 text-center hidden">
+                <x-icon class="loading" />
             </div>
             <x-alert type="success" :hidden="true" id="coupon-success"></x-alert>
             <x-alert type="warning" :hidden="true" id="coupon-invalid">
                 {{ __('settings.subscription.coupon.invalid') }}
             </x-alert>
+            @else
+              <x-alert type="success">
+                  Psst! Our yearly subscriptions are 20% of during black friday!
+              </x-alert>
+            @endif
         @endif
         <div class="card" style="margin: 0">
             <ul class="nav-tabs bg-base-300 !p-1 rounded " role="tablist">
@@ -198,7 +200,7 @@
                         {{ __('settings.subscription.helpers.alternatives', ['method' => 'Giropay']) }}
                     </p>
                     @if ($hasPromo)
-                        <x-alert type="error alert-coupon">
+                        <x-alert type="warning alert-coupon">
                             Sadly we cannot offer discounts for giropay payments.
                         </x-alert>
                     @endif
@@ -235,6 +237,8 @@
                 </div>
                 @endif
                 <div role="tabpanel" class="tab-pane {{ $limited ? 'active' : null }}" id="paypal">
+
+                    <x-grid type="1/1" css="text-left">
                     <p class="help-block">
                         {{ __('settings.subscription.helpers.alternatives-2', ['method' => 'PayPal']) }}
                     </p>
@@ -242,16 +246,22 @@
                         <x-alert type="warning">
                             {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'PayPal']) }}
                         </x-alert>
-                    @elseif (config('paypal.enabled'))
-
-                        @if ($user->subscribed('kanka') && !str_contains($user->subscriptions()->first()->stripe_price, 'paypal'))
+                    @else
+                        @if ($user->subscribed('kanka') && !$user->hasPayPal())
                             <x-alert type="warning">
                                 {{ __('settings.subscription.helpers.alternatives_warning') }}
                             </x-alert>
                         @else
-                        {!! Form::open(['route' => ['paypal.process-transaction'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
+
+                        @if ($hasPromo)
+                            <x-alert type="warning alert-coupon">
+                                Sadly we currently don't support promotions on PayPal subscriptions.
+                            </x-alert>
+                        @endif
+
+                        {!! Form::open(['route' => ['paypal.process-transaction'], 'method' => 'POST', 'class' => 'subscription-form flex flex-row gap-5']) !!}
                             <p class="help-block">
-                                {!! __('settings.subscription.helpers.paypal_v3', ['email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}
+                                {{ __('settings.subscription.helpers.paypal_v3') }}
                             </p>
                             <div class="text-center">
                                 <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
@@ -266,9 +276,8 @@
                             <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                         {!! Form::close() !!}
                         @endif
-                    @else
-                        <p>Send us an email at {{ config('app.email') }} to get a yearly subscription through PayPal.</p>
                     @endif
+                    </x-grid>
                 </div>
             </div>
         </div>

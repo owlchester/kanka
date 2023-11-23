@@ -12,11 +12,7 @@ class SubscriptionUpgradeService
     public function upgradePrice(string $period, string $tier): string
     {
         $oldPrice = '';
-        $currency = "US$ ";
         $monthly = true;
-        if ($this->user->billedInEur()) {
-            $currency = "€ ";
-        }
 
         $price = "55.00";
         if ($tier === 'Wyvern') {
@@ -77,7 +73,7 @@ class SubscriptionUpgradeService
         }
 
 
-        $price = $currency . number_format(max(0, $price), 2);
+        $price = number_format(max(0, $price), 2);
         return $price;
     }
 

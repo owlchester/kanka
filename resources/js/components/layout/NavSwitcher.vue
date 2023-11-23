@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="navigation-drawer bg-base-100 h-full overflow-y-auto safsdf fixed top-0 right-0 rounded-l-2xl shadow-lg" v-if="is_expanded" v-click-outside="onClickOutside">
+    <div class="navigation-drawer bg-base-100 h-full overflow-y-auto fixed top-0 right-0 rounded-l-2xl shadow-lg" v-if="is_expanded" v-click-outside="onClickOutside">
         <div class="temporary p-8 text-center" v-if="is_loading">
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
         </div>
@@ -140,12 +140,15 @@
                                 {{ profile.subscription.tier}}
                             </div>
                             <div class="more" v-if="profile.subscription.tier !== 'Kobold'">
-                                {{ profile.subscription.created }}<br />
+                                {{ profile.subscription.created }}<br /> sdfsdf
                                 {{ profile.subscription.boosters }}
                             </div>
                             <div class="more" v-else>
                                 {{ profile.subscription.call_to_action }}
-                                <div class="link">{{ profile.subscription.call_to_action_2 }}</div>
+                                <div class="link flex gap-1 items-center">{{ profile.subscription.call_to_action_2 }}
+                                    <i class="fa-duotone fa-credit-card" aria-hidden="true"></i>
+                                    <i class="fa-brands fa-paypal" aria-hidden="true"></i>
+                                </div>
                             </div>
                         </div>
                     </a>

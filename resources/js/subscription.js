@@ -6,9 +6,9 @@ var formSubmit = false;
 var formSubmitBtn;
 
 // Coupon stuff
-var couponBtn, couponField, couponSuccess, couponError, couponId;
+var couponField, couponSuccess, couponError, couponId, couponValidating;
 
-var subscribeModal;
+var subscribeModal, pricingOverview;
 
 $(document).ready(function() {
     initStripe();
@@ -117,26 +117,17 @@ function initConfirmListener()
         return true;
     });
 
-    couponBtn = $('#coupon-check-btn');
     couponField = $('#coupon-check');
     couponSuccess = $('#coupon-success');
     couponError = $('#coupon-invalid');
     couponId = $('#coupon');
+    couponValidating = $('#coupon-validating');
 
-    couponBtn.click(function () {
-        checkCoupon();
-    });
     couponField.change(function() {
         checkCoupon();
     });
-    couponField.focus(function () {
-        formSubmitBtn.addClass('disabled').prop('disabled', true);
-    });
     couponField.focusout(function () {
-        let coupon = couponField.val();
-        if (!coupon) {
-            formSubmitBtn.removeClass('disabled').prop('disabled', false);
-        }
+        checkCoupon();
     });
 }
 
@@ -144,22 +135,15 @@ function checkCoupon() {
     let coupon = couponField.val();
     let url = couponField.data('url');
 
-    couponBtn.prop('disabled', true)
-        .find('.check').hide()
-        .parent().find('.spinner').show();
-
     if (!coupon) {
         formSubmitBtn.removeClass('disabled').prop('disabled', false);
     }
-    fetch(url + '?coupon=' + coupon)
+    couponValidating.removeClass('hidden');
+    fetch(url + '&coupon=' + coupon)
         .then((response) => response.json())
         .then((result) => {
-            couponBtn
-                .prop('disabled', false)
-                .find('.check').show()
-                .parent().find('.spinner').hide();
-
             formSubmitBtn.removeClass('disabled').prop('disabled', false);
+            couponValidating.addClass('hidden');
 
             if (!result.valid) {
                 couponSuccess.hide();
@@ -170,16 +154,13 @@ function checkCoupon() {
                 return;
             }
 
+            $('#pricing-now').html(result.price);
             couponError.hide();
             couponSuccess.html(result.discount).show();
             couponId.val(result.coupon);
             subscribeModal.addClass('valid-coupon');
         }).catch((result) => {
-            couponBtn
-                .prop('disabled', false)
-                .find('.check').show()
-                .parent().find('.spinner').hide();
-
+            couponValidating.addClass('hidden');
             if (result.responseJSON) {
                 couponError.html(result.responseJSON.message).show();
             }
@@ -187,13 +168,16 @@ function checkCoupon() {
 }
 
 function initPeriodToggle() {
+    pricingOverview = $('#pricing-overview');
     $('input[name="period"]').change(function () {
-        let box = $('#pricing-overview');
-        console.log('checked?', this.checked);
         if (this.checked) {
-            box.removeClass('period-month').addClass('period-year');
+            pricingOverview.removeClass('period-month').addClass('period-year');
         } else {
-            box.removeClass('period-year').addClass('period-month');
+            pricingOverview.removeClass('period-year').addClass('period-month');
         }
     });
+
+    if ($('input[name="period"]').is(':checked')) {
+        pricingOverview.removeClass('period-month').addClass('period-year');
+    }
 }

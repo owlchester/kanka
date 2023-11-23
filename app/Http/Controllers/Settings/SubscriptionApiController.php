@@ -133,11 +133,13 @@ class SubscriptionApiController extends Controller
         /** @var User $user */
         $user = $request->user();
         $coupon = $request->get('coupon');
+        $tier = $request->get('tier');
 
         return response()->json(
             $this->couponService
-                ->user($request->user())
+                ->user($user)
                 ->code((string) $coupon)
+                ->tier($tier)
                 ->check()
         );
     }
