@@ -30,7 +30,7 @@
 
     </div>
 
-    <input type="hidden" id="ticker-config" data-timeout="20000" data-url="{{ route('maps.ticker', [$campaign, $map, $campaign]) }}" data-ts="{{ \Carbon\Carbon::now() }}" />
+    <input type="hidden" id="ticker-config" data-timeout="20000" data-url="{{ route('maps.ticker', [$campaign, $map]) }}" data-ts="{{ \Carbon\Carbon::now() }}" />
 @endsection
 
 @section('scripts')

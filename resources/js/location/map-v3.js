@@ -172,10 +172,13 @@ const mapTicker = () => {
             for (let id in data.markers) {
                 let changedMarker = data.markers[id];
                 //console.log('moving', 'marker' + changedMarker.id, changedMarker);
+                if (!window['marker' + changedMarker.id]) {
+                    continue;
+                }
                 window['marker' + changedMarker.id].setLatLng({
                     lon: changedMarker.longitude,
                     lat: changedMarker.latitude
-                }).update();
+                });
             }
             setTimeout(mapTicker, tickerTimeout);
         });
