@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $elapsed
  *
  * @property Calendar|null $calendar
+ * @property EntityEvent|null $death
  * @property EntityEventType|null $type
  */
 class EntityEvent extends MiscModel
