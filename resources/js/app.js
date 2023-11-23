@@ -2,6 +2,9 @@ import './tags.js';
 import './components/select2.js';
 import dynamicMentions from "./mention";
 
+import.meta.glob([
+    '../images/**',
+]);
 
 $(document).ready(function() {
     initPageHeight();

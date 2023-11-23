@@ -45,6 +45,14 @@
     "file": "assets/rpgawesome-webfont-5f012787.woff",
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
+  "resources/images/leaflet/icon-colored.png": {
+    "file": "assets/icon-colored-f970e698.png",
+    "src": "resources/images/leaflet/icon-colored.png"
+  },
+  "resources/images/leaflet/icon.png": {
+    "file": "assets/icon-f90c797a.png",
+    "src": "resources/images/leaflet/icon.png"
+  },
   "resources/js/abilities.js": {
     "file": "assets/abilities-aceb04ef.js",
     "imports": [
@@ -228,12 +236,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-5f060327.css",
+    "file": "assets/app-3a709ab9.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-b02ed8c9.css",
+    "file": "assets/auth-73065617.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -258,12 +266,12 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-4f9ed986.css",
+    "file": "assets/front-3f6aea43.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
   "resources/sass/map-v3.scss": {
-    "file": "assets/map-v3-e2676881.css",
+    "file": "assets/map-v3-5b459d9e.css",
     "isEntry": true,
     "src": "resources/sass/map-v3.scss"
   },
