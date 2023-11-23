@@ -863,6 +863,9 @@ class CalendarRenderer
         }
         /** @var EntityEvent $event */
         foreach ($reminders as $event) {
+            if ($event->isBirth() && $event->death && $event->death->isPastDate($this->getYear(), $event->month, $event->day)) {
+                continue;
+            }
             $date = $event->year . '-' . $event->month . '-' . $event->day;
 
             // If the event is recurring, get the year to make sure it should start showing. This was previously
@@ -877,6 +880,7 @@ class CalendarRenderer
                 }
                 $date = $this->getYear() . '-' . $event->month . '-' . $event->day;
             }
+
             if (!isset($this->events[$date])) {
                 $this->events[$date] = [];
             }
@@ -899,9 +903,6 @@ class CalendarRenderer
                     $this->recurring[$event->recurring_periodicity][] = $event;
                 }
             } else {
-                if ($event->isBirth() && $event->death && $event->death->isPastDate($this->getYear(), $event->month, $event->day)) {
-                    continue;
-                }
                 // Only add it once
                 $this->events[$date][] = $event;
                 $this->addMultidayEvent($event, $date);
