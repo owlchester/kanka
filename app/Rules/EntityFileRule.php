@@ -25,7 +25,7 @@ class EntityFileRule implements Rule
     public function passes($attribute, $value)
     {
         // Not a valid file, don't go further
-        if ($value instanceof UploadedFile && ! $value->isValid()) {
+        if ($value instanceof UploadedFile && !$value->isValid()) {
             return false;
         }
 
@@ -48,7 +48,7 @@ class EntityFileRule implements Rule
             return false;
         }
 
-        return ! (!in_array($value->getClientOriginalExtension(), ['mp3', 'ogg', 'json']))
+        return !(!in_array($value->getClientOriginalExtension(), ['mp3', 'ogg', 'json']))
 
 
 

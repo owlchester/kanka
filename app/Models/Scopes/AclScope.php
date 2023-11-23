@@ -45,7 +45,7 @@ class AclScope implements Scope
     protected function addWithInvisible(Builder $builder)
     {
         $builder->macro('withInvisible', function (Builder $builder, $withInvisible = true) {
-            if (! $withInvisible) {
+            if (!$withInvisible) {
                 // Sends the default scope
                 return $builder;
             }
