@@ -86,7 +86,7 @@
             popupAnchor: [0, -20],
         });
 
-        var marker{{ $model->id }} = {!! $model->editing()->multiplier($map->is_real)->marker() !!}.addTo(map{{ $map->id }});
+        var marker{{ $model->id }} = {!! $model->editing()->multiplier($map->isReal())->marker() !!}.addTo(map{{ $map->id }});
         window.polygon = marker{{ $model->id }};
         window.polygon.enableEdit();
         window.polygon.on('editable:dragend', markerUpdateHandler);
