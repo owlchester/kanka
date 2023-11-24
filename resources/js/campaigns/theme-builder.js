@@ -1,5 +1,6 @@
 import { colord } from "colord";
 import tippy from "tippy.js";
+import Coloris from "@melloware/coloris";
 
 let fieldTheme;
 let theme = {};
@@ -12,7 +13,28 @@ $(document).ready(function () {
 const init = () => {
     loadPreviousConfig();
 
-    $.each($('.picker'), function () {
+    Coloris({
+        el: '.picker',
+        format: 'hsl',
+    });
+
+    document.querySelectorAll('.picker').forEach(input => {
+        let bgColor = window.getComputedStyle(input).backgroundColor;
+        let target = input.dataset.target;
+
+
+        input.addEventListener('click', function (e) {
+            console.log('coloris', bgColor);
+            Coloris({
+                defaultColor: bgColor,
+            });
+        });
+        input.addEventListener('coloris:pick', event => {
+            updateColour(event.detail.color, target);
+        });
+    });
+
+    /*$.each($('.picker'), function () {
         let bgColor = $(this).css('backgroundColor');
         let target = $(this).data('target');
 
@@ -27,7 +49,7 @@ const init = () => {
             show: function () {},
             hide: function () {},
         });
-    });
+    });*/
 
     $('#theme-builder').on('submit', function () {
 

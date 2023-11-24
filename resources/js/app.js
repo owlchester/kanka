@@ -1,5 +1,6 @@
 import './tags.js';
 import './components/select2.js';
+import Coloris from "@melloware/coloris";
 import dynamicMentions from "./mention";
 
 import.meta.glob([
@@ -51,11 +52,31 @@ $(document).ready(function() {
  * Initiate spectrum for the various fields
  */
 function initSpectrum() {
-    if (!$.isFunction($.fn.spectrum)) {
+    /*if (!$.isFunction($.fn.spectrum)) {
         return;
-    }
+    }*/
 
-    $.each($('.spectrum'), function () {
+    Coloris.init();
+    Coloris({
+        el: '.spectrum',
+        format: 'hex',
+        alpha: false,
+        clearButton: true,
+        closeButton: true,
+    });
+
+    document.querySelectorAll('.spectrum').forEach(input => {
+        input.addEventListener('click', function (e) {
+            Coloris({
+                parent: input.dataset.appendTo ?? '.container',
+            });
+        });
+        // Don't close the dialog backdrop
+        input.addEventListener('close', e => {
+            e.stopPropagation();
+        });
+    });
+    /*$.each($('.spectrum'), function () {
         $(this).spectrum({
             preferredFormat: "hex",
             showInput: true,
@@ -63,7 +84,7 @@ function initSpectrum() {
             allowEmpty: true,
             appendTo: $(this).data('append-to') ?? null,
         });
-    });
+    });*/
 }
 
 
