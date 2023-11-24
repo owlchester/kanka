@@ -2,7 +2,6 @@
 
 namespace App\Jobs\Emails;
 
-use App\Mail\Subscription\Admin\FailedSubscriptionMail;
 use App\Mail\Subscription\User\FailedUserSubscriptionMail;
 use App\Notifications\Header;
 use App\User;
