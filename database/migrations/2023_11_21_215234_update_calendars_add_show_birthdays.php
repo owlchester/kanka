@@ -10,8 +10,8 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::table('campaign_exports', function (Blueprint $table) {
-            $table->float('progress', 5, 2)->nullable();
+        Schema::table('calendars', function (Blueprint $table) {
+            $table->boolean('show_birthdays')->default(false);
         });
     }
 
@@ -20,8 +20,8 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::table('campaign_exports', function (Blueprint $table) {
-            $table->dropColumn('progress');
+        Schema::table('calendars', function (Blueprint $table) {
+            $table->dropColumn('show_birthdays');
         });
     }
 };
