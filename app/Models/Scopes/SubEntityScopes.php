@@ -77,7 +77,8 @@ trait SubEntityScopes
             'entity',
             'entity.tags', 'entity.posts', 'entity.events',
             'entity.relationships', 'entity.attributes', 'entity.inventories',
-            'entity.assets'
+            'entity.assets',
+            'entity.abilities',
         ];
 
         $with = !empty($this->apiWith) ? $this->apiWith : [];
