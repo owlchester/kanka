@@ -92,7 +92,7 @@ class SubscriptionController extends Controller
         $cancel = $tier == Pledge::KOBOLD;
         $isDowngrading = $this->subscription->downgrading();
         $isYearly = $period === 'yearly';
-        $hasPromo = !$user->subscribed('kanka') && \Carbon\Carbon::create(2023, 11, 28)->isFuture();
+        $hasPromo = \Carbon\Carbon::create(2023, 11, 28)->isFuture();
         $limited = $this->subscription->isLimited();
         if ($user->hasPayPal()) {
             $limited = true;

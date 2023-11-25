@@ -140,7 +140,7 @@
                                 {{ profile.subscription.tier}}
                             </div>
                             <div class="more" v-if="profile.subscription.tier !== 'Kobold'">
-                                {{ profile.subscription.created }}<br /> sdfsdf
+                                {{ profile.subscription.created }}<br />
                                 {{ profile.subscription.boosters }}
                             </div>
                             <div class="more" v-else>
