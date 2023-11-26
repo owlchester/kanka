@@ -99,6 +99,9 @@ if (isset($single) && $single) {
         attributionControl: false,
         minZoom: {{ $map->minZoom() }},
         maxZoom: {{ $map->maxZoom() }},
+        @if (isset($editable) && $editable)
+        editable: true,
+        @endif
     }).setView([ {{ $focus }} ], {{ $map->initialZoom() }});
 
     @if ($map->isReal())

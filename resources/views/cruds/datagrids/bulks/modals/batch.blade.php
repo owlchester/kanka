@@ -8,7 +8,6 @@
                 $isParent = $model->hasEntityType() ? \Illuminate\Support\Str::contains($trimmed, $model->getEntityType()) : false;
             @endphp
 
-
             {!! $fieldCount % 2 === 0 ? '' : null !!}
             @include('cruds.fields.' . $trimmed, [
                 'trans' => $name,

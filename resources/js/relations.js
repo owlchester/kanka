@@ -199,7 +199,7 @@ function addListeners() {
             return;
         }
 
-        window.openDialog('connection-dialog', editUrl);
+        window.openDialog('primary-dialog', editUrl);
     });
 
     // highlight edges on hover to show relation

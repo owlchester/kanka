@@ -147,9 +147,11 @@ $role = \App\Facades\CampaignCache::adminRole();
     <template id="template_appearance">
         <x-grid css="parent-delete-row gap-1">
             <div class="flex gap-1 items-center">
-                <div class="sortable-handler px-2 cursor-move">
-                    <x-icon class="fa-solid fa-grip-vertical" />
-                </div>
+                @if(!isset($model))
+                    <div class="sortable-handler px-2 cursor-move">
+                        <x-icon class="fa-solid fa-grip-vertical" />
+                    </div>
+                @endif
                 <div class="grow field">
                     <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
                     {!! Form::text('appearance_name[]', null, [
@@ -180,9 +182,11 @@ $role = \App\Facades\CampaignCache::adminRole();
     <template id="template_personality">
         <div class="grid grid-cols-1 gap-2 parent-delete-row">
             <div class="flex gap-1 items-center">
+                @if(!isset($model))
                 <div class="sortable-handler px-2 cursor-move">
                     <x-icon class="fa-solid fa-grip-vertical" />
                 </div>
+                @endif
                 <div class="grow field">
                     <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
                     {!! Form::text('personality_name[]', null, [

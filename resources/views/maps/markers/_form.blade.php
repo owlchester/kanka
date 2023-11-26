@@ -185,10 +185,10 @@ $sizeOptions = [
                 </x-alert>
             </div>
         @else
-        <div class="md:col-span-2" style="{{ (isset($model) && $model->hasEntry() ? 'display: none' : '') }}">
+        <div class="md:col-span-2" style="{{ ($model->hasEntry() ? 'display: none' : '') }}">
             <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
         </div>
-        <div class="md:col-span-2 map-marker-entry-entry" style="{{ (!isset($model) || !$model->hasEntry() ? 'display: none' : '') }}">
+        <div class="md:col-span-2 map-marker-entry-entry" style="{{ (!$model->hasEntry() ? 'display: none' : '') }}">
             <x-forms.field field="entry" :label=" __('crud.fields.entry')">
                 {!! Form::textarea(
                     'entry',

@@ -63,7 +63,7 @@
 
     <div class="rounded bg-box period-month overflow-x-auto" id="pricing-overview">
         <div class="grid grid-cols-4 tiers gap-2 items-center pl-2 pr-2 min-w-fit">
-            <div class="pt-5 tier flex gap-2 items-center">
+            <div class="pt-5 tier flex gap-2 items-center flex-col xl:flex-row text-center xl:text-left">
                 <img class="rounded-full" src="https://th.kanka.io/Xy0Dm1dMld_NUYYA2gJdTkKnqjE=/60x60/smart/src/app/tiers/kobold-750.png" alt="Kobold"/>
                 <div class="text grow">
                     KOBOLD
@@ -72,16 +72,18 @@
                     </span>
                 </div>
             </div>
-            <div class="pt-5 tier flex gap-2 items-center">
+            <div class="pt-5 tier flex gap-2 items-center flex-col xl:flex-row text-center xl:text-left">
                 <img class="rounded-full" src="https://th.kanka.io/s17BtlhzUJp4h07gxtzmljKO3fU=/60x60/smart/src/app/tiers/owlbear-750.png" alt="Owlbear"/>
-                <div class="text grow">
-                    OWLBEAR
-                    <div class="price price-monthly">
-                        {{ $user->currencySymbol() }} 5<sup class="">00</sup>
+                <div class="text grow flex flex-col">
+                    <span class="tiername">OWLBEAR</span>
+                    <div class="price price-monthly flex flex-wrap gap-1">
+                        <span class="currency">{{ $user->currencySymbol() }}</span>
+                        <span class="amount">5</span>
                         <span class="">{{ __('tiers.periods.monthly') }}</span>
                     </div>
-                    <div class="price price-yearly">
-                        {{ $user->currencySymbol() }} 55<sup>00</sup>
+                    <div class="price price-yearly flex flex-wrap gap-1">
+                        <span class="currency">{{ $user->currencySymbol() }}</span>
+                        <span class="amount">55</span>
                         <span class="">{{ __('tiers.periods.yearly') }}</span>
                     </div>
                 </div>
@@ -89,16 +91,18 @@
                     <span class="bg-green-500 text-white">{{ __('tiers.ribbons.popular') }}</span>
                 </div>
             </div>
-            <div class="pt-5 tier flex gap-2 items-center">
+            <div class="pt-5 tier flex gap-2 items-center flex-col xl:flex-row text-center xl:text-left">
                 <img class="rounded-full" src="https://th.kanka.io/rJBeW_Poe2uvjdo44f2yzDnofzo=/60x60/smart/src/app/tiers/wyvern-750.png" alt="Wyvern"/>
-                <div class="text grow">
-                    WYVERN
-                    <div class="price price-monthly">
-                        {{ $user->currencySymbol() }} 10<sup>00</sup>
+                <div class="text grow flex flex-col">
+                    <span class="tiername">WYVERN</span>
+                    <div class="price price-monthly flex flex-wrap gap-1">
+                        <span class="currency">{{ $user->currencySymbol() }}</span>
+                        <span class="amount">10</span>
                         <span class="">{{ __('tiers.periods.monthly') }}</span>
                     </div>
-                    <div class="price price-yearly">
-                        {{ $user->currencySymbol() }} 110<sup>00</sup>
+                    <div class="price price-yearly flex flex-wrap gap-1">
+                        <span class="currency">{{ $user->currencySymbol() }}</span>
+                        <span class="amount">110</span>
                         <span class="">{{ __('tiers.periods.yearly') }}</span>
                     </div>
                 </div>
@@ -106,16 +110,18 @@
                     <span class="bg-pink-500 text-white">{{ __('tiers.ribbons.best-value') }}</span>
                 </div>
             </div>
-            <div class="pt-5 tier flex gap-2 align-center">
+            <div class="pt-5 tier flex gap-2 align-center flex-col xl:flex-row text-center xl:text-left">
                 <img class="img-circle" src="https://th.kanka.io/Wira7yc1p1cAa_GUwC0SGDOuSwg=/60x60/smart/src/app/tiers/elemental-750.png" alt="Elemental"/>
-                <div class="grow text">
-                    ELEMENTAL
-                    <div class="price price-monthly">
-                        {{ $user->currencySymbol() }} 25<sup>00</sup>
+                <div class="grow text flex flex-col">
+                    <span class="tiername">ELEMENTAL</span>
+                    <div class="price price-monthly flex flex-wrap gap-1">
+                        <span class="currency">{{ $user->currencySymbol() }}</span>
+                        <span class="amount">25</span>
                         <span class="">{{ __('tiers.periods.monthly') }}</span>
                     </div>
-                    <div class="price price-yearly">
-                        {{ $user->currencySymbol() }} 275<sup>00</sup>
+                    <div class="price price-yearly flex flex-wrap gap-1">
+                        <span class="currency">{{ $user->currencySymbol() }}</span>
+                        <span class="amount">275</span>
                         <span class="">{{ __('tiers.periods.yearly') }}</span>
                     </div>
                 </div>

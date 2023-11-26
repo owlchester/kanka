@@ -8,7 +8,7 @@ $class = $backgroundImage = null;
 $markerNameCss = "py-3";
 if ($marker->entity && $marker->entity->hasImage($boosted)) {
     $class = 'with-image cover-background';
-    $backgroundImage = "background-image: url('" . $marker->entity->getEntityImageUrl($boosted, 400, 200) . "');";
+    $backgroundImage = "background-image: url('" . \App\Facades\Avatar::entity($marker->entity)->size(400, 200)->thumbnail();
     $markerNameCss = 'py-6';
 }
 ?>

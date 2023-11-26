@@ -327,17 +327,6 @@ class Entity extends Model
     }
 
     /**
-     * Get the entity's image url (local or gallery)
-     */
-    public function getEntityImageUrl(bool $boosted = false, int $width = 200, int $height = 200): string
-    {
-        if ($boosted && $this->image) {
-            return Img::crop($width, $height)->url($this->image->path);
-        }
-        return $this->child->thumbnail($width, $height);
-    }
-
-    /**
      */
     public function hasLinks(): bool
     {
