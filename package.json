@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "@coddicat/vue3-pinch-scroll-zoom": "^0.2.1",
+        "@melloware/coloris": "^0.22.0",
         "bootstrap": "^4.3.1",
         "click-outside-vue3": "^4.0.1",
         "colord": "^2.9.3",
