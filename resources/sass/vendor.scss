@@ -9,6 +9,16 @@
 // Spectrum colour picker
 // @import "spectrum-colorpicker/spectrum.css";
 @import "@melloware/coloris/dist/coloris.css";
+.clr-clear, .clr-close {
+    color: hsl(var(--bc)/1);
+}
+.clr-picker {
+    background-color: hsl(var(--b2)/1);
+}
+.clr-field button {
+    height: 2.1rem;
+    padding: 0.5rem 0.5rem;
+}
 
 // RPG awesome
 @import "rpg-awesome/css/rpg-awesome.min.css";

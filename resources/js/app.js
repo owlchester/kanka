@@ -61,6 +61,7 @@ function initSpectrum() {
         el: '.spectrum',
         format: 'hex',
         alpha: false,
+        theme: 'pill',
         clearButton: true,
         closeButton: true,
     });

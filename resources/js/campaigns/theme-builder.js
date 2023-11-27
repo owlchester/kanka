@@ -4,6 +4,7 @@ import Coloris from "@melloware/coloris";
 
 let fieldTheme;
 let theme = {};
+let currentColour;
 
 $(document).ready(function () {
     init();
@@ -16,19 +17,24 @@ const init = () => {
     Coloris({
         el: '.picker',
         format: 'hsl',
+        wrap: false,
+        defaultColor: '#cccccc'
     });
+
+    currentColour = $('input[name="current-colour"]');
 
     document.querySelectorAll('.picker').forEach(input => {
         let bgColor = window.getComputedStyle(input).backgroundColor;
         let target = input.dataset.target;
 
 
-        input.addEventListener('click', function (e) {
-            console.log('coloris', bgColor);
-            Coloris({
-                defaultColor: bgColor,
-            });
-        });
+        // input.addEventListener('click', function (e) {
+        //     currentColour.value = window.getComputedStyle(input).backgroundColor;
+        //     //console.log('coloris', bgColor);
+        //     /*Coloris({
+        //         el: '.current-colour',
+        //     });*/
+        // });
         input.addEventListener('coloris:pick', event => {
             updateColour(event.detail.color, target);
         });
