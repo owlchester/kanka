@@ -460,7 +460,8 @@ function handlePresetClick() {
                     return;
                 }
                 if (key.endsWith('colour')) {
-                    field.spectrum("set", val);
+                    field.val(val);
+                    document.querySelector('[name="' + key + '"]').dispatchEvent(new Event('input', ));
                 } else {
                     field.val(val);
                 }
