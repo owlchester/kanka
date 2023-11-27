@@ -21,23 +21,21 @@ const init = () => {
         defaultColor: '#cccccc'
     });
 
-    currentColour = $('input[name="current-colour"]');
-
     document.querySelectorAll('.picker').forEach(input => {
         let bgColor = window.getComputedStyle(input).backgroundColor;
         let target = input.dataset.target;
 
 
-        // input.addEventListener('click', function (e) {
-        //     currentColour.value = window.getComputedStyle(input).backgroundColor;
-        //     //console.log('coloris', bgColor);
-        //     /*Coloris({
-        //         el: '.current-colour',
-        //     });*/
-        // });
-        input.addEventListener('coloris:pick', event => {
-            updateColour(event.detail.color, target);
+        input.addEventListener('click', function (e) {
+            this.value = window.getComputedStyle(input).backgroundColor;
+            //console.log('coloris', bgColor);
+            /*Coloris({
+                el: '.current-colour',
+            });*/
         });
+    });
+    document.addEventListener('coloris:pick', event => {
+        colourPicked(event);
     });
 
     /*$.each($('.picker'), function () {
@@ -68,6 +66,11 @@ const init = () => {
         return true;
 
     });
+};
+
+const colourPicked = (event) => {
+    updateColour(colord(event.detail.color), event.detail.currentEl.dataset.target);
+    event.detail.currentEl.value = '';
 };
 
 const loadPreviousConfig = () => {
@@ -115,8 +118,9 @@ const updateColour = (colour, target) => {
     }
     else if (target === 'w') {
         let content = contrast(colour.toHslString());
-        change('content-wrapper-background', '#' + colour.toHex());
+        change('content-wrapper-background', colour.toHex());
         change('theme-main-text', '' + content.toHex());
+        change('header-text', '' + content.toHex());
     }
 };
 
