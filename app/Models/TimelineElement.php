@@ -231,7 +231,8 @@ class TimelineElement extends Model
                 $join->on('entities.entity_id', $this->getTable() . '.id');
             })
             ->has('timeline')
-            ->has('timeline.entity');
+            ->has('timeline.entity')
+            ->with('timeline', 'timeline.entity');
     }
 
     public function toSearchableArray()

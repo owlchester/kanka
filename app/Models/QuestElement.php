@@ -151,7 +151,8 @@ class QuestElement extends Model
                 $join->on('entities.entity_id', $this->getTable() . '.id');
             })
             ->has('quest')
-            ->has('quest.entity');
+            ->has('quest.entity')
+            ->with('quest', 'quest.entity');
     }
 
     public function toSearchableArray()

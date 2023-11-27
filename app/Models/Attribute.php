@@ -390,7 +390,8 @@ class Attribute extends Model
         return $query
             ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
             ->leftJoin('entities', $this->getTable() . '.entity_id', '=', 'entities.id')
-            ->has('entity');
+            ->has('entity')
+            ->with('entity');
     }
 
     public function toSearchableArray()
