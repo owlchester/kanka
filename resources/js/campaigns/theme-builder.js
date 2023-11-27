@@ -4,7 +4,6 @@ import Coloris from "@melloware/coloris";
 
 let fieldTheme;
 let theme = {};
-let currentColour;
 
 $(document).ready(function () {
     init();
@@ -22,41 +21,15 @@ const init = () => {
     });
 
     document.querySelectorAll('.picker').forEach(input => {
-        let bgColor = window.getComputedStyle(input).backgroundColor;
-        let target = input.dataset.target;
-
-
         input.addEventListener('click', function (e) {
             this.value = window.getComputedStyle(input).backgroundColor;
-            //console.log('coloris', bgColor);
-            /*Coloris({
-                el: '.current-colour',
-            });*/
         });
     });
     document.addEventListener('coloris:pick', event => {
         colourPicked(event);
     });
 
-    /*$.each($('.picker'), function () {
-        let bgColor = $(this).css('backgroundColor');
-        let target = $(this).data('target');
-
-        //console.log('color', bgColor);
-        $(this).spectrum({
-            preferredFormat: "hsl",
-            showInput: true,
-            color: bgColor,
-            change: function(colour) {
-                updateColour(colour, target);
-            },
-            show: function () {},
-            hide: function () {},
-        });
-    });*/
-
     $('#theme-builder').on('submit', function () {
-
         let btn = $('#form-submit-main');
         btn.addClass('loading').prop('disabled', true);
 
@@ -64,7 +37,6 @@ const init = () => {
         fieldTheme.val(JSON.stringify(theme));
 
         return true;
-
     });
 };
 
