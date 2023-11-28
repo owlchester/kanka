@@ -23,6 +23,7 @@ use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
 use Illuminate\Console\Command;
+use Meilisearch\Client;
 
 class SetupMeilisearch extends Command
 {
@@ -48,6 +49,12 @@ class SetupMeilisearch extends Command
      */
     public function handle()
     {
+        //Update Non Separator Tokens for entity mentions
+        $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
+        $client->getKeys();
+        $client->index('entities')->resetSeparatorTokens();
+        $client->index('entities')
+            ->updateNonSeparatorTokens([':']);
         $models = [
             Attribute::class,
             Ability::class,

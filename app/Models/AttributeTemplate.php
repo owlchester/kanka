@@ -282,7 +282,6 @@ class AttributeTemplate extends MiscModel
         return [
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity->id,
-            'entity_name' => $this->entity->name,
             'name' => $this->name,
         ];
     }

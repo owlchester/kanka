@@ -160,7 +160,6 @@ class QuestElement extends Model
         return [
             'campaign_id' => $this->quest->entity->campaign_id,
             'entity_id' => $this->quest->entity->id,
-            'entity_name' => $this->quest->entity->name,
             'name' => $this->name,
             'type'  => 'quest_element',
             'entry' => $this->description,

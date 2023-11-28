@@ -240,7 +240,6 @@ class TimelineElement extends Model
         return [
             'campaign_id' => $this->timeline->entity->campaign_id,
             'entity_id' => $this->timeline->entity->id,
-            'entity_name' => $this->timeline->entity->name,
             'name' => $this->name,
             'type'  => 'timeline_element',
             'entry' => $this->entry,

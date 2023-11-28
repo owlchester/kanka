@@ -666,7 +666,6 @@ abstract class MiscModel extends Model
         return [
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity->id,
-            'entity_name' => $this->entity->name,
             'name' => $this->name,
             'type'  => $this->type,
             'entry'  => $this->entry,

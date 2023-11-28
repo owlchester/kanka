@@ -399,7 +399,6 @@ class Attribute extends Model
         return [
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity_id,
-            'entity_name' => $this->entity->name,
             'name' => $this->name,
             'type'  => 'attribute',
             'entry'  => $this->value,

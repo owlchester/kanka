@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Str;
 use Meilisearch\Client;
+use Meilisearch\Contracts\SearchQuery;
 
 class EntitySearchService
 {
@@ -24,22 +25,26 @@ class EntitySearchService
     /**
      * Send search request
      */
-    public function search(string $term = null): array
+    public function search(string $term = null, string $term2 = null): array
     {
         //Get results from Meilisearch
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
-        $results = $client->index('entities')
-            ->search($term, [
-                'filter' => 'campaign_id = ' . $this->campaign->id,
-                'attributesToRetrieve' => [
-                    'id', 'entity_id', 'type'
-                ],
-                'attributesToSearchOn' => [
-                    'name', 'entry', 'entity_name', 'value'
-                ],
-                'limit' => 20
-            ])->getHits();
+
+        $results = $client->multiSearch([
+            (new SearchQuery())
+            ->setIndexUid('entities')
+            ->setQuery($term)
+            ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
+            ->setLimit(10),
+            (new SearchQuery())
+                ->setIndexUid('entities')
+                ->setQuery($term2)
+                ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
+                ->setLimit(10),
+        ]);
+            
+        $results = array_merge($results['results'][0]['hits'], $results['results'][1]['hits']);
 
         return $this->process($results)->fetch();
     }
