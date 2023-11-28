@@ -32,7 +32,7 @@ class CouponService
         $this->tier = match ($tier) {
             'Wyvern' => Tier::Wyvern,
             'Elemental' => Tier::Elemental,
-            default => Tier::Owlbear,
+            'Owlbear' => Tier::Owlbear,
         };
         return $this;
     }
