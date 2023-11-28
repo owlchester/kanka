@@ -317,7 +317,7 @@ class MapMarker extends Model
             if ($this->is_popupless) {
                 return $output;
             }
-            
+
             return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
