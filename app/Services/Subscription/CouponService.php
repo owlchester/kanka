@@ -29,10 +29,10 @@ class CouponService
      */
     public function tier(string $tier): self
     {
-        $this->tier = match($tier) {
-            'Owlbear' => Tier::Owlbear,
+        $this->tier = match ($tier) {
             'Wyvern' => Tier::Wyvern,
-            'Elemental' => Tier::Elemental
+            'Elemental' => Tier::Elemental,
+            default => Tier::Owlbear,
         };
         return $this;
     }

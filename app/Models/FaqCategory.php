@@ -20,8 +20,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool $is_visible
  *
  * @property Faq[]|Collection $faqs
- * @property FaqCategoryTranslation[]|Collection $translations
- * @property FaqCategoryTranslation|null $localeTranslation
  */
 class FaqCategory extends Model
 {
@@ -40,7 +38,6 @@ class FaqCategory extends Model
 
     protected $_locale;
     protected $_faqCount = false;
-    protected $_translatedCount = false;
 
 
     /**
@@ -82,23 +79,6 @@ class FaqCategory extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function translations()
-    {
-        return $this->hasMany('App\Models\FaqCategoryTranslation', 'faq_category_id', 'id');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function localeTranslation()
-    {
-        return $this->hasOne(FaqCategoryTranslation::class, 'faq_category_id', 'id')
-            ->where('locale', app()->getLocale());
-    }
-
-    /**
      * @return string
      */
     public function getNameAttribute()
@@ -114,58 +94,6 @@ class FaqCategory extends Model
         return $this->faqs
             ->where('is_visible', true)
             ->sortBy('order');
-    }
-
-    /**
-     * Get the title (translated if available)
-     * @return string
-     */
-    public function title(): string
-    {
-        if ($this->localeTranslation && !empty($this->localeTranslation->title)) {
-            return $this->localeTranslation->title;
-        }
-        return $this->title;
-    }
-
-    /**
-     * @param string $locale
-     * @return string
-     */
-    public function translatedTitle(string $locale): string
-    {
-        $translation = $this->translations->where('locale', $locale)->first();
-        if (!$translation) {
-            return '';
-        }
-
-        return $translation->title;
-    }
-
-    /**
-     * @param string $locale
-     * @return bool
-     */
-    public function untranslated(string $locale): bool
-    {
-        return $this->faqCount() <> $this->translatedCount($locale);
-    }
-
-    /**
-     * @param string $locale
-     * @return mixed
-     */
-    public function translatedCount($locale)
-    {
-        if ($this->_translatedCount === false) {
-            $ids = $this->faqs->pluck('id')->toArray();
-            $this->_translatedCount = FaqTranslation::locale($locale)
-                ->whereIn('faq_id', $ids)
-                ->whereNotNull('answer')
-                ->where('answer', '<>', '')
-                ->count();
-        }
-        return $this->_translatedCount;
     }
 
     /**
