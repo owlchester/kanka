@@ -36,6 +36,7 @@ use Illuminate\Support\Str;
  * @property string $custom_shape
  * @property int|null $circle_radius
  * @property bool $is_draggable
+ * @property bool $is_popupless
  * @property array $polygon_style
  * @property float $opacity
  * @property int|null $group_id
@@ -79,6 +80,7 @@ class MapMarker extends Model
         'pin_size',
         'circle_radius',
         'polygon_style',
+        'is_popupless',
     ];
 
     protected array $sortable = [
@@ -308,6 +310,14 @@ class MapMarker extends Model
         // When exploring, we want the texts to be slightly shorter, to avoid lots of jittering on maps
         if ($this->isExploring()) {
             $body = Str::limit($body, 300);
+            $output = '.on(`click`, function (ev) {
+                window.markerDetails(`' . route('maps.markers.details', [$campaign, $this->map_id, $this->id]) . '`)
+            })';
+
+            if ($this->is_popupless) {
+                return $output;
+            }
+            
             return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
@@ -316,10 +326,7 @@ class MapMarker extends Model
             <div class="marker-popup-entry">
                 ' . $body . '
             </div>`)
-                ' . $this->tooltipPopup . '
-            .on(`click`, function (ev) {
-                window.markerDetails(`' . route('maps.markers.details', [$campaign, $this->map_id, $this->id]) . '`)
-            })';
+                ' . $this->tooltipPopup . $output;
         }
 
         $editButton = $copyButton = $deleteButton = '';
