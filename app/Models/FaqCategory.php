@@ -41,9 +41,7 @@ class FaqCategory extends Model
 
 
     /**
-     * @param Builder $query
      * @param bool $visible
-     * @return mixed
      */
     public function scopeVisible(Builder $query, $visible = true)
     {
@@ -51,9 +49,7 @@ class FaqCategory extends Model
     }
 
     /**
-     * @param Builder $query
      * @param string $locale
-     * @return mixed
      */
     public function scopeLocale(Builder $query, $locale = 'en')
     {
@@ -61,7 +57,6 @@ class FaqCategory extends Model
     }
 
     /**
-     * @param Builder $query
      * @param string $order
      * @return Builder
      */
@@ -97,7 +92,6 @@ class FaqCategory extends Model
     }
 
     /**
-     * @return mixed
      */
     public function faqCount()
     {

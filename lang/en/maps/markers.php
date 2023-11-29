@@ -51,6 +51,7 @@ return [
             'stroke-opacity'    => 'Stroke opacity',
             'stroke-width'      => 'Stroke width',
         ],
+        'popupless'     => 'Tooltip popup',
         'size'          => 'Size',
     ],
     'helpers'       => [
@@ -64,6 +65,7 @@ return [
         'polygon'                   => [
             'edit'  => 'Edit the polygon by dragging its edges and nodes.',
         ],
+        'is_popupless'  => 'Disable the marker\'s tooltip showing up on mouse hover.'
     ],
     'hints'         => [
         'entry' => 'Edit the marker to write a custom entry for it.',

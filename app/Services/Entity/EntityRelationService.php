@@ -847,7 +847,7 @@ class EntityRelationService
         /** @var Race $race */
         $race = $this->entity->child;
 
-        foreach ($race->races()->with( ['entity', 'entity.image'])->has('entity')->get() as $subrace) {
+        foreach ($race->races()->with(['entity', 'entity.image'])->has('entity')->get() as $subrace) {
             $this->addEntity($subrace->entity);
             $this->addRelations($subrace->entity);
 
