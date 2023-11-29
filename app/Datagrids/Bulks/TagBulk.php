@@ -12,6 +12,8 @@ class TagBulk extends Bulk
         'private_choice',
         'auto_applied_choice',
         'hide_choice',
+        'entity_image',
+        'entity_header',
     ];
 
     protected array $booleans = [
