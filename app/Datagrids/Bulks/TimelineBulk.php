@@ -10,5 +10,7 @@ class TimelineBulk extends Bulk
         'timeline_id',
         'tags',
         'private_choice',
+        'entity_image',
+        'entity_header',
     ];
 }

@@ -10,5 +10,7 @@ class MapBulk extends Bulk
         'map_id',
         'tags',
         'private_choice',
+        'entity_image',
+        'entity_header',
     ];
 }

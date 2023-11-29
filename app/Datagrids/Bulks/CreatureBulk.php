@@ -10,5 +10,7 @@ class CreatureBulk extends Bulk
         'creature_id',
         'tags',
         'private_choice',
+        'entity_image',
+        'entity_header',
     ];
 }

@@ -10,5 +10,7 @@ class RaceBulk extends Bulk
         'race_id',
         'tags',
         'private_choice',
+        'entity_image',
+        'entity_header',
     ];
 }

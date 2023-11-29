@@ -10,5 +10,7 @@ class LocationBulk extends Bulk
         'location_id',
         'tags',
         'private_choice',
+        'entity_image',
+        'entity_header',
     ];
 }
