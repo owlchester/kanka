@@ -6,7 +6,7 @@
 $first = true;
 ?>
 <div class="grid grid-cols-6 md:grid-cols-7 gap-2">
-@foreach ($permission->permissions($role) as $entity => $permissions)
+@foreach ($permission->role($role)->permissions() as $entity => $permissions)
     @if ($first)
         <div class="hidden sm:block">
         </div>
@@ -27,10 +27,12 @@ $first = true;
         @php $first = false; @endphp
     @endif
         <div class="col-span-7 md:col-span-1 md:w-40">
-            <div class="font-extrabold truncate">{!! __($permission->entityType($entity)) !!}</div>
+            <div class="font-extrabold truncate inline">
+                {!! __($permission->entityType($entity)) !!}
+            </div>
             @if (!$campaign->enabled($permission->entityTypePlural($entity)))
                 <div class="inline" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
-                    <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                    <x-icon class="fa-solid fa-exclamation-triangle" />
                     <span class="inline sm:hidden text-sm">{{ __('campaigns.modules.permission-disabled') }}</span>
                 </div>
             @endif
@@ -40,13 +42,13 @@ $first = true;
             <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
                 {!! Form::checkbox('permissions[' . $perm['key'] . ']', $entity, $perm['enabled'], ['data-action' => $perm['action']]) !!}
                 <div class="state p-success-o p-on">
-                    <i class="icon {{ $perm['icon'] }}"></i>
+                    <x-icon class="icon {{ $perm['icon'] }}" />
                     <label class="sm:hidden">
                         {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
                     </label>
                 </div>
                 <div class="state p-off">
-                    <i class="icon {{ $perm['icon'] }}"></i>
+                    <x-icon class="icon {{ $perm['icon'] }}" />
                     <label class="sm:hidden">
                         {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
                     </label>
@@ -61,14 +63,14 @@ $first = true;
 
 <hr />
 
-<div class="grid grid-cols-4 md:grid-cols-5 gap-2">
-@foreach ($permission->campaignPermissions($role) as $entity => $permissions)
-    @if ($first)
+<div class="grid grid-cols-3 md:grid-cols-4 gap-2">
+@foreach ($permission->campaignPermissions() as $entity => $permissions)
+    @if ($first && false)
         <div class="hidden sm:inline">
         </div>
 
         @foreach ($permissions as $perm)
-            <div class="hidden sm:inline text-center tooltip-wide flex gap-2 justify-center">
+            <div class="hidden sm:flex text-center tooltip-wide gap-2 justify-center">
                 <label>
         <span class="hidden sm:inline">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}@if($perm['action'] == \App\Models\CampaignPermission::ACTION_POSTS)
                 <i class="fa-solid fa-question-circle" data-placement="bottom" data-toggle="tooltip" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
@@ -82,21 +84,21 @@ $first = true;
         @php $first = false; @endphp
     @endif
 
-    <div class="col-span-4 md:col-span-1">
+    <div class="col-span-3 md:col-span-1">
         <strong>{{ __('entities.' . $entity) }}</strong>
     </div>
     @foreach ($permissions as $perm)
-        <div class="text-center md:w-40 overflow-hidden">
+        <div class="md:w-40 overflow-hidden">
             <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
                 {!! Form::checkbox('permissions[' . $perm['key'] . ']', $entity, $perm['enabled'], ['data-action' => $perm['action']]) !!}
                 <div class="state p-success-o p-on">
-                    <i class="icon {{ $perm['icon'] }}"></i>
+                    <x-icon class="icon {{ $perm['icon'] }}" />
                     <label class="sm:hidden">
                         {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
                     </label>
                 </div>
                 <div class="state p-off">
-                    <i class="icon {{ $perm['icon'] }}"></i>
+                    <x-icon class="icon {{ $perm['icon'] }}" />
                     <label class="sm:hidden">
                         {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
                     </label>
@@ -104,5 +106,33 @@ $first = true;
             </div>
         </div>
     @endforeach
+
 @endforeach
+</div>
+
+<div class="grid grid-cols-3 md:grid-cols-4 gap-2">
+    <div class="col-span-3 md:col-span-1">
+        <strong>{{ __('sidebar.gallery') }}</strong>
+    </div>
+    @foreach ($permission->galleryPermissions() as $entity => $permissions)
+        @foreach ($permissions as $perm)
+            <div class="md:w-40 overflow-hidden">
+                <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
+                    {!! Form::checkbox('permissions[' . $perm['key'] . ']', $entity, $perm['enabled'], ['data-action' => $perm['action']]) !!}
+                    <div class="state p-success-o p-on">
+                        <x-icon class="icon {{ $perm['icon'] }}" />
+                        <label class="sm:hidden">
+                            {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
+                        </label>
+                    </div>
+                    <div class="state p-off">
+                        <x-icon class="icon {{ $perm['icon'] }}" />
+                        <label class="sm:hidden">
+                            {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endforeach
 </div>

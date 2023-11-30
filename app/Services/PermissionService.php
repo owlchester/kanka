@@ -18,14 +18,13 @@ class PermissionService
 {
     use CampaignAware;
 
-    /** @var bool|array Users with a role */
-    private $users = false;
+    /** @var array Users with a role */
+    private $users;
 
     /** @var int */
     private $type;
 
-    /** @var CampaignRole */
-    private $role;
+    private CampaignRole $role;
 
     private null|array $idsToCode = null;
 
@@ -59,12 +58,12 @@ class PermissionService
     /**
      * Get the campaign role permissions. First key is the entity type
      */
-    public function permissions(CampaignRole $role): array
+    public function permissions(): array
     {
         $permissions = [];
 
         $campaignRolePermissions = [];
-        foreach ($role->rolePermissions as $perm) {
+        foreach ($this->role->rolePermissions as $perm) {
             $campaignRolePermissions[$perm->entity_type_id . '_' . $perm->action] = 1;
         }
 
@@ -101,7 +100,7 @@ class PermissionService
         ];
 
         // Public actions
-        if ($role->is_public) {
+        if ($this->role->isPublic()) {
             //$actions = ['read'];
             $entityActions = [CampaignPermission::ACTION_READ];
         }
@@ -158,13 +157,13 @@ class PermissionService
     /**
      * Campaign Permissions
      */
-    public function campaignPermissions(CampaignRole $role): array
+    public function campaignPermissions(): array
     {
         $permissions = [];
 
         $campaignRolePermissions = [];
-        foreach ($role->permissions as $perm) {
-            if ($perm->entity_type_id) {
+        foreach ($this->role->permissions as $perm) {
+            if ($perm->entity_type_id || $perm->isGallery()) {
                 continue;
             }
             $campaignRolePermissions["campaign_" . $perm->action] = 1;
@@ -172,7 +171,7 @@ class PermissionService
 
         $entityActions = [
             CampaignPermission::ACTION_MANAGE, CampaignPermission::ACTION_DASHBOARD,
-            CampaignPermission::ACTION_MEMBERS, CampaignPermission::ACTION_GALLERY
+            CampaignPermission::ACTION_MEMBERS
         ];
         $icons = [
             CampaignPermission::ACTION_MANAGE => [
@@ -185,9 +184,6 @@ class PermissionService
             CampaignPermission::ACTION_MEMBERS => [
                 'fa-solid fa-users', 'members',
             ],
-            CampaignPermission::ACTION_GALLERY => [
-                'fa-solid fa-image', 'gallery',
-            ]
         ];
 
         foreach ($entityActions as $action) {
@@ -204,8 +200,52 @@ class PermissionService
                 'enabled' => isset($campaignRolePermissions[$key]),
             ];
         }
+        return $permissions;
+    }
 
+    public function galleryPermissions(): array
+    {
+        $permissions = [];
 
+        $campaignRolePermissions = [];
+        foreach ($this->role->permissions as $perm) {
+            if ($perm->entity_type_id || !$perm->isGallery()) {
+                continue;
+            }
+            $campaignRolePermissions["campaign_" . $perm->action] = 1;
+        }
+
+        $entityActions = [
+            CampaignPermission::ACTION_GALLERY,
+            CampaignPermission::ACTION_GALLERY_BROWSE,
+            CampaignPermission::ACTION_GALLERY_UPLOAD
+        ];
+        $icons = [
+            CampaignPermission::ACTION_GALLERY => [
+                'fa-solid fa-cog', 'gallery.manage',
+            ],
+            CampaignPermission::ACTION_GALLERY_BROWSE => [
+                'fa-solid fa-eye','gallery.browse',
+            ],
+            CampaignPermission::ACTION_GALLERY_UPLOAD => [
+                'fa-solid fa-upload', 'gallery.upload',
+            ],
+        ];
+
+        foreach ($entityActions as $action) {
+            if (!isset($permissions['campaign'])) {
+                $permissions['campaign'] = [];
+            }
+            $key = "campaign_{$action}";
+            $permissions['campaign'][] = [
+                'action' => $action,
+                //'table' => $table,
+                'key' => $key,
+                'icon' => Arr::first($icons[$action]),
+                'label' => Arr::last($icons[$action]),
+                'enabled' => isset($campaignRolePermissions[$key]),
+            ];
+        }
         return $permissions;
     }
 
@@ -551,13 +591,14 @@ class PermissionService
      */
     public function users()
     {
-        if ($this->users === false) {
-            $this->users = $this->campaign
-                ->members()
-                ->withoutAdmins()
-                ->with(['user', 'user.campaignRoles'])
-                ->get();
+        if (isset($this->users)) {
+            return $this->users;
         }
+        $this->users = $this->campaign
+            ->members()
+            ->withoutAdmins()
+            ->with(['user', 'user.campaignRoles'])
+            ->get();
         return $this->users;
     }
 

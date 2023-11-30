@@ -51,7 +51,7 @@ class GalleryController extends Controller
      */
     public function store(GalleryImageStore $request, Campaign $campaign)
     {
-        $this->authorize('gallery', $campaign);
+        $this->authorize('create', [Image::class, $campaign]);
 
         $images = $this->service
             ->campaign($campaign)
@@ -80,7 +80,7 @@ class GalleryController extends Controller
      */
     public function edit(Campaign $campaign, Image $image)
     {
-        $this->authorize('gallery', $campaign);
+        $this->authorize('view', [$image, $campaign]);
 
         $folders = $this->service->campaign($campaign)->folderList();
 
@@ -93,7 +93,7 @@ class GalleryController extends Controller
      */
     public function update(GalleryImageUpdate $request, Campaign $campaign, Image $image)
     {
-        $this->authorize('gallery', $campaign);
+        $this->authorize('edit', [$image, $campaign]);
 
         $originalFolderID = $image->folder_id;
         $this->service
@@ -122,7 +122,7 @@ class GalleryController extends Controller
      */
     public function destroy(Campaign $campaign, Image $image)
     {
-        $this->authorize('gallery', $campaign);
+        $this->authorize('delete', [$image, $campaign]);
 
         $options = [$campaign];
         if ($image->folder_id) {
