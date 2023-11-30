@@ -11,6 +11,7 @@ use App\Models\Tag;
 use App\Services\Entity\MoveService;
 use App\Services\Entity\TagService;
 use App\Services\Entity\TransformService;
+use App\Services\Permissions\BulkPermissionService;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -25,7 +26,7 @@ class BulkService
 
     protected EntityService $entityService;
 
-    protected PermissionService $permissionService;
+    protected BulkPermissionService $permissionService;
 
     protected TransformService $transformService;
 
@@ -46,7 +47,7 @@ class BulkService
 
     public function __construct(
         EntityService $entityService,
-        PermissionService $permissionService,
+        BulkPermissionService $permissionService,
         TransformService $transformService,
         MoveService $moveService
     ) {
@@ -129,7 +130,10 @@ class BulkService
         foreach ($this->ids as $id) {
             $entity = $model->findOrFail($id);
             if (auth()->user()->can('update', $entity)) {
-                $this->permissionService->change($permissions, $entity->entity, $override);
+                $this->permissionService
+                    ->entity($entity->entity)
+                    ->override($override)
+                    ->change($permissions);
                 $this->count++;
             }
         }

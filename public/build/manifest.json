@@ -188,7 +188,7 @@
     "src": "resources/js/front.js"
   },
   "resources/js/gallery.js": {
-    "file": "assets/gallery-2dea31e9.js",
+    "file": "assets/gallery-3fd12283.js",
     "imports": [
       "_index-0b481a1e.js",
       "__commonjsHelpers-725317a4.js"
@@ -212,7 +212,7 @@
     "src": "resources/js/profile.js"
   },
   "resources/js/relations.js": {
-    "file": "assets/relations-5fb6c751.js",
+    "file": "assets/relations-a59799ef.js",
     "imports": [
       "__commonjsHelpers-725317a4.js"
     ],

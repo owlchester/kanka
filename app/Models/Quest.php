@@ -114,6 +114,7 @@ class Quest extends MiscModel
             'entity',
             'entity.image',
             'entity.calendarDateEvents',
+            'entity.calendarDate',
             'quests',
             'instigator',
             //'elements',

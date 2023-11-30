@@ -67,7 +67,7 @@
                 </x-badge>
             </div>
 
-
+            @can('edit', [$image, $campaign])
             <x-forms.field field="name" :label="__('crud.fields.name')" :required="true">
                 {!! Form::text('name', null, ['maxlength' => 45, 'class' => '']) !!}
             </x-forms.field>
@@ -79,5 +79,6 @@
             @endif
 
             @include('cruds.fields.visibility_id', ['model' => $image])
+            @endcan
         </x-grid>
     </div>

@@ -111,6 +111,14 @@ trait CampaignRelations
         return $this->hasMany('App\Models\CampaignUser');
     }
 
+    public function nonAdmins()
+    {
+        return $this
+            ->members()
+            ->withoutAdmins()
+            ->with(['user', 'user.campaignRoles'])
+        ;
+    }
     /**
      */
     public function roles()
