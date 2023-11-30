@@ -219,31 +219,6 @@ class CampaignPolicy
         );
     }
 
-    public function galleryManage(?User $user, Campaign $campaign): bool
-    {
-        return $user && (
-            UserCache::user($user)->admin() ||
-            $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign)
-        );
-    }
-
-    public function galleryBrowse(?User $user, Campaign $campaign): bool
-    {
-        return $user && (
-            UserCache::user($user)->admin() ||
-                $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
-                $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign)
-        );
-    }
-    public function galleryUpload(?User $user, Campaign $campaign): bool
-    {
-        return $user && (
-            UserCache::user($user)->admin() ||
-            $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
-            $this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign)
-        );
-    }
-
     /**
      */
     public function relations(?User $user): bool
