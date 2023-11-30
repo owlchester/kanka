@@ -1,12 +1,12 @@
 <?php
 /**
- * @var \App\Services\PermissionService $permission
+ * @var \App\Services\Permissions\RolePermissionService $permissionService
  * @var \App\Models\CampaignRole $role
  */
 $first = true;
 ?>
 <div class="grid grid-cols-6 md:grid-cols-7 gap-2">
-@foreach ($permission->role($role)->permissions() as $permissions)
+@foreach ($permissionService->permissions() as $permissions)
     @if ($first)
         <div class="hidden sm:block"></div>
         @foreach ($permissions['permissions'] as $perm)
@@ -63,7 +63,7 @@ $first = true;
 <hr />
 
 <div class="grid grid-cols-3 md:grid-cols-4 gap-2">
-@foreach ($permission->campaignPermissions() as $entity => $permissions)
+@foreach ($permissionService->campaignPermissions() as $entity => $permissions)
     @if ($first && false)
         <div class="hidden sm:inline">
         </div>
@@ -113,7 +113,7 @@ $first = true;
     <div class="col-span-3 md:col-span-1">
         <strong>{{ __('sidebar.gallery') }}</strong>
     </div>
-    @foreach ($permission->galleryPermissions() as $entity => $permissions)
+    @foreach ($permissionService->galleryPermissions() as $entity => $permissions)
         @foreach ($permissions as $perm)
             <div class="md:w-40 overflow-hidden">
                 <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">

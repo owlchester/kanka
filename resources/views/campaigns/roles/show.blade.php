@@ -16,7 +16,6 @@
 
 @section('content')
     @include('partials.errors')
-    @inject('permission', 'App\Services\PermissionService')
 
     @if ($role->isPublic())
         @include('campaigns.roles._public')

@@ -14,34 +14,15 @@ use Illuminate\Support\Arr;
 
 class EntityPermission
 {
-    /**
-     * @var MiscModel
-     */
-    protected $model;
+    protected array $cached = [];
+
+    protected array|bool $roleIds;
 
     /**
-     * @var \Illuminate\Foundation\Application|mixed
+     * The roles of the user
      */
-    protected $app;
+    protected array|bool|Collection $roles = [];
 
-    /**
-     * @var array
-     */
-    protected $cached = [];
-
-    /**
-     * @var array|bool
-     */
-    protected $roleIds = false;
-
-    /**
-     * @var array|bool|Collection The roles of the user
-     */
-    protected $roles = [];
-
-    /**
-     * @var array Entity Ids
-     */
     protected array $cachedEntityIds = [];
 
     /**
@@ -50,90 +31,14 @@ class EntityPermission
     protected $userIsAdmin = null;
 
     /**
-     * @var bool permissions were loaded
+     * Permissions were loaded
      */
     protected bool $loadedAll = false;
 
     /**
-     * @var int campaign id of the loaded permissions (required for when moving entities between campaigns)
+     * Campaign id of the loaded permissions (required for when moving entities between campaigns)
      */
     protected int $loadedCampaignId = 0;
-
-    /**
-     * Creates new instance.
-     */
-    public function __construct()
-    {
-        $this->app = app();
-    }
-
-    /**
-     * @return bool
-     */
-    public function canView(Entity $entity, Campaign $campaign = null)
-    {
-        // Make sure we can see the entity we're trying to show the user. We do it this way because we
-        // are looping through entities which doesn't allow using the acl trait before hand.
-        if (auth()->check()) {
-            return auth()->user()->can('view', $entity->child);
-        } elseif (!empty($entity->child)) {
-            return self::hasPermission($entity->type_id, CampaignPermission::ACTION_READ, null, $entity->child, $campaign);
-        }
-        return false;
-    }
-
-    /**
-     * Get list of entity ids for a given model type that the user can access.
-     * @param string $action = 'read'
-     */
-    public function entityIds(string $modelName, string $action = 'read'): array
-    {
-        // Check if we have this model type at all
-        $modelIds = Arr::get($this->cachedEntityIds, $modelName, []);
-        if (empty($modelIds)) {
-            return [];
-        }
-        $ids = [];
-        foreach ($modelIds as $id => $data) {
-            if (!is_array($data)) {
-                // This will throw an error
-            }
-            foreach ($data as $perm => $access) {
-                if ($perm === $action && $access) {
-                    $ids[] = $id;
-                }
-            }
-        }
-        return $ids;
-    }
-
-    /**
-     * Entity IDs the user specifically doesn't have access to
-     */
-    public function deniedEntityIds(string $modelName, string $action = 'read'): array
-    {
-        // This function is called in the VisibleTrait of the model, but for example in the search, no permissions are
-        // already loaded, so we need to call this again to get the user's permissions
-        $this->loadAllPermissions(auth()->user());
-
-        // Check if we have this model type at all
-        $modelIds = Arr::get($this->cachedEntityIds, $modelName, []);
-        if (empty($modelIds)) {
-            return [];
-        }
-        $ids = [];
-        foreach ($modelIds as $id => $data) {
-            if (!is_array($data)) {
-                // This will throw an error
-            }
-            foreach ($data as $perm => $access) {
-                if ($perm === $action && !$access) {
-                    $ids[] = $id;
-                }
-            }
-        }
-        return $ids;
-    }
 
     /**
      * Determine the permission for a user to interact with an entity
@@ -192,35 +97,35 @@ class EntityPermission
 
     /**
      * Check the roles of the user. If the user is an admin, always return true
-     * @return array|bool
      */
-    protected function getRoleIds(Campaign $campaign, User $user = null)
+    protected function getRoleIds(Campaign $campaign, User $user = null): array|bool
     {
         // If we haven't built a list of roles yet, build it.
-        if ($this->roleIds === false) {
-            $this->roles = false;
-            // If we have a user, get the user's role for this campaign
-            if ($user) {
-                $this->roles = UserCache::user($user)->roles();
-            }
-
-            // If we don't have a user, or our user has no specified role yet, use the public role.
-            if ($this->roles === false || $this->roles->count() == 0) {
-                // Use the campaign's public role
-                $this->roles = $campaign->roles()->where('is_public', true)->get();
-            }
-
-            // Save all the role ids. If one of them is an admin, stop there.
-            $this->roleIds = [];
-            foreach ($this->roles as $role) {
-                if ($role['is_admin']) {
-                    $this->roleIds = true;
-                    return true;
-                }
-                $this->roleIds[] = $role['id'];
-            }
+        if (isset($this->roleIds)) {
+            return $this->roleIds;
         }
 
+        $this->roles = false;
+        // If we have a user, get the user's role for this campaign
+        if ($user) {
+            $this->roles = UserCache::user($user)->roles();
+        }
+
+        // If we don't have a user, or our user has no specified role yet, use the public role.
+        if ($this->roles === false || $this->roles->count() == 0) {
+            // Use the campaign's public role
+            $this->roles = $campaign->roles()->where('is_public', true)->get();
+        }
+
+        // Save all the role ids. If one of them is an admin, stop there.
+        $this->roleIds = [];
+        foreach ($this->roles as $role) {
+            if ($role['is_admin']) {
+                $this->roleIds = true;
+                return true;
+            }
+            $this->roleIds[] = $role['id'];
+        }
         return $this->roleIds;
     }
 
@@ -243,9 +148,8 @@ class EntityPermission
     /**
      * It's way easier to just load all permissions of the user once and "cache" them, rather than try and be
      * optional on each query.
-     * @return void
      */
-    protected function loadAllPermissions(User $user = null, Campaign $campaign = null)
+    protected function loadAllPermissions(User $user = null, Campaign $campaign = null): void
     {
         // If no campaign was provided, get the one in the url. One is provided when moving entities between campaigns
         if (empty($campaign)) {
@@ -324,7 +228,7 @@ class EntityPermission
         // Reset the values keeping score
         $this->loadedAll = true;
         $this->cached = [];
-        $this->roleIds = false;
+        unset($this->roleIds);
         $this->userIsAdmin = false;
     }
 }
