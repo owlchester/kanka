@@ -2,14 +2,12 @@
 
 namespace App\Services;
 
-use App\Facades\Module;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 /**
  * Class PermissionService
