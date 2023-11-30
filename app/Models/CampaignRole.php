@@ -226,4 +226,14 @@ class CampaignRole extends Model
     {
         return 'campaign_roles.' . $sub;
     }
+
+    public function duplicate(CampaignRole $campaignRole): self
+    {
+        foreach ($this->permissions as $permission) {
+            $newPermission = $permission->replicate(['campaign_role_id']);
+            $newPermission->campaign_role_id = $campaignRole->id;
+            $newPermission->save();
+        }
+        return $this;
+    }
 }

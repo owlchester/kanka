@@ -176,7 +176,6 @@ class PermissionService
             $key = "campaign_{$action}";
             $permissions['campaign'][] = [
                 'action' => $action,
-                //'table' => $table,
                 'key' => $key,
                 'icon' => Arr::first($icons[$action]),
                 'label' => Arr::last($icons[$action]),
@@ -222,7 +221,6 @@ class PermissionService
             $key = "campaign_{$action}";
             $permissions['campaign'][] = [
                 'action' => $action,
-                //'table' => $table,
                 'key' => $key,
                 'icon' => Arr::first($icons[$action]),
                 'label' => Arr::last($icons[$action]),
@@ -362,10 +360,8 @@ class PermissionService
                     if ($action == 'allow') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
-                                //'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
-                                //'campaign_id' => $entity->campaign_id,
-                                //'entity_type_id' => $entity->type_id,
+                                'campaign_id' => $entity->campaign_id,
                                 'entity_id' => $entity->id,
                                 'misc_id' => $entity->child->id,
                                 'action' => $perm,
@@ -383,11 +379,8 @@ class PermissionService
                     } elseif ($action === 'deny') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
-                                //'key' => $entity->type() . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
-                                //'campaign_id' => $entity->campaign_id,
-                                //'table_name' => $entity->pluralType(),
-                                //'entity_type_id' => $entity->type_id,
+                                'campaign_id' => $entity->campaign_id,
                                 'entity_id' => $entity->id,
                                 'misc_id' => $entity->child->id,
                                 'action' => $perm,
@@ -582,16 +575,5 @@ class PermissionService
             ->with(['user', 'user.campaignRoles'])
             ->get();
         return $this->users;
-    }
-
-    public function duplicate(int $roleId): void
-    {
-        $oldRole = CampaignRole::where('id', $roleId)->first();
-        foreach ($oldRole->permissions as $permission) {
-            /** @var CampaignPermission $newPermission */
-            $newPermission = $permission->replicate(['campaign_role_id']);
-            $newPermission->campaign_role_id = $this->role->id;
-            $newPermission->save();
-        }
     }
 }

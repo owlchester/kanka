@@ -15,17 +15,14 @@ class RoleController extends Controller
 {
     protected string $view = 'campaigns.roles';
 
-    protected PermissionService $service;
-
     /**
      * Create a new controller instance.
      * @return void
      */
-    public function __construct(PermissionService $permissionService)
+    public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
-        $this->service = $permissionService;
     }
 
     /**
@@ -111,7 +108,11 @@ class RoleController extends Controller
         $data = $request->all() + ['campaign_id' => $campaign->id];
         $role = CampaignRole::create($data);
         if ($request->has('duplicate') && $request->get('duplicate') != 0) {
-            $this->service->role($role)->duplicate($request->get('role_id'));
+            /** @var CampaignRole $copy */
+            $copy = CampaignRole::where('id', $request->get('role_id'))->first();
+            if ($copy) {
+                $copy->duplicate($role);
+            }
         }
         return redirect()->route('campaign_roles.index', $campaign)
             ->with('success_raw', __($this->view . '.create.success', ['name' => $role->name]));
