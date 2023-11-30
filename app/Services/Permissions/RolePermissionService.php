@@ -3,7 +3,6 @@
 namespace App\Services\Permissions;
 
 use App\Models\CampaignPermission;
-use App\Models\CampaignRole;
 use App\Models\EntityType;
 use App\Traits\RoleAware;
 use Illuminate\Support\Arr;
@@ -253,10 +252,10 @@ class RolePermissionService
     public function can(int $action = CampaignPermission::ACTION_READ): bool
     {
         return $this->role->permissions
-                ->where('entity_type_id', $this->type)
-                ->where('action', $action)
-                ->where('access', true)
-                ->count() === 1;
+            ->where('entity_type_id', $this->type)
+            ->where('action', $action)
+            ->where('access', true)
+            ->count() === 1;
     }
 
     /**

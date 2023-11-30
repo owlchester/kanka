@@ -10,7 +10,6 @@ use App\Models\Entity;
 use App\Models\MiscModel;
 use App\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Arr;
 
 class EntityPermission
 {

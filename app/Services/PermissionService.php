@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
-use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use App\Traits\RoleAware;
 use App\Traits\UserAware;
@@ -268,9 +267,9 @@ class PermissionService
 
     public function reset(): self
     {
-        unset($this->user);
-        unset($this->role);
-        unset($this->action);
+        unset($this->user, $this->role, $this->action);
+
+
         return $this;
     }
 }
