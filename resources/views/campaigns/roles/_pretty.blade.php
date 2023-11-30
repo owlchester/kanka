@@ -6,11 +6,10 @@
 $first = true;
 ?>
 <div class="grid grid-cols-6 md:grid-cols-7 gap-2">
-@foreach ($permission->role($role)->permissions() as $entity => $permissions)
+@foreach ($permission->role($role)->permissions() as $permissions)
     @if ($first)
-        <div class="hidden sm:block">
-        </div>
-        @foreach ($permissions as $perm)
+        <div class="hidden sm:block"></div>
+        @foreach ($permissions['permissions'] as $perm)
             <div class="text-center tooltip-wide  md:w-40 flex gap-2 justify-center">
                 <label class="">
                     <span class="hidden sm:inline">
@@ -26,21 +25,21 @@ $first = true;
         @endforeach
         @php $first = false; @endphp
     @endif
-        <div class="col-span-7 md:col-span-1 md:w-40">
-            <div class="font-extrabold truncate inline">
-                {!! __($permission->entityType($entity)) !!}
-            </div>
-            @if (!$campaign->enabled($permission->entityTypePlural($entity)))
-                <div class="inline" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
-                    <x-icon class="fa-solid fa-exclamation-triangle" />
-                    <span class="inline sm:hidden text-sm">{{ __('campaigns.modules.permission-disabled') }}</span>
-                </div>
-            @endif
+    <div class="col-span-7 md:col-span-1 md:w-40">
+        <div class="font-extrabold truncate inline">
+            {!! $permissions['entityType']->plural() !!}
         </div>
-    @foreach ($permissions as $perm)
+        @if (!$campaign->enabled($permissions['entityType']->pluralCode()))
+            <div class="inline" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
+                <x-icon class="fa-solid fa-exclamation-triangle" />
+                <span class="inline sm:hidden text-sm">{{ __('campaigns.modules.permission-disabled') }}</span>
+            </div>
+        @endif
+    </div>
+    @foreach ($permissions['permissions'] as $perm)
         <div class="text-center md:w-40 overflow-hidden">
             <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
-                {!! Form::checkbox('permissions[' . $perm['key'] . ']', $entity, $perm['enabled'], ['data-action' => $perm['action']]) !!}
+                {!! Form::checkbox('permissions[' . $perm['key'] . ']', $permissions['entityType']->id, $perm['enabled'], ['data-action' => $perm['action']]) !!}
                 <div class="state p-success-o p-on">
                     <x-icon class="icon {{ $perm['icon'] }}" />
                     <label class="sm:hidden">

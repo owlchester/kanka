@@ -43,12 +43,12 @@ $permission->role($role);
     </x-tutorial>
 
     <div class="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        @foreach ($permission->entityTypes() as $name => $id)
-            <div class="public-permission flex flex-col gap-2 rounded items-center text-center justify-center break-all cursor-pointer text-xl px-2 py-5 {{ $permission->type($id)->can() ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$campaign, $role, 'entity' => $id, 'action' => \App\Models\CampaignPermission::ACTION_READ]) }}">
-                <i class="entity-type-icon block text-2xl {{ EntitySetup::icon($id) }}" aria-hidden="true"></i>
+        @foreach (\App\Models\EntityType::get() as $entityType)
+            <div class="public-permission flex flex-col gap-2 rounded items-center text-center justify-center break-all overflow-x-hidden cursor-pointer text-lg px-2 py-5 {{ $permission->type($entityType->id)->can() ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$campaign, $role, 'entity' => $entityType->id, 'action' => \App\Models\CampaignPermission::ACTION_READ]) }}">
+                <i class="block text-2xl {{ \App\Facades\Module::duoIcon($entityType->code) }}" aria-hidden="true"></i>
 
-                <div>{{ EntitySetup::plural($id) }}</div>
-                @if (!$campaign->enabled(\Illuminate\Support\Str::plural($name)))
+                <div class="">{!! $entityType->plural() !!}</div>
+                @if (!$campaign->enabled($entityType->pluralCode()))
                     <div class="rounded bg-warning text-warning-content" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
                         <i class="fa-solid fa-exclamation-triangle"  aria-hidden="true"></i>
                         <span class="md:hidden text-sm inline">{{ __('campaigns.modules.permission-disabled') }}</span>

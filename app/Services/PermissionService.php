@@ -6,6 +6,7 @@ use App\Facades\Module;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -18,15 +19,13 @@ class PermissionService
 {
     use CampaignAware;
 
-    /** @var array Users with a role */
-    private $users;
+    /** @var mixed Users with a role */
+    private mixed $users;
 
     /** @var int */
     private $type;
 
     private CampaignRole $role;
-
-    private null|array $idsToCode = null;
 
     /**
      * Permissions setup on the campaign
@@ -105,13 +104,16 @@ class PermissionService
             $entityActions = [CampaignPermission::ACTION_READ];
         }
 
-        foreach ($this->entityTypes() as $name => $id) {
+        foreach (EntityType::get() as $entityType) {
             foreach ($entityActions as $action) {
-                if (!isset($permissions[$id])) {
-                    $permissions[$id] = [];
+                if (!isset($permissions[$entityType->id])) {
+                    $permissions[$entityType->id] = [
+                        'entityType' => $entityType,
+                        'permissions' => []
+                    ];
                 }
-                $key = "{$id}_{$action}";
-                $permissions[$id][] = [
+                $key = "{$entityType->id}_{$action}";
+                $permissions[$entityType->id]['permissions'][] = [
                     'action' => $action,
                     'key' => $key,
                     'icon' => Arr::first($icons[$action]),
@@ -122,23 +124,6 @@ class PermissionService
         }
 
         return $permissions;
-    }
-
-    /**
-     */
-    public function entityTypes(): array
-    {
-        $types = [];
-        $excludedEntities = ['bookmark', 'relation'];
-
-        foreach (config('entities.ids') as $name => $id) {
-            if (in_array($name, $excludedEntities)) {
-                continue;
-            }
-            $types[$name] = $id;
-        }
-
-        return $types;
     }
 
     /**
@@ -251,7 +236,7 @@ class PermissionService
 
     /**
      */
-    public function saveEntity(array $request, Entity $entity)
+    public function saveEntity(array $request, Entity $entity): void
     {
         // First, let's get all the stuff for this entity
         $permissions = $this->entityPermissions($entity);
@@ -367,7 +352,7 @@ class PermissionService
     /**
      * @param array $request
      */
-    public function change($request, Entity $entity, bool $override = true)
+    public function change($request, Entity $entity, bool $override = true): void
     {
         // First, let's get all the stuff for this entity
         $permissions = $this->clearEntityPermissions()->entityPermissions($entity);
@@ -506,7 +491,6 @@ class PermissionService
     }
 
     /**
-     * @return $this
      */
     protected function clearEntityPermissions(): self
     {
@@ -602,31 +586,7 @@ class PermissionService
         return $this->users;
     }
 
-    /**
-     */
-    public function entityType(int $entityType): string
-    {
-        $flip = array_flip(config('entities.ids'));
-        $plural = Module::plural($flip[$entityType]);
-        if (!empty($plural)) {
-            return $plural;
-        }
-        return 'entities.' . Str::plural($flip[$entityType]);
-    }
-
-    public function entityTypePlural(int $entityType): string
-    {
-        return Str::plural($this->code($entityType));
-    }
-
-    protected function code(int $entityType): string
-    {
-        if ($this->idsToCode === null) {
-            $this->idsToCode = array_flip(config('entities.ids'));
-        }
-        return $this->idsToCode[$entityType];
-    }
-    public function duplicate(int $roleId)
+    public function duplicate(int $roleId): void
     {
         $oldRole = CampaignRole::where('id', $roleId)->first();
         foreach ($oldRole->permissions as $permission) {
