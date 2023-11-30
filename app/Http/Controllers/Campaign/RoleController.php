@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignRole;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
-use App\Services\PermissionService;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
