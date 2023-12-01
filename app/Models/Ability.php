@@ -210,23 +210,16 @@ class Ability extends MiscModel
     public function attachEntity(array $request): int
     {
         $entityIds = Arr::get($request, 'entities');
-        $entities = Entity::with('abilities')->findOrFail($entityIds);
         $count = 0;
-        foreach ($entities as $entity) {
-            // Make sure the tag isn't already attached to the entity
-            foreach ($entity->abilities as $ability) {
-                if ($ability->ability_id == $this->id) {
-                    continue;
-                }
-            }
+        $visibility = Arr::get($request, 'visibility_id', \App\Enums\Visibility::All);
+        $sync = [];
 
-            EntityAbility::create([
-                'ability_id' => $this->id,
-                'entity_id' => $entity->id,
-                'visibility_id' => Arr::get($request, 'visibility_id', \App\Enums\Visibility::All),
-            ]);
-            $count++;
+        foreach ($entityIds as $entity) {
+           $sync[$entity] = ['visibility_id' => $visibility];
+           $count++;
         }
+        $this->entities()->syncWithoutDetaching($sync);
+
         return $count;
     }
 
