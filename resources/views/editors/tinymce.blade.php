@@ -33,6 +33,7 @@
             menubar: false,
             content_css: '{{ Vite::asset('resources/sass/tinymce.scss') }}',
             extended_valid_elements: "+@[data-mention]",
+            @if (!empty($campaign))
             mentions: {
                 delimiter: ['@', '#', '['@if(!empty($model) && method_exists($model, 'hasEntity') && $model->hasEntity()), '{'@endif],
                 delay: 250,
@@ -97,6 +98,7 @@
                         '</li>';
                 }
             },
+            @endif
             save_onsavecallback: function () {
                 // Set the global dirty check off
                 window.entityFormHasUnsavedChanges = false;
