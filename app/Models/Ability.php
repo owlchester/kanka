@@ -215,8 +215,8 @@ class Ability extends MiscModel
         $sync = [];
 
         foreach ($entityIds as $entity) {
-           $sync[$entity] = ['visibility_id' => $visibility];
-           $count++;
+            $sync[$entity] = ['visibility_id' => $visibility];
+            $count++;
         }
         $this->entities()->syncWithoutDetaching($sync);
 
