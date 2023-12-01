@@ -29,7 +29,7 @@ class Entity extends EntityChild
             'id' => $model->child->id,
             'entity_id' => $model->id,
             'name' => $model->name,
-            'image' => Avatar::entity($model)->thumbnail(),
+            'image' => Avatar::entity($model)->original(),
             'image_thumb' => Avatar::entity($model)->size(40)->thumbnail(),
             'has_custom_image' => !empty($model->image_path) && !empty($model->image),
 
