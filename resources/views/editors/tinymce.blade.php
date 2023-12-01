@@ -1,3 +1,12 @@
+
+@section('styles')
+    @parent
+    @if (config('app.asset_url'))
+        <link href="{{ config('app.asset_url') }}/vendor/bootstrap/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">
+    @else
+        <link href="/css/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">
+    @endif
+@endsection
 @section('scripts')
     @parent
     <script src="{{ '/js/tinymce/tinymce.min.js' }}"></script>
@@ -12,7 +21,7 @@
                 "searchreplace code fullscreen",
                 "insertdatetime media nonbreaking table directionality",
                 "emoticons paste textcolor colorpicker textpattern",
-                "fullpage mention media"
+                "fullpage @if(!empty($campaign)) mention @endif media"
             ],
             toolbar: "undo redo | styleselect | bold italic underline strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | hr | link image table media | code fullscreen",
             nanospell_server: "php",
