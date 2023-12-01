@@ -292,26 +292,28 @@ class Tag extends MiscModel
     }
 
     /**
-     * Attach an entity to the tag
+     * Attach entities to the tag
      */
-    public function attachEntity(array $request): bool
+    public function attachEntity(array $request): int
     {
-        $entityId = Arr::get($request, 'entity_id');
-        $entity = Entity::with('tags')->findOrFail($entityId);
-
-        // Make sure the tag isn't already attached to the entity
-        foreach ($entity->entityTags as $tag) {
-            if ($tag->tag_id == $this->id) {
-                return true;
+        $entityIds = Arr::get($request, 'entities');
+        $entities = Entity::with('tags')->findOrFail($entityIds);
+        $count = 0;
+        foreach ($entities as $entity) {
+            // Make sure the tag isn't already attached to the entity
+            foreach ($entity->tags as $tag) {
+                if ($tag->tag_id == $this->id) {
+                    continue;
+                }
             }
+
+            EntityTag::create([
+                'tag_id' => $this->id,
+                'entity_id' => $entity->id,
+            ]);
+            $count++;
         }
-
-        $entityTag = EntityTag::create([
-            'tag_id' => $this->id,
-            'entity_id' => $entityId
-        ]);
-
-        return $entityTag !== false;
+        return $count;
     }
 
     /**
