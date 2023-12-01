@@ -38,7 +38,7 @@ if (!empty($previous)) {
     data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}"
     data-new-tag="{{ __('entities.new_entity') }}"
     data-placeholder="{{ __('entities/relations.placeholders.target') }}"
-    :dropdownParent="$dropdownParent ?? (request()->ajax() ? '#primary-dialog' : null)"
+    :dropdownParent="$dropdownParent ?? ($ajax ? '#primary-dialog' : null)"
 >
     @foreach ($selectedOption as $key => $entity)
         <option value="{{ $key }}" class="select2-entity" selected="selected">{{ $entity->name }}</option>

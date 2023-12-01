@@ -2,7 +2,12 @@
 {{ csrf_field() }}
 <x-grid type="1/1">
     <x-forms.field field="entities" :required="true" >
-        @include('components.form.entities', ['options' => ['exclude-entity' => $model->entity->id, 'route' => 'search.tag-children']])
+        <x-form.entities 
+            :options="['exclude-entity' => $model->entity->id, 'route' => 'search.tag-children']" 
+            :campaign="$campaign"
+            :ajax="request()->ajax()"
+        >
+        </x-form.entities>
     </x-forms.field>
 </x-grid>
 
