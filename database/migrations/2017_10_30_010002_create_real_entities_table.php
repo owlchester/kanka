@@ -53,7 +53,7 @@ class CreateRealEntitiesTable extends Migration
                 ->references('id')->on('users')
                 ->nullOnDelete();
 
-            $table->index(['type', 'name', 'is_private', 'is_template']);
+            $table->index(['name', 'is_private', 'is_template']);
             $table->index('updated_at');
         });
     }
