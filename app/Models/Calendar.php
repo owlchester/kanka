@@ -134,7 +134,7 @@ class Calendar extends MiscModel
         return ['calendar_id', 'date'];
     }
 
-    public function getParentIdName(): string
+    public function getParentKeyName(): string
     {
         return 'calendar_id';
     }

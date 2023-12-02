@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Ability
@@ -34,10 +35,9 @@ class Ability extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasRecursiveRelationships;
     use SoftDeletes;
-    use SortableTrait
-    ;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -86,18 +86,9 @@ class Ability extends MiscModel
      * Parent ID used for the Node Trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'ability_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setAbilityIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**

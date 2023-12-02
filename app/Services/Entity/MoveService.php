@@ -13,7 +13,6 @@ use App\Models\MiscModel;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
 use App\Traits\CampaignAware;
-use App\Traits\CanFixTree;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +23,6 @@ use Illuminate\Support\Str;
 class MoveService
 {
     use CampaignAware;
-    use CanFixTree;
     use EntityAware;
     use UserAware;
 
@@ -113,7 +111,6 @@ class MoveService
             }
 
             CampaignLocalization::forceCampaign($this->to);
-            $this->fixTree($newModel);
 
             // The model is ready to be saved.
             $newModel->saveQuietly();
@@ -216,7 +213,6 @@ class MoveService
             }
             $this->entity->saveQuietly();
 
-            $this->fixTree($child);
             // Update child second. We do this otherwise we'll have an old entity and a new one
             $child->campaign_id = $this->to->id;
             if (empty($child->slug)) {

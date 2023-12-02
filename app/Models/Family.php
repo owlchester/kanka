@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Family
@@ -31,7 +32,7 @@ class Family extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -93,18 +94,9 @@ class Family extends MiscModel
      * Parent ID used for the Node Trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'family_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setFamilyIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**

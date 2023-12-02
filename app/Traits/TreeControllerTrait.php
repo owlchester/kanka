@@ -70,7 +70,7 @@ trait TreeControllerTrait
             ->distinct();
 
         /** @var Tag $model **/
-        $parentKey = $model->getParentIdName();
+        $parentKey = $model->getParentKeyName();
         $parent = null;
         if (request()->has('parent_id')) {
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);

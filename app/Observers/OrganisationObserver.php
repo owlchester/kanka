@@ -30,11 +30,8 @@ class OrganisationObserver extends MiscObserver
          */
         foreach ($organisation->organisations as $child) {
             $child->organisation_id = null;
-            $child->save();
+            $child->saveQuietly();
         }
-
-        // We need to refresh our foreign relations to avoid deleting our children nodes again
-        $this->cleanupTree($organisation, 'organisation_id');
     }
 
     /**

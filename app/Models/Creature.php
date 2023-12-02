@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Creature
@@ -32,7 +33,7 @@ class Creature extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -80,20 +81,9 @@ class Creature extends MiscModel
     /**
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'creature_id';
-    }
-
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     * @throws \Exception
-     */
-    public function setCreatureIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**

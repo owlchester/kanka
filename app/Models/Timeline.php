@@ -8,10 +8,12 @@ use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Collection;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * @property TimelineEra[]|Collection $eras
@@ -26,7 +28,7 @@ class Timeline extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -131,10 +133,7 @@ class Timeline extends MiscModel
         return $this->belongsTo('App\Models\Calendar', 'calendar_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function timelines()
+    public function timelines(): HasMany
     {
         return $this->hasMany('App\Models\Timeline', 'timeline_id', 'id');
     }
@@ -147,18 +146,12 @@ class Timeline extends MiscModel
         return $this->belongsTo('App\Models\Timeline', 'timeline_id', 'id');
     }
 
-    /**
-     *
-     */
-    public function eras()
+    public function eras(): HasMany
     {
         return $this->hasMany('App\Models\TimelineEra');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function elements()
+    public function elements(): HasMany
     {
         return $this->hasMany(
             'App\Models\TimelineElement',
@@ -168,18 +161,9 @@ class Timeline extends MiscModel
     /**
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'timeline_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int|null $value
-     */
-    public function setTimelineIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**

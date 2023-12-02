@@ -144,7 +144,7 @@ class CrudController extends Controller
         $parent = null;
         if (request()->has('parent_id')) {
             // @phpstan-ignore-next-line
-            $parentKey = $model->getParentIdName();
+            $parentKey = $model->getParentKeyName();
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
             $parent = $model->where('id', request()->get('parent_id'))->first();

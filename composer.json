@@ -43,6 +43,8 @@
         "sergej-kurakin/diceroller": "^2.0",
         "spatie/laravel-backup": "^8.0",
         "srmklive/paypal": "^3.0",
+        "staudenmeir/laravel-adjacency-list": "^1.0",
+        "staudenmeir/laravel-cte": "^1.0",
         "stechstudio/laravel-zipstream": "^4.13",
         "stevebauman/purify": "5.1.*",
         "symfony/http-client": "^6.2",

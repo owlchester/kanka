@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Ability
@@ -49,7 +50,7 @@ class Map extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -149,19 +150,11 @@ class Map extends MiscModel
      * Parent ID used for the Node Trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'map_id';
     }
 
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setMapIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
-    }
 
     /**
      * Performance with for datagrids

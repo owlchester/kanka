@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Collection;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Quest
@@ -35,7 +36,7 @@ class Quest extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -207,19 +208,10 @@ class Quest extends MiscModel
     }
 
     /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setQuestIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
-    }
-
-    /**
      * Parent ID field for the Node trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'quest_id';
     }

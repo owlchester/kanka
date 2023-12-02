@@ -12,6 +12,7 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Journal
@@ -35,7 +36,7 @@ class Journal extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -216,18 +217,9 @@ class Journal extends MiscModel
      * Parent ID field for the Node trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'journal_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setJournalIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**

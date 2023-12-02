@@ -129,7 +129,7 @@ class Item extends MiscModel
     }
 
 
-    public function getParentIdName(): string
+    public function getParentKeyName(): string
     {
         return 'item_id';
     }
