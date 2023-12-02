@@ -36,7 +36,7 @@ class RaceMapper extends MiscMapper
             // We need the nested trait to trigger for this so it's going to be inefficient
             $models = Race::whereIn('id', $children)->get();
             foreach ($models as $model) {
-                $model->setParentId($this->mapping[$parent]);
+                $model->race_id = $this->mapping[$parent];
                 $model->save();
             }
         }

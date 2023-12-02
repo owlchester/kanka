@@ -26,10 +26,10 @@ class TagMapper extends MiscMapper
             }
             // We need the nested trait to trigger for this so it's going to be inefficient
             $tags = Tag::whereIn('id', $children)->get();
-            /** @var Tag $tag */
-            foreach ($tags as $tag) {
-                $tag->setParentId($this->mapping[$parent]);
-                $tag->save();
+            /** @var Tag $model */
+            foreach ($tags as $model) {
+                $model->tag_id = $this->mapping[$parent];
+                $model->save();
             }
         }
         return $this;

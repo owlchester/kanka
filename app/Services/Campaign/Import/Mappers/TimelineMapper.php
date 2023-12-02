@@ -40,11 +40,11 @@ class TimelineMapper extends MiscMapper
                 continue;
             }
             // We need the nested trait to trigger for this so it's going to be inefficient
-            $timelines = Timeline::whereIn('id', $children)->get();
-            /** @var Timeline $timeline */
-            foreach ($timelines as $timeline) {
-                $timeline->setParentId($this->mapping[$parent]);
-                $timeline->save();
+            $models = Timeline::whereIn('id', $children)->get();
+            /** @var Timeline $model */
+            foreach ($models as $model) {
+                $model->timeline_id = $this->mapping[$parent];
+                $model->save();
             }
         }
 

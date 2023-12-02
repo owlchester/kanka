@@ -47,10 +47,10 @@ class MapMapper extends MiscMapper
             }
             // We need the nested trait to trigger for this so it's going to be inefficient
             $maps = Map::whereIn('id', $children)->get();
-            /** @var Map $map */
-            foreach ($maps as $map) {
-                $map->setParentId($this->mapping[$parent]);
-                $map->save();
+            /** @var Map $model */
+            foreach ($maps as $model) {
+                $model->map_id = $this->mapping[$parent];
+                $model->save();
             }
         }
 

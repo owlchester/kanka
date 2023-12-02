@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\SortableTrait;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,8 +25,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $position
  *
  * @property Timeline $timeline
- * @property TimelineElement[] $elements
- * @property TimelineElement[] $orderedElements
+ * @property TimelineElement[]|Collection $elements
+ * @property TimelineElement[]|Collection $orderedElements
  *
  * @method static self|Builder ordered()
  */

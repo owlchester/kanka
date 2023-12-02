@@ -60,7 +60,7 @@ class TransformService
         // Special import for location location_id
         if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && !empty($this->child->location_id)) {
             // @phpstan-ignore-next-line
-            $this->new->location_id = $this->child->getParentId();
+            $this->new->location_id = $this->child->{$this->child->getParentKeyName()};
         }
         if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && !empty($this->child->location_id)) {
             // @phpstan-ignore-next-line

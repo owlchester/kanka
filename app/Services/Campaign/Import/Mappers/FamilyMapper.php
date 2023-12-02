@@ -38,7 +38,7 @@ class FamilyMapper extends MiscMapper
             // We need the nested trait to trigger for this, so it's going to be inefficient
             $models = Family::whereIn('id', $children)->get();
             foreach ($models as $model) {
-                $model->setParentId($this->mapping[$parent]);
+                $model->family_id = $this->mapping[$parent];
                 $model->save();
             }
         }
