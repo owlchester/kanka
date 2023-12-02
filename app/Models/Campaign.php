@@ -24,6 +24,7 @@ use Illuminate\Support\Collection;
  *
  * @property int $id
  * @property string $name
+ * @property string $slug
  * @property string $locale
  * @property string $entry
  * @property string $image
