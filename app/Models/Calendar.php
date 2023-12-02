@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Calendar
@@ -40,6 +41,7 @@ class Calendar extends MiscModel
     use CalendarRelations;
     use CampaignTrait;
     use ExportableTrait;
+    use HasRecursiveRelationships;
     use HasFactory;
     use SoftDeletes;
 
