@@ -35,13 +35,9 @@ class CreateLocations extends Migration
 
             $table->boolean('is_map_private')->default(0);
 
-            $table->unsignedInteger('_lft')->default(0);
-            $table->unsignedInteger('_rgt')->default(0);
-
             // Index
             $table->index(['name', 'slug', 'type']);
             $table->index(['is_private']);
-            $table->index(['_lft', '_rgt', 'parent_location_id']);
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');

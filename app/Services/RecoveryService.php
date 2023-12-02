@@ -151,6 +151,7 @@ class RecoveryService
 
             // Clean up the parent and tree to avoid the nested plugin to delete every child
             $child->$parentField = null;
+
             $child->timestamps = false;
             $child->saveQuietly();
             $child->refresh();
