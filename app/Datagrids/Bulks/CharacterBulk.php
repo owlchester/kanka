@@ -17,6 +17,8 @@ class CharacterBulk extends Bulk
         'organisations',
         'tags',
         'private_choice',
+        'entity_image',
+        'entity_header',
     ];
 
     protected array $booleans = [

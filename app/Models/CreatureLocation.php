@@ -41,4 +41,9 @@ class CreatureLocation extends Pivot
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
+
+    public function exportFields(): array
+    {
+        return ['location_id'];
+    }
 }

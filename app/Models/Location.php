@@ -79,6 +79,10 @@ class Location extends MiscModel
         'location_id',
     ];
 
+    protected array $exportFields = [
+        'base',
+    ];
+
     /**
      * @return string
      */

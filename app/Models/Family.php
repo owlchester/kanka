@@ -66,7 +66,13 @@ class Family extends MiscModel
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-        'members',
+        'pivotMembers',
+    ];
+
+    protected array $exportFields = [
+        'base',
+        'family_id',
+        'location_id',
     ];
 
     /**
@@ -189,6 +195,11 @@ class Family extends MiscModel
     public function members()
     {
         return $this->belongsToMany('App\Models\Character', 'character_family');
+    }
+
+    public function pivotMembers()
+    {
+        return $this->hasMany(CharacterFamily::class);
     }
 
     /**

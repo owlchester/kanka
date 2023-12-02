@@ -67,9 +67,9 @@
                 <div class="modal-body text-center">
                     <x-alert type="error" id="campaign-imageupload-error" :hidden="true"></x-alert>
                     <x-alert type="error" id="campaign-imageupload-permission" :hidden="true">
-                        {!! __('campaigns/gallery.errors.permissions', [
-    'permission' => '<code>' . __('campaigns.roles.permissions.actions.gallery') . '</code>']
-    ) !!}
+                        <p>{!! __('campaigns/gallery.errors.permissions', [
+    'permission' => '<code>' . __('campaigns.roles.permissions.actions.gallery.upload') . '</code>']
+    ) !!}</p>
                     </x-alert>
                 </div>
             </div>

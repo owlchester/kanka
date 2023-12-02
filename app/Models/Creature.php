@@ -74,7 +74,7 @@ class Creature extends MiscModel
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-        'locations',
+        'pivotLocations',
     ];
 
     /**
@@ -222,6 +222,10 @@ class Creature extends MiscModel
     {
         return $this->belongsToMany('App\Models\Location', 'creature_location')
             ->with('entity');
+    }
+    public function pivotLocations()
+    {
+        return $this->hasMany('App\Models\CreatureLocation');
     }
 
     /**

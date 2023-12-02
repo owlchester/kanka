@@ -72,6 +72,11 @@ class Timeline extends MiscModel
         'elements',
     ];
 
+    protected array $exportFields = [
+        'base',
+        'calendar_id',
+    ];
+
     /**
      * Entity type
      */

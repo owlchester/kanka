@@ -269,4 +269,20 @@ class Relation extends Model
     {
         return false;
     }
+
+    public function exportFields(): array
+    {
+        return [
+            'id',
+            'owner_id',
+            'target_id',
+            'relation',
+            'visibility_id',
+            'mirror_id',
+            'attitude',
+            'is_pinned',
+            'colour',
+            'marketplace_uuid',
+        ];
+    }
 }

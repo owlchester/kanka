@@ -29,10 +29,9 @@ class NewSubscriptionMail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user, string $period = 'monthly', bool $new = true)
+    public function __construct(User $user, string $period = 'monthly')
     {
         $this->user = $user;
-        $this->new = $new;
         $this->period = $period;
     }
 
@@ -43,16 +42,15 @@ class NewSubscriptionMail extends Mailable
      */
     public function build()
     {
-        $action = $this->new ? 'New' : 'Changed';
+        $action = 'New';
         $lastCancel = $this->user->cancellations()->orderByDesc('id')->first();
-        // If new, check if user was previously subbed
-        if ($this->new) {
-            // Auto-cancelled subs due to credit card issues don't trigger a cancellation, so we need to check previous
-            // subs instead.
-            $cancelled = Subscription::where('user_id', $this->user->id)->canceled()->count();
-            if ($cancelled > 0) {
-                $action = 'Renewed';
-            }
+        // Check if user was previously subbed
+
+        // Auto-cancelled subs due to credit card issues don't trigger a cancellation, so we need to check previous
+        // subs instead.
+        $cancelled = Subscription::where('user_id', $this->user->id)->canceled()->count();
+        if ($cancelled > 0) {
+            $action = 'Renewed';
         }
 
         $subject = 'Subscription: ' . $action . ' ' . ucfirst($this->period) . ' ' . $this->user->pledge;
@@ -60,6 +58,6 @@ class NewSubscriptionMail extends Mailable
             ->from(['address' => config('app.email'), 'name' => 'Kanka Admin'])
             ->subject($subject)
             ->tag('admin-new')
-            ->view('emails.subscriptions.' . ($this->new ? 'new' : 'changed') . '.html', ["lastCancel" => $lastCancel]);
+            ->view('emails.subscriptions.new.html', ["lastCancel" => $lastCancel]);
     }
 }

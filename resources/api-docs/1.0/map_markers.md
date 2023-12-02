@@ -36,6 +36,7 @@ You can get a list of all the map-markers of a map by using the following endpoi
             "id": 31,
             "is_draggable": false,
             "is_private": false,
+            "is_popupless": false,
             "latitude": "422.857",
             "longitude": "499.000",
             "map_id": 2,
@@ -75,6 +76,7 @@ To create a map marker, use the following endpoint.
 | `icon` | `int` (Required) | `1` for Marker, `2` for Exclamation, `3` for Interrogation, `4` for Entity |
 | `group_id` | `int` | ID of the marker group |
 | `is_draggable` | `boolean` | If the marker is draggable on the map |
+| `is_popupless` | `boolean` | Disable the marker tooltip popping up on mouse hover |
 | `custom_shape` | `string` | Polygon coordinates |
 | `custom_icon` | `string` | HTML of the custom icon |
 | `size_id` | `int` | 1 to 6 for size (used by circles, 6 being custom) |

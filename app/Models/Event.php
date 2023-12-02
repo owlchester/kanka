@@ -74,6 +74,12 @@ class Event extends MiscModel
         'event_id',
     ];
 
+    protected array $exportFields = [
+        'base',
+        'date',
+        'location_id',
+    ];
+
     /**
      * Performance with for datagrids
      */

@@ -2,7 +2,8 @@
     <span>
     {!! Form::text($fieldname ?? 'font_colour', \App\Facades\FormCopy::field('font_colour')->string(), [
         'class' => 'spectrum',
-        'maxlength' => 6
+        'maxlength' => 6,
+        'data-append-to' => !isset($model) || empty($model) ? '#marker-modal' : null,
     ] ) !!}
     </span>
 </x-forms.field>

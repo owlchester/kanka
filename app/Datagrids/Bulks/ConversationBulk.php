@@ -8,5 +8,7 @@ class ConversationBulk extends Bulk
         'name',
         'tags',
         'private_choice',
+        'entity_image',
+        'entity_header',
     ];
 }

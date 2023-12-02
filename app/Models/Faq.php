@@ -48,8 +48,6 @@ class Faq extends Model
     /**
      * This call should be adapted in each entity model to add required "with()" statements to the query for performance
      * on the datagrids.
-     * @param Builder $query
-     * @return Builder
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -57,9 +55,6 @@ class Faq extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param bool $visible
-     * @return Builder
      */
     public function scopeVisible(Builder $query, bool $visible = true): Builder
     {
@@ -67,9 +62,6 @@ class Faq extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param string $locale
-     * @return Builder
      */
     public function scopeLocale(Builder $query, string $locale = 'en'): Builder
     {
@@ -77,9 +69,7 @@ class Faq extends Model
     }
 
     /**
-     * @param Builder $query
      * @param string $order
-     * @return Builder
      */
     public function scopeOrdered(Builder $query, $order = 'ASC'): Builder
     {
@@ -101,7 +91,6 @@ class Faq extends Model
     }
 
     /**
-     * @return mixed
      */
     public function localeTranslation()
     {
@@ -110,7 +99,6 @@ class Faq extends Model
     }
 
     /**
-     * @return string
      */
     public function slug(): string
     {
@@ -122,7 +110,6 @@ class Faq extends Model
 
     /**
      * Get the question
-     * @return string
      */
     public function question(): string
     {
@@ -134,7 +121,6 @@ class Faq extends Model
 
     /**
      * Get the answer
-     * @return string
      */
     public function answer(): string
     {
@@ -145,8 +131,6 @@ class Faq extends Model
     }
 
     /**
-     * @param string $locale
-     * @return string
      */
     public function translatedQuestion(string $locale): string
     {
@@ -159,8 +143,6 @@ class Faq extends Model
     }
 
     /**
-     * @param string $locale
-     * @return string
      */
     public function translatedAnswer(string $locale): string
     {

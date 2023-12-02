@@ -65,13 +65,12 @@ return [
         ],
 
         // For heavy jobs (no timeout) like map chunking
-        'heavy' => [
+        'import' => [
             'driver' => 'redis',
             'connection' => 'default',
-            'queue' => env('REDIS_HEAVY_QUEUE', 'heavy'),
+            'queue' => env('REDIS_IMPORT_QUEUE', 'import'),
             'retry_after' => 90,
         ],
-
     ],
 
     /*

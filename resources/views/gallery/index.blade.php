@@ -47,19 +47,26 @@ if ($folder) {
 
         <div class="flex items-center gap-2">
             <div class="grow">
+                @can('galleryUpload', $campaign)
                 <button class="btn2 btn-sm" data-toggle="dialog" data-target="new-folder" data-url="{{ route('campaign.gallery.folders.create', [$campaign, 'folder' => $folder ?? null]) }}">
                     <x-icon class="fa-solid fa-folder"></x-icon> {{ __('campaigns/gallery.uploader.new_folder') }}
                 </button>
+                @endauth
 
+                @can('galleryManage', $campaign)
                 @if(!empty($folder))
                     <button class="btn2 btn-sm" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('images.edit', [$campaign, $folder]) }}">
                         <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
                     </button>
                 @endif
+                @endcan
+
+                @can('galleryManage', $campaign)
                 <span data-tooltip data-title="{{ __('Use shift+click on images to bulk delete them.') }}">
                 <button class="btn2 btn-sm btn-error btn-disabled " id="bulk-delete" data-toggle="dialog"  data-target="bulk-destroy-dialog">
                     <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
                 </button></span>
+                @endcan
             </div>
 
             <div class="search">
@@ -67,6 +74,7 @@ if ($folder) {
             </div>
         </div>
 
+        @can('create', [\App\Models\Image::class, $campaign])
         <form id="gallery-form" method="post" action="{{ route('images.store', $campaign) }}" enctype="multipart/form-data" class="file-upload-form">
             {{ csrf_field() }}
             <div class="rounded uploader transition duration-150 text-center border-dotted border-2 p-4" id="uploader">
@@ -94,6 +102,7 @@ if ($folder) {
             </div>
             {!! Form::hidden('folder_id', $folder?->id) !!}
         </form>
+        @endcan
 
 
         <div class="gallery">

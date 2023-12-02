@@ -91,6 +91,13 @@ class Journal extends MiscModel
         'entity.calendarDate',
     ];
 
+    public array $exportFields = [
+        'base',
+        'author_id',
+        'location_id',
+        'date',
+    ];
+
     /**
      * Performance with for datagrids
      */

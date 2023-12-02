@@ -98,6 +98,13 @@ class Quest extends MiscModel
         'elements',
     ];
 
+    protected array $exportFields = [
+        'base',
+        'instigator_id',
+        'is_completed',
+        'date',
+    ];
+
     /**
      * Performance with for datagrids
      */
@@ -107,6 +114,7 @@ class Quest extends MiscModel
             'entity',
             'entity.image',
             'entity.calendarDateEvents',
+            'entity.calendarDate',
             'quests',
             'instigator',
             //'elements',

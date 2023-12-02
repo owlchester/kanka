@@ -47,7 +47,9 @@ class GalleryController extends Controller
                 'url' => route('campaign.gallery.summernote', $image->folder_id ? [$campaign, 'folder_id' => $image->folder_id] : [$campaign]),
             ];
         }
-        $images = Image::where('is_default', false)
+        $canBrowse = auth()->user()->can('browse', [Image::class, $campaign]);
+        $images = Image::acl($canBrowse)
+            ->where('is_default', false)
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
             ->imageFolder($folderId)
@@ -85,7 +87,7 @@ class GalleryController extends Controller
      */
     public function upload(GalleryImageStore $request, Campaign $campaign): JsonResponse
     {
-        $this->authorize('gallery', $campaign);
+        $this->authorize('create', [Image::class, $campaign]);
 
         $images = $this->service
             ->campaign($campaign)

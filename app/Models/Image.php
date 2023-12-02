@@ -50,6 +50,8 @@ use Illuminate\Support\Facades\Storage;
  *
  *
  * @property int $_usageCount
+ *
+ * @method static Builder|self acl(bool $browse)
  */
 class Image extends Model
 {
@@ -223,6 +225,14 @@ class Image extends Model
         return $query
             ->where('is_folder', true)
             ->orderBy('name', 'asc');
+    }
+
+    public function scopeAcl(Builder $query, bool $browse): Builder
+    {
+        if (!$browse) {
+            return $query->where('created_by', auth()->user()->id);
+        }
+        return $query;
     }
 
     /**

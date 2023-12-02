@@ -353,7 +353,7 @@ class Attribute extends Model
      */
     public function listRange(): array
     {
-        if (! is_array($this->listRange)) {
+        if (!is_array($this->listRange)) {
             return [];
         }
         return $this->listRange;
@@ -364,5 +364,19 @@ class Attribute extends Model
     public function listRangeText(): string
     {
         return implode(', ', $this->listRange);
+    }
+
+    public function exportFields(): array
+    {
+        return [
+            'id',
+            'type_id',
+            'name',
+            'value',
+            'is_private',
+            'default_order',
+            'is_pinned',
+            'is_hidden',
+        ];
     }
 }

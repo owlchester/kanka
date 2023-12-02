@@ -38,6 +38,10 @@ return [
         'troubleshooting'       => [
             'joined'    => 'The Kanka team-member :user joined the campaign :campaign.',
         ],
+        'import' => [
+            'success' => 'Campaign :campaign finished importing.',
+            'fail' => 'Campaign :campaign failed to import.',
+        ]
     ],
     'clear'             => [
         'action'    => 'Clear all',

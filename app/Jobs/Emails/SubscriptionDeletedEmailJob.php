@@ -2,7 +2,6 @@
 
 namespace App\Jobs\Emails;
 
-use App\Mail\Subscription\Admin\DeletedSubscriptionMail;
 use App\Notifications\Header;
 use App\User;
 use App\Models\UserLog;
@@ -12,7 +11,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class SubscriptionDeletedEmailJob implements ShouldQueue
 {
@@ -61,11 +59,6 @@ class SubscriptionDeletedEmailJob implements ShouldQueue
             'red'
         ));
 
-        // Send an email to the admins
-        Mail::to('hello@kanka.io')
-            ->send(
-                new DeletedSubscriptionMail($user)
-            );
         $user->log(UserLog::TYPE_SUB_CANCEL_AUTO);
     }
 }

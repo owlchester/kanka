@@ -209,7 +209,15 @@ $sizeOptions = [
             {{ Form::select('group_id', $map->groupOptions(), \App\Facades\FormCopy::field('group_id')->string(), ['class' => '', 'id' => 'group_id']) }}
         </x-forms.field>
 
+        <x-forms.field field="is_popupless" :label="__('maps/markers.fields.popupless')">
+            {!! Form::hidden('is_popupless', 0) !!}
+            <x-checkbox :text="__('maps/markers.helpers.is_popupless')">
+                {!! Form::checkbox('is_popupless', 1, FormCopy::field('is_popupless')->string()) !!}
+            </x-checkbox>
+        </x-forms.field>
+
         @include('cruds.fields.visibility_id')
+
     </x-grid>
 
     <x-grid :hidden="!$model && empty($source)">

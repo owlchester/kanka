@@ -28,9 +28,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $recurring_periodicity
  * @property int $type_id
  * @property int $elapsed
- * @property boolean $is_private
  *
  * @property Calendar|null $calendar
+ * @property EntityEvent|null $death
  * @property EntityEventType|null $type
  */
 class EntityEvent extends MiscModel
@@ -544,5 +544,30 @@ class EntityEvent extends MiscModel
             return $min - 1;
         }
         return $month--;
+    }
+
+    public function death()
+    {
+        return $this->hasOne(EntityEvent::class, 'entity_id', 'entity_id')->whereColumn('calendar_id', 'entity_events.calendar_id')->where('type_id', EntityEventType::DEATH);
+    }
+
+    public function exportFields(): array
+    {
+        return [
+            'id',
+            'calendar_id',
+            'length',
+            'comment',
+            'is_recurring',
+            'recurring_until',
+            'recurring_periodicity',
+            'colour',
+            'day',
+            'month',
+            'year',
+            'type_id',
+            'visibility_id',
+            'created_by',
+        ];
     }
 }

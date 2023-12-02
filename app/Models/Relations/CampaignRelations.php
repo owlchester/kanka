@@ -39,6 +39,7 @@ use App\Models\EntityUser;
 use App\Models\Tag;
 use App\Models\Theme;
 use App\Models\Timeline;
+use App\Models\CampaignImport;
 use App\User;
 use Illuminate\Support\Collection;
 
@@ -110,6 +111,14 @@ trait CampaignRelations
         return $this->hasMany('App\Models\CampaignUser');
     }
 
+    public function nonAdmins()
+    {
+        return $this
+            ->members()
+            ->withoutAdmins()
+            ->with(['user', 'user.campaignRoles'])
+        ;
+    }
     /**
      */
     public function roles()
@@ -357,6 +366,11 @@ trait CampaignRelations
     {
         return $this->campaignExports()
             ->whereIn('status', [CampaignExport::STATUS_SCHEDULED, CampaignExport::STATUS_RUNNING]);
+    }
+
+    public function campaignImports()
+    {
+        return $this->hasMany(CampaignImport::class);
     }
 
     public function styles()

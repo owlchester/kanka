@@ -12,6 +12,8 @@ class QuestBulk extends Bulk
         'completed_choice',
         'tags',
         'private_choice',
+        'entity_image',
+        'entity_header',
     ];
 
     protected array $booleans = [

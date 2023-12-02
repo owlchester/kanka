@@ -37,9 +37,6 @@ class FaqTranslation extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param string $locale
-     * @return Builder
      */
     public function scopeLocale(Builder $query, string $locale = 'en'): Builder
     {
@@ -47,9 +44,6 @@ class FaqTranslation extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param int $faq
-     * @return Builder
      */
     public function scopeFaqID(Builder $query, int $faq): Builder
     {

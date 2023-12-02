@@ -39,4 +39,11 @@ class EntityTag extends Model
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
+
+    public function exportFields(): array
+    {
+        return [
+            'tag_id',
+        ];
+    }
 }

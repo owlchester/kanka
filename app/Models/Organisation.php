@@ -77,6 +77,12 @@ class Organisation extends MiscModel
         'members',
     ];
 
+    protected array $exportFields = [
+        'base',
+        'location_id',
+        'is_defunct',
+    ];
+
     /**
      * Nullable values (foreign keys)
      * @var string[]

@@ -113,7 +113,7 @@ class Character extends MiscModel
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-        'characterTraits', 'families', 'races'
+        'characterTraits', 'characterFamilies', 'characterRaces', 'organisationMemberships'
     ];
 
     /**
@@ -220,6 +220,16 @@ class Character extends MiscModel
         return $this->belongsToMany('App\Models\Family')
             ->orderBy('character_family.id')
             ->with('entity');
+    }
+
+    public function characterFamilies()
+    {
+        return $this->hasMany(CharacterFamily::class, 'character_id');
+    }
+
+    public function characterRaces()
+    {
+        return $this->hasMany(CharacterRace::class, 'character_id');
     }
 
     /**

@@ -16,7 +16,7 @@ class EntityEventResource extends EntityChild
     {
         /** @var EntityEvent $model */
         $model = $this->resource;
-        return $this->entity([
+        return $this->onEntity([
             'calendar_id' => $model->calendar_id,
             'date' => $model->date(),
             'day' => $model->day,

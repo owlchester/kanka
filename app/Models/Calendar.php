@@ -32,6 +32,7 @@ use Illuminate\Support\Str;
  * @property int $calendar_id
  * @property array $parameters
  * @property bool $skip_year_zero
+ * @property bool $show_birthdays
  */
 class Calendar extends MiscModel
 {
@@ -66,6 +67,7 @@ class Calendar extends MiscModel
         'reset',
         'is_incrementing',
         'format',
+        'show_birthdays',
 
         // Leap year
         'has_leap_year',
@@ -80,6 +82,10 @@ class Calendar extends MiscModel
     /** @var array<string, string> */
     public $casts = [
         'parameters' => 'array'
+    ];
+
+    protected array $foreignExport = [
+        'calendarWeather',
     ];
 
     protected array $loadedMonths;
