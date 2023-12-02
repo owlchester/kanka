@@ -163,22 +163,7 @@ class AvatarService
 
     protected function childThumbnailPath(): string|null
     {
-        if ($this->withCache) {
-            return $this->cachedChildThumbnailPath();
-        }
         return $this->entity->image_path;
-    }
-
-    protected function cachedChildThumbnailPath(): string|null
-    {
-        $cached = Cache::get($this->cacheKey());
-        if (!empty($cached)) {
-            return $cached;
-        }
-
-        $cached = $this->entity->image_path;
-        Cache::put($this->cacheKey(), $cached, 3600 * 24);
-        return $cached;
     }
 
     public function forget(): void
