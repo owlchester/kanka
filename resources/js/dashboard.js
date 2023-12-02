@@ -129,15 +129,15 @@ const initDashboardCalendars = () => {
             method: 'POST',
             context: this
         }).done(function(data) {
-            if (data) {
-                // Redirect page
-                let widget = $(this).data('widget');
-                $('#widget-loading-' + widget).hide();
-                $('#widget-body-' + widget).html(data).show();
-                /*$('[data-toggle="tooltip"]').tooltip();*/
-                window.ajaxTooltip();
-                initDashboardCalendars();
+            if (!data) {
+                return;
             }
+            // Redirect page
+            let widget = $(this).data('widget');
+            $('#widget-loading-' + widget).hide();
+            $('#widget-body-' + widget).html(data).show();
+            $(document).trigger('shown.bs.modal');
+            initDashboardCalendars();
         });
     });
 };
@@ -204,8 +204,7 @@ function renderWidget(widget) {
         $('#widget-loading-' + id).hide();
         $('#widget-body-' + id).html(res).show();
 
-        /*$('[data-toggle="tooltip"]').tooltip();*/
-        window.ajaxTooltip();
+        $(document).trigger('shown.bs.modal');
         initDashboardCalendars();
     });
 }

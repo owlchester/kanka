@@ -13,6 +13,9 @@ return new class () extends Migration {
         if (!config('logging.enabled')) {
             return;
         }
+        if (Schema::connection('logs')->hasTable('api_logs')) {
+            return;
+        }
         Schema::connection('logs')->create('api_logs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
