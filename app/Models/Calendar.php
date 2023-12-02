@@ -41,8 +41,8 @@ class Calendar extends MiscModel
     use CalendarRelations;
     use CampaignTrait;
     use ExportableTrait;
-    use HasRecursiveRelationships;
     use HasFactory;
+    use HasRecursiveRelationships;
     use SoftDeletes;
 
     /** @var string[]  */
