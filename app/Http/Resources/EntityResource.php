@@ -205,7 +205,7 @@ class EntityResource extends JsonResource
 
             if ($misc->ancestors) {
                 $ancestors = [];
-                foreach ($misc->getAncestors(['id']) as $ancestor) {
+                foreach ($misc->ancestors as $ancestor) {
                     $ancestors[] = $ancestor->id;
                 }
                 $merged['parents'] = $ancestors;

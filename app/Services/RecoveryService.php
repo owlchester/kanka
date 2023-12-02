@@ -127,8 +127,8 @@ class RecoveryService
         \App\Facades\CampaignLocalization::setConsoleCampaign($entity->campaign_id);
 
         // Update the parent_id / tree before
-        if (method_exists($child, 'getParentIdName')) {
-            $parentField = $child->getParentIdName();
+        if (method_exists($child, 'getParentKeyName')) {
+            $parentField = $child->getParentKeyName();
 
             // Detach children of this entity. Usually this is already done in the model observer, because
             // if the parent is deleted in a node, the children aren't available.
@@ -168,7 +168,6 @@ class RecoveryService
         }
 
         $child->forceDelete();
-
 
         // Unset the campaign id limitation again
         \App\Facades\CampaignLocalization::setConsoleCampaign(0);

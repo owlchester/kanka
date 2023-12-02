@@ -33,7 +33,6 @@ class InstallCommand extends Command
                 return;
             }
         } catch (Exception) {
-            //
         }
         $this->call('key:generate');
         $this->call('migrate');

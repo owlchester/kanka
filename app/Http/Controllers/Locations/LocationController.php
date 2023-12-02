@@ -34,7 +34,7 @@ class LocationController extends Controller
         // @phpstan-ignore-next-line
         $this->rows = $location
             ->descendants()
-            ->select(['id', 'image', 'name', 'type', 'location_id', 'is_private'])
+            ->select(['id', 'name', 'type', 'location_id', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with([

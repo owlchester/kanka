@@ -495,15 +495,4 @@ trait EntityMapper
         }
         return $this;
     }
-
-    public function fixTree(): self
-    {
-        $base = app()->make($this->className);
-        if (!method_exists($base, 'recalculateTreeBounds')) {
-            return $this;
-        }
-        // @phpstan-ignore-next-line
-        $base->fixCampaignTree($this->campaign->id);
-        return $this;
-    }
 }

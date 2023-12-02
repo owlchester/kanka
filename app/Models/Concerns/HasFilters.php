@@ -650,6 +650,6 @@ trait HasFilters
 
     protected function filterParent(Builder $query): void
     {
-        $query->where($this->getTable() . '.' . $this->getParentIdName(), $this->filterValue);
+        $query->where($this->getTable() . '.' . $this->getParentKeyName(), $this->filterValue);
     }
 }

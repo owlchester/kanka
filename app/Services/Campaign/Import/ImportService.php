@@ -265,7 +265,7 @@ class ImportService
                 unset($data);
             }
             $this->logs[] = $count;
-            $mapper->tree()->fixTree()->clear();
+            $mapper->tree()->clear();
         }
 
         // Second parse

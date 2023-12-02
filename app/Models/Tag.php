@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
@@ -14,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Tag
@@ -36,7 +36,7 @@ class Tag extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
     use TagScopes;
@@ -111,27 +111,10 @@ class Tag extends MiscModel
     {
         return $this->hasMany('App\Models\Tag', 'tag_id', 'id');
     }
-    public function children()
-    {
-        return $this->tags();
-    }
 
-    /**
-     * @return string
-     */
-    public function getParentIdName()
+    public function getParentKeyName(): string
     {
         return 'tag_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     * @throws \Exception
-     */
-    public function setTagIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**
@@ -154,9 +137,7 @@ class Tag extends MiscModel
             'tags' => function ($sub) {
                 $sub->select('id', 'tag_id', 'name');
             },
-            'descendants' => function ($sub) {
-                $sub->select('id', 'tag_id');
-            },
+            'descendants',
             'descendants.entities' => function ($sub) {
                 $sub->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.type_id');
             },

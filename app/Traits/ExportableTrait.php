@@ -47,8 +47,8 @@ trait ExportableTrait
                 $this->exportData[$baseField] = $this->$baseField;
             }
         }
-        if (method_exists($this, 'getParentIdName')) {
-            $this->exportData[$this->getParentIdName()] = $this->getAttribute($this->getParentIdName());
+        if (method_exists($this, 'getParentKeyName')) {
+            $this->exportData[$this->getParentKeyName()] = $this->getAttribute($this->getParentKeyName());
         }
 
         return $this;

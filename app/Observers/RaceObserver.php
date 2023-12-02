@@ -33,7 +33,5 @@ class RaceObserver extends MiscObserver
             $sub->race_id = null;
             $sub->saveQuietly();
         }
-
-        $this->cleanupTree($race, 'race_id');
     }
 }

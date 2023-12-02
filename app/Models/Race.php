@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Enums\FilterOption;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -13,6 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Race
@@ -32,7 +32,7 @@ class Race extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -80,20 +80,9 @@ class Race extends MiscModel
     /**
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'race_id';
-    }
-
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     * @throws \Exception
-     */
-    public function setRaceIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**
@@ -108,6 +97,8 @@ class Race extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
+            'race',
+            'race.entity',
             'races' => function ($sub) {
                 $sub->select('id', 'name', 'race_id');
             },
