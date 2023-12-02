@@ -29,7 +29,7 @@ class LocationMapper extends MiscMapper
             /** @var Location $model */
             foreach ($locations as $model) {
                 $model->location_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

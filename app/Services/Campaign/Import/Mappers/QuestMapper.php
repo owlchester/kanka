@@ -42,7 +42,7 @@ class QuestMapper extends MiscMapper
             /** @var Quest $model */
             foreach ($quests as $model) {
                 $model->quest_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

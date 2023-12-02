@@ -62,12 +62,16 @@ trait ExportableTrait
         return $this;
     }
 
-    protected function foreignExportData(): self
+    public function exportRelations(): array
     {
         if (!property_exists($this, 'foreignExport')) {
-            return $this;
+            return [];
         }
-        foreach ($this->foreignExport as $foreign) {
+        return $this->foreignExport;
+    }
+    protected function foreignExportData(): self
+    {
+        foreach ($this->exportRelations() as $foreign) {
             $this->exportData[$foreign] = [];
             foreach ($this->$foreign as $model) {
                 try {

@@ -39,7 +39,7 @@ class FamilyMapper extends MiscMapper
             $models = Family::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->family_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

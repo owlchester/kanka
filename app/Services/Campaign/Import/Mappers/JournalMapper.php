@@ -38,7 +38,7 @@ class JournalMapper extends MiscMapper
             $models = Journal::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->journal_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

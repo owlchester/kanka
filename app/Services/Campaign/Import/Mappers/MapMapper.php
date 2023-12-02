@@ -50,7 +50,7 @@ class MapMapper extends MiscMapper
             /** @var Map $model */
             foreach ($maps as $model) {
                 $model->map_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

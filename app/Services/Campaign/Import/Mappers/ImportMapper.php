@@ -27,6 +27,5 @@ trait ImportMapper
     public function clear(): void
     {
         unset($this->path, $this->data);
-
     }
 }

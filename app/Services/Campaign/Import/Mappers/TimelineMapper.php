@@ -44,7 +44,7 @@ class TimelineMapper extends MiscMapper
             /** @var Timeline $model */
             foreach ($models as $model) {
                 $model->timeline_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

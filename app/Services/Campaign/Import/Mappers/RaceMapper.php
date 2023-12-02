@@ -37,7 +37,7 @@ class RaceMapper extends MiscMapper
             $models = Race::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->race_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

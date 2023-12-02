@@ -28,7 +28,7 @@ class AbilityMapper extends MiscMapper
             $models = Ability::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->ability_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

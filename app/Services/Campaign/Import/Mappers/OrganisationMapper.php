@@ -37,7 +37,7 @@ class OrganisationMapper extends MiscMapper
             $models = Organisation::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->organisation_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

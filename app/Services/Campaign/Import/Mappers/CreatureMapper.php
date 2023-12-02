@@ -37,7 +37,7 @@ class CreatureMapper extends MiscMapper
             $models = Creature::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->creature_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

@@ -28,7 +28,7 @@ class NoteMapper extends MiscMapper
             $models = Note::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->note_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

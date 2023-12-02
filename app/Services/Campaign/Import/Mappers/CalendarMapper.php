@@ -37,7 +37,7 @@ class CalendarMapper extends MiscMapper
             $models = Calendar::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->calendar_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

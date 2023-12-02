@@ -29,7 +29,7 @@ class TagMapper extends MiscMapper
             /** @var Tag $model */
             foreach ($tags as $model) {
                 $model->tag_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
         return $this;

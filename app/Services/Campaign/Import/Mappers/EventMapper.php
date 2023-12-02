@@ -37,7 +37,7 @@ class EventMapper extends MiscMapper
             $models = Event::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->event_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 
