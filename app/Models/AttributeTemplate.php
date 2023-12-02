@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
 use App\Services\Attributes\RandomService;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;

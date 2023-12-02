@@ -6,7 +6,6 @@ use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Mentions;
 use App\Models\Entity;
-use App\Models\Location;
 use App\Models\MiscModel;
 use App\Observers\Concerns\Copiable;
 use App\Services\Entity\LogService;
