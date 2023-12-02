@@ -27,9 +27,6 @@ class CreateEvents extends Migration
             $table->unsignedInteger('event_id')->nullable();
 
             $table->longText('entry')->nullable();
-
-            $table->unsignedInteger('_lft')->default(0);
-            $table->unsignedInteger('_rgt')->default(0);
             $table->timestamps();
 
             // Foreign
@@ -38,7 +35,6 @@ class CreateEvents extends Migration
 
             // Index
             $table->index(['name', 'slug', 'type', 'date', 'is_private']);
-            $table->index(['_lft', '_rgt']);
         });
     }
 

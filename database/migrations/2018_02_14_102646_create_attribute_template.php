@@ -23,9 +23,6 @@ class CreateAttributeTemplate extends Migration
             $table->string('name')->notNull();
             $table->boolean('is_private')->default(false)->notNull();
 
-            $table->unsignedInteger('_lft')->default(0);
-            $table->unsignedInteger('_rgt')->default(0);
-
             $table->timestamps();
 
             // Foreign
@@ -34,7 +31,6 @@ class CreateAttributeTemplate extends Migration
 
             // Indexes
             $table->index(['name', 'is_private']);
-            $table->index(['_lft', '_rgt', 'attribute_template_id']);
         });
     }
 
