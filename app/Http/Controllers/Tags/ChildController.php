@@ -79,7 +79,7 @@ class ChildController extends Controller
             $redirectUrlOptions['tag_id'] = $tag->id;
         }
 
-        $count = $tag->attachEntity($request->only('entities'));
+        $count = $tag->attachEntities($request->only('entities'));
         return redirect()->route('entities.show', $redirectUrlOptions)
             ->with('success', trans_choice('tags.children.create.attach_success', $count, ['name' => $tag->name, 'count' => $count]));
     }

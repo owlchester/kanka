@@ -294,7 +294,7 @@ class Tag extends MiscModel
     /**
      * Attach entities to the tag
      */
-    public function attachEntity(array $request): int
+    public function attachEntities(array $request): int
     {
         $entityIds = Arr::get($request, 'entities');
         $entities = Entity::with('tags')->findOrFail($entityIds);

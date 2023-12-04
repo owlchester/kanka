@@ -10,7 +10,10 @@
         <div class="join w-full">
     @endif
 
-    <select name="{{ $name }}" id="{{ $id }}"
+    <select 
+            multiple="$multiple"
+            name="{{ $name }}" 
+            id="{{ $id }}"
             class="w-full select2 join-item"
             style="width: 100%"
             data-url="{{ $route }}"
@@ -19,9 +22,14 @@
             data-language="{{ LaravelLocalization::getCurrentLocale() }}"
             data-allow-clear="{{ $allowClear ? 'true' : 'false' }}"
             @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
+            :dropdownParent="request()->ajax() ? '#primary-dialog' : null"
     >
         @foreach ($options as $key => $value)
-            <option value="{{ $key }}">{!! $value !!}</option>
+            @if ($multiple)
+                <option value="{{ $key }}">{!! $value !!}</option>
+            @else
+                <option value="{{ $key }}" class="select2-entity" selected="selected">{{ $entity->name }}</option>
+            @endif
         @endforeach
     </select>
 
