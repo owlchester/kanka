@@ -9,7 +9,6 @@
         multiple="multiple"
         name="entities[]"
         id="entities[]"
-        :options="['exclude-entity' => $model->entity->id, 'route' => 'search.ability-entities']" 
         :campaign="$campaign"
         :route="route('search.ability-entities', [$campaign])"
     >
