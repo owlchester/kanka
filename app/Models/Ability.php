@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\Mentions;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -34,6 +35,7 @@ class Ability extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
+    use HasFilters;
     use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;

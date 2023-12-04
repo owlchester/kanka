@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -28,11 +29,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Item extends MiscModel
 {
-    use Acl
-    ;
+    use Acl    ;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
+    use HasFilters;
     use SoftDeletes;
     use SortableTrait;
 

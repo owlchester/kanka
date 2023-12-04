@@ -53,6 +53,7 @@
 
 - ## Other Concepts
     - [Last Sync](/api-docs/{{version}}/last-sync)
+    - [Filters](/api-docs/{{version}}/filters)
     - [Pagination](/api-docs/{{version}}/pagination)
     - [Bookmarks](/api-docs/{{version}}/bookmark)
     - [Dashboard Widgets](/api-docs/{{version}}/dashboard-widgets)

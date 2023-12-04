@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
@@ -35,6 +36,7 @@ class Quest extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
+    use HasFilters;
     use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;

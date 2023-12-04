@@ -38,7 +38,8 @@ use Illuminate\Support\Str;
  * @property boolean $is_active
  * @property array $optionsAllowedKeys
  *
- * @method self ordered()
+ * @method static self|Builder ordered()
+ * @method static self|Builder active()
  */
 class Bookmark extends MiscModel
 {
