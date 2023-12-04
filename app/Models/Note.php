@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasFilters;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,6 +26,7 @@ class Note extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
+    use HasFilters;
     use HasRecursiveRelationships;
     use SoftDeletes;
 

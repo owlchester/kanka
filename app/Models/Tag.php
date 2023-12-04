@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
@@ -36,6 +37,7 @@ class Tag extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
+    use HasFilters;
     use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;

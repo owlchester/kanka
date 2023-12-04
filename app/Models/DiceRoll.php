@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasFilters;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,6 +19,7 @@ class DiceRoll extends MiscModel
     use Acl;
     use CampaignTrait;
     use HasFactory;
+    use HasFilters;
     use SoftDeletes;
 
     /** @var string[]  */

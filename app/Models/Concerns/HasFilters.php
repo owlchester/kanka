@@ -20,19 +20,6 @@ use App\Models\Race;
  */
 trait HasFilters
 {
-    /**
-     * Explicit fields for filtering.
-     * Ex. ['sex']
-     * @var array
-     */
-    protected $explicitFilters = [];
-
-    /**
-     * @var bool If the entity table was already joined or not
-     */
-    protected $joinedEntity = false;
-
-    protected string $key;
     protected string|array|null $filterValue;
 
     /** @var string|null Some filters have a fellow _option field that can define more in detail what is needed */
@@ -110,7 +97,7 @@ trait HasFilters
                 }
 
                 // Explicit filters (numbers typically, foreign ids)
-                if (in_array($key, $this->explicitFilters)) {
+                if (in_array($key, $this->explicitFilters())) {
                     if ($this->filterOperator == 'IS NULL') {
                         $query->whereNull($this->getTable() . '.' . $key);
                     } else {
@@ -202,31 +189,6 @@ trait HasFilters
         $this->filterOperator = $operator;
         $this->filterValue = $filterValue;
     }
-
-    /**
-     * Add a left join on the entity to the query. Only do this once
-     * @return Builder
-     */
-    /*protected function joinEntity(Builder $query): Builder
-    {
-        if ($this->joinedEntity) {
-            return $query;
-        }
-
-        $this->joinedEntity = true;
-
-        // @phpstan-ignore-next-line
-        return $query
-            ->distinct()
-            ->leftJoin('entities as e', function ($join) {
-                $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                // @phpstan-ignore-next-line
-                $join->where('e.type_id', '=', $this->entityTypeID())
-                    ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
-            })
-            ->groupBy($this->getTable() . '.id')
-        ;
-    }*/
 
     /**
      * Add a query on a foreign relationship of the model
@@ -651,5 +613,13 @@ trait HasFilters
     protected function filterParent(Builder $query): void
     {
         $query->where($this->getTable() . '.' . $this->getParentKeyName(), $this->filterValue);
+    }
+
+    protected function explicitFilters(): array
+    {
+        if (property_exists($this, 'explicitFilters')) {
+            return $this->explicitFilters;
+        }
+        return [];
     }
 }

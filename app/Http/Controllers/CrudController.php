@@ -118,9 +118,12 @@ class CrudController extends Controller
         $model = new $this->model();
         $campaign = $this->campaign;
         $this->filterService
-            ->request($request)
-            ->model($model)
-            ->make($this->view);
+            ->request($request);
+        if (method_exists($model, 'explicitFilters')) {
+            $this->filterService
+                ->model($model)
+                ->make($this->view);
+        }
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
         /** @var DatagridFilter|null $filter */

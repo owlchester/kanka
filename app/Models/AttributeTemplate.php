@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasFilters;
 use App\Services\Attributes\RandomService;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,6 +24,7 @@ class AttributeTemplate extends MiscModel
 {
     use Acl;
     use CampaignTrait;
+    use HasFilters;
     use HasRecursiveRelationships;
     use SoftDeletes;
 

@@ -42,7 +42,7 @@ class EntityType extends Model
     /**
      * Get the class model of the entity type
      */
-    public function getClass()
+    public function getClass(): MiscModel
     {
         $className = 'App\Models\\' . Str::studly($this->code);
         return app()->make($className);
