@@ -10,7 +10,7 @@
         name="entities[]"
         id="entities[]"
         :campaign="$campaign"
-        :route="route('search.ability-entities', [$campaign])"
+        :route="route('search.ability-entities', [$campaign, 'exclude-entity' => $model->entity->id])"
     >
     </x-forms.foreign>
 
