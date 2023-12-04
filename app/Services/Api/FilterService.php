@@ -15,7 +15,7 @@ class FilterService
         $types = EntityType::get();
         foreach ($types as $type) {
             $endpoints[] = [
-                'type' => $type->code,
+                'code' => $type->code,
                 'url' => url('/filters/' . $type->id)
             ];
         }

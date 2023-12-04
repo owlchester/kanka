@@ -21,10 +21,10 @@ class FilterApiController extends Controller
     }
     public function show(EntityType $entityType)
     {
-        return response()->json(
-            $this->filterService
+        return response()->json([
+            'data' => $this->filterService
                 ->entityType($entityType)
                 ->filters()
-        );
+        ]);
     }
 }
