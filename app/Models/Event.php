@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -12,6 +12,7 @@ use App\Traits\CalendarDateTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Event
@@ -27,13 +28,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Event extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CalendarDateTrait;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -56,6 +57,8 @@ class Event extends MiscModel
         'type',
         'event.name',
     ];
+
+    protected string $entityType = 'event';
 
     /**
      * Fields that can be sorted on
@@ -104,9 +107,7 @@ class Event extends MiscModel
             'event.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'descendants' => function ($sub) {
-                $sub->select('id', 'name', 'event_id');
-            },
+            'descendants',
             'events' => function ($sub) {
                 $sub->select('id', 'name', 'event_id');
             },
@@ -123,19 +124,6 @@ class Event extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['location_id', 'event_id', 'date'];
-    }
-
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'event';
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function campaign()
-    {
-        return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
 
     /**
@@ -170,21 +158,9 @@ class Event extends MiscModel
         return (int) config('entities.ids.event');
     }
 
-    /**
-     * @return string
-     */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'event_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setEventIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**

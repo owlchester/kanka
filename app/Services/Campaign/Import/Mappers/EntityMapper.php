@@ -55,7 +55,7 @@ trait EntityMapper
     {
         $builder = app()->make($this->className);
         $id = ImportIdMapper::get($this->mappingName, $this->data['id']);
-        $this->model = $builder->where('id', $id)->firstOrFail();
+        $this->model = $builder->where('id', $id)->with('entity')->firstOrFail();
         return $this;
     }
 
@@ -323,6 +323,9 @@ trait EntityMapper
         if ($model === 'entities') {
             $foreignID = ImportIdMapper::getEntity($this->data[$field]);
         } else {
+            if (!ImportIdMapper::has($model, $this->data[$field])) {
+                return $this;
+            }
             $foreignID = ImportIdMapper::get($model, $this->data[$field]);
         }
         if (!$foreignID) {
@@ -335,10 +338,10 @@ trait EntityMapper
     protected function pivot(string $relation, string $model, string $field): self
     {
         foreach ($this->data[$relation] as $pivot) {
-            $foreignID = ImportIdMapper::get($model, $pivot[$field]);
-            if (!$foreignID) {
+            if (!ImportIdMapper::has($model, $pivot[$field])) {
                 continue;
             }
+            $foreignID = ImportIdMapper::get($model, $pivot[$field]);
             $this->model->{$model}()->attach($foreignID);
         }
         return $this;
@@ -362,11 +365,10 @@ trait EntityMapper
             'relation', 'visibility_id', 'attitude', 'is_pinned', 'colour', 'marketplace_uuid'
         ];
         foreach ($this->data['entity']['relationships'] as $data) {
-            $targetID = ImportIdMapper::getEntity($data['target_id']);
-            if (empty($targetID)) {
+            if (!ImportIdMapper::hasEntity( $data['target_id'])) {
                 continue;
             }
-
+            $targetID = ImportIdMapper::getEntity($data['target_id']);
             $rel = new Relation();
             $rel->owner_id = $this->entity->id;
             $rel->target_id = $targetID;
@@ -400,6 +402,9 @@ trait EntityMapper
             'visibility_id',
         ];
         foreach ($this->data['entity']['events'] as $data) {
+            if (!ImportIdMapper::has('calendars', $data['calendar_id'])) {
+                continue;
+            }
             $rem = new EntityEvent();
             $rem->entity_id = $this->entity->id;
             $rem->calendar_id = ImportIdMapper::get('calendars', $data['calendar_id']);
@@ -421,6 +426,9 @@ trait EntityMapper
             'visibility_id', 'charges', 'position', 'note'
         ];
         foreach ($this->data['entity']['abilities'] as $data) {
+            if (!ImportIdMapper::has('abilities', $data['ability_id'])) {
+                continue;
+            }
             $abilityID = ImportIdMapper::get('abilities', $data['ability_id']);
             if (empty($abilityID)) {
                 continue;
@@ -457,6 +465,9 @@ trait EntityMapper
             $inv = new Inventory();
             $inv->entity_id = $this->entity->id;
             if (!empty($data['item_id'])) {
+                if (!ImportIdMapper::has('items', $data['item_id'])) {
+                    continue;
+                }
                 $itemID = ImportIdMapper::get('items', $data['item_id']);
                 if (empty($itemID)) {
                     continue;
@@ -493,17 +504,6 @@ trait EntityMapper
             }
             $men->save();
         }
-        return $this;
-    }
-
-    public function fixTree(): self
-    {
-        $base = app()->make($this->className);
-        if (!method_exists($base, 'recalculateTreeBounds')) {
-            return $this;
-        }
-        // @phpstan-ignore-next-line
-        $base->fixCampaignTree($this->campaign->id);
         return $this;
     }
 }

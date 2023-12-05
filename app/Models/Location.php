@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\HasFilters;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Location
@@ -39,7 +40,8 @@ class Location extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -83,10 +85,7 @@ class Location extends MiscModel
         'base',
     ];
 
-    /**
-     * @return string
-     */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'location_id';
     }
@@ -265,15 +264,6 @@ class Location extends MiscModel
         };
 
         return Organisation::whereIn('location_id', $locationIds)->with('location');
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setLocationIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**

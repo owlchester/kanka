@@ -47,8 +47,8 @@ trait ExportableTrait
                 $this->exportData[$baseField] = $this->$baseField;
             }
         }
-        if (method_exists($this, 'getParentIdName')) {
-            $this->exportData[$this->getParentIdName()] = $this->getAttribute($this->getParentIdName());
+        if (method_exists($this, 'getParentKeyName')) {
+            $this->exportData[$this->getParentKeyName()] = $this->getAttribute($this->getParentKeyName());
         }
 
         return $this;
@@ -62,12 +62,16 @@ trait ExportableTrait
         return $this;
     }
 
-    protected function foreignExportData(): self
+    public function exportRelations(): array
     {
         if (!property_exists($this, 'foreignExport')) {
-            return $this;
+            return [];
         }
-        foreach ($this->foreignExport as $foreign) {
+        return $this->foreignExport;
+    }
+    protected function foreignExportData(): self
+    {
+        foreach ($this->exportRelations() as $foreign) {
             $this->exportData[$foreign] = [];
             foreach ($this->$foreign as $model) {
                 try {

@@ -19,7 +19,7 @@
     @if ($campaign->boosted())
         @if($campaign->superboosted() && empty($entity->image_path) && !empty($entity->image_uuid))
             <x-alert type="warning">
-                {!! __('entities/image.focus.warning_v2', ['gallery' => link_to_route('campaign.gallery.index', __('sidebar.gallery'), $campaign)]) !!}
+                <p>{!! __('entities/image.focus.warning_v2', ['gallery' => link_to_route('campaign.gallery.index', __('sidebar.gallery'), $campaign)]) !!}</p>
             </x-alert>
             <p>
                 <a href="{{ $model->getLink() }}">
@@ -57,9 +57,11 @@
 
     @else
         <x-alert type="warning">
+            <p>
             {!! __('entities/image.focus.unboosted', [
     'boosted-campaigns' => link_to('https://' . config('domains.front') . '/pricing', __('concept.premium-campaigns'), ['#premium'])
 ]) !!}
+            </p>
         </x-alert>
         <a href="{{ $model->getLink() }}">
             <x-icon class="fa-regular fa-arrow-left"></x-icon>

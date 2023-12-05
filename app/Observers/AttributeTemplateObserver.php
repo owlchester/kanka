@@ -20,7 +20,5 @@ class AttributeTemplateObserver extends MiscObserver
             $sub->attribute_template_id = null;
             $sub->saveQuietly();
         }
-
-        $this->cleanupTree($attributeTemplate, 'attribute_template_id');
     }
 }

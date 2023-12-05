@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Family;
 use App\Models\MiscModel;
 use Exception;
 use Illuminate\Support\Str;
@@ -29,6 +30,7 @@ class HelperController
             if (!$misc instanceof MiscModel) {
                 abort(404);
             }
+            // @phpstan-ignore-next-line
             $filters = $misc->getFilterableColumns();
 
             return view('helpers.api-filters', compact(

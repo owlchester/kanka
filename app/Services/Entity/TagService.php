@@ -46,7 +46,6 @@ class TagService
         $tag->campaign_id = $campaignID;
         $tag->slug = Str::slug($tag->name, '');
         $tag->is_private = false;
-        $tag->recalculateTreeBounds();
         $tag->saveQuietly();
         $tag->createEntity();
 

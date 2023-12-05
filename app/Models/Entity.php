@@ -462,6 +462,12 @@ class Entity extends Model
         ];
         foreach ($relations as $relation) {
             foreach ($this->$relation as $model) {
+                if ($relation === 'abilities' && empty($model->ability)) {
+                    continue;
+                }
+                if ($relation === 'inventories' && empty($model->item)) {
+                    continue;
+                }
                 if (method_exists($model, 'exportFields')) {
                     $export = [];
                     foreach ($model->exportFields() as $field) {

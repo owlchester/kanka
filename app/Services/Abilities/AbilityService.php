@@ -90,7 +90,7 @@ class AbilityService extends BaseAbilityService
                 'name' => $parent->name,
                 'type' => $parent->type,
                 'image' => Avatar::entity($parent->entity)->size(120)->thumbnail(),
-                'has_image' => !empty($parent->entity->image_path) && !empty($parent->entity->image),
+                'has_image' => !empty($parent->entity->image_path) || !empty($parent->entity->image),
                 'entry' => $parent->entry(),
                 'parent' => true,
                 'abilities' => [],

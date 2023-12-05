@@ -93,7 +93,6 @@ Route::get('campaigns/{campaign}/calendars/{calendar}/reminders', [\App\Http\Con
 Route::post('campaigns/{campaign}/calendars/{calendar}/advance', [\App\Http\Controllers\Api\v1\Calendars\AdvancerApiController::class, 'advance']);
 Route::post('campaigns/{campaign}/calendars/{calendar}/retreat', [\App\Http\Controllers\Api\v1\Calendars\AdvancerApiController::class, 'retreat']);
 
-Route::get('entity-types', [\App\Http\Controllers\Api\v1\EntityTypeApiController::class, 'index']);
 Route::get('visibilities', [\App\Http\Controllers\Api\v1\VisibilityController::class, 'index']);
 Route::get('post-layouts', [\App\Http\Controllers\Api\v1\PostLayoutApiController::class, 'index']);
 
@@ -112,3 +111,7 @@ Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class,
 Route::get('version', function () {
     return config('app.version');
 });
+
+Route::get('entity-types', [\App\Http\Controllers\Api\v1\EntityTypeApiController::class, 'index']);
+Route::get('filters', [\App\Http\Controllers\Api\v1\FilterApiController::class, 'index']);
+Route::get('filters/{entityType}', [\App\Http\Controllers\Api\v1\FilterApiController::class, 'show']);

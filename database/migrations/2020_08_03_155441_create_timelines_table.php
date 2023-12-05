@@ -32,8 +32,6 @@ class CreateTimelinesTable extends Migration
             $table->longText('entry')->nullable();
 
             $table->boolean('revert_order')->default(false);
-            $table->unsignedInteger('_lft')->default(0);
-            $table->unsignedInteger('_rgt')->default(0);
 
             $table->timestamps();
             $table->softDeletes();
@@ -45,7 +43,6 @@ class CreateTimelinesTable extends Migration
 
             // Index
             $table->index(['name', 'slug', 'type']);
-            $table->index(['_lft', '_rgt']);
         });
 
         Schema::create('timeline_eras', function (Blueprint $table) {

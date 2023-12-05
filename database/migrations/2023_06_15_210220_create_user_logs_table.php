@@ -13,6 +13,9 @@ return new class () extends Migration {
         if (!config('logging.enabled')) {
             return;
         }
+        if (Schema::connection('logs')->hasTable('user_logs')) {
+            return;
+        }
         Schema::connection('logs')->create('user_logs', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();

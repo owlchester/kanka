@@ -19,7 +19,7 @@
                 <div class="dropdown">
                     <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-tree="escape">
                         <x-icon class="fa-solid fa-ellipsis-v" />
-                        <span class="sr-only">{{__('crud.actions.actions') }}'</span>
+                        <span class="sr-only">{{__('crud.actions.actions') }}</span>
                     </a>
                     <div class="dropdown-menu hidden" role="menu">
                         @include('entities.pages.posts._actions')

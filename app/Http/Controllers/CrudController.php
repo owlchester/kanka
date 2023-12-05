@@ -13,6 +13,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
+use App\Models\Family;
 use App\Models\MiscModel;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\MultiEditingService;
@@ -118,9 +119,12 @@ class CrudController extends Controller
         $model = new $this->model();
         $campaign = $this->campaign;
         $this->filterService
-            ->request($request)
-            ->model($model)
-            ->make($this->view);
+            ->request($request);
+        if (method_exists($model, 'explicitFilters')) {
+            $this->filterService
+                ->model($model)
+                ->make($this->view);
+        }
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
         /** @var DatagridFilter|null $filter */
@@ -144,7 +148,7 @@ class CrudController extends Controller
         $parent = null;
         if (request()->has('parent_id')) {
             // @phpstan-ignore-next-line
-            $parentKey = $model->getParentIdName();
+            $parentKey = $model->getParentKeyName();
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
@@ -153,6 +157,7 @@ class CrudController extends Controller
         // Do this to avoid an extra sql query when no filters are selected
         if ($this->filterService->hasFilters()) {
             $unfilteredCount = $base->count();
+            // @phpstan-ignore-next-line
             $base = $base->filter($this->filterService->filters());
 
             $models = $base->paginate();

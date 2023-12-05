@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Str;
 
 class Vanity implements ValidationRule
 {
@@ -15,7 +16,7 @@ class Vanity implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $value = trim($value);
-        if (mb_strpos($value, '/')) {
+        if (Str::contains($value, '/')) {
             $fail(__('campaigns/vanity.rule2', ['field' => $attribute]));
         }
 

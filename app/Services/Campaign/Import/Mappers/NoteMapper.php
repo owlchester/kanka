@@ -27,8 +27,8 @@ class NoteMapper extends MiscMapper
             // We need the nested trait to trigger for this so it's going to be inefficient
             $models = Note::whereIn('id', $children)->get();
             foreach ($models as $model) {
-                $model->setParentId($this->mapping[$parent]);
-                $model->save();
+                $model->note_id = $this->mapping[$parent];
+                $model->saveQuietly();
             }
         }
 
