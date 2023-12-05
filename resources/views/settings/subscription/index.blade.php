@@ -73,18 +73,22 @@
                     <div class="flex gap-2 items-center flex-col xl:flex-row text-center xl:text-left">
                         <img class="rounded-full" src="{{ $tier->image() }}" alt="{{ $tier->name }}"/>
                         <div class="grow flex flex-col">
-                            <div class="uppercase text-xl">{{ $tier->name }}</div>
+                            <div class="text-lg">{{ $tier->name }}</div>
                             @if ($tier->isFree())
                                 <div class="price text-neutral-content">
                                     {{ __('front.features.patreon.free') }}
                                 </div>
                             @else
-                                <div class="text-xl price price-monthly flex flex-wrap gap-1 items-center">
-                                    <span class="">{{ $user->currencySymbol() }}{{ number_format($tier->monthly, 2) }}</span>
+                                <div class="price price-monthly flex flex-col gap-1">
+                                    <div class="text-4xl">
+                                        <span class="text-sm">{{ $user->currencySymbol() }}</span>{{ number_format($tier->monthly, 2) }}
+                                    </div>
                                     <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_monthly') }}</span>
                                 </div>
-                                <div class="text-xl price price-yearly flex flex-wrap gap-1 items-center">
-                                    <span class="">{{ $user->currencySymbol() }}{{ number_format($tier->yearly, 2) }}</span>
+                                <div class="price price-yearly flex flex-col gap-1">
+                                    <div class="text-4xl">
+                                        <span class="text-sm">{{ $user->currencySymbol() }}</span>{{ number_format($tier->yearly, 2) }}
+                                    </div>
                                     <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_yearly') }}</span>
                                 </div>
                             @endif
@@ -106,7 +110,7 @@
                             @include('settings.subscription.tiers.actions._' . $tier->code)
                         </div>
                     @endif
-                    <div class="flex flex-col gap-1">
+                    <div class="flex flex-col gap-2">
                         @includeIf('settings.subscription.tiers.benefits._' . $tier->code)
                     </div>
                     @if (!$tier->isFree() && $tier->isCurrent($user) && $user->subscribed('kanka') && !$isPayPal && !$user->subscription('kanka')->onGracePeriod())

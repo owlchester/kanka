@@ -1,24 +1,24 @@
 <div class="flex gap-1">
-    <div class="w-6 text-center">
+    <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="fa-regular fa-image" />
     </div>
     {{ __('tiers.features.file_size', ['size' => '1 MB']) }}
 </div>
 <div class="flex gap-1">
-    <div class="w-6 text-center">
+    <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="fa-regular fa-map" />
     </div>
     {{ __('tiers.features.map_size', ['size' => '3 MB']) }}
 </div>
 <div class="flex gap-1">
-    <div class="w-6 text-center">
+    <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="fa-regular fa-grid" />
     </div>
     {{ __('tiers.features.pagination', ['amount' => 45]) }}
 </div>
 
 <div class="flex gap-1">
-    <div class="w-6 text-center">
+    <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="fa-regular fa-webhook" />
     </div>
     <a href="{{ route('larecipe.index') }}" target="_blank">
