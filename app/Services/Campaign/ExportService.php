@@ -211,6 +211,7 @@ class ExportService
     {
         /** @var MiscModel $class */
         $class = app()->make($entityClass);
+        // @phpstan-ignore-next-line
         foreach ($class->exportRelations() as $rel) {
             $with[] = $rel;
         }

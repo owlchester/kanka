@@ -264,7 +264,7 @@ class CampaignDashboardWidget extends Model
         $entityType = $this->conf('entity');
         if (!empty($entityType) && !empty($this->config['filters'])) {
             $className = 'App\Models\\' . Str::studly($entityType);
-            /** @var MiscModel|Character $model */
+            /** @var Character|mixed $model */
             $model = new $className();
 
             /** @var FilterService $filterService */
@@ -320,6 +320,7 @@ class CampaignDashboardWidget extends Model
                 ->model($model)
                 ->make($entityType);
 
+            // @phpstan-ignore-next-line
             $models = $model
                 ->select($model->getTable() . '.id')
                 ->filter($filterService->filters())

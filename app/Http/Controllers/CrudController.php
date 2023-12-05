@@ -13,6 +13,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
+use App\Models\Family;
 use App\Models\MiscModel;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\MultiEditingService;
@@ -156,6 +157,7 @@ class CrudController extends Controller
         // Do this to avoid an extra sql query when no filters are selected
         if ($this->filterService->hasFilters()) {
             $unfilteredCount = $base->count();
+            // @phpstan-ignore-next-line
             $base = $base->filter($this->filterService->filters());
 
             $models = $base->paginate();
