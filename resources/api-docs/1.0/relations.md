@@ -85,7 +85,8 @@ To create a relation, use the following endpoint.
 | :- |   :-   |  :-  |
 | `relation` | `string` (Required, max 255) | Description of the relation |
 | `owner_id` | `int` (Required) | The relation's entity |
-| `target_id` | `int` (Required) | The relation's target entity |
+| `target_id` | `int` (Required if `targets` is not set) | The relation's target entity |
+| `targets` | `array` (Required if `target_id` is not set) | An array of the relation's target entities |
 | `attitude` | `int` | -100 to 100 |
 | `colour` | `string` | Hex colour of the attitude (with or without the `#`) |
 | `two_way` | `boolean` | If set, will duplicate the relation but in the other direction |
@@ -94,7 +95,7 @@ To create a relation, use the following endpoint.
 
 ### Results
 
-> {success} Code 200 with JSON body of the new relation.
+> {success} Code 200 with JSON body of the new relations.
 
 
 <a name="update-relation"></a>

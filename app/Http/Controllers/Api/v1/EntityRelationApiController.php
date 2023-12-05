@@ -40,10 +40,27 @@ class EntityRelationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
 
-        $data = $request->all();
+        if ($request->has('targets')) {
+            $entities = $request->get('targets');
+        } else {
+            $entities = [$request->get('target_id')];
+        }
+
+        $data = $request->only([
+            'owner_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id'
+        ]);
+
         $data['campaign_id'] = $campaign->id;
-        $model = Relation::create($data);
-        return new Resource($model);
+
+        foreach ($entities as $entity_id) {
+            $data['target_id'] = $entity_id;
+            $model = Relation::create($data);
+            if ($request->has('two_way')) {
+                $model->createMirror();
+            }
+        }
+
+        return Resource::collection($entity->relationships()->has('target')->whereIn('target_id', $entities)->paginate());
     }
 
     /**

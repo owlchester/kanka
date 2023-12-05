@@ -77,23 +77,38 @@ class RelationController extends CrudController
         }
 
         try {
-            $data = $request->all();
+            $count = 0;
+            $data = $request->only([
+                'owner_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id'
+            ]);
             $data['campaign_id'] = $campaign->id;
 
-            $model = new $this->model();
-            /** @var Relation $new */
-            $new = $model->create($data);
-
-            if ($request->has('two_way')) {
-                $new->createMirror();
+            if ($request->has('targets')) {
+                $entities = $request->get('targets');
+            } else {
+                $entities = [$request->get('target_id')];
+            }
+            foreach ($entities as $entity_id) {
+                $data['target_id'] = $entity_id;
+                $model = new $this->model();
+                /** @var Relation $relation */
+                $relation = $model->create($data);
+                $count++;
+                if (!isset($new)) {
+                    $new = $relation;
+                }
+                if ($request->has('two_way')) {
+                    $relation->createMirror();
+                    $count++;
+                }
             }
 
-            $success = __($this->langKey . '.create.success', [
-                'target' => $new->target->name,
+            $success = trans_choice($this->langKey . '.create.success_bulk', $count, [
                 'entity' => link_to(
                     $new->owner->url(),
                     $new->owner->name
-                )
+                ),
+                'count' => $count,
             ]);
             session()->flash('success_raw', $success);
 

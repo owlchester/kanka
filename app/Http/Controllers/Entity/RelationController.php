@@ -110,18 +110,28 @@ class RelationController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $data = $request->only([
-            'owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id'
-        ]);
-        $data['campaign_id'] = $entity->campaign_id;
-
-        $relation = new Relation();
-        $relation = $relation->create($data);
-
-        if ($request->has('two_way')) {
-            $relation->createMirror();
+        if ($request->has('targets')) {
+            $entities = $request->get('targets');
+        } else {
+            $entities = [$request->get('target_id')];
         }
 
+        $data = $request->only([
+            'owner_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id'
+        ]);
+
+        $data['campaign_id'] = $entity->campaign_id;
+        $count = 0;
+        foreach ($entities as $entity_id) {
+            $data['target_id'] = $entity_id;
+            $relation = new Relation();
+            $relation = $relation->create($data);
+            $count++;
+            if ($request->has('two_way')) {
+                $relation->createMirror();
+                $count++;
+            }
+        }
         $mode = $this->getModeOption(true);
         $redirect = [$campaign, $entity];
         if (!empty($mode)) {
@@ -130,9 +140,9 @@ class RelationController extends Controller
 
         return redirect()
             ->route('entities.relations.index', $redirect)
-            ->with('success', trans('entities/relations.create.success', [
-                'target' => $relation->target->name,
-                'entity' => $entity->name
+            ->with('success', trans_choice('entities/relations.create.success_bulk', $count, [
+                'entity' => $entity->name,
+                'count' => $count,
             ]));
     }
 

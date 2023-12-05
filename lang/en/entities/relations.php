@@ -30,9 +30,9 @@ return [
         'timeline_element'  => 'Timeline element',
     ],
     'create'            => [
-        'new_title' => 'New connection',
-        'success'   => 'Connection :target added to :entity.',
-        'title'     => 'New connection for :name',
+        'new_title'     => 'New connection',
+        'success_bulk'  => '{1} Added :count connection to :entity.|[2,*] Added :count connections to :entity.',
+        'title'         => 'New connection for :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'This connection is mirrored on the target entity. Select this option to also remove the mirrored connection.',
