@@ -1,12 +1,17 @@
 <?php /** @var \App\Models\Tag $model */?>
 {{ csrf_field() }}
 <x-grid type="1/1">
-@include('cruds.fields.entity', [
-    'placeholder' => __('entities/relations.placeholders.target'),
-    'preset' => false,
-    'route' => 'search.tag-children',
-    'dropdownParent' => request()->ajax() ? '#primary-dialog' : null
-])
+    <x-forms.foreign
+        field="entities"
+        :required="true"
+        label="abilities.show.tabs.entities"
+        :multiple="true"
+        name="entities[]"
+        id="entities[]"
+        :campaign="$campaign"
+        :route="route('search.tag-children', [$campaign, 'exclude-entity' => true])"
+    >
+    </x-forms.foreign>
 </x-grid>
 
 

@@ -11,7 +11,7 @@
     @endif
 
     <select 
-            multiple="$multiple"
+            @if ($multiple) multiple="multiple" @endif
             name="{{ $name }}" 
             id="{{ $id }}"
             class="w-full select2 join-item"
@@ -23,7 +23,6 @@
             data-allow-clear="{{ $allowClear ? 'true' : 'false' }}"
             @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
             :dropdownParent="request()->ajax() ? '#primary-dialog' : null"
-
     >
         @foreach ($options as $key => $value)
             @if ($multiple)
