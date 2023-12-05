@@ -5,7 +5,7 @@
         field="entities"
         :required="true"
         label="abilities.show.tabs.entities"
-        multiple="multiple"
+        :multiple="true"
         name="entities[]"
         id="entities[]"
         :campaign="$campaign"

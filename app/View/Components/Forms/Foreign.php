@@ -23,6 +23,7 @@ class Foreign extends Component
     public bool $allowNew;
     public bool $allowClear;
     public bool $required;
+    public bool $multiple;
     public ?string $entityType;
     public ?string $label;
     public ?string $placeholder;
@@ -46,6 +47,7 @@ class Foreign extends Component
         bool $allowClear = false,
         bool $required = false,
         bool $parent = false,
+        bool $multiple = false,
         string $entityType = null,
         string $key = null,
         string $label = null,
@@ -74,6 +76,7 @@ class Foreign extends Component
         $this->className = $class;
         $this->entityTypeID = $entityTypeID;
         $this->campaign = $campaign;
+        $this->multiple = $multiple;
     }
 
     /**
