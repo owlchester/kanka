@@ -33,12 +33,12 @@ class Tier extends Model
     }
     public function isPopular(): bool
     {
-        return $this->name === 'Owlbear';
+        return $this->name === Pledge::OWLBEAR;
     }
 
     public function isBestValue(): bool
     {
-        return $this->name === 'Wyvern';
+        return $this->name === Pledge::WYVERN;
     }
 
     public function image(): string
@@ -49,26 +49,20 @@ class Tier extends Model
             'Elemental' => 'https://th.kanka.io/Wira7yc1p1cAa_GUwC0SGDOuSwg=/60x60/smart/src/app/tiers/elemental-750.png',
             default => 'https://th.kanka.io/Xy0Dm1dMld_NUYYA2gJdTkKnqjE=/60x60/smart/src/app/tiers/kobold-750.png'
         };
-        $url = '';
-        return Img::crop(60)->url('tiers/' . strtolower($this->code) . '-750.png');
     }
 
     public function isCurrent(User $user): bool
     {
-        if ($this->name === 'Owlbear' && $user->isOwlbear()) {
+        if ($this->name === Pledge::OWLBEAR && $user->isOwlbear()) {
             return true;
-        } elseif ($this->name === 'Wyvern' && $user->isWyvern()) {
+        } elseif ($this->name === Pledge::WYVERN && $user->isWyvern()) {
             return true;
-        } elseif ($this->name === 'Elemental' && $user->isElemental()) {
+        } elseif ($this->name === Pledge::ELEMENTAL && $user->isElemental()) {
             return true;
         }
         return false;
     }
 
-    public function isSubscribed(User $user): bool
-    {
-
-    }
     public function monthlyPlans(): array
     {
         return [
@@ -76,6 +70,7 @@ class Tier extends Model
             config('subscription.' . $this->code . '.usd.monthly')
         ];
     }
+
     public function yearlyPlans(): array
     {
         return [
@@ -83,6 +78,7 @@ class Tier extends Model
             config('subscription.' . $this->code . '.usd.yearly')
         ];
     }
+
     public function plans(): array
     {
         return [

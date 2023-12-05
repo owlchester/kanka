@@ -59,8 +59,8 @@ class SubscriptionService
     /** @var null|string applied coupon */
     protected $coupon = null;
 
-    /** @var int Value of the subscription */
-    protected $subscriptionValue = 0;
+    /** Value of the subscription */
+    protected float $subscriptionValue = 0;
 
     /** @var array|Request The request object */
     protected $request;
@@ -433,7 +433,7 @@ class SubscriptionService
             ->firstOrFail();
         $this->user($source->user);
 
-        $this->tier(Tier::where('name', $source->tier));
+        $this->tier(Tier::where('name', $source->tier)->first());
         $amount = ($source->period === 'yearly' ? $this->tier->yearly : $this->tier->monthly) * 100;
 
         try {
@@ -667,7 +667,7 @@ class SubscriptionService
         }
 
         // Cancelling
-        return $this->tier === Pledge::KOBOLD;
+        return $this->tier->name === Pledge::KOBOLD;
     }
 
     /**

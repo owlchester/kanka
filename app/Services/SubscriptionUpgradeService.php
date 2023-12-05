@@ -25,7 +25,7 @@ class SubscriptionUpgradeService
         $price = $period == 'monthly' ? $this->tier->monthly : $this->tier->yearly;
 
         if (!$this->user->subscribed('kanka')) {
-            return $price;
+            return (string) $price;
         }
         if ($this->user->isStripeYearly() || $this->user->hasPayPal()) {
             $monthly = false;
