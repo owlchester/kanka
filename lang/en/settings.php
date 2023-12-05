@@ -270,7 +270,7 @@ return [
             'upgrade'   => [
                 'bullets'   => [
                     'immediate' => 'Your payment method will be billed immediately and you will have access to your new tier.',
-                    'prorate'   => 'When upgrading from Owlbear to Elemental, you will only be billed the difference to your new tier.',
+                    'prorate'   => 'When upgrading to a higher tier, you will only be billed the difference to your new tier.',
                 ],
                 'title'     => 'When upgrading to a higher tier',
             ],

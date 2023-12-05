@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Tier;
 use App\Traits\UserAware;
 use Laravel\Cashier\Subscription;
 use Carbon\Carbon;
@@ -12,9 +13,17 @@ class PayPalService
 {
     use UserAware;
 
+    protected Tier $tier;
+
+    public function tier(Tier $tier): self
+    {
+        $this->tier = $tier;
+        return $this;
+    }
+
     /**
      */
-    public function process(string $pledge): mixed
+    public function process(): mixed
     {
         // @phpstan-ignore-next-line
         if ($this->user->isSubscriber() && !str_contains($this->user->subscriptions()->first()->stripe_price, 'paypal')) {
@@ -25,20 +34,17 @@ class PayPalService
         if ($this->user->billedInEur()) {
             $currency = "EUR";
         }
-        $price = "55.00";
-        if ($pledge === 'Wyvern') {
-            $price = "110.00";
-        } elseif ($pledge === 'Elemental') {
-            $price = "275.00";
-        }
+        $price = $this->tier->yearly;
 
         if ($this->user->isSubscriber()) {
             if ($this->user->isElemental()) {
                 return [];
             } elseif ($this->user->isOwlbear()) {
-                $oldPrice = "55.00";
+                $tier = Tier::where('code', 'owlbear')->first();
+                $oldPrice = $tier->yearly;
             } elseif ($this->user->isWyvern()) {
-                $oldPrice = "110.00";
+                $tier = Tier::where('code', 'wyvern')->first();
+                $oldPrice = $tier->yearly;
             }
             // @phpstan-ignore-next-line
             $price = (floatval($price) - ($oldPrice)) * ($this->user->subscriptions()->first()->ends_at->diffInDays(Carbon::now()) / 365);
@@ -57,7 +63,7 @@ class PayPalService
             ],
             "purchase_units" => [
                 0 => [
-                    "reference_id" => $pledge,
+                    "reference_id" => $this->tier->name,
                     "amount" => [
                         "currency_code" => $currency,
                         "value" => $price

@@ -9,7 +9,6 @@ class UserAltSubscribeStore extends FormRequest
     public function rules()
     {
         return [
-            'tier' => 'required|in:Owlbear,Wyvern,Elemental',
             'method' => 'required|in:giropay,sofort,ideal',
             'period' => 'required|in:yearly',
             'accountholder-name' => 'required_if:method,giropay',

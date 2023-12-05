@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Tier;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 
@@ -9,28 +10,19 @@ class SubscriptionUpgradeService
 {
     use UserAware;
 
-    public function upgradePrice(string $period, string $tier): string
+    protected Tier $tier;
+
+    public function tier(Tier $tier): self
     {
-        $oldPrice = '';
+        $this->tier = $tier;
+        return $this;
+    }
+
+    public function upgradePrice(string $period): string
+    {
         $monthly = true;
 
-        $price = "55.00";
-        if ($tier === 'Wyvern') {
-            $price = "110.00";
-            if ($period == 'monthly') {
-                $price = "10.00";
-            }
-        } elseif ($tier === 'Elemental') {
-            $price = "275.00";
-            if ($period == 'monthly') {
-                $price = "25.00";
-            }
-        } elseif ($tier === 'Owlbear') {
-            $price = "55.00";
-            if ($period == 'monthly') {
-                $price = "5.00";
-            }
-        }
+        $price = $period == 'monthly' ? $this->tier->monthly : $this->tier->yearly;
 
         if (!$this->user->subscribed('kanka')) {
             return $price;
@@ -40,25 +32,17 @@ class SubscriptionUpgradeService
         }
 
         // Calculate the current subscription price
+        $code = 'owlbear';
         if ($this->user->isElemental()) {
-            if ($monthly) {
-                $oldPrice = "25.00";
-            } else {
+            $code = 'elemental';
+            if (!$monthly) {
                 return '';
             }
-        } elseif ($this->user->isOwlbear()) {
-            if ($monthly) {
-                $oldPrice = "5.00";
-            } else {
-                $oldPrice = "55.00";
-            }
         } elseif ($this->user->isWyvern()) {
-            if ($monthly) {
-                $oldPrice = "10.00";
-            } else {
-                $oldPrice = "110.00";
-            }
+            $code = 'wyvern';
         }
+        $this->tier = Tier::where('code', $code)->first();
+        $oldPrice = $monthly ? $this->tier->monthly : $this->tier->yearly;
         $endPeriod = $this->endPeriod();
         if ($period == 'yearly') {
             // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Number of Days in a Full Year)

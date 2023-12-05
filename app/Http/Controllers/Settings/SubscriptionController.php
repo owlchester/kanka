@@ -6,8 +6,10 @@ use App\Facades\DataLayer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserAltSubscribeStore;
 use App\Http\Requests\Settings\UserSubscribeStore;
+use App\Http\Requests\SubscriptionCancel;
 use App\Models\Pledge;
 use App\Models\SubscriptionCancellation;
+use App\Models\Tier;
 use Carbon\Carbon;
 use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
@@ -47,6 +49,8 @@ class SubscriptionController extends Controller
         $currency = $user->currencySymbol();
         $invoices = !empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
         $tracking = session()->get('sub_tracking');
+        $tiers = Tier::ordered()->get();
+        $isPayPal = $user->hasPayPal();
         $gaTrackingEvent = null;
         if (!empty($tracking)) {
             $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
@@ -68,6 +72,8 @@ class SubscriptionController extends Controller
             'invoices',
             'tracking',
             'gaTrackingEvent',
+            'tiers',
+            'isPayPal',
         ));
     }
 
@@ -77,10 +83,9 @@ class SubscriptionController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
      */
-    public function change(Request $request)
+    public function change(Request $request, Tier $tier)
     {
         $user = $request->user();
-        $tier = $request->get('tier');
         $period = $request->get('period', 'monthly');
 
         $amount = $this->subscription->user($request->user())->tier($tier)->period($period)->amount();
@@ -89,7 +94,7 @@ class SubscriptionController extends Controller
             $user->createAsStripeCustomer();
         }
         $intent = $user->createSetupIntent();
-        $cancel = $tier == Pledge::KOBOLD;
+        $cancel = $tier->isFree();
         $isDowngrading = $this->subscription->downgrading();
         $isYearly = $period === 'yearly';
         $hasPromo = \Carbon\Carbon::create(2023, 11, 28)->isFuture();
@@ -97,7 +102,7 @@ class SubscriptionController extends Controller
         if ($user->hasPayPal()) {
             $limited = true;
         }
-        $upgrade = $this->subscriptionUpgrade->user($user)->upgradePrice($period, $tier);
+        $upgrade = $this->subscriptionUpgrade->user($user)->tier($tier)->upgradePrice($period);
         $currency = $user->currencySymbol();
 
         return view('settings.subscription.change', compact(
@@ -117,10 +122,23 @@ class SubscriptionController extends Controller
         ));
     }
 
+    public function cancel(SubscriptionCancel $request)
+    {
+        $this->subscription
+            ->user($request->user())
+            ->cancel($request);
+
+        return redirect()
+            ->route('settings.subscription', ['cancelled' => 1])
+            ->with('success', __('settings.subscription.success.cancel'))
+            ->with('sub_tracking', 'cancel')
+            ->with('sub_value', 0);
+    }
+
     /**
      * Subscribe
      */
-    public function subscribe(UserSubscribeStore $request)
+    public function subscribe(UserSubscribeStore $request, Tier $tier)
     {
         if ($request->user()->isFrauding()) {
             return redirect()
@@ -129,7 +147,7 @@ class SubscriptionController extends Controller
         }
         try {
             $this->subscription->user($request->user())
-                ->tier($request->get('tier'))
+                ->tier($tier)
                 ->period($request->get('period'))
                 ->coupon($request->get('coupon'))
                 ->change($request->all())
@@ -137,18 +155,6 @@ class SubscriptionController extends Controller
 
             $flash = 'subscribed';
             $routeOptions = ['success' => 1];
-            if ($this->subscription->canceled()) {
-                $flash = 'cancel';
-                $routeOptions = ['cancelled' => 1];
-                SubscriptionCancellation::create([
-                    'user_id' => $request->user()->id,
-                    'reason' => $request->reason,
-                    'custom' => $request->reason_custom,
-                    'tier'  => $request->user()->pledge,
-                    // @phpstan-ignore-next-line
-                    'duration' => $request->user()->subscription('kanka')->created_at->diffInDays(Carbon::now()),
-                ]);
-            }
 
             return redirect()
                 ->route('settings.subscription', $routeOptions)
@@ -175,10 +181,13 @@ class SubscriptionController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Stripe\Exception\ApiErrorException
      */
-    public function altSubscribe(UserAltSubscribeStore $request)
+    public function altSubscribe(UserAltSubscribeStore $request, Tier $tier)
     {
+        if ($tier->isFree()) {
+            abort(401);
+        }
         $source = $this->subscription->user($request->user())
-            ->tier($request->get('tier'))
+            ->tier($tier)
             ->period($request->get('period'))
             ->method($request->get('method'))
             ->prepare($request);
