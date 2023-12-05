@@ -74,12 +74,15 @@ class ChildController extends Controller
     public function store(StoreTagEntity $request, Campaign $campaign, Tag $tag)
     {
         $this->authorize('update', $tag);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
         $redirectUrlOptions = ['campaign' => $campaign, 'entity' => $tag->entity];
         if (request()->has('from-children')) {
             $redirectUrlOptions['tag_id'] = $tag->id;
         }
 
-        $count = $tag->attachEntities($request->only('entities'));
+        $count = $tag->attachEntities($request->get('entities'));
         return redirect()->route('entities.show', $redirectUrlOptions)
             ->with('success', trans_choice('tags.children.create.attach_success', $count, ['name' => $tag->name, 'count' => $count]));
     }

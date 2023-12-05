@@ -10,6 +10,7 @@ use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -198,18 +199,15 @@ class Tag extends MiscModel
             ->whereNotIn('type_id', [config('entities.ids.tag')]);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function entities()
+    public function entities(): BelongsToMany
     {
-        return $this->hasManyThrough(
+        return $this->belongsToMany(
             'App\Models\Entity',
-            'App\Models\EntityTag',
+            'entity_tags',
             'tag_id',
+            'entity_id',
             'id',
-            'id',
-            'entity_id'
+            'id'
         );
     }
 
@@ -277,26 +275,10 @@ class Tag extends MiscModel
     /**
      * Attach entities to the tag
      */
-    public function attachEntities(array $request): int
+    public function attachEntities(array $entityIds): int
     {
-        $entityIds = Arr::get($request, 'entities');
-        $entities = Entity::with('tags')->findOrFail($entityIds);
-        $count = 0;
-        foreach ($entities as $entity) {
-            // Make sure the tag isn't already attached to the entity
-            foreach ($entity->tags as $tag) {
-                if ($tag->tag_id == $this->id) {
-                    continue;
-                }
-            }
-
-            EntityTag::create([
-                'tag_id' => $this->id,
-                'entity_id' => $entity->id,
-            ]);
-            $count++;
-        }
-        return $count;
+        $data = $this->entities()->syncWithoutDetaching($entityIds);
+        return count($data['attached']);
     }
 
     /**

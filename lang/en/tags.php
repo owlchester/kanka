@@ -39,7 +39,7 @@ return [
     'transfer'      => [
         'description'   => 'Move this tag\'s entities to another tag.',
         'fail'          => 'Failed to transfer entities from :tag to :newTag',
-        'success'       => 'Succesfully transfered entities from :tag to :newTag',
+        'success'       => 'Successfully transferred entities from :tag to :newTag',
         'title'         => 'Transfer :name',
         'transfer'      => 'Transfer',
     ],
