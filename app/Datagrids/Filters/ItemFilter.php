@@ -16,6 +16,7 @@ class ItemFilter extends DatagridFilter
             ->add('type')
             ->add('price')
             ->add('size')
+            ->add('is_equipped')
             ->add([
                 'field' => 'item_id',
                 'label' => __('crud.fields.parent'),

@@ -138,6 +138,8 @@ trait HasFilters
                     $this->filterTemplate($query, $value);
                 } elseif ($key == 'has_posts') {
                     $this->filterHasPosts($query, $value);
+                } elseif ($key == 'is_equipped') {
+                    $this->filterIsEquipped($query, $value);
                 } elseif ($key == 'has_attributes') {
                     $this->filterHasAttributes($query, $value);
                 } elseif ($key == 'has_entity_files') {
@@ -347,6 +349,21 @@ trait HasFilters
             $query->whereNotNull('posts.id');
         } else {
             $query->whereNull('posts.id');
+        }
+    }
+
+    /**
+     * Filter on entities that are equipped
+     */
+    protected function filterIsEquipped(Builder $query, string $value = null): void
+    {
+        $query
+            ->leftJoin('inventories', 'inventories.item_id', 'items.id');
+
+        if ($value) {
+            $query->whereNotNull('inventories.id');
+        } else {
+            $query->whereNull('inventories.id');
         }
     }
 
