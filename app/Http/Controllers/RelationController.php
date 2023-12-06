@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Datagrids\Actions\RelationDatagridActions;
 use App\Datagrids\Filters\RelationFilter;
 use App\Http\Requests\StoreRelation;
+use App\Services\Entity\RelationService;
 use App\Models\Campaign;
 use App\Models\Relation;
 
 class RelationController extends CrudController
 {
+    protected RelationService $relationService;
+
     protected string $view = 'relations';
     protected string $route = 'relations';
     protected $langKey = 'entities/relations';
@@ -36,12 +39,13 @@ class RelationController extends CrudController
 
     public string $titleKey;
 
-    public function __construct()
+    public function __construct(RelationService $relationService)
     {
         parent::__construct();
         $this->middleware('auth');
 
         $this->titleKey = __('sidebar.relations');
+        $this->relationService = $relationService;
     }
 
     /**
@@ -77,31 +81,7 @@ class RelationController extends CrudController
         }
 
         try {
-            $count = 0;
-            $data = $request->only([
-                'owner_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id'
-            ]);
-            $data['campaign_id'] = $campaign->id;
-
-            if ($request->has('targets')) {
-                $entities = $request->get('targets');
-            } else {
-                $entities = [$request->get('target_id')];
-            }
-            foreach ($entities as $entity_id) {
-                $data['target_id'] = $entity_id;
-                $model = new $this->model();
-                /** @var Relation $relation */
-                $relation = $model->create($data);
-                $count++;
-                if (!isset($new)) {
-                    $new = $relation;
-                }
-                if ($request->has('two_way')) {
-                    $relation->createMirror();
-                    $count++;
-                }
-            }
+            [$new, $count] = $this->relationService->campaign($campaign)->createRelations($request);
 
             $success = trans_choice($this->langKey . '.create.success_bulk', $count, [
                 'entity' => link_to(

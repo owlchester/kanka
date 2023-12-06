@@ -6,10 +6,18 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\StoreRelation as Request;
 use App\Http\Resources\RelationResource as Resource;
+use App\Services\Entity\RelationService;
 use App\Models\Relation;
 
 class EntityRelationApiController extends ApiController
 {
+    protected RelationService $relationService;
+
+    public function __construct(RelationService $relationService)
+    {
+        $this->relationService = $relationService;
+    }
+
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -40,24 +48,12 @@ class EntityRelationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
 
+        [$new, $count] = $this->relationService->campaign($campaign)->createRelations($request);
+
         if ($request->has('targets')) {
             $entities = $request->get('targets');
         } else {
             $entities = [$request->get('target_id')];
-        }
-
-        $data = $request->only([
-            'owner_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id'
-        ]);
-
-        $data['campaign_id'] = $campaign->id;
-
-        foreach ($entities as $entity_id) {
-            $data['target_id'] = $entity_id;
-            $model = Relation::create($data);
-            if ($request->has('two_way')) {
-                $model->createMirror();
-            }
         }
 
         return Resource::collection($entity->relationships()->has('target')->whereIn('target_id', $entities)->paginate());

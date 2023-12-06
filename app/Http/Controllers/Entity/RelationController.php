@@ -9,6 +9,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Relation;
 use App\Services\Entity\ConnectionService;
+use App\Services\Entity\RelationService;
 use App\Traits\GuestAuthTrait;
 
 class RelationController extends Controller
@@ -16,10 +17,12 @@ class RelationController extends Controller
     use GuestAuthTrait;
 
     protected ConnectionService $connectionService;
+    protected RelationService $relationService;
 
-    public function __construct(ConnectionService $connectionService)
+    public function __construct(ConnectionService $connectionService, RelationService $relationService)
     {
         $this->connectionService = $connectionService;
+        $this->relationService = $relationService;
     }
 
     public function index(Campaign $campaign, Entity $entity)
@@ -110,28 +113,8 @@ class RelationController extends Controller
             return response()->json(['success' => true]);
         }
 
-        if ($request->has('targets')) {
-            $entities = $request->get('targets');
-        } else {
-            $entities = [$request->get('target_id')];
-        }
+        [$new, $count] = $this->relationService->campaign($campaign)->createRelations($request);
 
-        $data = $request->only([
-            'owner_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id'
-        ]);
-
-        $data['campaign_id'] = $entity->campaign_id;
-        $count = 0;
-        foreach ($entities as $entity_id) {
-            $data['target_id'] = $entity_id;
-            $relation = new Relation();
-            $relation = $relation->create($data);
-            $count++;
-            if ($request->has('two_way')) {
-                $relation->createMirror();
-                $count++;
-            }
-        }
         $mode = $this->getModeOption(true);
         $redirect = [$campaign, $entity];
         if (!empty($mode)) {
