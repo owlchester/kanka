@@ -7,7 +7,6 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Facades\Module;
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;

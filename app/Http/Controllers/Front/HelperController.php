@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\Family;
 use App\Models\MiscModel;
 use Exception;
 use Illuminate\Support\Str;
