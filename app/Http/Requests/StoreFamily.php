@@ -38,9 +38,9 @@ class StoreFamily extends FormRequest
             'template_id' => 'nullable',
         ];
 
-        $self = request()->segment(5);
+        $self = request()->route('family');
         if (!empty($self)) {
-            $rules['family_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:families,id';
+            $rules['family_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:families,id';
         }
 
         return $this->clean($rules);

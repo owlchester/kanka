@@ -18,7 +18,7 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
     $canDelete = false;
 } elseif (!empty($entity) && !empty($entity->image_path)) {
     $previewThumbnail = Avatar::entity($entity)->size(192, 144)->thumbnail();
-} elseif (isset($model) && $model instanceof \App\Models\Campaign && !empty($model->image)) {
+} elseif (isset($model) && method_exists($model, 'thumbnail') && !empty($model->image)) {
     $previewThumbnail = $model->thumbnail(200, 160);
 }
 

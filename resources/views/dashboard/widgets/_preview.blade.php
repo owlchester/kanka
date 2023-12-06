@@ -21,7 +21,7 @@ foreach ($entity->mentions as $mention) {
     \App\Facades\Mentions::preloadEntity($mention->target);
 }
 ?>
-<x-box padding="0" css="widget-calendar widget-list {{ $widget->customClass($campaign) }} entity-{{ $entity->id }}" id="dashboard-widget-{{ $widget->id }}">
+<x-box padding="0" css="widget-preview {{ $widget->customClass($campaign) }} entity-{{ $entity->id }}" id="dashboard-widget-{{ $widget->id }}">
 @if(view()->exists($specificPreview))
     @include($specificPreview, ['entity' => $entity])
 @else

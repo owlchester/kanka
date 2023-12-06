@@ -49,14 +49,14 @@ class StoreQuest extends FormRequest
             }
         }
 
-        $self = request()->segment(5);
+        $self = request()->route('quest');
         if (!empty($self)) {
             $rules['quest_id'] = [
                 'nullable',
                 'integer',
-                'not_in:' . ((int) $self),
+                'not_in:' . ((int) $self->id),
                 Rule::exists('quests', 'id')->where(function ($query) use ($self) {
-                    return $query->whereNull('quest_id')->orWhere('quest_id', '!=', $self);
+                    return $query->whereNull('quest_id')->orWhere('quest_id', '!=', $self->id);
                 }),
             ];
         }
