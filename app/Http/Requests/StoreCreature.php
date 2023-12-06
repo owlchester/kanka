@@ -37,9 +37,9 @@ class StoreCreature extends FormRequest
             'template_id' => 'nullable',
         ];
 
-        $self = request()->segment(5);
+        $self = request()->route('creature');
         if (!empty($self)) {
-            $rules['creature_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:creatures,id';
+            $rules['creature_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:creatures,id';
         }
 
         return $this->clean($rules);

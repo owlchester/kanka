@@ -38,7 +38,7 @@ class StoreMapLayer extends FormRequest
         ];
 
         // If editing, don't need a new image
-        $self = request()->segment(7);
+        $self = request()->route('map_layer');
         if (!empty($self)) {
             $rules['image'] = 'nullable|mimes:jpeg,png,jpg,gif,webp,svg|max:' . Limit::map()->upload();
             $rules['image_url'] = 'nullable|url|active_url';

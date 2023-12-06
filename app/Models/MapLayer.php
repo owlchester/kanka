@@ -119,7 +119,7 @@ class MapLayer extends Model
     public function getLink(): string
     {
         $campaign = CampaignLocalization::getCampaign();
-        return route('maps.map_layers.edit', [$campaign, 'map' >= $this->map_id, $this->id]);
+        return route('maps.map_layers.edit', [$campaign, 'map' => $this->map_id, $this->id]);
     }
 
     /**

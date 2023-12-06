@@ -36,9 +36,9 @@ class StoreNote extends FormRequest
             'template_id' => 'nullable',
             'note_id' => 'nullable|integer|exists:notes,id',
         ];
-        $self = request()->segment(5);
+        $self = request()->route('note');
         if (!empty($self)) {
-            $rules['note_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:notes,id';
+            $rules['note_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:notes,id';
         }
 
         return $this->clean($rules);
