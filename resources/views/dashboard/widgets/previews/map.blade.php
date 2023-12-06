@@ -16,7 +16,7 @@ $map = $entity->child;
     @php return @endphp
 @endif
 
-<div class="widget-preview widget-map" id="dashboard-widget-{{ $widget->id }}">
+<div class="widget-map">
     <div class="map map-dashboard" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
         <a href="{{ route('maps.explore', [$campaign, $map]) }}" target="_blank" class="btn2 btn-primary btn-xs btn-map-explore z-[820] absolute bottom-3 right-3">
             <x-icon class="map" />
