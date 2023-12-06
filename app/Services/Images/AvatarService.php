@@ -134,17 +134,17 @@ class AvatarService
         }
 
         $cloudfront = config('filesystems.disks.cloudfront.url');
-        if ($this->campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getChild()->getEntityType())) {
+        if ($this->campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->entity->type())) {
             $url = Img::crop($this->width, $this->height)
-                ->url(CampaignCache::defaultImages()[$this->getChild()->getEntityType()]);
+                ->url(CampaignCache::defaultImages()[$this->entity->type()]);
             return $this->return($url);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {
             // Goblins and above have nicer icons
-            return $this->return($cloudfront . '/images/defaults/subscribers/' . $this->getChild()->getTable() . '.jpeg');
+            return $this->return($cloudfront . '/images/defaults/subscribers/' . $this->entity->pluralType() . '.jpeg');
         }
 
         // Default fallback
-        return $this->return($cloudfront . '/images/defaults/' . $this->getChild()->getTable() . '_thumb.jpg');
+        return $this->return($cloudfront . '/images/defaults/' . $this->entity->pluralType() . '_thumb.jpg');
     }
 
     protected function return(string $url): string

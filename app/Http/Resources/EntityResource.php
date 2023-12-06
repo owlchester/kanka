@@ -157,7 +157,7 @@ class EntityResource extends JsonResource
 
             // Image
             'image_full' => Avatar::entity($misc->entity)->original(),
-            'image_thumb' => Avatar::size(40)->thumbnail(),
+            'image_thumb' => Avatar::size(40)->fallback()->thumbnail(),
             'has_custom_image' => !empty($misc->entity->image_path) || !empty($galleryImage),
             'image_uuid' => $superboosted && $misc->entity->image ? $misc->entity->image->id : null,
 
