@@ -10,9 +10,9 @@
         <div class="join w-full">
     @endif
 
-    <select 
+    <select
             @if ($multiple) multiple="multiple" @endif
-            name="{{ $name }}" 
+            name="{{ $name }}"
             id="{{ $id }}"
             class="w-full select2 join-item"
             style="width: 100%"
@@ -25,11 +25,7 @@
             :dropdownParent="request()->ajax() ? '#primary-dialog' : null"
     >
         @foreach ($options as $key => $value)
-            @if ($multiple)
-                <option value="{{ $key }}">{!! $value !!}</option>
-            @else
-                <option value="{{ $key }}" class="select2-entity" selected="selected">{{ $entity->name }}</option>
-            @endif
+            <option value="{{ $key }}">{!! $value !!}</option>
         @endforeach
     </select>
 
