@@ -10,9 +10,9 @@
         <div class="join w-full">
     @endif
 
-    <select
+    <select 
             @if ($multiple) multiple="multiple" @endif
-            name="{{ $name }}"
+            name="{{ $name }}" 
             id="{{ $id }}"
             class="w-full select2 join-item"
             style="width: 100%"

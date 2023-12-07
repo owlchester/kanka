@@ -9,6 +9,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Relation;
 use App\Services\Entity\ConnectionService;
+use App\Services\Entity\RelationService;
 use App\Traits\GuestAuthTrait;
 
 class RelationController extends Controller
@@ -16,10 +17,12 @@ class RelationController extends Controller
     use GuestAuthTrait;
 
     protected ConnectionService $connectionService;
+    protected RelationService $relationService;
 
-    public function __construct(ConnectionService $connectionService)
+    public function __construct(ConnectionService $connectionService, RelationService $relationService)
     {
         $this->connectionService = $connectionService;
+        $this->relationService = $relationService;
     }
 
     public function index(Campaign $campaign, Entity $entity)
@@ -110,17 +113,7 @@ class RelationController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $data = $request->only([
-            'owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id'
-        ]);
-        $data['campaign_id'] = $entity->campaign_id;
-
-        $relation = new Relation();
-        $relation = $relation->create($data);
-
-        if ($request->has('two_way')) {
-            $relation->createMirror();
-        }
+        $this->relationService->campaign($campaign)->createRelations($request);
 
         $mode = $this->getModeOption(true);
         $redirect = [$campaign, $entity];
@@ -130,9 +123,9 @@ class RelationController extends Controller
 
         return redirect()
             ->route('entities.relations.index', $redirect)
-            ->with('success', trans('entities/relations.create.success', [
-                'target' => $relation->target->name,
-                'entity' => $entity->name
+            ->with('success', trans_choice('entities/relations.create.success_bulk', $count, [
+                'entity' => $entity->name,
+                'count' => $this->relationService->getCount(),
             ]));
     }
 

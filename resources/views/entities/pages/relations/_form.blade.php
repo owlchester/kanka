@@ -1,6 +1,19 @@
 {{ csrf_field() }}
 
 <x-grid>
+@if(empty($relation))
+    <x-forms.foreign
+        field="targets"
+        :required="true"
+        label="entities/relations.fields.target"
+        :multiple="true"
+        name="targets[]"
+        id="targets[]"
+        :campaign="$campaign"
+        :route="route('search.entities-with-relations', [$campaign])"
+    >
+    </x-forms.foreign>
+@else
     @include('cruds.fields.entity', [
         'name' => 'target_id',
         'required' => true,
@@ -10,6 +23,7 @@
         'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
         'allowClear' => false,
     ])
+@endif
     <x-forms.field field="relation" :required="true" :label="__('entities/relations.fields.relation')">
         {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => '', 'maxlength' => 191, 'required']) !!}
     </x-forms.field>
