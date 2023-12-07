@@ -71,6 +71,7 @@ class EntityEvent extends MiscModel
         'date',
         'is_recurring',
         'visibility_id',
+        'comment'
     ];
 
     /** @var int Last occurence of the reminder */
