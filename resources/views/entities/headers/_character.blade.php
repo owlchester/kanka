@@ -8,7 +8,7 @@
 
 <div class="entity-header-sub entity-header-line">
     <div class="entity-header-sub-element">
-        <x-icon entity="character" />
+        <x-icon :class="\App\Facades\Module::duoIcon('location')" :title="__('entities.location')" />
 
         @if ($model->location->location)
             {!! __('crud.fields.locations', [

@@ -67,9 +67,9 @@ class StoreCalendar extends FormRequest
             $rules['leap_year_start'] = 'required|numeric|min:1|max:255';
         }
 
-        $self = request()->segment(5);
+        $self = request()->route('calendar');
         if (!empty($self)) {
-            $rules['calendar_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:calendars,id';
+            $rules['calendar_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:calendars,id';
         }
 
         return $this->clean($rules);

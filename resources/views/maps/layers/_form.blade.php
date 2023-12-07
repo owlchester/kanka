@@ -37,7 +37,9 @@ $typeOptions = [
         {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => '']) !!}
     </x-forms.field>
 
-    @include('cruds.fields.image', ['imageRequired' => true, 'size' => 'map'])
+    <div class="col-span-2">
+    @include('cruds.fields.image', ['imageRequired' => empty($model), 'size' => 'map'])
+    </div>
 </x-grid>
 
 @include('editors.editor')

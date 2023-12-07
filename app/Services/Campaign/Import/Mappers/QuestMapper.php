@@ -39,10 +39,10 @@ class QuestMapper extends MiscMapper
             }
             // We need the nested trait to trigger for this so it's going to be inefficient
             $quests = Quest::whereIn('id', $children)->get();
-            /** @var Quest $quest */
-            foreach ($quests as $quest) {
-                $quest->setParentId($this->mapping[$parent]);
-                $quest->save();
+            /** @var Quest $model */
+            foreach ($quests as $model) {
+                $model->quest_id = $this->mapping[$parent];
+                $model->saveQuietly();
             }
         }
 

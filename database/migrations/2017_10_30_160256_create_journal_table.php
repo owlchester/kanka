@@ -26,10 +26,6 @@ class CreateJournalTable extends Migration
             $table->unsignedInteger('author_id')->nullable();
             $table->unsignedInteger('location_id')->nullable();
 
-            $table->unsignedInteger('_lft')->default(0);
-            $table->unsignedInteger('_rgt')->default(0);
-            $table->index(['_lft', '_rgt']);
-
             // Overview
             $table->longText('entry')->nullable();
 

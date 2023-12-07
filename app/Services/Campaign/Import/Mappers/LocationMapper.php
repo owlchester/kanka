@@ -26,10 +26,10 @@ class LocationMapper extends MiscMapper
             }
             // We need the nested trait to trigger for this so it's going to be inefficient
             $locations = Location::whereIn('id', $children)->get();
-            /** @var Location $location */
-            foreach ($locations as $location) {
-                $location->setParentId($this->mapping[$parent]);
-                $location->save();
+            /** @var Location $model */
+            foreach ($locations as $model) {
+                $model->location_id = $this->mapping[$parent];
+                $model->saveQuietly();
             }
         }
 

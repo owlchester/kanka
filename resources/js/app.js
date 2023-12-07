@@ -67,6 +67,10 @@ function initSpectrum() {
     });
 
     document.querySelectorAll('.spectrum').forEach(input => {
+        if (input.dataset.init === "1") {
+            return;
+        }
+        input.dataset.init = 1;
         input.addEventListener('click', function (e) {
             Coloris({
                 parent: input.dataset.appendTo ?? '.container',

@@ -21,7 +21,5 @@ class AbilityObserver extends MiscObserver
             $sub->ability_id = null;
             $sub->saveQuietly();
         }
-
-        $this->cleanupTree($model, 'ability_id');
     }
 }

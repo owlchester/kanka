@@ -108,7 +108,7 @@
           <div class="field field field-colour flex flex-col gap-1">
             <label>{{ this.texts.modals.fields.colour }}</label>
             <div>
-              <input v-model="colour" name="colour" type="text" maxlength="7" class="w-full spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
+              <input v-model="colour" name="colour" type="text" maxlength="7" data-append-to="#family-tree-modal" class="w-full spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
             </div>
           </div>
 
@@ -275,8 +275,9 @@ export default {
             $(this.entityField).val(null).trigger('change');
         },
         showDialog() {
-          window.openDialog(this.modal);
-          window.initForeignSelect();
+            window.openDialog(this.modal);
+            window.initForeignSelect();
+            $(document).trigger('shown.bs.modal');
         },
         resetVariables() {
             this.isAddingChild = false;

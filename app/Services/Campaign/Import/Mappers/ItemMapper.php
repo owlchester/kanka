@@ -38,7 +38,7 @@ class ItemMapper extends MiscMapper
             $models = Item::whereIn('id', $children)->get();
             foreach ($models as $model) {
                 $model->item_id = $this->mapping[$parent];
-                $model->save();
+                $model->saveQuietly();
             }
         }
 

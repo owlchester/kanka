@@ -49,6 +49,11 @@ class ImportIdMapper
         return $this->misc[$type][$old];
     }
 
+    public function has(string $type, int $old): bool
+    {
+        return !empty($this->misc[$type][$old]);
+    }
+
     public function getEntity(int $old): int
     {
         return $this->entities[$old];

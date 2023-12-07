@@ -9,5 +9,7 @@ class DiceRollBulk extends Bulk
         'character_id',
         'tags',
         'private_choice',
+        'entity_image',
+        'entity_header',
     ];
 }

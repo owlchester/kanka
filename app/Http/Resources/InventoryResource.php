@@ -16,7 +16,7 @@ class InventoryResource extends EntityChild
     {
         /** @var Inventory $model */
         $model = $this->resource;
-        return $this->entity([
+        return $this->onEntity([
             'item_id' => $model->item_id,
             'name' => $model->name,
             'position' => $model->position,

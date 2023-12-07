@@ -9,6 +9,7 @@ use App\Models\EntityAsset;
 use App\Models\Image;
 use App\Models\CampaignExport;
 use App\Models\Map;
+use App\Models\MiscModel;
 use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -72,7 +73,7 @@ class ExportService
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
-        Export::dispatch($this->campaign, $this->user, $entitiesExport, false);
+        Export::dispatch($this->campaign, $this->user, $entitiesExport, false)->onQueue('heavy');
 
         return $this;
     }
@@ -176,6 +177,7 @@ class ExportService
             'entity.image',
             'entity.header',
             'entity.assets',
+            'entity.files',
             'entity.mentions',
             'entity.inventories',
             'entity.entityAttributes',
@@ -187,7 +189,8 @@ class ExportService
             }
             try {
                 $property = Str::camel($entity);
-                foreach ($this->campaign->$property()->with($entityWith)->has('entity')->get() as $model) {
+                $smartWith = $this->smartWith($entityWith, $class);
+                foreach ($this->campaign->$property()->with($smartWith)->has('entity')->get() as $model) {
                     $this->process($entity, $model);
                 }
             } catch (Exception $e) {
@@ -202,6 +205,17 @@ class ExportService
             }
         }
         return $this;
+    }
+
+    protected function smartWith(array $with, string $entityClass): array
+    {
+        /** @var MiscModel $class */
+        $class = app()->make($entityClass);
+        // @phpstan-ignore-next-line
+        foreach ($class->exportRelations() as $rel) {
+            $with[] = $rel;
+        }
+        return $with;
     }
 
     protected function gallery(): self

@@ -40,9 +40,9 @@ class StoreMap extends FormRequest
             'center_y' => 'nullable|numeric',
         ];
 
-        $self = request()->segment(5);
+        $self = request()->route('map');
         if (!empty($self)) {
-            $rules['map_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:maps,id';
+            $rules['map_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:maps,id';
         }
 
         return $this->clean($rules);

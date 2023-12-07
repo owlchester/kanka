@@ -16,7 +16,6 @@
 
 @section('content')
     @include('partials.errors')
-    @inject('permission', 'App\Services\PermissionService')
 
     @if ($role->isPublic())
         @include('campaigns.roles._public')
@@ -69,27 +68,27 @@
         </p>
         <ul>
             <li>
-                <code>{{ __('campaigns.roles.permissions.actions.read') }}</code>:
+                <code>{{ __('campaigns.roles.permissions.actions.read') }}</code>
                 {{ __('campaigns.roles.permissions.helpers.read') }}
             </li>
             <li>
-                <code>{{ __('campaigns.roles.permissions.actions.edit') }}</code>:
+                <code>{{ __('campaigns.roles.permissions.actions.edit') }}</code>
                 {{ __('campaigns.roles.permissions.helpers.edit') }}
             </li>
             <li>
-                <code>{{ __('campaigns.roles.permissions.actions.add') }}</code>:
+                <code>{{ __('campaigns.roles.permissions.actions.add') }}</code>
                 {{ __('campaigns.roles.permissions.helpers.add') }}
             </li>
             <li>
-                <code>{{ __('campaigns.roles.permissions.actions.delete') }}</code>:
+                <code>{{ __('campaigns.roles.permissions.actions.delete') }}</code>
                 {{ __('campaigns.roles.permissions.helpers.delete') }}
             </li>
             <li>
-                <code>{{ __('entities.posts') }}</code>:
+                <code>{{ __('entities.posts') }}</code>
                 {{ __('campaigns.roles.permissions.helpers.entity_note') }}
             </li>
             <li>
-                <code>{{ __('campaigns.roles.permissions.actions.permission') }}</code>:
+                <code>{{ __('campaigns.roles.permissions.actions.permission') }}</code>
                 {{ __('campaigns.roles.permissions.helpers.permission') }}
             </li>
         </ul>
@@ -100,20 +99,36 @@
 
         <ul>
             <li>
-                <code>{{ __('campaigns.roles.permissions.actions.manage') }}</code>:
+                <code>{{ __('campaigns.roles.permissions.actions.manage') }}</code>
                 {{ __('campaigns.roles.permissions.helpers.manage') }}
             </li>
             <li>
-                <code>{{ __('campaigns.roles.permissions.actions.dashboard') }}</code>:
+                <code>{{ __('campaigns.roles.permissions.actions.dashboard') }}</code>
                 {{ __('campaigns.roles.permissions.helpers.dashboard') }}
             </li>
             <li>
-                <code>{{ __('campaigns.roles.permissions.actions.members') }}</code>:
+                <code>{{ __('campaigns.roles.permissions.actions.members') }}</code>
                 {{ __('campaigns.roles.permissions.helpers.members') }}
             </li>
+        </ul>
+
+
+        <p class="m-0">
+            {!! __('sidebar.gallery') !!}
+        </p>
+
+        <ul>
             <li>
-                <code>{{ __('campaigns.roles.permissions.actions.gallery') }}</code>:
-                {{ __('campaigns.roles.permissions.helpers.gallery') }}
+                <code>{{ __('campaigns.roles.permissions.actions.gallery.manage') }}</code>
+                {{ __('campaigns.roles.permissions.helpers.gallery.manage') }}
+            </li>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.gallery.browse') }}</code>
+                {{ __('campaigns.roles.permissions.helpers.gallery.browse') }}
+            </li>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.gallery.upload') }}</code>
+                {{ __('campaigns.roles.permissions.helpers.gallery.upload') }}
             </li>
         </ul>
 

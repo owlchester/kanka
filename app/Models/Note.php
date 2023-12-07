@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
+use App\Models\Concerns\HasFilters;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Note
@@ -25,7 +26,8 @@ class Note extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
 
     /** @var string[]  */
@@ -121,18 +123,9 @@ class Note extends MiscModel
      * Parent ID field for the Node trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'note_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setNoteIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**

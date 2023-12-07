@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Tag $model */ ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('tags.children.create.title', ['name' => $model->name]),
+    'title' => __('tags.children.create.modal_title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::entity($model->entity)->list(),
@@ -10,9 +10,15 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => $formOptions, 'method' => 'POST']) !!}
+    {!! Form::open([
+        'route' => $formOptions, 
+        'method' => 'POST',
+        'data-shortcut' => 1,
+        'class' => 'ajax-subform',
+    ]) !!}
+
     @include('partials.forms.form', [
-        'title' => __('tags.children.create.title', ['name' => $model->name]),
+        'title' => __('tags.children.create.modal_title', ['name' => $model->name]),
         'content' => 'tags.entities._form',
         'submit' =>  __('tags.children.actions.add'),
         'dialog' => true,

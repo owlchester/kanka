@@ -46,10 +46,10 @@ class CampaignPermission extends Model
     public const ACTION_GALLERY = 13;
     public const ACTION_CAMPAIGN = 14;
 
-    /**
-     * @var bool|array
-     */
-    protected $cachedSegments = false;
+    public const ACTION_GALLERY_BROWSE = 15;
+    public const ACTION_GALLERY_UPLOAD = 16;
+
+    protected array $cachedSegments;
 
     /** @var string[]  */
     protected $fillable = [
@@ -152,7 +152,7 @@ class CampaignPermission extends Model
 
     protected function segments(): array
     {
-        if ($this->cachedSegments === false) {
+        if (!isset($this->cachedSegments)) {
             $this->cachedSegments = explode('_', $this->key);
         }
         return $this->cachedSegments;
@@ -212,5 +212,15 @@ class CampaignPermission extends Model
         $segments = $this->segments();
         $end = last($segments);
         return is_numeric($end) && empty($this->entity_id);
+    }
+
+    public function isGallery(): bool
+    {
+        $galleryPermissions = [
+            self::ACTION_GALLERY,
+            self::ACTION_GALLERY_BROWSE,
+            self::ACTION_GALLERY_UPLOAD,
+        ];
+        return in_array($this->action, $galleryPermissions);
     }
 }

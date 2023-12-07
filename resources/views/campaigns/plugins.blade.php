@@ -18,18 +18,18 @@
         @if(session('plugin_entities_created'))
             <x-alert type="info" :dismissible="true">
                 <strong>{{ __('campaigns/plugins.import.created') }}</strong><br/>
-                {!! session('plugin_entities_created') !!}
+                <p>{!! session('plugin_entities_created') !!}</p>
             </x-alert>
         @endif
         @if(session('plugin_entities_updated'))
             <x-alert type="info" :dismissible="true">
                 <strong>{{ __('campaigns/plugins.import.updated') }}</strong><br/>
-                {!! session('plugin_entities_updated') !!}
+                <p>{!! session('plugin_entities_updated') !!}</p>
             </x-alert>
         @endif
         @if(session('plugin_only_new') == 'on' && session('plugin_entities_created') == 0)
             <x-alert type="warning" :dismissible="true">
-                <strong>{{ __('campaigns/plugins.import.no_new_entities') }}</strong><br/>
+                <strong>{{ __('campaigns/plugins.import.no_new_entities') }}</strong>
             </x-alert>
         @endif
         @include('campaigns.plugins.index')

@@ -21,6 +21,10 @@
                     @if ($name === 'bookmarks')
                         @includeWhen($campaign->enabled('bookmarks'), 'layouts.sidebars.quick-links', ['links' => $sidebar->bookmarks('bookmarks')])
                         @continue
+                    @elseif (!empty($element['perm']))
+                        @if (auth()->guest() || !auth()->user()->can($element['perm'], $campaign))
+                            @continue
+                        @endif
                     @endif
                     <li class="px-2 {{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section-{{ $name }}">
                         @if ($element['route'] !== false)

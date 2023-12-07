@@ -29,6 +29,7 @@ class HelperController
             if (!$misc instanceof MiscModel) {
                 abort(404);
             }
+            // @phpstan-ignore-next-line
             $filters = $misc->getFilterableColumns();
 
             return view('helpers.api-filters', compact(

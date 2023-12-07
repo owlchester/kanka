@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasFilters;
 use App\Models\Relations\CalendarRelations;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Calendar
@@ -41,6 +43,8 @@ class Calendar extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
 
     /** @var string[]  */
@@ -134,7 +138,7 @@ class Calendar extends MiscModel
         return ['calendar_id', 'date'];
     }
 
-    public function getParentIdName(): string
+    public function getParentKeyName(): string
     {
         return 'calendar_id';
     }

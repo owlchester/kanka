@@ -35,6 +35,7 @@
         </div>
         @if ($campaign->boosted())
             @if (empty($campaign->defaultImages()))
+                @can('recover', $campaign)
                 <x-box>
                     <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary"
                        data-toggle="dialog-ajax" data-target="new-thumbnail"
@@ -43,6 +44,7 @@
                         {{ __('campaigns/default-images.actions.add') }}
                     </a>
                 </x-box>
+                @endcan
             @endif
             <div class="grid grid-cols-2 sm:grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
 

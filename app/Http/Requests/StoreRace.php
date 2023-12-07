@@ -37,9 +37,9 @@ class StoreRace extends FormRequest
             'template_id' => 'nullable',
         ];
 
-        $self = request()->segment(5);
+        $self = request()->route('race');
         if (!empty($self)) {
-            $rules['race_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:races,id';
+            $rules['race_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:races,id';
         }
 
         return $this->clean($rules);

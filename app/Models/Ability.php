@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Facades\Mentions;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Ability
@@ -34,10 +35,10 @@ class Ability extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
-    use SortableTrait
-    ;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -86,18 +87,9 @@ class Ability extends MiscModel
      * Parent ID used for the Node Trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'ability_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setAbilityIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**
@@ -205,27 +197,22 @@ class Ability extends MiscModel
     }
 
     /**
-     * Attach an entity to the tag
+     * Attach an entity to the ability
      */
-    public function attachEntity(array $request): bool
+    public function attachEntity(array $request): int
     {
-        $entityId = Arr::get($request, 'entity_id');
-        $entity = Entity::with('abilities')->findOrFail($entityId);
+        $entityIds = Arr::get($request, 'entities');
+        $count = 0;
+        $visibility = Arr::get($request, 'visibility_id', \App\Enums\Visibility::All);
+        $sync = [];
 
-        // Make sure the tag isn't already attached to the entity
-        foreach ($entity->abilities as $ability) {
-            if ($ability->ability_id == $this->id) {
-                return true;
-            }
+        foreach ($entityIds as $entity) {
+            $sync[$entity] = ['visibility_id' => $visibility];
+            $count++;
         }
+        $this->entities()->syncWithoutDetaching($sync);
 
-        $entityAbility = EntityAbility::create([
-            'ability_id' => $this->id,
-            'entity_id' => $entityId,
-            'visibility_id' => Arr::get($request, 'visibility_id', \App\Enums\Visibility::All),
-        ]);
-
-        return $entityAbility !== false;
+        return $count;
     }
 
     /**

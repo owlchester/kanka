@@ -38,9 +38,9 @@ class StoreOrganisation extends FormRequest
             'template_id' => 'nullable',
         ];
 
-        $self = request()->segment(5);
+        $self = request()->route('organisation');
         if (!empty($self)) {
-            $rules['organisation_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:organisations,id';
+            $rules['organisation_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:organisations,id';
         }
 
         return $this->clean($rules);

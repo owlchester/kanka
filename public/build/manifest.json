@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-9b016f90.js",
+    "file": "assets/app-c41b2a06.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_mention-6dbb4e38.js",
@@ -149,7 +149,7 @@
     "src": "resources/js/cookieconsent.js"
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-cb1e1518.js",
+    "file": "assets/dashboard-b75543d4.js",
     "imports": [
       "_sortable.esm-be94e56d.js"
     ],
@@ -162,7 +162,7 @@
     "src": "resources/js/editors/summernote.js"
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-7a895d8a.js",
+    "file": "assets/family-tree-vue-8055f304.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
@@ -188,7 +188,7 @@
     "src": "resources/js/front.js"
   },
   "resources/js/gallery.js": {
-    "file": "assets/gallery-2dea31e9.js",
+    "file": "assets/gallery-3fd12283.js",
     "imports": [
       "_index-0b481a1e.js",
       "__commonjsHelpers-725317a4.js"
@@ -212,7 +212,7 @@
     "src": "resources/js/profile.js"
   },
   "resources/js/relations.js": {
-    "file": "assets/relations-5fb6c751.js",
+    "file": "assets/relations-a59799ef.js",
     "imports": [
       "__commonjsHelpers-725317a4.js"
     ],

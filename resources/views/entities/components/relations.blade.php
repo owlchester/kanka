@@ -19,7 +19,7 @@ if (count($models) === 0) {
     </div>
     @else
     <div class="pinned-relation flex gap-2 flex-wrap" data-target="{{ $relation->target_id }}" data-relation="{{ $relation->target->name }}" data-visibility="{{ $relation->visibility_id }}">
-        <strong class="flex-none">
+        <strong class="">
             {{ $relation->relation }}
         </strong>
         <span class="grow text-right">

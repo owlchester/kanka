@@ -10,5 +10,7 @@ class AbilityBulk extends Bulk
         'ability_id',
         'tags',
         'private_choice',
+        'entity_image',
+        'entity_header',
     ];
 }

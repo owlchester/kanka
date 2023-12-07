@@ -19,8 +19,6 @@ class LocationObserver extends MiscObserver
             $sub->location_id = null;
             $sub->saveQuietly();
         }
-
-        $this->cleanupTree($location, 'location_id');
     }
 
     /**
