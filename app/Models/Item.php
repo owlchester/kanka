@@ -296,6 +296,7 @@ class Item extends MiscModel
             'price',
             'size',
             'item_id',
+            'is_equipped',
         ];
     }
 

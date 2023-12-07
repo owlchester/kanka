@@ -13,7 +13,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
-use App\Models\Family;
 use App\Models\MiscModel;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\MultiEditingService;

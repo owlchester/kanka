@@ -12,7 +12,6 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
