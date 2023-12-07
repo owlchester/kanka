@@ -54,6 +54,7 @@ class ReminderController extends Controller
             ->has('calendar')
             ->has('calendar.entity')
             ->with(['calendar', 'calendar.entity', 'entity'])
+            ->sort(request()->only(['o', 'k']))
             ->paginate();
 
         if (request()->ajax()) {
