@@ -40,7 +40,7 @@ class EntityRelationApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Entity $entity)
@@ -48,15 +48,9 @@ class EntityRelationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
 
-        [$new, $count] = $this->relationService->campaign($campaign)->createRelations($request);
+        $this->relationService->campaign($campaign)->createRelations($request);
 
-        if ($request->has('targets')) {
-            $entities = $request->get('targets');
-        } else {
-            $entities = [$request->get('target_id')];
-        }
-
-        return Resource::collection($entity->relationships()->has('target')->whereIn('target_id', $entities)->paginate());
+        return Resource::collection($entity->relationships()->has('target')->whereIn('target_id', $this->relationService->getEntities())->paginate());
     }
 
     /**

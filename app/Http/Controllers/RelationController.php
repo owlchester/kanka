@@ -81,7 +81,9 @@ class RelationController extends CrudController
         }
 
         try {
-            [$new, $count] = $this->relationService->campaign($campaign)->createRelations($request);
+            $this->relationService->campaign($campaign)->createRelations($request);
+            $new = $this->relationService->getNew();
+            $count = $this->relationService->getCount();
 
             $success = trans_choice($this->langKey . '.create.success_bulk', $count, [
                 'entity' => link_to(

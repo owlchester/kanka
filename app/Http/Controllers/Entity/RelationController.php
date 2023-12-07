@@ -113,7 +113,7 @@ class RelationController extends Controller
             return response()->json(['success' => true]);
         }
 
-        [$new, $count] = $this->relationService->campaign($campaign)->createRelations($request);
+        $this->relationService->campaign($campaign)->createRelations($request);
 
         $mode = $this->getModeOption(true);
         $redirect = [$campaign, $entity];
@@ -125,7 +125,7 @@ class RelationController extends Controller
             ->route('entities.relations.index', $redirect)
             ->with('success', trans_choice('entities/relations.create.success_bulk', $count, [
                 'entity' => $entity->name,
-                'count' => $count,
+                'count' => $this->relationService->getCount(),
             ]));
     }
 
