@@ -353,6 +353,7 @@ class Entity extends Model
     }
 
     /**
+     * Todo: this should be a policy?
      */
     public function accessAttributes(): bool
     {

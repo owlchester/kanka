@@ -7,6 +7,7 @@ use App\Models\AttributeTemplate;
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\Entity;
+use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -15,6 +16,7 @@ use Kanka\Dnd5eMonster\Template;
 class TemplateService
 {
     use EntityAware;
+    use CampaignAware;
 
     protected RandomService $randomService;
 
@@ -110,12 +112,10 @@ class TemplateService
 
     /**
      * Get a character sheet marketplace plugin model from the db based on its uuid
-     * @param string $uuid
-     * @return CampaignPlugin|null
      */
-    public function marketplaceTemplate($uuid, Campaign $campaign)
+    public function marketplaceTemplate(string $uuid): CampaignPlugin|null
     {
-        if (!$campaign->boosted() || !config('marketplace.enabled')) {
+        if (!$this->campaign->boosted() || !config('marketplace.enabled')) {
             return null;
         }
 
@@ -125,7 +125,7 @@ class TemplateService
 
         /** @var CampaignPlugin|null $plugin */
         // @phpstan-ignore-next-line
-        $plugin = CampaignPlugin::templates($campaign)
+        $plugin = CampaignPlugin::templates($this->campaign)
             ->select('campaign_plugins.*')
             ->leftJoin('plugin_versions as pv', 'pv.plugin_id', 'campaign_plugins.plugin_id')
             ->where('pv.uuid', $uuid)

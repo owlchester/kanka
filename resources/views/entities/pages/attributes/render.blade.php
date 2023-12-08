@@ -9,9 +9,9 @@
  */
 $layout = $entity->entityAttributes->where('name', '_layout')->first();
 
-if ($layout && !empty($campaign)) {
+if (!empty($layout)) {
     $template = $template ?? $templateService->communityTemplate($layout->value);
-    $marketplaceTemplate = $marketplaceTemplate ?? $templateService->marketplaceTemplate($layout->value, $campaign);
+    $marketplaceTemplate = $marketplaceTemplate ?? $templateService->campaign($campaign)->marketplaceTemplate($layout->value);
 }
 ?>
 
