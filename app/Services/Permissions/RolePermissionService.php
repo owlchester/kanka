@@ -72,14 +72,14 @@ class RolePermissionService
 
         foreach (EntityType::get() as $entityType) {
             foreach ($entityActions as $action) {
-                if (!isset($permissions[$entityType->id])) {
-                    $permissions[$entityType->id] = [
+                if (!isset($permissions[$entityType->plural()])) {
+                    $permissions[$entityType->plural()] = [
                         'entityType' => $entityType,
                         'permissions' => []
                     ];
                 }
                 $key = "{$entityType->id}_{$action}";
-                $permissions[$entityType->id]['permissions'][] = [
+                $permissions[$entityType->plural()]['permissions'][] = [
                     'action' => $action,
                     'key' => $key,
                     'icon' => Arr::first($icons[$action]),
@@ -89,7 +89,16 @@ class RolePermissionService
             }
         }
 
-        return $permissions;
+        $collator = new \Collator(app()->getLocale());
+        $collator->asort($permissions);
+
+        $keys = array_keys($permissions);
+        $collator->sort($keys);
+        foreach ($keys as $key) {
+            $result[$key] = $permissions[$key];
+        }
+
+        return $result;
     }
     /**
      * Campaign Permissions
