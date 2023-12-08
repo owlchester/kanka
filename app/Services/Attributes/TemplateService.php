@@ -15,8 +15,8 @@ use Kanka\Dnd5eMonster\Template;
 
 class TemplateService
 {
-    use EntityAware;
     use CampaignAware;
+    use EntityAware;
 
     protected RandomService $randomService;
 
