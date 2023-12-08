@@ -57,8 +57,8 @@ class ConnectionService
         // Prepare ids for pagination
         $this->prepareIds();
 
-
         return Entity::whereIn('id', $this->ids)
+            ->with('image')
             ->orderBy($this->order)
             ->paginate();
     }
