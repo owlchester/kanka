@@ -20,6 +20,7 @@ use Laravel\Cashier\Exceptions\IncompletePayment;
 class SubscriptionController extends Controller
 {
     protected SubscriptionService $subscription;
+
     protected SubscriptionUpgradeService $subscriptionUpgrade;
 
     /**
@@ -32,9 +33,6 @@ class SubscriptionController extends Controller
         $this->subscriptionUpgrade = $subscriptionUpgradeService;
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
         /** @var User $user */
@@ -71,12 +69,6 @@ class SubscriptionController extends Controller
         ));
     }
 
-    /**
-     * Change subscription modal
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
-     */
     public function change(Request $request)
     {
         $user = $request->user();
@@ -92,7 +84,7 @@ class SubscriptionController extends Controller
         $cancel = $tier == Pledge::KOBOLD;
         $isDowngrading = $this->subscription->downgrading();
         $isYearly = $period === 'yearly';
-        $hasPromo = \Carbon\Carbon::create(2023, 11, 28)->isFuture();
+        $hasPromo = false; //\Carbon\Carbon::create(2023, 11, 28)->isFuture();
         $limited = $this->subscription->isLimited();
         if ($user->hasPayPal()) {
             $limited = true;
