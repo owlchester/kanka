@@ -47,8 +47,6 @@ if (isset($model) && $model->isChunked()) {
         [
         'placeholder' => 5,
         'class' => '',
-        'min' => 1,
-        'max' => Map::MAX_ZOOM,
         ]
         ) !!}
     </x-forms.field>
@@ -64,8 +62,6 @@ if (isset($model) && $model->isChunked()) {
         [
         'placeholder' => -2,
         'class' => '',
-        'min' => Map::MIN_ZOOM,
-        'max' => Map::MAX_ZOOM_REAL,
         ]
         ) !!}
     </x-forms.field>
@@ -81,8 +77,6 @@ if (isset($model) && $model->isChunked()) {
         [
         'placeholder' => 5,
         'class' => '',
-        'min' => $minInitial,
-        'max' => $maxInitial,
         ]
         ) !!}
     </x-forms.field>
