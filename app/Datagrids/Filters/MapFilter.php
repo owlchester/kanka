@@ -31,6 +31,7 @@ class MapFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
+            ->connections()
         ;
     }
 }

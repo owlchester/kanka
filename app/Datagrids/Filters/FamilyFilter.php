@@ -32,6 +32,7 @@ class FamilyFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
+            ->connections()
         ;
     }
 }

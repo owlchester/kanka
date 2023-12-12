@@ -75,7 +75,7 @@ class CharacterFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
-            ->connection()
+            ->connections()
         ;
     }
 }

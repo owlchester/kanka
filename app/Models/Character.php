@@ -462,9 +462,6 @@ class Character extends MiscModel
             'race_id',
             'family_id',
             'races',
-            'connection',
-            'connection_target',
-            'connection_name'
         ];
     }
 

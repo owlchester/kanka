@@ -50,6 +50,7 @@ class QuestFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
+            ->connections()
         ;
     }
 }

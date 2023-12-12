@@ -36,6 +36,7 @@ class TimelineFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
+            ->connections()
         ;
     }
 }

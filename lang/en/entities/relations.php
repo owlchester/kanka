@@ -55,8 +55,8 @@ return [
         'unmirror'          => 'Unmirror this connection.',
     ],
     'filters'           => [
-        'name'          => 'Name',
-        'connection'    => 'Connection',
+        'name'          => 'Connection target',
+        'connection'    => 'Connection relation',
     ],
     'helper'            => 'Set up connections between entities with attitudes and visibility. Connections can also be pinned to the entity\'s menu.',
     'helpers'           => [

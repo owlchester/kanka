@@ -212,9 +212,9 @@ abstract class DatagridFilter
      * Add the connection selector
      * @return $this
      */
-    protected function connection(): self
+    protected function connections(): self
     {
-        $this->filters[] = 'connection';
+        $this->filters[] = 'connections';
         return $this;
     }
 

@@ -26,6 +26,7 @@ class AttributeTemplateFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
+            ->connections()
         ;
     }
 }

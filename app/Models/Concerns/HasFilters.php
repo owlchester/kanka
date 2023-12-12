@@ -65,7 +65,7 @@ trait HasFilters
             'updated_by',
             'attribute_name',
             'attribute_value',
-            'connection',
+            'connections',
             'connection_target',
             'connection_name'
         ];
