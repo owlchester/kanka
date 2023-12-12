@@ -268,7 +268,7 @@ trait HasFilters
         }
 
         $query->joinEntity();
-  
+
         $query
             ->leftJoin('relations as rel', function ($join) {
                 $join->on('rel.owner_id', '=', 'e.id');
