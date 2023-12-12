@@ -349,6 +349,11 @@ class MentionsService
                 }
 
                 $dataUrl = route('entities.tooltip', [$this->campaign, $entity]);
+                if (!empty($data['tooltip']) && $data['tooltip'] === 'attributes') {
+                    $dataUrl = route('entities.tooltip', [$this->campaign, $entity, 'render' => 'attributes']);
+                }
+
+
 
                 // If this request is through the API, we need to inject the language in the url
                 if (request()->is('api/*') || Domain::isApi()) {
