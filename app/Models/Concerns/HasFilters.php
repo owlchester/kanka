@@ -65,6 +65,9 @@ trait HasFilters
             'updated_by',
             'attribute_name',
             'attribute_value',
+            'connection',
+            'connection_target',
+            'connection_name'
         ];
     }
 
@@ -122,6 +125,8 @@ trait HasFilters
                         ->where('et.tag_id', $value);
                 } elseif (in_array($key, ['attribute_value', 'attribute_name'])) {
                     $this->filterAttributes($query, $key);
+                } elseif (in_array($key, ['connection_target', 'connection_name'])) {
+                    $this->filterConnections($query, $key);
                 } elseif ($key == 'race_id') {
                     $this->filterRace($query, $value);
                 } elseif ($key == 'family_id') {
@@ -250,6 +255,34 @@ trait HasFilters
         } elseif ($attributeValue !== '' && $attributeValue !== null) {
             $query
                 ->where('att.value', $attributeValue);
+        }
+    }
+
+    /**
+     * Filter on the connections of an entity
+     */
+    protected function filterConnections(Builder $query, string $key): void
+    {
+        if ($key == 'connection_name' &&  Arr::get($this->filterParams, 'connection_target')) {
+            return;
+        }
+
+        $query->joinEntity();
+  
+        $query
+            ->leftJoin('relations as rel', function ($join) {
+                $join->on('rel.owner_id', '=', 'e.id');
+            });
+        $connectionTarget = Arr::get($this->filterParams, 'connection_target');
+        if ($connectionTarget !== '' && $connectionTarget !== null) {
+            $query
+                ->where('rel.target_id', $connectionTarget);
+        }
+
+        $connectionName = Arr::get($this->filterParams, 'connection_name');
+        if ($connectionName !== '' && $connectionName !== null) {
+            $query
+                ->where('rel.relation', 'like', '%' . $connectionName . '%');
         }
     }
 

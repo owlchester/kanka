@@ -124,7 +124,7 @@ class RelationController extends Controller
 
         return redirect()
             ->route('entities.relations.index', $redirect)
-            ->with('success', trans_choice('entities/relations.create.success_bulk', $count, [
+            ->with('success', trans_choice('entities/relations.create.success_bulk', $this->relationService->getCount(), [
                 'entity' => $entity->name,
                 'count' => $this->relationService->getCount(),
             ]));

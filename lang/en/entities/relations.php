@@ -54,6 +54,10 @@ return [
         'two_way'           => 'Mirror connection',
         'unmirror'          => 'Unmirror this connection.',
     ],
+    'filters'           => [
+        'name'          => 'Name',
+        'connection'    => 'Connection',
+    ],
     'helper'            => 'Set up connections between entities with attitudes and visibility. Connections can also be pinned to the entity\'s menu.',
     'helpers'           => [
         'no_relations'  => 'This entity doesn\'t currently have any connection to other entities of the campaign.',
