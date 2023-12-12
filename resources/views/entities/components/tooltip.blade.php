@@ -29,7 +29,7 @@
             </a>
         @endforeach
     </div>@endif
-    @if ($render === 'attributes')
+    @if ($campaign->premium() && $render === 'attributes')
         <iframe src="{{ route('entities.attributes-dashboard', [$campaign, $entity]) }}" class="tooltip-render w-full h-44" />
     @else
     <div class="tooltip-text text-sm">

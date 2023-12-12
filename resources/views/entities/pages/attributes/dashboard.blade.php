@@ -32,7 +32,7 @@
             white-space: nowrap; }
         dd { flex: 0 70% }
         @media (min-width: 768px) {
-            dl { display: block;}
+            dl { display: unset;}
         }
     </style>
 @endsection
