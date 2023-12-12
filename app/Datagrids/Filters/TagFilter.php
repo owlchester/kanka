@@ -36,6 +36,7 @@ class TagFilter extends DatagridFilter
             ->hasEntityFiles()
             ->hasAttributes()
             ->attributes()
+            ->connections()
         ;
     }
 }

@@ -209,6 +209,16 @@ abstract class DatagridFilter
     }
 
     /**
+     * Add the connection selector
+     * @return $this
+     */
+    protected function connections(): self
+    {
+        $this->filters[] = 'connections';
+        return $this;
+    }
+
+    /**
      * Add the date range filter
      * @return $this
      */
