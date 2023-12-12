@@ -12,8 +12,8 @@
 
 @section('content')
     {!! Form::open([
+        'method' => 'POST',
         'route' => ['calendars.event.store', $campaign, $calendar->id],
-        'method'=>'POST',
         'data-shortcut' => 1,
         'class' => 'ajax-subform entity-calendar-subform',
         'data-maintenance' => 1
@@ -24,7 +24,6 @@
         'content' => 'calendars.events._form',
         'dialog' => true,
         'dropdownParent' => '#primary-dialog',
-        'colourAppendTo' => '#primary-dialog',
     ])
 
     @if (request()->has('layout'))

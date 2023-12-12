@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $recurring_until
  * @property string $recurring_periodicity
  * @property int $type_id
- * @property int $elapsed
+ * @property int|null $elapsed
  *
  * @property Calendar|null $calendar
  * @property EntityEvent|null $death
@@ -244,6 +244,11 @@ class EntityEvent extends MiscModel
      */
     public function calcElapsed(EntityEvent $event = null): int
     {
+        // Have the value cached? Don't bother with more work
+        if (empty($event) && !empty($this->elapsed)) {
+            return $this->elapsed;
+        }
+
         if (!empty($event)) {
             $year = $event->year;
             $month = $event->month;
@@ -262,14 +267,25 @@ class EntityEvent extends MiscModel
         $years = $year - $baseYear;
 
         if ($month < $this->month) {
-            return $years - 1;
+            return $this->saveElapsed($years - 1, empty($event));
         }
         if ($month > $this->month) {
-            return $years;
+            return $this->saveElapsed($years, empty($event));
         }
 
         // Same month
-        return $years - ($day < $this->day ? 1 : 0);
+        return $this->saveElapsed($years - ($day < $this->day ? 1 : 0), empty($event));
+    }
+
+    protected function saveElapsed(int $number, bool $save): int
+    {
+        // If comparing two days, don't save the "elapsed" part, we need to re-calc those one each page load
+        if (!$save) {
+            return $number;
+        }
+        $this->elapsed = $number;
+        $this->saveQuietly();
+        return $this->elapsed;
     }
 
     /**

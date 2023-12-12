@@ -329,8 +329,6 @@ const loadCalendarDates = (calendarID) => {
             if (data.length === 1) {
                 entityCalendarMonthField.val(data[0].id);
             }
-
-            initSpectrum();
         });
 };
 

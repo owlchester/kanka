@@ -15,12 +15,12 @@
     @can('events', $entity->child)
         <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
             <a href="https://docs.kanka.io/en/latest/features/reminders.html" target="_blank" class="btn2 btn-ghost btn-sm">
-                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+                <x-icon class="question" /> {{ __('crud.actions.help') }}
             </a>
             <a href="{{ route('entities.entity_events.create', [$campaign, $entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
                class="btn2 btn-sm" data-toggle="dialog" data-target="primary-dialog"
                data-url="{{ route('entities.entity_events.create', [$campaign, $entity, 'next' => 'entity.events']) }}">
-                <x-icon class="plus"></x-icon> {{ __('entities/events.show.actions.add') }}
+                <x-icon class="plus" /> {{ __('entities/events.show.actions.add') }}
             </a>
         </div>
     @endcan
