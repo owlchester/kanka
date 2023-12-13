@@ -31,7 +31,7 @@ if (isset($model) && $model->entity && $model->entity->header_uuid) {
     <x-forms.field
         field="header-gallery"
         :label="$label">
-        <x-grid type="3/4">
+        <x-grid type="{{ isset($bulk) ? '1-1' : '3/4' }}">
             <div class="col-span-3">
                 <x-forms.foreign
                     :campaign="$campaign"
@@ -44,6 +44,7 @@ if (isset($model) && $model->entity && $model->entity->header_uuid) {
                 </x-forms.foreign>
             </div>
 
+            @if (!isset($bulk))
             <div class="preview">
                 @if (!empty($model->entity) && !empty($model->entity->header_uuid) && !empty($model->entity->header))
                     @include('cruds.fields._image_preview', [
@@ -52,6 +53,7 @@ if (isset($model) && $model->entity && $model->entity->header_uuid) {
                     ])
                 @endif
             </div>
+            @endif
         </x-grid>
     </x-forms.field>
 @endif
