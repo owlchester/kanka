@@ -163,6 +163,9 @@ class Item extends MiscModel
             'items' => function ($sub) {
                 $sub->select('id', 'name', 'item_id');
             },
+            'item' => function ($sub) {
+                $sub->select('id', 'name');
+            },
             'children' => function ($sub) {
                 $sub->select('id', 'item_id');
             }
