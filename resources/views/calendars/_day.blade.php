@@ -67,7 +67,7 @@
                 @endforeach
             @endif
             @if (!empty($day['season']))
-                <div class="badge calendar-season bg-season block w-full !text-xs" title="{{ __('calendars.parameters.seasons.name') }}">
+                <div class="badge calendar-season bg-season block w-full !text-xs" data-toggle="tooltip" data-title="{{ __('calendars.parameters.seasons.name') }}">
                     {{ $day['season'] }}
                 </div>
             @endif
@@ -99,6 +99,8 @@
                                 <span class="text-xs">{{ __('calendars.events.end')}}</span>
                             @endif
                         </span>
+                        @if ($event->isBirth()) <x-icon class="fa-solid fa-birthday-cake" title="{{ __('entities/events.types.birthday') }}" tooltip="1" /> @endif
+                        @if ($event->isDeath()) <x-icon class="fa-solid fa-skull" title="{{ __('entities/events.types.death') }}" tooltip="1" /> @endif
                         {!! $event->getLabel() !!}
                     </div>
                 @endforeach
