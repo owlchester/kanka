@@ -71,7 +71,6 @@ trait HasFilters
         ];
     }
 
-
     /**
      */
     public function scopeFilter(Builder $query, array $params = []): Builder
@@ -263,7 +262,7 @@ trait HasFilters
      */
     protected function filterConnections(Builder $query, string $key): void
     {
-        if ($key == 'connection_name' &&  Arr::get($this->filterParams, 'connection_target')) {
+        if ($key == 'connection_target' &&  Arr::get($this->filterParams, 'connection_name')) {
             return;
         }
 
@@ -281,8 +280,13 @@ trait HasFilters
 
         $connectionName = Arr::get($this->filterParams, 'connection_name');
         if ($connectionName !== '' && $connectionName !== null) {
+            $connectionName = $this->filterValue;
+            if ($this->filterOperator != '=') {
+                $connectionName = '%' . $this->filterValue . '%';
+            }
+
             $query
-                ->where('rel.relation', 'like', '%' . $connectionName . '%');
+                ->where('rel.relation', $this->filterOperator, $connectionName);
         }
     }
 
@@ -398,6 +402,7 @@ trait HasFilters
         } else {
             $query->whereNull('inventories.id');
         }
+        $query->distinct('items.id');
     }
 
     /**

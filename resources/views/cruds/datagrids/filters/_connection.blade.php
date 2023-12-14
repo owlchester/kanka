@@ -14,6 +14,7 @@
         :campaign="$campaign"
         :route="route('search.entities-with-relations', [$campaign])"
         :selected="$model"
+        allow-clear="true"
     >
     </x-forms.foreign>
 
