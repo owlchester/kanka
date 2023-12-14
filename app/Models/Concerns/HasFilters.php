@@ -286,7 +286,7 @@ trait HasFilters
             }
 
             $query
-                ->where('rel.relation', $this->filterOperator, $connectionName);    
+                ->where('rel.relation', $this->filterOperator, $connectionName);
         }
     }
 

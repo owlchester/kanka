@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Models\Calendar;
 use App\Models\EntityEvent;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -14,7 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class CalendarsClearElapsed implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public int $id;
     /**
