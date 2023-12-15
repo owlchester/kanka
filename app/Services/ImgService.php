@@ -154,7 +154,7 @@ class ImgService
             ;
         }
         if (!app()->isProduction()) {
-            $img = app()->isProduction() . '/' . $img;
+            $img = app()->environment() . '/' . $img;
         }
         // Old system
         return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
