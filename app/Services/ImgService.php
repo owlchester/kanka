@@ -153,6 +153,9 @@ class ImgService
                 . 'src/' . $img
             ;
         }
+        if (!app()->isProduction()) {
+            $img = app()->isProduction() . '/' . $img;
+        }
         // Old system
         return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
             . 'src/' . urlencode($img)
