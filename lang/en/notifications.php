@@ -39,8 +39,8 @@ return [
             'joined'    => 'The Kanka team-member :user joined the campaign :campaign.',
         ],
         'import' => [
-            'success' => 'Campaign :campaign finished importing.',
-            'fail' => 'Campaign :campaign failed to import.',
+            'success' => 'The campaign :campaign finished importing.',
+            'failed' => 'The import for campaign :campaign failed.',
         ]
     ],
     'clear'             => [

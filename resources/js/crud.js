@@ -48,10 +48,6 @@ function registerModalLoad() {
         registerEntityFormActions();
         registerFormMaintenance();
     });
-
-    $('#campaign-delete-confirm').on('shown.bs.modal', function () {
-        $('#campaign-delete-form').focus();
-    });
 }
 
 function registerEntityNameCheck() {
