@@ -24,7 +24,7 @@
 
             <a href="//docs.kanka.io/en/latest/features/campaigns/modules.html"
                target="_blank" class="btn2 btn-sm btn-ghost">
-                <x-icon class="question"></x-icon>
+                <x-icon class="question" />
                 {!! __('crud.actions.help') !!}
             </a>
             @can('update', $campaign)

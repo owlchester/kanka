@@ -61,7 +61,7 @@ $direct = $model->entities()->count();
             @can('update', $model)
                 <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
                    data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">
-                    <x-icon class="plus"></x-icon>
+                    <x-icon class="plus" />
                     <span class="hidden xl:inline">{{ __('tags.children.actions.add') }}</span>
                 </a>
             @endcan
@@ -75,7 +75,8 @@ $direct = $model->entities()->count();
         @can('update', $model)
             <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
                 data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">
-                <x-icon class="plus"></x-icon> <span class="hidden xl:inline">{{ __('tags.children.actions.add') }}</span>
+                <x-icon class="plus" />
+                <span class="hidden xl:inline">{{ __('tags.children.actions.add') }}</span>
             </a>
         @endcan
     </x-box>
