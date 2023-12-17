@@ -277,11 +277,11 @@ class Relation extends Model
     /**
      * On the datagrid tables, add data-* attributes to help people style with css
      */
-    public function rowAttributes(): string
+    public function rowAttributes(): array
     {
         $attributes = [];
-        $attributes[] = 'data-attitude="' . $this->attitude . '"';
-        $attributes[] = 'data-visibility="' . $this->visibility_id . '"';
-        return implode(' ', $attributes);
+        $attributes['attitude'] = $this->attitude;
+        $attributes['visibility'] = $this->visibility_id;
+        return $attributes;
     }
 }
