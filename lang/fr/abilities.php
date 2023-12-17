@@ -4,11 +4,11 @@ return [
     'abilities'     => [],
     'children'      => [
         'actions'       => [
-            'add'   => 'Ajouter un pouvoir à une entité',
+            'attach'    => 'Ajouter des entités',
         ],
         'create'        => [
-            'success'   => 'Le pouvoir :name a été ajouté à l\'entité.',
-            'title'     => 'Ajouter une entité à :name',
+            'attach_success'    => '{1} Le pouvoir :name ajouté à :count entité.|[2,*] Le pouvoir :name ajouté à :count entités.',
+            'modal'             => 'Attacher :name à des entités',
         ],
         'description'   => 'Entités ayant le pouvoir',
         'title'         => 'Entités du pouvoir :name',

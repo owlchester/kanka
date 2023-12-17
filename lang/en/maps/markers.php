@@ -61,11 +61,11 @@ return [
         'custom_icon_v2'            => 'Use icons from :fontawesome, :rpgawesome, or a custom SVG icon. Find out how in the :docs.',
         'custom_radius'             => 'Select the custom size option from the dropdown to define a size.',
         'draggable'                 => 'This marker can be moved on the map\'s exploration page.',
+        'is_popupless'              => 'Disable the marker\'s tooltip showing up on mouse hover.',
         'label'                     => 'A label is displayed as a block of text on the map. The content will be the marker\'s name or the entity\'s name.',
         'polygon'                   => [
             'edit'  => 'Edit the polygon by dragging its edges and nodes.',
         ],
-        'is_popupless'  => 'Disable the marker\'s tooltip showing up on mouse hover.'
     ],
     'hints'         => [
         'entry' => 'Edit the marker to write a custom entry for it.',

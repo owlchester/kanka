@@ -6,8 +6,8 @@ return [
             'add'   => 'Add to tag',
         ],
         'create'    => [
-            'attach_success' => '{1} Added :count entity to tag :name.|[2,*] Added :count entities to tag :name.',
-            'modal_title'    => 'Add entities to :name',
+            'attach_success'    => '{1} Added :count entity to tag :name.|[2,*] Added :count entities to tag :name.',
+            'modal_title'       => 'Add entities to :name',
         ],
     ],
     'create'        => [

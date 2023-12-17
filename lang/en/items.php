@@ -6,9 +6,9 @@ return [
     ],
     'fields'        => [
         'character'     => 'Creator',
+        'is_equipped'   => 'Equipped',
         'price'         => 'Price',
         'size'          => 'Size',
-        'is_equipped'   => 'Equipped'
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all items that don\'t have a parent item. Click on a row to see the children items.',

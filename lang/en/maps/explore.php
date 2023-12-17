@@ -9,5 +9,5 @@ return [
     'notifications' => [
         'start-drawing' => 'Click on the map to start drawing a polygon',
     ],
-    'toggle' => 'Open/Close all groups',
+    'toggle'        => 'Open/close all groups',
 ];

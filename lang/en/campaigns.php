@@ -40,6 +40,7 @@ TEXT
         'premium'       => 'This feature is only available to premium campaigns.',
         'unknown_id'    => 'Unknown Campaign.',
     ],
+    'exports'                           => [],
     'fields'                            => [
         'boosted'                           => 'Boosted by',
         'character_personality_visibility'  => 'Default character personality visibility',
@@ -291,10 +292,10 @@ TEXT
                 'delete'        => 'Delete',
                 'edit'          => 'Edit',
                 'entity-note'   => 'Post',
-                'gallery' => [
-                    'manage' => 'Full control',
-                    'browse' => 'Browse',
-                    'upload' => 'Upload',
+                'gallery'       => [
+                    'browse'    => 'Browse',
+                    'manage'    => 'Full control',
+                    'upload'    => 'Upload',
                 ],
                 'manage'        => 'Manage',
                 'members'       => 'Members',
@@ -309,9 +310,9 @@ TEXT
                 'edit'          => 'Allow editing all entities of this type.',
                 'entity_note'   => 'Allows adding, editing, and deleting posts even if the member can\'t edit the entity.',
                 'gallery'       => [
-                    'manage' => 'Allow everything on the gallery as an admin can, including editing and deleting images.',
-                    'browse' => 'Allow viewing the gallery, and setting an entity\'s image from the gallery.',
-                    'upload' => 'Allows uploading images to the gallery. Will only see images they have uploaded if not combined with the browse permission.',
+                    'browse'    => 'Allow viewing the gallery, and setting an entity\'s image from the gallery.',
+                    'manage'    => 'Allow everything on the gallery as an admin can, including editing and deleting images.',
+                    'upload'    => 'Allows uploading images to the gallery. Will only see images they have uploaded if not combined with the browse permission.',
                 ],
                 'manage'        => 'Allow editing the campaign as a campaign admin would, without allowing the members to delete the campaign.',
                 'members'       => 'Allow inviting new members to the campaign.',
@@ -411,10 +412,10 @@ TEXT
             'applications'      => 'Applications',
             'campaign'          => 'Campaign',
             'customisation'     => 'Customisation',
+            'data'              => 'Data',
             'default-images'    => 'Default thumbnails',
             'export'            => 'Export',
             'import'            => 'Import',
-            'data'              => 'Data',
             'information'       => 'Information',
             'management'        => 'Management',
             'members'           => 'Members',
@@ -477,8 +478,5 @@ TEXT
         'private'   => 'Private campaign',
         'public'    => 'Public campaign',
         'review'    => 'Awaiting Review',
-    ],
-    'exports'                      => [
-
     ],
 ];

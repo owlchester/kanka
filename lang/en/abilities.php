@@ -3,11 +3,11 @@
 return [
     'children'      => [
         'actions'       => [
-            'attach'   => 'Attach to entities',
+            'attach'    => 'Attach to entities',
         ],
         'create'        => [
-            'attach_success'   => '{1} Attached the ability :name to :count entity.|[2,*] Attached the ability :name to :count entities.',
-            'modal'            => 'Attach :name to entities',
+            'attach_success'    => '{1} Attached the ability :name to :count entity.|[2,*] Attached the ability :name to :count entities.',
+            'modal'             => 'Attach :name to entities',
         ],
         'description'   => 'Entities having the ability',
         'title'         => 'Ability :name Entities',

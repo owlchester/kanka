@@ -30,9 +30,10 @@ return [
         'timeline_element'  => 'Élément de timeline',
     ],
     'create'            => [
-        'new_title' => 'Nouvelle relation',
-        'success'   => 'Relation :target ajoutée pour :entity.',
-        'title'     => 'Nouvelle relation pour :name',
+        'new_title'     => 'Nouvelle relation',
+        'success'       => 'Relation :target ajoutée pour :entity.',
+        'success_bulk'  => '{1} Ajout de :count connexion à :entity.|[2,*] Ajout de :count connexions à :entity.',
+        'title'         => 'Nouvelle relation pour :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Cette relation est dupliquée sur l\'entité cible. Sélectionner cette option pour aussi supprimer la relation symétrique.',
@@ -45,6 +46,7 @@ return [
     'fields'            => [
         'attitude'          => 'Attitude',
         'connection'        => 'Connexion',
+        'is_pinned'         => 'Épinglé',
         'is_star'           => 'Epinglé',
         'owner'             => 'Source',
         'relation'          => 'Relation',
@@ -52,6 +54,10 @@ return [
         'target_relation'   => 'Relation de la cible',
         'two_way'           => 'Créer une relation miroir',
         'unmirror'          => 'Délier cette relation de la relation miroir.',
+    ],
+    'filters'           => [
+        'connection'    => 'Relation de la relation',
+        'name'          => 'Cible de la relation',
     ],
     'helper'            => 'Définir des relations entre entités avec leurs description, attitude et visibilité. Les relations peuvent aussi être épinglées sur le menu de l\'entité.',
     'helpers'           => [

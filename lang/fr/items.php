@@ -7,9 +7,10 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character' => 'Personnage',
-        'price'     => 'Prix',
-        'size'      => 'Taille',
+        'character'     => 'Personnage',
+        'is_equipped'   => 'Équipé',
+        'price'         => 'Prix',
+        'size'          => 'Taille',
     ],
     'helpers'       => [
         'nested_without'    => 'Affichage de tous les objets qui n\'ont pas de parent. Cliques sur une rangée pour voir les enfants.',

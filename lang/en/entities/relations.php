@@ -45,7 +45,6 @@ return [
     'fields'            => [
         'attitude'          => 'Attitude',
         'connection'        => 'Connection',
-        'is_star'           => 'Pinned',
         'is_pinned'         => 'Pinned',
         'owner'             => 'Source',
         'relation'          => 'Description',
@@ -55,8 +54,8 @@ return [
         'unmirror'          => 'Unmirror this connection.',
     ],
     'filters'           => [
-        'name'          => 'Connection target',
         'connection'    => 'Connection relation',
+        'name'          => 'Connection target',
     ],
     'helper'            => 'Set up connections between entities with attitudes and visibility. Connections can also be pinned to the entity\'s menu.',
     'helpers'           => [

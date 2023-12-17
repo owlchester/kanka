@@ -45,7 +45,7 @@
                                 <div class="field field-entities flex flex-col gap-1">
                                     <label>{{ __('campaigns/import.fields.file') }}</label>
                                     {!! Form::file('file', ['class' => 'w-full ', 'multiple', 'id' => 'export-files']) !!}
-                                    <x-helper>{{ __('campaigns/import.limitation') }}</x-helper>
+                                    <x-helper>{{ __('campaigns/import.limitation', ['size' => '512MB']) }}</x-helper>
                                 </div>
 
                                 <button type="submit" class="btn2 btn-primary">
