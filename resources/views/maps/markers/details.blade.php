@@ -36,7 +36,6 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
         </div>
     </div>
 </div>
-
 @endif
 
 @if ($marker->entity)
