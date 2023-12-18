@@ -22,6 +22,7 @@ return [
     ],
     'helpers'       => [
         'copy_entity_entry' => 'Wyświetla ogólny opis z menu przedmiotu zamiast szczegółowego',
+        'is_equipped'       => 'Zaznacza przedmiot jako wyposażony.',
     ],
     'placeholders'  => [
         'amount'        => 'Dowolna ilość',
@@ -34,6 +35,7 @@ return [
         'title'     => 'Ekwipunek elementu :name',
         'unsorted'  => 'Nieposortowanie',
     ],
+    'tutorial'      => 'Kontroluj stan posiadania elementu, dodając przedmioty do jego wyposażenia.',
     'update'        => [
         'success'   => 'Zaktualizowano przedmiot :item elementu :entity',
         'title'     => 'Zaktualizowano przedmiot u :name',

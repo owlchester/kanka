@@ -65,6 +65,9 @@ return [
             'edit'  => 'Klikni na mapu, ak chceš pridať danú pozíciu medzi koordináty viacuholníka.',
         ],
     ],
+    'hints'         => [
+        'entry' => 'Uprav značku, ak jej chceš pridať vlastný záznam.',
+    ],
     'icons'         => [
         'custom'        => 'Vlastný',
         'entity'        => 'Objekt',

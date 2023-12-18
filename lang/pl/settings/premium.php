@@ -31,6 +31,7 @@ return [
     ],
     'remove'        => [
         'confirm'   => 'Tak, na pewno',
+        'cooldown'  => 'Funkcje premium kampanii :campaign można usunąć po :date.',
         'success'   => 'Z :campaign usunięto wersję premium. Możesz teraz odblokować ten status w innej kampanii.',
         'title'     => 'Usuwanie opcji premium',
         'warning'   => 'Czy na pewno usunąć wersję premium kampanii :campaign? Pozwoli ci to nadać status premium innej kampanii, a cała zawartość premium zostanie ukryta do ponownej aktywacji wersji premium.',

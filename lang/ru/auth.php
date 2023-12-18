@@ -25,7 +25,7 @@ return [
     ],
     'failed'    => 'Недействительные учетные данные.',
     'helpers'   => [
-        'password'  => 'Показать/Скрыть пароль',
+        'password'  => 'Показать / Скрыть пароль',
     ],
     'login'     => [
         'fields'                => [
@@ -44,6 +44,7 @@ return [
         'title'                 => 'Вход',
     ],
     'register'  => [
+        'already'                   => 'Уже есть аккаунт? :login',
         'errors'                    => [
             'email_already_taken'   => 'Аккаунт с такой электронной почтой уже зарегистрирован.',
             'general_error'         => 'При создании вашего аккаунта произошла ошибка. Пожалуйста, попробуйте еще раз.',
@@ -54,11 +55,13 @@ return [
             'password'  => 'Пароль',
             'tos_clean' => 'Я соглашаюсь с :privacy.',
         ],
+        'log-in'                    => 'Войти',
         'register_with_facebook'    => 'Регистрация через Facebook',
         'register_with_google'      => 'Регистрация через Google',
         'register_with_twitter'     => 'Регистрация через Twitter',
         'submit'                    => 'Зарегистрироваться',
         'title'                     => 'Регистрация',
+        'tos'                       => 'Регистрируясь, вы подтверждаете, что прочли :terms и :privacy и согласны с ними.',
     ],
     'reset'     => [
         'fields'    => [

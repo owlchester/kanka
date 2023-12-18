@@ -18,7 +18,7 @@ return [
         'name'          => 'Название',
         'precipitation' => 'Осадки',
         'temperature'   => 'Температура',
-        'weather'       => 'Погода',
+        'weather'       => 'Иконка',
         'wind'          => 'Ветер',
     ],
     'options'       => [

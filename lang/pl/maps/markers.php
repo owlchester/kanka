@@ -60,10 +60,13 @@ return [
         'custom_icon_v2'            => 'Używaj ikon z :fontawesome, :rpgawesome, albo własnych plików SVG. Więcej instrukcji znajdziesz tutaj: :docs.',
         'custom_radius'             => 'Wybierz opcję z rozwijanej listy by określić wielkość.',
         'draggable'                 => 'Pozwala przeciągać znacznik po mapie w trybie eksploracji.',
-        'label'                     => '"Podpis" wyświetla na mapie nazwę tego znacznika albo elementu z którym jest związany.',
+        'label'                     => 'Wyświetla na mapie test zawierający nazwę tego znacznika albo elementu, z którym jest związany.',
         'polygon'                   => [
-            'edit'  => 'Kliknij na mapę, by dodać to miejsce do współrzędnych wielokąta.',
+            'edit'  => 'Modyfikuj wielokąt przeciągając ścianki i kąty.',
         ],
+    ],
+    'hints'         => [
+        'entry' => 'Modyfikuj znacznik by stworzyć nowy opis elementu.',
     ],
     'icons'         => [
         'custom'        => 'Własna',

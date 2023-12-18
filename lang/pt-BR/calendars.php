@@ -41,6 +41,9 @@ return [
             'success'   => 'Lembrete atualizado.',
             'title'     => 'Atualizar Lembrete para :name',
         ],
+        'errors'    => [
+            'invalid_entity'    => 'Seleção de entidade inválida.',
+        ],
         'helpers'   => [
             'add'               => 'Adicionar um evento existente para esse calendário.',
             'new'               => 'Ou crie um novo evento simplesmente fornecendo um nome.',
@@ -69,9 +72,11 @@ return [
         'date'                  => 'Data Atual',
         'day'                   => 'Dia',
         'default_layout'        => 'Layout padrão',
+        'format'                => 'Formato',
         'intercalary'           => 'Dias Intercalares',
         'is_incrementing'       => 'Avançando data',
         'is_recurring'          => 'Recorrente',
+        'leap_year'             => 'Anos bissextos',
         'leap_year_amount'      => 'Adicionar Dias',
         'leap_year_month'       => 'Mês',
         'leap_year_offset'      => 'Cada',
@@ -95,6 +100,7 @@ return [
     ],
     'helpers'       => [
         'default_layout'    => 'Selecione qual layout o calendário deve usar por padrão quando visualizado.',
+        'format'            => 'Adicione formatação de data personalizada para entidades do calendário.',
         'month_type'        => 'Os meses intercalares não usam os dias da semana, mas ainda influenciam as luas e as estações.',
         'moon_offset'       => 'Por padrão, a primeira lua cheia aparece no primeiro dia do ano 0. A alteração do deslocamento mudará quando a primeira lua cheia for exibida. Este valor pode ser negativo (até a duração do primeiro mês) ou positivo (até a duração do primeiro mês).',
         'nested_without'    => 'Exibindo todos os calendários que não tem um calendário primário. Clique em uma linha para ver os calendários secundários.',
@@ -105,6 +111,7 @@ return [
         'intercalary'       => 'Dias que estão fora dos meses e semanas padrão. Eles não influenciam os dias da semana, mas influenciam os ciclos lunares.',
         'is_incrementing'   => 'O avanço de calendário automaticamente terá seu incremento da data atual às 00:00 UTC.',
         'is_recurring'      => 'Um evento pode ser marcado como recorrente. Ele reaparecerá todo ano na mesma data.',
+        'leap_year'         => 'Configure anos bissextos para o calendário.',
         'months'            => 'Seu calendário deve ter pelo menos 2 meses.',
         'moons'             => 'Adicionar luas fará com que elas apareçam no calendário em cada lua cheia e nova. Se o período da lua cheia for maior que 10 dias, as luas minguantes e crescentes também serão exibidas.',
         'parent_calendar'   => 'Relacionar o calendário a um calendário primário incluirá os lembretes e os efeitos do clima do calendário primário.',
@@ -220,6 +227,10 @@ return [
         'before'=> 'Hoje & antes',
     ],
     'validators'    => [
+        'format'        => 'O formato da data é inválido.',
         'moon_offset'   => 'O deslocamento da primeira lua cheia não pode ser maior que a duração do primeiro mês do calendário.',
+    ],
+    'warnings'      => [
+        'event_length'  => 'Os lembretes que abrangem vários anos só são visíveis nos primeiros dois anos. Saiba mais em nossa :documentation.',
     ],
 ];

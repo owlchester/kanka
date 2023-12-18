@@ -10,13 +10,21 @@ return [
         'save'          => 'Zapisz',
     ],
     'breadcrumb'    => 'Galeria',
+    'bulk'          => [
+        'destroy'   => [
+            'confirm'   => 'Czy na pewno chcesz trwale usunąć wybrane elementy? Nie będzie można ich odzyskać.',
+            'success'   => '{0}Nie usunięto plików.|{1}Usunięto jeden plik.|{2,4}Usunięto :count pliki.|{5,*}Usunięto :count plików.',
+        ],
+    ],
     'cta'           => 'Zarządzaj obrazami w kampanii i używaj ich ponownie.',
     'destroy'       => [
+        'folder'    => 'Usunięto katalog :name.',
         'success'   => 'Usunięto obraz :name',
     ],
     'errors'        => [
         'max'           => 'Możesz wybrać do :count plików na raz.',
         'permissions'   => 'Role w kampanii nie mają uprawnienia :permission więc nie mogą dodawać ilustracji do galerii.',
+        'storage'       => 'Brak miejsca, by załadować wybrane obrazki. Dostępne miejsce: :avaliable.',
     ],
     'fields'        => [
         'created_by'            => 'Dodane przez',
@@ -41,6 +49,7 @@ return [
     ],
     'title'         => 'Galeria kampanii :campaign',
     'update'        => [
+        'folder'    => 'Zmieniono katalog.',
         'success'   => 'Zmodyfikowano obraz.',
     ],
     'uploader'      => [

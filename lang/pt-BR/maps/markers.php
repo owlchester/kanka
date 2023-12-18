@@ -65,6 +65,9 @@ return [
             'edit'  => 'Clique no mapa para adicionar essa posição às coordenadas do polígono.',
         ],
     ],
+    'hints'         => [
+        'entry' => 'Edite o marcador para escrever uma introdução personalizada para ele.',
+    ],
     'icons'         => [
         'custom'        => 'Ícone personalizado',
         'entity'        => 'Imagem da entidade',
