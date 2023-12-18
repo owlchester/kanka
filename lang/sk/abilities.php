@@ -3,13 +3,6 @@
 return [
     'abilities'     => [],
     'children'      => [
-        'actions'       => [
-            'add'   => 'Priradiť schopnosť k objektu',
-        ],
-        'create'        => [
-            'success'   => 'Schopnosť :name priradená k objektu.',
-            'title'     => 'Priradiť objekt k :name',
-        ],
         'description'   => 'Objekty s touto schopnosťou',
         'title'         => 'Objekty schopnosti :name',
     ],

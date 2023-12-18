@@ -3,13 +3,6 @@
 return [
     'abilities'     => [],
     'children'      => [
-        'actions'       => [
-            'add'   => 'Dodaj zdolność do elementu',
-        ],
-        'create'        => [
-            'success'   => 'Dodano elementowi zdolność :name',
-            'title'     => 'Dodaj elementowi zdolność :name',
-        ],
         'description'   => 'Elementy posiadające tę zdolność',
         'title'         => 'Elementy zdolności :name',
     ],

@@ -12,9 +12,7 @@ return [
     'helpers'       => [
         'nested_without'    => 'Mostrando todas las notas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
-    'hints'         => [
-        'is_pinned' => 'Se pueden fijar hasta 3 notas para que se muestren en el tablero.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'note'  => 'Elige una nota superior',

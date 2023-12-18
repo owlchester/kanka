@@ -31,7 +31,6 @@ return [
     ],
     'create'            => [
         'new_title' => 'Nový vzťah',
-        'success'   => 'Vzťah pre :name pridaný.',
         'title'     => 'Vytvoriť vzťah',
     ],
     'delete_mirrored'   => [
@@ -46,7 +45,6 @@ return [
         'attitude'          => 'Postoj',
         'connection'        => 'Prepojenie',
         'is_pinned'         => 'Pripnuté',
-        'is_star'           => 'Pripnuté',
         'owner'             => 'Zdroj',
         'relation'          => 'Vzťah',
         'target'            => 'Cieľ',

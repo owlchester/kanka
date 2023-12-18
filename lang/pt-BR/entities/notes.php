@@ -51,8 +51,6 @@ return [
         'entity'        => 'Entidade de destino',
         'move'          => 'Mover ou copiar para outra entidade',
         'move_success'  => 'Post :name movido com sucesso para :entity.',
-        'select_one'    => 'Selecione uma entidade',
-        'title'         => 'Mover ou copiar um post para outra entidade',
     ],
     'placeholders'  => [
         'name'  => 'Nome do post, observação ou comentário',

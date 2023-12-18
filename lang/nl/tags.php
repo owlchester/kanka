@@ -5,9 +5,6 @@ return [
         'actions'   => [
             'add'   => 'Voeg een nieuwe tag toe',
         ],
-        'create'    => [
-            'title' => 'Voeg een tag toe aan :name',
-        ],
     ],
     'create'        => [
         'title' => 'Nieuwe Tag',

@@ -21,7 +21,6 @@ return [
     ],
     'create'            => [
         'new_title' => 'Новая связь',
-        'success'   => 'Связь с объектом ":target" добавлена объекту ":entity".',
         'title'     => 'Новая связь объекта :name',
     ],
     'delete_mirrored'   => [
@@ -35,7 +34,6 @@ return [
     'fields'            => [
         'attitude'          => 'Отношение',
         'connection'        => 'Тип связанного',
-        'is_star'           => 'Закреплена',
         'owner'             => 'Обладатель',
         'relation'          => 'Связь',
         'target'            => 'Объект связи',

@@ -21,7 +21,6 @@ return [
     ],
     'create'            => [
         'new_title' => 'Nova relación',
-        'success'   => 'Relación ":target" engadida a :entity.',
         'title'     => 'Nova relación para :name',
     ],
     'delete_mirrored'   => [
@@ -35,7 +34,6 @@ return [
     'fields'            => [
         'attitude'          => 'Actitude',
         'connection'        => 'Conexión',
-        'is_star'           => 'Fixada',
         'owner'             => 'Fonte',
         'relation'          => 'Relación',
         'target'            => 'Obxectivo',

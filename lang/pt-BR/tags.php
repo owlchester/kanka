@@ -5,10 +5,6 @@ return [
         'actions'   => [
             'add'   => 'Adicionar à tag',
         ],
-        'create'    => [
-            'success'   => 'Adicionado a tag :name para a entidade.',
-            'title'     => 'Adicionar uma tag a :name',
-        ],
     ],
     'create'        => [
         'title' => 'Nova Tag',

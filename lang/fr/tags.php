@@ -8,8 +8,6 @@ return [
         'create'    => [
             'attach_success'    => '{1} Ajout de :count entité à l\'étiquette :name.|[2,*] Ajout de :count entités à l\'étiquette :name.',
             'modal_title'       => 'Ajouter des entités à :name',
-            'success'           => 'L\'étiquette :name a été ajoutée à l\'entité.',
-            'title'             => 'Ajouter une nouvelle étiquette pour :name',
         ],
     ],
     'create'        => [

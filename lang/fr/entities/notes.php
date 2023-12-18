@@ -52,8 +52,6 @@ return [
         'entity'        => 'Entité cible',
         'move'          => 'Déplacer ou copier vers une autre entité',
         'move_success'  => 'La note :name a été déplacée vers :entity avec succès.',
-        'select_one'    => 'Choix d\'une entité',
-        'title'         => 'Déplacer ou copier vers une autre entité',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la note, observation ou remarque',

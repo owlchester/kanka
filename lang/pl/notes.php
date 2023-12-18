@@ -12,9 +12,7 @@ return [
     'helpers'       => [
         'nested_without'    => 'Wyświetlono wszystkie notatki nieposiadające źródła. Kliknij na rząd, by wyświetlić notatki pochodne.',
     ],
-    'hints'         => [
-        'is_pinned' => 'Na pulpicie można przypiąć do 3 notatek.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'note'  => 'Wybierz notatkę źródłową',

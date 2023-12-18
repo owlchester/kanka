@@ -51,8 +51,6 @@ return [
         'entity'        => 'Cieľový objekt',
         'move'          => 'Premiestniť alebo kopírovať do iného objektu',
         'move_success'  => 'Komentár :name úspešne premiestnený do :entity.',
-        'select_one'    => 'Vybrať objekt',
-        'title'         => 'Premiestniť alebo kopírovať komentár do iného objektu.',
     ],
     'placeholders'  => [
         'name'  => 'Názov poznámky, zistenia alebo pripomienky',

@@ -31,7 +31,6 @@ return [
     ],
     'create'            => [
         'new_title'     => 'Nouvelle relation',
-        'success'       => 'Relation :target ajoutée pour :entity.',
         'success_bulk'  => '{1} Ajout de :count connexion à :entity.|[2,*] Ajout de :count connexions à :entity.',
         'title'         => 'Nouvelle relation pour :name',
     ],
@@ -47,7 +46,6 @@ return [
         'attitude'          => 'Attitude',
         'connection'        => 'Connexion',
         'is_pinned'         => 'Épinglé',
-        'is_star'           => 'Epinglé',
         'owner'             => 'Source',
         'relation'          => 'Relation',
         'target'            => 'Cible',

@@ -51,8 +51,6 @@ return [
         'entity'        => 'Wskazany element',
         'move'          => 'Przenieś lub skopiuj do innego elementu',
         'move_success'  => 'Przeniesiono komentarz :name do elementu :entity.',
-        'select_one'    => 'Wybierz element',
-        'title'         => 'Skopiuj albo przenieś komentarz do innego elementu',
     ],
     'placeholders'  => [
         'name'  => 'Nazwa uwagi, spostrzeżenia lub komentarza',
