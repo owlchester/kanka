@@ -6,15 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapMarker;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
 class DetailController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     public function index(Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
-        if (auth()->check()) {
+        $this->campaign($campaign)->authEntityView($map->entity);
+        if (!empty($mapMarker->entity_id)) {
+            $this->authEntityView($mapMarker->entity);
+        }
+        /*if (auth()->check()) {
             $this->authorize('view', $map);
             if ($mapMarker->entity_id) {
                 // No access to the child? 404
@@ -25,10 +31,11 @@ class DetailController extends Controller
             }
         } else {
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $map);
+            dd($map);
             if ($mapMarker->entity_id) {
                 $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $mapMarker->entity->child, $mapMarker->entity->typeId());
             }
-        }
+        }*/
 
         $name = $mapMarker->name;
         if ($mapMarker->entity) {
