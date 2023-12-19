@@ -101,6 +101,7 @@ class ExportService
                 ->update([
                     'status' => CampaignExport::STATUS_FAILED,
                 ]);
+            Log::error('Campaign export', ['err' => $e->getMessage()]);
             throw $e;
         }
 
