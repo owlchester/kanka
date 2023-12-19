@@ -31,7 +31,7 @@
 
     <x-helper>{{ __('entities/image.focus.helper') }}</x-helper>
 
-    <div class="focus-selector relative">
+    <div class="focus-selector relative inline-block">
         <div class="focus absolute text-white drop-shadow cursor-pointer text-2xl" data-focus-x="{{ $entity->focus_x }}" data-focus-y="{{ $entity->focus_y }}" style="@if(empty($entity->focus_x))display: none; @endif">
             <x-icon class="fa-duotone fa-arrow-up-left-from-circle fa-2x hover:text-error" />
         </div>
