@@ -1,8 +1,8 @@
 <?php
 /**
 * @var \App\Models\EntityEvent $event
-* @var \App\Models\EntityEvent $birth
-* @var \App\Models\EntityEvent $death
+* @var \App\Models\EntityEvent|null $birth
+* @var \App\Models\EntityEvent|null $death
 * @var \App\Models\EntityEvent[] $elapsed
 * @var \App\Models\MiscModel $model
 */
@@ -47,9 +47,15 @@ foreach ($elapsed as $event) {
 }
 ?>
 @foreach ($distinctCalendars as $calendarId => $calendarEvents)
-    @php $birth = $calendarEvents['birth'] ?? null; $death = $calendarEvents['death'] ?? null; @endphp
+    @php
+    /**
+     * @var \App\Models\EntityEvent|null $birth
+     * @var \App\Models\EntityEvent|null $death
+     */
+    $birth = $calendarEvents['birth'] ?? null;
+    $death = $calendarEvents['death'] ?? null;
+    @endphp
     @if (!empty($birth) && !empty($death))
-
         <li class="flex">
             <div class="flex-grow font-bold">{{ __('characters.fields.life') }}</div>
             <div class="flex-grow text-right">

@@ -21,7 +21,6 @@ return [
     ],
     'create'            => [
         'new_title' => 'Nuovo legame',
-        'success'   => 'Legame :target aggiunto per :name.',
         'title'     => 'Nuovo legame per :name',
     ],
     'delete_mirrored'   => [
@@ -35,7 +34,6 @@ return [
     'fields'            => [
         'attitude'          => 'Attitudine',
         'connection'        => 'Legame',
-        'is_star'           => 'Fissato',
         'owner'             => 'Fonte',
         'relation'          => 'Legame',
         'target'            => 'Entità Bersaglio',

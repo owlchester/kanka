@@ -7,7 +7,6 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Facades\Module;
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -46,7 +45,6 @@ use Illuminate\Support\Str;
  */
 abstract class MiscModel extends Model
 {
-    use HasFilters;
     use LastSync;
     use Orderable;
     use Paginatable;
@@ -478,8 +476,6 @@ abstract class MiscModel extends Model
             'campaign_id',
             'updated_at',
             'deleted_at',
-            '_lft',
-            '_rgt',
         ];
     }
 

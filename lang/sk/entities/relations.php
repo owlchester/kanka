@@ -7,6 +7,16 @@ return [
     ],
     'bulk'              => [
         'delete'    => '{1} :count vzťah odstránený.|[2,4] :count vzťahy odstránené.|[5,*] :count vzťahov odstránených.',
+        'fields'    => [
+            'delete_mirrored'   => 'Zmazať zrkadlené',
+            'unmirror'          => 'Rozviazať zrkadlené',
+            'update_mirrored'   => 'Aktualizovať zrkadlené',
+        ],
+        'helpers'   => [
+            'delete_mirrored'   => 'Taktiež zmazať zrkadlené vzťahy.',
+            'unmirror'          => 'Rozviazať zrkadlené vzťahy.',
+            'update_mirrored'   => 'Aktualizovať zrkadlené vzťahy.',
+        ],
         'success'   => [
             'editing'           => '{1} :count vzťah aktualizovaný.|[2,4] :count vzťahy aktualizované.|[5,*] :count vzťahov aktualizovaných.',
             'editing_partial'   => '{1} :count/:total vzťah aktualizovaný.|[2,4] :count/:total vzťahy aktualizované.|[5,*] :count/:total vzťahov aktualizovaných.',
@@ -21,7 +31,6 @@ return [
     ],
     'create'            => [
         'new_title' => 'Nový vzťah',
-        'success'   => 'Vzťah pre :name pridaný.',
         'title'     => 'Vytvoriť vzťah',
     ],
     'delete_mirrored'   => [
@@ -35,7 +44,7 @@ return [
     'fields'            => [
         'attitude'          => 'Postoj',
         'connection'        => 'Prepojenie',
-        'is_star'           => 'Pripnutý',
+        'is_pinned'         => 'Pripnuté',
         'owner'             => 'Zdroj',
         'relation'          => 'Vzťah',
         'target'            => 'Cieľ',

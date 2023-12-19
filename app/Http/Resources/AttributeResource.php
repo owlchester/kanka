@@ -17,7 +17,7 @@ class AttributeResource extends EntityChild
         /** @var Attribute $attribute */
         $attribute = $this->resource;
 
-        return $this->entity([
+        return $this->onEntity([
             'name' => $attribute->name,
             'value' => $attribute->value,
             'parsed' => $attribute->mappedValue(),

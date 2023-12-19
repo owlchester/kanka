@@ -11,5 +11,7 @@ class CalendarBulk extends Bulk
         'tags',
         'private_choice',
         'format',
+        'entity_image',
+        'entity_header',
     ];
 }

@@ -3,13 +3,6 @@
 return [
     'abilities'     => [],
     'children'      => [
-        'actions'       => [
-            'add'   => 'Dodaj sposobnost entitetu',
-        ],
-        'create'        => [
-            'success'   => 'Entitetu je dodana sposobnost :name.',
-            'title'     => 'Dodaj entitet u :name',
-        ],
         'description'   => 'Entiteti koji imaju sposobnost',
         'title'         => 'Sposobnost :name entiteta',
     ],

@@ -1,13 +1,29 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
+        'download'  => 'Stiahnuť',
         'export'    => 'Exportovať údaje kampane',
     ],
-    'errors'    => [
+    'confirm'       => [
+        'title'     => 'Potvrdenie exportu',
+        'warning'   => 'Plánuješ exportovať dáta kampane. Tento proces môže trvať dlhý čas v závislosti od veľkosti kampane. Môžeš naďalej používať Kanku, zatiaľ čo naše servre generujú export.',
+    ],
+    'errors'        => [
         'limit' => 'Kampaň už dnes bola raz exportovaná. Prosím, vyskúšaj to opäť zajtra.',
     ],
-    'helpers'   => [],
-    'success'   => 'Pripravuje sa export kampane. O pripravení na stiahnutie ťa budeme informovať v Kanke.',
-    'title'     => 'Export kampane',
+    'expired'       => 'Link vypršal',
+    'helpers'       => [],
+    'size'          => 'Veľkosť',
+    'status'        => [
+        'failed'    => 'Neúspešné',
+        'finished'  => 'Ukončené',
+        'running'   => 'Prebieha',
+        'scheduled' => 'Plánované',
+    ],
+    'success'       => 'Pripravuje sa export kampane. O pripravení na stiahnutie ťa budeme informovať v Kanke.',
+    'title'         => 'Export kampane',
+    'type'          => 'Typ',
+    'type_assets'   => 'Materiály',
+    'type_entities' => 'Objekty',
 ];

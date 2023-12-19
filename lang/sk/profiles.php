@@ -16,6 +16,7 @@ return [
         'email'                     => 'E-mail',
         'hide_subscription'         => 'Skryť moje meno zo :hall_of_fame.',
         'last_login_share'          => 'Zdieľaj s ostatnými členmi kampane tvoj posledný čas online.',
+        'login_sharing'             => 'Posledné zdieľanie prihlásenia',
         'name'                      => 'Meno',
         'new_password'              => 'Nové heslo (voliteľné)',
         'new_password_confirmation' => 'Potvrdiť nové heslo',
@@ -23,6 +24,7 @@ return [
         'password'                  => 'Súčasné heslo',
         'profile-name'              => 'Profilové meno',
         'settings'                  => 'Nastavenia',
+        'subscription_hiding'       => 'Predplatné ukryté',
         'theme'                     => 'Téma',
     ],
     'helpers'                       => [

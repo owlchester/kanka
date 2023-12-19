@@ -12,6 +12,7 @@ return [
         'participants'  => 'Účastníci',
     ],
     'hints'         => [
+        'empty'         => 'Tejto diskusie sa nikto nezúčastnil.',
         'participants'  => 'Prosím, pridaj do diskusiu účastníkov tým, že klikneš na symbol :icon hore vpravo.',
     ],
     'index'         => [],

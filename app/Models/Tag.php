@@ -4,16 +4,17 @@ namespace App\Models;
 
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Tag
@@ -32,12 +33,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Tag extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
     use TagScopes;
@@ -90,6 +91,13 @@ class Tag extends MiscModel
         'tag_id',
     ];
 
+    protected array $exportFields = [
+        'base',
+        'colour',
+        'is_auto_applied',
+        'is_hidden',
+    ];
+
     /**
      * Parent
      */
@@ -105,27 +113,10 @@ class Tag extends MiscModel
     {
         return $this->hasMany('App\Models\Tag', 'tag_id', 'id');
     }
-    public function children()
-    {
-        return $this->tags();
-    }
 
-    /**
-     * @return string
-     */
-    public function getParentIdName()
+    public function getParentKeyName(): string
     {
         return 'tag_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     * @throws \Exception
-     */
-    public function setTagIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**
@@ -148,9 +139,7 @@ class Tag extends MiscModel
             'tags' => function ($sub) {
                 $sub->select('id', 'tag_id', 'name');
             },
-            'descendants' => function ($sub) {
-                $sub->select('id', 'tag_id');
-            },
+            'descendants',
             'descendants.entities' => function ($sub) {
                 $sub->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.type_id');
             },
@@ -195,8 +184,8 @@ class Tag extends MiscModel
         foreach ($this->entities->pluck('id')->toArray() as $entity) {
             $children[] = $entity;
         }
+        // @phpstan-ignore-next-line
         foreach ($this->descendants as $desc) {
-            // @phpstan-ignore-next-line
             foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
                 $children[] = $entity;
             }
@@ -209,18 +198,15 @@ class Tag extends MiscModel
             ->whereNotIn('type_id', [config('entities.ids.tag')]);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function entities()
+    public function entities(): BelongsToMany
     {
-        return $this->hasManyThrough(
+        return $this->belongsToMany(
             'App\Models\Entity',
-            'App\Models\EntityTag',
+            'entity_tags',
             'tag_id',
+            'entity_id',
             'id',
-            'id',
-            'entity_id'
+            'id'
         );
     }
 
@@ -286,26 +272,12 @@ class Tag extends MiscModel
     }
 
     /**
-     * Attach an entity to the tag
+     * Attach entities to the tag
      */
-    public function attachEntity(array $request): bool
+    public function attachEntities(array $entityIds): int
     {
-        $entityId = Arr::get($request, 'entity_id');
-        $entity = Entity::with('tags')->findOrFail($entityId);
-
-        // Make sure the tag isn't already attached to the entity
-        foreach ($entity->entityTags as $tag) {
-            if ($tag->tag_id == $this->id) {
-                return true;
-            }
-        }
-
-        $entityTag = EntityTag::create([
-            'tag_id' => $this->id,
-            'entity_id' => $entityId
-        ]);
-
-        return $entityTag !== false;
+        $data = $this->entities()->syncWithoutDetaching($entityIds);
+        return count($data['attached']);
     }
 
     /**

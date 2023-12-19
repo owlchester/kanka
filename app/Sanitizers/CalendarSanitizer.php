@@ -143,7 +143,7 @@ class CalendarSanitizer extends MiscSanitizer
 
                 $moons[] = [
                     'name' => $this->purify($moonNames[$moonCount]),
-                    'fullmoon' => round($moon, 3),
+                    'fullmoon' => round($moon, 10),
                     'offset' => (int) $moonOffsets[$moonCount],
                     'colour' => $this->purify($moonColours[$moonCount]),
                     'id' => (int) $moonId,

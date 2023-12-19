@@ -157,8 +157,11 @@ return [
         'cancelled'             => 'Sua assinatura foi cancelada. Você pode renovar uma assinatura assim que sua assinatura atual terminar depois de :date.',
         'change'                => [
             'text'  => [
-                'monthly'   => 'Você está se inscrevendo no nível :tier, cobrado mensalmente em :amount.',
-                'yearly'    => 'Você está se inscrevendo no nível :tier, cobrado anualmente em :amount.',
+                'monthly'           => 'Você está se inscrevendo no nível :tier, cobrado mensalmente em :amount.',
+                'upgrade_monthly'   => 'Você está atualizando para o nível :tier para :upgrade e, posteriormente, será cobrado mensalmente por :amount.',
+                'upgrade_paypal'    => 'Você está atualizando para o nível :tier para :upgrade até :date.',
+                'upgrade_yearly'    => 'Você está atualizando para o nível :tier para :upgrade, sendo posteriormente cobrado anualmente por :amount.',
+                'yearly'            => 'Você está se inscrevendo no nível :tier, cobrado anualmente em :amount.',
             ],
             'title' => 'Alterar Nível de Assinatura',
         ],

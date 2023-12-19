@@ -28,6 +28,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Tem certeza de que deseja excluir todos os atributos desta entidade?',
+        'is_private'    => 'Permita apenas que membros do cargo :admin-role vejam os atributos desta entidade.',
         'setup'         => 'Você pode representar elementos como PV ou inteligência de uma entidade com atributos. Adicione atributos manualmente clicando no botão :manage, ou aplique aqueles de um modelo de atributo.',
     ],
     'hints'         => [],
@@ -79,6 +80,7 @@ return [
         'unlock'    => 'Atributo desbloqueado',
         'unpin'     => 'Atributo desafixado',
     ],
+    'tutorial'      => 'Atributos são pequenos pedaços de informação anexados a uma entidade. Por exemplo, um personagem pode ter uma estatística :hp e :str, enquanto um local pode ter uma estatística :pop. Isso pode ser facilmente rastreado com atributos.',
     'types'         => [
         'attribute' => 'Atributo',
         'block'     => 'Bloco',

@@ -12,6 +12,7 @@ return [
         'participants'  => 'Uczestnicy',
     ],
     'hints'         => [
+        'empty'         => 'Nikt nie uczestniczy w tej konwersacji.',
         'participants'  => 'Dodawaj uczestników konwersacji naciskając ikonę :icon w prawym górnym rogu.',
     ],
     'index'         => [],

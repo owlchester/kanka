@@ -21,11 +21,11 @@ function openingDialog(e) {
         return;
     }
     let url = this.dataset.url;
-    //console.log('url', url);
-    openDialog(target, url);
+    let focus = this.dataset.focus;
+    openDialog(target, url, focus);
 }
 
-const openDialog = (target, url) => {
+const openDialog = (target, url, focus) => {
     target = document.getElementById(target);
     target.removeAttribute('open');
     target.show();
@@ -51,6 +51,9 @@ const openDialog = (target, url) => {
 
     if (url) {
         loadDialogContent(url, target);
+    } else if(focus) {
+        let focusEle = document.querySelector(focus);
+        focusEle.focus();
     }
 };
 

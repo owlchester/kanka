@@ -22,8 +22,6 @@ class CreateNotes extends Migration
 
             $table->integer('campaign_id')->unsigned()->notNull();
             $table->unsignedInteger('note_id')->nullable();
-            $table->unsignedInteger('_lft')->default(0);
-            $table->unsignedInteger('_rgt')->default(0);
 
 
             // Overview
@@ -41,7 +39,6 @@ class CreateNotes extends Migration
 
             // Index
             $table->index(['name', 'slug', 'type']);
-            $table->index(['_lft', '_rgt', 'note_id']);
         });
     }
 

@@ -10,13 +10,21 @@ return [
         'save'          => 'Uložiť',
     ],
     'breadcrumb'    => 'Galéria',
+    'bulk'          => [
+        'destroy'   => [
+            'confirm'   => 'Naozaj chceš natrvalo odstrániť vybrané prvky? Túto akciu nie je možné vrátiť.',
+            'success'   => '{0}Neodstránené žiadne súbory.|{1}Jeden súbor odstránený.|{2,4} :count súbory odstránené.|{5,*} :count súborov odstránených.',
+        ],
+    ],
     'cta'           => 'Manažuj a používaj obrázky v celej kampani.',
     'destroy'       => [
+        'folder'    => 'Priečinok :name zmazaný.',
         'success'   => 'Obrázok :name zmazaný.',
     ],
     'errors'        => [
         'max'           => 'Prosím zvoľ max. :count súborov naraz.',
         'permissions'   => 'Role v tvojej kampani nemajú oprávnenie :permission, aby mohli nahrávať obrázky do galérie kampane.',
+        'storage'       => 'Nemáš dostatok miesta na nahranie vybraných obrázkov. Dostupné miesto: :available.',
     ],
     'fields'        => [
         'created_by'            => 'Nahrané od',
@@ -41,6 +49,7 @@ return [
     ],
     'title'         => 'Galéria kampane :campaign',
     'update'        => [
+        'folder'    => 'Priečinok zmenený.',
         'success'   => 'Obrázok zmenený.',
     ],
     'uploader'      => [

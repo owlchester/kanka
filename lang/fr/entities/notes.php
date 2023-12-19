@@ -47,12 +47,11 @@ return [
     'move'          => [
         'copy'          => 'Créer une copie sur l\'entité cible',
         'copy_success'  => 'La note :name a été copiée vers :entity avec succès.',
+        'copy_title'    => 'Guarder une copie',
         'description'   => 'Sélectionnes une entité vers laquelle la note doit être déplacée ou copiée.',
         'entity'        => 'Entité cible',
         'move'          => 'Déplacer ou copier vers une autre entité',
         'move_success'  => 'La note :name a été déplacée vers :entity avec succès.',
-        'select_one'    => 'Choix d\'une entité',
-        'title'         => 'Déplacer ou copier vers une autre entité',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la note, observation ou remarque',

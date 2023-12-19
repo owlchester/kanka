@@ -85,6 +85,7 @@ class SubscriptionUpgradeService
         }
 
         // For paypal, we need the subscription's end date
+        // @phpstan-ignore-next-line
         return $this->user->subscription('kanka')->ends_at;
     }
 }

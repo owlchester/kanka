@@ -5,6 +5,8 @@ return [
     'ability'               => 'Habilidade',
     'attribute_template'    => 'Modelo de Atributo',
     'attribute_templates'   => 'Modelos de Atributo',
+    'bookmark'              => 'Favorito',
+    'bookmarks'             => 'Favoritos',
     'calendar'              => 'Calendário',
     'calendars'             => 'Calendários',
     'campaign'              => 'Campanha',

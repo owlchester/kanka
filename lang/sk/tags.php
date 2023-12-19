@@ -5,10 +5,6 @@ return [
         'actions'   => [
             'add'   => 'Pridať novú kategóriu',
         ],
-        'create'    => [
-            'success'   => 'Kategória :name bola priradená objektu.',
-            'title'     => 'Pridaj kategóriu k :name',
-        ],
     ],
     'create'        => [
         'title' => 'Nová kategória',

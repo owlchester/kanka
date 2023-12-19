@@ -24,4 +24,5 @@ yarn-error.log
 .phpunit.result.cache
 *.sql
 package-lock.json
+.phpstorm.meta.php
 

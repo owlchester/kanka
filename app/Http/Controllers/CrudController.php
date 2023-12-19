@@ -118,9 +118,12 @@ class CrudController extends Controller
         $model = new $this->model();
         $campaign = $this->campaign;
         $this->filterService
-            ->request($request)
-            ->model($model)
-            ->make($this->view);
+            ->request($request);
+        if (method_exists($model, 'explicitFilters')) {
+            $this->filterService
+                ->model($model)
+                ->make($this->view);
+        }
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
         /** @var DatagridFilter|null $filter */
@@ -144,7 +147,7 @@ class CrudController extends Controller
         $parent = null;
         if (request()->has('parent_id')) {
             // @phpstan-ignore-next-line
-            $parentKey = $model->getParentIdName();
+            $parentKey = $model->getParentKeyName();
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
@@ -153,6 +156,7 @@ class CrudController extends Controller
         // Do this to avoid an extra sql query when no filters are selected
         if ($this->filterService->hasFilters()) {
             $unfilteredCount = $base->count();
+            // @phpstan-ignore-next-line
             $base = $base->filter($this->filterService->filters());
 
             $models = $base->paginate();
@@ -160,7 +164,7 @@ class CrudController extends Controller
             // Don't use total as it won't use the distinct() filters (typically when doing
             // left join on the entities table)
             $filteredCount = $models->total();
-            //$filteredCount =  count($models); //->total()
+        //$filteredCount =  count($models); //->total()
         } else {
             /** @var Paginator $models */
             $models = $base->paginate();

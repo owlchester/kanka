@@ -349,6 +349,11 @@ class MentionsService
                 }
 
                 $dataUrl = route('entities.tooltip', [$this->campaign, $entity]);
+                if (!empty($data['tooltip']) && $data['tooltip'] === 'attributes') {
+                    $dataUrl = route('entities.tooltip', [$this->campaign, $entity, 'render' => 'attributes']);
+                }
+
+
 
                 // If this request is through the API, we need to inject the language in the url
                 if (request()->is('api/*') || Domain::isApi()) {
@@ -432,6 +437,7 @@ class MentionsService
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
+                    // @phpstan-ignore-next-line
                     . ' data-entity-type="' . $entity->type() . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'

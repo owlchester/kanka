@@ -14,6 +14,7 @@ use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Relation
@@ -45,11 +46,7 @@ class Relation extends Model
     use Pinnable;
     use Searchable;
     use Sortable;
-    use SortableTrait
-    ;
-    /**
-     * Traits
-     */
+    use SortableTrait;
     use VisibilityIDTrait;
 
     /** @var string[]  */
@@ -88,35 +85,26 @@ class Relation extends Model
     public $defaultOrderField = 'relation';
 
     /**
-     * @param string $order
+     *
      */
-    public function scopeOrdered(Builder $query, $order = 'asc'): Builder
+    public function scopeOrdered(Builder $query, string $order = 'asc'): Builder
     {
         return $query
             ->orderBy('relation', $order)
             ->orderBy('attitude', 'asc');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function owner()
+    public function owner(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'owner_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function target()
+    public function target(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'target_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function mirror()
+    public function mirror(): BelongsTo
     {
         return $this->belongsTo('App\Models\Relation', 'mirror_id', 'id');
     }
@@ -268,5 +256,32 @@ class Relation extends Model
     public function hasEntityType(): bool
     {
         return false;
+    }
+
+    public function exportFields(): array
+    {
+        return [
+            'id',
+            'owner_id',
+            'target_id',
+            'relation',
+            'visibility_id',
+            'mirror_id',
+            'attitude',
+            'is_pinned',
+            'colour',
+            'marketplace_uuid',
+        ];
+    }
+
+    /**
+     * On the datagrid tables, add data-* attributes to help people style with css
+     */
+    public function rowAttributes(): array
+    {
+        $attributes = [];
+        $attributes['attitude'] = $this->attitude;
+        $attributes['visibility'] = $this->visibility_id;
+        return $attributes;
     }
 }

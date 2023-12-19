@@ -28,6 +28,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Czy na pewno chcesz usunąć cechy tego elementu?',
+        'is_private'    => 'Tylko członkowie posiadający rolę :admin-role będą widzieć cechy elementu.',
         'setup'         => 'Element może posiadać cechy, na przykład Punkty Wytrzymałości albo Inteligencję. Cechę możesz ustalić i dodać ręcznie klikając na :manage albo zastosować szablon.',
     ],
     'hints'         => [],
@@ -79,6 +80,7 @@ return [
         'unlock'    => 'Odblokowano',
         'unpin'     => 'Odpięto',
     ],
+    'tutorial'      => 'Cechy to drobne informacje na temat elementu. Na przykład: postać może mieć współczynnik :hp i :str, a miejsce cechę :pop. Ta funkcjonalność pozwala je łatwo śledzić.',
     'types'         => [
         'attribute' => 'Cecha',
         'block'     => 'Blok',

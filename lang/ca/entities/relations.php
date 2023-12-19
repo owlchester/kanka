@@ -20,7 +20,6 @@ return [
     ],
     'create'        => [
         'new_title' => 'Nova relació',
-        'success'   => 'S\'ha afegit la relació :target a :entity.',
         'title'     => 'Nova relació per :name',
     ],
     'destroy'       => [
@@ -29,7 +28,6 @@ return [
     'fields'        => [
         'attitude'          => 'Actitud',
         'connection'        => 'Connexió',
-        'is_star'           => 'Fixada',
         'owner'             => 'Origen',
         'relation'          => 'Relació',
         'target'            => 'Objectiu',

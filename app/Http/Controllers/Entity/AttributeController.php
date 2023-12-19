@@ -49,9 +49,9 @@ class AttributeController extends Controller
         $model = $entity->child;
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
-        if ($layout) {
+        if (!empty($layout)) {
             $template = $this->templateService->communityTemplate($layout->value);
-            $marketplaceTemplate = $this->templateService->marketplaceTemplate($layout->value, $campaign);
+            $marketplaceTemplate = $this->templateService->campaign($campaign)->marketplaceTemplate($layout->value);
         }
 
 
@@ -87,7 +87,7 @@ class AttributeController extends Controller
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if ($layout) {
             $template = $this->templateService->communityTemplate($layout->value);
-            $marketplaceTemplate = $this->templateService->marketplaceTemplate($layout->value, $campaign);
+            $marketplaceTemplate = $this->templateService->campaign($campaign)->marketplaceTemplate($layout->value);
         }
 
         return view('entities.pages.attributes.dashboard', compact(

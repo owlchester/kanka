@@ -20,6 +20,9 @@
 
             @if ($field === 'attributes')
                 @php $hasAttributeFilters = true @endphp
+                @continue 
+            @elseif ($field === 'connections')
+                @php $hasConnectionFilters = true @endphp
                 @continue
             @endif
             <div class="field flex flex-col gap-1 field-">
@@ -63,6 +66,7 @@
         @endforeach
     </x-grid>
     @includeWhen($hasAttributeFilters, 'cruds.datagrids.filters._attributes')
+    @includeWhen(isset($hasConnectionFilters), 'cruds.datagrids.filters._connection')
 @endif
 <br class="clear-both" />
 </article>

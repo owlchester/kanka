@@ -367,7 +367,7 @@ class PluginVersion extends Model
         if (Str::contains($condition, '<i class="missing">')) {
             return false;
         }
-        return ! (empty($condition));
+        return !(empty($condition));
     }
 
     /**

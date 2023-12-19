@@ -4,7 +4,7 @@
     </h3>
     <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
             data-target="roles-help">
-        <x-icon class="question"></x-icon>
+        <x-icon class="question" />
         {{ __('crud.actions.help') }}
     </button>
     @if (auth()->user()->can('update', $campaign))

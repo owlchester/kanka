@@ -26,9 +26,6 @@ class CreateOrganisation extends Migration
 
             $table->longText('entry')->nullable();
 
-            $table->unsignedInteger('_lft')->default(0);
-            $table->unsignedInteger('_rgt')->default(0);
-
             $table->boolean('is_private')->default(false);
             $table->boolean('is_defunct')->default(0);
             $table->timestamps();
@@ -43,7 +40,6 @@ class CreateOrganisation extends Migration
 
             // Index
             $table->index(['name', 'slug', 'type']);
-            $table->index(['_lft', '_rgt', 'organisation_id']);
         });
 
         Schema::create('organisation_member', function (Blueprint $table) {

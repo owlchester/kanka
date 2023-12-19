@@ -46,8 +46,6 @@ return [
         'entity'        => 'Entidade obxectivo',
         'move'          => 'Mover ou copiar a outra entidade',
         'move_success'  => 'Entrada ":name" movida a "entity" con éxito.',
-        'select_one'    => 'Selecciona unha entidade',
-        'title'         => 'Move ou copia unha entrada a outra entidade',
     ],
     'placeholders'  => [
         'name'  => 'Nome da entrada, observación ou comentario.',

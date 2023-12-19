@@ -22,11 +22,11 @@
 </div>
 @endif
 
-@if (auth()->check() && in_array(app()->currentLocale(), ['nl']) && !auth()->user()->settings()->get('banner_translators_2023'))
+@if (auth()->check() && in_array(app()->currentLocale(), ['nl']) && !auth()->user()->settings()->get('banner_translators_2024'))
 <div class="alert alert-info p-2 flex gap-2" id="banner-notification">
     <div class="grow">
-        Kanka is community translated into <strong>{{ app()->currentLocale() === 'nl' ? 'Dutch' : 'Italian' }}</strong>, and is in need of new translators to help keep it up to date. If you want to help keep Kanka available in your language, message us on <a href="{{ config('social.discord') }}" target="_blank">Discord</a>!
+        Kanka is community translated into <strong>{{ app()->currentLocale() === 'nl' ? 'Dutch' : 'Italian' }}</strong>, and is in need of new translators before February 2024. If you want to help keep Kanka available in Dutch, message us on <a href="{{ config('social.discord') }}" target="_blank">Discord</a>!
     </div>
-    <button type="button" class="close p-2 banner-notification-dismiss text-2xl" data-dismiss="#banner-notification" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'translators_2023']) }}">×</button>
+    <button type="button" class="close p-2 banner-notification-dismiss text-2xl" data-dismiss="#banner-notification" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'translators_2024']) }}">×</button>
 </div>
 @endif

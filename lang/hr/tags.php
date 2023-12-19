@@ -5,10 +5,6 @@ return [
         'actions'   => [
             'add'   => 'Dodaj novu oznaku',
         ],
-        'create'    => [
-            'success'   => 'Dodana oznaka :name entitetu.',
-            'title'     => 'Dodaj oznaku na :name',
-        ],
     ],
     'create'        => [
         'title' => 'Nova oznaka',

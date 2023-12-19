@@ -40,6 +40,7 @@ TEXT
         'premium'       => 'This feature is only available to premium campaigns.',
         'unknown_id'    => 'Unknown Campaign.',
     ],
+    'exports'                           => [],
     'fields'                            => [
         'boosted'                           => 'Boosted by',
         'character_personality_visibility'  => 'Default character personality visibility',
@@ -273,7 +274,7 @@ TEXT
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
             'empty_role'            => 'The role doesn\'t have any members in it yet.',
             'role_admin'            => 'Members of the :name role can automatically access every entity and feature in the campaign.',
-            'role_permissions'      => 'Enable the :name role to do the following actions on all entities',
+            'role_permissions'      => 'Enable the :name role to do the following actions on all entities.',
         ],
         'members'       => 'Members',
         'modals'        => [
@@ -291,7 +292,11 @@ TEXT
                 'delete'        => 'Delete',
                 'edit'          => 'Edit',
                 'entity-note'   => 'Post',
-                'gallery'       => 'Gallery',
+                'gallery'       => [
+                    'browse'    => 'Browse',
+                    'manage'    => 'Full control',
+                    'upload'    => 'Upload',
+                ],
                 'manage'        => 'Manage',
                 'members'       => 'Members',
                 'permission'    => 'Permissions',
@@ -303,8 +308,12 @@ TEXT
                 'dashboard'     => 'Allow editing the dashboards and dashboard widgets.',
                 'delete'        => 'Allow removing all entities of this type.',
                 'edit'          => 'Allow editing all entities of this type.',
-                'entity_note'   => 'Allows adding and editing posts even if the member can\'t edit the entity.',
-                'gallery'       => 'Allow managing the campaign\'s gallery.',
+                'entity_note'   => 'Allows adding, editing, and deleting posts even if the member can\'t edit the entity.',
+                'gallery'       => [
+                    'browse'    => 'Allow viewing the gallery, and setting an entity\'s image from the gallery.',
+                    'manage'    => 'Allow everything on the gallery as an admin can, including editing and deleting images.',
+                    'upload'    => 'Allows uploading images to the gallery. Will only see images they have uploaded if not combined with the browse permission.',
+                ],
                 'manage'        => 'Allow editing the campaign as a campaign admin would, without allowing the members to delete the campaign.',
                 'members'       => 'Allow inviting new members to the campaign.',
                 'permission'    => 'Allow setting permissions on entities of this type they can edit.',
@@ -403,8 +412,10 @@ TEXT
             'applications'      => 'Applications',
             'campaign'          => 'Campaign',
             'customisation'     => 'Customisation',
+            'data'              => 'Data',
             'default-images'    => 'Default thumbnails',
             'export'            => 'Export',
+            'import'            => 'Import',
             'information'       => 'Information',
             'management'        => 'Management',
             'members'           => 'Members',
@@ -467,8 +478,5 @@ TEXT
         'private'   => 'Private campaign',
         'public'    => 'Public campaign',
         'review'    => 'Awaiting Review',
-    ],
-    'exports'                      => [
-
     ],
 ];

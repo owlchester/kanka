@@ -524,9 +524,7 @@ class SidebarService
                 }
                 // Child has permission check?
                 if (isset($child['perm'])) {
-                    if (!auth()->check() || !auth()->user()->can($childName, $this->campaign)) {
-                        continue;
-                    }
+                    $layout[$name]['perm'] = $child['perm'];
                 }
 
                 // Add route when none is set

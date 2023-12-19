@@ -31,12 +31,12 @@
 
     <x-helper>{{ __('entities/image.focus.helper') }}</x-helper>
 
-    <div class="focus-selector max-h-screen relative overflow-auto">
-        <div class="focus absolute text-white cursor-pointer text-3xl" style="@if(empty($entity->focus_x))display: none; @else left: {{ $entity->focus_x }}px; top: {{ $entity->focus_y }}px; @endif">
-            <x-icon class="fa-regular fa-bullseye fa-2x hover:text-error" />
+    <div class="focus-selector relative">
+        <div class="focus absolute text-white drop-shadow cursor-pointer text-2xl" data-focus-x="{{ $entity->focus_x }}" data-focus-y="{{ $entity->focus_y }}" style="@if(empty($entity->focus_x))display: none; @endif">
+            <x-icon class="fa-duotone fa-arrow-up-left-from-circle fa-2x hover:text-error" />
         </div>
 
-        <img class="focus-image max-w-none" src="{{ \App\Facades\Avatar::entity($entity)->original() }}" alt="img" />
+        <img class="focus-image" src="{{ \App\Facades\Avatar::entity($entity)->original() }}" alt="img" />
     </div>
 
     {!! Form::open([

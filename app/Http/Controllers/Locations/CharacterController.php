@@ -38,6 +38,7 @@ class CharacterController extends Controller
                 'location', 'location.entity',
                 'races', 'families',
             ])
+            ->filter($filters)
             ->filteredCharacters()
             ->paginate();
 

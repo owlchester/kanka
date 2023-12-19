@@ -2,15 +2,13 @@
 
 return [
     'create'        => [
-        'success'   => 'Relatie :target toegevoegd aan :entity.',
-        'title'     => 'Nieuwe relatie voor :name',
+        'title' => 'Nieuwe relatie voor :name',
     ],
     'destroy'       => [
         'success'   => 'Relatie :target verwijderd voor :entity',
     ],
     'fields'        => [
         'attitude'          => 'Attitude',
-        'is_star'           => 'Vastgemaakt',
         'relation'          => 'Relatie',
         'target'            => 'Doel',
         'target_relation'   => 'Doel Relatie',

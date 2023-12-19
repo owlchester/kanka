@@ -103,7 +103,7 @@ trait MentionTrait
             if (in_array($type, ['page', 'field'])) {
                 $data[$type] = mb_strtolower($value);
                 $data['custom'] = true;
-            } elseif (in_array($type, ['anchor', 'params'])) {
+            } elseif (in_array($type, ['anchor', 'params', 'tooltip'])) {
                 $data[$type] = $value;
                 $data['custom'] = true;
             } elseif ($type == 'alias') {

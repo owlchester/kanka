@@ -48,10 +48,6 @@ function registerModalLoad() {
         registerEntityFormActions();
         registerFormMaintenance();
     });
-
-    $('#campaign-delete-confirm').on('shown.bs.modal', function () {
-        $('#campaign-delete-form').focus();
-    });
 }
 
 function registerEntityNameCheck() {
@@ -329,8 +325,6 @@ const loadCalendarDates = (calendarID) => {
             if (data.length === 1) {
                 entityCalendarMonthField.val(data[0].id);
             }
-
-            initSpectrum();
         });
 };
 

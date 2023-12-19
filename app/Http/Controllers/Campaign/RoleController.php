@@ -8,24 +8,24 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignRole;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
-use App\Services\PermissionService;
+use App\Services\Permissions\RolePermissionService;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
     protected string $view = 'campaigns.roles';
 
-    protected PermissionService $service;
+    protected RolePermissionService $service;
 
     /**
      * Create a new controller instance.
      * @return void
      */
-    public function __construct(PermissionService $permissionService)
+    public function __construct(RolePermissionService $rolePermissionService)
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
-        $this->service = $permissionService;
+        $this->service = $rolePermissionService;
     }
 
     /**
@@ -111,7 +111,11 @@ class RoleController extends Controller
         $data = $request->all() + ['campaign_id' => $campaign->id];
         $role = CampaignRole::create($data);
         if ($request->has('duplicate') && $request->get('duplicate') != 0) {
-            $this->service->role($role)->duplicate($request->get('role_id'));
+            /** @var CampaignRole $copy */
+            $copy = CampaignRole::where('id', $request->get('role_id'))->first();
+            if ($copy) {
+                $copy->duplicate($role);
+            }
         }
         return redirect()->route('campaign_roles.index', $campaign)
             ->with('success_raw', __($this->view . '.create.success', ['name' => $role->name]));
@@ -132,6 +136,7 @@ class RoleController extends Controller
             'role' => $campaignRole,
             'campaign' => $campaign,
             'members' => $members,
+            'permissionService' => $this->service->role($campaignRole)
         ]);
     }
 
@@ -176,7 +181,7 @@ class RoleController extends Controller
         $this->authorize('view', [$campaignRole, $campaign]);
         $this->authorize('update', $campaignRole);
 
-        $campaignRole->savePermissions($request->post('permissions', []));
+        $this->service->role($campaignRole)->savePermissions($request->post('permissions', []));
 
         return redirect()->route('campaign_roles.show', [$campaign, 'campaign_role' => $campaignRole])
             ->with('success', trans('crud.permissions.success'));
@@ -249,7 +254,7 @@ class RoleController extends Controller
             abort(404);
         }
 
-        $enabled = $campaignRole->toggle($entityType, $action);
+        $enabled = $this->service->role($campaignRole)->toggle($entityType, $action);
         return response()->json([
             'success' => true,
             'status' => $enabled,

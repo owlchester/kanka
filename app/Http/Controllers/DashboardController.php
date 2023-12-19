@@ -95,10 +95,11 @@ class DashboardController extends Controller
             ]);
         }
 
+        // @phpstan-ignore-next-line
         $entities = \App\Models\Entity::unmentioned()
             ->inTags($widget->tags->pluck('id')->toArray())
-            ->type($widget->conf('entity'))
             ->with(['updater'])
+            ->type($widget->conf('entity'))
             ->paginate(10);
 
         return view('dashboard.widgets._recent_list')

@@ -6,7 +6,6 @@ use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Mentions;
 use App\Models\Entity;
-use App\Models\Location;
 use App\Models\MiscModel;
 use App\Observers\Concerns\Copiable;
 use App\Services\Entity\LogService;
@@ -163,37 +162,6 @@ abstract class MiscObserver
         // If the entity's entry has changed, we need to re-build it's map.
         if ($model->isDirty('entry')) {
             $this->entityMappingService->silent()->mapEntity($entity);
-        }
-    }
-
-
-
-    /**
-     * @param MiscModel|Location $model
-     */
-    protected function cleanupTree(MiscModel $model, string $field = 'parent_id')
-    {
-        // Warning: we probably don't need this anymore, since we've removed the deleted() listened
-        // in the Nested trait.
-
-        // We need to refresh our foreign relations to avoid deleting our children nodes again
-        $model->refresh();
-
-        // Check that we have no descendants anymore.
-        /** @var Location $model */
-        if ($model->descendants()->count() === 0) {
-            return;
-        }
-
-        foreach ($model->descendants as $sub) {
-            if (!empty($sub->$field)) {
-                continue;
-            }
-
-            // Got a descendant with the parent id null. Let's get them out of the tree
-            $sub->{$sub->getLftName()} = null;
-            $sub->{$sub->getRgtName()} = null;
-            $sub->save();
         }
     }
 }

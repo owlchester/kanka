@@ -31,6 +31,7 @@ class MapMarkerResource extends ModelResource
             'custom_icon' => $model->custom_icon,
             'custom_shape' => $model->custom_shape,
             'is_draggable' => (bool) $model->is_draggable,
+            'is_popupless' => (bool) $model->is_popupless,
             'opacity' => $model->opacity,
             'circle_radius' => $model->circle_radius,
             'polygon_style' => $model->polygon_style,

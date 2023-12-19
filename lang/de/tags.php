@@ -5,10 +5,6 @@ return [
         'actions'   => [
             'add'   => 'Füge neue Kategorie hinzu',
         ],
-        'create'    => [
-            'success'   => 'Der Tag :name wurde dem Objekt hinzugefügt.',
-            'title'     => 'Füge Kategorie zu :name hinzu',
-        ],
     ],
     'create'        => [
         'title' => 'Neue Kategorie',

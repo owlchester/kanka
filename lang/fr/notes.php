@@ -12,9 +12,7 @@ return [
     'helpers'       => [
         'nested_without'    => 'Affichage des notes sans parent. Cliquer sur une rangée pour afficher les notes enfants.',
     ],
-    'hints'         => [
-        'is_pinned' => 'Jusqu\'à 3 notes peuvent être affichées sur le tableau de bord en les épinglant.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'note'  => 'Choix d\'une note parent',

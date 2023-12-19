@@ -20,19 +20,6 @@ use App\Models\Race;
  */
 trait HasFilters
 {
-    /**
-     * Explicit fields for filtering.
-     * Ex. ['sex']
-     * @var array
-     */
-    protected $explicitFilters = [];
-
-    /**
-     * @var bool If the entity table was already joined or not
-     */
-    protected $joinedEntity = false;
-
-    protected string $key;
     protected string|array|null $filterValue;
 
     /** @var string|null Some filters have a fellow _option field that can define more in detail what is needed */
@@ -78,9 +65,11 @@ trait HasFilters
             'updated_by',
             'attribute_name',
             'attribute_value',
+            'connections',
+            'connection_target',
+            'connection_name'
         ];
     }
-
 
     /**
      */
@@ -110,7 +99,7 @@ trait HasFilters
                 }
 
                 // Explicit filters (numbers typically, foreign ids)
-                if (in_array($key, $this->explicitFilters)) {
+                if (in_array($key, $this->explicitFilters())) {
                     if ($this->filterOperator == 'IS NULL') {
                         $query->whereNull($this->getTable() . '.' . $key);
                     } else {
@@ -135,6 +124,8 @@ trait HasFilters
                         ->where('et.tag_id', $value);
                 } elseif (in_array($key, ['attribute_value', 'attribute_name'])) {
                     $this->filterAttributes($query, $key);
+                } elseif (in_array($key, ['connection_target', 'connection_name'])) {
+                    $this->filterConnections($query, $key);
                 } elseif ($key == 'race_id') {
                     $this->filterRace($query, $value);
                 } elseif ($key == 'family_id') {
@@ -151,6 +142,8 @@ trait HasFilters
                     $this->filterTemplate($query, $value);
                 } elseif ($key == 'has_posts') {
                     $this->filterHasPosts($query, $value);
+                } elseif ($key == 'is_equipped') {
+                    $this->filterIsEquipped($query, $value);
                 } elseif ($key == 'has_attributes') {
                     $this->filterHasAttributes($query, $value);
                 } elseif ($key == 'has_entity_files') {
@@ -202,31 +195,6 @@ trait HasFilters
         $this->filterOperator = $operator;
         $this->filterValue = $filterValue;
     }
-
-    /**
-     * Add a left join on the entity to the query. Only do this once
-     * @return Builder
-     */
-    /*protected function joinEntity(Builder $query): Builder
-    {
-        if ($this->joinedEntity) {
-            return $query;
-        }
-
-        $this->joinedEntity = true;
-
-        // @phpstan-ignore-next-line
-        return $query
-            ->distinct()
-            ->leftJoin('entities as e', function ($join) {
-                $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                // @phpstan-ignore-next-line
-                $join->where('e.type_id', '=', $this->entityTypeID())
-                    ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
-            })
-            ->groupBy($this->getTable() . '.id')
-        ;
-    }*/
 
     /**
      * Add a query on a foreign relationship of the model
@@ -286,6 +254,39 @@ trait HasFilters
         } elseif ($attributeValue !== '' && $attributeValue !== null) {
             $query
                 ->where('att.value', $attributeValue);
+        }
+    }
+
+    /**
+     * Filter on the connections of an entity
+     */
+    protected function filterConnections(Builder $query, string $key): void
+    {
+        if ($key == 'connection_target' &&  Arr::get($this->filterParams, 'connection_name')) {
+            return;
+        }
+
+        $query->joinEntity();
+
+        $query
+            ->leftJoin('relations as rel', function ($join) {
+                $join->on('rel.owner_id', '=', 'e.id');
+            });
+        $connectionTarget = Arr::get($this->filterParams, 'connection_target');
+        if ($connectionTarget !== '' && $connectionTarget !== null) {
+            $query
+                ->where('rel.target_id', $connectionTarget);
+        }
+
+        $connectionName = Arr::get($this->filterParams, 'connection_name');
+        if ($connectionName !== '' && $connectionName !== null) {
+            $connectionName = $this->filterValue;
+            if ($this->filterOperator != '=') {
+                $connectionName = '%' . $this->filterValue . '%';
+            }
+
+            $query
+                ->where('rel.relation', $this->filterOperator, $connectionName);
         }
     }
 
@@ -386,6 +387,22 @@ trait HasFilters
         } else {
             $query->whereNull('posts.id');
         }
+    }
+
+    /**
+     * Filter on entities that are equipped
+     */
+    protected function filterIsEquipped(Builder $query, string $value = null): void
+    {
+        $query
+            ->leftJoin('inventories', 'inventories.item_id', 'items.id');
+
+        if ($value) {
+            $query->whereNotNull('inventories.id');
+        } else {
+            $query->whereNull('inventories.id');
+        }
+        $query->distinct('items.id');
     }
 
     /**
@@ -650,6 +667,14 @@ trait HasFilters
 
     protected function filterParent(Builder $query): void
     {
-        $query->where($this->getTable() . '.' . $this->getParentIdName(), $this->filterValue);
+        $query->where($this->getTable() . '.' . $this->getParentKeyName(), $this->filterValue);
+    }
+
+    protected function explicitFilters(): array
+    {
+        if (property_exists($this, 'explicitFilters')) {
+            return $this->explicitFilters;
+        }
+        return [];
     }
 }

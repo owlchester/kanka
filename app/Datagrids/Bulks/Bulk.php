@@ -68,7 +68,9 @@ abstract class Bulk
             'name',
             'type',
             'tags',
-            'private_choice'
+            'private_choice',
+            'entity_image',
+            'entity_header',
         ];
     }
 }

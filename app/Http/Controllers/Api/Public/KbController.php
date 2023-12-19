@@ -18,6 +18,6 @@ class KbController extends Controller
     {
         return response()->json($this->service->api())
             ->header('Expires', Carbon::now()->addDays(7)->toDateTimeString())
-            ;
+        ;
     }
 }

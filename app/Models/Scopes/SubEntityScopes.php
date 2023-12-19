@@ -75,11 +75,18 @@ trait SubEntityScopes
     {
         $relations = [
             'entity',
-            'entity.tags', 'entity.posts', 'entity.events',
-            'entity.relationships', 'entity.attributes', 'entity.inventories',
-            'entity.assets'
+            'entity.tags',
+            'entity.posts', 'entity.posts.permissions',
+            'entity.events',
+            'entity.relationships', 'entity.attributes', 'entity.inventories', 'entity.inventories',
+            'entity.assets',
+            'entity.abilities',
         ];
 
+        if (method_exists($this, 'ancestors')) {
+            $relations[] = 'ancestors';
+            $relations[] = 'children';
+        }
         $with = !empty($this->apiWith) ? $this->apiWith : [];
         foreach ($with as $relation) {
             $relations[] = $relation;

@@ -31,6 +31,7 @@ return [
     ],
     'remove'        => [
         'confirm'   => 'Sim, tenho certeza',
+        'cooldown'  => 'Os recursos premium de :campaign podem ser removidos após :date.',
         'success'   => 'Os recursos premium foram removidos da campanha :campaign. Agora você pode desbloquear recursos premium em outra campanha.',
         'title'     => 'Removendo recursos premium',
         'warning'   => 'Tem certeza de que deseja remover os recursos premium de :campaign? Isso permitirá que você desbloqueie outra campanha e oculte todo o conteúdo e recursos relacionados às vantagens até que o status premium da campanha seja reativado.',

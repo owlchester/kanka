@@ -5,6 +5,8 @@ return [
     'ability'               => 'Schopnosť',
     'attribute_template'    => 'Šablóna atribútov',
     'attribute_templates'   => 'Šablóny atribútov',
+    'bookmark'              => 'Záložka',
+    'bookmarks'             => 'Záložky',
     'calendar'              => 'Kalendár',
     'calendars'             => 'Kalendáre',
     'campaign'              => 'Kampaň',

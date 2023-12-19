@@ -71,7 +71,6 @@ return [
             'queue' => env('REDIS_HEAVY_QUEUE', 'heavy'),
             'retry_after' => 90,
         ],
-
     ],
 
     /*

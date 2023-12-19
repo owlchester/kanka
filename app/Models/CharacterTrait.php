@@ -57,4 +57,15 @@ class CharacterTrait extends Model
     {
         return $query->where('section_id', self::SECTION_APPEARANCE);
     }
+
+    public function exportFields(): array
+    {
+        return [
+            'name',
+            'entry',
+            'is_private',
+            'section_id',
+            'default_order',
+        ];
+    }
 }

@@ -24,12 +24,14 @@ class TooltipController extends Controller
             $tagClasses[] = 'kanka-tag-' . $tag->id;
             $tagClasses[] = 'kanka-tag-' . $tag->slug;
         }
+        $render = request()->get('render');
 
         $tooltip = view('entities.components.tooltip')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('tags', $entity->tagsWithEntity())
             ->with('tagClasses', $tagClasses)
+            ->with('render', $render)
             ->render();
 
         return response()->json([

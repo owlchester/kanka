@@ -17,7 +17,7 @@ class EntityAssetResource extends EntityChild
         /** @var EntityAsset $asset */
         $asset = $this->resource;
 
-        $data = $this->entity([
+        $data = $this->onEntity([
             'type_id' => $asset->type_id,
             '_file' => $asset->isFile(),
             '_link' => $asset->isLink(),

@@ -6,8 +6,8 @@ return [
             'add'   => 'Add to tag',
         ],
         'create'    => [
-            'success'   => 'Added the tag :name to the entity.',
-            'title'     => 'Add an entity to :name',
+            'attach_success'    => '{1} Added :count entity to tag :name.|[2,*] Added :count entities to tag :name.',
+            'modal_title'       => 'Add entities to :name',
         ],
     ],
     'create'        => [
@@ -39,7 +39,7 @@ return [
     'transfer'      => [
         'description'   => 'Move this tag\'s entities to another tag.',
         'fail'          => 'Failed to transfer entities from :tag to :newTag',
-        'success'       => 'Succesfully transfered entities from :tag to :newTag',
+        'success'       => 'Successfully transferred entities from :tag to :newTag',
         'title'         => 'Transfer :name',
         'transfer'      => 'Transfer',
     ],

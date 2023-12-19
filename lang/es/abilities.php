@@ -3,13 +3,6 @@
 return [
     'abilities'     => [],
     'children'      => [
-        'actions'       => [
-            'add'   => 'Añadir habilidad a la entidad',
-        ],
-        'create'        => [
-            'success'   => 'Se ha añadido la habilidad :name a la entidad.',
-            'title'     => 'Añadir entidad a :name',
-        ],
         'description'   => 'Entidades con esta habilidad',
         'title'         => 'Entidades de la habilidad :name',
     ],

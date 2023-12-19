@@ -5,10 +5,6 @@ return [
         'actions'   => [
             'add'   => 'Dodaj nową etykietę',
         ],
-        'create'    => [
-            'success'   => 'Dodano do elementu etykietę :name.',
-            'title'     => 'Dodaj etykietę do elementu :name',
-        ],
     ],
     'create'        => [
         'title' => 'Nowa etykieta',

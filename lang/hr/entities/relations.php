@@ -12,8 +12,7 @@ return [
         'timeline_element'  => 'Element kronologije',
     ],
     'create'        => [
-        'success'   => 'Dodan odnos :target u :entity.',
-        'title'     => 'Novi odnos za :name',
+        'title' => 'Novi odnos za :name',
     ],
     'destroy'       => [
         'success'   => 'Uklonjen odnos :target s :entity.',
@@ -21,7 +20,6 @@ return [
     'fields'        => [
         'attitude'          => 'Stav',
         'connection'        => 'Veza',
-        'is_star'           => 'Prikačeno',
         'relation'          => 'Odnos',
         'target'            => 'Meta',
         'target_relation'   => 'Cilj odnosa',

@@ -42,10 +42,51 @@ function initGallery() {
         }
     });
 
+    registerUploadEvents();
+
+    bulkForm.submit(function (e) {
+        e.preventDefault();
+
+        var data = new FormData();
+        $.each($('li[data-selected="1"]'), function (i) {
+            data.append('file[]', $(this).data('id'));
+        });
+
+        let folder = $('input[name="folder_id"]');
+        if (folder) {
+            data.append('folder_id', folder.val());
+        }
+
+        $.ajax({
+            url: $(this).attr('action'),
+            method: 'POST',
+            context: this,
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false
+        }).done(function(res) {
+            $('li[data-selected="1"]').remove();
+            let target = document.getElementById('bulk-destroy-dialog');
+            target.close();
+
+            bulkDelete.addClass('btn-disabled');
+
+            window.showToast(res.toast);
+            return false;
+        });
+
+        return false;
+    });
+}
+
+const registerUploadEvents = () => {
+    if (!galleryForm) {
+        return;
+    }
     galleryForm.ondrop = (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
-
 
         if (ev.dataTransfer.items) {
             let data = new FormData();
@@ -84,43 +125,7 @@ function initGallery() {
     galleryForm.ondragleave = (e) => {
         galleryForm.classList.remove('drop-shadow', 'dropping');
     };
-
-    bulkForm.submit(function (e) {
-        e.preventDefault();
-
-        var data = new FormData();
-        $.each($('li[data-selected="1"]'), function (i) {
-            data.append('file[]', $(this).data('id'));
-        });
-
-        let folder = $('input[name="folder_id"]');
-        if (folder) {
-            data.append('folder_id', folder.val());
-        }
-
-        $.ajax({
-            url: $(this).attr('action'),
-            method: 'POST',
-            context: this,
-            data: data,
-            cache: false,
-            contentType: false,
-            processData: false
-        }).done(function(res) {
-            $('li[data-selected="1"]').remove();
-            let target = document.getElementById('bulk-destroy-dialog');
-            target.close();
-
-            bulkDelete.addClass('btn-disabled');
-
-            window.showToast(res.toast);
-            return false;
-        });
-
-        return false;
-    });
-
-}
+};
 
 /**
  *
@@ -142,7 +147,9 @@ function initSearch() {
  *
  */
 function initUploader() {
-
+    if (!galleryForm) {
+        return;
+    }
     galleryForm.onchange = (event) => {
         event.preventDefault();
 

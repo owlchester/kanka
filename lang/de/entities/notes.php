@@ -51,8 +51,6 @@ return [
         'entity'        => 'Zielobjekt',
         'move'          => 'Verschiebe oder kopiere in eine anderes Objekt',
         'move_success'  => 'Beitrag :name erfolgreich nach :entity verschoben.',
-        'select_one'    => 'Objekt auswählen',
-        'title'         => 'Verschiebe oder kopiere einen Beitrag in ein anderes Objekt',
     ],
     'placeholders'  => [
         'name'  => 'Name der Notiz, Beobachtung oder Anmerkung',

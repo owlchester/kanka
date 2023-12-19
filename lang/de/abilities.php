@@ -3,13 +3,6 @@
 return [
     'abilities'     => [],
     'children'      => [
-        'actions'       => [
-            'add'   => 'Fähigkeit zum Objekt hinzufügen',
-        ],
-        'create'        => [
-            'success'   => 'Fähigkeit :name zum Objekt hinzugefügt',
-            'title'     => 'Objekt zu :name hinzufügen',
-        ],
         'description'   => 'Objekte mit dieser Fähigkeit',
         'title'         => 'Fähigkeit :name Objekt',
     ],

@@ -53,7 +53,5 @@ class TimelineObserver extends MiscObserver
             $sub->timeline_id = null;
             $sub->saveQuietly();
         }
-
-        $this->cleanupTree($timeline, 'timeline_id');
     }
 }

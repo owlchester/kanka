@@ -169,7 +169,7 @@ const initLiveAttributes = () => {
 };
 
 const listenToLiveForm = () => {
-    liveEditModal.find('form').submit(function (e) {
+    liveEditModal.find('form').unbind('submit').submit(function (e) {
         e.preventDefault();
 
         $.ajax({

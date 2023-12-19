@@ -7,6 +7,16 @@ return [
     ],
     'bulk'              => [
         'delete'    => '{1} :count relação removida. |[2,*] :count relações removidas.',
+        'fields'    => [
+            'delete_mirrored'   => 'Excluir espelhado',
+            'unmirror'          => 'Desvincular espelhado',
+            'update_mirrored'   => 'Atualizar espelhado',
+        ],
+        'helpers'   => [
+            'delete_mirrored'   => 'Exclua também as conexões espelhadas.',
+            'unmirror'          => 'Desvincula conexões espelhadas.',
+            'update_mirrored'   => 'Atualiza conexões espelhadas.',
+        ],
         'success'   => [
             'editing'           => '{1} :count relação foi atualizada. |[2,*] :count relações foram atualizadas.',
             'editing_partial'   => '{1} :count/:total relação foi atualizada. |[2,*] :count/:total relações foram atualizadas.',
@@ -21,7 +31,6 @@ return [
     ],
     'create'            => [
         'new_title' => 'Nova relação',
-        'success'   => 'Relação :target adicionada para :entity.',
         'title'     => 'Nova relação para :name',
     ],
     'delete_mirrored'   => [
@@ -35,7 +44,7 @@ return [
     'fields'            => [
         'attitude'          => 'Atitude',
         'connection'        => 'Conexão',
-        'is_star'           => 'Fixado',
+        'is_pinned'         => 'Fixado',
         'owner'             => 'Fonte',
         'relation'          => 'Relação',
         'target'            => 'Alvo',

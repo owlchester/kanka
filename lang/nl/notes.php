@@ -10,9 +10,7 @@ return [
         'notes' => 'Sub Notities',
     ],
     'helpers'       => [],
-    'hints'         => [
-        'is_pinned' => 'Er kunnen maximaal 3 notities worden vastgemaakt om op het dashboard te worden weergegeven.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'note'  => 'Kies een bovenliggende notitie',

@@ -9,4 +9,5 @@ return [
     'notifications' => [
         'start-drawing' => 'Clique sur la carte pour commencer à dessiner le polygon',
     ],
+    'toggle'        => 'Ouvrir/fermer les groupes',
 ];

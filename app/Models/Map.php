@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Ability
@@ -49,7 +50,8 @@ class Map extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -108,7 +110,6 @@ class Map extends MiscModel
         'center_marker_id'
     ];
 
-
     /**
      * Foreign relations to add to export
      */
@@ -116,6 +117,23 @@ class Map extends MiscModel
         'layers',
         'groups',
         'markers'
+    ];
+
+    protected array $exportFields = [
+        'base',
+        'location_id',
+        'grid',
+        'height',
+        'width',
+        'min_zoom',
+        'max_zoom',
+        'initial_zoom',
+        'center_x',
+        'center_y',
+        'center_marker_id',
+        'is_real',
+        'has_clustering',
+        'config',
     ];
 
     /**
@@ -133,19 +151,11 @@ class Map extends MiscModel
      * Parent ID used for the Node Trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'map_id';
     }
 
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setMapIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
-    }
 
     /**
      * Performance with for datagrids
@@ -234,7 +244,7 @@ class Map extends MiscModel
     public function markers()
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
-            ->with(['entity', 'group', 'map']);
+            ->with(['entity', 'group', 'map', 'entity.image']);
     }
 
     /**
@@ -622,7 +632,7 @@ class Map extends MiscModel
         if (empty($this->entity->image_path) && !$this->isReal()) {
             return false;
         }
-        return ! ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));
+        return !($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));
     }
 
     /**

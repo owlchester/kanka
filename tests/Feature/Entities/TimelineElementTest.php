@@ -16,6 +16,7 @@ it('POSTS a new timeline element')
     ->postJson('/api/1.0/campaigns/1/timelines/1/timeline_elements', [
         'name' => fake()->name(),
         'era_id' => 1,
+        'entry' => '',
         'use_event_date' => true,
     ])
     ->assertStatus(201)

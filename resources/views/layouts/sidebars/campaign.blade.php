@@ -22,13 +22,6 @@
 
                 <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
                     @can('update', $campaign)
-                        <li class="px-2 section-overview {{ $sidebar->activeCampaign('campaign-export') }}">
-                            <x-sidebar.element
-                                :url="route('campaign.export', [$campaign])"
-                                icon="fa-duotone fa-download"
-                                :text="__('campaigns.show.tabs.export')"
-                            ></x-sidebar.element>
-                        </li>
                         <li class="px-2 section-overview {{ $sidebar->activeCampaign('recovery') }}">
                             <x-sidebar.element
                                 :url="route('recovery', [$campaign])"
@@ -134,6 +127,32 @@
                     @endif
                 </ul>
             </li>
+
+
+            @can('update', $campaign)
+            <li class="px-2 section-management">
+                <x-sidebar.element
+                    icon="fa-duotone fa-database"
+                    :text="__('campaigns.show.tabs.data')"
+                ></x-sidebar.element>
+                <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+                    <li class="px-2 section-overview {{ $sidebar->activeCampaign('campaign-export') }}">
+                        <x-sidebar.element
+                            :url="route('campaign.export', [$campaign])"
+                            icon="fa-duotone fa-download"
+                            :text="__('campaigns.show.tabs.export')"
+                        ></x-sidebar.element>
+                    </li>
+                    <li class="px-2 section-overview {{ $sidebar->activeCampaign('campaign-import') }}">
+                        <x-sidebar.element
+                            :url="route('campaign.import', [$campaign])"
+                            icon="fa-duotone fa-upload"
+                            :text="__('campaigns.show.tabs.import')"
+                        ></x-sidebar.element>
+                    </li>
+                </ul>
+            </li>
+            @endif
         </ul>
     </section>
 </aside>
