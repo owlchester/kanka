@@ -33,8 +33,8 @@ const initImageFocus = () => {
         let percentageY = (originalY / originalHeight) * 100;
 
         drawBullseye(percentageY, percentageX);
-        $('input[name="focus_x"]').val(parseInt(originalY));
-        $('input[name="focus_y"]').val(parseInt(originalX));
+        $('input[name="focus_x"]').val(parseInt(originalX));
+        $('input[name="focus_y"]').val(parseInt(originalY));
     });
 
     bullseye.addEventListener('click', function () {
