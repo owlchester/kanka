@@ -11,27 +11,17 @@ use App\Models\Location;
 use App\Models\Map;
 use App\Models\Organisation;
 use App\Models\Race;
+use App\Traits\EntityAware;
 
 class ConnectionService
 {
-    /**
-     */
-    protected Entity $entity;
+    use EntityAware;
 
     protected array $ids = [];
 
     protected array $reasons = [];
 
     protected string $order = 'name';
-
-    /**
-     * @return $this
-     */
-    public function entity(Entity $entity): self
-    {
-        $this->entity = $entity;
-        return $this;
-    }
 
     /**
      * @param string|null $order

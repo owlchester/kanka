@@ -22,7 +22,7 @@ if (!isset($model) || ($model->created_by == auth()->user()->id)) {
 }
 
 // If it's a visibility self & admin, and we're not the creator, we can't change this
-if (isset($model) && $model->visibility_id === Visibility::AdminSelf && $model->created_by !== auth()->user()->id) {
+if (isset($model) && $model->visibility_id === Visibility::AdminSelf->value && $model->created_by !== auth()->user()->id) {
     $options = [Visibility::AdminSelf->value => __('crud.visibilities.admin-self')];
 }
 
