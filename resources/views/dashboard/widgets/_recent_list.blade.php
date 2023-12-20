@@ -17,7 +17,11 @@
 
         <div class="blame flex-none text-right text-xs">
             <span class="author block">
-                {{ !empty($entity->updated_by) ? \App\Facades\UserCache::name($entity->updated_by) : __('crud.history.unknown') }}
+                @if ($entity->created_at->equalTo($entity->updated_at))
+                    {{ !empty($entity->created_by) ? \App\Facades\UserCache::name($entity->created_by) : __('crud.history.unknown') }}
+                @else
+                    {{ !empty($entity->updated_by) ? \App\Facades\UserCache::name($entity->updated_by) : __('crud.history.unknown') }}
+                @endif
             </span>
 @can('history', [$entity, $campaign])
             @if (!empty($entity->updated_at))

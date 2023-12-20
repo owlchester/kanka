@@ -449,7 +449,7 @@ abstract class MiscModel extends Model
             'campaign_id' => $this->campaign_id,
             'is_private' => $this->is_private,
             'name' => $this->name,
-            'type_id' => $this->entityTypeId()
+            'type_id' => $this->entityTypeId(),
         ]);
 
         return $entity;
