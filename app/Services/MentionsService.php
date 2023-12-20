@@ -396,7 +396,7 @@ class MentionsService
                             . ' data-url="' . $dataUrl . '"'
                             . '>'
                             . Arr::get($data, 'text', $entity->name)
-                            . '</a>';;
+                            . '</a>';
                         return '<span class="' . implode(' ', $cssClasses) . '"'
                             . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
                             . '>'
@@ -650,7 +650,7 @@ class MentionsService
 
         // Directly get with the mentioned entity types (provided they are valid)
         $entities = Entity::whereIn('id', $ids)->with('tags:id,name,slug')->get();
-        dump(count($ids));
+        //dump(count($ids));
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $entity;
         }
