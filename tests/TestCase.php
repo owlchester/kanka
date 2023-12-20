@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Facades\Avatar;
 use App\Facades\CampaignCache;
 use App\Facades\EntityCache;
 use App\Facades\Permissions;
@@ -169,6 +170,7 @@ abstract class TestCase extends BaseTestCase
         TimelineElementCache::campaign($campaign);
         CharacterCache::campaign($campaign);
         MapMarkerCache::campaign($campaign);
+        Avatar::campaign($campaign);
 
         return $this;
     }
