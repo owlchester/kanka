@@ -65,10 +65,11 @@
 </section>
 
 <section class="lg:max-w-7xl mx-auto flex flex-col gap-10 lg:gap-10 py-10 lg:py-12 px-4 xl:px-0 text-dark text-center" >
-    @if ($error !== 503 && auth()->check())
+    @if ($error !== 503 && auth()->check() && !\App\Facades\Identity::isImpersonating())
         <p class="">Go back to one of your campaigns</p>
         <div class="flex flex-wrap justify-center items-center gap-10">
-            <?php /** @var \App\Models\Campaign $campaign */?>
+
+        <?php /** @var \App\Models\Campaign $campaign */?>
         @foreach (auth()->user()->campaigns as $campaign)
             <a href="{{ route('dashboard', $campaign) }}" class="btn-round rounded flex gap-2 items-center">
                 <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
