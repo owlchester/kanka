@@ -99,8 +99,16 @@
                                 <span class="text-xs">{{ __('calendars.events.end')}}</span>
                             @endif
                         </span>
-                        @if ($event->isBirth()) <x-icon class="fa-solid fa-birthday-cake" title="{{ __('entities/events.types.birthday') }}" tooltip="1" /> @endif
-                        @if ($event->isDeath()) <x-icon class="fa-solid fa-skull" title="{{ __('entities/events.types.death') }}" tooltip="1" /> @endif
+                        @if ($event->isBirth())
+                            @if ($event->year === $day['year'])
+                                <x-icon class="fa-solid fa-baby" title="{{ __('entities/events.types.birth') }}" tooltip="1" />
+                            @else
+                                <x-icon class="fa-solid fa-birthday-cake" title="{{ __('entities/events.types.birthday') }}" tooltip="1" />
+                            @endif
+                        @endif
+                        @if ($event->isDeath())
+                            <x-icon class="fa-solid fa-skull" title="{{ __('entities/events.types.death') }}" tooltip="1" />
+                        @endif
                         {!! $event->getLabel() !!}
                     </div>
                 @endforeach
