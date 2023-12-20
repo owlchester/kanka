@@ -523,7 +523,7 @@ class SidebarService
                     }
                 }
                 // Child has permission check?
-                if (isset($child['perm'])) {
+                if (isset($child['perm']) && count($children) === 1) {
                     $layout[$name]['perm'] = $child['perm'];
                 }
 

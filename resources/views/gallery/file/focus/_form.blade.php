@@ -2,7 +2,7 @@
     <p class="text-neutral-content">
         {{ __('entities/image.focus.helper') }}
     </p>
-    <div class="focus-selector relative">
+    <div class="focus-selector relative inline-block">
         <div class="focus absolute text-white drop-shadow cursor-pointer text-2xl" data-focus-x="{{ $image->focus_x }}" data-focus-y="{{ $image->focus_y }}" style="@if(empty($image->focus_x))display: none; @endif">
             <x-icon class="fa-duotone fa-arrow-up-left-from-circle fa-2x hover:text-error" />
         </div>

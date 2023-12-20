@@ -77,16 +77,16 @@ trait TreeControllerTrait
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
             if (request()->get('m') === 'table') {
-                if (!empty($parent) && !empty($parent->child)) {
+                if (!empty($parent) && !empty($parent->parent)) {
                     // Go back to previous parent
                     $this->addNavAction(
-                        route($this->route . '.tree', [$campaign, 'parent_id' => $parent->child->id]),
-                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . $parent->child->name
+                        route($this->route . '.tree', [$campaign, 'parent_id' => $parent->parent->id, 'm' => 'table']),
+                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . $parent->parent->name
                     );
                 } else {
                     // Go back to first level
                     $this->addNavAction(
-                        route($this->route . '.tree', $campaign),
+                        route($this->route . '.tree', [$campaign, 'm' => 'table']),
                         '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . __('crud.actions.back')
                     );
                 }
