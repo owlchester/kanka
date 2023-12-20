@@ -57,6 +57,7 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'strict' => false,
+            'sticky' => true,
             'engine' => null,
             'dump' => [
                 'dump_binary_path' => env('DB_BINARY_DUMP_PATH', '/usr/bin/'),

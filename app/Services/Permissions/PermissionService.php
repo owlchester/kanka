@@ -10,6 +10,9 @@ use App\Models\PostPermission;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use App\User;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class PermissionService
 {
@@ -27,6 +30,8 @@ class PermissionService
     protected array $allowedModels = [];
     protected array $deniedModels = [];
     protected bool $loadedPermissions = false;
+
+    protected bool $tempPermissionCreated = false;
 
     /** @var array Permissions for posts */
     protected array $allowedPostIDs = [];
@@ -109,6 +114,34 @@ class PermissionService
     {
         $this->loadPermissions();
         return $this->entityTypesIds;
+    }
+
+    public function createTemporaryTable(): self
+    {
+        if ($this->tempPermissionCreated || !request()->filled('_perm_v2')) {
+            return $this;
+        }
+        Schema::create('tmp_permissions', function (Blueprint $table) {
+            $table->unsignedInteger('id');
+            $table->temporary();
+        });
+        $batch = [];
+        foreach ($this->entityIds as $id) {
+            $batch[] = $id;
+            if (count($batch) > 900) {
+                DB::statement("INSERT INTO tmp_permissions (id) VALUES (" . implode(') ,(', $batch) . ")");
+                $batch = [];
+            }
+        }
+        if (count($batch) > 0) {
+            DB::statement("INSERT INTO tmp_permissions (id) VALUES (" . implode(') ,(', $batch) . ")");
+        }
+//        dump(in_array(329259, $batch));
+//        $wa = DB::table('tmp_permissions')
+//            ->where('id', 329259)->get();
+//        dd($wa);
+        $this->tempPermissionCreated = true;
+        return $this;
     }
 
     public function deniedEntities(): array
@@ -322,8 +355,10 @@ class PermissionService
                 $this->entityTypesIds[] = $permission->entity_type_id;
             }
         } elseif ($permission->access && !in_array($permission->entity_id, $this->entityIds)) {
+
             // This permission targets an entity directly
             $this->entityIds[] = $permission->entity_id;
+
             $this->allowedModels[] = $permission->misc_id;
         } elseif (!$permission->access && !in_array($permission->entity_id, $this->deniedIds)) {
             // This permission targets an entity directly
