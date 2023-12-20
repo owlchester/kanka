@@ -366,6 +366,8 @@ class CalendarRenderer
                 $exact = $this->getYear() . '-' . $this->getMonth() . '-' . $day;
                 $dayData = [
                     'day' => $day,
+                    'year' => $this->getYear(),
+                    'month' => $this->getMonth(),
                     'events' => [],
                     'date' => $exact,
                     'isToday' => false,
