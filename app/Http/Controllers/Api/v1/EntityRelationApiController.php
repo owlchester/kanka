@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\StoreRelation as Request;
+use App\Http\Requests\UpdateRelation as UpdateRequest;
 use App\Http\Resources\RelationResource as Resource;
 use App\Services\Entity\RelationService;
 use App\Models\Relation;
@@ -56,7 +57,7 @@ class EntityRelationApiController extends ApiController
     /**
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Entity $entity, Relation $relation)
+    public function update(UpdateRequest $request, Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
