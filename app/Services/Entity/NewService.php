@@ -72,12 +72,6 @@ class NewService
         $this->model->is_private = $this->private();
         $this->model->campaign_id = $this->campaign->id;
 
-        // If the modal is a tree, it needs to be placed in its own bounds
-        if (method_exists($this->model, 'makeRoot')) {
-            // @phpstan-ignore-next-line
-            $this->model->recalculateTreeBounds();
-        }
-
         $this->model->saveQuietly();
         $this->model->createEntity();
         if (!$this->model->entity->isTag()) {

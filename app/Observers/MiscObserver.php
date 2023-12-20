@@ -52,11 +52,6 @@ abstract class MiscObserver
         $attributes = $model->getAttributes();
         if (array_key_exists('entry', $attributes)) {
             $model->entry = $this->purify(Mentions::codify($model->entry));
-            // If we created new elements, the bounds are out of sync, so
-            // we need to re-calculate this entity's bounds
-            if (Mentions::hasNewEntities() && method_exists($model, 'recalculateTreeBounds')) {
-                $model->recalculateTreeBounds();
-            }
         }
 
         // Is private hook for non-admin (who can't set is_private)
