@@ -547,6 +547,7 @@ class CalendarRenderer
                     'day' => $day,
                     'events' => [],
                     'date' => $exact,
+                    'year' => $this->getYear(),
                     'julian' => $julian,
                     'isToday' => false,
                     'month' => $month['name'],
