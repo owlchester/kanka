@@ -118,7 +118,7 @@ class PermissionService
 
     public function createTemporaryTable(): self
     {
-        if ($this->tempPermissionCreated || !request()->filled('_perm_v2')) {
+        if ($this->tempPermissionCreated || request()->filled('_perm_v1')) {
             return $this;
         }
         Schema::create('tmp_permissions', function (Blueprint $table) {
