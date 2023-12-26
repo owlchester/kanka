@@ -367,7 +367,7 @@ class SidebarService
             'history' => [
                 'icon' => 'fa-duotone fa-clock-rotate-left',
                 'label' => 'sidebar.recent',
-                'perm' => true,
+                'perm' => 'recover',
                 'module' => false,
                 'fixed' => true,
             ],
