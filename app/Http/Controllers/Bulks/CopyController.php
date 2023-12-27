@@ -33,6 +33,9 @@ class CopyController extends Controller
     {
         $models = explode(',', request()->get('models'));
         $campaignId = request()->get('campaign');
+        if (empty($campaignId)) {
+            return redirect()->back();
+        }
 
         $count = $this
             ->bulkService
