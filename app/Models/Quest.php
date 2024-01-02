@@ -238,7 +238,8 @@ class Quest extends MiscModel
      */
     public function elements()
     {
-        return $this->hasMany(QuestElement::class);
+        return $this->hasMany(QuestElement::class)
+            ->with(['entity', 'entity.image']);
     }
 
     /**

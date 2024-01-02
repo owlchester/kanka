@@ -503,7 +503,11 @@ class Character extends MiscModel
         return $query
             ->select(['id', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
+            ->with([
+                'location', 'location.entity',
+                'families', 'families.entity',
+                'races', 'races.entity',
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
             ->has('entity');
     }
 }
