@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\Entity;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,10 +20,11 @@ class EntityListing extends Component
     public Campaign $campaign;
 
     public $pageNumber = 1;
-    
+
     public $hasMorePages;
 
-    public function mount(Campaign $campaign) {
+    public function mount(Campaign $campaign)
+    {
 
         $this->entities = new Collection();
         $this->campaign = $campaign;
@@ -32,7 +32,8 @@ class EntityListing extends Component
         $this->loadEntities();
     }
 
-    public function loadEntities() {
+    public function loadEntities()
+    {
         CampaignLocalization::forceCampaign($this->campaign);
         UserCache::campaign($this->campaign);
         Avatar::campaign($this->campaign);
