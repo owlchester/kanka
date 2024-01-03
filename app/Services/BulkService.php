@@ -309,7 +309,7 @@ class BulkService
             $entityFields = $filledFields;
 
             if(isset($entityFields[$parent]) && $entityFields[$parent] == strval($entity->id)) {
-               unset($entityFields[$parent]); 
+                unset($entityFields[$parent]);
             }
 
             // Handle math fields

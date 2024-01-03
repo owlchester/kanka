@@ -136,10 +136,10 @@ class PermissionService
         if (count($batch) > 0) {
             DB::statement("INSERT INTO tmp_permissions (id) VALUES (" . implode(') ,(', $batch) . ")");
         }
-//        dump(in_array(329259, $batch));
-//        $wa = DB::table('tmp_permissions')
-//            ->where('id', 329259)->get();
-//        dd($wa);
+        //        dump(in_array(329259, $batch));
+        //        $wa = DB::table('tmp_permissions')
+        //            ->where('id', 329259)->get();
+        //        dd($wa);
         $this->tempPermissionCreated = true;
         return $this;
     }
