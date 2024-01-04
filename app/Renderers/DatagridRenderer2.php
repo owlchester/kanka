@@ -275,6 +275,6 @@ class DatagridRenderer2
         foreach($row->rowAttributes() as $attr => $val) {
             $attributes[] = 'data-' . $attr . '="' . $val . '"';
         }
-        return implode(' ' , $attributes);
+        return implode(' ', $attributes);
     }
 }

@@ -469,7 +469,7 @@ class CampaignDashboardWidget extends Model
             $title = $this->conf('text');
         } else {
             if ($entityString) {
-               $title = __($entityString) . ' - ';
+                $title = __($entityString) . ' - ';
             }
             $title .= __('dashboard.widgets.recent.title');
         }
