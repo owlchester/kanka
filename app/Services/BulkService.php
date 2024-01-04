@@ -294,7 +294,7 @@ class BulkService
             return $this->updateRelations($filledFields, $mirrorOptions);
         }
 
-        $parent = Str::singular($model->getTable()) . '_id';
+        $parent = method_exists($model, 'getParentKeyName') ? $model->getParentKeyName() : null;
 
         // Todo: move model fetch above to actually use with()
         foreach ($this->ids as $id) {
@@ -308,7 +308,7 @@ class BulkService
             }
             $entityFields = $filledFields;
 
-            if(isset($entityFields[$parent]) && $entityFields[$parent] == strval($entity->id)) {
+            if(isset($entityFields[$parent]) && intval($entityFields[$parent]) == $entity->id) {
                 unset($entityFields[$parent]);
             }
 
