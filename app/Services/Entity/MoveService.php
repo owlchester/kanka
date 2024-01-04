@@ -4,6 +4,7 @@ namespace App\Services\Entity;
 
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
+use App\Facades\UserCache;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Character;
@@ -77,16 +78,18 @@ class MoveService
             throw new TranslatableException('entities/move.errors.unknown_campaign');
         }
 
-        // Check that the new campaign is different than the current one.
+        // Check that the new campaign is different from the current one.
         if ($campaign->id == $this->entity->campaign_id) {
             throw new TranslatableException('entities/move.errors.same_campaign');
         }
 
         // Can the user create an entity of that type on the new campaign?
+        //UserCache::campaign($campaign);
         if (!$this->user->can('create', [get_class($this->entity->child), null, $campaign])) {
             throw new TranslatableException('entities/move.errors.permission');
         }
 
+        //UserCache::campaign($this->entity->campaign);
         // Trying to move (not copy) but can't update the original entity
         if (!$this->copy && !$this->user->can('update', $this->entity->child)) {
             throw new TranslatableException('entities/move.errors.permission_update');

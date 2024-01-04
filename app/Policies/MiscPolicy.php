@@ -48,7 +48,7 @@ class MiscPolicy
     public function create(User $user, $entity = null, Campaign $campaign = null): bool
     {
         if ($this->boosted) {
-            $campaign = CampaignLocalization::getCampaign();
+            $campaign = $campaign ?? CampaignLocalization::getCampaign();
             if (!$campaign->boosted()) {
                 return false;
             }
