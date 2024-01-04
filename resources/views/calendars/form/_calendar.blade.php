@@ -21,7 +21,7 @@
             field="reset"
             :label="__('calendars.fields.reset')"
             :tooltip="true"
-            :helper="__('calendars.helpers.reset')">
+            :helper="__('calendars.hints.reset')">
             {!! Form::select('reset', __('calendars.options.resets')) !!}
         </x-forms.field>
 
