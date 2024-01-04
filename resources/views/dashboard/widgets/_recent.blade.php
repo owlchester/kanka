@@ -34,13 +34,7 @@ if (($widget->conf('singular'))) {
 <x-box padding="0" css="widget-list {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <h4 class="text-lg mb-3 px-4 pt-4 flex gap-2">
         <span class="grow">
-        @if (!empty($widget->conf('text')))
-            {{ $widget->conf('text') }}
-        @else
-            @if ($widget->conf('entity'))
-                {{ __($entityString) }} -
-            @endif{{ __('dashboard.widgets.recent.title') }}
-        @endif
+        {!! $widget->filteredLink($entityString) !!}
         </span>
 
         @if (!empty($widget->tags))
