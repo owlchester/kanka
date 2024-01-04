@@ -126,7 +126,7 @@ class CampaignService
      */
     protected function isDefaultRequest(): bool
     {
-        return !$this->request->anyFilled('sort_field_name', 'language', 'system', 'is_boosted', 'is_open', 'genre');
+        return !$this->request->anyFilled('sort_field_name', 'language', 'system', 'is_boosted', 'is_open', 'genre', 'page');
     }
 
     /**
