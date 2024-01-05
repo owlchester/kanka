@@ -248,6 +248,14 @@ class CampaignDashboardWidget extends Model
             ;
         }
 
+        if ($this->conf('created_by')) {
+            $base = $base->where('created_by', $this->conf('created_by'));
+        }
+
+        if ($this->conf('updated_by')) {
+            $base = $base->where('updated_by', $this->conf('updated_by'));
+        }
+
         // Ordering
         $order = Arr::get($this->config, 'order', null);
         if (empty($order)) {

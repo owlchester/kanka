@@ -71,7 +71,7 @@
                 @include('dashboard.widgets.forms._name')
                 @include('dashboard.widgets.forms._width')
 
-                <x-forms.field field="orger" :label="__('dashboard.widgets.fields.order')">
+                <x-forms.field field="order" :label="__('dashboard.widgets.fields.order')">
                     {!! Form::select('config[order]', [
                 '' => __('dashboard.widgets.orders.recent'),
                 'oldest' => __('dashboard.widgets.orders.oldest'),
@@ -80,6 +80,14 @@
             ], null, ['class' => '']) !!}
                 </x-forms.field>
                 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
+
+                <x-forms.field field="config[created_by]" :label="__('dashboard.widgets.fields.created_by')">
+                    {!! Form::select('config[created_by]', ['' => ''] + $campaign->membersList(), null, ['class' => 'w-full']) !!}
+                </x-forms.field>
+
+                <x-forms.field field="config[updated_by]" :label="__('dashboard.widgets.fields.updated_by')">
+                    {!! Form::select('config[updated_by]', ['' => ''] + $campaign->membersList(), null, ['class' => 'w-full']) !!}
+                </x-forms.field>
             </x-grid>
         </div>
         <div id="advanced-{{ $mode }}" class="tab-pane fade in">
