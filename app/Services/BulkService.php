@@ -294,6 +294,8 @@ class BulkService
             return $this->updateRelations($filledFields, $mirrorOptions);
         }
 
+        $parent = method_exists($model, 'getParentKeyName') ? $model->getParentKeyName() : null;
+
         // Todo: move model fetch above to actually use with()
         foreach ($this->ids as $id) {
             /** @var MiscModel $entity */
@@ -305,6 +307,10 @@ class BulkService
                 continue;
             }
             $entityFields = $filledFields;
+
+            if(isset($entityFields[$parent]) && intval($entityFields[$parent]) == $entity->id) {
+                unset($entityFields[$parent]);
+            }
 
             // Handle math fields
             foreach ($maths as $math) {
