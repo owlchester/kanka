@@ -474,6 +474,11 @@ class CampaignDashboardWidget extends Model
             $title .= __('dashboard.widgets.recent.title');
         }
         $parameters = ['campaign' => $this->campaign, 'tags' => $this->tags->pluck('id')->toArray()] + $this->filterOptions();
+                
+        if (!$entityType) {
+            return $title;
+        }
+
         $link = route($entityType . '.index', $parameters);
 
         return '<a href="' . $link . '">' . $title . '</a>';
