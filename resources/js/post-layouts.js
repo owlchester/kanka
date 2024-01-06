@@ -12,15 +12,15 @@ function initPostLayoutsForm() {
         let selected = $(this).find(":selected").val();
 
         if (selected === '') {
-            $('#field-entry').show();
-            $('#field-location').show();
-            $('#field-display').show();
+            $('.field-entry').show();
+            $('.field-location').show();
+            $('.field-display').show();
 
             $('#post-layout-subform').hide();
         } else {
-            $('#field-entry').hide();
-            $('#field-location').hide();
-            $('#field-display').hide();
+            $('.field-entry').hide();
+            $('.field-location').hide();
+            $('.field-display').hide();
 
             $('#post-layout-subform').show();
         }

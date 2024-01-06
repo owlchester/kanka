@@ -29,7 +29,7 @@
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
                 <x-forms.field field="entity-type" :required="true" :label="__('crud.fields.entity_type')">
-                    {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => ' recent-entity-type']) !!}
+                    {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => ' recent-entity-type', 'data-animate' => 'reveal', 'data-target' => '.field-recent-filters']) !!}
                 </x-forms.field>
 
                 <x-forms.field

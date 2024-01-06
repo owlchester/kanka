@@ -5,6 +5,11 @@ const initAnimations = () => {
     collapsers.forEach((e) => {
         e.addEventListener('click', toggle);
     });
+
+    const revelers = document.querySelectorAll('[data-animate="reveal"]');
+    revelers.forEach((e) => {
+        e.addEventListener('change', change);
+    });
 };
 
 function toggle(e) {
@@ -20,6 +25,16 @@ function toggle(e) {
     });
     this.classList.toggle('animate-collapsed');
 };
+
+function change (e) {
+    let target = document.querySelector(this.dataset.target);
+    console.log('target', target, this.dataset.target);
+    if (!this.value) {
+        target.classList.add('hidden');
+    } else {
+        target.classList.remove('hidden');
+    }
+}
 
 $(document).on('shown.bs.modal', function (){
     initAnimations();
