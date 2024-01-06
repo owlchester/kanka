@@ -80,14 +80,6 @@
             ], null, ['class' => '']) !!}
                 </x-forms.field>
                 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
-
-                <x-forms.field field="config[created_by]" :label="__('dashboard.widgets.fields.created_by')">
-                    {!! Form::select('config[created_by]', ['' => ''] + $campaign->membersList(), null, ['class' => 'w-full']) !!}
-                </x-forms.field>
-
-                <x-forms.field field="config[updated_by]" :label="__('dashboard.widgets.fields.updated_by')">
-                    {!! Form::select('config[updated_by]', ['' => ''] + $campaign->membersList(), null, ['class' => 'w-full']) !!}
-                </x-forms.field>
             </x-grid>
         </div>
         <div id="advanced-{{ $mode }}" class="tab-pane fade in">

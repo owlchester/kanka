@@ -124,14 +124,12 @@ return [
         ],
         'fields'                    => [
             'class'             => 'CSS class',
-            'created_by'        => 'Created by',
             'dashboard'         => 'Dashboard',
             'name'              => 'Custom widget name',
             'optional-entity'   => 'Link to entity',
             'order'             => 'Ordering',
             'size'              => 'Size',
             'text'              => 'Text',
-            'updated_by'        => 'Last updated by',
             'width'             => 'Width',
         ],
         'helpers'                   => [
