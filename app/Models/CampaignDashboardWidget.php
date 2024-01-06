@@ -457,4 +457,30 @@ class CampaignDashboardWidget extends Model
         // Linked but no entity or no child? Permission issue or deleted entity
         return !empty($this->entity);
     }
+
+    public function filteredLink(string $entityString = null): string
+    {
+        $link = route('characters.index', [$this->campaign_id]);
+        $title = '';
+
+        $entityType = !empty($this->conf('entity')) ? (Str::plural($this->conf('entity'))) : null;
+
+        if (!empty($this->conf('text'))) {
+            $title = $this->conf('text');
+        } else {
+            if ($entityString) {
+                $title = __($entityString) . ' - ';
+            }
+            $title .= __('dashboard.widgets.recent.title');
+        }
+        $parameters = ['campaign' => $this->campaign, 'tags' => $this->tags->pluck('id')->toArray()] + $this->filterOptions();
+
+        if (!$entityType) {
+            return $title;
+        }
+
+        $link = route($entityType . '.index', $parameters);
+
+        return '<a href="' . $link . '">' . $title . '</a>';
+    }
 }
