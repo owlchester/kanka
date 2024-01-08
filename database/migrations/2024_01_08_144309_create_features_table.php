@@ -32,8 +32,9 @@ return new class extends Migration
             $table->unsignedInteger('created_by')->nullable();
             $table->string('name', 90);
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('status_id');
+            $table->unsignedInteger('upvote_count')->default(0);
 
             $table->foreign('status_id')->references('id')->on('feature_statuses')->cascadeOnDelete();
             $table->foreign('category_id')->references('id')->on('feature_categories')->cascadeOnDelete();
