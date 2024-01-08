@@ -32,6 +32,7 @@
         "laravel/ui": "^4.2.1",
         "laravelcollective/html": "^6.0",
         "league/flysystem-aws-s3-v3": "^3.5",
+        "livewire/livewire": "^3.3",
         "mailerlite/mailerlite-php": "^1.0",
         "mcamara/laravel-localization": "^1.7",
         "orhanerday/open-ai": "^4.7",

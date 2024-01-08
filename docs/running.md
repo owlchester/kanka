@@ -25,31 +25,36 @@ These developer docker instances are quite different from [kanka.io](https://kan
 
 ## Docker
 
-Kanka is set up to run with Docker and [Laravel Sail](https://laravel.com/10.x/sail). It comes with several machines.
+Kanka is set up to run with Docker and [Laravel Sail](https://laravel.com/docs/10.x/sail). It comes with several machines.
 * Laravel Sail for running the Kanka PHP application
-* Mariadb for the database
-* Redis for the cache
-* Minio for file storage
-* Thumbor for thumbnails
+* [Mariadb](https://mariadb.org/) for the database
+* [Redis](https://redis.com/) for the cache
+* [Minio](https://min.io/) for file storage
+* [Thumbor](https://www.thumbor.org/) for thumbnails
 
 ### Prerequisite
 
 Kanka has minimal hardware requirements and can run adequately on a €4/month Hetzner virtual machine. The machine will need the following software to run Kanka:
 * [Docker](https://www.docker.com/)
-* Github CLI
+* [Github CLI](https://cli.github.com/)
 
-This Github repository needs to be installed (`git clone`) on your local machine. All commands are to be executed in the Kanka folder.
+This Github repository needs to be Cloned (`git clone`) on your local machine. All commands are to be executed in the Kanka folder.
 
 When on Linux, Docker needs to run with your user and not with sudo! This is important for file permissions to properly work. To set up docker to run with your user, [follow these instructions](https://docs.docker.com/engine/install/linux-postinstall/).
 
-## Installing
+## Installation
 
-### 1. Checkout the prokect
+### 1. Checkout the project
 
 Checkout Kanka on your local machine
 
-> gh repo clone owlchester/kanka
-
+```bash
+gh repo clone owlchester/kanka
+```
+or 
+```bash
+git clone https://github.com/owlchester/kanka.git
+```
 ### 2. Configure the database
 
 Once the project has finished downloading, copy the `.env.example` file and save it under `.env` at the root of your new Kanka installation. This file contains all the configuration settings to run Kanka, like the database details, the project's name, options for max file upload sizes, etc.
