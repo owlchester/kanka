@@ -30,6 +30,11 @@ $switcher: #D8DBFF;
 .border-blue {
     border-color: $blue;
 }
+.hover\:bg-light {
+    &:hover {
+        background-color: $light;
+    }
+}
 
 .link, .link-light {
     color: $dark;
@@ -151,6 +156,11 @@ h3, .text-md {
     font-size: 1.375rem;
     line-height: 1.664375rem;
 }
+h4, .text-sm {
+    font-weight: 600;
+    font-size: 1.175rem;
+    line-height: 1.464375rem;
+}
 p, li {
     font-weight: 400;
     font-size: 0.875rem;
@@ -221,3 +231,5 @@ html {
         display: unset;
     }
 }
+
+@import "dialog";

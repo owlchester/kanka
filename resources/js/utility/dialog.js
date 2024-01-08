@@ -14,6 +14,8 @@ const initDialogs = () => {
     });
 };
 
+const dialogLoadedEvent = new Event('dialog.loaded');
+
 function openingDialog(e) {
     e.preventDefault();
     let target = this.dataset.target;
@@ -70,14 +72,19 @@ const loadDialogContent = (url, target) => {
         .then(response => {
             target.innerHTML = response;
             target.show();
-            $(document).trigger('shown.bs.modal'); // Get tooltips, select2 and delete-confirmation to re-generate
+            if (typeof $ === 'function') {
+                $(document).trigger('shown.bs.modal'); // Get tooltips, select2 and delete-confirmation to re-generate
 
-            $('.btn-manage-perm').click(function (e) {
-                e.preventDefault();
-                target.close();
-                let permTarget = $(this).data('target');
-                $(permTarget).click();
-            });
+                // Todo: Move to app event listener
+                $('.btn-manage-perm').click(function (e) {
+                    e.preventDefault();
+                    target.close();
+                    let permTarget = $(this).data('target');
+                    $(permTarget).click();
+                });
+            } else {
+                document.dispatchEvent(dialogLoadedEvent);
+            }
         });
 };
 

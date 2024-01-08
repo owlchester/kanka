@@ -24,18 +24,23 @@ class FeatureCategory extends Model
         ]);
     }
 
-    public function now()
+    public function now(): HasMany
     {
-        return $this->features->where('status_id', \App\Enums\FeatureStatus::Now);
+        return $this->features()->where('status_id', \App\Enums\FeatureStatus::Now);
     }
 
-    public function next()
+    public function next(): HasMany
     {
-        return $this->features->where('status_id', \App\Enums\FeatureStatus::Next);
+        return $this->features()->where('status_id', \App\Enums\FeatureStatus::Next);
     }
 
-    public function later()
+    public function later(): HasMany
     {
-        return $this->features->where('status_id', \App\Enums\FeatureStatus::Later);
+        return $this->features()->where('status_id', \App\Enums\FeatureStatus::Later);
+    }
+
+    public function nothingPlanned(): bool
+    {
+        return $this->now->count() + $this->later->count() + $this->next->count() === 0;
     }
 }
