@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -15,21 +16,25 @@ class EntityListing extends Component
 {
     use WithPagination;
 
-    public $entities;
+    public Collection $entities;
+
+    public CampaignDashboardWidget $widget;
 
     public Campaign $campaign;
 
-    public $pageNumber = 1;
+    public int $pageNumber = 1;
 
-    public $hasMorePages;
+    public bool $hasMorePages;
 
-    public function mount(Campaign $campaign)
+    public function mount(Campaign $campaign, CampaignDashboardWidget $widget)
     {
-
         $this->entities = new Collection();
         $this->campaign = $campaign;
-
-        $this->loadEntities();
+        $this->widget = $widget;
+        $entities = $widget->entities();
+        $this->entities->push(...$entities->items());
+        $this->hasMorePages = $entities->hasMorePages();
+        //$this->loadEntities();
     }
 
     public function loadEntities()
@@ -39,14 +44,8 @@ class EntityListing extends Component
         Avatar::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
 
-        $campaign = $this->campaign;
-
-        $this->authorize('access', $campaign);
-        $entities = $campaign->entities()
-            ->lastSync(request()->get('lastSync'))
-            ->paginate(12, ['*'], 'page', $this->pageNumber);
-
         $this->pageNumber += 1;
+        $entities = $this->widget->entities($this->pageNumber);
 
         $this->hasMorePages = $entities->hasMorePages();
 

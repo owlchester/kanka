@@ -36,12 +36,12 @@
 
 @if($hasMorePages)
     <div class="text-center">
-        <button
-            class="px-4 py-3 text-lg font-semibold text-white rounded-xl bg-green-500 hover:bg-green-400"
+        <a
+            class="cursor-pointer"
             wire:click="loadEntities"
         >
             Load More
-        </button>
+        </a>
     </div>
 @endif
 

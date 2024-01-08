@@ -57,7 +57,7 @@ if (($widget->conf('singular'))) {
     </div>
     @else
     <div class="widget-recent-list overflow-auto px-4 pb-4 max-h-[400px]">
-        @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
+        @include('dashboard.widgets._recent_list')
     </div>
     @endif
 </x-box>

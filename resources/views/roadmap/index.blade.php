@@ -20,7 +20,7 @@
             </div>
         </div>
     </section>
-    <section class="p-5">
+    <section class="p-5 max-w-7xl mx-auto">
         <h2 class="">In Progress</h2>
 
         <div class="flex flex-col gap-10">
@@ -62,7 +62,7 @@
         </div>
     </section>
 
-    <section class="p-5" id="ideas">
+    <section class="p-5 max-w-7xl mx-auto" id="ideas">
         <h2 class="">Ideas</h2>
         <div class="grid xl:grid-cols-4 gap-5">
             <div class="xl:col-span-3 flex flex-col gap-5">
