@@ -30,6 +30,7 @@ class FeatureController extends Controller
 
         return redirect()->route('roadmap');
     }
+
     public function upvote(Request $request, Feature $feature)
     {
         $this->middleware('auth');

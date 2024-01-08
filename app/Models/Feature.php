@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int $id
  * @property string $name
  * @property string $description
- * @property int $status_id
+ * @property \App\Enums\FeatureStatus $status_id
  * @property int $category_id
  * @property int $created_by
  * @property int $upvote_count
