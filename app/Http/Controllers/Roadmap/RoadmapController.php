@@ -13,10 +13,14 @@ class RoadmapController extends Controller
     public function index()
     {
         $categories = FeatureCategory::with(['features', 'progress'])->get();
-        $ideas = Feature::approved()->paginate();
+        $ideas = Feature::approved();
+        if (auth()->check()) {
+            $ideas->with('uservote');
+        }
+
         return view('roadmap.index')
             ->with('categories', $categories)
-            ->with('ideas', $ideas)
+            ->with('ideas', $ideas->paginate(15))
         ;
     }
 

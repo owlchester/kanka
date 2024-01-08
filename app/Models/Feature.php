@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $id
@@ -41,8 +42,15 @@ class Feature extends Model
         return $this->belongsTo(FeatureStatus::class);
     }
 
+    public function uservote(): HasOne
+    {
+        return $this->hasOne(FeatureVote::class)
+            ->where('user_id', auth()->user()->id);
+    }
+
     public function scopeApproved(Builder $builder): Builder
     {
-        return $this->whereIn('status_id', [\App\Enums\FeatureStatus::Approved]);
+        return $this->whereIn('status_id', [\App\Enums\FeatureStatus::Approved])
+            ->orderBy('upvote_count', 'DESC');
     }
 }

@@ -29,6 +29,8 @@ Route::get('/frontend-prepare', [\App\Http\Controllers\FrontendPrepareController
 Route::get('/_setup', [\App\Http\Controllers\SetupController::class, 'index']);
 
 
+Route::model('feature', \App\Models\Feature::class);
 Route::get('roadmap', [\App\Http\Controllers\Roadmap\RoadmapController::class, 'index'])->name('roadmap');
-Route::get('roadmap/{feature}', [\App\Http\Controllers\Roadmap\RoadmapController::class, 'show'])->name('roadmap.show');
+Route::get('roadmap/{feature}', [\App\Http\Controllers\Roadmap\FeatureController::class, 'show'])->name('roadmap.show');
+Route::post('roadmap/{feature}/upvote', [\App\Http\Controllers\Roadmap\FeatureController::class, 'upvote'])->name('roadmap.upvote');
 Route::post('roadmap/submit', [\App\Http\Controllers\Roadmap\RoadmapController::class, 'store'])->name('roadmap.store');

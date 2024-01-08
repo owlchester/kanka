@@ -55,34 +55,43 @@
 
     <section class="p-5" id="ideas">
         <h1 class="">Ideas</h1>
-        <div class="grid grid-cols-4 gap-5">
-            <div class="col-span-3 flex flex-col gap-5">
+        <div class="grid xl:grid-cols-4 gap-5">
+            <div class="xl:col-span-3 flex flex-col gap-5">
                 @foreach ($ideas as $feature)
                     @include('roadmap._idea', $feature)
                 @endforeach
             </div>
 
+            @auth()
             <form method="POST" action="{{ route('roadmap.store') }}">
                 {{ csrf_field() }}
-            <div class="bg-purple text-white rounded-2xl p-5 flex flex-col gap-5">
-                <h2>Share your ideas</h2>
-                <p class="text-light">Have an idea to improve Kanka? Share it with our development team.</p>
+                <div class="bg-purple text-white rounded-2xl p-5 flex flex-col gap-5">
+                    <h2>Share your ideas</h2>
+                    <p class="text-light">Have an idea to improve Kanka? Share it with our development team.</p>
 
-                <div class="field field-name">
-                    <label>One sentence that summarises your idea</label>
-                    <input type="text" maxlength="90" class="rounded text-dark  w-full p-2" name="name" />
+                    <div class="field field-name">
+                        <label>One sentence that summarises your idea</label>
+                        <input type="text" maxlength="90" class="rounded text-dark  w-full p-2" name="name" />
+                    </div>
+
+                    <div class="field field-description">
+                        <label>Why your idea is useful, who should benefit and how should it work?</label>
+                        <textarea name="description" class="rounded text-dark w-full p-2" rows="5"></textarea>
+                    </div>
+
+                    <p class="text-light">Once reviewed, your idea will show up in the ideas section. If we have questions, we'll contact you on the <a href="https://kanka.io/go/discord">Discord</a>.</p>
+
+                    <input type="submit" value="Submit idea" class="btn-round rounded-full" />
                 </div>
-
-                <div class="field field-description">
-                    <label>Why your idea is useful, who should benefit and how should it work?</label>
-                    <textarea name="description" class="rounded text-dark w-full p-2" rows="5"></textarea>
-                </div>
-
-                <p class="text-light">Once reviewed, your idea will show up in the ideas section. If we have questions, we'll contact you on the <a href="https://kanka.io/go/discord">Discord</a>.</p>
-
-                <input type="submit" value="Submit idea" class="btn-round rounded-full" />
-            </div>
             </form>
+            @else
+                <div class="bg-purple text-white rounded-2xl p-5 flex flex-col gap-5">
+                    <h2>Share your ideas</h2>
+                    <p class="text-light">Have an idea to improve Kanka? Share it with our development team.</p>
+
+                    <a href="{{ route('login') }}" class="btn-round rounded-full">Log in</a>
+                </div>
+            @endauth
 
         </div>
     </section>
