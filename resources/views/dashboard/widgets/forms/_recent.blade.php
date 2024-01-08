@@ -71,7 +71,7 @@
                 @include('dashboard.widgets.forms._name')
                 @include('dashboard.widgets.forms._width')
 
-                <x-forms.field field="orger" :label="__('dashboard.widgets.fields.order')">
+                <x-forms.field field="order" :label="__('dashboard.widgets.fields.order')">
                     {!! Form::select('config[order]', [
                 '' => __('dashboard.widgets.orders.recent'),
                 'oldest' => __('dashboard.widgets.orders.oldest'),
