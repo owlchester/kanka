@@ -22,8 +22,7 @@ class FilteredLink extends Component
         Campaign $campaign,
         CampaignDashboardWidget $widget,
         string $entityString = null,
-    )
-    {
+    ) {
         $this->campaign = $campaign;
         $this->widget = $widget;
         $this->entityString = $entityString;
