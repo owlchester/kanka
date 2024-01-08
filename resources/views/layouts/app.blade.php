@@ -68,7 +68,6 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     @endif
     @includeWhen(!empty($campaign), 'layouts._theme')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     @livewireStyles
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}

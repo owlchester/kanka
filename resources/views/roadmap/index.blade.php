@@ -66,9 +66,7 @@
         <h2 class="">Ideas</h2>
         <div class="grid xl:grid-cols-4 gap-5">
             <div class="xl:col-span-3 flex flex-col gap-5">
-                @foreach ($ideas as $feature)
-                    @include('roadmap.feature._idea', $feature)
-                @endforeach
+                @livewire('roadmap.ideas')
             </div>
 
             @auth()
