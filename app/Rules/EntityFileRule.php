@@ -48,7 +48,7 @@ class EntityFileRule implements Rule
             return false;
         }
 
-        return !(!in_array($value->getClientOriginalExtension(), ['mp3', 'ogg', 'json']))
+        return !(!in_array($value->getClientOriginalExtension(), ['mp3', 'ogg', 'json', 'csv']))
 
 
 
@@ -62,7 +62,7 @@ class EntityFileRule implements Rule
      */
     public function message()
     {
-        return __('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, ogg, json']);
+        return __('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']);
     }
 
     protected function shouldBlockPhpUpload($value, $parameters)
