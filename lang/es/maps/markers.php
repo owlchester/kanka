@@ -51,6 +51,7 @@ return [
             'stroke-opacity'    => 'Opacidad del trazo',
             'stroke-width'      => 'Grosor del trazo',
         ],
+        'popupless'     => 'Información emergente',
         'size'          => 'Tamaño',
     ],
     'helpers'       => [
@@ -60,10 +61,14 @@ return [
         'custom_icon_v2'            => 'Utiliza iconos de :fontawesome, :rpgawesome o un icono SVG personalizado. Descubre cómo en la  :docs.',
         'custom_radius'             => 'Selecciona la opción de tamaño personalizado en el desplegable para definir un tamaño.',
         'draggable'                 => 'Actívalo para poder mover el marcador en el modo de exploración.',
+        'is_popupless'              => 'Desactiva la aparición del tooltip del marcador al pasar el ratón por encima.',
         'label'                     => 'Las etiquetas se muestran como un bloque de texto en el mapa. El contenido será el nombre del marcador.',
         'polygon'                   => [
             'edit'  => 'Haz clic en el mapa para añadir esa posición a las coordenadas del polígono.',
         ],
+    ],
+    'hints'         => [
+        'entry' => 'Edita el marcador para escribir una entrada personalizada sobre él.',
     ],
     'icons'         => [
         'custom'        => 'Personalizado',

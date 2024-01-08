@@ -20,6 +20,10 @@ return [
         'export'                => 'Ein Export der Kampagne steht zur Verfügung. Der Link ist :time Minuten gültig.',
         'export_error'          => 'Beim Export deiner Kampagne ist ein Fehler aufgetreten. Bitte kontaktiere uns, wenn das Problem weiterhin besteht.',
         'hidden'                => 'Die Kampagne :campaign ist jetzt auf der Seite „Öffentliche Kampagnen“ ausgeblendet.',
+        'import'                => [
+            'failed'    => 'Der Import für Kampagne :campaign ist fehlgeschlagen.',
+            'success'   => 'Der Import der Kampagne :campaign wurde abgeschlossen.',
+        ],
         'join'                  => ':user ist der Kampagne :campaign beigetreten.',
         'leave'                 => ':user hat die Kampagne :campaign verlassen.',
         'plugin'                => [

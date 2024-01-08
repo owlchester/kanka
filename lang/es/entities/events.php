@@ -17,6 +17,7 @@ return [
     ],
     'types'     => [
         'birth'     => 'Nacimiento',
+        'birthday'  => 'Cumpleaños',
         'death'     => 'Muerte',
         'founded'   => 'Fundación',
         'primary'   => 'Primario',

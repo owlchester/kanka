@@ -5,6 +5,8 @@ return [
     'ability'               => 'Habilidad',
     'attribute_template'    => 'Plantilla de atributo',
     'attribute_templates'   => 'Plantillas de atributos',
+    'bookmark'              => 'Marcar como favorito',
+    'bookmarks'             => 'Marcadores',
     'calendar'              => 'Calendario',
     'calendars'             => 'Calendarios',
     'campaign'              => 'Campaña',

@@ -12,6 +12,7 @@ return [
         'participants'  => 'Teilnehmer',
     ],
     'hints'         => [
+        'empty'         => 'An diesem Gespräch sind keine Teilnehmer beteiligt.',
         'participants'  => 'Bitte füge Teilnehmer zu deiner Unterhaltung hinzu, indem du das :icon Symbol oben rechts drückst.',
     ],
     'index'         => [],

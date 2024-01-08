@@ -22,6 +22,7 @@ return [
     ],
     'helpers'       => [
         'copy_entity_entry' => 'Muestra la descripción del objeto en lugar de una descripción personalizada.',
+        'is_equipped'       => 'Marca estos objetos como equipados.',
     ],
     'placeholders'  => [
         'amount'        => 'Cualquier cantidad',
@@ -34,6 +35,7 @@ return [
         'title'     => 'Inventario de :name',
         'unsorted'  => 'Sin clasificar',
     ],
+    'tutorial'      => 'Lleva la cuenta de lo que posee una entidad añadiendo elementos a su inventario.',
     'update'        => [
         'success'   => 'Objeto :item actualizado en :entity.',
         'title'     => 'Actualizar un objeto de :name',

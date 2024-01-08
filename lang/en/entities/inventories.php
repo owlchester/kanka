@@ -35,7 +35,7 @@ return [
         'title'     => ':name Inventory',
         'unsorted'  => 'Unsorted',
     ],
-    'tutorial'      => 'Keep track of what an entity processes with by adding items to its inventory.',
+    'tutorial'      => 'Keep track of what an entity possesses with by adding items to its inventory.',
     'update'        => [
         'success'   => 'Item :item updated for :entity.',
         'title'     => 'Update an item on :name',

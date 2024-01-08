@@ -51,6 +51,7 @@ return [
             'stroke-opacity'    => 'Opacidade do traço',
             'stroke-width'      => 'Largura do traço',
         ],
+        'popupless'     => 'Popup de dica de contexto',
         'size'          => 'Tamanho',
     ],
     'helpers'       => [
@@ -60,6 +61,7 @@ return [
         'custom_icon_v2'            => 'Use ícones de :fontawesome, :rpgawesome ou um ícone SVG personalizado. Descubra como em :docs.',
         'custom_radius'             => 'Selecione a opção de tamanho personalizado no menu suspenso para definir um tamanho.',
         'draggable'                 => 'Ative para permitir mover um marcador no modo de exploração.',
+        'is_popupless'              => 'Desative a dica de contexto do marcador que aparece ao passar o mouse.',
         'label'                     => 'Um rótulo é exibido como um bloco de texto no mapa. O conteúdo será o nome do marcador ou o nome da entidade.',
         'polygon'                   => [
             'edit'  => 'Clique no mapa para adicionar essa posição às coordenadas do polígono.',

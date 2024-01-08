@@ -20,6 +20,10 @@ return [
         'export'                => 'Można pobrać wyeksportowaną kampanię. Odnośnik będzie dostępny przez :time minut.',
         'export_error'          => 'Podczas eksportowania plików kampanii wystąpił błąd. Jeżeli będzie się powtarzał, skontaktuj się z nami. To się zdarza w dużych kampaniach posiadających duże obrazy.',
         'hidden'                => 'Kampania :campaign została usunięta z listy kampanii publicznych.',
+        'import'                => [
+            'failed'    => 'Import kampanii :campaign nieudany.',
+            'success'   => 'Import kampanii :campaign zakończony.',
+        ],
         'join'                  => ':user dołącza do kampanii :campaign.',
         'leave'                 => ':user opuszcza do kampanię :campaign.',
         'plugin'                => [

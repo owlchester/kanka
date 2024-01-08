@@ -36,6 +36,7 @@ return [
         'title'     => 'Habilidades de :name',
     ],
     'update'    => [
-        'title' => 'Habilidade de Entidade para :name',
+        'success'   => 'Habilidade :ability da entidade atualizada.',
+        'title'     => 'Habilidade de Entidade para :name',
     ],
 ];

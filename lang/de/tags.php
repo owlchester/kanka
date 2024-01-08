@@ -5,6 +5,10 @@ return [
         'actions'   => [
             'add'   => 'Füge neue Kategorie hinzu',
         ],
+        'create'    => [
+            'attach_success'    => '{1} :count Objekte zum Tag :name hinzugefügt.|[2,*] :count Objekte zum Tag :name hinzugefügt.',
+            'modal_title'       => 'Füge Objekt zu :name hinzu',
+        ],
     ],
     'create'        => [
         'title' => 'Neue Kategorie',
