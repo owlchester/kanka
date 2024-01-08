@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(VisibilitiesTableSeeder::class);
         $this->call(GenreTableSeeder::class);
         $this->call(PostLayoutTableSeeder::class);
+        $this->call(FeatureCategorySeeder::class);
     }
 }
