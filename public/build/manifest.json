@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-a8dd9e23.js",
+    "file": "assets/app-49a344d0.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_mention-6dbb4e38.js",
@@ -183,7 +183,11 @@
     "src": "resources/js/forms/character.js"
   },
   "resources/js/front.js": {
-    "file": "assets/front-7c0b43b6.js",
+    "file": "assets/front-2d1464c4.js",
+    "imports": [
+      "_index-0b481a1e.js",
+      "__commonjsHelpers-725317a4.js"
+    ],
     "isEntry": true,
     "src": "resources/js/front.js"
   },
@@ -245,12 +249,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-d4ff5b57.css",
+    "file": "assets/app-590b284b.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-c4db4129.css",
+    "file": "assets/auth-189d7491.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -275,7 +279,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-c2dbef9b.css",
+    "file": "assets/front-ae6d2485.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
