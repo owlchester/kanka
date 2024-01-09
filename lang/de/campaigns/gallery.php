@@ -10,13 +10,21 @@ return [
         'save'          => 'Speichern',
     ],
     'breadcrumb'    => 'Gallerie',
+    'bulk'          => [
+        'destroy'   => [
+            'confirm'   => 'Bist du sicher, dass du die ausgewählten Elemente dauerhaft entfernen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.',
+            'success'   => '{0}Keine Dateien entfernt.|{1}Eine Datei entfernt.|{2,*} :Anzahl der entfernten Dateien.',
+        ],
+    ],
     'cta'           => 'Verwalte und verwende Bilder während der gesamten Kampagne wieder.',
     'destroy'       => [
+        'folder'    => 'Ordner :name gelöscht.',
         'success'   => 'Bild :name gelöscht',
     ],
     'errors'        => [
         'max'           => 'Bitte wähle nur bis zu :count Dateien gleichzeitig aus.',
         'permissions'   => 'Deinen Kampagnenrollen fehlen die Berechtigungen :permission, um Bilder in die Kampagnengalerie hochladen zu dürfen.',
+        'storage'       => 'Es ist nicht genügend Speicherplatz zum Hochladen der ausgewählten Bilder vorhanden. Verfügbarer Speicherplatz: :available.',
     ],
     'fields'        => [
         'created_by'            => 'hochgeladen von',
@@ -41,6 +49,7 @@ return [
     ],
     'title'         => 'Kampagne :campaign Gallerie',
     'update'        => [
+        'folder'    => 'Ordner geändert.',
         'success'   => 'Bild geändert',
     ],
     'uploader'      => [

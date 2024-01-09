@@ -7,9 +7,10 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character' => 'Postać',
-        'price'     => 'Cena',
-        'size'      => 'Rozmiar',
+        'character'     => 'Postać',
+        'is_equipped'   => 'Na wyposażeniu',
+        'price'         => 'Cena',
+        'size'          => 'Rozmiar',
     ],
     'helpers'       => [
         'nested_without'    => 'Wyświetlono przedmioty nieposiadające źródła. Kliknij na rząd by zobaczyć przedmioty pochodne.',

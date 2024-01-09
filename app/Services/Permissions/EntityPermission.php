@@ -107,7 +107,7 @@ class EntityPermission
         $this->roles = false;
         // If we have a user, get the user's role for this campaign
         if ($user) {
-            $this->roles = UserCache::user($user)->roles();
+            $this->roles = UserCache::user($user)->campaign($campaign)->roles();
         }
 
         // If we don't have a user, or our user has no specified role yet, use the public role.
@@ -176,6 +176,7 @@ class EntityPermission
         $this->loadedCampaignId = $campaign->id;
 
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
+        unset($this->roleIds);
         $roleIds = $this->getRoleIds($campaign, $user);
         if ($roleIds === true) {
             // If the role ids is simply true, it means the user is an admin

@@ -33,11 +33,6 @@ class CharacterController extends Controller
 
         $this->rows = $location
             ->allCharacters()
-            ->with([
-                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image',
-                'location', 'location.entity',
-                'races', 'families',
-            ])
             ->filter($filters)
             ->filteredCharacters()
             ->paginate();

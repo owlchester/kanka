@@ -14,6 +14,7 @@ return [
     ],
     'expired'       => 'Odnośnik nieaktualny',
     'helpers'       => [],
+    'progress'      => 'Postęp',
     'size'          => 'Rozmiar',
     'status'        => [
         'failed'    => 'Niepowodzenie',

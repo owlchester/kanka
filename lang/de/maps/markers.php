@@ -51,6 +51,7 @@ return [
             'stroke-opacity'    => 'Strichdeckkraft',
             'stroke-width'      => 'Strichbreite',
         ],
+        'popupless'     => 'Tooltip-Popup',
         'size'          => 'Größe',
     ],
     'helpers'       => [
@@ -60,10 +61,14 @@ return [
         'custom_icon_v2'            => 'Verwende Symbole von :fontawesome, :rpgawesome oder ein benutzerdefiniertes SVG-Symbol. Wie das geht, erfährst du in den :docs.',
         'custom_radius'             => 'Wählen Sie die benutzerdefinierte Größenoption aus der Dropdown-Liste aus, um eine Größe zu definieren.',
         'draggable'                 => 'Aktivieren Sie diese Option, um das Verschieben eines Markers im Erkundungsmodus zu ermöglichen.',
+        'is_popupless'              => 'Deaktiviere die Anzeige des Tooltips der Markierung, wenn du mit der Maus darüber fährst.',
         'label'                     => 'Eine Beschriftung wird als Textblock auf der Karte angezeigt. Der Inhalt ist der Markername des Objektnamens.',
         'polygon'                   => [
             'edit'  => 'Klicken Sie auf die Karte, um diese Position zu den Koordinaten des Polygons hinzuzufügen.',
         ],
+    ],
+    'hints'         => [
+        'entry' => 'Bearbeite die Markierung, um einen benutzerdefinierten Eintrag dafür zu schreiben.',
     ],
     'icons'         => [
         'custom'        => 'Benutzerdefiniert',

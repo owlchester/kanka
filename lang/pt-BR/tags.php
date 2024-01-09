@@ -5,6 +5,10 @@ return [
         'actions'   => [
             'add'   => 'Adicionar à tag',
         ],
+        'create'    => [
+            'attach_success'    => '{1} Adicionada :count entidade à tag :name.|[2,*] Adicionadas :count entidades à tag :name.',
+            'modal_title'       => 'Adicionar entidades a :name',
+        ],
     ],
     'create'        => [
         'title' => 'Nova Tag',

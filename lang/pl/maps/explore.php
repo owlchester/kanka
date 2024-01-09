@@ -9,4 +9,5 @@ return [
     'notifications' => [
         'start-drawing' => 'Kliknij na mapę, by zacząć rysować wielokąt',
     ],
+    'toggle'        => 'Otwórz/zamknij wszystkie grupy',
 ];

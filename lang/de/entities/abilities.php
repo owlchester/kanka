@@ -36,6 +36,7 @@ return [
         'title'     => 'Objektfähigkeiten für :name',
     ],
     'update'    => [
-        'title' => 'Objektfähigkeit für :name',
+        'success'   => 'Objektfähigkeit: Fähigkeit aktualisiert.',
+        'title'     => 'Objektfähigkeit für :name',
     ],
 ];

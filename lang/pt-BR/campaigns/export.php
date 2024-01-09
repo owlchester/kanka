@@ -14,6 +14,7 @@ return [
     ],
     'expired'       => 'Link expirado',
     'helpers'       => [],
+    'progress'      => 'Progresso',
     'size'          => 'Tamanho',
     'status'        => [
         'failed'    => 'Fracassado',
@@ -23,5 +24,7 @@ return [
     ],
     'success'       => 'A exportação da campanha está sendo preparada. Você será notificado em Kanka assim que estiver pronto para download.',
     'title'         => 'Exportação da Campanha',
+    'type'          => 'Tipo',
     'type_assets'   => 'Recursos',
+    'type_entities' => 'Entidades',
 ];

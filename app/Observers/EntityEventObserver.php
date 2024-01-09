@@ -23,4 +23,10 @@ class EntityEventObserver
             $entityEvent->elapsed = null;
         }
     }
+
+    public function updated(EntityEvent $entityEvent)
+    {
+        // Go touch linked entity?
+        $entityEvent->entity->touchSilently();
+    }
 }

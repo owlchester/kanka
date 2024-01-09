@@ -22,6 +22,7 @@ return [
     ],
     'helpers'       => [
         'copy_entity_entry' => 'Zeige den Eintrag des Objekts statt der benutzerdefinierten Beschreibung an.',
+        'is_equipped'       => 'Markiere diese Gegenstände als ausgerüstet.',
     ],
     'placeholders'  => [
         'amount'        => 'Die Menge',
@@ -34,6 +35,7 @@ return [
         'title'     => 'Objekt :name: Inventar',
         'unsorted'  => 'Unsortiert',
     ],
+    'tutorial'      => 'Verfolge, wie sich ein Objekt entwickelt, indem du Artikel zu seinem Inventar hinzufügst.',
     'update'        => [
         'success'   => 'Gegenstand \':name\' für :entity aktualisiert',
         'title'     => 'Aktualisiere Gegenstand von :name',

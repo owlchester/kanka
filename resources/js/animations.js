@@ -28,7 +28,7 @@ function toggle(e) {
 
 function change (e) {
     let target = document.querySelector(this.dataset.target);
-    console.log('target', target, this.dataset.target);
+    //console.log('target', target, this.dataset.target);
     if (!this.value) {
         target.classList.add('hidden');
     } else {

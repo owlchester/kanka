@@ -47,6 +47,7 @@ return [
     'move'          => [
         'copy'          => 'Skopiuj do wskazanego elementu',
         'copy_success'  => 'Skopiowano komentarz :name do elementu :entity.',
+        'copy_title'    => 'Zachowaj kopię',
         'description'   => 'Wybierz element do którego chcesz przenieść albo skopiować ten komentarz.',
         'entity'        => 'Wskazany element',
         'move'          => 'Przenieś lub skopiuj do innego elementu',

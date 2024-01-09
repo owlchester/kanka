@@ -10,6 +10,11 @@ return [
         'save'          => 'Guardar',
     ],
     'breadcrumb'    => 'Galería',
+    'bulk'          => [
+        'destroy'   => [
+            'confirm'   => '¿Estás seguro de que quieres eliminar permanentemente los elementos seleccionados? Esta acción no se puede deshacer.',
+        ],
+    ],
     'cta'           => 'Gestiona y reutiliza las imágenes a lo largo de la campaña.',
     'destroy'       => [
         'success'   => 'Imagen :name borrada.',
@@ -41,6 +46,7 @@ return [
     ],
     'title'         => 'Galería de la campaña :campaign',
     'update'        => [
+        'folder'    => 'Carpeta modificada.',
         'success'   => 'Imagen modificada.',
     ],
     'uploader'      => [

@@ -30,8 +30,9 @@ return [
         'timeline_element'  => 'Elemento da linha do tempo',
     ],
     'create'            => [
-        'new_title' => 'Nova relação',
-        'title'     => 'Nova relação para :name',
+        'new_title'     => 'Nova relação',
+        'success_bulk'  => '{1} Adicionada :count conexão a :entity.|[2,*] Adicionadas :count conexões a :entity.',
+        'title'         => 'Nova relação para :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Essa relação está espelhada na entidade alvo. Selecione essa opção para também remover  a relação espelhada.',
@@ -51,6 +52,10 @@ return [
         'target_relation'   => 'Relação Alvo',
         'two_way'           => 'Criar relação mútua',
         'unmirror'          => 'Desespelhe esta relação.',
+    ],
+    'filters'           => [
+        'connection'    => 'Relação da conexão',
+        'name'          => 'Conexão alvo',
     ],
     'helper'            => 'Estabeleça relações entre entidades com atitudes e visibilidade. Relações também podem ser fixadas no menu da entidade.',
     'helpers'           => [

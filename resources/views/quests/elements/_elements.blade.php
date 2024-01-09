@@ -10,9 +10,9 @@
         @php $count++; @endphp
             <div class="rounded flex flex-col bg-box widget-user-2 box-quest-element" id="quest-element-{{ $element->id }}" @if ($element->entity)data-entity-id="{{ $element->entity->id }}" data-entity-type="{{ $element->entity->type() }}"@endif>
                 <div class="flex p-4 gap-2 items-center border-b h-20 {{ $element->colourClass() }}">
-                    @if ($element->entity)
+                    @if ($element->entity && $element->entity->hasImage($campaign->boosted()))
                         <div class="widget-user-image">
-                            <img class="flex-none entity-image rounded-full pull-left" src="{{ Avatar::entity($element->entity)->cached()->size(40)->thumbnail() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
+                            <img class="flex-none entity-image rounded-full pull-left" src="{{ Avatar::entity($element->entity)->size(40)->thumbnail() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
                         </div>
                     @endif
 

@@ -64,13 +64,13 @@
     @elseif ($post->layout?->code == 'connection_map')
         @include('entities.pages.relations._map', ['option' => null, 'isPost' => true, 'mode' => 'map'])
     @elseif ($post->layout?->code == 'character_orgs')
-        @include('characters.panels.organisations', ['character' => $post->entity->child])
+        @include('characters.panels.organisations', ['character' => $entity->child])
     @elseif ($post->layout?->code == 'quest_elements')
         @php
             $elements = $entity->child
                     ->elements()
-                    ->with('entity')
                     ->paginate();
+            $elements->withPath(route('quests.quest_elements.index', [$campaign, $entity->child]));
         @endphp
         @include('quests.elements._elements', ['elements' => $elements])
     @elseif ($post->layout?->code == 'location_characters')
@@ -83,7 +83,8 @@
             $rows = $entity->child
                 ->allCharacters()
                 ->filteredCharacters()
-                ->paginate();;
+                ->paginate();
+            $rows->withPath(route('locations.characters', $options));
 
         @endphp
         @include('locations.panels.characters')

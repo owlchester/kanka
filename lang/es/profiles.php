@@ -15,6 +15,7 @@ return [
         'email'                     => 'Correo Electronico',
         'hide_subscription'         => 'Ocultar mi nombre del :hall_of_fame.',
         'last_login_share'          => 'Compartir la última vez que estuve en línea con otros miembros de la campaña.',
+        'login_sharing'             => 'Compartir la última conexión',
         'name'                      => 'Nombre',
         'new_password'              => 'Contraseña nueva',
         'new_password_confirmation' => 'Confirmar nueva contraseña',
@@ -22,6 +23,7 @@ return [
         'password'                  => 'Contraseña actual',
         'profile-name'              => 'Nombre del perfil',
         'settings'                  => 'Ajustes',
+        'subscription_hiding'       => 'Ocultar suscripción',
         'theme'                     => 'Tema',
     ],
     'helpers'                       => [

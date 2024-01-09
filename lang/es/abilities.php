@@ -3,6 +3,13 @@
 return [
     'abilities'     => [],
     'children'      => [
+        'actions'       => [
+            'attach'    => 'Vincular a entidades',
+        ],
+        'create'        => [
+            'attach_success'    => '{1}Se ha vinculado la habilidad :name a :count entidad.|[2,*] Se ha vinculado la habilidad :name a :count entidades.',
+            'modal'             => 'Vincular :name a las entidades',
+        ],
         'description'   => 'Entidades con esta habilidad',
         'title'         => 'Entidades de la habilidad :name',
     ],

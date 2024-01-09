@@ -47,6 +47,7 @@ return [
     'move'          => [
         'copy'          => 'Erstelle eine Kopie auf Grundlage des Zielobjektes',
         'copy_success'  => 'Beitrag :name erfolgreich nach :entity kopiert.',
+        'copy_title'    => 'Behalte eine Kopie',
         'description'   => 'Wähle ein Objekt aus, das du verschieben möchtest, oder erstelle eine Kopie dieses Beitrags.',
         'entity'        => 'Zielobjekt',
         'move'          => 'Verschiebe oder kopiere in eine anderes Objekt',

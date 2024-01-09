@@ -71,6 +71,9 @@ class RolePermissionService
         }
 
         foreach (EntityType::get() as $entityType) {
+            if (in_array($entityType->code, ['bookmark'])) {
+                continue;
+            }
             foreach ($entityActions as $action) {
                 if (!isset($permissions[$entityType->plural()])) {
                     $permissions[$entityType->plural()] = [
