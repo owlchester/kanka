@@ -121,7 +121,7 @@ class AttributeService
 
         // Edit an existing attribute
         if (!empty($this->existing[$id])) {
-            /** @var \App\Models\Attribute $attribute */
+            /** @var Attribute $attribute */
             $attribute = $this->existing[$id];
             $attribute->type_id = $typeID;
             $attribute->name = $name;

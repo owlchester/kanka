@@ -22,7 +22,7 @@ class MapController extends CrudController
     /**
      * Crud models
      */
-    protected $model = \App\Models\Map::class;
+    protected $model = Map::class;
 
     /** @var string Filter */
     protected string $filter = MapFilter::class;

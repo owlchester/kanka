@@ -23,7 +23,7 @@ class JournalController extends CrudController
     protected $module = 'journals';
 
     /** @var string Model*/
-    protected $model = \App\Models\Journal::class;
+    protected $model = Journal::class;
 
     /** @var string Filter */
     protected string $filter = JournalFilter::class;

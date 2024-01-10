@@ -19,7 +19,7 @@ class CharacterController extends CrudController
     /**
      * @var string
      */
-    protected $model = \App\Models\Character::class;
+    protected $model = Character::class;
 
     /**
      */

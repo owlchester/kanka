@@ -20,7 +20,7 @@ class RaceController extends CrudController
     protected $module = 'races';
 
     /** @var string Model */
-    protected $model = \App\Models\Race::class;
+    protected $model = Race::class;
 
     /** @var string Filter */
     protected string $filter = RaceFilter::class;

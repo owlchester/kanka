@@ -32,7 +32,7 @@ class DashboardWidgetController extends Controller
 
         $dashboard = null;
         if (request()->get('dashboard')) {
-            $dashboard = \App\Models\CampaignDashboard::findOrFail(request()->get('dashboard'));
+            $dashboard = CampaignDashboard::findOrFail(request()->get('dashboard'));
         }
 
         return view('dashboard.widgets.selection')

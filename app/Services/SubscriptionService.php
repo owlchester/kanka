@@ -328,7 +328,7 @@ class SubscriptionService
         }
 
         // Create the source object
-        $source = \Stripe\Source::create($data);
+        $source = Source::create($data);
 
         // Tell stripe to attach this source to the user
         $clientSource = StripeCustomer::createSource($this->user->stripe_id, ['source' => $source->id]);

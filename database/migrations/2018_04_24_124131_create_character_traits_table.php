@@ -21,7 +21,7 @@ class CreateCharacterTraitsTable extends Migration
             $table->string('name')->notNull();
             $table->text('entry')->nullable();
             $table->boolean('is_private')->default(0);
-            $table->unsignedTinyInteger('section_id')->default(\App\Models\CharacterTrait::SECTION_APPEARANCE);
+            $table->unsignedTinyInteger('section_id')->default(App\Models\CharacterTrait::SECTION_APPEARANCE);
             $table->unsignedSmallInteger('default_order')->nullable()->default('0');
             $table->timestamps();
 

@@ -241,7 +241,7 @@ return [
     |
     */
 
-    'definitions' => \App\Definitions\CustomDefinitions::class,
+    'definitions' => App\Definitions\CustomDefinitions::class,
 
     /*
     |--------------------------------------------------------------------------
