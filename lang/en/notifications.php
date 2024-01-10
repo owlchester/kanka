@@ -48,6 +48,10 @@ return [
         'success'   => 'Notifications removed.',
         'title'     => 'Clear notifications',
     ],
+    'features'          => [
+        'rejected'  => 'Your feature request :feature has been rejected, reason: :reason.',
+        'approved'  => 'Your feature request :feature has been approved.',
+    ],
     'header'            => 'You have :count notifications',
     'index'             => [
         'title' => 'Notifications',
