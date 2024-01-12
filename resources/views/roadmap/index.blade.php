@@ -20,67 +20,9 @@
             </div>
         </div>
     </section>
+
     <section class="p-5 max-w-7xl mx-auto">
-        <h2 class="">In Progress</h2>
-
-        <div class="flex flex-col gap-10">
-        @php /** @var \App\Models\FeatureCategory $category **/ @endphp
-        @foreach ($categories as $category)
-            @if ($category->nothingPlanned())
-                @continue
-            @endif
-            <div class="rounded-2xl bg-gray-200 overflow-hidden">
-                <h3 class="bg-purple text-white p-5">{{ $category->name }}</h3>
-                <div class="p-5 grid grid-cols-1 xl:grid-cols-4 gap-5">
-                    <div class="border-r xl:col-span-2">
-                        <h4 class="mb-5">Now</h4>
-                        <div class="grid xl:grid-cols-2 gap-5">
-                        @foreach ($category->now as $feature)
-                            @include('roadmap.feature._progress', $feature)
-                        @endforeach
-                        </div>
-                    </div>
-                    <div class="border-r">
-                        <h4 class="mb-5">Next</h4>
-                        <div class="flex flex-col gap-5">
-                        @foreach ($category->next as $feature)
-                            @include('roadmap.feature._progress', $feature)
-                        @endforeach
-                        </div>
-                    </div>
-                    <div class="">
-                        <h4 class="mb-5">Later</h4>
-                        <div class="flex flex-col gap-5">
-                        @foreach ($category->later as $feature)
-                            @include('roadmap.feature._progress', $feature)
-                        @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-        </div>
-    </section>
-
-    <section class="p-5 max-w-7xl mx-auto" id="ideas">
-        <h2 class="">Ideas</h2>
-        <div class="grid xl:grid-cols-4 gap-5">
-            <div class="xl:col-span-3 flex flex-col gap-5">
-                @livewire('roadmap.ideas')
-            </div>
-
-            @auth()
-                @include('roadmap.feature._form')
-            @else
-                <div class="bg-purple text-white rounded-2xl p-5 flex flex-col gap-5">
-                    <h2>Share your ideas</h2>
-                    <p class="text-light">Have an idea to improve Kanka? Share it with our development team.</p>
-
-                    <a href="{{ route('login') }}" class="btn-round rounded-full">Log in</a>
-                </div>
-            @endauth
-
-        </div>
+        @livewire('roadmap')
     </section>
 @endsection
 

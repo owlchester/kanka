@@ -19,14 +19,7 @@ class FeatureController extends Controller
 
     public function store(StoreFeature $request)
     {
-        $this->middleware('auth');
-        $this->authorize('create', Feature::class);
-        $feat = new Feature();
-        $feat->created_by = $request->user()->id;
-        $feat->name = $request->get('name');
-        $feat->description = $request->get('description');
-        $feat->status_id = FeatureStatus::Draft;
-        $feat->save();
+
 
         return redirect()->route('roadmap');
     }

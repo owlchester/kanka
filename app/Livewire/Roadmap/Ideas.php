@@ -4,39 +4,29 @@ namespace App\Livewire\Roadmap;
 
 use App\Models\Feature;
 use Livewire\Component;
+use Livewire\Attributes\Url;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
-use Illuminate\Support\Collection;
 
 class Ideas extends Component
 {
     use WithPagination;
+    #[Url]
+    public string $search;
 
-    public int $pageNumber = 1;
-
-    public Collection $ideas;
-
-    public bool $hasMorePages;
-
-    public function mount()
+    public function open(Feature $feature)
     {
-        $this->ideas = new Collection();
-        $this->loadIdeas();
+        $this->dispatch('open-idea', idea: $feature->id);
     }
 
-    public function loadIdeas()
+    public function render()
     {
         $ideas = Feature::approved();
         if (auth()->check()) {
             $ideas->with('uservote');
         }
-        $ideas = $ideas->paginate(15, ['*'], 'page', $this->pageNumber);
-        $this->pageNumber += 1;
-        $this->hasMorePages = $ideas->hasMorePages();
-        $this->ideas->push(...$ideas->items());
-    }
-
-    public function render()
-    {
-        return view('livewire.roadmap.ideas');
+        return view('livewire.roadmap.ideas', [
+            'ideas' => $ideas->search($this->search ?? '')->paginate(15)
+        ]);
     }
 }

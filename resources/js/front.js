@@ -27,39 +27,16 @@ window.onload = function (event) {
         wrapper.classList.toggle('open');
     });
 
-    initRoadmap();
     window.initDialogs();
-
-    document.addEventListener('dialog.loaded', function (e) {
-        initRoadmap();
-    });
+    initRoadmap();
 };
 
 const initRoadmap = () => {
-    const upvotes = document.querySelectorAll('[data-upvote]');
-    upvotes.forEach(i => {
-        i
-            .addEventListener('click', upvote);
-    });
-};
+    const loadedModal = document.querySelector('[name="open-dialog"]');
 
-function upvote(e) {
-    e.preventDefault();
-    if (this.dataset.loading) {
-        return;
+    if (loadedModal) {
+        window.openDialog(loadedModal.value);
     }
-    this.dataset.loading = 1;
-    this.innerHTML = '<i class="fa-solid fa-spin fa-spinner" aria-hidden="true"></i>';
-
-    axios.post(this.dataset.upvote)
-        .then(res => {
-            this.innerHTML = res.data;
-            delete this.dataset.loading;
-        }).catch(() => {
-            this.innerHTML = this.dataset.error;
-            this.classList.remove('cursor-pointer');
-        });
-
-}
+};
 
 import './utility/dialog';

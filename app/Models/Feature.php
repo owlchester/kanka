@@ -50,7 +50,24 @@ class Feature extends Model
 
     public function scopeApproved(Builder $builder): Builder
     {
-        return $this->whereIn('status_id', [\App\Enums\FeatureStatus::Approved])
+        return $builder->whereIn('status_id', [\App\Enums\FeatureStatus::Approved])
             ->orderBy('upvote_count', 'DESC');
+    }
+
+    public function scopeSearch(Builder $builder, string $search): Builder
+    {
+        if (empty($search) | mb_strlen($search) < 3) {
+            return $builder;
+        }
+        return $builder->where('name', 'like', '%' . $search . '%');
+    }
+
+    public function isUpvoted(): bool
+    {
+        if (auth()->guest()) {
+            return false;
+        }
+
+        return auth()->user()->upvotes()->forFeature($this)->count() === 1;
     }
 }

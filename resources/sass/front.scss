@@ -35,6 +35,26 @@ $switcher: #D8DBFF;
         background-color: $light;
     }
 }
+.hover\:text-light {
+    &:hover {
+        color: $light;
+    }
+}
+.hover\:text-dark {
+    &:hover {
+        color: $dark;
+    }
+}
+.hover\:text-purple {
+    &:hover {
+        color: $purple;
+    }
+}
+.hover\:text-blue {
+    &:hover {
+        color: $blue;
+    }
+}
 
 .link, .link-light {
     color: $dark;
@@ -72,12 +92,13 @@ $switcher: #D8DBFF;
     }
 }
 
-.block-btn {
+.block-input, .block-btn {
     border: 1px solid $purple;
     color: $purple;
     padding: 1rem 2rem;
     transition: all 0.2s;
-
+}
+.block-btn {
     &:hover, &:focus {
         background-color: $purple;
         color: white;
