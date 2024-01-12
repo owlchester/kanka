@@ -47,8 +47,13 @@ class Roadmap extends Component
     public function openIdea($idea)
     {
         $this->idea = $idea;
-        $this->feature = Feature::approved()->where('id', $this->idea)->first();
+        $this->feature = Feature::visible()->where('id', $this->idea)->first();
         $this->dispatch('open-idea-dialog', url: route('roadmap.feature.show', $this->feature));
+    }
+
+    public function open(Feature $feature)
+    {
+        $this->dispatch('open-idea', idea: $feature->id);
     }
 
     #[On('idea-closed')]

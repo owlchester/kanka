@@ -68,7 +68,6 @@ class ChildController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreTagEntity $request, Campaign $campaign, Tag $tag)

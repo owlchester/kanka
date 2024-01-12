@@ -29,10 +29,7 @@ class StoreRelation extends FormRequest
         return $this->clean([
             'owner_id' => 'required|exists:entities,id',
             'targets' => 'required_without:target_id',
-            // @phpstan-ignore-next-line
-            'targets' => [
-                '*' => 'exists:entities,id',
-            ],
+            'target.*' => 'exists:entities,id',
             'target_id' => 'required_without:targets|exists:entities,id|different:owner_id',
             'relation' => 'required|max:255',
             'visibility_id' => 'nullable|exists:visibilities,id',

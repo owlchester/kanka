@@ -19,6 +19,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property User|null $user
  * @property FeatureCategory $category
  * @property FeatureStatus $status
+ *
+ * @method static self|Builder visible()
+ * @method static self|Builder approved()
+ * @method static self|Builder search(string $search)
  */
 class Feature extends Model
 {
@@ -51,6 +55,19 @@ class Feature extends Model
     public function scopeApproved(Builder $builder): Builder
     {
         return $builder->whereIn('status_id', [\App\Enums\FeatureStatus::Approved])
+            ->orderBy('upvote_count', 'DESC');
+    }
+
+    public function scopeVisible(Builder $builder): Builder
+    {
+        $statuses = [
+            \App\Enums\FeatureStatus::Approved,
+            \App\Enums\FeatureStatus::Later,
+            \App\Enums\FeatureStatus::Next,
+            \App\Enums\FeatureStatus::Now,
+            \App\Enums\FeatureStatus::Done,
+        ];
+        return $builder->whereIn('status_id', $statuses)
             ->orderBy('upvote_count', 'DESC');
     }
 

@@ -134,8 +134,10 @@ class AvatarService
         }
 
         $cloudfront = config('filesystems.disks.cloudfront.url');
+        // @phpstan-ignore-next-line
         if ($this->campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->entity->type())) {
             $url = Img::crop($this->width, $this->height)
+                // @phpstan-ignore-next-line
                 ->url(CampaignCache::defaultImages()[$this->entity->type()]);
             return $this->return($url);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {

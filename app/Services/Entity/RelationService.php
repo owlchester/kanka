@@ -29,6 +29,7 @@ class RelationService
         } else {
             $this->entities = [$request->get('target_id')];
         }
+        $new = null;
         foreach ($this->entities as $entity_id) {
             $data['target_id'] = $entity_id;
             $relation = new Relation();

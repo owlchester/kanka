@@ -44,7 +44,7 @@
                     </div>
                 </div>
 
-                <p class="text-light">Once reviewed, your idea will show up in the ideas section. If we have questions, we'll contact you on the <a href="https://kanka.io/go/discord">Discord</a>.</p>
+                <p class="text-light">Once reviewed, your idea will show up in the ideas section. If we have questions, we'll contact you on the <a href="https://kanka.io/go/discord" class="link link-light">Discord</a>.</p>
 
                 <input type="submit" value="Submit idea" class="btn-round rounded-full" />
             @endif
