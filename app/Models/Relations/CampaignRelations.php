@@ -14,6 +14,7 @@ use App\Models\CampaignSetting;
 use App\Models\CampaignStyle;
 use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
+use App\Models\CampaignSystem;
 use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\Creature;
@@ -22,6 +23,7 @@ use App\Models\Entity;
 use App\Models\EntityMention;
 use App\Models\Event;
 use App\Models\Family;
+use App\Models\GameSystem;
 use App\Models\Image;
 use App\Models\Item;
 use App\Models\Journal;
@@ -71,6 +73,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignStyle[] $styles
  * @property Collection|RpgSystem[] $rpgSystems
  * @property Collection|Genre[] $genres
+ * @property Collection|GameSystem[] $systems
  * @property Collection|CampaignExport[] $campaignExports
  * @property Collection|CampaignExport[] $queuedCampaignExports
  */
@@ -400,5 +403,13 @@ trait CampaignRelations
     public function genres()
     {
         return $this->belongsToMany(Genre::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function systems()
+    {
+        return $this->belongsToMany(GameSystem::class, 'campaign_system', 'campaign_id', 'system_id');
     }
 }

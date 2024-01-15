@@ -31,14 +31,13 @@ class StoreCampaign extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'header_image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'locale' => 'nullable|string',
-            'system' => 'nullable|string',
+            'systems' => 'array',
+            'systems.*' => 'distinct|exists:game_systems,id',
             'entity_visibility' => 'nullable',
             'entity_personality_visibility' => 'nullable',
             'is_public' => 'nullable',
             'css' =>  'nullable|string',
             'theme_id' => 'nullable|exists:themes,id',
-            'genres' => 'array',
-            'genres.*' => 'distinct|exists:genres,id'
         ];
 
         if ((request()->is('api/*') || Domain::isApi()) && !request()->isMethod('POST')) {

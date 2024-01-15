@@ -22,10 +22,9 @@
             data-language="{{ LaravelLocalization::getCurrentLocale() }}"
             data-allow-clear="{{ $allowClear ? 'true' : 'false' }}"
             @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
-            :dropdownParent="request()->ajax() ? '#primary-dialog' : null"
     >
         @foreach ($options as $key => $value)
-            <option value="{{ $key }}">{!! $value !!}</option>
+            <option value="{{ $key }}" selected="selected">{!! $value !!}</option>
         @endforeach
     </select>
 

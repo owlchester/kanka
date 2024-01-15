@@ -9,6 +9,7 @@ use App\Models\CampaignUser;
 use App\Models\CampaignRole;
 use App\Models\Genre;
 use App\Models\CampaignRoleUser;
+use App\Models\GameSystem;
 use App\Models\CampaignSetting;
 use App\Models\RpgSystem;
 use App\Models\UserLog;
@@ -142,6 +143,7 @@ class CampaignObserver
 
         $this->saveGenres($campaign);
         $this->saveRpgSystems($campaign);
+        $this->saveSystems($campaign);
 
         foreach ($campaign->members()->with('user')->get() as $member) {
             UserCache::user($member->user)->clear();
@@ -258,6 +260,42 @@ class CampaignObserver
         // Detatch the remaining
         if (!empty($existing)) {
             $campaign->genres()->detach(array_keys($existing));
+        }
+    }
+
+    /**
+     * Save the game systems
+     */
+    protected function saveSystems(Campaign $campaign)
+    {
+        if (!request()->has('systems')) {
+            return;
+        }
+
+        $ids = request()->post('systems', []);
+
+        $existing = [];
+        /** @var GameSystems $systems */
+        foreach ($campaign->systems as $system) {
+            $existing[$system->id] = $system->name;
+        }
+        $new = [];
+
+        foreach ($ids as $id) {
+            if (!empty($existing[$id])) {
+                unset($existing[$id]);
+            } else {
+                $genre = GameSystem::find($id);
+                if (!empty($genre)) {
+                    $new[] = $genre->id;
+                }
+            }
+        }
+        $campaign->systems()->attach($new);
+
+        // Detatch the remaining
+        if (!empty($existing)) {
+            $campaign->systems()->detach(array_keys($existing));
         }
     }
 }
