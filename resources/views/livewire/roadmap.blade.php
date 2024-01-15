@@ -24,24 +24,24 @@
                         <div class="border-r xl:col-span-2">
                             <h4 class="mb-5">Now</h4>
                             <div class="grid xl:grid-cols-2 gap-5">
-                                @foreach ($category->now as $feature)
-                                    @include('roadmap.feature._progress', $feature)
+                                @foreach ($category->now as $feat)
+                                    @include('roadmap.feature._progress', ['feature' => $feat])
                                 @endforeach
                             </div>
                         </div>
                         <div class="border-r">
                             <h4 class="mb-5">Next</h4>
                             <div class="flex flex-col gap-5">
-                                @foreach ($category->next as $feature)
-                                    @include('roadmap.feature._progress', $feature)
+                                @foreach ($category->next as $feat)
+                                    @include('roadmap.feature._progress', ['feature' => $feat])
                                 @endforeach
                             </div>
                         </div>
                         <div class="">
                             <h4 class="mb-5">Later</h4>
                             <div class="flex flex-col gap-5">
-                                @foreach ($category->later as $feature)
-                                    @include('roadmap.feature._progress', $feature)
+                                @foreach ($category->later as $feat)
+                                    @include('roadmap.feature._progress', ['feature' => $feat])
                                 @endforeach
                             </div>
                         </div>
