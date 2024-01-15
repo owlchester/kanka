@@ -506,6 +506,6 @@ class User extends \Illuminate\Foundation\Auth\User
             config('subscription.elemental.usd.yearly'),
             config('subscription.elemental.eur.yearly'),
         ];
-        return $this->subscribedToPrice($prices);
+        return $this->subscribedToPrice($prices, 'kanka');
     }
 }

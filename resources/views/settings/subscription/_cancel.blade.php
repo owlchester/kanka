@@ -3,16 +3,16 @@
     $endDate = date($user->date_format, $user->upcomingInvoice()?->period_end);
 @endphp
 {!! Form::open([
-    'route' => ['settings.subscription.subscribe'],
+    'route' => ['settings.subscription.cancel'],
     'method' => 'POST',
     'id' => 'cancellation-confirm',
-    'class' => 'subscription-form'
+    'class' => 'subscription-form text-left'
 ]) !!}
 
 <x-grid type="1/1">
-<p class="help-block">
-    {!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}
-</p>
+    <x-helper>
+        {!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}
+    </x-helper>
 
 <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">
     <x-grid type="1/1">
@@ -40,12 +40,10 @@
     </x-grid>
 </x-forms.field>
 
-<div class="text-center">
-    <button class="btn2 btn-lg btn-error btn-outline subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+    <button class="btn2 btn-lg btn-block btn-error btn-outline subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
         <span>{{ __('settings.subscription.actions.cancel_sub') }}</span>
         <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
     </button>
-</div>
 </x-grid>
 
 <input type="hidden" name="tier" value="{{ $tier }}" />

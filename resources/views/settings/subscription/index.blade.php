@@ -52,106 +52,83 @@
                 <span>{{ __('settings.subscription.upgrade_downgrade.button') }}</span>
             </x-buttons.confirm>
         </div>
-    <div class="text-center text-vertical">
-        <span>{{ __('tiers.periods.monthly') }}</span>
-        <label class="toggle mx-1">
-            <input type="checkbox" name="period">
-            <span class="slider subscription-period-slider"></span>
-        </label>
-        <span>{{ __('tiers.toggle.yearly') }}</span>
-    </div>
+        @if (!$isPayPal)
+            <div class="text-center text-vertical">
+                <span>{{ __('tiers.periods.monthly') }}</span>
+                <label class="toggle mx-1">
+                    <input type="checkbox" name="period">
+                    <span class="slider subscription-period-slider"></span>
+                </label>
+                <span>{{ __('tiers.toggle.yearly') }}</span>
+            </div>
+        @endif
 
-    <div class="rounded bg-box period-month overflow-x-auto" id="pricing-overview">
-        <div class="grid grid-cols-4 tiers gap-2 items-center pl-2 pr-2 min-w-fit">
-            <div class="pt-5 tier flex gap-2 items-center flex-col xl:flex-row text-center xl:text-left">
-                <img class="rounded-full" src="https://th.kanka.io/Xy0Dm1dMld_NUYYA2gJdTkKnqjE=/60x60/smart/src/app/tiers/kobold-750.png" alt="Kobold"/>
-                <div class="text grow">
-                    KOBOLD
-                    <span class="price">
-                        {{ __('front.features.patreon.free') }}
-                    </span>
-                </div>
-            </div>
-            <div class="pt-5 tier flex gap-2 items-center flex-col xl:flex-row text-center xl:text-left">
-                <img class="rounded-full" src="https://th.kanka.io/s17BtlhzUJp4h07gxtzmljKO3fU=/60x60/smart/src/app/tiers/owlbear-750.png" alt="Owlbear"/>
-                <div class="text grow flex flex-col">
-                    <span class="tiername">OWLBEAR</span>
-                    <div class="price price-monthly flex flex-wrap gap-1">
-                        <span class="currency">{{ $user->currencySymbol() }}</span>
-                        <span class="amount">5</span>
-                        <span class="">{{ __('tiers.periods.monthly') }}</span>
-                    </div>
-                    <div class="price price-yearly flex flex-wrap gap-1">
-                        <span class="currency">{{ $user->currencySymbol() }}</span>
-                        <span class="amount">55</span>
-                        <span class="">{{ __('tiers.periods.yearly') }}</span>
-                    </div>
-                </div>
-                <div class="ribbon ribbon-top-right">
-                    <span class="bg-green-500 text-white">{{ __('tiers.ribbons.popular') }}</span>
-                </div>
-            </div>
-            <div class="pt-5 tier flex gap-2 items-center flex-col xl:flex-row text-center xl:text-left">
-                <img class="rounded-full" src="https://th.kanka.io/rJBeW_Poe2uvjdo44f2yzDnofzo=/60x60/smart/src/app/tiers/wyvern-750.png" alt="Wyvern"/>
-                <div class="text grow flex flex-col">
-                    <span class="tiername">WYVERN</span>
-                    <div class="price price-monthly flex flex-wrap gap-1">
-                        <span class="currency">{{ $user->currencySymbol() }}</span>
-                        <span class="amount">10</span>
-                        <span class="">{{ __('tiers.periods.monthly') }}</span>
-                    </div>
-                    <div class="price price-yearly flex flex-wrap gap-1">
-                        <span class="currency">{{ $user->currencySymbol() }}</span>
-                        <span class="amount">110</span>
-                        <span class="">{{ __('tiers.periods.yearly') }}</span>
-                    </div>
-                </div>
-                <div class="ribbon ribbon-top-right">
-                    <span class="bg-pink-500 text-white">{{ __('tiers.ribbons.best-value') }}</span>
-                </div>
-            </div>
-            <div class="pt-5 tier flex gap-2 align-center flex-col xl:flex-row text-center xl:text-left">
-                <img class="img-circle" src="https://th.kanka.io/Wira7yc1p1cAa_GUwC0SGDOuSwg=/60x60/smart/src/app/tiers/elemental-750.png" alt="Elemental"/>
-                <div class="grow text flex flex-col">
-                    <span class="tiername">ELEMENTAL</span>
-                    <div class="price price-monthly flex flex-wrap gap-1">
-                        <span class="currency">{{ $user->currencySymbol() }}</span>
-                        <span class="amount">25</span>
-                        <span class="">{{ __('tiers.periods.monthly') }}</span>
-                    </div>
-                    <div class="price price-yearly flex flex-wrap gap-1">
-                        <span class="currency">{{ $user->currencySymbol() }}</span>
-                        <span class="amount">275</span>
-                        <span class="">{{ __('tiers.periods.yearly') }}</span>
-                    </div>
-                </div>
-            </div>
-            @if ($user->isLegacyPatron())
-                <div class="col-span-4 text-center">
-                    <x-alert type="warning">
-                        {!! __('settings.subscription.warnings.patreon', ['patreon' => link_to_route('settings.patreon', __('settings.menu.patreon'))]) !!}
-                    </x-alert>
-                </div>
-            @elseif($user->hasIncompletePayment('kanka'))
-                <div class="col-span-4 text-center">
-                    <x-alert type="warning">
-                        {!! __('settings.subscription.warnings.incomplete') !!}
-                    </x-alert>
-                </div>
-            @else
-                @if ($user->hasPayPal())
-                    @include('settings.subscription._paypal_buttons', ['toggle' => true])
-                @else
-                    @include('settings.subscription._buttons', ['toggle' => true])
+        <div class="grid grid-cols-1 @if ($user->isSubscriber()) lg:grid-cols-3 @else md:grid-cols-2 xl:grid-cols-4 @endif gap-4 @if ($isPayPal) period-year @else period-month @endif mx-auto lg:mx-0" id="pricing-overview">
+            @php /** @var \App\Models\Tier $tier **/ @endphp
+            @foreach ($tiers as $tier)
+                @if ($tier->isFree() && $user->isSubscriber())
+                    @continue
                 @endif
-            @endif
-            @include('settings.subscription._benefits')
-        </div>
-    </div>
+                <div class="rounded-2xl bg-box flex flex-col gap-4 p-4 relative max-w-2xl lg:max-w-none @if ($tier->isCurrent($user)) drop-shadow border-primary border-2 @endif">
+                    <div class="flex gap-2 items-center flex-col xl:flex-row text-center xl:text-left">
+                        <img class="rounded-full" src="{{ $tier->image() }}" alt="{{ $tier->name }}"/>
+                        <div class="grow flex flex-col">
+                            <div class="text-lg">{{ $tier->name }}</div>
+                            @if ($tier->isFree())
+                                <div class="price text-neutral-content">
+                                    {{ __('front.features.patreon.free') }}
+                                </div>
+                            @else
+                                <div class="price price-monthly flex flex-col gap-1">
+                                    <div class="text-4xl">
+                                        <span class="text-sm">{{ $user->currencySymbol() }}</span>{{ number_format($tier->monthly, 2) }}
+                                    </div>
+                                    <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_monthly') }}</span>
+                                </div>
+                                <div class="price price-yearly flex flex-col gap-1">
+                                    <div class="text-4xl">
+                                        <span class="text-sm">{{ $user->currencySymbol() }}</span>{{ number_format($tier->yearly, 2) }}
+                                    </div>
+                                    <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_yearly') }}</span>
+                                </div>
+                            @endif
+                        </div>
+                        @if ($tier->isCurrent($user))
 
-    <p class="text-neutral-content">
-        {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
-    </p>
+                        @elseif ($tier->isPopular())
+                            <div class="ribbon ribbon-top-right">
+                                <span class="bg-green-500 text-white">{{ __('tiers.ribbons.popular') }}</span>
+                            </div>
+                        @elseif ($tier->isBestValue())
+                            <div class="ribbon ribbon-top-right">
+                                <span class="bg-pink-500 text-white">{{ __('tiers.ribbons.best-value') }}</span>
+                            </div>
+                        @endif
+                    </div>
+                    @if (!$user->isLegacyPatron() && !$user->hasIncompletePayment('kanka'))
+                        <div class="flex flex-col gap-1">
+                            @include('settings.subscription.tiers.actions._' . $tier->code)
+                        </div>
+                    @endif
+                    <div class="flex flex-col gap-2">
+                        @includeIf('settings.subscription.tiers.benefits._' . $tier->code)
+                    </div>
+                    @if (!$tier->isFree() && $tier->isCurrent($user) && $user->subscribed('kanka') && !$isPayPal && !$user->subscription('kanka')->onGracePeriod())
+                        <div class="self-bottom">
+                            <a class="btn2 btn-block btn-sm btn-error " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => 1]) }}">
+                                {{ __('settings.subscription.subscription.actions.cancel') }}
+                            </a>
+                        </div>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+
+        <x-helper>
+            {!! __('settings.subscription.trial_period', [
+                'email' => link_to('mailto:' .  config('app.email'), config('app.email'))
+            ]) !!}
+        </x-helper>
     </x-grid>
     <input type="hidden" id="stripe-token" value="{{ config('services.stripe.key') }}" />
 @endsection
