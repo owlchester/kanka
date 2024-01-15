@@ -20,6 +20,6 @@ return [
         'enabled'   => 'Members of the :role role can now :action :entities',
     ],
     'warnings'  => [
-        'adding-to-admin'   => 'Members of the :name role have access to everything in the campaign, and cannot be removed by other members of the role . After :amount minutes, only they can remove themselves from the role.',
+        'adding-to-admin'   => 'Members of the :name role have access to everything in the campaign, and cannot be removed by other members of the role. After :amount minutes, only they can remove themselves from the role.',
     ],
 ];
