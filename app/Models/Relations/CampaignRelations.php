@@ -35,13 +35,15 @@ use App\Models\Organisation;
 use App\Models\Plugin;
 use App\Models\Quest;
 use App\Models\Race;
-use App\Models\RpgSystem;
 use App\Models\EntityUser;
 use App\Models\Tag;
 use App\Models\Theme;
 use App\Models\Timeline;
 use App\Models\CampaignImport;
 use App\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
 /**
@@ -50,7 +52,6 @@ use Illuminate\Support\Collection;
  *
  * @property Collection|User[] $users
  * @property Collection|User[] $followers
- * @property RpgSystem $rpgSystem
  * @property Collection|CampaignRole[] $roles
  *
  * @property Collection|EntityMention[] $mentions
@@ -70,7 +71,6 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignDashboard[] $dashboards
  * @property Collection|CampaignSubmission[] $submissions
  * @property Collection|CampaignStyle[] $styles
- * @property Collection|RpgSystem[] $rpgSystems
  * @property Collection|Genre[] $genres
  * @property Collection|GameSystem[] $systems
  * @property Collection|CampaignExport[] $campaignExports
@@ -80,35 +80,22 @@ trait CampaignRelations
 {
     /**
      */
-    public function users()
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany('App\User', 'campaign_user')->using('App\Models\CampaignUser');
     }
 
-    /**
-     */
-    public function followers()
+    public function followers(): BelongsToMany
     {
         return $this->belongsToMany('App\User', 'campaign_followers')->using(CampaignFollower::class);
     }
 
-    /**
-     */
-    public function rpgSystems()
-    {
-        return $this->belongsToMany('App\Models\RpgSystem');
-    }
-
-    /**
-     */
-    public function setting()
+    public function setting(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignSetting', 'id', 'campaign_id');
     }
 
-    /**
-     */
-    public function members()
+    public function members(): HasMany
     {
         return $this->hasMany('App\Models\CampaignUser');
     }
@@ -121,162 +108,104 @@ trait CampaignRelations
             ->with(['user', 'user.campaignRoles'])
         ;
     }
-    /**
-     */
-    public function roles()
+
+    public function roles(): HasMany
     {
         return $this->hasMany(CampaignRole::class);
     }
 
-    /**
-     * @return Character|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function characters()
+    public function characters(): HasMany
     {
         return $this->hasMany(Character::class);
     }
 
-    /**
-     * @return Location|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function locations()
+    public function locations(): HasMany
     {
         return $this->hasMany(Location::class);
     }
 
-    /**
-     * @return Calendar|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function calendars()
+    public function calendars(): HasMany
     {
         return $this->hasMany(Calendar::class);
     }
 
-    /**
-     * @return Event|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function events()
+    public function events(): HasMany
     {
         return $this->hasMany(Event::class);
     }
 
-    /**
-     * @return Family|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function families()
+    public function families(): HasMany
     {
         return $this->hasMany(Family::class);
     }
 
-    /**
-     * @return Item|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function items()
+    public function items(): HasMany
     {
         return $this->hasMany(Item::class);
     }
 
-    /**
-     * @return Journal|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function journals()
+    public function journals(): HasMany
     {
         return $this->hasMany(Journal::class);
     }
 
-    /**
-     * @return Map|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function maps()
+    public function maps(): HasMany
     {
         return $this->hasMany(Map::class);
     }
 
-    /**
-     * @return Note|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function notes()
+    public function notes(): HasMany
     {
         return $this->hasMany(Note::class);
     }
 
-    /**
-     * @return Organisation|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function organisations()
+    public function organisations(): HasMany
     {
         return $this->hasMany(Organisation::class);
     }
 
-    /**
-     * @return Quest|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function quests()
+    public function quests(): HasMany
     {
         return $this->hasMany(Quest::class);
     }
 
-    /**
-     * @return Ability|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function abilities()
+    public function abilities(): HasMany
     {
         return $this->hasMany(Ability::class);
     }
 
-    /**
-     * @return Tag|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function tags()
+    public function tags(): HasMany
     {
         return $this->hasMany(Tag::class);
     }
 
-    /**
-     * @return Timeline|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function timelines()
+    public function timelines(): HasMany
     {
         return $this->hasMany(Timeline::class);
     }
 
-    /**
-     * @return Bookmark|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function bookmarks()
+    public function bookmarks(): HasMany
     {
         return $this->hasMany(Bookmark::class)
             ->with(['dashboard']);
     }
 
-    /**
-     * @return DiceRoll|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function diceRolls()
+    public function diceRolls(): HasMany
     {
         return $this->hasMany(DiceRoll::class);
     }
 
-    /**
-     * @return Conversation|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function conversations()
+    public function conversations(): HasMany
     {
         return $this->hasMany(Conversation::class);
     }
 
-    /**
-     * @return Race|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function races()
+    public function races(): HasMany
     {
         return $this->hasMany(Race::class);
     }
 
-    /**
-     * @return Race|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function creatures()
+    public function creatures(): HasMany
     {
         return $this->hasMany(Creature::class);
     }
@@ -284,7 +213,7 @@ trait CampaignRelations
     /**
      * @return mixed|Image
      */
-    public function images()
+    public function images(): HasMany
     {
         return $this->hasMany(Image::class)
             ->where('is_default', false);
@@ -292,41 +221,28 @@ trait CampaignRelations
 
     /**
      * List of entities that are mentioned in the campaign's description
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function mentions()
+    public function mentions(): HasMany
     {
         return $this->hasMany('App\Models\EntityMention', 'campaign_id', 'id');
     }
 
-    /**
-     * List of entities that are mentioned in the campaign's description
-     * @return Entity|\Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function entities()
+    public function entities(): HasMany
     {
         return $this->hasMany(Entity::class, 'campaign_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function theme()
+    public function theme(): BelongsTo
     {
         return $this->belongsTo('App\Models\Theme');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function submissions()
+    public function submissions(): HasMany
     {
         return $this->hasMany('App\Models\CampaignSubmission');
     }
 
-    /**
-     */
-    public function entityRelations()
+    public function entityRelations(): HasMany
     {
         return $this->hasMany('App\Models\Relation');
     }
@@ -342,24 +258,22 @@ trait CampaignRelations
         ;
     }
 
-    /**
-     */
-    public function campaignPlugins()
+    public function campaignPlugins(): HasMany
     {
         return $this->hasMany(CampaignPlugin::class);
     }
 
-    public function widgets()
+    public function widgets(): HasMany
     {
         return $this->hasMany(CampaignDashboardWidget::class);
     }
 
-    public function dashboards()
+    public function dashboards(): HasMany
     {
         return $this->hasMany(CampaignDashboard::class);
     }
 
-    public function campaignExports()
+    public function campaignExports(): HasMany
     {
         return $this->hasMany(CampaignExport::class);
     }
@@ -370,12 +284,12 @@ trait CampaignRelations
             ->whereIn('status', [CampaignExport::STATUS_SCHEDULED, CampaignExport::STATUS_RUNNING]);
     }
 
-    public function campaignImports()
+    public function campaignImports(): HasMany
     {
         return $this->hasMany(CampaignImport::class);
     }
 
-    public function styles()
+    public function styles(): HasMany
     {
         return $this->hasMany(CampaignStyle::class);
     }
@@ -389,25 +303,17 @@ trait CampaignRelations
             ->withPivot('type_id');
     }
 
-    /**
-     */
-    public function invites()
+    public function invites(): HasMany
     {
         return $this->hasMany('App\Models\CampaignInvite');
     }
 
-    /**
-     *
-     */
-    public function genres()
+    public function genres(): BelongsToMany
     {
         return $this->belongsToMany(Genre::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function systems()
+    public function systems(): BelongsToMany
     {
         return $this->belongsToMany(GameSystem::class, 'campaign_system', 'campaign_id', 'system_id');
     }

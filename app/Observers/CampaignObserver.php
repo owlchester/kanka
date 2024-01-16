@@ -11,15 +11,12 @@ use App\Models\Genre;
 use App\Models\CampaignRoleUser;
 use App\Models\GameSystem;
 use App\Models\CampaignSetting;
-use App\Models\RpgSystem;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use App\Services\Users\CampaignService;
-use App\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class CampaignObserver
 {
@@ -142,7 +139,6 @@ class CampaignObserver
         }
 
         $this->saveGenres($campaign);
-        $this->saveRpgSystems($campaign);
         $this->saveSystems($campaign);
 
         foreach ($campaign->members()->with('user')->get() as $member) {
@@ -188,43 +184,6 @@ class CampaignObserver
         $campaign->setting->delete();
 
         ImageService::cleanup($campaign, 'header_image');
-    }
-
-    /**
-     */
-    protected function saveRpgSystems(Campaign $campaign): void
-    {
-        if (!request()->has('rpg_systems')) {
-            return;
-        }
-
-        $ids = request()->post('rpg_systems', []);
-
-        // Only use tags the user can actually view. This way admins can
-        // have tags on entities that the user doesn't know about.
-        $existing = [];
-        foreach ($campaign->rpgSystems as $system) {
-            $existing[] = $system->id;
-        }
-        $new = [];
-
-        foreach ($ids as $id) {
-            if (!empty($existing[$id])) {
-                unset($existing[$id]);
-            } else {
-                $system = RpgSystem::find($id);
-                if (empty($system)) {
-                    continue;
-                }
-                $new[] = $system->id;
-            }
-        }
-        $campaign->rpgSystems()->attach($new);
-
-        // Detach the remaining
-        if (!empty($existing)) {
-            $campaign->rpgSystems()->detach($existing);
-        }
     }
 
     /**
