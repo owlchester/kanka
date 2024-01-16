@@ -486,7 +486,7 @@ class PluginVersion extends Model
 
     /**
      * Load abilities of the entity and make them available to blade
-     * @throws \Exception
+     * @throws Exception
      */
     protected function abilities(Entity $entity): array
     {

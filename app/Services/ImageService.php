@@ -65,7 +65,7 @@ class ImageService
                 $copiedFileSize = ceil(filesize($tempImage) / 1000);
                 if ($copiedFileSize > Limit::upload()) {
                     unlink($tempImage);
-                    throw new \Exception('image_url target too big');
+                    throw new Exception('image_url target too big');
                 }
                 $file = new UploadedFile($tempImage, basename($externalUrl));
 
@@ -157,7 +157,7 @@ class ImageService
                     $copiedFileSize = ceil(filesize($tempImage) / 1000);
                     if ($copiedFileSize > Limit::upload()) {
                         unlink($tempImage);
-                        throw new \Exception('image_url target too big');
+                        throw new Exception('image_url target too big');
                     }
                     $file = new UploadedFile($tempImage, basename($externalUrl));
                 } else {

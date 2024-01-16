@@ -58,7 +58,7 @@ abstract class DatagridFilter
         }
         $this->filters[] = [
             'field' => 'location_id',
-            'label' => \App\Facades\Module::singular(config('entities.ids.location'), __('entities.location')),
+            'label' => Module::singular(config('entities.ids.location'), __('entities.location')),
             'type' => 'select2',
             'route' => route('locations.find', $this->campaign),
             'placeholder' =>  $placeholder,
@@ -81,7 +81,7 @@ abstract class DatagridFilter
         }
         $this->filters[] = [
             'field' => $field,
-            'label' => \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')),
+            'label' => Module::singular(config('entities.ids.character'), __('entities.character')),
             'type' => 'select2',
             'route' => route('characters.find', $this->campaign),
             'placeholder' =>  $placeholder,
@@ -103,7 +103,7 @@ abstract class DatagridFilter
         }
         $this->filters[] = [
             'field' => 'journal_id',
-            'label' => \App\Facades\Module::singular(config('entities.ids.journal'), __('entities.journal')),
+            'label' => Module::singular(config('entities.ids.journal'), __('entities.journal')),
             'type' => 'select2',
             'route' => route('journals.find', $this->campaign),
             'placeholder' =>  $placeholder,
@@ -125,7 +125,7 @@ abstract class DatagridFilter
         }
         $this->filters[] = [
             'field' => 'tags',
-            'label' => \App\Facades\Module::singular(config('entities.ids.tag'), __('entities.tag')),
+            'label' => Module::singular(config('entities.ids.tag'), __('entities.tag')),
             'type' => 'tag',
             'route' => route('tags.find', $this->campaign),
             'placeholder' =>  $placeholder,

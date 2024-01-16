@@ -71,7 +71,7 @@ class BulkController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @throws Exception
      */
     protected function batch()
     {

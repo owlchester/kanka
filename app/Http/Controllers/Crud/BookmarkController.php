@@ -22,7 +22,7 @@ class BookmarkController extends CrudController
     protected bool $hasLimitCheck = true;
 
     /** @var string */
-    protected $model = \App\Models\Bookmark::class;
+    protected $model = Bookmark::class;
 
     /**  */
     protected string $datagridActions = BookmarkDatagridActions::class;

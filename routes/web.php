@@ -19,11 +19,11 @@ Route::post(
 )->name('cashier.webhook');
 
 
-Route::get('users/{user}', [\App\Http\Controllers\User\ProfileController::class, 'show'])->name('users.profile');
+Route::get('users/{user}', [App\Http\Controllers\User\ProfileController::class, 'show'])->name('users.profile');
 
-Route::get('/_ccapi/country', [\App\Http\Controllers\CookieConsentController::class, 'index'])
+Route::get('/_ccapi/country', [App\Http\Controllers\CookieConsentController::class, 'index'])
     ->name('cookieconsent.country');
 
-Route::get('/frontend-prepare', [\App\Http\Controllers\FrontendPrepareController::class, 'index']);
+Route::get('/frontend-prepare', [App\Http\Controllers\FrontendPrepareController::class, 'index']);
 
-Route::get('/_setup', [\App\Http\Controllers\SetupController::class, 'index']);
+Route::get('/_setup', [App\Http\Controllers\SetupController::class, 'index']);

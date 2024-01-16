@@ -10,10 +10,12 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::table('campaigns', function (Blueprint $table) {
-            $table->string('slug', 45)->nullable()->unique()->after('name');
+        Schema::create('game_systems', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 70);
+            $table->timestamps();
+            $table->unique('name');
         });
-        Illuminate\Support\Facades\DB::statement("UPDATE campaigns SET slug = id");
     }
 
     /**
@@ -21,5 +23,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
+        Schema::dropIfExists('game_systems');
     }
 };

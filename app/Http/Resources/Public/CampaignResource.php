@@ -21,7 +21,7 @@ class CampaignResource extends JsonResource
             'followers' => number_format($campaign->follower),
             'entities' => number_format($campaign->visible_entity_count),
             'locale' => $campaign->locale,
-            'system' => $campaign->system,
+            'system' => $campaign->getSystems(),
             'is_open' => $campaign->isOpen(),
         ];
     }

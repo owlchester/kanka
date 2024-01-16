@@ -41,7 +41,7 @@ class StoreMap extends FormRequest
             'center_y' => 'nullable|numeric',
             'max_zoom' => 'nullable|numeric|min:1|max:' . Map::MAX_ZOOM,
             'min_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
-            'initial_zoom' => 'nullable|numeric|min:' . MAP::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
+            'initial_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
         ];
 
         $self = request()->route('map');

@@ -26,12 +26,12 @@ class Google2FAAuthentication extends Authenticator
             $secret = $this->getUser()->passwordSecurity;
         }
 
-    // If User is not Authenticated through 2FA
+        // If User is not Authenticated through 2FA
         if (null === $secret || empty($secret)) {
             // return Action
             return redirect()->action('PasswordSecurityController@generate2faSecretCode');
         }
-            // If user has Google2FA setup and is Authenticated
+        // If user has Google2FA setup and is Authenticated
         return $secret;
     }
 }

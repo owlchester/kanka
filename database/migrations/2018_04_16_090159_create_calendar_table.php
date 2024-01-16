@@ -85,7 +85,7 @@ class CreateCalendarTable extends Migration
             $table->dropColumn('calendars');
         });
 
-        $entities = \App\Models\Entity::where(['type' => 'calendar'])->get();
+        $entities = App\Models\Entity::where(['type' => 'calendar'])->get();
         foreach ($entities as $entity) {
             $entity->delete();
         }

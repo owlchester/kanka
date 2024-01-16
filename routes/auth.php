@@ -4,7 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
-\Illuminate\Support\Facades\Auth::routes(['register' => config('auth.register_enabled')]);
+Illuminate\Support\Facades\Auth::routes(['register' => config('auth.register_enabled')]);
 
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -30,7 +30,7 @@ trait GuestAuthTrait
         if (auth()->check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
+            $this->authorizeEntityForGuest(CampaignPermission::ACTION_READ, $entity->child);
         }
     }
 

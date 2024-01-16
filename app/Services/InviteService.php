@@ -32,7 +32,7 @@ class InviteService
 
     /**
      * @throws RequireLoginException
-     * @throws \Exception
+     * @throws Exception
      */
     public function useToken(string $token = null)
     {

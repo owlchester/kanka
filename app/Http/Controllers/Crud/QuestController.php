@@ -20,7 +20,7 @@ class QuestController extends CrudController
     protected $module = 'quests';
 
     /** @var string Model */
-    protected $model = \App\Models\Quest::class;
+    protected $model = Quest::class;
 
     /** @var string Filter */
     protected string $filter = QuestFilter::class;

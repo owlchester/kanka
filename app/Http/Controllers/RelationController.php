@@ -26,7 +26,7 @@ class RelationController extends CrudController
     protected string $forceMode = 'table';
 
     /** @var string */
-    protected $model = \App\Models\Relation::class;
+    protected $model = Relation::class;
 
     /** @var string The datagrid controlling the bulk actions */
     protected string $datagridActions = RelationDatagridActions::class;

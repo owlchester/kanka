@@ -102,8 +102,8 @@ Route::post('/marketplace', 'Settings\MarketplaceController@save')
 //    ->name('settings.tutorial.disable');
 //Route::get('/tutorial/reset', 'Settings\TutorialController@reset')
 //    ->name('settings.tutorial.reset');
-Route::post('/tutorials/{code}/dismiss', [\App\Http\Controllers\Settings\TutorialController::class, 'dismiss'])->name('tutorials.dismiss');
-Route::patch('/tutorials/reset', [\App\Http\Controllers\Settings\TutorialController::class, 'reset'])->name('tutorials.reset');
+Route::post('/tutorials/{code}/dismiss', [App\Http\Controllers\Settings\TutorialController::class, 'dismiss'])->name('tutorials.dismiss');
+Route::patch('/tutorials/reset', [App\Http\Controllers\Settings\TutorialController::class, 'reset'])->name('tutorials.reset');
 
 // Campaign boosters
 Route::resources([

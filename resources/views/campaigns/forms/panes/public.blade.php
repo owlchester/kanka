@@ -53,25 +53,26 @@
                         :helper="__('campaigns.sharing.language')">
                     {!! Form::select('locale', $languages->getSupportedLanguagesList(true), null, ['class' => 'w-full']) !!}
                 </x-forms.field>
-
-                <x-forms.field
-                        field="system"
-                        :label="__('campaigns.fields.system')"
-                        :helper="__('campaigns.sharing.system')">
-                    {!! Form::text('system', null, [
-                        'placeholder' => __('campaigns.placeholders.system'),
-                        'class' => 'w-full',
-                        'list' => 'rpg-system-list',
-                        'autocomplete' => 'off'
-                    ]) !!}
-                    <div class="hidden">
-                        <datalist id="rpg-system-list">
-                            @foreach (__('rpg_systems.names') as $name)
-                                <option value="{{ $name }}">{{ $name }}</option>
-                            @endforeach
-                        </datalist>
-                    </div>
-                </x-forms.field>
+                @php
+                    $selected = [];
+                    foreach ($model->systems as $system) {
+                        $selected[$system->id] = $system->name;
+                    }
+                @endphp
+                <x-forms.foreign
+                    field="systems[]"
+                    label="campaigns.fields.system"
+                    :multiple="true"
+                    :helper="__('campaigns.sharing.system')"
+                    name="systems[]"
+                    id="system[]"
+                    :placeholder="__('campaigns.placeholders.system')"
+                    :campaign="$campaign"
+                    allowClear="true"
+                    :route="route('search.systems', ['campaign' => $campaign])"
+                    :selected="$selected"
+                >
+                </x-forms.foreign>
 
                 <div class="genres">
                     <input type="hidden" name="campaign_genre" value="1">
