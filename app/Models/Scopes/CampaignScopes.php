@@ -164,12 +164,11 @@ trait CampaignScopes
         }
 
         if (!empty($system)) {
-            $valid =  \App\Facades\CampaignCache::systems();
-            if ($system == 'other') {
-                $query->whereNotIn('system', $valid);
-            } elseif (in_array($system, $valid)) {
-                $query->where('system', $system);
-            }
+            $query
+                ->select('campaigns.*')
+                ->leftJoin('campaign_system as cs', function ($join) {
+                    $join->on('cs.campaign_id', '=', 'campaigns.id');
+                })->whereIn('cs.system_id', $system)->distinct();
         }
         $boosted = Arr::get($options, 'is_boosted');
         if ($boosted === "1") {

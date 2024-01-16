@@ -57,12 +57,16 @@ class CampaignCacheService extends BaseCache
      */
     public function systems(): array
     {
-        $key = 'campaign_public_systems';
+        $key = 'campaign_systems';
         if ($this->has($key)) {
             return $this->get($key);
         }
+        $data = [];
+        $systems = GameSystem::withCount('campaignSystem')->orderBy('campaign_system_count', 'desc')->get(20);
 
-        $data = GameSystem::withCount('campaignSystem')->orderBy('campaign_system_count', 'desc')->get()->toArray();
+        foreach ($systems as $system) {
+            $data[$system->id] = $system->name;
+        }
 
         $this->put($key, $data, 24 * 3600);
         return $data;

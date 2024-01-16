@@ -520,4 +520,16 @@ class Campaign extends Model
     {
         return $this->slug != $this->id;
     }
+
+    public function getSystems(): string
+    {
+        $systems = '';
+        foreach ($this->systems as $system) {
+            if ($systems) {
+                $systems .= ', ';
+            }
+            $systems .= $system->name;
+        }
+        return $systems;
+    }
 }
