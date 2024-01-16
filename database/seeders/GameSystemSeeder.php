@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\GameSystem;
-use App\Models\Genre;
 use Illuminate\Database\Seeder;
 
 class GameSystemSeeder extends Seeder
@@ -14,7 +13,7 @@ class GameSystemSeeder extends Seeder
     public function run(): void
     {
         $genres = [
-            'D&D', 'D&D 5e', 'D&D 3.5', 'D&D 3', 'D&D 4', 'AD&D 2'.
+            'D&D', 'D&D 5e', 'D&D 3.5', 'D&D 3', 'D&D 4', 'AD&D 2' .
             'Pathfinder', 'Pathfinder 2e',
             'Savage Worlds',
             'Chronicles of Darkness',
@@ -69,7 +68,7 @@ class GameSystemSeeder extends Seeder
             'Delta Green',
             'Earthdawn',
             'Masks',
-            ];
+        ];
         foreach ($genres as $name) {
             $genre = GameSystem::firstOrNew([
                 'name' => $name,
