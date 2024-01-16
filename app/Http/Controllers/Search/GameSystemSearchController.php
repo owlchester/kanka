@@ -20,6 +20,7 @@ class GameSystemSearchController extends Controller
         /** @var GameSystem[] $systems */
         $systems = GameSystem::where('name', 'like', '%' . request()->get('q') . '%')
             ->withCount('campaignSystem')->orderBy('campaign_system_count', 'desc')
+            ->orderBy('name', 'asc')
             ->limit(20)
             ->get();
 
@@ -33,7 +34,7 @@ class GameSystemSearchController extends Controller
         }
 
         return response()->json(
-            $formatted
+            $formatted ?? []
         );
     }
 }

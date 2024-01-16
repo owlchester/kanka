@@ -137,6 +137,7 @@ trait CampaignScopes
         }
         $defaultSort = $sort == 1 ? 'follower' : 'visible_entity_count';
         $query
+            ->with('systems')
             ->where('is_hidden', 0)
             ->orderBy($defaultSort, 'desc')
             ->orderBy('name');
@@ -168,7 +169,9 @@ trait CampaignScopes
                 ->select('campaigns.*')
                 ->leftJoin('campaign_system as cs', function ($join) {
                     $join->on('cs.campaign_id', '=', 'campaigns.id');
-                })->whereIn('cs.system_id', $system)->distinct();
+                })
+                ->whereIn('cs.system_id', $system)
+                ->distinct();
         }
         $boosted = Arr::get($options, 'is_boosted');
         if ($boosted === "1") {
