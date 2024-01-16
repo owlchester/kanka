@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [8.2]
+        php: [8.3]
         laravel: ["^10.0"]
     
     name: PHP ${{ matrix.php }}
