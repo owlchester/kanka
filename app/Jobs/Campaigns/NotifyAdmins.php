@@ -41,7 +41,7 @@ class NotifyAdmins implements ShouldQueue
     public function handle()
     {
         /** @var NotificationService $service */
-        $service = app()->make(\App\Services\Campaign\NotificationService::class);
+        $service = app()->make(NotificationService::class);
 
         /** @var Campaign|null $campaign */
         $campaign = Campaign::find($this->campaign);

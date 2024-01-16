@@ -36,16 +36,16 @@ class EditingController extends Controller
             ->user(auth()->user())
             ->users();
 
-        if ($model instanceof \App\Models\Post) {
+        if ($model instanceof Post) {
             $url = route('posts.confirm-editing', [$campaign, 'post' => $model, 'entity' => $model->entity]);
             $show = $model->entity->url();
-        } elseif ($model instanceof \App\Models\Campaign) {
+        } elseif ($model instanceof Campaign) {
             $url = route('campaigns.confirm-editing', $model);
             $show = route('overview', $campaign);
-        } elseif ($model instanceof \App\Models\TimelineElement) {
+        } elseif ($model instanceof TimelineElement) {
             $url = route('timeline-elements.confirm-editing', [$campaign, $model]);
             $show = $model->timeline->getLink();
-        } elseif ($model instanceof \App\Models\QuestElement) {
+        } elseif ($model instanceof QuestElement) {
             $url = route('quest-elements.confirm-editing', [$campaign, $model]);
             $show = $model->quest->getLink();
         } else {

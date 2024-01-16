@@ -35,7 +35,7 @@ class CharacterFilter extends DatagridFilter
             ->add('title')
             ->add([
                 'field' => 'family_id',
-                'label' => \App\Facades\Module::singular(config('entities.ids.family'), __('entities.family')),
+                'label' => Module::singular(config('entities.ids.family'), __('entities.family')),
                 'type' => 'select2',
                 'route' => route('families.find', $this->campaign),
                 'placeholder' =>  $famPlaceholder,
@@ -45,7 +45,7 @@ class CharacterFilter extends DatagridFilter
             ->location()
             ->add([
                 'field' => 'race_id',
-                'label' => \App\Facades\Module::singular(config('entities.ids.race'), __('entities.race')),
+                'label' => Module::singular(config('entities.ids.race'), __('entities.race')),
                 'type' => 'select2',
                 'route' => route('races.find', $this->campaign),
                 'placeholder' =>  $racePlaceholder,
@@ -54,7 +54,7 @@ class CharacterFilter extends DatagridFilter
             ])
             ->add([
                 'field' => 'member_id',
-                'label' => \App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation')),
+                'label' => Module::singular(config('entities.ids.organisation'), __('entities.organisation')),
                 'type' => 'select2',
                 'route' => route('organisations.find', $this->campaign),
                 'placeholder' => $orgPlaceholder,

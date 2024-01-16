@@ -31,7 +31,7 @@ class ReminderController extends Controller
 
     protected CalendarService $calendarService;
 
-    protected $model = \App\Models\EntityEvent::class;
+    protected $model = EntityEvent::class;
 
     public function __construct(CalendarService $calendarService)
     {

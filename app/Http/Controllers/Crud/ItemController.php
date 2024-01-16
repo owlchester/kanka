@@ -20,7 +20,7 @@ class ItemController extends CrudController
     protected $module = 'items';
 
     /** @var string Model */
-    protected $model = \App\Models\Item::class;
+    protected $model = Item::class;
 
     /** @var string Filter */
     protected string $filter = ItemFilter::class;

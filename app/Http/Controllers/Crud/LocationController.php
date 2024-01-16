@@ -20,7 +20,7 @@ class LocationController extends CrudController
     protected $module = 'locations';
 
     /** @var string Model */
-    protected $model = \App\Models\Location::class;
+    protected $model = Location::class;
 
     /** @var string Filter */
     protected string $filter = LocationFilter::class;

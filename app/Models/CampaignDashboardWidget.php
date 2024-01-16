@@ -61,7 +61,7 @@ class CampaignDashboardWidget extends Model
      */
     public function campaign()
     {
-        return $this->belongsTo(\App\Models\Campaign::class);
+        return $this->belongsTo(Campaign::class);
     }
 
     /**
@@ -69,7 +69,7 @@ class CampaignDashboardWidget extends Model
      */
     public function entity()
     {
-        return $this->belongsTo(\App\Models\Entity::class);
+        return $this->belongsTo(Entity::class);
     }
 
     /**
@@ -77,7 +77,7 @@ class CampaignDashboardWidget extends Model
      */
     public function dashboard()
     {
-        return $this->belongsTo(\App\Models\CampaignDashboard::class, 'dashboard_id', 'id');
+        return $this->belongsTo(CampaignDashboard::class, 'dashboard_id', 'id');
     }
 
     /**
@@ -308,11 +308,11 @@ class CampaignDashboardWidget extends Model
         $base = new Entity();
 
         if (!empty($entityType) && !empty($this->config['filters'])) {
-            $className = 'App\Models\\' . \Illuminate\Support\Str::studly($entityType);
-            /** @var \App\Models\MiscModel $model */
+            $className = 'App\Models\\' . Str::studly($entityType);
+            /** @var MiscModel $model */
             $model = new $className();
 
-            /** @var \App\Services\FilterService $filterService */
+            /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
             $filterService
                 ->session(false)

@@ -20,7 +20,7 @@ class NoteController extends CrudController
     protected $module = 'notes';
 
     /** @var string */
-    protected $model = \App\Models\Note::class;
+    protected $model = Note::class;
 
     /** @var string Filter */
     protected string $filter = NoteFilter::class;

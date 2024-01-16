@@ -13,7 +13,7 @@ return new class () extends Migration {
         Schema::table('campaigns', function (Blueprint $table) {
             $table->string('slug', 45)->nullable()->unique()->after('name');
         });
-        \Illuminate\Support\Facades\DB::statement("UPDATE campaigns SET slug = id");
+        Illuminate\Support\Facades\DB::statement("UPDATE campaigns SET slug = id");
     }
 
     /**

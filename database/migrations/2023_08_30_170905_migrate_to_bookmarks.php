@@ -20,10 +20,10 @@ return new class () extends Migration {
             $table->renameColumn('menu_link_id', 'bookmark_id');
         });
 
-        \Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET parent = 'bookmarks' WHERE parent = 'menu_links'");
-        \Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET type = 'bookmark' WHERE type = 'menu_link'");
-        \Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET menu = 'bookmark' WHERE menu = 'menu_link'");
-        \Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET random_entity_type = 'bookmark' WHERE random_entity_type = 'menu_link'");
+        Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET parent = 'bookmarks' WHERE parent = 'menu_links'");
+        Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET type = 'bookmark' WHERE type = 'menu_link'");
+        Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET menu = 'bookmark' WHERE menu = 'menu_link'");
+        Illuminate\Support\Facades\DB::update("UPDATE bookmarks SET random_entity_type = 'bookmark' WHERE random_entity_type = 'menu_link'");
     }
 
     /**

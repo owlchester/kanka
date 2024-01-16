@@ -37,7 +37,7 @@ class RecoveryService
     /**
      * Permanently delete old data
      * @return int deleted entities count
-     * @throws \Exception
+     * @throws Exception
      */
     public function cleanup(): int
     {
@@ -94,7 +94,7 @@ class RecoveryService
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function trash(Entity $entity)
     {
@@ -114,7 +114,7 @@ class RecoveryService
 
     /**
      * @param MiscModel|Location|null $child
-     * @throws \Exception
+     * @throws Exception
      */
     protected function trashChild(Entity $entity, MiscModel $child = null)
     {
@@ -138,7 +138,7 @@ class RecoveryService
                 // In console mode, we don't have the campaign_id restriction. We've had cases where this script
                 // found entities form other campaigns.
                 if ($subChild->campaign_id != $child->campaign_id) {
-                    throw new \Exception(
+                    throw new Exception(
                         'Found a subchild that doesn\'t share the campaign id. '
                         . $subChild->id . ' and ' . $child->id
                     );

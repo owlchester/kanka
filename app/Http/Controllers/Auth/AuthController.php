@@ -98,7 +98,7 @@ class AuthController extends Controller
         // Make sure the email doesn't already exist
         $emailExists = User::where('email', $user->email)->first();
         if ($emailExists) {
-            throw new \Exception('', 1);
+            throw new Exception('', 1);
         }
 
         // Only allow creating if it's set that way

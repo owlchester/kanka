@@ -4,7 +4,6 @@ namespace App\Services\Caches;
 
 use App\Models\Campaign;
 use App\Models\GameSystem;
-use App\Models\CampaignSystem;
 use App\Services\Caches\Traits\Campaign\ApplicationCache;
 use App\Services\Caches\Traits\Campaign\DashboardCache;
 use App\Services\Caches\Traits\Campaign\MemberCache;

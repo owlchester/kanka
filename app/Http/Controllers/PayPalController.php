@@ -9,7 +9,7 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PayPalController extends Controller
 {
-    protected PaypalService $service;
+    protected PayPalService $service;
 
     public function __construct(PayPalService $service)
     {
