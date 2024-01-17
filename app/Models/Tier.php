@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\Img;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -57,10 +56,10 @@ class Tier extends Model
             return true;
         } elseif ($this->name === Pledge::WYVERN && $user->isWyvern()) {
             return true;
-        } elseif ($this->name === Pledge::ELEMENTAL && $user->isElemental()) {
-            return true;
-        }
-        return false;
+        } return (bool) ($this->name === Pledge::ELEMENTAL && $user->isElemental())
+
+
+        ;
     }
 
     public function monthlyPlans(): array

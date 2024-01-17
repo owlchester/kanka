@@ -5,8 +5,6 @@ namespace Database\Seeders;
 use App\Models\Pledge;
 use App\Models\Tier;
 use Illuminate\Database\Seeder;
-use App\Models\Role;
-use Illuminate\Support\Facades\DB;
 
 class TierSeeder extends Seeder
 {
