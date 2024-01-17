@@ -55,6 +55,10 @@ class RoleUserController extends Controller
         $this->authorize('roles', $campaign);
         $this->authorize('create', CampaignRole::class);
 
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $relation = CampaignRoleUser::create($request->all());
         return redirect()->route('campaign_roles.show', [
             $campaign,

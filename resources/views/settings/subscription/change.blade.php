@@ -16,14 +16,14 @@
         @if ($user->hasPayPal())
             {!! __('settings.subscription.change.text.upgrade_paypal', [
                 'upgrade' => "<strong>$currency$upgrade</strong>",
-                'tier' => "<strong>$tier</strong>",
+                'tier' => "<strong>$tier->name</strong>",
                 'amount' => "<strong>$currency$amount</strong>",
                 'date' => $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y')
             ]) !!}
         @else
             {!! __('settings.subscription.change.text.upgrade_' . $period, [
                 'upgrade' => "<strong>$currency<span id='pricing-now'>$upgrade</span></strong>",
-                'tier' => "<strong>$tier</strong>",
+                'tier' => "<strong>$tier->name</strong>",
                 'amount' => "<strong>$currency$amount</strong>"
             ]) !!}
         @endif
@@ -92,7 +92,7 @@
             <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
                 @if (! $limited)
                 <div role="tabpanel" class="tab-pane active" id="card">
-                    {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
+                    {!! Form::open(['route' => ['settings.subscription.subscribe', 'tier' => $tier], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
 
                     <x-grid type="1/1" css="text-left">
                     @if (!$card)
@@ -115,7 +115,7 @@
                                 {!! __('settings.subscription.upgrade_downgrade.downgrade.provide_reason')!!}
                             </p>
 
-                            <div class="ffield-reason">
+                            <div class="field-reason">
                                 <label>{{ __('settings.subscription.fields.reason') }}</label>
                                 {!! Form::select('reason', [
                                     '' => __('crud.select'),
@@ -147,7 +147,6 @@
                     </div>
                     </x-grid>
 
-                    <input type="hidden" name="tier" value="{{ $tier }}" />
                     <input type="hidden" name="coupon" id="coupon" value="" />
                     <input type="hidden" name="period" value="{{ $period }}" />
                     <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
@@ -173,7 +172,7 @@
                                     {{ __('settings.subscription.helpers.alternatives_warning') }}
                                 </x-alert>
                             @else
-                            {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
+                            {!! Form::open(['route' => ['settings.subscription.alt-subscribe', 'tier' => $tier], 'method' => 'POST', 'class' => 'subscription-form']) !!}
                             <x-forms.field css="mb-5" field="sofort-country" :label="__('settings.subscription.payment_method.country')">
                                 <select id="sofort-country"  name="sofort-country" class="w-full">
                                     <option value="">{{ __('crud.select') }}</option>
@@ -194,7 +193,6 @@
                             </div>
 
                             <input type="hidden" name="method" value="sofort" />
-                            <input type="hidden" name="tier" value="{{ $tier }}" />
                             <input type="hidden" name="period" value="{{ $period }}" />
                             <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                             {!! Form::close() !!}
@@ -223,7 +221,7 @@
                                     {{ __('settings.subscription.helpers.alternatives_warning') }}
                                 </x-alert>
                             @else
-                            {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
+                            {!! Form::open(['route' => ['settings.subscription.alt-subscribe', 'tier' => $tier], 'method' => 'POST', 'class' => 'subscription-form']) !!}
                             <x-forms.field css="mb-5" field="accountholder-name" :label="__('settings.subscription.payment_method.card_name')">
                                 <input id="accountholder-name"  name="accountholder-name" class="w-full">
                             </x-forms.field>
@@ -236,7 +234,6 @@
                             </div>
 
                             <input type="hidden" name="method" value="giropay" />
-                            <input type="hidden" name="tier" value="{{ $tier }}" />
                             <input type="hidden" name="period" value="{{ $period }}" />
                             <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                             {!! Form::close() !!}
@@ -268,7 +265,7 @@
                             </x-alert>
                         @endif
 
-                        {!! Form::open(['route' => ['paypal.process-transaction'], 'method' => 'POST', 'class' => 'subscription-form flex flex-row gap-5']) !!}
+                        {!! Form::open(['route' => ['paypal.process-transaction', 'tier' => $tier], 'method' => 'POST', 'class' => 'subscription-form flex flex-row gap-5']) !!}
                             <p class="help-block">
                                 {{ __('settings.subscription.helpers.paypal_v3') }}
                             </p>
@@ -278,7 +275,6 @@
                                     <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                                 </button>
                             </div>
-                            <input type="hidden" name="tier" value="{{ $tier }}" />
                             <input type="hidden" name="coupon" id="coupon" value="" />
                             <input type="hidden" name="period" value="{{ $period }}" />
                             <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />

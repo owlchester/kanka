@@ -1,7 +1,6 @@
 import Sortable from "sortablejs";
 
 $(document).ready(function() {
-    initRpgSystems();
     registerModules();
     registerUserRoles();
     registerCodeMirror();
@@ -10,19 +9,6 @@ $(document).ready(function() {
     registerCampaignThemes();
     registerVanityUrl();
 });
-
-/**
- * Form Rpg Systems field
- */
-function initRpgSystems() {
-    $.each($('.form-rpg-systems'), function () {
-        $(this).select2({
-            multiple: true,
-            allowClear: true,
-            minimumInputLength: 0
-        });
-    });
-}
 
 /**
  * Register Modules change for campaign settings

@@ -3,6 +3,7 @@
 namespace App\Services\Caches;
 
 use App\Models\Campaign;
+use App\Models\GameSystem;
 use App\Services\Caches\Traits\Campaign\ApplicationCache;
 use App\Services\Caches\Traits\Campaign\DashboardCache;
 use App\Services\Caches\Traits\Campaign\MemberCache;
@@ -55,19 +56,16 @@ class CampaignCacheService extends BaseCache
      */
     public function systems(): array
     {
-        $key = 'campaign_public_systems';
+        $key = 'campaign_systems';
         if ($this->has($key)) {
             return $this->get($key);
         }
+        $data = [];
+        $systems = GameSystem::withCount('campaignSystem')->orderBy('campaign_system_count', 'desc')->get(20);
 
-        $data = Campaign::selectRaw('system, count(*) as cpt')
-            ->public()
-            ->whereNotNull('system')
-            ->groupBy('system')
-            ->orderBy('system')
-            ->get();
-
-        $data = $data->where('cpt', '>=', 5)->pluck('system', 'system')->toArray();
+        foreach ($systems as $system) {
+            $data[$system->id] = $system->name;
+        }
 
         $this->put($key, $data, 24 * 3600);
         return $data;

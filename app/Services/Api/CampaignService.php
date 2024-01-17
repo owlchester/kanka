@@ -60,7 +60,7 @@ class CampaignService
                     'sk' => 'Slovak',
                 ]
             ],
-            'system' => [
+            'system[]' => [
                 'title' => 'System',
                 'options' => CampaignCache::systems()
             ],

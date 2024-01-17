@@ -367,7 +367,7 @@ class FamilyTreeService
         }
         //dd($nodes);
         if (!isset($nodes[0]['relations'])) {
-            return [];
+            return $nodes;
         }
 
         foreach ($nodes[0]['relations'] as $i => $relation) {
