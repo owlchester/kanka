@@ -29,24 +29,11 @@ class Feature extends Model
     public $fillable = [
         'name',
         'description',
-        'category_id',
-        'status_id'
-    ];
-
-    public $with = [
-        'user',
-        'category',
-        'status'
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function votes(): HasMany
-    {
-        return $this->hasMany(FeatureUpvote::class);
     }
 
     public function category(): BelongsTo
