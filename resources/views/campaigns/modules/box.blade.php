@@ -22,7 +22,7 @@ $enabled = $campaign->enabled($module);
                 <p>{{ __('campaigns.settings.helpers.' . $module) }}</p>
             </div>
             <div class="box-footer checkbox text-center mt-auto">
-                <i>{!! __('campaigns.settings.boosted', ['boosted' => link_to(config('domains.front') . '/pricing', __('concept.premium-campaigns'), '#premium')]) !!}</i>
+                <i>{!! __('campaigns.settings.boosted', ['boosted' => link_to(\App\Facades\Domain::toFront('pricing'), __('concept.premium-campaigns'), '#premium')]) !!}</i>
             </div>
         </div>
     </x-box>

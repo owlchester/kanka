@@ -30,6 +30,31 @@ $switcher: #D8DBFF;
 .border-blue {
     border-color: $blue;
 }
+.hover\:bg-light {
+    &:hover {
+        background-color: $light;
+    }
+}
+.hover\:text-light {
+    &:hover {
+        color: $light;
+    }
+}
+.hover\:text-dark {
+    &:hover {
+        color: $dark;
+    }
+}
+.hover\:text-purple {
+    &:hover {
+        color: $purple;
+    }
+}
+.hover\:text-blue {
+    &:hover {
+        color: $blue;
+    }
+}
 
 .link, .link-light {
     color: $dark;
@@ -67,12 +92,13 @@ $switcher: #D8DBFF;
     }
 }
 
-.block-btn {
+.block-input, .block-btn {
     border: 1px solid $purple;
     color: $purple;
     padding: 1rem 2rem;
     transition: all 0.2s;
-
+}
+.block-btn {
     &:hover, &:focus {
         background-color: $purple;
         color: white;
@@ -151,6 +177,11 @@ h3, .text-md {
     font-size: 1.375rem;
     line-height: 1.664375rem;
 }
+h4, .text-sm {
+    font-weight: 600;
+    font-size: 1.175rem;
+    line-height: 1.464375rem;
+}
 p, li {
     font-weight: 400;
     font-size: 0.875rem;
@@ -221,3 +252,5 @@ html {
         display: unset;
     }
 }
+
+@import "dialog";

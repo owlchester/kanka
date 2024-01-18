@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\MapLayer;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -38,6 +39,7 @@ class StoreMapLayer extends FormRequest
         ];
 
         // If editing, don't need a new image
+        /** @var MapLayer $self */
         $self = request()->route('map_layer');
         if (!empty($self)) {
             $rules['image'] = 'nullable|mimes:jpeg,png,jpg,gif,webp,svg|max:' . Limit::map()->upload();

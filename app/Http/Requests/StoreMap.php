@@ -44,6 +44,7 @@ class StoreMap extends FormRequest
             'initial_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
         ];
 
+        /** @var Map $self */
         $self = request()->route('map');
         if (!empty($self)) {
             $rules['map_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:maps,id';

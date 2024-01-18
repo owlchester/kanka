@@ -10,6 +10,7 @@ class CalendarObserver extends MiscObserver
     public function updated(MiscModel $model)
     {
         if ($model->isDirty(['date'])) {
+            // @phpstan-ignore-next-line
             CalendarsClearElapsed::dispatch($model);
         }
     }

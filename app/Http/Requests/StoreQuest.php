@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Quest;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -49,6 +50,7 @@ class StoreQuest extends FormRequest
             }
         }
 
+        /** @var Quest $self */
         $self = request()->route('quest');
         if (!empty($self)) {
             $rules['quest_id'] = [

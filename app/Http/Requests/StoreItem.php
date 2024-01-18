@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Item;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -41,6 +42,8 @@ class StoreItem extends FormRequest
             'price' => 'nullable|string|max:191',
             'size' => 'nullable|string|max:191',
         ];
+
+        /** @var Item $self */
         $self = request()->route('item');
         if (!empty($self)) {
             $rules['item_id'] = [

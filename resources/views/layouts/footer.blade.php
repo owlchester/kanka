@@ -44,7 +44,7 @@
                 <div class="flex flex-col gap-3 text-sm">
                     <span class="block text-nav uppercase">{{ __('footer.community') }}</span>
                     <a href="{{ Domain::toFront('campaigns') }}">{{ __('footer.public-campaigns') }}</a>
-                    <a href="{{ Domain::toFront('community-votes') }}">{{ __('front/community-votes.title') }}</a>
+                    <a href="{{ route('roadmap') }}">{{ __('footer.roadmap') }}</a>
                     <a href="{{ Domain::toFront('hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
                 </div>
 

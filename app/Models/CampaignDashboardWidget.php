@@ -232,7 +232,7 @@ class CampaignDashboardWidget extends Model
     /**
      * Get the entities of a widget
      */
-    public function entities()
+    public function entities(int $page = 1)
     {
         $base = new Entity();
 
@@ -291,7 +291,7 @@ class CampaignDashboardWidget extends Model
             ->inTags($this->tags->pluck('id')->toArray())
             ->type($entityTypeID)
             ->with(['image:campaign_id,id,ext', 'mentions', 'mentions.target', 'mentions.target.tags'])
-            ->paginate(10)
+            ->paginate(10, ['*'], 'page', $page)
         ;
     }
 
