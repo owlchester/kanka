@@ -10,6 +10,7 @@ use App\Models\CampaignRole;
 use App\Models\CampaignSubmission;
 use App\Models\Entity;
 use App\Models\EntityUser;
+use App\Models\FeatureVote;
 use App\Models\PasswordSecurity;
 use App\Models\Plugin;
 use App\Models\Referral;
@@ -18,6 +19,7 @@ use App\Models\UserApp;
 use App\Models\UserFlag;
 use App\Models\Users\Tutorial;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Trait UserRelations
@@ -191,5 +193,10 @@ trait UserRelations
     public function tutorials()
     {
         return $this->hasMany(Tutorial::class);
+    }
+
+    public function upvotes(): HasMany
+    {
+        return $this->hasMany(FeatureVote::class);
     }
 }

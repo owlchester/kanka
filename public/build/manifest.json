@@ -5,6 +5,9 @@
   "__plugin-vue_export-helper-c420bb3b.js": {
     "file": "assets/_plugin-vue_export-helper-c420bb3b.js"
   },
+  "_dialog-66bef5f6.js": {
+    "file": "assets/dialog-66bef5f6.js"
+  },
   "_index-0b481a1e.js": {
     "file": "assets/index-0b481a1e.js",
     "imports": [
@@ -80,11 +83,12 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-f1817852.js",
+    "file": "assets/app-87b01298.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_mention-6dbb4e38.js",
       "_sortable.esm-be94e56d.js",
+      "_dialog-66bef5f6.js",
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
       "_v-click-outside.umd-d5c5f7b0.js",
@@ -183,7 +187,12 @@
     "src": "resources/js/forms/character.js"
   },
   "resources/js/front.js": {
-    "file": "assets/front-7c0b43b6.js",
+    "file": "assets/front-aaa67e56.js",
+    "imports": [
+      "_index-0b481a1e.js",
+      "_dialog-66bef5f6.js",
+      "__commonjsHelpers-725317a4.js"
+    ],
     "isEntry": true,
     "src": "resources/js/front.js"
   },
@@ -245,12 +254,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-158a703d.css",
+    "file": "assets/app-1ecfb261.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-6abcc7f3.css",
+    "file": "assets/auth-8d3fb254.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -275,7 +284,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-bf980399.css",
+    "file": "assets/front-c908946b.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },

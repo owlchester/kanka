@@ -101,8 +101,8 @@ class AclScope implements Scope
      */
     protected function applyToEntity(Builder $query, Model $model): Builder
     {
-        // @phpstan-ignore-next-line
         Permissions::createTemporaryTable();
+        // @phpstan-ignore-next-line
         return $query
             //->leftJoin('tmp_permissions as per', 'entities.id', 'per.id')
             ->private(false)

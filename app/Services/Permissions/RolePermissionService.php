@@ -97,6 +97,7 @@ class RolePermissionService
 
         $keys = array_keys($permissions);
         $collator->sort($keys);
+        $result = [];
         foreach ($keys as $key) {
             $result[$key] = $permissions[$key];
         }

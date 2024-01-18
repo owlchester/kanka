@@ -280,7 +280,7 @@ class EntityEvent extends MiscModel
     protected function saveElapsed(int $number, bool $save): int
     {
         // If comparing two days, don't save the "elapsed" part, we need to re-calc those one each page load
-        if (!$save) {
+        if (!$save || $number < 0) {
             return $number;
         }
         $this->elapsed = $number;

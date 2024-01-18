@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Calendar;
 use App\Rules\CalendarMoonOffset;
 use App\Rules\CalendarFormat;
 use App\Traits\ApiRequest;
@@ -67,6 +68,7 @@ class StoreCalendar extends FormRequest
             $rules['leap_year_start'] = 'required|numeric|min:1|max:255';
         }
 
+        /** @var Calendar $self */
         $self = request()->route('calendar');
         if (!empty($self)) {
             $rules['calendar_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:calendars,id';

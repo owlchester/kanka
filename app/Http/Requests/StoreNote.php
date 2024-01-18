@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Note;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -36,6 +37,8 @@ class StoreNote extends FormRequest
             'template_id' => 'nullable',
             'note_id' => 'nullable|integer|exists:notes,id',
         ];
+
+        /** @var Note $self */
         $self = request()->route('note');
         if (!empty($self)) {
             $rules['note_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:notes,id';
