@@ -48,7 +48,7 @@ class Feature extends Model
     {
         return $this->hasMany(FeatureUpvote::class);
     }
-  
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(FeatureCategory::class);
