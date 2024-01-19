@@ -7,6 +7,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Prunable;
 
 /**
  * Class CampaignBoost
@@ -22,6 +23,7 @@ class CampaignBoost extends Model
 {
     use Paginatable;
     use SoftDeletes;
+    use Prunable;
 
     /** @var string[]  */
     protected $fillable = ['user_id', 'campaign_id'];
@@ -45,5 +47,14 @@ class CampaignBoost extends Model
     public function inCooldown(): bool
     {
         return !$this->created_at->isBefore(Carbon::now()->subDays(7));
+    }
+
+    /**
+     * Automatically prune old elements from the db
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function prunable()
+    {
+        return static::where('deleted_at', '<=', now()->subDays(90));
     }
 }
