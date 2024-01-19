@@ -88,7 +88,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function campaignRoleUser()
     {
@@ -97,7 +97,7 @@ trait UserRelations
 
     /**
      * List of boosts the user is giving
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function boosts()
     {
@@ -105,7 +105,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function logs()
     {
@@ -113,7 +113,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function apps()
     {
@@ -121,7 +121,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function permissions()
     {
@@ -137,7 +137,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function submissions()
     {
@@ -153,7 +153,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function plugins()
     {
@@ -175,7 +175,7 @@ trait UserRelations
 
     /**
      * List of subscription cancellations for the user
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function cancellations()
     {

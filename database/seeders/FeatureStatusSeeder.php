@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\FeatureCategory;
 use App\Models\FeatureStatus;
 use Illuminate\Database\Seeder;
 
