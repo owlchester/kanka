@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Roadmap;
 
-use App\Enums\FeatureStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFeature;
 use App\Models\Feature;
