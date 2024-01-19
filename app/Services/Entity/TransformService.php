@@ -8,7 +8,6 @@ use App\Models\Entity;
 use App\Models\Post;
 use App\Models\MiscModel;
 use App\Models\EntityLog;
-use App\Facades\Module;
 use App\Models\OrganisationMember;
 use App\Traits\EntityAware;
 use Illuminate\Support\Str;
