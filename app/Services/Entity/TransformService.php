@@ -7,6 +7,7 @@ use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\MiscModel;
+use App\Models\EntityLog;
 use App\Models\OrganisationMember;
 use App\Traits\EntityAware;
 use Illuminate\Support\Str;
@@ -236,11 +237,21 @@ class TransformService
 
     protected function finish(): self
     {
+        $type = $this->entity->entityType();
         // Update entity to its new type. We don't use a new entity to keep all mentions, attributes and
         // other related elements attached.
         $this->entity->type_id = $this->new->entityTypeID();
         $this->entity->entity_id = $this->new->id;
-        $this->entity->cleanCache()->save();
+        $this->entity->cleanCache()->withoutUpdateLog()->save();
+
+        $log = new EntityLog();
+        $log->entity_id = $this->entity->id;
+        $log->created_by = auth()->user()->id;
+        $log->action = EntityLog::ACTION_UPDATE;
+        if ($this->entity->campaign->superboosted()) {
+            $log->changes = ['entity_type' => $type];
+        }
+        $log->save();
 
         // Delete old, this will take care of pictures and stuff. We detach the
         // entity to avoid the softDelete affecting it and causing duplicate
