@@ -61,7 +61,7 @@ class CleanupService
 
     protected function removeFeatureRequests(): self
     {
-        Feature::where('created_by', $this->user->id)->where('upvote_count', '<', 10)->where('status_id', 1)->delete();
+        Feature::where('created_by', $this->user->id)->where('upvote_count', '<', 10)->where('status_id', \App\Enums\FeatureStatus::Draft)->delete();
         return $this;
     }
 
