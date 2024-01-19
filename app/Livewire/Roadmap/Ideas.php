@@ -5,7 +5,6 @@ namespace App\Livewire\Roadmap;
 use App\Models\Feature;
 use Livewire\Component;
 use Livewire\Attributes\Url;
-use Livewire\Attributes\On;
 use Livewire\WithPagination;
 
 class Ideas extends Component

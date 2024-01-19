@@ -50,4 +50,3 @@ Route::get('/w/{campaign}/search/recent', [App\Http\Controllers\Search\RecentCon
 
 //Game System Search
 Route::get('/w/{campaign}/search/systems', [App\Http\Controllers\Search\GameSystemSearchController::class, 'index'])->name('search.systems');
-
