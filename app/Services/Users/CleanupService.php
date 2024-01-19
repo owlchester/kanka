@@ -7,6 +7,7 @@ use App\Jobs\Users\UnsubscribeUser;
 use App\Models\CampaignFollower;
 use App\Models\CampaignUser;
 use App\Models\CommunityEventEntry;
+use App\Models\Feature;
 use App\Services\ImageService;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Log;
@@ -20,6 +21,7 @@ class CleanupService
         $this
             ->removeCampaigns()
             ->removeFollows()
+            ->removeFeatureRequests()
             ->removeWorldbuilding()
             ->removeAvatar()
             ->cleanCache()
@@ -54,6 +56,12 @@ class CleanupService
             //Log::info('Removing follower', ['follower' => $follower->id]);
             $follower->delete();
         }
+        return $this;
+    }
+
+    protected function removeFeatureRequests(): self
+    {
+        Feature::where('created_by', $this->user->id)->where('upvote_count', '<', 10)->where('status_id', \App\Enums\FeatureStatus::Approved)->delete();
         return $this;
     }
 
