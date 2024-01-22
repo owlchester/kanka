@@ -158,8 +158,9 @@ class ImportService
             ;
             $this->job->status_id = CampaignImportStatus::FINISHED;
         } catch (Exception $e) {
-            dump($e->getMessage());
-            dump($e->getTrace());
+            //dump($e->getMessage());
+            //dump($e->getTrace());
+            $this->logs[] = $e->getMessage();
             Log::error('Import', ['error' => $e->getMessage()]);
             $this->job->status_id = CampaignImportStatus::FAILED;
         }
