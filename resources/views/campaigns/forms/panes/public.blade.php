@@ -74,13 +74,15 @@
                 >
                 </x-forms.foreign>
 
-                <div class="genres">
+                <x-forms.field
+                    field="genre"
+                    :label="__('campaigns.fields.genre')">
                     <input type="hidden" name="campaign_genre" value="1">
                     @include('components.form.genres', ['options' => [
                         'model' => isset($model) ? $model : null,
                         'quickCreator' => false
                     ]])
-                </div>
+                </x-forms.field>
             </x-grid>
 
         </x-grid>

@@ -146,7 +146,7 @@ class CampaignService
         $cached = CampaignResource::collection($campaigns);
 
         Log::info('Create new cache', ['key' => $cacheKey, 'hours' => $hours]);
-        cache()->put($cacheKey, $cached, $hours * 60 * 60);
+        cache()->put($cacheKey, $cached, $hours * 3600);
         return $cached;
     }
 
