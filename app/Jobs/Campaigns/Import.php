@@ -82,6 +82,8 @@ class Import implements ShouldQueue
             $config['logs'] = [];
         }
         $config['logs'][] = $exception->getMessage();
-        $job->update(['config' => $config, 'status_id' => CampaignImportStatus::FAILED]);
+        $job->config = $config;
+        $job->status_id = CampaignImportStatus::FAILED;
+        $job->save();
     }
 }
