@@ -8,7 +8,7 @@ use App\Models\Quest;
 
 class QuestMapper extends MiscMapper
 {
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'quest_id', 'created_at', 'updated_at'];
+    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'quest_id', 'created_at', 'updated_at', 'location_id', 'instigator_id'];
 
     protected string $className = Quest::class;
     protected string $mappingName = 'quests';
@@ -25,6 +25,7 @@ class QuestMapper extends MiscMapper
         // @phpstan-ignore-next-line
         $this->loadModel()
             ->foreign('locations', 'location_id')
+            ->foreign('entities', 'instigator_id')
             ->saveModel()
             ->elements()
             ->entitySecond()
