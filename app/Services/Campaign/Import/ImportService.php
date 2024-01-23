@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ZipArchive;
 use Exception;
+use Throwable;
 
 class ImportService
 {
@@ -74,6 +75,7 @@ class ImportService
             ->mappers()
             ->download()
             ->process()
+            ->finish()
             ->cleanup();
     }
 
@@ -168,9 +170,10 @@ class ImportService
         return $this;
     }
 
-    protected function cleanup(): self
+    protected function finish(): self
     {
         Storage::disk('local')->deleteDirectory($this->dataPath);
+
         $config = $this->job->config;
         $config['logs'] = $this->logs;
         $this->job->config = $config;
@@ -358,5 +361,28 @@ class ImportService
 
         $this->entityMappingService->silent()->mapCampaign($this->campaign);
         return $this;
+    }
+
+    protected function cleanup(): self
+    {
+        $files = $this->job->config['files'];
+        foreach ($files as $file) {
+            Storage::disk('s3')->delete($file);
+        }
+        return $this;
+    }
+
+    public function fail(Throwable $e): self
+    {
+        $config = $this->job->config;
+        if (!isset($config['logs'])) {
+            $config['logs'] = [];
+        }
+        $config['logs'][] = $e->getMessage();
+        $this->job->config = $config;
+        $this->job->status_id = CampaignImportStatus::FAILED;
+        $this->job->save();
+
+        return $this->cleanup();
     }
 }

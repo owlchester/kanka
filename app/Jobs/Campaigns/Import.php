@@ -77,13 +77,11 @@ class Import implements ShouldQueue
             Log::info('Campaign import', ['empty', 'id' => $this->jobID]);
             return 0;
         }
-        $config = $job->config;
-        if (!isset($config['logs'])) {
-            $config['logs'] = [];
-        }
-        $config['logs'][] = $exception->getMessage();
-        $job->config = $config;
-        $job->status_id = CampaignImportStatus::FAILED;
-        $job->save();
+
+        /** @var ImportService $service */
+        $service = app()->make(ImportService::class);
+        $service
+            ->job($job)
+            ->fail($exception);
     }
 }
