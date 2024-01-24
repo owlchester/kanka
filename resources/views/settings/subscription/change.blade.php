@@ -5,9 +5,12 @@
 <article class="text-center max-w-xl container">
 
     <x-grid type="1/1">
-    @if ($user->isFrauding())
+    @if (!$user->isFrauding())
+        @php
+            $user->requiresEmail();
+        @endphp
         <x-alert type="warning">
-            {{ __('settings.subscription.errors.failed', ['email' => config('app.email')]) }}
+            {{ __('emails/validation.modal') }}
         </x-alert></div><?php return; ?>
     @endif
 
@@ -76,7 +79,7 @@
                 </li>
                 <li role="presentation">
                     <a href="#giropay" aria-controls="settings" role="tab" data-toggle="tab">
-                        giropay
+                        Giropay
                     </a>
                 </li>
                 @endif

@@ -34,3 +34,5 @@ Route::get('roadmap', [App\Http\Controllers\Roadmap\RoadmapController::class, 'i
 Route::get('roadmap/{feature}', [App\Http\Controllers\Roadmap\FeatureController::class, 'show'])->name('roadmap.feature.show');
 Route::post('roadmap/{feature}/upvote', [App\Http\Controllers\Roadmap\FeatureController::class, 'upvote'])->name('roadmap.upvote');
 Route::post('roadmap/submit', [App\Http\Controllers\Roadmap\FeatureController::class, 'store'])->name('roadmap.store');
+
+Route::get('/users/{user}/validation', [App\Http\Controllers\User\EmailValidationController::class, 'validateEmail'])->name('validation.email');
