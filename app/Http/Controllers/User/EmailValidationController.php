@@ -7,10 +7,8 @@ use App\Models\UserValidation;
 use App\User;
 use Illuminate\Http\Request;
 
-
 class EmailValidationController extends Controller
 {
-
     public function validateEmail(Request $request, User $user)
     {
         $token = $request->get('token');
@@ -26,7 +24,7 @@ class EmailValidationController extends Controller
         } else {
             response()->redirectTo(route('settings.subscription'))->withError(__('emails/validation.error'));
         }
-        
+
         return response()->redirectTo(route('settings.subscription'))->withSuccess(__('emails/validation.success'));
     }
 }

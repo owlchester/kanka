@@ -441,7 +441,7 @@ class User extends \Illuminate\Foundation\Auth\User
         if ($validation) {
             return false;
         }
-        
+
         // If the account was created recently, add some small checks
         /*if ($this->created_at->isAfter(Carbon::now()->subHour())) {
             // User's name is directly in the campaign name

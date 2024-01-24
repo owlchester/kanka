@@ -2,7 +2,6 @@
 
 namespace App\Mail\Subscription\User;
 
-use App\Models\UserValidation;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
