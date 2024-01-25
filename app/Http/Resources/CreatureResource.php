@@ -21,6 +21,7 @@ class CreatureResource extends EntityResource
         return $this->entity([
             'type' => $model->type,
             'creature_id' => $model->creature_id,
+            'is_extinct' => (bool) $model->is_extinct,
             'locations' => $locationIDs
         ]);
     }
