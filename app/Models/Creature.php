@@ -243,7 +243,6 @@ class Creature extends MiscModel
 
     /**
      * Determine if the model is extinct.
-     * @return bool
      */
     public function isExtinct(): bool
     {
