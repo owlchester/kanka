@@ -42,6 +42,7 @@ use Illuminate\Support\Collection;
  * @property array $ui_settings
  * @property boolean $is_open
  * @property boolean $is_featured
+ * @property boolean $is_discreet
  * @property Carbon $featured_until
  * @property string $featured_reason
  * @property array|null $default_images
@@ -98,6 +99,7 @@ class Campaign extends Model
         'ui_settings',
         'settings',
         'is_open',
+        'is_discreet',
     ];
 
     protected $casts = [
@@ -227,6 +229,15 @@ class Campaign extends Model
     {
         return $this->visibility_id == self::VISIBILITY_PUBLIC;
     }
+
+    /**
+     * Determine if a campaign is discreet
+     */
+    public function isDiscreet(): bool
+    {
+        return $this->is_discreet;
+    }
+
     /**
      *
      * Determine if a campaign is open to submissions

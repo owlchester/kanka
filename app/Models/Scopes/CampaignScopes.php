@@ -89,6 +89,14 @@ trait CampaignScopes
         return $query->where('is_open', $open);
     }
 
+
+    /**
+     */
+    public function scopeDiscreet(Builder $query, bool $discreet = true): Builder
+    {
+        return $query->where('is_discreet', $discreet);
+    }
+
     /**
      * Admin crud datagrid
      */
