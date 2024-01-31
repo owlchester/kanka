@@ -105,7 +105,7 @@ class CampaignService
     {
         $this->data['campaigns'] = [];
 
-        if (!$this->isDefaultRequest()) {
+        if ($this->isDefaultRequest()) {
             $this->data['campaigns'] = $this->cachedCampaigns();
         } else {
             $campaigns = Campaign::public()
