@@ -10,4 +10,10 @@ return [
     'placeholders'  => [
         'type'  => 'Herbivore, Aquatic, Mythical',
     ],
+    'fields'        => [
+        'is_extinct'    => 'Extinct',
+    ],
+    'hints'         => [
+        'is_extinct'    => 'This creature is extinct.',
+    ],
 ];
