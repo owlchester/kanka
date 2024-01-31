@@ -26,9 +26,9 @@ class SendNewFeature implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Feature $feature)
+    public function __construct(int $feature)
     {
-        $this->feature = $feature->id;
+        $this->feature = $feature;
     }
 
     /**
@@ -55,7 +55,7 @@ class SendNewFeature implements ShouldQueue
             $image = $feature->image->imageUrl();
         }
 
-        return Http::post(config('discord.webhook'), [
+        return Http::post(config('discord.webhooks.features'), [
             'content' => $content,
             'embeds' => [
                 [
@@ -68,8 +68,8 @@ class SendNewFeature implements ShouldQueue
                     ],
                     'author' => [
                         'name'  => $feature->user->name,
-                        'url'   => route('profiles.show', $feature->created_by),
-                        'icon'  => $feature->user->avatar(),
+                        'url'   => route('users.profile', $feature->created_by),
+                        'icon'  => $feature->user->getAvatarUrl(),
                     ]
                 ]
             ],
