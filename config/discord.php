@@ -16,6 +16,9 @@ return [
     'bot_secret' => getenv('DISCORD_BOT_SECRET'),
     'bot_token' => getenv('DISCORD_BOT_TOKEN'),
 
+    'webhook' => env('DISCORD_WEBHOOK', 'null'),
+    'color'   => env('DISCORD_COLOR', '7506394'),
+
     'roles' => [
         'owlbear' => 435813101506527233,
         'wyvern' => 805183678153621514,
