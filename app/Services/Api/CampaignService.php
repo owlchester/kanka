@@ -91,7 +91,7 @@ class CampaignService
     {
 
         $this->data['featured'] = [];
-        $campaigns = Campaign::public()->front()->featured()->get();
+        $campaigns = Campaign::public()->front()->featured()->discreet(false)->get();
         foreach ($campaigns as $campaign) {
             $this->data['featured'][] = new CampaignResource($campaign);
         }
@@ -112,6 +112,7 @@ class CampaignService
                 ->front((int)$this->request->get('sort_field_name'))
                 ->featured(false)
                 ->filterPublic($this->request->only(['language', 'system', 'is_boosted', 'is_open', 'genre']))
+                ->discreet(false)
                 ->paginate();
             $this->data['campaigns'] = CampaignResource::collection($campaigns);
         }

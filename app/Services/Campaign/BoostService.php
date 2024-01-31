@@ -121,8 +121,10 @@ class BoostService
             }
             $this->user->log(UserLog::TYPE_CAMPAIGN_UNBOOST);
         }
+        $boostCount = $this->campaign->boosts()->count();
+        $this->campaign->boost_count = $boostCount;
+        $this->campaign->is_discreet = 0;
 
-        $this->campaign->boost_count = $this->campaign->boosts()->count();
         $this->campaign->saveQuietly();
 
         if (isset($this->user)) {

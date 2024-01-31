@@ -83,6 +83,12 @@
                         'quickCreator' => false
                     ]])
                 </x-forms.field>
+                <x-forms.field field="discreet" :label="__('campaigns.fields.is_discreet')" :disabled="true">
+                    {!! Form::hidden('is_discreet', 0) !!}
+                    <x-checkbox :text="__('campaigns.helpers.is_discreet')">
+                        {!! Form::checkbox('is_discreet', 1, $model->is_discreet ?? '', ['disabled' => !$model->boosted() ? 'disabled' : null]) !!}
+                    </x-checkbox>
+                </x-forms.field>
             </x-grid>
 
         </x-grid>
