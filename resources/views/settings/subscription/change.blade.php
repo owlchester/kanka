@@ -6,8 +6,10 @@
 
     <x-grid type="1/1">
     @if (!$user->isFrauding())
+        @inject('emailService', 'App\Services\Users\EmailValidationService')
         @php
-            $user->requiresEmail();
+            /** @var \App\Services\Users\EmailValidationService $emailService */
+            $emailService->user($user)->requiresEmail();
         @endphp
         <x-alert type="warning">
             {{ __('emails/validation.modal') }}
@@ -79,7 +81,7 @@
                 </li>
                 <li role="presentation">
                     <a href="#giropay" aria-controls="settings" role="tab" data-toggle="tab">
-                        Giropay
+                        giropay
                     </a>
                 </li>
                 @endif

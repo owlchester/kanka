@@ -14,7 +14,7 @@ return new class () extends Migration {
             $table->id();
             $table->uuid('token');
             $table->unsignedInteger('user_id');
-            $table->boolean('is_valid');
+            $table->boolean('is_valid')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();

@@ -18,9 +18,8 @@ class EmailValidationJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /** @var int user id */
-    protected $user;
-    protected $token;
+    protected int $user;
+    protected string $token;
 
     /**
      */
@@ -41,12 +40,12 @@ class EmailValidationJob implements ShouldQueue
         if (empty($user)) {
             return;
         }
-
+        $url = route('validation.email', ['user' => $user, 'token' => $this->token]);
         // Send an email to the user
         Mail::to($user->email)
             ->locale($user->locale)
             ->send(
-                new ValidationEmail($user, $this->token)
+                new ValidationEmail($user, $url)
             );
     }
 }

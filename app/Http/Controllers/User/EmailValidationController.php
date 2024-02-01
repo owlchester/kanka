@@ -11,6 +11,10 @@ class EmailValidationController extends Controller
 {
     public function validateEmail(Request $request, User $user)
     {
+        if (!(auth()->check() && auth()->user()->id == $user->id)) {
+            return response()->redirectTo(route('settings.subscription'))->withError(__('emails/validation.error'));
+        }
+
         $token = $request->get('token');
 
         /** @var UserValidation $validation */

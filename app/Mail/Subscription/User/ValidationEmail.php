@@ -12,11 +12,8 @@ class ValidationEmail extends Mailable
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var User
-     */
-    public $user;
-    public $token;
+    public User $user;
+    public string $url;
 
 
     public $date;
@@ -26,10 +23,10 @@ class ValidationEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user, string $token)
+    public function __construct(User $user, string $url)
     {
         $this->user = $user;
-        $this->token = $token;
+        $this->url = $url;
     }
 
     /**

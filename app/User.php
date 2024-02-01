@@ -17,11 +17,8 @@ use App\Models\Pledge;
 use App\Models\Scopes\UserScope;
 use App\Models\UserLog;
 use App\Models\UserSetting;
-use App\Models\UserFlag;
-use App\Models\UserValidation;
 use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
-use App\Jobs\Emails\Subscriptions\EmailValidationJob;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
@@ -437,7 +434,7 @@ class User extends \Illuminate\Foundation\Auth\User
             return false;
         }
 
-        $validation = UserValidation::where('user_id', $this->id)->where('is_valid', true)->first();
+        $validation = $this->userValidation->valid()->first();
         if ($validation) {
             return false;
         }
@@ -460,35 +457,6 @@ class User extends \Illuminate\Foundation\Auth\User
             ->where('type_id', UserLog::TYPE_FAILED_CHARGE_EMAIL)
             ->whereDate('created_at', '>=', Carbon::now()->subHour()->toDateString())
             ->count() >= 2;
-    }
-
-    public function requiresEmail(): self
-    {
-        $token = UserValidation::where('user_id', $this->id)->first();
-        if ($token && $token->is_valid) {
-            return $this;
-        }
-        //Check for existing token
-        $flag = UserFlag::where('user_id', $this->id)->where('flag', UserFlag::FLAG_EMAIL)->first();
-
-        if (!$flag) {
-            $flag = new UserFlag();
-            $flag->user_id = $this->id;
-            $flag->flag = UserFlag::FLAG_EMAIL;
-            $flag->save();
-        }
-
-        if (!$token) {
-            $token = new UserValidation();
-            $token->token = Str::uuid();
-            $token->user_id = $this->id;
-            $token->is_valid = false;
-            $token->save();
-        }
-
-        EmailValidationJob::dispatch($this, $token->token);
-
-        return $this;
     }
 
     /**
