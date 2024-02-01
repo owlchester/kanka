@@ -72,7 +72,7 @@ class SubscriptionController extends Controller
         ));
     }
 
-    public function change(Request $request)
+    public function change(Request $request, Tier $tier)
     {
         $user = $request->user();
         $period = $request->get('period', 'monthly');

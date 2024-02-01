@@ -71,7 +71,7 @@ TEXT
         'superboosted'                      => 'Superboosted by',
         'system'                            => 'System',
         'theme'                             => 'Theme',
-        'vanity'                            => 'Vantity URL',
+        'vanity'                            => 'Vanity URL',
         'visibility'                        => 'Visibility',
     ],
     'following'                         => 'Following',
