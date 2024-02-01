@@ -49,11 +49,6 @@ class SendNewFeature implements ShouldQueue
 
         $title = 'New feature request: "' . $feature->name . '" open for votes';
         $content = 'New feature up for voting!';
-        $image = '';
-
-        if ($feature->image) {
-            $image = $feature->image->imageUrl();
-        }
 
         return Http::post(config('discord.webhooks.features'), [
             'content' => $content,
@@ -63,9 +58,6 @@ class SendNewFeature implements ShouldQueue
                     'description' => $feature->description,
                     'color' => config('discord.color'),
                     'url'   => route('roadmap.feature.show', $this->feature),
-                    'thumbnail' => [
-                        'url' => $image,
-                    ],
                     'author' => [
                         'name'  => $feature->user->name,
                         'url'   => route('users.profile', $feature->created_by),
