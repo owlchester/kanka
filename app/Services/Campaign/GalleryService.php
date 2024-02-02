@@ -210,7 +210,9 @@ class GalleryService
         $this->folders = ['' => __('campaigns/gallery.no_folder')];
 
         /** @var Image[] $rootFolders */
-        $rootFolders = $this->campaign->images()->folders()->whereNull('folder_id')
+        $rootFolders = $this->campaign->images()
+            ->folders()
+            ->whereNull('folder_id')
             ->with('folders')
             ->select(['id', 'name'])
             ->orderBy('name')

@@ -36,7 +36,7 @@ class SendNewFeature implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         /** @var Feature|null $feature */
         $feature = Feature::find($this->feature);
@@ -50,7 +50,7 @@ class SendNewFeature implements ShouldQueue
         $title = 'New feature request: "' . $feature->name . '" open for votes';
         $content = 'New feature up for voting!';
 
-        return Http::post(config('discord.webhooks.features'), [
+        Http::post(config('discord.webhooks.features'), [
             'content' => $content,
             'embeds' => [
                 [

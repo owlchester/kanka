@@ -159,7 +159,12 @@ class Campaign extends Model
     public function admins()
     {
         $users = [];
-        foreach ($this->roles()->with(['users', 'users.user'])->where('is_admin', '1')->get() as $role) {
+        // @phpstan-ignore-next-line
+        $roles = $this->roles()
+            ->with(['users', 'users.user'])
+            ->where('is_admin', '1')
+            ->get();
+        foreach ($roles as $role) {
             foreach ($role->users as $user) {
                 if (!isset($users[$user->id])) {
                     $users[$user->user->id] = $user->user;

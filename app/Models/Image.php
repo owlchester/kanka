@@ -12,6 +12,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -79,22 +81,22 @@ class Image extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function campaign()
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);
     }
 
-    public function imageFolder()
+    public function imageFolder(): BelongsTo
     {
         return $this->belongsTo(Image::class, 'folder_id', 'id');
     }
 
-    public function images()
+    public function images(): HasMany
     {
         return $this->hasMany(Image::class, 'folder_id', 'id');
     }
 
-    public function folders()
+    public function folders(): HasMany
     {
         return $this->hasMany(Image::class, 'folder_id', 'id')
             ->where('is_folder', true);

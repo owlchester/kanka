@@ -123,7 +123,7 @@ class BoostService
         }
         $boostCount = $this->campaign->boosts()->count();
         $this->campaign->boost_count = $boostCount;
-        $this->campaign->is_discreet = 0;
+        $this->campaign->is_discreet = false;
 
         $this->campaign->saveQuietly();
 
