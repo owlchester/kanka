@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EntityEventTypeSeeder::class);
         $this->call(EntityTypesTableSeeder::class);
         $this->call(PresetTypeTableSeeder::class);
-        //$this->call(RpgSystemsTableSeeder::class);
         $this->call(GameSystemSeeder::class);
         $this->call(ThemesTableSeeder::class);
         $this->call(RolesTableSeeder::class);
@@ -25,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PostLayoutTableSeeder::class);
         $this->call(FeatureCategorySeeder::class);
         $this->call(FeatureStatusSeeder::class);
+        $this->call(TierSeeder::class);
     }
 }
