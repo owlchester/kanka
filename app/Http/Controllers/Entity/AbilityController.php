@@ -103,6 +103,9 @@ class AbilityController extends Controller
     {
         $this->authorize('update', $entity->child);
         $ability = $entityAbility;
+        if (empty($ability->ability)) {
+            abort(403);
+        }
 
         return view('entities.pages.abilities.update', compact(
             'campaign',
