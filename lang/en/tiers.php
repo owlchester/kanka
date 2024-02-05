@@ -3,12 +3,12 @@
 return [
     'actions'   => [
         'subscribe' => [
+            'choose'    => 'Choose :tier',
             'monthly'   => ':tier monthly',
             'yearly'    => ':tier yearly',
-            'choose'    => 'Choose :tier',
         ],
     ],
-    'current' => 'Current subscription',
+    'current'   => 'Current subscription',
     'features'  => [
         'api_requests'      => 'Up to :amount API requests per min',
         'boosters'          => 'Campaign Boosters',
@@ -24,16 +24,16 @@ return [
         'vote_influence'    => 'Influence the community vote',
     ],
     'periods'   => [
-        'monthly'   => 'Monthly',
-        'yearly'    => 'Yearly',
-        'billed_yearly' => 'billed yearly',
-        'billed_monthly' => 'billed monthly',
+        'billed_monthly'    => 'billed monthly',
+        'billed_yearly'     => 'billed yearly',
+        'monthly'           => 'Monthly',
+        'yearly'            => 'Yearly',
     ],
     'pricing'   => ':currency :amount / month',
     'ribbons'   => [
         'best-value'    => 'Best value',
-        'popular'       => 'Popular',
         'current'       => 'Current subscription',
+        'popular'       => 'Popular',
     ],
     'toggle'    => [
         'yearly'    => 'Yearly (pay 10 months)',
