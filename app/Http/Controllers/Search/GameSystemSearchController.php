@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
-use App\Models\Campaign;
 use Illuminate\Http\JsonResponse;
 use App\Models\GameSystem;
 
@@ -15,7 +14,7 @@ class GameSystemSearchController extends Controller
     /**
      * Get a user's recent searches
      */
-    public function index(Campaign $campaign): JsonResponse
+    public function index(): JsonResponse
     {
         /** @var GameSystem[] $systems */
         $systems = GameSystem::where('name', 'like', '%' . request()->get('q') . '%')

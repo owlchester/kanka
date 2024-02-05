@@ -36,7 +36,7 @@ class UserController extends Controller
         $this->rows = $campaign
             ->members()
             ->sort(request()->only(['o', 'k']), ['id' => 'desc'])
-            ->with(['user', 'campaign', 'user.campaignRoles', 'user.campaignRoleUser'])
+            ->with(['user', 'campaign', 'user.campaignRoles', 'user.campaignRoleUser', 'user.tutorials'])
             ->paginate();
 
         $invitations = $campaign
