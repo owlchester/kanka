@@ -1,5 +1,5 @@
 <template>
-    <div class="flex gap-2 mb-5 justify-end items-center align-right" v-if="!isLoading">
+    <div class="flex gap-2 mb-5 justify-end items-center align-right" v-if="!isLoading && permission">
         <button class="btn2 btn-sm btn-primary" v-if="!isEditing" v-on:click="startEditing()">
             <i class="fa-solid fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
@@ -150,6 +150,7 @@ export default {
         save_api: undefined,
         entity_api: undefined,
         search_api: undefined,
+        permission: undefined,
     },
     components: {
         PinchScrollZoom,
