@@ -12,7 +12,7 @@ use Livewire\WithFileUploads;
 class Form extends Component
 {
     use WithFileUploads;
- 
+
     #[Validate('image|nullable|max:3072')] // 3MB Max
     public $file;
 

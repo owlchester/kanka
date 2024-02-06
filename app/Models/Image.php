@@ -71,7 +71,7 @@ class Image extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user()
     {
@@ -79,7 +79,6 @@ class Image extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function campaign(): BelongsTo
     {
