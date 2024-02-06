@@ -9,9 +9,20 @@ use Illuminate\Http\Request;
 
 class EmailValidationController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function validateEmail(Request $request, User $user)
     {
-        if (!(auth()->check() && auth()->user()->id == $user->id)) {
+        if (auth()->user()->id != $user->id) {
             return response()->redirectTo(route('settings.subscription'))->withError(__('emails/validation.error'));
         }
 
