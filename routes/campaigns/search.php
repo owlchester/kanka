@@ -46,4 +46,3 @@ Route::get('/w/{campaign}/search/months', 'Search\CalendarController@months')->n
 
 Route::get('/w/{campaign}/search/live', [App\Http\Controllers\Search\LiveController::class, 'index'])->name('search.live');
 Route::get('/w/{campaign}/search/recent', [App\Http\Controllers\Search\RecentController::class, 'index'])->name('search.recent');
-
