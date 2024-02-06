@@ -64,27 +64,19 @@ class Tier extends Model
 
     public function monthlyPlans(): array
     {
-        return [
-            config('subscription.' . $this->code . '.eur.monthly'),
-            config('subscription.' . $this->code . '.usd.monthly')
-        ];
+        return config('subscription.' . $this->code . '.monthly');
     }
 
     public function yearlyPlans(): array
     {
-        return [
-            config('subscription.' . $this->code . '.eur.yearly'),
-            config('subscription.' . $this->code . '.usd.yearly')
-        ];
+        return config('subscription.' . $this->code . '.yearly');
     }
 
     public function plans(): array
     {
-        return [
-            config('subscription.' . $this->code . '.eur.monthly'),
-            config('subscription.' . $this->code . '.usd.monthly'),
-            config('subscription.' . $this->code . '.eur.yearly'),
-            config('subscription.' . $this->code . '.usd.yearly'),
-        ];
+        return array_merge(
+            config('subscription.' . $this->code . '.monthly'),
+            config('subscription.' . $this->code . '.yearly'),
+        );
     }
 }

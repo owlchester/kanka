@@ -600,51 +600,42 @@ class SubscriptionService
      */
     public function owlbearPlans(): array
     {
-        return [
-            config('subscription.owlbear.eur.monthly'),
-            config('subscription.owlbear.usd.monthly'),
-            config('subscription.owlbear.eur.yearly'),
-            config('subscription.owlbear.usd.yearly'),
-        ];
+        return array_merge(
+            config('subscription.owlbear.monthly'),
+            config('subscription.owlbear.yearly'),
+        );
     }
 
     /**
      */
     public function wyvernPlans(): array
     {
-        return [
-            config('subscription.wyvern.eur.monthly'),
-            config('subscription.wyvern.usd.monthly'),
-            config('subscription.wyvern.eur.yearly'),
-            config('subscription.wyvern.usd.yearly'),
-        ];
+        return array_merge(
+            config('subscription.wyvern.monthly'),
+            config('subscription.wyvern.yearly'),
+        );
     }
 
 
     /**
      */
-    public function yearlyPlans(string $tier = null): array
+    public function yearlyPlans(): array
     {
-        return [
-            config('subscription.owlbear.eur.yearly'),
-            config('subscription.owlbear.usd.yearly'),
-            config('subscription.wyvern.eur.yearly'),
-            config('subscription.wyvern.usd.yearly'),
-            config('subscription.elemental.eur.yearly'),
-            config('subscription.elemental.usd.yearly'),
-        ];
+        return array_merge(
+            config('subscription.owlbear.yearly'),
+            config('subscription.wyvern.yearly'),
+            config('subscription.elemental.yearly'),
+        );
     }
 
     /**
      */
     public function elementalPlans(): array
     {
-        return [
-            config('subscription.elemental.eur.monthly'),
-            config('subscription.elemental.eur.yearly'),
-            config('subscription.elemental.usd.monthly'),
-            config('subscription.elemental.usd.yearly')
-        ];
+        return array_merge(
+            config('subscription.elemental.monthly'),
+            config('subscription.elemental.yearly'),
+        );
     }
 
     public function subscriptionValue(): int

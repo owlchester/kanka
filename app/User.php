@@ -497,14 +497,11 @@ class User extends \Illuminate\Foundation\Auth\User
 
     public function isStripeYearly(): bool
     {
-        $prices = [
-            config('subscription.owlbear.usd.yearly'),
-            config('subscription.owlbear.eur.yearly'),
-            config('subscription.wyvern.usd.yearly'),
-            config('subscription.wyvern.eur.yearly'),
-            config('subscription.elemental.usd.yearly'),
-            config('subscription.elemental.eur.yearly'),
-        ];
+        $prices = array_merge(
+            config('subscription.owlbear.yearly'),
+            config('subscription.wyvern.yearly'),
+            config('subscription.elemental.yearly'),
+        );
         return $this->subscribedToPrice($prices, 'kanka');
     }
 }
