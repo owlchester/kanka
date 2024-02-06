@@ -20,7 +20,7 @@
                         @error('title') <span class="text-red-300">{{ $message }}</span> @enderror
                     </div>
 
-                    @if (isset($duplicates) && !empty($duplicates))
+                    @if (isset($duplicates) && !empty($duplicates) && !$duplicates->isEmpty())
                         <div class="text-orange-300">
                             <p>This idea might already exist. Here are some similar named ideas already being voted on.</p>
                             <ul>
@@ -45,7 +45,8 @@
                 </div>
 
                 <div class="field field-description">
-                    <input type="file" wire:model="file">
+                    <label>An image is worth a thousand words. Show us how you think the idea should look like.</label>
+                    <input type="file" wire:model="file" accept=".jpg, .jpeg, .png" id="{{ rand() }}">
                     <div>
                         @error('file') <span class="text-red-300">{{ $message }}</span> @enderror
                     </div>
