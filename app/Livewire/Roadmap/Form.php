@@ -4,11 +4,18 @@ namespace App\Livewire\Roadmap;
 
 use App\Enums\FeatureStatus;
 use App\Models\Feature;
+use App\Models\FeatureFile;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Form extends Component
 {
+    use WithFileUploads;
+ 
+    #[Validate('image|nullable|max:3072')] // 3MB Max
+    public $file;
+
     #[Validate('required|min:5')]
     public string $title = '';
 
@@ -30,6 +37,14 @@ class Form extends Component
         $feat->description = $this->description;
         $feat->status_id = FeatureStatus::Draft;
         $feat->save();
+
+        if ($this->file) {
+            $file = $this->file->storeAs('features/' . $feat->id, uniqid() . '.' . $this->file->getClientOriginalExtension(), 's3');
+            $featFile = new FeatureFile();
+            $featFile->feature_id = $feat->id;
+            $featFile->path = $file;
+            $featFile->save();
+        }
 
         $this->success = true;
         $this->title = '';

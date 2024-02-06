@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -50,6 +51,11 @@ class Feature extends Model
     {
         return $this->hasOne(FeatureVote::class)
             ->where('user_id', auth()->user()->id);
+    }
+
+    public function featureFiles(): HasMany
+    {
+        return $this->hasMany(FeatureFile::class, 'feature_id', 'id');
     }
 
     public function scopeApproved(Builder $builder): Builder
