@@ -1,5 +1,18 @@
 <div class="flex gap-1">
     <div class="w-8 flex-shrink-0 text-center">
+        @if (auth()->user()->hasBoosterNomenclature())
+            <x-icon class="fa-regular fa-rocket text-boostd" />
+    </div>
+    {!! link_to('https://kanka.io/premium', 6 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
+    @else
+        <x-icon class="fa-regular fa-gem text-boost" />
+</div>
+{!! link_to('https://kanka.io/premium', 3 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
+@endif
+</div>
+
+<div class="flex gap-1">
+    <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="fa-regular fa-image" />
     </div>
     {{ __('tiers.features.file_size', ['size' => '15 MB']) }}
@@ -24,19 +37,6 @@
     <a href="{{ route('larecipe.index') }}" target="_blank">
         {{ __('tiers.features.api_requests', ['amount' => 90]) }}
     </a>
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 flex-shrink-0 text-center">
-        @if (auth()->user()->hasBoosterNomenclature())
-            <x-icon class="fa-regular fa-rocket text-boostd" />
-    </div>
-    {!! link_to('https://kanka.io/premium', 6 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
-    @else
-        <x-icon class="fa-regular fa-gem text-boost" />
-</div>
-{!! link_to('https://kanka.io/premium', 3 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
-@endif
 </div>
 
 <div class="flex gap-1">
