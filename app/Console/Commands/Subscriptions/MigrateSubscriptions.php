@@ -20,7 +20,7 @@ class MigrateSubscriptions extends Command
      *
      * @var string
      */
-    protected $description = 'Update people to the new sub price points';
+    protected $description = 'Update subscribers to the new sub pricing';
 
     /**
      * Execute the console command.
@@ -42,7 +42,7 @@ class MigrateSubscriptions extends Command
             env('STRIPE_ELEMENTAL_USD_YEARLY_OLD'),
         ];
 
-        $sub = Subscription::with(['user', 'user.subscriptions', 'user.subscriptions.owner'])
+        Subscription::with(['user', 'user.subscriptions', 'user.subscriptions.owner'])
             ->where('stripe_status', 'active')
             ->whereIn('stripe_price', $old)
             ->chunkById(200, function ($subs) {
