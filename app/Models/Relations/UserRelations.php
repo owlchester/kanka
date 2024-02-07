@@ -21,6 +21,7 @@ use App\Models\Users\Tutorial;
 use App\Models\UserValidation;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Trait UserRelations
@@ -201,7 +202,7 @@ trait UserRelations
         return $this->hasMany(FeatureVote::class);
     }
 
-    public function userValidation(): HasMany
+    public function userValidation(): HasOne
     {
         return $this->hasOne(UserValidation::class, 'user_id', 'id');
     }

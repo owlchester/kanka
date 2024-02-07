@@ -426,7 +426,7 @@ class User extends \Illuminate\Foundation\Auth\User
     public function isFrauding(): bool
     {
         // Fraud detection can be turned on or off
-        if (!config('subscription.fraud_detection')) {
+        if (config('subscription.fraud_detection')) {
             return false;
         }
         // Someone with a provider (twitter, fb) login is always considered safe
@@ -434,7 +434,7 @@ class User extends \Illuminate\Foundation\Auth\User
             return false;
         }
 
-        $validation = $this->userValidation->valid()->first();
+        $validation = $this->userValidation()->valid()->first();
         if ($validation) {
             return false;
         }

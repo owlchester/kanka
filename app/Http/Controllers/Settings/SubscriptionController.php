@@ -10,6 +10,7 @@ use App\Http\Requests\SubscriptionCancel;
 use App\Models\Tier;
 use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
+use App\Services\Users\EmailValidationService;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -22,14 +23,17 @@ class SubscriptionController extends Controller
 
     protected SubscriptionUpgradeService $subscriptionUpgrade;
 
+    protected EmailValidationService $emailValidation;
+
     /**
      * SubscriptionController constructor.
      */
-    public function __construct(SubscriptionService $service, SubscriptionUpgradeService $subscriptionUpgradeService)
+    public function __construct(SubscriptionService $service, SubscriptionUpgradeService $subscriptionUpgradeService, EmailValidationService $validationService)
     {
         $this->middleware(['auth', 'identity', 'subscriptions']);
         $this->subscription = $service;
         $this->subscriptionUpgrade = $subscriptionUpgradeService;
+        $this->emailValidation = $validationService;
     }
 
     public function index()
@@ -93,6 +97,8 @@ class SubscriptionController extends Controller
         }
         $upgrade = $this->subscriptionUpgrade->user($user)->tier($tier)->upgradePrice($period);
         $currency = $user->currencySymbol();
+        
+        $this->emailValidation->user($user)->requiresEmail();
 
         return view('settings.subscription.change', compact(
             'tier',

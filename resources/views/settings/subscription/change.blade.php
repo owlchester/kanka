@@ -6,11 +6,6 @@
 
     <x-grid type="1/1">
     @if (!$user->isFrauding())
-        @inject('emailService', 'App\Services\Users\EmailValidationService')
-        @php
-            /** @var \App\Services\Users\EmailValidationService $emailService */
-            $emailService->user($user)->requiresEmail();
-        @endphp
         <x-alert type="warning">
             {{ __('emails/validation.modal') }}
         </x-alert></div><?php return; ?>
