@@ -54,7 +54,7 @@ class SendNewFeature implements ShouldQueue
             'embeds' => [
                 [
                     'title' => $title,
-                    'description' => $feature->description,
+                    'description' => html_entity_decode($feature->description),
                     'color' => config('discord.color'),
                     'url'   => route('roadmap.feature.show', $this->feature),
                     'author' => [
