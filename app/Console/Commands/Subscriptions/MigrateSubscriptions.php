@@ -4,7 +4,6 @@ namespace App\Console\Commands\Subscriptions;
 
 use Illuminate\Console\Command;
 use Laravel\Cashier\Subscription;
-use Stripe\Stripe;
 
 class MigrateSubscriptions extends Command
 {
