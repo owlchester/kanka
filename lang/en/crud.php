@@ -242,6 +242,7 @@ return [
         'gallery_image'         => 'If the entity has no image, display an image from the campaign gallery instead.',
         'header_image'          => 'This image is placed above the entity. For best results, use a wide image.',
         'image_limitations'     => 'Supported formats: :formats. Max file size: :size.',
+        'image_dimension'       => 'Recommended dimensions: :dimension pixels.',
         'image_recommendation'  => 'Recommended dimensions: :width by :height px.',
         'is_star'               => 'Pinned elements will appear on the entity\'s overview page.',
         'tooltip'               => 'Replace the automatically generated tooltip with the following contents. Any HTML code will be stripped, but you can still mention other entities using advanced mentions.',
