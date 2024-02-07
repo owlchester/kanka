@@ -70,7 +70,7 @@
                             :title="bookmark.text"
                             class="flex gap-2 items-center ">
                             <i class="w-4" v-bind:class="bookmark.icon" aria-hidden="true"></i>
-                            {{ bookmark.text }}
+                            <span v-html="bookmark.text"></span>
                         </a>
                     </div>
                     <div class="flex flex-col gap-4" v-else>
@@ -81,7 +81,7 @@
                             :title="link.name"
                             class="flex gap-2 items-center ">
                             <i class="w-4 text-center" v-bind:class="link.icon" aria-hidden="true"></i>
-                            {{ link.name }}
+                            <span v-html="link.name"></span>
                         </a>
                     </div>
                 </div>
