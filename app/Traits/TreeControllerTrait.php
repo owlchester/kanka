@@ -127,8 +127,8 @@ trait TreeControllerTrait
         $navActions = $this->navActions;
 
         $entityTypeId = $model->entityTypeId();
-        if (!empty($this->titleKey)) {
-            $titleKey = $this->titleKey;
+        if (method_exists($this, 'titleKey')) {
+            $titleKey = $this->titleKey();
         } else {
             $titleKey = Module::plural($entityTypeId, __('entities.' . $langKey));
         }

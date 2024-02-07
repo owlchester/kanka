@@ -222,8 +222,8 @@ class CrudController extends Controller
             'entityTypeId',
             'singular',
         );
-        if (!empty($this->titleKey)) {
-            $data['titleKey'] = $this->titleKey;
+        if (method_exists($this, 'titleKey')) {
+            $data['titleKey'] = $this->titleKey();
         } else {
             $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
         }

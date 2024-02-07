@@ -34,18 +34,19 @@ class RelationController extends CrudController
     /** @var string Disable the sanitizer, handled by the observer */
     protected string $sanitizer = '';
 
-    /**  */
     protected string $filter = RelationFilter::class;
 
-    public string $titleKey;
 
     public function __construct(RelationService $relationService)
     {
         parent::__construct();
         $this->middleware('auth');
-
-        $this->titleKey = __('sidebar.relations');
         $this->relationService = $relationService;
+    }
+
+    public function titleKey(): string
+    {
+        return __('sidebar.relations');
     }
 
     /**
