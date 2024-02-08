@@ -106,8 +106,12 @@ class FilterService
         if (!empty($this->data) && in_array('tags', $availableFilters) && !isset($this->data['tags'])) {
             // Not calling from a page or order result, we can junk the filters
             if (empty($this->data['page']) && empty($this->data['order'])) {
-                $this->data['tags'] = null;
+                unset($this->data['tags']);
             }
+        }
+        // Don't support the old tags, force using tags[]
+        if (isset($this->data['tags']) && !is_array($this->data['tags'])) {
+            unset($this->data['tags']);
         }
 
         foreach ($this->data as $key => $value) {
@@ -280,8 +284,6 @@ class FilterService
         return $filters;
     }
 
-    /**
-     */
     public function activeFiltersCount(): int
     {
         return count($this->activeFilters());
@@ -329,7 +331,7 @@ class FilterService
     }
 
     /**
-     * @return $this
+     * Flag the service to save the filters in session
      */
     public function session(bool $session = true): self
     {
@@ -355,8 +357,6 @@ class FilterService
 
     /**
      * Save the filter data to the session
-     * @param array $data
-     * @return $this
      */
     protected function sessionSave(string $key, $data): self
     {
@@ -369,6 +369,7 @@ class FilterService
     }
 
     /**
+     * Prepare filters to be copied to the clipboard
      */
     public function clipboardFilters(): string
     {
