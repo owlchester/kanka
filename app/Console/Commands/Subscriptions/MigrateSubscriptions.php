@@ -21,6 +21,8 @@ class MigrateSubscriptions extends Command
      */
     protected $description = 'Update subscribers to the new sub pricing';
 
+    protected int $count = 0;
+
     /**
      * Execute the console command.
      */
@@ -45,7 +47,13 @@ class MigrateSubscriptions extends Command
             ->where('stripe_status', 'active')
             ->whereIn('stripe_price', $old)
             ->chunkById(200, function ($subs) {
+                if ($this->count > 100) {
+                    return false;
+                }
                 foreach ($subs as $s) {
+                    if ($this->count > 100) {
+                        return false;
+                    }
                     $this->info('User #' . $s->user->id . ' ' . $s->user->email);
                     try {
                         $old = $s->stripe_price;
@@ -59,6 +67,7 @@ class MigrateSubscriptions extends Command
                     } catch (\Exception $e) {
                         $this->error($e->getMessage());
                     }
+                    $this->count++;
                 }
             });
 
