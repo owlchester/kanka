@@ -22,7 +22,7 @@ class MigrateSubscriptions extends Command
     protected $description = 'Update subscribers to the new sub pricing';
 
     protected int $count = 0;
-    protected int $limit = 10;
+    protected int $limit = 20;
 
     /**
      * Execute the console command.
@@ -34,6 +34,7 @@ class MigrateSubscriptions extends Command
         Subscription::with(['user', 'user.subscriptions', 'user.subscriptions.owner'])
             ->where('stripe_status', 'active')
             ->whereIn('stripe_price', $old)
+            ->has('user')
             ->chunkById(200, function ($subs) {
                 if ($this->count > $this->limit) {
                     return false;
@@ -42,7 +43,7 @@ class MigrateSubscriptions extends Command
                     if ($this->count > $this->limit) {
                         return false;
                     }
-                    $this->info('User #' . $s->user->id . ' ' . $s->user->email);
+                    $this->info('User #' . $s->user->id . ' ' . $s->user->email . ' https://dashboard.stripe.com/customer/' . $s->user->stripe_id);
                     try {
                         $old = $s->stripe_price;
                         $new = $this->map($old);
