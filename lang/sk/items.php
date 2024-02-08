@@ -7,9 +7,10 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character' => 'Postava',
-        'price'     => 'Cena',
-        'size'      => 'Veľkosť',
+        'character'     => 'Postava',
+        'is_equipped'   => 'Vo vybavení',
+        'price'         => 'Cena',
+        'size'          => 'Veľkosť',
     ],
     'helpers'       => [
         'nested_without'    => 'Zobrazujú sa všetky predmety bez nadradeného predmetu. Kliknutím na riadok sa zobrazia podradené predmety.',

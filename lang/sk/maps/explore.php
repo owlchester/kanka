@@ -9,4 +9,5 @@ return [
     'notifications' => [
         'start-drawing' => 'Klikni na mapu, ak chceš začať kresliť mnohouholník',
     ],
+    'toggle'        => 'Otvoriť/zatvoriť všetky skupiny',
 ];

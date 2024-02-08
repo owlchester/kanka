@@ -36,6 +36,7 @@ return [
         'title'     => 'Schopnosti objektu :name',
     ],
     'update'    => [
-        'title' => 'Schopnosť objektu :name',
+        'success'   => 'Objektová schopnosť :ability bola aktualizovaná.',
+        'title'     => 'Schopnosť objektu :name',
     ],
 ];

@@ -14,6 +14,7 @@ return [
     ],
     'expired'       => 'Link vypršal',
     'helpers'       => [],
+    'progress'      => 'Stav',
     'size'          => 'Veľkosť',
     'status'        => [
         'failed'    => 'Neúspešné',
