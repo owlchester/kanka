@@ -22,7 +22,7 @@ class MigrateSubscriptions extends Command
     protected $description = 'Update subscribers to the new sub pricing';
 
     protected int $count = 0;
-    protected int $limit = 20;
+    protected int $limit = 400;
 
     /**
      * Execute the console command.
@@ -43,7 +43,7 @@ class MigrateSubscriptions extends Command
                     if ($this->count > $this->limit) {
                         return false;
                     }
-                    $this->info('User #' . $s->user->id . ' ' . $s->user->email . ' https://dashboard.stripe.com/customer/' . $s->user->stripe_id);
+                    $this->info('User #' . $s->user->id . ' ' . $s->user->email . ' https://dashboard.stripe.com/customers/' . $s->user->stripe_id);
                     try {
                         $old = $s->stripe_price;
                         $new = $this->map($old);
