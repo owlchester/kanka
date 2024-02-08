@@ -61,14 +61,15 @@ Route::get('/newsletter', [NewsletterController::class, 'index'])->name('setting
 Route::patch('/newsletter', [NewsletterController::class, 'update'])->name('settings.newsletter.save');
 
 Route::get('/subscription', [SubscriptionController::class, 'index'])->name('settings.subscription');
-Route::get('/subscription/change', [SubscriptionController::class, 'change'])->name('settings.subscription.change');
+Route::get('/subscription/change/{tier}', [SubscriptionController::class, 'change'])->name('settings.subscription.change');
 Route::get('/subscription/callback', [SubscriptionController::class, 'callback'])->name('settings.subscription.callback');
-Route::post('/subscription/change', [SubscriptionController::class, 'subscribe'])->name('settings.subscription.subscribe');
+Route::post('/subscription/change/{tier}', [SubscriptionController::class, 'subscribe'])->name('settings.subscription.subscribe');
+Route::post('/subscription/cancel', [SubscriptionController::class, 'cancel'])->name('settings.subscription.cancel');
 Route::get('/billing/payment-method', [PaymentMethodController::class, 'index'])->name('billing.payment-method');
 Route::patch('/billing/payment-method', [PaymentMethodController::class, 'save'])->name('billing.payment-method.save');
 Route::get('/billing/currency', [PaymentMethodController::class, 'currency'])->name('billing.currency');
 
-Route::post('/subscription/alt-subscribe', [SubscriptionController::class, 'altSubscribe'])->name('settings.subscription.alt-subscribe');
+Route::post('/subscription/alt-subscribe/{tier}', [SubscriptionController::class, 'altSubscribe'])->name('settings.subscription.alt-subscribe');
 Route::get('/subscription/alt-callback', [SubscriptionController::class, 'altCallback'])->name('settings.subscription.alt-callback');
 
 Route::get('/billing/history', [HistoryController::class, 'index'])->name('billing.history');
@@ -101,8 +102,8 @@ Route::post('/marketplace', 'Settings\MarketplaceController@save')
 //    ->name('settings.tutorial.disable');
 //Route::get('/tutorial/reset', 'Settings\TutorialController@reset')
 //    ->name('settings.tutorial.reset');
-Route::post('/tutorials/{code}/dismiss', [\App\Http\Controllers\Settings\TutorialController::class, 'dismiss'])->name('tutorials.dismiss');
-Route::patch('/tutorials/reset', [\App\Http\Controllers\Settings\TutorialController::class, 'reset'])->name('tutorials.reset');
+Route::post('/tutorials/{code}/dismiss', [App\Http\Controllers\Settings\TutorialController::class, 'dismiss'])->name('tutorials.dismiss');
+Route::patch('/tutorials/reset', [App\Http\Controllers\Settings\TutorialController::class, 'reset'])->name('tutorials.reset');
 
 // Campaign boosters
 Route::resources([
@@ -149,7 +150,7 @@ PayPal API
 --------------------------------------------------------------------------
 */
 
-Route::post('paypal/process-transaction', [PayPalController::class, 'processTransaction'])
+Route::post('paypal/process-transaction/{tier}', [PayPalController::class, 'processTransaction'])
     ->name('paypal.process-transaction');
 Route::get('paypal/success-transaction', [PayPalController::class, 'successTransaction'])
     ->name('paypal.transaction-success');

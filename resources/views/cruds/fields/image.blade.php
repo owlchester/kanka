@@ -23,7 +23,7 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
 }
 
 // If the image is from the gallery and the user can't browse or upload, disable the field
-$canBrowse = auth()->user()->can('browse', [\App\Models\Image::class, $campaign]);
+$canBrowse = isset($campaign) && auth()->user()->can('browse', [\App\Models\Image::class, $campaign]);
 if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
     ?><input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" /><?php
     return;
@@ -55,18 +55,20 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
                     $preset = FormCopy::field('image')->entity()->select();
                 }
             @endphp
-            <x-forms.foreign
-                :campaign="$campaign"
-                name="entity_image_uuid"
-                label=""
-                :allowClear="true"
-                :route="route('images.find', $campaign)"
-                :placeholder="__('fields.gallery.placeholder')"
-                :dropdownParent="$dropdownParent ?? null"
-                :selected="$preset">
-            </x-forms.foreign>
-            @if (!empty($model->entity) && !empty($model->entity->image_uuid) && empty($model->entity->image))
-                <input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" />
+            @if (isset($campaign) && (!isset($campaignImage) || !$campaignImage))
+                <x-forms.foreign
+                    :campaign="$campaign"
+                    name="entity_image_uuid"
+                    label=""
+                    :allowClear="true"
+                    :route="route('images.find', $campaign)"
+                    :placeholder="__('fields.gallery.placeholder')"
+                    :dropdownParent="$dropdownParent ?? null"
+                    :selected="$preset">
+                </x-forms.foreign>
+                @if (!empty($model->entity) && !empty($model->entity->image_uuid) && empty($model->entity->image))
+                    <input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" />
+                @endif
             @endif
         </div>
         @if (!empty($previewThumbnail))
@@ -87,8 +89,8 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
         @endif
     </div>
 
-    <p class="text-neutral-content m-0">
-        {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }}
+    <x-helper>
+        {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }} @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
         @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')
-    </p>
+    </x-helper>
 </div>

@@ -72,7 +72,7 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function users()
     {
@@ -114,7 +114,7 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function permissions()
     {
@@ -122,7 +122,7 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function rolePermissions()
     {

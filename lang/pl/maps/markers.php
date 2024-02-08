@@ -51,6 +51,7 @@ return [
             'stroke-opacity'    => 'Przejrzystość konturu',
             'stroke-width'      => 'Szerokość konturu',
         ],
+        'popupless'     => 'Wyświetlanie dymków',
         'size'          => 'Rozmiar',
     ],
     'helpers'       => [
@@ -60,6 +61,7 @@ return [
         'custom_icon_v2'            => 'Używaj ikon z :fontawesome, :rpgawesome, albo własnych plików SVG. Więcej instrukcji znajdziesz tutaj: :docs.',
         'custom_radius'             => 'Wybierz opcję z rozwijanej listy by określić wielkość.',
         'draggable'                 => 'Pozwala przeciągać znacznik po mapie w trybie eksploracji.',
+        'is_popupless'              => 'Wyłącza wyświetlanie dymków z opisem po najechaniu na element kursorem.',
         'label'                     => 'Wyświetla na mapie test zawierający nazwę tego znacznika albo elementu, z którym jest związany.',
         'polygon'                   => [
             'edit'  => 'Modyfikuj wielokąt przeciągając ścianki i kąty.',

@@ -5,6 +5,10 @@ return [
         'actions'   => [
             'add'   => 'Dodaj nową etykietę',
         ],
+        'create'    => [
+            'attach_success'    => '{1} Dodano etykietę :name :count elementowi.|[2,*] Dodano etykietę :name :count elementom.',
+            'modal_title'       => 'Dodaj elementy do :name',
+        ],
     ],
     'create'        => [
         'title' => 'Nowa etykieta',

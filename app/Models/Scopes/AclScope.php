@@ -101,15 +101,15 @@ class AclScope implements Scope
      */
     protected function applyToEntity(Builder $query, Model $model): Builder
     {
-        // @phpstan-ignore-next-line
         Permissions::createTemporaryTable();
+        // @phpstan-ignore-next-line
         return $query
             //->leftJoin('tmp_permissions as per', 'entities.id', 'per.id')
             ->private(false)
             ->where(function ($subquery) {
                 return $subquery
                     ->where(function ($sub) {
-                        if (request()->filled('_perm_v2')) {
+                        if (!request()->filled('_perm_v1')) {
                             return $sub
                                 ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = entities.id)'))
                                 ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());

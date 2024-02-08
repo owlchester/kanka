@@ -29,7 +29,7 @@
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
                 <x-forms.field field="entity-type" :required="true" :label="__('crud.fields.entity_type')">
-                    {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => ' recent-entity-type']) !!}
+                    {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => ' recent-entity-type', 'data-animate' => 'reveal', 'data-target' => '.field-recent-filters']) !!}
                 </x-forms.field>
 
                 <x-forms.field
@@ -64,14 +64,14 @@
                     @else
                         <x-helper>
                             {!! __('dashboard.widgets.advanced_options_boosted', [
-                    'boosted_campaign' => link_to('https://' . config('domains.front') . '/pricing', __('concept.boosted-campaign'), '#boost', ['target' => '_blank'])]) !!}
+                    'boosted_campaign' => link_to(\App\Facades\Domain::toFront('pricing'), __('concept.boosted-campaign'), '#boost', ['target' => '_blank'])]) !!}
                         </x-helper>
                     @endif
                 </div>
                 @include('dashboard.widgets.forms._name')
                 @include('dashboard.widgets.forms._width')
 
-                <x-forms.field field="orger" :label="__('dashboard.widgets.fields.order')">
+                <x-forms.field field="order" :label="__('dashboard.widgets.fields.order')">
                     {!! Form::select('config[order]', [
                 '' => __('dashboard.widgets.orders.recent'),
                 'oldest' => __('dashboard.widgets.orders.oldest'),

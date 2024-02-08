@@ -11,7 +11,7 @@
         {!! Form::file('file', array('class' => 'image ')) !!}
 
         <p class="text-neutral-content m-0">
-            {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, ogg, json', 'size' => Limit::readable()->upload()]) }}
+            {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json', 'size' => Limit::readable()->upload()]) }}
             @include('cruds.fields.helpers.share', ['max' => 25])
         </p>
     </x-forms.field>

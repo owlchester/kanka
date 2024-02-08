@@ -158,7 +158,7 @@ class DatagridRenderer2
                     }
                     continue;
                 }
-            // More specific use cases?
+                // More specific use cases?
             } elseif ($bulk === Layout::ACTION_DELETE) {
                 if (auth()->check() && auth()->user()->isAdmin()) {
                     $this->bulks[] = $bulk;
@@ -275,6 +275,6 @@ class DatagridRenderer2
         foreach($row->rowAttributes() as $attr => $val) {
             $attributes[] = 'data-' . $attr . '="' . $val . '"';
         }
-        return implode(' ' , $attributes);
+        return implode(' ', $attributes);
     }
 }

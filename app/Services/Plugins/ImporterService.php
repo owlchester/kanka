@@ -553,16 +553,16 @@ class ImporterService
                 $post->marketplace_uuid = $uuid;
             }
 
-            $visibility = \App\Enums\Visibility::All->value;
+            $visibility = Visibility::All->value;
 
             if (Arr::get($data, 'visibility') == 'admin') {
-                $visibility = \App\Enums\Visibility::Admin->value;
+                $visibility = Visibility::Admin->value;
             } elseif (Arr::get($data, 'visibility') == 'admin-self') {
-                $visibility = \App\Enums\Visibility::AdminSelf->value;
+                $visibility = Visibility::AdminSelf->value;
             } elseif (Arr::get($data, 'visibility') == 'members') {
-                $visibility = \App\Enums\Visibility::Member->value;
+                $visibility = Visibility::Member->value;
             } elseif (Arr::get($data, 'visibility') == 'self') {
-                $visibility = \App\Enums\Visibility::Self->value;
+                $visibility = Visibility::Self->value;
             }
 
             $post->name = Arr::get($data, 'name');

@@ -1,0 +1,28 @@
+<?php /** @var \App\Models\Feature $feature */ ?>
+
+<header class="bg-purple text-white rounded-t-2xl flex flex-col gap-2">
+    <div class="flex gap-2 w-full">
+        <h4 class="text-md grow !text-left">
+            {!! $feature->name !!}
+        </h4>
+        <button autofocus type="button" class="text-md self-start" onclick="this.closest('dialog').close('close')" title="{{ __('crud.delete_modal.close') }}">
+            <x-icon class="fa-regular fa-times"></x-icon>
+            <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
+        </button>
+    </div>
+    <div class="flex gap-5 w-full">
+        <p class="m-0 flex-grow text-light">
+            @if ($feature->category){!! $feature->category->name !!}@endif
+        </p>
+
+        <div class="self-end flex align-center items-center justify-center gap-2">
+            @livewire('roadmap.upvote', ['feature' => $feature, 'col' => false])
+        </div>
+    </div>
+</header>
+<article class="max-w-2xl">
+    <p>{!! nl2br($feature->description) !!}</p>
+</article>
+<footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3 md:rounded-b">
+
+</footer>

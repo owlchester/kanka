@@ -51,7 +51,6 @@ TEXT
         'open'                      => 'Open voor sollicitaties',
         'public_campaign_filters'   => 'Openbare Campaign Filters',
         'related_visibility'        => 'Gerelateerde Elementen Zichtbaarheid',
-        'rpg_system'                => 'RPG Systemen',
         'superboosted'              => 'Superboosted door',
         'system'                    => 'Systeem',
         'theme'                     => 'Thema',

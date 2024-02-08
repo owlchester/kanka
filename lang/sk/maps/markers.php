@@ -51,6 +51,7 @@ return [
             'stroke-opacity'    => 'Nepriehľadnosť ťahu',
             'stroke-width'      => 'Hrúbka ťahu',
         ],
+        'popupless'     => 'Bublina náhľadu',
         'size'          => 'Veľkosť',
     ],
     'helpers'       => [
@@ -60,6 +61,7 @@ return [
         'custom_icon_v2'            => 'Použi symboly z :fontawesome, :rpgawesome alebo vlastný SVG symbol. Zisti, ako na to v :docs.',
         'custom_radius'             => 'Vyber si vlastnú veľkosť z možností v menu, ak chceš definovať veľkosť.',
         'draggable'                 => 'Aktivovaním umožníš premiestnenie značky v Prieskumníkovi.',
+        'is_popupless'              => 'Zruší zobrazenie bubliny s náhľadom pri umiestnení kurzoru myši nad značkou.',
         'label'                     => 'Popis sa zobrazuje ako odsek textu na mape. Jeho obsah bude názov značky daného objektu.',
         'polygon'                   => [
             'edit'  => 'Klikni na mapu, ak chceš pridať danú pozíciu medzi koordináty viacuholníka.',

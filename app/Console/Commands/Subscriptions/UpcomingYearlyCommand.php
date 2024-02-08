@@ -44,14 +44,11 @@ class UpcomingYearlyCommand extends Command
      */
     public function handle()
     {
-        $plans = [
-            config('subscription.owlbear.eur.yearly'),
-            config('subscription.owlbear.usd.yearly'),
-            config('subscription.wyvern.eur.yearly'),
-            config('subscription.wyvern.usd.yearly'),
-            config('subscription.elemental.eur.yearly'),
-            config('subscription.elemental.usd.yearly'),
-        ];
+        $plans = array_merge(
+            config('subscription.owlbear.yearly'),
+            config('subscription.wyvern.yearly'),
+            config('subscription.elemental.yearly'),
+        );
 
         $now = Carbon::now()->addMonth();
         $log = "Looking for active yearly subscriptions created on month {$now->month} and day {$now->day}";

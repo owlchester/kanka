@@ -59,7 +59,7 @@
         <x-alert type="warning">
             <p>
             {!! __('entities/image.focus.unboosted', [
-    'boosted-campaigns' => link_to('https://' . config('domains.front') . '/pricing', __('concept.premium-campaigns'), ['#premium'])
+    'boosted-campaigns' => link_to(\App\Facades\Domain::toFront('pricing'), __('concept.premium-campaigns'), ['#premium'])
 ]) !!}
             </p>
         </x-alert>

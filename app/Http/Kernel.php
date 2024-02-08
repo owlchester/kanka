@@ -17,11 +17,11 @@ class Kernel extends HttpKernel
      *
      */
     protected $middleware = [
-        \App\Http\Middleware\TrustProxies::class,
+        Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
-        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
+        Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \App\Http\Middleware\TrimStrings::class,
+        Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
@@ -31,33 +31,33 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\EncryptCookies::class,
+            Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
+            Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\HttpsProtocol::class, // Force https in prod
-            \App\Http\Middleware\LocaleChange::class, // Save language changing
+            Middleware\HttpsProtocol::class, // Force https in prod
+            Middleware\LocaleChange::class, // Save language changing
             Tracking::class,
-            \App\Http\Middleware\CheckIfUserBanned::class,
-            \App\Http\Middleware\OTPMiddleware::class,
+            Middleware\CheckIfUserBanned::class,
+            Middleware\OTPMiddleware::class,
         ],
 
         'api' => [
             //Do this in the routes 'throttle:rate_limit,1',
             'bindings',
-            \App\Http\Middleware\ApiLogMiddleware::class,
+            Middleware\ApiLogMiddleware::class,
         ],
         // Used for locale-less routes like our sitemaps, go/, auth/callbacks, webhooks
         'minimum' => [
-            \App\Http\Middleware\EncryptCookies::class,
+            Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
+            Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\HttpsProtocol::class,
+            Middleware\HttpsProtocol::class,
         ]
     ];
 
@@ -72,26 +72,26 @@ class Kernel extends HttpKernel
         'localizationRedirect' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
         'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
         'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
-        'localizeDatetime' => \App\Http\Middleware\LocalizeDatetime::class,
+        'localizeDatetime' => Middleware\LocalizeDatetime::class,
         'client' => CheckClientCredentials::class, // Laravel Passport
 
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'campaign.member' => \App\Http\Middleware\CampaignMember::class,
-        'campaign.boosted' => \App\Http\Middleware\CampaignBoosted::class,
-        'campaign.superboosted' => \App\Http\Middleware\CampaignSuperBoosted::class,
+        'campaign.member' => Middleware\CampaignMember::class,
+        'campaign.boosted' => Middleware\CampaignBoosted::class,
+        'campaign.superboosted' => Middleware\CampaignSuperBoosted::class,
 
-        'translator' => \App\Http\Middleware\Translator::class,
-        'identity' => \App\Http\Middleware\Identity::class,
-        'partner' => \App\Http\Middleware\Partner::class,
+        'translator' => Middleware\Translator::class,
+        'identity' => Middleware\Identity::class,
+        'partner' => Middleware\Partner::class,
         'password.confirm' => PasswordConfirm::class,
-        'subscriptions' => \App\Http\Middleware\Subscriptions::class,
+        'subscriptions' => Middleware\Subscriptions::class,
         'fullsetup' => FullSetup::class,
-        '2fa' => \App\Http\Middleware\OTPMiddleware::class,
+        '2fa' => Middleware\OTPMiddleware::class,
 
     ];
 }

@@ -31,6 +31,7 @@ use App\Models\EntityAsset;
 use App\Models\EntityEvent;
 use App\Models\Family;
 use App\Http\Validators\HashValidator;
+use App\Models\Feature;
 use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Item;
@@ -232,6 +233,7 @@ class AppServiceProvider extends ServiceProvider
         Race::observe('App\Observers\RaceObserver');
 
         Relation::observe('App\Observers\RelationObserver');
+        Feature::observe('App\Observers\FeatureObserver');
 
         // Tell laravel that we are using bootstrap 3 to style the paginators
         //Paginator::useTailwind();

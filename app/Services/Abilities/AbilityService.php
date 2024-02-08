@@ -165,7 +165,7 @@ class AbilityService extends BaseAbilityService
         foreach ($entity->attributes->sortBy('default_order') as $attr) {
             $attributes[] = [
                 'id' => $attr->id,
-                'name' => $attr->name,
+                'name' => $attr->name(),
                 'value' => Mentions::mapAttribute($attr),
                 'type' => $attr->type,
             ];

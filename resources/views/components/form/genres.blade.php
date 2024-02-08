@@ -24,7 +24,6 @@ elseif(!empty($model)) {
     }
 }
 ?>
-<label>{{ __('campaigns.fields.genre') }}</label>
 
 <select multiple="multiple" name="genres[]" class="w-full select2 join-item campaign-genres" style="width: 100%" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
     @foreach ($genres as $genre)

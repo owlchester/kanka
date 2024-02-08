@@ -106,11 +106,8 @@ class PurgeService
                 $sub->where('users.pledge', '')
                     ->orWhereNull('users.pledge');
             })
-            // @phpstan-ignore-next-line
             ->where(DB::raw('(select count(cu2.id) from campaign_user as cu2 where cu2.user_id = users.id)'), '=', 1)
-            // @phpstan-ignore-next-line
             ->where(DB::raw('(select count(cu3.id) from campaign_user as cu3 where cu3.campaign_id = cu.campaign_id)'), '=', 1)
-            // @phpstan-ignore-next-line
             ->where(DB::raw('(select count(e.id) from entities as e where e.created_by = users.id and e.deleted_at is null)'), '<', 7)
             ->whereNull('users.stripe_id')
 

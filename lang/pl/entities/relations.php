@@ -30,8 +30,9 @@ return [
         'timeline_element'  => 'Część historii',
     ],
     'create'            => [
-        'new_title' => 'Nowa relacja',
-        'title'     => 'Nowa relacja elementu :name.',
+        'new_title'     => 'Nowa relacja',
+        'success_bulk'  => '{1} Dodano :count relacji do :entity.|[2,4] Dodano :count relacje do :entity.|[5,*] Dodano :count relacji do :entity.',
+        'title'         => 'Nowa relacja elementu :name.',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Te elementy łączy relacja obustronna. Wybór tej opcji usunie obydwie strony relacji.',
@@ -51,6 +52,10 @@ return [
         'target_relation'   => 'Relacje obiektu',
         'two_way'           => 'Stwórz relację obustronną',
         'unmirror'          => 'Zmień w relację jednostronną',
+    ],
+    'filters'           => [
+        'connection'    => 'Rodzaj relacji',
+        'name'          => 'Cel relacji',
     ],
     'helper'            => 'Ustalaj relacje między elementami, określając ich rodzaj i widoczność. Relacje można przypinać do opisu elementów.',
     'helpers'           => [

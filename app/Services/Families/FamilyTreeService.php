@@ -179,8 +179,8 @@ class FamilyTreeService
             'url' => $entity->url(),
             'thumb' => Avatar::entity($entity)->size(40)->fallback()->thumbnail(),
             'is_dead' => (bool)$entity->character->is_dead,
-            'death' => $birth,
-            'birth' => $death,
+            'death' => $death,
+            'birth' => $birth,
             'tags' => $tags,
         ];
     }
@@ -367,7 +367,7 @@ class FamilyTreeService
         }
         //dd($nodes);
         if (!isset($nodes[0]['relations'])) {
-            return [];
+            return $nodes;
         }
 
         foreach ($nodes[0]['relations'] as $i => $relation) {

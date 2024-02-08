@@ -140,7 +140,8 @@ class EntityObserver
         );
         $this->attributeService->entity($entity)->save($data);
         $sourceId = request()->post('copy_source_id');
-        if (request()->has('replace_mentions') && request()->filled('replace_mentions') && property_exists($entity->child, 'entry')) {
+
+        if (request()->has('replace_mentions') && request()->filled('replace_mentions') && $entity->child->isFillable('entry')) {
             $source = Entity::findOrFail($sourceId);
             $sourceAttributes = [];
             $entityAttributes = [];
@@ -155,7 +156,6 @@ class EntityObserver
             $entity->child->update(['entry' => $entry]);
             foreach ($entity->posts as $post) {
                 $post->entry = Str::replace($sourceAttributes, $entityAttributes, $post->entry);
-                $post->timestamps = false;
                 $post->updateQuietly();
             }
         }

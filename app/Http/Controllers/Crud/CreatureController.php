@@ -20,7 +20,7 @@ class CreatureController extends CrudController
     protected $module = 'creatures';
 
     /** @var string Model */
-    protected $model = \App\Models\Creature::class;
+    protected $model = Creature::class;
 
     /** @var string Filter */
     protected string $filter = CreatureFilter::class;

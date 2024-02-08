@@ -36,6 +36,7 @@ return [
         'title'     => 'Zdolności elementu :name',
     ],
     'update'    => [
-        'title' => 'Zdolność elementu :name',
+        'success'   => 'Zmieniono zdolność :ability elementu.',
+        'title'     => 'Zdolność elementu :name',
     ],
 ];

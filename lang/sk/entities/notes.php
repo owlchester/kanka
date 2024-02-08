@@ -47,6 +47,7 @@ return [
     'move'          => [
         'copy'          => 'Vytvoriť kópiu v cieľovom objekte',
         'copy_success'  => 'Komentár :name úspešne skopírovaný do :entity.',
+        'copy_title'    => 'Ponechať kópiu',
         'description'   => 'Zvoľ objekt, do ktorého chceš premiestniť alebo kopírovať tento komentár.',
         'entity'        => 'Cieľový objekt',
         'move'          => 'Premiestniť alebo kopírovať do iného objektu',

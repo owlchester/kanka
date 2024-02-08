@@ -164,7 +164,6 @@ class CrudController extends Controller
             // Don't use total as it won't use the distinct() filters (typically when doing
             // left join on the entities table)
             $filteredCount = $models->total();
-        //$filteredCount =  count($models); //->total()
         } else {
             /** @var Paginator $models */
             $models = $base->paginate();
@@ -223,8 +222,8 @@ class CrudController extends Controller
             'entityTypeId',
             'singular',
         );
-        if (!empty($this->titleKey)) {
-            $data['titleKey'] = $this->titleKey;
+        if (method_exists($this, 'titleKey')) {
+            $data['titleKey'] = $this->titleKey();
         } else {
             $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
         }

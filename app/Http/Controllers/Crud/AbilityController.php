@@ -22,7 +22,7 @@ class AbilityController extends CrudController
     /**
      * Crud models
      */
-    protected $model = \App\Models\Ability::class;
+    protected $model = Ability::class;
 
     protected string $filter = AbilityFilter::class;
 

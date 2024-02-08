@@ -78,9 +78,9 @@
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
 
     @vite('resources/sass/front.scss')
+    @livewireStyles
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppin">
-
     @yield('styles')
 </head>
 
@@ -101,6 +101,9 @@
 @endif
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 @include('layouts.tracking.tracking', ['frontLayout' => true, 'noads' => true])
+<div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
+@yield('modals')
 @yield('scripts')
+@livewireScripts
 </body>
 </html>

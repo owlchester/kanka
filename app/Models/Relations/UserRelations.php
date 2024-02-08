@@ -10,6 +10,7 @@ use App\Models\CampaignRole;
 use App\Models\CampaignSubmission;
 use App\Models\Entity;
 use App\Models\EntityUser;
+use App\Models\FeatureVote;
 use App\Models\PasswordSecurity;
 use App\Models\Plugin;
 use App\Models\Referral;
@@ -18,6 +19,7 @@ use App\Models\UserApp;
 use App\Models\UserFlag;
 use App\Models\Users\Tutorial;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Trait UserRelations
@@ -86,7 +88,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function campaignRoleUser()
     {
@@ -95,7 +97,7 @@ trait UserRelations
 
     /**
      * List of boosts the user is giving
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function boosts()
     {
@@ -103,7 +105,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function logs()
     {
@@ -111,7 +113,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function apps()
     {
@@ -119,7 +121,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function permissions()
     {
@@ -135,7 +137,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function submissions()
     {
@@ -151,7 +153,7 @@ trait UserRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function plugins()
     {
@@ -173,7 +175,7 @@ trait UserRelations
 
     /**
      * List of subscription cancellations for the user
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function cancellations()
     {
@@ -191,5 +193,10 @@ trait UserRelations
     public function tutorials()
     {
         return $this->hasMany(Tutorial::class);
+    }
+
+    public function upvotes(): HasMany
+    {
+        return $this->hasMany(FeatureVote::class);
     }
 }

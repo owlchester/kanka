@@ -22,7 +22,7 @@ class CreateConversations extends Migration
             $table->string('type', 45)->nullable();
             $table->string('slug')->nullable();
             $table->unsignedTinyInteger('target_id')
-                ->default(\App\Models\Conversation::TARGET_USERS);
+                ->default(App\Models\Conversation::TARGET_USERS);
 
             $table->boolean('is_private')->default(false);
             $table->boolean('is_closed')->default(false);

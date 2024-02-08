@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\SubscriptionCancel;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
@@ -11,7 +12,9 @@ use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\Pledge;
 use App\Models\Role;
+use App\Models\SubscriptionCancellation;
 use App\Models\SubscriptionSource;
+use App\Models\Tier;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Traits\UserAware;
@@ -36,8 +39,7 @@ class SubscriptionService
     public const STATUS_GRACE = 2;
     public const STATUS_CANCELLED = 3;
 
-    /** @var string */
-    protected $tier;
+    protected Tier $tier;
 
     /** @var string|null */
     protected $plan = null;
@@ -57,8 +59,8 @@ class SubscriptionService
     /** @var null|string applied coupon */
     protected $coupon = null;
 
-    /** @var int Value of the subscription */
-    protected $subscriptionValue = 0;
+    /** Value of the subscription */
+    protected float $subscriptionValue = 0;
 
     /** @var array|Request The request object */
     protected $request;
@@ -67,12 +69,9 @@ class SubscriptionService
      * @return $this
      * @throws Exception
      */
-    public function tier(string $tier): self
+    public function tier(Tier $tier): self
     {
         $this->tier = $tier;
-        if (!in_array($tier, Pledge::pledges())) {
-            throw new Exception("Unknown tier level '{$tier}'.");
-        }
         return $this;
     }
 
@@ -156,13 +155,6 @@ class SubscriptionService
         }
 
         $this->request($request);
-
-        // Switching to kobold?
-        if (empty($this->plan)) {
-            //Log::debug('Cancelling plan for user ' . $this->user->id);
-            $this->cancel(Arr::get($request, 'reason'), Arr::get($request, 'reason_custom'));
-            return $this;
-        }
 
         // Update the user's payment plan
         $paymentMethodID = Arr::get($request, 'payment_id');
@@ -281,9 +273,7 @@ class SubscriptionService
         }
 
         // Save the new sub value
-        $this->subscriptionValue =
-            ($period === 'yearly' ? 12 : 1) *
-            ($plan == 'Elemental' ? 25 : ($plan === 'Wyvern' ? 10 : 5));
+        $this->subscriptionValue = $period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
 
         return $this;
     }
@@ -302,8 +292,7 @@ class SubscriptionService
      */
     public function prepare(Request $request): Source
     {
-        $amount = $this->toElemental() ? 25 : ($this->toWyvern() ? 10 : 5);
-        $amount = ($amount * ($this->period === 'yearly' ? 11 : 1)) * 100;
+        $amount = $this->period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
 
         Stripe::setApiKey(config('cashier.secret'));
         $data = [
@@ -312,7 +301,7 @@ class SubscriptionService
             'currency' => 'eur',
             'owner' => ['email' => $this->user->email],
             'redirect' => ['return_url' => route('settings.subscription.alt-callback')],
-            'statement_descriptor' => 'Kanka ' . ucfirst($this->tier),
+            'statement_descriptor' => 'Kanka ' . $this->tier->name,
         ];
 
         if ($this->method === 'sofort') {
@@ -328,7 +317,7 @@ class SubscriptionService
         }
 
         // Create the source object
-        $source = \Stripe\Source::create($data);
+        $source = Source::create($data);
 
         // Tell stripe to attach this source to the user
         $clientSource = StripeCustomer::createSource($this->user->stripe_id, ['source' => $source->id]);
@@ -336,7 +325,7 @@ class SubscriptionService
         $subSource = SubscriptionSource::create([
             'user_id' => $this->user->id,
             'source_id' => $source->id,
-            'tier' => $this->tier,
+            'tier' => $this->tier->code,
             'period' => $this->period,
             'status' => 'prepare',
             'method' => $this->method,
@@ -368,20 +357,7 @@ class SubscriptionService
      */
     public function amount(): string
     {
-        $amount = 0;
-        if ($this->toOwlbear()) {
-            $amount = 5;
-        } elseif ($this->toWyvern()) {
-            $amount = 10;
-        } elseif ($this->toElemental()) {
-            $amount = 25;
-        }
-
-        // Offer a free month for those who sub for a year
-        if ($this->period === 'yearly') {
-            $amount *= 11;
-        }
-
+        $amount = $this->period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
         return number_format($amount, 2);
     }
 
@@ -406,13 +382,22 @@ class SubscriptionService
     /**
      * Cancel the user's subscription to Kanka
      */
-    public function cancel(string $reason = null, string $custom = null): bool
+    public function cancel(SubscriptionCancel $request): bool
     {
         $this->user->subscription('kanka')->cancel();
 
         if (!$this->webhook) {
+            SubscriptionCancellation::create([
+                'user_id' => $this->user->id,
+                'reason' => $request->reason,
+                'custom' => $request->reason_custom,
+                'tier'  => $this->user->pledge,
+                // @phpstan-ignore-next-line
+                'duration' => $this->user->subscription('kanka')->created_at->diffInDays(Carbon::now()),
+            ]);
+
             // Anything that can fail, send to a queue
-            SubscriptionCancelEmailJob::dispatch($this->user, $reason, $custom);
+            SubscriptionCancelEmailJob::dispatch($this->user, $request->reason, $request->reason_custom);
 
             // Dispatch the job when the subscription actually ends
             SubscriptionEndJob::dispatch($this->user)
@@ -448,8 +433,8 @@ class SubscriptionService
             ->firstOrFail();
         $this->user($source->user);
 
-        $amount = $source->tier === Pledge::ELEMENTAL ? 25 : ($source->tier === Pledge::WYVERN ? 10 : 5);
-        $amount = ($amount * ($source->period === 'yearly' ? 11 : 1)) * 100;
+        $this->tier(Tier::where('name', $source->tier)->first());
+        $amount = ($source->period === 'yearly' ? $this->tier->yearly : $this->tier->monthly) * 100;
 
         try {
             // Charge the user
@@ -615,71 +600,42 @@ class SubscriptionService
      */
     public function owlbearPlans(): array
     {
-        return [
-            config('subscription.owlbear.eur.monthly'),
-            config('subscription.owlbear.usd.monthly'),
-            config('subscription.owlbear.eur.yearly'),
-            config('subscription.owlbear.usd.yearly'),
-        ];
+        return array_merge(
+            config('subscription.owlbear.monthly'),
+            config('subscription.owlbear.yearly'),
+        );
     }
 
     /**
      */
     public function wyvernPlans(): array
     {
-        return [
-            config('subscription.wyvern.eur.monthly'),
-            config('subscription.wyvern.usd.monthly'),
-            config('subscription.wyvern.eur.yearly'),
-            config('subscription.wyvern.usd.yearly'),
-        ];
+        return array_merge(
+            config('subscription.wyvern.monthly'),
+            config('subscription.wyvern.yearly'),
+        );
     }
 
-    /**
-     * @param string $tier = null
-     */
-    public function monthlyPlans(string $tier = null): array
-    {
-        if (!empty($tier)) {
-            return [
-                config('subscription.' . mb_strtolower($tier) . '.eur.monthly'),
-                config('subscription.' . mb_strtolower($tier) . '.usd.monthly'),
-            ];
-        }
-        return [
-            config('subscription.owlbear.eur.monthly'),
-            config('subscription.owlbear.usd.monthly'),
-            config('subscription.wyvern.eur.monthly'),
-            config('subscription.wyvern.usd.monthly'),
-            config('subscription.elemental.eur.monthly'),
-            config('subscription.elemental.usd.monthly'),
-        ];
-    }
 
     /**
      */
-    public function yearlyPlans(string $tier = null): array
+    public function yearlyPlans(): array
     {
-        return [
-            config('subscription.owlbear.eur.yearly'),
-            config('subscription.owlbear.usd.yearly'),
-            config('subscription.wyvern.eur.yearly'),
-            config('subscription.wyvern.usd.yearly'),
-            config('subscription.elemental.eur.yearly'),
-            config('subscription.elemental.usd.yearly'),
-        ];
+        return array_merge(
+            config('subscription.owlbear.yearly'),
+            config('subscription.wyvern.yearly'),
+            config('subscription.elemental.yearly'),
+        );
     }
 
     /**
      */
     public function elementalPlans(): array
     {
-        return [
-            config('subscription.elemental.eur.monthly'),
-            config('subscription.elemental.eur.yearly'),
-            config('subscription.elemental.usd.monthly'),
-            config('subscription.elemental.usd.yearly')
-        ];
+        return array_merge(
+            config('subscription.elemental.monthly'),
+            config('subscription.elemental.yearly'),
+        );
     }
 
     public function subscriptionValue(): int
@@ -692,7 +648,7 @@ class SubscriptionService
     public function downgrading(): bool
     {
         // Elemental downgrading -> owl or wyv
-        if ($this->user->isElemental() && in_array($this->tier, [Pledge::OWLBEAR, Pledge::WYVERN])) {
+        if ($this->user->isElemental() && in_array($this->tier->code, [Pledge::OWLBEAR, Pledge::WYVERN])) {
             return true;
         }
 
@@ -702,7 +658,7 @@ class SubscriptionService
         }
 
         // Cancelling
-        return $this->tier === Pledge::KOBOLD;
+        return $this->tier->name === Pledge::KOBOLD;
     }
 
     /**
@@ -741,21 +697,21 @@ class SubscriptionService
      */
     protected function toOwlbear(): bool
     {
-        return $this->tier == Pledge::OWLBEAR;
+        return $this->tier->name == Pledge::OWLBEAR;
     }
 
     /**
      */
     protected function toWyvern(): bool
     {
-        return $this->tier == Pledge::WYVERN;
+        return $this->tier->name == Pledge::WYVERN;
     }
 
     /**
      */
     protected function toElemental(): bool
     {
-        return $this->tier == Pledge::ELEMENTAL;
+        return $this->tier->name == Pledge::ELEMENTAL;
     }
 
     /**

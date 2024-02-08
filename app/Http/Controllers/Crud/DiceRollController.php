@@ -21,7 +21,7 @@ class DiceRollController extends CrudController
     protected $module = 'dice_rolls';
 
     /** @var string Model */
-    protected $model = \App\Models\DiceRoll::class;
+    protected $model = DiceRoll::class;
 
     /** @var string Filter */
     protected string $filter = DiceRollFilter::class;

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Family;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -38,6 +39,7 @@ class StoreFamily extends FormRequest
             'template_id' => 'nullable',
         ];
 
+        /** @var Family $self */
         $self = request()->route('family');
         if (!empty($self)) {
             $rules['family_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:families,id';

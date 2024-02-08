@@ -63,12 +63,18 @@ class Remindable
         $reminder->month = (int) request()->post('calendar_month', '1');
         $reminder->day = (int) request()->post('calendar_day', '1');
         $reminder->length = $length;
-        $reminder->is_recurring = (bool) request()->post('calendar_is_recurring', '0');
+        $reminder->is_recurring = (bool) request()->post('calendar_is_recurring');
         $reminder->recurring_periodicity = request()->post('calendar_recurring_periodicity');
         $reminder->colour = request()->post('calendar_colour', '#cccccc');
         $reminder->type_id = EntityEventType::CALENDAR_DATE;
         try {
+            $dirty = $reminder->isDirty();
             $reminder->save();
+
+            if ($dirty) {
+                $entity->touchSilently();
+                $entity->child->touchSilently();
+            }
         } catch (Exception $e) {
             // Something went wrong, silence the issue
             throw $e;
