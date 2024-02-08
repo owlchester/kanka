@@ -97,8 +97,10 @@ class SubscriptionController extends Controller
         }
         $upgrade = $this->subscriptionUpgrade->user($user)->tier($tier)->upgradePrice($period);
         $currency = $user->currencySymbol();
-        
-        $this->emailValidation->user($user)->requiresEmail();
+        $validationService = false;
+        if ($user->isFrauding()) {
+            $validationService = $this->emailValidation;
+        }
 
         return view('settings.subscription.change', compact(
             'tier',
@@ -114,6 +116,7 @@ class SubscriptionController extends Controller
             'hasPromo',
             'limited',
             'isYearly',
+            'validationService',
         ));
     }
 
