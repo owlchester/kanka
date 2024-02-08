@@ -658,7 +658,7 @@ class SubscriptionService
         }
 
         // Cancelling
-        return $this->tier->name === Pledge::KOBOLD;
+        return isset($this->tier) && $this->tier->name === Pledge::KOBOLD;
     }
 
     /**
