@@ -28,20 +28,7 @@ class MigrateSubscriptions extends Command
      */
     public function handle()
     {
-        $old = [
-            env('STRIPE_OWLBEAR_EUR_OLD'),
-            env('STRIPE_OWLBEAR_EUR_YEARLY_OLD'),
-            env('STRIPE_OWLBEAR_USD_OLD'),
-            env('STRIPE_OWLBEAR_USD_YEARLY_OLD'),
-            env('STRIPE_WYVERN_EUR_OLD'),
-            env('STRIPE_WYVERN_EUR_YEARLY_OLD'),
-            env('STRIPE_WYVERN_USD_OLD'),
-            env('STRIPE_WYVERN_USD_YEARLY_OLD'),
-            env('STRIPE_ELEMENTAL_EUR_OLD'),
-            env('STRIPE_ELEMENTAL_EUR_YEARLY_OLD'),
-            env('STRIPE_ELEMENTAL_USD_OLD'),
-            env('STRIPE_ELEMENTAL_USD_YEARLY_OLD'),
-        ];
+        $old = config('subscription.old');
 
         Subscription::with(['user', 'user.subscriptions', 'user.subscriptions.owner'])
             ->where('stripe_status', 'active')
