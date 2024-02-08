@@ -270,10 +270,13 @@ class SubscriptionService
             } elseif ($plan == Pledge::OWLBEAR) {
                 WelcomeSubscriptionEmailJob::dispatch($this->user, 'owlbear');
             }
+
+            // Save the new sub value
+            if (isset($this->tier)) {
+                $this->subscriptionValue = $period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
+            }
         }
 
-        // Save the new sub value
-        $this->subscriptionValue = $period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
 
         return $this;
     }
