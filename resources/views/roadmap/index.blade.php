@@ -16,7 +16,7 @@
                     <p class="text-light">Welcome to Kanka's public roadmap, where you'll find features we are working on and upvote on features that you want to see added to Kanka.</p>
 
                     <p>
-                    <a href="https://docs.kanka.io/en/latest/guides/roadmap" class="text-white underline">Learn more about the roadmap</a>
+                    <a href="https://docs.kanka.io/en/latest/guides/roadmap.html" class="text-white underline">Learn more about the roadmap</a>
                     </p>
                 </div>
             </div>
