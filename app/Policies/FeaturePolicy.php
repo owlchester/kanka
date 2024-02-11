@@ -19,7 +19,7 @@ class FeaturePolicy
     public function create(User $user): bool
     {
         // Admins can create unlimited ideas
-        if ($user->isAdmin()) {
+        if ($user->hasRole('admin')) {
             return true;
         }
         return Feature::where('created_by', auth()->user()->id)
