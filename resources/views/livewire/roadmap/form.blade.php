@@ -15,7 +15,7 @@
             @else
                 <div class="field field-name">
                     <label>One sentence that summarises your idea</label>
-                    <input type="text" maxlength="90" class="rounded text-dark  w-full p-2" wire:model.blur="title" />
+                    <input type="text" maxlength="80" class="rounded text-dark  w-full p-2" wire:model.blur="title" />
                     <div>
                         @error('title') <span class="text-red-300">{{ $message }}</span> @enderror
                     </div>
