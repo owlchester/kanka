@@ -46,7 +46,7 @@ class SendNewFeature implements ShouldQueue
         }
 
         $webhook = config('discord.webhooks.features');
-        if (empty($webook)) {
+        if (empty($webhook)) {
             Log::warning('Jobs/Discord/SendNewFeature', ['no webhook defined']);
             return;
         }
