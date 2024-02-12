@@ -62,7 +62,7 @@ class SendNewFeature implements ShouldQueue
                     'title' => $title,
                     'description' => strip_tags($feature->description),
                     'color' => config('discord.color'),
-                    'url'   => route('roadmap', ['status' => 'ideas', 'idea' => $this->feature->id]),
+                    'url'   => route('roadmap', ['status' => 'ideas', 'idea' => $feature->id]),
                     'author' => [
                         'name'  => $feature->user->name,
                         'url'   => route('users.profile', $feature->created_by),
