@@ -304,7 +304,7 @@ class CampaignDashboardWidget extends Model
     {
         $entityType = $this->conf('entity');
         $entityTypeID = null;
-        if ($entityType != 'any') {
+        if ($entityType && $entityType != '') {
             $entityTypeID = (int) config('entities.ids.' . $entityType);
         }
 
