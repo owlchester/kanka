@@ -2,7 +2,7 @@
 
 @php
     $boosted = $campaign->boosted();
-    $entityTypes = ['all' => __('dashboard.widgets.random.type.all')];
+    $entityTypes = ['' => __('dashboard.widgets.random.type.all')];
 
     $entities = $entityService->campaign($campaign)->getEnabledEntitiesSorted(false, ['bookmarks']);
     $entityTypes = array_merge($entityTypes, $entities);
