@@ -305,6 +305,9 @@ trait EntityMapper
         }
 
         foreach ($this->data['entity']['entityTags'] as $data) {
+            if (!ImportIdMapper::has('tags', $data['tag_id'])) {
+                continue;
+            }
             $tagID = ImportIdMapper::get('tags', $data['tag_id']);
             $entityTag = new EntityTag();
             $entityTag->entity_id = $this->entity->id;
