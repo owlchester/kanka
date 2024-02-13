@@ -296,6 +296,7 @@ class SubscriptionService
     public function prepare(Request $request): Source
     {
         $amount = $this->period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
+        $amount *= 100;
 
         Stripe::setApiKey(config('cashier.secret'));
         $data = [
