@@ -73,4 +73,12 @@ class Reminder extends Layout
             self::ACTION_DELETE
         ];
     }
+
+    public function bulks(): array
+    {
+        return [
+            self::ACTION_EDIT,
+            self::ACTION_DELETE,
+        ];
+    }
 }

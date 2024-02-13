@@ -61,6 +61,10 @@ return [
             'show_before'   => 'Show before today',
         ],
         'start'     => '(start)',
+        'bulks'     => [
+            'patch'     => '{1} Updated :count event.|[2,*] Updated :count events.',
+            'delete'     => '{1} Deleted :count event.|[2,*] Deleted :count events.',
+        ],
     ],
     'fields'        => [
         'colour'                => 'Colour',
