@@ -143,7 +143,8 @@ function initDatagrid2Bulk() {
         }).done(function (response) {
             let target = document.getElementById('primary-dialog');
             target.innerHTML = response;
-            target.show();
+            window.openDialog('primary-dialog');
+            $(document).trigger('shown.bs.modal'); // Get tooltips, select2 and delete-confirmation to re-generate
         });
     });
 

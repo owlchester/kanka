@@ -56,7 +56,7 @@ $groups[-1] = __('crud.filters.options.none');
     </x-forms.field>
     @endif
     <x-forms.field field="font-colour" :label="__('maps/markers.fields.font_colour')">
-        {!! Form::text('font_colour', null, ['class' => ' spectrum', 'maxlength' => 6] ) !!}
+        {!! Form::text('font_colour', null, ['class' => ' spectrum', 'maxlength' => 6, 'data-append-to' => '#primary-dialog'] ) !!}
     </x-forms.field>
 
     <x-forms.field field="is-draggable" :label="__('maps/markers.fields.is_draggable')">
@@ -68,7 +68,7 @@ $groups[-1] = __('crud.filters.options.none');
     </x-forms.field>
 
     <x-forms.field field="bg-colour" :label="__('maps/markers.fields.bg_colour')">
-        {!! Form::text('colour', null, ['class' => ' spectrum', 'maxlength' => 6] ) !!}
+        {!! Form::text('colour', null, ['class' => ' spectrum', 'maxlength' => 6, 'data-append-to' => '#primary-dialog'] ) !!}
     </x-forms.field>
 
     <x-forms.field field="group" :label="__('maps/markers.fields.group')">
