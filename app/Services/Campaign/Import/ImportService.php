@@ -47,6 +47,8 @@ class ImportService
 
     protected EntityMappingService $entityMappingService;
 
+    protected int $originalCampaignID;
+
     protected string $dataPath;
 
     protected array $mappers;
@@ -211,6 +213,8 @@ class ImportService
             ->data($data)
             ->campaign($this->campaign)
             ->import();
+
+        $this->originalCampaignID = (int) $data['id'];
         return $this;
     }
 
@@ -286,6 +290,8 @@ class ImportService
                 }
                 $filePath = Str::replace($this->dataPath, '', $file);
                 $data = $this->open($filePath);
+                // Add the original campaign id for gallery image mapping
+                $data['campaign_id'] = $this->originalCampaignID;
                 // @phpstan-ignore-next-line
                 $mapper
                     ->path($this->dataPath . '/')
