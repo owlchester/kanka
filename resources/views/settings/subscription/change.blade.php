@@ -5,10 +5,7 @@
 <article class="text-center max-w-xl container">
 
     <x-grid type="1/1">
-    @if ($validationService)
-        @php
-            $validationService->user($user)->requiresEmail();
-        @endphp
+    @if ($user->isFrauding())
         <x-alert type="warning">
             {{ __('emails/validation.modal') }}
         </x-alert></div><?php return; ?>
