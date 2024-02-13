@@ -225,7 +225,7 @@ class SubscriptionService
 
         // If downgrading, send admins an email, and let stripe deal with the rest. A user update hook will be thrown
         // when the user really changes. Probably?
-        if ($this->downgrading()) {
+        if (!$this->webhook && $this->downgrading()) {
             SubscriptionDowngradedEmailJob::dispatch(
                 $this->user,
                 Arr::get($this->request, 'reason'),
@@ -270,10 +270,13 @@ class SubscriptionService
             } elseif ($plan == Pledge::OWLBEAR) {
                 WelcomeSubscriptionEmailJob::dispatch($this->user, 'owlbear');
             }
+
+            // Save the new sub value
+            if (isset($this->tier)) {
+                $this->subscriptionValue = $period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
+            }
         }
 
-        // Save the new sub value
-        $this->subscriptionValue = $period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
 
         return $this;
     }
@@ -658,7 +661,7 @@ class SubscriptionService
         }
 
         // Cancelling
-        return $this->tier->name === Pledge::KOBOLD;
+        return isset($this->tier) && $this->tier->name === Pledge::KOBOLD;
     }
 
     /**

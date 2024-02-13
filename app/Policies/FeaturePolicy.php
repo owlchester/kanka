@@ -18,6 +18,10 @@ class FeaturePolicy
 
     public function create(User $user): bool
     {
+        // Admins can create unlimited ideas
+        if ($user->hasRole('admin')) {
+            return true;
+        }
         return Feature::where('created_by', auth()->user()->id)
             ->whereDate('created_at', Carbon::today())
             ->count() < 10;

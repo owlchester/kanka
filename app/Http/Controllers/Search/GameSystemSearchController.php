@@ -18,7 +18,8 @@ class GameSystemSearchController extends Controller
     {
         /** @var GameSystem[] $systems */
         $systems = GameSystem::where('name', 'like', '%' . request()->get('q') . '%')
-            ->withCount('campaignSystem')->orderBy('campaign_system_count', 'desc')
+            ->withCount('campaignSystem')
+            ->orderBy('campaign_system_count', 'desc')
             ->orderBy('name', 'asc')
             ->limit(20)
             ->get();
@@ -30,6 +31,15 @@ class GameSystemSearchController extends Controller
             ];
 
             $formatted[] = $format;
+        }
+
+        // Add Other if it's empty
+        if (empty($formatted)) {
+            $other = GameSystem::where('name', 'Other')->first();
+            $formatted[] = [
+                'id' => $other->id,
+                'text' => __('sidebar.other')
+            ];
         }
 
         return response()->json(

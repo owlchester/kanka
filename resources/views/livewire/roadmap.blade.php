@@ -63,8 +63,8 @@
     </div>
     @elseif ($status === 'done')
         <div id="done">
-            <h2>Coming soon</h2>
-            <p class="text-light">Ideas that are implemented into Kanka will appear here.</p>
+            <h2 class="text-purple">Coming soon</h2>
+            <p class="">Ideas that are implemented into Kanka will appear here.</p>
         </div>
 
     @endif

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
+ * @property array $config
  * @property CampaignImportStatus $status_id
  * @property Campaign $campaign
  * @property User $user

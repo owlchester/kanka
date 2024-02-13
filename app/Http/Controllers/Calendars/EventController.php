@@ -16,6 +16,7 @@ use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 use Exception;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -77,9 +78,9 @@ class EventController extends Controller
     {
         $this->authorize('update', $calendar);
 
-        $date = request()->get('date');
+        $date = request()->get('date', '1-1-1');
         list($year, $month, $day) = explode('-', $date);
-        if (str_starts_with($date, '-')) {
+        if (Str::startsWith($date, '-')) {
             list($year, $month, $day) = explode('-', trim($date, '-'));
             $year = "-{$year}";
         }

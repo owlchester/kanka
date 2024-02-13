@@ -40,7 +40,7 @@
             class="cursor-pointer"
             wire:click="loadEntities"
         >
-            Load More
+            {{ __('entities/story.actions.load_more') }}
         </a>
     </div>
 @endif

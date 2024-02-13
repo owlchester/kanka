@@ -8,7 +8,7 @@
 $entity = $widget->entity;
 $calendar = $entity->child;
 // Todo: move this to the query
-if (empty($calendar)) {
+if (empty($calendar) || $calendar->missingDetails()) {
     return;
 }
 ?>

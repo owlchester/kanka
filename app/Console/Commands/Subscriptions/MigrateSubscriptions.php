@@ -21,37 +21,34 @@ class MigrateSubscriptions extends Command
      */
     protected $description = 'Update subscribers to the new sub pricing';
 
+    protected int $count = 0;
+    protected int $limit = 400;
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $old = [
-            env('STRIPE_OWLBEAR_EUR_OLD'),
-            env('STRIPE_OWLBEAR_EUR_YEARLY_OLD'),
-            env('STRIPE_OWLBEAR_USD_OLD'),
-            env('STRIPE_OWLBEAR_USD_YEARLY_OLD'),
-            env('STRIPE_WYVERN_EUR_OLD'),
-            env('STRIPE_WYVERN_EUR_YEARLY_OLD'),
-            env('STRIPE_WYVERN_USD_OLD'),
-            env('STRIPE_WYVERN_USD_YEARLY_OLD'),
-            env('STRIPE_ELEMENTAL_EUR_OLD'),
-            env('STRIPE_ELEMENTAL_EUR_YEARLY_OLD'),
-            env('STRIPE_ELEMENTAL_USD_OLD'),
-            env('STRIPE_ELEMENTAL_USD_YEARLY_OLD'),
-        ];
+        $old = config('subscription.old.all');
 
         Subscription::with(['user', 'user.subscriptions', 'user.subscriptions.owner'])
             ->where('stripe_status', 'active')
             ->whereIn('stripe_price', $old)
+            ->has('user')
             ->chunkById(200, function ($subs) {
+                if ($this->count > $this->limit) {
+                    return false;
+                }
                 foreach ($subs as $s) {
-                    $this->info('User #' . $s->user->id . ' ' . $s->user->email);
+                    if ($this->count > $this->limit) {
+                        return false;
+                    }
+                    $this->info('User #' . $s->user->id . ' ' . $s->user->email . ' https://dashboard.stripe.com/customers/' . $s->user->stripe_id);
                     try {
                         $old = $s->stripe_price;
                         $new = $this->map($old);
-                        if ($new === 'error') {
-                            $this->error('Invalid old price ' . $old);
+                        if ($new === 'error' || empty($new)) {
+                            $this->error('Invalid old price ' . $old . ' to ' . $new);
                             continue;
                         }
                         $s->user->subscription('kanka')->noProrate()->swap($new);
@@ -59,6 +56,7 @@ class MigrateSubscriptions extends Command
                     } catch (\Exception $e) {
                         $this->error($e->getMessage());
                     }
+                    $this->count++;
                 }
             });
 
@@ -67,20 +65,20 @@ class MigrateSubscriptions extends Command
     protected function map(string $price): string
     {
         return match($price) {
-            env('STRIPE_OWLBEAR_EUR_OLD') => env('STRIPE_OWLBEAR_EUR'),
-            env('STRIPE_OWLBEAR_EUR_YEARLY_OLD') => env('STRIPE_OWLBEAR_EUR_YEARLY'),
-            env('STRIPE_OWLBEAR_USD_OLD') => env('STRIPE_OWLBEAR_USD'),
-            env('STRIPE_OWLBEAR_USD_YEARLY_OLD') => env('STRIPE_OWLBEAR_USD_YEARLY'),
+            config('subscription.old.oe') => config('subscription.owlbear.eur.monthly'),
+            config('subscription.old.oey') => config('subscription.owlbear.eur.yearly'),
+            config('subscription.old.ou') => config('subscription.owlbear.usd.monthly'),
+            config('subscription.old.ouy') => config('subscription.owlbear.usd.yearly'),
 
-            env('STRIPE_WYVERN_EUR_OLD') => env('STRIPE_WYVERN_EUR'),
-            env('STRIPE_WYVERN_EUR_YEARLY_OLD') => env('STRIPE_WYVERN_EUR_YEARLY'),
-            env('STRIPE_WYVERN_USD_OLD') => env('STRIPE_WYVERN_USD'),
-            env('STRIPE_WYVERN_USD_YEARLY_OLD') => env('STRIPE_WYVERN_USD_YEARLY'),
+            config('subscription.old.we') => config('subscription.wyvern.eur.monthly'),
+            config('subscription.old.wey') => config('subscription.wyvern.eur.yearly'),
+            config('subscription.old.wu') => config('subscription.wyvern.usd.monthly'),
+            config('subscription.old.wuy') => config('subscription.wyvern.usd.yearly'),
 
-            env('STRIPE_ELEMENTAL_EUR_OLD') => env('STRIPE_ELEMENTAL_EUR'),
-            env('STRIPE_ELEMENTAL_EUR_YEARLY_OLD') => env('STRIPE_ELEMENTAL_EUR_YEARLY'),
-            env('STRIPE_ELEMENTAL_USD_OLD') => env('STRIPE_ELEMENTAL_USD'),
-            env('STRIPE_ELEMENTAL_USD_YEARLY_OLD') => env('STRIPE_ELEMENTAL_USD_YEARLY'),
+            config('subscription.old.ee') => config('subscription.elemental.eur.monthly'),
+            config('subscription.old.eey') => config('subscription.elemental.eur.yearly'),
+            config('subscription.old.eu') => config('subscription.elemental.usd.monthly'),
+            config('subscription.old.euy') => config('subscription.elemental.usd.yearly'),
             default => 'error',
         };
     }

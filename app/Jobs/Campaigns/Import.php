@@ -72,5 +72,16 @@ class Import implements ShouldQueue
      */
     public function failed(Throwable $exception)
     {
+        $job = CampaignImport::find($this->jobID);
+        if (!$job) {
+            Log::info('Campaign import', ['empty', 'id' => $this->jobID]);
+            return 0;
+        }
+
+        /** @var ImportService $service */
+        $service = app()->make(ImportService::class);
+        $service
+            ->job($job)
+            ->fail($exception);
     }
 }

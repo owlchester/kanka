@@ -44,19 +44,25 @@ class SendNewFeature implements ShouldQueue
             Log::warning('Jobs/Discord/SendNewFeature', ['unknown feature', 'feature' => $this->feature]);
             return;
         }
+
+        $webhook = config('discord.webhooks.features');
+        if (empty($webhook)) {
+            Log::warning('Jobs/Discord/SendNewFeature', ['no webhook defined']);
+            return;
+        }
         Log::info('Jobs/Discord/SendNewFeature', ['start', 'feature' => $feature->id]);
 
-        $title = 'New feature request: "' . $feature->name . '" open for votes';
-        $content = 'New feature up for voting!';
+        $title = $feature->name;
+        $content = 'A new idea has been approved and can be voted on!';
 
         Http::post(config('discord.webhooks.features'), [
             'content' => $content,
             'embeds' => [
                 [
                     'title' => $title,
-                    'description' => html_entity_decode($feature->description),
+                    'description' => strip_tags($feature->description),
                     'color' => config('discord.color'),
-                    'url'   => route('roadmap.feature.show', $this->feature),
+                    'url'   => route('roadmap', ['status' => 'ideas', 'idea' => $feature->id]),
                     'author' => [
                         'name'  => $feature->user->name,
                         'url'   => route('users.profile', $feature->created_by),

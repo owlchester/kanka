@@ -124,7 +124,6 @@ trait TreeControllerTrait
         $actions = $this->navActions;
         $campaign = $this->campaign;
         $this->getNavActions();
-        $navActions = $this->navActions;
 
         $entityTypeId = $model->entityTypeId();
         if (method_exists($this, 'titleKey')) {
