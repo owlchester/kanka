@@ -286,7 +286,7 @@ class Tag extends MiscModel
     public function html(): string
     {
         return '<span class="badge ' . ($this->hasColour() ? $this->colourClass() . 'py-1 rounded-sm' : 'color-tag rounded-sm px-2 py-1') . '">'
-            . e($this->name) . '</span>';
+            . $this->name . '</span>';
     }
 
     /**

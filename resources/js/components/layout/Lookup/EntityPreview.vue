@@ -16,6 +16,9 @@
         <div class="my-1 w-full flex flex-wrap gap-1" v-if="entity.tags.length > 0">
             <a :class="tagClass(tag)" v-for="tag in entity.tags"
                 v-bind:href="tag.link"
+               :data-tag-id="tag.id"
+               :data-tag-slug="tag.slug"
+
                v-html="tag.name"
                 >
             </a>
