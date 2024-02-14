@@ -117,7 +117,7 @@
     "src": "resources/js/billing.js"
   },
   "resources/js/campaigns/import.js": {
-    "file": "assets/import-e7f5c591.js",
+    "file": "assets/import-fc2a7e41.js",
     "imports": [
       "_axios-47b9d439.js"
     ],
