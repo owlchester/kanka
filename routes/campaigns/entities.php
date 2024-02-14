@@ -121,6 +121,8 @@ Route::get('/w/{campaign}/calendars/{calendar}/events', 'Calendars\EventControll
 Route::get('/w/{campaign}/calendars/{calendar}/today', 'Crud\CalendarController@today')->name('calendars.today');
 Route::get('/w/{campaign}/calendars/{calendar}/validate-length', [App\Http\Controllers\Calendars\EventController::class, 'eventLength'])->name('calendars.event-length');
 
+Route::post('/w/{campaign}/calendars/{calendar}/calendar-events/bulk', 'Calendars\Bulks\EntityEventController@index')->name('calendars.entity-events.bulk');
+
 //        Route::get('/w/{campaign}/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
 //        Route::post('/w/{campaign}/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
 
