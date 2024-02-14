@@ -12,7 +12,7 @@ if ($widget->entity) {
         $background = Img::crop(600, 600)->url($widget->entity->image->path);
     }
 }
-if ($widget->conf('entity') && $widget->conf('entity') != '') {
+if (!empty($widget->conf('entity'))) {
     $entityString = $moduleService->plural($widget->conf('entity'), 'entities.' . Str::plural($widget->conf('entity')));
 }
 ?>
