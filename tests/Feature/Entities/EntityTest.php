@@ -55,7 +55,7 @@ it('POSTS a new character with a mention and checks that a new entity is created
         ]
     ])
     ->assertJsonFragment(['entry_parsed' => '<a href="' . env('APP_URL') .
-        '/w/1/entities/1" class="entity-mention" data-entity-tags="" data-entity-type="item" data-toggle="tooltip-ajax" data-id="1" data-url="' . 
+        '/w/1/entities/1" class="entity-mention" data-entity-tags="" data-entity-type="item" data-toggle="tooltip-ajax" data-id="1" data-url="' .
         env('APP_URL') . '/w/1/entities/1/tooltip">Mega sword</a>'])
 ;
 
