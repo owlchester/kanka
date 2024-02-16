@@ -8,7 +8,7 @@ it('setup GET')
     ->assertJsonStructure([
         'filters' => [
             'language',
-            'system',
+            'system[]',
             'is_boosted',
             'is_open',
             'genre'
