@@ -1,4 +1,4 @@
-<x-dialog.header dismiss="alert">
+<x-dialog.header>
     {{ __('settings.subscription.change.title') }}
 </x-dialog.header>
 
