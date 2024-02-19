@@ -234,7 +234,6 @@ class CampaignObserver
         $ids = request()->post('systems', []);
 
         $existing = [];
-        /** @var GameSystems $systems */
         foreach ($campaign->systems as $system) {
             $existing[$system->id] = $system->name;
         }

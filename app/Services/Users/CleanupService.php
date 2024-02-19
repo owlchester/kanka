@@ -35,8 +35,9 @@ class CleanupService
     {
         //Log::info('Services/Users/CleanupService', ['deleting', ['user' => $this->user->id]]);
 
-        // @phpstan-ignore-next-line
-        $members = CampaignUser::where('user_id', $this->user->id)->with(['campaign', 'campaign.members'])->get();
+        $members = CampaignUser::where('user_id', $this->user->id)
+            ->with(['campaign', 'campaign.members'])
+            ->get();
         foreach ($members as $member) {
             $member->delete();
 

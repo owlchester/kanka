@@ -8,7 +8,7 @@ it('setup GET')
     ->assertJsonStructure([
         'filters' => [
             'language',
-            'system',
+            'system[]',
             'is_boosted',
             'is_open',
             'genre'
@@ -84,4 +84,12 @@ it('filtering locale GET')
     ->get('/api/public/campaigns?language=fr')
     ->assertStatus(200)
     ->assertJsonCount(1, 'campaigns');
+;
+
+it('public campaigns GET buut no results due to is_discreet')
+    ->asUser()
+    ->withCampaign(['is_discreet' => true])
+    ->get('/api/public/campaigns')
+    ->assertStatus(200)
+    ->assertJsonCount(0, 'campaigns')
 ;

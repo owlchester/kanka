@@ -51,7 +51,6 @@ TEXT
         'open'                      => 'Otvoreno za prijave',
         'public_campaign_filters'   => 'Filteri javnih kampanja',
         'related_visibility'        => 'Vidljivost povezanih elemenata',
-        'rpg_system'                => 'Sustav igranja',
         'superboosted'              => 'Super pojačali',
         'system'                    => 'Sustav',
         'theme'                     => 'Tema',

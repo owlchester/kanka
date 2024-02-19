@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
-use App\Models\Campaign;
 use Illuminate\Http\JsonResponse;
 use App\Models\GameSystem;
 
@@ -15,11 +14,12 @@ class GameSystemSearchController extends Controller
     /**
      * Get a user's recent searches
      */
-    public function index(Campaign $campaign): JsonResponse
+    public function index(): JsonResponse
     {
         /** @var GameSystem[] $systems */
         $systems = GameSystem::where('name', 'like', '%' . request()->get('q') . '%')
-            ->withCount('campaignSystem')->orderBy('campaign_system_count', 'desc')
+            ->withCount('campaignSystem')
+            ->orderBy('campaign_system_count', 'desc')
             ->orderBy('name', 'asc')
             ->limit(20)
             ->get();
@@ -31,6 +31,15 @@ class GameSystemSearchController extends Controller
             ];
 
             $formatted[] = $format;
+        }
+
+        // Add Other if it's empty
+        if (empty($formatted)) {
+            $other = GameSystem::where('name', 'Other')->first();
+            $formatted[] = [
+                'id' => $other->id,
+                'text' => __('sidebar.other')
+            ];
         }
 
         return response()->json(

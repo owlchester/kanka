@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 
 class MapMapper extends MiscMapper
 {
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'map_id', 'created_at', 'updated_at'];
+    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'map_id', 'created_at', 'updated_at', 'location_id'];
 
     protected string $className = Map::class;
     protected string $mappingName = 'maps';
@@ -32,6 +32,7 @@ class MapMapper extends MiscMapper
     {
         // @phpstan-ignore-next-line
         $this->loadModel()
+            ->foreign('locations', 'location_id')
             ->groups()
             ->layers()
             ->markers()
@@ -79,7 +80,7 @@ class MapMapper extends MiscMapper
     protected function layers(): self
     {
         $fields = [
-            'name', 'position', 'image', 'height', 'width', 'entry', 'visibility_id', 'is_shown', 'type_id'
+            'name', 'position', 'image', 'height', 'width', 'entry', 'visibility_id', 'type_id'
         ];
         $this->layers = [];
         foreach ($this->data['layers'] as $data) {

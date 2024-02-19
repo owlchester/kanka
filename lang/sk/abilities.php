@@ -3,6 +3,13 @@
 return [
     'abilities'     => [],
     'children'      => [
+        'actions'       => [
+            'attach'    => 'Pripojiť k objektom',
+        ],
+        'create'        => [
+            'attach_success'    => '{1} Schopnosť :name bola pripojená k :count objektu.|[2,*] Schopnosť :name bola priradená ku :count objektom.',
+            'modal'             => 'Pripojiť :name k objektom',
+        ],
         'description'   => 'Objekty s touto schopnosťou',
         'title'         => 'Objekty schopnosti :name',
     ],

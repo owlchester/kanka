@@ -210,10 +210,7 @@ trait CampaignRelations
         return $this->hasMany(Creature::class);
     }
 
-    /**
-     * @return mixed|Image
-     */
-    public function images(): HasMany
+    public function images(): HasMany|Image
     {
         return $this->hasMany(Image::class)
             ->where('is_default', false);
@@ -249,7 +246,7 @@ trait CampaignRelations
 
     /**
      */
-    public function plugins()
+    public function plugins(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Plugin', 'campaign_plugins', 'campaign_id', 'plugin_id')
             //->using('App\Models\CampaignPlugin')
@@ -296,7 +293,7 @@ trait CampaignRelations
 
     /**
      */
-    public function editingUsers()
+    public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'entity_user')
             ->using(EntityUser::class)

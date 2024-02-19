@@ -15,12 +15,12 @@
             @else
                 <div class="field field-name">
                     <label>One sentence that summarises your idea</label>
-                    <input type="text" maxlength="90" class="rounded text-dark  w-full p-2" wire:model.blur="title" />
+                    <input type="text" maxlength="80" class="rounded text-dark  w-full p-2" wire:model.blur="title" />
                     <div>
                         @error('title') <span class="text-red-300">{{ $message }}</span> @enderror
                     </div>
 
-                    @if (isset($duplicates) && !empty($duplicates))
+                    @if (isset($duplicates) && !empty($duplicates) && !$duplicates->isEmpty())
                         <div class="text-orange-300">
                             <p>This idea might already exist. Here are some similar named ideas already being voted on.</p>
                             <ul>
@@ -41,6 +41,14 @@
                     <textarea wire:model="description" class="rounded text-dark w-full p-2" rows="5"></textarea>
                     <div>
                         @error('description') <span class="text-red-300">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="field field-description">
+                    <label>An image is worth a thousand words. Show us how you think the idea should look like.</label>
+                    <input type="file" wire:model="file" class="w-full" accept=".jpg, .jpeg, .png" id="{{ rand() }}">
+                    <div>
+                        @error('file') <span class="text-red-300">{{ $message }}</span> @enderror
                     </div>
                 </div>
 

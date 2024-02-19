@@ -1,6 +1,5 @@
 <?php
 
-
 it('GETS all entities')
     ->asUser()
     ->withCampaign()
@@ -41,11 +40,23 @@ it('Transforms entities')
     ->assertStatus(200)
 ;
 
+it('POSTS a new character with a mention and checks that a new entity is created', function () {
+    $this->asUser()
+        ->withCampaign();
+
+    $response = $this->postJson('/api/1.0/campaigns/1/characters', [
+        'name' => fake()->name(),
+        'entry' => '[new:item|Mega sword]',
+    ]);
+    $this->assertStringStartsWith('<a href="', json_decode($response->content(), true)['data']['entry_parsed']);
+})
+;
+
 it('Transfers entities')
     ->asUser()
     ->withCampaign()
+    ->withCampaigns(['created_by' => 1])
     ->withCharacters()
-    ->withCampaigns()
     ->postJson('/api/1.0/campaigns/1/transfer', [
         'entities' => [1,2,3],
         'campaign_id' => 2,
@@ -57,8 +68,8 @@ it('Transfers entities')
 it('Copies entities')
     ->asUser()
     ->withCampaign()
+    ->withCampaigns(['created_by' => 1])
     ->withCharacters()
-    ->withCampaigns()
     ->postJson('/api/1.0/campaigns/1/transfer', [
         'entities' => [1,2,3],
         'campaign_id' => 2,

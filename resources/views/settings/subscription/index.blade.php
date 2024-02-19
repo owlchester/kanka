@@ -10,6 +10,7 @@
     'title' => __('settings.subscription.manage_subscription'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
+    'centered' => true,
 ])
 
 @section('content')

@@ -13,15 +13,18 @@ return [
     'bulk'          => [
         'destroy'   => [
             'confirm'   => '¿Estás seguro de que quieres eliminar permanentemente los elementos seleccionados? Esta acción no se puede deshacer.',
+            'success'   => '{0}Ningún archivo eliminado.|{1}Un archivo eliminado.|{2,*}:count archivos eliminados.',
         ],
     ],
     'cta'           => 'Gestiona y reutiliza las imágenes a lo largo de la campaña.',
     'destroy'       => [
+        'folder'    => 'Carpeta :name eliminada.',
         'success'   => 'Imagen :name borrada.',
     ],
     'errors'        => [
         'max'           => 'Por favor, sólo seleccione hasta :count archivos a la vez.',
         'permissions'   => 'A tus roles de campaña les falta el permiso :permission para poder subir imágenes a la galería de la campaña.',
+        'storage'       => 'No hay espacio suficiente para almacenar las imágenes seleccionadas. Espacio de almacenamiento disponible: :available.',
     ],
     'fields'        => [
         'created_by'            => 'Subida por',

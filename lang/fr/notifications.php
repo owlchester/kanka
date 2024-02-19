@@ -48,6 +48,10 @@ return [
         'success'   => 'Notifications supprimées.',
         'title'     => 'Vider les notifications',
     ],
+    'features'          => [
+        'approved'  => 'Ton idée :feature a été acceptée.',
+        'rejected'  => 'Ton idée :feature a été rejetée, raison: :reason.',
+    ],
     'header'            => ':count notifications',
     'index'             => [
         'title' => 'Notifications',

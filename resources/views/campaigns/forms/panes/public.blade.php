@@ -3,14 +3,17 @@
     <x-grid type="1/1">
         @if (isset($campaign))
             <x-tutorial code="public_campaign_helper">
-                <p>
+                <p class="mb-2">
                     {!! __('campaigns/public.helpers.main', [
                         'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), null, ['target' => '_blank']),
                         'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), $campaign, ['target' => '_blank'])
                     ]) !!}
                 </p>
                 <p>
-                    <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
+                    <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank">
+                        <x-icon class="fa-solid fa-external-link-alt" />
+                        {{ __('helpers.public') }}
+                    </a>
                 </p>
             </x-tutorial>
         @endif
@@ -21,6 +24,19 @@
                 :label="__('campaigns.fields.public')"
                 >
                 {!! Form::select('is_public', [0 => __('campaigns.visibilities.private'), 1 => __('campaigns.visibilities.public')], null, ['class' => '']) !!}
+            </x-forms.field>
+
+            <x-forms.field field="discreet" :label="__('campaigns.fields.is_discreet')" :disabled="true">
+                @if (isset($model) && $model->boosted())
+                {!! Form::hidden('is_discreet', 0) !!}
+                    <x-checkbox :text="__('campaigns.helpers.is_discreet', ['public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'))])">
+                        {!! Form::checkbox('is_discreet', 1, $model->is_discreet ?? '', []) !!}
+                    </x-checkbox>
+                @else
+                    <x-checkbox :text="__('campaigns.helpers.is_discreet_locked', ['public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'))])">
+                        {!! Form::checkbox('premium_feature', 1, '', ['disabled' => 'disabled']) !!}
+                    </x-checkbox>
+                @endif
             </x-forms.field>
 
             @if (isset($model) && $model->isPublic())
@@ -55,8 +71,10 @@
                 </x-forms.field>
                 @php
                     $selected = [];
-                    foreach ($model->systems as $system) {
-                        $selected[$system->id] = $system->name;
+                    if (isset($model)) {
+                        foreach ($model->systems as $system) {
+                            $selected[$system->id] = $system->name;
+                        }
                     }
                 @endphp
                 <x-forms.foreign
@@ -67,9 +85,8 @@
                     name="systems[]"
                     id="system[]"
                     :placeholder="__('campaigns.placeholders.system')"
-                    :campaign="$campaign"
                     allowClear="true"
-                    :route="route('search.systems', ['campaign' => $campaign])"
+                    :route="route('search.systems')"
                     :selected="$selected"
                 >
                 </x-forms.foreign>
@@ -79,7 +96,7 @@
                     :label="__('campaigns.fields.genre')">
                     <input type="hidden" name="campaign_genre" value="1">
                     @include('components.form.genres', ['options' => [
-                        'model' => isset($model) ? $model : null,
+                        'model' => $model ?? null,
                         'quickCreator' => false
                     ]])
                 </x-forms.field>

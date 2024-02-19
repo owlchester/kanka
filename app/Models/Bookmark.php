@@ -337,6 +337,7 @@ class Bookmark extends MiscModel
 
         /** @var Entity|null $entity */
         $entity = Entity::inTags($this->tags->pluck('id')->toArray())
+            ->whereNotIn('entities.id', Dashboard::excluding())
             ->type($entityTypeID)
             ->inRandomOrder()
             ->first();

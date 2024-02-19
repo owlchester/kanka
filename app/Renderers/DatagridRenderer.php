@@ -362,11 +362,6 @@ class DatagridRenderer
                 }
                 $class = !empty($column['parent']) ? $this->hidden : $class;
                 if (!empty($who)) {
-                    $whoRoute = !empty($column['parent_route'])
-                        ? (is_string($column['parent_route'])
-                            ? $column['parent_route']
-                            : $column['parent_route']($model))
-                        : $this->getOption('baseRoute');
                     $route = $who->getLink();
                     $content = '<a class="entity-image cover-background" style="background-image: url(\'' . Avatar::size(40)->fallback()->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
@@ -404,19 +399,20 @@ class DatagridRenderer
                     null;
                 $class = ' text-center';
             } elseif ($type == 'calendar_date') {
-                $class = $this->hidden;
+                $class = $this->hidden . ' col-calendar-date';
                 /** @var Journal $model */
-                if ($model->entity->calendarDate) {
-                    $reminder = $model->entity->calendarDate;
-                    if (!$reminder->calendar || !$reminder->calendar->entity) {
-                        return null;
-                    }
-                    $content = link_to_route(
-                        'entities.show',
-                        $reminder->readableDate(),
-                        [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
-                    );
+                if (!$model->entity->calendarDate) {
+                    return null;
                 }
+                $reminder = $model->entity->calendarDate;
+                if (!$reminder->calendar || !$reminder->calendar->entity) {
+                    return null;
+                }
+                $content = link_to_route(
+                    'entities.show',
+                    $reminder->readableDate(),
+                    [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
+                );
             } else {
                 // Exception
                 $content = 'ERR_UNKNOWN_TYPE';

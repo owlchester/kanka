@@ -17,6 +17,7 @@ return [
     ],
     'types'     => [
         'birth'     => 'Narodenie',
+        'birthday'  => 'Narodeniny',
         'death'     => 'Smrť',
         'founded'   => 'Založenie',
         'primary'   => 'Primárny',

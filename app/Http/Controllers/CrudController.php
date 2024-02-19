@@ -36,58 +36,53 @@ class CrudController extends Controller
     use HasDatagrid;
     use HasSubview;
 
-    /** @var string The view where to find the resources */
+    /** The view where to find the resources */
     protected string $view = '';
 
-    /** @var string The name of the route for the resource */
+    /** The name of the route for the resource */
     protected string $route = '';
 
     /** @var MiscModel|Model|string|null */
-    protected $model = null;
+    protected $model;
 
     protected string $filter;
 
-    /** @var FilterService */
-    protected $filterService;
+    /** */
+    protected FilterService $filterService;
 
-    /** @var bool If the permissions tab and pane is enabled or not. */
+    /** If the permissions tab and pane is enabled or not. */
     protected bool $tabPermissions = true;
 
-    /** @var bool If the attributes tab and pane is enabled or not */
+    /** If the attributes tab and pane is enabled or not */
     protected bool $tabAttributes = true;
 
-    /** @var bool If the copy tab and pane is enabled or not */
+    /** If the copy tab and pane is enabled or not */
     protected bool $tabCopy = true;
 
-    /** @var bool If the boosted tab and pane is enabled or not */
+    /** If the boosted tab and pane is enabled or not */
     protected bool $tabBoosted = true;
 
-    /** @var array List of navigation actions on top of the datagrids */
+    /** List of navigation actions on top of the datagrids */
     protected array $navActions = [];
 
-    /** @var string Make the request play nice with the model */
+    /** Make the request play nice with the model */
     protected string $sanitizer = MiscSanitizer::class;
 
     /**
      * A sorter object for subviews
      * @var null|DatagridSorter
      */
-    protected $datagridSorter = null;
+    protected DatagridSorter $datagridSorter;
 
-    /** @var bool If the auth check was already performed on this controller */
+    /** If the auth check was already performed on this controller */
     protected bool $alreadyAuthChecked = false;
 
-    /** @var string The datagrid actions, set to null to disable */
+    /** The datagrid actions, set to null to disable */
     protected string $datagridActions = DefaultDatagridActions::class;
 
-    /** @var bool Determine if the create/store procedure has a limit checking in place */
+    /** Determine if the create/store procedure has a limit checking in place */
     protected bool $hasLimitCheck = false;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('campaign.member');
@@ -222,8 +217,8 @@ class CrudController extends Controller
             'entityTypeId',
             'singular',
         );
-        if (!empty($this->titleKey)) {
-            $data['titleKey'] = $this->titleKey;
+        if (method_exists($this, 'titleKey')) {
+            $data['titleKey'] = $this->titleKey();
         } else {
             $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
         }

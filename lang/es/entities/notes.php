@@ -44,11 +44,24 @@ return [
     'index'         => [
         'title' => 'Posts de :name',
     ],
+    'move'          => [
+        'copy'          => 'Conserva una copia del post en la entidad actual.',
+        'copy_success'  => 'Post :name movido a :entity exitosamente.',
+        'copy_title'    => 'Guarda una copia',
+        'description'   => 'Selecciona una entidad a la que mover este mensaje',
+        'entity'        => 'Entidad objetivo',
+        'move'          => 'Mover a otra entidad',
+        'move_success'  => 'Post :name movido a :entity con éxito.',
+    ],
     'placeholders'  => [
         'name'  => 'Nombre del post, observación...',
     ],
     'show'          => [
         'advanced'  => 'Permisos avanzados',
         'title'     => 'Post :name de :entity',
+    ],
+    'states'        => [
+        'collapsed' => 'Colapsado',
+        'expanded'  => 'Expandido',
     ],
 ];

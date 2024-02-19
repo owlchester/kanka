@@ -53,7 +53,6 @@ TEXT
         'open'                      => 'Megnyitás az alkalmazások számára',
         'public_campaign_filters'   => 'Publikus kampány szűrők',
         'related_visibility'        => 'Kapcsolódó elemek láthatósága',
-        'rpg_system'                => 'Szerepjáték rendszerek',
         'superboosted'              => 'Szupererősítette',
         'system'                    => 'Rendszer',
         'theme'                     => 'Téma',

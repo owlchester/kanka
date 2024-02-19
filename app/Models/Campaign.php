@@ -42,6 +42,7 @@ use Illuminate\Support\Collection;
  * @property array $ui_settings
  * @property boolean $is_open
  * @property boolean $is_featured
+ * @property boolean $is_discreet
  * @property Carbon $featured_until
  * @property string $featured_reason
  * @property array|null $default_images
@@ -98,6 +99,7 @@ class Campaign extends Model
         'ui_settings',
         'settings',
         'is_open',
+        'is_discreet',
     ];
 
     protected $casts = [
@@ -157,7 +159,12 @@ class Campaign extends Model
     public function admins()
     {
         $users = [];
-        foreach ($this->roles()->with(['users', 'users.user'])->where('is_admin', '1')->get() as $role) {
+        // @phpstan-ignore-next-line
+        $roles = $this->roles()
+            ->with(['users', 'users.user'])
+            ->where('is_admin', '1')
+            ->get();
+        foreach ($roles as $role) {
             foreach ($role->users as $user) {
                 if (!isset($users[$user->id])) {
                     $users[$user->user->id] = $user->user;
@@ -227,6 +234,15 @@ class Campaign extends Model
     {
         return $this->visibility_id == self::VISIBILITY_PUBLIC;
     }
+
+    /**
+     * Determine if a campaign is discreet
+     */
+    public function isDiscreet(): bool
+    {
+        return $this->is_discreet;
+    }
+
     /**
      *
      * Determine if a campaign is open to submissions

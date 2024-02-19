@@ -30,8 +30,9 @@ return [
         'timeline_element'  => 'Prvok časovej osy',
     ],
     'create'            => [
-        'new_title' => 'Nový vzťah',
-        'title'     => 'Vytvoriť vzťah',
+        'new_title'     => 'Nový vzťah',
+        'success_bulk'  => '{1} Pridaný :count prepojenie k :entity.|[2,4] Pridané :count prepojenia k :entity.|[5,*] Pridaných :count prepojení k :entity.',
+        'title'         => 'Vytvoriť vzťah',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Tento vzťah sa zrkadlí na cieľovom objekte. Zvoľ túto možnosť, aby bol odstránený aj zrkadlený vzťah.',
@@ -51,6 +52,10 @@ return [
         'target_relation'   => 'Vzťah cieľa',
         'two_way'           => 'Vytvoriť zrkadlenie vzťahu',
         'unmirror'          => 'Zrušiť zrkadlenie tohto vzťahu.',
+    ],
+    'filters'           => [
+        'connection'    => 'Vzťah prepojenia',
+        'name'          => 'Cieľ prepojenia',
     ],
     'helper'            => 'Vytvor vzťahy medzi objektami s postojom a viditeľnosťou. Vzťahy môžu byť tiež pripnuté k menu objektu.',
     'helpers'           => [

@@ -20,6 +20,10 @@ return [
         'export'                => 'Export kampane je dostupný. Link je platný po dobu :time minút.',
         'export_error'          => 'Počas exportu tvojej kampane došlo k chybe. Prosím, kontaktuj nás, ak problém pretrváva.',
         'hidden'                => 'Kampaň :campaign je teraz skrytá a nezobrazuje sa na stránke verejných kampaní.',
+        'import'                => [
+            'failed'    => 'Import kampane :campaign zlyhal.',
+            'success'   => 'Import kampane :campaign skončil.',
+        ],
         'join'                  => ':user pristúpil do kampane :campaign.',
         'leave'                 => ':user opustil kampaň :campaign.',
         'plugin'                => [

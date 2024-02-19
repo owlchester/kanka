@@ -16,11 +16,6 @@ class RoleUserController extends Controller
 
     protected MemberService $service;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct(MemberService $service)
     {
         $this->middleware('auth');
@@ -34,10 +29,6 @@ class RoleUserController extends Controller
         return redirect()->route('campaign_roles.index', $campaign);
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function create(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('roles', $campaign);
@@ -46,10 +37,6 @@ class RoleUserController extends Controller
         return view($this->view . '.create', ['campaign' => $campaign, 'role' => $campaignRole]);
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function store(StoreCampaignRoleUser $request, Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('roles', $campaign);
@@ -69,19 +56,12 @@ class RoleUserController extends Controller
             ]));
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function show(Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
         return redirect()
             ->route('campaign_roles.show', [$campaign, $campaignRole]);
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function destroy(Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
         $this->authorize('roles', $campaign);

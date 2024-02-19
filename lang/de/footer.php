@@ -7,7 +7,10 @@ return [
     'community'         => 'Community',
     'company'           => 'Firma',
     'contact'           => 'Kontakt',
+    'copyright'         => 'Urheberrecht :copy :year Owlchester SNC',
     'documentation'     => 'Dokumentation',
+    'features'          => 'Besonderheiten',
+    'kb'                => 'Wissensbasis',
     'language-switcher' => [
         'other' => 'andere Sprachen',
         'title' => 'Wähle deine Sprache',
@@ -17,6 +20,7 @@ return [
     'platform'          => 'Plattform',
     'premium'           => 'Premium Kampagnen',
     'press-kit'         => 'Pressemappe',
+    'pricing'           => 'Preisgestaltung',
     'privacy'           => 'Privatsphäre',
     'public-campaigns'  => 'Öffentliche Kampagnen',
     'resources'         => 'Ressourcen',

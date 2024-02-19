@@ -24,6 +24,7 @@ class ImportController extends Controller
 
         Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignImport::class);
 
+        // @phpstan-ignore-next-line
         $rows = $campaign->campaignImports()
             ->sort(request()->only(['o', 'k']))
             ->where('status_id', '<>', CampaignImportStatus::PREPARED)

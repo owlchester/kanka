@@ -34,7 +34,7 @@ if (isset($toggle) && $toggle) {
             {{ __('settings.subscription.subscription.actions.downgrading') }}
         </a>
     @else
-        @if($user->subscribedToPrice([config('subscription.owlbear.eur.monthly'), config('subscription.owlbear.usd.monthly')], 'kanka'))
+        @if($user->subscribedToPrice(config('subscription.owlbear.monthly'), 'kanka'))
             <a class="btn2 btn-block btn-sm disabled">
                 {{ __('tiers.current') }}
             </a>
@@ -44,7 +44,7 @@ if (isset($toggle) && $toggle) {
             </a>
         @endif
 
-        @if($user->subscribedToPrice([config('subscription.owlbear.eur.yearly'), config('subscription.owlbear.usd.yearly')], 'kanka'))
+        @if($user->subscribedToPrice(config('subscription.owlbear.yearly'), 'kanka'))
             <a class="btn2 btn-block btn-sm disabled price-yearly">
                 {{ __('tiers.current') }}
             </a>
@@ -56,7 +56,7 @@ if (isset($toggle) && $toggle) {
     @endif
 </div>
 <div class="flex flex-col gap-2">
-    @if($user->subscribedToPrice([config('subscription.wyvern.eur.monthly'), config('subscription.wyvern.usd.monthly')], 'kanka'))
+    @if($user->subscribedToPrice(config('subscription.wyvern.monthly'), 'kanka'))
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
         </a>
@@ -71,7 +71,7 @@ if (isset($toggle) && $toggle) {
     @endif
 
 
-    @if($user->subscribedToPrice([config('subscription.wyvern.eur.yearly'), config('subscription.wyvern.usd.yearly')], 'kanka'))
+    @if($user->subscribedToPrice(config('subscription.wyvern.yearly'), 'kanka'))
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
         </a>
@@ -82,7 +82,7 @@ if (isset($toggle) && $toggle) {
     @endif
 </div>
 <div class="flex flex-col gap-2">
-    @if($user->subscribedToPrice([config('subscription.elemental.eur.monthly'), config('subscription.elemental.usd.monthly')], 'kanka'))
+    @if($user->subscribedToPrice(config('subscription.elemental.monthly'), 'kanka'))
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
         </a>
@@ -96,7 +96,7 @@ if (isset($toggle) && $toggle) {
         </a>
     @endif
 
-    @if($user->subscribedToPrice([config('subscription.elemental.eur.yearly'), config('subscription.elemental.usd.yearly')], 'kanka'))
+    @if($user->subscribedToPrice(config('subscription.elemental.yearly'), 'kanka'))
         <a class="btn2 btn-block btn-sm disabled price-yearly">
             {{ __('tiers.current') }}
         </a>
