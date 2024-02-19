@@ -1,4 +1,4 @@
-<x-dialog.header>
+<x-dialog.header dismiss="alert">
     {{ __('settings.subscription.change.title') }}
 </x-dialog.header>
 
@@ -7,7 +7,7 @@
     <x-grid type="1/1">
     @if ($user->isFrauding())
         <x-alert type="warning">
-            {{ __('settings.subscription.errors.failed', ['email' => config('app.email')]) }}
+            {{ __('emails/validation.modal') }}
         </x-alert></div><?php return; ?>
     @endif
 

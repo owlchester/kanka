@@ -16,6 +16,7 @@ class UserFlag extends Model
 
     public const FLAG_INACTIVE_1 = 'inactive_1';
     public const FLAG_INACTIVE_2 = 'inactive_2';
+    public const FLAG_EMAIL = 'email';
 
     public function user()
     {

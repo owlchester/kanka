@@ -8,4 +8,5 @@ namespace App\Models\Scopes;
  */
 trait UserScope
 {
+
 }

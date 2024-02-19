@@ -433,6 +433,14 @@ class User extends \Illuminate\Foundation\Auth\User
         if (!empty($this->provider)) {
             return false;
         }
+
+        $validation = $this->userValidation()->valid()->first();
+        if ($validation) {
+            return false;
+        }
+
+        return true;
+
         // If the account was created recently, add some small checks
         /*if ($this->created_at->isAfter(Carbon::now()->subHour())) {
             // User's name is directly in the campaign name

@@ -18,8 +18,10 @@ use App\Models\Role;
 use App\Models\UserApp;
 use App\Models\UserFlag;
 use App\Models\Users\Tutorial;
+use App\Models\UserValidation;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Trait UserRelations
@@ -198,5 +200,10 @@ trait UserRelations
     public function upvotes(): HasMany
     {
         return $this->hasMany(FeatureVote::class);
+    }
+
+    public function userValidation(): HasOne|UserValidation
+    {
+        return $this->hasOne(UserValidation::class, 'user_id', 'id');
     }
 }
