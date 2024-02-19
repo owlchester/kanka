@@ -8,9 +8,6 @@ use App\Models\Campaign;
 class ApiEntityService
 {
     /**
-     * @param array $entity
-     * @param MiscModel $class
-     * @param Campaign $campaign
      */
     public function saveEntity(array $entity, MiscModel $class, Campaign $campaign)
     {
@@ -31,8 +28,8 @@ class ApiEntityService
         $new->campaign_id = $campaign->id;
         $new->save();
         $new->crudSaved();
-        $new->entity->crudSaved();   
-        
+        $new->entity->crudSaved();
+
         return $new;
     }
 }

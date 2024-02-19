@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\API;
 
-use App\Facades\Limit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEntities extends FormRequest

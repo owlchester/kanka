@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class EntityApiController extends ApiController
 {
-
     protected ApiEntityService $apiEntityService;
 
     /**
@@ -59,17 +58,17 @@ class EntityApiController extends ApiController
     public function put(StoreEntities $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        
+
         $entityTypes = [];
         $models = [];
 
         foreach ($request->entities as $entity) {
 
-            if (!array_key_exists($entity['module'], $entityTypes)){
+            if (!array_key_exists($entity['module'], $entityTypes)) {
                 $entityTypes[$entity['module']] = EntityType::where('id', $entity['module'])
                     ->whereNotIn('code', ['bookmark', 'dice_roll', 'conversation'])->first();
             }
-            if (!isset($entityTypes[$entity['module']])){
+            if (!isset($entityTypes[$entity['module']])) {
                 continue;
             }
             $class = $entityTypes[$entity['module']]->getClass();
