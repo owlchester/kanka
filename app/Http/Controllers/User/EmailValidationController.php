@@ -4,12 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserValidation;
-use App\User;
 use Illuminate\Http\Request;
 
 class EmailValidationController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *

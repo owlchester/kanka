@@ -41,7 +41,7 @@ class UserValidation extends Model
 
     /**
      * Automatically prune old elements from the db
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function prunable()
     {
