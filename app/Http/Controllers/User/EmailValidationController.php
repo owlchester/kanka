@@ -20,25 +20,14 @@ class EmailValidationController extends Controller
         $this->middleware('auth');
     }
 
-    public function validateEmail(Request $request, User $user)
+    public function validateEmail(Request $request, UserValidation $userValidation)
     {
-        if (auth()->user()->id != $user->id) {
+        if (auth()->user()->id != $userValidation->user_id) {
             return response()->redirectTo(route('settings.subscription'))->withError(__('emails/validation.error'));
         }
 
-        $token = $request->get('token');
-
-        /** @var UserValidation $validation */
-        $validation = UserValidation::where('user_id', $user->id)
-            ->where('token', $token)
-            ->first();
-
-        if ($validation->exists) {
-            $validation->is_valid = true;
-            $validation->saveQuietly();
-        } else {
-            response()->redirectTo(route('settings.subscription'))->withError(__('emails/validation.error'));
-        }
+        $userValidation->is_valid = true;
+        $userValidation->saveQuietly();
 
         return response()->redirectTo(route('settings.subscription'))->withSuccess(__('emails/validation.success'));
     }

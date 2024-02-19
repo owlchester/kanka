@@ -10,6 +10,7 @@ use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Plugin;
 use App\Models\Tier;
+use App\Models\UserValidation;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -42,6 +43,7 @@ class RouteServiceProvider extends ServiceProvider
             return Campaign::acl($value)->firstOrFail();
         });
         Route::model('entityType', EntityType::class);
+        Route::model('userValidation', UserValidation::class);
     }
 
     /**

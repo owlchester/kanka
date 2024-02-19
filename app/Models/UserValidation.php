@@ -8,9 +8,13 @@ use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
+ * @property int $id
  * @property int $user_id
+ * @property string $token
  * @property bool $is_valid
  * @property User $user
+ *
+ * @method static self|Builder valid()
  */
 class UserValidation extends Model
 {
@@ -21,6 +25,11 @@ class UserValidation extends Model
         'is_valid',
         'token'
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'token';
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -160,7 +160,7 @@
         </ul>
     </x-dialog>
 
-    <x-dialog id="subscribe-confirm" :loading="true"></x-dialog>
+    <x-dialog id="subscribe-confirm" :loading="true" ></x-dialog>
 @endsection
 
 

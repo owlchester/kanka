@@ -202,7 +202,7 @@ trait UserRelations
         return $this->hasMany(FeatureVote::class);
     }
 
-    public function userValidation(): HasOne
+    public function userValidation(): HasOne|UserValidation
     {
         return $this->hasOne(UserValidation::class, 'user_id', 'id');
     }

@@ -18,26 +18,26 @@ class EmailValidationService
         if ($token && $token->is_valid) {
             return;
         }
-        //Check for existing token
-        $flag = UserFlag::where('user_id', $this->user->id)->where('flag', UserFlag::FLAG_EMAIL)->first();
 
-        if (!$flag) {
-            $flag = new UserFlag();
-            $flag->user_id = $this->user->id;
-            $flag->flag = UserFlag::FLAG_EMAIL;
-            $flag->save();
+        $flag = UserFlag::where('user_id', $this->user->id)
+            ->where('flag', UserFlag::FLAG_EMAIL)
+            ->first();
+        // If we've already notified the user, no need to notify them again
+        if ($flag) {
+            return;
         }
 
-        if (!$token) {
-            $token = new UserValidation();
-            $token->token = Str::uuid();
-            $token->user_id = $this->user->id;
-            $token->is_valid = false;
-            $token->save();
-        }
+        $flag = new UserFlag();
+        $flag->user_id = $this->user->id;
+        $flag->flag = UserFlag::FLAG_EMAIL;
+        $flag->save();
 
-        EmailValidationJob::dispatch($this->user, $token->token);
+        $token = new UserValidation();
+        $token->token = Str::uuid();
+        $token->user_id = $this->user->id;
+        $token->is_valid = false;
+        $token->save();
 
-        return;
+        EmailValidationJob::dispatch($this->user, $token);
     }
 }

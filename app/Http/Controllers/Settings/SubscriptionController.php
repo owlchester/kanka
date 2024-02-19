@@ -116,7 +116,6 @@ class SubscriptionController extends Controller
             'hasPromo',
             'limited',
             'isYearly',
-            'validationService',
         ));
     }
 

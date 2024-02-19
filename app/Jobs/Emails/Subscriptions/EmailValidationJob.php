@@ -3,6 +3,7 @@
 namespace App\Jobs\Emails\Subscriptions;
 
 use App\Mail\Subscription\User\ValidationEmail;
+use App\Models\UserValidation;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -23,10 +24,10 @@ class EmailValidationJob implements ShouldQueue
 
     /**
      */
-    public function __construct(User $user, string $token)
+    public function __construct(User $user, UserValidation $token)
     {
         $this->user = $user->id;
-        $this->token = $token;
+        $this->token = $token->id;
     }
 
     /**
@@ -34,14 +35,15 @@ class EmailValidationJob implements ShouldQueue
      */
     public function handle()
     {
-        // User deleted their account already? Sure thing
+        // Small check in case the user deleted their account before the queue could get to them
         /** @var User|null $user */
         $user = User::find($this->user);
         if (empty($user)) {
             return;
         }
-        $url = route('validation.email', ['user' => $user, 'token' => $this->token]);
-        // Send an email to the user
+        $userValidation = UserValidation::find($this->token);
+        $url = route('validation.email', ['userValidation' => $userValidation]);
+
         Mail::to($user->email)
             ->locale($user->locale)
             ->send(
