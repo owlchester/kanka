@@ -7,21 +7,21 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Http\Requests\API\StoreEntities;
 use App\Http\Resources\EntityResource as Resource;
-use App\Services\Api\ApiEntityService;
+use App\Services\Api\BulkEntityCreatorService;
 use Illuminate\Support\Facades\DB;
 
 class EntityApiController extends ApiController
 {
-    protected ApiEntityService $apiEntityService;
+    protected BulkEntityCreatorService $BulkEntityCreatorService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ApiEntityService $apiEntityService)
+    public function __construct(BulkEntityCreatorService $BulkEntityCreatorService)
     {
-        $this->apiEntityService = $apiEntityService;
+        $this->BulkEntityCreatorService = $BulkEntityCreatorService;
     }
 
     /**
@@ -62,6 +62,8 @@ class EntityApiController extends ApiController
         $entityTypes = [];
         $models = [];
 
+        $this->BulkEntityCreatorService->campaign($campaign);
+
         foreach ($request->entities as $entity) {
 
             if (!array_key_exists($entity['module'], $entityTypes)) {
@@ -74,7 +76,7 @@ class EntityApiController extends ApiController
             $class = $entityTypes[$entity['module']]->getClass();
             $this->authorize('create', $class);
 
-            $model = $this->apiEntityService->saveEntity($entity, $class, $campaign);
+            $model = $this->BulkEntityCreatorService->class($class)->saveEntity($entity);
 
             array_push($models, $model->entity);
         }
