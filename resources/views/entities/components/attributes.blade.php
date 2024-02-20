@@ -12,7 +12,7 @@ $attributes = isset($entity) ? $entity->starredAttributes() : $model->entity->st
                 {!! $attribute->name() !!}
             </strong>
             @if ($attribute->isCheckbox())
-                <span class="grow text-right">
+                <span class="live-edit grow text-right" data-id="{{ $attribute->id }}">
                 @if ($attribute->value)
                     <x-icon class="fa-solid fa-check "></x-icon>
                 @else
@@ -22,14 +22,25 @@ $attributes = isset($entity) ? $entity->starredAttributes() : $model->entity->st
                 @endif
                 </span>
             @elseif ($attribute->isText())
-                <p class="m-0 grow w-full">
+                <p class="m-0 grow w-full live-edit @if (trim($attribute->value) === '') empty-value @endif" data-id="{{ $attribute->id }}">
                     {!! nl2br($attribute->mappedValue()) !!}
                 </p>
             @elseif (!$attribute->isCheckbox() && !$attribute->isSection())
-                <p class="text-right grow m-0 inline-block">
+                <p class="live-edit @if (trim($attribute->value) === '') empty-value @endif text-right grow m-0 inline-block" data-id="{{ $attribute->id }}">
                     {!! $attribute->mappedValue() !!}
                 </p>
             @endif
         </div>
     @endforeach
+    <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', [$campaign, $entity]) }}" />
 @endif
+
+@section('scripts')
+    @parent
+    @vite('resources/js/attributes.js')
+@endsection
+
+@section('modals')
+    @parent
+    <x-dialog id="live-attribute-dialog" :loading="true"></x-dialog>
+@endsection
