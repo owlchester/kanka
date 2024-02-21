@@ -43,7 +43,7 @@ class GameSystemSearchController extends Controller
         }
 
         return response()->json(
-            $formatted ?? []
+            $formatted
         );
     }
 }

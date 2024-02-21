@@ -649,10 +649,12 @@ class EntityRelationService
             return $this;
         }
 
-        $this->addEntity($this->entity->child->location->entity);
+        /** @var Character|mixed $child */
+        $child = $this->entity->child;
+        $this->addEntity($child->location->entity);
         $this->relations[] = [
             'source' => $this->entity->id,
-            'target' => $this->entity->child->location->entity->id,
+            'target' => $child->location->entity->id,
             'text' => Module::singular(config('entities.ids.location'), __('entities.location')),
             'colour' => '#ccc',
             'attitude' => null,

@@ -70,7 +70,6 @@ class CrudController extends Controller
 
     /**
      * A sorter object for subviews
-     * @var null|DatagridSorter
      */
     protected DatagridSorter $datagridSorter;
 
