@@ -107,6 +107,11 @@ Route::get('campaigns/{campaign}/default-thumbnails', [App\Http\Controllers\Api\
 Route::post('campaigns/{campaign}/default-thumbnails', [App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'upload']);
 Route::delete('campaigns/{campaign}/default-thumbnails', [App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'delete']);
 
+Route::get('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'show']);
+Route::post('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'store']);
+Route::put('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'store']);
+Route::delete('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'destroy']);
+
 Route::get('profile', [App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
 Route::get('version', function () {
     return config('app.version');

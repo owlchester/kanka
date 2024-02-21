@@ -40,6 +40,11 @@ class FamilyTreeService
         return $this->tree();
     }
 
+    public function familyTree()
+    {
+        return $this->familyTree;
+    }
+
     /**
      * Return all data required to generate the family tree
      */
