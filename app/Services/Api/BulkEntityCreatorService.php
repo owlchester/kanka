@@ -3,6 +3,7 @@
 namespace App\Services\Api;
 
 use App\Models\MiscModel;
+use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Services\Entity\TagService;
 
@@ -15,7 +16,7 @@ class BulkEntityCreatorService
 
     /**
      */
-    public function saveEntity(array $entity)
+    public function saveEntity(array $entity): MiscModel
     {
         // Prepare the data
         unset($entity['module']);
@@ -32,7 +33,7 @@ class BulkEntityCreatorService
         return $this->new;
     }
 
-    public function class(MiscModel $class)
+    public function class(MiscModel $class): self
     {
         $this->class = $class;
         return $this;
@@ -41,7 +42,7 @@ class BulkEntityCreatorService
     /**
      * Save the tags
      */
-    protected function saveTags(array $ids)
+    protected function saveTags(array $ids): void
     {
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.

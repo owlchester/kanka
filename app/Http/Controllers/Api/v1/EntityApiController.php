@@ -12,16 +12,16 @@ use Illuminate\Support\Facades\DB;
 
 class EntityApiController extends ApiController
 {
-    protected BulkEntityCreatorService $BulkEntityCreatorService;
+    protected BulkEntityCreatorService $bulkEntityCreatorService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(BulkEntityCreatorService $BulkEntityCreatorService)
+    public function __construct(BulkEntityCreatorService $bulkEntityCreatorService)
     {
-        $this->BulkEntityCreatorService = $BulkEntityCreatorService;
+        $this->bulkEntityCreatorService = $bulkEntityCreatorService;
     }
 
     /**
@@ -62,7 +62,7 @@ class EntityApiController extends ApiController
         $entityTypes = [];
         $models = [];
 
-        $this->BulkEntityCreatorService->campaign($campaign);
+        $this->bulkEntityCreatorService->campaign($campaign);
 
         foreach ($request->entities as $entity) {
 
@@ -76,7 +76,7 @@ class EntityApiController extends ApiController
             $class = $entityTypes[$entity['module']]->getClass();
             $this->authorize('create', $class);
 
-            $model = $this->BulkEntityCreatorService->class($class)->saveEntity($entity);
+            $model = $this->bulkEntityCreatorService->class($class)->saveEntity($entity);
 
             array_push($models, $model->entity);
         }
