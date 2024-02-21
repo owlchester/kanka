@@ -36,6 +36,7 @@ class TransformController extends Controller
             ->campaign($campaign)
             // @phpstan-ignore-next-line
             ->exclude([$entity->type(), 'bookmark', 'relation'])
+            ->withNull()
             ->labelled();
 
         $entities[''] = __('entities/transform.fields.select_one');
