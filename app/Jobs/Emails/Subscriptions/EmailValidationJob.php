@@ -20,7 +20,7 @@ class EmailValidationJob implements ShouldQueue
     use SerializesModels;
 
     protected int $user;
-    protected string $token;
+    protected int $token;
 
     /**
      */
