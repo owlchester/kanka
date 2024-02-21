@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\Limit;
-use App\Models\FamilyTree;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 

@@ -8,12 +8,10 @@ use App\Http\Requests\StoreFamilyTree as Request;
 use App\Http\Resources\FamilyTreeResource as Resource;
 use App\Services\Families\FamilyTreeService;
 
-
 class FamilyTreeApiController extends ApiController
 {
-
     protected FamilyTreeService $treeService;
-    
+
 
     public function __construct(FamilyTreeService $treeService)
     {
