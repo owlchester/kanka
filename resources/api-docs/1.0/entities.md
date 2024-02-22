@@ -7,6 +7,7 @@
 - [Single Entity](#entity)
 - [Filtering Entities](#filtering-entities)
 - [Related Entities](#related-entities)
+- [Create Entities](#create-entities)
 - [Transform Entities](#transform-entities)
 - [Transfer Entities](#transfer-entities)
 - [Deleted Entities](#deleted-entities)
@@ -197,6 +198,62 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
 ```
 
 Notice the new array objects `attributes`, `entity_files`, `entity_events`, `posts`, `entity_abilities` and `relations`.
+
+
+<a name="create-entities"></a>
+## Create Entities
+
+To create up to 20 entities at once, use the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `entities` | Default |
+
+### Body
+
+| Parameter | Type | Detail |
+| :- |   :-   |  :-  |
+| `entities` | `array` (Required) | An array containing all the entities |
+| `entities.*.name` | `string` (Required) | Name of the entity |
+| `entities.*.module` | `int`  (Required) | Id of the module to which the entity will belong to|
+| `entities.*.entry` | `string` | The html description of the entity. |
+| `entities.*.type` | `string`  | Type of the entity |
+| `entities.*.tags` | `array`  | An array containing the ids of tags to apply to the entity|
+
+
+### Example
+
+
+```json
+{
+    "entities": [
+        {
+            "name": "Frejya",
+            "module": 1,
+            "type": "Legendary Warrior",
+            "tags": [
+            2, 3
+            ]
+        },
+        {
+            "name": "Frejya's tabern",
+            "module": 3,
+            "type": "Tabern",
+            "entry": "Lorem ipsum"
+        },       
+        {
+            "name": "Goblin",
+            "module": 20,
+            "entry": "Lorem ipsum"
+        }
+    ]
+}
+```
+
+### Results
+
+> {success} Code 200 with JSON body of the new entities.
+
 
 <a name="transform-entities"></a>
 ## Transform Entities
