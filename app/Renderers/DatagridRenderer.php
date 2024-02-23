@@ -401,7 +401,7 @@ class DatagridRenderer
             } elseif ($type == 'calendar_date') {
                 $class = $this->hidden . ' col-calendar-date';
                 /** @var Journal $model */
-                if ($model->entity->calendarDate && $model->entity->calendarDate->calendar && $model->entity->calendarDate->calendar->entity) {z
+                if ($model->entity->calendarDate && $model->entity->calendarDate->calendar && $model->entity->calendarDate->calendar->entity) {
                     $reminder = $model->entity->calendarDate;
                     $content = link_to_route(
                         'entities.show',
