@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Facades\Module;
 use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
