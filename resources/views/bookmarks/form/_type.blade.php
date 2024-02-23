@@ -1,6 +1,6 @@
 @inject('typeService', 'App\Services\Entity\TypeService')
 @php
-$entityTypes = $typeService->campaign($campaign)->alphabetical()->plural()->permissionless()->exclude(['bookmark'])->singularKey()->withNull()->labelled();
+$entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->exclude(['bookmark'])->singularKey()->add(['' => ''])->get();
 @endphp
 <x-grid type="1/1">
 

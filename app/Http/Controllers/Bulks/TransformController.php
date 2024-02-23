@@ -29,10 +29,8 @@ class TransformController extends Controller
         $entities = $this->typeService
             ->campaign($campaign)
             ->exclude([$entityType->code, 'bookmark'])
-            ->withNull()
-            ->alphabetical()
-            ->labelled();
-        $entities[''] = __('entities/transform.fields.select_one');
+            ->add(['' => __('entities/transform.fields.select_one')])
+            ->get();
 
         return view('cruds.datagrids.bulks.modals._transform')
             ->with('campaign', $campaign)

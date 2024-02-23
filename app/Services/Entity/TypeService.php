@@ -13,10 +13,10 @@ class TypeService
     use CampaignAware;
 
     protected array $exclude = [];
+    protected array $add;
 
     protected bool $plural = false;
-    protected bool $withNull = false;
-    protected bool $alphabetical = false;
+    protected bool $alphabetical = true;
     protected bool $withPermission = true;
     protected bool $singularKey = false;
 
@@ -26,15 +26,15 @@ class TypeService
         return $this;
     }
 
-    public function plural(): self
+    public function add(array $add): self
     {
-        $this->plural = true;
+        $this->add = $add;
         return $this;
     }
 
-    public function withNull(): self
+    public function plural(): self
     {
-        $this->withNull = true;
+        $this->plural = true;
         return $this;
     }
 
@@ -44,19 +44,13 @@ class TypeService
         return $this;
     }
 
-    public function alphabetical(): self
-    {
-        $this->alphabetical = true;
-        return $this;
-    }
-
     public function permissionless(): self
     {
         $this->withPermission = false;
         return $this;
     }
 
-    public function labelled(): array
+    public function get(): array
     {
         $labels = [];
 
@@ -90,21 +84,20 @@ class TypeService
             unset($labels[$unset]);
         }
 
-        return $labels;
+        if (!isset($this->add)) {
+            return $labels;
+        }
+
+        return array_merge($this->add, $labels);
     }
 
     public function prepare(array $labels): array
     {
-        $prepared = [];
-        if ($this->withNull) {
-            $prepared = ['' => ''];
+        if (!$this->alphabetical) {
+            return $labels;
         }
-
-        if ($this->alphabetical) {
-            $collator = new Collator(app()->getLocale());
-            $collator->asort($labels);
-        }
-
-        return $prepared + $labels;
+        $collator = new Collator(app()->getLocale());
+        $collator->asort($labels);
+        return $labels;
     }
 }

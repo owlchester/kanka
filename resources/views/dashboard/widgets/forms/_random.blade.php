@@ -3,8 +3,7 @@
 
 @php
     $boosted = $campaign->boosted();
-    $entityTypes = $typeService->campaign($campaign)->alphabetical()->plural()->permissionless()->exclude(['bookmark'])->singularKey()->withNull()->labelled();
-    $entityTypes[''] = __('dashboard.widgets.random.type.all');
+    $entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->exclude(['bookmark'])->singularKey()->add(['' => __('dashboard.widgets.random.type.all')])->get();
 @endphp
 
 <div class="nav-tabs-custom">

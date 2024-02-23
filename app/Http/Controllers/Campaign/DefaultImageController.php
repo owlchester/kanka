@@ -45,7 +45,7 @@ class DefaultImageController extends Controller
             ->campaign($campaign)
             ->exclude($ignore)
             ->plural()
-            ->labelled()
+            ->get()
         ;
 
         return view('campaigns.default-images.create', compact(

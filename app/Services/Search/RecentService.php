@@ -145,9 +145,8 @@ class RecentService
     {
         return $this->typeService
             ->campaign($this->campaign)
-            ->alphabetical()
             ->permissionless()
             ->exclude(['bookmark'])
-            ->labelled();
+            ->get();
     }
 }
