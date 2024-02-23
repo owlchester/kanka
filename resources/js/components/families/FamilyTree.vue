@@ -17,6 +17,16 @@
             {{ this.texts.actions.save }}
         </button>
     </div>
+    <div class="pull-right">
+            <button class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="zoom()">
+                <i class="fa-regular fa-square-plus" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="pull-right">
+            <button class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="unzoom()">
+                <i class="fa-regular fa-square-minus" aria-hidden="true"></i>
+            </button>
+        </div>
     <div class="family-tree overflow-auto w-full h-full min-h-50 block" ref="familytree">
         <div class="text-center px-5" v-if="isLoading">
             <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
@@ -24,7 +34,9 @@
         </div>
         <div v-else class="relative" v-bind:style="{width: '100%'}">
             <PinchScrollZoom
+                id="treeMap"
                 ref="zoomer"
+                key-actions
                 :width="pincherWidth()"
                 :height="pincherHeight()"
                 :contentWidth="dragWidth()"
@@ -57,7 +69,6 @@
                     </FamilyNode>
                 </div>
             </PinchScrollZoom>
-
         </div>
     </div>
 
@@ -142,7 +153,7 @@
 
 <script>
 import axios from "axios";
-import PinchScrollZoom from "@coddicat/vue3-pinch-scroll-zoom";
+import PinchScrollZoom from "@coddicat/vue-pinch-scroll-zoom";
 
 export default {
     props: {
@@ -193,6 +204,35 @@ export default {
     },
 
     methods: {
+
+        zoom() {
+            // create a new keyboard event and set the key to "Enter"
+            const event = new KeyboardEvent('keydown', {
+            key: '+',
+            code: 'Equal',
+            which: 187,
+            keyCode: 187,
+            });
+
+            // dispatch the event on some DOM element
+            document.getElementById('treeMap').dispatchEvent(event);
+        },
+
+        unzoom() {
+            //zoomer.value?.manualZoom(0.5);
+
+            // create a new keyboard event and set the key to "Enter"
+            const event = new KeyboardEvent('keydown', {
+            key: '-',
+            code: 'Minus',
+            which: 189,
+            keyCode: 189,
+            });
+
+            // dispatch the event on some DOM element
+            document.getElementById('treeMap').dispatchEvent(event);
+        },
+
         startEditing() {
             this.isEditing = true;
         },

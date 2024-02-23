@@ -21,8 +21,10 @@
         "vue-loader": "^16.2.0"
     },
     "dependencies": {
+        "@coddicat/vue-pinch-scroll-zoom": "^4.3.5",
         "@coddicat/vue3-pinch-scroll-zoom": "^0.2.1",
         "@melloware/coloris": "^0.22.0",
+        "@syncfusion/ej2-vue-grids": "^24.2.7",
         "bootstrap": "^4.3.1",
         "click-outside-vue3": "^4.0.1",
         "colord": "^2.9.3",
@@ -43,6 +45,7 @@
         "sortablejs": "^1.15.0",
         "spectrum-colorpicker": "^1.8.1",
         "tippy.js": "^6.3.7",
-        "tributejs": "^5.1.3"
+        "tributejs": "^5.1.3",
+        "vue-panzoom": "^1.1.6"
     }
 }
