@@ -1,4 +1,4 @@
-@inject('entityService', 'App\Services\EntityService')
+@inject('typeService', 'App\Services\Entity\TypeService')
 @php
     $advancedFilters = [
         '' => '',
@@ -6,9 +6,8 @@
         'mentionless' => __('dashboard.widgets.recent.advanced_filters.mentionless'),
     ];
     $boosted = $campaign->boosted();
-    $entityTypes = ['' => 'All'];
-    $entities = $entityService->campaign($campaign)->getEnabledEntitiesSorted(false, ['bookmarks']);
-    $entityTypes = array_merge($entityTypes, $entities);
+
+    $entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->exclude(['bookmark'])->singularKey()->add(['' => __('dashboard.widgets.random.type.all')])->get();
 @endphp
 
 <div class="nav-tabs-custom">

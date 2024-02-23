@@ -6,19 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\BulkService;
-use App\Services\Entity\TypeService;
 
 class PrintController extends Controller
 {
     protected BulkService $bulkService;
-    protected TypeService $typeService;
 
     public function __construct(
-        BulkService $bulkService,
-        TypeService $typeService,
+        BulkService $bulkService
     ) {
         $this->bulkService = $bulkService;
-        $this->typeService = $typeService;
 
         $this->middleware('auth');
         $this->middleware('campaign.member');
