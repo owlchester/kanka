@@ -7,9 +7,9 @@ use App\Facades\Breadcrumb;
 use App\Facades\Module;
 use App\Models\Entity;
 use App\Models\Bookmark;
+use App\Services\Entity\TypeService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Collator;
 use Illuminate\Support\Str;
 
 /**
@@ -19,6 +19,13 @@ class RecentService
 {
     use CampaignAware;
     use UserAware;
+
+    protected TypeService $typeService;
+
+    public function __construct(TypeService $typeService)
+    {
+        $this->typeService = $typeService;
+    }
 
     public function recent(): array
     {
@@ -136,16 +143,11 @@ class RecentService
 
     protected function orderedTypes(): array
     {
-        $types = config('entities.ids');
-        unset($types['bookmark']);
-        $orderedTypes = [];
-        foreach ($types as $singular => $id) {
-            $orderedTypes[$singular] = Module::singular($id, __('entities.' . $singular));
-        }
-
-        $collator = new Collator(app()->getLocale());
-        $collator->asort($orderedTypes);
-
-        return $orderedTypes;
+        return $this->typeService
+            ->campaign($this->campaign)
+            ->alphabetical()
+            ->permissionless()
+            ->exclude(['bookmark'])
+            ->labelled();
     }
 }

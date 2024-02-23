@@ -27,8 +27,10 @@ class TransformController extends Controller
     public function index(Campaign $campaign, EntityType $entityType)
     {
         $entities = $this->typeService
-            ->exclude([$entityType->code, 'bookmark', 'relation'])
+            ->campaign($campaign)
+            ->exclude([$entityType->code, 'bookmark'])
             ->withNull()
+            ->alphabetical()
             ->labelled();
         $entities[''] = __('entities/transform.fields.select_one');
 

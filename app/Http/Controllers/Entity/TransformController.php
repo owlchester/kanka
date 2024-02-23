@@ -37,6 +37,7 @@ class TransformController extends Controller
             // @phpstan-ignore-next-line
             ->exclude([$entity->type(), 'bookmark', 'relation'])
             ->withNull()
+            ->alphabetical()
             ->labelled();
 
         $entities[''] = __('entities/transform.fields.select_one');

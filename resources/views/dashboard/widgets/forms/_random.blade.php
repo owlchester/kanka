@@ -1,11 +1,10 @@
-@inject('entityService', 'App\Services\EntityService')
+@inject('typeService', 'App\Services\Entity\TypeService')
+
 
 @php
     $boosted = $campaign->boosted();
-    $entityTypes = ['' => __('dashboard.widgets.random.type.all')];
-
-    $entities = $entityService->campaign($campaign)->getEnabledEntitiesSorted(false, ['bookmarks']);
-    $entityTypes = array_merge($entityTypes, $entities);
+    $entityTypes = $typeService->campaign($campaign)->alphabetical()->plural()->permissionless()->exclude(['bookmark'])->singularKey()->withNull()->labelled();
+    $entityTypes[''] = __('dashboard.widgets.random.type.all');
 @endphp
 
 <div class="nav-tabs-custom">
