@@ -11,7 +11,7 @@
     </div>
 @endif
 
-@if (auth()->check() && !auth()->user()->settings()->get('das2'))
+@if (auth()->check() && !auth()->user()->settings()->get('banner_das2'))
 <div class="alert alert-warning p-2 flex gap-2 banner-notification " id="banner-notification">
     <div class="grow">
         Kanka will be undergoing scheduled maintenance on Tuesday 27th of February 2024. As a result, Kanka will be unavailable from <a href="https://everytimezone.com/s/7aea1b8b" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 15:00 UTC</a> to 16:30 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank"  style="text-decoration: underline">Discord</a> to get updates.
