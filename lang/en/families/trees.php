@@ -7,6 +7,7 @@ return [
         'rename-relation'   => 'Rename relation',
         'reset'             => 'Discard changes',
         'save'              => 'Save',
+        'founder'           => 'Add a new founder',
     ],
     'modal'     => [
         'first-title'   => 'Select an entity',
@@ -23,6 +24,7 @@ return [
                 'member'    => 'Member',
                 'success'   => 'Entity added.',
                 'title'     => 'Add an entity',
+                'founder'   => 'Founder',
             ],
             'child' => [
                 'success'   => 'Child added.',
@@ -36,6 +38,9 @@ return [
             'remove'=> [
                 'confirm'   => 'Are you sure you want to remove this entity from the family tree?',
                 'success'   => 'Entity removed.',
+            ],
+            'founder'   => [
+                'title' => 'Add a new founder',
             ],
         ],
         'relations' => [
