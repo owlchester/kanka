@@ -42,7 +42,7 @@ class ImportController extends Controller
         }
 
         $token = null;
-        if (auth()->user()->isSubscriber()) {
+        if (auth()->user()->can('import', $campaign)) {
             $token = $this->service
                 ->campaign($campaign)
                 ->user(auth()->user())

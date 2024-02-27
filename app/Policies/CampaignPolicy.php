@@ -133,6 +133,11 @@ class CampaignPolicy
         return UserCache::user($user)->admin();
     }
 
+    public function import(User $user, Campaign $campaign): bool
+    {
+        return $user->isWyvern() || $user->isElemental();
+    }
+
     /**
      * Determine whether the user can leave the campaign
      *

@@ -26,7 +26,7 @@
 
         <p class="max-w-2xl">{{ __('campaigns/import.description') }}</p>
 
-        @if (auth()->check() && auth()->user()->hasRole('admin'))
+        @can('import', $campaign)
             @if (empty($token))
                 <div class="flex gap-2 items-center rounded bg-base-100 text-base-content p-4">
                     <p class="grow">
@@ -76,7 +76,8 @@
             @endif
         @else
         <x-box>
-            <p class="text-2xl">Coming soon! Stay tuned on our <a href="{{ config('social.discord') }}" rel="discord">Discord</a> to find out more.</p>
+            <p class="text-2xl">Limited access</p>
+            <p class="">To access this feature, upgrade to a <a href="{{ route('settings.subscription') }}">Wyvern or Elemental subscription</a>.</p>
         </x-box>
         @endif
     </div>
