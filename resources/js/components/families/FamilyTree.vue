@@ -555,31 +555,25 @@ export default {
             let url2 = this.entity_api.replace('/0', '/' + entity_id);
             axios.get(url2).then((res) => {
                 let entity = res.data;
-                this.addFounderEntity(entity);
-                this.isDirty = true;
-            });
-            
-            let url = this.entity_api.replace('/0', '/' + founder_id);
-            axios.get(url).then((res) => {
-                let entity = res.data;
-                this.addFounderEntity(entity, true);
-                window.showToast(this.texts.toasts.entity.add);
-                this.isDirty = true;
-                this.closeModal();
+                let url = this.entity_api.replace('/0', '/' + founder_id);
+                axios.get(url).then((res) => {
+                    let founder = res.data;
+                    console.log(entity, founder);
+                    this.addFounderEntity(entity, founder);
+                    this.isDirty = true;
+                    window.showToast(this.texts.toasts.entity.add);
+                    this.closeModal();
+                });
+
             });
         },
-
-        addFounderEntity(entity, isFounder = false) {
+        addFounderEntity(entity, founder) {
             this.entities[entity.id] = Object.freeze(entity);
-            
-            //If its founder add the other nodes as relations
-            if (isFounder == true) {
-                this.nodes = [{entity_id: entity.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), relations: this.nodes}];
-            
-            } else {
-                //If its the relation to the founder add as children
-                this.nodes = [{entity_id: entity.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), children: this.nodes, isUnknown: this.isUnknown}];
-            }
+            this.entities[founder.id] = Object.freeze(founder);
+
+            this.nodes = [{entity_id: entity.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), children: this.nodes, isUnknown: this.isUnknown}];
+            this.newUuid++;
+            this.nodes = [{entity_id: founder.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), relations: this.nodes}];
             this.newUuid++;
         },
         addEntity(entity) {
