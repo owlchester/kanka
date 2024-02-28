@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 Route::get('/w/{campaign}/entities/{entity}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show')->where(['entity' => '[0-9]+']);
 Route::get('/w/{campaign}/entities/{entity}-{slug}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show-slug');
 Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entity\EditController::class, 'index'])->name('entities.edit');
