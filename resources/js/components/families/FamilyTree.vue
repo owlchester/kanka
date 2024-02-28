@@ -309,8 +309,8 @@ export default {
             this.entity = undefined;
 
             window.closeDialog(this.modal);
-            $(this.entityField).val(null).trigger('change');
             $(this.founderField).val(null).trigger('change');
+            $(this.entityField).val(null).trigger('change');
         },
         saveSuggestion: function(character) {
             this.emitter.emit('saveModal', [character]);
@@ -344,6 +344,7 @@ export default {
             this.showDialog();
         },
         createNewFounder() {
+            this.resetVariables();
             this.isAddingNewFounder = true;
             this.currentUuid = 0;
             this.showDialog();
@@ -546,32 +547,41 @@ export default {
             let founder_id = $(this.founderField).val();
             let entity_id = $(this.entityField).val();
 
-            if (!founder_id || !entity_id) {
+            if (!founder_id) {
                 // Nothing, ignore
                 this.closeModal();
                 return;
             }
 
-            let url2 = this.entity_api.replace('/0', '/' + entity_id);
+            let url2 = this.entity_api.replace('/0', '/' + founder_id);
             axios.get(url2).then((res) => {
-                let entity = res.data;
-                let url = this.entity_api.replace('/0', '/' + founder_id);
-                axios.get(url).then((res) => {
-                    let founder = res.data;
-                    console.log(entity, founder);
-                    this.addFounderEntity(entity, founder);
-                    this.isDirty = true;
-                    window.showToast(this.texts.toasts.entity.add);
-                    this.closeModal();
-                });
-
+                let founder = res.data;
+                if (entity_id) {
+                    let url = this.entity_api.replace('/0', '/' + entity_id);
+                    axios.get(url).then((res) => {
+                        let entity = res.data;
+                        this.addFounderEntity(founder, entity);
+                        this.isDirty = true;
+                        window.showToast(this.texts.toasts.entity.add);
+                        this.closeModal();
+                    });
+                    return;
+                }
+                this.addFounderEntity(founder);
+                this.isDirty = true;
+                window.showToast(this.texts.toasts.entity.add);
+                this.closeModal();
             });
         },
-        addFounderEntity(entity, founder) {
-            this.entities[entity.id] = Object.freeze(entity);
+        addFounderEntity(founder, entity = null) {
+            let entity_id = '';
             this.entities[founder.id] = Object.freeze(founder);
+            if (entity) {
+                this.entities[entity.id] = Object.freeze(entity);
+                entity_id = entity.id;
+            }
 
-            this.nodes = [{entity_id: entity.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), children: this.nodes, isUnknown: this.isUnknown}];
+            this.nodes = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), children: this.nodes, isUnknown: this.isUnknown}];
             this.newUuid++;
             this.nodes = [{entity_id: founder.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), relations: this.nodes}];
             this.newUuid++;
@@ -721,11 +731,6 @@ export default {
             this.resetVariables();
             this.currentUuid = uuid;
             this.isAddingChild = true;
-            this.showDialog();
-        });
-
-        this.emitter.on('addFounder', (uuid) => {
-            this.resetVariables();
             this.showDialog();
         });
 
