@@ -37,7 +37,7 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
     <div class="flex flex-row gap-2">
         <div class="grow flex flex-col gap-2 w-full">
             <div class="image-file field">
-                {!! Form::file('image', ['class' => 'image w-full  ']) !!}
+                {!! Form::file('image', ['class' => 'image w-full', 'accept' => ".jpg, .jpeg, .png, .gif, .webp", 'id' => 'image_field_' . rand()]) !!}
             </div>
             <div class="image-url field">
                 {!! Form::text(
