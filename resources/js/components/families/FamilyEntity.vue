@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:class="boxClasses()" v-bind:style="position()" v-bind:data-uuid="uuid" v-bind:data-entity="entity ? entity.id : isUnknown" v-bind:data-tags="tags()">
+    <div v-bind:class="boxClasses()" v-bind:style="position()" v-bind:data-uuid="uuid" v-bind:data-entity="entity ? entity.id : undefined" v-bind:data-tags="tags()">
         <div class="flex items-center gap-1 max-w-full">
             <div class="flex-none">
                 <span class="truncate" v-if="node.isUnknown">
@@ -21,17 +21,17 @@
                 <span v-bind:class="cssClasses()" v-if="node.isUnknown">
                     <i>{{ fields('unknown') }}</i>
                 </span>
-                <span class="text-xs" v-show="entity.birth">
-                    {{ entity.birth }}
+                <span class="text-xs" v-show="entity ? entity.birth : undefined">
+                    {{ entity ? entity.birth : ''}}
                 </span>
-                <span class="text-xs" v-if="entity.birth && entity.death">
+                <span class="text-xs" v-if="entity && entity.birth && entity.death">
                     -
                 </span>
-                <span class="text-xs" v-show="entity.death">
-                    ✝ {{ entity.death }}
+                <span class="text-xs" v-show="entity ? entity.death : undefined">
+                    ✝ {{ entity ? entity.death : ''}}
                 </span>
                 <span class="text-xs" v-if="!isEditing && false">
-                    (#{{ entity.id }})
+                    (#{{ entity ? entity.id : '' }})
                 </span>
                 <div class="flex gap-1" v-if="isEditing">
                     <a v-on:click="editEntity(uuid, node)" class="cursor-pointer" v-bind:title="i18n('entity', 'edit')">

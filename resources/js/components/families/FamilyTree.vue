@@ -4,6 +4,10 @@
             <i class="fa-solid fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
+        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="createNewFounder()">
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+            {{ this.texts.actions.founder }}
+        </a>
         <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="resetTree()">
             <i class="fa-solid fa-redo" aria-hidden="true"></i>
             {{ this.texts.actions.reset }}
@@ -68,6 +72,7 @@
       <h4 v-else-if="isEditingEntity">{{ this.texts.modals.entity.edit.title }}</h4>
       <h4 v-else-if="isAddingRelation">{{ this.texts.modals.relation.add.title }}</h4>
       <h4 v-else-if="isEditingRelation">{{ this.texts.modals.relation.edit.title }}</h4>
+      <h4 v-else-if="isAddingNewFounder">{{ this.texts.modals.entity.founder.title }}</h4>
 
       <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closeModal()">
         <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
@@ -76,7 +81,11 @@
     </header>
     <article>
       <div class="flex flex-col gap-5 w-full">
-        <div class="field field-character flex flex-col gap-1 w-full" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter">
+        <div class="field field-founder flex flex-col gap-1 w-full" v-show="isAddingNewFounder">
+          <label>{{ this.texts.modals.fields.founder }}</label>
+          <select class="select2 w-full" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="founder_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
+        </div>
+        <div class="field field-character flex flex-col gap-1 w-full" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter || isAddingNewFounder">
           <label>{{ this.texts.modals.fields.character }}</label>
           <select class="select2 w-full" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
         </div>
@@ -90,8 +99,8 @@
           </ul>
         </div>
       </div>
-      <div class="flex flex-col gap-5 w-full" v-show="isEditingRelation || isAddingRelation || isAddingChild || isEditingEntity">
-        <div v-if="isAddingRelation || isEditingEntity" class="field field-unknown checkbox flex flex-col gap-1">
+      <div class="flex flex-col gap-5 w-full" v-show="isEditingRelation || isAddingRelation || isAddingChild || isEditingEntity || isAddingNewFounder">
+        <div v-if="isAddingRelation || isEditingEntity || isAddingNewFounder" class="field field-unknown checkbox flex flex-col gap-1">
           <label>
             <input type="checkbox" v-model="isUnknown" id="family_tree_unknown" name="isUnknown" value="isUnknown" />
             {{ this.texts.modals.fields.unknown }}
@@ -104,7 +113,7 @@
           <input v-model="relation" type="text" maxlength="70" class="w-full" id="family_tree_relation" @keyup.enter="saveModal()"/>
         </div>
 
-        <div class="grid grid-cols-2 gap-5" v-show="isAddingRelation || isAddingChild || isEditingEntity">
+        <div class="grid grid-cols-2 gap-5" v-show="isAddingRelation || isAddingNewFounder || isAddingChild || isEditingEntity">
           <div class="field field field-colour flex flex-col gap-1">
             <label>{{ this.texts.modals.fields.colour }}</label>
             <div>
@@ -174,6 +183,7 @@ export default {
             isEditingEntity: false,
             isAddingCharacter: false,
             isEditingRelation: false,
+            isAddingNewFounder: false,
 
             relation: undefined,
             entity: undefined,
@@ -187,6 +197,7 @@ export default {
 
             colourField: 'input[name="colour"]',
             modal: 'family-tree-modal',
+            founderField: 'select[name="founder_id_ft"]',
             entityField: 'select[name="character_id_ft"]',
             newUuid: 1,
         }
@@ -264,6 +275,7 @@ export default {
             this.isEditingRelation = false;
             this.isEditingEntity = false;
             this.isAddingCharacter = false;
+            this.isAddingNewFounder = false;
             this.currentUuid = undefined;
             this.relation = undefined;
             this.cssClass = undefined;
@@ -274,6 +286,7 @@ export default {
 
             window.closeDialog(this.modal);
             $(this.entityField).val(null).trigger('change');
+            $(this.founderField).val(null).trigger('change');
         },
         showDialog() {
             window.openDialog(this.modal);
@@ -286,6 +299,7 @@ export default {
             this.isEditingRelation = false;
             this.isEditingEntity = false;
             this.isAddingCharacter = false;
+            this.isAddingNewFounder = false;
             this.currentUuid = undefined;
             this.relation = undefined;
             this.cssClass = undefined;
@@ -295,6 +309,7 @@ export default {
             this.entity = undefined;
 
             window.closeDialog(this.modal);
+            $(this.founderField).val(null).trigger('change');
             $(this.entityField).val(null).trigger('change');
         },
         saveSuggestion: function(character) {
@@ -312,6 +327,8 @@ export default {
                 this.editEntity();
             } else if(this.isAddingCharacter) {
                 this.editEntity(character);
+            } else if(this.isAddingNewFounder) {
+                this.addFounder();
             }
         },
         showCreateNode() {
@@ -323,6 +340,12 @@ export default {
         },
         createNode() {
             this.isAddingCharacter = true;
+            this.currentUuid = 0;
+            this.showDialog();
+        },
+        createNewFounder() {
+            this.resetVariables();
+            this.isAddingNewFounder = true;
             this.currentUuid = 0;
             this.showDialog();
         },
@@ -439,7 +462,7 @@ export default {
             this.nodes = this.nodes.reduce(getRelationNodes, []);
         },
         addChild() {
-            console.log('child');
+            //console.log('child');
             let entity_id = $(this.entityField).val();
             if (!entity_id) {
                 // Nothing, ignore
@@ -518,6 +541,50 @@ export default {
                 this.isDirty = true;
                 this.closeModal();
             });
+        },
+
+        addFounder() {
+            let founder_id = $(this.founderField).val();
+            let entity_id = $(this.entityField).val();
+
+            if (!founder_id) {
+                // Nothing, ignore
+                this.closeModal();
+                return;
+            }
+
+            let url2 = this.entity_api.replace('/0', '/' + founder_id);
+            axios.get(url2).then((res) => {
+                let founder = res.data;
+                if (entity_id) {
+                    let url = this.entity_api.replace('/0', '/' + entity_id);
+                    axios.get(url).then((res) => {
+                        let entity = res.data;
+                        this.addFounderEntity(founder, entity);
+                        this.isDirty = true;
+                        window.showToast(this.texts.toasts.entity.add);
+                        this.closeModal();
+                    });
+                    return;
+                }
+                this.addFounderEntity(founder);
+                this.isDirty = true;
+                window.showToast(this.texts.toasts.entity.add);
+                this.closeModal();
+            });
+        },
+        addFounderEntity(founder, entity = null) {
+            let entity_id = '';
+            this.entities[founder.id] = Object.freeze(founder);
+            if (entity) {
+                this.entities[entity.id] = Object.freeze(entity);
+                entity_id = entity.id;
+            }
+
+            this.nodes = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), children: this.nodes, isUnknown: this.isUnknown}];
+            this.newUuid++;
+            this.nodes = [{entity_id: founder.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid), relations: this.nodes}];
+            this.newUuid++;
         },
         addEntity(entity) {
             this.entities[entity.id] = Object.freeze(entity);
@@ -648,7 +715,7 @@ export default {
             this.showDialog();
         });
         this.emitter.on('editRelation', (data) => {
-            console.log(data.relation);
+            //console.log(data.relation);
             this.resetVariables();
             this.currentUuid = data.uuid;
             this.relation = data.relation.role;
@@ -666,6 +733,7 @@ export default {
             this.isAddingChild = true;
             this.showDialog();
         });
+
         this.emitter.on('trackX', (x) => {
             if (x > this.maxX) {
                 this.maxX = x;

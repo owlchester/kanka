@@ -406,6 +406,7 @@ class FamilyTreeService
                 'reset' => __('families/trees.actions.reset'),
                 'save' => __('families/trees.actions.save'),
                 'first' => __('families/trees.actions.first'),
+                'founder' => __('families/trees.actions.founder'),
             ],
             'modals' => [
                 'clear' => [
@@ -430,6 +431,9 @@ class FamilyTreeService
                     'child' => [
                         'title' => __('families/trees.modals.entity.child.title'),
                     ],
+                    'founder' => [
+                        'title' => __('families/trees.modals.entity.founder.title'),
+                    ],
                     'remove' => [
                         'title' => __('crud.remove'),
                         'confirm' => __('families/trees.modals.entity.remove.confirm'),
@@ -445,6 +449,7 @@ class FamilyTreeService
                     'css' => __('dashboard.widgets.fields.class'),
                     'colour' => __('crud.fields.colour'),
                     'unknown' => __('families/trees.modals.relations.unknown'),
+                    'founder' => __('families/trees.modals.entity.add.founder'),
                     'visibility' => [
                         'title' => __('crud.fields.visibility'),
                         'all' => __('crud.visibilities.all'),
