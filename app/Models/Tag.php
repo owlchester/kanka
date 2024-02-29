@@ -146,7 +146,7 @@ class Tag extends MiscModel
             'entities',
             'children' => function ($sub) {
                 $sub->select('id', 'tag_id');
-            }
+            },
         ]);
     }
 
@@ -184,6 +184,7 @@ class Tag extends MiscModel
         foreach ($this->entities->pluck('id')->toArray() as $entity) {
             $children[] = $entity;
         }
+        // @phpstan-ignore-next-line
         foreach ($this->descendants as $desc) {
             foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
                 $children[] = $entity;
@@ -226,7 +227,7 @@ class Tag extends MiscModel
             $items['second']['tags'] = [
                 'name' => Module::plural($this->entityTypeId(), 'entities.tags'),
                 'route' => 'tags.tags',
-                'count' => $count
+                'count' => $count,
             ];
         }
         return parent::menuItems($items);
