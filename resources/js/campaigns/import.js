@@ -20,7 +20,6 @@ const initExport = () => {
         let count = 0;
         let data = new FormData();
         let files = document.getElementById('export-files');
-        console.log('files', files.files);
         Array.from(files.files).forEach(file => {
             if (file.name.endsWith('.zip')) {
                 count++;
@@ -58,10 +57,18 @@ const startProcess = (form, data) => {
                 'width',
                 percentCompleted + '%'
             );
+
+            if (percentCompleted === 100) {
+                $('.progress-uploading').hide();
+                $('.progress-validating').show();
+            }
+            $('.progress-percent').show().html(percentCompleted);
         }
     };
 
     fileProgress.show();
+    $('.progress-uploading').show();
+    $('.progress-validating').hide();
 
     axios
         .post(form.action, data, config)
@@ -85,5 +92,8 @@ const startProcess = (form, data) => {
                     window.showToast(errors[k], 'error');
                 });
             }
+
+            let loading = document.querySelector('.loading');
+            loading.classList.remove('loading');
         });
 }

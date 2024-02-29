@@ -60,7 +60,13 @@
 
                     <div class="progress w-full bg-gray" style="display: none">
                         <div class="text-center text-2xl py-4">
-                            <x-icon class="loading" />
+                            <x-icon class="load" />
+                            <p class="progress-uploading">
+                                {{ __('campaigns/import.progress.uploading') }} <span class="progress-percent">0</span>%
+                            </p>
+                            <p class="progress-validating" style="display: none">
+                                {{ __('campaigns/import.progress.validating') }}
+                            </p>
                         </div>
                         <div class="h-0.5 bg-aqua" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                             <span class="sr-only"></span>

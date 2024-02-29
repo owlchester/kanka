@@ -51,10 +51,18 @@ trait ImportMentions
             }
             $newUuid = ImportIdMapper::getGallery($uuid);
             $text = Str::replace($uuid, $newUuid, $text);
+            // Old folder structure
             $text = Str::replace(
                 // @phpstan-ignore-next-line
                 '/campaigns/' . $this->data['campaign_id'] . '/',
-                '/campaigns/' . $this->campaign->id . '/',
+                '/w/' . $this->campaign->id . '/',
+                $text
+            );
+            // Newer folder structure
+            $text = Str::replace(
+                // @phpstan-ignore-next-line
+                '/w/' . $this->data['campaign_id'] . '/',
+                '/w/' . $this->campaign->id . '/',
                 $text
             );
             $this->imageMentions[] = $newUuid;

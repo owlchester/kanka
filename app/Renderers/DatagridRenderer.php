@@ -401,18 +401,14 @@ class DatagridRenderer
             } elseif ($type == 'calendar_date') {
                 $class = $this->hidden . ' col-calendar-date';
                 /** @var Journal $model */
-                if (!$model->entity->calendarDate) {
-                    return null;
+                if ($model->entity->calendarDate && $model->entity->calendarDate->calendar && $model->entity->calendarDate->calendar->entity) {
+                    $reminder = $model->entity->calendarDate;
+                    $content = link_to_route(
+                        'entities.show',
+                        $reminder->readableDate(),
+                        [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
+                    );
                 }
-                $reminder = $model->entity->calendarDate;
-                if (!$reminder->calendar || !$reminder->calendar->entity) {
-                    return null;
-                }
-                $content = link_to_route(
-                    'entities.show',
-                    $reminder->readableDate(),
-                    [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
-                );
             } else {
                 // Exception
                 $content = 'ERR_UNKNOWN_TYPE';

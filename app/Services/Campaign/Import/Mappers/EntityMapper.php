@@ -56,6 +56,7 @@ trait EntityMapper
         $builder = app()->make($this->className);
         $id = ImportIdMapper::get($this->mappingName, $this->data['id']);
         $this->model = $builder->where('id', $id)->with('entity')->firstOrFail();
+        $this->entity = $this->model->entity;
         return $this;
     }
 
@@ -138,7 +139,7 @@ trait EntityMapper
 
         // An image needs the image saved locally
         $imageName = Str::after($img, '/');
-        $destination = 'w/' . $this->campaign->id . '/' . $imageName;
+        $destination = 'w/' . $this->campaign->id . '/' . $this->entity->pluralType() . '/' . $imageName;
 
         if (!Storage::disk('local')->exists($this->path . $img)) {
             //dd('image ' . $this->path . $img . ' doesnt exist');
@@ -214,6 +215,9 @@ trait EntityMapper
                 if (!empty($locationID)) {
                     $post->location_id = $locationID;
                 }
+            }
+            if (empty($post->position)) {
+                $post->position = 0;
             }
 
             $post->entry = $this->mentions($post->entry);
@@ -305,6 +309,9 @@ trait EntityMapper
         }
 
         foreach ($this->data['entity']['entityTags'] as $data) {
+            if (!ImportIdMapper::has('tags', $data['tag_id'])) {
+                continue;
+            }
             $tagID = ImportIdMapper::get('tags', $data['tag_id']);
             $entityTag = new EntityTag();
             $entityTag->entity_id = $this->entity->id;

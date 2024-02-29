@@ -47,11 +47,15 @@ class ImportService
 
     protected EntityMappingService $entityMappingService;
 
+    protected int $originalCampaignID;
+
     protected string $dataPath;
 
     protected array $mappers;
 
     protected array $logs = [];
+
+    protected Exception $exception;
 
     public function __construct(EntityMappingService $entityMappingService)
     {
@@ -165,6 +169,7 @@ class ImportService
             $this->logs[] = $e->getMessage();
             Log::error('Import', ['error' => $e->getMessage()]);
             $this->job->status_id = CampaignImportStatus::FAILED;
+            $this->exception = $e;
         }
 
         return $this;
@@ -211,6 +216,8 @@ class ImportService
             ->data($data)
             ->campaign($this->campaign)
             ->import();
+
+        $this->originalCampaignID = (int) $data['id'];
         return $this;
     }
 
@@ -286,6 +293,8 @@ class ImportService
                 }
                 $filePath = Str::replace($this->dataPath, '', $file);
                 $data = $this->open($filePath);
+                // Add the original campaign id for gallery image mapping
+                $data['campaign_id'] = $this->originalCampaignID;
                 // @phpstan-ignore-next-line
                 $mapper
                     ->path($this->dataPath . '/')
@@ -368,6 +377,11 @@ class ImportService
         $files = $this->job->config['files'];
         foreach ($files as $file) {
             Storage::disk('s3')->delete($file);
+        }
+
+        // Finished with our core loop, now throw any exception for sentry to catch them
+        if (isset($this->exception)) {
+            throw $this->exception;
         }
         return $this;
     }

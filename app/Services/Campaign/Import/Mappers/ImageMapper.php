@@ -14,8 +14,7 @@ trait ImageMapper
         }
 
         // Let's see if the original exists on the s3 bucket to avoid a lot of pain
-        $destination = Str::replace('campaigns/', 'w/' . $this->campaign->id . '/', $this->data[$field]);
-        $destination = Str::replace('w/', 'w/' . $this->campaign->id . '/', $this->data[$field]);
+        $destination = 'w/' . $this->campaign->id . '/' . Str::afterLast($this->data[$field], '/');
         if (Storage::exists($this->data['image'])) {
             Storage::copy($this->data['image'], $destination);
             $this->campaign->image = $destination;

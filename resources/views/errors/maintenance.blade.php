@@ -44,15 +44,14 @@
 
 <section class="bg-purple text-white gap-16">
     <div class="px-6 py-20 lg:max-w-7xl mx-auto text-center flex flex-col gap-8">
+        <h2 id="maintenance">Server maintenance</h2>
+
+        <p class="lg:max-w-2xl mx-auto text-center">Kanka is currently unavailable due to planned server maintenance.</p>
+        <p class="lg:max-w-2xl mx-auto text-center">This maintenance is planned to last from <a href="https://everytimezone.com/s/7aea1b8b" target="_blank" class="link-light"><i class="fa-solid fa-external-link"></i> 15:00 UTC</a> to 16:30 UTC.</p>
+
+        <p class="lg:max-w-2xl mx-auto text-center">Join us over on our {!! link_to(config('social.discord'), 'Discord', ['class' => 'link-light']) !!} to be notified as soon as the maintenance is over.</p>
+
         <div class="hidden">
-            <h2 id="maintenance">Server maintenance</h2>
-
-            <p class="lg:max-w-2xl mx-auto text-center">Kanka is currently unavailable due to planned server maintenance.</p>
-            <p class="lg:max-w-2xl mx-auto text-center">This maintenance is planned to last from <a href="https://everytimezone.com/s/fce7c091" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link"></i> 14:00 UTC</a> to 16:00 UTC.</p>
-
-            <p class="lg:max-w-2xl mx-auto text-center">Join us over on our {!! link_to(config('social.discord'), 'Discord') !!} to be notified as soon as the maintenance is over.</p>
-        </div>
-        <div>
             <h2 id="maintenance">{{ __('errors.503.title') }}</h2>
 
             <p class="lg:max-w-2xl mx-auto text-center">{{ __('errors.503.body.1') }}</p>

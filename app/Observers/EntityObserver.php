@@ -143,21 +143,7 @@ class EntityObserver
 
         if (request()->has('replace_mentions') && request()->filled('replace_mentions') && $entity->child->isFillable('entry')) {
             $source = Entity::findOrFail($sourceId);
-            $sourceAttributes = [];
-            $entityAttributes = [];
-            foreach ($source->attributes as $attribute) {
-                array_push($sourceAttributes, '{attribute:' . $attribute->id . '}');
-            }
-            foreach ($entity->attributes as $attribute) {
-                array_push($entityAttributes, '{attribute:' . $attribute->id . '}');
-            }
-            //$attributes = array_combine($sourceAttributes, $entityAttributes);
-            $entry = Str::replace($sourceAttributes, $entityAttributes, $entity->child->entry);
-            $entity->child->update(['entry' => $entry]);
-            foreach ($entity->posts as $post) {
-                $post->entry = Str::replace($sourceAttributes, $entityAttributes, $post->entry);
-                $post->updateQuietly();
-            }
+            $this->attributeService->replaceMentions($source);
         }
         return $this;
     }
