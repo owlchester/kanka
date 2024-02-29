@@ -218,7 +218,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                             <x-icon class="fa-solid fa-print"></x-icon>
                             {{ __('crud.actions.print') }}
                         </x-dropdowns.item>
-                        <x-dropdowns.item link="{{ route('entities.json-export', [$campaign, $entity]) }}">
+                        <x-dropdowns.item link="{{ route('entities.json.export', [$campaign, $entity]) }}">
                             <x-icon class="fa-solid fa-download"></x-icon>
                             {{ __('crud.actions.json-export') }}
                         </x-dropdowns.item>

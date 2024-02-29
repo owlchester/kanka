@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/w/{campaign}/entities/{entity}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show');
+Route::get('/w/{campaign}/entities/{entity}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show')->where(['entity' => '[0-9]+']);
 Route::get('/w/{campaign}/entities/{entity}-{slug}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show-slug');
 Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entity\EditController::class, 'index'])->name('entities.edit');
 
@@ -285,7 +285,8 @@ Route::get('/w/{campaign}/entities/{entity}/inventory', 'Entity\InventoryControl
 
 // Export
 Route::get('/w/{campaign}/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');
-Route::get('/w/{campaign}/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
+Route::get('/w/{campaign}/entities/{entity}.json', 'Entity\ExportController@json')->name('entities.json.export');
+
 
 Route::get('/w/{campaign}/entities/{entity}/template', 'Entity\TemplateController@update')->name('entities.template');
 
