@@ -16,6 +16,8 @@ $imagePath = Avatar::entity($entity ?? $model->entity)->size(192)->thumbnail();
 $imagePathXL = Avatar::entity($entity ?? $model->entity)->size(400)->thumbnail();
 $imagePathMobile = Avatar::entity($entity ?? $model->entity)->size(192)->thumbnail();
 
+$addTagsUrl = route('entity.tags-add', [$campaign, $model->entity]);
+
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();
 
@@ -264,8 +266,8 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             </div>
         @endif
 
-        @if($entityTags->count() > 0)
         <div class="entity-tags entity-header-line text-xs flex  flex-wrap gap-2">
+        @if($entityTags->count() > 0)
             @foreach ($entityTags as $tag)
                 @if (!$tag->entity) @continue @endif
                 <a href="{{ route('tags.show', [$campaign, $tag]) }}" data-toggle="tooltip-ajax"
@@ -275,8 +277,16 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                     {!! $tag->html() !!}
                 </a>
             @endforeach
-        </div>
         @endif
+        @if(!($model instanceof \App\Models\Tag))
+            @can('update', $model)
+                <a href="{{ $addTagsUrl }}" 
+                    data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addTagsUrl }}">
+                    <x-icon class="fa-solid fa-plus-circle fa-2x" />
+                </a>
+            @endcan
+        @endif
+        </div>
 
         @includeIf('entities.headers._' . $model->getEntityType())
 

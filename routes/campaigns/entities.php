@@ -104,6 +104,9 @@ Route::get('/w/{campaign}/tags/{tag}/children', 'Tags\ChildController@index')->n
 Route::get('/w/{campaign}/tags/{tag}/entity-add', 'Tags\ChildController@create')->name('tags.entity-add');
 Route::post('/w/{campaign}/tags/{tag}/entity-add', 'Tags\ChildController@store')->name('tags.entity-add.save');
 
+Route::get('/w/{campaign}/entities/{entity}/tags/add', 'Entity\TagController@create')->name('entity.tags-add');
+Route::post('/w/{campaign}/entities/{entity}/tags/add', 'Entity\TagController@store')->name('entity.tags-add.save');
+
 // Multi-delete for cruds
 Route::post('/w/{campaign}/bulk/process', 'BulkController@index')->name('bulk.process');
 Route::get('/w/{campaign}/bulk/modal', 'BulkController@modal')->name('bulk.modal');
