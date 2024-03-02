@@ -11,7 +11,6 @@ use App\Services\AttributeService;
 use App\Services\Entity\TagService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
-use Illuminate\Support\Str;
 use App\Facades\Domain;
 
 class EntityObserver
