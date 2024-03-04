@@ -37,8 +37,8 @@ class ExportController extends Controller
 
         return response()->view('entities.pages.print.markdown', ['entity' => $entity, 'model' => $entity->child])
             ->header('Content-Type', 'application/md')
-            ->header('Content-disposition','attachment; filename="' . Str::slug($entity->name) . '.md"');
-        }
+            ->header('Content-disposition', 'attachment; filename="' . Str::slug($entity->name) . '.md"');
+    }
 
     public function html(Campaign $campaign, Entity $entity)
     {
