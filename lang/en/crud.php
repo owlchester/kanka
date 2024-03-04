@@ -17,6 +17,7 @@ return [
         'go_to'             => 'Go to :name',
         'help'              => 'Help',
         'json-export'       => 'Export (JSON)',
+        'markdown-export'   => 'Export (Markdown)',
         'manage_links'      => 'Manage Links',
         'move'              => 'Move',
         'new'               => 'New',
