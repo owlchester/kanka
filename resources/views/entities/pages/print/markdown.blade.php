@@ -1,15 +1,7 @@
 <?php /**
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
- */
-use Illuminate\Support\Str;
-$converter = new League\HTMLToMarkdown\HtmlConverter();
-$converter->getConfig()->setOption('strip_tags', true);
-$converter->getEnvironment()->addConverter(new League\HTMLToMarkdown\Converter\TableConverter());
-?>
-<head>
-  <title>{!! Str::slug($entity->name) !!}</title>
-</head>
+ */?>
 
 # {!! $entity->name !!}
 
