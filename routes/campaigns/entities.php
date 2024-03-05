@@ -289,6 +289,7 @@ Route::get('/w/{campaign}/entities/{entity}/inventory', 'Entity\InventoryControl
 // Export
 Route::get('/w/{campaign}/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');
 Route::get('/w/{campaign}/entities/{entity}.json', 'Entity\ExportController@json')->name('entities.json.export');
+Route::get('/w/{campaign}/entities/{entity}.md', 'Entity\ExportController@markdown')->name('entities.markdown.export');
 
 
 Route::get('/w/{campaign}/entities/{entity}/template', 'Entity\TemplateController@update')->name('entities.template');

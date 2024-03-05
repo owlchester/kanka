@@ -224,6 +224,10 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                             <x-icon class="fa-solid fa-download"></x-icon>
                             {{ __('crud.actions.json-export') }}
                         </x-dropdowns.item>
+                        <x-dropdowns.item link="{{ route('entities.markdown.export', [$campaign, $entity]) }}">
+                            <x-icon class="fa-solid fa-download"></x-icon>
+                            {{ __('crud.actions.markdown-export') }}
+                        </x-dropdowns.item>
                     @endif
                     @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
                         <hr class="m-0" />
