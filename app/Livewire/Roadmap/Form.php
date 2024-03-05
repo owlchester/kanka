@@ -24,6 +24,8 @@ class Form extends Component
 
     public bool $success = false;
 
+    public int $iteration = 0;
+
     public $duplicates;
 
     public function save()
@@ -49,6 +51,8 @@ class Form extends Component
         $this->success = true;
         $this->title = '';
         $this->description = '';
+        $this->file = null;
+        $this->iteration++;
     }
 
     public function updated()
