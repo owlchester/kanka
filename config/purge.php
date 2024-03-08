@@ -3,7 +3,7 @@
 return [
     'users' => [
         'first' => [
-            'inactivity' => 12,
+            'inactivity' => 18,
             'limit' => 30,
         ],
         'second' => [
