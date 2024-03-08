@@ -389,11 +389,9 @@ class ImporterService
 
         // Need to download the image from the marketplace's s3 (if possible)
         try {
-            $folder = $model->getTable();
-            $path = $folder . '/' . Str::uuid() . '.' . Str::afterLast($entity->image_path, '.');
-            //dump($path);
-            Storage::writeStream($path, Storage::disk('s3-marketplace')->readStream($entity->image_path));
-            $model->image = $path;
+            $path = 'w/' . $this->campaign->id . '/' . Str::uuid() . '.' . Str::afterLast($entity->image_path, '.');
+            Storage::writeStream($path, Storage::disk('cloudfront')->readStream($entity->image_path));
+            $model->entity->image_path = $path;
         } catch (Exception $e) {
             Log::error('Error importing image from ' . $entity->id . ': ' . $e->getMessage());
         }
