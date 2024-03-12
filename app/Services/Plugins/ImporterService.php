@@ -383,7 +383,7 @@ class ImporterService
     protected function importImage(MiscModel $model, PluginVersionEntity $entity)
     {
         // Don't do anything if no image or replacing an image (too many false positives)
-        if (empty($entity->image_path)) {
+        if (empty($entity->image_path) && !empty($model->entity->image_path)) {
             return $model;
         }
 
