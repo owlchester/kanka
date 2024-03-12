@@ -94,7 +94,6 @@ To create an attribute, use the following endpoint.
 | `value` | `string` | The attribute's value |
 | `default_order` | `integer` | The attribute's order |
 | `type_id` | `int` | The attribute's type ID: `1` for standard, `2` for a multiline text block, `3` for a checkbox, `4` for a section, `5` for a random number, `6` for a number, `7` for a list choice. |
-| `entity_id` | `int` (Required) | The attribute's parent entity |
 | `is_private` | `boolean` | If the attribute is only visible to `admin` members of the campaign |
 | `is_pinned` | `boolean` | If the attribute is "pinned" on the entity view |
 | `api_key` | `string` (max 20) | A custom field only shown in the API for you to link attributes to your system ids. |
@@ -115,7 +114,7 @@ To update an attribute, use the following endpoint.
 
 ### Body
 
-The same body parameters are available as for when creating an attribute. The `name` and `entity_id` fields are required.
+The same body parameters are available as for when creating an attribute. The `name` field is required.
 
 ### Results
 

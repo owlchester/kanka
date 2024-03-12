@@ -52,7 +52,9 @@ class EntityAttributeApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $attribute->update($request->all());
+        $data = $request->all();
+        $data['entity_id'] = $entity->id;
+        $attribute->update($data);
 
         return new Resource($attribute);
     }

@@ -14,7 +14,6 @@ it('POSTS a new attribute')
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/entities/1/attributes', [
         'name' => fake()->name(),
-        'entity_id' => 1,
         'type_id' => 1,
         'api_key' => '1',
         'value' => 'Entity: [entity:2]',
