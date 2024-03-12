@@ -41,7 +41,7 @@ class ExportController extends Controller
         $converter->getConfig()->setOption('strip_tags', true);
         $converter->getEnvironment()->addConverter(new TableConverter());
 
-        return response()->view('entities.pages.print.markdown', ['entity' => $entity, 'model' => $entity->child, 'converter' => $converter])
+        return response()->view('entities.pages.print.markdown', ['entity' => $entity, 'model' => $entity->child, 'converter' => $converter, 'campaign' => $campaign])
             ->header('Content-Type', 'application/md')
             ->header('Content-disposition', 'attachment; filename="' . Str::slug($entity->name) . '.md"');
     }

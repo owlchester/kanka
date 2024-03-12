@@ -99,4 +99,5 @@ return [
         'public'    => 'Attribute visible to all members.',
         'tab'       => 'Attribute is displayed only on the Attributes tab.',
     ],
+    'title'         => 'Attributes',
 ];
