@@ -36,6 +36,7 @@ $(document).ready(function() {
         window.initTags();
         window.initDialogs();
         window.initTooltips();
+        window.ajaxTooltip();
         window.initDropdowns();
         initAjaxPagination();
         initSpectrum();
