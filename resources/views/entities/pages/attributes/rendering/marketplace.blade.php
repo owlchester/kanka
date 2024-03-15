@@ -32,3 +32,10 @@
 }
     </style>
 @endsection
+
+@section('scripts')
+    @parent
+    <script>
+    {!! $plugin->version->javascript !!}
+    </script>
+@endsection
