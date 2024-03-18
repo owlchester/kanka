@@ -50,8 +50,9 @@ const initImageFocus = () => {
         let originalHeight = scaledImage.naturalHeight;
 
         // Calculate the coordinates as a percentage, so that the focus point can be placed correctly to scale
-        let left = (bullseye.dataset.focusY / originalWidth) * 100;
-        let top = (bullseye.dataset.focusX / originalHeight) * 100;
+        let left = (bullseye.dataset.focusX / originalWidth) * 100;
+        let top = (bullseye.dataset.focusY / originalHeight) * 100;
+
         drawBullseye(top, left);
     }
 };
