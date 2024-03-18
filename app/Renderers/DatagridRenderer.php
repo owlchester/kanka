@@ -204,7 +204,11 @@ class DatagridRenderer
                     // So we have a label and no renderer, so we can order by. We just need a field
                     $html = $this->route($column['field'], $label);
                 }
-                $type = Str::slug($label);
+                if (Str::contains($label, '<i')) {
+                    $type = $column['field'] ?? '';
+                } else {
+                    $type = Str::slug($label);
+                }
             } else {
                 // No label? Sure, we can do this
                 $html = null;

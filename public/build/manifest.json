@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-0e88c1bd.js",
+    "file": "assets/app-b7867e28.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_mention-2d258b1d.js",
@@ -162,7 +162,7 @@
     "src": "resources/js/editors/summernote.js"
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-7cb8710a.js",
+    "file": "assets/family-tree-vue-24250a29.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
