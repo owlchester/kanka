@@ -2,24 +2,13 @@
 
 ---
 
-- [Conversations](#conversations)
-  - [All Conversations](#all-conversations)
-    - [Results](#results)
-
-  - [Conversation](#conversation)
-    - [Results](#results-1)
-  - [Conversation Participants](#conversation-participants)
-    - [Results](#results-2)
-  - [Conversation Messages](#conversation-messages)
-    - [Results](#results-3)
-  - [Create a Conversation](#create-a-conversation)
-    - [Body](#body)
-    - [Results](#results-4)
-  - [Update a Conversation](#update-a-conversation)
-    - [Body](#body-1)
-    - [Results](#results-5)
-  - [Delete a Conversation](#delete-a-conversation)
-    - [Results](#results-6)
+- [All Conversations](#all-conversations)
+- [Conversation](#conversation)
+- [Conversation Participants](#conversation-participants)
+- [Conversation Messages](#conversation-messages)
+- [Create a Conversation](#create-conversation)
+- [Update a Conversation](#update-conversation)
+- [Delete a Conversation](#delete-conversation)
 
 <a name="all-conversations"></a>
 ## All Conversations

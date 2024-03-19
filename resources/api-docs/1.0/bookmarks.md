@@ -2,19 +2,11 @@
 
 ---
 
-- [Menu links](#bookmarks)
-  - [All Menu links](#all-bookmarks)
-    - [Results](#results)
-  - [Menu link](#bookmark)
-    - [Results](#results-1)
-  - [Create a Menu link](#create-a-bookmark)
-    - [Body](#body)
-    - [Results](#results-2)
-  - [Update a Menu link](#update-a-bookmark)
-    - [Body](#body-1)
-    - [Results](#results-3)
-  - [Delete a Menu link](#delete-a-bookmark)
-    - [Results](#results-4)
+- [All Menu links](#all-bookmarks)
+- [Menu link](#bookmark)
+- [Create a Menu link](#create-bookmark)
+- [Update a Menu link](#update-bookmark)
+- [Delete a Menu link](#delete-bookmark)
 
 <a name="all-bookmarks"></a>
 ## All Menu links
