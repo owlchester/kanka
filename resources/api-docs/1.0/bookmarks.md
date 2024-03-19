@@ -1,17 +1,17 @@
-# Menu links
+# Bookmarks
 
 ---
 
-- [All Menu links](#all-bookmarks)
-- [Menu link](#bookmark)
-- [Create a Menu link](#create-bookmark)
-- [Update a Menu link](#update-bookmark)
-- [Delete a Menu link](#delete-bookmark)
+- [All Bookmarks](#all-bookmarks)
+- [Bookmark](#bookmark)
+- [Create a Bookmark](#create-bookmark)
+- [Update a Bookmark](#update-bookmark)
+- [Delete a Bookmark](#delete-bookmark)
 
 <a name="all-bookmarks"></a>
-## All Menu links
+## All Bookmarks
 
-You can get a list of all the menu links of a campaign by using the following endpoint.
+You can get a list of all the bookmarks of a campaign by using the following endpoint.
 
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
@@ -48,9 +48,9 @@ You can get a list of all the menu links of a campaign by using the following en
 
 
 <a name="bookmark"></a>
-## Menu link
+## Bookmark
 
-To get the details of a single menu link, use the following endpoint.
+To get the details of a single bookmark, use the following endpoint.
 
 | Method | URI                       | Headers |
 | :- |:--------------------------|  :-  |
@@ -83,9 +83,9 @@ To get the details of a single menu link, use the following endpoint.
 
 
 <a name="create-bookmark"></a>
-## Create a Menu link
+## Create a Bookmark
 
-To create a menu link, use the following endpoint.
+To create a bookmark, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
@@ -95,9 +95,9 @@ To create a menu link, use the following endpoint.
 
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
-| `name` | `string` (Required) | Name of the menu link |
-| `entity_id` | `int` (Required without type, random_entity_type, dashboard_id) | Entity id of the menu link |
-| `type` | `int` (Required without entity_id, random_entity_type, dashboard_id) | The menu link entity type id |
+| `name` | `string` (Required) | Name of the bookmark |
+| `entity_id` | `int` (Required without type, random_entity_type, dashboard_id) | Entity id of the bookmark |
+| `type` | `int` (Required without entity_id, random_entity_type, dashboard_id) | The bookmark entity type id |
 | `random_entity_type` | `string` (Required without entity_id, type, dashboard_id) | The entity type (singular) for a random entity of that type |
 | `dashboard_id` | `int` (Required without entity_id, type, random_entity_type) | The dashboard id |
 | `icon` | `string` | Custom icon for boosted campaigns |
@@ -105,19 +105,19 @@ To create a menu link, use the following endpoint.
 | `filters` | `string` | Filter options for the link |
 | `menu` | `string` | Menu options for the link |
 | `position` | `int` | Position of the link |
-| `is_private` | `boolean` | If the menu link is only visible to admin members of the campaign |
-| `is_active` | `boolean` | If the menu link is visible |
+| `is_private` | `boolean` | If the bookmark is only visible to admin members of the campaign |
+| `is_active` | `boolean` | If the bookmark is visible |
 | `options`| `object` | Key/Value pairs for optional parameters, currently allowed Keys : `is_nested:boolean` |
 
 ### Results
 
-> {success} Code 200 with JSON body of the new menu link.
+> {success} Code 200 with JSON body of the new bookmark.
 
 
 <a name="update-bookmark"></a>
-## Update a Menu link
+## Update a Bookmark
 
-To update a menu link, use the following endpoint.
+To update a bookmark, use the following endpoint.
 
 | Method | URI                       | Headers |
 | :- |:--------------------------|  :-  |
@@ -125,15 +125,15 @@ To update a menu link, use the following endpoint.
 
 ### Body
 
-The same body parameters are available as for when creating a menu link.
+The same body parameters are available as for when creating a bookmark.
 
 ### Results
 
-> {success} Code 200 with JSON body of the updated menu link.
+> {success} Code 200 with JSON body of the updated bookmark.
 
 
 <a name="delete-bookmark"></a>
-## Delete a Menu link
+## Delete a Bookmark
 
 To delete a bookmark, use the following endpoint.
 
