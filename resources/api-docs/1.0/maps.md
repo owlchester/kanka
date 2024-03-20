@@ -2,20 +2,11 @@
 
 ---
 
-- [Maps](#maps)
-  - [All Maps](#all-maps)
-    - [Results](#results)
-
-  - [Map](#map)
-    - [Results](#results-1)
-  - [Create a Map](#create-a-map)
-    - [Body](#body)
-    - [Results](#results-2)
-  - [Update a Map](#update-a-map)
-    - [Body](#body-1)
-    - [Results](#results-3)
-  - [Delete a Map](#delete-a-map)
-    - [Results](#results-4)
+- [All Maps](#all-maps)
+- [Single Map](#map)
+- [Create a Map](#create-map)
+- [Update a Map](#update-map)
+- [Delete a Map](#delete-map)
 
 <a name="all-maps"></a>
 ## All Maps
