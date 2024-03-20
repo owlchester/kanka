@@ -17,12 +17,15 @@
             Previously cancelled {{ $lastCancel->tier }} subscription {{ $lastCancel->created_at->diffForHumans() }} ({{ $lastCancel->created_at->format('d.m.Y') }}).
         </p>
         <p>
-            Reason given: {{ $lastCancel->reason }}
-            @if ($lastCancel->custom)
-                </br>
-                Custom message: {{ $lastCancel->custom }}
-            @endif
+            <strong>Reason provided: </strong><br />
+            {{ $lastCancel->reason }}<br />
         </p>
+        @if (!empty($lastCancel->custom))
+            <p>
+                <strong>Custom message: </strong><br />
+                {!! nl2br(e($lastCancel->custom)) !!}
+            </p>
+        @endif
     @endif
     @if ($discord = $user->apps->where('app', 'discord')->first())
         <p>
