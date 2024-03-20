@@ -15,6 +15,11 @@
     @if ($lastCancel)
         <p>
             Previously cancelled {{ $lastCancel->tier }} subscription {{ $lastCancel->created_at->diffForHumans() }} ({{ $lastCancel->created_at->format('d.m.Y') }}).
+
+            Reason given: {{ $lastCancel->reason }}
+            @if ($lastCancel->custom)
+                Custom message: {{ $lastCancel->custom }}
+            @endif
         </p>
     @endif
     @if ($discord = $user->apps->where('app', 'discord')->first())
