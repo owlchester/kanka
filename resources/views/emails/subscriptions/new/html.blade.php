@@ -15,9 +15,11 @@
     @if ($lastCancel)
         <p>
             Previously cancelled {{ $lastCancel->tier }} subscription {{ $lastCancel->created_at->diffForHumans() }} ({{ $lastCancel->created_at->format('d.m.Y') }}).
-
+        </p>
+        <p>
             Reason given: {{ $lastCancel->reason }}
             @if ($lastCancel->custom)
+                </br>
                 Custom message: {{ $lastCancel->custom }}
             @endif
         </p>
