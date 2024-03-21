@@ -61,6 +61,10 @@ return [
             'show_before'   => 'Show before today',
         ],
         'start'     => '(start)',
+        'bulks'     => [
+            'patch'     => '{1} Updated :count event.|[2,*] Updated :count events.',
+            'delete'     => '{1} Deleted :count event.|[2,*] Deleted :count events.',
+        ],
     ],
     'fields'        => [
         'colour'                => 'Colour',
@@ -90,6 +94,7 @@ return [
         'recurring_until'       => 'Recurring Until Year',
         'reset'                 => 'Weekly Reset',
         'seasons'               => 'Seasons',
+        'show_birthdays'        => 'Show Birthdays',
         'skip_year_zero'        => 'Skip Year Zero',
         'start_offset'          => 'Start Offset',
         'suffix'                => 'Suffix',
@@ -116,6 +121,7 @@ return [
         'parent_calendar'   => 'Giving the calendar a parent calendar will include the reminders and weather effects of the parent calendar.',
         'reset'             => 'Always start the beginning of the month or year on the first week day.',
         'seasons'           => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
+        'show_birthdays'    => 'Show the yearly birthdays of characters that have a birthday reminder on this calendar up to their death date.',
         'skip_year_zero'    => 'By default, the calendar\'s first year is year zero. Enable this option to skip year zero.',
         'weekdays'          => 'Set your weekday names. At least 2 weekdays are required.',
         'weeks'             => 'Define some names for the more important weeks of your calendar.',

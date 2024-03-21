@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Creature;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -37,9 +38,10 @@ class StoreCreature extends FormRequest
             'template_id' => 'nullable',
         ];
 
-        $self = request()->segment(5);
+        /** @var Creature $self */
+        $self = request()->route('creature');
         if (!empty($self)) {
-            $rules['creature_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:creatures,id';
+            $rules['creature_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:creatures,id';
         }
 
         return $this->clean($rules);

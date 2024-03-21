@@ -44,7 +44,7 @@
                 <div class="flex flex-col gap-3 text-sm">
                     <span class="block text-nav uppercase">{{ __('footer.community') }}</span>
                     <a href="{{ Domain::toFront('campaigns') }}">{{ __('footer.public-campaigns') }}</a>
-                    <a href="{{ Domain::toFront('community-votes') }}">{{ __('front/community-votes.title') }}</a>
+                    <a href="{{ route('roadmap') }}">{{ __('footer.roadmap') }}</a>
                     <a href="{{ Domain::toFront('hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
                 </div>
 
@@ -80,37 +80,45 @@
 </footer>
 
 <x-dialog id="language-select-modal" :title="__('footer.language-switcher.title')">
+    @php
+    $currentUrl = url()->full();
+    if (\Illuminate\Support\Str::contains($currentUrl, '?')) {
+        $currentUrl .= '&lang=';
+    } else {
+        $currentUrl .= '?lang=';
+    }
+    @endphp
     <div class="grid grid-cols-2 gap-4">
         <ul class="list-none p-0 m-0">
             <li class="py-2">
-                <a rel="alternate" hreflang="en-US" href="{{ url()->full() . '?lang=en-US' }}">
+                <a rel="alternate" hreflang="en-US" href="{{ $currentUrl . 'en-US' }}">
                     US English
                 </a>
             </li>
             <li class="py-2">
-                <a rel="alternate" hreflang="en" href="{{ url()->full() . '?lang=en' }}">
+                <a rel="alternate" hreflang="en" href="{{ $currentUrl . 'en' }}">
                     UK English
                 </a>
             </li>
             <li class="py-2">
-                <a rel="alternate" hreflang="pt-BR" href="{{ url()->full() . '?lang=pt-BR' }}">
+                <a rel="alternate" hreflang="pt-BR" href="{{ $currentUrl . 'pt-BR' }}">
                     Português do Brasil
                 </a>
             </li>
         </ul>
         <ul class="list-none p-0 m-0">
             <li class="py-2">
-                <a rel="alternate" hreflang="de" href="{{ url()->full() . '?lang=de' }}">
+                <a rel="alternate" hreflang="de" href="{{ $currentUrl . 'de' }}">
                     Deutsch
                 </a>
             </li>
             <li class="py-2">
-                <a rel="alternate" hreflang="fr" href="{{ url()->full() . '?lang=fr' }}">
+                <a rel="alternate" hreflang="fr" href="{{ $currentUrl . 'fr' }}">
                     Français
                 </a>
             </li>
             <li class="py-2">
-                <a rel="alternate" hreflang="es" href="{{ url()->full() . '?lang=es' }}">
+                <a rel="alternate" hreflang="es" href="{{ $currentUrl . 'es' }}">
                     Español
                 </a>
             </li>
@@ -123,29 +131,29 @@
         <div class="grid grid-cols-2 gap-4">
             <ul class="list-none p-0 m-0">
                 <li class="py-2">
-                    <a rel="alternate" hreflang="it" href="{{ url()->full() . '?lang=it' }}">
+                    <a rel="alternate" hreflang="it" href="{{ $currentUrl . 'it' }}">
                         Italiano
                     </a>
                 </li>
                 <li class="py-2">
-                    <a rel="alternate" hreflang="pl" href="{{ url()->full() . '?lang=pl' }}">
+                    <a rel="alternate" hreflang="pl" href="{{ $currentUrl . 'pl' }}">
                         Polska
                     </a>
                 </li>
                 <li class="py-2">
-                    <a rel="alternate" hreflang="ru" href="{{ url()->full() . '?lang=ru' }}">
+                    <a rel="alternate" hreflang="ru" href="{{ $currentUrl . 'ru' }}">
                         Pусский
                     </a>
                 </li>
             </ul>
             <ul class="list-none p-0 m-0">
                 <li class="py-2">
-                    <a rel="alternate" hreflang="nl" href="{{ url()->full() . '?lang=nl' }}">
+                    <a rel="alternate" hreflang="nl" href="{{ $currentUrl . 'nl' }}">
                         Nederlands
                     </a>
                 </li>
                 <li class="py-2">
-                    <a rel="alternate" hreflang="sk" href="{{ url()->full() . '?lang=sk' }}">
+                    <a rel="alternate" hreflang="sk" href="{{ $currentUrl . 'sk' }}">
                         Slovenský
                     </a>
                 </li>

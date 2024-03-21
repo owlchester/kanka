@@ -34,6 +34,8 @@ class LocaleChange
 
         // If it's not a get request, don't touch it either
         if (!$request->isMethod('get')) {
+            $locale = $this->currentLocale();
+            LaravelLocalization::setLocale($locale);
             return $next($request);
         }
 

@@ -7,6 +7,16 @@ return [
     ],
     'bulk'              => [
         'delete'    => '{1} Usunięto :count relację.|[2,3,4] Usunięto :count relacje.|[5,*] Usunięto :count relacji.',
+        'fields'    => [
+            'delete_mirrored'   => 'Usuń obustronnie',
+            'unmirror'          => 'Rozwiąż obustronność',
+            'update_mirrored'   => 'Aktualizuj obustronnie',
+        ],
+        'helpers'   => [
+            'delete_mirrored'   => 'Usuwa relacje obu stron',
+            'unmirror'          => 'Rozwiązuje obustronność relacji',
+            'update_mirrored'   => 'Aktualizuje relacje obu stron.',
+        ],
         'success'   => [
             'editing'           => '{1} Zmienono :count relację.|[2,3,4] Zmienono :count relacje.|[5,*] Zmienono :count relacji.',
             'editing_partial'   => '{1} Zmienono :count/:total relację.|[2,3,4] Zmienono :count/:total relacje.|[5,*] Zmienono :count/:total relacji.',
@@ -20,9 +30,9 @@ return [
         'timeline_element'  => 'Część historii',
     ],
     'create'            => [
-        'new_title' => 'Nowa relacja',
-        'success'   => 'Dodano relację :target do elementu :entity.',
-        'title'     => 'Nowa relacja elementu :name.',
+        'new_title'     => 'Nowa relacja',
+        'success_bulk'  => '{1} Dodano :count relacji do :entity.|[2,4] Dodano :count relacje do :entity.|[5,*] Dodano :count relacji do :entity.',
+        'title'         => 'Nowa relacja elementu :name.',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Te elementy łączy relacja obustronna. Wybór tej opcji usunie obydwie strony relacji.',
@@ -35,13 +45,17 @@ return [
     'fields'            => [
         'attitude'          => 'Nastawienie',
         'connection'        => 'Powiązanie',
-        'is_star'           => 'Przypięta',
+        'is_pinned'         => 'Przypięta',
         'owner'             => 'Źródło',
         'relation'          => 'Relacja',
         'target'            => 'Obiekt',
         'target_relation'   => 'Relacje obiektu',
         'two_way'           => 'Stwórz relację obustronną',
         'unmirror'          => 'Zmień w relację jednostronną',
+    ],
+    'filters'           => [
+        'connection'    => 'Rodzaj relacji',
+        'name'          => 'Cel relacji',
     ],
     'helper'            => 'Ustalaj relacje między elementami, określając ich rodzaj i widoczność. Relacje można przypinać do opisu elementów.',
     'helpers'           => [

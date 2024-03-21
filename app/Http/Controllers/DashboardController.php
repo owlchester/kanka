@@ -36,7 +36,7 @@ class DashboardController extends Controller
         }
 
         $hasMap = false;
-        $hasCampaignHeader = false;
+        $hasCampaignHeader = $requestedDashboard === null;
         foreach ($widgets as $w) {
             if ($w->widget === Widget::Preview && $w->entity && $w->visible() && $w->entity->isMap()) {
                 $hasMap = true;
@@ -95,10 +95,11 @@ class DashboardController extends Controller
             ]);
         }
 
+        // @phpstan-ignore-next-line
         $entities = \App\Models\Entity::unmentioned()
             ->inTags($widget->tags->pluck('id')->toArray())
-            ->type($widget->conf('entity'))
             ->with(['updater'])
+            ->type($widget->conf('entity'))
             ->paginate(10);
 
         return view('dashboard.widgets._recent_list')

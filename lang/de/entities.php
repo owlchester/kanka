@@ -5,6 +5,8 @@ return [
     'ability'               => 'Fähigkeit',
     'attribute_template'    => 'Attributvorlage',
     'attribute_templates'   => 'Attributsvorlagen',
+    'bookmark'              => 'Lesezeichen',
+    'bookmarks'             => 'Lesezeichen',
     'calendar'              => 'Kalender',
     'calendars'             => 'Kalender',
     'campaign'              => 'Kampagne',

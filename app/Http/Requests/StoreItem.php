@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Item;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -41,14 +42,16 @@ class StoreItem extends FormRequest
             'price' => 'nullable|string|max:191',
             'size' => 'nullable|string|max:191',
         ];
-        $self = request()->segment(5);
+
+        /** @var Item $self */
+        $self = request()->route('item');
         if (!empty($self)) {
             $rules['item_id'] = [
                 'nullable',
                 'integer',
-                'not_in:' . ((int) $self),
+                'not_in:' . ((int) $self->id),
                 Rule::exists('items', 'id')->where(function ($query) use ($self) {
-                    return $query->whereNull('item_id')->orWhere('item_id', '!=', $self);
+                    return $query->whereNull('item_id')->orWhere('item_id', '!=', $self->id);
                 }),
             ];
         }

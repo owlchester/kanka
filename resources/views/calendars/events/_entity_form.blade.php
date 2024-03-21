@@ -21,8 +21,8 @@ $onlyOneCalendar = count($calendars) == 1;
 </x-grid>
 
 
-<div class="entity-calendar-subform" style="{{ $onlyOneCalendar ? '' : 'display: none;' }}">
-    @include('calendars.events._subform', ['colourAppendTo' => $dropdownParent ?? '#primary-dialog'])
+<div class="entity-calendar-subform" style="{{ $onlyOneCalendar ? '' : 'display: none' }}">
+    @include('calendars.events._subform')
 </div>
 
 <div class="entity-calendar-loading" style="display: none">

@@ -28,6 +28,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Naozaj chceš odstrániť všetky atribúty tohto objektu?',
+        'is_private'    => 'Povolí iba osobám s :admin-role rolou, aby videli atribúty tohto objektu.',
         'setup'         => 'Prvky ako HP alebo Inteligenciu nejakého objektu s atribútmi je možné referencovať. Atribúty pridáš ručne kliknutím na tlačidlo :manage alebo aplikovaním niektorej zo šablón atribútov.',
     ],
     'hints'         => [],
@@ -79,6 +80,7 @@ return [
         'unlock'    => 'Atribút odomknutý',
         'unpin'     => 'Atribút odopnutý',
     ],
+    'tutorial'      => 'Atribúty sú malé informácie pripnuté k objektu. Napr. postava môže mať vlastnosti ako :hp alebo :str, miesto zasa :pop. Tieto je možné zapísať pomocou atribútov.',
     'types'         => [
         'attribute' => 'Atribút',
         'block'     => 'Blok',

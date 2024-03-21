@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Old Search
-Route::get('/w/{campaign}/search', [\App\Http\Controllers\SearchController::class, 'search'])->name('search');
+Route::get('/w/{campaign}/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
 
 // Misc Model Search
 Route::get('/w/{campaign}/search/calendars', 'Search\MiscController@calendars')->name('calendars.find');
@@ -44,5 +44,5 @@ Route::get('/w/{campaign}/search/ability-entities', 'Search\LiveController@abili
 Route::get('/w/{campaign}/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
 Route::get('/w/{campaign}/search/months', 'Search\CalendarController@months')->name('search.calendar-months');
 
-Route::get('/w/{campaign}/search/live', [\App\Http\Controllers\Search\LiveController::class, 'index'])->name('search.live');
-Route::get('/w/{campaign}/search/recent', [\App\Http\Controllers\Search\RecentController::class, 'index'])->name('search.recent');
+Route::get('/w/{campaign}/search/live', [App\Http\Controllers\Search\LiveController::class, 'index'])->name('search.live');
+Route::get('/w/{campaign}/search/recent', [App\Http\Controllers\Search\RecentController::class, 'index'])->name('search.recent');

@@ -12,9 +12,7 @@ return [
     'helpers'       => [
         'nested_without'    => 'Zobraziť všetky poznámky, ktoré nemajú nadradenú poznámku. Kliknutím na riadok zobrazíš podradené poznámky.',
     ],
-    'hints'         => [
-        'is_pinned' => 'Na nástenku môžete pripnúť max. 3 poznámky.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'note'  => 'Vybrať nadradenú poznámku',

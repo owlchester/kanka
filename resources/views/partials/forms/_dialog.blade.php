@@ -4,7 +4,7 @@
     @endif
     {!! $title !!}
 </x-dialog.header>
-<article class="max-w-2xl">
+<article class="max-w-2xl {{ $articleClass ?? null }}">
     @include('partials.errors')
     @include($content)
 </article>

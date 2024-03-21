@@ -1,5 +1,6 @@
 import { colord } from "colord";
 import tippy from "tippy.js";
+import Coloris from "@melloware/coloris";
 
 let fieldTheme;
 let theme = {};
@@ -12,25 +13,23 @@ $(document).ready(function () {
 const init = () => {
     loadPreviousConfig();
 
-    $.each($('.picker'), function () {
-        let bgColor = $(this).css('backgroundColor');
-        let target = $(this).data('target');
+    Coloris({
+        el: '.picker',
+        format: 'hsl',
+        wrap: false,
+        defaultColor: '#cccccc'
+    });
 
-        //console.log('color', bgColor);
-        $(this).spectrum({
-            preferredFormat: "hsl",
-            showInput: true,
-            color: bgColor,
-            change: function(colour) {
-                updateColour(colour, target);
-            },
-            show: function () {},
-            hide: function () {},
+    document.querySelectorAll('.picker').forEach(input => {
+        input.addEventListener('click', function (e) {
+            this.value = window.getComputedStyle(input).backgroundColor;
         });
+    });
+    document.addEventListener('coloris:pick', event => {
+        colourPicked(event);
     });
 
     $('#theme-builder').on('submit', function () {
-
         let btn = $('#form-submit-main');
         btn.addClass('loading').prop('disabled', true);
 
@@ -38,8 +37,12 @@ const init = () => {
         fieldTheme.val(JSON.stringify(theme));
 
         return true;
-
     });
+};
+
+const colourPicked = (event) => {
+    updateColour(colord(event.detail.color), event.detail.currentEl.dataset.target);
+    event.detail.currentEl.value = '';
 };
 
 const loadPreviousConfig = () => {
@@ -87,8 +90,9 @@ const updateColour = (colour, target) => {
     }
     else if (target === 'w') {
         let content = contrast(colour.toHslString());
-        change('content-wrapper-background', '#' + colour.toHex());
+        change('content-wrapper-background', colour.toHex());
         change('theme-main-text', '' + content.toHex());
+        change('header-text', '' + content.toHex());
     }
 };
 

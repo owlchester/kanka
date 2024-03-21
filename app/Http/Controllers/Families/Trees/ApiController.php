@@ -7,12 +7,14 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Services\Families\FamilyTreeService;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     protected FamilyTreeService $service;
@@ -27,7 +29,7 @@ class ApiController extends Controller
      */
     public function index(Campaign $campaign, Family $family): JsonResponse
     {
-        $this->authView($family);
+        $this->campaign($campaign)->authEntityView($family->entity);
 
         return response()->json(
             $this
@@ -60,7 +62,8 @@ class ApiController extends Controller
      */
     public function save(Request $request, Campaign $campaign, Family $family): JsonResponse
     {
-        //dd($request->get('data'));
+        $this->authorize('update', $family);
+
         return response()->json(
             $this
                 ->service

@@ -88,7 +88,7 @@ class Export implements ShouldQueue
         // Don't delete in "sync" mode as there is no delay.
         $queue = config('queue.default');
         if ($queue !== 'sync') {
-            FileCleanup::dispatch($service->exportPath())->delay(now()->addMinutes(60));
+            FileCleanup::dispatch($service->exportPath())->delay(now()->addDay());
         }
         return 1;
     }

@@ -10,9 +10,13 @@ use App\Facades\Module;
 /**
  * @property int $id
  * @property string $code
+ *
+ * @method static self|Builder exclude(array $ids)
  */
 class EntityType extends Model
 {
+    protected string $cachedPluralCode;
+
     public $fillable = [
         'id',
         'code',
@@ -30,10 +34,15 @@ class EntityType extends Model
             ->orderBy('position');
     }
 
+    public function scopeExclude(Builder $query, array $exclude): Builder
+    {
+        return $query->whereNotIn('id', $exclude);
+    }
+
     /**
      * Get the class model of the entity type
      */
-    public function getClass()
+    public function getClass(): MiscModel
     {
         $className = 'App\Models\\' . Str::studly($this->code);
         return app()->make($className);
@@ -45,6 +54,25 @@ class EntityType extends Model
     public function name(): string
     {
         return Module::singular($this->id, __('entities.' . $this->code));
+    }
+
+    /**
+     * Get the translated name of the entity
+     */
+    public function plural(): string
+    {
+        return Module::plural($this->id, __('entities.' . $this->pluralCode()));
+    }
+
+    /**
+     * Get the translated name of the entity
+     */
+    public function pluralCode(): string
+    {
+        if (isset($this->cachedPluralCode)) {
+            return $this->cachedPluralCode;
+        }
+        return $this->cachedPluralCode = Str::plural($this->code);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Map;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -38,11 +39,15 @@ class StoreMap extends FormRequest
             'template_id' => 'nullable',
             'center_x' => 'nullable|numeric',
             'center_y' => 'nullable|numeric',
+            'max_zoom' => 'nullable|numeric|min:1|max:' . Map::MAX_ZOOM,
+            'min_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
+            'initial_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
         ];
 
-        $self = request()->segment(5);
+        /** @var Map $self */
+        $self = request()->route('map');
         if (!empty($self)) {
-            $rules['map_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:maps,id';
+            $rules['map_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:maps,id';
         }
 
         return $this->clean($rules);

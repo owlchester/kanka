@@ -8,11 +8,11 @@
 $entity = $widget->entity;
 $calendar = $entity->child;
 // Todo: move this to the query
-if (empty($calendar)) {
+if (empty($calendar) || $calendar->missingDetails()) {
     return;
 }
 ?>
-<x-box padding="0" css="widget-calendar widget-list {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+<x-box padding="0" css="widget-calendar {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity" />
     <div class="p-4" data-render="{{ route('dashboard.calendar.render', [$campaign, $widget->id]) }}" data-id="{{ $widget->id }}">
         <div class="text-center py-10 text-2xl" id="widget-loading-{{ $widget->id }}">

@@ -30,9 +30,9 @@ return [
         'timeline_element'  => 'Timeline element',
     ],
     'create'            => [
-        'new_title' => 'New connection',
-        'success'   => 'Connection :target added to :entity.',
-        'title'     => 'New connection for :name',
+        'new_title'     => 'New connection',
+        'success_bulk'  => '{1} Added :count connection to :entity.|[2,*] Added :count connections to :entity.',
+        'title'         => 'New connection for :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'This connection is mirrored on the target entity. Select this option to also remove the mirrored connection.',
@@ -45,7 +45,6 @@ return [
     'fields'            => [
         'attitude'          => 'Attitude',
         'connection'        => 'Connection',
-        'is_star'           => 'Pinned',
         'is_pinned'         => 'Pinned',
         'owner'             => 'Source',
         'relation'          => 'Description',
@@ -53,6 +52,10 @@ return [
         'target_relation'   => 'Target\'s description',
         'two_way'           => 'Mirror connection',
         'unmirror'          => 'Unmirror this connection.',
+    ],
+    'filters'           => [
+        'connection'    => 'Connection relation',
+        'name'          => 'Connection target',
     ],
     'helper'            => 'Set up connections between entities with attitudes and visibility. Connections can also be pinned to the entity\'s menu.',
     'helpers'           => [

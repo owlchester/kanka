@@ -69,6 +69,8 @@ function initCytoscape() {
         maxZoom: 2,
         minZoom: 0.3,
     });
+    cy.minZoom(0.3);
+    cy.maxZoom(2);
 
     // enable double-click event
     cy.dblclick();
@@ -197,7 +199,7 @@ function addListeners() {
             return;
         }
 
-        window.openDialog('connection-dialog', editUrl);
+        window.openDialog('primary-dialog', editUrl);
     });
 
     // highlight edges on hover to show relation

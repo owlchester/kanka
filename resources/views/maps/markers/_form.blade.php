@@ -185,10 +185,10 @@ $sizeOptions = [
                 </x-alert>
             </div>
         @else
-        <div class="md:col-span-2" style="{{ (isset($model) && $model->hasEntry() ? 'display: none' : '') }}">
+        <div class="md:col-span-2" style="{{ ($model->hasEntry() ? 'display: none' : '') }}">
             <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
         </div>
-        <div class="md:col-span-2 map-marker-entry-entry" style="{{ (!isset($model) || !$model->hasEntry() ? 'display: none' : '') }}">
+        <div class="md:col-span-2 map-marker-entry-entry" style="{{ (!$model->hasEntry() ? 'display: none' : '') }}">
             <x-forms.field field="entry" :label=" __('crud.fields.entry')">
                 {!! Form::textarea(
                     'entry',
@@ -209,7 +209,15 @@ $sizeOptions = [
             {{ Form::select('group_id', $map->groupOptions(), \App\Facades\FormCopy::field('group_id')->string(), ['class' => '', 'id' => 'group_id']) }}
         </x-forms.field>
 
+        <x-forms.field field="is_popupless" :label="__('maps/markers.fields.popupless')">
+            {!! Form::hidden('is_popupless', 0) !!}
+            <x-checkbox :text="__('maps/markers.helpers.is_popupless')">
+                {!! Form::checkbox('is_popupless', 1, FormCopy::field('is_popupless')->string()) !!}
+            </x-checkbox>
+        </x-forms.field>
+
         @include('cruds.fields.visibility_id')
+
     </x-grid>
 
     <x-grid :hidden="!$model && empty($source)">
@@ -225,4 +233,4 @@ $sizeOptions = [
 
 {!! Form::hidden('shape_id', (!isset($model) ? !empty($source) ? $source->shape_id : 1 : null)) !!}
 
-@includeWhen(isset($modal), 'editors.editor')
+@includeWhen(isset($model), 'editors.editor')

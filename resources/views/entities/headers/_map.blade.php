@@ -6,7 +6,7 @@
     <div class="entity-header-sub pull-left flex items-center gap-2">
         @if ($model->map)
             <span class="">
-                <x-icon entity="map" :title="__('crud.fields.parent')"/>
+                <x-icon :class="\App\Facades\Module::duoIcon('map')" :title="__('crud.fields.parent')" />
                 {!! $model->map->tooltipedLink() !!}
             </span>
         @endif

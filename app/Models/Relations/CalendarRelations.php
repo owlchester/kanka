@@ -44,12 +44,4 @@ trait CalendarRelations
     {
         return $this->hasMany(Calendar::class);
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function children()
-    {
-        return $this->hasMany(Calendar::class);
-    }
 }

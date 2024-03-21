@@ -12,8 +12,7 @@ return [
         'timeline_element'  => 'Idővonalelem',
     ],
     'create'        => [
-        'success'   => ':name új viszonyát létrehoztuk.',
-        'title'     => 'Új viszony létrehozása számára: :name',
+        'title' => 'Új viszony létrehozása számára: :name',
     ],
     'destroy'       => [
         'success'   => ':name viszonyát eltávolítottuk.',
@@ -21,7 +20,6 @@ return [
     'fields'        => [
         'attitude'          => 'Hozzáállás',
         'connection'        => 'Kapcsolat',
-        'is_star'           => 'Rögzítve',
         'relation'          => 'Viszony',
         'target'            => 'Célpont',
         'target_relation'   => 'Célpont viszony',

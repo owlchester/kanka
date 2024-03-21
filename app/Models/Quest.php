@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Collection;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Quest
@@ -35,7 +36,8 @@ class Quest extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -98,6 +100,13 @@ class Quest extends MiscModel
         'elements',
     ];
 
+    protected array $exportFields = [
+        'base',
+        'instigator_id',
+        'is_completed',
+        'date',
+    ];
+
     /**
      * Performance with for datagrids
      */
@@ -106,7 +115,9 @@ class Quest extends MiscModel
         return $query->with([
             'entity',
             'entity.image',
-            'entity.calendarDateEvents',
+            'entity.calendarDate',
+            'entity.calendarDate.calendar',
+            'entity.calendarDate.calendar.entity',
             'quests',
             'instigator',
             //'elements',
@@ -199,19 +210,10 @@ class Quest extends MiscModel
     }
 
     /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setQuestIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
-    }
-
-    /**
      * Parent ID field for the Node trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'quest_id';
     }
@@ -237,7 +239,8 @@ class Quest extends MiscModel
      */
     public function elements()
     {
-        return $this->hasMany(QuestElement::class);
+        return $this->hasMany(QuestElement::class)
+            ->with(['entity', 'entity.image']);
     }
 
     /**

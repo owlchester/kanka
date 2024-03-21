@@ -21,7 +21,7 @@
             field="reset"
             :label="__('calendars.fields.reset')"
             :tooltip="true"
-            :helper="__('calendars.helpers.reset')">
+            :helper="__('calendars.hints.reset')">
             {!! Form::select('reset', __('calendars.options.resets')) !!}
         </x-forms.field>
 
@@ -42,6 +42,13 @@
             {!! Form::hidden('is_incrementing', 0) !!}
             <x-checkbox :text="__('calendars.hints.is_incrementing')">
                 {!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
+            </x-checkbox>
+        </x-forms.field>
+
+        <x-forms.field field="birthdays" :label="__('calendars.fields.show_birthdays')">
+            {!! Form::hidden('show_birthdays', 0) !!}
+            <x-checkbox :text="__('calendars.hints.show_birthdays')">
+                {!! Form::checkbox('show_birthdays', 1, FormCopy::field('show_birthdays')->string()) !!}
             </x-checkbox>
         </x-forms.field>
     </div>

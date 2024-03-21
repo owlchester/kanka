@@ -24,10 +24,10 @@ class DatagridRenderer2
     /**  */
     protected array $deleteForms = [];
 
-    /** @var array Action params for the edit/delete */
+    /** Action params for the edit/delete */
     protected array $actionParams = [];
 
-    /** @var bool If permissions are checked or not. If false, assume we are admin. */
+    /** If permissions are checked or not. If false, assume we are admin. */
     protected bool $permissions = true;
 
     protected $routeName = null;
@@ -38,9 +38,6 @@ class DatagridRenderer2
 
     protected Closure $highlight;
 
-    /**
-     * @return $this
-     */
     public function layout(string|Layout $layout): self
     {
         if (is_string($layout)) {
@@ -50,9 +47,6 @@ class DatagridRenderer2
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function route(string $route, array $options = null): self
     {
         $this->routeName = $route;
@@ -60,9 +54,6 @@ class DatagridRenderer2
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function actionParams(array $options = null): self
     {
         $this->actionParams = $options;
@@ -71,7 +62,6 @@ class DatagridRenderer2
 
     /**
      * Set which element needs to be highlighted
-     * @return $this
      */
     public function highlight(Closure $highlight): self
     {
@@ -274,5 +264,17 @@ class DatagridRenderer2
             return false;
         }
         return $this->highlight->call($row);
+    }
+
+    /**
+     * Create a list of data-attributes from the row for the row
+     */
+    public function rowAttributes(mixed $row): string
+    {
+        $attributes = [];
+        foreach($row->rowAttributes() as $attr => $val) {
+            $attributes[] = 'data-' . $attr . '="' . $val . '"';
+        }
+        return implode(' ', $attributes);
     }
 }

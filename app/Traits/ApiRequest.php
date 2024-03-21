@@ -12,7 +12,7 @@ trait ApiRequest
     public function clean(array $rules, array $except = []): array
     {
         $isApi = request()->is('api/*') || Domain::isApi();
-        if (!$isApi || !request()->isMethod('put')) {
+        if (!$isApi || !(request()->isMethod('put') || request()->isMethod('patch'))) {
             return $rules;
         }
 

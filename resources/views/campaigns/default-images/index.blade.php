@@ -19,7 +19,7 @@
             </h3>
             @if ($campaign->boosted())
                 <a href="https://docs.kanka.io/en/latest/features/campaigns/default-thumbnails.html" class="btn2 btn-sm btn-ghost" target="_blank">
-                    <x-icon class="question"></x-icon>
+                    <x-icon class="question" />
                     {{ __('crud.actions.help') }}
                 </a>
 
@@ -27,7 +27,7 @@
                 <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
                    data-toggle="dialog-ajax" data-target="new-thumbnail"
                    data-url="{{ route('campaign.default-images.create', $campaign) }}">
-                    <x-icon class="plus"></x-icon>
+                    <x-icon class="plus" />
                     {{ __('campaigns/default-images.actions.add') }}
                 </a>
                 @endif
@@ -35,14 +35,16 @@
         </div>
         @if ($campaign->boosted())
             @if (empty($campaign->defaultImages()))
+                @can('recover', $campaign)
                 <x-box>
                     <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary"
                        data-toggle="dialog-ajax" data-target="new-thumbnail"
                        data-url="{{ route('campaign.default-images.create', $campaign) }}">
-                        <x-icon class="plus"></x-icon>
+                        <x-icon class="plus" />
                         {{ __('campaigns/default-images.actions.add') }}
                     </a>
                 </x-box>
+                @endcan
             @endif
             <div class="grid grid-cols-2 sm:grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
 

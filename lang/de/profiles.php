@@ -16,6 +16,7 @@ return [
         'email'                     => 'Email',
         'hide_subscription'         => 'Verstecke meinen Namen in der :hall_of_fame',
         'last_login_share'          => 'Teile mit anderen Kampagnenmitgliedern, wann ich mich zuletzt angemeldet habe.',
+        'login_sharing'             => 'Letzte Login-Freigabe',
         'name'                      => 'Name',
         'new_password'              => 'Neues Passwort (optional)',
         'new_password_confirmation' => 'Neues Passwort bestätigen',
@@ -23,6 +24,7 @@ return [
         'password'                  => 'Aktuelles Passwort',
         'profile-name'              => 'Profilname',
         'settings'                  => 'Einstellungen',
+        'subscription_hiding'       => 'Abonnement versteckt',
         'theme'                     => 'Theme',
     ],
     'helpers'                       => [

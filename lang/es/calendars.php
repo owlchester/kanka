@@ -41,6 +41,9 @@ return [
             'success'   => 'Evento del calendario actualizado',
             'title'     => 'Actualizar evento del calendario de :name',
         ],
+        'errors'    => [
+            'invalid_entity'    => 'Selección de entidad inválida',
+        ],
         'helpers'   => [
             'add'               => 'Añade un evento existente a este calendario.',
             'new'               => 'O crea un nuevo evento simplemente proporcionando un nombre.',
@@ -69,9 +72,11 @@ return [
         'date'                  => 'Fecha actual',
         'day'                   => 'Día',
         'default_layout'        => 'Diseño predeterminado',
+        'format'                => 'Formato',
         'intercalary'           => 'Días intercalares',
         'is_incrementing'       => 'Fecha incremental',
         'is_recurring'          => 'Recurrente',
+        'leap_year'             => 'Años bisiestos',
         'leap_year_amount'      => 'Añadir días',
         'leap_year_month'       => 'Mes',
         'leap_year_offset'      => 'Cada',
@@ -86,6 +91,7 @@ return [
         'recurring_until'       => 'Recurrente hasta el año',
         'reset'                 => 'Reinicio semanal',
         'seasons'               => 'Estaciones',
+        'show_birthdays'        => 'Mostrar cumpleaños',
         'skip_year_zero'        => 'Saltar Año Cero',
         'start_offset'          => 'Retraso inicial',
         'suffix'                => 'Sufijo',
@@ -95,6 +101,7 @@ return [
     ],
     'helpers'       => [
         'default_layout'    => 'Seleccione qué diseño debe usar el calendario de forma predeterminada.',
+        'format'            => 'Añadir formato de fecha personalizado para entidades del calendario.',
         'month_type'        => 'Los meses intercalares no usan los días de la semana, pero influyen en las lunas y las estaciones.',
         'moon_offset'       => 'De forma predeterminada, la primera luna llena aparece el primer día del año 0. Cambiar el desplazamiento alterará el cuando se muestra la primera luna llena. Este valor puede ser negativo (hasta la duración del primer mes) o positivo (hasta la duración del primer mes).',
         'nested_without'    => 'Mostrando todos los calendarios que no tienen ningún superior. Haz clic sobre una fila para mostrar los subcalendarios.',
@@ -105,11 +112,13 @@ return [
         'intercalary'       => 'Días que están fuera de los meses y semanas estándar. No influyen en los días de la semana, pero afectan a los ciclos lunares.',
         'is_incrementing'   => 'Si está activado, se incrementará la fecha actual automáticamente a las 00:00h UTC.',
         'is_recurring'      => 'Si un evento es recurrente, reaparecerá cada año en la misma fecha.',
+        'leap_year'         => 'Configure los años bisiestos para el calendario.',
         'months'            => 'Tu calendario debe tener al menos 2 meses.',
         'moons'             => 'Si añades lunas, aparecerán en el calendario cada luna llena y nueva. Si el período entre estas es mayor que 10 días, también se mostrarán los cuartos creciente y menguante.',
         'parent_calendar'   => 'Los calendarios incluyen los recordatorios y efectos climáticos de su calendario superior.',
         'reset'             => 'Empezar siempre el siguiente mes o año en el primer día de la semana.',
         'seasons'           => 'Crea estaciones en tu calendario estableciendo cuándo empieza cada una. Kanka se encargará del resto.',
+        'show_birthdays'    => 'Muestra los cumpleaños anuales de los personajes que tienen un recordatorio de cumpleaños en este calendario hasta la fecha de su muerte.',
         'skip_year_zero'    => 'De forma predeterminada, el primer año del calendario es el año cero. Habilita esta opción para omitir el año cero.',
         'weekdays'          => 'Escribe los nombres de los días de la semana. Se requiere un mínimo de 2 días.',
         'weeks'             => 'Define los nombres para las semanas más importantes de tu calendario.',
@@ -220,6 +229,10 @@ return [
         'before'=> 'Hasta hoy',
     ],
     'validators'    => [
+        'format'        => 'El formato de la fecha es inválido.',
         'moon_offset'   => 'El desplazamiento de la primera luna llena de la luna no puede ser mayor que la duración del primer mes del calendario.',
+    ],
+    'warnings'      => [
+        'event_length'  => 'Los recordatorios que abarcan varios años sólo son visibles en los dos primeros años. Más información en nuestra :documentation.',
     ],
 ];

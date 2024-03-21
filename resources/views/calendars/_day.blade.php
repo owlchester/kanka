@@ -67,7 +67,7 @@
                 @endforeach
             @endif
             @if (!empty($day['season']))
-                <div class="badge calendar-season bg-season block w-full !text-xs" title="{{ __('calendars.parameters.seasons.name') }}">
+                <div class="badge calendar-season bg-season block w-full !text-xs" data-toggle="tooltip" data-title="{{ __('calendars.parameters.seasons.name') }}">
                     {{ $day['season'] }}
                 </div>
             @endif
@@ -88,7 +88,7 @@
                             data-url="{{ $event->entity->url() }}"
                         @endif
                         >
-                        @if (Avatar::entity($event->entity)->child($event->entity->child)->hasImage())
+                        @if (Avatar::entity($event->entity)->hasImage())
                             <a href="{{ $event->entity->url() }}" class="hidden md:inline-block entity-image !w-7 !h-7 pull-left mr-1 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
                         @endif
                         <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->entity]) }}" class="block">
@@ -99,6 +99,16 @@
                                 <span class="text-xs">{{ __('calendars.events.end')}}</span>
                             @endif
                         </span>
+                        @if ($event->isBirth())
+                            @if ($event->year === $day['year'])
+                                <x-icon class="fa-solid fa-baby" title="{{ __('entities/events.types.birth') }}" tooltip="1" />
+                            @else
+                                <x-icon class="fa-solid fa-birthday-cake" title="{{ __('entities/events.types.birthday') }}" tooltip="1" />
+                            @endif
+                        @endif
+                        @if ($event->isDeath())
+                            <x-icon class="fa-solid fa-skull" title="{{ __('entities/events.types.death') }}" tooltip="1" />
+                        @endif
                         {!! $event->getLabel() !!}
                     </div>
                 @endforeach

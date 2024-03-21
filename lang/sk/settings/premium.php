@@ -31,6 +31,7 @@ return [
     ],
     'remove'        => [
         'confirm'   => 'Áno, naozaj',
+        'cooldown'  => 'Prémiové funkcie z :campaign môžu byť odstránené po :date.',
         'success'   => 'Prémiové funkcionality boli odobraté z kampane :campaign. Teraz môžeš odomknúť prémiové funkcionality pre inú kampaň.',
         'title'     => 'Odobrať prémiové funkcionality',
         'warning'   => 'Naozaj chceš odobrať prémiové funkcionality z :campaign? Toto ti umožní odomknúť inú kampaň a skryť všetok obsah spojený s prémiovými funkcionalitami dokiaľ sa jej prémiový status neobnoví.',

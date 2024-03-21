@@ -6,7 +6,7 @@
             {!! $title !!}
         @endif
     </x-dialog.header>
-    @if (isset($form) && !empty($form))  {!! Form::open($form) !!} @endif
+    @if (isset($form) && !empty($form))  {!! Form::open($form) !!} @else <div class="formless"> @endif
     <article class="text-justify @if (!$full) max-w-2xl @endif">
         @if ($loading)
             <div class="my-8 text-center text-lg w-40">
@@ -20,5 +20,5 @@
         @includeIf($footer)
         </footer>
     @endif
-    @if (isset($form) && !empty($form)) {!! Form::close() !!} @endif
+    @if (isset($form) && !empty($form)) {!! Form::close() !!} @else </div> @endif
 </dialog>

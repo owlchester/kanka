@@ -4,7 +4,7 @@
 ?>
 @if ($campaign->enabled('locations') && $model->location)
     <div class="entity-header-sub pull-left">
-        <x-icon entity="location" />
+        <x-icon :class="\App\Facades\Module::duoIcon('location')" :title="__('crud.fields.parent')" />
 
         @if ($model->location->location)
             {!! __('crud.fields.locations', [

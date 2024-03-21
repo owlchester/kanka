@@ -2,7 +2,7 @@
 
 return [
     'helpers'   => [
-        'main'  => 'Public campaigns are visible to all users that have a link to the campaign or through the :public-campaigns page. Permissions for users viewing the campaign this way is controlled by the campaign\'s :public-role role.',
+        'main'  => 'Campaigns can be set to either be public or private. Public campaigns are visible to all users that have a link to the campaign, and also show up on in the :public-campaigns. This setting only controls access to the campaign. Permissions to view content of the campaigns still need to be set up through the :public-role role.',
     ],
     'title'     => 'Change the campaign\'s visibility',
     'update'    => [

@@ -31,6 +31,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Möchten Sie wirklich alle Attribute dieses Objekts löschen?',
+        'is_private'    => 'Erlaube nur Mitgliedern der Rolle :admin-role, die Attribute dieses Objekts zu sehen.',
         'setup'         => 'Sie können Elemente wie TP oder Intelligenz eines Objekts mittels Attributen darstellen. Attribute können Sie manuell hinzufügen, indem sie auf den :manage Button klicken oder Sie wenden eine Attributsvorlage an.',
     ],
     'hints'         => [],
@@ -82,6 +83,7 @@ return [
         'unlock'    => 'Attribut freigeschaltet',
         'unpin'     => 'Attribut nicht angepinnt',
     ],
+    'tutorial'      => 'Attribute sind kleine Informationseinheiten, die einem Objekt zugeordnet sind. Beispielsweise könnte ein Zeichen einen :hp und :str Status haben, während ein Ort einen :pop Status haben könnte. Dies lässt sich leicht anhand von Attributen nachverfolgen.',
     'types'         => [
         'attribute' => 'Attribute',
         'block'     => 'Block',

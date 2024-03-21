@@ -7,6 +7,7 @@ use App\Facades\EntityCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
@@ -22,7 +23,6 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
-use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Entity
@@ -55,7 +55,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 class Entity extends Model
 {
     use Acl;
-    use BlameableTrait;
+    use Blameable;
     use CampaignTrait;
     use EntityLogs;
     use EntityRelations;
@@ -327,17 +327,6 @@ class Entity extends Model
     }
 
     /**
-     * Get the entity's image url (local or gallery)
-     */
-    public function getEntityImageUrl(bool $boosted = false, int $width = 200, int $height = 200): string
-    {
-        if ($boosted && $this->image) {
-            return Img::crop($width, $height)->url($this->image->path);
-        }
-        return $this->child->thumbnail($width, $height);
-    }
-
-    /**
      */
     public function hasLinks(): bool
     {
@@ -364,6 +353,7 @@ class Entity extends Model
     }
 
     /**
+     * Todo: this should be a policy?
      */
     public function accessAttributes(): bool
     {
@@ -437,5 +427,61 @@ class Entity extends Model
             array_pop($options);
         }*/
         return $options;
+    }
+
+    public function export(): array
+    {
+        $fields = [
+            'id',
+            'entity_id',
+            'type_id',
+            'name',
+            'is_private',
+            'tooltip',
+            'is_template',
+            'is_attributes_private',
+            'focus_x',
+            'focus_y',
+            'created_at',
+            'updated_at',
+            'created_by',
+            'updated_by',
+            'image_path',
+            'image_uuid',
+            'header_image',
+            'header_uuid',
+            'marketplace_uuid',
+        ];
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $this->$field;
+        }
+
+        // Entity relations
+        $relations = [
+            'entityTags', 'relationships', 'posts', 'abilities', 'events', 'entityAttributes', 'assets', 'mentions', 'inventories'
+        ];
+        foreach ($relations as $relation) {
+            foreach ($this->$relation as $model) {
+                if ($relation === 'abilities' && empty($model->ability)) {
+                    continue;
+                }
+                if ($relation === 'inventories' && empty($model->item)) {
+                    continue;
+                }
+                if (method_exists($model, 'exportFields')) {
+                    $export = [];
+                    foreach ($model->exportFields() as $field) {
+                        $export[$field] = $model->$field;
+                    }
+                    $data[$relation][] = $export;
+                } elseif (method_exists($model, 'export')) {
+                    $data[$relation][] = $model->export();
+                } else {
+                    $data[$relation][] = $model->toArray();
+                }
+            }
+        }
+        return $data;
     }
 }

@@ -5,6 +5,7 @@ namespace App\Renderers;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\EntityEvent;
+use App\Models\EntityEventType;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -53,6 +54,16 @@ class CalendarRenderer
      * Named Weeks
      */
     protected array $weeks = [];
+
+    /**
+     * Death events
+     */
+    protected array $deaths = [];
+
+    /**
+     * Birthday events
+     */
+    protected array $births = [];
 
     /**
      * Array of weirdly recurring events
@@ -355,6 +366,8 @@ class CalendarRenderer
                 $exact = $this->getYear() . '-' . $this->getMonth() . '-' . $day;
                 $dayData = [
                     'day' => $day,
+                    'year' => $this->getYear(),
+                    'month' => $this->getMonth(),
                     'events' => [],
                     'date' => $exact,
                     'isToday' => false,
@@ -534,6 +547,7 @@ class CalendarRenderer
                     'day' => $day,
                     'events' => [],
                     'date' => $exact,
+                    'year' => $this->getYear(),
                     'julian' => $julian,
                     'isToday' => false,
                     'month' => $month['name'],
@@ -777,6 +791,7 @@ class CalendarRenderer
             $reminders = $this->getReminders($this->calendar->calendar);
             $this->parseReminders($reminders);
         }
+        //dd($this->events);
         return $this->events;
     }
 
@@ -787,7 +802,7 @@ class CalendarRenderer
     {
         return $calendar->calendarEvents()
             ->has('entity')
-            ->with(['entity', 'entity.tags', 'entity.image'])
+            ->with(['entity', 'entity.tags', 'entity.image', 'death'])
             ->where(function ($query) {
                 $query
                     // Where it's the current year , or current year and current month
@@ -805,6 +820,15 @@ class CalendarRenderer
                         } else {
                             $sub->where('month', $this->getMonth())
                                 ->where('is_recurring', true);
+                        }
+                    })
+                    ->orWhere(function ($sub) {
+                        if ($this->calendar->show_birthdays) {
+                            $sub->where('year', '<=', $this->getYear())
+                                ->whereIn('type_id', [EntityEventType::BIRTH, EntityEventType::DEATH]);
+                            if (!$this->isYearlyLayout()) {
+                                $sub->where('month', $this->getMonth());
+                            }
                         }
                     })
                     // Events from previous year or month that spill over
@@ -842,11 +866,14 @@ class CalendarRenderer
         }
         /** @var EntityEvent $event */
         foreach ($reminders as $event) {
+            if ($event->isBirth() && $event->death && $event->death->isPastDate($this->getYear(), $event->month, $event->day)) {
+                continue;
+            }
             $date = $event->year . '-' . $event->month . '-' . $event->day;
 
             // If the event is recurring, get the year to make sure it should start showing. This was previously
             // done in the query, but it didn't work on all systems.
-            if ($event->is_recurring) {
+            if ($event->is_recurring || $event->isBirth()) {
                 if ($event->year > $this->getYear()) {
                     continue;
                 }
@@ -856,6 +883,7 @@ class CalendarRenderer
                 }
                 $date = $this->getYear() . '-' . $event->month . '-' . $event->day;
             }
+
             if (!isset($this->events[$date])) {
                 $this->events[$date] = [];
             }
@@ -881,6 +909,13 @@ class CalendarRenderer
                 // Only add it once
                 $this->events[$date][] = $event;
                 $this->addMultidayEvent($event, $date);
+            }
+        }
+
+        foreach ($this->births as $key => $birth) {
+            if (!isset($this->deaths[$key]) || ($this->deaths[$key]->month > $birth->month || ($this->deaths[$key]->month == $birth->month && $this->deaths[$key]->day > $birth->day))) {
+                $date = $this->getYear() . '-' . $birth->month . '-' . $birth->day;
+                $this->events[$date][] = $birth;
             }
         }
         //should end the first day of the month

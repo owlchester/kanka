@@ -37,7 +37,7 @@ class RecoveryService
     /**
      * Permanently delete old data
      * @return int deleted entities count
-     * @throws \Exception
+     * @throws Exception
      */
     public function cleanup(): int
     {
@@ -94,7 +94,7 @@ class RecoveryService
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function trash(Entity $entity)
     {
@@ -114,7 +114,7 @@ class RecoveryService
 
     /**
      * @param MiscModel|Location|null $child
-     * @throws \Exception
+     * @throws Exception
      */
     protected function trashChild(Entity $entity, MiscModel $child = null)
     {
@@ -127,8 +127,8 @@ class RecoveryService
         \App\Facades\CampaignLocalization::setConsoleCampaign($entity->campaign_id);
 
         // Update the parent_id / tree before
-        if (method_exists($child, 'getParentIdName')) {
-            $parentField = $child->getParentIdName();
+        if (method_exists($child, 'getParentKeyName')) {
+            $parentField = $child->getParentKeyName();
 
             // Detach children of this entity. Usually this is already done in the model observer, because
             // if the parent is deleted in a node, the children aren't available.
@@ -138,7 +138,7 @@ class RecoveryService
                 // In console mode, we don't have the campaign_id restriction. We've had cases where this script
                 // found entities form other campaigns.
                 if ($subChild->campaign_id != $child->campaign_id) {
-                    throw new \Exception(
+                    throw new Exception(
                         'Found a subchild that doesn\'t share the campaign id. '
                         . $subChild->id . ' and ' . $child->id
                     );
@@ -151,10 +151,6 @@ class RecoveryService
 
             // Clean up the parent and tree to avoid the nested plugin to delete every child
             $child->$parentField = null;
-            if (method_exists($child, 'getRgtName')) {
-                $child->_lft = null; // @phpstan-ignore-line
-                $child->_rgt = null; // @phpstan-ignore-line
-            }
 
             $child->timestamps = false;
             $child->saveQuietly();
@@ -172,7 +168,6 @@ class RecoveryService
         }
 
         $child->forceDelete();
-
 
         // Unset the campaign id limitation again
         \App\Facades\CampaignLocalization::setConsoleCampaign(0);

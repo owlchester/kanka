@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
+use App\Models\Concerns\HasFilters;
 use App\Services\Attributes\RandomService;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class AttributeTemplate
@@ -23,7 +26,8 @@ class AttributeTemplate extends MiscModel
 {
     use Acl;
     use CampaignTrait;
-    use Nested;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
 
     /**
@@ -65,29 +69,17 @@ class AttributeTemplate extends MiscModel
     /** @var bool Attribute templates don't have inventory, relations or abilities */
     public $hasRelations = false;
 
-    /**
-     * Parent
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function attributeTemplate()
+    public function attributeTemplate(): BelongsTo
     {
         return $this->belongsTo('App\Models\AttributeTemplate', 'attribute_template_id', 'id');
     }
 
-    /**
-     * Parent
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function entityType()
+    public function entityType(): BelongsTo
     {
         return $this->belongsTo('App\Models\EntityType', 'entity_type_id', 'id');
     }
 
-    /**
-     * Children
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function attributeTemplates()
+    public function attributeTemplates(): HasMany
     {
         return $this->hasMany('App\Models\AttributeTemplate', 'attribute_template_id', 'id');
     }
@@ -96,18 +88,9 @@ class AttributeTemplate extends MiscModel
      * Parent ID field for the Node trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'attribute_template_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setAttributeTemplateIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**
@@ -140,10 +123,9 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Apply a template to an entity
-     * @param int $startingOrder
-     * @return int
+     * todo: move to service
      */
-    public function apply(Entity $entity, $startingOrder = 0)
+    public function apply(Entity $entity, int $startingOrder = 0): int
     {
         $order = $startingOrder;
         $existing = array_values($entity->attributes()->pluck('name')->toArray());

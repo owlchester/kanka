@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Tier;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 
@@ -9,61 +10,40 @@ class SubscriptionUpgradeService
 {
     use UserAware;
 
-    public function upgradePrice(string $period, string $tier): string
+    protected Tier $tier;
+
+    public function tier(Tier $tier): self
     {
-        $oldPrice = '';
-        $currency = "US$ ";
+        $this->tier = $tier;
+        return $this;
+    }
+
+    public function upgradePrice(string $period): string
+    {
         $monthly = true;
-        if ($this->user->billedInEur()) {
-            $currency = "€ ";
-        }
 
-        $price = "55.00";
-        if ($tier === 'Wyvern') {
-            $price = "110.00";
-            if ($period == 'monthly') {
-                $price = "10.00";
-            }
-        } elseif ($tier === 'Elemental') {
-            $price = "275.00";
-            if ($period == 'monthly') {
-                $price = "25.00";
-            }
-        } elseif ($tier === 'Owlbear') {
-            $price = "55.00";
-            if ($period == 'monthly') {
-                $price = "5.00";
-            }
-        }
+        $price = $period == 'monthly' ? $this->tier->monthly : $this->tier->yearly;
 
-        if (!$this->user->isSubscriber()) {
-            return $price;
+        if (!$this->user->subscribed('kanka')) {
+            return (string) $price;
         }
         if ($this->user->isStripeYearly() || $this->user->hasPayPal()) {
             $monthly = false;
         }
 
         // Calculate the current subscription price
+        $code = 'owlbear';
         if ($this->user->isElemental()) {
-            if ($monthly) {
-                $oldPrice = "25.00";
-            } else {
+            $code = 'elemental';
+            if (!$monthly) {
                 return '';
             }
-        } elseif ($this->user->isOwlbear()) {
-            if ($monthly) {
-                $oldPrice = "5.00";
-            } else {
-                $oldPrice = "55.00";
-            }
         } elseif ($this->user->isWyvern()) {
-            if ($monthly) {
-                $oldPrice = "10.00";
-            } else {
-                $oldPrice = "110.00";
-            }
+            $code = 'wyvern';
         }
-        $endPeriod = Carbon::createFromTimestamp($this->user->subscription('kanka')->asStripeSubscription()->current_period_end);
+        $this->tier = Tier::where('code', $code)->first();
+        $oldPrice = $monthly ? $this->tier->monthly : $this->tier->yearly;
+        $endPeriod = $this->endPeriod();
         if ($period == 'yearly') {
             // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Number of Days in a Full Year)
             $price = round((floatval($price) - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / 365), 2);
@@ -77,7 +57,19 @@ class SubscriptionUpgradeService
         }
 
 
-        $price = $currency . number_format(max(0, $price), 2);
+        $price = number_format(max(0, $price), 2);
         return $price;
+    }
+
+    protected function endPeriod(): Carbon
+    {
+        // Stripe provides us with this information easily
+        if (!$this->user->hasPayPal()) {
+            return Carbon::createFromTimestamp($this->user->subscription('kanka')->asStripeSubscription()->current_period_end);
+        }
+
+        // For paypal, we need the subscription's end date
+        // @phpstan-ignore-next-line
+        return $this->user->subscription('kanka')->ends_at;
     }
 }

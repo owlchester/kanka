@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CampaignDashboardRole
@@ -26,12 +27,12 @@ class CampaignDashboardRole extends Model
         'campaign_dashboard_id'
     ];
 
-    public function role()
+    public function role(): BelongsTo
     {
         return $this->belongsTo(CampaignRole::class, 'campaign_role_id', 'id');
     }
 
-    public function dashboard()
+    public function dashboard(): BelongsTo
     {
         return $this->belongsTo(CampaignDashboard::class, 'campaign_dashboard_id', 'id');
     }

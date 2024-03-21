@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Calendar;
 use App\Rules\CalendarMoonOffset;
 use App\Rules\CalendarFormat;
 use App\Traits\ApiRequest;
@@ -44,6 +45,7 @@ class StoreCalendar extends FormRequest
             'moon_name' => 'nullable|array',
             'epoch_name' => 'nullable|array',
             'season_name' => 'nullable|array',
+            'show_birthdays' => 'boolean',
             'template_id' => 'nullable',
             'format'      => ['nullable', new CalendarFormat(), 'string', 'max:20'],
             'moon_offset' => [
@@ -66,9 +68,10 @@ class StoreCalendar extends FormRequest
             $rules['leap_year_start'] = 'required|numeric|min:1|max:255';
         }
 
-        $self = request()->segment(5);
+        /** @var Calendar $self */
+        $self = request()->route('calendar');
         if (!empty($self)) {
-            $rules['calendar_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:calendars,id';
+            $rules['calendar_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:calendars,id';
         }
 
         return $this->clean($rules);

@@ -157,7 +157,7 @@ class EntityResource extends JsonResource
 
             // Image
             'image_full' => Avatar::entity($misc->entity)->original(),
-            'image_thumb' => Avatar::size(40)->thumbnail(),
+            'image_thumb' => Avatar::size(40)->fallback()->thumbnail(),
             'has_custom_image' => !empty($misc->entity->image_path) || !empty($galleryImage),
             'image_uuid' => $superboosted && $misc->entity->image ? $misc->entity->image->id : null,
 
@@ -202,10 +202,26 @@ class EntityResource extends JsonResource
             $merged['inventory'] = InventoryResource::collection($misc->entity->inventories);
             $merged['entity_abilities'] = EntityAbilityResource::collection($misc->entity->abilities);
             $merged['entity_assets'] = EntityAssetResource::collection($misc->entity->assets);
+
+            if ($misc->ancestors) {
+                $ancestors = [];
+                foreach ($misc->ancestors as $ancestor) {
+                    $ancestors[] = $ancestor->id;
+                }
+                $merged['parents'] = $ancestors;
+            }
+            if ($misc->children) {
+                $descendants = [];
+                foreach ($misc->children as $descendant) {
+                    $descendants[] = $descendant->id;
+                }
+                $merged['children'] = $descendants;
+            }
         }
 
         $final = array_merge($merged, $prepared);
         //ksort($final);
         return $final;
     }
+
 }

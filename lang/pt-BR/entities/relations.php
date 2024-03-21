@@ -7,6 +7,16 @@ return [
     ],
     'bulk'              => [
         'delete'    => '{1} :count relação removida. |[2,*] :count relações removidas.',
+        'fields'    => [
+            'delete_mirrored'   => 'Excluir espelhado',
+            'unmirror'          => 'Desvincular espelhado',
+            'update_mirrored'   => 'Atualizar espelhado',
+        ],
+        'helpers'   => [
+            'delete_mirrored'   => 'Exclua também as conexões espelhadas.',
+            'unmirror'          => 'Desvincula conexões espelhadas.',
+            'update_mirrored'   => 'Atualiza conexões espelhadas.',
+        ],
         'success'   => [
             'editing'           => '{1} :count relação foi atualizada. |[2,*] :count relações foram atualizadas.',
             'editing_partial'   => '{1} :count/:total relação foi atualizada. |[2,*] :count/:total relações foram atualizadas.',
@@ -20,9 +30,9 @@ return [
         'timeline_element'  => 'Elemento da linha do tempo',
     ],
     'create'            => [
-        'new_title' => 'Nova relação',
-        'success'   => 'Relação :target adicionada para :entity.',
-        'title'     => 'Nova relação para :name',
+        'new_title'     => 'Nova relação',
+        'success_bulk'  => '{1} Adicionada :count conexão a :entity.|[2,*] Adicionadas :count conexões a :entity.',
+        'title'         => 'Nova relação para :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Essa relação está espelhada na entidade alvo. Selecione essa opção para também remover  a relação espelhada.',
@@ -35,13 +45,17 @@ return [
     'fields'            => [
         'attitude'          => 'Atitude',
         'connection'        => 'Conexão',
-        'is_star'           => 'Fixado',
+        'is_pinned'         => 'Fixado',
         'owner'             => 'Fonte',
         'relation'          => 'Relação',
         'target'            => 'Alvo',
         'target_relation'   => 'Relação Alvo',
         'two_way'           => 'Criar relação mútua',
         'unmirror'          => 'Desespelhe esta relação.',
+    ],
+    'filters'           => [
+        'connection'    => 'Relação da conexão',
+        'name'          => 'Conexão alvo',
     ],
     'helper'            => 'Estabeleça relações entre entidades com atitudes e visibilidade. Relações também podem ser fixadas no menu da entidade.',
     'helpers'           => [

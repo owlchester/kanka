@@ -433,6 +433,12 @@ class User extends \Illuminate\Foundation\Auth\User
         if (!empty($this->provider)) {
             return false;
         }
+
+        $validation = $this->userValidation()->valid()->first();
+        if ($validation) {
+            return false;
+        }
+
         // If the account was created recently, add some small checks
         /*if ($this->created_at->isAfter(Carbon::now()->subHour())) {
             // User's name is directly in the campaign name
@@ -459,7 +465,6 @@ class User extends \Illuminate\Foundation\Auth\User
     public function onlyAdminCampaigns(): array
     {
         $campaigns = [];
-        // @phpstan-ignore-next-line
         $userCampaigns = $this->campaigns()->with(['roles', 'roles.users'])->get();
         foreach ($userCampaigns as $campaign) {
             /** @var CampaignRole|null $adminRole */
@@ -498,14 +503,11 @@ class User extends \Illuminate\Foundation\Auth\User
 
     public function isStripeYearly(): bool
     {
-        $prices = [
-            config('subscription.owlbear.usd.yearly'),
-            config('subscription.owlbear.eur.yearly'),
-            config('subscription.wyvern.usd.yearly'),
-            config('subscription.wyvern.eur.yearly'),
-            config('subscription.elemental.usd.yearly'),
-            config('subscription.elemental.eur.yearly'),
-        ];
-        return $this->subscribedToPrice($prices);
+        $prices = array_merge(
+            config('subscription.owlbear.yearly'),
+            config('subscription.wyvern.yearly'),
+            config('subscription.elemental.yearly'),
+        );
+        return $this->subscribedToPrice($prices, 'kanka');
     }
 }

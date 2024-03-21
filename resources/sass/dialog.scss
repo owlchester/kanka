@@ -27,7 +27,7 @@
         }
 
         > button {
-            width: 32px;
+            //width: 32px;
             text-align: center;
             aspect-ratio: 1;
             flex-shrink: 0;
@@ -47,7 +47,7 @@
         padding-block: 0.75rem;
         padding-bottom: 1rem;
     }
-    form {
+    form, .formless {
         display: grid;
         grid-template-rows: auto 1fr auto;
         align-items: start;

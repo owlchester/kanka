@@ -28,11 +28,6 @@ class CreateMapsTable extends Migration
             $table->boolean('is_private')->default(false);
             $table->boolean('is_real')->default(false);
 
-            // Tree
-            $table->unsignedInteger('_lft')->default(0);
-            $table->unsignedInteger('_rgt')->default(0);
-            $table->index(['_lft', '_rgt', 'map_id']);
-
             // Overview
             $table->longText('entry')->nullable();
 

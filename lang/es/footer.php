@@ -1,17 +1,28 @@
 <?php
 
 return [
+    'about'             => 'Acerca de nosotros',
     'blog'              => 'Blog',
     'boosters'          => 'Potenciadores',
+    'community'         => 'Comunidad',
     'company'           => 'Empresa',
+    'contact'           => 'Contacto',
+    'copyright'         => 'Copyright :copy :year Owlchester SNC',
+    'documentation'     => 'Documentación',
+    'features'          => 'Características',
+    'kb'                => 'Base de conocimientos',
     'language-switcher' => [
         'other' => 'Otros idiomas',
         'title' => 'Selecciona tu idioma',
     ],
+    'marketplace'       => 'Mercado',
+    'newsletter'        => 'Boletín de noticias',
     'platform'          => 'Plataforma',
     'premium'           => 'Campañas Premium',
     'press-kit'         => 'Kit de prensa',
+    'pricing'           => 'Precios',
     'privacy'           => 'Privacidad',
+    'public-campaigns'  => 'Campañas públicas',
     'resources'         => 'Recursos',
     'security'          => 'Seguridad',
     'server_time'       => 'Hora del servidor: :time',

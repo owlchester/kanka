@@ -16,7 +16,5 @@ class EventObserver extends MiscObserver
             $sub->event_id = null;
             $sub->saveQuietly();
         }
-
-        $this->cleanupTree($event, 'event_id');
     }
 }

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 /**
  * Class Attribute
@@ -73,7 +72,7 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function users()
     {
@@ -115,7 +114,7 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function permissions()
     {
@@ -123,55 +122,12 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function rolePermissions()
     {
         return $this->permissions()
             ->whereNull('entity_id');
-    }
-
-    /**
-     */
-    public function savePermissions(array $permissions = [])
-    {
-        // Load existing
-        $existing = [];
-        foreach ($this->rolePermissions as $permission) {
-            if (empty($permission->entity_type_id)) {
-                $existing['campaign_' . $permission->action] = $permission;
-                continue;
-            }
-            $existing[$permission->entity_type_id . '_' . $permission->action] = $permission;
-        }
-
-        // Loop on submitted form
-        if (empty($permissions)) {
-            $permissions = [];
-        }
-
-        foreach ($permissions as $key => $module) {
-            // Check if exists$
-            if (isset($existing[$key])) {
-                // Do nothing
-                unset($existing[$key]);
-            } else {
-                $action = Str::after($key, '_');
-                if ($module === 'campaign') {
-                    $module = 0;
-                }
-
-                $this->add($module, (int) $action);
-            }
-        }
-
-        // Delete existing that weren't updated
-        foreach ($existing as $permission) {
-            // Only delete if it's a "general" and not an entity specific permission
-            if (!is_numeric($permission->entityId())) {
-                $permission->delete();
-            }
-        }
     }
 
     /**
@@ -183,47 +139,19 @@ class CampaignRole extends Model
     }
 
     /**
-     * Toggle an entity's action permission
-     */
-    public function toggle(int $entityType, int $action): bool
-    {
-        $perm = $this->permissions()
-            ->where('entity_type_id', $entityType)
-            ->where('action', $action)
-            ->whereNull('entity_id')
-            ->first();
-
-        if ($perm) {
-            $perm->delete();
-            return false;
-        }
-
-        $this->add($entityType, $action);
-        return true;
-    }
-
-    /**
-     * Add a campaign permission for the role
-     */
-    protected function add(int $entityType, int $action): CampaignPermission
-    {
-        if ($entityType === 0) {
-            $entityType = null;
-        }
-        return CampaignPermission::create([
-            //'key' => $key,
-            'campaign_role_id' => $this->id,
-            //'table_name' => $value,
-            'access' => true,
-            'action' => $action,
-            'entity_type_id' => $entityType
-            //'campaign_id' => $campaign->id,
-        ]);
-    }
-    /**
      */
     public function url(string $sub): string
     {
         return 'campaign_roles.' . $sub;
+    }
+
+    public function duplicate(CampaignRole $campaignRole): self
+    {
+        foreach ($this->permissions as $permission) {
+            $newPermission = $permission->replicate(['campaign_role_id']);
+            $newPermission->campaign_role_id = $campaignRole->id;
+            $newPermission->save();
+        }
+        return $this;
     }
 }

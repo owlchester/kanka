@@ -31,7 +31,7 @@ class ReminderController extends Controller
 
     protected CalendarService $calendarService;
 
-    protected $model = \App\Models\EntityEvent::class;
+    protected $model = EntityEvent::class;
 
     public function __construct(CalendarService $calendarService)
     {
@@ -54,6 +54,7 @@ class ReminderController extends Controller
             ->has('calendar')
             ->has('calendar.entity')
             ->with(['calendar', 'calendar.entity', 'entity'])
+            ->sort(request()->only(['o', 'k']))
             ->paginate();
 
         if (request()->ajax()) {

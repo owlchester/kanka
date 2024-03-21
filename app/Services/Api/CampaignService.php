@@ -60,7 +60,7 @@ class CampaignService
                     'sk' => 'Slovak',
                 ]
             ],
-            'system' => [
+            'system[]' => [
                 'title' => 'System',
                 'options' => CampaignCache::systems()
             ],
@@ -91,7 +91,7 @@ class CampaignService
     {
 
         $this->data['featured'] = [];
-        $campaigns = Campaign::public()->front()->featured()->get();
+        $campaigns = Campaign::public()->front()->featured()->discreet(false)->get();
         foreach ($campaigns as $campaign) {
             $this->data['featured'][] = new CampaignResource($campaign);
         }
@@ -112,6 +112,7 @@ class CampaignService
                 ->front((int)$this->request->get('sort_field_name'))
                 ->featured(false)
                 ->filterPublic($this->request->only(['language', 'system', 'is_boosted', 'is_open', 'genre']))
+                ->discreet(false)
                 ->paginate();
             $this->data['campaigns'] = CampaignResource::collection($campaigns);
         }
@@ -126,7 +127,7 @@ class CampaignService
      */
     protected function isDefaultRequest(): bool
     {
-        return !$this->request->anyFilled('sort_field_name', 'language', 'system', 'is_boosted', 'is_open', 'genre');
+        return !$this->request->anyFilled('sort_field_name', 'language', 'system', 'is_boosted', 'is_open', 'genre', 'page');
     }
 
     /**
@@ -146,7 +147,7 @@ class CampaignService
         $cached = CampaignResource::collection($campaigns);
 
         Log::info('Create new cache', ['key' => $cacheKey, 'hours' => $hours]);
-        cache()->put($cacheKey, $cached, $hours * 60 * 60);
+        cache()->put($cacheKey, $cached, $hours * 3600);
         return $cached;
     }
 

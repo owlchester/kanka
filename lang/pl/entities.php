@@ -5,6 +5,8 @@ return [
     'ability'               => 'Zdolność',
     'attribute_template'    => 'Szablon Cech',
     'attribute_templates'   => 'Szablony Cech',
+    'bookmark'              => 'Zakładka',
+    'bookmarks'             => 'Zakładki',
     'calendar'              => 'Kalendarz',
     'calendars'             => 'Kalendarze',
     'campaign'              => 'Kampania',

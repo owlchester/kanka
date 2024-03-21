@@ -68,6 +68,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     @endif
     @includeWhen(!empty($campaign), 'layouts._theme')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    @livewireStyles
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses($entity ?? null) }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
@@ -129,9 +130,16 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
                 @yield('content')
             </section>
+            <div class="absolute bottom-0 right-0 p-4 hidden back-to-top">
+                <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="flex items-center gap-1">
+                    <x-icon class="fa-solid fa-arrow-up" />
+                    Back to top
+                </a>
+            </div>
         </div>
 
         @yield('fullpage-form-end')
+
 
         @include('layouts.footer')
 
@@ -163,5 +171,6 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     @yield('scripts')
 
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
+@livewireScripts
 </body>
 </html>

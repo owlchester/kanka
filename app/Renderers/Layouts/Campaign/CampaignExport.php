@@ -63,6 +63,19 @@ class CampaignExport extends Layout
                     return $html;
                 },
             ],
+            'progress' => [
+                'label' => 'campaigns/export.progress',
+                'render' => function ($model) {
+                    if ($model->finished()) {
+                        return '100%';
+                    } elseif (!$model->running()) {
+                        return '';
+                    } elseif (empty($model->progress)) {
+                        return '<i>' . __('Calculating') . '</i>';
+                    }
+                    return $model->progress . '%';
+                }
+            ],
             'size' => [
                 'label' => 'campaigns/export.size',
                 'render' => function ($model) {

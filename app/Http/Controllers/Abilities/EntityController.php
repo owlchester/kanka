@@ -65,8 +65,11 @@ class EntityController extends Controller
             $redirectUrlOptions['ability_id'] = $ability->id;
         }
 
-        $ability->attachEntity($request->only('entity_id', 'visibility_id'));
+        $count = $ability->attachEntity($request->only('entities', 'visibility_id'));
+
         return redirect()->route('abilities.entities', [$campaign, 'ability' => $ability->id])
-            ->with('success', __('abilities.children.create.success', ['name' => $ability->name]));
+            //->with('success', __('abilities.children.create.success', ['name' => $ability->name]));
+            ->with('success', trans_choice('abilities.children.create.attach_success', $count, ['count' => $count, 'name' => $ability->name]));
+
     }
 }

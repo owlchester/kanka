@@ -20,6 +20,10 @@ return [
         'export'                => 'An export for :campaign is available. The link is available for :time minutes.',
         'export_error'          => 'An error occurred while exporting :campaign. Please contact us if this problem persists.',
         'hidden'                => 'The campaign :campaign is now hidden from the public campaigns page.',
+        'import'                => [
+            'failed'    => 'The import for campaign :campaign failed.',
+            'success'   => 'The campaign :campaign finished importing.',
+        ],
         'join'                  => ':user joined the campaign :campaign.',
         'leave'                 => ':user left the campaign :campaign.',
         'plugin'                => [
@@ -43,6 +47,10 @@ return [
         'action'    => 'Clear all',
         'success'   => 'Notifications removed.',
         'title'     => 'Clear notifications',
+    ],
+    'features'          => [
+        'approved'  => 'Your idea :feature has been approved.',
+        'rejected'  => 'Your idea :feature has been rejected, reason: :reason.',
     ],
     'header'            => 'You have :count notifications',
     'index'             => [

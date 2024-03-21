@@ -27,10 +27,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $recurring_until
  * @property string $recurring_periodicity
  * @property int $type_id
- * @property int $elapsed
- * @property boolean $is_private
+ * @property int|null $elapsed
  *
  * @property Calendar|null $calendar
+ * @property EntityEvent|null $death
  * @property EntityEventType|null $type
  */
 class EntityEvent extends MiscModel
@@ -71,6 +71,7 @@ class EntityEvent extends MiscModel
         'date',
         'is_recurring',
         'visibility_id',
+        'comment'
     ];
 
     /** @var int Last occurence of the reminder */
@@ -243,6 +244,11 @@ class EntityEvent extends MiscModel
      */
     public function calcElapsed(EntityEvent $event = null): int
     {
+        // Have the value cached? Don't bother with more work
+        if (empty($event) && !empty($this->elapsed)) {
+            return $this->elapsed;
+        }
+
         if (!empty($event)) {
             $year = $event->year;
             $month = $event->month;
@@ -261,14 +267,25 @@ class EntityEvent extends MiscModel
         $years = $year - $baseYear;
 
         if ($month < $this->month) {
-            return $years - 1;
+            return $this->saveElapsed($years - 1, empty($event));
         }
         if ($month > $this->month) {
-            return $years;
+            return $this->saveElapsed($years, empty($event));
         }
 
         // Same month
-        return $years - ($day < $this->day ? 1 : 0);
+        return $this->saveElapsed($years - ($day < $this->day ? 1 : 0), empty($event));
+    }
+
+    protected function saveElapsed(int $number, bool $save): int
+    {
+        // If comparing two days, don't save the "elapsed" part, we need to re-calc those one each page load
+        if (!$save || $number < 0) {
+            return $number;
+        }
+        $this->elapsed = $number;
+        $this->saveQuietly();
+        return $this->elapsed;
     }
 
     /**
@@ -544,5 +561,38 @@ class EntityEvent extends MiscModel
             return $min - 1;
         }
         return $month--;
+    }
+
+    public function death()
+    {
+        return $this->hasOne(EntityEvent::class, 'entity_id', 'entity_id')->whereColumn('calendar_id', 'entity_events.calendar_id')->where('type_id', EntityEventType::DEATH);
+    }
+
+    /**
+     * Patch an entity from the datagrid2 batch editing
+     */
+    public function patch(array $data): bool
+    {
+        return $this->updateQuietly($data);
+    }
+
+    public function exportFields(): array
+    {
+        return [
+            'id',
+            'calendar_id',
+            'length',
+            'comment',
+            'is_recurring',
+            'recurring_until',
+            'recurring_periodicity',
+            'colour',
+            'day',
+            'month',
+            'year',
+            'type_id',
+            'visibility_id',
+            'created_by',
+        ];
     }
 }

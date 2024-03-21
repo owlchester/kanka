@@ -46,6 +46,7 @@ The list of returned creatures can be filtered. The available filters are availa
             "updated_by": 1,
             "creature_id": null,
             "type": "Bird",
+            "is_extinct": true,
             "locations": [
                 67,
                 66,
@@ -85,6 +86,7 @@ To get the details of a single creature, use the following endpoint.
         "updated_by": 1,
         "creature_id": null,
         "type": "Bird",
+        "is_extinct": true,
         "locations": [
             67,
             66,
@@ -116,6 +118,7 @@ To create a creature, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `locations` | `array` | Array of location ids |
 | `image_url` | `string` | URL to a picture to be used for the creature |
+| `is_extinct` | `boolean` | If the creature is extinct |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
 | `is_private` | `boolean` | If the creature is only visible to `admin` members of the campaign |

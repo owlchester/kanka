@@ -1,5 +1,5 @@
 <?php /** @var \App\User $user */?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 

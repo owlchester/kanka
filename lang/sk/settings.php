@@ -157,8 +157,11 @@ return [
         'cancelled'             => 'Tvoje predplatné bolo zrušené. Môžeš ho obnoviť, keď ti aktívne predplatné skončí.',
         'change'                => [
             'text'  => [
-                'monthly'   => 'Máte predplatenú úroveň :tier, splatnú mesačne vo výške :amount.',
-                'yearly'    => 'Máte predplatenú úroveň :tier, splatnú ročne vo výške :amount.',
+                'monthly'           => 'Máš predplatenú úroveň :tier, splatnú mesačne vo výške :amount.',
+                'upgrade_monthly'   => 'Upgradeuješ na úroveň :tier za :upgrade, takže bude mesačne splatných :amount.',
+                'upgrade_paypal'    => 'Upgradeuješ na úroveň :tier za :upgrade do :date.',
+                'upgrade_yearly'    => 'Upgradeuješ na úroveň :tier za :upgrade, takže bude ročne splatných :amount.',
+                'yearly'            => 'Máš predplatenú úroveň :tier, splatnú ročne vo výške :amount.',
             ],
             'title' => 'Zmeniť úroveň predplatného',
         ],

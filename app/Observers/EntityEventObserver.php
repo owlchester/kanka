@@ -15,4 +15,18 @@ class EntityEventObserver
             $entityEvent->recurring_until = null;
         }
     }
+
+    public function updating(EntityEvent $entityEvent)
+    {
+        // When updating and elapsed isn't dirty (calculated on the overview), reset it
+        if ($entityEvent->isDirty(['year', 'month', 'day', 'calendar_id'])) {
+            $entityEvent->elapsed = null;
+        }
+    }
+
+    public function updated(EntityEvent $entityEvent)
+    {
+        // Go touch linked entity?
+        $entityEvent->entity->touchSilently();
+    }
 }

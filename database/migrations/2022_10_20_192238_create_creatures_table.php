@@ -30,11 +30,7 @@ return new class () extends Migration {
             $table->unsignedInteger('created_by')->nullable();
             $table->unsignedInteger('updated_by')->nullable();
 
-            $table->unsignedInteger('_lft')->default(0);
-            $table->unsignedInteger('_rgt')->default(0);
-
             $table->index(['name', 'type', 'is_private']);
-            $table->index(['_lft', '_rgt']);
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');

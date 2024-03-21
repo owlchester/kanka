@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Ability;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -38,9 +39,10 @@ class StoreAbility extends FormRequest
             'template_id' => 'nullable',
         ];
 
-        $self = request()->segment(5);
+        /** @var Ability $self */
+        $self = request()->route('ability');
         if (!empty($self)) {
-            $rules['ability_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:abilities,id';
+            $rules['ability_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:abilities,id';
         }
 
         return $this->clean($rules);

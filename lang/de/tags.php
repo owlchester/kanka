@@ -6,8 +6,8 @@ return [
             'add'   => 'Füge neue Kategorie hinzu',
         ],
         'create'    => [
-            'success'   => 'Der Tag :name wurde dem Objekt hinzugefügt.',
-            'title'     => 'Füge Kategorie zu :name hinzu',
+            'attach_success'    => '{1} :count Objekte zum Tag :name hinzugefügt.|[2,*] :count Objekte zum Tag :name hinzugefügt.',
+            'modal_title'       => 'Füge Objekt zu :name hinzu',
         ],
     ],
     'create'        => [

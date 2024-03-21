@@ -13,11 +13,14 @@ return new class () extends Migration {
         if (!config('logging.enabled')) {
             return;
         }
+        if (Schema::connection('logs')->hasTable('user_logs')) {
+            return;
+        }
         Schema::connection('logs')->create('user_logs', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
             $table->unsignedTinyInteger('type_id')
-                ->default(\App\Models\UserLog::TYPE_LOGIN);
+                ->default(App\Models\UserLog::TYPE_LOGIN);
             $table->string('ip', 255)->nullable();
             $table->char('country', 6)->nullable();
             $table->timestamps();

@@ -29,7 +29,6 @@
         'deleteID' => '#delete-reminder-' . $entityEvent->id,
         'dialog' => true,
         'dropdownParent' => '#primary-dialog',
-        'colourAppendTo' => '#primary-dialog',
     ])
 
 

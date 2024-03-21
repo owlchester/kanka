@@ -11,7 +11,6 @@ use App\Services\AttributeService;
 use App\Services\Entity\TagService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
-use Illuminate\Support\Str;
 use App\Facades\Domain;
 
 class EntityObserver
@@ -21,11 +20,6 @@ class EntityObserver
     protected PermissionService $permissionService;
 
     protected AttributeService $attributeService;
-
-    /**
-     * @var bool
-     */
-    protected $permissionGrantSelf = false;
 
     /**
      * PermissionController constructor.
@@ -145,24 +139,10 @@ class EntityObserver
         );
         $this->attributeService->entity($entity)->save($data);
         $sourceId = request()->post('copy_source_id');
-        if (request()->has('replace_mentions') && request()->filled('replace_mentions') && property_exists($entity->child, 'entry')) {
+
+        if (request()->has('replace_mentions') && request()->filled('replace_mentions') && $entity->child->isFillable('entry')) {
             $source = Entity::findOrFail($sourceId);
-            $sourceAttributes = [];
-            $entityAttributes = [];
-            foreach ($source->attributes as $attribute) {
-                array_push($sourceAttributes, '{attribute:' . $attribute->id . '}');
-            }
-            foreach ($entity->attributes as $attribute) {
-                array_push($entityAttributes, '{attribute:' . $attribute->id . '}');
-            }
-            //$attributes = array_combine($sourceAttributes, $entityAttributes);
-            $entry = Str::replace($sourceAttributes, $entityAttributes, $entity->child->entry);
-            $entity->child->update(['entry' => $entry]);
-            foreach ($entity->posts as $post) {
-                $post->entry = Str::replace($sourceAttributes, $entityAttributes, $post->entry);
-                $post->timestamps = false;
-                $post->updateQuietly();
-            }
+            $this->attributeService->replaceMentions($source);
         }
         return $this;
     }

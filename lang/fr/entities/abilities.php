@@ -36,6 +36,7 @@ return [
         'title'     => 'Pouvoirs de l\'entité :name',
     ],
     'update'    => [
-        'title' => 'Pouvoirs de l\'entité :name',
+        'success'   => 'Pouvoir d\'entité :ability mis à jour.',
+        'title'     => 'Pouvoirs de l\'entité :name',
     ],
 ];

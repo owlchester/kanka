@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Organisation;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -38,9 +39,10 @@ class StoreOrganisation extends FormRequest
             'template_id' => 'nullable',
         ];
 
-        $self = request()->segment(5);
+        /** @var Organisation $self */
+        $self = request()->route('organisation');
         if (!empty($self)) {
-            $rules['organisation_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:organisations,id';
+            $rules['organisation_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:organisations,id';
         }
 
         return $this->clean($rules);

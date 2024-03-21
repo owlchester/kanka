@@ -367,7 +367,7 @@ class SidebarService
             'history' => [
                 'icon' => 'fa-duotone fa-clock-rotate-left',
                 'label' => 'sidebar.recent',
-                'perm' => true,
+                'perm' => 'recover',
                 'module' => false,
                 'fixed' => true,
             ],
@@ -523,10 +523,8 @@ class SidebarService
                     }
                 }
                 // Child has permission check?
-                if (isset($child['perm'])) {
-                    if (!auth()->check() || !auth()->user()->can($childName, $this->campaign)) {
-                        continue;
-                    }
+                if (isset($child['perm']) && count($children) === 1) {
+                    $layout[$name]['perm'] = $child['perm'];
                 }
 
                 // Add route when none is set

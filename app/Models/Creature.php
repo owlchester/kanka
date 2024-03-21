@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Enums\FilterOption;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Creature
@@ -25,6 +26,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property Creature[] $creatures
  * @property Location|null $location
  * @property Collection|Location[] $locations
+ * @property bool $is_extinct
  */
 class Creature extends MiscModel
 {
@@ -32,7 +34,8 @@ class Creature extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -45,6 +48,7 @@ class Creature extends MiscModel
         'entry',
         'is_private',
         'creature_id',
+        'is_extinct',
     ];
 
     /**
@@ -54,12 +58,14 @@ class Creature extends MiscModel
 
     protected array $sortableColumns = [
         'creature.name',
+        'is_extinct',
     ];
 
     protected array $sortable = [
         'name',
         'type',
         'creature.name',
+        'is_extinct',
     ];
 
     /**
@@ -74,26 +80,20 @@ class Creature extends MiscModel
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-        'locations',
+        'pivotLocations',
+    ];
+
+    protected array $exportFields = [
+        'base',
+        'is_extinct',
     ];
 
     /**
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'creature_id';
-    }
-
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     * @throws \Exception
-     */
-    public function setCreatureIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**
@@ -160,7 +160,7 @@ class Creature extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['creature_id'];
+        return ['creature_id', 'is_extinct'];
     }
 
     /**
@@ -211,7 +211,8 @@ class Creature extends MiscModel
     {
         return [
             'creature_id',
-            'location_id'
+            'location_id',
+            'is_extinct',
         ];
     }
 
@@ -222,6 +223,10 @@ class Creature extends MiscModel
     {
         return $this->belongsToMany('App\Models\Location', 'creature_location')
             ->with('entity');
+    }
+    public function pivotLocations()
+    {
+        return $this->hasMany('App\Models\CreatureLocation');
     }
 
     /**
@@ -234,5 +239,13 @@ class Creature extends MiscModel
         }
 
         return parent::showProfileInfo();
+    }
+
+    /**
+     * Determine if the model is extinct.
+     */
+    public function isExtinct(): bool
+    {
+        return (bool) $this->is_extinct;
     }
 }

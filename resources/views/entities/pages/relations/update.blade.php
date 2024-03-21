@@ -14,7 +14,7 @@
     {!! Form::model($relation, ['route' => ['entities.relations.update', $campaign, $entity->id, $relation], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
 
     @include('partials.forms.form', [
-        'title' => __('entities/relations.update.title', ['name' => $entity->name]),
+        'title' => __('entities/relations.update.title', ['name' => link_to($entity->url(), $entity->name)]),
         'content' => 'entities.pages.relations._form',
         'deleteID' => '#delete-relation-' . $relation->id,
         'dialog' => true,

@@ -157,8 +157,11 @@ return [
         'cancelled'             => 'Ihr Abonnement wurde gekündigt. Sie können ein Abonnement verlängern, sobald Ihr aktuelles Abonnement endet.',
         'change'                => [
             'text'  => [
-                'monthly'   => 'Sie abonnieren die :tier Stufe , die monatlich in Rechnung gestellt wird für :amount.',
-                'yearly'    => 'Sie abonnieren die :tier Stufe, die jährlich in Rechnung gestellt wird für :amount.',
+                'monthly'           => 'Sie abonnieren die :tier Stufe , die monatlich in Rechnung gestellt wird für :amount.',
+                'upgrade_monthly'   => 'Führe für :upgrade ein Upgrade auf die :tier Stufe durch, danach wird dir monatlich :amount in Rechnung gestellt.',
+                'upgrade_paypal'    => 'Führe für :upgrade bis :date ein Upgrade auf die :tier Stufe durch.',
+                'upgrade_yearly'    => 'Führe für :upgrade ein Upgrade auf die :tier Stufe durch, danach wird dir jährlich :amount in Rechnung gestellt.',
+                'yearly'            => 'Sie abonnieren die :tier Stufe, die jährlich in Rechnung gestellt wird für :amount.',
             ],
             'title' => 'Abonnementstufe ändern',
         ],

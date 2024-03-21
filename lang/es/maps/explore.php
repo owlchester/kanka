@@ -9,4 +9,5 @@ return [
     'notifications' => [
         'start-drawing' => 'Haz clic en el mapa para empezar a dibujar un polígono',
     ],
+    'toggle'        => 'Abrir/cerrar todos los grupos',
 ];

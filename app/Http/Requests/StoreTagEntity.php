@@ -25,7 +25,8 @@ class StoreTagEntity extends FormRequest
     {
         return [
             'tag_id' => 'required|exists:entities,id',
-            'entity_id' => 'required|exists:entities,id|different:tag_id',
+            'entities' => 'required|min:1',
+            'entities.*' => 'different:tag_id|exists:entities,id',
         ];
     }
 }

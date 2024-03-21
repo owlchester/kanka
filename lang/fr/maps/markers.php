@@ -51,6 +51,7 @@ return [
             'stroke-opacity'    => 'Opacité de la bordure',
             'stroke-width'      => 'Taille de la bordure',
         ],
+        'popupless'     => 'Infobulle',
         'size'          => 'Taille',
     ],
     'helpers'       => [
@@ -60,6 +61,7 @@ return [
         'custom_icon_v2'            => 'Utilises des icônes de :fontawesome, :rpgawesome, ou avec un SVG personalisé. Découvres comment dans notre :docs.',
         'custom_radius'             => 'Sélectionner l\'option personnalisée pour définir une taille.',
         'draggable'                 => 'Cocher pour permettre au marqueur d\'être déplacé en mode exploration.',
+        'is_popupless'              => 'Désactiver l\'infobulle lors du survol du marqueur.',
         'label'                     => 'Un label est affiché comme bloque de texte sur la carte. Le text affiché sera le nom du marqueur ou le nom de l\'entité liée.',
         'polygon'                   => [
             'edit'  => 'Cliquer sur le carte pour ajouter des coordonnées au polygone.',

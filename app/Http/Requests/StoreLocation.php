@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Location;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -37,9 +38,10 @@ class StoreLocation extends FormRequest
             'template_id' => 'nullable',
         ];
 
-        $self = request()->segment(5);
+        /** @var Location $self */
+        $self = request()->route('location');
         if (!empty($self)) {
-            $rules['location_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:locations,id';
+            $rules['location_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:locations,id';
         }
 
         return $this->clean($rules);

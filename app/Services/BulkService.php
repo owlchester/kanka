@@ -11,6 +11,7 @@ use App\Models\Tag;
 use App\Services\Entity\MoveService;
 use App\Services\Entity\TagService;
 use App\Services\Entity\TransformService;
+use App\Services\Permissions\BulkPermissionService;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -25,7 +26,7 @@ class BulkService
 
     protected EntityService $entityService;
 
-    protected PermissionService $permissionService;
+    protected BulkPermissionService $permissionService;
 
     protected TransformService $transformService;
 
@@ -46,7 +47,7 @@ class BulkService
 
     public function __construct(
         EntityService $entityService,
-        PermissionService $permissionService,
+        BulkPermissionService $permissionService,
         TransformService $transformService,
         MoveService $moveService
     ) {
@@ -129,7 +130,10 @@ class BulkService
         foreach ($this->ids as $id) {
             $entity = $model->findOrFail($id);
             if (auth()->user()->can('update', $entity)) {
-                $this->permissionService->change($permissions, $entity->entity, $override);
+                $this->permissionService
+                    ->entity($entity->entity)
+                    ->override($override)
+                    ->change($permissions);
                 $this->count++;
             }
         }
@@ -273,12 +277,24 @@ class BulkService
         unset($filledFields['tags']);
         $tagIds = Arr::get($fields, 'tags', []);
 
+        // Handle images differently
+        if (isset($filledFields['entity_image'])) {
+            $imageUuid = $filledFields['entity_image'];
+            unset($filledFields['entity_image']);
+        }
+        if (isset($filledFields['entity_header'])) {
+            $headerUuid = $filledFields['entity_header'];
+            unset($filledFields['entity_header']);
+        }
+
         if ($this->entityName === 'relations') {
             $mirrorOptions = [];
             $mirrorOptions['unmirror'] = (bool) Arr::get($fields, 'unmirror', '0');
             $mirrorOptions['update_mirrored'] = (bool) Arr::get($fields, 'update_mirrored', '0');
             return $this->updateRelations($filledFields, $mirrorOptions);
         }
+
+        $parent = method_exists($model, 'getParentKeyName') ? $model->getParentKeyName() : null;
 
         // Todo: move model fetch above to actually use with()
         foreach ($this->ids as $id) {
@@ -292,6 +308,10 @@ class BulkService
             }
             $entityFields = $filledFields;
 
+            if(isset($entityFields[$parent]) && intval($entityFields[$parent]) == $entity->id) {
+                unset($entityFields[$parent]);
+            }
+
             // Handle math fields
             foreach ($maths as $math) {
                 $mathField = Arr::get($entityFields, $math, false);
@@ -304,11 +324,6 @@ class BulkService
                 }
             }
             $entity->updateQuietly($entityFields);
-            // We need to manually call the tree calculation in case the parent was changed to properly rebuild
-            if (method_exists($entity, 'forcePendingAction')) {
-                $entity->forcePendingAction(); // Usually called in the saving event
-                $entity->updateQuietly();
-            }
 
             // Foreign belongsTo loop
             foreach ($filledForeigns as $relation => $ids) {
@@ -319,6 +334,17 @@ class BulkService
             // Todo: refactor into a trait or function
             if (!empty($entity->entity)) {
                 $realEntity = $entity->entity;
+
+                if (isset($imageUuid)) {
+                    $realEntity->image_uuid = $imageUuid;
+                    // Changed the image, reset the focus
+                    $realEntity->focus_x = null;
+                    $realEntity->focus_y = null;
+                }
+
+                if (isset($headerUuid)) {
+                    $realEntity->header_uuid = $headerUuid;
+                }
 
                 $realEntity->is_private = $entity->is_private;
                 $realEntity->name = $entity->name;

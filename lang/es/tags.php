@@ -5,10 +5,6 @@ return [
         'actions'   => [
             'add'   => 'Añadir etiqueta nueva',
         ],
-        'create'    => [
-            'success'   => 'Se ha añadido la etiqueta :name a la entidad.',
-            'title'     => 'Añadir etiqueta a :name',
-        ],
     ],
     'create'        => [
         'title' => 'Nueva etiqueta',

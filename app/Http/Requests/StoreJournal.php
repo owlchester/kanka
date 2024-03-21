@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Journal;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -47,9 +48,11 @@ class StoreJournal extends FormRequest
                 $rules['length'] = 'required_with:calendar_id|min:1';
             }
         }
-        $self = request()->segment(5);
+
+        /** @var Journal $self */
+        $self = request()->route('journal');
         if (!empty($self)) {
-            $rules['journal_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:journals,id';
+            $rules['journal_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:journals,id';
         }
 
         return $this->clean($rules);

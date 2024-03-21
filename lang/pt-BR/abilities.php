@@ -4,11 +4,11 @@ return [
     'abilities'     => [],
     'children'      => [
         'actions'       => [
-            'add'   => 'Adicionar habilidade para entidade',
+            'attach'    => 'Anexar a entidades',
         ],
         'create'        => [
-            'success'   => 'Habilidade :name adicionada para a entidade.',
-            'title'     => 'Adicionar uma entidade a :name',
+            'attach_success'    => '{1} Anexada a habilidade :name a :count entidade.|[2,*] Anexada a habilidade :name a :count entidades.',
+            'modal'             => 'Anexar :name às entidades',
         ],
         'description'   => 'Entidades que possuem a habilidade',
         'title'         => 'Entidades com a Habilidade :name',

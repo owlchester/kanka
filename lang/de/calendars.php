@@ -41,6 +41,9 @@ return [
             'success'   => 'Kalender Ereignis wurde aktualisiert',
             'title'     => 'Aktualisiere das Kalender Ereignis in :name',
         ],
+        'errors'    => [
+            'invalid_entity'    => 'Ungültige Objektauswahl',
+        ],
         'helpers'   => [
             'add'               => 'Füge ein bestehendes Ereignis aus der Liste hinzu.',
             'new'               => 'Oder gebe einfach einen Namen für ein neues Ereignis ein.',
@@ -69,9 +72,11 @@ return [
         'date'                  => 'Aktuelles Datum',
         'day'                   => 'Tag',
         'default_layout'        => 'Standardlayout',
+        'format'                => 'Format',
         'intercalary'           => 'Schalttage',
         'is_incrementing'       => 'Vorausdatierung',
         'is_recurring'          => 'Wiederkehrend',
+        'leap_year'             => 'Schaltjahre',
         'leap_year_amount'      => 'Tage hinzufügen',
         'leap_year_month'       => 'Monat',
         'leap_year_offset'      => 'Jedes',
@@ -86,6 +91,7 @@ return [
         'recurring_until'       => 'Wiederholt sich bis zum Jahr',
         'reset'                 => 'Wöchentliches zurücksetzen',
         'seasons'               => 'Jahreszeiten',
+        'show_birthdays'        => 'Zeige Geburtstage',
         'skip_year_zero'        => 'Jahr Null überspringen',
         'start_offset'          => 'Startdatum',
         'suffix'                => 'Suffix',
@@ -95,6 +101,7 @@ return [
     ],
     'helpers'       => [
         'default_layout'    => 'Wählen Sie aus, welches Layout der Kalender standardmäßig verwenden soll, wenn er angezeigt wird.',
+        'format'            => 'Füge benutzerdefinierte Datumsformatierungen für Kalenderelemente hinzu.',
         'month_type'        => 'Schaltmonate benutzen keine Wochentage, aber beeinflussen trotzdem Monde und Jahreszeiten.',
         'moon_offset'       => 'Standardmäßig erscheint der erste Vollmond am ersten Tag des Jahres 0. Eine Verschiebung des Offsets , wird nach dem ersten Vollmond angezeigt. Dieser Wert kann negativ (bis zur Länge des ersten Monats) oder positiv (bis zur Länge des ersten Monats) sein.',
         'nested_without'    => 'Anzeigen aller Kalender ohne übergeordneten Kalender. Klicken Sie auf eine Zeile, um die untergeordneten Kalender anzuzeigen.',
@@ -105,11 +112,13 @@ return [
         'intercalary'       => 'Tage die außerhalb der Standard Monate und Wochen liegen. Sie beeinflussen keine Wochentage aber beeinflussen Mondzyklen.',
         'is_incrementing'   => 'Wenn aktiviert, wird das aktuelle Datum des Kalenders automatisch um 00:00 UTC erhöht',
         'is_recurring'      => 'Ein Event kann wiederkehrend sein. Es wird dann jedes Jahr am gleichen Tag erscheinen.',
+        'leap_year'         => 'Richte Schaltjahre für den Kalender ein.',
         'months'            => 'Dein Kalender sollte mindestens 2 Monate haben.',
         'moons'             => 'Hinzugefügte Monde werden bei jedem Vollmond im Kalender angezeigt.',
         'parent_calendar'   => 'Wenn Sie dem Kalender einen übergeordneten Kalender geben, werden die Erinnerungen und Wettereffekte des übergeordneten Kalenders angezeigt.',
         'reset'             => 'Beginnen Sie den Anfang des Monats oder Jahres immer am ersten Wochentag.',
         'seasons'           => 'Erstelle Jahreszeiten in dem du den jeweiligen Start festlegst. Kanka übernimmt den Rest.',
+        'show_birthdays'    => 'Zeige die jährlichen Geburtstage von Charakteren an, für die in diesem Kalender eine Geburtstagserinnerung bis zu ihrem Sterbedatum vorhanden ist.',
         'skip_year_zero'    => 'Standardmäßig ist das erste Jahr des Kalenders das Jahr Null. Aktiviere diese Option, um das Jahr Null zu überspringen.',
         'weekdays'          => 'Lege die Namen deiner Wochentage fest. Es werden mindestens 2 Wochentage benötigt.',
         'weeks'             => 'Definieren Sie einige Namen für die wichtigeren Wochen Ihres Kalenders.',
@@ -220,6 +229,10 @@ return [
         'before'=> 'Heute & davor',
     ],
     'validators'    => [
+        'format'        => 'Das Datumsformat ist ungültig.',
         'moon_offset'   => 'Der Versatz zum ersten Vollmond des Mondes kann nicht größer sein als die Länge des ersten Monats des Kalenders.',
+    ],
+    'warnings'      => [
+        'event_length'  => 'Erinnerungen, die sich über mehrere Jahre erstrecken, sind nur in den ersten beiden Jahren sichtbar. Erfahre mehr in unserer :documentation.',
     ],
 ];

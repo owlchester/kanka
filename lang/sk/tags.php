@@ -6,8 +6,8 @@ return [
             'add'   => 'Pridať novú kategóriu',
         ],
         'create'    => [
-            'success'   => 'Kategória :name bola priradená objektu.',
-            'title'     => 'Pridaj kategóriu k :name',
+            'attach_success'    => '{1} :count objekt pridaný do kategórie :name.|[2,4] :count objekty pridané do kategórie :name.|[5,*] :count objektov pridaných do kategórie :name.',
+            'modal_title'       => 'Pridať objekty k :name.',
         ],
     ],
     'create'        => [

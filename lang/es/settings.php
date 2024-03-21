@@ -2,6 +2,23 @@
 
 return [
     'account'       => [
+        '2fa'               => [
+            'actions'               => [
+                'disable'   => 'Deshabilitar la autenticación de dos factores',
+                'finish'    => 'Finalizar la configuración e iniciar sesión',
+            ],
+            'activation_helper'     => 'Para terminar de configurar la autenticación de dos factores de tu cuenta, sigue estas instrucciones.',
+            'disable'               => [
+                'helper'    => 'Si quieres desactivar la autenticación de dos factores, haz clic en el botón de abajo. Ten en cuenta que esto dejará tu cuenta vulnerable a cualquiera que conozca tus datos de acceso.',
+                'title'     => 'Deshabilitar la autenticación de dos factores',
+            ],
+            'enable_instructions'   => 'Para iniciar el proceso de activación, genera tu código QR de autenticación y escanéalo en la aplicación Google Authenticator (:ios, :android) u otra aplicación de autenticación similar.',
+            'enabled'               => 'La autenticación de dos factores está actualmente activada en su cuenta.',
+            'error_enable'          => 'Código inválido, inténtalo de nuevo',
+            'fields'                => [
+                'otp'   => 'Introduce la contraseña de un solo uso (OTP) proporcionada por la aplicación de autenticación.',
+            ],
+        ],
         'actions'           => [
             'social'            => 'Cambiar a inicio de sesión en Kanka',
             'update_email'      => 'Actualizar email',

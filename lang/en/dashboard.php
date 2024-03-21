@@ -155,6 +155,9 @@ return [
             'helpers'   => [
                 'name'  => 'You can reference the random entity\'s name with {name}',
             ],
+            'type'      => [
+                'all'   =>  'All'
+            ]
         ],
         'recent'                    => [
             'advanced_filter'   => 'Advanced filter',

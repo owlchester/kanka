@@ -2,13 +2,13 @@
 
 it('setup GET')
     ->asUser()
-    ->withCampaign(['visibility_id' => \App\Models\Campaign::VISIBILITY_PUBLIC, 'is_featured' => true])
+    ->withCampaign(['visibility_id' => App\Models\Campaign::VISIBILITY_PUBLIC, 'is_featured' => true])
     ->get('/api/public/campaigns-setup')
     ->assertStatus(200)
     ->assertJsonStructure([
         'filters' => [
             'language',
-            'system',
+            'system[]',
             'is_boosted',
             'is_open',
             'genre'
@@ -30,7 +30,7 @@ it('setup GET')
 
 it('public campaigns GET')
     ->asUser()
-    ->withCampaign(['visibility_id' => \App\Models\Campaign::VISIBILITY_PUBLIC])
+    ->withCampaign(['visibility_id' => App\Models\Campaign::VISIBILITY_PUBLIC])
     ->get('/api/public/campaigns')
     ->assertStatus(200)
     ->assertJsonStructure([
@@ -52,7 +52,7 @@ it('public campaigns GET')
 
 it('filtering GET 0 results')
     ->asUser()
-    ->withCampaign(['visibility_id' => \App\Models\Campaign::VISIBILITY_PUBLIC, 'is_featured' => true, 'boost_count' => 0])
+    ->withCampaign(['visibility_id' => App\Models\Campaign::VISIBILITY_PUBLIC, 'is_featured' => true, 'boost_count' => 0])
     ->get('/api/public/campaigns?is_boosted=1')
     ->assertStatus(200)
     ->assertJsonCount(0, 'campaigns');
@@ -60,7 +60,7 @@ it('filtering GET 0 results')
 
 it('filtering premium GET')
     ->asUser()
-    ->withCampaign(['visibility_id' => \App\Models\Campaign::VISIBILITY_PUBLIC, 'boost_count' => 3])
+    ->withCampaign(['visibility_id' => App\Models\Campaign::VISIBILITY_PUBLIC, 'boost_count' => 3])
     ->get('/api/public/campaigns?is_boosted=1')
     ->assertStatus(200)
     ->assertJsonStructure([
@@ -80,8 +80,16 @@ it('filtering premium GET')
 ;
 it('filtering locale GET')
     ->asUser()
-    ->withCampaign(['visibility_id' => \App\Models\Campaign::VISIBILITY_PUBLIC, 'boost_count' => 3, 'locale' => 'fr'])
+    ->withCampaign(['visibility_id' => App\Models\Campaign::VISIBILITY_PUBLIC, 'boost_count' => 3, 'locale' => 'fr'])
     ->get('/api/public/campaigns?language=fr')
     ->assertStatus(200)
     ->assertJsonCount(1, 'campaigns');
+;
+
+it('public campaigns GET buut no results due to is_discreet')
+    ->asUser()
+    ->withCampaign(['is_discreet' => true])
+    ->get('/api/public/campaigns')
+    ->assertStatus(200)
+    ->assertJsonCount(0, 'campaigns')
 ;

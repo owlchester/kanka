@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tier;
 use Illuminate\Http\Request;
 use App\Services\PayPalService;
 use App\Http\Requests\ValidatePledge;
@@ -9,7 +10,7 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PayPalController extends Controller
 {
-    protected PaypalService $service;
+    protected PayPalService $service;
 
     public function __construct(PayPalService $service)
     {
@@ -20,11 +21,15 @@ class PayPalController extends Controller
     /**
      * process transaction.
      */
-    public function processTransaction(ValidatePledge $request)
+    public function processTransaction(ValidatePledge $request, Tier $tier)
     {
+        if ($tier->isFree()) {
+            abort(401);
+        }
         $response = $this->service
             ->user($request->user())
-            ->process($request->get('tier'));
+            ->tier($tier)
+            ->process();
 
         if (isset($response['id']) && $response['id'] != null) {
             foreach ($response['links'] as $links) {

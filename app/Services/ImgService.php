@@ -147,6 +147,10 @@ class ImgService
                 . app()->environment() . '/' . urlencode($img);
         } elseif (Str::contains(config('thumbor.url'), 'th.kanka.io')) {
             // New server
+            if (!app()->isProduction()) {
+                $img = app()->environment() . '/' . $img;
+                $full = $this->s3 . $img;
+            }
             $thumborUrl = $this->crop . $filter . $full;
             $sign = $this->sign($thumborUrl);
             return config('thumbor.url') . $sign . '/' . $this->crop . $filter

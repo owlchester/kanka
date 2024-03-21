@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 use App\Enums\Visibility;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @method static self|Builder withInvisible()
@@ -100,14 +101,23 @@ class AclScope implements Scope
      */
     protected function applyToEntity(Builder $query, Model $model): Builder
     {
+        Permissions::createTemporaryTable();
         // @phpstan-ignore-next-line
         return $query
+            //->leftJoin('tmp_permissions as per', 'entities.id', 'per.id')
             ->private(false)
             ->where(function ($subquery) {
                 return $subquery
                     ->where(function ($sub) {
-                        return $sub->whereIn('entities.id', Permissions::allowedEntities())
-                            ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
+                        if (!request()->filled('_perm_v1')) {
+                            return $sub
+                                ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = entities.id)'))
+                                ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
+                        } else {
+                            return $sub
+                                ->whereIn('entities.id', Permissions::allowedEntities())
+                                ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
+                        }
                     })
                     ->whereNotIn('entities.id', Permissions::deniedEntities())
                 ;

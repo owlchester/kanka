@@ -61,7 +61,7 @@ class CampaignDashboardWidget extends Model
      */
     public function campaign()
     {
-        return $this->belongsTo(\App\Models\Campaign::class);
+        return $this->belongsTo(Campaign::class);
     }
 
     /**
@@ -69,7 +69,7 @@ class CampaignDashboardWidget extends Model
      */
     public function entity()
     {
-        return $this->belongsTo(\App\Models\Entity::class);
+        return $this->belongsTo(Entity::class);
     }
 
     /**
@@ -77,7 +77,7 @@ class CampaignDashboardWidget extends Model
      */
     public function dashboard()
     {
-        return $this->belongsTo(\App\Models\CampaignDashboard::class, 'dashboard_id', 'id');
+        return $this->belongsTo(CampaignDashboard::class, 'dashboard_id', 'id');
     }
 
     /**
@@ -118,7 +118,11 @@ class CampaignDashboardWidget extends Model
      */
     public function scopePositioned(Builder $query): Builder
     {
-        return $query->with(['entity', 'entity.image', 'tags'])
+        return $query->with([
+            'entity', 'entity.image',
+            'tags',
+            'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug'
+        ])
             ->orderBy('position', 'asc');
     }
 
@@ -228,7 +232,7 @@ class CampaignDashboardWidget extends Model
     /**
      * Get the entities of a widget
      */
-    public function entities()
+    public function entities(int $page = 1)
     {
         $base = new Entity();
 
@@ -260,7 +264,7 @@ class CampaignDashboardWidget extends Model
         $entityType = $this->conf('entity');
         if (!empty($entityType) && !empty($this->config['filters'])) {
             $className = 'App\Models\\' . Str::studly($entityType);
-            /** @var MiscModel|Character $model */
+            /** @var Character|mixed $model */
             $model = new $className();
 
             /** @var FilterService $filterService */
@@ -286,8 +290,8 @@ class CampaignDashboardWidget extends Model
         return $base
             ->inTags($this->tags->pluck('id')->toArray())
             ->type($entityTypeID)
-            ->with(['image:campaign_id,id,ext'])
-            ->paginate(10)
+            ->with(['image:campaign_id,id,ext', 'mentions', 'mentions.target', 'mentions.target.tags'])
+            ->paginate(10, ['*'], 'page', $page)
         ;
     }
 
@@ -299,16 +303,19 @@ class CampaignDashboardWidget extends Model
     public function randomEntity()
     {
         $entityType = $this->conf('entity');
-        $entityTypeID = (int) config('entities.ids.' . $entityType);
+        $entityTypeID = null;
+        if (!empty($entityType)) {
+            $entityTypeID = (int) config('entities.ids.' . $entityType);
+        }
 
         $base = new Entity();
 
         if (!empty($entityType) && !empty($this->config['filters'])) {
-            $className = 'App\Models\\' . \Illuminate\Support\Str::studly($entityType);
-            /** @var \App\Models\MiscModel $model */
+            $className = 'App\Models\\' . Str::studly($entityType);
+            /** @var MiscModel $model */
             $model = new $className();
 
-            /** @var \App\Services\FilterService $filterService */
+            /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
             $filterService
                 ->session(false)
@@ -316,6 +323,7 @@ class CampaignDashboardWidget extends Model
                 ->model($model)
                 ->make($entityType);
 
+            // @phpstan-ignore-next-line
             $models = $model
                 ->select($model->getTable() . '.id')
                 ->filter($filterService->filters())
@@ -340,7 +348,7 @@ class CampaignDashboardWidget extends Model
     /**
      * Get the widget filters
      */
-    private function filterOptions(): array
+    public function filterOptions(): array
     {
         if (empty($this->config['filters'])) {
             return [];
@@ -450,6 +458,6 @@ class CampaignDashboardWidget extends Model
             return true;
         }
         // Linked but no entity or no child? Permission issue or deleted entity
-        return !empty($this->entity) && !empty($this->entity->child);
+        return !empty($this->entity);
     }
 }

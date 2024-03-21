@@ -70,23 +70,23 @@ trait TreeControllerTrait
             ->distinct();
 
         /** @var Tag $model **/
-        $parentKey = $model->getParentIdName();
+        $parentKey = $model->getParentKeyName();
         $parent = null;
         if (request()->has('parent_id')) {
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
             if (request()->get('m') === 'table') {
-                if (!empty($parent) && !empty($parent->child)) {
+                if (!empty($parent) && !empty($parent->parent)) {
                     // Go back to previous parent
                     $this->addNavAction(
-                        route($this->route . '.tree', [$campaign, 'parent_id' => $parent->child->id]),
-                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . $parent->child->name
+                        route($this->route . '.tree', [$campaign, 'parent_id' => $parent->parent->id, 'm' => 'table']),
+                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . $parent->parent->name
                     );
                 } else {
                     // Go back to first level
                     $this->addNavAction(
-                        route($this->route . '.tree', $campaign),
+                        route($this->route . '.tree', [$campaign, 'm' => 'table']),
                         '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . __('crud.actions.back')
                     );
                 }
@@ -98,6 +98,7 @@ trait TreeControllerTrait
         // Do this to avoid an extra sql query when no filters are selected
         if ($this->filterService->hasFilters()) {
             $unfilteredCount = $base->count();
+            // @phpstan-ignore-next-line
             $base = $base->filter($this->filterService->filters());
 
             $models = $base->paginate();
@@ -123,11 +124,10 @@ trait TreeControllerTrait
         $actions = $this->navActions;
         $campaign = $this->campaign;
         $this->getNavActions();
-        $navActions = $this->navActions;
 
         $entityTypeId = $model->entityTypeId();
-        if (!empty($this->titleKey)) {
-            $titleKey = $this->titleKey;
+        if (method_exists($this, 'titleKey')) {
+            $titleKey = $this->titleKey();
         } else {
             $titleKey = Module::plural($entityTypeId, __('entities.' . $langKey));
         }

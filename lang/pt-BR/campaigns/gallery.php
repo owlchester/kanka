@@ -10,13 +10,21 @@ return [
         'save'          => 'Salvar',
     ],
     'breadcrumb'    => 'Galeria',
+    'bulk'          => [
+        'destroy'   => [
+            'confirm'   => 'Tem certeza de que deseja remover permanentemente os elementos selecionados? Essa ação não pode ser desfeita.',
+            'success'   => '{0}Nenhum arquivo removido.|{1}Um arquivo removido.|{2,*} :count arquivos removidos.',
+        ],
+    ],
     'cta'           => 'Gerencie e reutilize imagens em toda a campanha.',
     'destroy'       => [
+        'folder'    => 'Pasta :name removida.',
         'success'   => 'Imagem :name removida.',
     ],
     'errors'        => [
         'max'           => 'Por favor, selecione apenas até :count arquivos por vez.',
         'permissions'   => 'Seu cargo de campanha não possui a permissão :permission para carregar imagens para a galeria da campanha.',
+        'storage'       => 'Não há espaço de armazenamento suficiente para carregar as imagens selecionadas. Espaço de armazenamento disponível: :available.',
     ],
     'fields'        => [
         'created_by'            => 'Carregada por',
@@ -41,6 +49,7 @@ return [
     ],
     'title'         => 'Galeria da Campanha :campaign',
     'update'        => [
+        'folder'    => 'Pasta modificada.',
         'success'   => 'Imagem modificada.',
     ],
     'uploader'      => [

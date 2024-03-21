@@ -254,32 +254,28 @@ class MentionsService
      */
     protected function extractAndReplace()
     {
-        // First let's prepare all mentions to do a single query on the entities table
-        $this->mentionedEntities = [];
-        preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
-            $segments = explode('|', $matches[2]);
-            $id = (int) $segments[0];
-            $entityType = $matches[1];
-
-            if (!in_array($id, $this->mentionedEntities)) {
-                $this->mentionedEntities[] = $id;
-            }
-            // If the mentioned entity wasn't there yet, but the map also doesn't map to "entity"
-            if (!in_array($matches[1], $this->mentionedEntityTypes) && $this->validEntityType($entityType)) {
-                if ($matches[1] == 'attribute_template') {
-                    $matches[1] = 'attributeTemplate';
-                } elseif ($matches[1] == 'dice_roll') {
-                    $matches[1] = 'diceRoll';
-                }
-                $this->mentionedEntityTypes[] = $matches[1];
-            }
-            return $matches[0];
-        }, $this->text);
-
         // Pre-fetch all the entities
         $this->prepareEntities();
 
         // Extract links from the entry to foreign
+        $this->replaceEntityMentions();
+
+        // And now for extra fun, let's do attributes!
+        $this->mapAttributes();
+
+        // Can't forget our custom blocks
+        $this->mapCodes();
+
+        // Clean up weird ` chars that break the js
+        $this->text = str_replace('`', '\'', $this->text);
+
+        $this->fixGalleryUrls();
+
+        return $this->text;
+    }
+
+    protected function replaceEntityMentions(): void
+    {
         $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
             // Icons
             $fontAwesomes = ['fa ', 'fas ', 'far ', 'fab ', 'ra ', 'fa-solid ', 'fa-regular ', 'fa-brands '];
@@ -294,7 +290,7 @@ class MentionsService
             $cssClasses = ['entity-mention'];
 
             // No entity found, the user might not be allowed to see it
-            if (empty($entity) || empty($entity->child)) {
+            if (empty($entity)) {
                 if ($this->onlyName) {
                     return __('crud.history.unknown');
                 }
@@ -349,6 +345,9 @@ class MentionsService
                 }
 
                 $dataUrl = route('entities.tooltip', [$this->campaign, $entity]);
+                if (!empty($data['tooltip']) && $data['tooltip'] === 'attributes') {
+                    $dataUrl = route('entities.tooltip', [$this->campaign, $entity, 'render' => 'attributes']);
+                }
 
                 // If this request is through the API, we need to inject the language in the url
                 if (request()->is('api/*') || Domain::isApi()) {
@@ -398,7 +397,6 @@ class MentionsService
                             . '>'
                             . Arr::get($data, 'text', $entity->name)
                             . '</a>';
-                        ;
                         return '<span class="' . implode(' ', $cssClasses) . '"'
                             . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
                             . '>'
@@ -432,6 +430,8 @@ class MentionsService
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
+                    // @phpstan-ignore-next-line
+                    . ' data-entity-type="' . $entity->type() . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
                     . ' data-url="' . $dataUrl . '"'
@@ -444,19 +444,6 @@ class MentionsService
 
             return $replace;
         }, $this->text);
-
-        // And now for extra fun, let's do attributes!
-        $this->mapAttributes();
-
-        // Can't forget our custom blocks
-        $this->mapCodes();
-
-        // Clean up weird ` chars that break the js
-        $this->text = str_replace('`', '\'', $this->text);
-
-        $this->fixGalleryUrls();
-
-        return $this->text;
     }
 
     /**
@@ -592,6 +579,14 @@ class MentionsService
         return Arr::get($this->entities, $id);
     }
 
+    public function preloadEntity(Entity $entity): void
+    {
+        if (Arr::has($this->entities, (string) $entity->id)) {
+            return;
+        }
+        $this->entities[$entity->id] = $entity;
+    }
+
     /**
      */
     protected function alias(int $id): EntityAsset|null
@@ -617,22 +612,48 @@ class MentionsService
     /**
      * Pre-fetch all mentioned entities
      */
-    protected function prepareEntities()
+    protected function prepareEntities(): void
     {
+        // First let's prepare all mentions to do a single query on the entities table
+        $this->mentionedEntities = [];
+        preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
+            $segments = explode('|', $matches[2]);
+            $id = (int) $segments[0];
+            $entityType = $matches[1];
+
+            if (!in_array($id, $this->mentionedEntities)) {
+                $this->mentionedEntities[] = $id;
+            }
+            // If the mentioned entity wasn't there yet, but the map also doesn't map to "entity"
+            if (!in_array($matches[1], $this->mentionedEntityTypes) && $this->validEntityType($entityType)) {
+                if ($matches[1] == 'attribute_template') {
+                    $matches[1] = 'attributeTemplate';
+                } elseif ($matches[1] == 'dice_roll') {
+                    $matches[1] = 'diceRoll';
+                }
+                $this->mentionedEntityTypes[] = $matches[1];
+            }
+            return $matches[0];
+        }, $this->text);
+
         // Remove those already cached in memory
         $ids = [];
+        // @phpstan-ignore-next-line
         foreach ($this->mentionedEntities as $id) {
             if (!Arr::has($this->entities, $id)) {
                 $ids[] = $id;
             }
         }
 
+        // @phpstan-ignore-next-line
         if (empty($ids)) {
             return;
         }
 
         // Directly get with the mentioned entity types (provided they are valid)
+        // @phpstan-ignore-next-line
         $entities = Entity::whereIn('id', $ids)->with('tags:id,name,slug')->get();
+        //dump(count($ids));
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $entity;
         }

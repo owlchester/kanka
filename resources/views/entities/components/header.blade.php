@@ -16,6 +16,8 @@ $imagePath = Avatar::entity($entity ?? $model->entity)->size(192)->thumbnail();
 $imagePathXL = Avatar::entity($entity ?? $model->entity)->size(400)->thumbnail();
 $imagePathMobile = Avatar::entity($entity ?? $model->entity)->size(192)->thumbnail();
 
+$addTagsUrl = route('entity.tags-add', [$campaign, $model->entity]);
+
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();
 
@@ -40,7 +42,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
 
 ?>
 
-<div class="entity-header flex gap-5 items-end @if ($hasBanner) with-entity-banner p-4 text-white @endif" @if ($hasBanner) style="background-image: url('{{ $headerImageUrl }}');" @endif>
+<div class="entity-header flex gap-5 items-end @if ($hasBanner) with-entity-banner p-4 text-white cover-background @endif" @if ($hasBanner) style="background-image: url('{{ $headerImageUrl }}');" @endif>
 
     @if ($imageUrl)
     <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto">
@@ -138,7 +140,12 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                     <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
                 </span>
             @endif
-
+            @if ($model instanceof \App\Models\Creature && $model->isExtinct())
+                <span class="entity-name-icon entity-cre-extinct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_extinct') }}">
+                    <x-icon class="fa-solid fa-skull-cow entity-icons "></x-icon>
+                    <span class="sr-only">{{ __('creatures.hints.is_extinct') }}</span>
+                </span>
+            @endif
             @if (auth()->check() && auth()->user()->isAdmin())
                 <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $model->entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
                         <i class="fa-solid fa-lock entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
@@ -213,9 +220,13 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                             <x-icon class="fa-solid fa-print"></x-icon>
                             {{ __('crud.actions.print') }}
                         </x-dropdowns.item>
-                        <x-dropdowns.item link="{{ route('entities.json-export', [$campaign, $entity]) }}">
+                        <x-dropdowns.item link="{{ route('entities.json.export', [$campaign, $entity]) }}">
                             <x-icon class="fa-solid fa-download"></x-icon>
                             {{ __('crud.actions.json-export') }}
+                        </x-dropdowns.item>
+                        <x-dropdowns.item link="{{ route('entities.markdown.export', [$campaign, $entity]) }}">
+                            <x-icon class="fa-solid fa-download"></x-icon>
+                            {{ __('crud.actions.markdown-export') }}
                         </x-dropdowns.item>
                     @endif
                     @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
@@ -259,8 +270,8 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             </div>
         @endif
 
-        @if($entityTags->count() > 0)
         <div class="entity-tags entity-header-line text-xs flex  flex-wrap gap-2">
+        @if($entityTags->count() > 0)
             @foreach ($entityTags as $tag)
                 @if (!$tag->entity) @continue @endif
                 <a href="{{ route('tags.show', [$campaign, $tag]) }}" data-toggle="tooltip-ajax"
@@ -270,8 +281,16 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                     {!! $tag->html() !!}
                 </a>
             @endforeach
-        </div>
         @endif
+        @if(!($model instanceof \App\Models\Tag))
+            @can('update', $model)
+                <a href="{{ $addTagsUrl }}" 
+                    data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addTagsUrl }}">
+                    <x-icon class="fa-solid fa-plus-circle fa-2x" />
+                </a>
+            @endcan
+        @endif
+        </div>
 
         @includeIf('entities.headers._' . $model->getEntityType())
 

@@ -38,7 +38,8 @@ use Illuminate\Support\Str;
  * @property boolean $is_active
  * @property array $optionsAllowedKeys
  *
- * @method self ordered()
+ * @method static self|Builder ordered()
+ * @method static self|Builder active()
  */
 class Bookmark extends MiscModel
 {
@@ -336,6 +337,7 @@ class Bookmark extends MiscModel
 
         /** @var Entity|null $entity */
         $entity = Entity::inTags($this->tags->pluck('id')->toArray())
+            ->whereNotIn('entities.id', Dashboard::excluding())
             ->type($entityTypeID)
             ->inRandomOrder()
             ->first();

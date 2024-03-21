@@ -7,11 +7,8 @@ use Illuminate\Support\Str;
  * @var \App\Models\CampaignDashboardWidget $widget
  * @var \App\Models\Tag $tag
  */
-if (!isset($offset)) {
-    $offset = 0;
-}
 $entityType = $widget->conf('entity');
-$entities = $widget->entities($offset);
+$entities = $widget->entities();
 if (($widget->conf('singular'))) {
     $entityString = !empty($entityType) ? (!$widget->conf('singular') ? $entityType : $moduleService->singular($entityType, 'entities.' . Str::plural($entityType))) : null;
 
@@ -34,13 +31,7 @@ if (($widget->conf('singular'))) {
 <x-box padding="0" css="widget-list {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <h4 class="text-lg mb-3 px-4 pt-4 flex gap-2">
         <span class="grow">
-        @if (!empty($widget->conf('text')))
-            {{ $widget->conf('text') }}
-        @else
-            @if ($widget->conf('entity'))
-                {{ __($entityString) }} -
-            @endif{{ __('dashboard.widgets.recent.title') }}
-        @endif
+            <x-widgets.filteredLink :campaign="$campaign" :widget="$widget" :entityString="$entityString" />
         </span>
 
         @if (!empty($widget->tags))
@@ -56,8 +47,8 @@ if (($widget->conf('singular'))) {
         <p class="italic">{{ __('search.lookup.empty') }}</p>
     </div>
     @else
-    <div class="widget-recent-list overflow-auto max-h-[400px]">
-        @include('dashboard.widgets._recent_list', ['entities' => $entities, 'offset' => $offset])
+    <div class="widget-recent-list overflow-auto px-4 pb-4 max-h-[400px]">
+        @include('dashboard.widgets._recent_list')
     </div>
     @endif
 </x-box>

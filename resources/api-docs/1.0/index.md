@@ -53,8 +53,9 @@
 
 - ## Other Concepts
     - [Last Sync](/api-docs/{{version}}/last-sync)
+    - [Filters](/api-docs/{{version}}/filters)
     - [Pagination](/api-docs/{{version}}/pagination)
-    - [Bookmarks](/api-docs/{{version}}/bookmark)
+    - [Bookmarks](/api-docs/{{version}}/bookmarks)
     - [Dashboard Widgets](/api-docs/{{version}}/dashboard-widgets)
     - [Default Thumbnails](/api-docs/{{version}}/default-thumbnails)
     - [Mention Language](/api-docs/{{version}}/mention-language)

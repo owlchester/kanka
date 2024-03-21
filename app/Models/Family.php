@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Enums\FilterOption;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
-use App\Models\Concerns\Nested;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Family
@@ -31,7 +32,8 @@ class Family extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
-    use Nested;
+    use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
@@ -66,7 +68,13 @@ class Family extends MiscModel
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-        'members',
+        'pivotMembers',
+    ];
+
+    protected array $exportFields = [
+        'base',
+        'family_id',
+        'location_id',
     ];
 
     /**
@@ -87,18 +95,9 @@ class Family extends MiscModel
      * Parent ID used for the Node Trait
      * @return string
      */
-    public function getParentIdName()
+    public function getParentKeyName()
     {
         return 'family_id';
-    }
-
-    /**
-     * Specify parent id attribute mutator
-     * @param int $value
-     */
-    public function setFamilyIdAttribute($value)
-    {
-        $this->setParentIdAttribute($value);
     }
 
     /**
@@ -189,6 +188,11 @@ class Family extends MiscModel
     public function members()
     {
         return $this->belongsToMany('App\Models\Character', 'character_family');
+    }
+
+    public function pivotMembers()
+    {
+        return $this->hasMany(CharacterFamily::class);
     }
 
     /**

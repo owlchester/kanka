@@ -383,17 +383,15 @@ class ImporterService
     protected function importImage(MiscModel $model, PluginVersionEntity $entity)
     {
         // Don't do anything if no image or replacing an image (too many false positives)
-        if (empty($entity->image_path) || !empty($model->image)) {
+        if (empty($entity->image_path) || !empty($model->entity->image_path)) {
             return $model;
         }
 
         // Need to download the image from the marketplace's s3 (if possible)
         try {
-            $folder = $model->getTable();
-            $path = $folder . '/' . Str::uuid() . '.' . Str::afterLast($entity->image_path, '.');
-            //dump($path);
+            $path = 'w/' . $this->campaign->id . '/' . Str::uuid() . '.' . Str::afterLast($entity->image_path, '.');
             Storage::writeStream($path, Storage::disk('s3-marketplace')->readStream($entity->image_path));
-            $model->image = $path;
+            $model->entity->image_path = $path;
         } catch (Exception $e) {
             Log::error('Error importing image from ' . $entity->id . ': ' . $e->getMessage());
         }
@@ -553,16 +551,16 @@ class ImporterService
                 $post->marketplace_uuid = $uuid;
             }
 
-            $visibility = \App\Enums\Visibility::All->value;
+            $visibility = Visibility::All->value;
 
             if (Arr::get($data, 'visibility') == 'admin') {
-                $visibility = \App\Enums\Visibility::Admin->value;
+                $visibility = Visibility::Admin->value;
             } elseif (Arr::get($data, 'visibility') == 'admin-self') {
-                $visibility = \App\Enums\Visibility::AdminSelf->value;
+                $visibility = Visibility::AdminSelf->value;
             } elseif (Arr::get($data, 'visibility') == 'members') {
-                $visibility = \App\Enums\Visibility::Member->value;
+                $visibility = Visibility::Member->value;
             } elseif (Arr::get($data, 'visibility') == 'self') {
-                $visibility = \App\Enums\Visibility::Self->value;
+                $visibility = Visibility::Self->value;
             }
 
             $post->name = Arr::get($data, 'name');

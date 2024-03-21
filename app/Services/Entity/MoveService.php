@@ -4,6 +4,7 @@ namespace App\Services\Entity;
 
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
+use App\Facades\UserCache;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Character;
@@ -13,7 +14,6 @@ use App\Models\MiscModel;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
 use App\Traits\CampaignAware;
-use App\Traits\CanFixTree;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +24,6 @@ use Illuminate\Support\Str;
 class MoveService
 {
     use CampaignAware;
-    use CanFixTree;
     use EntityAware;
     use UserAware;
 
@@ -79,16 +78,18 @@ class MoveService
             throw new TranslatableException('entities/move.errors.unknown_campaign');
         }
 
-        // Check that the new campaign is different than the current one.
+        // Check that the new campaign is different from the current one.
         if ($campaign->id == $this->entity->campaign_id) {
             throw new TranslatableException('entities/move.errors.same_campaign');
         }
 
         // Can the user create an entity of that type on the new campaign?
+        //UserCache::campaign($campaign);
         if (!$this->user->can('create', [get_class($this->entity->child), null, $campaign])) {
             throw new TranslatableException('entities/move.errors.permission');
         }
 
+        //UserCache::campaign($this->entity->campaign);
         // Trying to move (not copy) but can't update the original entity
         if (!$this->copy && !$this->user->can('update', $this->entity->child)) {
             throw new TranslatableException('entities/move.errors.permission_update');
@@ -113,7 +114,6 @@ class MoveService
             }
 
             CampaignLocalization::forceCampaign($this->to);
-            $this->fixTree($newModel);
 
             // The model is ready to be saved.
             $newModel->saveQuietly();
@@ -216,7 +216,6 @@ class MoveService
             }
             $this->entity->saveQuietly();
 
-            $this->fixTree($child);
             // Update child second. We do this otherwise we'll have an old entity and a new one
             $child->campaign_id = $this->to->id;
             if (empty($child->slug)) {

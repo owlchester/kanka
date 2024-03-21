@@ -43,7 +43,7 @@ class MiscController extends Controller
             return $this->familyCharacters($request, $campaign);
         }
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Character::class);
+        return $this->buildSearchResults($term, Character::class);
     }
 
     /**
@@ -149,7 +149,7 @@ class MiscController extends Controller
     {
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
-        return $this->buildSearchResults($term, \App\Models\Tag::class, $exclude);
+        return $this->buildSearchResults($term, Tag::class, $exclude);
     }
 
     /**

@@ -3,13 +3,6 @@
 return [
     'abilities'     => [],
     'children'      => [
-        'actions'       => [
-            'add'   => 'Adj egy képességet az entitáshoz',
-        ],
-        'create'        => [
-            'success'   => 'A :name nevű képességet hozzáadtuk az entitáshoz.',
-            'title'     => 'Adj egy entitást ehhez: :name',
-        ],
         'description'   => 'Az entitásoknak megvan a képesség',
         'title'         => ':name képesség entitások',
     ],

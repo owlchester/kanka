@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\AttributeTemplate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAttributeTemplate extends FormRequest
@@ -30,9 +31,10 @@ class StoreAttributeTemplate extends FormRequest
         ];
 
         // Editing an attribute template? Don't allow selecting oneself.
-        $self = request()->segment(5);
+        /** @var AttributeTemplate $self */
+        $self = request()->route('attribute_template');
         if (!empty($self)) {
-            $rules['attribute_template_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:attribute_templates,id';
+            $rules['attribute_template_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:attribute_templates,id';
         }
 
         return $rules;

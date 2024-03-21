@@ -130,12 +130,8 @@ $mapSidebarWidth: 380px;
     .main-sidebar {
         padding-top: 0;
         z-index: 1040;
-    }
-    .sidebar-content {
-        h1, h2, h3, h4, h5, h6, p {
-            --tw-text-opacity: 1;
-            color: hsl(var(--sic)/var(--tw-text-opacity));
-        }
+        --sidebar-link: hsl(var(--bc)/1);
+
     }
     header {
         z-index: 1050;
@@ -276,13 +272,13 @@ body.map-drawing-mode {
 .leaflet-ruler {
     height: 48px;
     width: 48px;
-    background-image: url("/vendor/leaflet/ruler/icon.png"); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
+    background-image: url(/resources/images/leaflet/icon.png); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .leaflet-ruler:hover {
-    background-image: url("/vendor/leaflet/ruler/icon-colored.png"); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
+    background-image: url(/resources/images/leaflet/icon-colored.png); /* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */
 }
 
 .leaflet-ruler-clicked {
@@ -290,7 +286,7 @@ body.map-drawing-mode {
     width: 48px;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url("/vendor/leaflet/ruler/icon-colored.png");
+    background-image: url(/resources/images/leaflet/icon-colored.png);
 }
 .leaflet-bar {
     --tw-bg-opacity: 1;

@@ -9,16 +9,14 @@ use App\Models\CampaignUser;
 use App\Models\CampaignRole;
 use App\Models\Genre;
 use App\Models\CampaignRoleUser;
+use App\Models\GameSystem;
 use App\Models\CampaignSetting;
-use App\Models\RpgSystem;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use App\Services\Users\CampaignService;
-use App\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class CampaignObserver
 {
@@ -141,7 +139,7 @@ class CampaignObserver
         }
 
         $this->saveGenres($campaign);
-        $this->saveRpgSystems($campaign);
+        $this->saveSystems($campaign);
 
         foreach ($campaign->members()->with('user')->get() as $member) {
             UserCache::user($member->user)->clear();
@@ -189,43 +187,6 @@ class CampaignObserver
     }
 
     /**
-     */
-    protected function saveRpgSystems(Campaign $campaign): void
-    {
-        if (!request()->has('rpg_systems')) {
-            return;
-        }
-
-        $ids = request()->post('rpg_systems', []);
-
-        // Only use tags the user can actually view. This way admins can
-        // have tags on entities that the user doesn't know about.
-        $existing = [];
-        foreach ($campaign->rpgSystems as $system) {
-            $existing[] = $system->id;
-        }
-        $new = [];
-
-        foreach ($ids as $id) {
-            if (!empty($existing[$id])) {
-                unset($existing[$id]);
-            } else {
-                $system = RpgSystem::find($id);
-                if (empty($system)) {
-                    continue;
-                }
-                $new[] = $system->id;
-            }
-        }
-        $campaign->rpgSystems()->attach($new);
-
-        // Detach the remaining
-        if (!empty($existing)) {
-            $campaign->rpgSystems()->detach($existing);
-        }
-    }
-
-    /**
      * Save the sections/categories
      */
     protected function saveGenres(Campaign $campaign)
@@ -258,6 +219,41 @@ class CampaignObserver
         // Detatch the remaining
         if (!empty($existing)) {
             $campaign->genres()->detach(array_keys($existing));
+        }
+    }
+
+    /**
+     * Save the game systems
+     */
+    protected function saveSystems(Campaign $campaign)
+    {
+        if (!request()->has('systems')) {
+            return;
+        }
+
+        $ids = request()->post('systems', []);
+
+        $existing = [];
+        foreach ($campaign->systems as $system) {
+            $existing[$system->id] = $system->name;
+        }
+        $new = [];
+
+        foreach ($ids as $id) {
+            if (!empty($existing[$id])) {
+                unset($existing[$id]);
+            } else {
+                $genre = GameSystem::find($id);
+                if (!empty($genre)) {
+                    $new[] = $genre->id;
+                }
+            }
+        }
+        $campaign->systems()->attach($new);
+
+        // Detatch the remaining
+        if (!empty($existing)) {
+            $campaign->systems()->detach(array_keys($existing));
         }
     }
 }

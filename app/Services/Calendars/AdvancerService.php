@@ -2,6 +2,7 @@
 
 namespace App\Services\Calendars;
 
+use App\Jobs\CalendarsClearElapsed;
 use App\Models\Calendar;
 
 class AdvancerService
@@ -42,7 +43,7 @@ class AdvancerService
             $year++;
         }
         $this->calendar->date = $year . '-' . $month . ($day !== false ? '-' . $day : null);
-        $this->calendar->saveQuietly();
+        $this->calendar->save();
         return $this;
     }
 
@@ -68,7 +69,8 @@ class AdvancerService
             $year--;
         }
         $this->calendar->date = $year . '-' . $month . '-' . $day;
-        $this->calendar->saveQuietly();
+        $this->calendar->save();
+        CalendarsClearElapsed::dispatch($this->calendar);
         return $this;
     }
 }

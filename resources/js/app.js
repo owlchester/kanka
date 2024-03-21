@@ -1,7 +1,11 @@
 import './tags.js';
 import './components/select2.js';
+import Coloris from "@melloware/coloris";
 import dynamicMentions from "./mention";
 
+import.meta.glob([
+    '../images/**',
+]);
 
 $(document).ready(function() {
     initPageHeight();
@@ -32,6 +36,7 @@ $(document).ready(function() {
         window.initTags();
         window.initDialogs();
         window.initTooltips();
+        window.ajaxTooltip();
         window.initDropdowns();
         initAjaxPagination();
         initSpectrum();
@@ -48,11 +53,36 @@ $(document).ready(function() {
  * Initiate spectrum for the various fields
  */
 function initSpectrum() {
-    if (!$.isFunction($.fn.spectrum)) {
+    /*if (!$.isFunction($.fn.spectrum)) {
         return;
-    }
+    }*/
 
-    $.each($('.spectrum'), function () {
+    Coloris.init();
+    Coloris({
+        el: '.spectrum',
+        format: 'hex',
+        alpha: false,
+        theme: 'pill',
+        clearButton: true,
+        closeButton: true,
+    });
+
+    document.querySelectorAll('.spectrum').forEach(input => {
+        if (input.dataset.init === "1") {
+            return;
+        }
+        input.dataset.init = 1;
+        input.addEventListener('click', function (e) {
+            Coloris({
+                parent: input.dataset.appendTo ?? '.container',
+            });
+        });
+        // Don't close the dialog backdrop
+        input.addEventListener('close', e => {
+            e.stopPropagation();
+        });
+    });
+    /*$.each($('.spectrum'), function () {
         $(this).spectrum({
             preferredFormat: "hex",
             showInput: true,
@@ -60,7 +90,7 @@ function initSpectrum() {
             allowEmpty: true,
             appendTo: $(this).data('append-to') ?? null,
         });
-    });
+    });*/
 }
 
 

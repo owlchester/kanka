@@ -1,6 +1,6 @@
 <div class="field field-{{ $field }} flex flex-col gap-1
-    @if (isset($required) && $required) required @endif {{ $css ?? null }}"
-    @if ($hidden) style="display: none" @endif
+    @if (isset($required) && $required) required @endif {{ $css ?? null }}
+    @if ($hidden) hidden @endif"
 >
     @if (isset($label) && !empty($label))
         <label class="">

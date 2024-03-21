@@ -47,12 +47,11 @@ return [
     'move'          => [
         'copy'          => 'Criar uma cópia na entidade de destino',
         'copy_success'  => 'Post :name copiado com sucesso para :entity.',
+        'copy_title'    => 'Mantenha uma cópia',
         'description'   => 'Selecione uma entidade para a qual você deseja mover ou fazer uma cópia deste post.',
         'entity'        => 'Entidade de destino',
         'move'          => 'Mover ou copiar para outra entidade',
         'move_success'  => 'Post :name movido com sucesso para :entity.',
-        'select_one'    => 'Selecione uma entidade',
-        'title'         => 'Mover ou copiar um post para outra entidade',
     ],
     'placeholders'  => [
         'name'  => 'Nome do post, observação ou comentário',

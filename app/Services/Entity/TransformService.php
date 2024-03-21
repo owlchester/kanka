@@ -6,19 +6,15 @@ use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Post;
-use App\Models\Family;
-use App\Models\Location;
 use App\Models\MiscModel;
-use App\Models\Organisation;
+use App\Models\EntityLog;
 use App\Models\OrganisationMember;
-use App\Traits\CanFixTree;
 use App\Traits\EntityAware;
 use Illuminate\Support\Str;
 use Exception;
 
 class TransformService
 {
-    use CanFixTree;
     use EntityAware;
 
     protected MiscModel $child;
@@ -46,8 +42,6 @@ class TransformService
             ->removePosts()
         ;
 
-        $this->fixTree($this->new);
-
         // Finally, we can save. Should be all good.
         $this->new->campaign_id = $this->child->campaign_id;
         $this->new->saveQuietly();
@@ -67,7 +61,7 @@ class TransformService
         // Special import for location location_id
         if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && !empty($this->child->location_id)) {
             // @phpstan-ignore-next-line
-            $this->new->location_id = $this->child->getParentId();
+            $this->new->location_id = $this->child->{$this->child->getParentKeyName()};
         }
         if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && !empty($this->child->location_id)) {
             // @phpstan-ignore-next-line
@@ -243,11 +237,21 @@ class TransformService
 
     protected function finish(): self
     {
+        $type = $this->entity->entityType();
         // Update entity to its new type. We don't use a new entity to keep all mentions, attributes and
         // other related elements attached.
         $this->entity->type_id = $this->new->entityTypeID();
         $this->entity->entity_id = $this->new->id;
-        $this->entity->cleanCache()->save();
+        $this->entity->cleanCache()->withoutUpdateLog()->save();
+
+        $log = new EntityLog();
+        $log->entity_id = $this->entity->id;
+        $log->created_by = auth()->user()->id;
+        $log->action = EntityLog::ACTION_UPDATE;
+        if ($this->entity->campaign->superboosted()) {
+            $log->changes = ['entity_type' => $type];
+        }
+        $log->save();
 
         // Delete old, this will take care of pictures and stuff. We detach the
         // entity to avoid the softDelete affecting it and causing duplicate

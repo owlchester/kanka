@@ -30,7 +30,7 @@
 
     </div>
 
-    <input type="hidden" id="ticker-config" data-timeout="20000" data-url="{{ route('maps.ticker', [$campaign, $map, $campaign]) }}" data-ts="{{ \Carbon\Carbon::now() }}" />
+    <input type="hidden" id="ticker-config" data-timeout="20000" data-url="{{ route('maps.ticker', [$campaign, $map]) }}" data-ts="{{ \Carbon\Carbon::now() }}" />
 @endsection
 
 @section('scripts')
@@ -134,7 +134,7 @@
         }
 
         .marker-{{ $marker->id }} .marker-pin::after {
-            @if (!empty($marker->entity_id) && $marker->entity && $marker->icon == 4)background-image: url('{{ \App\Facades\Avatar::entity($marker->entity)->fallback()->size(40)->thumbnail() }}');
+            @if (!empty($marker->entity_id) && $marker->entity && $marker->icon == 4)background-image: url('{{ \App\Facades\Avatar::entity($marker->entity)->fallback()->size(200)->thumbnail() }}');
 
                 @if (!empty($marker->pin_size))
                     width: {{ $marker->pinSize(false) - 4 }}px;
@@ -162,20 +162,7 @@
 @endsection
 
 @section('modals')
-<div class="modal fade" id="map-marker-modal" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content bg-base-100">
-            <div class="modal-header">
-                <span id="map-marker-modal-title"></span>
-                <x-dialog.close />
-            </div>
-            <div class="modal-body bg-base-100" id="map-marker-modal-content">
-                <x-icon class="load" />
-                <div class="content p-0"></div>
-            </div>
-        </div>
-    </div>
-</div>
+    <x-dialog id="map-marker-modal" :loading="true"></x-dialog>
 
 @can('update', $map)
     <x-dialog

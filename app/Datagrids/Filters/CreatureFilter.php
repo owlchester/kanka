@@ -23,6 +23,7 @@ class CreatureFilter extends DatagridFilter
                 'model' => Creature::class,
             ])
             ->location()
+            ->add('is_extinct')
             ->isPrivate()
             ->template()
             ->hasImage()
@@ -31,6 +32,7 @@ class CreatureFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
+            ->connections()
         ;
     }
 }

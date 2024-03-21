@@ -7,6 +7,9 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\ExportService;
 use App\Traits\GuestAuthTrait;
+use League\HTMLToMarkdown\HtmlConverter;
+use League\HTMLToMarkdown\Converter\TableConverter;
+use Illuminate\Support\Str;
 
 /**
  * Class ExportController
@@ -28,6 +31,19 @@ class ExportController extends Controller
         $this->authEntityView($entity);
 
         return $this->service->entity($entity)->json();
+    }
+
+    public function markdown(Campaign $campaign, Entity $entity)
+    {
+        $this->authEntityView($entity);
+
+        $converter = new HtmlConverter();
+        $converter->getConfig()->setOption('strip_tags', true);
+        $converter->getEnvironment()->addConverter(new TableConverter());
+
+        return response()->view('entities.pages.print.markdown', ['entity' => $entity, 'model' => $entity->child, 'converter' => $converter, 'campaign' => $campaign])
+            ->header('Content-Type', 'application/md')
+            ->header('Content-disposition', 'attachment; filename="' . Str::slug($entity->name) . '.md"');
     }
 
     public function html(Campaign $campaign, Entity $entity)

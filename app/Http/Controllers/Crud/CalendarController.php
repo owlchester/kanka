@@ -22,7 +22,7 @@ class CalendarController extends CrudController
 
 
     /** @var string */
-    protected $model = \App\Models\Calendar::class;
+    protected $model = Calendar::class;
 
     /**  */
     protected string $filter = CalendarFilter::class;

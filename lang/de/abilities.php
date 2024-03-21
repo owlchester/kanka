@@ -4,11 +4,11 @@ return [
     'abilities'     => [],
     'children'      => [
         'actions'       => [
-            'add'   => 'Fähigkeit zum Objekt hinzufügen',
+            'attach'    => 'An Objekt anhängen',
         ],
         'create'        => [
-            'success'   => 'Fähigkeit :name zum Objekt hinzugefügt',
-            'title'     => 'Objekt zu :name hinzufügen',
+            'attach_success'    => '{1} Die Fähigkeit :name wurde an :count Objekt angehängt.|[2,*] Die Fähigkeit :name wurde an :count Objekte angehängt.',
+            'modal'             => 'Hänge :name an Objekt an',
         ],
         'description'   => 'Objekte mit dieser Fähigkeit',
         'title'         => 'Fähigkeit :name Objekt',

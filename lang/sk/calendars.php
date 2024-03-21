@@ -42,6 +42,9 @@ return [
             'success'   => 'Pripomienka upravená.',
             'title'     => 'Upraviť pripomienku v :name',
         ],
+        'errors'    => [
+            'invalid_entity'    => 'Neplatná voľba objektu.',
+        ],
         'helpers'   => [
             'add'               => 'Pridať existujúcu udalosť do tohto kalendára.',
             'new'               => 'Alebo vytvoriť novú udalosť zadaním jej názvu.',
@@ -70,9 +73,11 @@ return [
         'date'                  => 'Aktuálny dátum',
         'day'                   => 'Deň',
         'default_layout'        => 'Štandardné rozmiestnenie',
+        'format'                => 'Formát',
         'intercalary'           => 'Priestupné dni',
         'is_incrementing'       => 'Narastajúce dni',
         'is_recurring'          => 'Opakujúce',
+        'leap_year'             => 'Priestupné roky',
         'leap_year_amount'      => 'Pridať dni',
         'leap_year_month'       => 'Mesiac',
         'leap_year_offset'      => 'Každý',
@@ -87,6 +92,7 @@ return [
         'recurring_until'       => 'Opakujúce sa do roku',
         'reset'                 => 'Týždenný reset',
         'seasons'               => 'Ročné obdobia',
+        'show_birthdays'        => 'Zobraziť narodeniny',
         'skip_year_zero'        => 'Preskočiť Rok Nula',
         'start_offset'          => 'Posun prvého dňa',
         'suffix'                => 'Prípona',
@@ -96,6 +102,7 @@ return [
     ],
     'helpers'       => [
         'default_layout'    => 'Zvoľ, ktoré rozmiestnenie kalendára sa má štandardne zobrazovať.',
+        'format'            => 'Pridaj vlastný formát dátumu pre objekty v kalendári.',
         'month_type'        => 'Priestupné mesiace nepoužívajú dni v týždni, ale ovplyvňujú družice a ročné obdobia.',
         'moon_offset'       => 'Štandardne začína spln prvý deň v roku 0. Nastavenie posunu ovplyvňuje, kedy sa tento spln udeje. Hodnota môže byť negatívna (do max. dĺžky prvého mesiaca) alebo pozitívna (do max. dĺžky prvého mesiaca).',
         'nested_without'    => 'Zobraziť všetky kalendáre, ktoré nemajú nadradený kalendár. Kliknutím na riadok zobrazíš podradené kalendáre.',
@@ -106,11 +113,13 @@ return [
         'intercalary'       => 'Dni, ktoré spadajú mimo štandardné mesiace a týždne. Neovplyvňujú dni v týždni, ale ovplyvňujú cykly družíc.',
         'is_incrementing'   => 'Narastajúci kalendár automaticky posunie aktuálny deň o 00:00 UTC.',
         'is_recurring'      => 'Udalosť je možné nastaviť ako opakujúcu sa. Bude sa následne zobrazovať každý rok v ten istý deň.',
+        'leap_year'         => 'Nastav priestupné roky pre kalendár.',
         'months'            => 'Kalendár by mal mať min. 2 mesiace.',
         'moons'             => 'Pridané družice sa zobrazia v kalendári počas ich splnu.',
         'parent_calendar'   => 'Ak kalendáru priradíš nadradený kalendár, priradíš mu aj pripomienky a efekty počasia z tohto nadradeného kalendáru.',
         'reset'             => 'Začiatok mesiaca alebo roku začína stále na prvom dni týždňa.',
         'seasons'           => 'Vytvor v tvojom kalendári ročné obdobia tým, že označíš, kedy sa začínajú. O ostatné sa už postará Kanka.',
+        'show_birthdays'    => 'Zobrazí ročne narodeniny postáv, ktoré majú pripomenutie o narodeninách až po ich dátum smrti.',
         'skip_year_zero'    => 'Štandardne je prvý rok kalendára nultým rokom. Aktivovaním tohto nastavenia tento preskočíš.',
         'weekdays'          => 'Nastav názvy tvojich dní v týždni. Podmienkou je pridanie min. 2 dní v týždni.',
         'weeks'             => 'Definuj názvy pre najdôležitejšie týždne v tvojom kalendári.',
@@ -221,6 +230,10 @@ return [
         'before'=> 'Dnes a predtým',
     ],
     'validators'    => [
+        'format'        => 'Formát dátumu je neplatný.',
         'moon_offset'   => 'Posun pre prvý spln nemôže byť väčší ako dĺžka prvého mesiaca kalendára.',
+    ],
+    'warnings'      => [
+        'event_length'  => 'Pripomienky, ktoré prechádzajú cez niekoľko rokov sú viditeľné iba v prvých dvoch rokoch. Viac sa dozvieš v našej :documentation.',
     ],
 ];

@@ -6,6 +6,7 @@ use App\Enums\FilterOption;
 use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -44,6 +45,7 @@ class Character extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
+    use HasFilters;
     use SoftDeletes;
     use SortableTrait;
 
@@ -113,7 +115,7 @@ class Character extends MiscModel
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-        'characterTraits', 'families', 'races'
+        'characterTraits', 'characterFamilies', 'characterRaces', 'organisationMemberships'
     ];
 
     /**
@@ -220,6 +222,16 @@ class Character extends MiscModel
         return $this->belongsToMany('App\Models\Family')
             ->orderBy('character_family.id')
             ->with('entity');
+    }
+
+    public function characterFamilies()
+    {
+        return $this->hasMany(CharacterFamily::class, 'character_id');
+    }
+
+    public function characterRaces()
+    {
+        return $this->hasMany(CharacterRace::class, 'character_id');
     }
 
     /**
@@ -491,7 +503,11 @@ class Character extends MiscModel
         return $query
             ->select(['id', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
+            ->with([
+                'location', 'location.entity',
+                'families', 'families.entity',
+                'races', 'races.entity',
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
             ->has('entity');
     }
 }

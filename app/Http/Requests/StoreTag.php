@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Tag;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -43,9 +44,10 @@ class StoreTag extends FormRequest
             ]
         ];
 
-        $self = request()->segment(5);
+        /** @var Tag $self */
+        $self = request()->route('tag');
         if (!empty($self)) {
-            $rules['tag_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:tags,id';
+            $rules['tag_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:tags,id';
         }
 
         return $this->clean($rules);

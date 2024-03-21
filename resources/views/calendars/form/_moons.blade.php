@@ -58,7 +58,7 @@ if (!empty($moonNames)) {
                     </div>
                     <div class="field">
                         <label class="sr-only">{{ __('calendars.parameters.moon.fullmoon') }}</label>
-                        {!! Form::number('moon_fullmoon[]', $fullmoon['fullmoon'], ['class' => 'w-full', 'step' => '0.01', 'min' => 1, 'aria-label' => __('calendars.parameters.moon.fullmoon')]) !!}
+                        {!! Form::number('moon_fullmoon[]', $fullmoon['fullmoon'], ['class' => 'w-full', 'step' => 'any', 'min' => 1, 'aria-label' => __('calendars.parameters.moon.fullmoon')]) !!}
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
@@ -99,7 +99,7 @@ if (!empty($moonNames)) {
                 </div>
                 <div class="field">
                     <label class="sr-only">{{ __('calendars.parameters.moon.fullmoon') }}</label>
-                    {!! Form::number('moon_fullmoon[]', null, ['class' => 'w-full', 'step' => '0.01', 'min' => 1, 'aria-label' => __('calendars.parameters.moon.fullmoon')]) !!}
+                    {!! Form::number('moon_fullmoon[]', null, ['class' => 'w-full', 'step' => 'any', 'min' => 1, 'aria-label' => __('calendars.parameters.moon.fullmoon')]) !!}
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-2">

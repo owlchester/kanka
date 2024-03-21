@@ -6,8 +6,8 @@ return [
             'add'   => 'Dodaj nową etykietę',
         ],
         'create'    => [
-            'success'   => 'Dodano do elementu etykietę :name.',
-            'title'     => 'Dodaj etykietę do elementu :name',
+            'attach_success'    => '{1} Dodano etykietę :name :count elementowi.|[2,*] Dodano etykietę :name :count elementom.',
+            'modal_title'       => 'Dodaj elementy do :name',
         ],
     ],
     'create'        => [

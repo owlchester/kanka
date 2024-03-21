@@ -22,7 +22,7 @@ class FamilyController extends CrudController
     /**
      * Crud models
      */
-    protected $model = \App\Models\Family::class;
+    protected $model = Family::class;
 
     /** @var string Filter */
     protected string $filter = FamilyFilter::class;

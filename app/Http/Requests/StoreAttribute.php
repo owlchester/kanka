@@ -27,7 +27,6 @@ class StoreAttribute extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'entity_id' => 'required|exists:entities,id',
             'name' => 'required|max:191',
             'value' => 'nullable|string',
             'type' => 'nullable|string',

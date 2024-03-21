@@ -18,12 +18,15 @@ it('POSTS a new relation')
         'target_id' => 2,
         'two_way' => 0,
         'is_pinned' => 0,
+        'visibility_id' => 1,
     ])
-    ->assertStatus(201)
+    ->assertStatus(200)
     ->assertJsonStructure([
         'data' => [
-            'id',
-            'owner_id',
+            [
+                'id',
+                'owner_id',
+            ]
         ]
     ])
 ;
@@ -70,7 +73,7 @@ it('UPDATES a valid relation')
     ->assertJsonFragment(['attitude' => 100])
 ;
 
-it('DELETES an relation')
+it('DELETES a relation')
     ->asUser()
     ->withCampaign()
     ->withCharacters()

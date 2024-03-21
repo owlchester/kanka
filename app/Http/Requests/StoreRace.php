@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Race;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -37,9 +38,10 @@ class StoreRace extends FormRequest
             'template_id' => 'nullable',
         ];
 
-        $self = request()->segment(5);
+        /** @var Race $self */
+        $self = request()->route('race');
         if (!empty($self)) {
-            $rules['race_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:races,id';
+            $rules['race_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:races,id';
         }
 
         return $this->clean($rules);

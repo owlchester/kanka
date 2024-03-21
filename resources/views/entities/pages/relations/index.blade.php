@@ -51,5 +51,4 @@
             __('entities/relations.helpers.popup')
         ]
     ])
-    <x-dialog id="connection-dialog" :loading="true" />
 @endsection

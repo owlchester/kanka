@@ -12,6 +12,7 @@ use App\Services\Attributes\TemplateService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
 class AttributeService
@@ -121,7 +122,7 @@ class AttributeService
 
         // Edit an existing attribute
         if (!empty($this->existing[$id])) {
-            /** @var \App\Models\Attribute $attribute */
+            /** @var Attribute $attribute */
             $attribute = $this->existing[$id];
             $attribute->type_id = $typeID;
             $attribute->name = $name;
@@ -280,6 +281,30 @@ class AttributeService
         $purifyConfig['HTML.Allowed'] = preg_replace('`,figcaption\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
 
         $this->purifyConfig = $purifyConfig;
+        return $this;
+    }
+
+    public function replaceMentions(Entity $source): self
+    {
+        $sourceAttributes = [];
+        foreach ($source->attributes as $attribute) {
+            $sourceAttributes[Str::slug($attribute->name)] = $attribute->id;
+        }
+        $searchAttributes = $replaceAttributes = [];
+        foreach ($this->entity->attributes as $attribute) {
+            $slug = Str::slug($attribute->name);
+            if (!isset($sourceAttributes[$slug])) {
+                continue;
+            }
+            $searchAttributes[] = '{attribute:' . $sourceAttributes[$slug] . '}';
+            $replaceAttributes[] = '{attribute:' . $attribute->id . '}';
+        }
+        $entry = Str::replace($searchAttributes, $replaceAttributes, $this->entity->child->entry);
+        $this->entity->child->update(['entry' => $entry]);
+        foreach ($this->entity->posts as $post) {
+            $post->entry = Str::replace($searchAttributes, $replaceAttributes, $post->entry);
+            $post->updateQuietly();
+        }
         return $this;
     }
 }

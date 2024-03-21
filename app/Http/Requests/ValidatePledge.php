@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class ValidatePledge extends FormRequest
 {
@@ -25,7 +24,6 @@ class ValidatePledge extends FormRequest
     public function rules()
     {
         return [
-            'tier' => ['required', Rule::in(['Owlbear', 'Wyvern', 'Elemental']),]
         ];
     }
 }

@@ -5,11 +5,13 @@
 
         $rows = $character
             ->organisationMemberships()
+            ->with(['organisation', 'organisation.entity', 'organisation.entity.image', 'organisation.entity.tags', 'organisation.entity.tags.entity'])
             ->rows()
             ->paginate();
+        $rows->withPath(route('characters.organisations', [$campaign, $character]));
     @endphp
 @endif
-<div class="box box-solid" id="character-organisations">
+<div class="" id="character-organisations">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table')
     </div>

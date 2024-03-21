@@ -1,6 +1,6 @@
 @if ($model->hasEntry())
     <article class="bg-box rounded box-entity-entry">
-    <div class="p-4 entity-content">
+    <div class="p-4 entity-content  overflow-x-auto">
         @if (auth()->check())
             @can('update', [$model])
                 <div class="float-right ml-2 mb-2">

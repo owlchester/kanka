@@ -368,6 +368,20 @@ class Attribute extends Model
         return implode(', ', $this->listRange);
     }
 
+    public function exportFields(): array
+    {
+        return [
+            'id',
+            'type_id',
+            'name',
+            'value',
+            'is_private',
+            'default_order',
+            'is_pinned',
+            'is_hidden',
+        ];
+    }
+
     /**
      * Get the value used to index the model.
      *

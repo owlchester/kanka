@@ -42,6 +42,9 @@ return [
             'success'   => 'Zmieniono wydarzenie w kalendarzu.',
             'title'     => 'Aktualizuj wydarzenie dla :name',
         ],
+        'errors'    => [
+            'invalid_entity'    => 'Wybrano niewłaściwy element.',
+        ],
         'helpers'   => [
             'add'               => 'Dodaj istniejące wydarzenie do tego kalendarza.',
             'new'               => 'Albo stwórz nowe wydarzenie po prostu podając jego nazwę.',
@@ -70,9 +73,11 @@ return [
         'date'                  => 'Obecna data',
         'day'                   => 'Dzień',
         'default_layout'        => 'Domyślny układ',
+        'format'                => 'Zapis',
         'intercalary'           => 'Dni dodatkowe',
         'is_incrementing'       => 'Upływ czasu',
         'is_recurring'          => 'Cykliczne',
+        'leap_year'             => 'Lata przestępne',
         'leap_year_amount'      => 'Dodaj dni',
         'leap_year_month'       => 'Miesiąca',
         'leap_year_offset'      => 'Każdego',
@@ -87,6 +92,7 @@ return [
         'recurring_until'       => 'Powtarzaj do roku',
         'reset'                 => 'Odnawianie tygodni',
         'seasons'               => 'Pory roku',
+        'show_birthdays'        => 'Pokaż urodziny',
         'skip_year_zero'        => 'Pomiń rok zerowy',
         'start_offset'          => 'Przesunięcie rozpoczęcia',
         'suffix'                => 'Oznaczenie',
@@ -96,6 +102,7 @@ return [
     ],
     'helpers'       => [
         'default_layout'    => 'Wybierz domyślny układ, w jakim wyświetlany będzie kalendarz',
+        'format'            => 'Specjalny model zapisu dat tego kalendarza.',
         'month_type'        => 'Miesiące dodatkowe nie mają dni tygodnia, ale wpływają na pory roku czy fazy księżyca.',
         'moon_offset'       => 'Domyślnie pierwsza pełnia ma miejsce pierwszego dnia roku 0. Zmieniając wartość przesunięcia modyfikujesz moment pełni. Przesunięcie może mieć wartość ujemną (maksymalnie długości pierwszego miesiąca) albo dodatnią (maksymalnie długości pierwszego miesiąca).',
         'nested_without'    => 'Wyświetlono wszystkie kalendarze nieposiadające źródła. Kliknij na rząd, by wyświetlić kalendarze pochodne.',
@@ -106,11 +113,13 @@ return [
         'intercalary'       => 'Dni, których nie wlicza się do miesięcy oraz tygodni. Wpływają jednak na fazy księżyca.',
         'is_incrementing'   => 'Kalendarze, którym zaznaczono tę opcję, automatycznie przesuwają w przód datę każdego dnia o 00:00 UTC.',
         'is_recurring'      => 'Wydarzenie może być cykliczne. Nastąpi wówczas tego samego dnia każdego kolejnego roku.',
+        'leap_year'         => 'Ten kalendarz posiada lata przestępne.',
         'months'            => 'Kalendarz powinien mieć co najmniej 2 miesiące.',
         'moons'             => 'Dodanie księżyca spowoduje, że w kalendarzu wyświetlana będzie każda pełnia i nów. Jeżeli cykl księżycowy jest dłuższy niż 10 dni, pojawią się też informacje o pierwszej i trzeciej kwadrze.',
         'parent_calendar'   => 'W kalendarzu pojawiają się wszystkie wydarzenia oraz efekty pogody z wybranego kalendarza źródłowego.',
         'reset'             => 'Każdy miesiąc lub rok zaczyna się zawsze od pierwszego dnia tygodnia.',
         'seasons'           => 'By dodać porę roku wystarczy określić, kiedy się zaczyna. Kanka obliczy resztę.',
+        'show_birthdays'    => 'Co roku wyświetla w kalendarzu urodziny postaci o ustawionej dacie urodzin, aż do chwili ich śmierci.',
         'skip_year_zero'    => 'Domyślnie pierwszy rok kalendarza nosi numer zero. Zaznacz, by go pominąć.',
         'weekdays'          => 'Określ nazwy dni tygodnia. Tydzień musi mieć przynajmniej 2 dni.',
         'weeks'             => 'Nadaj nazwy szczególnie ważnym tygodniom tego kalendarza.',
@@ -221,6 +230,10 @@ return [
         'before'=> 'Dziś i później',
     ],
     'validators'    => [
+        'format'        => 'Taki zapis jest niemożliwy.',
         'moon_offset'   => 'Przesunięcie pierwszej pełni nie może być większe, niż długość pierwszego miesiąca w kalendarzu.',
+    ],
+    'warnings'      => [
+        'event_length'  => 'Przypomnienia trwające wiele lat są widoczne tylko przez pierwsze dwa lata. Więcej na ten temat - patrz : documentation.',
     ],
 ];

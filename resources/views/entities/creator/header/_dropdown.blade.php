@@ -17,17 +17,16 @@ if (!empty($id)) {
         {!! $trans !!}
     </x-dropdowns.item>
 @else
-
+    @php $data = [
+         'toggle' => 'entity-creator',
+         'url' => route('entity-creator.form', [$campaign, 'type' => $dropType, 'mode' => $mode ?? null]),
+         'entity-type' => 'entity',
+         'type' => 'inline',
+    ]; @endphp
+    <x-dropdowns.item
+        link="#"
+        :data="$data"
+        icon="fa-solid">
+    {!! $trans !!}
+    </x-dropdowns.item>
 @endif
-@php $data = [
-     'toggle' => 'entity-creator',
-     'url' => route('entity-creator.form', [$campaign, 'type' => $dropType, 'mode' => $mode ?? null]),
-     'entity-type' => 'entity',
-     'type' => 'inline',
-]; @endphp
-<x-dropdowns.item
-    link="#"
-    :data="$data"
-    icon="fa-solid">
-{!! $trans !!}
-</x-dropdowns.item>

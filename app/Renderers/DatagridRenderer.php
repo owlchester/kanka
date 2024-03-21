@@ -153,7 +153,6 @@ class DatagridRenderer
             $class = $column['type'];
             if ($type == 'avatar') {
                 $class = (!empty($column['parent']) ? $this->hidden : $class) . ' w-14';
-            //$html = null;
             } elseif ($type == 'location') {
                 $class .= ' ' . $this->hidden;
                 $label = Arr::get($column, 'label', Module::singular(config('entities.ids.location'), __('entities.location')));
@@ -205,7 +204,11 @@ class DatagridRenderer
                     // So we have a label and no renderer, so we can order by. We just need a field
                     $html = $this->route($column['field'], $label);
                 }
-                $type = Str::slug($label);
+                if (Str::contains($label, '<i')) {
+                    $type = $column['field'] ?? '';
+                } else {
+                    $type = Str::slug($label);
+                }
             } else {
                 // No label? Sure, we can do this
                 $html = null;
@@ -363,11 +366,6 @@ class DatagridRenderer
                 }
                 $class = !empty($column['parent']) ? $this->hidden : $class;
                 if (!empty($who)) {
-                    $whoRoute = !empty($column['parent_route'])
-                        ? (is_string($column['parent_route'])
-                            ? $column['parent_route']
-                            : $column['parent_route']($model))
-                        : $this->getOption('baseRoute');
                     $route = $who->getLink();
                     $content = '<a class="entity-image cover-background" style="background-image: url(\'' . Avatar::size(40)->fallback()->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
@@ -405,13 +403,10 @@ class DatagridRenderer
                     null;
                 $class = ' text-center';
             } elseif ($type == 'calendar_date') {
-                $class = $this->hidden;
+                $class = $this->hidden . ' col-calendar-date';
                 /** @var Journal $model */
-                if ($model->entity->calendarDate) {
+                if ($model->entity->calendarDate && $model->entity->calendarDate->calendar && $model->entity->calendarDate->calendar->entity) {
                     $reminder = $model->entity->calendarDate;
-                    if (!$reminder->calendar || !$reminder->calendar->entity) {
-                        return null;
-                    }
                     $content = link_to_route(
                         'entities.show',
                         $reminder->readableDate(),

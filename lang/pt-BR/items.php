@@ -7,9 +7,10 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character' => 'Criador',
-        'price'     => 'Preço',
-        'size'      => 'Tamanho',
+        'character'     => 'Criador',
+        'is_equipped'   => 'Equipado',
+        'price'         => 'Preço',
+        'size'          => 'Tamanho',
     ],
     'helpers'       => [
         'nested_without'    => 'Exibindo todos os itens que não possuem um item primário. Clique em uma linha para ver os itens secundários.',

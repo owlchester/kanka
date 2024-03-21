@@ -21,7 +21,6 @@ return [
     ],
     'create'            => [
         'new_title' => 'Neue Beziehungen',
-        'success'   => 'Beziehung für :name hinzugefügt.',
         'title'     => 'Beziehung erstellen',
     ],
     'delete_mirrored'   => [
@@ -35,7 +34,6 @@ return [
     'fields'            => [
         'attitude'          => 'Einstellung',
         'connection'        => 'Verbindungen',
-        'is_star'           => 'Fixiert',
         'owner'             => 'Quelle',
         'relation'          => 'Beziehung',
         'target'            => 'Ziel',

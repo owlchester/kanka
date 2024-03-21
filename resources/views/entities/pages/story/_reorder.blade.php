@@ -49,7 +49,7 @@ if ($firstPost && $firstPost->position >= 0) {
                 <div class="self-end">
                     <select name="posts[{{ $note->id }}][visibility_id]" class="">
                         @foreach ($note->visibilityOptions() as $key => $value)
-                            <option value="{{ $key }}" @if ($key == $note->visibility_id) selected="selected" @endif>
+                            <option value="{{ $key }}" @if ($key == $note->visibility_id->value) selected="selected" @endif>
                                 {{ $value }}
                             </option>
                         @endforeach

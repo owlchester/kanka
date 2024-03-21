@@ -130,6 +130,7 @@ class EntityCreatorController extends Controller
                 $new->campaign_id = $this->campaign->id;
                 $new->save();
                 $new->crudSaved();
+                $new->entity->touchSilently();
                 $new->entity->crudSaved();
             } else {
                 //If position = 0 the post's position is last, else the post's position is first.

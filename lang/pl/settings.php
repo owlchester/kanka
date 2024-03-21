@@ -157,8 +157,11 @@ return [
         'cancelled'             => 'Anulowano subskrypcję. Możesz ją odnowić, gdy tylko ta wygaśnie.',
         'change'                => [
             'text'  => [
-                'monthly'   => 'Subskrybujesz na poziomie :tier, płacąc miesięcznie :amount.',
-                'yearly'    => 'Subskrybujesz na poziomie :tier, płacąc rocznie :amount.',
+                'monthly'           => 'Subskrybujesz na poziomie :tier, płacąc miesięcznie :amount.',
+                'upgrade_monthly'   => 'Zwiększasz subskrypcję do wersji :tier za :upgrade, więc miesięczny rachunek wyniesie :amount',
+                'upgrade_paypal'    => 'Zwiększasz subskrypcję do :tier za :upgrage do :date.',
+                'upgrade_yearly'    => 'Zwiększasz subskrypcję do wersji :tier za :upgrade, więc roczny rachunek wyniesie :amount',
+                'yearly'            => 'Subskrybujesz na poziomie :tier, płacąc rocznie :amount.',
             ],
             'title' => 'Zmiana poziomu subskrypcji',
         ],

@@ -75,22 +75,19 @@ function initMapExplore()
         showSidebar();
         if (isMobile.matches) {
             url = url + '?mobile=1';
+            window.openDialog('map-marker-modal', url);
+            return;
         }
 
         fetch(url)
             .then((response) => response.json())
             .then((result) => {
-                if (isMobile.matches) {
-                    markerModalTitle.html(result.name);
-                    markerModalContent.find('.content').html(result.body).show();
-                    markerModalContent.find('.spinner').hide();
-                } else {
-                    sidebarMarker.html(result.body).show()
-                        .parent().find('.spinner').hide();
+                sidebarMarker.html(result.body).show()
+                    .parent().find('.spinner').hide();
 
-                    handleCloseMarker();
-                    mapPageBody.addClass('sidebar-open');
-                }
+                handleCloseMarker();
+                mapPageBody.addClass('sidebar-open');
+
                 $(document).trigger('shown.bs.modal');
             });
     };
@@ -172,10 +169,13 @@ const mapTicker = () => {
             for (let id in data.markers) {
                 let changedMarker = data.markers[id];
                 //console.log('moving', 'marker' + changedMarker.id, changedMarker);
+                if (!window['marker' + changedMarker.id]) {
+                    continue;
+                }
                 window['marker' + changedMarker.id].setLatLng({
                     lon: changedMarker.longitude,
                     lat: changedMarker.latitude
-                }).update();
+                });
             }
             setTimeout(mapTicker, tickerTimeout);
         });
@@ -457,7 +457,8 @@ function handlePresetClick() {
                     return;
                 }
                 if (key.endsWith('colour')) {
-                    field.spectrum("set", val);
+                    field.val(val);
+                    document.querySelector('[name="' + key + '"]').dispatchEvent(new Event('input', ));
                 } else {
                     field.val(val);
                 }

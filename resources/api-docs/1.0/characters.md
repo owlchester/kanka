@@ -2,19 +2,12 @@
 
 ---
 
-- [Characters](#characters)
-  - [All Characters](#all-characters)
-    - [Results](#results)
-  - [Character](#character)
-    - [Results](#results-1)
-  - [Create a Character](#create-a-character)
-    - [Body](#body)
-    - [Results](#results-2)
-  - [Update a Character](#update-a-character)
-    - [Body](#body-1)
-    - [Results](#results-3)
-  - [Delete a Character](#delete-a-character)
-    - [Results](#results-4)
+- [All Characters](#all-characters)
+
+- [Single Character](#character)
+- [Create a Character](#create-character)
+- [Update a Character](#update-character)
+- [Delete a Character](#delete-character)
 
 <a name="all-characters"></a>
 ## All Characters

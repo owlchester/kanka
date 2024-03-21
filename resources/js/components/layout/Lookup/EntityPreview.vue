@@ -2,8 +2,7 @@
     <div class="entity-header p-3 bg-entity-focus">
         <div class="w-full flex items-center">
 
-            <a class="text-2xl font-extrabold entity-name" v-bind:href="entity.link" :title="entity.name">
-              {{ entity.name }}
+            <a class="text-2xl font-extrabold entity-name" v-bind:href="entity.link" :title="entity.name" v-html="entity.name">
             </a>
 
             <i class="fa-solid fa-skull mx-2" aria-hidden="true" v-if="entity.is_dead"></i>
@@ -12,14 +11,16 @@
                 <i class="fa-solid fa-external-link" aria-hidden="true" aria-label="Open in a new window"></i>
             </a>
         </div>
-        <div class="block w-full" v-if="hasTitle()">
-            {{ entity.title}}
+        <div class="block w-full" v-if="hasTitle()" v-html="entity.title">
         </div>
         <div class="my-1 w-full flex flex-wrap gap-1" v-if="entity.tags.length > 0">
             <a :class="tagClass(tag)" v-for="tag in entity.tags"
                 v-bind:href="tag.link"
+               :data-tag-id="tag.id"
+               :data-tag-slug="tag.slug"
+
+               v-html="tag.name"
                 >
-                {{ tag.name }}
             </a>
         </div>
         <a class="block w-full cursor-pointer my-2"

@@ -1,9 +1,7 @@
-@inject('entityService', 'App\Services\EntityService')
-<?php
-$entityTypes = ['' => ''];
-$entities = $entityService->campaign($campaign)->getEnabledEntitiesSorted(false);
-$entityTypes = array_merge($entityTypes, $entities);
-?>
+@inject('typeService', 'App\Services\Entity\TypeService')
+@php
+$entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->exclude(['bookmark'])->singularKey()->add(['' => ''])->get();
+@endphp
 <x-grid type="1/1">
 
     <x-helper>
@@ -21,6 +19,7 @@ $entityTypes = array_merge($entityTypes, $entities);
         <x-forms.field field="filters" :label="__('bookmarks.fields.filters')">
             {!! Form::text('filters', FormCopy::field('filters')->string(), ['placeholder' => __('bookmarks.placeholders.filters'), 'class' => '', 'maxlength' => 191]) !!}
         </x-forms.field>
+
         <x-forms.field field="nested" :label="__('bookmarks.fields.is_nested')">
             {!! Form::hidden('options[is_nested]', 0) !!}
             <x-checkbox :text="__('bookmarks.fields.is_nested')">

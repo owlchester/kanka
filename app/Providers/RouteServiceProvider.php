@@ -7,7 +7,10 @@ use App\Facades\Domain;
 use App\Http\Controllers\Api\v1\HealthController;
 use App\Http\Middleware\LastCampaign;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Plugin;
+use App\Models\Tier;
+use App\Models\UserValidation;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -33,11 +36,14 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::model('plugin', Plugin::class);
+        Route::model('tier', Tier::class);
 
         // This is important, ensures only campaigns the user has access get injected in the route model binding.
         Route::bind('campaign', function (string $value) {
             return Campaign::acl($value)->firstOrFail();
         });
+        Route::model('entityType', EntityType::class);
+        Route::model('userValidation', UserValidation::class);
     }
 
     /**

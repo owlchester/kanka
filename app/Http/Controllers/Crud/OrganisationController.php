@@ -20,7 +20,7 @@ class OrganisationController extends CrudController
     protected $module = 'organisations';
 
     /** @var string */
-    protected $model = \App\Models\Organisation::class;
+    protected $model = Organisation::class;
 
     /** @var string Filter */
     protected string $filter = OrganisationFilter::class;

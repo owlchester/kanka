@@ -30,4 +30,12 @@ class CharacterFamily extends Model
     {
         return $this->belongsTo(Family::class);
     }
+
+    public function exportFields(): array
+    {
+        return [
+            'character_id',
+            'family_id',
+        ];
+    }
 }

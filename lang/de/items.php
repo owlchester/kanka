@@ -7,9 +7,10 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character' => 'Charakter',
-        'price'     => 'Preis',
-        'size'      => 'Größe',
+        'character'     => 'Charakter',
+        'is_equipped'   => 'Ausgestattet',
+        'price'         => 'Preis',
+        'size'          => 'Größe',
     ],
     'helpers'       => [
         'nested_without'    => 'Alle Gegenstände anzeigen, die keinen übergeordneten Gegenstand haben. Klicke auf eine Zeile, um die untergeordneten Elemente anzuzeigen.',

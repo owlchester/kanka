@@ -90,7 +90,7 @@ class AbilityService extends BaseAbilityService
                 'name' => $parent->name,
                 'type' => $parent->type,
                 'image' => Avatar::entity($parent->entity)->size(120)->thumbnail(),
-                'has_image' => !empty($parent->entity->image_path) && !empty($parent->entity->image),
+                'has_image' => !empty($parent->entity->image_path) || !empty($parent->entity->image),
                 'entry' => $parent->entry(),
                 'parent' => true,
                 'abilities' => [],
@@ -165,7 +165,7 @@ class AbilityService extends BaseAbilityService
         foreach ($entity->attributes->sortBy('default_order') as $attr) {
             $attributes[] = [
                 'id' => $attr->id,
-                'name' => $attr->name,
+                'name' => $attr->name(),
                 'value' => Mentions::mapAttribute($attr),
                 'type' => $attr->type,
             ];

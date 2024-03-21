@@ -5,10 +5,6 @@ return [
         'actions'   => [
             'add'   => 'Új címke hozzáadása',
         ],
-        'create'    => [
-            'success'   => ':name cédulát hozzáadtuk az entitáshoz.',
-            'title'     => 'Új címke hozzárendelése ehhez: :name',
-        ],
     ],
     'create'        => [
         'title' => 'Új címke',

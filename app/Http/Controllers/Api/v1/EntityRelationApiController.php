@@ -5,11 +5,20 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\StoreRelation as Request;
+use App\Http\Requests\UpdateRelation as UpdateRequest;
 use App\Http\Resources\RelationResource as Resource;
+use App\Services\Entity\RelationService;
 use App\Models\Relation;
 
 class EntityRelationApiController extends ApiController
 {
+    protected RelationService $relationService;
+
+    public function __construct(RelationService $relationService)
+    {
+        $this->relationService = $relationService;
+    }
+
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -32,7 +41,7 @@ class EntityRelationApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Entity $entity)
@@ -40,16 +49,15 @@ class EntityRelationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
 
-        $data = $request->all();
-        $data['campaign_id'] = $campaign->id;
-        $model = Relation::create($data);
-        return new Resource($model);
+        $this->relationService->campaign($campaign)->createRelations($request);
+
+        return Resource::collection($entity->relationships()->has('target')->whereIn('target_id', $this->relationService->getEntities())->paginate());
     }
 
     /**
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Entity $entity, Relation $relation)
+    public function update(UpdateRequest $request, Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);

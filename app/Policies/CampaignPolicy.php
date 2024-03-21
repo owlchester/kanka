@@ -133,6 +133,11 @@ class CampaignPolicy
         return UserCache::user($user)->admin();
     }
 
+    public function import(User $user, Campaign $campaign): bool
+    {
+        return $user->isWyvern() || $user->isElemental();
+    }
+
     /**
      * Determine whether the user can leave the campaign
      *
@@ -213,7 +218,9 @@ class CampaignPolicy
     public function gallery(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign)
+            UserCache::user($user)->admin() ||
+            $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
+            $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign)
         );
     }
 
@@ -240,6 +247,33 @@ class CampaignPolicy
         $boost = $campaign->boosts->first();
         return $user && $boost && $boost->user_id === $user->id;
     }
+
+    public function galleryManage(?User $user, Campaign $campaign): bool
+    {
+        return $user && (
+            UserCache::user($user)->admin() ||
+                $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign)
+        );
+    }
+
+    public function galleryBrowse(?User $user, Campaign $campaign): bool
+    {
+        return $user && (
+            UserCache::user($user)->admin() ||
+                $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
+                $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign)
+        );
+    }
+
+    public function galleryUpload(?User $user, Campaign $campaign): bool
+    {
+        return $user && (
+            UserCache::user($user)->admin() ||
+                $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
+                $this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign)
+        );
+    }
+
 
     /**
      * @return bool
