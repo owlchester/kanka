@@ -78,9 +78,9 @@ class SetupMeilisearch extends Command
             TimelineElement::class,
         ];
         foreach ($models as $model) {
-            $object = new $model;
+            $object = new $model();
             $object::makeAllSearchable($this->option('chunk'));
-            $this->info('All ['.$model.'] records have been imported.');
+            $this->info('All [' . $model . '] records have been imported.');
         }
     }
 }

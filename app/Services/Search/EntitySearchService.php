@@ -33,17 +33,17 @@ class EntitySearchService
 
         $results = $client->multiSearch([
             (new SearchQuery())
-            ->setIndexUid('entities')
-            ->setQuery($term)
-            ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
-            ->setLimit(10),
+                ->setIndexUid('entities')
+                ->setQuery($term)
+                ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
+                ->setLimit(10),
             (new SearchQuery())
                 ->setIndexUid('entities')
                 ->setQuery($term2)
                 ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
                 ->setLimit(10),
         ]);
-            
+
         $results = array_merge($results['results'][0]['hits'], $results['results'][1]['hits']);
 
         return $this->process($results)->fetch();
@@ -59,19 +59,19 @@ class EntitySearchService
             if ($result['type'] == 'quest_element') {
                 $id = Str::afterLast($result['id'], '_');
                 $this->questElementIds[$result['entity_id']] = $id;
-            //dd($result);
+                //dd($result);
             } elseif ($result['type'] == 'timeline_element') {
                 $id = Str::afterLast($result['id'], '_');
                 $this->timelineElementIds[$result['entity_id']] = $id;
-            //dd($result);
+                //dd($result);
             } elseif ($result['type'] == 'post') {
                 $id = Str::afterLast($result['id'], '_');
                 $this->postIds[$result['entity_id']] = $id;
-            //dd($result);
+                //dd($result);
             } elseif ($result['type'] == 'attribute') {
                 $id = Str::afterLast($result['id'], '_');
                 $this->attributeIds[$result['entity_id']] = $id;
-            //dd($result);
+                //dd($result);
             } else {
                 $this->ids[$result['entity_id']] = $result['entity_id'];
             }
