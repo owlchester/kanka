@@ -27,27 +27,30 @@ services:
             - mariadb
             - redis
             - minio
+            - meilisearch
     mariadb:
         image: 'mariadb:10'
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_HOST: "%"
+            MYSQL_ROOT_HOST: '%'
             MYSQL_DATABASE: '${DB_DATABASE}'
             MYSQL_USER: '${DB_USERNAME}'
             MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         volumes:
-            #- './.sail/logs/slow-queries.log:/var/lib/mysql/mysql-slow.log:rw'
             - 'sail-mariadb:/var/lib/mysql'
-            #- './.sail/mariadb/my.cnf:/etc/mysql/my.cnf:ro'
             - './.mariadb/10-create-logs-database.sh:/docker-entrypoint-initdb.d/10-create-logs-database.sh'
             - './docker/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
             - sail
         healthcheck:
-            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
     redis:
@@ -59,7 +62,10 @@ services:
         networks:
             - sail
         healthcheck:
-            test: ["CMD", "redis-cli", "ping"]
+            test:
+                - CMD
+                - redis-cli
+                - ping
             retries: 3
             timeout: 5s
     minio:
@@ -68,15 +74,19 @@ services:
             - '${FORWARD_MINIO_PORT:-9000}:9000'
             - '${FORWARD_MINIO_CONSOLE_PORT:-8900}:8900'
         environment:
-            MINIO_ROOT_USER: 'sail'
-            MINIO_ROOT_PASSWORD: 'password'
+            MINIO_ROOT_USER: sail
+            MINIO_ROOT_PASSWORD: password
         volumes:
             - 'sail-minio:/data/minio'
         networks:
             - sail
-        command: minio server /data/minio --console-address ":8900"
+        command: 'minio server /data/minio --console-address ":8900"'
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+            test:
+                - CMD
+                - curl
+                - '-f'
+                - 'http://localhost:9000/minio/health/live'
             retries: 3
             timeout: 5s
     thumbor:
@@ -90,53 +100,61 @@ services:
             - sail
         environment:
             - LOG_LEVEL=info
-            #- SECURITY_KEY=kanka
-
             - LOADER=thumbor_aws.loader
             - AWS_LOADER_REGION_NAME=local
             - AWS_LOADER_BUCKET_NAME=kanka
             - AWS_LOADER_S3_ACCESS_KEY_ID=sail
             - AWS_LOADER_S3_SECRET_ACCESS_KEY=password
-            - AWS_LOADER_S3_ENDPOINT_URL=http://minio:9000/
-
+            - 'AWS_LOADER_S3_ENDPOINT_URL=http://minio:9000/'
             - RESULT_STORAGE=thumbor_aws.result_storage
             - AWS_RESULT_STORAGE_BUCKET_NAME=thumbnails
             - AWS_RESULT_STORAGE_S3_ACCESS_KEY_ID=sail
             - AWS_RESULT_STORAGE_S3_SECRET_ACCESS_KEY=password
-            - AWS_RESULT_STORAGE_S3_ENDPOINT_URL=http://minio:9000/
-
-            # Result Storage prefix path
+            - 'AWS_RESULT_STORAGE_S3_ENDPOINT_URL=http://minio:9000/'
             - AWS_RESULT_STORAGE_ROOT_PATH=rs
-
             - RESULT_STORAGE_STORES_UNSAFE=True
             - ALLOW_UNSAFE_URL=True
-
-            # Expiration in seconds of generated images in the result storage. (2629746 is a month is seconds)
-            - 'RESULT_STORAGE_EXPIRATION_SECONDS=2629746'
-            - 'QUALITY=80'
-
+            - RESULT_STORAGE_EXPIRATION_SECONDS=2629746
+            - QUALITY=80
             - AUTO_WEBP=True
             - RESPECT_ORIENTATION=True
             - MAX_AGE=86400
             - HTTP_LOADER_VALIDATE_CERTS=False
-
-            # The image we use doesn't come with numpy, so no face_detector possible
-            #- DETECTORS=['thumbor.detectors.face_detector']
         depends_on:
             - minio
     thumbor-nginx:
         image: 'nginx:1.23'
         tty: true
         volumes:
-            - ./.nginx:/etc/nginx/conf.d/
+            - './.nginx:/etc/nginx/conf.d/'
         ports:
-            - "8889:80"
+            - '8889:80'
         environment:
             - NGINX_PORT=8889
         networks:
             - sail
         depends_on:
             - thumbor
+    meilisearch:
+        image: 'getmeili/meilisearch:latest'
+        ports:
+            - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
+        environment:
+            MEILI_NO_ANALYTICS: '${MEILISEARCH_NO_ANALYTICS:-false}'
+            MEILI_MASTER_KEY: '${MEILISEARCH_KEY}'
+        volumes:
+            - 'sail-meilisearch:/meili_data'
+        networks:
+            - sail
+        healthcheck:
+            test:
+                - CMD
+                - wget
+                - '--no-verbose'
+                - '--spider'
+                - 'http://meilisearch:7700/health'
+            retries: 3
+            timeout: 5s
 networks:
     sail:
         name: sail
@@ -151,4 +169,6 @@ volumes:
     sail-thumbor:
         driver: local
     sail-thumbor-nginx:
+        driver: local
+    sail-meilisearch:
         driver: local
