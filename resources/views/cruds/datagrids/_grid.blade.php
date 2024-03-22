@@ -1,4 +1,7 @@
 @php
+    if ($model->child) {
+        $model = $model->child;
+    }
     if (empty($model->entity)) {
         return;
     }

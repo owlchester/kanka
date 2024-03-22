@@ -31,21 +31,29 @@ class EntitySearchService
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
 
-        $results = $client->multiSearch([
+        $queries = [
             (new SearchQuery())
-                ->setIndexUid('entities')
-                ->setQuery($term)
-                ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
-                ->setLimit(10),
-            (new SearchQuery())
-                ->setIndexUid('entities')
-                ->setQuery($term2)
-                ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
-                ->setLimit(10),
-        ]);
+            ->setIndexUid('entities')
+            ->setQuery($term)
+            ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
+            ->setLimit(10)
+        ];
 
-        $results = array_merge($results['results'][0]['hits'], $results['results'][1]['hits']);
+        if ($term2) {
+            $queries[] =             
+                (new SearchQuery())
+                    ->setIndexUid('entities')
+                    ->setQuery($term2)
+                    ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
+                    ->setLimit(10);
+        }
+        $results = $client->multiSearch($queries);
 
+        if ($term2) {
+            $results = array_merge($results['results'][0]['hits'], $results['results'][1]['hits']);
+        } else {
+            $results = $results['results'][0]['hits'];
+        }
         return $this->process($results)->fetch();
     }
 

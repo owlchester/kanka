@@ -10,9 +10,9 @@
     <div class="flex gap-2 items-center mb-5">
         <h1 class="grow text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex flex-wrap gap-2 justify-end">
-            @includeWhen($route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
-            @include('cruds.lists._actions')
-            @includeWhen(auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
+            @includeWhen(isset($route) && $route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
+            @includeWhen(isset($actions), 'cruds.lists._actions')
+            @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
         </div>
     </div>
 @endsection
@@ -28,8 +28,10 @@
         </div>
     @else
     <div class="flex flex-stretch gap-2 items-center">
-        @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
-        @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
+        @if (isset($route))
+            @includeWhen(isset($model) && $model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
+            @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
+        @endif    
     </div>
     @endif
 
