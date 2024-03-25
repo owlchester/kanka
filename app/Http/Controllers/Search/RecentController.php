@@ -36,12 +36,14 @@ class RecentController extends Controller
             'recent' => $recent,
             'bookmarks' => $this->service->bookmarks(),
             'indexes' => $this->service->indexes(),
+            'fulltext_route' => route('search.fulltext', [$campaign]),
             'texts' => [
                 'recents' => __('search.lookup.recents'),
                 'results' => __('search.lookup.results'),
                 'bookmarks' => __('entities.bookmarks'),
                 'index' => __('Lists'),
                 'hint' => __('search.lookup.hint'),
+                'fulltext' => __('search.fulltext'),
                 'keyboard' => __('search.lookup.keyboard', [
                     'k' => '<strong>k</strong>',
                     'esc' => '<strong>esc</strong>'

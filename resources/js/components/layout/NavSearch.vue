@@ -38,8 +38,11 @@
                                       :entity="entity"
                         >
                         </LookupEntity>
-                    </div>
+                        <a class="grow text-sm uppercase hover:underline" v-bind:href="searchFullTextUrl()">
+                            {{ texts.fulltext }}
+                        </a>
 
+                    </div>
                     <div class="recent-searches flex flex-col gap-2" v-if="recent.length > 0">
                         <div class="text-sm uppercase ">{{ texts.recents }}</div>
 
@@ -214,6 +217,8 @@ export default {
                 this.texts.index = response.texts.index;
                 this.texts.keyboard = response.texts.keyboard;
                 this.texts.empty_results = response.texts.empty_results;
+                this.texts.fulltext = response.texts.fulltext;
+                this.texts.fulltext_route = response.fulltext_route;
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = true;
@@ -272,6 +277,9 @@ export default {
         },
         showBookmarks() {
             this.show_bookmarks = true;
+        },
+        searchFullTextUrl() {
+            return `${this.texts.fulltext_route}?term=${this.term}`;
         },
         showIndexes() {
             this.show_bookmarks = false;
