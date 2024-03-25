@@ -26,13 +26,13 @@
             <i class="fa-solid fa-filter" aria-hidden="true"></i>
             {{ __('filters.helpers.guest') }}
         </div>
-    @else
-    <div class="flex flex-stretch gap-2 items-center">
+    @else        
         @if (isset($route))
-            @includeWhen(isset($model) && $model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
-            @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
+            <div class="flex flex-stretch gap-2 items-center">
+                    @includeWhen(isset($model) && $model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
+                    @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
+            </div>
         @endif    
-    </div>
     @endif
 
     @include('partials.ads.top')

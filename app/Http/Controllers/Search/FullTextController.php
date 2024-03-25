@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Search;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Http\Resources\EntityResource as Resource;
 use App\Services\Search\EntitySearchService;
 use Illuminate\Http\Request;
 
@@ -18,46 +17,13 @@ class FullTextController extends Controller
         $this->service = $service;
     }
 
-    /**
-     * return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function uselesstest(Campaign $campaign, Request $request)
-    {
-        $this->authorize('access', $campaign);
-        $term = request()->term;
-        $term2 = null;
-        $entity = Entity::where(['name' => request()->term, 'campaign_id' => $campaign->id])->first();
-        if ($entity) {
-            $term2 = $entity->type() . ':' . $entity->id;
-        }
-
-        $results = $this->service
-            ->campaign($campaign)
-            ->search($term, $term2);
-        return $results;
-        //Return this view
-
-    }
-
-
-
-
-
-
-
-
-
     public function index(Campaign $campaign, Request $request)
     {
-
-
-
         $this->authorize('access', $campaign);
         $term = request()->term;
         $term2 = null;
 
-        $entity = Entity::where(['name' => request()->term, 'campaign_id' => $campaign->id])->first();
+        $entity = Entity::where('name', request()->term)->first();
         if ($entity) {
             $term2 = $entity->type() . ':' . $entity->id;
         }
@@ -73,12 +39,8 @@ class FullTextController extends Controller
          * Prepare a lot of variables that will be shared over to the view
          * @var MiscModel $model
          */
-        //$model = new $this->model();
         
-
         $name = 'characters';
-        //$langKey = $this->langKey ?? $name;
-
         $unfilteredCount = $base->count();
 
         $models = $base->paginate(); //We get the entities here
@@ -92,7 +54,6 @@ class FullTextController extends Controller
             ]);
         }
 
-
         $mode = 'grid';
         
         $forceMode = null;
@@ -103,24 +64,11 @@ class FullTextController extends Controller
             'campaign',
             'models',
             'name',
-            //'langKey',
-            //'model',
-            //'actions',
-            //'filter',
-            //'filterService',
-            //'filteredCount',
             'unfilteredCount',
-            //'route',
-            //'bulk',
-            //'templates',
-            //'datagridActions',
             'mode',
-            //'parent',
             'forceMode',
-            //'entityTypeId',
-            //'singular',
         );
-        $data['titleKey'] = __('abilities.show.tabs.entities');
+        $data['titleKey'] = __('entities.entities');
         return view('cruds.index', $data);
     }
 

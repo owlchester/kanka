@@ -38,9 +38,10 @@
                                       :entity="entity"
                         >
                         </LookupEntity>
-                        <button class="grow text-sm uppercase hover:underline"
-                                @click="searchFulltext()">{{ texts.fulltext }}
-                        </button>
+                        <a class="grow text-sm uppercase hover:underline" v-bind:href="searchFullTextUrl()">
+                            {{ texts.fulltext }}
+                        </a>
+
                     </div>
                     <div class="recent-searches flex flex-col gap-2" v-if="recent.length > 0">
                         <div class="text-sm uppercase ">{{ texts.recents }}</div>
@@ -277,9 +278,8 @@ export default {
         showBookmarks() {
             this.show_bookmarks = true;
         },
-        searchFulltext() {
-            console.log(this.texts.fulltext_route);
-            window.location.href = `${this.texts.fulltext_route}?term=${this.term}`;
+        searchFullTextUrl() {
+            return `${this.texts.fulltext_route}?term=${this.term}`;
         },
         showIndexes() {
             this.show_bookmarks = false;
