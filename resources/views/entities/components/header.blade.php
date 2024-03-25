@@ -270,7 +270,8 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             </div>
         @endif
 
-        <div class="entity-tags entity-header-line text-xs flex  flex-wrap gap-2">
+        <div class="entity-tags entity-header-line text-xs">
+            <div class="flex flex-wrap gap-2 items-center">
         @if($entityTags->count() > 0)
             @foreach ($entityTags as $tag)
                 @if (!$tag->entity) @continue @endif
@@ -284,12 +285,12 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
         @endif
         @if(!($model instanceof \App\Models\Tag))
             @can('update', $model)
-                <a href="{{ $addTagsUrl }}" 
-                    data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addTagsUrl }}">
-                    <x-icon class="fa-solid fa-plus-circle fa-2x" />
-                </a>
+                <span role="button" tabindex="0" class="entity-privacy-icon text-xl" data-toggle="dialog" data-url="{{ $addTagsUrl }}" data-target="primary-dialog" aria-haspopup="dialog">
+                    <x-icon class="fa-solid fa-tag" tooltip="1" :title="__('Add or remove tags')" />
+                </span>
             @endcan
         @endif
+            </div>
         </div>
 
         @includeIf('entities.headers._' . $model->getEntityType())
