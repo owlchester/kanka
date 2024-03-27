@@ -80,7 +80,7 @@ class AttributeMentionService
     }
     /**
      * Load all the entity attributes and pre-calculate the values
-     * @return array|\Illuminate\Support\Collection
+     * @return array|Collection
      */
     protected function entityAttributes()
     {

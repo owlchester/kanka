@@ -72,7 +72,7 @@ abstract class BaseAbilityService
         return $calculator->calculate($mappedText);
     }
     /**
-     * @return array|\Illuminate\Support\Collection
+     * @return array|Collection
      */
     protected function entityAttributes()
     {
