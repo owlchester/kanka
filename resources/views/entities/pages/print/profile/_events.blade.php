@@ -49,13 +49,13 @@ foreach ($elapsed as $event) {
 @foreach ($distinctCalendars as $calendarId => $calendarEvents)
 @php $birth = $calendarEvents['birth'] ?? null; $death = $calendarEvents['death'] ?? null; @endphp
 @if (!empty($birth) && !empty($death))
-| {{ __('characters.fields.life') }} | <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip"> {{ $birth->readableDate() }} </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" data-title="{{ $death->calendar->name }}" data-toggle="tooltip"> {{ $death->readableDate() }}</a> ({{ $birth->calcElapsed($death) }}) |
+| {{ __('characters.fields.life') }} | {{ $birth->readableDate() }} &#10013; {{ $death->readableDate() }} ({{ $birth->calcElapsed($death) }}) |
 @elseif (!empty($birth))
 @php $yearsAgo = $birth->calcElapsed() @endphp
 @if ($birth->isBirth())
-| <div class="title text-uppercase text-xs">{{ __('entities/events.types.birth') }}</div> | <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip"> {{ $birth->readableDate() }} </a> ({{ $event->isBirth() ? $yearsAgo : trans_choice('entities/events.years-ago', $yearsAgo, ['count' => $yearsAgo]) }}) |
+| <div class="title text-uppercase text-xs">{{ __('entities/events.types.birth') }}</div> | {{ $birth->readableDate() }} ({{ $event->isBirth() ? $yearsAgo : trans_choice('entities/events.years-ago', $yearsAgo, ['count' => $yearsAgo]) }}) |
 @else
-| <div class="title text-uppercase text-xs">{{ __('entities/events.types.founded') }}</div> | <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" data-title="{{ $birth->calendar->name }}" data-toggle="tooltip"> {{ $birth->readableDate() }} </a> ({{ $event->isBirth() ? $yearsAgo : trans_choice('entities/events.years-ago', $yearsAgo, ['count' => $yearsAgo]) }}) |
+| <div class="title text-uppercase text-xs">{{ __('entities/events.types.founded') }}</div> | {{ $birth->readableDate() }} ({{ $event->isBirth() ? $yearsAgo : trans_choice('entities/events.years-ago', $yearsAgo, ['count' => $yearsAgo]) }}) |
 @endif
 @elseif (!empty($death))
 <div class="element profile-life">

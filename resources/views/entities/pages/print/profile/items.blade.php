@@ -7,6 +7,6 @@
 @endif
 @include('entities.components.profile._location')
 @if ($model->character)
-| {{ __('items.fields.character') }} | {!! $model->character->tooltipedLink() !!} |
+| {{ __('items.fields.character') }} | {!! $model->character->name !!} |
 @endif
 @include('entities.pages.print.profile._type')

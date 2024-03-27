@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Quest $model */?>
 @if (!empty($model->instigator))
-| {{ __('quests.fields.instigator') }} | {!! $model->instigator->tooltipedLink() !!} |
+| {{ __('quests.fields.instigator') }} | {!! $model->instigator->name !!} |
 @endif
 @if ($model->date)
 | {{ __('journals.fields.date') }} | {{ \App\Facades\UserDate::format($model->date) }} |
