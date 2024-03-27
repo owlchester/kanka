@@ -53,12 +53,11 @@ foreach ($elapsed as $event) {
 @elseif (!empty($birth))
 @php $yearsAgo = $birth->calcElapsed() @endphp
 @if ($birth->isBirth())
-| <div class="title text-uppercase text-xs">{{ __('entities/events.types.birth') }}</div> | {{ $birth->readableDate() }} ({{ $event->isBirth() ? $yearsAgo : trans_choice('entities/events.years-ago', $yearsAgo, ['count' => $yearsAgo]) }}) |
+| {{ __('entities/events.types.birth') }} | {{ $birth->readableDate() }} ({{ $event->isBirth() ? $yearsAgo : trans_choice('entities/events.years-ago', $yearsAgo, ['count' => $yearsAgo]) }}) |
 @else
-| <div class="title text-uppercase text-xs">{{ __('entities/events.types.founded') }}</div> | {{ $birth->readableDate() }} ({{ $event->isBirth() ? $yearsAgo : trans_choice('entities/events.years-ago', $yearsAgo, ['count' => $yearsAgo]) }}) |
+| {{ __('entities/events.types.founded') }} | {{ $birth->readableDate() }} ({{ $event->isBirth() ? $yearsAgo : trans_choice('entities/events.years-ago', $yearsAgo, ['count' => $yearsAgo]) }}) |
 @endif
 @elseif (!empty($death))
-<div class="element profile-life">
 | {{ __('entities/events.types.death') }} | {{ $death->readableDate() }} (&#10013;{{ $death->calcElapsed() }}) |
 @endif
 @endforeach
