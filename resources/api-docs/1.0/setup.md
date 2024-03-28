@@ -19,7 +19,7 @@ Before you can start interacting with the Kanka API, you need to generate a Key 
 <a name="authentication"></a>
 ## Authentication
 
-Each request to the api requires an `oAuth 2.0` token to identify the user. Tokens can be generated in the user's profile page (`/en/settings/api`).
+Each request to the api requires an `oAuth 2.0` token to identify the user. Tokens can be generated in the user's [profile page](/settings/api).
 
 When calling the API, add the following headers:
 

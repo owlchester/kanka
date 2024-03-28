@@ -26,7 +26,7 @@ You can get a list of all the calendars of a campaign by using the following end
 
 ### URL Parameters
 
-The list of returned calendars can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=calendar" target="_blank">API filters</a>.
+The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/filters)
 
 ### Results
 ```json

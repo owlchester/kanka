@@ -27,7 +27,7 @@ You can get a list of all the families of a campaign by using the following endp
 
 ### URL Parameters
 
-The list of returned families can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=family" target="_blank">API filters</a>.
+The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/filters)
 
 ### Results
 ```json
