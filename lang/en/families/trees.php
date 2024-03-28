@@ -4,10 +4,10 @@ return [
     'actions'   => [
         'clear'             => 'Erase all',
         'first'             => 'Add a founder',
+        'founder'           => 'Add a new founder',
         'rename-relation'   => 'Rename relation',
         'reset'             => 'Discard changes',
         'save'              => 'Save',
-        'founder'           => 'Add a new founder',
     ],
     'modal'     => [
         'first-title'   => 'Select an entity',
@@ -20,27 +20,27 @@ return [
             'confirm'   => 'Are you sure you want to reinitialise all the data from the family tree?',
         ],
         'entity'    => [
-            'add'   => [
+            'add'       => [
+                'founder'   => 'Founder',
                 'member'    => 'Member',
                 'success'   => 'Entity added.',
                 'title'     => 'Add an entity',
-                'founder'   => 'Founder',
             ],
-            'child' => [
+            'child'     => [
                 'success'   => 'Child added.',
                 'title'     => 'Add a child',
             ],
-            'edit'  => [
+            'edit'      => [
                 'helper'    => 'Check this option if the relation is unknown. A character can be added later.',
                 'success'   => 'Entity updated.',
                 'title'     => 'Update an entity',
             ],
-            'remove'=> [
-                'confirm'   => 'Are you sure you want to remove this entity from the family tree?',
-                'success'   => 'Entity removed.',
-            ],
             'founder'   => [
                 'title' => 'Add a new founder',
+            ],
+            'remove'    => [
+                'confirm'   => 'Are you sure you want to remove this entity from the family tree?',
+                'success'   => 'Entity removed.',
             ],
         ],
         'relations' => [

@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'clear'             => 'Tout effacer',
         'first'             => 'Ajouter un/e fondateur/trice',
+        'founder'           => 'Nouveau fondateur',
         'rename-relation'   => 'Renommer la relation',
         'reset'             => 'Annuler les modifications',
         'save'              => 'Enregister',
@@ -19,21 +20,25 @@ return [
             'confirm'   => 'Es-tu sûr de vouloir réinitialiser l\'arbre de famille?',
         ],
         'entity'    => [
-            'add'   => [
+            'add'       => [
+                'founder'   => 'Fondateur/trice',
                 'member'    => 'Membre',
                 'success'   => 'Entité ajoutée.',
                 'title'     => 'Ajouter une entité',
             ],
-            'child' => [
+            'child'     => [
                 'success'   => 'Enfant ajouté.',
                 'title'     => 'Ajouter un enfant',
             ],
-            'edit'  => [
+            'edit'      => [
                 'helper'    => 'Sélectionner des options si la relation est inconnue. Un personnage peut être ajouté plus tard.',
                 'success'   => 'Entité modifiée.',
                 'title'     => 'Modifier une entité',
             ],
-            'remove'=> [
+            'founder'   => [
+                'title' => 'Ajouter un nouveau fondateur',
+            ],
+            'remove'    => [
                 'confirm'   => 'Es-tu sûr de vouloir retirer cette entité de l\'arbre de famille?',
                 'success'   => 'Entité retirée.',
             ],

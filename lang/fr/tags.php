@@ -3,11 +3,14 @@
 return [
     'children'      => [
         'actions'   => [
-            'add'   => 'Ajouter une nouvelle étiquette',
+            'add'           => 'Ajouter une nouvelle étiquette',
+            'add_entity'    => 'Ajouter à une entity',
         ],
         'create'    => [
-            'attach_success'    => '{1} Ajout de :count entité à l\'étiquette :name.|[2,*] Ajout de :count entités à l\'étiquette :name.',
-            'modal_title'       => 'Ajouter des entités à :name',
+            'attach_success'        => '{1} Ajout de :count entité à l\'étiquette :name.|[2,*] Ajout de :count entités à l\'étiquette :name.',
+            'attach_success_entity' => 'Etiquettes modifiées pour :name.',
+            'entity'                => 'Etiquetter :name',
+            'modal_title'           => 'Ajouter des entités à :name',
         ],
     ],
     'create'        => [

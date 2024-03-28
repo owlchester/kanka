@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'title'     => 'Kanka account email validation.',
+    'title' => 'Kanka account email validation.',
 ];

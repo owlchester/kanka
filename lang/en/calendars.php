@@ -49,11 +49,15 @@ return [
             'other_calendar'    => 'You are editing a reminder that is on the :calendar calendar.',
         ],
         'modal'     => [
-            'title' => 'Add an event to the calendar',
+            'title' => 'Add a reminder to the calendar',
         ],
         'success'   => 'Reminder \':event\' added to the calendar.',
     ],
     'events'        => [
+        'bulks'     => [
+            'delete'    => '{1} Deleted :count reminder.|[2,*] Deleted :count reminders.',
+            'patch'     => '{1} Updated :count reminder.|[2,*] Updated :count reminders.',
+        ],
         'end'       => '(end)',
         'filters'   => [
             'show_after'    => 'Show today and after',
@@ -61,10 +65,6 @@ return [
             'show_before'   => 'Show before today',
         ],
         'start'     => '(start)',
-        'bulks'     => [
-            'patch'     => '{1} Updated :count event.|[2,*] Updated :count events.',
-            'delete'     => '{1} Deleted :count event.|[2,*] Deleted :count events.',
-        ],
     ],
     'fields'        => [
         'colour'                => 'Colour',

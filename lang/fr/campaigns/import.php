@@ -9,7 +9,12 @@ return [
         'file'      => 'Fichier ZIP de l\'export',
         'updated'   => 'Dernière modification',
     ],
+    'form'          => 'Formulaire d\'upload',
     'limitation'    => 'Uniquement les fichiers zip sont permi. Max :size.',
+    'progress'      => [
+        'uploading' => 'Téléchargement',
+        'validating'=> 'En validation',
+    ],
     'status'        => [
         'failed'    => 'Echoué',
         'finished'  => 'Terminé',
