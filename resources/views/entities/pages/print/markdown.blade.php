@@ -59,7 +59,7 @@
 |:-|:-|
 @includeIf('entities.pages.print.profile.' . $model->getTable())
 
-@if(!empty($model->entry))
+@if($model->hasEntry())
 {!! $converter->convert((string) $model->entry) !!}
 @endif
 
