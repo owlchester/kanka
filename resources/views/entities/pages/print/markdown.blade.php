@@ -2,7 +2,7 @@
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  */?>
-@php 
+@php
     $counter = 0;
 @endphp
 # {!! $entity->name !!}
@@ -39,7 +39,7 @@
 @endforeach
 @endif
 @if(!$entity->pinnedAliases->isEmpty())
-| {{ __('entities/assets.actions.alias') }} | @foreach ($model->entity->pinnedAliases as $asset) {{ $asset->name }}@if ($counter < $model->entity->pinnedAliases->count() - 1)@php $counter++; @endphp, @endif @endforeach |@endif 
+| {{ __('entities/assets.actions.alias') }} | @foreach ($model->entity->pinnedAliases as $asset) {{ $asset->name }}@if ($counter < $model->entity->pinnedAliases->count() - 1)@php $counter++; @endphp, @endif @endforeach |@endif
 @foreach ($entity->pinnedRelations as $relation)
 | {{ $relation->relation }} | {{ $relation->target->name }} |
 @endforeach
@@ -59,13 +59,14 @@
 |:-|:-|
 @includeIf('entities.pages.print.profile.' . $model->getTable())
 
-
-{!! $converter->convert($model->entry) !!}            
+@if(!empty($model->entry))
+{!! $converter->convert((string) $model->entry) !!}
+@endif
 
 @foreach ($entity->posts as $post)
 @if(!$post->layout_id)
 # {!! $post->name !!}
-@if($post->entry)
+@if(!empty($post->entry))
 {!! $converter->convert($post->entry) !!}
 @endif
 @endif
