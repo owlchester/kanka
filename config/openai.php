@@ -8,6 +8,11 @@ return [
     'secret' => env('OPEN_AI_SECRET', 0),
 
     /**
+     * Custom URL
+     */
+    'custom_url' => env('OPEN_AI_URL', ''),
+
+    /**
      * AI model to use.
      *
      * Available models:
