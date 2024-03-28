@@ -417,7 +417,7 @@ class MentionsService
                         if ($field == 'date' && $entity->child instanceof \App\Models\Calendar) {
                             $data['text'] = $entity->child->niceDate();
                         }
-                    } elseif (isset($entity->$field) && is_string($entity->$field)) {
+                    } elseif ($field !== 'type' && isset($entity->$field) && is_string($entity->$field)) {
                         $data['text'] = $entity->$field;
                     }
 
