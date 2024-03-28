@@ -16,8 +16,17 @@ return [
             'enabled'               => 'La autenticación de dos factores está actualmente activada en su cuenta.',
             'error_enable'          => 'Código inválido, inténtalo de nuevo',
             'fields'                => [
-                'otp'   => 'Introduce la contraseña de un solo uso (OTP) proporcionada por la aplicación de autenticación.',
+                'otp'       => 'Introduce la contraseña de un solo uso (OTP) proporcionada por la aplicación de autenticación.',
+                'qrcode'    => 'Escanea el siguiente código QR con tu aplicación de autenticación para generar una contraseña de un solo uso (OTP).',
             ],
+            'generate_qr'           => 'Generar código QR',
+            'helper'                => 'La autenticación de dos factores (2FA) aumenta la seguridad del acceso al requerir dos métodos (también denominados factores) para verificar su identidad en cada inicio de sesión.',
+            'learn_more'            => 'Más información sobre la autenticación de dos factores.',
+            'social'                => 'La autenticación de dos factores de Kanka sólo está habilitada para los usuarios que inician sesión utilizando su correo electrónico y contraseña. Cambia tu método de inicio de sesión en la configuración de tu cuenta antes de poder activar esta opción.',
+            'success_disable'       => 'Autenticación de dos factores desactivada correctamente.',
+            'success_enable'        => 'La autenticación de dos factores se ha activado correctamente. Por favor, inicia sesión de nuevo para finalizar la configuración.',
+            'success_key'           => 'Tu código QR seguro se ha generado correctamente. Por favor, completa la configuración para activar la autenticación de dos factores.',
+            'title'                 => 'Autenticación de dos factores',
         ],
         'actions'           => [
             'social'            => 'Cambiar a inicio de sesión en Kanka',
@@ -134,13 +143,25 @@ return [
             'saved'     => 'Método de pago guardado',
         ],
         'cancel'                => [
-            'text'  => '¡Lamentamos verte marchar! Al cancelar tu suscripción, esta seguirá activa hasta el nuevo ciclo de facturación, tras lo cual perderás tus mejoras de campaña y otros beneficios relacionados. No tengas miedo de informarnos sobre cómo podemos mejorar o qué te ha llevado a tomar esta decisión.',
+            'options'   => [
+                'competitor'        => 'Cambio a un competidor',
+                'financial'         => 'La suscripción es demasiado cara',
+                'missing_features'  => 'Faltan características',
+                'not_for'           => 'La suscripción no es para mí',
+                'not_playing'       => 'Ya no juego o la campaña está en pausa',
+                'not_using'         => 'Actualmente no utilizo Kanka',
+                'other'             => 'Otro',
+            ],
+            'text'      => '¡Lamentamos verte marchar! Al cancelar tu suscripción, esta seguirá activa hasta el nuevo ciclo de facturación, tras lo cual perderás tus mejoras de campaña y otros beneficios relacionados. No tengas miedo de informarnos sobre cómo podemos mejorar o qué te ha llevado a tomar esta decisión.',
         ],
         'cancelled'             => 'Se ha cancelado tu suscripción. Puedes renovarla una vez el período de la suscripción actual termine.',
         'change'                => [
             'text'  => [
-                'monthly'   => 'Estás suscribiéndote al nivel :tier, que cuesta :amount mensuales.',
-                'yearly'    => 'Estás suscribiéndote al nivel :tier, que cuesta :amount anuales.',
+                'monthly'           => 'Estás suscribiéndote al nivel :tier, que cuesta :amount mensuales.',
+                'upgrade_monthly'   => 'Estás actualizando al nivel :tier por :upgrade, a partir de ahora se facturará mensualmente por :amount.',
+                'upgrade_paypal'    => 'Estás actualizando al nivel :tier por :upgrade hasta :date.',
+                'upgrade_yearly'    => 'Estás actualizando al nivel :tier por :upgrade, a partir de ahora, se facturará anualmente por :amount.',
+                'yearly'            => 'Estás suscribiéndote al nivel :tier, que cuesta :amount anuales.',
             ],
             'title' => 'Cambiar nivel de suscripción',
         ],
@@ -159,6 +180,7 @@ return [
         ],
         'errors'                => [
             'callback'      => 'Nuestro proveedor de pagos nos ha informado de un error. Por favor, vuelve a intentarlo o infórmanos si el problema persiste.',
+            'failed'        => 'Estamos experimentando problemas con nuestro sistema de facturación. Por favor, ponte en contacto con nosotros en :email para obtener ayuda.',
             'subscribed'    => 'No se ha podido procesar tu suscripción. Stripe nos ha dado este mensaje:',
         ],
         'fields'                => [
@@ -172,12 +194,17 @@ return [
         ],
         'helpers'               => [
             'alternatives'          => 'Paga por tu suscripción usando :method. Este método de pago no se renovará automáticamente al final de tu suscripción. :method solo está disponible en euros.',
+            'alternatives-2'        => 'Paga tu suscripción utilizando :method. Este pago es único y no se renueva automáticamente al final de la suscripción.',
             'alternatives_warning'  => 'No se puede mejorar la suscripción usando este método. Por favor, crea una nueva suscripción cuando la actual termine.',
             'alternatives_yearly'   => 'Debido a las restricciones de los pagos recurrentes, :method solo está disponible para las suscripciones anuales.',
+            'currency_blocked'      => 'No es posible cambiar de moneda una vez que se ha tenido una suscripción activa a Kanka. Por favor, ponte en contacto con nosotros en :email para obtener ayuda.',
+            'paypal_v3'             => 'Paga tu suscripción anual de forma segura con PayPal.',
+            'stripe'                => 'Tu información de facturación se procesa y almacena de forma segura a través de :stripe.',
         ],
         'manage_subscription'   => 'Gestionar suscripción',
         'payment_method'        => [
             'actions'       => [
+                'add'               => 'Añadir',
                 'add_new'           => 'Añadir nuevo método de pago',
                 'change'            => 'Cambiar método de pago',
                 'save'              => 'Guardar método de pago',
@@ -193,8 +220,13 @@ return [
             'new_card'      => 'Añadir nuevo método de pago',
             'saved'         => ':brand que termina en :last4',
         ],
+        'periods'               => [
+            'monthly'   => 'Mensual',
+            'yearly'    => 'Anual',
+        ],
         'placeholders'          => [
-            'reason'    => 'Opcionalmente, puedes contarnos por qué ya no apoyas a Kanka. ¿Faltaba algo? ¿Cambió tu situación financiera?',
+            'downgrade_reason'  => 'Si lo deseas, indícanos el motivo de la reducción de categoría de tu suscripción.',
+            'reason'            => 'Opcionalmente, puedes contarnos por qué ya no apoyas a Kanka. ¿Faltaba algo? ¿Cambió tu situación financiera?',
         ],
         'plans'                 => [
             'cost_monthly'  => ':amount :currency mensuales',
@@ -203,6 +235,7 @@ return [
         'sub_status'            => 'Información sobre la suscripción',
         'subscription'          => [
             'actions'   => [
+                'cancel'            => 'Cancelar suscripción',
                 'downgrading'       => 'Contáctanos para bajar de nivel',
                 'rollback'          => 'Cambiar a Kobold',
                 'subscribe'         => 'Cambiar a :tier al mes',
@@ -225,14 +258,16 @@ return [
                     'bonuses'   => 'Tus bonus permanecen activos hasta el final del período de facturación.',
                     'boosts'    => 'Lo mismo ocurre con tus campañas mejoradas. Las funcionalidades mejoradas se vuelven invisibles pero no se eliminan cuando dejas de mejorar la campaña.',
                     'kobold'    => 'Para cancelar la suscripción, cambia al nivel de Kobold.',
+                    'premium'   => 'Lo mismo ocurre con tus campañas premium. Las funciones premium se vuelven invisibles, pero no se eliminan cuando una campaña deja de ser premium.',
                 ],
                 'title'     => 'Cancelar tu suscripción',
             ],
             'downgrade' => [
-                'bullets'   => [
+                'bullets'           => [
                     'end'   => 'Tu nivel actual estará activo hasta el final de tu ciclo de pago actual, tras el cual se bajará tu suscripción al nuevo nivel.',
                 ],
-                'title'     => 'Bajar de nivel',
+                'provide_reason'    => 'Si puedes, por favor, comparte con nosotros por qué estás bajando de categoría tu suscripción.',
+                'title'             => 'Bajar de nivel',
             ],
             'upgrade'   => [
                 'bullets'   => [

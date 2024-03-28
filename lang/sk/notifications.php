@@ -48,6 +48,10 @@ return [
         'success'   => 'Notifikácie vymazané.',
         'title'     => 'Vymazať notifikácie',
     ],
+    'features'          => [
+        'approved'  => 'Tvoj nápad :feature bol schválený.',
+        'rejected'  => 'Tvoj nápad :feature bol odmietnutý, dôvod: :reason.',
+    ],
     'header'            => '{1} Máš :count notifikáciu.|[2,4] Máš :count notifikácie.|[5,*] Máš :count notifikácií.',
     'index'             => [
         'title' => 'Notifikácie',

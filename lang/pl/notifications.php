@@ -48,6 +48,10 @@ return [
         'success'   => 'Usunięto powiadomienia',
         'title'     => 'Wyczyść powiadomienia',
     ],
+    'features'          => [
+        'approved'  => 'Zaaprobowaliśmy twój pomysł na :feature.',
+        'rejected'  => 'Odrzuciliśmy twój pomysł na :feature. Przyczyna: :reason.',
+    ],
     'header'            => 'Masz :count powiadomień.',
     'index'             => [
         'title' => 'Powiadommienia',

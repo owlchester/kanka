@@ -242,6 +242,7 @@ return [
         'gallery_header'        => 'Wenn das Objekt keine Kopfzeile hat, zeigen Sie stattdessen ein Bild aus der Kampagnengalerie an.',
         'gallery_image'         => 'Wenn das Objekt kein Bild hat, wird  ein Bild aus der Kampagnengalerie angezeigt.',
         'header_image'          => 'Dieses Bild wird über dem Objekt platziert. Verwenden Sie ein breites Bild, um optimale Ergebnisse zu erzielen.',
+        'image_dimension'       => 'Empfohlene Abmessungen: :dimension Pixel.',
         'image_limitations'     => 'Unterstützte Formate: :formats. Maximale Dateigröße: :size.',
         'image_recommendation'  => 'empfohlene Abmaße: :width by :height px.',
         'is_star'               => 'Angepinnte Objekte erscheinen im Objektmenü.',

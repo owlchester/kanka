@@ -48,6 +48,10 @@ return [
         'success'   => 'Se han eliminado las notificaciones.',
         'title'     => 'Borrar notificaciones',
     ],
+    'features'          => [
+        'approved'  => 'Tu idea :feature ha sido aprobada.',
+        'rejected'  => 'Tu idea :feature ha sido rechazada, motivo: :reason.',
+    ],
     'header'            => 'Tienes :count notificaciones',
     'index'             => [
         'title' => 'Notificaciones',

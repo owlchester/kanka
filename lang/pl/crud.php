@@ -242,6 +242,7 @@ return [
         'gallery_header'        => 'Jeżeli element nie ma nagłówka, wyświetla zamiast tego obraz z galerii kampanii.',
         'gallery_image'         => 'Jeżeli element nie posiada własnego obrazu, zamiast niego wyświetlany będzie wybrany obraz z galerii kampanii.',
         'header_image'          => 'Obraz umieszczony w nagłówku elementu. Użyj szerokiego obrazu by osiągnąć najlepszy efekt.',
+        'image_dimension'       => 'Sugerowany rozmiar: :dimension pikseli.',
         'image_limitations'     => 'Dozwolone formaty: :formats. Maksymalny rozmiar pliku :size.',
         'image_recommendation'  => 'Sugerowane wymiary: :width na :height pikseli.',
         'is_star'               => 'Elementy przypięte pojawiają się w menu elementu.',

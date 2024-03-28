@@ -24,6 +24,7 @@ return [
     'privacy'           => 'Ochrana osobných údajov',
     'public-campaigns'  => 'Verejné kampane',
     'resources'         => 'Zdroje',
+    'roadmap'           => 'Plán',
     'security'          => 'Bezpečnosť',
     'server_time'       => 'Serverový čas: :time',
     'status'            => 'Stav služby',
