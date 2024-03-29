@@ -55,7 +55,7 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
                     $preset = FormCopy::field('image')->entity()->select();
                 }
             @endphp
-            @if (isset($campaign) && (!isset($campaignImage) || !$campaignImage))
+            @if (isset($campaign) && (!isset($campaignImage) || !$campaignImage) && !isset($gallery))
                 <x-forms.foreign
                     :campaign="$campaign"
                     name="entity_image_uuid"
@@ -76,7 +76,7 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
                 @include('cruds.fields._image_preview', [
                     'image' => $previewThumbnail,
                     'title' => $model->name,
-                    'target' => $canDelete && (empty($imageRequired) || !$imageRequired) ? 'remove-image' : null,
+                    'target' => !isset($removable) && $canDelete && (empty($imageRequired) || !$imageRequired) ? 'remove-image' : null,
                 ])
             </div>
         @elseif (isset($campaignImage) && $campaignImage)

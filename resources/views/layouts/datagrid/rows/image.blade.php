@@ -3,7 +3,7 @@
     <x-entities.thumbnail :entity="$model" :title="$model->name"></x-entities.thumbnail>
 @elseif ($model instanceof \App\Models\MiscModel)
     <x-entities.thumbnail :entity="$model->entity" :title="$model->name"></x-entities.thumbnail>
-@elseif ($model instanceof \App\Models\MapLayer)
+@elseif ($model instanceof \App\Models\MapLayer && !empty($model->image))
     <a class="entity-image cover-background"
         style="background-image: url('{{ $model->thumbnail(120) }}');"
         title="{{ $model->name }}"
