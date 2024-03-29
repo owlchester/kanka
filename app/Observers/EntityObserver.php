@@ -54,38 +54,14 @@ class EntityObserver
         if (!is_array($ids)) { // People sent weird stuff through the API
             $ids = [];
         }
-
-        // Only use tags the user can actually view. This way admins can
-        // have tags on entities that the user doesn't know about.
-        $existing = [];
-        /** @var Tag $tag */
-        foreach ($entity->tags()->with('entity')->has('entity')->get() as $tag) {
-            if ($tag->entity) {
-                $existing[$tag->id] = $tag->name;
-            }
-        }
-        $new = [];
-
         /** @var TagService $tagService */
         $tagService = app()->make(TagService::class);
-        $tagService->user(auth()->user());
-
-        foreach ($ids as $id) {
-            if (!empty($existing[$id])) {
-                unset($existing[$id]);
-            } else {
-                $tag = $tagService->fetch($id, $entity->campaign_id);
-                if (!empty($tag)) {
-                    $new[] = $tag->id;
-                }
-            }
-        }
-        $entity->tags()->attach($new);
-
-        // Detatch the remaining
-        if (!empty($existing)) {
-            $entity->tags()->detach(array_keys($existing));
-        }
+        $tagService
+            ->user(auth()->user())
+            ->entity($entity)
+            ->withNew()
+            ->sync($ids)
+        ;
     }
 
     /**

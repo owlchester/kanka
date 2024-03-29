@@ -3,7 +3,6 @@
 namespace App\Services\Api;
 
 use App\Models\MiscModel;
-use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Services\Entity\TagService;
 
@@ -44,36 +43,11 @@ class BulkEntityCreatorService
      */
     protected function saveTags(array $ids): void
     {
-        // Only use tags the user can actually view. This way admins can
-        // have tags on entities that the user doesn't know about.
-        $existing = [];
-        /** @var Tag $tag */
-        foreach ($this->new->entity->tags()->with('entity')->has('entity')->get() as $tag) {
-            if ($tag->entity) {
-                $existing[$tag->id] = $tag->name;
-            }
-        }
-        $new = [];
-
         /** @var TagService $tagService */
         $tagService = app()->make(TagService::class);
-        $tagService->user(auth()->user());
-
-        foreach ($ids as $id) {
-            if (!empty($existing[$id])) {
-                unset($existing[$id]);
-            } else {
-                $tag = $tagService->fetch($id, $this->new->entity->campaign_id);
-                if (!empty($tag)) {
-                    $new[] = $tag->id;
-                }
-            }
-        }
-        $this->new->entity->tags()->attach($new);
-
-        // Detatch the remaining
-        if (!empty($existing)) {
-            $this->new->entity->tags()->detach(array_keys($existing));
-        }
+        $tagService->user(auth()->user())
+            ->entity($this->new->entity)
+            ->sync($ids)
+        ;
     }
 }
