@@ -194,7 +194,7 @@ class FilterService
     private function prepareSearch(): self
     {
         $search = Arr::get($this->data, 'search');
-        $this->search = strip_tags($search);
+        $this->search = $search ? strip_tags($search) : '';
         return $this;
     }
 

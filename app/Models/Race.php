@@ -108,7 +108,6 @@ class Race extends MiscModel
                 $sub->select('locations.id', 'locations.name');
             },
             'characters',
-            'descendants',
             'children' => function ($sub) {
                 $sub->select('id', 'race_id');
             },

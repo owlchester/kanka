@@ -115,6 +115,9 @@ class Ability extends MiscModel
             },
             'children' => function ($sub) {
                 $sub->select('id', 'ability_id');
+            },
+            'entities' => function ($sub) {
+                $sub->select('entities.id');
             }
         ]);
     }

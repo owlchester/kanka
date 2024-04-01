@@ -107,7 +107,7 @@ class Event extends MiscModel
             'event.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'descendants',
+//            'descendants',
             'events' => function ($sub) {
                 $sub->select('id', 'name', 'event_id');
             },

@@ -114,7 +114,7 @@ class Creature extends MiscModel
             'locations' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'descendants',
+//            'descendants',
             'children' => function ($sub) {
                 $sub->select('id', 'creature_id');
             },
