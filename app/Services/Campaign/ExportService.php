@@ -283,7 +283,7 @@ class ExportService
         if ($model instanceof Map) {
             foreach ($model->layers as $layer) {
                 $path = $layer->image;
-                if (!Storage::exists($path)) {
+                if (!$path || !Storage::exists($path)) {
                     continue;
                 }
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
