@@ -13,7 +13,9 @@
 
     @if (!$cancel)
             <h4>
-        @if ($user->hasPayPal())
+        @if ($user->hasManualSubscription())
+                    You currently have a manual subscription managed by our team. Please contact us at <a href="mailto:{{ config('app.email') }}">{{ config('app.email') }}</a> for assistance.
+        @elseif ($user->hasPayPal())
             {!! __('settings.subscription.change.text.upgrade_paypal', [
                 'upgrade' => "<strong>$currency$upgrade</strong>",
                 'tier' => "<strong>$tier->name</strong>",
@@ -32,6 +34,9 @@
         <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
     @endif
 
+    @if ($user->hasManualSubscription())
+        @php return @endphp
+    @endif
     <x-alert type="error" :hidden="true"></x-alert>
 
     @if (!$cancel)
