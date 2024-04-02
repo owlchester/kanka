@@ -18,6 +18,11 @@ $(document).ready(function() {
         window.initDialogs();
     });
 
+    // When the sidebar gets triggers, we need to tell the map that its bounds have changed
+    $(document).on('expanded.pushMenu collapsed.pushMenu', function () {
+        window.map.invalidateSize();
+    });
+
     // Event fired when clicking on an existing map point
 
     $('a[href="#marker-pin"]').click(function (e) {
