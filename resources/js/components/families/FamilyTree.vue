@@ -21,17 +21,15 @@
             {{ this.texts.actions.save }}
         </button>
     </div>
-    <div class="pull-right">
-            <button class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="zoom()">
+    <div class="family-tree overflow-auto w-full h-full min-h-50 block relative" ref="familytree">
+        <div class="absolute top-0 right-0 z-10">
+            <button class="btn2 btn-ghost btn-sm" aria-label="Close" v-on:click="zoom()">
                 <i class="fa-regular fa-square-plus" aria-hidden="true"></i>
             </button>
-        </div>
-        <div class="pull-right">
-            <button class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="unzoom()">
+            <button class="btn-sm btn2 btn-ghost" aria-label="Close" v-on:click="unzoom()">
                 <i class="fa-regular fa-square-minus" aria-hidden="true"></i>
             </button>
         </div>
-    <div class="family-tree overflow-auto w-full h-full min-h-50 block" ref="familytree">
         <div class="text-center px-5" v-if="isLoading">
             <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
             <span class="sr-only">Loading...</span>
