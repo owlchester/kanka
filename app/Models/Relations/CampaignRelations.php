@@ -78,8 +78,8 @@ use Illuminate\Support\Collection;
  */
 trait CampaignRelations
 {
-    /**
-     */
+    protected Collection $nonAdmins;
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany('App\User', 'campaign_user')->using('App\Models\CampaignUser');
@@ -102,11 +102,31 @@ trait CampaignRelations
 
     public function nonAdmins()
     {
-        return $this
-            ->members()
-            ->withoutAdmins()
-            ->with(['user', 'user.campaignRoles'])
-        ;
+        if (isset($this->nonAdmins)) {
+            return $this->nonAdmins;
+        }
+        $this->nonAdmins = new Collection();
+        // We can't exclude admins through pure SQL as some members might be role-less in weird edge cases
+        foreach ($this->members()->with(['user', 'user.campaignRoles'])->get() as $member) {
+            $isAdmin = false;
+            /** @var CampaignRole $campaignRole */
+            foreach ($member->user->campaignRoles as $campaignRole) {
+                // Skip roles from other campaigns. This can probably be improved?
+                if ($campaignRole->campaign_id !==  $this->id) {
+                    continue;
+                }
+                if ($campaignRole->isAdmin()) {
+                    $isAdmin = true;
+                }
+            }
+            if ($isAdmin) {
+                continue;
+            }
+
+            $this->nonAdmins->add($member);
+        }
+
+        return $this->nonAdmins;
     }
 
     public function roles(): HasMany
