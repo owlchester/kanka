@@ -266,6 +266,7 @@ class RolePermissionService
     {
         return $this->role->permissions
             ->where('entity_type_id', $this->type)
+            ->whereNull('entity_id')
             ->where('action', $action)
             ->where('access', true)
             ->count() === 1;
