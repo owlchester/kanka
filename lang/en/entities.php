@@ -54,6 +54,7 @@ return [
     'dice_roll'             => 'Dice Roll',
     'dice_rolls'            => 'Dice Rolls',
     'entity_attributes'     => 'Attributes',
+    'entities'              => 'Entities',
     'event'                 => 'Event',
     'events'                => 'Events',
     'families'              => 'Families',
