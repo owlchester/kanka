@@ -36,6 +36,7 @@ class RecentService
 
         $orderedIds = implode(',', $recentIds);
         $entities = Entity::whereIn('id', $recentIds)
+            ->with('image')
             ->orderByRaw("FIELD(id, {$orderedIds})")
             ->get();
         $recent = [];
