@@ -90,10 +90,6 @@ class ImageService
                 $dirtySVG = file_get_contents($file);
                 $cleanSVG = $sanitizer->sanitize($dirtySVG);
                 file_put_contents($file, $cleanSVG);
-
-                $xml = simplexml_load_string($cleanSVG);
-                $sizes[0] = $xml->attributes()->width;
-                $sizes[1] = $xml->attributes()->height;
             }
 
             if (!empty($path)) {
@@ -116,12 +112,6 @@ class ImageService
                     $model->image_path = $path;
                 } else {
                     $model->$field = $path;
-                }
-
-                if (!empty($sizes) && $model instanceof Entity && $model->isMap()) {
-                    $model->map->width = $sizes[0];
-                    $model->map->height = $sizes[1];
-                    $model->map->saveQuietly();
                 }
             }
         } catch (Exception $e) {
