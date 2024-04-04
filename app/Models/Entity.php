@@ -314,16 +314,12 @@ class Entity extends Model
     }
 
     /**
-     * Determine if an entity has an image that can be shown
+     * Determine if an entity has an image that can be shown. This can be either uploaded
+     * directly on them, or from the gallery
      */
     public function hasImage(bool $boosted = false): bool
     {
-        // Most basic setup, the child has an image
-        if (!empty($this->image_path)) {
-            return true;
-        }
-        // Otherwise, might have a gallery image, which needs a boosted campaign
-        return $boosted && $this->image;
+        return !empty($this->image_path) || !empty($this->image);
     }
 
     /**

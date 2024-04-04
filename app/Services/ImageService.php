@@ -94,8 +94,6 @@ class ImageService
                 $xml = simplexml_load_string($cleanSVG);
                 $sizes[0] = $xml->attributes()->width;
                 $sizes[1] = $xml->attributes()->height;
-            } else {
-                $sizes = getimagesize($file->path());
             }
 
             if (!empty($path)) {
@@ -221,6 +219,12 @@ class ImageService
             $thumb = str_replace('.', '_thumb.', $model->$field);
             if (Storage::has($thumb)) {
                 Storage::delete($thumb);
+            }
+            // If it's a map, reset its height to be re-calculated
+            if ($model instanceof Entity && $model->isMap()) {
+                $model->map->height = null;
+                $model->map->width = null;
+                $model->map->saveQuietly();
             }
         } catch (Exception $e) {
             // silence exception, didn't find the image to delete.
