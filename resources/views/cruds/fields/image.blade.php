@@ -4,9 +4,11 @@
  * bool $imageRequired set to true if the image is required and can't be removed
  */
 $formats = 'PNG, JPG, GIF, WebP';
+$inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp';
 $max = 25;
 if (isset($size) && $size == 'map') {
     $formats = 'PNG, JPG, SVG, WebP';
+    $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp, .svg';
     $max = 50;
 }
 $label = $imageLabel ?? 'crud.fields.image';
@@ -37,7 +39,7 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
     <div class="flex flex-row gap-2">
         <div class="grow flex flex-col gap-2 w-full">
             <div class="image-file field">
-                {!! Form::file('image', ['class' => 'image w-full', 'accept' => ".jpg, .jpeg, .png, .gif, .webp", 'id' => 'image_field_' . rand()]) !!}
+                {!! Form::file('image', ['class' => 'image w-full', 'accept' => $inputFileTypes, 'id' => 'image_field_' . rand()]) !!}
             </div>
             <div class="image-url field">
                 {!! Form::text(
