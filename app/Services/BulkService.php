@@ -7,7 +7,6 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\Relation;
-use App\Models\Tag;
 use App\Services\Entity\MoveService;
 use App\Services\Entity\TagService;
 use App\Services\Entity\TransformService;

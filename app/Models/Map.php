@@ -578,7 +578,6 @@ class Map extends MiscModel
     /**
      * Whenever a map gets updated, its height and width are reset to re-calculate them on rendering
      * This is because the map's image is on the entity, or from the gallery
-     * @return void
      */
     protected function prepareBounds(): void
     {
