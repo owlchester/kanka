@@ -20,7 +20,7 @@
         "caseyamcl/toc": "^3.0",
         "chriskonnertz/string-calc": "^1.0",
         "dompdf/dompdf": "^2.0",
-        "enshrined/svg-sanitize": "^0.16.0",
+        "enshrined/svg-sanitize": "^0.18.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "http-interop/http-factory-guzzle": "^1.2",
         "ilestis/kanka-dnd5e-monster": "^5.0",
