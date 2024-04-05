@@ -36,7 +36,7 @@ class StartController extends Controller
             session()->remove('user_registered');
             $tracking = 'pa10CJTvrssBEOaOq7oC';
         }
-        return view($this->view . '.create', [
+        return view($this->view . '.forms.create', [
             'start' => auth()->user()->campaigns->count() === 0,
             'gaTrackingEvent' => $tracking,
         ]);
