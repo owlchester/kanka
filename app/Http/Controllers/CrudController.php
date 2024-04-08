@@ -682,7 +682,10 @@ class CrudController extends Controller
         } elseif (!auth()->user()->can('create', $model)) {
             return new Collection();
         }
-        return Entity::select('id', 'name', 'entity_id')->templates($model->entityTypeID())->get();
+        return Entity::select('id', 'name', 'entity_id')
+            ->templates($model->entityTypeID())
+            ->orderBy('name')
+            ->get();
     }
 
     /**
@@ -707,7 +710,11 @@ class CrudController extends Controller
             } else {
                 $settings = auth()->user()->settings;
                 if (auth()->check() && Arr::get($settings, $key) !== $newMode) {
-                    $settings[$key] = $newMode;
+                    if ($newMode === 'grid') {
+                        unset($settings[$key]);
+                    } else {
+                        $settings[$key] = $newMode;
+                    }
                     auth()->user()->settings = $settings;
                     auth()->user()->updateQuietly();
                 }
@@ -739,7 +746,11 @@ class CrudController extends Controller
                 $settings = auth()->user()->settings;
                 if (auth()->check() && Arr::get($settings, $key) !== $new) {
                     $settings = auth()->user()->settings;
-                    $settings[$key] = $new;
+                    if ($new) {
+                        unset($settings[$key]);
+                    } else {
+                        $settings[$key] = false;
+                    }
                     auth()->user()->settings = $settings;
                     auth()->user()->updateQuietly();
                 }
