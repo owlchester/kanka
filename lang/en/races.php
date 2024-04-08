@@ -13,9 +13,6 @@ return [
     'fields'        => [
         'members'   => 'Members',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Displaying all races that don\'t have a parent race. Click on a row to see the children races.',
-    ],
     'members'       => [
         'create'    => [
             'submit'    => 'Add members',

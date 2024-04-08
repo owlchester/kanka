@@ -29,7 +29,7 @@
         ]
     ])
     ->options([
-        'route' => 'events.tree',
+        'route' => 'events.index',
         'baseRoute' => 'events',
         'trans' => 'events.fields.',
         'row' => [

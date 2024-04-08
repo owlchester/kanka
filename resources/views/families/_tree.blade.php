@@ -37,7 +37,7 @@
         ]
     ])
     ->options(    [
-        'route' => 'families.tree',
+        'route' => 'families.index',
         'baseRoute' => 'families',
         'trans' => 'families.fields.',
         'row' => [

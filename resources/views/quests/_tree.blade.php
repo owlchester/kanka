@@ -42,7 +42,7 @@
         ]
     ])
     ->options(    [
-        'route' => 'quests.tree',
+        'route' => 'quests.index',
         'baseRoute' => 'quests',
         'trans' => 'quests.fields.',
         'row' => [

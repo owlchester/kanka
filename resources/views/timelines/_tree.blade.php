@@ -41,7 +41,7 @@
         ]
     ])
     ->options(    [
-        'route' => 'timelines.tree',
+        'route' => 'timelines.index',
         'baseRoute' => 'timelines',
         'trans' => 'timelines.fields.',
         'row' => [

@@ -16,7 +16,6 @@ return [
         'default_dashboard' => 'Default dashboard',
         'entity'            => 'Entity',
         'filters'           => 'Filters',
-        'is_nested'         => 'Nested',
         'menu'              => 'Subpage',
         'position'          => 'Position',
         'random'            => 'Random',

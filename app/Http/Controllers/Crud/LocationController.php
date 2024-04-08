@@ -7,22 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreLocation;
 use App\Models\Campaign;
 use App\Models\Location;
-use App\Traits\TreeControllerTrait;
 
 class LocationController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'locations';
     protected string $route = 'locations';
     protected $module = 'locations';
 
-    /** @var string Model */
     protected $model = Location::class;
 
-    /** @var string Filter */
     protected string $filter = LocationFilter::class;
 
     /**

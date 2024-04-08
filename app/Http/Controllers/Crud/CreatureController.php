@@ -7,22 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreCreature;
 use App\Models\Campaign;
 use App\Models\Creature;
-use App\Traits\TreeControllerTrait;
 
 class CreatureController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'creatures';
     protected string $route = 'creatures';
     protected $module = 'creatures';
 
-    /** @var string Model */
     protected $model = Creature::class;
 
-    /** @var string Filter */
     protected string $filter = CreatureFilter::class;
 
     /**

@@ -172,7 +172,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                             <x-icon class="fa-regular fa-plus"></x-icon>
                             {{ __('crud.actions.new') }}
                         </x-dropdowns.item>
-                        @if (\Illuminate\Support\Facades\Route::has($entity->pluralType() . '.tree'))
+                        @if (method_exists($model, 'getParentKeyName'))
                             <x-dropdowns.item :link="route($entity->pluralType() . '.create', [$campaign, $model->entity, 'parent_id' => $model->id])">
                                 <x-icon class="fa-regular fa-plus"></x-icon>
                                 {{ __('crud.actions.new_child') }}

@@ -107,7 +107,7 @@ trait CampaignRelations
         }
         $this->nonAdmins = new Collection();
         // We can't exclude admins through pure SQL as some members might be role-less in weird edge cases
-        foreach ($this->members()->with(['user', 'user.campaignRoles'])->get() as $member) {
+        foreach ($this->members()->with(['user', 'user.campaignRoles', 'user.tutorials'])->get() as $member) {
             $isAdmin = false;
             /** @var CampaignRole $campaignRole */
             foreach ($member->user->campaignRoles as $campaignRole) {

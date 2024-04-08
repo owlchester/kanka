@@ -8,10 +8,6 @@ return [
         'is_defunct'    => 'Defunct',
         'members'       => 'Members',
     ],
-    'helpers'       => [
-        'descendants'       => 'This list contains all organisations which are descendants of this organisation, and not only those directly under it.',
-        'nested_without'    => 'Displaying all organisations that don\'t have a parent organisation. Click on a row to see the children organisations.',
-    ],
     'hints'         => [
         'is_defunct'    => 'This organisation is defunct.',
     ],

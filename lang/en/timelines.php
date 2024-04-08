@@ -16,7 +16,6 @@ return [
         'reverse_order' => 'Reverse era order',
     ],
     'helpers'       => [
-        'nested_without'    => 'Displaying all timelines that don\'t have a parent timeline. Click on a row to see the children timelines.',
         'no_era_v2'         => 'This timeline currently doesn\'t have any eras. Add one or several eras to it, after which you can add elements to the eras here.',
         'reverse_order'     => 'Enable to display eras in reverse chronological order (older era first)',
     ],

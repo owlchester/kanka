@@ -7,22 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreQuest;
 use App\Models\Campaign;
 use App\Models\Quest;
-use App\Traits\TreeControllerTrait;
 
 class QuestController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'quests';
     protected string $route = 'quests';
     protected $module = 'quests';
 
-    /** @var string Model */
     protected $model = Quest::class;
 
-    /** @var string Filter */
     protected string $filter = QuestFilter::class;
 
     /**

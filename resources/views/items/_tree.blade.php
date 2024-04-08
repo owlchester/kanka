@@ -40,7 +40,7 @@
         ]
     ])
     ->options(    [
-        'route' => 'items.tree',
+        'route' => 'items.index',
         'baseRoute' => 'items',
         'trans' => 'items.fields.',
         'row' => [

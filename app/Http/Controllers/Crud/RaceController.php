@@ -7,22 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreRace;
 use App\Models\Campaign;
 use App\Models\Race;
-use App\Traits\TreeControllerTrait;
 
 class RaceController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'races';
     protected string $route = 'races';
     protected $module = 'races';
 
-    /** @var string Model */
     protected $model = Race::class;
 
-    /** @var string Filter */
     protected string $filter = RaceFilter::class;
 
     /**

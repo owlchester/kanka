@@ -25,7 +25,10 @@ use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use LogicException;
 
 class CrudController extends Controller
@@ -82,6 +85,8 @@ class CrudController extends Controller
     /** Determine if the create/store procedure has a limit checking in place */
     protected bool $hasLimitCheck = false;
 
+    protected Request $request;
+
     public function __construct()
     {
         $this->middleware('campaign.member');
@@ -109,6 +114,7 @@ class CrudController extends Controller
          * Prepare a lot of variables that will be shared over to the view
          * @var MiscModel $model
          */
+        $this->request = $request;
         $model = new $this->model();
         $campaign = $this->campaign;
         $this->filterService
@@ -131,20 +137,40 @@ class CrudController extends Controller
         $datagridActions = new $this->datagridActions();
         $templates = $this->loadTemplates($model);
 
+        // Determine if we're nested or not
+        $nested = $this->isNested();
+
         $base = $model
             ->preparedSelect()
             ->preparedWith()
             ->search($this->filterService->search())
             ->order($this->filterService->order())
+            ->distinct()
         ;
 
         $parent = null;
         if (request()->has('parent_id')) {
-            // @phpstan-ignore-next-line
             $parentKey = $model->getParentKeyName();
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
+            if (request()->get('m') === 'table') {
+                if (!empty($parent) && !empty($parent->parent)) {
+                    // Go back to previous parent
+                    $this->addNavAction(
+                        route($this->route . '.index', [$campaign, 'parent_id' => $parent->parent->id]),
+                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . $parent->parent->name
+                    );
+                } else {
+                    // Go back to first level
+                    $this->addNavAction(
+                        route($this->route . '.index', [$campaign]),
+                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . __('crud.actions.back')
+                    );
+                }
+            }
+        } elseif ($nested) {
+            $base->whereNull($model->getTable() . '.' . $model->getParentKeyName());
         }
 
         // Do this to avoid an extra sql query when no filters are selected
@@ -174,22 +200,12 @@ class CrudController extends Controller
         }
 
         // Switch between the new explore/grid mode and the old table
-        $mode = request()->get('m', 'grid');
-        if (!in_array($mode, ['grid', 'table'])) {
-            $mode = 'grid';
-        }
+        $mode = $this->mode();
         $forceMode = null;
         if (property_exists($this, 'forceMode')) {
             $mode = $forceMode = $this->forceMode;
         }
 
-        // Add a button to the tree view if the controller has it
-        if (method_exists($this, 'tree') && $mode === 'table') {
-            $this->addNavAction(
-                route($this->route . '.tree', [$this->campaign, 'm' => 'table']),
-                '<i class="fa-solid fa-share-nodes" aria-hidden="true"></i> ' . __('crud.actions.explore_view')
-            );
-        }
         $this->getNavActions();
         $actions = $this->navActions;
         $entityTypeId = $model->entityTypeId();
@@ -220,6 +236,9 @@ class CrudController extends Controller
             $data['titleKey'] = $this->titleKey();
         } else {
             $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
+        }
+        if (method_exists($model, 'getParentKeyName')) {
+            $data['nestable'] = $nested;
         }
         return view('cruds.index', $data);
     }
@@ -518,12 +537,7 @@ class CrudController extends Controller
             } elseif ($request->has('submit-update')) {
                 $route = route($this->route . '.edit', [$this->campaign, $model->id]);
             } elseif ($request->has('submit-close')) {
-                $subroute = 'index';
-                $defaultNested = auth()->user()->defaultNested || $this->campaign->defaultToNested();
-                if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
-                    $subroute = 'tree';
-                }
-                $route = route($this->route . '.' . $subroute, [$this->campaign]);
+                $route = route($this->route . '.index', [$this->campaign]);
             } elseif ($request->has('submit-copy')) {
                 $route = route($this->route . '.create', [$this->campaign, 'copy' => $model->id]);
                 return response()->redirectTo($route);
@@ -546,13 +560,7 @@ class CrudController extends Controller
 
         $model->delete();
 
-        $subroute = 'index';
-        $defaultNested = auth()->user()->defaultNested || $this->campaign->defaultToNested();
-        if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
-            $subroute = 'tree';
-        }
-
-        return redirect()->route($this->route . '.' . $subroute, $this->campaign)
+        return redirect()->route($this->route . '.index', $this->campaign)
             ->with('success', __('general.success.deleted', ['name' => $model->name]));
     }
 
@@ -673,5 +681,76 @@ class CrudController extends Controller
             return new Collection();
         }
         return Entity::select('id', 'name', 'entity_id')->templates($model->entityTypeID())->get();
+    }
+
+    /**
+     * Determine if the layout is in the nice grid mode, or the old table mode
+     * @return string
+     */
+    protected function mode(): string
+    {
+        if (!isset($this->module)) {
+            return 'table';
+        }
+        $key = $this->module . '_mode';
+        if ($this->request->has('m')) {
+            $mode = $this->request->get('m');
+            if (!in_array($mode, ['grid', 'table'])) {
+                return 'grid';
+            }
+            $newMode = $mode;
+        }
+        if (isset($newMode)) {
+            if (auth()->guest()) {
+                Session::put($key, $newMode);
+            } else {
+                $settings = auth()->user()->settings;
+                if (auth()->check() && Arr::get($settings, $key) !== $newMode) {
+                    $settings[$key] = $newMode;
+                    auth()->user()->settings = $settings;
+                    auth()->user()->updateQuietly();
+                }
+            }
+            return $newMode;
+        }
+
+        if (auth()->guest()) {
+            return Session::get($key, 'grid');
+        }
+        // Else use the user's preferred stacking for this entity type
+        return Arr::get(auth()->user()->settings, $key, true);
+    }
+    /**
+     * Determine if the current layout should be nested or not
+     * @return bool
+     */
+    protected function isNested(): bool
+    {
+        // Model isn't nested, not an option to start with
+        if (!isset($this->module) || !method_exists($this->model, 'getParentKeyName')) {
+            return false;
+        }
+        $key = $this->module . '_nested';
+        if ($this->request->has('n')) {
+            $new = (bool) $this->request->get('n');
+            if (auth()->guest()) {
+                Session::put($key, $new);
+            } else {
+                $settings = auth()->user()->settings;
+                if (auth()->check() && Arr::get($settings, $key) !== $new) {
+                    $settings = auth()->user()->settings;
+                    $settings[$key] = $new;
+                    auth()->user()->settings = $settings;
+                    auth()->user()->updateQuietly();
+                }
+            }
+            return $new;
+        }
+
+        if (auth()->guest()) {
+            return (bool) Session::get($key, true);
+        }
+        // Else use the user's preferred stacking for this entity type
+        return Arr::get(auth()->user()->settings, $key, true);
     }
 }
