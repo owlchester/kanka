@@ -71,9 +71,9 @@ class Webhook extends Model
     public function shortUrl(): string
     {
         $pieces = parse_url($this->url);
-        $domain = isset($pieces['host']) ? $pieces['host'] : '';
+        $domain = $pieces['host'] ?? '';
         if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
-           return strstr( $regs['domain'], '.', true );
+            return mb_strstr($regs['domain'], '.', true);
         }
         return $this->url;
     }

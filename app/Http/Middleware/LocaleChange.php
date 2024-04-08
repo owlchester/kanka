@@ -18,7 +18,7 @@ class LocaleChange
     protected array $disabledLangs = ['he', 'hr', 'hu', 'ca', 'gl'];
 
     /**
-     * @return \Illuminate\Http\RedirectResponse|mixed
+     * @return RedirectResponse|mixed
      */
     public function handle(Request $request, Closure $next)
     {

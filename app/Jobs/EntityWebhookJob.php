@@ -33,7 +33,7 @@ class EntityWebhookJob implements ShouldQueue
      * @var int
      */
     public $action;
- 
+
     /**
      * @var string
      */
@@ -91,7 +91,7 @@ class EntityWebhookJob implements ShouldQueue
                     ['{name}', '{who}', '{url}'],
                     [$this->entity->name, $this->username, route('entities.show', [$this->campaignId, $this->entity])],
                     $webhook->message
-                 );
+                );
 
             } else {
                 $data = [

@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Layout;
 
 class Webhook extends Layout
@@ -38,15 +37,15 @@ class Webhook extends Layout
             ],
             'url' => [
                 'label' => 'campaigns.webhooks.fields.url',
-                'render' => function ($model) {    
-                    return '<div href="#" data-toggle="tooltip" title="' . $model->url . '">' . $model->shortUrl() . '</div>';    
+                'render' => function ($model) {
+                    return '<div href="#" data-toggle="tooltip" title="' . $model->url . '">' . $model->shortUrl() . '</div>';
                 },
             ],
 
             'status' => [
                 'label' => 'campaigns.webhooks.fields.active',
                 'render' => function ($model) {
-                    if ($model->status){
+                    if ($model->status) {
                         return '<i class="fa-solid fa-check" aria-hidden="true"></i>';
                     }
                     return '';

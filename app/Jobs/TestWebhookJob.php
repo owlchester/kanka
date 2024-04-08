@@ -30,7 +30,7 @@ class TestWebhookJob implements ShouldQueue
      * @var int
      */
     public $action;
- 
+
     /**
      * @var string
      */
@@ -75,7 +75,7 @@ class TestWebhookJob implements ShouldQueue
                 ['{name}', '{who}', '{url}'],
                 ['Thaelia', $this->username, route('locations.index', [$this->campaignId])],
                 $this->webhook->message
-                );
+            );
 
         } else {
             $data = [
