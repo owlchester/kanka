@@ -138,8 +138,6 @@ class CrudController extends Controller
         $bulk = $this->bulkModel();
         $datagridActions = new $this->datagridActions();
         $templates = $this->loadTemplates($model);
-
-        // Determine if we're nested or not
         $nested = $this->isNested();
 
         $base = $model
@@ -151,7 +149,7 @@ class CrudController extends Controller
         ;
 
         $parent = null;
-        if (request()->has('parent_id')) {
+        if (request()->has('parent_id') && method_exists($model, 'getParentKeyName')) {
             $parentKey = $model->getParentKeyName();
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
@@ -726,7 +724,7 @@ class CrudController extends Controller
             return Session::get($key, 'grid');
         }
         // Else use the user's preferred stacking for this entity type
-        return Arr::get(auth()->user()->settings, $key, true);
+        return Arr::get(auth()->user()->settings, $key, 'grid');
     }
     /**
      * Determine if the current layout should be nested or not
