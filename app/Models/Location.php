@@ -11,6 +11,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -137,64 +138,45 @@ class Location extends MiscModel
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
-    /**
-     *
-     */
-    public function characters()
+    public function characters(): HasMany
     {
         return $this->hasMany('App\Models\Character', 'location_id', 'id');
     }
 
-    /**
-     */
-    public function races()
+    public function races(): HasMany
     {
         return $this->belongsToMany('App\Models\Race', 'race_location');
     }
 
-    /**
-     */
-    public function creatures()
+    public function creatures(): HasMany
     {
         return $this->belongsToMany('App\Models\Creature', 'creature_location');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function locationAttributes()
+    public function locationAttributes(): HasMany
     {
         return $this->hasMany('App\Models\LocationAttribute', 'location_id', 'id');
     }
 
-    /**
-     */
-    public function items()
+    public function items(): HasMany
     {
         return $this->hasMany('App\Models\Item', 'location_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function maps()
+    public function maps(): HasMany
     {
         return $this->hasMany('App\Models\Map', 'location_id', 'id')
+            ->with('entity')
+            ->with('entity.image')
             ->select(['id', 'name', 'is_real']);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function locations()
+    public function locations(): HasMany
     {
         return $this->hasMany('App\Models\Location', 'location_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function events()
+    public function events(): HasMany
     {
         return $this->hasMany('App\Models\Event', 'location_id', 'id');
     }
