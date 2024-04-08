@@ -14,7 +14,7 @@ class OrganisationController extends CrudController
     protected string $route = 'organisations';
     protected $module = 'organisations';
 
-    protected $model = Organisation::class;
+    protected string $model = Organisation::class;
 
     protected string $filter = OrganisationFilter::class;
 

@@ -14,7 +14,7 @@ class TagController extends CrudController
     protected string $route = 'tags';
     protected $module = 'tags';
 
-    protected $model = Tag::class;
+    protected string $model = Tag::class;
 
     protected string $filter = TagFilter::class;
 

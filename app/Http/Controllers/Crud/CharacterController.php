@@ -14,7 +14,7 @@ class CharacterController extends CrudController
     protected string $route = 'characters';
     protected $module = 'characters';
 
-    protected $model = Character::class;
+    protected string $model = Character::class;
 
     protected string $filter = CharacterFilter::class;
 

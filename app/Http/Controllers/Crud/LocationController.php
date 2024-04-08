@@ -14,7 +14,7 @@ class LocationController extends CrudController
     protected string $route = 'locations';
     protected $module = 'locations';
 
-    protected $model = Location::class;
+    protected string $model = Location::class;
 
     protected string $filter = LocationFilter::class;
 

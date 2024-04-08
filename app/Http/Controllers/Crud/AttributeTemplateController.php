@@ -14,9 +14,11 @@ class AttributeTemplateController extends CrudController
     protected string $route = 'attribute_templates';
     protected string $module = 'entity_attributes';
 
-    protected $model = AttributeTemplate::class;
+    protected string $model = AttributeTemplate::class;
 
     protected string $filter = AttributeTemplateFilter::class;
+
+    protected string $forceMode = 'table';
 
     protected function getNavActions(): CrudController
     {

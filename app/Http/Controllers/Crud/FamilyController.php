@@ -14,7 +14,7 @@ class FamilyController extends CrudController
     protected string $route = 'families';
     protected $module = 'families';
 
-    protected $model = Family::class;
+    protected string $model = Family::class;
 
     protected string $filter = FamilyFilter::class;
 

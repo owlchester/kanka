@@ -14,7 +14,7 @@ class JournalController extends CrudController
     protected string $route = 'journals';
     protected $module = 'journals';
 
-    protected $model = Journal::class;
+    protected string $model = Journal::class;
 
     protected string $filter = JournalFilter::class;
 

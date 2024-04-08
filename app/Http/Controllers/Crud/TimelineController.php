@@ -13,7 +13,7 @@ class TimelineController extends CrudController
     protected string $view = 'timelines';
     protected string $route = 'timelines';
 
-    protected $model = Timeline::class;
+    protected string $model = Timeline::class;
 
     protected string $filter = TimelineFilter::class;
 

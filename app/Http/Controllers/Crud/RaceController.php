@@ -14,7 +14,7 @@ class RaceController extends CrudController
     protected string $route = 'races';
     protected $module = 'races';
 
-    protected $model = Race::class;
+    protected string $model = Race::class;
 
     protected string $filter = RaceFilter::class;
 

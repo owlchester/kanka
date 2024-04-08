@@ -14,7 +14,7 @@ class QuestController extends CrudController
     protected string $route = 'quests';
     protected $module = 'quests';
 
-    protected $model = Quest::class;
+    protected string $model = Quest::class;
 
     protected string $filter = QuestFilter::class;
 

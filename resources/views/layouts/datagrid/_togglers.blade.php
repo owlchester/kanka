@@ -41,7 +41,7 @@
     @endif
 @endif
 
-@if (isset($nestable))
+@if (isset($nestable) && empty($forceMode))
     @if ($nestable)
         <a class="btn2" href="{{ route($name . '.' . $route, [$campaign, 'n' => false]) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.flatten') }}">
             <x-icon class="fa-solid fa-boxes-stacked" />

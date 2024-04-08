@@ -14,7 +14,7 @@ class ItemController extends CrudController
     protected string $route = 'items';
     protected $module = 'items';
 
-    protected $model = Item::class;
+    protected string $model = Item::class;
 
     protected string $filter = ItemFilter::class;
 

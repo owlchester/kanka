@@ -14,7 +14,7 @@ class AbilityController extends CrudController
     protected string $route = 'abilities';
     protected string $module = 'abilities';
 
-    protected $model = Ability::class;
+    protected string $model = Ability::class;
 
     protected string $filter = AbilityFilter::class;
 

@@ -14,7 +14,7 @@ class EventController extends CrudController
     protected string $route = 'events';
     protected $module = 'events';
 
-    protected $model = Event::class;
+    protected string $model = Event::class;
 
     protected string $filter = EventFilter::class;
 

@@ -11,6 +11,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
@@ -143,12 +144,12 @@ class Location extends MiscModel
         return $this->hasMany('App\Models\Character', 'location_id', 'id');
     }
 
-    public function races(): HasMany
+    public function races(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Race', 'race_location');
     }
 
-    public function creatures(): HasMany
+    public function creatures(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Creature', 'creature_location');
     }

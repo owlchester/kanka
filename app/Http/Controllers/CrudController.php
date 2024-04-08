@@ -44,8 +44,8 @@ class CrudController extends Controller
     /** The name of the route for the resource */
     protected string $route = '';
 
-    /** @var MiscModel|Model|string|null */
-    protected $model;
+    /** Model class name for the object */
+    protected string $model;
 
     protected string $filter;
 

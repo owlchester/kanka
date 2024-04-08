@@ -14,7 +14,7 @@ class CreatureController extends CrudController
     protected string $route = 'creatures';
     protected $module = 'creatures';
 
-    protected $model = Creature::class;
+    protected string $model = Creature::class;
 
     protected string $filter = CreatureFilter::class;
 

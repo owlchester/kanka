@@ -14,7 +14,7 @@ class NoteController extends CrudController
     protected string $route = 'notes';
     protected $module = 'notes';
 
-    protected $model = Note::class;
+    protected string $model = Note::class;
 
     protected string $filter = NoteFilter::class;
 

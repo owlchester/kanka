@@ -21,8 +21,7 @@ class BookmarkController extends CrudController
     protected bool $tabCopy = false;
     protected bool $hasLimitCheck = true;
 
-    /** @var string */
-    protected $model = Bookmark::class;
+    protected string $model = Bookmark::class;
 
     /**  */
     protected string $datagridActions = BookmarkDatagridActions::class;
