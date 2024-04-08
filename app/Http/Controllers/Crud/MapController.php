@@ -12,7 +12,7 @@ class MapController extends CrudController
 {
     protected string $view = 'maps';
     protected string $route = 'maps';
-    protected $module = 'maps';
+    protected string $module = 'maps';
 
     protected string $model = Map::class;
 

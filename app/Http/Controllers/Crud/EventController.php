@@ -12,7 +12,7 @@ class EventController extends CrudController
 {
     protected string $view = 'events';
     protected string $route = 'events';
-    protected $module = 'events';
+    protected string $module = 'events';
 
     protected string $model = Event::class;
 

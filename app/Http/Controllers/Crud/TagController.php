@@ -12,7 +12,7 @@ class TagController extends CrudController
 {
     protected string $view = 'tags';
     protected string $route = 'tags';
-    protected $module = 'tags';
+    protected string $module = 'tags';
 
     protected string $model = Tag::class;
 

@@ -12,7 +12,7 @@ class JournalController extends CrudController
 {
     protected string $view = 'journals';
     protected string $route = 'journals';
-    protected $module = 'journals';
+    protected string $module = 'journals';
 
     protected string $model = Journal::class;
 

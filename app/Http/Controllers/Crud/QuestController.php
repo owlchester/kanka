@@ -12,7 +12,7 @@ class QuestController extends CrudController
 {
     protected string $view = 'quests';
     protected string $route = 'quests';
-    protected $module = 'quests';
+    protected string $module = 'quests';
 
     protected string $model = Quest::class;
 

@@ -47,6 +47,9 @@ class CrudController extends Controller
     /** Model class name for the object */
     protected string $model;
 
+    /** Name of the campaign module to test if it's enabled or not */
+    protected string $module;
+
     protected string $filter;
 
     /** */
@@ -633,7 +636,7 @@ class CrudController extends Controller
      */
     protected function moduleEnabled(): bool
     {
-        return empty($this->module) || $this->campaign->enabled($this->module);
+        return !isset($this->module) || $this->campaign->enabled($this->module);
     }
 
     /**

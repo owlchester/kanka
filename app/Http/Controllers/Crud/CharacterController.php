@@ -12,7 +12,7 @@ class CharacterController extends CrudController
 {
     protected string $view = 'characters';
     protected string $route = 'characters';
-    protected $module = 'characters';
+    protected string $module = 'characters';
 
     protected string $model = Character::class;
 

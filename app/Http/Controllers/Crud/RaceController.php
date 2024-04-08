@@ -12,7 +12,7 @@ class RaceController extends CrudController
 {
     protected string $view = 'races';
     protected string $route = 'races';
-    protected $module = 'races';
+    protected string $module = 'races';
 
     protected string $model = Race::class;
 

@@ -12,7 +12,7 @@ class ItemController extends CrudController
 {
     protected string $view = 'items';
     protected string $route = 'items';
-    protected $module = 'items';
+    protected string $module = 'items';
 
     protected string $model = Item::class;
 

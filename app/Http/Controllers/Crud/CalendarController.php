@@ -13,7 +13,7 @@ class CalendarController extends CrudController
 {
     protected string $view = 'calendars';
     protected string $route = 'calendars';
-    protected $module = 'calendars';
+    protected string $module = 'calendars';
 
     protected string $model = Calendar::class;
 

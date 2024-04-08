@@ -12,7 +12,7 @@ class LocationController extends CrudController
 {
     protected string $view = 'locations';
     protected string $route = 'locations';
-    protected $module = 'locations';
+    protected string $module = 'locations';
 
     protected string $model = Location::class;
 

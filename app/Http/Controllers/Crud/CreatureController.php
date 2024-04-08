@@ -12,7 +12,7 @@ class CreatureController extends CrudController
 {
     protected string $view = 'creatures';
     protected string $route = 'creatures';
-    protected $module = 'creatures';
+    protected string $module = 'creatures';
 
     protected string $model = Creature::class;
 
