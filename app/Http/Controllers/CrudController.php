@@ -27,7 +27,6 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 use LogicException;
 
@@ -685,7 +684,6 @@ class CrudController extends Controller
 
     /**
      * Determine if the layout is in the nice grid mode, or the old table mode
-     * @return string
      */
     protected function mode(): string
     {
@@ -722,7 +720,6 @@ class CrudController extends Controller
     }
     /**
      * Determine if the current layout should be nested or not
-     * @return bool
      */
     protected function isNested(): bool
     {

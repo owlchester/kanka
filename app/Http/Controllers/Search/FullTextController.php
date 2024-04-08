@@ -39,7 +39,7 @@ class FullTextController extends Controller
          * Prepare a lot of variables that will be shared over to the view
          * @var MiscModel $model
          */
-        
+
         $name = 'characters';
         $unfilteredCount = $base->count();
 
@@ -55,7 +55,7 @@ class FullTextController extends Controller
         }
 
         $mode = 'grid';
-        
+
         $forceMode = null;
 
         //$actions = $this->navActions;
@@ -74,14 +74,3 @@ class FullTextController extends Controller
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
