@@ -173,3 +173,15 @@ Route::post('/w/{campaign}/bragi', [App\Http\Controllers\Bragi\BragiController::
 
 Route::get('/w/{campaign}/confirm-delete', [App\Http\Controllers\ConfirmController::class, 'index'])->name('confirm-delete');
 Route::post('/w/{campaign}/vanity-validate', [App\Http\Controllers\Campaign\VanityController::class, 'index'])->name('campaign.vanity-validate');
+
+// Permission save
+Route::get('/w/{campaign}/webhooks', [App\Http\Controllers\Campaign\WebhookController::class, 'index'])->name('webhooks.index');
+Route::get('/w/{campaign}/webhooks/create', [App\Http\Controllers\Campaign\WebhookController::class, 'create'])->name('webhooks.create');
+Route::get('/w/{campaign}/webhooks/{webhook}/edit/', [App\Http\Controllers\Campaign\WebhookController::class, 'edit'])->name('webhooks.edit');
+Route::patch('/w/{campaign}/webhooks/{webhook}/update', [App\Http\Controllers\Campaign\WebhookController::class, 'update'])->name('webhooks.update');
+Route::patch('/w/{campaign}/webhooks/{webhook}/toggle', [App\Http\Controllers\Campaign\WebhookController::class, 'toggle'])->name('webhooks.toggle');
+Route::get('/w/{campaign}/webhooks/{webhook}/status', [App\Http\Controllers\Campaign\WebhookController::class, 'status'])->name('webhooks.status');
+Route::post('/w/{campaign}/webhooks/store', [App\Http\Controllers\Campaign\WebhookController::class, 'store'])->name('webhooks.store');
+Route::post('/w/{campaign}/webhooks/bulk', [App\Http\Controllers\Campaign\WebhookController::class, 'bulk'])->name('webhooks.bulk');
+Route::delete('/w/{campaign}/webhooks/{webhook}/destroy', [App\Http\Controllers\Campaign\WebhookController::class, 'destroy'])->name('webhooks.destroy');
+Route::get('/w/{campaign}/webhooks/{webhook}/test', [App\Http\Controllers\Campaign\WebhookController::class, 'test'])->name('webhooks.test');

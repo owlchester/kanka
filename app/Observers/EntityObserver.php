@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
+use App\Jobs\EntityWebhookJob;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\Tag;
@@ -187,6 +188,7 @@ class EntityObserver
         if (!request()->has('attr_name')) {
             $this->attributeService->applyEntityTemplates($entity);
         }
+        EntityWebhookJob::dispatch($entity, $entity->campaign, auth()->user(), 1);
     }
 
     /**
@@ -197,6 +199,7 @@ class EntityObserver
 
         // Queue job when an entity was updated
         EntityUpdatedJob::dispatch($entity);
+        EntityWebhookJob::dispatch($entity, $entity->campaign, auth()->user(), 2);
     }
 
     /**
@@ -235,6 +238,11 @@ class EntityObserver
         }
 
         $entity->save();
+    }
+
+    public function deleting(Entity $entity)
+    {
+        EntityWebhookJob::dispatch($entity, $entity->campaign, auth()->user(), 3);
     }
 
     /**

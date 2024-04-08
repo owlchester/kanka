@@ -74,6 +74,15 @@
                         ></x-sidebar.element>
                     </li>
                 @endif
+                @can('webhooks', $campaign)
+                    <li class="px-2 section-webhooks {{ $sidebar->activeCampaign('webhooks') }}">
+                        <x-sidebar.element
+                            :url="route('webhooks.index', [$campaign])"
+                            icon="fa-duotone fa-webhook"
+                            :text="__('campaigns.show.tabs.webhooks')"
+                        ></x-sidebar.element>
+                    </li>
+                @endif
                 </ul>
             </li>
             @endif
