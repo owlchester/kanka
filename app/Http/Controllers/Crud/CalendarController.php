@@ -8,23 +8,15 @@ use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Sanitizers\CalendarSanitizer;
-use App\Traits\TreeControllerTrait;
 
 class CalendarController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'calendars';
     protected string $route = 'calendars';
-    protected $module = 'calendars';
+    protected string $module = 'calendars';
 
+    protected string $model = Calendar::class;
 
-    /** @var string */
-    protected $model = Calendar::class;
-
-    /**  */
     protected string $filter = CalendarFilter::class;
 
     protected string $sanitizer = CalendarSanitizer::class;

@@ -10,15 +10,11 @@ use Illuminate\Http\Request;
 
 class DiceRollResultController extends CrudController
 {
-    /**
-     */
     protected string $view = 'dice_roll_results';
     protected string $route = 'dice_roll_results';
 
-    /** @var string Model */
-    protected $model = DiceRollResult::class;
+    protected string $model = DiceRollResult::class;
 
-    /** @var string Filter */
     protected string $filter = DiceRollResult::class;
 
     protected string $forceMode = 'table';

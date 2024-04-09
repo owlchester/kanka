@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CharacterFamily extends Model
 {
-    /** @var string[]  */
     protected $fillable = [
         'character_id',
         'family_id',

@@ -57,7 +57,7 @@
         @endif
         @if($models->hasPages())
         <div class="">
-            {{ $models->appends('parent_id', request()->get('parent_id'))->appends('m', 'table')->onEachSide(0)->links() }}
+            {{ $models->appends('parent_id', request()->get('parent_id'))->onEachSide(0)->links() }}
         </div>
         @endif
         {!! Form::hidden('entity', $name) !!}
@@ -69,7 +69,7 @@
     @endif
     </div>
 
-    <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.tree', $campaign) }}">
+    <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.index', $campaign) }}">
 @endsection
 
 @section('modals')

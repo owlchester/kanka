@@ -59,7 +59,6 @@ TEXT
         'is_discreet'                       => 'Discreet',
         'locale'                            => 'Locale',
         'name'                              => 'Name',
-        'nested'                            => 'Default entity lists to nested when available',
         'open'                              => 'Open to applications',
         'past_featured'                     => 'Previously featured campaign',
         'post_collapsed'                    => 'New posts on entities are collapsed by default.',
@@ -452,7 +451,6 @@ TEXT
             'entity_history'    => 'Entity\'s history logs',
             'entity_image'      => 'Entity\'s image',
             'member_list'       => 'Campaign\'s member list',
-            'nested'            => 'Default lists layout',
             'post_collapsed'    => 'New post default collapsed value',
         ],
         'helpers'           => [
@@ -468,10 +466,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Only visible to campaign admins',
             'visible'   => 'Visible to members',
-        ],
-        'nested'            => [
-            'nested'    => 'Nested',
-            'user'      => 'User\'s default',
         ],
         'other'             => 'Other',
     ],

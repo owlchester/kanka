@@ -68,7 +68,6 @@ class Entity extends Model
     use SortableTrait;
     use TooltipTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',
@@ -240,9 +239,8 @@ class Entity extends Model
     }
 
     /**
-     * @param array|int $types
      */
-    public function isType($types): bool
+    public function isType(array|int $types): bool
     {
         if (!is_array($types)) {
             $types = [$types];

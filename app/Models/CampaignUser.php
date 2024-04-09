@@ -31,7 +31,6 @@ class CampaignUser extends Pivot
 
     protected array $sortable = ['user.name', 'created_at', 'last_login'];
 
-    /** @var string[]  */
     protected $fillable = ['user_id', 'campaign_id'];
 
     /**
@@ -96,7 +95,7 @@ class CampaignUser extends Pivot
             ->distinct()
             ->select($this->getTable() . '.*')
             ->leftJoin('campaign_role_users as cru', 'cru.user_id', $this->getTable() . '.user_id')
-            ->leftJoin('campaign_roles as cr',  function ($on) {
+            ->leftJoin('campaign_roles as cr', function ($on) {
                 $on->on('cr.id', 'cru.campaign_role_id')
                     ->whereRaw('cr.campaign_id = ' . $this->getTable() . '.campaign_id');
             })

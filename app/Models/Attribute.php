@@ -55,7 +55,6 @@ class Attribute extends Model
     public const TYPE_NUMBER_ID = 6;
     public const TYPE_LIST_ID = 7;
 
-    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'name',

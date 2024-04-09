@@ -28,7 +28,6 @@ class EntityFile extends Model
     use EntityAsset;
     use VisibilityIDTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'name',

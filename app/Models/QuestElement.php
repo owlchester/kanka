@@ -35,7 +35,6 @@ class QuestElement extends Model
     use SimpleSortableTrait;
     use VisibilityIDTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'quest_id',
         'name',

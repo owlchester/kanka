@@ -51,7 +51,6 @@ class Post extends Model
     use Searchable;
     use VisibilityIDTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'name',

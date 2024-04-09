@@ -30,10 +30,6 @@ class AttributeTemplate extends MiscModel
     use HasRecursiveRelationships;
     use SoftDeletes;
 
-    /**
-     * Fields that can be mass-assigned
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'slug',
@@ -114,6 +110,8 @@ class AttributeTemplate extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
+            'attributeTemplate',
+            'entityType',
             'children' => function ($sub) {
                 $sub->select('id', 'attribute_template_id');
             }

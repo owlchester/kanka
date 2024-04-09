@@ -74,11 +74,6 @@ class User extends \Illuminate\Foundation\Auth\User
     use UserSetting;
     use UserTokens;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'email',

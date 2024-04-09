@@ -156,27 +156,6 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             <div class="{{ $boxClass }}">
                 <div class="flex gap-2">
                     <h2 class="text-base grow">
-                        <x-icon class="fa-solid fa-folder"></x-icon>
-                        {{ __('settings/appearance.fields.default-nested') }}
-                    </h2>
-                    <a href="https://docs.kanka.io/en/latest/account/appearance.html#nested-lists-layout" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                        <x-icon class="question"></x-icon>
-                        <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
-                    </a>
-                </div>
-                <p class="text-sm grow">
-                    {{ __('settings/appearance.helpers.default-nested') }}
-                    {{ __('settings/appearance.helpers.overridable')}}
-                </p>
-                {!! Form::select('default_nested', [
-                        0 => __('settings/appearance.nested.default'),
-                        1 => __('settings/appearance.nested.nested'),
-                    ], null, ['class' => ' flex self-end w-full border rounded p-2']) !!}
-            </div>
-
-            <div class="{{ $boxClass }}">
-                <div class="flex gap-2">
-                    <h2 class="text-base grow">
                         <x-icon class="fa-solid fa-at"></x-icon>
                         {{ __('settings/appearance.fields.mentions') }}
                     </h2>

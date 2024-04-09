@@ -33,10 +33,10 @@ class EntitySearchService
 
         $queries = [
             (new SearchQuery())
-            ->setIndexUid('entities')
-            ->setQuery($term)
-            ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
-            ->setLimit(10)
+                ->setIndexUid('entities')
+                ->setQuery($term)
+                ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
+                ->setLimit(10)
         ];
 
         if ($term2) {

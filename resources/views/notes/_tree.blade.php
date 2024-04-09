@@ -30,7 +30,7 @@
         ]
     ])
     ->options(    [
-        'route' => 'notes.tree',
+        'route' => 'notes.index',
         'baseRoute' => 'notes',
         'trans' => 'notes.fields.',
         'row' => [

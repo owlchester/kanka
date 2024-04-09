@@ -7,22 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreOrganisation;
 use App\Models\Campaign;
 use App\Models\Organisation;
-use App\Traits\TreeControllerTrait;
 
 class OrganisationController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'organisations';
     protected string $route = 'organisations';
-    protected $module = 'organisations';
+    protected string $module = 'organisations';
 
-    /** @var string */
-    protected $model = Organisation::class;
+    protected string $model = Organisation::class;
 
-    /** @var string Filter */
     protected string $filter = OrganisationFilter::class;
 
     /**

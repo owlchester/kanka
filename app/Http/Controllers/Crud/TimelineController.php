@@ -7,23 +7,17 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTimeline;
 use App\Models\Campaign;
 use App\Models\Timeline;
-use App\Traits\TreeControllerTrait;
 
 class TimelineController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'timelines';
     protected string $route = 'timelines';
 
-    /** @var string */
-    protected $model = Timeline::class;
+    protected string $model = Timeline::class;
 
     protected string $filter = TimelineFilter::class;
 
-    protected $module = 'timelines';
+    protected string $module = 'timelines';
 
     /**
      */

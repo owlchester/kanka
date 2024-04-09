@@ -18,7 +18,7 @@ $activeFilters = $filterService->activeFiltersCount();
     </div>
 
     @if ($activeFilters > 0)
-        <a href="{{ route($route, [$campaign, 'm' => $mode, 'reset-filter' => 'true']) }}" class="p-1.5">
+        <a href="{{ route($route, [$campaign, 'reset-filter' => 'true']) }}" class="p-1.5">
             <i class="fa-solid fa-eraser" aria-hidden="true"></i> {{ __('crud.filters.clear') }}
         </a>
     @endif

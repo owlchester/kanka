@@ -25,7 +25,6 @@ class CampaignBoost extends Model
     use Prunable;
     use SoftDeletes;
 
-    /** @var string[]  */
     protected $fillable = ['user_id', 'campaign_id'];
 
     /**

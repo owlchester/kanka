@@ -47,7 +47,6 @@ return [
         'center'                => 'Changing the following values will control which area of the map is focused on. Leaving these values empty will result in the center of the map being focued on.',
         'centering'             => 'Centering on a marker will take priority on default coordinates.',
         'chunked_zoom'          => 'Automatically cluster markers together when they are close to each other.',
-        'descendants'           => 'This list contains all maps which are descendants of this map, and not only those directly under it.',
         'distance_measure'      => 'Giving the map a distance measurement will enable the measurement tool in the exploration mode.',
         'distance_measure_2'    => 'For 100 pixels to measure 1 kilometer, input a value of 0.0041.',
         'grid'                  => 'Define a grid size that will be displayed in the exploration mode.',
@@ -57,7 +56,6 @@ return [
         'max_zoom'              => 'The most a map can be zoomed in on. The default value is :default, while the highest allowed value is :max.',
         'min_zoom'              => 'The most a map can be zoomed out of. The default value is :default, while the lowest allowed value is :min.',
         'missing_image'         => 'Save the map with an image before being able to add layers and markers.',
-        'nested_without'        => 'Displaying all maps that don\'t have a parent map. Click on a row to see the children maps.',
     ],
     'panels'        => [
         'groups'    => 'Groups',

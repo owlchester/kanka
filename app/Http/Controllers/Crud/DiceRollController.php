@@ -14,19 +14,14 @@ use Illuminate\Support\Facades\Auth;
 
 class DiceRollController extends CrudController
 {
-    /**
-     */
     protected string $view = 'dice_rolls';
     protected string $route = 'dice_rolls';
-    protected $module = 'dice_rolls';
+    protected string $module = 'dice_rolls';
 
-    /** @var string Model */
-    protected $model = DiceRoll::class;
+    protected string $model = DiceRoll::class;
 
-    /** @var string Filter */
     protected string $filter = DiceRollFilter::class;
 
-    /**  */
     protected string $datagridActions = DeprecatedDatagridActions::class;
 
     protected string $forceMode = 'table';

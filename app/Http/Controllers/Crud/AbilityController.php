@@ -7,22 +7,14 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreAbility;
 use App\Models\Ability;
 use App\Models\Campaign;
-use App\Traits\TreeControllerTrait;
 
 class AbilityController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'abilities';
     protected string $route = 'abilities';
     protected string $module = 'abilities';
 
-    /**
-     * Crud models
-     */
-    protected $model = Ability::class;
+    protected string $model = Ability::class;
 
     protected string $filter = AbilityFilter::class;
 

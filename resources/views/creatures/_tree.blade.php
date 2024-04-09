@@ -47,7 +47,7 @@
         ]
     ])
     ->options([
-        'route' => 'creatures.tree',
+        'route' => 'creatures.index',
         'baseRoute' => 'creatures',
         'trans' => 'creatures.fields.',
         'row' => [

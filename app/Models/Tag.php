@@ -69,7 +69,6 @@ class Tag extends MiscModel
         'is_hidden',
     ];
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',
@@ -184,7 +183,6 @@ class Tag extends MiscModel
         foreach ($this->entities->pluck('id')->toArray() as $entity) {
             $children[] = $entity;
         }
-        // @phpstan-ignore-next-line
         foreach ($this->descendants as $desc) {
             foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
                 $children[] = $entity;

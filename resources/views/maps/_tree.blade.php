@@ -36,7 +36,7 @@
         ]
     ])
     ->options([
-        'route' => 'maps.tree',
+        'route' => 'maps.index',
         'baseRoute' => 'maps',
         'trans' => 'maps.fields.',
         'row' => [

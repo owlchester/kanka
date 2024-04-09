@@ -57,7 +57,7 @@ trait TreeControllerTrait
 
         if ($mode === 'table') {
             $this->addNavAction(
-                route($this->route . '.index', [$this->campaign, 'm' => 'table']),
+                route($this->route . '.index', [$this->campaign]),
                 '<i class="fa-solid fa-list" aria-hidden="true"></i> ' . __('entities.' . $this->view)
             );
         }
@@ -65,9 +65,10 @@ trait TreeControllerTrait
         $base = $model
             ->preparedSelect()
             ->preparedWith()
-            ->search(request()->get('search'))
+            ->search($this->filterService->search())
             ->order($this->filterService->order())
-            ->distinct();
+            ->distinct()
+        ;
 
         /** @var Tag $model **/
         $parentKey = $model->getParentKeyName();

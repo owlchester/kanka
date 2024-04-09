@@ -32,7 +32,7 @@
         ]
     ])
     ->options(    [
-        'route' => 'locations.tree',
+        'route' => 'locations.index',
         'baseRoute' => 'locations',
         'trans' => 'locations.fields.',
         'row' => [

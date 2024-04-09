@@ -7,22 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTag;
 use App\Models\Campaign;
 use App\Models\Tag;
-use App\Traits\TreeControllerTrait;
 
 class TagController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'tags';
     protected string $route = 'tags';
-    protected $module = 'tags';
+    protected string $module = 'tags';
 
-    /** @var string Model */
-    protected $model = Tag::class;
+    protected string $model = Tag::class;
 
-    /** @var string Filter */
     protected string $filter = TagFilter::class;
 
     /**

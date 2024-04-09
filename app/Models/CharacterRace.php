@@ -12,7 +12,6 @@ class CharacterRace extends Model
 {
     public $table = 'character_race';
 
-    /** @var string[]  */
     protected $fillable = [
         'character_id',
         'race_id',

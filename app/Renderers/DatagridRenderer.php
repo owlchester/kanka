@@ -236,7 +236,6 @@ class DatagridRenderer
 
         $routeOptions = [
             'campaign' => $this->campaign,
-            'm' => 'table',
             'order' => $field ,
             'page' => request()->get('page')
         ];

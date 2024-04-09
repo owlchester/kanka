@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Support\Facades\Auth;
 use BaconQrCode\Renderer\ImageRenderer;
@@ -14,11 +15,6 @@ class PasswordSecurity extends Model
 {
     protected $table = 'password_securities';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'user_id',
         'google2fa_enable',
@@ -28,7 +24,7 @@ class PasswordSecurity extends Model
     /**
      * A Google2FA belongsTo a user
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');
     }
@@ -66,7 +62,6 @@ class PasswordSecurity extends Model
         );
         $writer = new Writer($renderer);
 
-        $qrImage = $writer->writeString($google2FaUrl);
-        return $qrImage;
+        return $writer->writeString($google2FaUrl);
     }
 }
