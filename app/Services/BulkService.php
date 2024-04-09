@@ -357,7 +357,6 @@ class BulkService
                 continue;
             }
 
-            /** @var Collection $existingTags */
             $tagAction = Arr::get($fields, 'bulk-tagging', 'add');
             if ($tagAction === 'remove') {
                 $entity->entity->tags()->detach($tagIds);

@@ -22,7 +22,6 @@ class DiceRoll extends MiscModel
     use HasFilters;
     use SoftDeletes;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',

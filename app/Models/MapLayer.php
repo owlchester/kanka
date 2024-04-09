@@ -38,7 +38,6 @@ class MapLayer extends Model
     use SortableTrait;
     use VisibilityIDTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'map_id',
         'name',

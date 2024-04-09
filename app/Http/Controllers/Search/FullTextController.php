@@ -23,8 +23,10 @@ class FullTextController extends Controller
         $term = request()->term;
         $term2 = null;
 
+        /** @var Entity|null $entity */
         $entity = Entity::where('name', request()->term)->first();
         if ($entity) {
+            // @phpstan-ignore-next-line
             $term2 = $entity->type() . ':' . $entity->id;
         }
 
@@ -37,17 +39,16 @@ class FullTextController extends Controller
 
         /**
          * Prepare a lot of variables that will be shared over to the view
-         * @var MiscModel $model
          */
 
-        $name = 'characters';
+        $name = 'entities';
         $unfilteredCount = $base->count();
 
         $models = $base->paginate(); //We get the entities here
 
         // If the current page is higher than the max amount of pages, redirect the user
         if ((int) request()->get('page', 1) > $models->lastPage()) {
-            return redirect()->route('search.fultext', [
+            return redirect()->route('search.fulltext', [
                 $campaign,
                 'page' => $models->lastPage(),
                 'order' => request()->get('order')
@@ -57,8 +58,6 @@ class FullTextController extends Controller
         $mode = 'grid';
 
         $forceMode = null;
-
-        //$actions = $this->navActions;
 
         $data = compact(
             'campaign',

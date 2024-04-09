@@ -6,6 +6,7 @@ use App\Models\Concerns\Blameable;
 use App\Models\Scopes\CalendarWeatherScopes;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CalendarWeather
@@ -30,14 +31,8 @@ class CalendarWeather extends Model
     use CalendarWeatherScopes;
     use VisibilityIDTrait;
 
-    /**
-     * @var string
-     */
     public $table = 'calendar_weather';
 
-    /**
-     * @var string[]
-     */
     public $fillable = [
         'calendar_id',
         'weather',
@@ -52,16 +47,11 @@ class CalendarWeather extends Model
         'name',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function calendar()
+    public function calendar(): BelongsTo
     {
         return $this->belongsTo(Calendar::class);
     }
 
-    /**
-     */
     public function tooltip(): string
     {
         return
@@ -72,8 +62,6 @@ class CalendarWeather extends Model
         ;
     }
 
-    /**
-     */
     public function weatherName(): string
     {
         if (!empty($this->name)) {

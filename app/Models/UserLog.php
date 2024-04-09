@@ -77,7 +77,6 @@ class UserLog extends Model
      */
     public $table = 'user_logs';
 
-    /** @var string[]  */
     protected $fillable = [
         'user_id',
         'type_id',

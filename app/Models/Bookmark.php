@@ -48,7 +48,6 @@ class Bookmark extends MiscModel
     use Privatable;
     use Taggable;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',

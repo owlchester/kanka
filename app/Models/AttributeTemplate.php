@@ -30,10 +30,6 @@ class AttributeTemplate extends MiscModel
     use HasRecursiveRelationships;
     use SoftDeletes;
 
-    /**
-     * Fields that can be mass-assigned
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'slug',

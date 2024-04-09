@@ -48,7 +48,6 @@ class OrganisationMember extends Model
 
     protected $filterableColumns = ['organisation_id'];
 
-    /** @var string[]  */
     protected $fillable = [
         'organisation_id',
         'character_id',

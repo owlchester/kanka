@@ -12,7 +12,6 @@ class DiceRollResult extends MiscModel
     use HasFilters;
 
 
-    /** @var string[]  */
     protected $fillable = [
         'dice_roll_id',
         'created_by',

@@ -39,7 +39,6 @@ class Creature extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'campaign_id',

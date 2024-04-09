@@ -21,7 +21,6 @@ class CampaignInvite extends MiscModel
      */
     public $table = 'campaign_invites';
 
-    /** @var string[]  */
     protected $fillable = [
         'role_id',
         'campaign_id',

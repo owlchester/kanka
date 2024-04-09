@@ -47,7 +47,6 @@ class EntityEvent extends MiscModel
     /** @var string|null Cached readable date */
     protected string|null $readableDate = null;
 
-    /** @var string[]  */
     protected $fillable = [
         'calendar_id',
         'entity_id',

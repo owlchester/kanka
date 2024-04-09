@@ -20,7 +20,6 @@ class CampaignGenre extends Pivot
      */
     public $table = 'campaign_genre';
 
-    /** @var string[]  */
     protected $fillable = ['campaign_id', 'genre_id'];
 
     /**

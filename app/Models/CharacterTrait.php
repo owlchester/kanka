@@ -25,7 +25,6 @@ class CharacterTrait extends Model
     public const SECTION_APPEARANCE = 1;
     public const SECTION_PERSONALITY = 2;
 
-    /** @var string[]  */
     protected $fillable = [
         'character_id',
         'name',

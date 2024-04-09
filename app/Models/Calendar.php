@@ -47,7 +47,6 @@ class Calendar extends MiscModel
     use HasRecursiveRelationships;
     use SoftDeletes;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'name',

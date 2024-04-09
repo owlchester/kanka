@@ -106,7 +106,6 @@ class CrudController extends Controller
             return redirect()->route('dashboard', $this->campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    // @phpstan-ignore-next-line
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),
                 ])
             );
@@ -116,9 +115,9 @@ class CrudController extends Controller
          * Prepare a lot of variables that will be shared over to the view
          * @var MiscModel $model
          */
-        $this->request = $request;
         $model = new $this->model();
         $campaign = $this->campaign;
+        $this->request = $request;
         $this->filterService
             ->request($request);
         if (method_exists($model, 'explicitFilters')) {
@@ -170,6 +169,7 @@ class CrudController extends Controller
                 }
             }
         } elseif ($nested) {
+            // @phpstan-ignore-next-line
             $base->whereNull($model->getTable() . '.' . $model->getParentKeyName());
         }
 

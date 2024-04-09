@@ -67,7 +67,6 @@ class Map extends MiscModel
     public const CHUNKING_FINISHED = 2;
     public const CHUNKING_ERROR = 3;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'name',
@@ -602,8 +601,8 @@ class Map extends MiscModel
             $height = $xml->attributes()->height;
         } else {
             $image = imagecreatefromstring($contents);
-            $width = imagesx($image) ?? null;
-            $height = imagesy($image) ?? null;
+            $width = imagesx($image);
+            $height = imagesy($image);
         }
 
         $this->height = $height;

@@ -18,7 +18,6 @@ class EntityTag extends Model
 {
     use HasFactory;
 
-    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'tag_id',

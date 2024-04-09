@@ -43,7 +43,6 @@ class TimelineElement extends Model
     use Searchable;
     use VisibilityIDTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'timeline_id',
         'era_id',
