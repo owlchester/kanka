@@ -231,7 +231,7 @@ class TimelineElement extends Model
             })
             ->has('timeline')
             ->has('timeline.entity')
-            ->with('timeline', 'timeline.entity');
+            ->with(['timeline', 'timeline.entity']);
     }
 
     public function toSearchableArray()

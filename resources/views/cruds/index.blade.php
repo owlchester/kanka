@@ -26,19 +26,19 @@
             <i class="fa-solid fa-filter" aria-hidden="true"></i>
             {{ __('filters.helpers.guest') }}
         </div>
-    @else        
+    @else
         @if (isset($route))
             <div class="flex flex-stretch gap-2 items-center">
                     @includeWhen(isset($model) && $model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
                     @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
             </div>
-        @endif    
+        @endif
     @endif
 
     @include('partials.ads.top')
 
     @if (!isset($mode) || $mode === 'grid')
-        @include('cruds.datagrids.explore', ['sub' => 'index'])
+        @include('cruds.datagrids.explore', ['route' => $route . '.index'])
     @else
         @if (isset($entityTypeId))
         {!! Form::open(['url' => route('bulk.print', [$campaign, 'entity_type' => $entityTypeId]), 'method' => 'POST', 'class' => 'flex flex-col gap-5']) !!}

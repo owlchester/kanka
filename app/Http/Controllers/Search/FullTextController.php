@@ -7,6 +7,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Search\EntitySearchService;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class FullTextController extends Controller
 {
@@ -20,56 +21,48 @@ class FullTextController extends Controller
     public function index(Campaign $campaign, Request $request)
     {
         $this->authorize('access', $campaign);
-        $term = request()->term;
+        $term = strip_tags($request->get('term'));
         $term2 = null;
 
+        $data = [
+            'campaign' => $campaign,
+            'models' => [],
+            'term' => $term,
+            'route' => 'search.fulltext'
+        ];
+
+        if (empty($term)) {
+            return view('search.fulltext')->with($data);
+        }
+
         /** @var Entity|null $entity */
-        $entity = Entity::where('name', request()->term)->first();
+        $entity = Entity::where('name', $term)->first();
         if ($entity) {
             // @phpstan-ignore-next-line
             $term2 = $entity->type() . ':' . $entity->id;
         }
 
+        // Get entity ids from meilisearch
         $results = $this->service
             ->campaign($campaign)
             ->search($term, $term2);
         $results = array_column($results, 'id');
 
-        $base = Entity::whereIn('id', $results)->orderBy('name');
-
-        /**
-         * Prepare a lot of variables that will be shared over to the view
-         */
-
-        $name = 'entities';
-        $unfilteredCount = $base->count();
-
-        $models = $base->paginate(); //We get the entities here
+        // Then get the actual entities from the campaign
+        $models = Entity::whereIn('id', $results)
+            ->orderBy('name')
+            ->paginate();
 
         // If the current page is higher than the max amount of pages, redirect the user
-        if ((int) request()->get('page', 1) > $models->lastPage()) {
+        if ((int) $request->get('page', 1) > $models->lastPage()) {
             return redirect()->route('search.fulltext', [
                 $campaign,
                 'page' => $models->lastPage(),
-                'order' => request()->get('order')
+                'order' => $request->get('order')
             ]);
         }
 
-        $mode = 'grid';
-
-        $forceMode = null;
-
-        $data = compact(
-            'campaign',
-            'models',
-            'name',
-            'unfilteredCount',
-            'mode',
-            'forceMode',
-        );
-        $data['titleKey'] = __('entities.entities');
-        return view('cruds.index', $data);
+        $data['models'] = $models;
+        return view('search.fulltext')->with($data);
     }
-
-
 }
