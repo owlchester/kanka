@@ -3,7 +3,6 @@
 namespace App\Services\Entity;
 
 use App\Models\Tag;
-use App\Models\Webhook;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
