@@ -44,14 +44,11 @@ class Journal extends Layout
                     return $model->author->tooltipedLink();
                 },
             ],
-            'parent_journal' => [
-                'key' => 'journal.name',
+            'parent' => [
+                'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => function ($model) {
-                    if (!$model->journal) {
-                        return null;
-                    }
-                    return $model->journal->tooltipedLink();
+                    return $model->parent?->tooltipedLink();
                 },
                 'visible' => function () {
                     return !request()->has('parent_id');

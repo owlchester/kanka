@@ -1,9 +1,6 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
+<?php /** @var \App\Models\Tag $model */ ?>
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -13,6 +10,9 @@
         'name',
         'type',
         [
+            'type' => 'parent',
+        ],
+        [
             'label' => __('calendars.fields.colour'),
             'field' => 'tag.colour',
             'render' => function ($model) {
@@ -21,15 +21,6 @@
                     return '';
                 }
                 return '<span class="p-1 rounded text-xs ' . $model->colourClass() . '">' . __('colours.' . $model->colour) . '</span>';
-            }
-        ],
-        [
-            'label' => __('crud.fields.parent'),
-            'field' => 'tag.name',
-            'render' => function($model) {
-                if ($model->tag) {
-                    return $model->tag->tooltipedLink();
-                }
             }
         ],
         [

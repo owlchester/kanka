@@ -1,9 +1,6 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
+<?php /** @var \App\Models\Family $model */ ?>
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -13,13 +10,7 @@
         'name',
         'type',
         [
-            'label' => __('crud.fields.parent'),
-            'field' => 'family.name',
-            'render' => function($model) {
-                if ($model->family) {
-                    return $model->family->tooltipedLink();
-                }
-            }
+            'type' => 'parent',
         ],
         [
             'type' => 'location',

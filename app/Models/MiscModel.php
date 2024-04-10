@@ -66,11 +66,6 @@ abstract class MiscModel extends Model
     protected string $entityType;
 
     /**
-     * Fields that can be ordered on
-     */
-    protected array $sortableColumns = [];
-
-    /**
      * Explicit fields for filtering.
      * Ex. ['sex']
      * @var array
@@ -659,6 +654,11 @@ abstract class MiscModel extends Model
 
     public function toSearchableArray()
     {
+        // Some models like DiceRolls have no entry, so don't go into scout
+        $fillable = $this->getFillable();
+        if (!in_array('entry', $fillable)) {
+            return [];
+        }
         return [
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity->id,

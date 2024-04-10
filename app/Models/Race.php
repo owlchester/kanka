@@ -53,14 +53,10 @@ class Race extends MiscModel
      */
     protected string $entityType = 'race';
 
-    protected array $sortableColumns = [
-        'race.name',
-    ];
-
     protected array $sortable = [
         'name',
         'type',
-        'race.name',
+        'parent.name',
     ];
 
     /**
@@ -98,8 +94,12 @@ class Race extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'race',
-            'race.entity',
+            'parent' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
             'races' => function ($sub) {
                 $sub->select('id', 'name', 'race_id');
             },

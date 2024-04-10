@@ -77,12 +77,15 @@ class Character extends MiscModel
         'sex',
         'is_dead'
     ];
+
     protected array $sortable = [
         'name',
         'type',
         'location.name',
         'is_dead',
     ];
+
+    protected array $exploreGridFields = ['is_dead'];
 
     /**
      * Entity type

@@ -9,11 +9,11 @@ use App\Models\Entity;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\MiscModel;
-use App\Models\Relation;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Collective\Html\FormFacade as Form;
@@ -174,6 +174,15 @@ class DatagridRenderer
                     'entity.name',
                     !empty($column['label']) ? $column['label'] : __('crud.fields.entity')
                 );
+            } elseif ($type == 'parent') {
+                $class .= ' ' . $this->hidden;
+                if (!empty($this->nestedFilter)) {
+                    return null;
+                }
+                $html = $this->route(
+                    Arr::get($column, 'field', 'parent.name'),
+                    !empty($column['label']) ? $column['label'] : __('crud.fields.parent')
+                );
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
                 if (!$this->user || !UserCache::user($this->user)->admin()) {
@@ -288,7 +297,7 @@ class DatagridRenderer
 
     /**
      */
-    private function renderRow(MiscModel|Relation $model): string
+    private function renderRow(Model $model): string
     {
         $useEntity = $this->getOption('disableEntity') !== true;
         // Should never happen...
@@ -300,10 +309,13 @@ class DatagridRenderer
             . (!empty($model->type) ? 'data-type="' . Str::slug($model->type) . '" ' : null)
             // @phpstan-ignore-next-line
             . ($useEntity ? 'data-entity-id="' . $model->entity->id . '" data-entity-type="' . $model->entity->type() . '"' : null);
-        if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
+        /*if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
             foreach ($this->options['row']['data'] as $name => $data) {
                 $html .= ' ' . $name . '="' . $data($model) . '"';
             }
+        }*/
+        if (!empty($this->nestedFilter) && method_exists($model, 'children')) {
+            $html .= ' data-children="' . $model->children->count() . '"';
         }
         $html .= '>';
 
@@ -391,6 +403,14 @@ class DatagridRenderer
                 $class = $this->hidden;
                 if ($model->entity) {
                     $content = $model->entity->tooltipedLink();
+                }
+            } elseif ($type == 'parent') {
+                $class = $this->hidden;
+                if (!empty($this->nestedFilter)) {
+                    return null;
+                }
+                if ($model->parent) {
+                    $content = $model->parent->tooltipedLink();
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private

@@ -28,13 +28,10 @@ class Race extends Layout
                 'label' => 'crud.fields.type',
             ],
             'race' => [
-                'key' => 'race.name',
+                'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => function ($model) {
-                    if (!$model->race) {
-                        return null;
-                    }
-                    return $model->race->tooltipedLink();
+                    return $model->parent?->tooltipedLink();
                 },
             ],
             'characters' => [

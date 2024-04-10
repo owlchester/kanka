@@ -124,6 +124,7 @@ class DiceRoll extends MiscModel
             'character' => function ($sub) {
                 $sub->select('id', 'name');
             },
+            'character.entity',
         ]);
     }
 }

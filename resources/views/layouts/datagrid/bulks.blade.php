@@ -1,4 +1,4 @@
-<?php /** @var \App\Renderers\DatagridRenderer2 $datagrid */
+<?php
 use App\Facades\Datagrid;
 $hasOthers = false;
 ?>

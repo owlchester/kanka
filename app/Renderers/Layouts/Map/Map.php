@@ -28,13 +28,10 @@ class Map extends Layout
                 'label' => 'crud.fields.type',
             ],
             'map' => [
-                'key' => 'map.name',
+                'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => function ($model) {
-                    if (!$model->map) {
-                        return null;
-                    }
-                    return $model->map->tooltipedLink();
+                    return $model->parent?->tooltipedLink();
                 },
                 'visible' => function () {
                     return !request()->has('map_id');

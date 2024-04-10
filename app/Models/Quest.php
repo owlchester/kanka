@@ -60,6 +60,7 @@ class Quest extends MiscModel
         'type',
         'date',
         'is_completed',
+        'parent.name',
     ];
 
     /**
@@ -75,7 +76,6 @@ class Quest extends MiscModel
         'instigator.name',
         'is_completed',
         'calendar_date',
-        'quest.name',
     ];
 
     /**
@@ -106,6 +106,8 @@ class Quest extends MiscModel
         'date',
     ];
 
+    protected array $exploreGridFields = ['is_completed'];
+
     /**
      * Performance with for datagrids
      */
@@ -120,8 +122,12 @@ class Quest extends MiscModel
             'quests',
             'instigator',
             //'elements',
-            'quest',
-            'quest.entity',
+            'parent' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
             'quests',
             'children' => function ($sub) {
                 $sub->select('id', 'quest_id');

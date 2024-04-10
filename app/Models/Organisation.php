@@ -53,7 +53,7 @@ class Organisation extends MiscModel
     protected array $sortable = [
         'name',
         'type',
-        'organisation.name',
+        'parent.name',
         'is_defunct'
     ];
 
@@ -66,7 +66,6 @@ class Organisation extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
-        'organisation.name',
         'location.name',
         'is_defunct',
     ];
@@ -83,6 +82,8 @@ class Organisation extends MiscModel
         'location_id',
         'is_defunct',
     ];
+
+    protected array $exploreGridFields = ['is_defunct'];
 
     /**
      * Nullable values (foreign keys)
@@ -106,8 +107,12 @@ class Organisation extends MiscModel
                 'entity.image',
                 'location',
                 'location.entity',
-                'organisation',
-                'organisation.entity',
+                'parent' => function ($sub) {
+                    $sub->select('id', 'name');
+                },
+                'parent.entity' => function ($sub) {
+                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                },
                 'members',
                 'organisations',
                 'children' => function ($sub) {

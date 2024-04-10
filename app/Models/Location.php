@@ -57,17 +57,11 @@ class Location extends MiscModel
         'is_private',
     ];
 
-    /**
-     * Fields that can be sorted on
-     */
-    protected array $sortableColumns = [
-        'location.name',
-    ];
 
     protected array $sortable = [
         'name',
         'type',
-        'location.name',
+        'parent.name',
     ];
 
     /**
@@ -103,8 +97,11 @@ class Location extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'location' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'children' => function ($sub) {
                 $sub->select('id', 'location_id');

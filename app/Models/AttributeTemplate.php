@@ -110,7 +110,7 @@ class AttributeTemplate extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'attributeTemplate',
+            'parent',
             'entityType',
             'children' => function ($sub) {
                 $sub->select('id', 'attribute_template_id');

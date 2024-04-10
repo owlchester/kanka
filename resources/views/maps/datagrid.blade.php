@@ -1,9 +1,5 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
-
+<?php /** @var \App\Models\Map $model */ ?>
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -12,6 +8,9 @@
         // Name
         'name',
         'type',
+        [
+            'type' => 'parent',
+        ],
         [
             'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '"></i>',
             'render' => function($model) {
@@ -22,15 +21,6 @@
         [
             'type' => 'location',
             'visible' => $campaign->enabled('locations'),
-        ],
-        [
-            'label' => __('crud.fields.parent'),
-            'field' => 'map.name',
-            'render' => function($model) {
-                if ($model->map) {
-                    return $model->map->tooltipedLink();
-                }
-            }
         ],
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps')),

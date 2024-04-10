@@ -97,7 +97,7 @@ class Map extends MiscModel
     protected array $sortable = [
         'name',
         'type',
-        'map.name',
+        'parent.name',
     ];
 
     /**
@@ -147,6 +147,8 @@ class Map extends MiscModel
      */
     public array $apiWith = ['groups', 'layers'];
 
+    protected array $exploreGridFields = ['is_real'];
+
     /**
      * Parent ID used for the Node Trait
      * @return string
@@ -169,10 +171,10 @@ class Map extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'map' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'map.entity' => function ($sub) {
+            'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'maps' => function ($sub) {

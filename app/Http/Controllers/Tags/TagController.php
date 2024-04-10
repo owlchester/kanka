@@ -36,7 +36,10 @@ class TagController extends Controller
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
-            ->with(['entity', 'entity.tags', 'entity.image', 'tag', 'tag.entity'])
+            ->with([
+                'entity', 'entity.image',
+                'parent', 'parent.entity',
+            ])
             ->paginate();
 
         if (request()->ajax()) {

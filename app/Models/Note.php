@@ -56,8 +56,6 @@ class Note extends MiscModel
         'base',
     ];
 
-
-
     /**
      * Performance with for datagrids
      */
@@ -70,10 +68,10 @@ class Note extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'note' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'note.entity' => function ($sub) {
+            'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'notes' => function ($sub) {

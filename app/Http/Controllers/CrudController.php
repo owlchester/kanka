@@ -14,6 +14,7 @@ use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\MiscModel;
+use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\MultiEditingService;
 use App\Services\FilterService;
@@ -52,8 +53,8 @@ class CrudController extends Controller
 
     protected string $filter;
 
-    /** */
     protected FilterService $filterService;
+    protected DatagridRenderer $datagrid;
 
     /** If the permissions tab and pane is enabled or not. */
     protected bool $tabPermissions = true;
@@ -93,6 +94,7 @@ class CrudController extends Controller
     {
         $this->middleware('campaign.member');
         $this->filterService = new FilterService();
+        $this->datagrid = new DatagridRenderer();
     }
 
     public function index(Request $request, Campaign $campaign)
@@ -132,17 +134,34 @@ class CrudController extends Controller
         if (!empty($filter)) {
             $filter->campaign($this->campaign)->build();
         }
-        $filterService = $this->filterService;
         $route = $this->route;
         $bulk = $this->bulkModel();
         $datagridActions = new $this->datagridActions();
         $templates = $this->loadTemplates($model);
+
+        // Switch between the new explore/grid mode and the old table
+        $mode = $this->mode();
+        $forceMode = null;
+        if (property_exists($this, 'forceMode')) {
+            $mode = $forceMode = $this->forceMode;
+        }
         $nested = $this->isNested();
 
-        $base = $model
-            ->preparedSelect()
-            ->preparedWith()
-            ->search($this->filterService->search())
+        if ($mode === 'grid') {
+            $base = $model
+                ->preparedGrid()
+            ;
+        } else {
+            $base = $model
+                ->preparedSelect()
+                ->preparedWith()
+            ;
+            if ($nested) {
+                $this->datagrid->nested();
+            }
+        }
+
+        $base->search($this->filterService->search())
             ->order($this->filterService->order())
             ->distinct()
         ;
@@ -153,7 +172,7 @@ class CrudController extends Controller
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
-            if (request()->get('m') === 'table') {
+            if ($mode === 'table') {
                 if (!empty($parent) && !empty($parent->parent)) {
                     // Go back to previous parent
                     $this->addNavAction(
@@ -199,13 +218,6 @@ class CrudController extends Controller
             ]);
         }
 
-        // Switch between the new explore/grid mode and the old table
-        $mode = $this->mode();
-        $forceMode = null;
-        if (property_exists($this, 'forceMode')) {
-            $mode = $forceMode = $this->forceMode;
-        }
-
         $this->getNavActions();
         $actions = $this->navActions;
         $entityTypeId = $model->entityTypeId();
@@ -219,7 +231,6 @@ class CrudController extends Controller
             'model',
             'actions',
             'filter',
-            'filterService',
             'filteredCount',
             'unfilteredCount',
             'route',
@@ -240,6 +251,12 @@ class CrudController extends Controller
         if (method_exists($model, 'getParentKeyName')) {
             $data['nestable'] = $nested;
         }
+        $this->datagrid
+            ->models($models)
+            ->campaign($campaign)
+            ->service($this->filterService);
+        $data['datagrid'] = $this->datagrid;
+        $data['filterService'] = $this->filterService;
         return view('cruds.index', $data);
     }
 
