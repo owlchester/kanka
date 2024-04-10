@@ -38,7 +38,6 @@ class MapGroup extends Model
         'position',
     ];
 
-    /** @var string[]  */
     protected $fillable = [
         'map_id',
         'name',

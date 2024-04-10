@@ -48,7 +48,6 @@ class Bookmark extends MiscModel
     use Privatable;
     use Taggable;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',
@@ -249,11 +248,9 @@ class Bookmark extends MiscModel
     protected function getIndexRoute(): string
     {
         $filters = $this->filters . '&_clean=true&_from=bookmark&bookmark=' . $this->id;
-        $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] == '1' ? 'tree' : 'index');
-
-        $routeName = Str::plural($this->type) . ".{$nestedType}";
-        if ($nestedType === 'tree' && !Route::has($routeName)) {
-            $routeName = Str::plural($this->type) . '.index';
+        $routeName = Str::plural($this->type) . '.index';
+        if (empty($this->options['is_nested']) && $this->options['is_nested'] == '1') {
+            $filters .= '&n=1';
         }
         try {
             $campaign = CampaignLocalization::getCampaign();

@@ -23,7 +23,7 @@ You can get a list of all the notes of a campaign by using the following endpoin
 
 ### URL Parameters
 
-The list of returned notes can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=note" target="_blank">API filters</a>.
+The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/filters)
 
 ### Results
 ```json

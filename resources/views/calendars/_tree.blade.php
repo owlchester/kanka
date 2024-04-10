@@ -41,7 +41,7 @@
         ]
     ])
     ->options([
-        'route' => 'calendars.tree',
+        'route' => 'calendars.index',
         'baseRoute' => 'calendars',
         'trans' => 'calendars.fields.',
         'row' => [

@@ -39,7 +39,6 @@ class Creature extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'campaign_id',
@@ -114,7 +113,7 @@ class Creature extends MiscModel
             'locations' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'descendants',
+            //            'descendants',
             'children' => function ($sub) {
                 $sub->select('id', 'creature_id');
             },

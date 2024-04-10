@@ -5,10 +5,6 @@
  */
 ?>
 @if (!empty($campaign))
-    @php
-    $defaultIndex = $campaign->defaultToNested() || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
-    $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? [$campaign, 'm' => 'table'] : [$campaign];
- @endphp
     @inject('sidebar', 'App\Services\SidebarService')
     @php $sidebar->campaign($campaign)->prepareBookmarks()@endphp
     <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(280, 210)->url($campaign->image) }})" @endif>
@@ -30,12 +26,9 @@
                         @if ($element['route'] !== false)
                             @php
                             $route = $element['route'];
-                            if (isset($element['tree'])) {
-                                $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
-                            }
                             @endphp
                             <x-sidebar.element
-                                :url="route($route, (\Illuminate\Support\Arr::get($element, 'mode') === true ? $defaultOptions : [$campaign]))"
+                                :url="route($route, [$campaign])"
                                 :icon="$element['custom_icon'] ?? $element['icon']"
                                 :text="$element['custom_label'] ?? __($element['label_key'])"
                             ></x-sidebar.element>
@@ -52,12 +45,9 @@
                             <li class="p-0 m-0 {{ (!isset($child['route']) || $child['route'] !== false ? $sidebar->active($childName) : null) }} subsection section-{{ $childName }}">
                                 @php
                                     $route = $child['route'];
-                                    if (isset($child['tree'])) {
-                                        $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
-                                    }
                                 @endphp
                                 <x-sidebar.element
-                                    :url="route($route, \Illuminate\Support\Arr::get($child, 'mode') === true ? $defaultOptions : $campaign)"
+                                    :url="route($route, $campaign)"
                                     :icon="$child['custom_icon'] ?? $child['icon']"
                                     :text="$child['custom_label'] ?? __($child['label_key'])"
                                 ></x-sidebar.element>

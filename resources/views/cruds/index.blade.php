@@ -10,9 +10,9 @@
     <div class="flex gap-2 items-center mb-5">
         <h1 class="grow text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex flex-wrap gap-2 justify-end">
-            @includeWhen($route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
-            @include('cruds.lists._actions')
-            @includeWhen(auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
+            @includeWhen(isset($route) && $route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
+            @includeWhen(isset($actions), 'cruds.lists._actions')
+            @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
         </div>
     </div>
 @endsection
@@ -27,16 +27,18 @@
             {{ __('filters.helpers.guest') }}
         </div>
     @else
-    <div class="flex flex-stretch gap-2 items-center">
-        @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
-        @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
-    </div>
+        @if (isset($route))
+            <div class="flex flex-stretch gap-2 items-center">
+                    @includeWhen(isset($model) && $model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
+                    @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
+            </div>
+        @endif
     @endif
 
     @include('partials.ads.top')
 
     @if (!isset($mode) || $mode === 'grid')
-        @include('cruds.datagrids.explore', ['sub' => 'index'])
+        @include('cruds.datagrids.explore', ['route' => $route . '.index'])
     @else
         @if (isset($entityTypeId))
         {!! Form::open(['url' => route('bulk.print', [$campaign, 'entity_type' => $entityTypeId]), 'method' => 'POST', 'class' => 'flex flex-col gap-5']) !!}

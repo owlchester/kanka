@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\MiscModel $model */?>
 <div class="entities-grid flex flex-wrap gap-3 lg:gap-5">
     @if (!empty($parent))
-        <a href="{{ route($route . '.' . $sub, $parent->parent ? [$campaign, 'parent_id' => $parent->parent->id] : [$campaign]) }}" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-sm hover:shadow-md sm">
+        <a href="{{ route($route, $parent->parent ? [$campaign, 'parent_id' => $parent->parent->id] : [$campaign]) }}" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-sm hover:shadow-md sm">
             <div class="w-46 flex items-center justify-center grow  text-6xl">
                 <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
             </div>
@@ -16,14 +16,18 @@
 
         @include('cruds.datagrids._grid', ['model' => $parent, 'isParent' => true])
     @endif
-    @foreach ($models as $model)
+    @forelse ($models as $model)
         @include('cruds.datagrids._grid')
-    @endforeach
+    @empty
+        <p class="italic">
+            {{ __('search.no_results') }}
+        </p>
+    @endforelse
 
-    @if ($models->hasPages() && auth()->check() && !UserCache::dismissedTutorial('pagination'))
+    @if (auth()->check() && $models->hasPages() && !UserCache::dismissedTutorial('pagination'))
         <div class="block border rounded shadow-xs hover:shadow-md w-48 overflow-hidden tutorial pagination-tutorial">
             <div class="bg-blue-100 h-48 w-48 overflow-hidden p-2 flex flex-col gap-2">
-                <a class="grow" href="{{ route('settings.appearance', ['highlight' => 'pagination', 'from' => base64_encode(route($route . '.' . $sub, $campaign))]) }}">
+                <a class="grow" href="{{ route('settings.appearance', ['highlight' => 'pagination', 'from' => base64_encode(route($route, $campaign))]) }}">
                     {!! __('crud.helpers.pagination.text', ['settings' => __('crud.helpers.pagination.settings')]) !!}
                 </a>
 
@@ -37,7 +41,7 @@
 </div>
 
 
-@if($models->hasPages())
+@if($models instanceof \Illuminate\Pagination\LengthAwarePaginator && $models->hasPages())
     <div class="text-right">
         {{ $models->appends($filterService->pagination())->onEachSide(0)->links() }}
     </div>

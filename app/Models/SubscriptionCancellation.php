@@ -24,7 +24,6 @@ class SubscriptionCancellation extends Model
      */
     public $table = 'subscription_cancellations';
 
-    /** @var string[]  */
     protected $fillable = [
         'user_id',
         'reason',

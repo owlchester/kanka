@@ -7,7 +7,6 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\Relation;
-use App\Models\Tag;
 use App\Services\Entity\MoveService;
 use App\Services\Entity\TagService;
 use App\Services\Entity\TransformService;
@@ -358,38 +357,17 @@ class BulkService
                 continue;
             }
 
-            /** @var Collection $existingTags */
             $tagAction = Arr::get($fields, 'bulk-tagging', 'add');
             if ($tagAction === 'remove') {
                 $entity->entity->tags()->detach($tagIds);
             } else {
-                $existingTags = $entity->entity->tags->pluck('id')->toArray();
-
                 /** @var TagService $tagService */
                 $tagService = app()->make(TagService::class);
-                $tagService->user(auth()->user());
-
-                // Exclude existing tags to avoid adding a tag several times
-                $addTagIds = [];
-                foreach ($tagIds as $number => $id) {
-                    if (!in_array($id, $existingTags)) {
-                        /** @var Tag|null $tag */
-                        $tag = Tag::find($id);
-                        // Create the tag if the user has permission to do so
-                        if (empty($tag) && $tagService->isAllowed()) {
-                            $tag = $tagService->create($id, $entity->campaign_id);
-                            $tagIds[$number] = $tag->id;
-                        }
-
-                        if (!empty($tag)) {
-                            $addTagIds[] = $tag->id;
-                        }
-                    }
-                }
-                // If we have tags to add
-                if (!empty($tagIds)) {
-                    $entity->entity->tags()->attach($addTagIds);
-                }
+                $tagService
+                    ->user(auth()->user())
+                    ->entity($entity->entity)
+                    ->withNew()
+                    ->add($tagIds);
             }
         }
 

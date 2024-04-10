@@ -13,7 +13,9 @@
 
     @if (!$cancel)
             <h4>
-        @if ($user->hasPayPal())
+        @if ($user->hasManualSubscription())
+                    You currently have a manual subscription managed by our team. Please contact us at <a href="mailto:{{ config('app.email') }}">{{ config('app.email') }}</a> for assistance.
+        @elseif ($user->hasPayPal())
             {!! __('settings.subscription.change.text.upgrade_paypal', [
                 'upgrade' => "<strong>$currency$upgrade</strong>",
                 'tier' => "<strong>$tier->name</strong>",
@@ -32,6 +34,9 @@
         <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
     @endif
 
+    @if ($user->hasManualSubscription())
+        @php return @endphp
+    @endif
     <x-alert type="error" :hidden="true"></x-alert>
 
     @if (!$cancel)
@@ -67,16 +72,6 @@
                     <a href="#card" aria-controls="home" role="tab" data-toggle="tab">
                         <x-icon class="fa-regular fa-credit-card"></x-icon>
                         {{ __('billing/payment_methods.types.card') }}
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#sofort" aria-controls="profile" role="tab" data-toggle="tab">
-                        Sofort
-                        </a>
-                </li>
-                <li role="presentation">
-                    <a href="#giropay" aria-controls="settings" role="tab" data-toggle="tab">
-                        giropay
                     </a>
                 </li>
                 @endif
@@ -152,94 +147,6 @@
                     <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
                     <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                     {!! Form::close() !!}
-                </div>
-                <div role="tabpanel" class="tab-pane" id="sofort">
-                    <x-grid type="1/1" css="text-left">
-                        <p class="help-block">
-                            {{ __('settings.subscription.helpers.alternatives', ['method' => 'SOFORT']) }}
-                        </p>
-                        @if ($hasPromo)
-                            <x-alert type="warning" class="alert-coupon">Sadly we cannot offer discounts for Sofort payments.</x-alert>
-                        @endif
-
-                        @if ($period !== 'yearly')
-                            <x-alert type="warning">
-                                {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'SOFORT']) }}
-                            </x-alert>
-                        @else
-                            @if ($user->subscribed('kanka'))
-                                <x-alert type="warning">
-                                    {{ __('settings.subscription.helpers.alternatives_warning') }}
-                                </x-alert>
-                            @else
-                            {!! Form::open(['route' => ['settings.subscription.alt-subscribe', 'tier' => $tier], 'method' => 'POST', 'class' => 'subscription-form']) !!}
-                            <x-forms.field css="mb-5" field="sofort-country" :label="__('settings.subscription.payment_method.country')">
-                                <select id="sofort-country"  name="sofort-country" class="w-full">
-                                    <option value="">{{ __('crud.select') }}</option>
-                                    <option value="at">{{ __('settings.countries.austria') }}</option>
-                                    <option value="be">{{ __('settings.countries.belgium') }}</option>
-                                    <option value="de">{{ __('settings.countries.germany') }}</option>
-                                    <option value="it">{{ __('settings.countries.italy') }}</option>
-                                    <option value="nl">{{ __('settings.countries.netherlands') }}</option>
-                                    <option value="es">{{ __('settings.countries.spain') }}</option>
-                                </select>
-                            </x-forms.field>
-
-                            <div class="text-center">
-                                <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
-                                    <span>{{ __('settings.subscription.actions.subscribe') }}</span>
-                                    <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
-                                </button>
-                            </div>
-
-                            <input type="hidden" name="method" value="sofort" />
-                            <input type="hidden" name="period" value="{{ $period }}" />
-                            <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
-                            {!! Form::close() !!}
-                            @endif
-                        @endif
-                    </x-grid>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="giropay">
-                    <x-grid type="1/1" css="text-left">
-                        <p class="help-block">
-                            {{ __('settings.subscription.helpers.alternatives', ['method' => 'Giropay']) }}
-                        </p>
-                        @if ($hasPromo)
-                            <x-alert type="warning alert-coupon">
-                                Sadly we cannot offer discounts for giropay payments.
-                            </x-alert>
-                        @endif
-
-                        @if ($period !== 'yearly')
-                            <x-alert type="warning">
-                                {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'Giropay']) }}
-                            </x-alert>
-                        @else
-                            @if ($user->subscribed('kanka'))
-                                <x-alert type="warning">
-                                    {{ __('settings.subscription.helpers.alternatives_warning') }}
-                                </x-alert>
-                            @else
-                            {!! Form::open(['route' => ['settings.subscription.alt-subscribe', 'tier' => $tier], 'method' => 'POST', 'class' => 'subscription-form']) !!}
-                            <x-forms.field css="mb-5" field="accountholder-name" :label="__('settings.subscription.payment_method.card_name')">
-                                <input id="accountholder-name"  name="accountholder-name" class="w-full">
-                            </x-forms.field>
-
-                            <div class="text-center">
-                                <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
-                                    <span>{{ __('settings.subscription.actions.subscribe') }}</span>
-                                    <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
-                                </button>
-                            </div>
-
-                            <input type="hidden" name="method" value="giropay" />
-                            <input type="hidden" name="period" value="{{ $period }}" />
-                            <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
-                            {!! Form::close() !!}
-                            @endif
-                        @endif
-                    </x-grid>
                 </div>
                 @endif
                 <div role="tabpanel" class="tab-pane {{ $limited ? 'active' : null }}" id="paypal">

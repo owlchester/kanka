@@ -48,6 +48,10 @@ return [
         'success'   => 'Benachrichtigungen entfernt.',
         'title'     => 'lösche Benachrichtigungen',
     ],
+    'features'          => [
+        'approved'  => 'Deine Idee :feature wurde genehmigt.',
+        'rejected'  => 'Deine Idee :feature wurde abgelehnt, Grund: :reason.',
+    ],
     'header'            => 'Du hast :count Benachrichtigungen.',
     'index'             => [
         'title' => 'Benachrichtigungen',

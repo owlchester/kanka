@@ -56,7 +56,7 @@ return [
     ],
     'ready'     => [
         'available'         => 'Your available campaign boosters.',
-        'pricing'           => 'All of our subscription levels include at least one campaign booster and start at:amount per month.',
+        'pricing'           => 'All of our subscription levels include at least one campaign booster and start at :amount per month.',
         'pricing-amount'    => ':currency:amount',
         'title'             => 'Boost a campaign',
     ],

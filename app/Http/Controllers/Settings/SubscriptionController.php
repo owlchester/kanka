@@ -50,6 +50,7 @@ class SubscriptionController extends Controller
         $tracking = session()->get('sub_tracking');
         $tiers = Tier::ordered()->get();
         $isPayPal = $user->hasPayPal();
+        $hasManual = $user->hasManualSubscription();
         $gaTrackingEvent = null;
         if (!empty($tracking)) {
             $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
@@ -73,6 +74,7 @@ class SubscriptionController extends Controller
             'gaTrackingEvent',
             'tiers',
             'isPayPal',
+            'hasManual',
         ));
     }
 
@@ -92,7 +94,7 @@ class SubscriptionController extends Controller
         $isYearly = $period === 'yearly';
         $hasPromo = false; //\Carbon\Carbon::create(2023, 11, 28)->isFuture();
         $limited = $this->subscription->isLimited();
-        if ($user->hasPayPal()) {
+        if ($user->hasPayPal() || $user->hasManualSubscription()) {
             $limited = true;
         }
         $upgrade = $this->subscriptionUpgrade->user($user)->tier($tier)->upgradePrice($period);

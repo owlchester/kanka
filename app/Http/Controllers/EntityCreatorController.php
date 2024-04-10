@@ -96,7 +96,9 @@ class EntityCreatorController extends Controller
 
             /** @var TagService $tagService */
             $tagService = app()->make(TagService::class);
-            $tagService->user(auth()->user());
+            $tagService
+                ->user(auth()->user())
+                ->campaign($campaign);
 
             // Exclude existing tags to avoid adding a tag several times
             $tags = $values['tags'];
@@ -105,7 +107,7 @@ class EntityCreatorController extends Controller
                 $tag = Tag::find($id);
                 // Create the tag if the user has permission to do so
                 if (empty($tag) && $tagService->isAllowed()) {
-                    $tag = $tagService->create($id, $this->campaign->id);
+                    $tag = $tagService->create($id);
                     $tags[$number] = (int) $tag->id;
                 } elseif (empty($tag) && !$canCreateTags) {
                     unset($tags[$number]);

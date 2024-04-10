@@ -242,6 +242,7 @@ return [
         'gallery_header'        => 'Si la entidad no tiene cabecera, muestra una imagen de la galería en su lugar.',
         'gallery_image'         => 'Si la entidad no tiene imagen, muestra una imagen de la galería en su lugar.',
         'header_image'          => 'Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.',
+        'image_dimension'       => 'Dimensiones recomendadas: :dimension píxeles.',
         'image_limitations'     => 'Formatos soportados: :formats. Tamaño máximo del archivo: :size.',
         'image_recommendation'  => 'Dimensiones recomendadas: :width por :height px.',
         'is_star'               => 'Los elementos fijados aparecerán en el menú principal de la entidad.',

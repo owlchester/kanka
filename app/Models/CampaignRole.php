@@ -33,7 +33,6 @@ class CampaignRole extends Model
     use Paginatable;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'is_admin',

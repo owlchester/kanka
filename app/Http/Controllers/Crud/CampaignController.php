@@ -39,13 +39,18 @@ class CampaignController extends Controller
     {
         $this->authorize('create', $campaign);
 
-        return view($this->view . '.create', ['start' => false]);
+        return view($this->view . '.forms.create', ['start' => false]);
     }
 
     public function store(StoreCampaign $request)
     {
         $campaign = new Campaign();
         $this->authorize('create', $campaign);
+
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $first = !auth()->user()->hasCampaigns();
         $data = $request->all();
@@ -97,7 +102,7 @@ class CampaignController extends Controller
                 $editingService->edit();
             }
         }
-        return view($this->view . '.edit', [
+        return view($this->view . '.forms.edit', [
             'campaign' => $campaign,
             'model' => $campaign,
             'start' => false,
@@ -108,6 +113,11 @@ class CampaignController extends Controller
     public function update(UpdateCampaign $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
+
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->all();
         // Missing sidebar config? Because we shouldn't have used the same array...

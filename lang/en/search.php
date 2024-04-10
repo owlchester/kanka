@@ -9,6 +9,7 @@ return [
         'results'   => 'Results',
     ],
     'no_results'    => 'No results.',
+    'fulltext'      => 'Search everywhere',
     'placeholder'   => 'SEARCH',
     'preview'       => [
         'links'             => 'Links',

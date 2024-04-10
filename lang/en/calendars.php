@@ -49,11 +49,15 @@ return [
             'other_calendar'    => 'You are editing a reminder that is on the :calendar calendar.',
         ],
         'modal'     => [
-            'title' => 'Add an event to the calendar',
+            'title' => 'Add a reminder to the calendar',
         ],
         'success'   => 'Reminder \':event\' added to the calendar.',
     ],
     'events'        => [
+        'bulks'     => [
+            'delete'    => '{1} Deleted :count reminder.|[2,*] Deleted :count reminders.',
+            'patch'     => '{1} Updated :count reminder.|[2,*] Updated :count reminders.',
+        ],
         'end'       => '(end)',
         'filters'   => [
             'show_after'    => 'Show today and after',
@@ -61,10 +65,6 @@ return [
             'show_before'   => 'Show before today',
         ],
         'start'     => '(start)',
-        'bulks'     => [
-            'patch'     => '{1} Updated :count event.|[2,*] Updated :count events.',
-            'delete'     => '{1} Deleted :count event.|[2,*] Deleted :count events.',
-        ],
     ],
     'fields'        => [
         'colour'                => 'Colour',
@@ -107,7 +107,6 @@ return [
         'format'            => 'Add custom date formatting for calendar entities.',
         'month_type'        => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
         'moon_offset'       => 'By default, the first fullmoon appears on the first day of year 0. Changing the offset will alter when the first full moon is displayed. This value can negative (up to the length of the first month) or positive (up to the length of the first month).',
-        'nested_without'    => 'Displaying all calendars that don\'t have a parent calendar. Click on a row to see the children calendars.',
         'start_offset'      => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
     ],
     'hints'         => [

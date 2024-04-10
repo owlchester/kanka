@@ -2,28 +2,30 @@
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  */?>
-
+@php
+    $counter = 0;
+@endphp
 # {!! $entity->name !!}
 
 @if ($model instanceof \App\Models\Character && $model->isDead())
-    {{ __('characters.hints.is_dead') }}
+{{ __('characters.hints.is_dead') }}
 @endif
 @if ($model instanceof \App\Models\Quest && $model->isCompleted())
-    {{ __('quests.fields.is_completed') }}
+{{ __('quests.fields.is_completed') }}
 @endif
 @if ($model instanceof \App\Models\Organisation && $model->isDefunct())
-    {{ __('organisations.hints.is_defunct') }}
+{{ __('organisations.hints.is_defunct') }}
 @endif
 @if ($model instanceof \App\Models\Creature && $model->isExtinct())
-    {{ __('creatures.hints.is_extinct') }}
+{{ __('creatures.hints.is_extinct') }}
 @endif
 
 @if ($model instanceof \App\Models\Character && !empty($model->title))
-    {{ $model->title }}
+{{ $model->title }}
 @endif
 
 @if (!empty($model->type))
-    {{ $model->type }}
+{{ $model->type }}
 @endif
 
 @if ($entity->hasPins())
@@ -37,39 +39,34 @@
 @endforeach
 @endif
 @if(!$entity->pinnedAliases->isEmpty())
-| {{ __('entities/assets.actions.alias') }} | |
-@foreach ($model->entity->pinnedAliases as $asset)
-| {{ $asset->name }} | |
-@endforeach
-@endif 
+| {{ __('entities/assets.actions.alias') }} | @foreach ($model->entity->pinnedAliases as $asset) {{ $asset->name }}@if ($counter < $model->entity->pinnedAliases->count() - 1)@php $counter++; @endphp, @endif @endforeach |@endif
 @foreach ($entity->pinnedRelations as $relation)
-| {{ $relation->relation }} | {!! $converter->convert($relation->target->tooltipedLink()) !!} |
+| {{ $relation->relation }} | {{ $relation->target->name }} |
 @endforeach
 @if(method_exists($model, 'pinnedMembers') && !$model->pinnedMembers->isEmpty())
 @foreach ($model->pinnedMembers as $member)
 @if ($model instanceof \App\Models\Character)
-| {!! $converter->convert($member->organisation->tooltipedLink()) !!} | {{ $member->role }} |
+| {{ $member->organisation->name }} | {{ $member->role }} |
 @else
-| {!! $converter->convert($member->character->tooltipedLink()) !!} | {{ $member->role }} |
+| {{ $member->character->name }} | {{ $member->role }} |
 @endif
 @endforeach
 @endif
 @endif
-
-{!! $model->getTable() !!}
 
 ## {{ __('crud.tabs.profile') }}
 | Name | Content |
 |:-|:-|
 @includeIf('entities.pages.print.profile.' . $model->getTable())
 
-
-{!! $converter->convert($model->entry) !!}            
+@if($model->hasEntry())
+{!! $converter->convert((string) $model->entry) !!}
+@endif
 
 @foreach ($entity->posts as $post)
 @if(!$post->layout_id)
 # {!! $post->name !!}
-@if($post->entry)
+@if(!empty($post->entry))
 {!! $converter->convert($post->entry) !!}
 @endif
 @endif

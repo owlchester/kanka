@@ -73,6 +73,7 @@ return [
         'success'   => 'Attribute template :name applied to :entity',
         'title'     => 'Apply an attribute template for :name',
     ],
+    'title'         => 'Attributes',
     'toasts'        => [
         'lock'      => 'Attribute locked',
         'pin'       => 'Attribute pinned',
@@ -99,5 +100,4 @@ return [
         'public'    => 'Attribute visible to all members.',
         'tab'       => 'Attribute is displayed only on the Attributes tab.',
     ],
-    'title'         => 'Attributes',
 ];

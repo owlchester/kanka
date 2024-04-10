@@ -40,7 +40,6 @@ class Ability extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'name',
@@ -115,6 +114,9 @@ class Ability extends MiscModel
             },
             'children' => function ($sub) {
                 $sub->select('id', 'ability_id');
+            },
+            'entities' => function ($sub) {
+                $sub->select('entities.id');
             }
         ]);
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateEntityTags;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
@@ -13,6 +14,13 @@ class TagController extends Controller
 {
     use CampaignAware;
     use GuestAuthTrait;
+
+    protected TagService $tagService;
+
+    public function __construct(TagService $tagService)
+    {
+        $this->tagService = $tagService;
+    }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -37,7 +45,16 @@ class TagController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $entity->crudSaved();
+        $ids = request()->post('tags', []);
+        if (empty($ids)) {
+            $ids = [];
+        }
+        $this->tagService
+            ->user($request->user())
+            ->entity($entity)
+            ->withNew()
+            ->sync($ids)
+        ;
 
         return redirect()->route('entities.show', [$campaign, $entity])
             ->with('success', __('tags.children.create.attach_success_entity', ['name' => $entity->name]));

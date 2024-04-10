@@ -66,7 +66,7 @@
         ]
     ])
     ->options(    [
-        'route' => 'tags.tree',
+        'route' => 'tags.index',
         'baseRoute' => 'tags',
         'trans' => 'tags.fields.',
         'row' => [

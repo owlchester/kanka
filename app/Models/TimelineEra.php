@@ -35,7 +35,6 @@ class TimelineEra extends Model
     use HasFactory;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'timeline_id',
         'name',

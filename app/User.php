@@ -74,11 +74,6 @@ class User extends \Illuminate\Foundation\Auth\User
     use UserSetting;
     use UserTokens;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'email',
@@ -498,7 +493,16 @@ class User extends \Illuminate\Foundation\Auth\User
     public function hasPayPal(): bool
     {
         // @phpstan-ignore-next-line
-        return $this->subscribed('kanka') && $this->subscriptions()->first() && str_contains($this->subscriptions()->first()->stripe_price, 'paypal');
+        return $this->subscribed('kanka') && $this->subscription('kanka') && str_contains($this->subscription('kanka')->stripe_price, 'paypal');
+    }
+
+    /**
+     * Check if user is subscribed via a manual sub
+     */
+    public function hasManualSubscription(): bool
+    {
+        // @phpstan-ignore-next-line
+        return $this->subscribed('kanka') && $this->subscription('kanka') && $this->subscription('kanka')->stripe_id == 'manual_sub';
     }
 
     public function isStripeYearly(): bool

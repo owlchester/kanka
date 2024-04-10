@@ -20,7 +20,6 @@ class UserValidation extends Model
 {
     use Prunable;
 
-    /** @var string[]  */
     protected $fillable = [
         'is_valid',
         'token'

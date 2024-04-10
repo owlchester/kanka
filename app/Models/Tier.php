@@ -56,10 +56,7 @@ class Tier extends Model
             return true;
         } elseif ($this->name === Pledge::WYVERN && $user->isWyvern()) {
             return true;
-        } return (bool) ($this->name === Pledge::ELEMENTAL && $user->isElemental())
-
-
-        ;
+        } return (bool) ($this->name === Pledge::ELEMENTAL && $user->isElemental());
     }
 
     public function monthlyPlans(): array

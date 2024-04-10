@@ -428,7 +428,7 @@ class PluginVersion extends Model
         $data['_entity_name'] = $entity->name;
         $data['_entity_type'] = $entity->child->type;
         // @phpstan-ignore-next-line
-        $data['_entity_entity_type'] = $entity->type();
+        $data['_entity_type_name'] = $entity->type();
 
         if ($entity->isCharacter()) {
             /** @var Character $character */

@@ -103,12 +103,6 @@ if (!isset($model) || !$model->boosted()) {
             </x-forms.field>
 
             <x-forms.field
-                field="nested"
-                :label="__('campaigns.ui.fields.nested')">
-                {!! Form::select('ui_settings[nested]', [0 => __('campaigns.ui.nested.user'), 1 => __('campaigns.ui.nested.nested')], (!isset($model) ? 1 : null), ['class' => '']) !!}
-            </x-forms.field>
-
-            <x-forms.field
                 field="post-collapsed"
                 :label="__('campaigns.ui.fields.post_collapsed')"
                 :helper="__('campaigns.ui.helpers.post_collapsed')"

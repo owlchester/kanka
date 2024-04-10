@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'subscribe' => [
+            'choose'    => 'Wybierz :tier',
             'monthly'   => ':tier miesięcznie',
             'yearly'    => ':tier rocznie',
         ],
@@ -23,12 +24,15 @@ return [
         'vote_influence'    => 'Wpływ na głosowania społeczności',
     ],
     'periods'   => [
-        'monthly'   => 'Miesięcznie',
-        'yearly'    => 'Rocznie',
+        'billed_monthly'    => 'opłata miesięczna',
+        'billed_yearly'     => 'opłata roczna',
+        'monthly'           => 'Miesięcznie',
+        'yearly'            => 'Rocznie',
     ],
     'pricing'   => ':currency :amount / miesiąc',
     'ribbons'   => [
         'best-value'    => 'Najkorzystniejsza oferta',
+        'current'       => 'Obecna subskrypcja',
         'popular'       => 'Popularne',
     ],
     'toggle'    => [

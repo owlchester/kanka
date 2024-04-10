@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -22,8 +23,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @package App\Models
  * @property int|null $map_id
  * @property int|null $location_id
- * @property int $width
- * @property int $height
+ * @property int|null $width
+ * @property int|null $height
  * @property int $grid
  * @property int $min_zoom
  * @property int $max_zoom
@@ -66,7 +67,6 @@ class Map extends MiscModel
     public const CHUNKING_FINISHED = 2;
     public const CHUNKING_ERROR = 3;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'name',
@@ -563,6 +563,7 @@ class Map extends MiscModel
      */
     public function bounds(bool $extend = false): string
     {
+        $this->prepareBounds();
         $extra = $extend ? 50 : 0;
         $height = empty($this->height) ? 1000 : $this->height;
         $width = empty($this->width) ? 1000 : $this->width;
@@ -571,6 +572,42 @@ class Map extends MiscModel
 
         $min = $extend ? -50 : 0;
         return "[[{$min}, {$min}], [{$height}, {$width}]]";
+    }
+
+    /**
+     * Whenever a map gets updated, its height and width are reset to re-calculate them on rendering
+     * This is because the map's image is on the entity, or from the gallery
+     */
+    protected function prepareBounds(): void
+    {
+        if (!empty($this->height)) {
+            return;
+        }
+
+        // Prioritize the gallery image, and fall back on the uploaded image
+        if (!empty($this->entity->image)) {
+            $path = $this->entity->image->path;
+        } elseif ($this->entity->image_path) {
+            $path = $this->entity->image_path;
+        }
+        if (empty($path)) {
+            return;
+        }
+
+        $contents = Storage::get($path);
+        if (Str::endsWith($path, '.svg')) {
+            $xml = simplexml_load_string($contents);
+            $width = $xml->attributes()->width;
+            $height = $xml->attributes()->height;
+        } else {
+            $image = imagecreatefromstring($contents);
+            $width = imagesx($image);
+            $height = imagesy($image);
+        }
+
+        $this->height = $height;
+        $this->width = $width;
+        $this->saveQuietly();
     }
 
     /**
@@ -629,7 +666,7 @@ class Map extends MiscModel
      */
     public function explorable(): bool
     {
-        if (empty($this->entity->image_path) && !$this->isReal()) {
+        if (!($this->entity->hasImage()) && !$this->isReal()) {
             return false;
         }
         return !($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));

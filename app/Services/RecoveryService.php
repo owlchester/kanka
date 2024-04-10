@@ -123,7 +123,7 @@ class RecoveryService
         }
 
         // Set the campaign scope to avoid hitting entities of other campaigns (this can happen with
-        // nested trees)
+        // nested modules)
         \App\Facades\CampaignLocalization::setConsoleCampaign($entity->campaign_id);
 
         // Update the parent_id / tree before

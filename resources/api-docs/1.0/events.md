@@ -23,7 +23,7 @@ You can get a list of all the events of a campaign by using the following endpoi
 
 ### URL Parameters
 
-The list of returned events can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=event" target="_blank">API filters</a>.
+The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/filters)
 
 ### Results
 ```json

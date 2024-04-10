@@ -156,6 +156,9 @@ return [
             'helpers'   => [
                 'name'  => 'Le nom de l\'entité au hasard peut être référencé avec {name}',
             ],
+            'type'      => [
+                'all'   => 'Tous',
+            ],
         ],
         'recent'                    => [
             'advanced_filter'   => 'Filtre avancé',

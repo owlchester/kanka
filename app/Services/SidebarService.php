@@ -204,56 +204,48 @@ class SidebarService
             'locations' => [
                 'icon' => config('entities.icons.location'),
                 'label' => 'entities.locations',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.location')
             ],
             'maps' => [
                 'icon' => config('entities.icons.map'),
                 'label' => 'entities.maps',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.map')
             ],
             'organisations' => [
                 'icon' => config('entities.icons.organisation'),
                 'label' => 'entities.organisations',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.organisation')
             ],
             'families' => [
                 'icon' => config('entities.icons.family'),
                 'label' => 'entities.families',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.family')
             ],
             'calendars' => [
                 'icon' => config('entities.icons.calendar'),
                 'label' => 'entities.calendars',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.calendar')
             ],
             'timelines' => [
                 'icon' => config('entities.icons.timeline'),
                 'label' => 'entities.timelines',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.timeline')
             ],
             'races' => [
                 'icon' => config('entities.icons.race'),
                 'label' => 'entities.races',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.race')
             ],
             'creatures' => [
                 'icon' => config('entities.icons.creature'),
                 'label' => 'entities.creatures',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.creature')
             ],
@@ -266,42 +258,36 @@ class SidebarService
             'quests' => [
                 'icon' => config('entities.icons.quest'),
                 'label' => 'entities.quests',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.quest')
             ],
             'journals' => [
                 'icon' => config('entities.icons.journal'),
                 'label' => 'entities.journals',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.journal')
             ],
             'items' => [
                 'icon' => config('entities.icons.item'),
                 'label' => 'entities.items',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.item')
             ],
             'events' => [
                 'icon' => config('entities.icons.event'),
                 'label' => 'entities.events',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.event')
             ],
             'abilities' => [
                 'icon' => config('entities.icons.ability'),
                 'label' => 'entities.abilities',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.ability')
             ],
             'notes' => [
                 'icon' => config('entities.icons.note'),
                 'label' => 'entities.notes',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.note')
             ],
@@ -322,7 +308,6 @@ class SidebarService
             'tags' => [
                 'icon' => config('entities.icons.tag'),
                 'label' => 'entities.tags',
-                'tree' => true,
                 'mode' => true,
                 'type_id' => config('entities.ids.tag')
             ],

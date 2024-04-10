@@ -36,10 +36,10 @@ return [
             'success'   => 'Evénement de calendrier ajouté.',
             'title'     => 'Ajouter un événement de calendrier à :name',
         ],
-        'destroy'   => 'Evénement retiré du calendrier \':name\'.',
+        'destroy'   => 'Rappel retiré du calendrier \':name\'.',
         'edit'      => [
-            'success'   => 'Evénement de calendrier modifié.',
-            'title'     => 'Modifier un événement de calendrier pour :name',
+            'success'   => 'Rappel de calendrier modifié.',
+            'title'     => 'Modifier un rappel de calendrier pour :name',
         ],
         'errors'    => [
             'invalid_entity'    => 'Choix invalide d\'entité.',
@@ -47,14 +47,18 @@ return [
         'helpers'   => [
             'add'               => 'Ajouter un événement à ce calendrier en utilisant la liste à choix.',
             'new'               => 'Ou créer un nouveu événement en indiquant un nom.',
-            'other_calendar'    => 'Modification d\'un événement du calendrier :calendar.',
+            'other_calendar'    => 'Modification d\'un rappel du calendrier :calendar.',
         ],
         'modal'     => [
-            'title' => 'Ajouter un événement au calendrier',
+            'title' => 'Ajouter un rappel au calendrier',
         ],
-        'success'   => 'Evénement \':event\' ajouté au calendrier.',
+        'success'   => 'Rappel \':event\' ajouté au calendrier.',
     ],
     'events'        => [
+        'bulks'     => [
+            'delete'    => '{1} Supprimé :count rappel. |[2,*] Supprimé :count rappels.',
+            'patch'     => '{1} Modifié :count rappel.|[2,*] Modifié :count rappels.',
+        ],
         'end'       => '(fin)',
         'filters'   => [
             'show_after'    => 'Afficher aujourd\'hui et après',
@@ -220,7 +224,7 @@ return [
         'moon_last_quarter'     => ':moon dernier quartier',
         'moon_new'              => ':moon nouvelle lune',
         'tabs'                  => [
-            'events'    => 'Evénements',
+            'events'    => 'Rappels',
             'weather'   => 'Météo',
         ],
     ],
@@ -233,6 +237,6 @@ return [
         'moon_offset'   => 'Le décalage de début de lune ne peut pas être plus grand que la durée du premier mois du calendrier.',
     ],
     'warnings'      => [
-        'event_length'  => 'Les évènements de plusieurs années ne s\'affichent que durant les deux premières années. En savoir plus dans notre :documentation.',
+        'event_length'  => 'Les rappels de plusieurs années ne s\'affichent que durant les deux premières années. En savoir plus dans notre :documentation.',
     ],
 ];

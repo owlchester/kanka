@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 /**
  * Class Attribute
@@ -37,6 +38,7 @@ class Attribute extends Model
     use Paginatable;
     use Pinnable;
     use Privatable;
+    use Searchable;
 
     public const TYPE_CHECKBOX = 'checkbox';
     public const TYPE_SECTION = 'section';
@@ -53,7 +55,6 @@ class Attribute extends Model
     public const TYPE_NUMBER_ID = 6;
     public const TYPE_LIST_ID = 7;
 
-    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'name',
@@ -377,6 +378,43 @@ class Attribute extends Model
             'default_order',
             'is_pinned',
             'is_hidden',
+        ];
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     */
+    public function getScoutKey()
+    {
+        return $this->getTable() . '_' . $this->id;
+    }
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'entities';
+    }
+
+    protected function makeAllSearchableUsing($query)
+    {
+        return $query
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->leftJoin('entities', $this->getTable() . '.entity_id', '=', 'entities.id')
+            ->has('entity')
+            ->with('entity');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'campaign_id' => $this->entity->campaign_id,
+            'entity_id' => $this->entity_id,
+            'name' => $this->name,
+            'type'  => 'attribute',
+            'entry'  => $this->value,
         ];
     }
 }

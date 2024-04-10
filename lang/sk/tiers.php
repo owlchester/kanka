@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'subscribe' => [
+            'choose'    => 'Zvoľ :tier',
             'monthly'   => ':tier mesačne',
             'yearly'    => ':tier ročne',
         ],
@@ -10,7 +11,7 @@ return [
     'current'   => 'Tvoje aktuálne predplatné',
     'features'  => [
         'api_requests'      => ':amount API požiadavok/min',
-        'boosters'          => 'x Boost pre kampaň',
+        'boosters'          => 'Boosty pre kampaň',
         'community_vote'    => 'Hlasovanie komunity',
         'discord'           => 'Roly v Discorde',
         'feature_influence' => 'Vplyv na nové funkcie',
@@ -23,12 +24,15 @@ return [
         'vote_influence'    => 'Vplyv cez hlasovanie komunity',
     ],
     'periods'   => [
-        'monthly'   => 'Mesačne',
-        'yearly'    => 'Ročne',
+        'billed_monthly'    => 'účtované mesačne',
+        'billed_yearly'     => 'účtované ročne',
+        'monthly'           => 'Mesačne',
+        'yearly'            => 'Ročne',
     ],
     'pricing'   => ':currency :amount / mesiac',
     'ribbons'   => [
         'best-value'    => 'Top hodnota',
+        'current'       => 'Aktuálne predplatné',
         'popular'       => 'Populárne',
     ],
     'toggle'    => [

@@ -242,6 +242,7 @@ return [
         'gallery_header'        => 'Ak objekt nemá záhlavie, zobraziť namiesto toho obrázok z galérie kampane.',
         'gallery_image'         => 'Ak objekt nemá obrázok, zobraziť namiesto toho obrázok z galérie kampane.',
         'header_image'          => 'Tento obrázok je umiestnený nad objekt. Odporúčame používať obrázok na šírku.',
+        'image_dimension'       => 'Odporúčané rozlíšenie: :dimension pixelov.',
         'image_limitations'     => 'Podporované formáty: :formats. Max. veľkosť súboru: :size.',
         'image_recommendation'  => 'Odporúčané rozmery: :width x :height px.',
         'is_star'               => 'Pripnuté objekty sa zobrazia v menu objektu.',

@@ -4,7 +4,7 @@
 | {{ __('journals.fields.date') }} | {{ \App\Facades\UserDate::format($model->date) }} |
 @endif
 @if ($model->author && $model->author)
-| {{ __('journals.fields.author') }} | {!! $model->author->tooltipedLink() !!} |
+| {{ __('journals.fields.author') }} | {!! $model->author->name !!} |
 @endif
 @include('entities.pages.print.profile._reminder')
 @include('entities.pages.print.profile._type')

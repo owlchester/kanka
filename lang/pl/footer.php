@@ -24,6 +24,7 @@ return [
     'privacy'           => 'Prywatność',
     'public-campaigns'  => 'Kampanie publiczne',
     'resources'         => 'Zasoby',
+    'roadmap'           => 'W przygotowaniu',
     'security'          => 'Bezpieczeństwo',
     'server_time'       => 'Czas serwera: :time',
     'status'            => 'Status usługi',

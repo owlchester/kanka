@@ -7,22 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreNote;
 use App\Models\Campaign;
 use App\Models\Note;
-use App\Traits\TreeControllerTrait;
 
 class NoteController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'notes';
     protected string $route = 'notes';
-    protected $module = 'notes';
+    protected string $module = 'notes';
 
-    /** @var string */
-    protected $model = Note::class;
+    protected string $model = Note::class;
 
-    /** @var string Filter */
     protected string $filter = NoteFilter::class;
 
     /**

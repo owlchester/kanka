@@ -43,7 +43,7 @@
         ]
     ])
     ->options(    [
-        'route' => 'races.tree',
+        'route' => 'races.index',
         'baseRoute' => 'races',
         'trans' => 'races.fields.',
         'row' => [

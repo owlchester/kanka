@@ -23,7 +23,7 @@ You can get a list of all the tags of a campaign by using the following endpoint
 
 ### URL Parameters
 
-The list of returned tags can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=tag" target="_blank">API filters</a>.
+The list of returned entities can be filtered. The available filters are [available here](/api-docs/{{version}}/filters)
 
 ### Results
 ```json

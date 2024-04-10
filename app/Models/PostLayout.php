@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PostLayout extends Model
 {
-    /** @var string[]  */
     protected $fillable = [
         'code',
         'entity_type_id',

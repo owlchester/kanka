@@ -32,7 +32,6 @@ class ConversationMessage extends MiscModel
 
     public $isGroupped = false;
 
-    /** @var string[]  */
     protected $fillable = [
         'conversation_id',
         'created_by',

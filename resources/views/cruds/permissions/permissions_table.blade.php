@@ -114,7 +114,7 @@ $permissionService->campaign($campaign);
         </div>
     @endforeach
 
-    @if (isset($skipUsers) && $skipUsers && $campaign->nonAdmins->count() > 10)
+    @if (isset($skipUsers) && $skipUsers && $campaign->nonAdmins()->count() > 10)
         <x-helper>{{ __('crud.permissions.too_many_members', ['number' => 10]) }}</x-helper>
         <input type="hidden" name="permissions_too_many" value="1" />
     @else
@@ -141,7 +141,7 @@ $permissionService->campaign($campaign);
                 <x-icon class="question" :tooltip="true" :title="__('campaigns.roles.permissions.helpers.entity_note')"></x-icon>
             </div>
         </div>
-        @foreach ($campaign->nonAdmins as $member)
+        @foreach ($campaign->nonAdmins() as $member)
             @php $permissionService->reset()->user($member->user) @endphp
             <div class="grid grid-cols-2 md:grid-cols-5 md: gap-2">
                 <div class="col-span-2 md:col-span-1 flex flex-wrap items-center gap-2">

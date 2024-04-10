@@ -69,7 +69,6 @@ class Tag extends MiscModel
         'is_hidden',
     ];
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',
@@ -139,10 +138,10 @@ class Tag extends MiscModel
             'tags' => function ($sub) {
                 $sub->select('id', 'tag_id', 'name');
             },
-            'descendants',
-            'descendants.entities' => function ($sub) {
-                $sub->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.type_id');
-            },
+            //            'descendants',
+            //            'descendants.entities' => function ($sub) {
+            //                $sub->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.type_id');
+            //            },
             'entities',
             'children' => function ($sub) {
                 $sub->select('id', 'tag_id');
@@ -184,7 +183,6 @@ class Tag extends MiscModel
         foreach ($this->entities->pluck('id')->toArray() as $entity) {
             $children[] = $entity;
         }
-        // @phpstan-ignore-next-line
         foreach ($this->descendants as $desc) {
             foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
                 $children[] = $entity;

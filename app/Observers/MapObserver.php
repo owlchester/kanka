@@ -13,16 +13,19 @@ class MapObserver extends MiscObserver
      */
     public function saving(MiscModel $map)
     {
-        // When saving a map that has an image but no height, force the height and width attribute to null
-        // to be handled in the ImageHandler. It uses getAttributes on the model but these aren't present
-        // for some reason.
-        if (empty($map->height)) {
-            $map->height = 0;
-            $map->width = 0;
-        }
         parent::saving($map);
 
         $map->grid = (int) $map->grid;
+    }
+
+    public function crudSaved(Map $map)
+    {
+        // Whenever we're saving a map, reset the size to force it to re-calculate. Maps shouldn't
+        // be updated all that often (especially when using updateQuietly()) so hopefully this
+        // doesn't cause too many performance issues.
+        $map->height = null;
+        $map->width = null;
+        $map->saveQuietly();
     }
 
     /**

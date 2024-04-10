@@ -68,7 +68,6 @@ class Entity extends Model
     use SortableTrait;
     use TooltipTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',
@@ -240,9 +239,8 @@ class Entity extends Model
     }
 
     /**
-     * @param array|int $types
      */
-    public function isType($types): bool
+    public function isType(array|int $types): bool
     {
         if (!is_array($types)) {
             $types = [$types];
@@ -314,16 +312,12 @@ class Entity extends Model
     }
 
     /**
-     * Determine if an entity has an image that can be shown
+     * Determine if an entity has an image that can be shown. This can be either uploaded
+     * directly on them, or from the gallery
      */
     public function hasImage(bool $boosted = false): bool
     {
-        // Most basic setup, the child has an image
-        if (!empty($this->image_path)) {
-            return true;
-        }
-        // Otherwise, might have a gallery image, which needs a boosted campaign
-        return $boosted && $this->image;
+        return !empty($this->image_path) || !empty($this->image);
     }
 
     /**

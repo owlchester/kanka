@@ -48,7 +48,7 @@
         ]
     ])
     ->options(    [
-        'route' => 'organisations.tree',
+        'route' => 'organisations.index',
         'baseRoute' => 'organisations',
         'trans' => 'organisations.fields.',
         'row' => [

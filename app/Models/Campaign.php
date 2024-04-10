@@ -80,7 +80,6 @@ class Campaign extends Model
     public const LAYER_COUNT_MIN = 1;
     public const LAYER_COUNT_MAX = 10;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',

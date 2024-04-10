@@ -53,7 +53,7 @@
                 <span>{{ __('settings.subscription.upgrade_downgrade.button') }}</span>
             </x-buttons.confirm>
         </div>
-        @if (!$isPayPal)
+        @if (!$isPayPal && !$hasManual)
             <div class="text-center text-vertical">
                 <span>{{ __('tiers.periods.monthly') }}</span>
                 <label class="toggle mx-1">
@@ -64,7 +64,7 @@
             </div>
         @endif
 
-        <div class="grid grid-cols-1 @if ($user->isSubscriber()) lg:grid-cols-3 @else md:grid-cols-2 xl:grid-cols-4 @endif gap-4 @if ($isPayPal) period-year @else period-month @endif mx-auto lg:mx-0" id="pricing-overview">
+        <div class="grid grid-cols-1 @if ($user->isSubscriber()) lg:grid-cols-3 @else md:grid-cols-2 xl:grid-cols-4 @endif gap-4 @if ($isPayPal || $hasManual) period-year @else period-month @endif mx-auto lg:mx-0" id="pricing-overview">
             @php /** @var \App\Models\Tier $tier **/ @endphp
             @foreach ($tiers as $tier)
                 @if ($tier->isFree() && $user->isSubscriber())
@@ -95,7 +95,6 @@
                             @endif
                         </div>
                         @if ($tier->isCurrent($user))
-
                         @elseif ($tier->isPopular())
                             <div class="ribbon ribbon-top-right">
                                 <span class="bg-green-500 text-white">{{ __('tiers.ribbons.popular') }}</span>
@@ -114,7 +113,7 @@
                     <div class="flex flex-col gap-2">
                         @includeIf('settings.subscription.tiers.benefits._' . $tier->code)
                     </div>
-                    @if (!$tier->isFree() && $tier->isCurrent($user) && $user->subscribed('kanka') && !$isPayPal && !$user->subscription('kanka')->onGracePeriod())
+                    @if (!$tier->isFree() && $tier->isCurrent($user) && $user->subscribed('kanka') && !$isPayPal && !$hasManual && !$user->subscription('kanka')->onGracePeriod())
                         <div class="self-bottom">
                             <a class="btn2 btn-block btn-sm btn-error " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => 1]) }}">
                                 {{ __('settings.subscription.subscription.actions.cancel') }}

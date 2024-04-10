@@ -60,7 +60,11 @@ class AttributeService
     public function save($request)
     {
         // First, let's get all the stuff for this entity
-        $existingAttributes = $this->entity->attributes()->where('is_hidden', '0')->get();
+        $existingAttributes = $this->entity->attributes()
+            // Need with() for saving to meilisearch
+            ->with('entity')
+            ->where('is_hidden', '0')
+            ->get();
 
         //Dont load hidden attributes for deletion, unless deleting all.
         if (empty($request) || request()->filled('delete-all-attributes')) {
