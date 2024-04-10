@@ -21,14 +21,14 @@ class Webhook extends Layout
                     return $model->actionKey();
                 },
             ],
-            'users' => [
+            'type' => [
+                'key' => 'type',
                 'label' => 'campaigns/webhooks.fields.type',
                 'render' => function ($model) {
                     return $model->typeKey();
                 }
             ],
             'message' => [
-                'key' => 'message',
                 'label' => 'campaigns/webhooks.fields.message',
                 'render' => function ($model) {
                     /** @var \App\Models\Webhook $model */
@@ -43,6 +43,7 @@ class Webhook extends Layout
             ],
 
             'status' => [
+                'key' => 'status',
                 'label' => 'campaigns/webhooks.fields.active',
                 'render' => function ($model) {
                     if ($model->status) {

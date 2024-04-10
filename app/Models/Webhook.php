@@ -32,6 +32,12 @@ class Webhook extends Model
         'updated_by',
     ];
 
+    protected array $sortable = [
+        'type',
+        'status',
+        'action',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
