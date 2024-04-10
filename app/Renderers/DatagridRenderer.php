@@ -176,6 +176,9 @@ class DatagridRenderer
                 );
             } elseif ($type == 'parent') {
                 $class .= ' ' . $this->hidden;
+                if (!empty($this->nestedFilter)) {
+                    return null;
+                }
                 $html = $this->route(
                     Arr::get($column, 'field', 'parent.name'),
                     !empty($column['label']) ? $column['label'] : __('crud.fields.parent')
@@ -403,6 +406,9 @@ class DatagridRenderer
                 }
             } elseif ($type == 'parent') {
                 $class = $this->hidden;
+                if (!empty($this->nestedFilter)) {
+                    return null;
+                }
                 if ($model->parent) {
                     $content = $model->parent->tooltipedLink();
                 }

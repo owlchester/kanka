@@ -223,7 +223,6 @@ class CrudController extends Controller
         $entityTypeId = $model->entityTypeId();
         $singular = Module::singular($entityTypeId, __('entities.' . \Illuminate\Support\Str::singular($route)));
 
-
         $data = compact(
             'campaign',
             'models',
