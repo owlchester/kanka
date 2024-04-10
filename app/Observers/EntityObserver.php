@@ -14,6 +14,7 @@ use App\Services\Entity\TagService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
 use App\Facades\Domain;
+use Carbon\Carbon;
 
 class EntityObserver
 {
@@ -189,7 +190,7 @@ class EntityObserver
         if (!request()->has('attr_name')) {
             $this->attributeService->applyEntityTemplates($entity);
         }
-        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::NEW);
+        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::NEW->value);
     }
 
     /**
@@ -200,7 +201,15 @@ class EntityObserver
 
         // Queue job when an entity was updated
         EntityUpdatedJob::dispatch($entity);
-        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED);
+    }
+
+    /**
+     */
+    public function updating(Entity $entity)
+    {
+        if ($entity->getOriginal('updated_at')->diffInSeconds(Carbon::now()) > 15) {
+            EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
+        }
     }
 
     /**
@@ -243,7 +252,7 @@ class EntityObserver
 
     public function deleting(Entity $entity)
     {
-        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED);
+        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value);
     }
 
     /**
