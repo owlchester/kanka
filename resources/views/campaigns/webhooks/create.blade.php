@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('campaigns/webhooks.create.title', ['name' => $model->name]),
+    'title' => __('campaigns/webhooks.create.title'),
     'breadcrumbs' => [
         ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         ['url' => route('webhooks.index', $campaign), 'label' => __('campaigns.show.tabs.webhooks')],

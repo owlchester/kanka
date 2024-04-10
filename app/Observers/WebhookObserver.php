@@ -33,7 +33,6 @@ class WebhookObserver
         $tagService
             ->user(auth()->user())
             ->webhook($webhook)
-            ->withNew()
             ->sync($ids)
         ;
     }

@@ -47,7 +47,7 @@
     </x-checkbox>
 </x-forms.field>
 
-@include('cruds.fields.tags', ['model' => isset($webhook) ? $webhook : ''])
+@include('cruds.fields.tags', ['enableNew' => false, 'model' => isset($webhook) ? $webhook : ''])
 
 </x-grid>
 

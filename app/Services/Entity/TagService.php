@@ -62,12 +62,7 @@ class TagService
             'name' => Purify::clean($name),
         ]);
 
-        if (isset($this->campaign)) {
-            $tag->campaign_id = $this->campaign->id;
-        } else {
-            $tag->campaign_id = isset($this->webhook) ? $this->webhook->campaign_id : $this->entity->campaign_id;
-        }
-        //$tag->campaign_id = isset($this->campaign) ? $this->campaign->id : $this->entity->campaign_id;
+        $tag->campaign_id = isset($this->campaign) ? $this->campaign->id : $this->entity->campaign_id;
         $tag->slug = Str::slug($tag->name, '');
         $tag->is_private = false;
         $tag->saveQuietly();
