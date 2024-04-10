@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Crud;
 
-use App\Datagrids\Actions\NoDatagridActions;
 use App\Http\Controllers\CrudController;
 use App\Models\Campaign;
 use App\Models\DiceRollResult;

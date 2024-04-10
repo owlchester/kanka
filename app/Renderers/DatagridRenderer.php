@@ -9,7 +9,6 @@ use App\Models\Entity;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\MiscModel;
-use App\Models\Relation;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
 use App\User;
@@ -312,7 +311,7 @@ class DatagridRenderer
                 $html .= ' ' . $name . '="' . $data($model) . '"';
             }
         }*/
-        if (!empty($this->nestedFilter) and method_exists($model, 'children')) {
+        if (!empty($this->nestedFilter) && method_exists($model, 'children')) {
             $html .= ' data-children="' . $model->children->count() . '"';
         }
         $html .= '>';

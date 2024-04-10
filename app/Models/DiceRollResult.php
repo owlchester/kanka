@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\Model;
 class DiceRollResult extends Model
 {
     use HasFilters;
-    use Searchable;
     use Orderable;
+    use Searchable;
     use Sortable;
 
 
