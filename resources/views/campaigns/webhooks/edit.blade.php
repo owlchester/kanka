@@ -10,7 +10,7 @@
 ])
 
 @section('content')
-    {!! Form::model($webhook, ['method' => 'PATCH', 'route' => ['webhooks.update', $campaign, $webhook->id], 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
+    {!! Form::model($webhook, ['method' => 'PATCH', 'route' => ['webhooks.update', $campaign, $webhook->id], 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
 
     @include('partials.forms.form', [
             'title' => __('campaigns/webhooks.edit.title'),

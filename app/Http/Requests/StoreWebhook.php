@@ -25,6 +25,8 @@ class StoreWebhook extends FormRequest
     {
         return [
             'action'    => 'integer|required',
+            'tags' => 'array',
+            'tags.*' => 'exists:tags,id',
             'url'       => 'string|required|active_url|max:191',
             'type'      => 'required|integer',
             'message'   => 'required_if:type_id,1',

@@ -32,7 +32,8 @@ class WebhookObserver
         $tagService = app()->make(TagService::class);
         $tagService
             ->user(auth()->user())
-            ->webhook($webhook)
+            ->campaign($webhook->campaign)
+            ->model($webhook)
             ->sync($ids)
         ;
     }

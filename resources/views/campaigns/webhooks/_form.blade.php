@@ -28,7 +28,7 @@
     </select>
 </x-forms.field>
 
-<div class="webhook-subform @if(!isset($webhook) || isset($webhook) && $webhook->type == 2) hidden @endif" id="webhook-custom">
+<div class="webhook-subform @if(isset($webhook) && $webhook->type == 2)) hidden @endif" id="webhook-custom">
     <x-forms.field
         field="message"
         :required="true"
