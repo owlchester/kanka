@@ -3,6 +3,7 @@
 namespace App\Services\Entity;
 
 use App\Models\Tag;
+use App\Models\Webhook;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
@@ -20,6 +21,8 @@ class TagService
     protected bool $withNew = false;
 
     protected bool $withDetach = true;
+
+    public Webhook $webhook;
 
     public function withNew(): self
     {
@@ -58,7 +61,13 @@ class TagService
         $tag = new Tag([
             'name' => Purify::clean($name),
         ]);
-        $tag->campaign_id = isset($this->campaign) ? $this->campaign->id : $this->entity->campaign_id;
+
+        if (isset($this->campaign)) {
+            $tag->campaign_id = $this->campaign->id;
+        } else {
+            $tag->campaign_id = isset($this->webhook) ? $this->webhook->campaign_id : $this->entity->campaign_id;
+        }
+        //$tag->campaign_id = isset($this->campaign) ? $this->campaign->id : $this->entity->campaign_id;
         $tag->slug = Str::slug($tag->name, '');
         $tag->is_private = false;
         $tag->saveQuietly();
@@ -72,8 +81,12 @@ class TagService
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.
         $existing = [];
+        $entity = 'entity';
+        if (isset($this->webhook)) {
+            $entity = 'webhook';
+        }
         /** @var Tag $tag */
-        foreach ($this->entity->tags()->with('entity')->has('entity')->get() as $tag) {
+        foreach ($this->$entity->tags()->with('entity')->has('entity')->get() as $tag) {
             $existing[$tag->id] = $tag->name;
         }
         $new = [];
@@ -88,14 +101,20 @@ class TagService
                 }
             }
         }
-        $this->entity->tags()->attach($new);
+        $this->$entity->tags()->attach($new);
 
         // Detach previously existing tags that were not requested
         if (empty($existing) || !$this->withDetach) {
             return $this;
         }
-        $this->entity->tags()->detach(array_keys($existing));
+        $this->$entity->tags()->detach(array_keys($existing));
 
+        return $this;
+    }
+
+    public function webhook(Webhook $webhook): self
+    {
+        $this->webhook = $webhook;
         return $this;
     }
 }

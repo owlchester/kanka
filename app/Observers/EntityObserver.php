@@ -8,7 +8,6 @@ use App\Jobs\EntityWebhookJob;
 use App\Enums\WebhookAction;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
-use App\Models\Tag;
 use App\Services\AttributeService;
 use App\Services\Entity\TagService;
 use App\Services\ImageService;
