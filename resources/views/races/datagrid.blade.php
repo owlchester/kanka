@@ -1,9 +1,6 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
+<?php /** @var \App\Models\Race $model */ ?>
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -13,14 +10,7 @@
         'name',
         'type',
         [
-            'label' => __('crud.fields.parent'),
-            'field' => 'race.name',
-            'visible' => $campaign->enabled('races'),
-            'render' => function($model) {
-                if ($model->race) {
-                    return $model->race->tooltipedLink();
-                }
-            }
+            'type' => 'parent',
         ],
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),

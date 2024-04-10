@@ -37,8 +37,8 @@ class CreatureController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with([
-                'creature', 'creature.entity',
-                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'
+                'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
+                'parent', 'parent.entity',
             ])
             ->paginate(15);
 

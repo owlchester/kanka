@@ -174,6 +174,12 @@ class DatagridRenderer
                     'entity.name',
                     !empty($column['label']) ? $column['label'] : __('crud.fields.entity')
                 );
+            } elseif ($type == 'parent') {
+                $class .= ' ' . $this->hidden;
+                $html = $this->route(
+                    Arr::get($column, 'field', 'parent.name'),
+                    !empty($column['label']) ? $column['label'] : __('crud.fields.parent')
+                );
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
                 if (!$this->user || !UserCache::user($this->user)->admin()) {
@@ -300,10 +306,13 @@ class DatagridRenderer
             . (!empty($model->type) ? 'data-type="' . Str::slug($model->type) . '" ' : null)
             // @phpstan-ignore-next-line
             . ($useEntity ? 'data-entity-id="' . $model->entity->id . '" data-entity-type="' . $model->entity->type() . '"' : null);
-        if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
+        /*if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
             foreach ($this->options['row']['data'] as $name => $data) {
                 $html .= ' ' . $name . '="' . $data($model) . '"';
             }
+        }*/
+        if (!empty($this->nestedFilter) and method_exists($model, 'children')) {
+            $html .= ' data-children="' . $model->children->count() . '"';
         }
         $html .= '>';
 
@@ -391,6 +400,11 @@ class DatagridRenderer
                 $class = $this->hidden;
                 if ($model->entity) {
                     $content = $model->entity->tooltipedLink();
+                }
+            } elseif ($type == 'parent') {
+                $class = $this->hidden;
+                if ($model->parent) {
+                    $content = $model->parent->tooltipedLink();
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private

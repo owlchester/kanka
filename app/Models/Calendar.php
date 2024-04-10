@@ -126,6 +126,12 @@ class Calendar extends MiscModel
             'children' => function ($sub) {
                 $sub->select('id', 'calendar_id');
             },
+            'parent' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
         ]);
     }
 

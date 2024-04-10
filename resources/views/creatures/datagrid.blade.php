@@ -1,9 +1,5 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
-
+<?php /** @var \App\Models\Creature $model */ ?>
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -12,6 +8,9 @@
         // Name
         'name',
         'type',
+        [
+            'type' => 'parent',
+        ],
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.creature'), __('entities.creatures')),
             'render' => function($model) {

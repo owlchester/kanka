@@ -1,10 +1,6 @@
 <?php /** @var \App\Models\Location $model */?>
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         [
             'type' => 'avatar'
@@ -12,13 +8,7 @@
         'name',
         'type',
         [
-            'label' => __('crud.fields.parent'),
-            'field' => 'location.name',
-            'render' => function($model) {
-                if ($model->location) {
-                return $model->location->tooltipedLink();
-                }
-            }
+            'type' => 'parent',
         ],
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),

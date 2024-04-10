@@ -35,7 +35,11 @@ class RaceController extends Controller
         $this->rows = $race
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with(['entity', 'characters', 'entity.tags', 'entity.tags.entity', 'race', 'race.entity'])
+            ->with([
+                'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
+                'characters',
+                'parent', 'parent.entity',
+            ])
             ->filter($filters)
             ->paginate(15);
 

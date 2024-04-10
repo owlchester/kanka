@@ -1,10 +1,6 @@
 <?php /** @var \App\Models\Journal $model */?>
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -13,6 +9,9 @@
         // Name
         'name',
         'type',
+        [
+            'type' => 'parent',
+        ],
         [
             'label' => __('journals.fields.date'),
             'field' => 'date',

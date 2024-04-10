@@ -66,11 +66,6 @@ abstract class MiscModel extends Model
     protected string $entityType;
 
     /**
-     * Fields that can be ordered on
-     */
-    protected array $sortableColumns = [];
-
-    /**
      * Explicit fields for filtering.
      * Ex. ['sex']
      * @var array

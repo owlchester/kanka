@@ -38,13 +38,10 @@ class Family extends Layout
                 },
             ],
             'family' => [
-                'key' => 'family.name',
+                'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => function ($model) {
-                    if (!$model->family) {
-                        return null;
-                    }
-                    return $model->family->tooltipedLink();
+                    return $model->parent?->tooltipedLink();
                 },
                 'visible' => function () {
                     return !request()->has('parent_id');

@@ -54,14 +54,7 @@ class Ability extends MiscModel
     protected array $sortable = [
         'name',
         'type',
-        'ability.name',
-    ];
-
-    /**
-     * Fields that can be sorted on
-     */
-    protected array $sortableColumns = [
-        'ability.name',
+        'parent.name',
     ];
 
     /**
@@ -103,10 +96,10 @@ class Ability extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'ability' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'ability.entity' => function ($sub) {
+            'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'abilities' => function ($sub) {

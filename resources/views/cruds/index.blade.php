@@ -68,6 +68,9 @@
         {!! Form::close() !!}
         @endif
 
+
+        <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.index', $campaign) }}">
+
     @endif
     </div>
 @endsection

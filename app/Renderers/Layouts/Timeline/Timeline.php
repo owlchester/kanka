@@ -28,13 +28,10 @@ class Timeline extends Layout
                 'label' => 'crud.fields.type',
             ],
             'timeline' => [
-                'key' => 'timeline.name',
+                'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => function ($model) {
-                    if (!$model->timeline) {
-                        return null;
-                    }
-                    return $model->timeline->tooltipedLink();
+                    return $model->parent?->tooltipedLink();
                 },
                 'visible' => function () {
                     return !request()->has('parent_id');

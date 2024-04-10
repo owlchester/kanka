@@ -28,13 +28,10 @@ class Location extends Layout
                 'label' => 'crud.fields.type',
             ],
             'location' => [
-                'key' => 'location.name',
+                'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => function ($model) {
-                    if (!$model->location) {
-                        return null;
-                    }
-                    return $model->location->tooltipedLink();
+                    return $model->parent?->tooltipedLink();
                 },
                 'visible' => function () {
                     return !request()->has('parent_id');

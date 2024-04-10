@@ -1,8 +1,5 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
 <?php /** @var \App\Models\Timeline $model */?>
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
     ->columns([
         // Avatar
         [
@@ -12,13 +9,7 @@
         'name',
         'type',
         [
-            'label' => __('crud.fields.parent'),
-            'field' => 'timeline.name',
-            'render' => function($model) {
-                if ($model->timeline) {
-                    return $model->timeline->entity->tooltipedLink();
-                }
-            }
+            'type' => 'parent',
         ],
         [
             'label' => __('timelines.fields.eras'),
@@ -31,7 +22,6 @@
             'type' => 'is_private',
         ]
     ])
-    ->models($models)
     ->options([
         'route' => 'timelines.index',
         'baseRoute' => 'timelines',

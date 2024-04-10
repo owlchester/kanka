@@ -1,9 +1,5 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
-
+<?php /** @var \App\Models\Organisation $model */ ?>
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -13,8 +9,7 @@
         'name',
         'type',
         [
-            'type' => 'organisation',
-            'label' => __('crud.fields.parent')
+            'type' => 'parent',
         ],
         [
             'type' => 'location',

@@ -1,9 +1,5 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
-
+<?php /** @var \App\Models\Ability $model */ ?>
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -13,13 +9,7 @@
         'name',
         'type',
         [
-            'label' => __('crud.fields.parent'),
-            'field' => 'ability.name',
-            'render' => function($model) {
-                if ($model->ability) {
-                    return $model->ability->tooltipedLink();
-                }
-            }
+            'type' => 'parent',
         ],
         [
             'label' => '<i class="' . \App\Facades\Module::duoIcon('ability') . '" title="' . __('entities.abilities') . '"></i>',

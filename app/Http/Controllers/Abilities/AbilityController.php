@@ -34,7 +34,10 @@ class AbilityController extends Controller
         $this->rows = $ability
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with(['entity', 'entity.image', 'ability', 'ability.entity', 'entity.tags', 'entity.tags.entity'])
+            ->with([
+                'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
+                'parent', 'parent.entity'
+            ])
             ->has('entity')
             ->filter($filters)
             ->paginate();

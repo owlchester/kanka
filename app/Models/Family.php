@@ -52,7 +52,6 @@ class Family extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
-        'family.name',
         'location.name',
     ];
 
@@ -60,7 +59,7 @@ class Family extends MiscModel
         'name',
         'type',
         'location.name',
-        'family.name',
+        'parent.name',
     ];
 
     /**
@@ -117,8 +116,11 @@ class Family extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'family' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'families' => function ($sub) {
                 $sub->select('id', 'family_id', 'name');

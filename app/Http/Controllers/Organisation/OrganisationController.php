@@ -37,7 +37,7 @@ class OrganisationController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
-                'organisation', 'organisation.entity'
+                'parent', 'parent.entity',
             ])
             ->filter($filters)
             ->paginate();

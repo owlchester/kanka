@@ -1,9 +1,6 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
+<?php /** @var \App\Models\Quest $model */ ?>
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -13,20 +10,14 @@
         'name',
         'type',
         [
+            'type' => 'parent',
+        ],
+        [
             'field' => 'instigator.name',
             'label' => __('quests.fields.instigator'),
             'render' => function($model) {
                 return $model->instigator?->tooltipedLink();
             },
-        ],
-        [
-            'label' => __('crud.fields.parent'),
-            'field' => 'quest.name',
-            'render' => function($model) {
-                if ($model->quest) {
-                    return $model->quest->tooltipedLink();
-                }
-            }
         ],
         [
             'label' => __('quests.show.tabs.elements'),

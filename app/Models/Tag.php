@@ -52,7 +52,7 @@ class Tag extends MiscModel
 
     protected array $sortable = [
         'name',
-        'tag.name',
+        'parent.name',
         'type',
         'colour',
         'is_auto_applied',
@@ -63,7 +63,6 @@ class Tag extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
-        'tag.name',
         'colour',
         'is_auto_applied',
         'is_hidden',
@@ -129,10 +128,10 @@ class Tag extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'tag' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'tag.entity' => function ($sub) {
+            'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'tags' => function ($sub) {
