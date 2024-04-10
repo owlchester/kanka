@@ -7,7 +7,6 @@ use App\Models\Character;
 use App\Models\MiscModel;
 use App\Services\EntityService;
 use App\Services\FilterService;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller

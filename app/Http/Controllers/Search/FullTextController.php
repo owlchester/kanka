@@ -7,7 +7,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Search\EntitySearchService;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class FullTextController extends Controller
 {
