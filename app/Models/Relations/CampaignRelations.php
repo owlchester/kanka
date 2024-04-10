@@ -59,6 +59,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignSetting $setting
  * @property Collection|CampaignUser[] $members
  * @property Collection|Theme[] $theme
+ * @property Collection|Webhook[] $webhooks
  *
  * @property Collection|Entity[] $entities
  * @property Collection|Character[] $characters

@@ -64,7 +64,7 @@ class WebhookController extends Controller
     {
         $this->authorize('webhooks', $campaign);
 
-        return view('campaigns.webhooks.create', ['campaign' => $campaign, 'model' => $campaign]);
+        return view('campaigns/webhooks.create', ['campaign' => $campaign, 'model' => $campaign]);
     }
 
 
@@ -79,14 +79,14 @@ class WebhookController extends Controller
         Webhook::create($data);
 
         return redirect()->route('webhooks.index', $campaign)
-            ->with('success_raw', __('campaigns.webhooks.create.success'));
+            ->with('success_raw', __('campaigns/webhooks.create.success'));
     }
 
     public function edit(Campaign $campaign, Webhook $webhook)
     {
         $this->authorize('webhooks', $campaign);
 
-        return view('campaigns.webhooks.edit', [
+        return view('campaigns/webhooks.edit', [
             'campaign' => $campaign,
             'model' => $campaign,
             'webhook' => $webhook,
@@ -99,7 +99,7 @@ class WebhookController extends Controller
 
         $webhook->update($request->all());
         return redirect()->route('webhooks.index', $campaign)
-            ->with('success_raw', __('campaigns.webhooks.edit.success'));
+            ->with('success_raw', __('campaigns/webhooks.edit.success'));
     }
 
     public function destroy(Campaign $campaign, Webhook $webhook)
@@ -109,14 +109,14 @@ class WebhookController extends Controller
         $webhook->delete();
 
         return redirect()->route('webhooks.index', $campaign)
-            ->with('success_raw', __('campaigns.webhooks.destroy.success'));
+            ->with('success_raw', __('campaigns/webhooks.destroy.success'));
     }
 
     public function status(Campaign $campaign, Webhook $webhook)
     {
         $this->authorize('webhooks', $campaign);
 
-        return view('campaigns.webhooks.status', [
+        return view('campaigns/webhooks.status', [
             'campaign' => $campaign,
             'model' => $campaign,
             'webhook' => $webhook,
@@ -136,7 +136,7 @@ class WebhookController extends Controller
         return redirect()->route('webhooks.index', $campaign)
             ->with(
                 'success',
-                __('campaigns.webhooks.toggle.success')
+                __('campaigns/webhooks.toggle.success')
             );
     }
 
@@ -178,7 +178,7 @@ class WebhookController extends Controller
 
         return redirect()
             ->route('webhooks.index', $campaign)
-            ->with('success', trans_choice('campaigns.webhooks.actions.bulks.' . $action . '_success', $count, ['count' => $count]));
+            ->with('success', trans_choice('campaigns/webhooks.actions.bulks.' . $action . '_success', $count, ['count' => $count]));
     }
 
     /**
@@ -194,7 +194,7 @@ class WebhookController extends Controller
         return redirect()->route('webhooks.index', $campaign)
             ->with(
                 'success',
-                __('campaigns.webhooks.test.success')
+                __('campaigns/webhooks.test.success')
             );
     }
 }

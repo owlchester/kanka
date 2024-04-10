@@ -22,9 +22,9 @@ return new class () extends Migration {
             $table->unsignedInteger('updated_by')->nullable();
             $table->unsignedTinyInteger('status');
 
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('updated_by')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->cascadeOnDelete();
         });
     }
 

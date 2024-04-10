@@ -7,6 +7,7 @@ use App\Models\Entity;
 use App\Models\Webhook;
 use App\Models\Campaign;
 use App\User;
+use App\Facades\CampaignLocalization;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -24,43 +25,22 @@ class EntityWebhookJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var int
-     */
-    public $campaignId;
-
-    /**
-     * @var int
-     */
-    public $action;
-
-    /**
-     * @var string
-     */
-    public $username;
-
-    /**
-     * @var Entity
-     */
-    public $entity;
-
-    /**
-     * The number of times the job may be attempted.
-     *
-     * @var int
-     */
-    public $tries = 1;
+    public Campaign $campaign;
+    public Entity $entity;
+    public int $action;
+    public string $username;
+    public int $tries = 1;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Entity $entity, Campaign $campaign, User $user, int $action)
+    public function __construct(Entity $entity, User $user, int $action)
     {
         // Can't save the entity directly into the job because of the child() function not returning a
         // string? Maybe something to do with the to array part of the queue.
-        $this->campaignId = $campaign->id;
+        $this->campaign = $entity->campaign;
         $this->username = $user->name;
         $this->action = $action;
         $this->entity = $entity;
@@ -74,26 +54,26 @@ class EntityWebhookJob implements ShouldQueue
     public function handle()
     {
         Log::info('EntityWebhookJob for entity #' . $this->entity->id);
+        if (!$this->campaign->premium()) {
+            return;
+        }
 
-        $webhooks = Webhook::where('campaign_id', $this->campaignId)->where('action', $this->action)->where('status', 1)->get();
-
+        $webhooks = Webhook::Active($this->campaign->id, $this->action)->with('tags')->get();
+        $entityTags = $this->entity->tags()->pluck('tags.id')->all();
         foreach ($webhooks as $webhook) {
-            if ($webhook->tags()->count() > 0) {
-                $tags = $webhook->tags()->pluck('tags.id')->all();
-
-                if (!$this->entity->tags()->whereIn('tags.id', $tags)->first()) {
-                    continue;
-                }
+            if ($this->isInvalid($webhook, $entityTags)) {
+                continue;
             }
 
             if ($webhook->type == 1) {
                 $data = Str::replace(
                     ['{name}', '{who}', '{url}'],
-                    [$this->entity->name, $this->username, route('entities.show', [$this->campaignId, $this->entity])],
+                    [$this->entity->name, $this->username, route('entities.show', [$this->campaign->id, $this->entity])],
                     $webhook->message
                 );
 
             } else {
+                CampaignLocalization::forceCampaign($this->entity->campaign);
                 $data = [
                     'event' => [
                         'id' => uniqid(),
@@ -113,7 +93,7 @@ class EntityWebhookJob implements ShouldQueue
                     'title'         => $this->entity->name,
                     'description'   => strval($data),
                     'color'         => config('discord.color'),
-                    'url'           => route('entities.show', [$this->campaignId, $this->entity]),
+                    'url'           => route('entities.show', [$this->campaign->id, $this->entity]),
                     'author'        => [
                         'name'  => 'Kanka Webhooks',
                     ],
@@ -138,5 +118,18 @@ class EntityWebhookJob implements ShouldQueue
     public function failure()
     {
         // Sentry will handle this
+    }
+
+    protected function isInvalid(Webhook $webhook, array $entityTags): bool
+    {
+        //Check that entity has at least one of the tags the webhook has.
+        if ($webhook->tags()->count() > 0) {
+            $tags = $webhook->tags()->pluck('tags.id')->all();
+
+            if (!empty(array_intersect($entityTags, $tags))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -2,7 +2,7 @@
     <h3 class="inline-block grow">
         {{ __('campaigns.show.tabs.webhooks') }}</span>
     </h3>
-    @if ($campaign->boosted())
+    @if ($campaign->premium())
     <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
             data-target="webhooks-help">
         <x-icon class="question" />
@@ -13,14 +13,14 @@
            data-url="{{ route('webhooks.create', $campaign) }}"
         >
             <x-icon class="plus"></x-icon>
-            {{ __('campaigns.webhooks.actions.add') }}
+            {{ __('campaigns/webhooks.actions.add') }}
         </a>
     @endif
     @endif
 </div>
-@if (!$campaign->boosted())
+@if (!$campaign->premium())
     <x-cta :campaign="$campaign">
-        <p>{!! __('campaigns.webhooks.pitch') !!}</p>
+        <p>{!! __('campaigns/webhooks.pitch') !!}</p>
     </x-cta>
 @else
 <?php /** @var \App\Models\Campaign $campaign
@@ -40,9 +40,9 @@
         'id' => 'webhooks-help',
         'title' => __('campaigns.show.tabs.webhooks'),
         'textes' => [
-            __('campaigns.webhooks.helper.1'),
-            __('campaigns.webhooks.helper.2'),
-            __('campaigns.webhooks.helper.3'),
+            __('campaigns/webhooks.helper.1'),
+            __('campaigns/webhooks.helper.2'),
+            __('campaigns/webhooks.helper.3'),
         ]
     ])
 @endsection

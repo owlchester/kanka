@@ -4,7 +4,9 @@ namespace App\Models;
 
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
+use App\Enums\WebhookAction;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -53,19 +55,19 @@ class Webhook extends Model
     public function typeKey(): string
     {
         if ($this->type == 2) {
-            return __('campaigns.webhooks.fields.types.payload');
+            return __('campaigns/webhooks.fields.types.payload');
         }
-        return __('campaigns.webhooks.fields.types.custom');
+        return __('campaigns/webhooks.fields.types.custom');
     }
 
     public function actionKey(): string
     {
-        if ($this->action == 1) {
-            return __('campaigns.webhooks.fields.events.new');
-        } elseif ($this->action == 2) {
-            return __('campaigns.webhooks.fields.events.edited');
+        if ($this->action == WebhookAction::NEW->value) {
+            return __('campaigns/webhooks.fields.events.new');
+        } elseif ($this->action == WebhookAction::EDITED->value) {
+            return __('campaigns/webhooks.fields.events.edited');
         }
-        return __('campaigns.webhooks.fields.events.deleted');
+        return __('campaigns/webhooks.fields.events.deleted');
     }
 
     public function shortUrl(): string
@@ -76,5 +78,12 @@ class Webhook extends Model
             return mb_strstr($regs['domain'], '.', true);
         }
         return $this->url;
+    }
+
+    /**
+     */
+    public function scopeActive(Builder $query, int $campaignId, int $action): Builder
+    {
+        return $query->where('campaign_id', $campaignId)->where('action', $action)->where('status', 1);
     }
 }

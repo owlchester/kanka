@@ -3,26 +3,26 @@
 <x-forms.field
     field="action"
     :required="true"
-    :label="__('campaigns.webhooks.fields.event')"
+    :label="__('campaigns/webhooks.fields.event')"
     >
-    {!! Form::select('action', [1 => __('campaigns.webhooks.fields.events.new'), 2 => __('campaigns.webhooks.fields.events.edited'), 3 => __('campaigns.webhooks.fields.events.deleted')]) !!}
+    {!! Form::select('action', [1 => __('campaigns/webhooks.fields.events.new'), 2 => __('campaigns/webhooks.fields.events.edited'), 3 => __('campaigns/webhooks.fields.events.deleted')]) !!}
 </x-forms.field>
 
 <x-forms.field
     field="url"
     :required="true"
-    :label="__('campaigns.webhooks.fields.url')"
+    :label="__('campaigns/webhooks.fields.url')"
     >
-    {!! Form::text('url', null, ['placeholder' => __('campaigns.webhooks.placeholders.url'), 'class' => '', 'maxlength' => 200, 'required']) !!}
+    {!! Form::text('url', null, ['placeholder' => __('campaigns/webhooks.placeholders.url'), 'class' => '', 'maxlength' => 191, 'required']) !!}
 </x-forms.field>
 
-<x-forms.field field="target" :label="__('campaigns.webhooks.fields.type')">
+<x-forms.field field="target" :label="__('campaigns/webhooks.fields.type')">
     <select name="type" class="" id="webhook-selector">
         <option value="1" @if(isset($webhook) && $webhook->type == 1) selected="selected" @endif data-target="#webhook-custom">
-            {{ __('campaigns.webhooks.fields.types.custom') }}
+            {{ __('campaigns/webhooks.fields.types.custom') }}
         </option>
         <option value="2" @if(isset($webhook) && $webhook->type == 2) selected="selected" @endif>
-            {{ __('campaigns.webhooks.fields.types.payload') }}
+            {{ __('campaigns/webhooks.fields.types.payload') }}
         </option>
 
     </select>
@@ -32,17 +32,17 @@
     <x-forms.field
         field="message"
         :required="true"
-        :label="__('campaigns.webhooks.fields.message')"
+        :label="__('campaigns/webhooks.fields.message')"
         >
-        {!! Form::text('message', null, ['placeholder' => __('campaigns.webhooks.placeholders.message'), 'class' => '', 'maxlength' => 400, 'required' => false]) !!}
+        {!! Form::text('message', null, ['placeholder' => __('campaigns/webhooks.placeholders.message'), 'class' => '', 'maxlength' => 400, 'required' => false]) !!}
     </x-forms.field>
 </div>
 
 <x-forms.field
     field="status"
-    :label="__('campaigns.webhooks.fields.active')">
+    :label="__('campaigns/webhooks.fields.active')">
     {!! Form::hidden('status', 1) !!}
-    <x-checkbox :text="__('campaigns.webhooks.helper.active')">
+    <x-checkbox :text="__('campaigns/webhooks.helper.active')">
         {!! Form::checkbox('status', 1, isset($webhook) ? $webhook->status : 1) !!}
     </x-checkbox>
 </x-forms.field>
