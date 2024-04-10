@@ -1,10 +1,6 @@
 <?php /** @var \App\Models\Bookmark $model */ ?>
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Name
         'name',

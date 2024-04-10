@@ -1,9 +1,4 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
-
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -21,6 +16,7 @@
         [
             'label' => __('entities.character'),
             'field' => 'diceRoll.character.name',
+            'disableSort' => true,
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 if ($model->diceRoll->character) {

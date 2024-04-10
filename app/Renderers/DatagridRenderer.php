@@ -14,6 +14,7 @@ use App\Services\FilterService;
 use App\Traits\CampaignAware;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Collective\Html\FormFacade as Form;
@@ -294,7 +295,7 @@ class DatagridRenderer
 
     /**
      */
-    private function renderRow(MiscModel|Relation $model): string
+    private function renderRow(Model $model): string
     {
         $useEntity = $this->getOption('disableEntity') !== true;
         // Should never happen...

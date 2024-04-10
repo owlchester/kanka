@@ -3,13 +3,20 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Orderable;
+use App\Models\Concerns\Searchable;
+use App\Models\Concerns\Sortable;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property DiceRoll|null $diceRoll
  */
-class DiceRollResult extends MiscModel
+class DiceRollResult extends Model
 {
     use HasFilters;
+    use Searchable;
+    use Orderable;
+    use Sortable;
 
 
     protected $fillable = [

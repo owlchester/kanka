@@ -319,10 +319,6 @@ class FilterService
             $options['bookmark'] = (int) $bookmarkId;
         }
 
-        if (in_array($this->request->get('m'), ['table', 'grid'])) {
-            $options['m'] = $this->request->get('m');
-        }
-
         if ($this->request->filled('parent_id')) {
             $options['parent_id'] = (int) $this->request->get('parent_id');
         }
