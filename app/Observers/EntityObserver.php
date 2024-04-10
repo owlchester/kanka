@@ -190,7 +190,7 @@ class EntityObserver
         if (!request()->has('attr_name')) {
             $this->attributeService->applyEntityTemplates($entity);
         }
-        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::NEW->value);
+        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::CREATED->value);
     }
 
     /**

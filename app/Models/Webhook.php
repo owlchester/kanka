@@ -68,7 +68,7 @@ class Webhook extends Model
 
     public function actionKey(): string
     {
-        if ($this->action == WebhookAction::NEW->value) {
+        if ($this->action == WebhookAction::CREATED->value) {
             return __('campaigns/webhooks.fields.events.new');
         } elseif ($this->action == WebhookAction::EDITED->value) {
             return __('campaigns/webhooks.fields.events.edited');
