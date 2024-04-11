@@ -47,7 +47,15 @@
     </x-checkbox>
 </x-forms.field>
 
-@include('cruds.fields.tags', ['enableNew' => false, 'model' => isset($webhook) ? $webhook : ''])
+<x-forms.field field="tags">
+    <x-forms.tags
+        :campaign="$campaign"
+        :model="$webhook ?? null"
+        allowClear="true"
+        :dropdownParent="$dropdownParent ?? null"
+    ></x-forms.tags>
+    <input type="hidden" name="save_tags" value="1" />
+</x-forms.field>
 
 </x-grid>
 
