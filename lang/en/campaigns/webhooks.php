@@ -35,7 +35,7 @@ return [
         'type'      => 'Type',
         'message'   => 'Message',
         'url'       => 'Url',
-        'active'    => 'Active',
+        'enabled'    => 'Enabled',
         'events'    => [
             'new'       => 'New entity',
             'edited'    => 'Edited entity',
@@ -49,6 +49,7 @@ return [
     'helper'    => [
         'active'    => 'If the webhook is currently active',
         'status'    => 'Toggle the active status of the webhook',
+        'message'   => 'Add a custom message with support for mappings',
     ],
     'placeholders'  => [
         'url'       => 'Target webhook\'s url',

@@ -33,6 +33,9 @@
         field="message"
         :required="true"
         :label="__('campaigns/webhooks.fields.message')"
+        :tooltip="true"
+        :helper="__('campaigns/webhooks.helper.message')"
+        link="https://docs.kanka.io/en/latest/features/campaigns/webhooks.html#mappings"
         >
         {!! Form::text('message', null, ['placeholder' => __('campaigns/webhooks.placeholders.message'), 'class' => '', 'maxlength' => 400, 'required' => false]) !!}
     </x-forms.field>
@@ -40,7 +43,7 @@
 
 <x-forms.field
     field="status"
-    :label="__('campaigns/webhooks.fields.active')">
+    :label="__('campaigns/webhooks.fields.enabled')">
     {!! Form::hidden('status', 1) !!}
     <x-checkbox :text="__('campaigns/webhooks.helper.active')">
         {!! Form::checkbox('status', 1, isset($webhook) ? $webhook->status : 1) !!}

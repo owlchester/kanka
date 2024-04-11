@@ -15,7 +15,7 @@
     @include('partials.forms.form', [
             'title' => __('campaigns/webhooks.edit.title'),
             'content' => 'campaigns/webhooks._form',
-            'submit' => __('campaigns/webhooks.actions.update'),
+            'submit' => __('crud.update'),
             'dialog' => true,
         ])
     {!! Form::close() !!}

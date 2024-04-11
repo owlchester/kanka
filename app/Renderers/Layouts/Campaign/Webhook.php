@@ -44,7 +44,7 @@ class Webhook extends Layout
 
             'status' => [
                 'key' => 'status',
-                'label' => 'campaigns/webhooks.fields.active',
+                'label' => 'campaigns/webhooks.fields.enabled',
                 'render' => function ($model) {
                     if ($model->status) {
                         return '<i class="fa-solid fa-check" aria-hidden="true"></i>';
@@ -64,15 +64,9 @@ class Webhook extends Layout
     {
         return [
             'update' => [
-                'label' => 'campaigns/webhooks.actions.update',
+                'label' => 'crud.update',
                 'icon' => 'fa-solid fa-edit',
                 'route' => 'webhooks.edit',
-            ],
-            'status' => [
-                'label' => 'campaigns/webhooks.actions.action',
-                'icon' => 'fa-solid fa-edit',
-                'type' => 'dialog-ajax',
-                'route' => 'webhooks.status',
             ],
             'test' => [
                 'label' => 'campaigns/webhooks.actions.test',

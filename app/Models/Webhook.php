@@ -8,6 +8,7 @@ use App\Enums\WebhookAction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Facades\CampaignLocalization;
 
 /**
  * @property int $id
@@ -68,12 +69,16 @@ class Webhook extends Model
 
     public function actionKey(): string
     {
+        $campaign = CampaignLocalization::getCampaign();
+        $action = __('campaigns/webhooks.fields.events.deleted');
+
         if ($this->action == WebhookAction::CREATED->value) {
-            return __('campaigns/webhooks.fields.events.new');
+            $action = __('campaigns/webhooks.fields.events.new');
         } elseif ($this->action == WebhookAction::EDITED->value) {
-            return __('campaigns/webhooks.fields.events.edited');
+            $action = __('campaigns/webhooks.fields.events.edited');
         }
-        return __('campaigns/webhooks.fields.events.deleted');
+
+        return '<a class="name" href="' . route('webhooks.edit', [$campaign, $this->id]) . '">' . $action . '</a>';
     }
 
     public function shortUrl(): string
