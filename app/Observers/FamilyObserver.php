@@ -10,12 +10,8 @@ class FamilyObserver extends MiscObserver
 {
     /**
      */
-    public function saved(MiscModel|Family $model)
+    public function saved(Family $family)
     {
-        parent::saved($model);
-
-        /** @var Family $family */
-        $family = $model;
         $this->saveMembers($family);
     }
 

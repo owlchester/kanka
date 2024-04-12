@@ -36,10 +36,6 @@ abstract class MiscObserver
     public function saving(MiscModel $model)
     {
         $model->slug = Str::slug($model->name, '');
-        if (empty($model->campaign_id)) {
-            $model->campaign_id = CampaignLocalization::getCampaign()->id;
-            Log::info('Had to get the campaign_id magically for ' . $model->getTable() . ':' . $model->name);
-        }
         $model->name = trim($model->name); // Remove empty spaces in names
         //$model->name = strip_tags($model->name);
 
@@ -60,38 +56,6 @@ abstract class MiscObserver
         }
     }
 
-    /**
-     */
-    public function saved(MiscModel $model)
-    {
-        // Whenever a misc model is saved, we need to make sure it has an associated entity with it.
-        // If none exists, we need to create one. Otherwise, we need to update it.
-        $entity = $model->entity;
-        if (empty($entity)) {
-            $entity = new Entity([
-                'entity_id' => $model->id,
-                'campaign_id' => $model->campaign_id,
-            ]);
-        }
-        $entity->is_private = $model->is_private;
-        $entity->name = $model->name;
-        $entity->type_id = $model->entityTypeId();
-        ImageService::handle($entity, 'w/' . $entity->campaign_id);
-
-        // Once saved, refresh the model so that we can call $model->entity
-        if ($entity->save()) {
-            // Handle image. Let's use a service for this.
-
-            // Take care of mentions for the entity.
-            $this->syncMentions($model, $entity);
-            $model->refresh();
-
-            // Clear some cache
-            EntityCache::clearSuggestion($model);
-
-
-        }
-    }
 
     /**
      */
@@ -101,6 +65,8 @@ abstract class MiscObserver
         $entity = $model->createEntity();
 
         $this->copy($entity);
+
+        EntityCache::clearSuggestion($model);
     }
 
     /**
@@ -125,27 +91,28 @@ abstract class MiscObserver
      */
     public function updated(MiscModel $model)
     {
-        // We make an extra write to the db when doing this, but we always want the entity's updated_at to be in
-        // sync with the model. For example if we just change the description, which is on the sub entity, we
-        // still want the entity to be alerted. This is used for the recently modified dashboard widget.
-
-        // Check if the entity exists, because it won't while moving an entity from one type to another.
-        if ($model->entity) {
-            // We touch the entity but we don't want a log to be generated just yet
-            $model->entity->withoutUpdateLog()->touch();
-
-            // If the updated_at is the same as the created_at, we don't need to create a log.
-            //if ($model->entity->created_at->is($model->entity->updated_at)) {
-            //    return;
-            //}
-
-            // Updated log. We do this here to have the dirty attributes of the child
-            $this->logService
-                ->entity($model->entity)
-                ->user(auth()->user())
-                ->model($model)
-                ->logUpdate();
+        if (!$model->entity) {
+            throw new \Exception('Model with no entity?');
         }
+        // Updated the linked entity first
+        $model->entity->is_private = $model->is_private;
+        $model->entity->name = $model->name;
+        ImageService::handle($model->entity, 'w/' . $model->entity->campaign_id);
+        $model->entity->withoutUpdateLog()->touch();
+
+        // Updated log. We do this here to have the dirty attributes of the child
+        $this->logService
+            ->entity($model->entity)
+            ->user(auth()->user())
+            ->model($model)
+            ->logUpdate();
+
+            // Take care of mentions for the entity.
+        $this->syncMentions($model, $model->entity);
+        $model->refresh();
+
+        // Clear some cache
+        EntityCache::clearSuggestion($model);
     }
 
     /**

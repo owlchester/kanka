@@ -321,7 +321,7 @@ class BulkService
                     }
                 }
             }
-            $entity->updateQuietly($entityFields);
+            $entity->update($entityFields);
 
             // Foreign belongsTo loop
             foreach ($filledForeigns as $relation => $ids) {
@@ -346,7 +346,7 @@ class BulkService
 
                 $realEntity->is_private = $entity->is_private;
                 $realEntity->name = $entity->name;
-                $realEntity->save();
+                $realEntity->updateQuietly();
             }
 
             $this->count++;
