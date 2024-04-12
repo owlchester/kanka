@@ -13,7 +13,6 @@ use App\Services\Entity\TagService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
 use App\Facades\Domain;
-use Carbon\Carbon;
 
 class EntityObserver
 {
@@ -169,22 +168,12 @@ class EntityObserver
     }
 
     /**
+     * Queue a few jobs whenever an entity gets updated
      */
     public function updated(Entity $entity)
     {
-        //EntityCache::clearEntity($entity->id);
-
-        // Queue job when an entity was updated
         EntityUpdatedJob::dispatch($entity);
-    }
-
-    /**
-     */
-    public function updating(Entity $entity)
-    {
-        if ($entity->getOriginal('updated_at')->diffInSeconds(Carbon::now()) > 15) {
-            EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
-        }
+        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
     }
 
     /**
@@ -201,7 +190,7 @@ class EntityObserver
         }
         // No changed for non-boosted campaigns
         if (!$entity->campaign->boosted()) {
-            $entity->save();
+            $entity->saveQuietly();
             return;
         }
 
@@ -222,20 +211,15 @@ class EntityObserver
             }
         }
 
-        $entity->save();
+        $entity->saveQuietly();
     }
 
-    public function deleting(Entity $entity)
-    {
-        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value);
-    }
-
-    /**
-     */
     public function deleted(Entity $entity)
     {
-        // If soft deleting, don't really delete the image
+        // When an entity is soft deleted, we just want some webhooks to trigger,
+        // not actually delete the entity and its image.
         if ($entity->trashed()) {
+            EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value);
             return;
         }
 
