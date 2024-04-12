@@ -664,7 +664,9 @@ abstract class MiscModel extends Model
             'entity_id' => $this->entity->id,
             'name' => $this->name,
             'type'  => $this->type,
-            'entry'  => $this->entry,
+            // Entities created through the quick creator or new mention syntax don't have an entry property set
+            // (since the model isn't refreshed), causing errors in laravel
+            'entry'  => in_array('entry', $this->attributes) ? $this->entry : '',
         ];
     }
 }
