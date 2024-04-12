@@ -8,6 +8,7 @@ return [
     'success'       => [
         'created'   => ':name created.',
         'deleted'   => ':name removed.',
+        'deleted-cancel' => ':name removed. :cancel.',
         'updated'   => ':name updated.',
     ],
     'yes'           => 'Yes',

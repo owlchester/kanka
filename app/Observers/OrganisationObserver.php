@@ -9,15 +9,9 @@ use App\Models\OrganisationMember;
 
 class OrganisationObserver extends MiscObserver
 {
-    /**
-     */
-    public function saved(MiscModel|Organisation $model)
+    public function saved(Organisation $organisation)
     {
-        parent::saved($model);
-
-        /** @var Organisation $org */
-        $org = $model;
-        $this->saveMembers($org);
+        $this->saveMembers($organisation);
     }
 
     /**
