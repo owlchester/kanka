@@ -40,6 +40,7 @@ use App\Models\Tag;
 use App\Models\Theme;
 use App\Models\Timeline;
 use App\Models\CampaignImport;
+use App\Models\Webhook;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -58,6 +59,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignSetting $setting
  * @property Collection|CampaignUser[] $members
  * @property Collection|Theme[] $theme
+ * @property Collection|Webhook[] $webhooks
  *
  * @property Collection|Entity[] $entities
  * @property Collection|Character[] $characters
@@ -132,6 +134,11 @@ trait CampaignRelations
     public function roles(): HasMany
     {
         return $this->hasMany(CampaignRole::class);
+    }
+
+    public function webhooks(): HasMany
+    {
+        return $this->hasMany(Webhook::class);
     }
 
     public function characters(): HasMany

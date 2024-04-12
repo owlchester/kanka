@@ -426,6 +426,7 @@ TEXT
             'roles'             => 'Roles',
             'sidebar'           => 'Sidebar',
             'styles'            => 'Theming',
+            'webhooks'          => 'Webhooks',
         ],
         'title'     => 'Overview - :name',
     ],

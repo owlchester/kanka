@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
@@ -21,9 +22,17 @@ class TagService
 
     protected bool $withDetach = true;
 
+    protected Model $model;
+
     public function withNew(): self
     {
         $this->withNew = true;
+        return $this;
+    }
+
+    public function model(Model $model): self
+    {
+        $this->model = $model;
         return $this;
     }
 
@@ -41,23 +50,13 @@ class TagService
         return $this->canCreate = $this->user->can('create', Tag::class);
     }
 
-    protected function fetch(mixed $id): Tag|null
-    {
-        /** @var Tag|null $tag */
-        $tag = Tag::select(['id', 'name'])->find($id);
-        // Create the tag if the user has permission to do so
-        if (empty($tag) && $this->withNew && $this->isAllowed()) {
-            $tag = $this->create($id);
-        }
-
-        return $tag;
-    }
 
     public function create(mixed $name): Tag
     {
         $tag = new Tag([
             'name' => Purify::clean($name),
         ]);
+
         $tag->campaign_id = isset($this->campaign) ? $this->campaign->id : $this->entity->campaign_id;
         $tag->slug = Str::slug($tag->name, '');
         $tag->is_private = false;
@@ -72,8 +71,10 @@ class TagService
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.
         $existing = [];
+        $model = $this->entity ?? $this->model;
+
         /** @var Tag $tag */
-        foreach ($this->entity->tags()->with('entity')->has('entity')->get() as $tag) {
+        foreach ($model->tags()->with('entity')->has('entity')->get() as $tag) {
             $existing[$tag->id] = $tag->name;
         }
         $new = [];
@@ -88,14 +89,26 @@ class TagService
                 }
             }
         }
-        $this->entity->tags()->attach($new);
+        $model->tags()->attach($new);
 
         // Detach previously existing tags that were not requested
         if (empty($existing) || !$this->withDetach) {
             return $this;
         }
-        $this->entity->tags()->detach(array_keys($existing));
+        $model->tags()->detach(array_keys($existing));
 
         return $this;
+    }
+
+    protected function fetch(mixed $id): Tag|null
+    {
+        /** @var Tag|null $tag */
+        $tag = Tag::select(['id', 'name'])->find($id);
+        // Create the tag if the user has permission to do so
+        if (empty($tag) && $this->withNew && $this->isAllowed()) {
+            $tag = $this->create($id);
+        }
+
+        return $tag;
     }
 }

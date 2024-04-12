@@ -80,6 +80,8 @@ Route::resources([
     '/w/{campaign}/preset_types.presets' => 'PresetController',
 
     '/w/{campaign}/images' => 'Campaign\GalleryController',
+
+    '/w/{campaign}/webhooks' => 'Campaign\WebhookController',
 ]);
 Route::get('/w/{campaign}/leave', 'Campaign\LeaveController@index')->name('campaign.leave');
 Route::post('/w/{campaign}/leave-for-real', 'Campaign\LeaveController@process')->name('campaign.leave-process');
@@ -173,3 +175,9 @@ Route::post('/w/{campaign}/bragi', [App\Http\Controllers\Bragi\BragiController::
 
 Route::get('/w/{campaign}/confirm-delete', [App\Http\Controllers\ConfirmController::class, 'index'])->name('confirm-delete');
 Route::post('/w/{campaign}/vanity-validate', [App\Http\Controllers\Campaign\VanityController::class, 'index'])->name('campaign.vanity-validate');
+
+// Permission save
+Route::patch('/w/{campaign}/webhooks/{webhook}/toggle', [App\Http\Controllers\Campaign\WebhookController::class, 'toggle'])->name('webhooks.toggle');
+Route::get('/w/{campaign}/webhooks/{webhook}/status', [App\Http\Controllers\Campaign\WebhookController::class, 'status'])->name('webhooks.status');
+Route::post('/w/{campaign}/webhooks/bulk', [App\Http\Controllers\Campaign\WebhookController::class, 'bulk'])->name('webhooks.bulk');
+Route::get('/w/{campaign}/webhooks/{webhook}/test', [App\Http\Controllers\Campaign\WebhookController::class, 'test'])->name('webhooks.test');

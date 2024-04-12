@@ -502,7 +502,9 @@ class User extends \Illuminate\Foundation\Auth\User
     public function hasManualSubscription(): bool
     {
         // @phpstan-ignore-next-line
-        return $this->subscribed('kanka') && $this->subscription('kanka') && $this->subscription('kanka')->stripe_id == 'manual_sub';
+        return $this->subscribed('kanka') &&
+            $this->subscription('kanka') &&
+            Str::startsWith($this->subscription('kanka')->stripe_id, 'manual_sub');
     }
 
     public function isStripeYearly(): bool

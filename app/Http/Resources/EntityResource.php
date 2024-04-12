@@ -48,7 +48,6 @@ class EntityResource extends JsonResource
     {
         /** @var \App\Models\Entity $entity */
         $entity = $this->resource;
-
         $url = $entity->url();
         $apiViewUrl = 'campaigns.' . $entity->pluralType() . '.show';
 
