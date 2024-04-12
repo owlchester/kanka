@@ -161,7 +161,7 @@ class QuestElement extends Model
             'entity_id' => $this->quest->entity->id,
             'name' => $this->name,
             'type'  => 'quest_element',
-            'entry' => $this->description,
+            'entry' => strip_tags($this->description),
         ];
     }
 }

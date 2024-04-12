@@ -414,7 +414,7 @@ class Attribute extends Model
             'entity_id' => $this->entity_id,
             'name' => $this->name,
             'type'  => 'attribute',
-            'entry'  => $this->value,
+            'entry'  => strip_tags($this->value),
         ];
     }
 }

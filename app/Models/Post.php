@@ -223,7 +223,7 @@ class Post extends Model
             'entity_id' => $this->entity_id,
             'name' => $this->name,
             'type'  => 'post',
-            'entry' => $this->entry,
+            'entry' => strip_tags($this->entry),
         ];
     }
 }

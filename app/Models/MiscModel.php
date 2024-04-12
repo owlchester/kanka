@@ -664,7 +664,7 @@ abstract class MiscModel extends Model
             'entity_id' => $this->entity->id,
             'name' => $this->name,
             'type'  => $this->type,
-            'entry'  =>  $this->entry,
+            'entry'  => strip_tags($this->entry),
         ];
     }
 }
