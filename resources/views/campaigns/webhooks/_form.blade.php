@@ -5,7 +5,10 @@
     :required="true"
     :label="__('campaigns/webhooks.fields.event')"
     >
-    {!! Form::select('action', [1 => __('campaigns/webhooks.fields.events.new'), 2 => __('campaigns/webhooks.fields.events.edited'), 3 => __('campaigns/webhooks.fields.events.deleted')]) !!}
+    {!! Form::select('action', [
+    \App\Enums\WebhookAction::CREATED->value => __('campaigns/webhooks.fields.events.new'),
+    \App\Enums\WebhookAction::EDITED->value => __('campaigns/webhooks.fields.events.edited'),
+    \App\Enums\WebhookAction::DELETED->value => __('campaigns/webhooks.fields.events.deleted')]) !!}
 </x-forms.field>
 
 <x-forms.field
@@ -37,14 +40,14 @@
         :helper="__('campaigns/webhooks.helper.message')"
         link="https://docs.kanka.io/en/latest/features/campaigns/webhooks.html#mappings"
         >
-        {!! Form::text('message', null, ['placeholder' => __('campaigns/webhooks.placeholders.message'), 'class' => '', 'maxlength' => 400, 'required' => false]) !!}
+        {!! Form::textarea('message', null, ['placeholder' => __('campaigns/webhooks.placeholders.message'), 'class' => '', 'maxlength' => 400, 'rows' => 4]) !!}
     </x-forms.field>
 </div>
 
 <x-forms.field
     field="status"
     :label="__('campaigns/webhooks.fields.enabled')">
-    {!! Form::hidden('status', 1) !!}
+    {!! Form::hidden('status', 0) !!}
     <x-checkbox :text="__('campaigns/webhooks.helper.active')">
         {!! Form::checkbox('status', 1, isset($webhook) ? $webhook->status : 1) !!}
     </x-checkbox>

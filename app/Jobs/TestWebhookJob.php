@@ -21,25 +21,13 @@ class TestWebhookJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var int
-     */
-    public $campaignId;
+    public int $campaignId;
 
-    /**
-     * @var int
-     */
-    public $action;
+    public int $action;
 
-    /**
-     * @var string
-     */
-    public $username;
+    public string $username;
 
-    /**
-     * @var Webhook
-     */
-    public $webhook;
+    public Webhook $webhook;
 
     /**
      * The number of times the job may be attempted.
@@ -70,10 +58,13 @@ class TestWebhookJob implements ShouldQueue
      */
     public function handle()
     {
+        /** @var Campaign|null $campaign */
+        $campaign = Campaign::find($this->campaignId);
+
         if ($this->webhook->type == 1) {
             $data = Str::replace(
                 ['{name}', '{who}', '{url}'],
-                ['Thaelia', $this->username, route('locations.index', [$this->campaignId])],
+                ['Thaelia', $this->username, route('locations.index', [$campaign])],
                 $this->webhook->message
             );
 
@@ -119,7 +110,7 @@ class TestWebhookJob implements ShouldQueue
                 'title'         => 'Thaelia',
                 'description'   => strval($data),
                 'color'         => config('discord.color'),
-                'url'           => route('locations.index', [$this->campaignId]),
+                'url'           => route('locations.index', [$campaign]),
                 'author'        => [
                     'name'  => 'Kanka Webhooks',
                 ],

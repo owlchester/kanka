@@ -9,13 +9,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Facades\CampaignLocalization;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
  * @property int $feature_id
+ * @property int $campaign_id
+ * @property int $status
  * @property string $path
  * @property Feature $feature
- * @property \App\Enums\Webhook $status_id
+ * @property WebhookAction $action
  */
 class Webhook extends Model
 {
@@ -23,14 +26,11 @@ class Webhook extends Model
     use SortableTrait;
 
     public $fillable = [
-        'campaign_id',
         'action',
         'url',
         'type',
         'message',
         'status',
-        'created_by',
-        'updated_by',
     ];
 
     protected array $sortable = [
@@ -39,10 +39,7 @@ class Webhook extends Model
         'action',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(
             'App\Models\Tag',
@@ -91,10 +88,11 @@ class Webhook extends Model
         return $this->url;
     }
 
-    /**
-     */
     public function scopeActive(Builder $query, int $campaignId, int $action): Builder
     {
-        return $query->where('campaign_id', $campaignId)->where('action', $action)->where('status', 1);
+        return $query
+            ->where('campaign_id', $campaignId)
+            ->where('action', $action)
+            ->where('status', 1);
     }
 }

@@ -3,9 +3,9 @@
 return [
     'title'     => 'Webhooks',
     'destroy'    => [
-        'success'   => 'Webhook deleted succesfully',
+        'success'   => 'Webhook deleted successfully',
     ],
-    'pitch'     => 'Create custom webhooks to recieve custom updates whenever an entity from the campaign is updated.',
+    'pitch'     => 'Create custom webhooks to receive custom updates whenever an entity from the campaign is updated.',
     'actions'   => [
         'add'       =>  'Create webhook',
         'update'    =>  'Update webhook',
@@ -21,11 +21,11 @@ return [
     ],
     'create'    => [
         'title' => 'Add new webhook',
-        'success'   => 'Webhook created succesfully',
+        'success'   => 'Webhook created successfully',
     ],
     'edit'      => [
         'title' => 'Update webhook',
-        'success'   => 'Webhook updated succesfully',
+        'success'   => 'Webhook updated successfully',
     ],
     'test'      => [
         'success' => 'Test request sent',
@@ -53,6 +53,6 @@ return [
     ],
     'placeholders'  => [
         'url'       => 'Target webhook\'s url',
-        'message'   => 'Message to append to the webhook',
+        'message'   => '{who} made changes to {name}, check it out at {url}',
     ],
 ];

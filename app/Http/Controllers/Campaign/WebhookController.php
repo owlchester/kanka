@@ -13,10 +13,6 @@ class WebhookController extends Controller
 {
     protected string $view = 'webhooks';
 
-    /**
-     * Create a new controller instance.
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -33,14 +29,12 @@ class WebhookController extends Controller
 
         $this->authorize('webhooks', $campaign);
 
-        $webhooks = $campaign->webhooks()
+        $rows = $campaign->webhooks()
             ->sort(request()->only(['o', 'k']))
             //->with(['users', 'permissions', 'campaign'])
             ->orderBy('updated_at', 'DESC')
             //->orderBy('name')
             ->paginate();
-
-        $rows = $webhooks;
 
         // Ajax Datagrid
         if (request()->ajax()) {
@@ -53,7 +47,7 @@ class WebhookController extends Controller
             ]);
         }
 
-        return view('campaigns.webhooks', compact('campaign', 'rows', 'webhooks'));
+        return view('campaigns.webhooks', compact('campaign', 'rows'));
     }
 
     /**
@@ -75,8 +69,9 @@ class WebhookController extends Controller
             return response()->json();
         }
 
-        $data = $request->all() + ['campaign_id' => $campaign->id];
-        Webhook::create($data);
+        $new = new Webhook($request->all());
+        $new->campaign_id = $campaign->id;
+        $new->save();
 
         return redirect()->route('webhooks.index', $campaign)
             ->with('success', __('campaigns/webhooks.create.success'));
@@ -106,19 +101,8 @@ class WebhookController extends Controller
         $this->authorize('webhooks', $campaign);
 
         $webhook->delete();
-
         return redirect()->route('webhooks.index', $campaign)
             ->with('success', __('campaigns/webhooks.destroy.success'));
-    }
-
-    public function status(Campaign $campaign, Webhook $webhook)
-    {
-        $this->authorize('webhooks', $campaign);
-
-        return view('campaigns.webhooks.status', [
-            'campaign' => $campaign,
-            'webhook' => $webhook,
-        ]);
     }
 
     /**
@@ -161,14 +145,10 @@ class WebhookController extends Controller
             if ($action === 'delete') {
                 $webhook->delete();
                 $count++;
-            }
-
-            if ($action === 'disable' && $webhook->status) {
+            } elseif ($action === 'disable' && $webhook->status) {
                 $webhook->update(['status' => 0]);
                 $count++;
-            }
-
-            if ($action === 'enable' && !$webhook->status) {
+            } elseif ($action === 'enable' && !$webhook->status) {
                 $webhook->update(['status' => 1]);
                 $count++;
             }

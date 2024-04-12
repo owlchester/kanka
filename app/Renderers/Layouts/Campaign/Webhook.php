@@ -3,6 +3,7 @@
 namespace App\Renderers\Layouts\Campaign;
 
 use App\Renderers\Layouts\Layout;
+use Illuminate\Support\Str;
 
 class Webhook extends Layout
 {
@@ -32,13 +33,17 @@ class Webhook extends Layout
                 'label' => 'campaigns/webhooks.fields.message',
                 'render' => function ($model) {
                     /** @var \App\Models\Webhook $model */
-                    return $model->message;
+                    return '<div data-toggle="tooltip" data-title="' . nl2br($model->message) . '" data-html="1">'
+                        . Str::limit(strip_tags($model->message ?? ''), 30)
+                        . '</div>';
                 },
             ],
             'url' => [
                 'label' => 'campaigns/webhooks.fields.url',
                 'render' => function ($model) {
-                    return '<div href="#" data-toggle="tooltip" title="' . $model->url . '">' . $model->shortUrl() . '</div>';
+                    return '<div data-toggle="tooltip" data-title="' . $model->url . '">'
+                        . $model->shortUrl()
+                        . '</div>';
                 },
             ],
 
