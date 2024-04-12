@@ -6,7 +6,7 @@ use App\Observers\EntityLogObserver;
 
 trait EntityLogs
 {
-    protected $hasUpdateLog = true;
+    protected bool $hasUpdateLog = true;
 
     public function withoutUpdateLog(): self
     {

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\WebhookAction;
 use App\Facades\Avatar;
 use App\Models\Entity;
 use Illuminate\Bus\Queueable;
@@ -18,10 +19,7 @@ class EntityUpdatedJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var int
-     */
-    public $entityId;
+    public int $entityId;
 
     /**
      * The number of times the job may be attempted.

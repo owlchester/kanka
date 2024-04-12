@@ -13,11 +13,8 @@ use App\Services\Entity\PrivacyService;
  */
 class PrivacyController extends Controller
 {
-    /**  */
     protected PrivacyService $service;
 
-    /**
-     */
     public function __construct(PrivacyService $service)
     {
         $this->service = $service;

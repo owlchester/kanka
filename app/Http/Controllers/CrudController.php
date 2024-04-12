@@ -578,7 +578,10 @@ class CrudController extends Controller
         $model->delete();
 
         return redirect()->route($this->route . '.index', $this->campaign)
-            ->with('success', __('general.success.deleted', ['name' => $model->name]));
+            ->with('success_raw', __('general.success.deleted-cancel', [
+                'name' => $model->name,
+                'cancel' => link_to_route('recovery', __('crud.cancel'), [$model->campaign])
+            ]));
     }
 
     /**
