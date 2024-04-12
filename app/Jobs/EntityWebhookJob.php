@@ -101,7 +101,7 @@ class EntityWebhookJob implements ShouldQueue
 
                 if ($this->entity->hasImage(true)) {
                     $embeds['thumbnail'] = [
-                        'url' => Avatar::entity($this->entity)->size(120)->thumbnail(),
+                        'url' => Avatar::entity($this->entity)->size(192)->thumbnail(),
                     ];
                 }
 

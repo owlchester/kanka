@@ -76,6 +76,5 @@ class Head extends Component
             return '';
         }
         return str_replace('{name}', $this->entity->name, $this->widget->conf('text'));
-
     }
 }

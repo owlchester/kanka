@@ -255,7 +255,7 @@ class SearchService
             $img = '';
             if (!empty($model->image_path)) {
                 $img = '<span class="entity-image cover-background" style="background-image: url(\''
-                    . Avatar::entity($model)->size(120)->thumbnail() . '\');"></span> ';
+                    . Avatar::entity($model)->size(192)->thumbnail() . '\');"></span> ';
             }
 
             $parsedName = str_replace(['&#039;', '&amp;'], ['\'', '&'], $model->name);

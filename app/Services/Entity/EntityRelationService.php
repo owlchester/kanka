@@ -155,7 +155,7 @@ class EntityRelationService
             return $this;
         }
 
-        $img = $image ?? Avatar::entity($entity)->size(80, 80)->fallback()->thumbnail();
+        $img = $image ?? Avatar::entity($entity)->size(192)->fallback()->thumbnail();
         if (empty($img)) {
             // Fallback?
             $img = '';
@@ -307,7 +307,7 @@ class EntityRelationService
                 continue;
             }
             $this->orgMembers[$member->id] = true;
-            $this->addEntity($member->character->entity, Avatar::entity($member->character->entity)->fallback()->size(80)->thumbnail());
+            $this->addEntity($member->character->entity, Avatar::entity($member->character->entity)->fallback()->size(192)->thumbnail());
 
             // Add relation
             $this->relations[] = [
@@ -357,7 +357,7 @@ class EntityRelationService
         /** @var Character $member */
         foreach ($family->members()->with(['entity', 'entity.image'])->has('entity')->get() as $member) {
             $this
-                ->addEntity($member->entity, Avatar::entity($member->entity)->fallback()->size(80)->thumbnail())
+                ->addEntity($member->entity, Avatar::entity($member->entity)->fallback()->size(192)->thumbnail())
                 ->addRelations($member->entity);
 
             // Add relation
@@ -506,7 +506,7 @@ class EntityRelationService
         $members = $organisation->members()->with(['character', 'character.entity', 'character.entity.image'])->has('character')->get();
         foreach ($members as $member) {
             $this
-                ->addEntity($member->character->entity, Avatar::entity($member->character->entity)->fallback()->size(80)->thumbnail())
+                ->addEntity($member->character->entity, Avatar::entity($member->character->entity)->fallback()->size(192)->thumbnail())
                 ->addRelations($member->character->entity);
 
             // Add relation
