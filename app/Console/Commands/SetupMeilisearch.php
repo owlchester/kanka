@@ -52,6 +52,7 @@ class SetupMeilisearch extends Command
         //Update Non Separator Tokens for entity mentions
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
+        $client->deleteIndex('entities');
         $client->index('entities')->resetSeparatorTokens();
         $client->index('entities')
             ->updateNonSeparatorTokens([':']);

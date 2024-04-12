@@ -11,7 +11,6 @@
     @include('partials.errors')
 
     <div class="flex flex-col gap-5">
-
         <div class="flex gap-2 items-center mb-5">
             <h1 class="grow text-4xl category-title">{{ __('search/fulltext.title') }}</h1>
             <div class="flex flex-wrap gap-2 justify-end">
@@ -21,6 +20,7 @@
                 </a>
             </div>
         </div>
+        @include('layouts.datagrid.fulltext_search', ['route' => route('search.fulltext', $campaign), 'term' => $term])
 
         @include('partials.ads.top')
 

@@ -241,7 +241,7 @@ class TimelineElement extends Model
             'entity_id' => $this->timeline->entity->id,
             'name' => $this->name,
             'type'  => 'timeline_element',
-            'entry' => $this->entry,
+            'entry' => strip_tags($this->entry),
         ];
     }
 }
