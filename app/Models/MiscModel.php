@@ -654,9 +654,9 @@ abstract class MiscModel extends Model
 
     public function toSearchableArray()
     {
-        // Some models like DiceRolls have no entry, so don't go into scout
-        $fillable = $this->getFillable();
-        if (!in_array('entry', $fillable)) {
+        // Some models like DiceRolls have no entry, so don't go into scout. Other have no entry because they
+        // are coming from the quick creator or new mention parser.
+        if (!in_array('entry', $this->getFillable()) || !in_array('entry', $this->getAttributes())) {
             return [];
         }
         return [
@@ -664,9 +664,7 @@ abstract class MiscModel extends Model
             'entity_id' => $this->entity->id,
             'name' => $this->name,
             'type'  => $this->type,
-            // Entities created through the quick creator or new mention syntax don't have an entry property set
-            // (since the model isn't refreshed), causing errors in laravel
-            'entry'  => in_array('entry', $this->attributes) ? $this->entry : '',
+            'entry'  =>  $this->entry,
         ];
     }
 }
