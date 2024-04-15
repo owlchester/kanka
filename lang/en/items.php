@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title' => 'New Item',
+        'title' => 'New Object',
     ],
     'fields'        => [
         'character'     => 'Creator',
