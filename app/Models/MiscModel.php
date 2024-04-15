@@ -80,10 +80,9 @@ abstract class MiscModel extends Model
 
     /**
      * Default ordering
-     * @var string
      */
-    protected $defaultOrderField = 'name';
-    protected $defaultOrderDirection = 'asc';
+    protected string $defaultOrderField = 'name';
+    protected string $defaultOrderDirection = 'asc';
 
     /**
      * Array of our custom model events declared under model property $observables

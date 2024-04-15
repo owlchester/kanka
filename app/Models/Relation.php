@@ -81,7 +81,7 @@ class Relation extends Model
         'visibility_id',
     ];
 
-    public $defaultOrderField = 'relation';
+    public string $defaultOrderField = 'relation';
 
     /**
      *
