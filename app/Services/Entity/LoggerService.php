@@ -20,7 +20,12 @@ class LoggerService
     use UserAware;
 
     protected array $logged = [];
+
+    /** Track fields that are dirty for the current entity */
     protected array $dirty = [];
+
+    /** Track entities that were created in the current execution */
+    protected array $created = [];
 
     protected EntityLog $log;
 
@@ -33,6 +38,11 @@ class LoggerService
         return $this;
     }
 
+    public function created(): bool
+    {
+        return in_array($this->entity->id, $this->created);
+    }
+
     public function create(): void
     {
         if ($this->logged()) {
@@ -41,6 +51,8 @@ class LoggerService
 
         $this->log(EntityLog::ACTION_CREATE);
         $this->log->save();
+
+        $this->created[] = $this->entity->id;
     }
 
     public function dirty(string $key, mixed $values): self
@@ -152,7 +164,7 @@ class LoggerService
         $dirty = $this->entity->getDirty();
         foreach ($dirty as $attribute => $value) {
             // If the model has this attribute as ignored for logs, skip it
-            if (in_array($attribute, ['created_at', 'updated_at', 'updated_by', 'deleted_by', 'deleted_at'])) {
+            if (in_array($attribute, ['created_at', 'updated_at', 'updated_by', 'deleted_by', 'deleted_at', 'type_id'])) {
                 continue;
             }
             // We log the old value
@@ -174,7 +186,8 @@ class LoggerService
             }
         }
     }
-    protected function getForeignOriginal(string $attribute, $original): string
+
+    protected function getForeignOriginal(string $attribute, mixed $original): string
     {
         if (empty($original)) {
             return '';

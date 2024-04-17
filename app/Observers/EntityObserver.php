@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\EntityLogger;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
@@ -50,9 +51,20 @@ class EntityObserver
         $this->savePremium($entity);
 
         if ($entity->isDirty()) {
-            $entity->save();
+            // The entity was created, but now we're potentially updating it in the same request, so we need
+            // to check if it's really a new entity or not
+            if (EntityLogger::entity($entity)->created()) {
+                $entity->saveQuietly();
+            } else {
+                $entity->save();
+            }
         } elseif ($this->tagService->isDirty()) {
-            $entity->touch();
+            // Same thing here, if adding tags to a newly created entity, don't make it complicated
+            if (EntityLogger::entity($entity)->created()) {
+                $entity->touchQuietly();
+            } else {
+                $entity->touch();
+            }
         }
     }
 

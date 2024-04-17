@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\EntityLogger;
 use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\Entity;
@@ -242,16 +243,9 @@ class TransformService
         // other related elements attached.
         $this->entity->type_id = $this->new->entityTypeID();
         $this->entity->entity_id = $this->new->id;
-        $this->entity->cleanCache()->withoutUpdateLog()->save();
+        $this->entity->cleanCache()->saveQuietly();
 
-        $log = new EntityLog();
-        $log->entity_id = $this->entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->action = EntityLog::ACTION_UPDATE;
-        if ($this->entity->campaign->superboosted()) {
-            $log->changes = ['entity_type' => $type];
-        }
-        $log->save();
+        EntityLogger::entity($this->entity)->dirty('entity_type', $type)->update();
 
         // Delete old, this will take care of pictures and stuff. We detach the
         // entity to avoid the softDelete affecting it and causing duplicate
