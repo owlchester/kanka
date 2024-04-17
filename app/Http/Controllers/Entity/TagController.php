@@ -55,6 +55,7 @@ class TagController extends Controller
             ->withNew()
             ->sync($ids)
         ;
+        $entity->touch();
 
         return redirect()->route('entities.show', [$campaign, $entity])
             ->with('success', __('tags.children.create.attach_success_entity', ['name' => $entity->name]));

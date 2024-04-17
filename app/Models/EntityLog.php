@@ -190,7 +190,20 @@ class EntityLog extends Model
         if ($key !== $translation) {
             return $translation;
         }
-        return '<i>' . __('crud.users.unknown') . '</i>';
+
+        // Custom mapping
+        $custom = [
+            'header_uuid' => 'fields.header-image.title',
+            'is_template' => 'fields.header-image.title',
+            'is_attributes_private' => 'entities/attributes.fields.is_private',
+        ];
+        if (!empty($custom[$name])) {
+            return __($custom[$name]);
+        }
+        if (app()->isProduction()) {
+            return '<i>' . __('crud.users.unknown') . '</i>';
+        }
+        return '<i>' . $name . '</i>';
     }
 
     /**

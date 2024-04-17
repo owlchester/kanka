@@ -10,6 +10,8 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -234,14 +236,15 @@ class Race extends MiscModel
     }
 
     /**
-     * Races have multiple locations
+     * Races have multiple locations through the race_location table
      */
-    public function locations()
+    public function locations(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\Location', 'race_location');
+        return $this->belongsToMany('App\Models\Location', 'race_location')
+            ->with('entity');
     }
 
-    public function pivotLocations()
+    public function pivotLocations(): HasMany
     {
         return $this->hasMany('App\Models\RaceLocation');
     }

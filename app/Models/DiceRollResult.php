@@ -37,8 +37,8 @@ class DiceRollResult extends Model
         'created_at',
     ];
 
-    protected $defaultOrderField = 'created_at';
-    protected $defaultOrderDirection = 'DESC';
+    protected string $defaultOrderField = 'created_at';
+    protected string $defaultOrderDirection = 'DESC';
 
     /**
      * We want to use the dice_roll entity type for permissions

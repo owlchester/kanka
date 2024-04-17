@@ -2,9 +2,8 @@
 
 namespace App\Observers;
 
-use App\Facades\Identity;
+use App\Facades\EntityLogger;
 use App\Models\Entity;
-use App\Models\EntityLog;
 
 /**
  * Class EntityLogObserver
@@ -14,64 +13,32 @@ use App\Models\EntityLog;
  */
 class EntityLogObserver
 {
-    /**
-     */
     public function created(Entity $entity)
     {
-        $log = new EntityLog();
-        $log->entity_id = $entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->action = EntityLog::ACTION_CREATE;
-        $log->save();
-
-        //$entity->is_created_now = true;
+        EntityLogger::entity($entity)->create();
     }
 
-    /**
-     */
     public function updated(Entity $entity)
     {
         // Don't log updates if just did one (typically when creating, restoring or bulk editing)
-        if (!$entity->hasUpdateLog() || $entity->updated_at == $entity->created_at || !empty($entity->getOriginal('deleted_at'))) {
+        if (!empty($entity->getOriginal('deleted_at'))) {
             return;
         }
 
-        $log = new EntityLog();
-        $log->entity_id = $entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->action = EntityLog::ACTION_UPDATE;
-        $log->save();
+        EntityLogger::entity($entity)->update();
     }
 
-    /**
-     */
     public function deleted(Entity $entity)
     {
         // Not soft deleting? Nothing more to do
         if (!$entity->trashed()) {
             return;
         }
-
-        $log = new EntityLog();
-        $log->entity_id = $entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->action = EntityLog::ACTION_DELETE;
-        $log->save();
+        EntityLogger::entity($entity)->delete();
     }
 
-
-    /**
-     */
     public function restored(Entity $entity)
     {
-        $log = new EntityLog();
-        $log->entity_id = $entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->action = EntityLog::ACTION_RESTORE;
-        $log->save();
+        EntityLogger::entity($entity)->restore();
     }
 }

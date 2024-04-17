@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\EntityLogger;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
@@ -22,13 +23,19 @@ class EntityObserver
 
     protected AttributeService $attributeService;
 
+    protected TagService $tagService;
+
     /**
      * PermissionController constructor.
      */
-    public function __construct(PermissionService $permissionService, AttributeService $attributeService)
-    {
+    public function __construct(
+        PermissionService $permissionService,
+        AttributeService $attributeService,
+        TagService $tagService
+    ) {
         $this->permissionService = $permissionService;
         $this->attributeService = $attributeService;
+        $this->tagService = $tagService;
     }
 
     /**
@@ -36,10 +43,29 @@ class EntityObserver
      */
     public function crudSaved(Entity $entity)
     {
+        ImageService::entity($entity, 'w/' . $entity->campaign_id, 'image');
+        ImageService::entity($entity, 'w/' . $entity->campaign_id);
         $this->saveTags($entity);
         $this->savePermissions($entity);
         $this->saveAttributes($entity);
-        $this->saveBoosted($entity);
+        $this->savePremium($entity);
+
+        if ($entity->isDirty()) {
+            // The entity was created, but now we're potentially updating it in the same request, so we need
+            // to check if it's really a new entity or not
+            if (EntityLogger::entity($entity)->created()) {
+                $entity->saveQuietly();
+            } else {
+                $entity->save();
+            }
+        } elseif ($this->tagService->isDirty()) {
+            // Same thing here, if adding tags to a newly created entity, don't make it complicated
+            if (EntityLogger::entity($entity)->created()) {
+                $entity->touchQuietly();
+            } else {
+                $entity->touch();
+            }
+        }
     }
 
     /**
@@ -55,9 +81,7 @@ class EntityObserver
         if (!is_array($ids)) { // People sent weird stuff through the API
             $ids = [];
         }
-        /** @var TagService $tagService */
-        $tagService = app()->make(TagService::class);
-        $tagService
+        $this->tagService
             ->user(auth()->user())
             ->entity($entity)
             ->withNew()
@@ -174,13 +198,16 @@ class EntityObserver
     {
         EntityUpdatedJob::dispatch($entity);
         EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
+
+        // Sometimes we just touch the entity, which should also touch the child
+        if ($entity->child && $entity->updated_at->greaterThan($entity->child->updated_at)) {
+            $entity->child->touchSilently();
+        }
     }
 
     /**
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function saveBoosted(Entity $entity): void
+    public function savePremium(Entity $entity): void
     {
         // Gallery is now available to all
         if (request()->has('entity_image_uuid')) {
@@ -190,17 +217,12 @@ class EntityObserver
         }
         // No changed for non-boosted campaigns
         if (!$entity->campaign->boosted()) {
-            $entity->saveQuietly();
             return;
         }
 
         if (request()->has('entity_tooltip')) {
             $entity->tooltip = $this->purify(request()->get('entity_tooltip'));
         }
-
-
-        // Handle map. Let's use a service for this.
-        ImageService::entity($entity, 'campaign/' . $entity->campaign_id, 'header_image');
 
         // Superboosted image gallery selection
         if ($entity->campaign->superboosted()) {
@@ -210,8 +232,6 @@ class EntityObserver
                 $entity->header_uuid = null;
             }
         }
-
-        $entity->saveQuietly();
     }
 
     public function deleted(Entity $entity)

@@ -185,6 +185,7 @@ class AttributeTemplate extends MiscModel
             }
         }
 
+        $entity->touch();
         return $order;
     }
 

@@ -143,7 +143,7 @@ class CampaignPolicy
 
     public function import(User $user, Campaign $campaign): bool
     {
-        return $user->isWyvern() || $user->isElemental();
+        return $user->isWyvern() || $user->isElemental() || $user->hasRole('admin');
     }
 
     /**

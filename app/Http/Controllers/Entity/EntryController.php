@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\EntityLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateEntityEntry;
 use App\Models\Campaign;
@@ -35,6 +36,10 @@ class EntryController extends Controller
 
         $fields = $request->only('entry');
         $entity->child->update($fields);
+        if ($entity->child->wasChanged()) {
+            EntityLogger::model($entity->child);
+            $entity->touch();
+        }
 
         return redirect()->to($entity->url());
     }
