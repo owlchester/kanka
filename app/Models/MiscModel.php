@@ -655,9 +655,10 @@ abstract class MiscModel extends Model
     {
         // Some models like DiceRolls have no entry, so don't go into scout. Other have no entry because they
         // are coming from the quick creator or new mention parser.
-        if (!in_array('entry', $this->getFillable()) || !in_array('entry', $this->getAttributes())) {
+        if (!in_array('entry', $this->getFillable()) || !in_array('entry', array_keys($this->getAttributes()))) {
             return [];
         }
+
         return [
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity->id,
