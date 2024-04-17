@@ -6,8 +6,6 @@ use App\Models\Creature;
 use App\Models\Location;
 use App\Models\MiscModel;
 
-use function PHPUnit\Framework\isEmpty;
-
 trait HasLocations
 {
     /**

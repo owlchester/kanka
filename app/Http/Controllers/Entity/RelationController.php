@@ -56,7 +56,7 @@ class RelationController extends Controller
                 ->with(['owner', 'target', 'target.location', 'target.location.entity'])
                 ->paginate()
                 ->withPath(route('entities.relations_table', ['campaign' => $campaign, 'entity' => $entity, 'mode' => 'table']));
-            
+
             $connections = $this->connectionService
                 ->entity($entity)
                 ->order($order)
