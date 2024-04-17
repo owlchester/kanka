@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Enums\WebhookAction;
 use App\Facades\Avatar;
 use App\Models\Entity;
 use Illuminate\Bus\Queueable;
@@ -19,7 +18,9 @@ class EntityUpdatedJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public int $entityId;
+    public Entity $entity;
+
+    public array $dirty;
 
     /**
      * The number of times the job may be attempted.
@@ -35,9 +36,9 @@ class EntityUpdatedJob implements ShouldQueue
      */
     public function __construct(Entity $entity)
     {
-        // Can't save the entity directly into the job because of the child() function not returning a
-        // string? Maybe something to do with the to array part of the queue.
-        $this->entityId = $entity->id;
+        // Serialize the model directly to the db
+        $this->entity = $entity;
+        $this->dirty = $entity->getDirty();
     }
 
     /**
@@ -47,20 +48,29 @@ class EntityUpdatedJob implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('EntityUpdateJob for entity #' . $this->entityId);
-        /** @var Entity|null $entity */
-        $entity = Entity::find($this->entityId);
-        if (empty($entity) || empty($entity->child)) {
-            // Entity was deleted
-            return;
-        }
+        Log::info('EntityUpdateJob for entity #' . $this->entity->id);
 
-        // Whenever an entity is updated, we always want to re-calculate the cached image.
-        Avatar::entity($entity)->forget();
+        // Whenever the image is updated, clear the avatar cache
+        if ($this->isDirty(['image_uuid', 'image_path'])) {
+            Avatar::entity($this->entity)->forget();
+        }
     }
 
     public function failure()
     {
         // Sentry will handle this
+    }
+
+    /**
+     * Determine if a specific field was changed on the entity when saving
+     */
+    protected function isDirty(array $keys): bool
+    {
+        foreach ($this->dirty as $key => $val) {
+            if (in_array($key, $keys)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

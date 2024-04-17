@@ -6,7 +6,6 @@ use App\Facades\CharacterCache;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Family;
-use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Race;
 use Illuminate\Support\Collection;

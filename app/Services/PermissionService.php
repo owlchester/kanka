@@ -158,8 +158,7 @@ class PermissionService
         // Campaign admins can hide all attributes from an entity
         if (auth()->user()->isAdmin()) {
             $privateAttributes = Arr::get($request, 'is_attributes_private', false);
-            $entity->is_attributes_private = $privateAttributes;
-            $entity->save();
+            $entity->is_attributes_private = $privateAttributes ? 1 : 0;
         }
     }
 

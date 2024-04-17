@@ -508,9 +508,15 @@ class CrudController extends Controller
             // Fire an event for the Entity Observer
             $model->crudSaved();
 
-            // MenuLink have no entity attached to them.
+            // Bookmarks have no entity attached to them.
             if ($model->entity) {
+                $model->entity->name = $model->name;
+                $model->entity->is_private = $model->is_private;
                 $model->entity->crudSaved();
+                // If the child was changed but nothing changed on the entity, we still want to trigger an update
+                if ($model->wasChanged() && !$model->entity->wasChanged()) {
+                    $model->entity->touch();
+                }
             }
 
             $success = __('general.success.updated', [

@@ -6,18 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ApplyAttributeTemplate;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Services\Attributes\TemplateService;
 use App\Services\AttributeService;
 
 class AttributeTemplateController extends Controller
 {
     protected AttributeService $service;
+    protected TemplateService $templateService;
 
-    public function __construct(AttributeService $service)
+    public function __construct(AttributeService $service, TemplateService $templateService)
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
 
         $this->service = $service;
+        $this->templateService = $templateService;
     }
 
     public function index(Campaign $campaign, Entity $entity)
@@ -49,10 +52,13 @@ class AttributeTemplateController extends Controller
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
-        $templateName = $this->service->apply($entity, $request->get('template_id'));
-        if (!$templateName) {
+        $success = $this->templateService
+            ->entity($entity)
+            ->apply($request->get('template_id'));
+        if (!$success) {
             return redirect()->back()->with('error', __('entities/attributes.template.error'));
         }
+        $templateName = $this->templateService->templateName();
         if ($request->has('submit-story')) {
             return redirect()
                 ->to($entity->url())

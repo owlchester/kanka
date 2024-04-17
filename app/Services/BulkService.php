@@ -346,7 +346,7 @@ class BulkService
 
                 $realEntity->is_private = $entity->is_private;
                 $realEntity->name = $entity->name;
-                $realEntity->updateQuietly();
+                $realEntity->update();
             }
 
             $this->count++;
@@ -367,6 +367,7 @@ class BulkService
                     ->entity($entity->entity)
                     ->withNew()
                     ->add($tagIds);
+                $entity->entity->touch();
             }
         }
 
@@ -385,7 +386,7 @@ class BulkService
         /** @var AttributeService $service */
         $service = app()->make('App\Services\AttributeService');
 
-        $entities = $model->with(['entity', 'campaign'])->whereIn('id', $this->ids)->get();
+        $entities = $model->with(['entity', 'entity.campaign'])->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
             if (auth()->user()->can('update', $entity)) {

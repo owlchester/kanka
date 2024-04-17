@@ -2,10 +2,14 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\EntityLogger;
+use App\Models\Entity;
+use App\Models\MiscModel;
 use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
@@ -23,6 +27,8 @@ class TagService
     protected bool $withDetach = true;
 
     protected Model $model;
+
+    protected bool $dirty = false;
 
     public function withNew(): self
     {
@@ -71,10 +77,13 @@ class TagService
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.
         $existing = [];
+        $this->dirty = false;
+        /** @var MiscModel|Entity $model */
         $model = $this->entity ?? $this->model;
 
-        /** @var Tag $tag */
-        foreach ($model->tags()->with('entity')->has('entity')->get() as $tag) {
+        /** @var Tag[]|Collection $tags */
+        $tags = $model->tags()->with('entity')->has('entity')->get();
+        foreach ($tags as $tag) {
             $existing[$tag->id] = $tag->name;
         }
         $new = [];
@@ -84,9 +93,12 @@ class TagService
                 unset($existing[$id]);
             } else {
                 $tag = $this->fetch($id);
-                if (!empty($tag)) {
-                    $new[] = $tag->id;
+                if (empty($tag)) {
+                    continue;
                 }
+                $new[] = $tag->id;
+                $this->dirty = true;
+                EntityLogger::dirty('tags', null);
             }
         }
         $model->tags()->attach($new);
@@ -95,9 +107,19 @@ class TagService
         if (empty($existing) || !$this->withDetach) {
             return $this;
         }
+        $this->dirty = true;
+        EntityLogger::dirty('tags', null);
         $model->tags()->detach(array_keys($existing));
 
         return $this;
+    }
+
+    /**
+     * If the tags of the entity were changed, it gets flagged
+     */
+    public function isDirty(): bool
+    {
+        return $this->dirty;
     }
 
     protected function fetch(mixed $id): Tag|null

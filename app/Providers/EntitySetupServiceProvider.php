@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\Entity\SetupService;
+use App\Services\Entity\LoggerService;
 use Illuminate\Support\ServiceProvider;
 
 class EntitySetupServiceProvider extends ServiceProvider
@@ -18,6 +19,11 @@ class EntitySetupServiceProvider extends ServiceProvider
             return new SetupService();
         });
         $this->app->alias(SetupService::class, 'entitysetup');
+
+        $this->app->singleton(LoggerService::class, function () {
+            return (new LoggerService())->user(auth()->user());
+        });
+        $this->app->alias(LoggerService::class, 'entitylogger');
     }
 
     /**

@@ -178,6 +178,10 @@ class ImageService
                     } else {
                         $path = request()->file($field)->storePublicly($folder);
                     }
+                    // Remap the field name to the proper db field
+                    if ($field === 'image') {
+                        $field = 'image_path';
+                    }
                     $entity->$field = $path;
                 }
             } catch (Exception $e) {

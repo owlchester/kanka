@@ -18,17 +18,17 @@ use Laravel\Scout\Searchable;
  * Class Attribute
  * @package App\Models
  *
- * @property integer $id
- * @property integer $entity_id
+ * @property int $id
+ * @property int $entity_id
  * @property string $name
  * @property string|null $value
  * @property int $type_id
- * @property integer $origin_attribute_id
- * @property integer $default_order
- * @property boolean $is_private
- * @property boolean $is_hidden
- * @property boolean $is_pinned
- * @property string $api_key
+ * @property int|null $origin_attribute_id
+ * @property int $default_order
+ * @property int|bool $is_private
+ * @property int|bool $is_hidden
+ * @property int|bool $is_pinned
+ * @property string|null $api_key
  * @property Entity|null $entity
  */
 class Attribute extends Model

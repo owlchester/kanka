@@ -8,9 +8,9 @@ class TemplateService
 {
     use EntityAware;
 
-    public function toggle()
+    public function toggle(): void
     {
         $this->entity->is_template = !$this->entity->is_template;
-        $this->entity->saveQuietly();
+        $this->entity->save();
     }
 }

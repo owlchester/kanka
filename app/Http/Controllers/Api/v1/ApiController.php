@@ -18,6 +18,10 @@ class ApiController extends Controller
         // MenuLink have no entity attached to them.
         if (!empty($model->entity)) {
             $model->entity->crudSaved();
+            // If the child was changed but nothing changed on the entity, we still want to trigger an update
+            if ($model->wasChanged() && !$model->entity->wasChanged()) {
+                $model->entity->touch();
+            }
         }
     }
 }

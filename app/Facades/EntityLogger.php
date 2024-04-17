@@ -5,13 +5,13 @@ namespace App\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class EntityCache
+ * Class EntityLogger
  * @package App\Facades
  *
- * @see \App\Services\Caches\EntityCacheService
- * @mixin \App\Services\Caches\EntityCacheService
+ * @see \App\Services\Entity\LoggerService
+ * @mixin \App\Services\Entity\LoggerService
  */
-class EntityCache extends Facade
+class EntityLogger extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -20,6 +20,6 @@ class EntityCache extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'entitycache';
+        return 'entitylogger';
     }
 }
