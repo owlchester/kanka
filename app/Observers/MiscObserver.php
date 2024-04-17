@@ -88,7 +88,7 @@ abstract class MiscObserver
         if (!$model->entity) {
             throw new \Exception('Model with no entity?');
         }
-        EntityLogger::model($model);
+        EntityLogger::model($model
 
         // Take care of mentions for the entity.
         $this->syncMentions($model, $model->entity);

@@ -8,6 +8,7 @@ use App\Models\FeatureFile;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Jobs\Emails\NewFeatureEmailJob;
 
 class Form extends Component
 {
@@ -39,6 +40,8 @@ class Form extends Component
         $feat->description = $this->description;
         $feat->status_id = FeatureStatus::Draft;
         $feat->save();
+
+        NewFeatureEmailJob::dispatch($feat);
 
         if ($this->file) {
             $file = $this->file->storeAs('features/' . $feat->id, uniqid() . '.' . $this->file->getClientOriginalExtension(), 's3');

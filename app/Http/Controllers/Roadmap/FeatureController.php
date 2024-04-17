@@ -18,8 +18,6 @@ class FeatureController extends Controller
 
     public function store(StoreFeature $request)
     {
-
-
         return redirect()->route('roadmap');
     }
 
