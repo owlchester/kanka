@@ -70,6 +70,9 @@ class LoggerService
         }
 
         $this->buildDirty();
+        if (empty($this->dirty)) {
+            return;
+        }
         if (!empty($this->log->changes)) {
             $changes = $this->log->changes + $this->dirty;
             $this->log->changes = $changes;
@@ -97,7 +100,7 @@ class LoggerService
     {
         $this->log = new EntityLog();
         $this->log->entity_id = $this->entity->id;
-        $this->log->created_by = $this->user->id;
+        $this->log->created_by = isset($this->user) ? $this->user->id : null;
         $this->log->action = $action;
         $this->log->impersonated_by = Identity::getImpersonatorId();
     }

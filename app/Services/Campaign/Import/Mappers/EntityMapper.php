@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use App\Facades\EntityLogger;
 use App\Models\Attribute;
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
@@ -45,7 +46,7 @@ trait EntityMapper
         }
 
         $this->model->slug = Str::slug($this->model->name);
-        $this->model->save();
+        $this->model->saveQuietly();
         $this->entity();
 
         return $this;
@@ -85,11 +86,14 @@ trait EntityMapper
             $this->entity->$field = $this->data['entity'][$field];
         }
 
+
         $this
             ->image()
             ->header()
             ->gallery();
         $this->entity->save();
+
+        EntityLogger::entity($this->entity)->create();
 
         ImportIdMapper::putEntity($this->data['entity']['id'], $this->entity->id);
 

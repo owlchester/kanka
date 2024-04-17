@@ -21,7 +21,11 @@ class EntitySetupServiceProvider extends ServiceProvider
         $this->app->alias(SetupService::class, 'entitysetup');
 
         $this->app->singleton(LoggerService::class, function () {
-            return (new LoggerService())->user(auth()->user());
+            $s = new LoggerService();
+            if (auth()->check()) {
+                $s->user(auth()->user());
+            }
+            return $s;
         });
         $this->app->alias(LoggerService::class, 'entitylogger');
     }
