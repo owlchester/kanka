@@ -204,18 +204,17 @@ return [
          * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
-        //Sofa\Eloquence\BaseServiceProvider::class,
         Stevebauman\Purify\PurifyServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         Vsch\TranslationManager\ManagerServiceProvider::class,
         Vsch\TranslationManager\TranslationServiceProvider::class,
         //Illuminate\Translation\TranslationServiceProvider::class,
 
-
-        //Barryvdh\DomPDF\ServiceProvider::class,
-        RichanFongdasen\EloquentBlameable\ServiceProvider::class,
+        //RichanFongdasen\EloquentBlameable\ServiceProvider::class,
+        PragmaRX\Google2FALaravel\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -244,7 +243,6 @@ return [
         App\Providers\DomainServiceProvider::class,
         App\Providers\LimitServiceProvider::class,
         App\Providers\ImporterServiceProvider::class,
-        PragmaRX\Google2FALaravel\ServiceProvider::class,
 
     ],
 
