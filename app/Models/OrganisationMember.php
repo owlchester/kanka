@@ -13,10 +13,10 @@ use Illuminate\Database\Eloquent\Builder;
  * Class OrganisationMember
  * @package App\Models
  *
- * @property integer $id
- * @property integer $character_id
- * @property integer $organisation_id
- * @property integer $parent_id
+ * @property int $id
+ * @property int $character_id
+ * @property int $organisation_id
+ * @property int $parent_id
  * @property string $role
  * @property bool $is_private
  * @property int $pin_id

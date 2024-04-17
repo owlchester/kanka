@@ -14,13 +14,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @package App\Models
  *
  * @property int $id
- * @property integer $entity_id
- * @property integer $ability_id
- * @property integer $charges
- * @property integer $position
+ * @property int $entity_id
+ * @property int $ability_id
+ * @property int $charges
+ * @property int $position
  * @property string $note
- * @property integer $created_by
- * @property integer $updated_by
+ * @property int $created_by
+ * @property int $updated_by
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Ability|null $ability

@@ -15,12 +15,12 @@ use Illuminate\Support\Str;
  * Class EntityLog
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer $campaign_id
- * @property integer $created_by
- * @property integer $impersonated_by
- * @property integer $action
- * @property integer $post_id
+ * @property int $entity_id
+ * @property int $campaign_id
+ * @property int $created_by
+ * @property int $impersonated_by
+ * @property int $action
+ * @property int $post_id
  * @property string|array  $changes
  * @property Entity|null $entity
  * @property User|null $user

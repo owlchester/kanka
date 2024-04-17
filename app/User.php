@@ -35,14 +35,14 @@ use App\Models\Concerns\LastSync;
  * @property string $name
  * @property string $email
  * @property string $locale
- * @property integer|null $last_campaign_id
+ * @property int|null $last_campaign_id
  * @property string|null $avatar
  * @property string $provider
- * @property integer $provider_id
+ * @property int $provider_id
  * @property Carbon $last_login_at
- * @property integer $welcome_campaign_id
- * @property boolean $newsletter
- * @property boolean $has_last_login_sharing
+ * @property int $welcome_campaign_id
+ * @property bool|int $newsletter
+ * @property bool|int $has_last_login_sharing
  * @property string|null $pledge
  * @property string|null $timezone
  * @property string|null $currency

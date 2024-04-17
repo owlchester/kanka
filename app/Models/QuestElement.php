@@ -14,9 +14,9 @@ use Laravel\Scout\Searchable;
 /**
  * Class QuestCharacter
  * @package App\Models
- * @property integer $entity_id
+ * @property int $entity_id
  * @property string $name
- * @property integer $quest_id
+ * @property int $quest_id
  * @property string $description
  * @property string $role
  * @property string $colour

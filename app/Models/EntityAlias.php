@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  * Class EntityLink
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer $created_by
+ * @property int $entity_id
+ * @property int $created_by
  * @property string $name
- * @property integer $visibility_id
+ * @property int $visibility_id
  * @property Entity $entity
  * @property User $user
  * @property Campaign $campaign

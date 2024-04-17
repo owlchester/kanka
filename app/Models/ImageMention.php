@@ -11,8 +11,8 @@ use App\Models\Concerns\SortableTrait;
  * @package App\Models
  *
  * @property string $image_id
- * @property integer $post_id
- * @property integer $entity_id
+ * @property int $post_id
+ * @property int $entity_id
  * @property Entity $entity
  * @property Post $post
  * @property Entity $target

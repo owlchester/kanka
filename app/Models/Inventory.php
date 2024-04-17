@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Model;
  * Class Inventory
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer|null $item_id
- * @property integer|null $created_by
+ * @property int $entity_id
+ * @property int|null $item_id
+ * @property int|null $created_by
  * @property string $name
- * @property integer $amount
+ * @property int $amount
  * @property string $position
  * @property string $description
  * @property bool $is_equipped

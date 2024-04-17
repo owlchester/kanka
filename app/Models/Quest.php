@@ -21,7 +21,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property int|null $quest_id
  * @property int|null $character_id
  * @property int|null $instigator_id
- * @property boolean $is_completed
+ * @property bool|int $is_completed
  * @property string $date
  * @property Character|null $character
  * @property Entity|null $instigator

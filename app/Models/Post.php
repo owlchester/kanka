@@ -19,19 +19,19 @@ use Laravel\Scout\Searchable;
  * Class Attribute
  * @package App\Models
  *
- * @property integer $id
- * @property integer $entity_id
+ * @property int $id
+ * @property int $entity_id
  * @property string $name
  * @property string $value
  * @property string $entry
  * @property \App\Enums\Visibility $visibility_id
- * @property integer $created_by
- * @property integer|null $location_id
- * @property integer|null $layout_id
+ * @property int $created_by
+ * @property int|null $location_id
+ * @property int|null $layout_id
  * @property string|null $marketplace_uuid
- * @property boolean $is_private
- * @property boolean $is_pinned
- * @property integer $position
+ * @property bool|int $is_private
+ * @property bool|int $is_pinned
+ * @property int $position
  * @property array $settings
  * @property Entity|null $entity
  * @property Location|null $location

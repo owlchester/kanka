@@ -16,8 +16,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class AttributeTemplate
  * @package App\Models
  *
- * @property integer|null $attribute_template_id
- * @property integer|null $entity_type_id
+ * @property int|null $attribute_template_id
+ * @property int|null $entity_type_id
  * @property AttributeTemplate|null $attributeTemplate
  * @property AttributeTemplate[] $attributeTemplates
  * @property EntityType $entityType

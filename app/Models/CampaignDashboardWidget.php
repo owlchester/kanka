@@ -18,14 +18,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * Class CampaignDashboardWidget
  * @package App\Models
  *
- * @property integer $id
- * @property integer $campaign_id
- * @property integer $entity_id
+ * @property int $id
+ * @property int $campaign_id
+ * @property int $entity_id
  * @property int $dashboard_id
  * @property Widget $widget
  * @property array $config
- * @property integer $width
- * @property integer $position
+ * @property int $width
+ * @property int $position
  * @property Entity $entity
  * @property CampaignDashboard $dashboard
  * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags

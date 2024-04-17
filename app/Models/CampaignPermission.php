@@ -11,16 +11,16 @@ use Illuminate\Support\Str;
  * Class CampaignPermission
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer $campaign_role_id
- * @property integer $campaign_id
- * @property integer $user_id
- * @property integer $entity_type_id
- * @property integer $action
+ * @property int $entity_id
+ * @property int $campaign_role_id
+ * @property int $campaign_id
+ * @property int $user_id
+ * @property int $entity_type_id
+ * @property int $action
  * @property string $key
  * @property string $table_name
  * @property bool $access
- * @property integer $misc_id
+ * @property int $misc_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *

@@ -20,7 +20,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @package App\Models
  *
  * @property string $date
- * @property integer $start_offset
+ * @property int $start_offset
  * @property string $months
  * @property string $years
  * @property string $weekdays

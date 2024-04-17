@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
  * Class Bookmark
  * @package App\Models
  *
- * @property integer $campaign_id
+ * @property int $campaign_id
  * @property string $name
  * @property string|null $tab
  * @property string|null $menu
@@ -29,14 +29,14 @@ use Illuminate\Support\Str;
  * @property string|null $parent
  * @property string $css
  * @property string $random_entity_type
- * @property integer $position
- * @property integer|null $dashboard_id
- * @property integer|null $entity_id
+ * @property int $position
+ * @property int|null $dashboard_id
+ * @property int|null $entity_id
  * @property array $options
  * @property CampaignDashboard|null $dashboard
  * @property Entity|null $target
- * @property boolean $is_private
- * @property boolean $is_active
+ * @property bool|int $is_private
+ * @property bool|int $is_active
  * @property array $optionsAllowedKeys
  *
  * @method static self|Builder ordered()

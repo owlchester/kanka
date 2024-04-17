@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $entry
  * @property int $section_id
- * @property boolean $is_private
- * @property integer $default_order
+ * @property bool|int $is_private
+ * @property int $default_order
  */
 class CharacterTrait extends Model
 {

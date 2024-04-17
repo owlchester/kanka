@@ -36,7 +36,7 @@ use Laravel\Scout\Searchable as Scout;
  * @property string $image
  * @property string $tooltip
  * @property string $header_image
- * @property boolean $is_private
+ * @property bool|int $is_private
  * @property string[] $nullableForeignKeys
  * @property Carbon $created_at
  * @property Carbon $updated_at

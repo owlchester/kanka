@@ -25,9 +25,9 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $entry
  * @property string $image
  * @property string|null $map
- * @property boolean $is_private
- * @property boolean $is_map_private
- * @property integer|null $location_id
+ * @property bool|int $is_private
+ * @property bool|int $is_map_private
+ * @property int|null $location_id
  * @property Map[]|Collection $maps
  * @property Location[]|Collection $descendants
  * @property Location[]|Collection $locations

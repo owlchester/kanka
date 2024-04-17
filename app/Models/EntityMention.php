@@ -12,12 +12,12 @@ use Illuminate\Support\Arr;
  * Class EntityMention
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer|null $post_id
- * @property integer|null $quest_element_id
- * @property integer|null $timeline_element_id
- * @property integer|null $campaign_id
- * @property integer $target_id
+ * @property int $entity_id
+ * @property int|null $post_id
+ * @property int|null $quest_element_id
+ * @property int|null $timeline_element_id
+ * @property int|null $campaign_id
+ * @property int $target_id
  * @property Entity $entity
  * @property Post|null $post
  * @property QuestElement|null $questElement

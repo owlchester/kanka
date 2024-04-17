@@ -26,9 +26,9 @@ use Laravel\Scout\Searchable;
  * @property int $position
  * @property string $colour
  * @property string $icon
- * @property boolean $use_entity_entry
- * @property boolean $is_collapsed
- * @property boolean $use_event_date
+ * @property bool|int $use_entity_entry
+ * @property bool|int $is_collapsed
+ * @property bool|int $use_event_date
  *
  * @property Timeline $timeline
  * @property TimelineEra $era

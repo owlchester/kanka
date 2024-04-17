@@ -28,24 +28,24 @@ use Illuminate\Support\Str;
  * Class Entity
  * @package App\Models
  *
- * @property integer $id
- * @property integer $entity_id
- * @property integer $campaign_id
+ * @property int $id
+ * @property int $entity_id
+ * @property int $campaign_id
  * @property string $name
  * @property string $type
- * @property integer $type_id
- * @property integer $created_by
- * @property integer $updated_by
- * @property boolean|int $is_private
- * @property boolean|int $is_attributes_private
+ * @property int $type_id
+ * @property int $created_by
+ * @property int $updated_by
+ * @property bool|int $is_private
+ * @property bool|int $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
  * @property string|null $image_uuid
  * @property string|null $header_uuid
- * @property boolean|int $is_template
+ * @property bool|int $is_template
  * @property string|null $marketplace_uuid
- * @property integer|null $focus_x
- * @property integer|null $focus_y
+ * @property int|null $focus_x
+ * @property int|null $focus_y
  * @property string|null $image_path
  *
  * @property Carbon $created_at

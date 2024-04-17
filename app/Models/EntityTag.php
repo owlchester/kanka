@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Model;
  * Class EntityCategory
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer $tag_id
+ * @property int $entity_id
+ * @property int $tag_id
  * @property Tag $tag
  * @property Entity $entity
  */

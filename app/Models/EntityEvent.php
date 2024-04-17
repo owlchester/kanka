@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $day
  * @property int $month
  * @property int $year
- * @property boolean $is_recurring
+ * @property bool|int $is_recurring
  * @property int|null $recurring_until
  * @property string $recurring_periodicity
  * @property int $type_id

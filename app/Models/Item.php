@@ -20,9 +20,9 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $price
  * @property string $size
  * @property string $weight
- * @property integer|null $item_id
- * @property integer|null $character_id
- * @property integer|null $location_id
+ * @property int|null $item_id
+ * @property int|null $character_id
+ * @property int|null $location_id
  * @property Character|null $character
  * @property Location|null $location
  * @property Item[] $items
