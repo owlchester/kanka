@@ -112,7 +112,8 @@ class Note extends MiscModel
      */
     public function notes()
     {
-        return $this->hasMany(Note::class, 'note_id', 'id');
+        return $this->hasMany(Note::class, 'note_id', 'id')
+            ->with('entity');
     }
 
 

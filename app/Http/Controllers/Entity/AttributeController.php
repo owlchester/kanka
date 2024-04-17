@@ -138,14 +138,16 @@ class AttributeController extends Controller
             'attr_is_private',
             'attr_is_pinned',
             'attr_type',
-            'template_id'
+            'template_id',
+            'delete-all-attributes'
         ];
         $data = request()->only($fields);
 
         $this->service
             ->entity($entity)
             ->updateVisibility(request()->get('is_attributes_private') === '1')
-            ->save($data);
+            ->save($data)
+            ->touch();
 
         return redirect()->route('entities.attributes', [$campaign, $entity->id])
             ->with('success', __('entities/attributes.update.success', ['entity' => $entity->name]));
@@ -180,6 +182,9 @@ class AttributeController extends Controller
         $attribute->update([
             'value' => Purify::clean($request->get('value'))
         ]);
+        // Track that the entity was updated
+        $entity->touch();
+        $entity->child->touchSilently();
         $attributeValue = null;
         $result = $attribute->mappedValue();
         $attributeValue = $result;

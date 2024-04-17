@@ -2,16 +2,14 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
+use App\Facades\EntityLogger;
 use App\Facades\Mentions;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Observers\Concerns\Copiable;
-use App\Services\Entity\LogService;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 abstract class MiscObserver
@@ -22,13 +20,9 @@ abstract class MiscObserver
     /**Service to build the mention "map" of the entity */
     protected EntityMappingService $entityMappingService;
 
-    /** Service for logging changes to an entity */
-    protected LogService $logService;
-
-    public function __construct(EntityMappingService $entityMappingService, LogService $logService)
+    public function __construct(EntityMappingService $entityMappingService)
     {
         $this->entityMappingService = $entityMappingService;
-        $this->logService = $logService;
     }
 
     /**
@@ -94,22 +88,10 @@ abstract class MiscObserver
         if (!$model->entity) {
             throw new \Exception('Model with no entity?');
         }
-        // Updated the linked entity first
-        $model->entity->is_private = $model->is_private;
-        $model->entity->name = $model->name;
-        ImageService::handle($model->entity, 'w/' . $model->entity->campaign_id);
-        $model->entity->withoutUpdateLog()->touch();
-
-        // Updated log. We do this here to have the dirty attributes of the child
-        $this->logService
-            ->entity($model->entity)
-            ->user(auth()->user())
-            ->model($model)
-            ->logUpdate();
+        EntityLogger::model($model);
 
             // Take care of mentions for the entity.
         $this->syncMentions($model, $model->entity);
-        $model->refresh();
 
         // Clear some cache
         EntityCache::clearSuggestion($model);
