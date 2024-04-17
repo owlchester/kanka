@@ -90,7 +90,7 @@ abstract class MiscObserver
         }
         EntityLogger::model($model);
 
-            // Take care of mentions for the entity.
+        // Take care of mentions for the entity.
         $this->syncMentions($model, $model->entity);
 
         // Clear some cache

@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Enums\WebhookAction;
 use App\Facades\Avatar;
 use App\Models\Entity;
 use Illuminate\Bus\Queueable;

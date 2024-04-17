@@ -6,7 +6,6 @@ use App\Datagrids\Actions\DefaultDatagridActions;
 use App\Datagrids\Filters\DatagridFilter;
 use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\Breadcrumb;
-use App\Facades\EntityLogger;
 use App\Facades\FormCopy;
 use App\Facades\Module;
 use App\Facades\Permissions;

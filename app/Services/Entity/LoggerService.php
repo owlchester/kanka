@@ -15,8 +15,8 @@ use Illuminate\Support\Str;
 
 class LoggerService
 {
-    use EntityAware;
     use CampaignAware;
+    use EntityAware;
     use UserAware;
 
     protected array $logged = [];
@@ -207,7 +207,7 @@ class LoggerService
             if ($attribute == 'target_id' && $this->model instanceof Conversation) {
                 return __('conversations.targets.' . (
                     $original == Conversation::TARGET_USERS ? 'members' : 'characters'
-                    ));
+                ));
             }
 
             // Let's try based off of the attribute name
