@@ -36,13 +36,13 @@ use Illuminate\Support\Str;
  * @property integer $type_id
  * @property integer $created_by
  * @property integer $updated_by
- * @property boolean $is_private
- * @property boolean $is_attributes_private
+ * @property boolean|int $is_private
+ * @property boolean|int $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
  * @property string|null $image_uuid
  * @property string|null $header_uuid
- * @property boolean $is_template
+ * @property boolean|int $is_template
  * @property string|null $marketplace_uuid
  * @property integer|null $focus_x
  * @property integer|null $focus_y

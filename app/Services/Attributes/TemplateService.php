@@ -41,7 +41,6 @@ class TemplateService
         if (Str::isUuid($templateId)) {
             return $this->applyMarketplaceTemplate($templateId);
         } elseif (is_integer($templateIdInt) && !empty($templateIdInt)) {
-            /** @var AttributeTemplate $template */
             $attributeTemplate = $this->getAttributeTemplate($templateId);
             $attributeTemplate->apply($this->entity);
             $this->templateName = $attributeTemplate->name;
@@ -153,9 +152,8 @@ class TemplateService
 
     /**
      * Get an attribute template model from the campaign based on its ID
-     * @return AttributeTemplate
      */
-    protected function getAttributeTemplate(int $templateId)
+    protected function getAttributeTemplate(int $templateId): AttributeTemplate
     {
         if (isset($this->loadedTemplates[$templateId])) {
             return $this->loadedTemplates[$templateId];

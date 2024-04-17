@@ -11,7 +11,9 @@ use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Exception;
 
 class LoggerService
 {
@@ -238,6 +240,7 @@ class LoggerService
             $result = $relationModel->where('id', $original)->firstOrFail();
             return $result->name;
         } catch (Exception $e) {
+            Log::error('Issue with Logger', ['e' => $e->getMessage()]);
             return '';
         }
     }

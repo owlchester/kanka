@@ -299,6 +299,7 @@ class DatagridRenderer
      */
     private function renderRow(Model $model): string
     {
+        /** @var MiscModel|Entity|Location $model */
         $useEntity = $this->getOption('disableEntity') !== true;
         // Should never happen...
         if ($useEntity && empty($model->entity)) {
@@ -315,6 +316,7 @@ class DatagridRenderer
             }
         }*/
         if (!empty($this->nestedFilter) && method_exists($model, 'children')) {
+            // @phpstan-ignore-next-line
             $html .= ' data-children="' . $model->children->count() . '"';
         }
         $html .= '>';
@@ -409,6 +411,7 @@ class DatagridRenderer
                 if (!empty($this->nestedFilter)) {
                     return null;
                 }
+                // @phpstan-ignore-next-line
                 if ($model->parent) {
                     $content = $model->parent->tooltipedLink();
                 }

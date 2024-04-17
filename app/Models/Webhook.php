@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int $status
  * @property string $path
  * @property Feature $feature
- * @property WebhookAction $action
+ * @property int $action
  */
 class Webhook extends Model
 {
@@ -69,9 +69,9 @@ class Webhook extends Model
         $campaign = CampaignLocalization::getCampaign();
         $action = __('campaigns/webhooks.fields.events.deleted');
 
-        if ($this->action == WebhookAction::CREATED->value) {
+        if ($this->action === WebhookAction::CREATED->value) {
             $action = __('campaigns/webhooks.fields.events.new');
-        } elseif ($this->action == WebhookAction::EDITED->value) {
+        } elseif ($this->action === WebhookAction::EDITED->value) {
             $action = __('campaigns/webhooks.fields.events.edited');
         }
 

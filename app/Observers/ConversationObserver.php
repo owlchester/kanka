@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\Conversation;
 use App\Models\MiscModel;
 
 class ConversationObserver extends MiscObserver
@@ -12,6 +13,7 @@ class ConversationObserver extends MiscObserver
     {
         // Changed the target? Remove participants.
         if ($model->isDirty('target')) {
+            /** @var Conversation $model */
             $model->participants()->delete();
         }
     }
