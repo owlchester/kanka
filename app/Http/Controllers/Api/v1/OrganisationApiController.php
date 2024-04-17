@@ -47,6 +47,7 @@ class OrganisationApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         $model = Organisation::create($data);
         $this->crudSave($model);
+        $model->refresh();
         return new Resource($model);
     }
 

@@ -467,7 +467,7 @@ class EntityRelationService
             $this
                 ->addParent()
                 ->addOrganisations()
-                ->addLocation()
+                ->addLocations()
                 ->addQuests()
                 ->addMapMarkers()
                 ->addAuthorJournals();

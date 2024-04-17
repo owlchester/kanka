@@ -8,6 +8,7 @@ class RaceBulk extends Bulk
         'name',
         'type',
         'race_id',
+        'locations',
         'tags',
         'private_choice',
         'entity_image',

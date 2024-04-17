@@ -16,11 +16,13 @@ use Illuminate\Support\Arr;
 use App\Models\MiscModel;
 use Exception;
 use Illuminate\Support\Str;
+use App\Observers\Concerns\HasLocations;
 use Stevebauman\Purify\Facades\Purify;
 
 class BulkService
 {
     use CampaignAware;
+    use HasLocations;
 
     protected EntityService $entityService;
 
@@ -275,6 +277,10 @@ class BulkService
         unset($filledFields['tags']);
         $tagIds = Arr::get($fields, 'tags', []);
 
+        // Handle locations differently
+        unset($filledFields['locations']);
+        $locationIds = Arr::get($fields, 'locations', []);
+
         // Handle images differently
         if (isset($filledFields['entity_image'])) {
             $imageUuid = $filledFields['entity_image'];
@@ -350,6 +356,13 @@ class BulkService
             }
 
             $this->count++;
+
+            $locationsAction = Arr::get($fields, 'bulk-locations', 'add');
+            if ($locationsAction === 'remove') {
+                $entity->locations()->detach($locationIds);
+            } else {
+                $this->saveLocations($entity, $locationIds);
+            }
 
             // No tags? We're done
             if (empty($fields['tags'])) {

@@ -33,7 +33,6 @@ class StoreOrganisation extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'location_id' => 'nullable|integer|exists:locations,id',
             'organisation_id' => 'nullable|exists:organisations,id',
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',

@@ -122,6 +122,17 @@ class ConnectionService
         ;
     }
 
+    protected function initOrganisation()
+    {
+        $this
+            ->loadMapMarkers()
+            ->loadRaceLocations()
+            ->loadTimelines()
+            ->loadQuests()
+            ->loadAuthoredJournals()
+        ;
+    }
+
     /**
      * @return $this
      */

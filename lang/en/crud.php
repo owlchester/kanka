@@ -53,6 +53,7 @@ return [
         ],
         'edit'          => [
             'tagging'   => 'Action for tags',
+            'locations'   => 'Action for locations',
             'tags'      => [
                 'add'       => 'Add',
                 'remove'    => 'Remove',
