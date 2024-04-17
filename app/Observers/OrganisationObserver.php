@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Character;
-use App\Models\MiscModel;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 

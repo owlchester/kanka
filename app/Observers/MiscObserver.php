@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Mentions;
 use App\Models\Entity;
@@ -107,7 +106,7 @@ abstract class MiscObserver
             ->model($model)
             ->logUpdate();
 
-            // Take care of mentions for the entity.
+        // Take care of mentions for the entity.
         $this->syncMentions($model, $model->entity);
         $model->refresh();
 

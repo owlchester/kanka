@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Models\Character;
 use App\Models\Family;
-use App\Models\MiscModel;
 
 class FamilyObserver extends MiscObserver
 {
