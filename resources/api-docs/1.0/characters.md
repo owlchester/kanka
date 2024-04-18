@@ -110,7 +110,6 @@ To get the details of a single character, use the following endpoint.
         "pronouns": null,
         "races": [3],
         "type": null,
-        "family_id": 34,
         "families": [34],
         "is_dead": true,
         "traits": [
@@ -151,7 +150,7 @@ To create a character, use the following endpoint.
 | `sex` | `string`  | Gender of the character |
 | `pronouns` | `string`  | Prefered pronouns of the character |
 | `type` | `string`  | Type of the character |
-| `families` | `array` | Array of family id |
+| `families` | `array` | Array of family ids |
 | `location_id` | `integer` | Location id |
 | `races` | `array` | Array of race ids |
 | `tags` | `array` | Array of tag ids |
