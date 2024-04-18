@@ -238,7 +238,7 @@ class Organisation extends MiscModel
     }
 
     /**
-     * Creatures have multiple locations
+     * Organisations have multiple locations
      */
     public function locations()
     {
