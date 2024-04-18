@@ -25,7 +25,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Collection|OrganisationMember[] $members
  * @property Collection|Organisation[] $descendants
  * @property Collection|Organisation[] $organisations
- *  * @property Collection|Location[] $locations
+ * @property Collection|Location[] $locations
  * @property bool $is_defunct
  */
 class Organisation extends MiscModel
@@ -66,7 +66,6 @@ class Organisation extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
-        'location.name',
         'is_defunct',
     ];
 
@@ -80,7 +79,6 @@ class Organisation extends MiscModel
 
     protected array $exportFields = [
         'base',
-        'location_id',
         'is_defunct',
     ];
 
@@ -91,7 +89,6 @@ class Organisation extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'location_id',
         'organisation_id'
     ];
 
@@ -106,8 +103,6 @@ class Organisation extends MiscModel
             ->with([
                 'entity',
                 'entity.image',
-                'location',
-                'location.entity',
                 'locations' => function ($sub) {
                     $sub->select('id', 'name');
                 },

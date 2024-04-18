@@ -36,6 +36,8 @@ class StoreRace extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
+            'locations' => 'array',
+            'locations.*' => 'distinct|exists:locations,id',
         ];
 
         /** @var Race $self */

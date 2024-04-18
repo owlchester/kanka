@@ -36,6 +36,8 @@ class StoreOrganisation extends FormRequest
             'organisation_id' => 'nullable|exists:organisations,id',
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
+            'locations' => 'array',
+            'locations.*' => 'distinct|exists:locations,id',
         ];
 
         /** @var Organisation $self */

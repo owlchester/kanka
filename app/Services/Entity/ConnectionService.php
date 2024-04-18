@@ -118,7 +118,7 @@ class ConnectionService
     {
         $this
             ->loadChildRaces()
-            ->loadRaceLocations()
+            ->loadLocations()
         ;
     }
 
@@ -126,7 +126,7 @@ class ConnectionService
     {
         $this
             ->loadMapMarkers()
-            ->loadRaceLocations()
+            ->loadLocations()
             ->loadTimelines()
             ->loadQuests()
             ->loadAuthoredJournals()
@@ -319,7 +319,7 @@ class ConnectionService
         return $this;
     }
 
-    protected function loadRaceLocations(): self
+    protected function loadLocations(): self
     {
         /** @var Location $parent */
         $parent = $this->entity->child;
