@@ -5,12 +5,25 @@ namespace App\Observers;
 use App\Models\Character;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
+use App\Observers\Concerns\HasLocations;
 
 class OrganisationObserver extends MiscObserver
 {
+    use HasLocations;
+
     public function saved(Organisation $organisation)
     {
         $this->saveMembers($organisation);
+    }
+
+    /**
+     */
+    public function crudSaved(Organisation $organisation)
+    {
+        if (!request()->has('save_locations') && !request()->has('locations')) {
+            return;
+        }
+        $this->saveLocations($organisation);
     }
 
     /**

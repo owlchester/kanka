@@ -93,9 +93,10 @@ class TransformService
     {
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
+        $organisationID = config('entities.ids.organisation');
 
         //If the entity is switched from one location to multiple locations
-        if (!in_array($this->child->entityTypeId(), [$raceID, $creatureID]) && in_array($this->new->entityTypeId(), [$raceID, $creatureID])) {
+        if (!in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) && in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])) {
             if (in_array('location_id', $this->child->getFillable()) && !empty($this->child->location_id)) {
                 // @phpstan-ignore-next-line
                 $this->new->locations()->attach($this->child->location_id);
@@ -107,8 +108,8 @@ class TransformService
         }
 
         if (
-            !in_array($this->child->entityTypeId(), [$raceID, $creatureID]) ||
-            !in_array($this->new->entityTypeId(), [$raceID, $creatureID])
+            !in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) ||
+            !in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])
         ) {
             if (property_exists($this->child, 'locations')) {
                 // @phpstan-ignore-next-line

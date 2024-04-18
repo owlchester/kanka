@@ -348,6 +348,10 @@ trait EntityMapper
 
     protected function pivot(string $relation, string $model, string $field): self
     {
+        //Check if import has old location_id and migrate it to new locations pivot table system, currently only happens with organisations
+        if ($relation == 'pivotLocations' && isset($this->data['location_id']) && !in_array(['location_id' => $this->data['location_id']], $this->data[$relation])) {
+            $this->data[$relation][] = ['location_id' => $this->data['location_id']];
+        }
         foreach ($this->data[$relation] as $pivot) {
             if (!ImportIdMapper::has($model, $pivot[$field])) {
                 continue;

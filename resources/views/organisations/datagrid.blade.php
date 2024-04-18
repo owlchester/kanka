@@ -12,8 +12,15 @@
             'type' => 'parent',
         ],
         [
-            'type' => 'location',
-            'visible' => $campaign->enabled('locations'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')),
+            'render' => function($model) {
+                $locations = [];
+                foreach ($model->locations as $location) {
+                    $locations[] = $location->tooltipedLink();
+                }
+                return implode( ', ', $locations);
+            },
+            'disableSort' => true,
         ],
         [
             'label' => '<i class="fa-solid fa-users" title="' . trans('organisations.fields.members') . '"></i>',
