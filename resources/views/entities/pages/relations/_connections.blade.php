@@ -1,6 +1,6 @@
 <?php
 /** @var \App\Models\Entity $connection
- * @var \App\Services\Entity\ConnectionService $connectionService
+ * @var \App\Services\Entity\Connections\RelatedService $connectionService
  */
 ?>
 <h3 class="">
@@ -27,9 +27,9 @@
 
                         <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
                     @else
-                    <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'type_id']) }}">
-                        {{ __('crud.fields.entity_type') }}
-                    </a>
+                        <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'type_id']) }}">
+                            {{ __('crud.fields.entity_type') }}
+                        </a>
                     @endif
                 </th>
                 <th>{{ __('entities/relations.fields.connection') }}</th>
@@ -45,7 +45,8 @@
                         {!! $connection->tooltipedLink() !!}
 
                         @if ($connection->type() == 'map')
-                            <a href="{{ route('maps.explore', [$campaign, $connection->entity_id]) }}" class="btn2 btn-xs btn-primary" target="_blank">
+                            <a href="{{ route('maps.explore', [$campaign, $connection->entity_id]) }}"
+                               class="btn2 btn-xs btn-primary" target="_blank">
                                 <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
                             </a>
                         @endif
@@ -62,8 +63,8 @@
         </table>
     </div>
     @if ($connections->hasPages())
-    <div class="text-right">
-        {{ $connections->appends(['mode' => $mode, 'order' => request()->get('order')])->fragment('entity-connections')->onEachSide(0)->links() }}
-    </div>
+        <div class="text-right">
+            {{ $connections->appends(['mode' => $mode, 'order' => request()->get('order')])->fragment('entity-connections')->onEachSide(0)->links() }}
+        </div>
     @endif
 </x-box>

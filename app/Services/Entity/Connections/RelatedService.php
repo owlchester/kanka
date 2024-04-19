@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Entity;
+namespace App\Services\Entity\Connections;
 
 use App\Models\Character;
 use App\Models\Entity;
@@ -13,7 +13,7 @@ use App\Models\Organisation;
 use App\Models\Race;
 use App\Traits\EntityAware;
 
-class ConnectionService
+class RelatedService
 {
     use EntityAware;
 

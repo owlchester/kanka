@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Entity;
+namespace App\Services\Entity\Connections;
 
 use App\Facades\Avatar;
 use App\Facades\Module;
@@ -26,7 +26,7 @@ use App\Traits\EntityAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-class EntityRelationService
+class MapService
 {
     use CampaignAware;
     use EntityAware;
@@ -95,6 +95,7 @@ class EntityRelationService
     }
 
     /**
+     * Check if there is a special init loop for the entity type, or use a generic fallback one instead.
      */
     public function map(): array
     {
@@ -143,7 +144,7 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
+     * Add an entity to the map, only loading its data if it hasn't been already into memory
      */
     protected function addEntity(Entity $entity, string $image = null): self
     {
@@ -151,6 +152,7 @@ class EntityRelationService
         if (Arr::has($this->entities, (string)$entity->id)) {
             return $this;
         }
+        // Make sure the child is accessible in case there is a permission mis-match
         if (empty($entity->child)) {
             return $this;
         }
@@ -175,7 +177,7 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
+     * Add a relation model to the map
      */
     protected function addRelations(Entity $entity): self
     {
@@ -243,7 +245,7 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
+     * Add an individual family. This only works for characters
      */
     protected function addFamily(): self
     {
@@ -271,7 +273,7 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
+     * Add the organisations of a character
      */
     protected function addOrganisation(): self
     {
@@ -290,6 +292,7 @@ class EntityRelationService
     }
 
     /**
+     * Add the relations between character organisation members
      */
     protected function addOrganisationRelations(Organisation $organisation = null)
     {
@@ -350,57 +353,7 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
-     */
-    protected function addFamilyMembers(Family $family): self
-    {
-        /** @var Character $member */
-        foreach ($family->members()->with(['entity', 'entity.image'])->has('entity')->get() as $member) {
-            $this
-                ->addEntity($member->entity, Avatar::entity($member->entity)->fallback()->size(192)->thumbnail())
-                ->addRelations($member->entity);
-
-            // Add relation
-            $this->relations[] = [
-                'source' => $family->entity->id,
-                'target' => $member->entity->id,
-                'text' => __('entities/relations.types.family_member'),
-                'colour' => '#ccc',
-                'attitude' => null,
-                'type' => 'family-member',
-                'shape' => 'none',
-            ];
-        }
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    protected function addFamilies(): self
-    {
-        /** @var Family $family */
-        $family = $this->entity->child;
-
-        foreach ($family->families()->with(['entity', 'entity.image'])->has('entity')->get() as $subfamily) {
-            $this->addEntity($subfamily->entity);
-            $this->addRelations($subfamily->entity);
-
-            $this->relations[] = [
-                'source' => $subfamily->entity->id,
-                'target' => $this->entity->id,
-                'text' => Module::singular(config('entities.ids.family'), __('entities.family')),
-                'colour' => '#ccc',
-                'attitude' => null,
-                'type' => 'sub-family',
-                'shape' => 'triangle',
-            ];
-        }
-        return $this;
-    }
-
-    /**
-     * @return $this
+     * Generate a map for a character
      */
     protected function initCharacter(): self
     {
@@ -424,7 +377,7 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
+     * Generate a map for a location
      */
     protected function initLocation(): self
     {
@@ -453,8 +406,7 @@ class EntityRelationService
     }
 
     /**
-     * Prepare en organisation
-     * @return $this
+     * Generate a map for an organisation
      */
     protected function initOrganisation(): self
     {
@@ -476,6 +428,9 @@ class EntityRelationService
         return $this;
     }
 
+    /**
+     * Generate a map for a map model
+     */
     protected function initMap(): self
     {
         $this->addEntity($this->entity)
@@ -494,6 +449,56 @@ class EntityRelationService
                 ->addAuthorJournals();
         }
 
+        return $this;
+    }
+
+    /**
+     * Add a family member. Note that characters can be in multiple families.
+     */
+    protected function addFamilyMembers(Family $family): self
+    {
+        /** @var Character $member */
+        foreach ($family->members()->with(['entity', 'entity.image'])->has('entity')->get() as $member) {
+            $this
+                ->addEntity($member->entity, Avatar::entity($member->entity)->fallback()->size(192)->thumbnail())
+                ->addRelations($member->entity);
+
+            // Add relation
+            $this->relations[] = [
+                'source' => $family->entity->id,
+                'target' => $member->entity->id,
+                'text' => __('entities/relations.types.family_member'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'family-member',
+                'shape' => 'none',
+            ];
+        }
+        return $this;
+    }
+
+    /**
+     * Add related families
+     */
+    protected function addFamilies(): self
+    {
+        /** @var Family $family */
+        $family = $this->entity->child;
+
+        foreach ($family->families()->with(['entity', 'entity.image'])->has('entity')->get() as $subfamily) {
+            $this->addEntity($subfamily->entity);
+            $this->addRelations($subfamily->entity);
+
+            $this->relations[] = [
+                'source' => $subfamily->entity->id,
+                'target' => $this->entity->id,
+                'text' => Module::singular(config('entities.ids.family'), __('entities.family')),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'sub-family',
+                'shape' => 'triangle',
+            ];
+        }
         return $this;
     }
 
@@ -524,7 +529,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addOrganisations(): self
     {
@@ -549,7 +553,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addCharacters(): self
     {
@@ -574,7 +577,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addItems(): self
     {
@@ -597,7 +599,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addJournals(): self
     {
@@ -638,7 +639,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addLocation(): self
     {
@@ -667,9 +667,8 @@ class EntityRelationService
 
     /**
      * Add the entity's parent if it has one
-     * @return $this
      */
-    protected function addParent()
+    protected function addParent(): self
     {
         if (!method_exists($this->entity->child, 'getParentKeyName')) {
             // If not part of the node model, check for the {self}_id attribute
@@ -704,7 +703,6 @@ class EntityRelationService
 
     /**
      * Assuming the entity has a parent field, it probably has children too
-     * @return $this
      */
     protected function addChildren(string $parent): self
     {
@@ -730,7 +728,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addDiceRolls(): self
     {
@@ -753,7 +750,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addConversations(): self
     {
@@ -776,7 +772,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addMapMarkers(): self
     {
@@ -797,7 +792,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addMaps(): self
     {
@@ -820,7 +814,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addQuests(): self
     {
@@ -841,8 +834,7 @@ class EntityRelationService
     }
 
     /**
-     * Race locations
-     * @return $this
+     * Add a character's races
      */
     protected function addRaces(): self
     {
@@ -868,7 +860,6 @@ class EntityRelationService
 
     /**
      * Creature locations
-     * @return $this
      */
     protected function addLocationCreatures(): self
     {
@@ -893,7 +884,6 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
      */
     protected function addLocations(): self
     {
@@ -923,7 +913,6 @@ class EntityRelationService
 
     /**
      * Load relations between linked entities
-     * @return $this
      */
     protected function relatedRelations(): self
     {
@@ -942,7 +931,7 @@ class EntityRelationService
     }
 
     /**
-     * @return $this
+     * Add an entity's mentions to the map
      */
     protected function addMentions(): self
     {
@@ -983,6 +972,7 @@ class EntityRelationService
     }
 
     /**
+     * Check if the rendering mode includes related models
      */
     protected function withRelated(): bool
     {
@@ -990,6 +980,7 @@ class EntityRelationService
     }
 
     /**
+     * Check if the rendering mode includes mentions
      */
     protected function withMentions(): bool
     {
@@ -997,6 +988,7 @@ class EntityRelationService
     }
 
     /**
+     * Check if the rendering mode only focuses on direct relations
      */
     protected function onlyRelations(): bool
     {
@@ -1005,7 +997,6 @@ class EntityRelationService
 
     /**
      * Load the entity's relations, along with optionally the relation's relations
-     * @return $this
      */
     protected function loadRelations(): self
     {
