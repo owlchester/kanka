@@ -56,6 +56,8 @@ class SetupMeilisearch extends Command
         $client->index('entities')->resetSeparatorTokens();
         $client->index('entities')
             ->updateNonSeparatorTokens([':']);
+        $client->index('entities')->updateFilterableAttributes(['campaign_id']);
+
         $models = [
             Attribute::class,
             Ability::class,
