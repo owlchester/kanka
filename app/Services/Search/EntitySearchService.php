@@ -30,11 +30,11 @@ class EntitySearchService
         //Get results from Meilisearch
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
-
         $queries = [
             (new SearchQuery())
                 ->setIndexUid('entities')
                 ->setQuery($term)
+                ->setFilter(['campaign_id = ' . $this->campaign->id])
                 ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
                 ->setLimit(10)
         ];
@@ -44,6 +44,7 @@ class EntitySearchService
                 (new SearchQuery())
                     ->setIndexUid('entities')
                     ->setQuery($term2)
+                    ->setFilter(['campaign_id = ' . $this->campaign->id])
                     ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
                     ->setLimit(10);
         }
