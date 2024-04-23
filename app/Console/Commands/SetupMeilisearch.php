@@ -22,7 +22,9 @@ use App\Models\Race;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use Meilisearch\Client;
 
 class SetupMeilisearch extends Command
@@ -79,10 +81,14 @@ class SetupMeilisearch extends Command
             QuestElement::class,
             TimelineElement::class,
         ];
+        $this->info('Meilisearch import started at ' . date('H:i:s'));
         foreach ($models as $model) {
+            $time = Carbon::now();
             $object = new $model();
             $object::makeAllSearchable($this->option('chunk'));
-            $this->info('All [' . $model . '] records have been imported.');
+            $this->info('All [' . $model . '] records imported in ' . $time->diffInMinutes() . ' min');
+            Log::info('Meilisearch', ['model' => $model]);
         }
+        $this->info('Ended at ' . date('H:i:s'));
     }
 }
