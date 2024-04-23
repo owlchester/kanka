@@ -22,6 +22,14 @@ class EntitySearchService
     protected array $postIds = [];
     protected array $questElementIds = [];
 
+    protected int $limit = 10;
+
+    public function limit(int $limit): self
+    {
+        $this->limit = $limit;
+        return $this;
+    }
+
     /**
      * Send search request
      */
@@ -36,7 +44,7 @@ class EntitySearchService
                 ->setQuery($term)
                 ->setFilter(['campaign_id = ' . $this->campaign->id])
                 ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
-                ->setLimit(10)
+                ->setLimit($this->limit)
         ];
 
         if ($term2) {
@@ -46,7 +54,7 @@ class EntitySearchService
                     ->setQuery($term2)
                     ->setFilter(['campaign_id = ' . $this->campaign->id])
                     ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
-                    ->setLimit(10);
+                    ->setLimit($this->limit);
         }
         $results = $client->multiSearch($queries);
 

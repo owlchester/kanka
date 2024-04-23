@@ -52,6 +52,8 @@ class SetupMeilisearch extends Command
     public function handle()
     {
         //Update Non Separator Tokens for entity mentions
+        $start = Carbon::now();
+        $this->info('Meilisearch import started at ' . date('H:i:s'));
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
         $client->deleteIndex('entities');
@@ -81,14 +83,14 @@ class SetupMeilisearch extends Command
             QuestElement::class,
             TimelineElement::class,
         ];
-        $this->info('Meilisearch import started at ' . date('H:i:s'));
         foreach ($models as $model) {
             $time = Carbon::now();
             $object = new $model();
+            $this->info('Importing ' . number_format($object->count()) . ' [' . $model . '] at ' . date('H:i:s'));
             $object::makeAllSearchable($this->option('chunk'));
-            $this->info('All [' . $model . '] records imported in ' . $time->diffInMinutes() . ' min');
+            $this->info('- Done in ' . $time->diffInMinutes() . ' min');
             Log::info('Meilisearch', ['model' => $model]);
         }
-        $this->info('Ended at ' . date('H:i:s'));
+        $this->info('Ended at ' . date('H:i:s') . ' after ' . $start->diffInMinutes() . ' min');
     }
 }

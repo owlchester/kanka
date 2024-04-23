@@ -44,6 +44,7 @@ class FullTextController extends Controller
         // Get entity ids from meilisearch
         $results = $this->service
             ->campaign($campaign)
+            ->limit(25)
             ->search($term, $term2);
         $results = array_column($results, 'id');
 
