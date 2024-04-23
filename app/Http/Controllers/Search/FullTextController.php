@@ -44,8 +44,9 @@ class FullTextController extends Controller
         // Get entity ids from meilisearch
         $results = $this->service
             ->campaign($campaign)
-            ->limit(25)
-            ->search($term, $term2);
+            ->limit(100)
+            ->search($term, $term2)
+        ;
         $results = array_column($results, 'id');
 
         // Then get the actual entities from the campaign
@@ -58,7 +59,7 @@ class FullTextController extends Controller
             return redirect()->route('search.fulltext', [
                 $campaign,
                 'page' => $models->lastPage(),
-                'order' => $request->get('order')
+                'order' => $request->get('order'),
             ]);
         }
 

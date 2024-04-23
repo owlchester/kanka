@@ -24,9 +24,23 @@ class EntitySearchService
 
     protected int $limit = 10;
 
+    protected int $pages;
+
+    protected int $page = 1;
+
     public function limit(int $limit): self
     {
         $this->limit = $limit;
+        return $this;
+    }
+
+    public function pages(): int
+    {
+        return $this->pages;
+    }
+    public function page(int $page): self
+    {
+        $this->page = $page;
         return $this;
     }
 
@@ -44,7 +58,9 @@ class EntitySearchService
                 ->setQuery($term)
                 ->setFilter(['campaign_id = ' . $this->campaign->id])
                 ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
+                ->setPage($this->page)
                 ->setLimit($this->limit)
+                ->setHitsPerPage($this->limit)
         ];
 
         if ($term2) {
@@ -54,16 +70,22 @@ class EntitySearchService
                     ->setQuery($term2)
                     ->setFilter(['campaign_id = ' . $this->campaign->id])
                     ->setAttributesToRetrieve(['id', 'entity_id', 'type'])
-                    ->setLimit($this->limit);
+                    ->setPage($this->page)
+                    ->setLimit($this->limit)
+                    ->setHitsPerPage($this->limit)
+            ;
         }
         $results = $client->multiSearch($queries);
 
         if ($term2) {
-            $results = array_merge($results['results'][0]['hits'], $results['results'][1]['hits']);
+            $entities = array_merge($results['results'][0]['hits'], $results['results'][1]['hits']);
         } else {
-            $results = $results['results'][0]['hits'];
+            $entities = $results['results'][0]['hits'];
         }
-        return $this->process($results)->fetch();
+
+        $this->pages = $results['results'][0]['totalPages'];
+
+        return $this->process($entities)->fetch();
     }
 
     /**
@@ -115,11 +137,13 @@ class EntitySearchService
             ->get();
         $attributes = Attribute::select(['id', 'entity_id'])
             ->with('entity')
-            ->has('entity')->whereIn('id', $this->attributeIds)
+            ->has('entity')
+            ->whereIn('id', $this->attributeIds)
             ->get();
         $questElements = QuestElement::select(['id', 'quest_id'])
             ->with(['quest', 'quest.entity'])
-            ->has('quest')->whereIn('id', $this->questElementIds)
+            ->has('quest')
+            ->whereIn('id', $this->questElementIds)
             ->get();
         $timelineElements = TimelineElement::select(['id', 'timeline_id'])
             ->with(['timeline', 'timeline.entity'])
