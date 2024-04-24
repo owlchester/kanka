@@ -89,7 +89,7 @@ class PayPalService
 
             $sub = new Subscription();
             $sub->user_id = $this->user->id; // @phpstan-ignore-line
-            $sub->name = 'kanka'; // @phpstan-ignore-line
+            $sub->type = 'kanka'; // @phpstan-ignore-line
             $sub->stripe_id = 'manual_sub_' . uniqid(); // @phpstan-ignore-line
             $sub->stripe_status = 'canceled'; // @phpstan-ignore-line
             $sub->stripe_price = 'paypal_' . $this->user->pledge; // @phpstan-ignore-line

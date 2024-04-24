@@ -479,7 +479,7 @@ class SubscriptionService
 
             \Laravel\Cashier\Subscription::create([
                 'user_id' => $this->user->id,
-                'name' => 'kanka',
+                'type' => 'kanka',
                 'stripe_id' => $source->method . '_' . $source->id,
                 'stripe_status' => 'active',
                 'stripe_price' => $source->plan(),
