@@ -55,7 +55,6 @@ const initDashboardAdminUI = () => {
     new Sortable(el, {
         handle: '.handle',
         onEnd: function (/**Event*/evt) {
-            // Allow ajax requests to use the X_CSRF_TOKEN for deletes
             $.post({
                 url: $('#widgets').data('url'),
                 dataType: 'json',

@@ -83,10 +83,6 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
         @yield('fullpage-form')
 
-{{--        @ads('hybrid')--}}
-{{--            <div class="vm-placement" data-id="{{ config('tracking.venatus.hybrid') }}" data-display-type="hybrid-banner"></div>--}}
-{{--        @endif--}}
-
         <div class="content-wrapper" id="{{ isset($contentId) ? $contentId : "main-content" }}">
             @include('layouts.banner')
 

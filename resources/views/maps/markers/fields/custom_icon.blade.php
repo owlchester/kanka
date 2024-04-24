@@ -19,15 +19,15 @@
         ($campaign->boosted() ? null : 'disabled')])
     !!}
     @if (!$campaign->boosted())
-        @subscriber()
-        <x-helper>
-            <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
-        </x-helper>
-    @else
-        <x-helper>
-            <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to('https://kanka.io/premium', __('concept.boosted-campaign'))]) !!}
-        </x-helper>
-        @endsubscriber
+        @if (auth()->check() && auth()->user()->hasBoosters())
+            <x-helper>
+                <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
+            </x-helper>
+        @else
+            <x-helper>
+                <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to('https://kanka.io/premium', __('concept.boosted-campaign'))]) !!}
+            </x-helper>
+        @endif
     @endif
 
     <div class="hidden">
