@@ -6,7 +6,7 @@ $specificTheme = null;
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    @include('layouts.tracking.tracking', ['noads' => true])
+    @include('layouts.tracking.tracking')
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? __('default.page_title') }} - {{ config('app.name') }}</title>

@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Facades\AdCache;
 use App\Models\Campaign;
 use App\User;
 use Carbon\Carbon;
@@ -52,6 +53,10 @@ class Ad extends Component
 
         // If requesting a section that isn't set up, don't show
         if (!empty($this->section) && empty(config('tracking.venatus.' . $this->section))) {
+            return false;
+        }
+        if (!AdCache::canHaveAds()) {
+            // Using the adless middleware to define routes that have no ads (ie settings)
             return false;
         }
         // Parameter to force ads to be displayed

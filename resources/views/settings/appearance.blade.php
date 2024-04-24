@@ -2,7 +2,6 @@
     'title' => __('settings.layout.title'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
-    'noads' => true,
     'centered' => true,
 ])
 @php

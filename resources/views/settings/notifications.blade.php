@@ -3,7 +3,6 @@
     'title' => __('profiles.newsletter.title'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
-    'noads' => true,
     'centered' => true,
 ])
 

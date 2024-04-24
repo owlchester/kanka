@@ -7,7 +7,6 @@
     'title' => __('settings/boosters.title'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
-    'noads' => true,
 ])
 
 @section('content')

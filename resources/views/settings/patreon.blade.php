@@ -3,7 +3,6 @@
     'description' => __('settings.patreon.description'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
-    'noads' => true,
     'centered' => true,
 ])
 

@@ -10,22 +10,30 @@ class AdCacheService
     /** @var Ad|bool|null */
     protected $ad;
 
-    /**
-     * @return Ad|null
-     */
-    public function get()
+    protected bool $ads = true;
+
+    public function adless(): self
+    {
+        $this->ads = false;
+        return $this;
+    }
+
+    public function canHaveAds(): bool
+    {
+        return $this->ads;
+    }
+
+    public function get(): Ad|null
     {
         return $this->ad;
     }
 
-    public function test(int $section, int $id)
+    public function test(int $section, int $id): bool
     {
         $this->ad = Ad::select(['id', 'html'])->section($section)->where('id', $id)->first();
         return !empty($this->ad);
     }
 
-    /**
-     */
     public function show(): string
     {
         return (string) $this->ad->html;
@@ -33,23 +41,15 @@ class AdCacheService
 
     /**
      * Check if there is an ad to be displayed
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function has(int $section): bool
     {
         $this->load($section);
-        return (bool) (!empty($this->ad))
-
-
-        ;
+        return (bool) (!empty($this->ad));
     }
 
     /**
      * Load the ad in memory
-     * @return $this
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     protected function load(int $section): self
     {
