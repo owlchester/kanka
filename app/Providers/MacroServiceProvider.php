@@ -33,79 +33,9 @@ class MacroServiceProvider extends ServiceProvider
     protected function addCustomBladeDirectives()
     {
         $this
-            ->addAds()
-            ->addNativeAds()
             ->addSubscribers();
     }
 
-    protected function addAds(bool $requestedSkip = false): self
-    {
-        /** @ads() to show ads */
-        Blade::if('ads', function (string $section = null) {
-            if (!config('tracking.venatus.enabled')) {
-                return false;
-            }
-
-            // If requesting a section but it isn't set up, don't show
-            if (!empty($section) && empty(config('tracking.venatus.' . $section))) {
-                //dump('tracking.venatus.' . $section);
-                return false;
-            }
-
-            if (request()->has('_showads')) {
-                return true;
-            }
-            if (auth()->check()) {
-                // Subscribed users don't have ads
-                if (auth()->user()->isSubscriber()) {
-                    return false;
-                }
-                // User has been created less than 24 hours ago
-                if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
-                    return false;
-                }
-            }
-
-            // Boosted campaigns don't either have ads displayed to their members
-            return CampaignLocalization::hasCampaign() && !CampaignLocalization::getCampaign()->boosted();
-        });
-        return $this;
-    }
-
-    protected function addNativeAds(): self
-    {
-        Blade::if('nativeAd', function (int $section) {
-            // If we provided an ad test, override that
-            if (!config('app.admin')) {
-                return false;
-            }
-            if (request()->has('_adtest') && auth()->user()->hasRole('admin')) {
-                return AdCache::test($section, request()->get('_adtest'));
-            }
-            if (!AdCache::has($section)) {
-                return false;
-            }
-            if (request()->get('_boost') === '0') {
-                return true;
-            }
-
-            if (auth()->check()) {
-                // Subscribed users don't have ads
-                if (auth()->user()->isSubscriber()) {
-                    return false;
-                }
-                // User has been created less than 24 hours ago
-                if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
-                    return false;
-                }
-            }
-
-            // Boosted campaigns don't either have ads displayed to their members
-            return CampaignLocalization::hasCampaign() && !CampaignLocalization::getCampaign()->boosted();
-        });
-
-        return $this;
-    }
 
     /**
      * Condition to show actions or elements to users who is a subscriber

@@ -1,8 +1,8 @@
 <footer id="footer" class="main-footer px-4 py-10">
-    @ads('rich')
-    <div class="vm-placement" data-id="{{ config('tracking.venatus.inline') }}"></div>
-    <div class="vm-placement" data-id="{{ config('tracking.venatus.rich') }}" style="display:none"></div>
-    @endads
+    <x-ad section="rich" :campaign="isset($campaign) ? $campaign : null">
+        <div class="vm-placement" data-id="{{ config('tracking.venatus.inline') }}"></div>
+        <div class="vm-placement" data-id="{{ config('tracking.venatus.rich') }}" style="display:none"></div>
+    </x-ad>
 
     <div class="lg:max-w-7xl lg:mx-auto">
         <div class="flex flex-col gap-10">
