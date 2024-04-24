@@ -3,7 +3,6 @@
 namespace App\View\Components\Ads;
 
 use App\Facades\AdCache;
-use App\Facades\CampaignLocalization;
 use App\Models\Ad;
 use App\Models\Campaign;
 use App\User;

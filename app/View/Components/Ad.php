@@ -21,8 +21,7 @@ class Ad extends Component
     public function __construct(
         string $section = null,
         Campaign $campaign = null,
-    )
-    {
+    ) {
         $this->section = $section;
         $this->campaign = $campaign;
     }
