@@ -24,7 +24,7 @@
         "http-interop/http-factory-guzzle": "^1.2",
         "ilestis/kanka-dnd5e-monster": "^5.0",
         "intervention/image": "^2.4",
-        "laravel/cashier": "^14.0",
+        "laravel/cashier": "^15.0",
         "laravel/framework": "^10.0",
         "laravel/passport": "^11.0",
         "laravel/scout": "^10.5",
