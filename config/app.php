@@ -224,7 +224,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\MacroServiceProvider::class,
         App\Providers\CampaignLocalizationServiceProvider::class,
         App\Providers\MentionsServiceProvider::class,
         App\Providers\BreadcrumbServiceProvider::class,

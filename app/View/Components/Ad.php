@@ -13,7 +13,7 @@ class Ad extends Component
 {
     public ?string $section;
     public ?Campaign $campaign;
-    public User $user;
+    protected User $user;
 
     /**
      * Create a new component instance.
@@ -25,10 +25,6 @@ class Ad extends Component
     {
         $this->section = $section;
         $this->campaign = $campaign;
-
-        if (auth()->check()) {
-            $this->user = auth()->user();
-        }
     }
 
     /**
@@ -36,6 +32,9 @@ class Ad extends Component
      */
     public function render(): View|Closure|string
     {
+        if (auth()->check()) {
+            $this->user = auth()->user();
+        }
         if (!$this->hasAd()) {
             return '';
         }

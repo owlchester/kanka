@@ -2,7 +2,7 @@
     @if ($campaign->superboosted())
         <p>{!! __('settings/boosters.superboost.errors.boosted', ['campaign' => $campaign->name])!!}</p>
     @elseif(auth()->user()->availableBoosts() < $cost)
-        @subscriber
+        @if (auth()->user()->hasBoosters())
             <p class="">
                 {!! __('settings/boosters.boost.errors.out-of-boosters', [
                     'upgrade' => link_to_route('settings.subscription', __('settings/boosters.boost.upgrade')),
@@ -32,7 +32,7 @@
                     {!! __('settings/boosters.boost.actions.subscribe') !!}
                 </a>
             </div>
-        @endsubscriber
+        @endif
     @else
 
         <p class="">

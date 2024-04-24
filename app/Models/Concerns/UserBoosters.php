@@ -17,6 +17,10 @@ trait UserBoosters
      */
     public function hasBoosters(): bool
     {
+        // Force the page to think that the user has no boosters
+        if (request()->get('_booster') === '0') {
+            return false;
+        }
         return $this->isGoblin();
     }
 

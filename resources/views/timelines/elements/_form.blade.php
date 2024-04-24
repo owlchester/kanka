@@ -74,7 +74,7 @@ if (!empty($era)) {
         ]) !!}</x-helper>
 
         @if (!$campaign->boosted())
-            @subscriber()
+            @if (auth()->check() && auth()->user()->hasBoosters())
                 <x-helper>
                     <x-icon class="premium" />
                     {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaign])]) !!}
@@ -84,7 +84,7 @@ if (!empty($era)) {
                     <x-icon class="premium" />
                     {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
                 </x-helper>
-            @endsubscriber
+            @endif
         @endif
     </x-forms.field>
 

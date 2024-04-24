@@ -28,6 +28,5 @@
 @if (!isset($noads))
     <x-ad :campaign="isset($campaign) ? $campaign : null">
         <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" @if(!app()->isProduction())data-adtest="on"@endif></script>
-        @dd('yooo')
     </x-ad>
 @endif
