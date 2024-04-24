@@ -88,13 +88,13 @@ class PayPalService
             $this->user->save();
 
             $sub = new Subscription();
-            $sub->user_id = $this->user->id; // @phpstan-ignore-line
-            $sub->type = 'kanka'; // @phpstan-ignore-line
-            $sub->stripe_id = 'manual_sub_' . uniqid(); // @phpstan-ignore-line
-            $sub->stripe_status = 'canceled'; // @phpstan-ignore-line
-            $sub->stripe_price = 'paypal_' . $this->user->pledge; // @phpstan-ignore-line
-            $sub->quantity = 1; // @phpstan-ignore-line
-            $sub->ends_at = Carbon::now()->addYear(); // @phpstan-ignore-line
+            $sub->user_id = $this->user->id;
+            $sub->type = 'kanka';
+            $sub->stripe_id = 'manual_sub_' . uniqid();
+            $sub->stripe_status = 'canceled';
+            $sub->stripe_price = 'paypal_' . $this->user->pledge;
+            $sub->quantity = 1;
+            $sub->ends_at = Carbon::now()->addYear();
             $sub->save();
         } else {
             // Add the subscription to the user level
