@@ -371,6 +371,7 @@ TEXT
         ],
         'helpers'       => [
             'abilities'         => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
+            'assets'            => 'Upload files, links and aliases to individual entities.',
             'bookmarks'         => 'Create bookmarks to entities or filtered lists that appear in the sidebar.',
             'calendars'         => 'A place to define the calendars of your world.',
             'characters'        => 'Create and keep track of the people inhabiting the world with characters.',

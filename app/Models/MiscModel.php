@@ -299,7 +299,7 @@ abstract class MiscModel extends Model
 
 
         // Each entity can have assets
-        if ($this->entity->hasFiles()) {
+        if ($campaign->enabled('assets') && $this->entity->hasFiles()) {
             $items['third']['assets'] = [
                 'name' => 'crud.tabs.assets',
                 'route' => 'entities.entity_assets.index',

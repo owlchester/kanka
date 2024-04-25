@@ -31,13 +31,14 @@ class AttributeController extends Controller
     public function index(Campaign $campaign, Entity $entity)
     {
         if (!$campaign->enabled('entity_attributes')) {
-            return redirect()->route('dashboard', $campaign)->with(
+            return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#assets']),
                 ])
             );
         }
+
         $this->authEntityView($entity);
 
         if (!$entity->accessAttributes()) {

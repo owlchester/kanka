@@ -13,6 +13,7 @@ class CampaignSetting extends Model
 
     protected $fillable = [
         'abilities',
+        'assets',
         'campaign_id',
         'characters',
         'entity_attributes',

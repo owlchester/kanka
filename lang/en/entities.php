@@ -3,6 +3,7 @@
 return [
     'abilities'             => 'Abilities',
     'ability'               => 'Ability',
+    'assets'                => 'Assets',
     'attribute_template'    => 'Attribute Template',
     'attribute_templates'   => 'Attribute Templates',
     'bookmark'              => 'Bookmark',
