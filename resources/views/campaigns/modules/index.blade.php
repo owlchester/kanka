@@ -107,6 +107,9 @@
             <div class="cell col-span-1 flex">
                 @include('campaigns.modules.box', ['icon' => 'fa-solid fa-table', 'module' => 'entity_attributes'])
             </div>
+            <div class="cell col-span-1 flex">
+                @include('campaigns.modules.box', ['icon' => 'fa-solid fa-folder', 'module' => 'assets'])
+            </div>
         </div>
     </div>
 @endsection

@@ -58,7 +58,6 @@ class NavigationService
         if (!empty($this->user->pledge) && $this->user->subscribed('kanka')) {
             $data['subscription'] = [
                 'tier' => $this->user->pledge,
-                // @phpstan-ignore-next-line
                 'created' => __('users/profile.fields.subscriber_since', ['date' => $this->user->subscription('kanka')->created_at->format('M d, Y')]),
                 'image' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/' . mb_strtolower($this->user->pledge) . '-325.png',
                 'boosters' => __('settings/boosters.available', [
