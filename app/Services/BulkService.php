@@ -359,6 +359,7 @@ class BulkService
 
             $locationsAction = Arr::get($fields, 'bulk-locations', 'add');
             if ($locationsAction === 'remove') {
+                // @phpstan-ignore-next-line
                 $entity->locations()->detach($locationIds);
             } else {
                 $this->saveLocations($entity, $locationIds);

@@ -492,7 +492,6 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function hasPayPal(): bool
     {
-        // @phpstan-ignore-next-line
         return $this->subscribed('kanka') && $this->subscription('kanka') && str_contains($this->subscription('kanka')->stripe_price, 'paypal');
     }
 
@@ -503,7 +502,6 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         return $this->subscribed('kanka') &&
             $this->subscription('kanka') &&
-            // @phpstan-ignore-next-line
             Str::startsWith($this->subscription('kanka')->stripe_id, 'manual_sub');
     }
 
