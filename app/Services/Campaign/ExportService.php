@@ -123,20 +123,30 @@ class ExportService
         $entities = config('entities.ids');
 
         foreach ($settings as $name => $active) {
-            $module = ['enabled' => $active];
-            if (!in_array($name, ['dice_rolls', 'conversations', 'bookmarks', 'inventories', 'entity_attributes', 'assets'])) {
-                if ($this->campaign->hasModuleName($entities[Str::singular($name)])) {
-                    $module['name_singular'] = $this->campaign->moduleName($entities[Str::singular($name)]);
+            try {
+                $module = ['enabled' => $active];
+                if (!in_array($name, ['dice_rolls', 'conversations', 'bookmarks', 'inventories', 'entity_attributes', 'assets'])) {
+                    if ($this->campaign->hasModuleName($entities[Str::singular($name)])) {
+                        $module['name_singular'] = $this->campaign->moduleName($entities[Str::singular($name)]);
+                    }
+                    if ($this->campaign->hasModuleName($entities[Str::singular($name)], true)) {
+                        $module['name_plural'] = $this->campaign->moduleName($entities[Str::singular($name)], true);
+                    }
+                    if ($this->campaign->hasModuleIcon($entities[Str::singular($name)])) {
+                        $module['icon'] = $this->campaign->moduleIcon($entities[Str::singular($name)]);
+                    }
                 }
-                if ($this->campaign->hasModuleName($entities[Str::singular($name)], true)) {
-                    $module['name_plural'] = $this->campaign->moduleName($entities[Str::singular($name)], true);
-                }
-                if ($this->campaign->hasModuleIcon($entities[Str::singular($name)])) {
-                    $module['icon'] = $this->campaign->moduleIcon($entities[Str::singular($name)]);
-                }
+                $modules[$name] = $module;
+            } catch (Exception $e) {
+                Log::error('Campaign export', ['err' => $e->getMessage()]);
+                $saveFolder = storage_path($this->exportPath);
+                $this->archive->saveTo($saveFolder);
+                unlink($this->path);
+                throw new Exception(
+                    'Failed to export module ' . $name . ' data '
+                    . $e->getMessage()
+                );
             }
-
-            $modules[$name] = $module;
         }
         $this->archive->add(json_encode($modules), 'settings/modules.json', );
         $this->files++;
