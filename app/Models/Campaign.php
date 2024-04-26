@@ -211,6 +211,15 @@ class Campaign extends Model
     }
 
     /**
+     * Determine if a campaign has a module enabled or not
+     *
+     */
+    public function modules()
+    {
+        return CampaignCache::settings();
+    }
+
+    /**
      * Get the is public attribute for forms
      */
     public function getIsPublicAttribute()

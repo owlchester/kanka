@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Facades\Module;
 use Zip;
 
 class ExportService
@@ -85,6 +86,7 @@ class ExportService
                 ->prepare()
                 ->info()
                 ->campaignJson()
+                ->campaignModules()
                 ->entities()
                 ->gallery()
                 ->finish()
@@ -111,6 +113,26 @@ class ExportService
     public function filesize(): int
     {
         return $this->filesize;
+    }
+
+
+    protected function campaignModules(): self
+    {
+        $modules = [];
+        foreach ($this->campaign->modules() as $name => $active) {
+            $module = ['enabled' => $active];
+            if (!in_array($name, ['dice_rolls', 'conversations', 'bookmarks', 'inventories', 'entity_attributes', 'assets'])) {
+                $module['name_singular'] = Module::campaign($this->campaign)->singular($name);
+                $module['name_plural'] = Module::campaign($this->campaign)->plural($name);
+                $module['icon'] = Module::campaign($this->campaign)->icon($name);
+            }
+
+            $modules[$name] = $module;
+        }
+        $this->archive->add(json_encode($modules), 'settings/modules.json', );
+        $this->files++;
+
+        return $this;
     }
 
     protected function prepare(): self
