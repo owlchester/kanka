@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use App\Facades\Module;
 use Zip;
 
 class ExportService
@@ -119,12 +118,22 @@ class ExportService
     protected function campaignModules(): self
     {
         $modules = [];
-        foreach ($this->campaign->modules() as $name => $active) {
+        $settings = $this->campaign->setting->toArray();
+        unset($settings['id'], $settings['campaign_id'], $settings['created_at'], $settings['updated_at']);
+        $entities = config('entities.ids');
+
+        foreach ($settings as $name => $active) {
             $module = ['enabled' => $active];
             if (!in_array($name, ['dice_rolls', 'conversations', 'bookmarks', 'inventories', 'entity_attributes', 'assets'])) {
-                $module['name_singular'] = Module::campaign($this->campaign)->singular($name);
-                $module['name_plural'] = Module::campaign($this->campaign)->plural($name);
-                $module['icon'] = Module::campaign($this->campaign)->icon($name);
+                if ($this->campaign->hasModuleName($entities[Str::singular($name)])) {
+                    $module['name_singular'] = $this->campaign->moduleName($entities[Str::singular($name)]);
+                }
+                if ($this->campaign->hasModuleName($entities[Str::singular($name)], true)) {
+                    $module['name_plural'] = $this->campaign->moduleName($entities[Str::singular($name)], true);
+                }
+                if ($this->campaign->hasModuleIcon($entities[Str::singular($name)])) {
+                    $module['icon'] = $this->campaign->moduleIcon($entities[Str::singular($name)]);
+                }
             }
 
             $modules[$name] = $module;
