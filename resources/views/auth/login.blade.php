@@ -16,7 +16,7 @@
             @foreach (\App\User::limit(5)->orderBy('last_login_at', 'desc')->get() as $user)
                 <li>
                     <a href="{{ route('login-as-user', ['user' => $user]) }}" class="text-blue-500 hover:text-blue-900">
-                        {!! $user->name !!}
+                        {!! $user->name !!} @if ($user->pledge) ({!! $user->pledge !!}) @endif
                     </a>
                 </li>
             @endforeach
@@ -30,7 +30,7 @@
             @if(config('auth.user_list'))
                 <select id="email" name="email" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500">
                     @foreach (\App\User::limit(30)->get() as $user)
-                        <option value="{{ $user->email}}">{!! $user->name !!}</option>
+                        <option value="{{ $user->email}}">{!! $user->name !!} @if ($user->pledge) ({!! $user->pledge !!}) @endif</option>
                     @endforeach
                 </select>
             @else
