@@ -182,6 +182,7 @@ class ExportService
             'entity.files',
             'entity.mentions',
             'entity.inventories',
+            'entity.inventories.item',
             'entity.entityAttributes',
         ];
         $entities = config('entities.classes-plural');
