@@ -135,7 +135,7 @@ class ExportService
                     $module['icon'] = $this->campaign->moduleIcon($entities[Str::singular($name)]);
                 }
             } catch (Exception $e) {
-                //
+
             }
             $modules[$name] = $module;
 
