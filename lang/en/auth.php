@@ -35,7 +35,7 @@ return [
         ],
         'login_with_facebook'   => 'Login with Facebook',
         'login_with_google'     => 'Login with Google',
-        'login_with_twitter'    => 'Login with Twitter',
+        'login_with_x'          => 'Login with X (formerly Twitter)',
         'new_account'           => 'Register a new account',
         'or'                    => 'OR',
         'password_forgotten'    => 'Forgot your password?',
@@ -58,7 +58,7 @@ return [
         'log-in'                    => 'Log in',
         'register_with_facebook'    => 'Register with Facebook',
         'register_with_google'      => 'Register with Google',
-        'register_with_twitter'     => 'Register with Twitter',
+        'register_with_x'           => 'Register with X (formerly Twitter)',
         'submit'                    => 'Register',
         'title'                     => 'Register',
         'tos'                       => 'By registering an account, you agree to our :terms and :privacy.',
@@ -78,4 +78,5 @@ return [
         'title'     => 'Two-Factor Authentication',
     ],
     'throttle'  => 'Too many login attempts. Please try again in :seconds seconds.',
+    'x-twitter' => 'X formerly known as Twitter',
 ];

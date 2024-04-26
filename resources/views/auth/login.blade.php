@@ -87,9 +87,9 @@
             @endif
 
             @if(config('services.twitter.client_id'))
-            <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="rounded border border-blue-300 text-blue-300 hover:text-white hover:bg-blue-300 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_twitter') }}">
-                <x-icon class="fa-brands fa-twitter" />
-                Twitter
+            <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="rounded border border-blue-300 text-blue-300 hover:text-white hover:bg-blue-300 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_x') }}">
+                <x-icon class="fa-brands fa-x-twitter" />
+                X
             </a>
             @endif
         </div>
