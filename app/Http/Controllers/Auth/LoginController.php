@@ -50,6 +50,19 @@ class LoginController extends Controller
         return redirect()->route('login');
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function loginAs(Request $request)
+    {
+        if (config('auth.user_list')) {
+            $user = User::where('id', $request->get('user'))->first();
+            Auth::login($user, true);
+            return $this->sendLoginResponse($request);
+        }
+        return redirect()->route('login');
+    }
+
     protected function authenticated(Request $request, $user)
     {
         $response = $this->userAuthService->authenticated($user);
