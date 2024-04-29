@@ -21,51 +21,55 @@
                 </li>
             @endforeach
         </ul>
-    @endif
 
+        <form method="GET" action="{{ route('login-as') }}" class="w-full">
+            {{ csrf_field() }}
+            <select id="user" name="user" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500">
+                @foreach (\App\User::limit(30)->get() as $user)
+                    <option value="{{ $user->id }}">{!! $user->name !!} @if ($user->pledge) ({!! $user->pledge !!}) @endif</option>
+                @endforeach
+            </select>
 
-    <form method="POST" action="{{ route('login') }}" class="w-full">
-        {{ csrf_field() }}
-        <div class="mb-3 {{ $errors->has('email') ? ' has-error' : '' }}">
-            @if(config('auth.user_list'))
-                <select id="email" name="email" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500">
-                    @foreach (\App\User::limit(30)->get() as $user)
-                        <option value="{{ $user->email}}">{!! $user->name !!} @if ($user->pledge) ({!! $user->pledge !!}) @endif</option>
-                    @endforeach
-                </select>
-            @else
+            <button type="submit" class="w-full rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white dark:bg-slate-800">
+                {{ __('auth.login.submit') }}
+            </button>
+        </form>
+    @else
+        <form method="POST" action="{{ route('login') }}" class="w-full">
+            {{ csrf_field() }}
+            <div class="mb-3 {{ $errors->has('email') ? ' has-error' : '' }}">
                 <input id="email" type="email" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="email" value="{{ old('email') }}" placeholder="{{ __('auth.login.fields.email') }}" required autofocus>
-            @endif
 
-            @if ($errors->has('email'))
-                <span class="text-red-500">
-                   {{ $errors->first('email') }}
-                </span>
-            @endif
-        </div>
-
-        <div class="mb-3 {{ $errors->has('password') ? ' has-error' : '' }}">
-            <div class="flex items-stretch w-full">
-                <input id="password" type="password" class="border rounded w-full p-2 dark:bg-slate-800 dark:border-slate-500" name="password" required placeholder="{{ __('auth.login.fields.password') }}">
-                <a href="#" id="toggle-password" class="input-group-addon p-2" title="{{ __('auth.helpers.password') }}">
-                    <i id="toggle-password-icon" class="fa-solid fa-eye" aria-hidden="true"></i>
-                    <span class="sr-only">{{ __('auth.helpers.password') }}</span>
-                </a>
+                @if ($errors->has('email'))
+                    <span class="text-red-500">
+                    {{ $errors->first('email') }}
+                    </span>
+                @endif
             </div>
 
-            @if ($errors->has('password'))
-                <span class="text-red-500">
-                    {{ $errors->first('password') }}
-                </span>
-            @endif
-        </div>
+            <div class="mb-3 {{ $errors->has('password') ? ' has-error' : '' }}">
+                <div class="flex items-stretch w-full">
+                    <input id="password" type="password" class="border rounded w-full p-2 dark:bg-slate-800 dark:border-slate-500" name="password" required placeholder="{{ __('auth.login.fields.password') }}">
+                    <a href="#" id="toggle-password" class="input-group-addon p-2" title="{{ __('auth.helpers.password') }}">
+                        <i id="toggle-password-icon" class="fa-solid fa-eye" aria-hidden="true"></i>
+                        <span class="sr-only">{{ __('auth.helpers.password') }}</span>
+                    </a>
+                </div>
 
-        <input type="hidden" name="remember" value="1" />
+                @if ($errors->has('password'))
+                    <span class="text-red-500">
+                        {{ $errors->first('password') }}
+                    </span>
+                @endif
+            </div>
 
-        <button type="submit" class="w-full rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white dark:bg-slate-800">
-            {{ __('auth.login.submit') }}
-        </button>
-    </form>
+            <input type="hidden" name="remember" value="1" />
+
+            <button type="submit" class="w-full rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white dark:bg-slate-800">
+                {{ __('auth.login.submit') }}
+            </button>
+        </form>
+    @endif
 
 @if(config('auth.register_enabled'))
     <div class="social-auth-links text-center mb-3">
