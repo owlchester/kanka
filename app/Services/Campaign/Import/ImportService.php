@@ -4,7 +4,6 @@ namespace App\Services\Campaign\Import;
 
 use App\Enums\CampaignImportStatus;
 use App\Models\CampaignImport;
-use App\Models\CampaignSetting;
 use App\Notifications\Header;
 use App\Services\Campaign\Import\Mappers\AbilityMapper;
 use App\Services\Campaign\Import\Mappers\CalendarMapper;
