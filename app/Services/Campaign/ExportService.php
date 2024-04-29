@@ -85,6 +85,7 @@ class ExportService
                 ->prepare()
                 ->info()
                 ->campaignJson()
+                ->campaignModules()
                 ->entities()
                 ->gallery()
                 ->finish()
@@ -111,6 +112,38 @@ class ExportService
     public function filesize(): int
     {
         return $this->filesize;
+    }
+
+
+    protected function campaignModules(): self
+    {
+        $modules = [];
+        $settings = $this->campaign->setting->toArray();
+        unset($settings['id'], $settings['campaign_id'], $settings['created_at'], $settings['updated_at']);
+        $entities = config('entities.ids');
+
+        foreach ($settings as $name => $active) {
+            $module = ['enabled' => $active];
+            try {
+                if ($this->campaign->hasModuleName($entities[Str::singular($name)])) {
+                    $module['name_singular'] = $this->campaign->moduleName($entities[Str::singular($name)]);
+                }
+                if ($this->campaign->hasModuleName($entities[Str::singular($name)], true)) {
+                    $module['name_plural'] = $this->campaign->moduleName($entities[Str::singular($name)], true);
+                }
+                if ($this->campaign->hasModuleIcon($entities[Str::singular($name)])) {
+                    $module['icon'] = $this->campaign->moduleIcon($entities[Str::singular($name)]);
+                }
+            } catch (Exception $e) {
+
+            }
+            $modules[$name] = $module;
+
+        }
+        $this->archive->add(json_encode($modules), 'settings/modules.json', );
+        $this->files++;
+
+        return $this;
     }
 
     protected function prepare(): self
