@@ -22,16 +22,13 @@
             @endforeach
         </ul>
 
-
         <form method="GET" action="{{ route('login-as') }}" class="w-full">
             {{ csrf_field() }}
-                @if(config('auth.user_list'))
-                    <select id="user" name="user" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500">
-                        @foreach (\App\User::limit(30)->get() as $user)
-                            <option value="{{ $user->id }}">{!! $user->name !!} @if ($user->pledge) ({!! $user->pledge !!}) @endif</option>
-                        @endforeach
-                    </select>
-                @endif
+            <select id="user" name="user" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500">
+                @foreach (\App\User::limit(30)->get() as $user)
+                    <option value="{{ $user->id }}">{!! $user->name !!} @if ($user->pledge) ({!! $user->pledge !!}) @endif</option>
+                @endforeach
+            </select>
 
             <button type="submit" class="w-full rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white dark:bg-slate-800">
                 {{ __('auth.login.submit') }}
