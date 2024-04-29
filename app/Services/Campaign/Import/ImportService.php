@@ -4,6 +4,7 @@ namespace App\Services\Campaign\Import;
 
 use App\Enums\CampaignImportStatus;
 use App\Models\CampaignImport;
+use App\Models\CampaignSetting;
 use App\Notifications\Header;
 use App\Services\Campaign\Import\Mappers\AbilityMapper;
 use App\Services\Campaign\Import\Mappers\CalendarMapper;
@@ -158,6 +159,7 @@ class ImportService
     {
         try {
             $this->importCampaign()
+                ->moduleSettings()
                 ->gallery()
                 ->entities()
                 ->secondCampaign()
@@ -252,6 +254,26 @@ class ImportService
         return $this;
     }
 
+    protected function moduleSettings(): self
+    {
+        // Open the campaign settings file
+        $data = $this->open('settings/modules.json');
+
+        if (!$data) {
+            return $this;
+        }
+
+        $moduleSettings = $this->campaign->setting;
+
+        foreach ($data as $module => $settings) {
+            if (isset($moduleSettings->$module)) {
+                $moduleSettings->$module = $settings['enabled'];
+            }
+        }
+        $moduleSettings->save();
+
+        return $this;
+    }
 
     protected function entities(): self
     {
