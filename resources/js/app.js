@@ -26,6 +26,7 @@ $(document).ready(function() {
     initImageRemoval();
     initFeedbackButtons();
     initDismissible();
+    checkAds();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -47,8 +48,14 @@ $(document).ready(function() {
     });
 });
 
-
-
+function checkAds() {
+    var element = $('#ad-client');
+    if (element.length > 0) {
+        let url = element.attr('src');
+        fetch(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}})
+        .catch( $('#subscription-encouragement').show());
+    }
+}
 /**
  * Initiate spectrum for the various fields
  */

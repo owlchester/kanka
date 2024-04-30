@@ -1,4 +1,9 @@
 <x-ad section="hybrid" :campaign="isset($campaign) ? $campaign : null">
+    <div id="subscription-encouragement" class="hidden text-center text-muted my-2" style="background-color:#d4af37; height: 50px; margin:auto; text-align:center;" >
+        Hey I'm a hidden div, but you have an Ad-Blocker
+    </div>
+
+    
     <div class="ads-space overflow-hidden">
         <div class="vm-placement" id="vm-av" data-format="isvideo"></div>
     </div>
