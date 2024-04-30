@@ -49,13 +49,14 @@ $(document).ready(function() {
 });
 
 function checkAds() {
-    var element = $('#ad-client');
-    if (element.length > 0) {
-        let url = element.attr('src');
+    var element = document.getElementById('ad-client');
+    if (element) {
+        let url = element.src;
         fetch(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}})
         .catch( $('#subscription-encouragement').show());
     }
 }
+
 /**
  * Initiate spectrum for the various fields
  */
