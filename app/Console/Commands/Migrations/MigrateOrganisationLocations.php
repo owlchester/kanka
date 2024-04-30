@@ -42,8 +42,8 @@ class MigrateOrganisationLocations extends Command
     public function handle()
     {
         OrganisationLocation::truncate();
-        Organisation::whereNotNull('location_id')->chunk(1000, function ($organisations) {
-            $this->info('1000 Chunk...');
+        Organisation::whereNotNull('location_id')->chunk(5000, function ($organisations) {
+            $this->info('5000 Chunk...');
             foreach ($organisations as $organisation) {
                 $organisation->locations()->attach($organisation->location_id);
                 $this->count++;
