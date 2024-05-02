@@ -26,7 +26,7 @@ $(document).ready(function() {
     initImageRemoval();
     initFeedbackButtons();
     initDismissible();
-    checkAds();
+    initAdblocker();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -48,13 +48,21 @@ $(document).ready(function() {
     });
 });
 
-function checkAds() {
-    var element = document.getElementById('ad-client');
-    if (element) {
-        let url = element.src;
-        fetch(url, {headers: {'X-Requested-With': 'XMLHttpRequest'}})
-        .catch( $('#subscription-encouragement').show());
+function initAdblocker() {
+    let adscript = document.getElementById('ad-client');
+    if (!adscript) {
+        return;
     }
+    fetch(adscript.src, {
+        headers: {'X-Requested-With': 'XMLHttpRequest'}
+    })
+    .catch(() => {
+        let reminder = document.getElementById('adblock-plea');
+        if (!reminder) {
+            return;
+        }
+        reminder.classList.remove('hidden');
+    });
 }
 
 /**

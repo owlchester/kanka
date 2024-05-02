@@ -26,7 +26,7 @@
     <x-ad section="inline" :campaign="$campaign ?? null">
         <script id="ad-client" src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-site-id="{{ config('tracking.venatus.id') }}" data-mode="scan" async></script>
     </x-ad>
-    <x-ad :campaign="isset($campaign) ? $campaign : null">
+    <x-ad :campaign="$campaign ?? null">
         <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" @if(!app()->isProduction())data-adtest="on"@endif></script>
     </x-ad>
 @endif
