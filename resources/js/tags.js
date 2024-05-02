@@ -28,7 +28,7 @@ $(document).ready(function() {
                     cache: true
                 },
                 createTag: function (params) {
-                    var term = $.trim(params.term);
+                    let term = $.trim(params.term);
 
                     if (term === '') {
                         return null;
@@ -41,7 +41,7 @@ $(document).ready(function() {
                     };
                 },
                 templateResult: function (item) {
-                    var $span = $("<span class='block grow text-left'>" + item.text + "</span>");
+                    let $span = $("<span class='block grow text-left'>" + item.text + "</span>");
                     if (item.colour) {
                         $span = $("<span class='flex gap-2 items-center text-left'>" +
                             "<span class='rounded-full flex-none w-6 h-6 " + item.colour + "' /></span>" +

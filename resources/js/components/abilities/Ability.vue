@@ -140,7 +140,7 @@
                 window.open(ability.actions.view, "_blank");
             },
             setVisibility: function(visibility_id) {
-                var data = {
+                let data = {
                     visibility_id: visibility_id,
                     ability_id: this.ability.ability_id,
                 };

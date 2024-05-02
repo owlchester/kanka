@@ -436,7 +436,7 @@ function uploadImage($summernote, file) {
  * @returns {string}
  */
 function buildErrors(data) {
-    var errors = '';
+    let errors = '';
     for (let key in data) {
         // skip loop if the property is from prototype
         if (!data.hasOwnProperty(key)) continue;

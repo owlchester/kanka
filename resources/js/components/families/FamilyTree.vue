@@ -518,7 +518,7 @@ export default {
             });
         },
         insertChild(entity) {
-            var entity_id = entity.id;
+            let entity_id = entity.id;
             if (!this.entities[entity.id]) {
                 this.entities[entity.id] = entity;
             }

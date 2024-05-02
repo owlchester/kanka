@@ -46,7 +46,7 @@ function registerBulkActions() {
  * Register the handler for checking the bulk-delete checkboxes
  */
 function registerBulkDelete() {
-    var crudDelete = $('#datagrid-select-all');
+    let crudDelete = $('#datagrid-select-all');
     if (crudDelete.length > 0) {
         crudDelete.unbind('click').click(function () {
             if ($(this).prop('checked')) {
@@ -74,7 +74,7 @@ function registerBulkDelete() {
  * @param modelField
  */
 function setBulkModels(modelField) {
-    var values = [];
+    let values = [];
     $.each($("input[name='model[]']"), function () {
         if ($(this).prop('checked')) {
             values.push($(this).val());
@@ -96,7 +96,7 @@ function setBulkModels(modelField) {
  */
 function toggleCrudMultiDelete()
 {
-    var hide = true;
+    let hide = true;
 
     $.each($("input[name='model[]']"), function () {
         if ($(this).prop('checked')) {

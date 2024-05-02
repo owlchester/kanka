@@ -21,7 +21,7 @@ $(document).ready(function() {
     $('.preview-switch').click(function (e) {
         e.preventDefault();
 
-        var preview = $('#widget-preview-body-' + $(this).data('widget'));
+        let preview = $('#widget-preview-body-' + $(this).data('widget'));
         if (preview.hasClass('max-h-52')) {
             preview.removeClass('max-h-52');
             $(this).html('<i class="fa-solid fa-chevron-up"></i>');
