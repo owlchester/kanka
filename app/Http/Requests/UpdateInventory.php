@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreInventory extends FormRequest
+class UpdateInventory extends FormRequest
 {
     use ApiRequest;
 
@@ -28,8 +28,7 @@ class StoreInventory extends FormRequest
     {
         return $this->clean([
             'entity_id' => 'required|exists:entities,id',
-            'item_id' => 'nullable|array|required_without:name',
-            'item_id.*' => 'exists:items,id',
+            'item_id' => 'nullable|required_without:name|exists:items,id',
             'name' => 'nullable|string|required_without:item_id',
             'amount' => 'required|numeric',
             'position' => 'nullable|string|max:191',

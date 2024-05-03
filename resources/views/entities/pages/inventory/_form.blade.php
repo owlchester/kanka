@@ -14,6 +14,7 @@ if (isset($inventory) && $inventory->image_uuid) {
         'allowNew' => false,
         'dropdownParent' => request()->ajax() ? '#inventory-dialog' : null,
         'required' => true,
+        'multiple' => isset($multiple),
     ])
 
     <x-forms.field

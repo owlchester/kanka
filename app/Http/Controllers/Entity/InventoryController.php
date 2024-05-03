@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInventory;
+use App\Http\Requests\UpdateInventory;
 use App\Http\Requests\CopyInventory;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -79,11 +80,20 @@ class InventoryController extends Controller
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
+        $itemIds = $request->only('item_id')['item_id'];
+        if (isset($itemIds)) {
+            foreach ($itemIds as $id) {
+                $data = $request->only($this->fillable);
+                $data['item_id'] = $id;
+                $inventory = new Inventory();
+                $inventory = $inventory->create($data);
+            }
+        } else {
+            $data = $request->only($this->fillable);
+            $inventory = new Inventory();
+            $inventory = $inventory->create($data);
+        }
 
-        $data = $request->only($this->fillable);
-
-        $inventory = new Inventory();
-        $inventory = $inventory->create($data);
 
         return redirect()
             ->route('entities.inventory', [$campaign, $entity])
@@ -117,7 +127,7 @@ class InventoryController extends Controller
 
     /**
      */
-    public function update(StoreInventory $request, Campaign $campaign, Entity $entity, Inventory $inventory)
+    public function update(UpdateInventory $request, Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->authorize('update', $entity->child);
 

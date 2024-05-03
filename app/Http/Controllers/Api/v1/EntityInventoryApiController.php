@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Http\Requests\StoreInventory as Request;
+use App\Http\Requests\UpdateInventory as Request;
 use App\Http\Resources\InventoryResource as Resource;
 use App\Models\Inventory;
 

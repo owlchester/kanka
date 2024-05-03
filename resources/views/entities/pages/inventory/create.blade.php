@@ -15,6 +15,7 @@
             'content' => 'entities.pages.inventory._form',
             'submit' => __('entities/inventories.actions.add'),
             'dialog' => true,
+            'multiple' => true,
         ])
     {!! Form::hidden('entity_id', $entity->id) !!}
     {!! Form::close() !!}
