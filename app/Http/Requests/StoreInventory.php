@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Traits\ApiRequest;
-use Illuminate\Foundation\Http\FormRequest;
 
-class StoreInventory extends FormRequest
+class StoreInventory extends UpdateInventory
 {
     use ApiRequest;
 
@@ -27,16 +26,8 @@ class StoreInventory extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'entity_id' => 'required|exists:entities,id',
             'item_id' => 'nullable|array|required_without:name',
             'item_id.*' => 'exists:items,id',
-            'name' => 'nullable|string|required_without:item_id',
-            'amount' => 'required|numeric',
-            'position' => 'nullable|string|max:191',
-            'description' => 'nullable|string|max:191',
-            'visibility_id' => 'nullable|exists:visibilities,id',
-            'image_uuid' => 'nullable|exists:images,id',
-            'is_equipped' => 'boolean',
         ]);
     }
 }

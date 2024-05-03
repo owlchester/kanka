@@ -61,9 +61,9 @@ if (isset($inventory) && $inventory->image_uuid) {
         {!! Form::text('description', null, ['placeholder' => __('entities/inventories.placeholders.description'), 'class' => '', 'maxlength' => 191]) !!}
     </x-forms.field>
 
-    <x-forms.field field="copy" :label="__('entities/inventories.fields.copy_entity_entry')">
+    <x-forms.field field="copy" :label="__('entities/inventories.fields.copy_entity_entry_v2')">
         {!! Form::hidden('copy_item_entry', 0) !!}
-        <x-checkbox :text="__('entities/inventories.helpers.copy_entity_entry')">
+        <x-checkbox :text="__('entities/inventories.helpers.copy_entity_entry_v2')">
             {!! Form::checkbox('copy_item_entry') !!}
         </x-checkbox>
     </x-forms.field>

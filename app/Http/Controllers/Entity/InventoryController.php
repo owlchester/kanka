@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInventory;
 use App\Http\Requests\UpdateInventory;
-use App\Http\Requests\CopyInventory;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Inventory;
@@ -80,6 +79,7 @@ class InventoryController extends Controller
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
+        $count = 0;
         $itemIds = $request->only('item_id')['item_id'];
         if (isset($itemIds)) {
             foreach ($itemIds as $id) {
@@ -87,20 +87,27 @@ class InventoryController extends Controller
                 $data['item_id'] = $id;
                 $inventory = new Inventory();
                 $inventory = $inventory->create($data);
+                $count++;
             }
+            $success = trans_choice('entities/inventories.create.success_bulk', $count, [
+                'entity' => $entity->name,
+                'count' => $count,
+            ]);
         } else {
             $data = $request->only($this->fillable);
             $inventory = new Inventory();
             $inventory = $inventory->create($data);
+            $success = __('entities/inventories.create.success', [
+                    'item' => $inventory->itemName(),
+                    'entity' => $entity->name
+                ]);
         }
+
 
 
         return redirect()
             ->route('entities.inventory', [$campaign, $entity])
-            ->with('success_raw', __('entities/inventories.create.success', [
-                'item' => $inventory->itemName(),
-                'entity' => $entity->name
-            ]));
+            ->with('success_raw', $success);
     }
 
     /**
@@ -159,45 +166,4 @@ class InventoryController extends Controller
                 'entity' => $entity->name
             ]));
     }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function copy(Campaign $campaign, Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-
-        return view('entities.pages.inventory.copy', compact(
-            'campaign',
-            'entity',
-        ));
-    }
-
-    /**
-     */
-    public function copyFrom(CopyInventory $request, Campaign $campaign, Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-
-        if ($request->ajax()) {
-            return response()->json(['success' => true]);
-        }
-
-        $copyFrom = Entity::where('id', $request->only('copy_from'))->first();
-        foreach ($copyFrom->inventories->toArray() as $old) {
-            unset($old['id']);
-            $old['entity_id'] = $entity->id;
-            $inventory = new Inventory();
-            $inventory = $inventory->create($old);
-        }
-
-        return redirect()
-            ->route('entities.inventory', [$campaign, $entity])
-            ->with('success_raw', __('entities/inventories.copy.success', [
-                'item' => $inventory->itemName(),
-                'entity' => $entity->name
-            ]));
-    }
-
 }

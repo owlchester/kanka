@@ -2,7 +2,7 @@
 {{ csrf_field() }}
 <x-grid>
 @include('cruds.fields.entity', [
-        'name' => 'copy_from',
+        'name' => 'entity_id',
         'required' => true,
         'label' => __('bookmarks.fields.entity'),
     ])

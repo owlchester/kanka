@@ -27,7 +27,7 @@ class CopyInventory extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'copy_from' => 'required:exists:entities,id'
+            'entity_id' => 'required:exists:entities,id'
         ]);
     }
 }

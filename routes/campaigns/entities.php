@@ -269,8 +269,8 @@ Route::get('/w/{campaign}/entities/{entity}/mentions', 'Entity\MentionController
 
 // Inventory
 Route::get('/w/{campaign}/entities/{entity}/inventory', 'Entity\InventoryController@index')->name('entities.inventory');
-Route::post('/w/{campaign}/entities/{entity}/inventory/copy_from', 'Entity\InventoryController@copyFrom')->name('entities.inventory.copy-from');
-Route::get('/w/{campaign}/entities/{entity}/inventory/copy', 'Entity\InventoryController@copy')->name('entities.inventory.copy');
+Route::post('/w/{campaign}/entities/{entity}/inventory/copy_from', 'Entity\CopyInventoryController@store')->name('entities.inventory.copy.store');
+Route::get('/w/{campaign}/entities/{entity}/inventory/copy', 'Entity\CopyInventoryController@copy')->name('entities.inventory.copy');
 
 // Export
 Route::get('/w/{campaign}/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');
