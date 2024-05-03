@@ -239,9 +239,9 @@ class FamilyTreeService
     {
         return (bool)(
             !isset($relation['visibility']) ||
-            $relation['visibility'] == \App\Enums\Visibility::All ||
-            ($relation['visibility'] == \App\Enums\Visibility::Admin && auth()->user()->isAdmin()) ||
-            ($relation['visibility'] == \App\Enums\Visibility::Member && $this->campaign->userIsMember())
+            $relation['visibility'] == \App\Enums\Visibility::All->value ||
+            ($relation['visibility'] == \App\Enums\Visibility::Admin->value && auth()->user()->isAdmin()) ||
+            ($relation['visibility'] == \App\Enums\Visibility::Member->value && $this->campaign->userIsMember())
         );
     }
 
