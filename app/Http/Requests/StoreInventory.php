@@ -28,12 +28,15 @@ class StoreInventory extends FormRequest
     {
         return $this->clean([
             'entity_id' => 'required|exists:entities,id',
-            'item_id' => 'nullable|required_without:name|exists:items,id',
+            'item_ids' => 'nullable|array|required_without:name',
+            'item_ids.*' => 'exists:items,id',
+            //'item_id' => 'nullable|required_without:name|exists:items,id',
             'name' => 'nullable|string|required_without:item_id',
             'amount' => 'required|numeric',
             'position' => 'nullable|string|max:191',
             'description' => 'nullable|string|max:191',
             'visibility_id' => 'nullable|exists:visibilities,id',
+            'image_uuid' => 'nullable|exists:images,id',
             'is_equipped' => 'boolean',
         ]);
     }

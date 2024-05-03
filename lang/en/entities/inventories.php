@@ -3,6 +3,8 @@
 return [
     'actions'       => [
         'add'   => 'Add Item',
+        'copy_from'   => 'Copy from',
+        'copy_inventory' => 'Copy inventory',
     ],
     'create'        => [
         'success'   => 'Item :item added to :entity.',
@@ -22,7 +24,7 @@ return [
     ],
     'helpers'       => [
         'copy_entity_entry' => 'Display the item\'s entry instead of the custom description.',
-        'is_equipped'       => 'Mark this items as being equipped.',
+        'is_equipped'       => 'Mark this item as being equipped.',
     ],
     'placeholders'  => [
         'amount'        => 'Any amount',
