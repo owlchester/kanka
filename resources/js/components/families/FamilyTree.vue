@@ -4,7 +4,7 @@
             <i class="fa-solid fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
-        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="createNewFounder()">
+        <a class="btn2 btn-ghost btn-sm " v-if="showEditFounder()" v-on:click="createNewFounder()">
             <i class="fa-solid fa-user" aria-hidden="true"></i>
             {{ this.texts.actions.founder }}
         </a>
@@ -319,7 +319,7 @@ export default {
             this.cssClass = undefined;
             this.colour = undefined;
             this.entity = undefined;
-            this.visibility = undefined;
+            this.visibility = 1;
             this.isUnknown = undefined;
 
             window.closeDialog(this.modal);
@@ -342,7 +342,7 @@ export default {
             this.relation = undefined;
             this.cssClass = undefined;
             this.colour = undefined;
-            this.visibility = undefined;
+            this.visibility = 1;
             this.isUnknown = undefined;
             this.entity = undefined;
 
@@ -371,6 +371,9 @@ export default {
         },
         showCreateNode() {
             return this.nodes.length === 0 && this.isEditing;
+        },
+        showEditFounder() {
+            return this.nodes.length > 0 && this.isEditing;
         },
         showMembers() {
             //console.log('this', this.suggestions.length, this.suggestions)
