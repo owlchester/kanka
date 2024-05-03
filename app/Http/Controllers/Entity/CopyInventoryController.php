@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CopyInventory;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\Inventory;
 use App\Traits\GuestAuthTrait;
 
 class CopyInventoryController extends Controller

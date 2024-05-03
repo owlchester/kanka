@@ -98,9 +98,9 @@ class InventoryController extends Controller
             $inventory = new Inventory();
             $inventory = $inventory->create($data);
             $success = __('entities/inventories.create.success', [
-                    'item' => $inventory->itemName(),
-                    'entity' => $entity->name
-                ]);
+                'item' => $inventory->itemName(),
+                'entity' => $entity->name
+            ]);
         }
 
 
