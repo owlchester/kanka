@@ -153,11 +153,14 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                     </span>
             @endif
-            <div class="dropdown entity-actions">
-                <span role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
-                    <i class="fa-solid fa-cog entity-icons cursor-pointer text-2xl transition-all hover:rotate-45" aria-hidden="true"></i>
+            <div class="dropdown entity-actions flex items-center">
+                <div role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu" class="cursor-pointer">
                     <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
-                </span>
+                    <div class="entity-icons transition-all hover:rotate-45 h-7 w-7 fill-current">
+                        @include('icons.svg.cog')
+                    </div>
+
+                </div>
                 <div class="dropdown-menu hidden" role="menu" id="entity-submenu">
                     @can('update', $model)
                         <x-dropdowns.item :link="route($entity->pluralType() . '.edit', [$campaign, $model->id])" keyboard="edit">

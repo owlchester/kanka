@@ -36,12 +36,14 @@ $enabled = $campaign->enabled($module);
             @can('update', $campaign)
             @if (isset($id) && !isset($deprecated))
                 <button
-                    class="hover:shadow-sm text-xl transition-all hover:rotate-45"
+                    class="hover:shadow-sm text-xl transition-all hover:rotate-45 flex items-center"
                     data-toggle="dialog-ajax"
                     data-url="{{ route('modules.edit', [$campaign, $id]) }}"
                     data-target="rename-dialog"
                     title="{{ __('campaigns/modules.actions.customise') }}">
-                        <x-icon class="cog"></x-icon>
+                        <span class="fill-current h-6 w-6 inline-block">
+                            @include('icons.svg.cog')
+                        </span>
                         <span class="sr-only">
                         {{ __('campaigns/modules.actions.customise') }}
                     </span>

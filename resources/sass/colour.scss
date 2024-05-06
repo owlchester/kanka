@@ -41,6 +41,18 @@
     --tw-text-opacity: 1;
     color:hsl(var(--p)/var(--tw-text-opacity))
 }
+.hover\:text-primary:hover {
+  --tw-text-opacity: 1;
+  color:hsl(var(--p)/var(--tw-text-opacity))
+}
+.hover\:text-primary-content:hover {
+  --tw-text-opacity: 1;
+  color:hsl(var(--pc)/var(--tw-text-opacity))
+}
+.hover\:text-primary-focus:hover {
+  --tw-text-opacity: 1;
+  color:hsl(var(--pf)/var(--tw-text-opacity))
+}
 
 .text-accent {
     --tw-text-opacity: 1;
@@ -132,3 +144,8 @@
     --tw-text-opacity: 1;
     color:hsl(var(--erc)/var(--tw-text-opacity));
 }
+.hover\:text-accent:hover {
+  --tw-text-opacity: 1;
+  color:hsl(var(--a)/var(--tw-text-opacity));
+}
+

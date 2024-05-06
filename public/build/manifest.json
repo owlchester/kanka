@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-8b791800.js",
+    "file": "assets/app-e5ef47dd.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_mention-b4456db3.js",
@@ -162,7 +162,7 @@
     "src": "resources/js/editors/summernote.js"
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-6219f8e0.js",
+    "file": "assets/family-tree-vue-f4850f8d.js",
     "imports": [
       "__plugin-vue_export-helper-0796b9c6.js",
       "_mitt-f7ef348c.js",
@@ -237,7 +237,7 @@
     "src": "resources/js/subscription.js"
   },
   "resources/js/vendor-final.js": {
-    "file": "assets/vendor-final-6cfe56d5.js",
+    "file": "assets/vendor-final-2d88a651.js",
     "isEntry": true,
     "src": "resources/js/vendor-final.js"
   },
@@ -247,12 +247,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-ee8e82c5.css",
+    "file": "assets/app-a197dd9d.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-4a24ad01.css",
+    "file": "assets/auth-6166beb3.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -272,12 +272,12 @@
     "src": "resources/sass/family-tree.scss"
   },
   "resources/sass/freyja/freyja.scss": {
-    "file": "assets/freyja-76fd859a.css",
+    "file": "assets/freyja-3ff4aa82.css",
     "isEntry": true,
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-32d1b80f.css",
+    "file": "assets/front-1f6b19c8.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
