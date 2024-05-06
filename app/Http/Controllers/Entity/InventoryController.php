@@ -80,7 +80,7 @@ class InventoryController extends Controller
             return response()->json(['success' => true]);
         }
         $count = 0;
-        $itemIds = $request->only('item_id')['item_id'];
+        $itemIds = $request->post('item_id');
         if (isset($itemIds)) {
             foreach ($itemIds as $id) {
                 $data = $request->only($this->fillable);

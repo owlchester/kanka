@@ -16,7 +16,7 @@ class CopyInventoryController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function copy(Campaign $campaign, Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
