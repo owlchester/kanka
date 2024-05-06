@@ -26,7 +26,7 @@ class StoreInventory extends FormRequest
      */
     public function rules()
     {
-        return [ 
+        return [
             'entity_id' => 'required|exists:entities,id',
             'name' => 'nullable|string|required_without:item_id',
             'item_id' => 'nullable|array|required_without:name',
