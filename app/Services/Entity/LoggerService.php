@@ -24,7 +24,7 @@ class LoggerService
     protected array $logged = [];
 
     /** Track fields that are dirty for the current entity */
-    protected array $dirty = [];
+    protected array $changes = [];
 
     /** Track entities that were created in the current execution */
     protected array $created = [];
@@ -33,11 +33,28 @@ class LoggerService
 
     protected MiscModel $model;
 
+    /** Track if the model is dirty on a relationship property like many to many (character races, tags) */
+    protected bool $dirty = false;
+
     public function model(MiscModel $model): self
     {
         $this->model = $model;
         $this->modelDirty();
         return $this;
+    }
+
+    public function finish(): void
+    {
+        if (!$this->dirty) {
+            return;
+        }
+        if ($this->created) {
+            return;
+        }
+
+        $this->update();
+        $this->entity->touchQuietly();
+        $this->model->touchQuietly();
     }
 
     public function created(): bool
@@ -59,8 +76,14 @@ class LoggerService
 
     public function dirty(string $key, mixed $values): self
     {
-        $this->dirty[$key] = $values;
+        $this->changes[$key] = $values;
+        $this->dirty = true;
         return $this;
+    }
+
+    public function isDirty(): bool
+    {
+        return $this->dirty;
     }
 
     public function update(): void
@@ -72,18 +95,19 @@ class LoggerService
         }
 
         $this->buildDirty();
-        if (empty($this->dirty)) {
+        if (empty($this->changes)) {
             return;
         }
         if (!empty($this->log->changes)) {
-            $changes = $this->log->changes + $this->dirty;
+            $changes = $this->log->changes + $this->changes;
             $this->log->changes = $changes;
         } else {
-            $this->log->changes = $this->dirty;
+            $this->log->changes = $this->changes;
         }
         $this->log->save();
 
-        $this->dirty = [];
+        $this->dirty = false;
+        $this->changes = [];
     }
 
     public function delete(): void
@@ -150,13 +174,13 @@ class LoggerService
 
             // If it's not an array, easy work
             if (!is_array($value)) {
-                $this->dirty[$attribute] = $value;
+                $this->changes[$attribute] = $value;
                 continue;
             }
 
             // An array (config[, moons[) we need to store it differently
             foreach ($value as $k => $v) {
-                $this->dirty[$k] = $v;
+                $this->changes[$k] = $v;
             }
         }
     }
@@ -181,13 +205,13 @@ class LoggerService
 
             // If it's not an array, easy work
             if (!is_array($value)) {
-                $this->dirty[$attribute] = $value;
+                $this->changes[$attribute] = $value;
                 continue;
             }
 
             // An array (config[, moons[) we need to store it differently
             foreach ($value as $k => $v) {
-                $this->dirty[$k] = $v;
+                $this->changes[$k] = $v;
             }
         }
     }

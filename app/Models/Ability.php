@@ -148,14 +148,14 @@ class Ability extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         foreach ($this->abilities as $child) {
             $child->ability_id = null;
             $child->save();
         }
 
-        return parent::detach();
+        parent::detach();
     }
 
     /**

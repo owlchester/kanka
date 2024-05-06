@@ -355,7 +355,7 @@ class Calendar extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         foreach ($this->calendarEvents as $child) {
             $child->delete();

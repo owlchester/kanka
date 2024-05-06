@@ -203,7 +203,7 @@ abstract class MiscModel extends Model
     /**
      * Detach children entities from this one. This is for the "Move" functionality, to keep a clean data set.
      */
-    public function detach()
+    public function detach(): void
     {
         // Loop on children attributes and detach.
         $attributes = $this->getAttributes();

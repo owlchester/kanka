@@ -251,7 +251,7 @@ class Quest extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         foreach ($this->elements as $child) {
             $child->delete();

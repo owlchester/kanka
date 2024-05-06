@@ -61,6 +61,7 @@ class EntityObserver
         } elseif ($this->tagService->isDirty()) {
             // Same thing here, if adding tags to a newly created entity, don't make it complicated
             if (EntityLogger::entity($entity)->created()) {
+                // It was just created, why to we need to touch it quietly?
                 $entity->touchQuietly();
             } else {
                 $entity->touch();

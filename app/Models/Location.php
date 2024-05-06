@@ -248,7 +248,7 @@ class Location extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         foreach ($this->characters as $child) {
             $child->location_id = null;
@@ -275,7 +275,7 @@ class Location extends MiscModel
             $child->save();
         }
 
-        return parent::detach();
+        parent::detach();
     }
 
 

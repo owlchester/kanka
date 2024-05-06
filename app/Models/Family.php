@@ -235,7 +235,7 @@ class Family extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         foreach ($this->members as $child) {
             $child->family_id = null;
@@ -247,7 +247,7 @@ class Family extends MiscModel
             $family->save();
         }
 
-        return parent::detach();
+        parent::detach();
     }
 
     /**

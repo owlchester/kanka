@@ -287,7 +287,7 @@ class Organisation extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         foreach ($this->children()->get() as $child) {
             $child->organisations()->detatch($this->id);
@@ -296,7 +296,7 @@ class Organisation extends MiscModel
             $child->delete();
         }
 
-        return parent::detach();
+        parent::detach();
     }
 
     /**

@@ -159,7 +159,7 @@ class Tag extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         /** @var Tag $child */
         foreach ($this->allChildren(true)->get() as $child) {
@@ -169,7 +169,7 @@ class Tag extends MiscModel
             //                $child->child->save();
             //            }
         }
-        return parent::detach();
+        parent::detach();
     }
 
     /**
