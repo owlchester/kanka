@@ -45,10 +45,8 @@ class LoggerService
 
     public function finish(): void
     {
-        if (!$this->dirty) {
-            return;
-        }
-        if ($this->created) {
+        // If the model isn't dirty, or was created right now, there is no need for logging
+        if (!$this->dirty || $this->created) {
             return;
         }
 
