@@ -2,6 +2,7 @@
 
 namespace App\Observers\Concerns;
 
+use App\Facades\EntityLogger;
 use App\Models\Creature;
 use App\Models\Location;
 use App\Models\MiscModel;
@@ -49,12 +50,14 @@ trait HasLocations
                 continue;
             }
             $newLocations[] = $location->id;
+            EntityLogger::dirty('locations', null);
         }
         $model->locations()->attach($newLocations);
 
         // Detach the remaining
         if (!empty($existing) && isset($detach)) {
             $model->locations()->detach($existing);
+            EntityLogger::dirty('locations', null);
         }
     }
 }

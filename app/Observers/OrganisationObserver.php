@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\EntityLogger;
 use App\Models\Character;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
@@ -11,19 +12,21 @@ class OrganisationObserver extends MiscObserver
 {
     use HasLocations;
 
-    public function saved(Organisation $organisation)
-    {
-        $this->saveMembers($organisation);
-    }
-
-    /**
-     */
     public function crudSaved(Organisation $organisation)
     {
+        $this
+            ->saveMembers($organisation)
+            ->saveOrgLocations($organisation);
+        EntityLogger::model($organisation)->entity($organisation->entity)->finish();
+    }
+
+    public function saveOrgLocations(Organisation $organisation): self
+    {
         if (!request()->has('save_locations') && !request()->has('locations')) {
-            return;
+            return $this;
         }
         $this->saveLocations($organisation);
+        return $this;
     }
 
     /**
@@ -43,11 +46,11 @@ class OrganisationObserver extends MiscObserver
     /**
      * Save the sections/categories
      */
-    protected function saveMembers(Organisation $organisation)
+    protected function saveMembers(Organisation $organisation): self
     {
         // Only execute this if a proper post attribute is in the body
         if (!request()->has('sync_org_members')) {
-            return;
+            return $this;
         }
 
         $ids = request()->post('members', []);
@@ -74,6 +77,7 @@ class OrganisationObserver extends MiscObserver
                         'organisation_id' => $organisation->id,
                         'character_id' => $character->id
                     ]);
+                    EntityLogger::dirty('members', null);
                 }
             }
         }
@@ -81,6 +85,9 @@ class OrganisationObserver extends MiscObserver
         // Detach the remaining
         foreach ($existing as $k) {
             $k->delete();
+            EntityLogger::dirty('members', null);
         }
+
+        return  $this;
     }
 }
