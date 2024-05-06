@@ -17,10 +17,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $amount
  * @property string $position
  * @property string $description
+ * @property string|null $image_uuid
  * @property bool $is_equipped
  * @property bool $copy_item_entry
  * @property Item|null $item
  * @property Entity|null $entity
+ * @property Image|null $image
  */
 class Inventory extends Model
 {
@@ -40,6 +42,7 @@ class Inventory extends Model
         'created_by',
         'is_equipped',
         'copy_item_entry',
+        'image_uuid',
     ];
 
     /**
@@ -63,6 +66,14 @@ class Inventory extends Model
     public function creator()
     {
         return $this->belongsTo('App\User', 'created_by');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function image()
+    {
+        return $this->hasOne('App\Models\Image', 'id', 'image_uuid');
     }
 
     /**

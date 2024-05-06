@@ -15,7 +15,7 @@
 
 <x-forms.foreign
     :campaign="$campaign"
-    name="item_id"
+    :name=" $multiple ? 'item_id[]' : 'item_id'"
     key="item"
     entityType="items"
     :required="$required ?? false"
@@ -26,6 +26,7 @@
     :class="\App\Models\Item::class"
     :selected="$preset"
     :helper="$helper ?? null"
+    :multiple="$multiple"
     :dropdownParent="$dropdownParent ?? null"
     :entityTypeID="config('entities.ids.item')">
 </x-forms.foreign>
