@@ -27,7 +27,7 @@ trait HasMany
         }
 
         $newModels = [];
-        $find = new $classname;
+        $find = new $classname();
         foreach ($values as $id) {
             // Existing race, do nothing
             if (!empty($existing[$id])) {
