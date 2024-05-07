@@ -207,7 +207,7 @@ abstract class MiscModel extends Model
     {
         // Loop on children attributes and detach.
         $attributes = $this->getAttributes();
-        foreach ($attributes as $attribute) {
+        foreach ($attributes as $attribute => $value) {
             if (str_contains($attribute, '_id')   && $attribute != 'campaign_id') {
                 $this->$attribute = null;
             }
