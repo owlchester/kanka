@@ -182,7 +182,13 @@ class ExportService
     }
     protected function campaignJson(): self
     {
-        $this->archive->addRaw($this->campaign->toJson(), 'campaign.json');
+        // We don't want the whole model to be available to the export.
+        // It would probably make more sense to have a resource for this.
+        $hidden = [
+            'boost_count', 'export_date', 'is_featured', 'featured_until',
+            'featured_reason', 'visible_entity_count', 'system', 'follower', 'is_hidden'
+        ];
+        $this->archive->addRaw($this->campaign->makeHidden($hidden)->toJson(), 'campaign.json');
         $this->files++;
         //Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
         if (!$this->assets) {

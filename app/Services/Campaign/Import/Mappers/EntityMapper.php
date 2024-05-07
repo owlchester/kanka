@@ -505,6 +505,9 @@ trait EntityMapper
         }
 
         foreach ($this->data['entity']['mentions'] as $data) {
+            if (!ImportIdMapper::hasEntity($data['target_id'])) {
+                continue;
+            }
             $men = new EntityMention();
             $men->entity_id = $this->entity->id;
             $men->target_id = ImportIdMapper::getEntity($data['target_id']);
