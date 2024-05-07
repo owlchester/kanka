@@ -44,6 +44,14 @@ class ReminderController extends Controller
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
+        if (!$campaign->enabled('calendars')) {
+            return redirect()->route('entities.show', [$campaign, $entity])->with(
+                'error_raw',
+                __('campaigns.settings.errors.module-disabled', [
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), [$campaign, '#calendars']),
+                ])
+            );
+        }
 
         $options = ['campaign' => $campaign, 'entity' => $entity];
         Datagrid::layout(\App\Renderers\Layouts\Entity\Reminder::class)
