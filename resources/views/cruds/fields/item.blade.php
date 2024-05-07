@@ -15,8 +15,8 @@
 
 <x-forms.foreign
     :campaign="$campaign"
-    :name=" $multiple ? 'item_id[]' : 'item_id'"
-    key="item"
+    :name="$multiple ? 'item_id[]' : 'item_id'"
+    :key="$multiple ? 'items' : 'item'"
     entityType="items"
     :required="$required ?? false"
     :allowNew="$allowNew ?? true"
