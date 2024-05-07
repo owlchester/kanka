@@ -74,26 +74,36 @@ if (isset($inventory) && $inventory->image_uuid) {
             {!! Form::checkbox('is_equipped', 1, isset($inventory) ? $inventory->is_equipped : null) !!}
         </x-checkbox>
     </x-forms.field>
+
     <div class="col-span-3">
-        <x-forms.foreign
+        <x-forms.field
             field="image-uuid"
-            :campaign="$campaign"
-            name="image_uuid"
-            :allowClear="true"
-            :route="route('images.find', $campaign)"
-            :label="__('crud.fields.image')"
-            :placeholder="__('fields.gallery.placeholder')"
-            :selected="$preset">
-        </x-forms.foreign>
+            :label="__('crud.fields.image')">
+
+            <x-grid type="3/4">
+
+                <div class="col-span-3">
+                    <x-forms.foreign
+                        field="image-uuid"
+                        :campaign="$campaign"
+                        name="image_uuid"
+                        :allowClear="true"
+                        :route="route('images.find', $campaign)"
+                        :placeholder="__('fields.gallery.placeholder')"
+                        :selected="$preset">
+                    </x-forms.foreign>
+                </div>
+            @if (!isset($bulk) && !empty($inventory) && !empty($inventory->image_uuid) && !empty($inventory->image))
+            <div class="preview w-32">
+                    @include('cruds.fields._image_preview', [
+                        'image' => $inventory->image->getUrl(192, 144),
+                        'title' => $inventory->name,
+                    ])
+                </div>
+            @endif
+            </x-grid>
+        </x-forms.field>
     </div>
-        @if (!isset($bulk) && !empty($inventory) && !empty($inventory->image_uuid) && !empty($inventory->image))
-        <div class="preview w-32">
-                @include('cruds.fields._image_preview', [
-                    'image' => $inventory->image->getUrl(192, 144),
-                    'title' => $inventory->name,
-                ])
-            </div>
-        @endif
     @include('cruds.fields.visibility_id', ['model' => $inventory ?? null])
 </x-grid>
 
