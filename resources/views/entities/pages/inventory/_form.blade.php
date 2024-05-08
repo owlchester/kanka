@@ -6,6 +6,9 @@ $preset = null;
 if (isset($inventory) && $inventory->image_uuid) {
     $preset = $inventory->image;
 }
+if (isset($inventory)) {
+    $positionPreset = $inventory->position;
+}
 @endphp
 <x-grid>
     <input type="hidden" name="item_id" value="" />
@@ -42,7 +45,7 @@ if (isset($inventory) && $inventory->image_uuid) {
     <x-forms.field
         field="position"
         :label="__('entities/inventories.fields.position')">
-        {!! Form::text('position', null, [
+        {!! Form::text('position', $positionPreset, [
             'placeholder' => __('entities/inventories.placeholders.position'),
             'class' => '',
             'maxlength' => 191,

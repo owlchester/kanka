@@ -62,10 +62,11 @@ class InventoryController extends Controller
     public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
-
+        $positionPreset = request()->get('position');
         return view('entities.pages.inventory.create', compact(
             'campaign',
             'entity',
+            'positionPreset'
         ));
     }
 
