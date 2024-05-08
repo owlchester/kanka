@@ -45,7 +45,7 @@ class CampaignBoost extends Model
 
     public function inCooldown(): bool
     {
-        return !$this->created_at->isBefore(Carbon::now()->subDays(7));
+        return app()->isProduction() && !$this->created_at->isBefore(Carbon::now()->subDays(7));
     }
 
     /**
