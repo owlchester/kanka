@@ -316,6 +316,7 @@ return [
         'gallery_image' => 'Choose an image from the campaign gallery',
         'image_url'     => 'Upload an image from a URL instead',
         'item'          => 'Choose an item',
+        'items'         => 'Choose one or several objects',
         'journal'       => 'Choose a journal',
         'location'      => 'Choose a location',
         'map'           => 'Choose a map',
