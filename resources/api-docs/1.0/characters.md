@@ -62,6 +62,8 @@ The list of returned entities can be filtered. The available filters are [availa
                     "id": 33,
                     "name": "Goals",
                     "entry": "Become a Paladin.",
+                    "entry": "Become a Paladin before [character:76]",
+                    "entry_parsed": "Become a Paladin before <a href=\"https://app.kanka.io/w/13423/entities/76\" class=\"entity-mention\" data-entity-type=\"character\" data-toggle=\"tooltip-ajax\" data-id=\"76\" data-url=\"https://app.kanka.io:8081/w/13423/entities/76/tooltip\">Baldur Gates</a></p><p></p>",
                     "section": "personality",
                     "section_id": 1,
                     "default_order": 0
@@ -116,7 +118,8 @@ To get the details of a single character, use the following endpoint.
             {
                 "id": 33,
                 "name": "Goals",
-                "entry": "Become a Paladin.",
+                "entry": "Become a Paladin before [character:76]",
+                "entry_parsed": "Become a Paladin before <a href=\"https://app.kanka.io/w/13423/entities/76\" class=\"entity-mention\" data-entity-type=\"character\" data-toggle=\"tooltip-ajax\" data-id=\"76\" data-url=\"https://app.kanka.io:8081/w/13423/entities/76/tooltip\">Baldur Gates</a></p><p></p>",
                 "section": "personality",
                 "section_id": 1,
                 "is_private": false,

@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\CharacterTrait;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Facades\Mentions;
 
 class CharacterTraitResource extends JsonResource
 {
@@ -21,6 +22,7 @@ class CharacterTraitResource extends JsonResource
             'id' => $resource->id,
             'name' => $resource->name,
             'entry' => $resource->entry,
+            'entry_parsed' => $resource->entry ? Mentions::mapAny($resource) : null,
             'section_id' => $resource->section_id,
             'section' => $resource->section_id == CharacterTrait::SECTION_APPEARANCE ? 'appearance' : 'personality',
             //'is_private' => (bool) $this->is_private,
