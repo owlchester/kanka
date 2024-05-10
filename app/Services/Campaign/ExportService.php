@@ -156,7 +156,6 @@ class ExportService
         $this->file = $this->campaign->id . '_' . date('Ymd_His') . ($this->assets ? '_assets' : null) . '.zip';
         CampaignCache::campaign($this->campaign);
         $this->path = $saveFolder . $this->file;
-        // @phpstan-ignore-next-line
         $this->archive = Zip::create($this->file);
 
         // Count the number of elements to export to get a rough idea of progress
