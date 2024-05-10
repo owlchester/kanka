@@ -45,19 +45,12 @@ if (isset($inventory)) {
     <x-forms.field
         field="position"
         :label="__('entities/inventories.fields.position')">
-        {!! Form::text('position', $positionPreset, [
-            'placeholder' => __('entities/inventories.placeholders.position'),
-            'class' => '',
+        {!! Form::select('position', $positionOptions, null, [
+            'data-placeholder' => __('entities/inventories.placeholders.position'),
+            'class' => 'position-dropdown',
             'maxlength' => 191,
             'list' => 'position-list',
-            'autocomplete' => 'off'
         ]) !!}
-
-        <datalist id="position-list">
-            @foreach (\App\Models\Inventory::positionList($campaign)->pluck('position')->all() as $name)
-                <option value="{{ e($name) }}">{{ e($name) }}</option>
-            @endforeach
-        </datalist>
     </x-forms.field>
 
     <x-forms.field field="description" css="col-span-2" :label="__('entities/inventories.fields.description')">

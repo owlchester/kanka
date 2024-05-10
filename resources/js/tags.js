@@ -1,5 +1,41 @@
 $(document).ready(function() {
     window.initTags = function() {
+        $.each($('.position-dropdown'), function () {
+            if ($(this).hasClass("select2-hidden-accessible")) {
+                return;
+            }
+            $(this).select2({
+                tags: true,
+                allowClear: true,
+                dropdownParent: $(this).data('dropdown-parent') || '',
+                placeholder: $(this).data('placeholder'),
+                minimumInputLength: 0,
+                createTag: function (params) {
+                    let term = $.trim(params.term);
+        
+                    if (term === '') {
+                        return null;
+                    }
+                    return {
+                        id: term,
+                        text: term,
+                        newTag: true // add additional parameters
+                    };
+                },
+                templateResult: function (item) {
+                    let $span = $("<span class='block grow text-left'>" + item.text + "</span>");
+                    if (item.colour) {
+                        $span = $("<span class='flex gap-2 items-center text-left'>" +
+                            "<span class='rounded-full flex-none w-6 h-6 " + item.colour + "' /></span>" +
+                            "<span class='grow'>" + item.text + "</span>" +
+                            "</span>");
+                    }
+                    return $span;
+                },
+
+            });
+        });
+
         $.each($('.form-tags'), function () {
             if ($(this).hasClass("select2-hidden-accessible")) {
                 return;
