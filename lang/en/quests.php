@@ -31,7 +31,7 @@ return [
         'role'          => 'Role',
     ],
     'helpers'       => [
-        'is_completed'      => 'The quest is considered as completed.',
+        'is_completed'  => 'The quest is considered as completed.',
     ],
     'hints'         => [
         'quests'    => 'A web of interlocking quests can be built using the Parent Quest field.',

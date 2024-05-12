@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'fulltext'      => 'Recherche complète',
     'lookup'        => [
         'empty'     => 'Aucun résultat',
         'hint'      => 'Écrire au minimum 3 lettres pour cherche les entités de la campagne.',

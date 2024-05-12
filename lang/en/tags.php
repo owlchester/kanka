@@ -22,7 +22,7 @@ return [
         'is_hidden'         => 'Hidden from header and tooltip',
     ],
     'helpers'       => [
-        'no_children'       => 'There are currently no entities tagged with this tag.',
+        'no_children'   => 'There are currently no entities tagged with this tag.',
     ],
     'hints'         => [
         'children'          => 'This list contains all the entities that are assigned to this tag or the tag\'s children.',

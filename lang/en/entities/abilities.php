@@ -2,9 +2,9 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Add abilities',
-        'sync'          => 'Add from races',
-        'reset'                     => 'Recharge',
+        'add'   => 'Add abilities',
+        'reset' => 'Recharge',
+        'sync'  => 'Add from races',
     ],
     'create'    => [
         'success'           => 'Ability :ability added to :entity.',
@@ -16,9 +16,9 @@ return [
         'position'  => 'Position',
     ],
     'helpers'   => [
-        'note'  => 'You can reference entities using advanced mentions (ex :code) and attributes of the entity (ex :attr) in this field.',
+        'note'      => 'You can reference entities using advanced mentions (ex :code) and attributes of the entity (ex :attr) in this field.',
         'recharge'  => 'Reset all charges for abilities that have been used.',
-        'sync'  => 'Import abilities that are defined on the character\'s races.',
+        'sync'      => 'Import abilities that are defined on the character\'s races.',
     ],
     'import'    => [
         'errors'    => [
@@ -27,12 +27,12 @@ return [
         ],
         'success'   => '{1} :count race ability imported.|[2,*] :count race abilities imported.',
     ],
+    'recharge'  => [
+        'success'   => 'All charges have been reset.',
+    ],
     'reorder'   => [
         'parentless'    => 'No Parent',
         'success'       => 'Abilities successfully reordered',
-    ],
-    'recharge' => [
-        'success' => 'All charges have been reset.',
     ],
     'show'      => [
         'helper'    => 'Attach abilities to this entity. You can always edit the visibility or remove an ability. Abilities belonging to the same parent ability will display as filter boxes.',

@@ -52,6 +52,7 @@ return [
             'warning'   => 'Es-tu sûr de vouloir supprimer les entités sélectionnées?',
         ],
         'edit'          => [
+            'locations' => 'Action pour les lieux',
             'tagging'   => 'Action pour les étiquettes',
             'tags'      => [
                 'add'       => 'Ajouter',

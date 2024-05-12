@@ -1,58 +1,58 @@
 <?php
 
 return [
-    'title'     => 'Webhooks',
-    'destroy'    => [
-        'success'   => 'Webhook deleted successfully',
-    ],
-    'pitch'     => 'Create custom webhooks to receive custom updates whenever an entity from the campaign is updated.',
-    'actions'   => [
-        'add'       =>  'Create webhook',
-        'update'    =>  'Update webhook',
-        'test'      =>  'Test webhook',
-        'action'    =>  'Change status',
-        'bulks'     =>  [
-            'enable'            => 'Enable',
-            'enable_success'    => '{1} Enabled :count webhook.|[2,*] Enabled :count webhooks.',
+    'actions'       => [
+        'action'    => 'Change status',
+        'add'       => 'Create webhook',
+        'bulks'     => [
+            'delete_success'    => '{1} Deleted :count webhook.|[2,*] Deleted :count webhooks.',
             'disable'           => 'Disable',
             'disable_success'   => '{1} Disabled :count webhook.|[2,*] Disabled :count webhooks.',
-            'delete_success'    => '{1} Deleted :count webhook.|[2,*] Deleted :count webhooks.',
+            'enable'            => 'Enable',
+            'enable_success'    => '{1} Enabled :count webhook.|[2,*] Enabled :count webhooks.',
         ],
+        'test'      => 'Test webhook',
+        'update'    => 'Update webhook',
     ],
-    'create'    => [
-        'title' => 'Add new webhook',
+    'create'        => [
         'success'   => 'Webhook created successfully',
+        'title'     => 'Add new webhook',
     ],
-    'edit'      => [
-        'title' => 'Update webhook',
+    'destroy'       => [
+        'success'   => 'Webhook deleted successfully',
+    ],
+    'edit'          => [
         'success'   => 'Webhook updated successfully',
+        'title'     => 'Update webhook',
     ],
-    'test'      => [
-        'success' => 'Test request sent',
-    ],
-    'fields'    => [
+    'fields'        => [
+        'enabled'   => 'Enabled',
         'event'     => 'Event',
-        'type'      => 'Type',
-        'message'   => 'Message',
-        'url'       => 'Url',
-        'enabled'    => 'Enabled',
         'events'    => [
-            'new'       => 'New entity',
-            'edited'    => 'Edited entity',
             'deleted'   => 'Deleted entity',
+            'edited'    => 'Edited entity',
+            'new'       => 'New entity',
         ],
+        'message'   => 'Message',
+        'type'      => 'Type',
         'types'     => [
+            'custom'    => 'Message',
             'payload'   => 'Payload',
-            'custom'   => 'Message',
         ],
+        'url'       => 'Url',
     ],
-    'helper'    => [
+    'helper'        => [
         'active'    => 'If the webhook is currently active',
-        'status'    => 'Toggle the active status of the webhook',
         'message'   => 'Add a custom message with support for mappings',
+        'status'    => 'Toggle the active status of the webhook',
     ],
+    'pitch'         => 'Create custom webhooks to receive custom updates whenever an entity from the campaign is updated.',
     'placeholders'  => [
-        'url'       => 'Target webhook\'s url',
         'message'   => '{who} made changes to {name}, check it out at {url}',
+        'url'       => 'Target webhook\'s url',
     ],
+    'test'          => [
+        'success'   => 'Test request sent',
+    ],
+    'title'         => 'Webhooks',
 ];

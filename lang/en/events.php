@@ -11,7 +11,7 @@ return [
         'date'  => 'Date',
     ],
     'helpers'       => [
-        'date'              => 'This field can contain anything and is not linked to the campaign\'s calendars. To link this event to a calendar, go add it on the calendar or on the reminders subpage of this event.',
+        'date'  => 'This field can contain anything and is not linked to the campaign\'s calendars. To link this event to a calendar, go add it on the calendar or on the reminders subpage of this event.',
     ],
     'placeholders'  => [
         'date'  => 'A date for your event',

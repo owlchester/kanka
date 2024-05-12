@@ -21,6 +21,7 @@ return [
         'nice_image'        => 'Image d\'entité par défaut',
         'no_ads'            => 'Pas de publicité',
         'pagination'        => ':amount résultats max paginés',
+        'roadmap'           => 'Voter sur les idées dans la feuille de route.',
         'vote_influence'    => 'Influence sur les votes communautaires',
     ],
     'periods'   => [

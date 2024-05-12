@@ -2,33 +2,33 @@
 
 return [
     'actions'       => [
-        'add'   => 'Add Item',
-        'copy_from'   => 'Copy from',
-        'copy_inventory' => 'Copy inventory',
+        'add'               => 'Add Item',
+        'copy_from'         => 'Copy from',
+        'copy_inventory'    => 'Copy inventory',
     ],
-    'copy' => [
+    'copy'          => [
         'title' => 'Copy inventory to :name',
     ],
     'create'        => [
-        'success'            => 'Item :item added to :entity.',
-        'success_bulk'       => '{1} Added :count item to :entity.|[2,*] Added :count items to :entity.',
-        'title'              => 'Add an Item to :name',
+        'success'       => 'Item :item added to :entity.',
+        'success_bulk'  => '{0} No item added to :entity.|{1} Added :count item to :entity.|[2,*] Added :count items to :entity.',
+        'title'         => 'Add an Item to :name',
     ],
     'destroy'       => [
         'success'   => 'Item :item removed from :entity.',
     ],
     'fields'        => [
-        'amount'               => 'Quantity',
-        'copy_entity_entry_v2' => 'Use object entry',
-        'description'          => 'Description',
-        'is_equipped'          => 'Equipped',
-        'name'                 => 'Name',
-        'position'             => 'Position',
-        'qty'                  => 'QTY',
+        'amount'                => 'Quantity',
+        'copy_entity_entry_v2'  => 'Use object entry',
+        'description'           => 'Description',
+        'is_equipped'           => 'Equipped',
+        'name'                  => 'Name',
+        'position'              => 'Position',
+        'qty'                   => 'QTY',
     ],
     'helpers'       => [
-        'copy_entity_entry_v2' => 'Display the object\'s entry instead of the custom description.',
-        'is_equipped'          => 'Mark this item as being equipped.',
+        'copy_entity_entry_v2'  => 'Display the object\'s entry instead of the custom description.',
+        'is_equipped'           => 'Mark this item as being equipped.',
     ],
     'placeholders'  => [
         'amount'        => 'Any amount',

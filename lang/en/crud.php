@@ -52,8 +52,8 @@ return [
             'warning'   => 'You are deleting multiple entities.',
         ],
         'edit'          => [
+            'locations' => 'Action for locations',
             'tagging'   => 'Action for tags',
-            'locations'   => 'Action for locations',
             'tags'      => [
                 'add'       => 'Add',
                 'remove'    => 'Remove',
@@ -315,8 +315,7 @@ return [
         'family'        => 'Choose a family',
         'gallery_image' => 'Choose an image from the campaign gallery',
         'image_url'     => 'Upload an image from a URL instead',
-        'item'          => 'Choose an item',
-        'items'         => 'Choose one or several objects',
+        'item'          => 'Choose an object',
         'journal'       => 'Choose a journal',
         'location'      => 'Choose a location',
         'map'           => 'Choose a map',

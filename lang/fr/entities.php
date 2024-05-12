@@ -3,6 +3,7 @@
 return [
     'abilities'             => 'Pouvoirs',
     'ability'               => 'Pouvoir',
+    'assets'                => 'Biens',
     'attribute_template'    => 'Modèle d\'attributs',
     'attribute_templates'   => 'Modèles d\'attributs',
     'bookmark'              => 'Favori',
@@ -53,6 +54,7 @@ return [
     'creatures'             => 'Créatures',
     'dice_roll'             => 'Jet de dés',
     'dice_rolls'            => 'Jets de dés',
+    'entities'              => 'Entités',
     'entity_attributes'     => 'Attributs',
     'event'                 => 'Événement',
     'events'                => 'Événements',

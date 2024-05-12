@@ -17,7 +17,9 @@ return [
         'position'  => 'Position',
     ],
     'helpers'   => [
-        'note'  => 'Ce champ peut référencer des entités en utilisant les mentions avancées (ex :code) et les attributs d\'une entité (ex :attr).',
+        'note'      => 'Ce champ peut référencer des entités en utilisant les mentions avancées (ex :code) et les attributs d\'une entité (ex :attr).',
+        'recharge'  => 'Réinitialiser toutes les charges des pouvoirs qui ont été utilisées.',
+        'sync'      => 'Importer les pouvoirs définis sur les races du personnage.',
     ],
     'import'    => [
         'errors'    => [
@@ -25,6 +27,9 @@ return [
             'not_character' => 'Cette entité n\'est pas un personnage.',
         ],
         'success'   => '{1} :count pouvoir ajouté.|[2,*] :count pouvoirs ajoutés.',
+    ],
+    'recharge'  => [
+        'success'   => 'Toutes les charges ont été réinitialisées.',
     ],
     'reorder'   => [
         'parentless'    => 'Aucun parent',
