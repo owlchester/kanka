@@ -246,9 +246,9 @@ class CrudController extends Controller
         if (method_exists($this, 'titleKey')) {
             $data['titleKey'] = $this->titleKey();
         } elseif ($this->campaign->boosted()) {
-            // Todo: Custom sidebar link or custom module plural name
+            // Custom sidebar link, with fallback on custom module plural name
             $data['titleKey'] = Arr::get($campaign->ui_settings, 'sidebar.labels.' . $langKey);
-            if (!isset($data['titleKey'])) {
+            if (empty($data['titleKey'])) {
                 $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
             }
         }
