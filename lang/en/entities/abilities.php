@@ -3,9 +3,8 @@
 return [
     'actions'   => [
         'add'                       => 'Add abilities',
-        'import_from_race'          => 'Add race abilities',
-        'import_from_race_mobile'   => 'Race abilities',
-        'reset'                     => 'Reset ability usages',
+        'sync'          => 'Add from races',
+        'reset'                     => 'Recharge',
     ],
     'create'    => [
         'success'           => 'Ability :ability added to :entity.',
@@ -18,17 +17,22 @@ return [
     ],
     'helpers'   => [
         'note'  => 'You can reference entities using advanced mentions (ex :code) and attributes of the entity (ex :attr) in this field.',
+        'recharge'  => 'Reset all charges for abilities that have been used.',
+        'sync'  => 'Import abilities that are defined on the character\'s races.',
     ],
     'import'    => [
         'errors'    => [
             'no_race'       => 'The character has no race.',
             'not_character' => 'The entity isn\'t a character.',
         ],
-        'success'   => '{1} :count ability imported.|[2,*] :count abilities imported.',
+        'success'   => '{1} :count race ability imported.|[2,*] :count race abilities imported.',
     ],
     'reorder'   => [
         'parentless'    => 'No Parent',
         'success'       => 'Abilities successfully reordered',
+    ],
+    'recharge' => [
+        'success' => 'All charges have been reset.',
     ],
     'show'      => [
         'helper'    => 'Attach abilities to this entity. You can always edit the visibility or remove an ability. Abilities belonging to the same parent ability will display as filter boxes.',

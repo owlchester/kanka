@@ -38,6 +38,7 @@ class ChargeController extends Controller
             ->entity($entity)
             ->reset();
 
-        return redirect()->route('entities.entity_abilities.index', [$campaign, $entity]);
+        return redirect()->route('entities.entity_abilities.index', [$campaign, $entity])
+            ->withSuccess(__('entities/abilities.recharge.success'));
     }
 }

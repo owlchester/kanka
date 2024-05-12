@@ -14,9 +14,9 @@ Route::get('/w/{campaign}/abilities/{ability}/entity-add', 'Abilities\EntityCont
 Route::post('/w/{campaign}/abilities/{ability}/entity-add', 'Abilities\EntityController@store')->name('abilities.entity-add.save');
 
 //Ability reorder
-Route::get('/w/{campaign}/entity/{entity}/abilities/reorder', [App\Http\Controllers\Entity\Abilities\ReorderController::class, 'index'])
+Route::get('/w/{campaign}/entities/{entity}/entity_abilities/reorder', [App\Http\Controllers\Entity\Abilities\ReorderController::class, 'index'])
     ->name('entities.entity_abilities.reorder');
-Route::post('/w/{campaign}/entity/{entity}/abilities/reorder', [App\Http\Controllers\Entity\Abilities\ReorderController::class, 'save'])
+Route::post('/w/{campaign}/entities/{entity}/entity_abilities/reorder', [App\Http\Controllers\Entity\Abilities\ReorderController::class, 'save'])
     ->name('entities.entity_abilities.reorder-save');
 
 // Maps
