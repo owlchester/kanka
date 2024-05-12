@@ -64,7 +64,7 @@ TEXT
         'nested'                            => 'Afficher les listes d\'entités de manière imbriquée par défaut',
         'open'                              => 'Ouvert aux applications',
         'past_featured'                     => 'Campagne précédemment vedette',
-        'post_collapsed'                    => 'Les nouvelles notes sur les entités sont minimisées par défaut.',
+        'post_collapsed'                    => 'Les nouveaux articles sur les entités sont minimisés par défaut.',
         'premium'                           => 'Premium débloqué par :name',
         'public'                            => 'Visibilité de la campagne',
         'public_campaign_filters'           => 'Filtres pour les campagnes publiques',
@@ -314,7 +314,7 @@ TEXT
                 'dashboard'     => 'Permettre de modifier les tableaux de bords et les widgets du tableau de bord.',
                 'delete'        => 'Permettre la suppression des entités de ce type.',
                 'edit'          => 'Permettre la modifications des entités de ce type.',
-                'entity_note'   => 'Ceci permet aux utilisateurs qui n\'ont pas la permission de modifier une entité de pouvoir ajouter des Notes d\'Entités sur celle-ci.',
+                'entity_note'   => 'Ceci permet aux utilisateurs qui n\'ont pas la permission de modifier une entité de pouvoir ajouter des articles sur celle-ci.',
                 'gallery'       => [
                     'browse'    => 'Permettre de parcourir la galerie, et définir l\'image d\'entité depuis la galerie.',
                     'manage'    => 'Permettre l\'accès complet à la galerie, avec la possibilité de modifier et supprimer des images.',

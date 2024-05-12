@@ -2,29 +2,29 @@
 
 return [
     'actions'       => [
-        'add'       => 'Ajouter une note',
+        'add'       => 'Ajouter un article',
         'add_role'  => 'Ajouter un rôle',
         'add_user'  => 'Ajouter un membre',
     ],
     'collapsed'     => [
-        'closed'    => 'La note est fermée et seul le titre est visible',
-        'open'      => 'La note est pleinement visible',
+        'closed'    => 'L\'article est fermé et seul le titre est visible',
+        'open'      => 'L\'article est pleinement visible',
     ],
     'copy_mention'  => [
         'copy'              => 'Copier la mention avancée',
         'copy_with_name'    => 'Copier la mention avancées avec le nom',
-        'success'           => 'La mention avancée de la note a été copiée au presse-papier.',
+        'success'           => 'La mention avancée de l\'article a été copiée au presse-papier.',
     ],
     'create'        => [
-        'success'   => 'Note \':name\' ajoutée à :entity.',
-        'title'     => 'Nouvelle Note pour :name',
+        'success'   => 'Article \':name\' ajouté à :entity.',
+        'title'     => 'Nouvel article pour :name',
     ],
     'destroy'       => [
-        'success'   => 'La note :name a été retirée.',
+        'success'   => 'L\'article :name a été retirée.',
     ],
     'edit'          => [
-        'success'   => 'La note :name pour :entity a été modifiée.',
-        'title'     => 'Modifier la note pour :name',
+        'success'   => 'L\'article :name pour :entity a été modifié.',
+        'title'     => 'Modifier l\'article pour :name',
     ],
     'fields'        => [
         'creator'   => 'Créé par',
@@ -37,28 +37,28 @@ return [
         'created'   => 'Créé par :user au :date',
         'updated'   => 'Modifié par :user au :date',
     ],
-    'hint'          => 'Les informations qui n\'entrent pas vraiment dans les champs pré-définis ou qui doivent être privées peuvent être ajoutées en tant que Note.',
+    'hint'          => 'Les informations qui n\'entrent pas vraiment dans les champs pré-définis ou qui doivent être privées peuvent être ajoutées en tant qu\'article.',
     'hints'         => [
-        'reorder'   => 'Les notes d\'entité peuvent être réarrangée en cliquant sur l\'icône :icon à côté de Histoire dans le menu de l\'entité.',
+        'reorder'   => 'Les articles peuvent être réarrangée en cliquant sur l\'icône :icon à côté de Histoire dans le menu de l\'entité.',
     ],
     'index'         => [
-        'title' => 'Notes pour :name',
+        'title' => 'Articles pour :name',
     ],
     'move'          => [
         'copy'          => 'Créer une copie sur l\'entité cible',
-        'copy_success'  => 'La note :name a été copiée vers :entity avec succès.',
+        'copy_success'  => 'L\'article :name a été copiée vers :entity avec succès.',
         'copy_title'    => 'Guarder une copie',
-        'description'   => 'Sélectionnes une entité vers laquelle la note doit être déplacée ou copiée.',
+        'description'   => 'Sélectionnes une entité vers laquelle l\'article doit être déplacé ou copié.',
         'entity'        => 'Entité cible',
         'move'          => 'Déplacer ou copier vers une autre entité',
-        'move_success'  => 'La note :name a été déplacée vers :entity avec succès.',
+        'move_success'  => 'L\'article :name a été déplacé vers :entity avec succès.',
     ],
     'placeholders'  => [
-        'name'  => 'Nom de la note, observation ou remarque',
+        'name'  => 'Nom de l\'article, observation ou remarque',
     ],
     'show'          => [
         'advanced'  => 'Permissions Avancées',
-        'title'     => 'Note d\'entité :name pour :entity',
+        'title'     => 'Article :name pour :entity',
     ],
     'states'        => [
         'collapsed' => 'Rétréci',

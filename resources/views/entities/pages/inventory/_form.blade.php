@@ -75,7 +75,7 @@ if (isset($inventory) && $inventory->image_uuid) {
         </x-checkbox>
     </x-forms.field>
 
-    <div class="col-span-3">
+    <div class="col-span-3 hidden">
         <x-forms.field
             field="image-uuid"
             :label="__('crud.fields.image')">
