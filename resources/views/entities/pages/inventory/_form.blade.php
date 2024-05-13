@@ -45,11 +45,9 @@ if (isset($inventory)) {
     <x-forms.field
         field="position"
         :label="__('entities/inventories.fields.position')">
-        {!! Form::select('position', $positionOptions, null, [
+        {!! Form::select('position', $positionOptions, $positionPreset, [
             'data-placeholder' => __('entities/inventories.placeholders.position'),
             'class' => 'position-dropdown',
-            'maxlength' => 191,
-            'list' => 'position-list',
         ]) !!}
     </x-forms.field>
 
