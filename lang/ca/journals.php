@@ -10,10 +10,7 @@ return [
         'author'    => 'Autor',
         'date'      => 'Data',
     ],
-    'helpers'       => [
-        'journals'          => 'Mostra totes o només les descendents directes d\'aquesta crònica.',
-        'nested_without'    => 'S\'estan mostrant les cròniques sense pare. Feu clic a la fila d\'una família per a mostrar-ne les subcròniques.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'journals'      => [],
     'placeholders'  => [

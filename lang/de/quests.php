@@ -33,8 +33,7 @@ return [
         'role'          => 'Rolle',
     ],
     'helpers'       => [
-        'is_completed'      => 'Wählen Sie aus, ob die Quest als abgeschlossen gilt.',
-        'nested_without'    => 'Anzeigen aller Quests, die keine übergeordnete Quest haben. Klicken Sie auf eine Zeile, um die Quests für Kinder anzuzeigen.',
+        'is_completed'  => 'Wählen Sie aus, ob die Quest als abgeschlossen gilt.',
     ],
     'hints'         => [
         'quests'    => 'Ein Netz aus verknüpften Quests kann mit dem Elternquest-Feld erstellt werden.',

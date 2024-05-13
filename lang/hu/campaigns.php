@@ -49,7 +49,6 @@ TEXT
         'image'                     => 'Kép',
         'locale'                    => 'Nyelv',
         'name'                      => 'Név',
-        'nested'                    => 'Az alapértelmezett entitás lista összevonása, ha elérhető',
         'open'                      => 'Megnyitás az alkalmazások számára',
         'public_campaign_filters'   => 'Publikus kampány szűrők',
         'related_visibility'        => 'Kapcsolódó elemek láthatósága',

@@ -104,7 +104,6 @@ return [
         'format'            => 'Añadir formato de fecha personalizado para entidades del calendario.',
         'month_type'        => 'Los meses intercalares no usan los días de la semana, pero influyen en las lunas y las estaciones.',
         'moon_offset'       => 'De forma predeterminada, la primera luna llena aparece el primer día del año 0. Cambiar el desplazamiento alterará el cuando se muestra la primera luna llena. Este valor puede ser negativo (hasta la duración del primer mes) o positivo (hasta la duración del primer mes).',
-        'nested_without'    => 'Mostrando todos los calendarios que no tienen ningún superior. Haz clic sobre una fila para mostrar los subcalendarios.',
         'start_offset'      => 'Por defecto, el calendario empieza en el primer día de la semana del año 0. En este campo puedes cambiar dónde se situará el primer día del calendario.',
     ],
     'hints'         => [

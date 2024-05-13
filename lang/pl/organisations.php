@@ -10,10 +10,7 @@ return [
         'is_defunct'    => 'Nie funkcjonuje',
         'members'       => 'Członkowie',
     ],
-    'helpers'       => [
-        'descendants'       => 'Na liście znajdują się wszystkie organizacje wywodzące się od tej, nie tylko bezpośrednio.',
-        'nested_without'    => 'Wyświetlono wszystkie organizacje nieposiadające źródła. Kliknij na rząd, by wyświetlić organizacje pochodne.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_defunct'    => 'Ta organizacja obecnie nie działa',
     ],

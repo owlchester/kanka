@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'notes' => 'Notatki pochodne',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Wyświetlono wszystkie notatki nieposiadające źródła. Kliknij na rząd, by wyświetlić notatki pochodne.',
-    ],
+    'helpers'       => [],
     'hints'         => [],
     'index'         => [],
     'placeholders'  => [

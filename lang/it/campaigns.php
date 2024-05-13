@@ -59,7 +59,6 @@ TEXT
         'image'                             => 'Immagine',
         'locale'                            => 'Lingua',
         'name'                              => 'Nome',
-        'nested'                            => 'Liste dell\'entità annidate in modo predefinito, quando possibile',
         'open'                              => 'Aperto a candidature',
         'past_featured'                     => 'Campagna precedentemente in Primo Piano',
         'post_collapsed'                    => 'I nuovi post sulle entità sono ripiegati in modo predefinito.',
@@ -433,7 +432,6 @@ TEXT
             'entity_history'    => 'Cronologia dell\'entità',
             'entity_image'      => 'Immagine dell\'entità',
             'member_list'       => 'Lista dei membri della campagna',
-            'nested'            => 'Disposizione predefinita degli elenchi',
             'post_collapsed'    => 'Valore predefinito del nuovo post ripiegato',
         ],
         'helpers'           => [
@@ -449,10 +447,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Visibile solo agli amministratori della campagna',
             'visible'   => 'Visibile ai membri',
-        ],
-        'nested'            => [
-            'nested'    => 'Annidato',
-            'user'      => 'Predefinito da utente',
         ],
         'other'             => 'Altro',
     ],

@@ -18,9 +18,8 @@ return [
         'reverse_order' => 'Era en orden inverso',
     ],
     'helpers'       => [
-        'nested_without'    => 'Mostrando todas las líneas de tiempo sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
-        'no_era_v2'         => 'Actualmente, esta línea de tiempo no tiene ninguna era. Añádele una o varias eras, tras lo cual podrás añadir elementos a las eras aquí.',
-        'reverse_order'     => 'Habilitar para mostrar las eras en orden cronológico inverso (la era más antigua primero)',
+        'no_era_v2'     => 'Actualmente, esta línea de tiempo no tiene ninguna era. Añádele una o varias eras, tras lo cual podrás añadir elementos a las eras aquí.',
+        'reverse_order' => 'Habilitar para mostrar las eras en orden cronológico inverso (la era más antigua primero)',
     ],
     'index'         => [],
     'placeholders'  => [

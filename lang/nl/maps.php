@@ -29,7 +29,6 @@ return [
     ],
     'helpers'       => [
         'center'            => 'Als je de volgende waarden wijzigt, wordt er bepaald op welk gebied van de kaart de focus is gericht. Als je deze waarden leeg laat, wordt er op het midden van de kaart gefocust.',
-        'descendants'       => 'Deze lijst bevat alle kaarten die afstammen van deze kaart, en niet alleen de kaarten er direct onder.',
         'distance_measure'  => 'Door de kaart een afstandsmeting te geven, wordt het meetinstrument in de verkenning modus ingeschakeld.',
         'grid'              => 'Definieer een raster grootte die in de verkenning modus wordt weergegeven.',
         'initial_zoom'      => 'Het aanvankelijke zoomniveau waarmee een kaart is geladen. De standaardwaarde is :default, terwijl de hoogst toegestane waarde :max is en de laagst toegestane waarde :min.',

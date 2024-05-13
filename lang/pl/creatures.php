@@ -8,9 +8,7 @@ return [
     'fields'        => [
         'is_extinct'    => 'Wymarła',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Wyświetlono wszystkie istoty nieposiadające źródła. Kliknij na rząd, by wyświetlić istoty pochodne.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_extinct'    => 'Ten rodzaj istot wymarł.',
     ],

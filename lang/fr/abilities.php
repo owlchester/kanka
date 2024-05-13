@@ -22,9 +22,7 @@ return [
     'fields'        => [
         'charges'   => 'Charges',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Affichage des pouvoirs sans parent. Cliquer sur une rangée pour afficher les pouvoirs enfants.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Nombre d\'utilisation. Les attributs peuvent être référencés avec {Level}*{CHA}',

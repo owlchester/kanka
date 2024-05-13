@@ -13,8 +13,7 @@ return [
         'date'  => 'Data',
     ],
     'helpers'       => [
-        'date'              => 'Este campo pode conter qualquer coisa e não está vinculado aos calendários da campanha. Para vincular este evento a um calendário, adicione-o no calendário ou no sub-menu de lembretes deste evento.',
-        'nested_without'    => 'Exibindo todos os eventos que não tem um evento primário. Clique em uma linha para ver os eventos secundários.',
+        'date'  => 'Este campo pode conter qualquer coisa e não está vinculado aos calendários da campanha. Para vincular este evento a um calendário, adicione-o no calendário ou no sub-menu de lembretes deste evento.',
     ],
     'index'         => [],
     'placeholders'  => [

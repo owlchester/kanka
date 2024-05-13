@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'members'   => 'Leden',
     ],
-    'helpers'       => [
-        'descendants'   => 'Deze lijst bevat alle organisaties die afstammen van deze organisatie, en niet alleen de direct daaronder vallende organisaties.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'actions'       => [

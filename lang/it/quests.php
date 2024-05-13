@@ -33,8 +33,7 @@ return [
         'role'          => 'Ruolo',
     ],
     'helpers'       => [
-        'is_completed'      => 'Seleziona se la missione è considerata completata.',
-        'nested_without'    => 'Visualizzazione di tutte le missioni che non hanno una missione genitore. Fai clic su una riga per vedere le missioni figlio.',
+        'is_completed'  => 'Seleziona se la missione è considerata completata.',
     ],
     'hints'         => [
         'quests'    => 'Una ragnatela di missioni interconnesse può essere costruita utilizzando il campo "Missione Genitore".',

@@ -33,8 +33,7 @@ return [
         'role'          => 'Rol',
     ],
     'helpers'       => [
-        'is_completed'      => 'Selecciona esto si la misión ya se ha completado.',
-        'nested_without'    => 'Mostrando todas las misiones sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
+        'is_completed'  => 'Selecciona esto si la misión ya se ha completado.',
     ],
     'hints'         => [
         'quests'    => 'Se puede crear una red de misiones entrelazadas usando el campo Misión Superior.',

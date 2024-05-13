@@ -33,8 +33,7 @@ return [
         'role'          => 'Rôle',
     ],
     'helpers'       => [
-        'is_completed'      => 'Sélectionner si la quête est considérée comme completée.',
-        'nested_without'    => 'Affichage des quêtes sans parent. Cliquer sur une rangée pour afficher les quêtes enfants.',
+        'is_completed'  => 'Sélectionner si la quête est considérée comme completée.',
     ],
     'hints'         => [
         'quests'    => 'Un réseau de quêtes liées peut être créé à l\'aide du champ Quête Parentale.',

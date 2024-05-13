@@ -16,8 +16,7 @@ return [
         'is_auto_applied'   => 'Aplicar automaticamente a novas entidades',
     ],
     'helpers'       => [
-        'nested_without'    => 'Mostrando todas as etiquetas que non teñen nai. Fai clic nunha liña para ver as súas subetiquetas.',
-        'no_children'       => 'Non hai ningunha entidade con esta etiqueta.',
+        'no_children'   => 'Non hai ningunha entidade con esta etiqueta.',
     ],
     'hints'         => [
         'children'          => 'Esta lista contén todas as entidades que pertencen a esta etiqueta ou ás súas subetiquetas.',

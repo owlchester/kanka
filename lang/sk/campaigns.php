@@ -61,7 +61,6 @@ TEXT
         'is_discreet'                       => 'Diskrétne',
         'locale'                            => 'Jazyk',
         'name'                              => 'Názov',
-        'nested'                            => 'Vnorené zobrazenie zoznamov objektov, ak možné',
         'open'                              => 'Otvorená pre prihlášky',
         'past_featured'                     => 'Posledne zvýraznená kampaň',
         'post_collapsed'                    => 'Nové príspevky k objektom sú štandardne minimalizované.',
@@ -457,7 +456,6 @@ TEXT
             'entity_history'    => 'Protokol histórie objektu',
             'entity_image'      => 'Obrázok objektu',
             'member_list'       => 'Zoznam členov kampane',
-            'nested'            => 'Štandardné zobrazenie zoznamov',
             'post_collapsed'    => 'Štandardná nová hodnota zbalenej poznámky',
         ],
         'helpers'           => [
@@ -473,10 +471,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Viditeľné len pre adminov kampane',
             'visible'   => 'Viditeľné pre členov',
-        ],
-        'nested'            => [
-            'nested'    => 'Vnorené',
-            'user'      => 'Užívateľský štandard',
         ],
         'other'             => 'Ostatné',
     ],

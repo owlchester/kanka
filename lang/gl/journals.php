@@ -10,10 +10,7 @@ return [
         'author'    => 'Autoría',
         'date'      => 'Data',
     ],
-    'helpers'       => [
-        'journals'          => 'Mostrar todos os subcadernos ou só os descendentes directos deste caderno.',
-        'nested_without'    => 'Mostrando todos os cadernos que non teñen un caderno pai. Fai clic nunha fila para ver os seus descendentes.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'journals'      => [],
     'placeholders'  => [

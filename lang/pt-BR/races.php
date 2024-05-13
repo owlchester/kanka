@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'members'   => 'Membros',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Exibindo todas as raças que não tem uma raça primária. Clique em uma linha para ver as raças secundárias.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'create'    => [

@@ -80,9 +80,8 @@ return [
         'weekdays'              => 'Dies de la setmana',
     ],
     'helpers'       => [
-        'month_type'        => 'Els mesos intercalars no utilitzen els dies de la setmana, però influeixen a les llunes i les estacions.',
-        'nested_without'    => 'S\'estan mostrant tots els calendaris que no tenen cap pare. Cliqueu una fila per a veure\'n els calendaris descendents.',
-        'start_offset'      => 'Per defecte, el calendari comença el primer dia de la setmana de l\'any 0. Aquí es pot canviar on se situarà el primer dia del calendari.',
+        'month_type'    => 'Els mesos intercalars no utilitzen els dies de la setmana, però influeixen a les llunes i les estacions.',
+        'start_offset'  => 'Per defecte, el calendari comença el primer dia de la setmana de l\'any 0. Aquí es pot canviar on se situarà el primer dia del calendari.',
     ],
     'hints'         => [
         'event_length'      => 'Quant dura un esdeveniment. Un esdeveniment no pot durar més de dos mesos.',

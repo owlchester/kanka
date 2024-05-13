@@ -2,10 +2,8 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Füge eine Fähigkeit hinzu',
-        'import_from_race'          => 'Speziesfähigkeit hinzufügen',
-        'import_from_race_mobile'   => 'Speziesfähigkeiten',
-        'reset'                     => 'Fähigkeit zurücksetzen',
+        'add'   => 'Füge eine Fähigkeit hinzu',
+        'reset' => 'Fähigkeit zurücksetzen',
     ],
     'create'    => [
         'success'           => 'Fähigkeit :ability hinzugefügt zu :entity',

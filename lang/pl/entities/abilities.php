@@ -2,10 +2,8 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Dodaj zdolności',
-        'import_from_race'          => 'Dodaj zdolności rasy',
-        'import_from_race_mobile'   => 'Zdolności rasy',
-        'reset'                     => 'Odśwież użycia zdolności',
+        'add'   => 'Dodaj zdolności',
+        'reset' => 'Odśwież użycia zdolności',
     ],
     'create'    => [
         'success'           => 'Zdolność :ability dodano do :entity',

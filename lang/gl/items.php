@@ -11,9 +11,7 @@ return [
         'price'     => 'Prezo',
         'size'      => 'Tamaño',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Mostrando todos os obxectos que non teñen un obxecto pai. Fai clic nunha fila para ver os seus fillos.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'items' => 'Organiza obxectos usando o campo de obxecto pai.',
     ],

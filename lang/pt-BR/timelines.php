@@ -18,9 +18,8 @@ return [
         'reverse_order' => 'Ordem reversa da era',
     ],
     'helpers'       => [
-        'nested_without'    => 'Exibindo todas as linhas do tempo que não tem uma linha do tempo primária. Clique em uma linha para ver as linhas do tempo secundárias.',
-        'no_era_v2'         => 'Esta linha do tempo atualmente não tem nenhuma era. Adicione uma ou várias eras, após o qual você pode adicionar elementos às eras aqui.',
-        'reverse_order'     => 'Habilite para exibir linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
+        'no_era_v2'     => 'Esta linha do tempo atualmente não tem nenhuma era. Adicione uma ou várias eras, após o qual você pode adicionar elementos às eras aqui.',
+        'reverse_order' => 'Habilite para exibir linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
     ],
     'index'         => [],
     'placeholders'  => [

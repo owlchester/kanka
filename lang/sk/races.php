@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'members'   => 'Príslušníci',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Zobrazujú sa všetky rasy, ktoré nemajú nadradenú rasu. Kliknutím na riadok zobrazíš podradené rasy.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'create'    => [

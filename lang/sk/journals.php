@@ -10,10 +10,7 @@ return [
         'author'    => 'Autor',
         'date'      => 'Dátum',
     ],
-    'helpers'       => [
-        'journals'          => 'Zobrazí všetky alebo len priamo podradené denníky tohto denníka.',
-        'nested_without'    => 'Zobraziť všetky denníky, ktoré nemajú nadradený denník. Kliknutím na riadok zobrazíš podradené denníky.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'journals'      => [],
     'placeholders'  => [

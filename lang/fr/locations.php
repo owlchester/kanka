@@ -11,9 +11,7 @@ return [
     'families'      => [],
     'fields'        => [],
     'helpers'       => [
-        'characters'        => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou seulement ceux qui sont ici.',
-        'descendants'       => 'Cette liste contient tous les lieux descendants de celui-ci, pas uniquement les descendants directs.',
-        'nested_without'    => 'Affichage des lieux sans parent. Cliquer sur une rangée pour afficher les lieux enfants.',
+        'characters'    => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou seulement ceux qui sont ici.',
     ],
     'hints'         => [],
     'index'         => [],

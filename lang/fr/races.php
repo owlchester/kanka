@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'members'   => 'Membres',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Affichage des races sans parent. Cliquer sur une rangée pour afficher les races enfants.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'create'    => [

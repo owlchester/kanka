@@ -12,9 +12,7 @@ return [
         'price'         => 'Cena',
         'size'          => 'Veľkosť',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Zobrazujú sa všetky predmety bez nadradeného predmetu. Kliknutím na riadok sa zobrazia podradené predmety.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'items' => 'Organizuj predmety pomocou nadradených predmetov.',
     ],

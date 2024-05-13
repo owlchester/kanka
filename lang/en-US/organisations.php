@@ -7,10 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [],
-    'helpers'       => [
-        'descendants'       => 'This list contains all organizations which are descendants of this organization, and not only those directly under it.',
-        'nested_without'    => 'Displaying all organizations that don\'t have a parent organization. Click on a row to see the children organizations.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'create'    => [

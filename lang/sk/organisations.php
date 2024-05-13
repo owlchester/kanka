@@ -10,10 +10,7 @@ return [
         'is_defunct'    => 'Nečinná',
         'members'       => 'Členovia',
     ],
-    'helpers'       => [
-        'descendants'       => 'Tento zoznam obsahuje všetky organizácie, ktoré sú podradené tejto a všetkým podradeným organizáciám.',
-        'nested_without'    => 'Zobraziť všetky organizácie, ktoré nemajú nadradenú organizáciu. Kliknutím na riadok zobrazíš podradené organizácie.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_defunct'    => 'Táto organizácia už ukončila činnosť.',
     ],

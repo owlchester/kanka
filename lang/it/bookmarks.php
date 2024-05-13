@@ -17,7 +17,6 @@ return [
         'default_dashboard' => 'Pagina Principale predefinita',
         'entity'            => 'Entità',
         'filters'           => 'Filtri',
-        'is_nested'         => 'Annidato',
         'menu'              => 'Sottopagina',
         'position'          => 'Posizione',
         'random'            => 'Casuale',

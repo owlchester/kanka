@@ -17,7 +17,6 @@ return [
         'default_dashboard' => 'Štandardná nástenka',
         'entity'            => 'Objekt',
         'filters'           => 'Filtre',
-        'is_nested'         => 'Vnorené',
         'menu'              => 'Menu',
         'position'          => 'Pozícia',
         'random'            => 'Náhodný',

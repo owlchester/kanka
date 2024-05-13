@@ -6,9 +6,7 @@ return [
     ],
     'creatures'     => [],
     'fields'        => [],
-    'helpers'       => [
-        'nested_without'    => 'Exibindo todas as criaturas que não tem uma criatura primária. Clique em uma linha para ver as criaturas secundárias.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'type'  => 'Herbívoro, Aquático, Mítica',
     ],

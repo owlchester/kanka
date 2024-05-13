@@ -10,10 +10,7 @@ return [
         'is_defunct'    => 'Défunte',
         'members'       => 'Membres',
     ],
-    'helpers'       => [
-        'descendants'       => 'Cette liste contient toutes les organisations qui appartiennent directement ou indirectement à cette organisation.',
-        'nested_without'    => 'Affichage des organisations sans parent. Cliquer sur une rangées pour afficher les organisations enfants.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_defunct'    => 'Cette organisation n\'est plus en opération.',
     ],

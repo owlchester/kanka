@@ -11,7 +11,6 @@ return [
     'features'  => [
         'api_requests'      => ':amount de solicitações de API / min',
         'boosters'          => 'Impulsionamentos de Campanha',
-        'community_vote'    => 'Voto da Comunidade',
         'discord'           => 'Cargos do Discord',
         'feature_influence' => 'Influência em novos recursos',
         'file_size'         => ':size tamanho de upload de arquivo',
@@ -20,7 +19,6 @@ return [
         'nice_image'        => 'Imagens de entidade padrão',
         'no_ads'            => 'Sem anúncios',
         'pagination'        => ':amount Máximo de resultados paginados (entidades exibidas por página)',
-        'vote_influence'    => 'Influência do voto da comunidade',
     ],
     'periods'   => [
         'monthly'   => 'Mensalmente',

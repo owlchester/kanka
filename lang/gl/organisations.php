@@ -10,10 +10,7 @@ return [
         'is_defunct'    => 'Extinta',
         'members'       => 'Integrantes',
     ],
-    'helpers'       => [
-        'descendants'       => 'Esta lista contén todas as organizacións que son descendentes desta organización, non só as descendentes directas.',
-        'nested_without'    => 'Mostrando todas as organizacións que non teñen unhas organización superior. Fai clic nunha fila para ver as súas descendentes.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_defunct'    => 'Esta organización está extinta.',
     ],

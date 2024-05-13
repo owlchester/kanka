@@ -12,9 +12,7 @@ return [
         'price'         => 'Prix',
         'size'          => 'Taille',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Affichage de tous les objets qui n\'ont pas de parent. Cliques sur une rangée pour voir les enfants.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'items' => 'Organises les objets en utilisant le champ objet parent.',
     ],

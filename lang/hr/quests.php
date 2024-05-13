@@ -28,9 +28,7 @@ return [
         'is_completed'  => 'Izvršen',
         'role'          => 'Uloga',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Prikazuju se svi zadaci koji nemaju zadatak roditelj. Klikni redak da bi vidio/la zadatke djecu.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'quests'    => 'Mreža isprepletenih zadataka se može napraviti korištenjem Zadatak roditelj polja.',
     ],

@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'members'   => 'Członkowie',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Wyświetlono wszystkie rasy nieposiadające źródła. Kliknij na rząd, by wyświetlić rasy pochodne.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'create'    => [

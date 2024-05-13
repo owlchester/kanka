@@ -37,7 +37,6 @@ return [
     'helpers'       => [
         'center'            => 'Mitjançant aquests valors, es pot controlar quina àrea del mapa es focalitza en carregar-lo. Si es deixen en blanc, el mapa es carregarà focalitzat al centre.',
         'centering'         => 'El centrat d\'un marcador tindrà prioritat sobre les coordenades per defecte.',
-        'descendants'       => 'Aquí es mostren tots els mapes descendents d\'aquest, i no només els directament inferiors.',
         'distance_measure'  => 'En donar-li al mapa una mesura de distància, s\'habilitarà l\'eina de mesures al mode d\'exploració.',
         'grid'              => 'Definiu una grandària per a la quadrícula que es mostrarà al mode d\'exploració.',
         'initial_zoom'      => 'El nivell inicial de zoom amb el qual es carrega el mapa. El valor per defecte és :default, mentre que el valor màxim permès és :max, i el mínim, :min.',
@@ -45,7 +44,6 @@ return [
         'max_zoom'          => 'El màxim que es pot acostar un mapa. El valor per defecte és :default, mentre que el valor màxim permès és :max.',
         'min_zoom'          => 'El màxim que es pot allunyar un mapa. El valor per defecte és :default, mentre que el valor màxim permès és :min.',
         'missing_image'     => 'Cal guardar el mapa amb una imatge abans d\'afegir-hi capes i marcadors.',
-        'nested_without'    => 'S\'estan mostrant els mapes sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne els descendents.',
     ],
     'index'         => [],
     'maps'          => [],

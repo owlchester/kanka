@@ -2,10 +2,8 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Aggiungi abilità',
-        'import_from_race'          => 'Aggiungi abilità di stirpe',
-        'import_from_race_mobile'   => 'Abilità di stirpe',
-        'reset'                     => 'Ripristina gli usi dell\'abilità',
+        'add'   => 'Aggiungi abilità',
+        'reset' => 'Ripristina gli usi dell\'abilità',
     ],
     'create'    => [
         'success'           => 'Abilità :ability aggiunta a :entity.',

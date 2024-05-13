@@ -18,8 +18,7 @@ return [
         'reverse_order' => 'Era en ordre invers',
     ],
     'helpers'       => [
-        'nested_without'    => 'S\'estan mostrant les línies de temps sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne les descendents.',
-        'reverse_order'     => 'Habiliteu-ho per a mostrar les eres en ordre cronològic invers (l\'era més antiga primer)',
+        'reverse_order' => 'Habiliteu-ho per a mostrar les eres en ordre cronològic invers (l\'era més antiga primer)',
     ],
     'index'         => [],
     'placeholders'  => [

@@ -13,7 +13,6 @@ return [
         'default_dashboard' => 'Taboleiro por defecto',
         'entity'            => 'Entidade',
         'filters'           => 'Filtros',
-        'is_nested'         => 'En árbore',
         'menu'              => 'Menú',
         'position'          => 'Posición',
         'random'            => 'Aleatorio',

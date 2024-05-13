@@ -10,9 +10,7 @@ return [
         'author'    => 'Auteur',
         'date'      => 'Datum',
     ],
-    'helpers'       => [
-        'journals'  => 'Geef alle of alleen de directe sub logboeken van dit logboek weer.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'journals'      => [],
     'placeholders'  => [

@@ -11,9 +11,7 @@ return [
     'families'      => [],
     'fields'        => [],
     'helpers'       => [
-        'characters'        => 'Mira todas as personaxes que hai neste lugar e nos seus descendentes, ou só as localizadas directamente aquí.',
-        'descendants'       => 'Esta lista contén todos os lugares descendentes deste lugar, non só os descendentes directos.',
-        'nested_without'    => 'Mostrando todos os lugares que non teñen un lugar superior. Fai clic nunha fila para ver os seus descendentes.',
+        'characters'    => 'Mira todas as personaxes que hai neste lugar e nos seus descendentes, ou só as localizadas directamente aquí.',
     ],
     'hints'         => [],
     'index'         => [],

@@ -105,7 +105,6 @@ return [
         'format'            => 'Specjalny model zapisu dat tego kalendarza.',
         'month_type'        => 'Miesiące dodatkowe nie mają dni tygodnia, ale wpływają na pory roku czy fazy księżyca.',
         'moon_offset'       => 'Domyślnie pierwsza pełnia ma miejsce pierwszego dnia roku 0. Zmieniając wartość przesunięcia modyfikujesz moment pełni. Przesunięcie może mieć wartość ujemną (maksymalnie długości pierwszego miesiąca) albo dodatnią (maksymalnie długości pierwszego miesiąca).',
-        'nested_without'    => 'Wyświetlono wszystkie kalendarze nieposiadające źródła. Kliknij na rząd, by wyświetlić kalendarze pochodne.',
         'start_offset'      => 'Domyślnie kalendarz zaczyna się pierwszego dnia roku 0. Liczba w tym polu zmienia położenie pierwszego dnia kalendarza.',
     ],
     'hints'         => [

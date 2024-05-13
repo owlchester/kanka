@@ -10,10 +10,7 @@ return [
     'fields'        => [
         'members'   => 'Membres',
     ],
-    'helpers'       => [
-        'descendants'       => 'Cette liste contient toutes les familles qui sont des descendants de cette famille, et pas seulement celles directement sous celle-ci.',
-        'nested_without'    => 'Affichage des familles sans parent. Cliquer sur une rangée pour afficher les familles enfants.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'members'   => 'Les membres d\'une famille sont affichés ici. Un personnage peut être ajouté à une famille lors de l\'édition du personnage en utilisant le champ "Famille".',
     ],

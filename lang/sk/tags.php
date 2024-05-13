@@ -21,8 +21,7 @@ return [
         'is_hidden'         => 'Skryté v záhlaví a náhľade',
     ],
     'helpers'       => [
-        'nested_without'    => 'Zobrazujú sa všetky kategórie, ktoré nemajú nadradenú kategóriu. Kliknutím na riadok zobrazíš podradené kategórie.',
-        'no_children'       => 'Aktuálne nemá túto kategóriu pridelený žiaden objekt.',
+        'no_children'   => 'Aktuálne nemá túto kategóriu pridelený žiaden objekt.',
     ],
     'hints'         => [
         'children'          => 'Tento zoznam obsahuje všetky objekty priamo pod touto kategóriou a jej podriadenými kategóriami.',

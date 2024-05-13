@@ -19,7 +19,6 @@ return [
     ],
     'fields'        => [
         'amount'                => 'Quantité',
-        'copy_entity_entry'     => 'Utiliser l\'entrée de l\'objet',
         'copy_entity_entry_v2'  => 'Utiliser l\'entrée de l\'objet',
         'description'           => 'Description',
         'is_equipped'           => 'Equipé',
@@ -28,7 +27,6 @@ return [
         'qty'                   => 'Qté',
     ],
     'helpers'       => [
-        'copy_entity_entry'     => 'Affiche l\'entrée de l\'objet au lieu de la description.',
         'copy_entity_entry_v2'  => 'Affiche l\'entrée de l\'objet au lieu de la description personnalisée.',
         'is_equipped'           => 'Marquer cet objet comme étant équipé.',
     ],

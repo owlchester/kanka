@@ -2,9 +2,8 @@
 
 return [
     'actions'   => [
-        'add'               => 'Voeg vaardigheden toe',
-        'import_from_race'  => 'Voeg ras vaardigheden toe',
-        'reset'             => 'Gebruik van vaardigheden opnieuw instellen',
+        'add'   => 'Voeg vaardigheden toe',
+        'reset' => 'Gebruik van vaardigheden opnieuw instellen',
     ],
     'create'    => [
         'success'           => 'Vaardigheid :ability toegevoegd aan :entity.',

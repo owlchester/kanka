@@ -12,7 +12,6 @@ return [
     'features'  => [
         'api_requests'      => ':amount API požiadavok/min',
         'boosters'          => 'Boosty pre kampaň',
-        'community_vote'    => 'Hlasovanie komunity',
         'discord'           => 'Roly v Discorde',
         'feature_influence' => 'Vplyv na nové funkcie',
         'file_size'         => ':size Veľkosť nahrávaných súborov',
@@ -21,7 +20,6 @@ return [
         'nice_image'        => 'Štandardné obrázky objektov',
         'no_ads'            => 'Bez reklamy',
         'pagination'        => ':amount max. objektov v zoznamoch',
-        'vote_influence'    => 'Vplyv cez hlasovanie komunity',
     ],
     'periods'   => [
         'billed_monthly'    => 'účtované mesačne',

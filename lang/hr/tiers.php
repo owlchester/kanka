@@ -5,7 +5,6 @@ return [
     'features'  => [
         'api_requests'      => ':amount API zahtjeva / minuti',
         'boosters'          => 'Pojačivači kampanje',
-        'community_vote'    => 'Glasanje zajednice',
         'discord'           => 'Discord uloge',
         'feature_influence' => 'Utjecaj na nove funkcionalosti',
         'file_size'         => ':size veličina učitane datoteke',
@@ -14,7 +13,6 @@ return [
         'nice_image'        => 'Zadane slike entiteta',
         'no_ads'            => 'Bez reklama',
         'pagination'        => ':amount maksimalna paginacija rezultata',
-        'vote_influence'    => 'Utjecaj na glasanje zajednice',
     ],
     'pricing'   => ':currency :amount / mjesec',
 ];

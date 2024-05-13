@@ -13,8 +13,7 @@ return [
         'date'  => 'Dátum',
     ],
     'helpers'       => [
-        'date'              => 'Toto pole môže obsahovať čokoľvek a nie je prepojené s kalendármi kampane. Na zobrazenie tejto udalosti v kalendári je nutné ju pridať do kalendára alebo do karty Pripomienky tejto udalosti.',
-        'nested_without'    => 'Zobraziť všetky udalosti, ktoré nemajú nadradenú udalosť. Kliknutím na riadok zobrazíš podradené udalosti.',
+        'date'  => 'Toto pole môže obsahovať čokoľvek a nie je prepojené s kalendármi kampane. Na zobrazenie tejto udalosti v kalendári je nutné ju pridať do kalendára alebo do karty Pripomienky tejto udalosti.',
     ],
     'index'         => [],
     'placeholders'  => [

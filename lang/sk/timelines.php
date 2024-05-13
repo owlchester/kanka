@@ -18,9 +18,8 @@ return [
         'reverse_order' => 'Otočiť poradie období',
     ],
     'helpers'       => [
-        'nested_without'    => 'Zobrazujú sa všetky časové osy, ktoré nemajú nadradenú časovú os. Kliknutím na riadok zobrazíš podradené časové osy.',
-        'no_era_v2'         => 'Táto časová os aktuálne nemá žiadne obdobia. Pridaj do nej jedno alebo viacero období, potom budeš do nich môcť pridať ďalšie privky.',
-        'reverse_order'     => 'Aktivovaním zobrazíš obdobia v spätnom chronologickom poradí (najstaršie obdobie ako prvé).',
+        'no_era_v2'     => 'Táto časová os aktuálne nemá žiadne obdobia. Pridaj do nej jedno alebo viacero období, potom budeš do nich môcť pridať ďalšie privky.',
+        'reverse_order' => 'Aktivovaním zobrazíš obdobia v spätnom chronologickom poradí (najstaršie obdobie ako prvé).',
     ],
     'index'         => [],
     'placeholders'  => [

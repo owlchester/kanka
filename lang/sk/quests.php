@@ -33,8 +33,7 @@ return [
         'role'          => 'Rola',
     ],
     'helpers'       => [
-        'is_completed'      => 'Zaškrtni, ak je daná úloha považovaná za splnenú.',
-        'nested_without'    => 'Zobraziť všetky úlohy, ktoré nemajú nadradenú úlohu. Kliknutím na riadok zobrazíš podradené úlohy.',
+        'is_completed'  => 'Zaškrtni, ak je daná úloha považovaná za splnenú.',
     ],
     'hints'         => [
         'quests'    => 'Sieť prepojených úloh je možné vytvoriť cez nadradenú úlohu.',

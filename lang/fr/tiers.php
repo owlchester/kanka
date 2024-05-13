@@ -12,7 +12,6 @@ return [
     'features'  => [
         'api_requests'      => ':amount requêtes API / min',
         'boosters'          => 'Boosters de campagne',
-        'community_vote'    => 'Vote Communautaire',
         'discord'           => 'Rôles Discord',
         'feature_influence' => 'Influence sur les nouvelles fonctionnalités',
         'file_size'         => ':size taille de fichier uploadé',
@@ -22,7 +21,6 @@ return [
         'no_ads'            => 'Pas de publicité',
         'pagination'        => ':amount résultats max paginés',
         'roadmap'           => 'Voter sur les idées dans la feuille de route.',
-        'vote_influence'    => 'Influence sur les votes communautaires',
     ],
     'periods'   => [
         'billed_monthly'    => 'facturé mensuellement',

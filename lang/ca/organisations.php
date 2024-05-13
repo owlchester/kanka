@@ -9,10 +9,7 @@ return [
     'fields'        => [
         'members'   => 'Membres',
     ],
-    'helpers'       => [
-        'descendants'       => 'Aquí es mostren totes les organitzacions que descendeixen d\'aquesta organització, no només les directament inferiors.',
-        'nested_without'    => 'S\'estan mostrant les organitzacions sense pare. Feu clic a la fila d\'una organització per a mostrar-ne les descendents.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'actions'       => [

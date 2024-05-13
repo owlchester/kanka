@@ -8,9 +8,7 @@ return [
     'fields'        => [
         'is_extinct'    => 'Vyhynuté',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Zobrazujú sa všetky bytosti, ktoré nemajú nadradenú bytosť. Kliknutím na riadok zobrazíte podradené bytosti.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_extinct'    => 'Táto bytosť vyhynula.',
     ],

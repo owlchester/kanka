@@ -97,7 +97,6 @@ return [
         'default_layout'    => 'Seleziona il layout che il calendario usa in modo predefinito quando visualizzato.',
         'month_type'        => 'I mesi intercalari non utilizzano i giorni della settimana, ma influenzano comunque le fasi lunari e le stagioni.',
         'moon_offset'       => 'Per impostazione predefinita, la prima luna piena appare il primo giorno dell\'anno 0. Cambiando il ritardo si modifica il momento in cui viene visualizzata la prima luna piena. Questo valore può essere negativo (fino alla lunghezza del primo mese) o positivo (fino alla lunghezza del primo mese).',
-        'nested_without'    => 'Visualizzazione dei calendari che non hanno un calendario sovraordinato. Clicca su un file per vedere i sottocalendari.',
         'start_offset'      => 'Per impostazione predefinita, il calendario inizia col primo giorno della settimana dell\'anno 0. Cambiare questo campo influenzerà la collocazione del primo giorno del calendario.',
     ],
     'hints'         => [

@@ -58,7 +58,6 @@ TEXT
         'image'                             => 'Imaxe',
         'locale'                            => 'Lingua',
         'name'                              => 'Nome',
-        'nested'                            => 'Mostrar as listaxes de entidades en árbore, cando sexa posible',
         'open'                              => 'Aberta a solicitudes',
         'past_featured'                     => 'Campaña destacada previamente',
         'post_collapsed'                    => 'As novas entradas nas entidades estarán colapsadas por defecto.',
@@ -415,7 +414,6 @@ TEXT
             'entity_history'    => 'Historial de cambios da entidade',
             'entity_image'      => 'Imaxe da entidade',
             'member_list'       => 'Lista de integrantes da campaña',
-            'nested'            => 'Disposición por defecto das listas',
             'post_collapsed'    => 'Valor de colapsada/expandida por defecto das novas entradas.',
         ],
         'helpers'           => [
@@ -428,9 +426,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Só visible para a administración da campaña',
             'visible'   => 'Visible a integrantes da campaña',
-        ],
-        'nested'            => [
-            'nested'    => 'En árbore',
         ],
         'other'             => 'Miscelánea',
     ],

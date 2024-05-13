@@ -11,7 +11,6 @@ return [
     'features'  => [
         'api_requests'      => ':amount solicitudes API / minuto',
         'boosters'          => 'Potenciadores de campaña',
-        'community_vote'    => 'Votacións da comunidade',
         'discord'           => 'Roles de Discord',
         'feature_influence' => 'Influencia sobre novas funcionalidades',
         'file_size'         => 'Subir ficheiros de ata :size',
@@ -20,7 +19,6 @@ return [
         'nice_image'        => 'Imaxes por defecto nas entidades',
         'no_ads'            => 'Sen anuncios',
         'pagination'        => 'Máximo de :amount entidades mostradas por páxina',
-        'vote_influence'    => 'Influencia nas votacións da comunidade',
     ],
     'periods'   => [
         'monthly'   => 'Mensual',

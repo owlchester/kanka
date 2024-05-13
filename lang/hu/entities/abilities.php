@@ -2,10 +2,8 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Adj hozzá egy képességet',
-        'import_from_race'          => 'Faji képesség hozzáadása',
-        'import_from_race_mobile'   => 'Faji képességek',
-        'reset'                     => 'Aktiválások számának visszaállítása',
+        'add'   => 'Adj hozzá egy képességet',
+        'reset' => 'Aktiválások számának visszaállítása',
     ],
     'create'    => [
         'success'           => ':ability képesség hozzáadva a következő entitáshoz: :entity',

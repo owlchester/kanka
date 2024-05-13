@@ -51,7 +51,6 @@ TEXT
         'image'                             => 'Imatge',
         'locale'                            => 'Idioma',
         'name'                              => 'Nom',
-        'nested'                            => 'Llistes niuades per defecte si estan disponibles',
         'open'                              => 'Oberta a sol·licituds',
         'post_collapsed'                    => 'Col·lapsa per defecte les anotacions noves de les entitats.',
         'public'                            => 'Visibilitat de la campanya',
@@ -372,7 +371,6 @@ TEXT
             'entity_history'    => 'Registre històric de l\'entitat',
             'entity_image'      => 'Imatge de l\'entitat',
             'member_list'       => 'Llista de membres de la campanya',
-            'nested'            => 'Disposició per defecte de les llistes',
             'post_collapsed'    => 'Col·lapsar/expandir les noves anotacions d\'entitat',
         ],
         'helpers'           => [
@@ -384,9 +382,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Només visible per a administradors',
             'visible'   => 'Visible per a membres',
-        ],
-        'nested'            => [
-            'nested'    => 'Niuada',
         ],
         'other'             => 'Altres',
     ],

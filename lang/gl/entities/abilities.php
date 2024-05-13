@@ -2,10 +2,8 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Engadir habilidades',
-        'import_from_race'          => 'Engadir habilidades de raza',
-        'import_from_race_mobile'   => 'Habilidades raciais',
-        'reset'                     => 'Restablecer número de usos de habilidade',
+        'add'   => 'Engadir habilidades',
+        'reset' => 'Restablecer número de usos de habilidade',
     ],
     'create'    => [
         'success'           => 'Habilidade ":ability" engadida a ":entity".',

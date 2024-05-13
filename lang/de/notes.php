@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'notes' => 'untergeordnete Notiz',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Anzeigen aller Notizen ohne übergeordnete Notiz. Klicken Sie auf eine Zeile, um die untergeordneten Notizen anzuzeigen.',
-    ],
+    'helpers'       => [],
     'hints'         => [],
     'index'         => [],
     'placeholders'  => [

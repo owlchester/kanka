@@ -27,7 +27,6 @@ return [
     'fields'            => [
         'campaign-order'        => 'Ordine dell\'elenco delle campagne',
         'date-format'           => 'Formato della data',
-        'default-nested'        => 'Layout degli elenchi annidati',
         'editor'                => 'Editor di testo',
         'entity-explore'        => 'Liste di Entità',
         'mentions'              => 'Menzioni mentre modifichi',
@@ -39,7 +38,6 @@ return [
         'advanced-mentions'     => 'Quando modifichi i testi, puoi controllare se le menzioni vengono rese come nome dell\'entità o come menzione avanzata.',
         'campaign-order'        => 'Modificare l\'ordine in cui le campagne sono elencate nel selettore di campagne.',
         'date-format'           => 'Se disponibile, controlla il formato in cui vengono visualizzate le date del mondo reale.',
-        'default-nested'        => 'Controlla la visualizzazione predefinita degli elenchi che supportano la nidificazione.',
         'editor'                => 'L\'uso dell\'editor di testo tradizionale (TinyMCE) non supporta le menzioni sui dispositivi mobili, le gallerie di campagne o altre funzioni avanzate.',
         'entity-explore'        => 'Controlla il modo in cui gli elenchi di entità vengono visualizzati nelle campagne.',
         'new-entity-workflow'   => 'Controlla l\'interfaccia a cui si accede dopo la creazione di una nuova entità.',
@@ -51,10 +49,7 @@ return [
         'advanced'  => 'Visualizza menzioni avanzate :code',
         'default'   => 'Menzioni come nome dell\'entità',
     ],
-    'nested'            => [
-        'default'   => 'Elenchi piani',
-        'nested'    => 'Elenchi annidati',
-    ],
+    'nested'            => [],
     'success'           => 'Opzioni di aspetto salvati',
     'values'            => [
         'pagination'        => ':amount risultati per pagina',

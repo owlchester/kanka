@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'members'   => 'Miembros',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Mostrando todas las razas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'create'    => [

@@ -13,9 +13,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [],
-    'helpers'       => [
-        'nested_without'    => 'Mostrando todas as razas que non teñen unha raza nai. Fai clic nunha fila para ver as súas subrazas.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'type'  => 'Humana, fada, borg...',

@@ -61,7 +61,6 @@ TEXT
         'is_discreet'                       => 'Discrète',
         'locale'                            => 'Langue',
         'name'                              => 'Nom',
-        'nested'                            => 'Afficher les listes d\'entités de manière imbriquée par défaut',
         'open'                              => 'Ouvert aux applications',
         'past_featured'                     => 'Campagne précédemment vedette',
         'post_collapsed'                    => 'Les nouveaux articles sur les entités sont minimisés par défaut.',
@@ -459,7 +458,6 @@ TEXT
             'entity_history'    => 'Historique d\'une entité',
             'entity_image'      => 'Image d\'une entité',
             'member_list'       => 'Liste des membres de la campagne',
-            'nested'            => 'Listes d\'entités',
             'post_collapsed'    => 'Affichage par défaut de nouvelle entrées',
         ],
         'helpers'           => [
@@ -475,10 +473,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Seulement visible aux admins de la campagne',
             'visible'   => 'Visible aux membres',
-        ],
-        'nested'            => [
-            'nested'    => 'Vue imbriquée',
-            'user'      => 'Défaut de l\'utilisateur',
         ],
         'other'             => 'Autre',
     ],

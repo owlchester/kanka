@@ -12,7 +12,6 @@ return [
         'dashboard'     => 'Főoldal',
         'entity'        => 'Entitás',
         'filters'       => 'Szűrők',
-        'is_nested'     => 'Beágyazott',
         'menu'          => 'Menü',
         'position'      => 'Elhelyezés',
         'random'        => 'Véletlenszerű',

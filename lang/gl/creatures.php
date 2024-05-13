@@ -6,9 +6,7 @@ return [
     ],
     'creatures'     => [],
     'fields'        => [],
-    'helpers'       => [
-        'nested_without'    => 'Mostrando todas as criaturas que non teñen unha criatura nai. Fai clic nunha fila para ver as súas subcriaturas.',
-    ],
+    'helpers'       => [],
     'placeholders'  => [
         'type'  => 'Hervíbora, acuática, mítica...',
     ],

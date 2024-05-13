@@ -12,9 +12,7 @@ return [
         'price'         => 'Precio',
         'size'          => 'Tamaño',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Mostrar todos los ítems que no tienen un ítem padre. Haz clic en una fila para ver los ítems hijos.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'items' => 'Organice los ítems utilizando el campo del ítem padre.',
     ],

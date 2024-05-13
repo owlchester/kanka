@@ -11,9 +11,7 @@ return [
     'families'      => [],
     'fields'        => [],
     'helpers'       => [
-        'characters'        => 'Sieh alle Charaktere in diesem Ort und den Unterorten an oder nur die direkt im Ort.',
-        'descendants'       => 'Diese Liste enthält alle Orte, die direkt in diesem Ort und allen untergeordneten Orten sind.',
-        'nested_without'    => 'Anzeigen aller Standorte ohne übergeordneten Standort. Klicken Sie auf eine Zeile, um die untergeordneten Standorte anzuzeigen.',
+        'characters'    => 'Sieh alle Charaktere in diesem Ort und den Unterorten an oder nur die direkt im Ort.',
     ],
     'hints'         => [],
     'index'         => [],

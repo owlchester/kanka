@@ -33,8 +33,7 @@ return [
         'role'          => 'Rola',
     ],
     'helpers'       => [
-        'is_completed'      => 'Wybierz, jeżeli zadanie można uznać za ukończone.',
-        'nested_without'    => 'Wyświetlono wszystkie zadnia nieposiadające źródła. Kliknij na rząd, by wyświetlić zadania pochodne.',
+        'is_completed'  => 'Wybierz, jeżeli zadanie można uznać za ukończone.',
     ],
     'hints'         => [
         'quests'    => 'Przy użyciu pola Zadania źródłowego można stworzyć sieć zazębiających się zadań.',

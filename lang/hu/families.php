@@ -10,10 +10,7 @@ return [
     'fields'        => [
         'members'   => 'Tagok',
     ],
-    'helpers'       => [
-        'descendants'       => 'Ez a lista a család minden leszármazott családját tartalmazza, nem csak a közvetlenül alatta levőket.',
-        'nested_without'    => 'Megmutat minden családot, amelynek nincs szülőcsaládja. Klikkelj egy sorra, hogy meglásd a gyermekcsaládokat.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'members'   => 'Ez a lista a család tagjait tartalmazza. Ha hozzá akarsz adni egy karaktert, nyisd meg a kívánt karaktert szerkesztésre, és használd a "Család" legördülő menüt.',
     ],

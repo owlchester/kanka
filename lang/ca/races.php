@@ -13,9 +13,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [],
-    'helpers'       => [
-        'nested_without'    => 'S\'estan mostrant les races sense pare. Feu clic a la fila d\'una raça per a mostrar-ne les descendents.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'type'  => 'Humà, elf, follet...',
