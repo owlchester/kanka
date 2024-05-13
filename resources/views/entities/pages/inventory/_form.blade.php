@@ -6,6 +6,9 @@ $preset = null;
 if (isset($inventory) && $inventory->image_uuid) {
     $preset = $inventory->image;
 }
+if (isset($inventory)) {
+    $positionPreset = $inventory->position;
+}
 @endphp
 <x-grid>
     <input type="hidden" name="item_id" value="" />
@@ -42,19 +45,10 @@ if (isset($inventory) && $inventory->image_uuid) {
     <x-forms.field
         field="position"
         :label="__('entities/inventories.fields.position')">
-        {!! Form::text('position', null, [
-            'placeholder' => __('entities/inventories.placeholders.position'),
-            'class' => '',
-            'maxlength' => 191,
-            'list' => 'position-list',
-            'autocomplete' => 'off'
+        {!! Form::select('position', $positionOptions, $positionPreset, [
+            'data-placeholder' => __('entities/inventories.placeholders.position'),
+            'class' => 'position-dropdown',
         ]) !!}
-
-        <datalist id="position-list">
-            @foreach (\App\Models\Inventory::positionList($campaign)->pluck('position')->all() as $name)
-                <option value="{{ e($name) }}">{{ e($name) }}</option>
-            @endforeach
-        </datalist>
     </x-forms.field>
 
     <x-forms.field field="description" css="col-span-2" :label="__('entities/inventories.fields.description')">

@@ -66,6 +66,30 @@ $(document).ready(function() {
                 },
             });
         });
+        $.each($('.position-dropdown'), function () {
+            if ($(this).hasClass("select2-hidden-accessible")) {
+                return;
+            }
+            $(this).select2({
+                tags: true,
+                allowClear: true,
+                dropdownParent: $(this).data('dropdown-parent') || '',
+                placeholder: $(this).data('placeholder'),
+                minimumInputLength: 0,
+                createTag: function (params) {
+                    let term = $.trim(params.term);
+        
+                    if (term === '') {
+                        return null;
+                    }
+                    return {
+                        id: term,
+                        text: term,
+                        newTag: true // add additional parameters
+                    };
+                },
+            });
+        });
     };
 
     window.initTags();

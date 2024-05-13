@@ -62,10 +62,17 @@ class InventoryController extends Controller
     public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
-
+        $positionPreset = request()->get('position');
+        $positionOptions = ['' => ''];
+        $positions = Inventory::positionList($campaign)->pluck('position')->all();
+        foreach ($positions as $position) {
+            $positionOptions[$position] = $position;
+        }
         return view('entities.pages.inventory.create', compact(
             'campaign',
             'entity',
+            'positionPreset',
+            'positionOptions',
         ));
     }
 
@@ -123,11 +130,17 @@ class InventoryController extends Controller
     public function edit(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->authorize('update', $entity->child);
+        $positionOptions = ['' => ''];
+        $positions = Inventory::positionList($campaign)->pluck('position')->all();
+        foreach ($positions as $position) {
+            $positionOptions[$position] = $position;
+        }
 
         return view('entities.pages.inventory.update', compact(
             'campaign',
             'entity',
             'inventory',
+            'positionOptions'
         ));
     }
 

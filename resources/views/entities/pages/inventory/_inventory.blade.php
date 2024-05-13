@@ -27,6 +27,13 @@
             <tr class="active cursor-pointer" data-animate="collapse" data-target=".inventory-group-{{ $posCount }}">
                 <th colspan="@if (auth()->check())5 @else 4 @endif" class="text-neutral-content text-left">
                     {!! $item->position ?: '<i>' . __('entities/inventories.show.unsorted') . '</i>' !!}
+
+                    <a href="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $item->position]) }}"
+                        data-toggle="dialog" data-target="inventory-dialog"
+                        data-url="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $item->position]) }}"
+                    >
+                        <x-icon class="plus"></x-icon>
+                    </a>
                 </th>
             </tr>
             <?php $previousPosition = $item->position; ?>
