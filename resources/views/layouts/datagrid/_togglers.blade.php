@@ -7,7 +7,7 @@
         <div class="dropdown-menu hidden" role="menu" id="toggler-submenu">
             @foreach ($model->datagridSortableColumns() as $field => $translation)
                 @php
-                    $options = [$campaign, 'order' => $field];
+                    $options = [$campaign, 'order' => $field, 'bookmark' => request()->get('bookmark')];
                     $icon = null;
                     if (request()->get('order') === $field) {
                         if (request()->get('desc') === '1') {
@@ -29,12 +29,12 @@
 
 @if (empty($forceMode))
     @if (!isset($mode) || $mode === 'grid')
-        <a class="btn2 " href="{{ route($name . '.' . $route, [$campaign, 'm' => 'table']) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.table') }}">
+        <a class="btn2 " href="{{ route($name . '.' . $route, [$campaign, 'm' => 'table', 'bookmark' => request()->get('bookmark')]) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.table') }}">
             <x-icon class="fa-solid fa-list-ul" />
             <span class="sr-only">{{ __('datagrids.modes.table') }}</span>
         </a>
     @else
-        <a class="btn2" href="{{ route($name . '.' . $route, [$campaign, 'm' => 'grid']) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.grid') }}">
+        <a class="btn2" href="{{ route($name . '.' . $route, [$campaign, 'm' => 'grid', 'bookmark' => request()->get('bookmark')]) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.grid') }}">
             <x-icon class="fa-solid fa-grid" />
             <span class="sr-only">{{ __('datagrids.modes.grid') }}</span>
         </a>
@@ -43,12 +43,12 @@
 
 @if (isset($nestable) && empty($forceMode))
     @if ($nestable)
-        <a class="btn2" href="{{ route($name . '.' . $route, [$campaign, 'n' => false]) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.flatten') }}">
+        <a class="btn2" href="{{ route($name . '.' . $route, [$campaign, 'n' => false, 'bookmark' => request()->get('bookmark')]) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.flatten') }}">
             <x-icon class="fa-solid fa-boxes-stacked" />
             <span class="sr-only">{{ __('datagrids.modes.flatten') }}</span>
         </a>
     @else
-        <a class="btn2" href="{{ route($name . '.' . $route, [$campaign, 'n' => true]) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.nested') }}">
+        <a class="btn2" href="{{ route($name . '.' . $route, [$campaign, 'n' => true, 'bookmark' => request()->get('bookmark')]) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.nested') }}">
             <x-icon class="fa-solid fa-layer-group" />
             <span class="sr-only">{{ __('datagrids.modes.nested') }}</span>
         </a>

@@ -25,6 +25,7 @@ class DatagridRenderer
 
     protected string $hidden = ' hidden lg:table-cell';
     protected array $columns = [];
+    protected null|int $bookmark = null;
 
     protected LengthAwarePaginator|Collection|array $data = [];
 
@@ -56,6 +57,12 @@ class DatagridRenderer
     public function options(array $options): self
     {
         $this->options = $options;
+        return $this;
+    }
+
+    public function bookmark(int $bookmark): self
+    {
+        $this->bookmark = $bookmark;
         return $this;
     }
 
@@ -246,7 +253,8 @@ class DatagridRenderer
         $routeOptions = [
             'campaign' => $this->campaign,
             'order' => $field ,
-            'page' => request()->get('page')
+            'page' => request()->get('page'),
+            'bookmark' => $this->bookmark
         ];
         if (request()->get('_from', false) == 'quicklink') {
             $routeOptions['_from'] = 'quicklink';
