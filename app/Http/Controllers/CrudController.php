@@ -252,10 +252,16 @@ class CrudController extends Controller
                 $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
             }
             // If its a bookmark, override everything else
-            if ($request->get('bookmark')) {
-                $bookmark = Bookmark::where('campaign_id', $campaign->id)->where('id', $request->get('bookmark'))->first();
-                $this->datagrid->bookmark($bookmark->id);
+            if ($request->has('bookmark')) {
+                $bookmark = Bookmark::where('id', $request->get('bookmark'))->first();
+                $this->datagrid->bookmark($bookmark);
+                $data['bookmark'] = $bookmark;
                 $data['titleKey'] = $bookmark->name;
+            }
+
+            if ($request->has('order')) {
+                $data['order'] = $request->get('order');
+                $data['desc'] = $request->get('desc');
             }
         }
 
