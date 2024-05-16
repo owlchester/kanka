@@ -251,7 +251,22 @@ class CrudController extends Controller
             if (empty($data['titleKey'])) {
                 $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
             }
+            // If its a bookmark, override everything else
+            if ($request->has('bookmark')) {
+                $bookmark = Bookmark::where('id', $request->get('bookmark'))->first();
+                if ($bookmark) {
+                    $this->datagrid->bookmark($bookmark);
+                    $data['bookmark'] = $bookmark;
+                    $data['titleKey'] = $bookmark->name;
+                }
+            }
+
+            if ($request->has('order')) {
+                $data['order'] = $request->get('order');
+                $data['desc'] = $request->get('desc');
+            }
         }
+
         if (method_exists($model, 'getParentKeyName')) {
             $data['nestable'] = $nested;
         }

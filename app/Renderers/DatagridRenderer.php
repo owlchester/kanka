@@ -5,6 +5,7 @@ namespace App\Renderers;
 use App\Facades\Avatar;
 use App\Facades\Module;
 use App\Facades\UserCache;
+use App\Models\Bookmark;
 use App\Models\Entity;
 use App\Models\Journal;
 use App\Models\Location;
@@ -25,6 +26,7 @@ class DatagridRenderer
 
     protected string $hidden = ' hidden lg:table-cell';
     protected array $columns = [];
+    protected Bookmark $bookmark;
 
     protected LengthAwarePaginator|Collection|array $data = [];
 
@@ -56,6 +58,12 @@ class DatagridRenderer
     public function options(array $options): self
     {
         $this->options = $options;
+        return $this;
+    }
+
+    public function bookmark(Bookmark $bookmark): self
+    {
+        $this->bookmark = $bookmark;
         return $this;
     }
 
@@ -246,8 +254,13 @@ class DatagridRenderer
         $routeOptions = [
             'campaign' => $this->campaign,
             'order' => $field ,
-            'page' => request()->get('page')
+            'page' => request()->get('page'),
         ];
+
+        if (isset($this->bookmark)) {
+            $routeOptions['bookmark'] = $this->bookmark;
+        }
+
         if (request()->get('_from', false) == 'quicklink') {
             $routeOptions['_from'] = 'quicklink';
         }
