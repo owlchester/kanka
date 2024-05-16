@@ -12,7 +12,7 @@
         style="width: 100%"
         data-url="{{ route('tags.find', $campaign) }}"
         data-allow-new="{{ $allowNew ? 'true' : 'false' }}"
-        data-placeholder=""
+        data-placeholder="{{ __('crud.placeholders.multiple') }}"
         @if ($allowClear) data-allow-clear="true" @endif
         data-new-tag="{{ __('tags.create.title') }}"
         @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
