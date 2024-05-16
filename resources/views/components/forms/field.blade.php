@@ -18,7 +18,8 @@
     @endif
     {!! $slot !!}
     @if (isset($helper) && !empty($helper))
-        <p class="m-0 text-neutral-content @if ($tooltip) md:hidden @endif">
+        <p class="m-0 text-neutral-content text-xs @if ($tooltip) md:hidden @endif">
+            <x-icon class="fa-regular fa-circle-info" />
             {!! $helper !!}
             @if (isset($link))
                 <a href="{{ $link }}" target="_blank">

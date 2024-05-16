@@ -478,4 +478,21 @@ class Entity extends Model
         }
         return $data;
     }
+
+    /**
+     * List of inventory items, group by alphabetical position
+     */
+    public function orderedInventory(): array
+    {
+        $inventory = [];
+        foreach ($this->inventories as $item) {
+            if ($item->item_id && empty($item->item)) {
+                continue;
+            }
+            $position = $item->position ?: __('entities/inventories.default_position');
+            $inventory[$position][] = $item;
+        }
+
+        return $inventory;
+    }
 }

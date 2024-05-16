@@ -14,8 +14,7 @@ class InventoryController extends Controller
 {
     use GuestAuthTrait;
 
-    /** @var string[]  */
-    protected $fillable = [
+    protected array $fillable = [
         'amount',
         'name',
         'item_id',

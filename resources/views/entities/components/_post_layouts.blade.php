@@ -39,7 +39,7 @@
                     return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
                 });
         @endphp
-        @include('entities.pages.inventory._table', ['inventory' => $inventory, 'isPost' => true, 'entity' => $entity, 'ajax' => null])
+        @include('entities.pages.inventory._grid', ['inventory' => $inventory, 'isPost' => true, 'entity' => $entity, 'ajax' => null])
     @elseif ($post->layout?->code == 'attributes')
         <x-box css="box-entity-attributes">
             @include('entities.pages.attributes.render', ['isPost' => true])
