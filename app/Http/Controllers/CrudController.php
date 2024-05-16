@@ -254,9 +254,11 @@ class CrudController extends Controller
             // If its a bookmark, override everything else
             if ($request->has('bookmark')) {
                 $bookmark = Bookmark::where('id', $request->get('bookmark'))->first();
-                $this->datagrid->bookmark($bookmark);
-                $data['bookmark'] = $bookmark;
-                $data['titleKey'] = $bookmark->name;
+                if ($bookmark) {
+                    $this->datagrid->bookmark($bookmark);
+                    $data['bookmark'] = $bookmark;
+                    $data['titleKey'] = $bookmark->name;
+                }
             }
 
             if ($request->has('order')) {
