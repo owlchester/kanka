@@ -15,19 +15,19 @@
 
 <x-forms.foreign
     :campaign="$campaign"
-    :name="$multiple ? 'item_id[]' : 'item_id'"
-    :key="$multiple ? 'items' : 'item'"
+    :name="isset($multiple) && $multiple ? 'item_id[]' : 'item_id'"
+    :key="isset($multiple) && $multiple ? 'items' : 'item'"
     entityType="items"
     :required="$required ?? false"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :placeholder="$multiple ? __('crud.placeholders.multiple') : null"
+    :placeholder="isset($multiple) && $multiple ? __('crud.placeholders.multiple') : null"
     :route="route('items.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Item::class"
     :selected="$preset"
     :helper="$helper ?? null"
-    :multiple="$multiple"
+    :multiple="isset($multiple) ? $multiple : false"
     :dropdownParent="$dropdownParent ?? null"
     :entityTypeID="config('entities.ids.item')">
 </x-forms.foreign>

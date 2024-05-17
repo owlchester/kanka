@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Class Inventory
@@ -45,33 +47,25 @@ class Inventory extends Model
         'image_uuid',
     ];
 
-    /**
-     */
-    public function entity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity');
     }
 
-    /**
-     */
-    public function item(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function item(): BelongsTo
     {
         return $this->belongsTo('App\Models\Item');
     }
 
     /**
      * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function image()
+    public function image(): HasOne
     {
         return $this->hasOne('App\Models\Image', 'id', 'image_uuid');
     }
@@ -91,6 +85,7 @@ class Inventory extends Model
     }
 
     /**
+     * Get the item name, either custom or attached object
      */
     public function itemName(): string
     {
@@ -103,7 +98,7 @@ class Inventory extends Model
     /**
      * Copy an entity inventory to another target
      */
-    public function copyTo(Entity $target)
+    public function copyTo(Entity $target): bool
     {
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;

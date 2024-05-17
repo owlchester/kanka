@@ -22,7 +22,9 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Collator;
 
 /**
  * Class Entity
@@ -477,5 +479,37 @@ class Entity extends Model
             }
         }
         return $data;
+    }
+
+    /**
+     * List of inventory items, group by alphabetical position
+     */
+    public function orderedInventory(): Collection
+    {
+        $inventory = [];
+        $items = $this->inventories()->with(['image', 'item', 'item.entity', 'item.entity.image'])->get();
+        foreach ($items as $item) {
+            if ($item->item_id && empty($item->item)) {
+                continue;
+            }
+            $position = $item->position ?: __('entities/inventories.default_position');
+            $inventory[$position][] = $item;
+        }
+
+        // We want the inventory ordered by position, then by item name
+        $collator = new Collator(app()->getLocale());
+        $positions = array_keys($inventory);
+        $collator->asort($positions);
+
+        $ordered = [];
+        foreach ($positions as $position) {
+            $items = new Collection($inventory[$position]);
+            $ordered[$position] = $items->sortBy(function ($model) {
+                /** @var Inventory $model */
+                return $model->itemName();
+            });
+        }
+
+        return new Collection($ordered);
     }
 }

@@ -268,9 +268,14 @@ Route::get('/w/{campaign}/entities/{entity}/logs', 'Entity\LogController@index')
 Route::get('/w/{campaign}/entities/{entity}/mentions', 'Entity\MentionController@index')->name('entities.mentions');
 
 // Inventory
-Route::get('/w/{campaign}/entities/{entity}/inventory', 'Entity\InventoryController@index')->name('entities.inventory');
-Route::post('/w/{campaign}/entities/{entity}/inventory/copy_from', 'Entity\CopyInventoryController@store')->name('entities.inventory.copy.store');
-Route::get('/w/{campaign}/entities/{entity}/inventory/copy', 'Entity\CopyInventoryController@index')->name('entities.inventory.copy');
+Route::get('/w/{campaign}/entities/{entity}/inventory', 'Entity\InventoryController@index')
+    ->name('entities.inventory');
+Route::post('/w/{campaign}/entities/{entity}/inventory/copy_from', 'Entity\CopyInventoryController@store')
+    ->name('entities.inventory.copy.store');
+Route::get('/w/{campaign}/entities/{entity}/inventory/copy', 'Entity\CopyInventoryController@index')
+    ->name('entities.inventory.copy');
+Route::get('/w/{campaign}/entities/{entity}/inventory/{inventory}/details', 'Entity\Inventory\DetailController@index')
+    ->name('entities.inventory.details');
 
 // Export
 Route::get('/w/{campaign}/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');

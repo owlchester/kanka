@@ -14,8 +14,7 @@ class InventoryController extends Controller
 {
     use GuestAuthTrait;
 
-    /** @var string[]  */
-    protected $fillable = [
+    protected array $fillable = [
         'amount',
         'name',
         'item_id',
@@ -40,13 +39,7 @@ class InventoryController extends Controller
             );
         }
 
-        $inventory = $entity
-            ->inventories()
-            ->with(['entity', 'item', 'item.entity'])
-            ->get()
-            ->sortBy(function ($model, $key) {
-                return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
-            });
+        $inventory = $entity->orderedInventory();
 
         return view('entities.pages.inventory.index', compact(
             'campaign',

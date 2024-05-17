@@ -62,6 +62,26 @@ trait VisibilityIDTrait
         return '<i class="' . rtrim($class . ' ' . $extra) . '" data-title="' . $title . '" data-toggle="tooltip" aria-hidden="true"></i>';
     }
 
+    public function visibilityName(): string
+    {
+        if ($this->visibility_id === Visibility::All->value) {
+            if ($this->skipAllIcon) {
+                return '';
+            }
+            return __('crud.visibilities.all');
+        } elseif ($this->visibility_id === Visibility::Admin->value) {
+            return __('crud.visibilities.admin');
+        } elseif ($this->visibility_id === Visibility::Self->value) {
+            return __('crud.visibilities.self');
+        } elseif ($this->visibility_id === Visibility::AdminSelf->value) {
+            return __('crud.visibilities.admin-self');
+        } elseif ($this->visibility_id === Visibility::Member->value) {
+            return __('crud.visibilities.members');
+        }
+
+        return 'Unknown';
+    }
+
     /**
      * Get a list of visibility options when editing an element
      */
