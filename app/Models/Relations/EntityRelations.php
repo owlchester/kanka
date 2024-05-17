@@ -145,7 +145,6 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function map(): HasOne
     {
