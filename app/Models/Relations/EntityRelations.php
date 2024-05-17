@@ -144,8 +144,6 @@ trait EntityRelations
         return $this->hasOne('App\Models\Location', 'id', 'entity_id');
     }
 
-    /**
-     */
     public function map(): HasOne
     {
         return $this->hasOne('App\Models\Map', 'id', 'entity_id');
