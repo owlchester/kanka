@@ -5,23 +5,15 @@
         {!! $item->visibilityIcon() !!}
     </div>
 
-    <div class="flex flex-col m-4 items-center overflow-hidden cursor-pointer" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}" data-target="primary-dialog">
-        @if ($item->item && $item->item->entity->hasImage())
-            <div class="w-24 h-24 rounded-full cover-background" style="background-image: url('{{ \App\Facades\Avatar::entity($item->item->entity)->size(192)->thumbnail() }}')" >
-            </div>
-        @else
-            <div class="w-24 h-24 rounded-full bg-base-200 flex items-center justify-center align-center">
-                <x-icon class="fa-duotone fa-gem text-6xl text-accent" />
-            </div>
-        @endif
+    <div class="flex flex-col m-4 gap-1 items-center overflow-hidden cursor-pointer" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}" data-target="primary-dialog">
+        @include('entities.pages.inventory._thumbnail')
 
-
-        <div class="flex flex-col gap-1  items-center">
-            <div class="text-xl text-accent relative">
+        <div class="flex flex-col gap-0  items-center">
+            <div class="text-xl text-accent item-amount">
                 +{!! number_format($item->amount) !!}
             </div>
 
-            <h3 class="text-lg font-extrabold item-name text-center w-full text-accent">
+            <h3 class="text-lg font-extrabold item-name text-center w-full text-accent item-name">
             @if ($item->item)
                 {!! $item->name ?: $item->item->name !!}
             @else
@@ -29,7 +21,7 @@
             @endif
             </h3>
 
-            <p class="text-xs text-neutral-content text-center mx-4 overflow-hidden cursor-pointer" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}" data-target="primary-dialog">
+            <p class="text-xs text-neutral-content text-center mx-4 overflow-hidden cursor-pointer item-description" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}" data-target="primary-dialog">
                 @if ($item->item && $item->copy_item_entry)
                     {!! \Illuminate\Support\Str::limit(strip_tags($item->item->entry()), 100) !!}
                 @else

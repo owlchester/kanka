@@ -39,13 +39,7 @@ class InventoryController extends Controller
             );
         }
 
-        $inventory = $entity
-            ->inventories()
-            ->with(['entity', 'item', 'item.entity'])
-            ->get()
-            ->sortBy(function ($model, $key) {
-                return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
-            });
+        $inventory = $entity->orderedInventory();
 
         return view('entities.pages.inventory.index', compact(
             'campaign',

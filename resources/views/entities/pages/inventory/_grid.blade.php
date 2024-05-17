@@ -1,6 +1,8 @@
-@php  /** @var \App\Models\Entity $entity
- * @var \App\Models\Inventory $item */
- $previousPosition = null; $posCount = 0;
+@php
+/**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\Inventory $item
+ */
 @endphp
 <div class="flex flex-col gap-4">
     @foreach ($entity->orderedInventory() as $position => $items)
@@ -18,7 +20,7 @@
                     @can('inventory', $entity->child)
                         <a href="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $position]) }}"
                            class="btn2 btn-default btn-sm"
-                           data-toggle="dialog" data-target="inventory-dialog"
+                           data-toggle="dialog" data-target="primary-dialog"
                            data-url="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $position]) }}"
                         >
                             <x-icon class="plus"></x-icon>

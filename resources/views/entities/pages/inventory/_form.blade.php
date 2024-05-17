@@ -33,7 +33,7 @@ if (isset($inventory)) {
     @include('cruds.fields.item', [
         'preset' => (!empty($inventory) && $inventory->item ? $inventory->item: false),
         'allowNew' => false,
-        'dropdownParent' => request()->ajax() ? '#inventory-dialog' : null,
+        'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
         'required' => true,
         'multiple' => isset($multiple),
     ])
