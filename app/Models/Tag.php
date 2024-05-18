@@ -48,7 +48,7 @@ class Tag extends MiscModel
      */
     protected string $entityType = 'tag';
 
-    protected $explicitFilters = ['tag_id'];
+    protected array $explicitFilters = ['tag_id'];
 
     protected array $sortable = [
         'name',

@@ -81,7 +81,7 @@
                         @endif
                     @endforeach
                     @if (!$campaign->superboosted())
-                    <tr id="log-cta" class="collapse">
+                    <tr id="log-cta" class="hidden">
                         <td colspan="4">
                                 <x-helper>{!! __('entities/logs.call-to-action', [
 'amount' => config('entities.logs'),

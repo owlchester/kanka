@@ -16,6 +16,7 @@ use App\Models\Scopes\SubEntityScopes;
 use App\Traits\SourceCopiable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Exception;
@@ -51,26 +52,22 @@ abstract class MiscModel extends Model
     use Paginatable;
     use Scout;
     use Searchable;
-    //Tooltip,
     use Sortable;
     use SourceCopiable;
     use SubEntityScopes;
 
 
-    /** @var Entity Performance based entity */
+    /** Performance based entity */
     protected Entity $cachedEntity;
 
-    /**
-     * @var string Entity type
-     */
+    /** Entity type (character, location) */
     protected string $entityType;
 
     /**
      * Explicit fields for filtering.
      * Ex. ['sex']
-     * @var array
      */
-    protected $explicitFilters = [];
+    protected array $explicitFilters = [];
 
     /**
      * Fields that can be set to null (foreign keys)
@@ -148,7 +145,8 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * Every misc model has an attached entity
+     * @return HasOne
      */
     public function entity()
     {
@@ -158,6 +156,7 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Determine if model inheriting miscModel has an actual entity
      */
     public function hasEntity(): bool
     {
@@ -167,13 +166,13 @@ abstract class MiscModel extends Model
     /**
      * @return string|null (menu links)
      */
-    public function getEntityType()
+    public function getEntityType(): string|null
     {
         return $this->entityType;
     }
 
     /**
-     * Deterine of the model has an associated entity (bookmarks don't)
+     * Determine if the model has an associated entity type (bookmarks don't)
      */
     public function hasEntityType(): bool
     {
@@ -181,7 +180,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @param string $action = 'show'
      * @throws Exception
      */
     public function getLink(string $action = 'show'): string
@@ -216,6 +214,7 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Determine if the model has an entry text field
      */
     public function hasEntry(): bool
     {
@@ -228,6 +227,8 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Build the menu items for the model.
+     * Todo: move this to somewhere else, it doesn't need to be in the model
      */
     public function menuItems(array $items = []): array
     {
@@ -388,11 +389,11 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * @return string|null
      */
     public function getEntryForEditionAttribute()
     {
-        $text = Mentions::parseForEdit($this);
-        return $text;
+        return Mentions::parseForEdit($this);
     }
 
     /**
@@ -414,9 +415,9 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return string|null
+     * Get the entity tooltip attribute, because forms are weird (we could bypass this easily)
      */
-    public function getEntityTooltipAttribute()
+    public function getEntityTooltipAttribute(): string|null
     {
         if ($this->entity) {
             return $this->entity->tooltip;
@@ -426,9 +427,8 @@ abstract class MiscModel extends Model
 
     /**
      * Get the model's entity image uuid
-     * @return string|null
      */
-    public function getEntityImageUuidAttribute()
+    public function getEntityImageUuidAttribute(): string|null
     {
         if ($this->entity) {
             return $this->entity->image_uuid;

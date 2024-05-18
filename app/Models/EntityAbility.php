@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class EntityAbility
@@ -47,25 +48,20 @@ class EntityAbility extends Model
         'note',
     ];
 
-    /**
-     */
-    public function entity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity');
     }
 
-    /**
-     */
-    public function ability(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function ability(): BelongsTo
     {
         return $this->belongsTo('App\Models\Ability');
     }
 
     /**
      * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
     }

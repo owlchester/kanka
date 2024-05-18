@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 /**
@@ -66,9 +67,8 @@ class CampaignPermission extends Model
 
     /**
      * Optional campaign role
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function campaignRole()
+    public function campaignRole(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignRole', 'campaign_role_id', 'id');
     }
@@ -76,16 +76,15 @@ class CampaignPermission extends Model
     /**
      * Optional user
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo('App\User', 'user_id');
     }
 
     /**
      * Optional entity
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }

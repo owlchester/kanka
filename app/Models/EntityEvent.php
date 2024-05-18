@@ -7,6 +7,7 @@ use App\Models\Scopes\EntityEventScopes;
 use Exception;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\VisibilityIDTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -73,32 +74,23 @@ class EntityEvent extends MiscModel
         'comment'
     ];
 
-    /** @var int Last occurence of the reminder */
+    /** Last occurrence of the reminder */
     protected int $cachedLast;
 
-    /** @var int Next occurence of the reminder */
+    /** Next occurrence of the reminder */
     protected int $cachedNext;
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function calendar()
+    public function calendar(): BelongsTo
     {
         return $this->belongsTo(Calendar::class, 'calendar_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\Illuminate\Database\Eloquent\Relations\HasOne
-     */
     public function entity()
     {
         return $this->belongsTo(Entity::class, 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function type()
+    public function type(): BelongsTo
     {
         return $this->belongsTo(EntityEventType::class, 'type_id');
     }

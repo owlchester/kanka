@@ -108,9 +108,8 @@ class Character extends MiscModel
 
     /**
      * Explicit filters
-     * @var array
      */
-    protected $explicitFilters = [
+    protected array $explicitFilters = [
         'sex'
     ];
 
