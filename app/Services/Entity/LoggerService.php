@@ -102,6 +102,11 @@ class LoggerService
         } else {
             $this->log->changes = $this->changes;
         }
+
+        // Only save for superboosted and premium campaigns
+        if (isset($this->campaign) && !$this->campaign->superboosted()) {
+            $this->log->changes = null;
+        }
         $this->log->save();
 
         $this->dirty = false;
@@ -158,9 +163,15 @@ class LoggerService
         if (!isset($this->model)) {
             return;
         }
+        $ignoredAttributes = [
+            'slug',
+            'campaign_id',
+            'updated_at',
+            'deleted_at',
+        ];
         foreach ($this->model->getDirty() as $attribute => $value) {
             // If the model has this attribute as ignored for logs, skip it
-            if (in_array($attribute, $this->model->ignoredLogAttributes())) {
+            if (in_array($attribute, $ignoredAttributes)) {
                 continue;
             }
             // We log the old value
@@ -189,9 +200,10 @@ class LoggerService
             return;
         }
         $dirty = $this->entity->getDirty();
+        $ignoredAttributes = ['created_at', 'updated_at', 'updated_by', 'deleted_by', 'deleted_at', 'type_id'];
         foreach ($dirty as $attribute => $value) {
             // If the model has this attribute as ignored for logs, skip it
-            if (in_array($attribute, ['created_at', 'updated_at', 'updated_by', 'deleted_by', 'deleted_at', 'type_id'])) {
+            if (in_array($attribute, $ignoredAttributes)) {
                 continue;
             }
             // We log the old value

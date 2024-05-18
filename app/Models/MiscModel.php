@@ -463,20 +463,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Elements ignored in the change logs
-     * @return string[]
-     */
-    public function ignoredLogAttributes(): array
-    {
-        return [
-            'slug',
-            'campaign_id',
-            'updated_at',
-            'deleted_at',
-        ];
-    }
-
-    /**
      * Parse the entity object to the child to avoid multiple db calls
      * @return $this
      */

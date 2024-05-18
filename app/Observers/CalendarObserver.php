@@ -3,15 +3,14 @@
 namespace App\Observers;
 
 use App\Jobs\CalendarsClearElapsed;
-use App\Models\MiscModel;
+use App\Models\Calendar;
 
 class CalendarObserver extends MiscObserver
 {
-    public function updated(MiscModel $model)
+    public function saved(Calendar $calendar)
     {
-        if ($model->isDirty(['date'])) {
-            // @phpstan-ignore-next-line
-            CalendarsClearElapsed::dispatch($model);
+        if ($calendar->isDirty(['date'])) {
+            CalendarsClearElapsed::dispatch($calendar);
         }
     }
 }
