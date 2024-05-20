@@ -13,6 +13,7 @@ use App\Models\GameSystem;
 use App\Models\CampaignSetting;
 use App\Models\UserLog;
 use App\Notifications\Header;
+use App\Services\Campaign\SearchCleanupService;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use App\Services\Users\CampaignService;
@@ -157,6 +158,7 @@ class CampaignObserver
      */
     public function deleted(Campaign $campaign)
     {
+        SearchCleanupService::cleanup($campaign);
         ImageService::cleanup($campaign);
         UserCache::clear();
     }
