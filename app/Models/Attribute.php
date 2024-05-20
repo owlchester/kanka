@@ -96,7 +96,7 @@ class Attribute extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function origin()
     {
