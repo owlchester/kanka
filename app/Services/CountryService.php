@@ -5,9 +5,9 @@ namespace App\Services;
 class CountryService
 {
     /**
-     * @return string
+     * Get the user's country base on where they are making the request from
      */
-    public function getCountry()
+    public function getCountry(): string
     {
         $country = 'CH';
         if (isset($_SERVER["HTTP_CF_IPCOUNTRY"])) {
@@ -18,9 +18,9 @@ class CountryService
 
 
     /**
-     * @return string
+     * Get the user's currency based on the country they are making the request from
      */
-    public function getCurrency()
+    public function getCurrency(): string
     {
         $country = $this->getCountry();
         $currency = 'usd';

@@ -20,6 +20,7 @@ use App\Models\UserSetting;
 use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -316,6 +317,9 @@ class User extends \Illuminate\Foundation\Auth\User
         return (string) number_format(SingleUserCache::user($this)->entitiesCreatedCount());
     }
 
+    /**
+     * Determine if the user has published plugins on the marketplace
+     */
     public function hasPlugins(): bool
     {
         return config('marketplace.enabled') && $this->plugins->count();
@@ -339,7 +343,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Log an event on the user
-     * @return $this
      */
     public function log(int $type): self
     {
@@ -380,7 +383,7 @@ class User extends \Illuminate\Foundation\Auth\User
     /**
      * Check if user has 2FA.
      */
-    public function passwordSecurity()
+    public function passwordSecurity(): HasOne
     {
         return $this->hasOne('App\Models\PasswordSecurity');
     }
@@ -388,13 +391,17 @@ class User extends \Illuminate\Foundation\Auth\User
     /**
      * When auto-login is enabled, the code to check if the user needs to input their 2FA code checks for this property
      */
-    public function getGoogle2faSecretAttribute()
+    public function getGoogle2faSecretAttribute(): string|null
     {
-        return $this->passwordSecurity->google2fa_secret;
+        return $this->passwordSecurity?->google2fa_secret;
     }
 
+    /**
+     * Get the user's initial for some UI elements
+     */
     public function initials(): string
     {
+        // If the username has no spaces, use the two first letters of the name
         if (!Str::contains(' ', $this->name)) {
             return Str::limit($this->name, 2, '');
         }
@@ -513,6 +520,9 @@ class User extends \Illuminate\Foundation\Auth\User
             Str::startsWith($this->subscription('kanka')->stripe_id, 'manual_sub');
     }
 
+    /**
+     * Check if the user has a yearly subscription through stripe
+     */
     public function isStripeYearly(): bool
     {
         $prices = array_merge(
