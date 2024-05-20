@@ -31,22 +31,29 @@ class CleanupImages extends Command
     public function handle()
     {
         $directories = Storage::directories('w/');
-        $chunks = array_chunk($directories, 200);
+        $chunks = array_chunk($directories, 500);
         foreach ($chunks as $chunk) {
             $ids = [];
             foreach ($chunk as $path) {
                 $ids[] = Str::after($path, 'w/');
             }
-            $select = "SELECT id FROM campaigns WHERE id in (?)";
-            $db = DB::select($select, [implode(',', $ids)]);
-            foreach ($db as $existingId) {
-                unset($ids[array_search($existingId->id, $ids)]);
+
+            // Get ids where a left join on the campaigns table has no result
+            $select = "with u(id) as (values (" . implode('), (', $ids) . ")) " .
+                "select u.id from u " .
+                "left join campaigns as c on c.id = u.id " .
+                "where c.id is null";
+            DB::enableQueryLog();
+            $db = DB::select($select);
+            $nullCampaigns = [];
+            foreach ($db as $campaign) {
+                $nullCampaigns[] = $campaign->id;
             }
 
-            if (empty($ids)) {
+            if (empty($nullCampaigns)) {
                 continue;
             }
-            foreach ($ids as $id) {
+            foreach ($nullCampaigns as $id) {
                 if (empty($id)) {
                     continue;
                 }
