@@ -14,7 +14,7 @@ class CleanupImages extends Command
      *
      * @var string
      */
-    protected $signature = 'cleanup:images';
+    protected $signature = 'cleanup:images {folder=w}';
 
     /**
      * The console command description.
@@ -30,12 +30,13 @@ class CleanupImages extends Command
      */
     public function handle()
     {
-        $directories = Storage::directories('w/');
+        $folder = $this->argument('folder');
+        $directories = Storage::directories($folder . '/');
         $chunks = array_chunk($directories, 500);
         foreach ($chunks as $chunk) {
             $ids = [];
             foreach ($chunk as $path) {
-                $ids[] = Str::after($path, 'w/');
+                $ids[] = Str::after($path, $folder . '/');
             }
 
             // Get ids where a left join on the campaigns table has no result
@@ -57,7 +58,7 @@ class CleanupImages extends Command
                 if (empty($id)) {
                     continue;
                 }
-                Storage::deleteDirectory('w/' . $id);
+                Storage::deleteDirectory($folder . '/' . $id);
                 $this->count++;
             }
         }
