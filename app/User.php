@@ -385,6 +385,14 @@ class User extends \Illuminate\Foundation\Auth\User
         return $this->hasOne('App\Models\PasswordSecurity');
     }
 
+    /**
+     * When auto-login is enabled, the code to check if the user needs to input their 2FA code checks for this property
+     */
+    public function getGoogle2faSecretAttribute()
+    {
+        return $this->passwordSecurity->google2fa_secret;
+    }
+
     public function initials(): string
     {
         if (!Str::contains(' ', $this->name)) {
