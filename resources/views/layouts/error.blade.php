@@ -13,7 +13,6 @@
 
     <title>{{ $error }} - {{ config('app.name', 'Kanka') }}</title>
 
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
@@ -37,13 +36,11 @@
 
 <body id="page-top">
 @include('layouts.tracking.fallback')
-<!-- Custom styles for this template -->
 
 @vite('resources/sass/front.scss')
 <noscript id="deferred-styles">
 </noscript>
 
-<!-- Navigation -->
 @include('layouts.front.nav', ['minimal' => $error === 503])
 <section class="bg-purple text-white gap-16" id="error-{{ $error }}">
     <div class="px-6 py-20 lg:max-w-7xl mx-auto text-center flex flex-col gap-8">
@@ -79,7 +76,6 @@
         </div>
     @endif
 </section>
-
 
 @if ($error === 404)
     <section class="max-w-2xl mx-auto flex flex-col gap-10 lg:gap-10 py-10 lg:py-12 px-4 xl:px-0 text-dark">
