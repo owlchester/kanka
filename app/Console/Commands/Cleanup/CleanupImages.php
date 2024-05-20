@@ -44,7 +44,6 @@ class CleanupImages extends Command
                 "select u.id from u " .
                 "left join campaigns as c on c.id = u.id " .
                 "where c.id is null";
-            DB::enableQueryLog();
             $db = DB::select($select);
             $nullCampaigns = [];
             foreach ($db as $campaign) {
