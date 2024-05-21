@@ -193,12 +193,14 @@ class ExportService
         if (!$this->assets) {
             //return $this;
         }
-        if (!empty($this->campaign->image) && Storage::exists($this->campaign->image)) {
-            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image), $this->campaign->image);
+        $image = $this->campaign->image;
+        if (!empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image), $image);
             $this->files++;
         }
-        if (!empty($this->campaign->header_image) && Storage::exists($this->campaign->header_image)) {
-            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->header_image), $this->campaign->header_image);
+        $image = $this->campaign->header_image;
+        if (!empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
+            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image), $image);
             $this->files++;
         }
 
