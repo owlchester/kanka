@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $map_id
  * @property string $name
  * @property int $position
- * @property boolean $is_shown
+ * @property bool|int $is_shown
  *
  * @property Map $map
  *
@@ -38,7 +38,6 @@ class MapGroup extends Model
         'position',
     ];
 
-    /** @var string[]  */
     protected $fillable = [
         'map_id',
         'name',

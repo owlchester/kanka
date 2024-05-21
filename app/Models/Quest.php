@@ -21,7 +21,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property int|null $quest_id
  * @property int|null $character_id
  * @property int|null $instigator_id
- * @property boolean $is_completed
+ * @property bool|int $is_completed
  * @property string $date
  * @property Character|null $character
  * @property Entity|null $instigator
@@ -41,7 +41,6 @@ class Quest extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'quest_id',
@@ -61,6 +60,7 @@ class Quest extends MiscModel
         'type',
         'date',
         'is_completed',
+        'parent.name',
     ];
 
     /**
@@ -76,7 +76,6 @@ class Quest extends MiscModel
         'instigator.name',
         'is_completed',
         'calendar_date',
-        'quest.name',
     ];
 
     /**
@@ -107,6 +106,8 @@ class Quest extends MiscModel
         'date',
     ];
 
+    protected array $exploreGridFields = ['is_completed'];
+
     /**
      * Performance with for datagrids
      */
@@ -121,8 +122,12 @@ class Quest extends MiscModel
             'quests',
             'instigator',
             //'elements',
-            'quest',
-            'quest.entity',
+            'parent' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
             'quests',
             'children' => function ($sub) {
                 $sub->select('id', 'quest_id');
@@ -246,7 +251,7 @@ class Quest extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         foreach ($this->elements as $child) {
             $child->delete();

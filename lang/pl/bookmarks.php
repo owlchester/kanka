@@ -17,7 +17,6 @@ return [
         'default_dashboard' => 'Pulpit domyślny',
         'entity'            => 'Element',
         'filters'           => 'Filtry',
-        'is_nested'         => 'Hierarchia',
         'menu'              => 'Menu',
         'position'          => 'Kolejność',
         'random'            => 'Losowy',

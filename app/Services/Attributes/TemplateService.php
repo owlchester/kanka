@@ -23,32 +23,39 @@ class TemplateService
     protected array $loadedTemplates = [];
     protected array $loadedPlugins = [];
 
+    protected string $templateName;
+
     public function __construct(RandomService $randomService)
     {
         $this->randomService = $randomService;
     }
 
-    public function apply(mixed $templateId)
+    public function templateName(): string
+    {
+        return $this->templateName;
+    }
+
+    public function apply(mixed $templateId): bool
     {
         $templateIdInt = (int) $templateId;
         if (Str::isUuid($templateId)) {
-            return $this->applyMarketplaceTemplate($templateId, $this->entity);
+            return $this->applyMarketplaceTemplate($templateId);
         } elseif (is_integer($templateIdInt) && !empty($templateIdInt)) {
-            /** @var AttributeTemplate $template */
-            $template = $this->getAttributeTemplate($templateId);
-            $template->apply($this->entity);
-            return $template->name;
+            $attributeTemplate = $this->getAttributeTemplate($templateId);
+            $attributeTemplate->apply($this->entity);
+            $this->templateName = $attributeTemplate->name;
+            return true;
         }
         return false;
     }
+
     /**
      * Apply a marketplace character sheet on an entity based on its uuid.
      * @todo: move to a separate service
-     * @return false|\Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed
      */
-    public function applyMarketplaceTemplate(string $uuid, Entity $entity)
+    public function applyMarketplaceTemplate(string $uuid): bool
     {
-        $campaign = $entity->campaign;
+        $campaign = $this->entity->campaign;
         if (!$campaign->boosted()) {
             return false;
         }
@@ -58,8 +65,8 @@ class TemplateService
             return false;
         }
 
-        $order = $entity->attributes()->count();
-        $existing = array_values($entity->attributes()->pluck('name')->toArray());
+        $order = $this->entity->attributes()->count();
+        $existing = array_values($this->entity->attributes()->pluck('name')->toArray());
         foreach ($plugin->version->attributes as $attribute) {
             // If the config is simply a name, we default to a small varchar
             if (!is_array($attribute)) {
@@ -80,7 +87,7 @@ class TemplateService
             $order++;
 
             Attribute::create([
-                'entity_id' => $entity->id,
+                'entity_id' => $this->entity->id,
                 'name' => $name,
                 'value' => $value,
                 'default_order' => $order,
@@ -97,7 +104,7 @@ class TemplateService
             $order++;
 
             Attribute::create([
-                'entity_id' => $entity->id,
+                'entity_id' => $this->entity->id,
                 'name' => '_layout',
                 'value' => $plugin->version->uuid,
                 'default_order' => $order,
@@ -107,7 +114,10 @@ class TemplateService
             ]);
         }
 
-        return $plugin->plugin->name;
+        $this->entity->touch();
+        $this->templateName = $plugin->plugin->name;
+
+        return true;
     }
 
     /**
@@ -142,9 +152,8 @@ class TemplateService
 
     /**
      * Get an attribute template model from the campaign based on its ID
-     * @return AttributeTemplate
      */
-    protected function getAttributeTemplate(int $templateId)
+    protected function getAttributeTemplate(int $templateId): AttributeTemplate
     {
         if (isset($this->loadedTemplates[$templateId])) {
             return $this->loadedTemplates[$templateId];

@@ -22,9 +22,7 @@ return [
     'fields'        => [
         'charges'   => 'Ładunki',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Wyświetlono wszystkie zdolności nieposiadające źródła. Kliknij na rząd, by wyświetlić zdolności pochodne.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Liczba ładunków zdolności. Możesz wpisać wartość cechy jako {Level}*{CHA}',

@@ -5,22 +5,23 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 /**
  * Class CampaignPermission
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer $campaign_role_id
- * @property integer $campaign_id
- * @property integer $user_id
- * @property integer $entity_type_id
- * @property integer $action
+ * @property int $entity_id
+ * @property int $campaign_role_id
+ * @property int $campaign_id
+ * @property int $user_id
+ * @property int $entity_type_id
+ * @property int $action
  * @property string $key
  * @property string $table_name
  * @property bool $access
- * @property integer $misc_id
+ * @property int $misc_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
@@ -51,7 +52,6 @@ class CampaignPermission extends Model
 
     protected array $cachedSegments;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_role_id',
         'campaign_id',
@@ -67,9 +67,8 @@ class CampaignPermission extends Model
 
     /**
      * Optional campaign role
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function campaignRole()
+    public function campaignRole(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignRole', 'campaign_role_id', 'id');
     }
@@ -77,16 +76,15 @@ class CampaignPermission extends Model
     /**
      * Optional user
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo('App\User', 'user_id');
     }
 
     /**
      * Optional entity
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }

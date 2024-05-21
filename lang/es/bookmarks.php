@@ -17,7 +17,6 @@ return [
         'default_dashboard' => 'Cuadro de mandos por defecto',
         'entity'            => 'Entidad',
         'filters'           => 'Filtros',
-        'is_nested'         => 'Anidado',
         'menu'              => 'Menú',
         'position'          => 'Posición',
         'random'            => 'Aleatorio',

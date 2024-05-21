@@ -7,6 +7,7 @@ use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Services\ImageService;
 
 class ImageController extends Controller
 {
@@ -71,32 +72,18 @@ class ImageController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $oldImage = $entity->image_path;
-        $oldBoostedImage = $entity->image_uuid;
-
-        $entity->child->update(
-            []
-        );
-
-        if (request()->has('entity_image_uuid')) {
+        if ($request->has('entity_image_uuid')) {
             $entity->image_uuid = request()->get('entity_image_uuid');
         } else {
             $entity->image_uuid = null;
         }
-        $entity->save();
-
-
-        $resetFocus = false;
-        if ($oldImage != $entity->image_path || $oldBoostedImage != $request->get('entity_image_uuid')) {
-            $resetFocus = true;
-        }
-
-        // Changed the image, reset the focus
-        if ($resetFocus) {
+        ImageService::entity($entity, 'w/' . $entity->campaign_id, 'image');
+        // New image requires a focus reset
+        if ($entity->isDirty(['image_uuid', 'image_path'])) {
             $entity->focus_x = null;
             $entity->focus_y = null;
-            $entity->save();
         }
+        $entity->save();
 
         return redirect()
             ->to($entity->url())

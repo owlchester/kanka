@@ -9,10 +9,7 @@ return [
     'fields'        => [
         'members'   => 'Članovi',
     ],
-    'helpers'       => [
-        'descendants'       => 'Popis sadrži sve organizacije koje su unutar trenutne organizacije, a ne samo one koje su direktno ispod nje.',
-        'nested_without'    => 'Prikazuju se sve organizacije koje nemaju organizaciju roditelj. Klikni redak da bi vidio/la organizacije djecu.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'actions'       => [

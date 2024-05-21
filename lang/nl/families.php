@@ -10,9 +10,7 @@ return [
     'fields'        => [
         'members'   => 'Leden',
     ],
-    'helpers'       => [
-        'descendants'   => 'Deze lijst bevat alle families die afstammen van deze familie, en niet alleen de families er direct onder.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'members'   => 'Leden van een familie worden hier vermeld. Een personage kan aan een familie worden toegevoegd door het gewenste personage te bewerken en de vervolgkeuzelijst "Familie" te gebruiken.',
     ],

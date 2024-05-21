@@ -71,6 +71,14 @@ class CampaignPolicy
     }
 
     /**
+     * Determine wheter the user can manage the webhooks of the campaign.
+     */
+    public function webhooks(User $user, Campaign $campaign): bool
+    {
+        return $this->recover($user, $campaign);
+    }
+
+    /**
      * Determine whether the user can delete the campaign.
      *
      */
@@ -135,7 +143,7 @@ class CampaignPolicy
 
     public function import(User $user, Campaign $campaign): bool
     {
-        return $user->isWyvern() || $user->isElemental();
+        return $user->isWyvern() || $user->isElemental() || $user->hasRole('admin');
     }
 
     /**

@@ -16,9 +16,9 @@
     .qq-action-more {
         --tw-text-opacity: 1;
         color: hsl(var(--bc)/var(--tw-text-opacity));
+        border-bottom: 1px dotted hsl(var(--bc)/var(--tw-border-opacity));
         &:focus, &:hover {
             --tw-border-opacity: .8;
-            border-bottom: 1px dotted hsl(var(--bc)/var(--tw-border-opacity));
         }
     }
 
@@ -35,10 +35,6 @@
             }
         }
     }
-}
-
-.quick-creator-loading {
-    font-size: 3rem;
 }
 
 @media (min-width: 768px) {

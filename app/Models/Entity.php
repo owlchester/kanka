@@ -22,30 +22,32 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Collator;
 
 /**
  * Class Entity
  * @package App\Models
  *
- * @property integer $id
- * @property integer $entity_id
- * @property integer $campaign_id
+ * @property int $id
+ * @property int $entity_id
+ * @property int $campaign_id
  * @property string $name
  * @property string $type
- * @property integer $type_id
- * @property integer $created_by
- * @property integer $updated_by
- * @property boolean $is_private
- * @property boolean $is_attributes_private
+ * @property int $type_id
+ * @property int $created_by
+ * @property int $updated_by
+ * @property bool|int $is_private
+ * @property bool|int $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
  * @property string|null $image_uuid
  * @property string|null $header_uuid
- * @property boolean $is_template
+ * @property bool|int $is_template
  * @property string|null $marketplace_uuid
- * @property integer|null $focus_x
- * @property integer|null $focus_y
+ * @property int|null $focus_x
+ * @property int|null $focus_y
  * @property string|null $image_path
  *
  * @property Carbon $created_at
@@ -68,7 +70,6 @@ class Entity extends Model
     use SortableTrait;
     use TooltipTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',
@@ -240,9 +241,8 @@ class Entity extends Model
     }
 
     /**
-     * @param array|int $types
      */
-    public function isType($types): bool
+    public function isType(array|int $types): bool
     {
         if (!is_array($types)) {
             $types = [$types];
@@ -314,16 +314,12 @@ class Entity extends Model
     }
 
     /**
-     * Determine if an entity has an image that can be shown
+     * Determine if an entity has an image that can be shown. This can be either uploaded
+     * directly on them, or from the gallery
      */
     public function hasImage(bool $boosted = false): bool
     {
-        // Most basic setup, the child has an image
-        if (!empty($this->image_path)) {
-            return true;
-        }
-        // Otherwise, might have a gallery image, which needs a boosted campaign
-        return $boosted && $this->image;
+        return !empty($this->image_path) || !empty($this->image);
     }
 
     /**
@@ -483,5 +479,37 @@ class Entity extends Model
             }
         }
         return $data;
+    }
+
+    /**
+     * List of inventory items, group by alphabetical position
+     */
+    public function orderedInventory(): Collection
+    {
+        $inventory = [];
+        $items = $this->inventories()->with(['image', 'item', 'item.entity', 'item.entity.image'])->get();
+        foreach ($items as $item) {
+            if ($item->item_id && empty($item->item)) {
+                continue;
+            }
+            $position = $item->position ?: __('entities/inventories.default_position');
+            $inventory[$position][] = $item;
+        }
+
+        // We want the inventory ordered by position, then by item name
+        $collator = new Collator(app()->getLocale());
+        $positions = array_keys($inventory);
+        $collator->asort($positions);
+
+        $ordered = [];
+        foreach ($positions as $position) {
+            $items = new Collection($inventory[$position]);
+            $ordered[$position] = $items->sortBy(function ($model) {
+                /** @var Inventory $model */
+                return $model->itemName();
+            });
+        }
+
+        return new Collection($ordered);
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\EntityLogger;
 use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\MiscModel;
-use App\Models\EntityLog;
 use App\Models\OrganisationMember;
 use App\Traits\EntityAware;
 use Illuminate\Support\Str;
@@ -93,9 +93,10 @@ class TransformService
     {
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
+        $organisationID = config('entities.ids.organisation');
 
         //If the entity is switched from one location to multiple locations
-        if (!in_array($this->child->entityTypeId(), [$raceID, $creatureID]) && in_array($this->new->entityTypeId(), [$raceID, $creatureID])) {
+        if (!in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) && in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])) {
             if (in_array('location_id', $this->child->getFillable()) && !empty($this->child->location_id)) {
                 // @phpstan-ignore-next-line
                 $this->new->locations()->attach($this->child->location_id);
@@ -107,8 +108,8 @@ class TransformService
         }
 
         if (
-            !in_array($this->child->entityTypeId(), [$raceID, $creatureID]) ||
-            !in_array($this->new->entityTypeId(), [$raceID, $creatureID])
+            !in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) ||
+            !in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])
         ) {
             if (property_exists($this->child, 'locations')) {
                 // @phpstan-ignore-next-line
@@ -242,16 +243,9 @@ class TransformService
         // other related elements attached.
         $this->entity->type_id = $this->new->entityTypeID();
         $this->entity->entity_id = $this->new->id;
-        $this->entity->cleanCache()->withoutUpdateLog()->save();
+        $this->entity->cleanCache()->saveQuietly();
 
-        $log = new EntityLog();
-        $log->entity_id = $this->entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->action = EntityLog::ACTION_UPDATE;
-        if ($this->entity->campaign->superboosted()) {
-            $log->changes = ['entity_type' => $type];
-        }
-        $log->save();
+        EntityLogger::entity($this->entity)->dirty('entity_type', $type)->update();
 
         // Delete old, this will take care of pictures and stuff. We detach the
         // entity to avoid the softDelete affecting it and causing duplicate

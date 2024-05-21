@@ -13,9 +13,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [],
-    'helpers'       => [
-        'nested_without'    => 'Megmutat minden fajt, aminek nincs szülője. Klikkelj egy sorra, hogy megnézd a gyermekfajait.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'type'  => 'Ember, tündér, Borg',

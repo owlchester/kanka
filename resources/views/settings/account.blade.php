@@ -3,7 +3,6 @@
     'title' => __('settings.account.title'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
-    'noads' => true,
     'centered' => true,
 ])
 

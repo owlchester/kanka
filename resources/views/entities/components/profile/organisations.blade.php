@@ -5,7 +5,7 @@
 @endif
 
 <x-sidebar.profile>
-    @include('entities.components.profile._location')
+    @include('entities.components.profile._locations')
     @include('entities.components.profile._type')
     @include('entities.components.profile._events')
 </x-sidebar.profile>

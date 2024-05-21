@@ -28,9 +28,7 @@ return [
         'is_completed'  => 'Teljesítve',
         'role'          => 'Szerep',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Minden küldetést megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekküldetéseit.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'quests'    => 'A főküldetés és az alküldetések mezők használatával összefüggő küldetések hálóját építheted fel.',
     ],

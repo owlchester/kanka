@@ -1,4 +1,4 @@
-@subscriber()
+@if (auth()->check() && auth()->user()->hasBoosters())
     @if (isset($campaign) && !$campaign->boosted())
         @if (auth()->check() && auth()->user()->hasBoosterNomenclature())
             <p>

@@ -1,5 +1,5 @@
 <template>
-    <svg v-bind:class="iconClass()" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+    <svg v-bind:class="iconClass()" viewBox="0 -0.5 21 21"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g transform="translate(-219.000000, -200.000000)" fill="currentcolor">
                 <g id="icons" transform="translate(56.000000, 160.000000)">

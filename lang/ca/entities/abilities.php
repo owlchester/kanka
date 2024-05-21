@@ -2,10 +2,8 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Afegeix una habilitat',
-        'import_from_race'          => 'Afegeix habilitats de raça',
-        'import_from_race_mobile'   => 'Habilitats racials',
-        'reset'                     => 'Restableix els usos de l\'habilitat',
+        'add'   => 'Afegeix una habilitat',
+        'reset' => 'Restableix els usos de l\'habilitat',
     ],
     'create'    => [
         'success'           => 'S\'ha afegit l\'habilitat :ability a :entity.',

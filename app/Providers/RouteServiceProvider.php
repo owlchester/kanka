@@ -66,11 +66,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function web(): self
     {
-        Route::middleware(['web'])
+        Route::middleware(['web', 'adless'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
 
-        Route::middleware(['web'])
+        Route::middleware(['web', 'adless'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web-i18n.php'));
 
@@ -135,7 +135,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function settings(): self
     {
-        Route::middleware(['web'])
+        Route::middleware(['web', 'adless'])
             ->prefix('settings')
             ->namespace($this->namespace)
             ->group(base_path('routes/settings.php'));
@@ -147,7 +147,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function auth(): self
     {
-        Route::middleware(['web'])
+        Route::middleware(['web', 'adless'])
             ->namespace('App\Http\Controllers')
             ->group(base_path('routes/auth.php'))
         ;

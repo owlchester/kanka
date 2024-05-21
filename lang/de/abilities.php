@@ -22,9 +22,7 @@ return [
     'fields'        => [
         'charges'   => 'Ladungen',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Anzeigen aller Fähigkeiten, die keine übergeordnete Fähigkeit haben. Klicken Sie auf eine Zeile, um die Fähigkeiten untergeordneten Objekte anzuzeigen.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Anzahl der Verwendungen. Attribute können mit mit {Level} * {CHA} referenziert werden.',

@@ -15,7 +15,7 @@ function initCommunityVotes() {
     options = $('.vote-body');
 
     options.click(function () {
-        var option = $(this).data('option');
+        let option = $(this).data('option');
         if ($(this).hasClass('vote-selected')) {
             // Remove vote
             vote();

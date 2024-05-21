@@ -7,22 +7,22 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\Relation;
-use App\Models\Tag;
 use App\Services\Entity\MoveService;
 use App\Services\Entity\TagService;
 use App\Services\Entity\TransformService;
 use App\Services\Permissions\BulkPermissionService;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use App\Models\MiscModel;
 use Exception;
 use Illuminate\Support\Str;
+use App\Observers\Concerns\HasLocations;
 use Stevebauman\Purify\Facades\Purify;
 
 class BulkService
 {
     use CampaignAware;
+    use HasLocations;
 
     protected EntityService $entityService;
 
@@ -277,6 +277,10 @@ class BulkService
         unset($filledFields['tags']);
         $tagIds = Arr::get($fields, 'tags', []);
 
+        // Handle locations differently
+        unset($filledFields['locations']);
+        $locationIds = Arr::get($fields, 'locations', []);
+
         // Handle images differently
         if (isset($filledFields['entity_image'])) {
             $imageUuid = $filledFields['entity_image'];
@@ -323,7 +327,7 @@ class BulkService
                     }
                 }
             }
-            $entity->updateQuietly($entityFields);
+            $entity->update($entityFields);
 
             // Foreign belongsTo loop
             foreach ($filledForeigns as $relation => $ids) {
@@ -348,17 +352,24 @@ class BulkService
 
                 $realEntity->is_private = $entity->is_private;
                 $realEntity->name = $entity->name;
-                $realEntity->save();
+                $realEntity->update();
             }
 
             $this->count++;
+
+            $locationsAction = Arr::get($fields, 'bulk-locations', 'add');
+            if ($locationsAction === 'remove') {
+                // @phpstan-ignore-next-line
+                $entity->locations()->detach($locationIds);
+            } else {
+                $this->saveLocations($entity, $locationIds);
+            }
 
             // No tags? We're done
             if (empty($fields['tags'])) {
                 continue;
             }
 
-            /** @var Collection $existingTags */
             $tagAction = Arr::get($fields, 'bulk-tagging', 'add');
             if ($tagAction === 'remove') {
                 $entity->entity->tags()->detach($tagIds);
@@ -370,6 +381,7 @@ class BulkService
                     ->entity($entity->entity)
                     ->withNew()
                     ->add($tagIds);
+                $entity->entity->touch();
             }
         }
 
@@ -388,7 +400,7 @@ class BulkService
         /** @var AttributeService $service */
         $service = app()->make('App\Services\AttributeService');
 
-        $entities = $model->with(['entity', 'campaign'])->whereIn('id', $this->ids)->get();
+        $entities = $model->with(['entity', 'entity.campaign'])->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
             if (auth()->user()->can('update', $entity)) {

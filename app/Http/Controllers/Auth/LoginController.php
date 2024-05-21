@@ -42,12 +42,26 @@ class LoginController extends Controller
      */
     public function loginAsUser(Request $request, User $user)
     {
-        if (config('auth.user_list')) {
-            Auth::login($user, true);
-
-            return $this->sendLoginResponse($request);
+        if (!config('auth.user_list')) {
+            return redirect()->route('login');
         }
-        return redirect()->route('login');
+
+        Auth::login($user, true);
+        return $this->sendLoginResponse($request);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function loginAs(Request $request)
+    {
+        if (!config('auth.user_list')) {
+            return redirect()->route('login');
+        }
+
+        $user = User::where('id', $request->get('user'))->first();
+        Auth::login($user, true);
+        return $this->sendLoginResponse($request);
     }
 
     protected function authenticated(Request $request, $user)

@@ -5,7 +5,6 @@ return [
     'features'  => [
         'api_requests'      => ':amount API kérés / perc',
         'boosters'          => 'Kampány Boosterek',
-        'community_vote'    => 'Közösségi szavazás',
         'discord'           => 'Discord szerepek',
         'feature_influence' => 'Új funkcióra való befolyás',
         'file_size'         => ':size méretű fájlfeltöltés',
@@ -14,7 +13,6 @@ return [
         'nice_image'        => 'Alapértelmezett entitás képek',
         'no_ads'            => 'Nincsenek reklámok',
         'pagination'        => 'Maximum :amount entitás megjelenítése oldalanként',
-        'vote_influence'    => 'Közösségi szavazásban való résztvétel',
     ],
     'pricing'   => ':amount :currency / hó',
 ];

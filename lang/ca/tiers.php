@@ -5,7 +5,6 @@ return [
     'features'  => [
         'api_requests'      => ':amount sol·licituds API / minut',
         'boosters'          => 'Millores de campanya',
-        'community_vote'    => 'Votacions comunitàries',
         'discord'           => 'Rols de Discord',
         'feature_influence' => 'Influència sobre noves funcionalitats',
         'file_size'         => 'Puja arxius de fins a :size',
@@ -14,7 +13,6 @@ return [
         'nice_image'        => 'Imatges per defecte a les entitats',
         'no_ads'            => 'Sense anuncis',
         'pagination'        => 'Màxim de fins a :amount resultats en una pàgina',
-        'vote_influence'    => 'Influència a les votacions comunitàries',
     ],
     'pricing'   => ':amount / mes :currency',
 ];

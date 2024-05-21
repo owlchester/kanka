@@ -7,7 +7,6 @@
     'title' => __('settings.menu.premium'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
-    'noads' => true,
     'centered' => true,
 ])
 

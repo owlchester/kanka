@@ -12,7 +12,6 @@ return [
         'dashboard'     => 'Taulell',
         'entity'        => 'Entitat',
         'filters'       => 'Filtres',
-        'is_nested'     => 'Niuat',
         'menu'          => 'Menú',
         'position'      => 'Posició',
         'random'        => 'Aleatori',

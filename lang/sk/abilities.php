@@ -22,9 +22,7 @@ return [
     'fields'        => [
         'charges'   => 'Náboje',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Zobrazujú sa všetky schopnosti, ktoré nemajú nadradenú schopnosť. Kliknutím na riadok zobrazíš podradené schopnosti.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Počet nábojov. Prepoj atribúty cez {Úroveň}*{CHA}',

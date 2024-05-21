@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'notes' => 'Subnotas',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Mostrando todas las notas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
-    ],
+    'helpers'       => [],
     'hints'         => [],
     'index'         => [],
     'placeholders'  => [

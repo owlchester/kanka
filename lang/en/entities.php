@@ -3,6 +3,7 @@
 return [
     'abilities'             => 'Abilities',
     'ability'               => 'Ability',
+    'assets'                => 'Assets',
     'attribute_template'    => 'Attribute Template',
     'attribute_templates'   => 'Attribute Templates',
     'bookmark'              => 'Bookmark',
@@ -53,6 +54,7 @@ return [
     'creatures'             => 'Creatures',
     'dice_roll'             => 'Dice Roll',
     'dice_rolls'            => 'Dice Rolls',
+    'entities'              => 'Entities',
     'entity_attributes'     => 'Attributes',
     'event'                 => 'Event',
     'events'                => 'Events',

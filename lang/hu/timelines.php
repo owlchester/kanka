@@ -17,8 +17,7 @@ return [
         'reverse_order' => 'Fordított korszak sorrend',
     ],
     'helpers'       => [
-        'nested_without'    => 'Minden idővonal megmutatása, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekidővonalait.',
-        'reverse_order'     => 'Pipáld ki, hogy a korszakok fordított időrendi sorrendben jelenjenek meg. (A legrégebbi korszak legelőször.)',
+        'reverse_order' => 'Pipáld ki, hogy a korszakok fordított időrendi sorrendben jelenjenek meg. (A legrégebbi korszak legelőször.)',
     ],
     'index'         => [],
     'placeholders'  => [

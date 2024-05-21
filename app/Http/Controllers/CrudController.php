@@ -14,6 +14,7 @@ use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\MiscModel;
+use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\MultiEditingService;
 use App\Services\FilterService;
@@ -25,7 +26,9 @@ use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 use LogicException;
 
 class CrudController extends Controller
@@ -42,13 +45,16 @@ class CrudController extends Controller
     /** The name of the route for the resource */
     protected string $route = '';
 
-    /** @var MiscModel|Model|string|null */
-    protected $model;
+    /** Model class name for the object */
+    protected string $model;
+
+    /** Name of the campaign module to test if it's enabled or not */
+    protected string $module;
 
     protected string $filter;
 
-    /** */
     protected FilterService $filterService;
+    protected DatagridRenderer $datagrid;
 
     /** If the permissions tab and pane is enabled or not. */
     protected bool $tabPermissions = true;
@@ -82,10 +88,13 @@ class CrudController extends Controller
     /** Determine if the create/store procedure has a limit checking in place */
     protected bool $hasLimitCheck = false;
 
+    protected Request $request;
+
     public function __construct()
     {
         $this->middleware('campaign.member');
         $this->filterService = new FilterService();
+        $this->datagrid = new DatagridRenderer();
     }
 
     public function index(Request $request, Campaign $campaign)
@@ -99,8 +108,7 @@ class CrudController extends Controller
             return redirect()->route('dashboard', $this->campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    // @phpstan-ignore-next-line
-                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), [$this->campaign, '#' . $this->module]),
                 ])
             );
         }
@@ -111,6 +119,7 @@ class CrudController extends Controller
          */
         $model = new $this->model();
         $campaign = $this->campaign;
+        $this->request = $request;
         $this->filterService
             ->request($request);
         if (method_exists($model, 'explicitFilters')) {
@@ -125,26 +134,62 @@ class CrudController extends Controller
         if (!empty($filter)) {
             $filter->campaign($this->campaign)->build();
         }
-        $filterService = $this->filterService;
         $route = $this->route;
         $bulk = $this->bulkModel();
         $datagridActions = new $this->datagridActions();
         $templates = $this->loadTemplates($model);
 
-        $base = $model
-            ->preparedSelect()
-            ->preparedWith()
-            ->search($this->filterService->search())
+        // Switch between the new explore/grid mode and the old table
+        $mode = $this->mode();
+        $forceMode = null;
+        if (property_exists($this, 'forceMode')) {
+            $mode = $forceMode = $this->forceMode;
+        }
+        $nested = $this->isNested();
+
+        if ($mode === 'grid') {
+            $base = $model
+                ->preparedGrid()
+            ;
+        } else {
+            $base = $model
+                ->preparedSelect()
+                ->preparedWith()
+            ;
+            if ($nested) {
+                $this->datagrid->nested();
+            }
+        }
+
+        $base->search($this->filterService->search())
             ->order($this->filterService->order())
+            ->distinct()
         ;
 
         $parent = null;
-        if (request()->has('parent_id')) {
-            // @phpstan-ignore-next-line
+        if (request()->has('parent_id') && method_exists($model, 'getParentKeyName')) {
             $parentKey = $model->getParentKeyName();
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
+            if ($mode === 'table') {
+                if (!empty($parent) && !empty($parent->parent)) {
+                    // Go back to previous parent
+                    $this->addNavAction(
+                        route($this->route . '.index', [$campaign, 'parent_id' => $parent->parent->id]),
+                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . $parent->parent->name
+                    );
+                } else {
+                    // Go back to first level
+                    $this->addNavAction(
+                        route($this->route . '.index', [$campaign]),
+                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . __('crud.actions.back')
+                    );
+                }
+            }
+        } elseif ($nested) {
+            // @phpstan-ignore-next-line
+            $base->whereNull($model->getTable() . '.' . $model->getParentKeyName());
         }
 
         // Do this to avoid an extra sql query when no filters are selected
@@ -173,23 +218,6 @@ class CrudController extends Controller
             ]);
         }
 
-        // Switch between the new explore/grid mode and the old table
-        $mode = request()->get('m', 'grid');
-        if (!in_array($mode, ['grid', 'table'])) {
-            $mode = 'grid';
-        }
-        $forceMode = null;
-        if (property_exists($this, 'forceMode')) {
-            $mode = $forceMode = $this->forceMode;
-        }
-
-        // Add a button to the tree view if the controller has it
-        if (method_exists($this, 'tree') && $mode === 'table') {
-            $this->addNavAction(
-                route($this->route . '.tree', [$this->campaign, 'm' => 'table']),
-                '<i class="fa-solid fa-share-nodes" aria-hidden="true"></i> ' . __('crud.actions.explore_view')
-            );
-        }
         $this->getNavActions();
         $actions = $this->navActions;
         $entityTypeId = $model->entityTypeId();
@@ -203,7 +231,6 @@ class CrudController extends Controller
             'model',
             'actions',
             'filter',
-            'filterService',
             'filteredCount',
             'unfilteredCount',
             'route',
@@ -218,9 +245,37 @@ class CrudController extends Controller
         );
         if (method_exists($this, 'titleKey')) {
             $data['titleKey'] = $this->titleKey();
-        } else {
-            $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
+        } elseif ($this->campaign->boosted()) {
+            // Custom sidebar link, with fallback on custom module plural name
+            $data['titleKey'] = Arr::get($campaign->ui_settings, 'sidebar.labels.' . $langKey);
+            if (empty($data['titleKey'])) {
+                $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
+            }
+            // If its a bookmark, override everything else
+            if ($request->has('bookmark')) {
+                $bookmark = Bookmark::where('id', $request->get('bookmark'))->first();
+                if ($bookmark) {
+                    $this->datagrid->bookmark($bookmark);
+                    $data['bookmark'] = $bookmark;
+                    $data['titleKey'] = $bookmark->name;
+                }
+            }
+
+            if ($request->has('order')) {
+                $data['order'] = $request->get('order');
+                $data['desc'] = $request->get('desc');
+            }
         }
+
+        if (method_exists($model, 'getParentKeyName')) {
+            $data['nestable'] = $nested;
+        }
+        $this->datagrid
+            ->models($models)
+            ->campaign($campaign)
+            ->service($this->filterService);
+        $data['datagrid'] = $this->datagrid;
+        $data['filterService'] = $this->filterService;
         return view('cruds.index', $data);
     }
 
@@ -472,9 +527,15 @@ class CrudController extends Controller
             // Fire an event for the Entity Observer
             $model->crudSaved();
 
-            // MenuLink have no entity attached to them.
+            // Bookmarks have no entity attached to them.
             if ($model->entity) {
+                $model->entity->name = $model->name;
+                $model->entity->is_private = $model->is_private;
                 $model->entity->crudSaved();
+                // If the child was changed but nothing changed on the entity, we still want to trigger an update
+                if ($model->wasChanged() && !$model->entity->wasChanged()) {
+                    $model->entity->touch();
+                }
             }
 
             $success = __('general.success.updated', [
@@ -518,12 +579,7 @@ class CrudController extends Controller
             } elseif ($request->has('submit-update')) {
                 $route = route($this->route . '.edit', [$this->campaign, $model->id]);
             } elseif ($request->has('submit-close')) {
-                $subroute = 'index';
-                $defaultNested = auth()->user()->defaultNested || $this->campaign->defaultToNested();
-                if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
-                    $subroute = 'tree';
-                }
-                $route = route($this->route . '.' . $subroute, [$this->campaign]);
+                $route = route($this->route . '.index', [$this->campaign]);
             } elseif ($request->has('submit-copy')) {
                 $route = route($this->route . '.create', [$this->campaign, 'copy' => $model->id]);
                 return response()->redirectTo($route);
@@ -546,14 +602,11 @@ class CrudController extends Controller
 
         $model->delete();
 
-        $subroute = 'index';
-        $defaultNested = auth()->user()->defaultNested || $this->campaign->defaultToNested();
-        if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
-            $subroute = 'tree';
-        }
-
-        return redirect()->route($this->route . '.' . $subroute, $this->campaign)
-            ->with('success', __('general.success.deleted', ['name' => $model->name]));
+        return redirect()->route($this->route . '.index', $this->campaign)
+            ->with('success_raw', __('general.success.deleted-cancel', [
+                'name' => $model->name,
+                'cancel' => link_to_route('recovery', __('crud.cancel'), [$model->campaign])
+            ]));
     }
 
     /**
@@ -626,7 +679,7 @@ class CrudController extends Controller
      */
     protected function moduleEnabled(): bool
     {
-        return empty($this->module) || $this->campaign->enabled($this->module);
+        return !isset($this->module) || $this->campaign->enabled($this->module);
     }
 
     /**
@@ -672,6 +725,86 @@ class CrudController extends Controller
         } elseif (!auth()->user()->can('create', $model)) {
             return new Collection();
         }
-        return Entity::select('id', 'name', 'entity_id')->templates($model->entityTypeID())->get();
+        return Entity::select('id', 'name', 'entity_id')
+            ->templates($model->entityTypeID())
+            ->orderBy('name')
+            ->get();
+    }
+
+    /**
+     * Determine if the layout is in the nice grid mode, or the old table mode
+     */
+    protected function mode(): string
+    {
+        if (!isset($this->module)) {
+            return 'table';
+        }
+        $key = $this->module . '_mode';
+        if ($this->request->has('m')) {
+            $mode = $this->request->get('m');
+            if (!in_array($mode, ['grid', 'table'])) {
+                return 'grid';
+            }
+            $newMode = $mode;
+        }
+        if (isset($newMode)) {
+            if (auth()->guest()) {
+                Session::put($key, $newMode);
+            } else {
+                $settings = auth()->user()->settings;
+                if (auth()->check() && Arr::get($settings, $key) !== $newMode) {
+                    if ($newMode === 'grid') {
+                        unset($settings[$key]);
+                    } else {
+                        $settings[$key] = $newMode;
+                    }
+                    auth()->user()->settings = $settings;
+                    auth()->user()->updateQuietly();
+                }
+            }
+            return $newMode;
+        }
+
+        if (auth()->guest()) {
+            return Session::get($key, 'grid');
+        }
+        // Else use the user's preferred stacking for this entity type
+        return Arr::get(auth()->user()->settings, $key, 'grid');
+    }
+    /**
+     * Determine if the current layout should be nested or not
+     */
+    protected function isNested(): bool
+    {
+        // Model isn't nested, not an option to start with
+        if (!isset($this->module) || !method_exists($this->model, 'getParentKeyName')) {
+            return false;
+        }
+        $key = $this->module . '_nested';
+        if ($this->request->has('n')) {
+            $new = (bool) $this->request->get('n');
+            if (auth()->guest()) {
+                Session::put($key, $new);
+            } else {
+                $settings = auth()->user()->settings;
+                if (auth()->check() && Arr::get($settings, $key) !== $new) {
+                    $settings = auth()->user()->settings;
+                    if ($new) {
+                        unset($settings[$key]);
+                    } else {
+                        $settings[$key] = false;
+                    }
+                    auth()->user()->settings = $settings;
+                    auth()->user()->updateQuietly();
+                }
+            }
+            return $new;
+        }
+
+        if (auth()->guest()) {
+            return (bool) Session::get($key, true);
+        }
+        // Else use the user's preferred stacking for this entity type
+        return Arr::get(auth()->user()->settings, $key, true);
     }
 }

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $code
- * @property boolean $is_valid
+ * @property bool|int $is_valid
  * @property int $user_id
  *
  * @property User $user

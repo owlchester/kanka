@@ -6,8 +6,8 @@ use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\MiscModel;
 use App\Services\EntityService;
-use Illuminate\Http\Request;
 use App\Services\FilterService;
+use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
@@ -55,6 +55,7 @@ class SearchController extends Controller
             }
             /** @var MiscModel|Character $model */
             $model = new $class();
+            // @phpstan-ignore-next-line
             $results[$element] = $model->search($term)->limit(5)->get();
             $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
             $resultCount += count($results[$element]);

@@ -17,8 +17,7 @@ return [
         'reverse_order' => 'Obrni redoslijed razdoblja',
     ],
     'helpers'       => [
-        'nested_without'    => 'Prikazuju se sve kronologije koje nemaju kronologiju roditelj. Klikni redak da bi vidio/la kronologije djecu.',
-        'reverse_order'     => 'Omogući za prikaz razdoblja obrnutim kronološkim redoslijedom (prvo starije ere)',
+        'reverse_order' => 'Omogući za prikaz razdoblja obrnutim kronološkim redoslijedom (prvo starije ere)',
     ],
     'index'         => [],
     'placeholders'  => [

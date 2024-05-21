@@ -62,6 +62,8 @@ The list of returned entities can be filtered. The available filters are [availa
                     "id": 33,
                     "name": "Goals",
                     "entry": "Become a Paladin.",
+                    "entry": "Become a Paladin before [character:76]",
+                    "entry_parsed": "Become a Paladin before <a href=\"https://app.kanka.io/w/13423/entities/76\" class=\"entity-mention\" data-entity-type=\"character\" data-toggle=\"tooltip-ajax\" data-id=\"76\" data-url=\"https://app.kanka.io:8081/w/13423/entities/76/tooltip\">Baldur Gates</a></p><p></p>",
                     "section": "personality",
                     "section_id": 1,
                     "default_order": 0
@@ -110,14 +112,14 @@ To get the details of a single character, use the following endpoint.
         "pronouns": null,
         "races": [3],
         "type": null,
-        "family_id": 34,
         "families": [34],
         "is_dead": true,
         "traits": [
             {
                 "id": 33,
                 "name": "Goals",
-                "entry": "Become a Paladin.",
+                "entry": "Become a Paladin before [character:76]",
+                "entry_parsed": "Become a Paladin before <a href=\"https://app.kanka.io/w/13423/entities/76\" class=\"entity-mention\" data-entity-type=\"character\" data-toggle=\"tooltip-ajax\" data-id=\"76\" data-url=\"https://app.kanka.io:8081/w/13423/entities/76/tooltip\">Baldur Gates</a></p><p></p>",
                 "section": "personality",
                 "section_id": 1,
                 "is_private": false,
@@ -151,7 +153,7 @@ To create a character, use the following endpoint.
 | `sex` | `string`  | Gender of the character |
 | `pronouns` | `string`  | Prefered pronouns of the character |
 | `type` | `string`  | Type of the character |
-| `families` | `array` | Array of family id |
+| `families` | `array` | Array of family ids |
 | `location_id` | `integer` | Location id |
 | `races` | `array` | Array of race ids |
 | `tags` | `array` | Array of tag ids |

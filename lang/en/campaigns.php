@@ -59,7 +59,6 @@ TEXT
         'is_discreet'                       => 'Discreet',
         'locale'                            => 'Locale',
         'name'                              => 'Name',
-        'nested'                            => 'Default entity lists to nested when available',
         'open'                              => 'Open to applications',
         'past_featured'                     => 'Previously featured campaign',
         'post_collapsed'                    => 'New posts on entities are collapsed by default.',
@@ -182,7 +181,7 @@ TEXT
             'title'     => 'Impersonating :name',
         ],
         'invite'                => [
-            'description'   => 'Invite your friends and players to the campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',
+            'description'   => 'Invite friends and players to the campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',
             'more'          => 'You can add more roles on the :link.',
             'roles_page'    => 'Roles page',
             'title'         => 'Invites',
@@ -372,8 +371,9 @@ TEXT
         ],
         'helpers'       => [
             'abilities'         => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
+            'assets'            => 'Upload files, set links, and define aliases to individual entities.',
             'bookmarks'         => 'Create bookmarks to entities or filtered lists that appear in the sidebar.',
-            'calendars'         => 'A place to define the calendars of your world.',
+            'calendars'         => 'A place to define the calendars of the world.',
             'characters'        => 'Create and keep track of the people inhabiting the world with characters.',
             'conversations'     => 'Fictional conversations between characters or between campaign users.',
             'creatures'         => 'Build your world\'s creatures, animals, and monsters with the creatures module.',
@@ -427,6 +427,7 @@ TEXT
             'roles'             => 'Roles',
             'sidebar'           => 'Sidebar',
             'styles'            => 'Theming',
+            'webhooks'          => 'Webhooks',
         ],
         'title'     => 'Overview - :name',
     ],
@@ -452,7 +453,6 @@ TEXT
             'entity_history'    => 'Entity\'s history logs',
             'entity_image'      => 'Entity\'s image',
             'member_list'       => 'Campaign\'s member list',
-            'nested'            => 'Default lists layout',
             'post_collapsed'    => 'New post default collapsed value',
         ],
         'helpers'           => [
@@ -468,10 +468,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Only visible to campaign admins',
             'visible'   => 'Visible to members',
-        ],
-        'nested'            => [
-            'nested'    => 'Nested',
-            'user'      => 'User\'s default',
         ],
         'other'             => 'Other',
     ],

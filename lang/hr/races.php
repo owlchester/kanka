@@ -13,9 +13,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [],
-    'helpers'       => [
-        'nested_without'    => 'Prikazuju se sve rase koje nemaju rasu roditelj. Klikni redak da bi vidio/la rase djecu.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'type'  => 'Čovjek, Vila, Borg',

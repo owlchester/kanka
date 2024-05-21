@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'notes' => 'Subnotes',
     ],
-    'helpers'       => [
-        'nested_without'    => 'S\'estan mostrant les notes sense pare. Feu clic a la fila d\'una nota per a mostrar-ne les descendents.',
-    ],
+    'helpers'       => [],
     'hints'         => [],
     'index'         => [],
     'placeholders'  => [

@@ -9,6 +9,7 @@ use App\Traits\CampaignTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use App\Enums\Widget;
@@ -18,14 +19,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * Class CampaignDashboardWidget
  * @package App\Models
  *
- * @property integer $id
- * @property integer $campaign_id
- * @property integer $entity_id
+ * @property int $id
+ * @property int $campaign_id
+ * @property int $entity_id
  * @property int $dashboard_id
  * @property Widget $widget
  * @property array $config
- * @property integer $width
- * @property integer $position
+ * @property int $width
+ * @property int $position
  * @property Entity $entity
  * @property CampaignDashboard $dashboard
  * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags
@@ -40,7 +41,6 @@ class CampaignDashboardWidget extends Model
     use LastSync;
     use Taggable;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',
@@ -56,26 +56,17 @@ class CampaignDashboardWidget extends Model
         'widget' => Widget::class,
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function campaign()
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function dashboard()
+    public function dashboard(): BelongsTo
     {
         return $this->belongsTo(CampaignDashboard::class, 'dashboard_id', 'id');
     }

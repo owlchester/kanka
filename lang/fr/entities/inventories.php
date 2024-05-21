@@ -2,27 +2,33 @@
 
 return [
     'actions'       => [
-        'add'   => 'Ajouter un objet',
+        'add'               => 'Ajouter un objet',
+        'copy_from'         => 'Copier depuis',
+        'copy_inventory'    => 'Copier l\'inventaire',
+    ],
+    'copy'          => [
+        'title' => 'Copier l\'inventaire vers :name',
     ],
     'create'        => [
-        'success'   => 'Objet :item ajouté à :entity.',
-        'title'     => 'Ajouter un objet à :name',
+        'success'       => 'Objet :item ajouté à :entity.',
+        'success_bulk'  => '{0} Aucun objet ajouté à :entity.|{1} :count objet ajouté à :entity.|[2,*] :count objets ajoutés à :entity.',
+        'title'         => 'Ajouter un objet à :name',
     ],
     'destroy'       => [
         'success'   => 'Objet :item retiré de :entity.',
     ],
     'fields'        => [
-        'amount'            => 'Nombre',
-        'copy_entity_entry' => 'Utiliser l\'entrée de l\'objet',
-        'description'       => 'Description',
-        'is_equipped'       => 'Equipé',
-        'name'              => 'Nom',
-        'position'          => 'Position',
-        'qty'               => 'Qté',
+        'amount'                => 'Quantité',
+        'copy_entity_entry_v2'  => 'Utiliser l\'entrée de l\'objet',
+        'description'           => 'Description',
+        'is_equipped'           => 'Equipé',
+        'name'                  => 'Nom',
+        'position'              => 'Position',
+        'qty'                   => 'Qté',
     ],
     'helpers'       => [
-        'copy_entity_entry' => 'Affiche l\'entrée de l\'objet au lieu de la description.',
-        'is_equipped'       => 'Marquer cet objet comme étant équipé.',
+        'copy_entity_entry_v2'  => 'Affiche l\'entrée de l\'objet au lieu de la description personnalisée.',
+        'is_equipped'           => 'Marquer cet objet comme étant équipé.',
     ],
     'placeholders'  => [
         'amount'        => 'Un nombre',

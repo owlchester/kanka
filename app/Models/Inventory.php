@@ -5,22 +5,26 @@ namespace App\Models;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Class Inventory
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer|null $item_id
- * @property integer|null $created_by
+ * @property int $entity_id
+ * @property int|null $item_id
+ * @property int|null $created_by
  * @property string $name
- * @property integer $amount
+ * @property int $amount
  * @property string $position
  * @property string $description
+ * @property string|null $image_uuid
  * @property bool $is_equipped
  * @property bool $copy_item_entry
  * @property Item|null $item
  * @property Entity|null $entity
+ * @property Image|null $image
  */
 class Inventory extends Model
 {
@@ -40,29 +44,30 @@ class Inventory extends Model
         'created_by',
         'is_equipped',
         'copy_item_entry',
+        'image_uuid',
     ];
 
-    /**
-     */
-    public function entity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity');
     }
 
-    /**
-     */
-    public function item(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function item(): BelongsTo
     {
         return $this->belongsTo('App\Models\Item');
     }
 
     /**
      * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
+    }
+
+    public function image(): HasOne
+    {
+        return $this->hasOne('App\Models\Image', 'id', 'image_uuid');
     }
 
     /**
@@ -75,11 +80,12 @@ class Inventory extends Model
             ->leftJoin('entities as e', 'e.id', 'inventories.entity_id')
             ->where('e.campaign_id', $campaign->id)
             ->orderBy('position', 'ASC')
-            ->limit(20)
+            ->limit(50)
         ;
     }
 
     /**
+     * Get the item name, either custom or attached object
      */
     public function itemName(): string
     {
@@ -92,7 +98,7 @@ class Inventory extends Model
     /**
      * Copy an entity inventory to another target
      */
-    public function copyTo(Entity $target)
+    public function copyTo(Entity $target): bool
     {
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;

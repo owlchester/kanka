@@ -24,14 +24,14 @@ $required = !isset($bulk);
             ]) !!}
         </x-helper>
     @else
-        @subscriber()
-        <x-helper>
-            {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaign])]) !!}
-        </x-helper>
-    @else
-        <x-helper>
-            {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
-        </x-helper>
-        @endsubscriber
+        @if (auth()->user()->hasBoosters())
+            <x-helper>
+                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaign])]) !!}
+            </x-helper>
+        @else
+            <x-helper>
+                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
+            </x-helper>
+        @endif
     @endif
 </x-forms.field>

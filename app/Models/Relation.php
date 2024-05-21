@@ -49,7 +49,6 @@ class Relation extends Model
     use SortableTrait;
     use VisibilityIDTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'owner_id',
@@ -82,7 +81,7 @@ class Relation extends Model
         'visibility_id',
     ];
 
-    public $defaultOrderField = 'relation';
+    public string $defaultOrderField = 'relation';
 
     /**
      *
@@ -184,7 +183,7 @@ class Relation extends Model
         return '#' . $this->attributes['colour'];
     }
 
-    public function getEntityType()
+    public function getEntityType(): string|null
     {
         return 'relation';
     }

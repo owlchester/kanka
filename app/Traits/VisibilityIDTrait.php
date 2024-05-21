@@ -18,6 +18,7 @@ use App\Models\Scopes\VisibilityIDScope;
 trait VisibilityIDTrait
 {
     protected bool $skipAllIcon = false;
+
     /**
      * Add the Visible scope as a default scope to this model
      */
@@ -38,27 +39,47 @@ trait VisibilityIDTrait
     public function visibilityIcon(string $extra = null): string
     {
         $class = $title = '';
-        if ($this->visibility_id === Visibility::All) {
+        if ($this->visibility_id === Visibility::All->value) {
             if ($this->skipAllIcon) {
                 return '';
             }
             $class = 'fa-solid fa-eye';
             $title = __('crud.visibilities.all');
-        } elseif ($this->visibility_id === Visibility::Admin) {
+        } elseif ($this->visibility_id === Visibility::Admin->value) {
             $class = 'fa-solid fa-lock';
             $title = __('crud.visibilities.admin');
-        } elseif ($this->visibility_id === Visibility::Self) {
+        } elseif ($this->visibility_id === Visibility::Self->value) {
             $class = 'fa-solid fa-user-secret';
             $title = __('crud.visibilities.self');
-        } elseif ($this->visibility_id === Visibility::AdminSelf) {
+        } elseif ($this->visibility_id === Visibility::AdminSelf->value) {
             $class = 'fa-solid fa-user-lock';
             $title = __('crud.visibilities.admin-self');
-        } elseif ($this->visibility_id === Visibility::Member) {
+        } elseif ($this->visibility_id === Visibility::Member->value) {
             $class = 'fa-solid fa-users';
             $title = __('crud.visibilities.members');
         }
 
         return '<i class="' . rtrim($class . ' ' . $extra) . '" data-title="' . $title . '" data-toggle="tooltip" aria-hidden="true"></i>';
+    }
+
+    public function visibilityName(): string
+    {
+        if ($this->visibility_id === Visibility::All->value) {
+            if ($this->skipAllIcon) {
+                return '';
+            }
+            return __('crud.visibilities.all');
+        } elseif ($this->visibility_id === Visibility::Admin->value) {
+            return __('crud.visibilities.admin');
+        } elseif ($this->visibility_id === Visibility::Self->value) {
+            return __('crud.visibilities.self');
+        } elseif ($this->visibility_id === Visibility::AdminSelf->value) {
+            return __('crud.visibilities.admin-self');
+        } elseif ($this->visibility_id === Visibility::Member->value) {
+            return __('crud.visibilities.members');
+        }
+
+        return 'Unknown';
     }
 
     /**
@@ -79,9 +100,9 @@ trait VisibilityIDTrait
         }
 
         // If it's a visibility self & admin, and we're not the creator, we can't change this
-        if ($this->visibility_id === Visibility::AdminSelf && !$this->isCreator()) {
+        if ($this->visibility_id === Visibility::AdminSelf->value && !$this->isCreator()) {
             $options = [Visibility::AdminSelf->value => __('crud.visibilities.admin-self')];
-        } elseif ($this->visibility_id === Visibility::Self && !$this->isCreator()) {
+        } elseif ($this->visibility_id === Visibility::Self->value && !$this->isCreator()) {
             $options = [Visibility::Self->value => __('crud.visibilities.self')];
         }
 

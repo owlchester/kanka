@@ -4,7 +4,6 @@
     'description' => '',
     'breadcrumbs' => false,
     'sidebar' => 'settings',
-    'noads' => true,
     'centered' => true,
 ])
 

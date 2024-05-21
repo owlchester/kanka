@@ -28,13 +28,10 @@ class Ability extends Layout
                 'label' => 'crud.fields.type',
             ],
             'ability' => [
-                'key' => 'ability.name',
+                'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => function ($model) {
-                    if (!$model->ability) {
-                        return null;
-                    }
-                    return $model->ability->tooltipedLink();
+                    return $model->parent?->tooltipedLink();
                 },
                 'visible' => function () {
                     return !request()->has('parent_id');

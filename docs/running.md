@@ -17,7 +17,7 @@ These developer docker instances are quite different from [kanka.io](https://kan
 * No security, no automatic backups.
 * No support for premium campaigns and subscriber bonuses.
 * No advanced caching, meaning that as the data grows, the app will become much slower.
-* No third-party setup like discord, google/meta/twitter logins, stripe, or analytics.
+* No third-party setup like discord, google/meta/x (formerly twitter) logins, stripe, or analytics.
 * No emails and no campaign exports are generated.
 * No access to the third party tools Kanka pays for like FontAwesome PRO, meaning some icons in the app won't work.
 * And lastly, **limited support from the Kanka team to debug your local setup**.
@@ -74,7 +74,7 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/var/www/html \
     -w /var/www/html \
-    laravelsail/php82-composer:latest \
+    laravelsail/php83-composer:latest \
     composer install --ignore-platform-reqs
 ```
 

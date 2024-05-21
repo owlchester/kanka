@@ -16,7 +16,6 @@ class RelationController extends CrudController
     protected string $view = 'relations';
     protected string $route = 'relations';
     protected $langKey = 'entities/relations';
-    protected string $entityKey = 'relations.';
 
     protected bool $tabPermissions = false;
     protected bool $tabAttributes = false;
@@ -25,8 +24,7 @@ class RelationController extends CrudController
 
     protected string $forceMode = 'table';
 
-    /** @var string */
-    protected $model = Relation::class;
+    protected string $model = Relation::class;
 
     /** @var string The datagrid controlling the bulk actions */
     protected string $datagridActions = RelationDatagridActions::class;

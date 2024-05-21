@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'members'   => 'Mitglieder',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Anzeige aller Spezies, die keine übergeordnete Spezies haben. Klicken Sie auf eine Zeile, um die untergeordneten Spezies anzuzeigen.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'create'    => [

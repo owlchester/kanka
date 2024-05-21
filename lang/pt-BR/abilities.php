@@ -22,9 +22,7 @@ return [
     'fields'        => [
         'charges'   => 'Cargas',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Exibindo todas as habilidades que não possuem uma habilidade primária. Clique em uma linha para ver as habilidades secundárias.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Quantidade de cargas. Atributos de referência com {Level} * {CHA}',

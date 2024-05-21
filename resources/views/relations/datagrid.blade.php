@@ -1,10 +1,6 @@
 <?php /** @var \App\Models\Relation $model */?>
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         [
             'field' => 'owner_id',

@@ -14,7 +14,7 @@
     <p>
         {!! __('dashboards/widgets/welcome.intros.2', [
             'new-entity' => '<a class="btn2 btn-primary btn-xs" href="#" tabindex="0" role="button" data-pulse=".quick-creator-button" data-content="' . __('dashboards/widgets/welcome.focus.text') . '">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i> ' . __('sidebar.new-entity') . '
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> ' . __('crud.create') . '
             </a>',
             'letter' => '<kbd>N</kbd>',
             'characters' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-user" aria-hidden="true"></i> ' . __('entities.character') . '</span>',

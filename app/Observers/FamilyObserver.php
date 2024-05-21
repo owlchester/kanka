@@ -2,31 +2,26 @@
 
 namespace App\Observers;
 
+use App\Facades\EntityLogger;
 use App\Models\Character;
 use App\Models\Family;
-use App\Models\MiscModel;
 
 class FamilyObserver extends MiscObserver
 {
-    /**
-     */
-    public function saved(MiscModel|Family $model)
+    public function crudSaved(Family $family)
     {
-        parent::saved($model);
-
-        /** @var Family $family */
-        $family = $model;
         $this->saveMembers($family);
+        EntityLogger::model($family)->entity($family->entity)->finish();
     }
 
     /**
      * Save family members
      */
-    protected function saveMembers(Family $family)
+    protected function saveMembers(Family $family): self
     {
         // Only execute this if a proper post attribute is in the body
         if (!request()->has('sync_family_members')) {
-            return;
+            return $this;
         }
 
         $ids = request()->post('members', []);
@@ -50,6 +45,7 @@ class FamilyObserver extends MiscObserver
                     $new[] = $character->id;
 
                     $character->families()->attach($family->id);
+                    EntityLogger::dirty('members', null);
                 }
             }
         }
@@ -58,11 +54,11 @@ class FamilyObserver extends MiscObserver
         // todo: refactor into a single call?
         foreach ($existing as $k) {
             $k->families()->detach($family->id);
+            EntityLogger::dirty('members', null);
         }
+        return $this;
     }
 
-    /**
-     */
     public function deleting(Family $family)
     {
         /**

@@ -30,6 +30,9 @@ use App\Models\Tag;
 use App\Models\Timeline;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Trait EntityRelations
@@ -72,13 +75,10 @@ use Illuminate\Database\Eloquent\Collection;
  */
 trait EntityRelations
 {
-    /** @var bool|Collection|Tag[] List of tags attached to the entity */
-    protected $tagsWithEntity = false;
+    /** @var Collection List of tags attached to the entity */
+    protected Collection $tagsWithEntity;
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function attributes()
+    public function attributes(): HasMany
     {
         return $this->hasMany('App\Models\Attribute', 'entity_id', 'id');
     }
@@ -99,130 +99,82 @@ trait EntityRelations
         ;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function attributeTemplate()
+    public function attributeTemplate(): HasOne
     {
         return $this->hasOne('App\Models\AttributeTemplate', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function ability()
+    public function ability(): HasOne
     {
         return $this->hasOne('App\Models\Ability', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function character()
+    public function character(): HasOne
     {
         return $this->hasOne('App\Models\Character', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function diceRoll()
+    public function diceRoll(): HasOne
     {
         return $this->hasOne('App\Models\DiceRoll', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function event()
+    public function event(): HasOne
     {
         return $this->hasOne('App\Models\Event', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function family()
+    public function family(): HasOne
     {
         return $this->hasOne('App\Models\Family', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function item()
+    public function item(): HasOne
     {
         return $this->hasOne('App\Models\Item', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function journal()
+    public function journal(): HasOne
     {
         return $this->hasOne('App\Models\Journal', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function location()
+    public function location(): HasOne
     {
         return $this->hasOne('App\Models\Location', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function map()
+    public function map(): HasOne
     {
         return $this->hasOne('App\Models\Map', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function note()
+    public function note(): HasOne
     {
         return $this->hasOne('App\Models\Note', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function organisation()
+    public function organisation(): HasOne
     {
         return $this->hasOne('App\Models\Organisation', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function quest()
+    public function quest(): HasOne
     {
         return $this->hasOne('App\Models\Quest', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function calendar()
+    public function calendar(): HasOne
     {
         return $this->hasOne('App\Models\Calendar', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function tag()
+    public function tag(): HasOne
     {
         return $this->hasOne('App\Models\Tag', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(
             'App\Models\Tag',
@@ -234,12 +186,9 @@ trait EntityRelations
         );
     }
 
-    /**
-     * @return Collection|Tag[]
-     */
-    public function tagsWithEntity(bool $excludeHidden = false)
+    public function tagsWithEntity(bool $excludeHidden = false): Collection
     {
-        if ($this->tagsWithEntity === false) {
+        if (!isset($this->tagsWithEntity)) {
             $this->tagsWithEntity = $this->tags()
                 ->with('entity')
                 ->has('entity')
@@ -251,91 +200,57 @@ trait EntityRelations
         return $this->tagsWithEntity;
     }
 
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function timeline()
+    public function timeline(): HasOne
     {
         return $this->hasOne('App\Models\Timeline', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function entityTags()
+    public function entityTags(): HasMany
     {
         return $this->hasMany('App\Models\EntityTag', 'entity_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function inventories()
+    public function inventories(): HasMany
     {
         return $this->hasMany('App\Models\Inventory', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function timelines()
+    public function timelines(): HasMany
     {
         return $this->hasMany('App\Models\TimelineElement', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function abilities()
+    public function abilities(): HasMany
     {
         return $this->hasMany('App\Models\EntityAbility', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function quests()
+    public function quests(): HasMany
     {
         return $this->hasMany('App\Models\QuestElement', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function conversation()
+    public function conversation(): HasOne
     {
         return $this->hasOne('App\Models\Conversation', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function race()
+    public function race(): HasOne
     {
         return $this->hasOne('App\Models\Race', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function creature()
+    public function creature(): HasOne
     {
         return $this->hasOne('App\Models\Creature', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function widgets()
+    public function widgets(): HasMany
     {
         return $this->hasMany('App\Models\CampaignDashboardWidget', 'id', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function relationships()
+    public function relationships(): HasMany
     {
         return $this->hasMany('App\Models\Relation', 'owner_id', 'id');
     }
@@ -354,40 +269,31 @@ trait EntityRelations
         ;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function targetRelationships()
+    public function targetRelationships(): HasMany
     {
         return $this->hasMany('App\Models\Relation', 'target_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function posts()
+    public function posts(): HasMany
     {
         return $this->hasMany('App\Models\Post', 'entity_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function files()
+    public function files(): HasMany
     {
         return $this->assets()
             ->where('type_id', 1)
         ;
     }
 
-    public function pinnedFiles()
+    public function pinnedFiles(): HasMany
     {
         return $this->files()
             ->where('is_pinned', 1)
         ;
     }
 
-    public function pinnedAliases()
+    public function pinnedAliases(): HasMany
     {
         return $this->assets()
             ->where('is_pinned', 1)
@@ -395,19 +301,15 @@ trait EntityRelations
         ;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function events()
+    public function events(): HasMany
     {
         return $this->hasMany('App\Models\EntityEvent', 'entity_id', 'id');
     }
 
     /**
      * Calendar Date Events are used by Journals and Quests to link them directly to a calendar
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function calendarDateEvents()
+    public function calendarDateEvents(): HasMany
     {
         return $this->events()
             ->with('calendar')
@@ -415,7 +317,7 @@ trait EntityRelations
             ->calendarDate();
     }
 
-    public function calendarDate()
+    public function calendarDate(): HasOne
     {
         return $this->hasOne('App\Models\EntityEvent', 'entity_id', 'id')
             ->with('calendar')
@@ -423,81 +325,67 @@ trait EntityRelations
             ->where('type_id', EntityEventType::CALENDAR_DATE);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function elapsedEvents()
+    public function elapsedEvents(): HasMany
     {
         return $this->events()->with('calendar')->whereNotNull('type_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function logs()
+    public function logs(): HasMany
     {
         return $this->hasMany('App\Models\EntityLog', 'entity_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function permissions()
+    public function permissions(): HasMany
     {
         return $this->hasMany('App\Models\CampaignPermission', 'entity_id', 'id');
     }
 
     /**
      * List of entities that mention this entity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function mentions()
+    public function mentions(): HasMany
     {
         return $this->hasMany('App\Models\EntityMention', 'entity_id', 'id');
     }
 
     /**
      * List of entities that mention this entity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function imageMentions()
+    public function imageMentions(): HasMany
     {
         return $this->hasMany('App\Models\ImageMention', 'entity_id', 'id');
     }
 
     /**
      * List of entities that mention this entity
-     * @return EntityMention|\Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function targetMentions()
+    public function targetMentions(): HasMany
     {
         return $this->hasMany('App\Models\EntityMention', 'target_id', 'id');
     }
 
-    /**
-     */
-    public function mapMarkers()
+    public function mapMarkers(): HasMany
     {
         return $this->hasMany('App\Models\MapMarker', 'entity_id', 'id');
     }
 
-    public function authoredJournals()
+    public function authoredJournals(): HasMany
     {
         return $this->hasMany(Journal::class, 'author_id', 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * Entity image stored in the gallery
      */
-    public function image()
+    public function image(): HasOne
     {
         return $this->hasOne('App\Models\Image', 'id', 'image_uuid');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * Header image stored in the gallery
      */
-    public function header()
+    public function header(): HasOne
     {
         return $this->hasOne('App\Models\Image', 'id', 'header_uuid');
     }
@@ -511,18 +399,12 @@ trait EntityRelations
             ->where('type_id', EntityAsset::TYPE_LINK);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function aliases()
+    public function aliases(): HasMany
     {
         return $this->hasMany('App\Models\EntityAlias', 'entity_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function assets()
+    public function assets(): HasMany
     {
         return $this->hasMany(EntityAsset::class, 'entity_id', 'id');
     }
@@ -534,9 +416,7 @@ trait EntityRelations
         return $this->entityAttributes->where('is_pinned', 1);
     }
 
-    /**
-     */
-    public function pinnedRelations()
+    public function pinnedRelations(): HasMany
     {
         return $this->relationships()
             ->pinned()
@@ -545,9 +425,7 @@ trait EntityRelations
             ->has('target');
     }
 
-    /**
-     */
-    public function editingUsers()
+    public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class)
             ->using(EntityUser::class)

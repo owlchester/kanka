@@ -11,19 +11,14 @@ use App\Models\Conversation;
 
 class ConversationController extends CrudController
 {
-    /**
-     */
     protected string $view = 'conversations';
     protected string $route = 'conversations';
-    protected $module = 'conversations';
+    protected string $module = 'conversations';
 
-    /** @var string Model */
-    protected $model = Conversation::class;
+    protected string $model = Conversation::class;
 
-    /** @var string Filter */
     protected string $filter = ConversationFilter::class;
 
-    /**  */
     protected string $datagridActions = DeprecatedDatagridActions::class;
 
     protected string $forceMode = 'table';

@@ -35,6 +35,8 @@ class AttributeService
     protected RandomService $randomService;
     protected TemplateService $templateService;
 
+    protected string $templateName;
+
     public function __construct(RandomService $randomService, TemplateService $templateService)
     {
         $this->randomService = $randomService;
@@ -44,26 +46,29 @@ class AttributeService
     /**
      * Apply a template to an entity
      * @param int|string $templateId
-     * @return string|bool
      */
-    public function apply(Entity $entity, mixed $templateId)
+    public function apply(Entity $entity, mixed $templateId): void
     {
-        return $this->templateService->entity($entity)->apply($templateId);
+        $this->templateService
+            ->entity($entity)
+            ->apply($templateId);
     }
 
     /**
      * Add form attributes to an entity
-     * @param array $request
-     * @return int
      * @throws \Exception
      */
-    public function save($request)
+    public function save(array $request): self
     {
         // First, let's get all the stuff for this entity
-        $existingAttributes = $this->entity->attributes()->where('is_hidden', '0')->get();
+        $existingAttributes = $this->entity->attributes()
+            // Need with() for saving to meilisearch
+            ->with('entity')
+            ->where('is_hidden', '0')
+            ->get();
 
         //Dont load hidden attributes for deletion, unless deleting all.
-        if (empty($request) || request()->filled('delete-all-attributes')) {
+        if (empty($request) || Arr::get($request, 'delete-all-attributes') === '1') {
             $existingAttributes = $this->entity->attributes()->get();
         }
         foreach ($existingAttributes as $att) {
@@ -94,12 +99,21 @@ class AttributeService
             $this->apply($this->entity, $templateId);
         }
 
-        if ($this->touched) {
-            $this->entity->touchSilently();
-            $this->entity->child->touchSilently();
-        }
+        return $this;
+    }
 
-        return $this->order;
+    /**
+     * When we're done updating the attributes, if anything was changed, we need to "touch" the entity to have a log and
+     * updated timestamp.
+     */
+    public function touch(): self
+    {
+        if (!$this->touched) {
+            return $this;
+        }
+        $this->entity->touch();
+        $this->entity->child->touchSilently();
+        return $this;
     }
 
     protected function saveAttribute($id, $name): self
@@ -127,8 +141,8 @@ class AttributeService
             $attribute->type_id = $typeID;
             $attribute->name = $name;
             $attribute->setValue($value);
-            $attribute->is_private = $isPrivate;
-            $attribute->is_pinned = $isStar;
+            $attribute->is_private = $isPrivate ? 1 : 0;
+            $attribute->is_pinned = $isStar ? 1 : 0;
             $attribute->default_order = $this->order;
             if ($attribute->isDirty()) {
                 $this->touched = true;
@@ -169,8 +183,11 @@ class AttributeService
         if (!auth()->user()->isAdmin()) {
             return $this;
         }
-        $this->entity->is_attributes_private = $privateAttributes;
-        $this->entity->saveQuietly();
+        $this->entity->is_attributes_private = $privateAttributes ? 1 : 0;
+        // If the setting was changed, the entity is dirty and will need be be touched later
+        if ($this->entity->isDirty('is_attributes_private')) {
+            $this->touched = true;
+        }
         return $this;
     }
 

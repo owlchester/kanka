@@ -17,7 +17,6 @@ return [
         'default_dashboard' => 'Dashboard padrão',
         'entity'            => 'Entidade',
         'filters'           => 'Filtros',
-        'is_nested'         => 'Aninhado',
         'menu'              => 'Sub-menu',
         'position'          => 'Posição',
         'random'            => 'Aleatório',

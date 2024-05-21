@@ -41,7 +41,6 @@ class Journal extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'campaign_id',
@@ -73,6 +72,7 @@ class Journal extends MiscModel
         'name',
         'date',
         'character.name',
+        'parent.name',
         //'character.name',
     ];
 
@@ -122,10 +122,10 @@ class Journal extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'journal' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'journal.entity' => function ($sub) {
+            'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'journals' => function ($sub) {

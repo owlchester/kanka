@@ -22,7 +22,6 @@ class DiceRoll extends MiscModel
     use HasFilters;
     use SoftDeletes;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',
@@ -125,6 +124,7 @@ class DiceRoll extends MiscModel
             'character' => function ($sub) {
                 $sub->select('id', 'name');
             },
+            'character.entity',
         ]);
     }
 }

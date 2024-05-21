@@ -37,6 +37,8 @@ class OpenAiService
         $token = config('openai.secret');
         $openAi = new OpenAi($token);
 
+        $openAi->setCustomURL(config('openai.custom_url'));
+
         //Creating prompt
         $prompt = $this->preparePrompt();
 

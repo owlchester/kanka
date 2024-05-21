@@ -39,7 +39,6 @@ class Creature extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'campaign_id',
@@ -57,14 +56,13 @@ class Creature extends MiscModel
     protected string $entityType = 'creature';
 
     protected array $sortableColumns = [
-        'creature.name',
         'is_extinct',
     ];
 
     protected array $sortable = [
         'name',
         'type',
-        'creature.name',
+        'parent.name',
         'is_extinct',
     ];
 
@@ -88,6 +86,8 @@ class Creature extends MiscModel
         'is_extinct',
     ];
 
+    protected array $exploreGridFields = ['is_extinct'];
+
     /**
      * @return string
      */
@@ -108,13 +108,19 @@ class Creature extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
+            'parent' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
             'creatures' => function ($sub) {
                 $sub->select('id', 'name', 'creature_id');
             },
             'locations' => function ($sub) {
                 $sub->select('id', 'name');
             },
-//            'descendants',
+            //            'descendants',
             'children' => function ($sub) {
                 $sub->select('id', 'creature_id');
             },

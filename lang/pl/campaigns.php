@@ -61,7 +61,6 @@ TEXT
         'is_discreet'                       => 'Dyskretna',
         'locale'                            => 'Język kampanii',
         'name'                              => 'Nazwa',
-        'nested'                            => 'Domyślnie pokazuj listy elementów w widoku hierarchii (jeżeli jest dostępny)',
         'open'                              => 'Otwarta na zgłoszenia',
         'past_featured'                     => 'Poprzednio wyróżniona kampania',
         'post_collapsed'                    => 'Nowe komentarze do elementów są domyślnie zwynięte.',
@@ -457,7 +456,6 @@ TEXT
             'entity_history'    => 'Historia edycji elementu',
             'entity_image'      => 'Ilustracja elementu',
             'member_list'       => 'Lista uczestników kampanii',
-            'nested'            => 'Domyślny układ list',
             'post_collapsed'    => 'Domyślny sposób prezentowana komentarzy',
         ],
         'helpers'           => [
@@ -473,10 +471,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Widoczne tylko dla adminów kampanii',
             'visible'   => 'Widoczne dla wszystkich uczestników',
-        ],
-        'nested'            => [
-            'nested'    => 'Widok hierarchii',
-            'user'      => 'Domyśle ustawienie użytkownika',
         ],
         'other'             => 'Inne',
     ],

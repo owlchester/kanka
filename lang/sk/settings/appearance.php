@@ -27,7 +27,6 @@ return [
     'fields'            => [
         'campaign-order'        => 'Poradie kampaní',
         'date-format'           => 'Formát dátumu',
-        'default-nested'        => 'Zobrazenie vnorených zoznamov',
         'editor'                => 'Textový editor',
         'entity-explore'        => 'Zoznamy objektov',
         'mentions'              => 'Referencie pri úpravách',
@@ -39,7 +38,6 @@ return [
         'advanced-mentions'     => 'Keď sa edituje text, môžeš zvoliť, či sa referencie budú zobrazovať ako názov alebo rozšírená referencia.',
         'campaign-order'        => 'Zmeň poradie, v ktorom sa zobrazujú kampane pri ich výbere.',
         'date-format'           => 'V miestach, kde sa zobrazujú, môžeš zvoliť formát dátumu skutočného sveta.',
-        'default-nested'        => 'Zvoľ, akým spôsobom sa budú zobrazovať vnorené zoznamy štandardne.',
         'editor'                => 'Starý textový editor (TinyMCE) nepodporuje zadávanie referencií na mobilných zariadeniach, galérie kampane a ďalšie rozšírené funkcionality.',
         'entity-explore'        => 'Zvoľ spôsob, akým sú zoznamy objektov zobrazované v kampaniach.',
         'new-entity-workflow'   => 'Zvoľ, kam sa automaticky dostaneš po vytvorení nového objektu.',
@@ -51,10 +49,7 @@ return [
         'advanced'  => 'Zobrazovať rozšírené referencie :code',
         'default'   => 'Referencie v podobe názvu objektu',
     ],
-    'nested'            => [
-        'default'   => 'Ploché zoznamy',
-        'nested'    => 'Vnorené zoznamy',
-    ],
+    'nested'            => [],
     'success'           => 'Nastavenia výzoru uložené.',
     'values'            => [
         'pagination'        => ':amount položiek na stránke',

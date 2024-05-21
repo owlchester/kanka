@@ -12,9 +12,7 @@ return [
         'price'         => 'Preço',
         'size'          => 'Tamanho',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Exibindo todos os itens que não possuem um item primário. Clique em uma linha para ver os itens secundários.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'items' => 'Organize os itens usando o campo de item primário.',
     ],

@@ -10,10 +10,7 @@ return [
     'fields'        => [
         'members'   => 'Mitglieder',
     ],
-    'helpers'       => [
-        'descendants'       => 'Diese Liste enthält alle Familien, die der Familie untergeordnet sind, nicht nur die direkt unter ihr.',
-        'nested_without'    => 'Anzeigen aller Familien, die keine Elternfamilie haben. Klicken Sie auf eine Zeile, um die Kinderfamilien anzuzeigen.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'members'   => 'Mitglieder einer Familie werden hier gelistet. Ein Charakter kann einer Familie hinzugefügt werden, in dem bei dem gewünschten Charakter das Familiendropdown genutzt wird.',
     ],

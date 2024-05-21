@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'notes' => 'Aljegyzet',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Minden jegyeztet megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekjegyzeteket.',
-    ],
+    'helpers'       => [],
     'hints'         => [],
     'index'         => [],
     'placeholders'  => [

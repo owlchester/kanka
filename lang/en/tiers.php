@@ -12,7 +12,6 @@ return [
     'features'  => [
         'api_requests'      => 'Up to :amount API requests per min',
         'boosters'          => 'Campaign Boosters',
-        'community_vote'    => 'Participate in community votes',
         'discord'           => 'Unique :discord role and channel',
         'feature_influence' => 'High impact on future features',
         'file_size'         => ':size File size uploads',
@@ -21,7 +20,7 @@ return [
         'nice_image'        => 'Nicer default entity thumbnail',
         'no_ads'            => 'Remove all ads',
         'pagination'        => 'Up to :amount elements visible per page',
-        'vote_influence'    => 'Influence the community vote',
+        'roadmap'           => 'Upvote ideas in the roadmap',
     ],
     'periods'   => [
         'billed_monthly'    => 'billed monthly',

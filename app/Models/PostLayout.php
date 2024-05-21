@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Model;
  * Class PostLayout
  * @package App\Models
  *
- * @property integer $id
- * @property integer $entity_type_id
+ * @property int $id
+ * @property int $entity_type_id
  * @property string $code
  * @property array $config
  * @property EntityType|null $entityType
@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PostLayout extends Model
 {
-    /** @var string[]  */
     protected $fillable = [
         'code',
         'entity_type_id',

@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'notes' => 'Bilješka dijete',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Prikazuju se sve bilješke koje nemaju bilješku roditelj. Klikni redak da bi vidio/la bilješke djecu.',
-    ],
+    'helpers'       => [],
     'hints'         => [],
     'index'         => [],
     'placeholders'  => [

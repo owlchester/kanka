@@ -3,6 +3,7 @@
 namespace App\Services\Campaign\Import;
 
 use App\Enums\CampaignImportStatus;
+use App\Facades\CampaignCache;
 use App\Models\CampaignImport;
 use App\Notifications\Header;
 use App\Services\Campaign\Import\Mappers\AbilityMapper;
@@ -158,6 +159,7 @@ class ImportService
     {
         try {
             $this->importCampaign()
+                ->moduleSettings()
                 ->gallery()
                 ->entities()
                 ->secondCampaign()
@@ -252,6 +254,29 @@ class ImportService
         return $this;
     }
 
+    protected function moduleSettings(): self
+    {
+        // Open the campaign settings file
+        $data = $this->open('settings/modules.json');
+
+        if (!$data) {
+            return $this;
+        }
+
+        $moduleSettings = $this->campaign->setting;
+
+        foreach ($data as $module => $settings) {
+            if (isset($moduleSettings->$module)) {
+                $moduleSettings->$module = $settings['enabled'];
+            }
+        }
+        $moduleSettings->save();
+
+        // Since modules and custom names are cached, any changes to them need to invalidate any existing cache
+        CampaignCache::campaign($this->campaign)->clear();
+
+        return $this;
+    }
 
     protected function entities(): self
     {

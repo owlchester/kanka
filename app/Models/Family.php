@@ -37,7 +37,6 @@ class Family extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'name',
@@ -53,7 +52,6 @@ class Family extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
-        'family.name',
         'location.name',
     ];
 
@@ -61,7 +59,7 @@ class Family extends MiscModel
         'name',
         'type',
         'location.name',
-        'family.name',
+        'parent.name',
     ];
 
     /**
@@ -118,8 +116,11 @@ class Family extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'family' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'families' => function ($sub) {
                 $sub->select('id', 'family_id', 'name');
@@ -234,7 +235,7 @@ class Family extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         foreach ($this->members as $child) {
             $child->family_id = null;
@@ -246,7 +247,7 @@ class Family extends MiscModel
             $family->save();
         }
 
-        return parent::detach();
+        parent::detach();
     }
 
     /**

@@ -7,24 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMap;
 use App\Models\Campaign;
 use App\Models\Map;
-use App\Traits\TreeControllerTrait;
 
 class MapController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'maps';
     protected string $route = 'maps';
-    protected $module = 'maps';
+    protected string $module = 'maps';
 
-    /**
-     * Crud models
-     */
-    protected $model = Map::class;
+    protected string $model = Map::class;
 
-    /** @var string Filter */
     protected string $filter = MapFilter::class;
 
 

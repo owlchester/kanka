@@ -9,10 +9,7 @@ return [
     'fields'        => [
         'members'   => 'Tagok',
     ],
-    'helpers'       => [
-        'descendants'       => 'Ez a lista a szervezet összes leszármazott szervezetét tartalmazza, nem csak a közvetlen alszervezeit.',
-        'nested_without'    => 'Mutass meg minden szervezetet, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekszervezeteit.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'actions'       => [

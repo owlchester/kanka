@@ -48,11 +48,11 @@ class Tag extends MiscModel
      */
     protected string $entityType = 'tag';
 
-    protected $explicitFilters = ['tag_id'];
+    protected array $explicitFilters = ['tag_id'];
 
     protected array $sortable = [
         'name',
-        'tag.name',
+        'parent.name',
         'type',
         'colour',
         'is_auto_applied',
@@ -63,13 +63,11 @@ class Tag extends MiscModel
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [
-        'tag.name',
         'colour',
         'is_auto_applied',
         'is_hidden',
     ];
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',
@@ -130,19 +128,19 @@ class Tag extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'tag' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'tag.entity' => function ($sub) {
+            'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'tags' => function ($sub) {
                 $sub->select('id', 'tag_id', 'name');
             },
-//            'descendants',
-//            'descendants.entities' => function ($sub) {
-//                $sub->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.type_id');
-//            },
+            //            'descendants',
+            //            'descendants.entities' => function ($sub) {
+            //                $sub->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.type_id');
+            //            },
             'entities',
             'children' => function ($sub) {
                 $sub->select('id', 'tag_id');
@@ -161,7 +159,7 @@ class Tag extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         /** @var Tag $child */
         foreach ($this->allChildren(true)->get() as $child) {
@@ -171,7 +169,7 @@ class Tag extends MiscModel
             //                $child->child->save();
             //            }
         }
-        return parent::detach();
+        parent::detach();
     }
 
     /**
@@ -184,7 +182,6 @@ class Tag extends MiscModel
         foreach ($this->entities->pluck('id')->toArray() as $entity) {
             $children[] = $entity;
         }
-        // @phpstan-ignore-next-line
         foreach ($this->descendants as $desc) {
             foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
                 $children[] = $entity;

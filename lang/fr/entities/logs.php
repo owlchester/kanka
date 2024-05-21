@@ -3,16 +3,16 @@
 return [
     'actions'           => [
         'create'        => 'Créé',
-        'create_post'   => 'Créé la note ":post"',
+        'create_post'   => 'Créé l\'article ":post"',
         'delete'        => 'Supprimé',
-        'delete_post'   => 'Supprimé une note',
-        'reorder_post'  => 'Notes réordonnés',
+        'delete_post'   => 'Supprimé un article',
+        'reorder_post'  => 'Articles réordonnés',
         'restore'       => 'Restoré',
         'update'        => 'Mis à jour',
-        'update_post'   => 'Modifié la note ":post"',
+        'update_post'   => 'Modifié l\'article ":post"',
         'view'          => 'Voir les changements',
     ],
-    'call-to-action'    => 'Des journaux complets des changements sont disponibles pendant :amount jours pour les campagnes superboostées.',
+    'call-to-action'    => 'Des journaux complets des changements sont disponibles pendant :amount jours pour les campagnes premium.',
     'fields'            => [
         'action'    => 'Action',
         'date'      => 'Date',

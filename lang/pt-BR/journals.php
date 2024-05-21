@@ -10,10 +10,7 @@ return [
         'author'    => 'Autor',
         'date'      => 'Data',
     ],
-    'helpers'       => [
-        'journals'          => 'Exibir todos ou somente os sub-diários desse diário.',
-        'nested_without'    => 'Exibindo todos os diários que não tem um diário primário. Clique em uma linha para ver os diários secundários.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'journals'      => [],
     'placeholders'  => [

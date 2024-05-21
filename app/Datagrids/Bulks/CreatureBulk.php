@@ -8,6 +8,7 @@ class CreatureBulk extends Bulk
         'name',
         'type',
         'creature_id',
+        'locations',
         'tags',
         'private_choice',
         'extinct_choice',

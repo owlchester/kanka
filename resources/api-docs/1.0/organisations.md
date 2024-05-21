@@ -45,11 +45,15 @@ The list of returned entities can be filtered. The available filters are [availa
             "created_by": 1,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
-            "location_id": 4,
             "organisation_id": 4,
             "type": "Kingdom",
             "is_defunct": true,
-            "members": []
+            "members": [],
+            "locations": [
+                67,
+                66,
+                65
+            ]
         }
     ]
 }
@@ -82,11 +86,15 @@ To get the details of a single organisation, use the following endpoint.
         "created_by": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
-        "location_id": 4,
         "organisation_id": 4,
         "type": "Kingdom",
         "is_defunct": true,
-        "members": []
+        "members": [],
+        "locations": [
+                67,
+                66,
+                65
+        ]
     }
 
 }
@@ -141,7 +149,7 @@ To create an organisation, use the following endpoint.
 | `entry` | `string` | The html description of the organisation |
 | `type` | `string` | Type of organisation |
 | `organisation_id` | `integer` | The parent organisation |
-| `location_id` | `integer` | The organisation's location |
+| `locations` | `array` | Array of location ids |
 | `tags` | `array` | Array of tag ids |
 | `is_defunct` | `boolean` | If the organisation is defunct |
 | `image_url` | `string` | URL to a picture to be used for the organisation || `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |

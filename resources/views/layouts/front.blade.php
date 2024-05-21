@@ -100,7 +100,7 @@
 <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
-@include('layouts.tracking.tracking', ['frontLayout' => true, 'noads' => true])
+@include('layouts.tracking.tracking', ['frontLayout' => true])
 <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
 @yield('modals')
 @yield('scripts')

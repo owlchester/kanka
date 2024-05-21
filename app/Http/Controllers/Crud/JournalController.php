@@ -7,25 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreJournal;
 use App\Models\Campaign;
 use App\Models\Journal;
-use App\Traits\TreeControllerTrait;
 
 class JournalController extends CrudController
 {
-    /**
-     * Tree / Nested Mode
-     */
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'journals';
     protected string $route = 'journals';
-    protected $module = 'journals';
+    protected string $module = 'journals';
 
-    /** @var string Model*/
-    protected $model = Journal::class;
+    protected string $model = Journal::class;
 
-    /** @var string Filter */
     protected string $filter = JournalFilter::class;
 
     /**

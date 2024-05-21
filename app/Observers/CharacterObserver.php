@@ -3,16 +3,19 @@
 namespace App\Observers;
 
 use App\Facades\CharacterCache;
+use App\Facades\EntityLogger;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Family;
-use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Race;
+use App\Observers\Concerns\HasMany;
 use Illuminate\Support\Collection;
 
 class CharacterObserver extends MiscObserver
 {
+    use HasMany;
+
     public function crudSaved(Character $character)
     {
         $this->saveTraits($character, 'personality')
@@ -21,6 +24,8 @@ class CharacterObserver extends MiscObserver
             ->saveRaces($character)
             ->saveFamilies($character)
         ;
+
+        EntityLogger::model($character)->entity($character->entity)->finish();
     }
 
     /**
@@ -54,7 +59,9 @@ class CharacterObserver extends MiscObserver
             } else {
                 $model = new CharacterTrait();
                 $model->character_id = $character->id;
-                $model->section_id = $trait == 'personality' ? CharacterTrait::SECTION_PERSONALITY : CharacterTrait::SECTION_APPEARANCE;
+                $model->section_id = $trait == 'personality' ?
+                    CharacterTrait::SECTION_PERSONALITY : CharacterTrait::SECTION_APPEARANCE;
+                EntityLogger::dirty('traits', null);
             }
             $model->name = $name;
             $model->entry = $traitEntry[$id];
@@ -65,6 +72,7 @@ class CharacterObserver extends MiscObserver
 
         foreach ($existing as $id => $model) {
             $model->delete();
+            EntityLogger::dirty('traits', null);
         }
 
         return $this;
@@ -72,7 +80,6 @@ class CharacterObserver extends MiscObserver
 
     /**
      * Save a character's organisations
-     * @throws \Exception
      */
     protected function saveOrganisations(Character $character): self
     {
@@ -135,6 +142,7 @@ class CharacterObserver extends MiscObserver
             } else {
                 $model = new OrganisationMember();
                 $model->character_id = $character->id;
+                EntityLogger::dirty('organisations', null);
             }
             $model->organisation_id = $id;
             $model->role = $roles->has($key) ? $roles->get($key, '') : $newRoles->shift();
@@ -152,6 +160,7 @@ class CharacterObserver extends MiscObserver
 
         foreach ($existing as $id => $model) {
             $model->delete();
+            EntityLogger::dirty('organisations', null);
         }
 
         return $this;
@@ -165,47 +174,7 @@ class CharacterObserver extends MiscObserver
             return $this;
         }
 
-        $existing = $unique = $recreate = [];
-        foreach ($character->races as $race) {
-            // Duplicate in the database, remove and re-create later only once
-            if (!empty($existing[$race->id])) {
-                $recreate[$race->id] = $race->id;
-                $character->races()->detach($race->id);
-                continue;
-            }
-            $existing[$race->id] = $race->id;
-            $unique[$race->id] = $race->id;
-        }
-
-        if (!empty($recreate)) {
-            $character->races()->attach($recreate);
-        }
-
-        $races = request()->get('races', []);
-        $newRaces = [];
-        foreach ($races as $id) {
-            // Existing race, do nothing
-            if (!empty($existing[$id])) {
-                unset($existing[$id]);
-                continue;
-            }
-            // If already managed, again, ignore
-            if (!empty($unique[$id])) {
-                continue;
-            }
-
-            $race = Race::find($id);
-            if (empty($race)) {
-                continue;
-            }
-            $newRaces[] = $race->id;
-        }
-        $character->races()->attach($newRaces);
-
-        // Detach the remaining
-        if (!empty($existing)) {
-            $character->races()->detach($existing);
-        }
+        $this->saveMany($character, 'races', request()->get('races', []), Race::class);
 
         return $this;
     }
@@ -217,61 +186,13 @@ class CharacterObserver extends MiscObserver
         if (!request()->has('save_families') && !request()->has('families')) {
             return $this;
         }
-
-        $existing = [];
-        $unique = [];
-        $recreate = [];
-        foreach ($character->families as $family) {
-            // If it already exists, we have an issue
-            if (!empty($existing[$family->id])) {
-                $recreate[$family->id] = $family->id;
-                $character->families()->detach($family->id);
-                continue;
-            }
-            $existing[$family->id] = $family->id;
-            $unique[$family->id] = $family->id;
-        }
-
-        if (!empty($recreate)) {
-            $character->families()->attach($recreate);
-        }
-
-        $families = request()->get('families', []);
-        $newFamilies = [];
-        foreach ($families as $id) {
-            // Existing race, do nothing
-            if (!empty($existing[$id])) {
-                unset($existing[$id]);
-                continue;
-            }
-            // If already managed, again, ignore
-            if (!empty($unique[$id])) {
-                continue;
-            }
-
-            $family = Family::find($id);
-            if (empty($family)) {
-                continue;
-            }
-            $newFamilies[] = $family->id;
-        }
-        $character->families()->attach($newFamilies);
-
-        // Detach the remaining
-        if (!empty($existing)) {
-            $character->families()->detach($existing);
-        }
+        $this->saveMany($character, 'families', request()->get('families', []), Family::class);
 
         return $this;
     }
 
-    /**
-     */
-    public function saved(MiscModel|Character $model)
+    public function saved(Character $character)
     {
-        parent::saved($model);
-
-
         // Clear some cache
         CharacterCache::clearSuggestion();
     }

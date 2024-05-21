@@ -38,7 +38,6 @@ class Event extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'name',
@@ -55,7 +54,7 @@ class Event extends MiscModel
         'name',
         'date',
         'type',
-        'event.name',
+        'parent.name',
     ];
 
     protected string $entityType = 'event';
@@ -101,13 +100,13 @@ class Event extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'event' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'event.entity' => function ($sub) {
+            'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-//            'descendants',
+            //            'descendants',
             'events' => function ($sub) {
                 $sub->select('id', 'name', 'event_id');
             },

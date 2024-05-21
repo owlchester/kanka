@@ -4,7 +4,7 @@
             <i class="fa-solid fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
-        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="createNewFounder()">
+        <a class="btn2 btn-ghost btn-sm " v-if="showEditFounder()" v-on:click="createNewFounder()">
             <i class="fa-solid fa-user" aria-hidden="true"></i>
             {{ this.texts.actions.founder }}
         </a>
@@ -21,14 +21,24 @@
             {{ this.texts.actions.save }}
         </button>
     </div>
-    <div class="family-tree overflow-auto w-full h-full min-h-50 block" ref="familytree">
+    <div class="family-tree overflow-auto w-full h-full min-h-50 block relative" ref="familytree">
+        <div class="absolute top-0 right-0 z-10">
+            <button class="btn2 btn-ghost btn-sm" aria-label="Close" v-on:click="zoom()">
+                <i class="fa-regular fa-square-plus" aria-hidden="true"></i>
+            </button>
+            <button class="btn-sm btn2 btn-ghost" aria-label="Close" v-on:click="unzoom()">
+                <i class="fa-regular fa-square-minus" aria-hidden="true"></i>
+            </button>
+        </div>
         <div class="text-center px-5" v-if="isLoading">
             <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
             <span class="sr-only">Loading...</span>
         </div>
         <div v-else class="relative" v-bind:style="{width: '100%'}">
             <PinchScrollZoom
+                id="treeMap"
                 ref="zoomer"
+                key-actions
                 :width="pincherWidth()"
                 :height="pincherHeight()"
                 :contentWidth="dragWidth()"
@@ -61,7 +71,6 @@
                     </FamilyNode>
                 </div>
             </PinchScrollZoom>
-
         </div>
     </div>
 
@@ -151,7 +160,7 @@
 
 <script>
 import axios from "axios";
-import PinchScrollZoom from "@coddicat/vue3-pinch-scroll-zoom";
+import PinchScrollZoom from "@coddicat/vue-pinch-scroll-zoom";
 
 export default {
     props: {
@@ -204,6 +213,35 @@ export default {
     },
 
     methods: {
+
+        zoom() {
+            // create a new keyboard event and set the key to "Enter"
+            const event = new KeyboardEvent('keydown', {
+            key: '+',
+            code: 'Equal',
+            which: 187,
+            keyCode: 187,
+            });
+
+            // dispatch the event on some DOM element
+            document.getElementById('treeMap').dispatchEvent(event);
+        },
+
+        unzoom() {
+            //zoomer.value?.manualZoom(0.5);
+
+            // create a new keyboard event and set the key to "Enter"
+            const event = new KeyboardEvent('keydown', {
+            key: '-',
+            code: 'Minus',
+            which: 189,
+            keyCode: 189,
+            });
+
+            // dispatch the event on some DOM element
+            document.getElementById('treeMap').dispatchEvent(event);
+        },
+
         startEditing() {
             this.isEditing = true;
         },
@@ -281,7 +319,7 @@ export default {
             this.cssClass = undefined;
             this.colour = undefined;
             this.entity = undefined;
-            this.visibility = undefined;
+            this.visibility = 1;
             this.isUnknown = undefined;
 
             window.closeDialog(this.modal);
@@ -304,7 +342,7 @@ export default {
             this.relation = undefined;
             this.cssClass = undefined;
             this.colour = undefined;
-            this.visibility = undefined;
+            this.visibility = 1;
             this.isUnknown = undefined;
             this.entity = undefined;
 
@@ -333,6 +371,9 @@ export default {
         },
         showCreateNode() {
             return this.nodes.length === 0 && this.isEditing;
+        },
+        showEditFounder() {
+            return this.nodes.length > 0 && this.isEditing;
         },
         showMembers() {
             //console.log('this', this.suggestions.length, this.suggestions)

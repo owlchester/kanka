@@ -17,7 +17,6 @@ return [
         'default_dashboard' => 'Основной обзор',
         'entity'            => 'Объект',
         'filters'           => 'Фильтры',
-        'is_nested'         => 'Свернутый вид',
         'menu'              => 'Страница',
         'position'          => 'Позиция',
         'random'            => 'Случайный объект',

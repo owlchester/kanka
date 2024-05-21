@@ -2,6 +2,7 @@
 
 namespace App\Observers\Concerns;
 
+use App\Facades\EntityLogger;
 use App\Models\Creature;
 use App\Models\Location;
 use App\Models\MiscModel;
@@ -10,7 +11,7 @@ trait HasLocations
 {
     /**
      */
-    public function saveLocations(MiscModel|Creature $model)
+    public function saveLocations(MiscModel|Creature $model, array $locations = [])
     {
         /** @var Creature $model */
         $existing = $unique = $recreate = [];
@@ -28,11 +29,13 @@ trait HasLocations
         if (!empty($recreate)) {
             $model->locations()->attach($recreate);
         }
-
-        $locations = request()->get('locations', []);
+        if (!$locations) {
+            $locations = request()->get('locations', []);
+            $detach = true;
+        }
         $newLocations = [];
         foreach ($locations as $id) {
-            // Existing race, do nothing
+            // Existing location, do nothing
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
                 continue;
@@ -47,12 +50,14 @@ trait HasLocations
                 continue;
             }
             $newLocations[] = $location->id;
+            EntityLogger::dirty('locations', null);
         }
         $model->locations()->attach($newLocations);
 
         // Detach the remaining
-        if (!empty($existing)) {
+        if (!empty($existing) && isset($detach)) {
             $model->locations()->detach($existing);
+            EntityLogger::dirty('locations', null);
         }
     }
 }

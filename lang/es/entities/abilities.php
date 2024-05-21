@@ -2,10 +2,8 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Añadir habilidad',
-        'import_from_race'          => 'Añadir habilidades de raza',
-        'import_from_race_mobile'   => 'Habilidades raciales',
-        'reset'                     => 'Restablecer usos de habilidad',
+        'add'   => 'Añadir habilidad',
+        'reset' => 'Restablecer usos de habilidad',
     ],
     'create'    => [
         'success'           => 'Habilidad :ability añadida a :entity.',

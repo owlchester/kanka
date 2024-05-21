@@ -36,8 +36,8 @@ class PremiumController extends Controller
 
         /** @var User $user */
         $user = auth()->user();
-        $premiums = $user->boosts()->with('campaign')->groupBy('campaign_id')->get();
-        $userCampaigns = $user->campaigns()->unboosted()->whereNotIn('campaigns.id', $premiums->pluck('campaign_id'))->get();
+        $premiums = $user->boosts()->with(['campaign', 'campaign.boosts', 'campaign.boosts.user'])->groupBy('campaign_id')->get();
+        $userCampaigns = $user->campaigns()->with(['boosts', 'boosts.user'])->unboosted()->whereNotIn('campaigns.id', $premiums->pluck('campaign_id'))->get();
 
         if (!empty($campaignId)) {
             /** @var Campaign $campaign */

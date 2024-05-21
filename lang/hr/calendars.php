@@ -80,9 +80,8 @@ return [
         'weekdays'              => 'Nazivi dana',
     ],
     'helpers'       => [
-        'month_type'        => 'Interkalarni mjeseci ne koriste dane, ali utječu na mjesece i sezone.',
-        'nested_without'    => 'Prikazivanje svih kalendara koji nemaju kalendar roditelj. Klikni redak da bi vidio/la kalendare djecu.',
-        'start_offset'      => 'Zadano je da kalendar počinje od prvog dana u tjednu nulte godine. Promjena ovog polja utječe na to gdje je prvi dan kalendar postavljen.',
+        'month_type'    => 'Interkalarni mjeseci ne koriste dane, ali utječu na mjesece i sezone.',
+        'start_offset'  => 'Zadano je da kalendar počinje od prvog dana u tjednu nulte godine. Promjena ovog polja utječe na to gdje je prvi dan kalendar postavljen.',
     ],
     'hints'         => [
         'event_length'      => 'Koliko dugo treba trajati događaj. Događaj ne može trajati duže od dva mjeseca.',

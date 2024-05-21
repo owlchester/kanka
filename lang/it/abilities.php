@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'charges'   => 'Cariche',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Visualizzazione di tutte le abilità che non hanno un\'abilità genitore. Clicca su una riga per vedere le abilità figlie.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Quantità di cariche. Fai riferimento agli attributi con {Level}*{CHA}',

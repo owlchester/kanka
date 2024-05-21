@@ -85,6 +85,7 @@ class ExportService
                 ->prepare()
                 ->info()
                 ->campaignJson()
+                ->campaignModules()
                 ->entities()
                 ->gallery()
                 ->finish()
@@ -111,6 +112,38 @@ class ExportService
     public function filesize(): int
     {
         return $this->filesize;
+    }
+
+
+    protected function campaignModules(): self
+    {
+        $modules = [];
+        $settings = $this->campaign->setting->toArray();
+        unset($settings['id'], $settings['campaign_id'], $settings['created_at'], $settings['updated_at']);
+        $entities = config('entities.ids');
+
+        foreach ($settings as $name => $active) {
+            $module = ['enabled' => $active];
+            try {
+                if ($this->campaign->hasModuleName($entities[Str::singular($name)])) {
+                    $module['name_singular'] = $this->campaign->moduleName($entities[Str::singular($name)]);
+                }
+                if ($this->campaign->hasModuleName($entities[Str::singular($name)], true)) {
+                    $module['name_plural'] = $this->campaign->moduleName($entities[Str::singular($name)], true);
+                }
+                if ($this->campaign->hasModuleIcon($entities[Str::singular($name)])) {
+                    $module['icon'] = $this->campaign->moduleIcon($entities[Str::singular($name)]);
+                }
+            } catch (Exception $e) {
+
+            }
+            $modules[$name] = $module;
+
+        }
+        $this->archive->add(json_encode($modules), 'settings/modules.json', );
+        $this->files++;
+
+        return $this;
     }
 
     protected function prepare(): self
@@ -148,7 +181,13 @@ class ExportService
     }
     protected function campaignJson(): self
     {
-        $this->archive->addRaw($this->campaign->toJson(), 'campaign.json');
+        // We don't want the whole model to be available to the export.
+        // It would probably make more sense to have a resource for this.
+        $hidden = [
+            'boost_count', 'export_date', 'is_featured', 'featured_until',
+            'featured_reason', 'visible_entity_count', 'system', 'follower', 'is_hidden'
+        ];
+        $this->archive->addRaw($this->campaign->makeHidden($hidden)->toJson(), 'campaign.json');
         $this->files++;
         //Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
         if (!$this->assets) {
@@ -181,6 +220,7 @@ class ExportService
             'entity.files',
             'entity.mentions',
             'entity.inventories',
+            'entity.inventories.item',
             'entity.entityAttributes',
         ];
         $entities = config('entities.classes-plural');

@@ -81,8 +81,8 @@
                 this.sending = true;
                 this.emitter.emit('sending_message');
 
-                var url = this.api;
-                var data = {
+                let url = this.api;
+                let data = {
                     message: this.body.trim(),
                 };
                 if (this.targetCharacter) {

@@ -27,7 +27,6 @@ return [
     'fields'            => [
         'campaign-order'        => 'Ordre des campagnes',
         'date-format'           => 'Formatage de date',
-        'default-nested'        => 'Affiche de liste imbriquée',
         'editor'                => 'Éditeur de texte',
         'entity-explore'        => 'Listes d\'entités',
         'mentions'              => 'Mentions lors de l\'édition',
@@ -39,7 +38,6 @@ return [
         'advanced-mentions'     => 'Lors de l\'édition de textes, contrôler si les mentions sont affichées en tant que nom de l\'entité ou en tant que mention avancée.',
         'campaign-order'        => 'Changer l\'ordre dans lequel les campagnes sont affichées dans l\'interface.',
         'date-format'           => 'Contrôler le format dans lequel afficher les dates ancrées dans notre calendrier.',
-        'default-nested'        => 'Contrôler l\'affichage par défaut des listes qui supportent l\'imbrication.',
         'editor'                => 'L\'utilisation de l\'ancien éditeur de texte (TinyMCE) ne prend pas en charge les mentions sur les appareils mobiles, les galeries de campagnes ou d\'autres fonctionnalités avancées.',
         'entity-explore'        => 'Contrôler la manière dont s\'affiche les listes d\'entités des campagnes.',
         'new-entity-workflow'   => 'Contrôler l\'interface vers laquelle tu es redirigé après avoir créé une nouvelle entité.',
@@ -51,10 +49,7 @@ return [
         'advanced'  => 'Afficher les mentions avancées :code',
         'default'   => 'Nom de l\'entité',
     ],
-    'nested'            => [
-        'default'   => 'Listes plates',
-        'nested'    => 'Listes imbriquées',
-    ],
+    'nested'            => [],
     'success'           => 'Options d\'affichage enregistrées.',
     'values'            => [
         'pagination'        => ':amount résultats par page',

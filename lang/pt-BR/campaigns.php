@@ -60,7 +60,6 @@ TEXT
         'image'                             => 'Imagem da barra lateral',
         'locale'                            => 'Local',
         'name'                              => 'Nome',
-        'nested'                            => 'Listas de entidades para aninhadas como padrão quando disponíveis',
         'open'                              => 'Aberta a inscrições',
         'past_featured'                     => 'Campanha em destaque anteriormente',
         'post_collapsed'                    => 'Novos posts nas entidades são recolhidas por padrão.',
@@ -454,7 +453,6 @@ TEXT
             'entity_history'    => 'Registro de histórico da entidade',
             'entity_image'      => 'Imagem da entidade',
             'member_list'       => 'Lista de membros da campanha',
-            'nested'            => 'Layout padrão de listas',
             'post_collapsed'    => 'Valor padrão do campo recolhido de um novo post',
         ],
         'helpers'           => [
@@ -470,10 +468,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Apenas visível aos administradores da campanha',
             'visible'   => 'Visível aos membros',
-        ],
-        'nested'            => [
-            'nested'    => 'Aninhado',
-            'user'      => 'Padrão do usuário',
         ],
         'other'             => 'Outro',
     ],

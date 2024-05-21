@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  * Class Attribute
  * @package App\Models
  *
- * @property integer $id
- * @property integer $campaign_role_id
- * @property integer $user_id
+ * @property int $id
+ * @property int $campaign_role_id
+ * @property int $user_id
  *
  * @property User $user
  * @property Campaign $campaign
@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CampaignRoleUser extends Model
 {
-    /** @var string[]  */
     protected $fillable = [
         'campaign_role_id',
         'user_id',

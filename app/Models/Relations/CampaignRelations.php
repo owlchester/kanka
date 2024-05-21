@@ -40,6 +40,7 @@ use App\Models\Tag;
 use App\Models\Theme;
 use App\Models\Timeline;
 use App\Models\CampaignImport;
+use App\Models\Webhook;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -58,6 +59,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignSetting $setting
  * @property Collection|CampaignUser[] $members
  * @property Collection|Theme[] $theme
+ * @property Collection|Webhook[] $webhooks
  *
  * @property Collection|Entity[] $entities
  * @property Collection|Character[] $characters
@@ -78,8 +80,8 @@ use Illuminate\Support\Collection;
  */
 trait CampaignRelations
 {
-    /**
-     */
+    protected Collection $nonAdmins;
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany('App\User', 'campaign_user')->using('App\Models\CampaignUser');
@@ -102,16 +104,41 @@ trait CampaignRelations
 
     public function nonAdmins()
     {
-        return $this
-            ->members()
-            ->withoutAdmins()
-            ->with(['user', 'user.campaignRoles'])
-        ;
+        if (isset($this->nonAdmins)) {
+            return $this->nonAdmins;
+        }
+        $this->nonAdmins = new Collection();
+        // We can't exclude admins through pure SQL as some members might be role-less in weird edge cases
+        foreach ($this->members()->with(['user', 'user.campaignRoles', 'user.tutorials'])->get() as $member) {
+            $isAdmin = false;
+            /** @var CampaignRole $campaignRole */
+            foreach ($member->user->campaignRoles as $campaignRole) {
+                // Skip roles from other campaigns. This can probably be improved?
+                if ($campaignRole->campaign_id !==  $this->id) {
+                    continue;
+                }
+                if ($campaignRole->isAdmin()) {
+                    $isAdmin = true;
+                }
+            }
+            if ($isAdmin) {
+                continue;
+            }
+
+            $this->nonAdmins->add($member);
+        }
+
+        return $this->nonAdmins;
     }
 
     public function roles(): HasMany
     {
         return $this->hasMany(CampaignRole::class);
+    }
+
+    public function webhooks(): HasMany
+    {
+        return $this->hasMany(Webhook::class);
     }
 
     public function characters(): HasMany

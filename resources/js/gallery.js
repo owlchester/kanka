@@ -47,7 +47,7 @@ function initGallery() {
     bulkForm.submit(function (e) {
         e.preventDefault();
 
-        var data = new FormData();
+        let data = new FormData();
         $.each($('li[data-selected="1"]'), function (i) {
             data.append('file[]', $(this).data('id'));
         });
@@ -160,7 +160,7 @@ function initUploader() {
             return;
         }
 
-        var data = new FormData();
+        let data = new FormData();
         /*for (const i in galleryFiles.files) {
             let key = 'file[]';
             data.append(key, galleryFiles.files[i]);
@@ -183,7 +183,7 @@ const alertTooManyFiles = () => {
 };
 
 const uploadFiles = (data) => {
-    var config = {
+    let config = {
         headers: {
             'Content-Type': 'multipart/form-data'
         },

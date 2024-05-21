@@ -10,10 +10,7 @@ return [
         'author'    => 'Szerző',
         'date'      => 'Dátum',
     ],
-    'helpers'       => [
-        'journals'          => 'Az összes vagy csak a közvetlen alnaplók mutatása',
-        'nested_without'    => 'Minden olyan napló megmutatása, amelynek nincs szülőnaplója. Klikkelj egy sorra, hogy lásd a gyermeknaplókat.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'journals'      => [],
     'placeholders'  => [

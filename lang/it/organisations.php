@@ -10,10 +10,7 @@ return [
         'is_defunct'    => 'Dismessa',
         'members'       => 'Membri',
     ],
-    'helpers'       => [
-        'descendants'       => 'Questo elenco contiene tutte le organizzazioni che discendono da questa organizzazione, e non solo quelle direttamente sotto di essa.',
-        'nested_without'    => 'Visualizzazione di tutte le organizzazioni che non hanno un\'organizzazione genitore. Fai clic su una riga per visualizzare le organizzazioni figlio.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_defunct'    => 'Questa organizzazione è dismessa.',
     ],

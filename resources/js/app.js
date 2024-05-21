@@ -26,6 +26,7 @@ $(document).ready(function() {
     initImageRemoval();
     initFeedbackButtons();
     initDismissible();
+    initAdblocker();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -47,7 +48,22 @@ $(document).ready(function() {
     });
 });
 
-
+function initAdblocker() {
+    let adscript = document.getElementById('ad-client');
+    if (!adscript) {
+        return;
+    }
+    fetch(adscript.src, {
+        headers: {'X-Requested-With': 'XMLHttpRequest'}
+    })
+    .catch(() => {
+        let reminder = document.getElementById('adblock-plea');
+        if (!reminder) {
+            return;
+        }
+        reminder.classList.remove('hidden');
+    });
+}
 
 /**
  * Initiate spectrum for the various fields
@@ -331,6 +347,7 @@ import './quick-creator';
 import './datagrids';
 import './animations';
 import './quick-links';
+import './webhooks';
 import './post-layouts';
 import './members';
 import './campaign';

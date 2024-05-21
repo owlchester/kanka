@@ -10,10 +10,7 @@ return [
         'is_defunct'    => 'stillgelegt',
         'members'       => 'Mitglieder',
     ],
-    'helpers'       => [
-        'descendants'       => 'Diese Liste enthält alle Organisationen, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
-        'nested_without'    => 'Anzeigen aller Organisationen, die keine übergeordnete Organisation haben. Klicken Sie auf eine Zeile, um die untergeordneten Organisationen anzuzeigen.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_defunct'    => 'Diese Organisation ist aufgelöst.',
     ],

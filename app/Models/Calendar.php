@@ -20,7 +20,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @package App\Models
  *
  * @property string $date
- * @property integer $start_offset
+ * @property int $start_offset
  * @property string $months
  * @property string $years
  * @property string $weekdays
@@ -47,7 +47,6 @@ class Calendar extends MiscModel
     use HasRecursiveRelationships;
     use SoftDeletes;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'name',
@@ -126,6 +125,12 @@ class Calendar extends MiscModel
             },
             'children' => function ($sub) {
                 $sub->select('id', 'calendar_id');
+            },
+            'parent' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
             },
         ]);
     }
@@ -350,7 +355,7 @@ class Calendar extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
         foreach ($this->calendarEvents as $child) {
             $child->delete();

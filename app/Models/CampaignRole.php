@@ -13,11 +13,11 @@ use Illuminate\Database\Eloquent\Builder;
  * Class Attribute
  * @package App\Models
  *
- * @property integer $id
- * @property integer $campaign_id
+ * @property int $id
+ * @property int $campaign_id
  * @property string $name
- * @property boolean $is_admin
- * @property boolean $is_public
+ * @property bool|int $is_admin
+ * @property bool|int $is_public
  * @property Campaign $campaign
  * @property Collection|CampaignPermission[] $permissions
  * @property Collection|CampaignPermission[] $rolePermissions
@@ -33,7 +33,6 @@ class CampaignRole extends Model
     use Paginatable;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'is_admin',

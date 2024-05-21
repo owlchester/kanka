@@ -20,7 +20,7 @@
 
             @if ($field === 'attributes')
                 @php $hasAttributeFilters = true @endphp
-                @continue 
+                @continue
             @elseif ($field === 'connections')
                 @php $hasConnectionFilters = true @endphp
                 @continue
@@ -81,7 +81,7 @@
             </a>
 
             @if ($activeFilters > 0)
-                <a href="{{ route($route, [$campaign, 'reset-filter' => 'true', 'm' => $mode]) }}" class="btn2 btn-sm btn-error btn-outline">
+                <a href="{{ route($route, [$campaign, 'reset-filter' => 'true']) }}" class="btn2 btn-sm btn-error btn-outline">
                     <x-icon class="fa-solid fa-eraser"></x-icon>
                     {{ __('crud.filters.mobile.clear') }}
                 </a>

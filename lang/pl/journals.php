@@ -10,10 +10,7 @@ return [
         'author'    => 'Autor',
         'date'      => 'Data',
     ],
-    'helpers'       => [
-        'journals'          => 'Wyświetla wszystkie dzienniki pochodne, albo tylko pochodzące bezpośrednio od tego.',
-        'nested_without'    => 'Wyświetlono wszystkie dzienniki nieposiadające źródła. Kliknij na rząd, by wyświetlić dzienniki pochodne.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'journals'      => [],
     'placeholders'  => [

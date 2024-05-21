@@ -17,8 +17,7 @@ return [
         'is_hidden'         => 'Nascosto dall\'intestazione e dal tooltip',
     ],
     'helpers'       => [
-        'nested_without'    => 'Visualizzazione di tutti i tag che non hanno un tag genitore. Fai clic su una riga per visualizzare i tag figli.',
-        'no_children'       => 'Al momento non ci sono entità con questo tag.',
+        'no_children'   => 'Al momento non ci sono entità con questo tag.',
     ],
     'hints'         => [
         'children'          => 'Questa lista contiene tutte le entità direttamente assegnate a questo tag ed in tuuìtti i tad discendenti.',

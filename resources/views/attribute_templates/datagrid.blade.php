@@ -1,20 +1,11 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
+<?php /** @var \App\Models\AttributeTemplate $model */ ?>
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Name
         'name',
         [
-            'label' => __('crud.fields.parent'),
-            'field' => 'attributeTemplate.name',
-            'render' => function($model) {
-                if ($model->attributeTemplate) {
-                return $model->attributeTemplate->tooltipedLink();
-                }
-            }
+            'type' => 'parent',
         ],
        [
             'label' => __('attribute_templates.fields.attributes'),

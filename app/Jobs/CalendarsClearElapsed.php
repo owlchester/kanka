@@ -18,13 +18,13 @@ class CalendarsClearElapsed implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public int $id;
+    public Calendar $calendar;
     /**
      * Create a new job instance.
      */
     public function __construct(Calendar $calendar)
     {
-        $this->id = $calendar->id;
+        $this->calendar = $calendar;
     }
 
     /**
@@ -32,12 +32,10 @@ class CalendarsClearElapsed implements ShouldQueue
      */
     public function handle(): void
     {
-        $calendar = Calendar::find($this->id);
-        if (!$calendar) {
-            return;
-        }
-
         $model = new EntityEvent();
-        DB::update('UPDATE ' . $model->getTable() . ' SET elapsed = NULL WHERE calendar_id = \'' . $calendar->id . '\'');
+        DB::update(
+            'UPDATE ' . $model->getTable() . ' SET elapsed = NULL ' .
+            'WHERE calendar_id = \'' . $this->calendar->id . '\''
+        );
     }
 }

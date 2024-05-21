@@ -31,15 +31,14 @@ class LocationController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Location\Location::class)
             ->route('locations.locations', $options);
 
-        // @phpstan-ignore-next-line
         $this->rows = $location
             ->descendants()
             ->select(['id', 'name', 'type', 'location_id', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with([
-                'location', 'location.entity',
-                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'
+                'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
+                'parent', 'parent.entity',
             ])
             ->has('entity')
             ->paginate();

@@ -107,6 +107,8 @@ Route::get('campaigns/{campaign}/default-thumbnails', [App\Http\Controllers\Api\
 Route::post('campaigns/{campaign}/default-thumbnails', [App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'upload']);
 Route::delete('campaigns/{campaign}/default-thumbnails', [App\Http\Controllers\Api\v1\DefaultThumbnailApiController::class, 'delete']);
 
+Route::get('campaigns/{campaign}/fulltext-search', [App\Http\Controllers\Api\v1\FullTextSearchApiController::class, 'index']);
+
 Route::get('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'show']);
 Route::post('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'store']);
 Route::put('campaigns/{campaign}/families/{family}/tree', [App\Http\Controllers\Api\v1\FamilyTreeApiController::class, 'store']);

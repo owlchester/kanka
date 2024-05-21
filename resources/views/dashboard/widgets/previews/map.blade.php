@@ -108,7 +108,7 @@ $map = $entity->child;
 
             @if ($marker->entity && $marker->icon == 4)
                 .marker-{{ $marker->id }} .marker-pin::after {
-                    background-image: url('{{ \App\Facades\Avatar::entity($marker->entity)->fallback()->size(200)->thumbnail() }}');
+                    background-image: url('{{ \App\Facades\Avatar::entity($marker->entity)->fallback()->size(276)->thumbnail() }}');
                     @if(!empty($marker->pin_size))
                         width: {{ $marker->pinSize(false) - 4 }}px;
                         height: {{ $marker->pinSize(false) - 4 }}px;

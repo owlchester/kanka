@@ -61,7 +61,6 @@ TEXT
         'is_discreet'                       => 'Diskret',
         'locale'                            => 'Sprache',
         'name'                              => 'Name',
-        'nested'                            => 'Standardmäßig verschachtelte Objektslisten, wenn verfügbar',
         'open'                              => 'Offen für Bewerbungen',
         'past_featured'                     => 'Zuvor vorgestellte Kampagne',
         'post_collapsed'                    => 'Neue Beiträge zu Objekten werden standardmäßig minimiert.',
@@ -461,7 +460,6 @@ TEXT
             'entity_history'    => 'Verlaufsprotokolle des Objekts',
             'entity_image'      => 'Objekt Portrait',
             'member_list'       => 'Mitgliederliste der Kampagne',
-            'nested'            => 'Standardlistenlayout',
             'post_collapsed'    => 'Neuer Post-Standardwert für eingeklappteWerte',
         ],
         'helpers'           => [
@@ -477,10 +475,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Nur für Kampagnenadministratoren sichtbar',
             'visible'   => 'für Mitglieder sichtbar',
-        ],
-        'nested'            => [
-            'nested'    => 'Verschachtelt',
-            'user'      => 'Standardeinstellung des Benutzers',
         ],
         'other'             => 'Andere',
     ],

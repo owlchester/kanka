@@ -89,7 +89,7 @@ class AbilityService extends BaseAbilityService
                 'id' => $parent->id,
                 'name' => $parent->name,
                 'type' => $parent->type,
-                'image' => Avatar::entity($parent->entity)->size(120)->thumbnail(),
+                'image' => Avatar::entity($parent->entity)->size(192)->thumbnail(),
                 'has_image' => !empty($parent->entity->image_path) || !empty($parent->entity->image),
                 'entry' => $parent->entry(),
                 'parent' => true,
@@ -134,7 +134,7 @@ class AbilityService extends BaseAbilityService
             'attributes' => $this->attributes($entityAbility->ability->entity),
             'images' => [
                 'has' => !empty($entityAbility->ability->entity->image_path) || $entityAbility->ability->entity->image,
-                'thumb' => Avatar::entity($entityAbility->ability->entity)->size(120)->thumbnail(),
+                'thumb' => Avatar::entity($entityAbility->ability->entity)->size(192)->thumbnail(),
                 'url' => Avatar::entity($entityAbility->ability->entity)->original(),
             ],
             'actions' => [

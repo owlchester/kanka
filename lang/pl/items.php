@@ -12,9 +12,7 @@ return [
         'price'         => 'Cena',
         'size'          => 'Rozmiar',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Wyświetlono przedmioty nieposiadające źródła. Kliknij na rząd by zobaczyć przedmioty pochodne.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'items' => 'Porządkuj przedmioty według źródeł',
     ],

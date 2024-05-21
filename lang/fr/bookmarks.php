@@ -17,7 +17,6 @@ return [
         'default_dashboard' => 'Tableau de bord par défaut',
         'entity'            => 'Entité',
         'filters'           => 'Filtres',
-        'is_nested'         => 'Vue imbriquée',
         'menu'              => 'Menu',
         'position'          => 'Position',
         'random'            => 'Aléatoire',

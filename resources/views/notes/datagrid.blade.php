@@ -1,9 +1,6 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
+<?php /** @var \App\Models\Note $model */ ?>
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -13,13 +10,7 @@
         'name',
         'type',
         [
-            'label' => __('crud.fields.parent'),
-            'field' => 'note.name',
-            'render' => function($model) {
-                if ($model->note) {
-                return $model->note->tooltipedLink();
-                }
-            }
+            'type' => 'parent',
         ],
         [
             'type' => 'is_private',

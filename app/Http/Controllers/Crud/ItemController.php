@@ -7,22 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreItem;
 use App\Models\Campaign;
 use App\Models\Item;
-use App\Traits\TreeControllerTrait;
 
 class ItemController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'items';
     protected string $route = 'items';
-    protected $module = 'items';
+    protected string $module = 'items';
 
-    /** @var string Model */
-    protected $model = Item::class;
+    protected string $model = Item::class;
 
-    /** @var string Filter */
     protected string $filter = ItemFilter::class;
 
     /**

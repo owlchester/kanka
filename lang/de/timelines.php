@@ -18,9 +18,8 @@ return [
         'reverse_order' => 'Reihenfolge der Epochen umkehren',
     ],
     'helpers'       => [
-        'nested_without'    => 'Anzeigen aller Zeitleisten ohne übergeordnete Zeitleiste. Klicken Sie auf eine Zeile, um die untergeordneten Zeitleisten anzuzeigen.',
-        'no_era_v2'         => 'Dieser Zeitstrahl hat derzeit keine Epochen. Füge eine oder mehrere Epochen hinzu, danach kannst du hier Elemente zu den Epochen hinzufügen.',
-        'reverse_order'     => 'Aktivieren Sie diese Option, um Epochen in umgekehrter chronologischer Reihenfolge anzuzeigen (ältere Epoche zuerst).',
+        'no_era_v2'     => 'Dieser Zeitstrahl hat derzeit keine Epochen. Füge eine oder mehrere Epochen hinzu, danach kannst du hier Elemente zu den Epochen hinzufügen.',
+        'reverse_order' => 'Aktivieren Sie diese Option, um Epochen in umgekehrter chronologischer Reihenfolge anzuzeigen (ältere Epoche zuerst).',
     ],
     'index'         => [],
     'placeholders'  => [

@@ -1,9 +1,6 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
+<?php /** @var \App\Models\Event $model */ ?>
 
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -12,19 +9,16 @@
         // Name
         'name',
         'type',
+        [
+            'type' => 'parent',
+        ],
         'date',
         [
             'type' => 'location',
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => __('crud.fields.parent'),
-            'field' => 'event.name',
-            'render' => function($model) {
-                if ($model->event) {
-                    return $model->event->entity->tooltipedLink();
-                }
-            }
+            'type' => 'parent',
         ],
         [
             'type' => 'is_private',

@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'notes' => 'Podradená poznámka',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Zobraziť všetky poznámky, ktoré nemajú nadradenú poznámku. Kliknutím na riadok zobrazíš podradené poznámky.',
-    ],
+    'helpers'       => [],
     'hints'         => [],
     'index'         => [],
     'placeholders'  => [

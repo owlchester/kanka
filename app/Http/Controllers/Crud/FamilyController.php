@@ -7,24 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreFamily;
 use App\Models\Campaign;
 use App\Models\Family;
-use App\Traits\TreeControllerTrait;
 
 class FamilyController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'families';
     protected string $route = 'families';
-    protected $module = 'families';
+    protected string $module = 'families';
 
-    /**
-     * Crud models
-     */
-    protected $model = Family::class;
+    protected string $model = Family::class;
 
-    /** @var string Filter */
     protected string $filter = FamilyFilter::class;
 
     public function store(StoreFamily $request, Campaign $campaign)

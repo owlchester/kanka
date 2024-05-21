@@ -2,7 +2,7 @@
     <div class="element profile-type">
         <div class="title text-uppercase text-xs">{{ __('crud.fields.type') }}</div>
         @php
-        $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? [$campaign, 'm' => 'table'] : [$campaign];
+        $defaultOptions = [$campaign];
         @endphp
         {!! link_to_route(
             $entity->pluralType() . '.index',

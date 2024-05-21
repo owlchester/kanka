@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use App\Facades\EntityLogger;
 use App\Models\Attribute;
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
@@ -45,7 +46,7 @@ trait EntityMapper
         }
 
         $this->model->slug = Str::slug($this->model->name);
-        $this->model->save();
+        $this->model->saveQuietly();
         $this->entity();
 
         return $this;
@@ -85,11 +86,14 @@ trait EntityMapper
             $this->entity->$field = $this->data['entity'][$field];
         }
 
+
         $this
             ->image()
             ->header()
             ->gallery();
         $this->entity->save();
+
+        EntityLogger::entity($this->entity)->create();
 
         ImportIdMapper::putEntity($this->data['entity']['id'], $this->entity->id);
 
@@ -344,6 +348,10 @@ trait EntityMapper
 
     protected function pivot(string $relation, string $model, string $field): self
     {
+        //Check if import has old location_id and migrate it to new locations pivot table system, currently only happens with organisations
+        if ($relation == 'pivotLocations' && isset($this->data['location_id']) && !in_array(['location_id' => $this->data['location_id']], $this->data[$relation])) {
+            $this->data[$relation][] = ['location_id' => $this->data['location_id']];
+        }
         foreach ($this->data[$relation] as $pivot) {
             if (!ImportIdMapper::has($model, $pivot[$field])) {
                 continue;
@@ -497,6 +505,9 @@ trait EntityMapper
         }
 
         foreach ($this->data['entity']['mentions'] as $data) {
+            if (!ImportIdMapper::hasEntity($data['target_id'])) {
+                continue;
+            }
             $men = new EntityMention();
             $men->entity_id = $this->entity->id;
             $men->target_id = ImportIdMapper::getEntity($data['target_id']);

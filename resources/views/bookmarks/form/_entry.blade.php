@@ -43,7 +43,7 @@ if (isset($model)) {
                 ]) !!}
             </x-helper>
         @else
-            @subscriber()
+            @if (auth()->user()->hasBoosters())
             <x-helper>
                 {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
             </x-helper>
@@ -51,9 +51,8 @@ if (isset($model)) {
                 <x-helper>
                     {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
                 </x-helper>
-                @endsubscriber
-
             @endif
+        @endif
     </x-forms.field>
 
     <x-forms.field
@@ -68,16 +67,16 @@ if (isset($model)) {
                 {!! __('entities/links.helpers.parent') !!}
             </p>
         @else
-            @subscriber()
-            <x-helper>
-                {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
-            </x-helper>
+            @if (auth()->user()->hasBoosters())
+                <x-helper>
+                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
+                </x-helper>
             @else
                 <x-helper>
                     {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
                 </x-helper>
-                @endsubscriber
             @endif
+        @endif
     </x-forms.field>
 
     <x-forms.field
@@ -92,7 +91,7 @@ if (isset($model)) {
                 {{ __('dashboard.widgets.helpers.class') }}
             </p>
         @else
-            @subscriber()
+            @if (auth()->user()->hasBoosters())
             <x-helper>
                 {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
             </x-helper>
@@ -100,8 +99,8 @@ if (isset($model)) {
                 <x-helper>
                     {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
                 </x-helper>
-                @endsubscriber
             @endif
+        @endif
     </x-forms.field>
 
     <x-forms.field field="active" :label="__('bookmarks.fields.active')" :tooltip="true"
@@ -115,43 +114,44 @@ if (isset($model)) {
     </x-forms.field>
 </x-grid>
 
-<hr/>
+<x-grid type="1/1">
+    <hr/>
 
-<h4>{{ __('bookmarks.fields.selector') }}</h4>
-<x-helper :text="__('bookmarks.helpers.selector')" />
+    <h4>{{ __('bookmarks.fields.selector') }}</h4>
+    <x-helper :text="__('bookmarks.helpers.selector')" />
 
-<x-forms.field field="target" :label="__('bookmarks.fields.target')">
-    <select name="type" class="" id="bookmark-selector">
-        <option value="">Choose an option</option>
-        <option value="entity" @if($isEntity) selected="selected" @endif data-target="#bookmark-entity">
-            {{ __('bookmarks.fields.entity') }}
-        </option>
-        <option value="type" @if($isList) selected="selected" @endif data-target="#bookmark-list">
-            {{ __('crud.fields.type') }}
-        </option>
-        <option value="random" @if($isRandom) selected="selected" @endif data-target="#bookmark-random">
-            {{ __('bookmarks.fields.random') }}
-        </option>
-        <option value="dashboard" @if($isDashboard) selected="selected" @endif data-target="#bookmark-dashboard">
-            {{ __('bookmarks.fields.dashboard') }}
-        </option>
-    </select>
-</x-forms.field>
-<div>
-    <div class="bookmark-subform @if(!$isEntity) hidden @endif" id="bookmark-entity">
-        @include('bookmarks.form._entity')
+    <x-forms.field field="target" :label="__('bookmarks.fields.target')">
+        <select name="type" class="" id="bookmark-selector">
+            <option value="">Choose an option</option>
+            <option value="entity" @if($isEntity) selected="selected" @endif data-target="#bookmark-entity">
+                {{ __('bookmarks.fields.entity') }}
+            </option>
+            <option value="type" @if($isList) selected="selected" @endif data-target="#bookmark-list">
+                {{ __('crud.fields.type') }}
+            </option>
+            <option value="random" @if($isRandom) selected="selected" @endif data-target="#bookmark-random">
+                {{ __('bookmarks.fields.random') }}
+            </option>
+            <option value="dashboard" @if($isDashboard) selected="selected" @endif data-target="#bookmark-dashboard">
+                {{ __('bookmarks.fields.dashboard') }}
+            </option>
+        </select>
+    </x-forms.field>
+    <div>
+        <div class="bookmark-subform @if(!$isEntity) hidden @endif" id="bookmark-entity">
+            @include('bookmarks.form._entity')
+        </div>
+        <div class="bookmark-subform @if(!$isList) hidden @endif" id="bookmark-list">
+            @include('bookmarks.form._type')
+        </div>
+        <div class="bookmark-subform @if(!$isRandom) hidden @endif" id="bookmark-random">
+            @include('bookmarks.form._random')
+        </div>
+        <div class="bookmark-subform @if(!$isDashboard) hidden @endif" id="bookmark-dashboard">
+            @include('bookmarks.form._dashboard')
+        </div>
     </div>
-    <div class="bookmark-subform @if(!$isList) hidden @endif" id="bookmark-list">
-        @include('bookmarks.form._type')
-    </div>
-    <div class="bookmark-subform @if(!$isRandom) hidden @endif" id="bookmark-random">
-        @include('bookmarks.form._random')
-    </div>
-    <div class="bookmark-subform @if(!$isDashboard) hidden @endif" id="bookmark-dashboard">
-        @include('bookmarks.form._dashboard')
-    </div>
-</div>
 
-<hr/>
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
-
+    <hr/>
+    @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
+</x-grid>

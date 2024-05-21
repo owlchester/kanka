@@ -46,7 +46,7 @@ class CampaignMapper
 
     protected function image(string $field): void
     {
-        if (empty($this->data[$field]) && !empty($this->campaign->$field)) {
+        if (empty($this->data[$field]) || empty($this->campaign->$field)) {
             return;
         }
 

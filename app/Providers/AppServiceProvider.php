@@ -72,6 +72,7 @@ use App\Observers\OrganisationObserver;
 use App\Observers\UserObserver;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
+use App\Models\Webhook;
 use App\User;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -227,6 +228,7 @@ class AppServiceProvider extends ServiceProvider
         Note::observe(NoteObserver::class);
         User::observe(UserObserver::class);
         UserLog::observe('App\Observers\UserLogObserver');
+        Webhook::observe('App\Observers\WebhookObserver');
         Quest::observe('App\Observers\QuestObserver');
         QuestElement::observe('App\Observers\QuestElementObserver');
 

@@ -28,7 +28,7 @@ $(document).ready(function() {
                     cache: true
                 },
                 createTag: function (params) {
-                    var term = $.trim(params.term);
+                    let term = $.trim(params.term);
 
                     if (term === '') {
                         return null;
@@ -41,7 +41,7 @@ $(document).ready(function() {
                     };
                 },
                 templateResult: function (item) {
-                    var $span = $("<span class='block grow text-left'>" + item.text + "</span>");
+                    let $span = $("<span class='block grow text-left'>" + item.text + "</span>");
                     if (item.colour) {
                         $span = $("<span class='flex gap-2 items-center text-left'>" +
                             "<span class='rounded-full flex-none w-6 h-6 " + item.colour + "' /></span>" +
@@ -63,6 +63,30 @@ $(document).ready(function() {
                     }
                     $(container).addClass('text-left');
                     return state.text;
+                },
+            });
+        });
+        $.each($('.position-dropdown'), function () {
+            if ($(this).hasClass("select2-hidden-accessible")) {
+                return;
+            }
+            $(this).select2({
+                tags: true,
+                allowClear: true,
+                dropdownParent: $(this).data('dropdown-parent') || '',
+                placeholder: $(this).data('placeholder'),
+                minimumInputLength: 0,
+                createTag: function (params) {
+                    let term = $.trim(params.term);
+        
+                    if (term === '') {
+                        return null;
+                    }
+                    return {
+                        id: term,
+                        text: term,
+                        newTag: true // add additional parameters
+                    };
                 },
             });
         });

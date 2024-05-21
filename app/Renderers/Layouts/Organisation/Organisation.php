@@ -28,17 +28,17 @@ class Organisation extends Layout
                 'label' => 'crud.fields.type',
             ],
             'organisation' => [
-                'key' => 'organisation.name',
+                'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => function ($model) {
-                    if (!$model->organisation) {
+                    if (!$model->parent) {
                         return null;
                     }
                     $defunctIcon = null;
-                    if ($model->organisation->is_defunct) {
+                    if ($model->parent->is_defunct) {
                         $defunctIcon = ' <i class="fa-solid fa-shop-slash" aria-hidden="true" data-title="' . __('organisations.fields.is_defunct') . '"></i>';
                     }
-                    return $model->organisation->tooltipedLink() . $defunctIcon;
+                    return $model->parent->tooltipedLink() . $defunctIcon;
                 },
                 'visible' => function () {
                     return !request()->has('parent_id');

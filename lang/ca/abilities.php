@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'charges'   => 'Usos',
     ],
-    'helpers'       => [
-        'nested_without'    => 'S\'estan mostrant totes les habilitats que no tenen cap pare. Cliqueu una fila per a veure\'n les habilitats descendents.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Quantitat d\'usos. Es pot referenciar un atribut amb {Nivell}*{CHA}',

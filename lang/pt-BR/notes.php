@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'notes' => 'Sub-Notas',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Exibindo todas as notas que não tem uma nota primária. Clique em uma linha para ver as notas secundárias.',
-    ],
+    'helpers'       => [],
     'hints'         => [],
     'index'         => [],
     'placeholders'  => [

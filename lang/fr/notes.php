@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'notes' => 'Sous-notes',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Affichage des notes sans parent. Cliquer sur une rangée pour afficher les notes enfants.',
-    ],
+    'helpers'       => [],
     'hints'         => [],
     'index'         => [],
     'placeholders'  => [

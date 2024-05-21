@@ -10,6 +10,7 @@ use App\Traits\CampaignTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -18,7 +19,7 @@ use Illuminate\Support\Str;
  * Class Bookmark
  * @package App\Models
  *
- * @property integer $campaign_id
+ * @property int $campaign_id
  * @property string $name
  * @property string|null $tab
  * @property string|null $menu
@@ -28,14 +29,14 @@ use Illuminate\Support\Str;
  * @property string|null $parent
  * @property string $css
  * @property string $random_entity_type
- * @property integer $position
- * @property integer|null $dashboard_id
- * @property integer|null $entity_id
+ * @property int $position
+ * @property int|null $dashboard_id
+ * @property int|null $entity_id
  * @property array $options
  * @property CampaignDashboard|null $dashboard
  * @property Entity|null $target
- * @property boolean $is_private
- * @property boolean $is_active
+ * @property bool|int $is_private
+ * @property bool|int $is_active
  * @property array $optionsAllowedKeys
  *
  * @method static self|Builder ordered()
@@ -48,7 +49,6 @@ class Bookmark extends MiscModel
     use Privatable;
     use Taggable;
 
-    /** @var string[]  */
     protected $fillable = [
         'campaign_id',
         'entity_id',
@@ -117,7 +117,7 @@ class Bookmark extends MiscModel
     ];
 
     /** @var string Default order for lists */
-    public $defaultOrderField = 'position';
+    public string $defaultOrderField = 'position';
 
     /**
      * Performance with for datagrids
@@ -131,6 +131,11 @@ class Bookmark extends MiscModel
         ]);
     }
 
+    public function scopeStandardWith(Builder $query): Builder
+    {
+        return $query->with(['entity', 'dashboard', 'target']);
+    }
+
     /**
      * Scope for Active menu links
      */
@@ -140,25 +145,26 @@ class Bookmark extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Scope for ordering models by default
      */
-    public function campaign()
+    public function scopeOrdered(Builder $query): Builder
+    {
+        return $query
+            ->orderBy('position', 'ASC')
+            ->orderBy('name', 'ASC');
+    }
+
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function target()
+    public function target(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function dashboard()
+    public function dashboard(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignDashboard', 'dashboard_id');
     }
@@ -249,11 +255,9 @@ class Bookmark extends MiscModel
     protected function getIndexRoute(): string
     {
         $filters = $this->filters . '&_clean=true&_from=bookmark&bookmark=' . $this->id;
-        $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] == '1' ? 'tree' : 'index');
-
-        $routeName = Str::plural($this->type) . ".{$nestedType}";
-        if ($nestedType === 'tree' && !Route::has($routeName)) {
-            $routeName = Str::plural($this->type) . '.index';
+        $routeName = Str::plural($this->type) . '.index';
+        if (!empty($this->options['is_nested']) && $this->options['is_nested'] == '1') {
+            $filters .= '&n=1';
         }
         try {
             $campaign = CampaignLocalization::getCampaign();
@@ -265,21 +269,11 @@ class Bookmark extends MiscModel
 
     /**
      * Override the get link
-     * @param string $route = 'show'
      */
     public function getLink(string $route = 'show'): string
     {
         $campaign = CampaignLocalization::getCampaign();
         return route('bookmarks.' . $route, [$campaign, $this->id]);
-    }
-
-    /**
-     */
-    public function scopeOrdered(Builder $query): Builder
-    {
-        return $query
-            ->orderBy('position', 'ASC')
-            ->orderBy('name', 'ASC');
     }
 
     /**
@@ -290,36 +284,21 @@ class Bookmark extends MiscModel
         return (int) config('entities.ids.bookmark');
     }
 
-    /**
-     */
-    public function scopeStandardWith(Builder $query): Builder
-    {
-        return $query->with(['entity', 'dashboard', 'target']);
-    }
-
-    /**
-     */
     public function isRandom(): bool
     {
         return !empty($this->random_entity_type);
     }
 
-    /**
-     */
     public function isEntity(): bool
     {
         return !empty($this->entity_id);
     }
 
-    /**
-     */
     public function isDashboard(): bool
     {
         return !empty($this->dashboard_id);
     }
 
-    /**
-     */
     public function isList(): bool
     {
         return !empty($this->type);

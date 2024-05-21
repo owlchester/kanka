@@ -81,12 +81,12 @@
                         @endif
                     @endforeach
                     @if (!$campaign->superboosted())
-                    <tr id="log-cta" class="collapse">
+                    <tr id="log-cta" class="hidden">
                         <td colspan="4">
                                 <x-helper>{!! __('entities/logs.call-to-action', [
 'amount' => config('entities.logs'),
 ]) !!}</x-helper>
-                                @subscriber()
+                            @if (auth()->check() && auth()->user()->hasBoosters())
                                 <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white">
                                     {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
                                 </a>

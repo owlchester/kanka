@@ -128,7 +128,7 @@ function registerFormSubmitAnimation() {
             window.entityFormHasUnsavedChanges = false;
 
             // Find the main button
-            var submit = $(this).find('.btn-primary');
+            let submit = $(this).find('.btn-primary');
             if (submit.length > 0) {
                 $.each(submit, function () {
                     if ($(this).parent().hasClass('dropdown') || $(this).hasClass('quick-creator-subform')) {
@@ -277,7 +277,7 @@ const loadCalendarDates = (calendarID) => {
     entityCalendarLoading.show();
 
     calendarID = parseInt(calendarID);
-    var url = $('input[name="calendar-data-url"]').data('url').replace('/0/', '/' + calendarID + '/');
+    let url = $('input[name="calendar-data-url"]').data('url').replace('/0/', '/' + calendarID + '/');
     fetch(url)
         .then((response) => response.json())
         .then(data => {

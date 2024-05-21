@@ -37,6 +37,7 @@ class JournalController extends Controller
             ->filter($filters)
             ->with([
                 'entity', 'entity.tags', 'entity.tags.entity', 'entity.image',
+                'parent', 'parent.entity',
                 'author'
             ])
             ->paginate();

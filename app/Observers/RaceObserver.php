@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\MiscModel;
 use App\Models\Race;
 use App\Observers\Concerns\HasLocations;
 
@@ -16,11 +15,6 @@ class RaceObserver extends MiscObserver
             return $this;
         }
         $this->saveLocations($race);
-    }
-
-    public function saved(MiscModel $model)
-    {
-        parent::saved($model);
     }
 
     public function deleting(Race $race)

@@ -396,7 +396,6 @@ class SubscriptionService
                 'reason' => $request->reason,
                 'custom' => $request->reason_custom,
                 'tier'  => $this->user->pledge,
-                // @phpstan-ignore-next-line
                 'duration' => $this->user->subscription('kanka')->created_at->diffInDays(Carbon::now()),
             ]);
 
@@ -406,7 +405,6 @@ class SubscriptionService
             // Dispatch the job when the subscription actually ends
             SubscriptionEndJob::dispatch($this->user)
                 ->delay(
-                    // @phpstan-ignore-next-line
                     $this->user->subscription('kanka')->ends_at
                 );
         }
@@ -479,7 +477,7 @@ class SubscriptionService
 
             \Laravel\Cashier\Subscription::create([
                 'user_id' => $this->user->id,
-                'name' => 'kanka',
+                'type' => 'kanka',
                 'stripe_id' => $source->method . '_' . $source->id,
                 'stripe_status' => 'active',
                 'stripe_price' => $source->plan(),
@@ -693,7 +691,6 @@ class SubscriptionService
         if ($sub === null) {
             return false;
         }
-        // @phpstan-ignore-next-line
         return $sub->created_at->lessThan(Carbon::yesterday());
     }
 

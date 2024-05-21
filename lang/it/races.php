@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'members'   => 'Membri',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Visualizzazione di tutte le razze che non hanno una razza genitore. Fai clic su una riga per vedere le razze figlie.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'members'       => [
         'create'    => [

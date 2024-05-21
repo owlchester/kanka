@@ -12,7 +12,6 @@ return [
     'fields'        => [],
     'helpers'       => [
         'characters'    => 'Bekijk alle personages op deze locatie en de gerelateerde locaties, of alleen degenen die zich hier direct bevinden.',
-        'descendants'   => 'This list contains all locations which are descendants of this location, not only those directly under it.',
     ],
     'hints'         => [],
     'index'         => [],

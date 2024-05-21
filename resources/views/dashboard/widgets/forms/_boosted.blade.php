@@ -5,7 +5,7 @@
     <div>
         <p class="">{{ __('callouts.premium.limitation') }}</p>
 
-        @subscriber()
+        @if (auth()->user()->hasBoosters())
         <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-sm" target="_blank">
             {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
         </a>

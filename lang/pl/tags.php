@@ -21,8 +21,7 @@ return [
         'is_hidden'         => 'Ukryj w nagłówkach i dymkach',
     ],
     'helpers'       => [
-        'nested_without'    => 'Wyświetlono wszystkie etykiety nieposiadające źródła. Kliknij na rząd, by wyświetlić etykiety pochodne.',
-        'no_children'       => 'Obecnie nie oznaczono tą etykietą żadnych elementów.',
+        'no_children'   => 'Obecnie nie oznaczono tą etykietą żadnych elementów.',
     ],
     'hints'         => [
         'children'          => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę i etykiety pochodne.',

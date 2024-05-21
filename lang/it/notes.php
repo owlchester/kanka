@@ -9,9 +9,7 @@ return [
     'fields'        => [
         'notes' => 'Sottonote',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Visualizzazione delle note che non hanno una nota sovraordinata. Clicca su una fila per vedere le sottonote.',
-    ],
+    'helpers'       => [],
     'hints'         => [],
     'index'         => [],
     'placeholders'  => [

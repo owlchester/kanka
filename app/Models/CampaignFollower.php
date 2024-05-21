@@ -24,7 +24,6 @@ class CampaignFollower extends Pivot
      */
     public $table = 'campaign_followers';
 
-    /** @var string[]  */
     protected $fillable = ['user_id', 'campaign_id'];
 
     /**

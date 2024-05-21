@@ -8,6 +8,7 @@ use App\Models\CampaignFollower;
 use App\Models\CampaignUser;
 use App\Models\CommunityEventEntry;
 use App\Models\Feature;
+use App\Services\Campaign\SearchCleanupService;
 use App\Services\ImageService;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Log;
@@ -43,6 +44,7 @@ class CleanupService
 
             // Delete a campaign if no one is left in it. Since we did the "with", it's cached, hence checking on 1
             if ($member->campaign->members->count() <= 1) {
+                SearchCleanupService::cleanup($member->campaign);
                 ImageService::cleanup($member->campaign);
                 $member->campaign->delete();
             }

@@ -90,4 +90,10 @@ class CampaignCacheService extends BaseCache
     {
         return 'campaign_' . $this->campaign->id;
     }
+
+    public function clearSidebar(): self
+    {
+        $this->forget('campaign_' . $this->campaign->id . '_sidebar');
+        return $this;
+    }
 }

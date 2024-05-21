@@ -12,7 +12,7 @@
             </div>
             @if (empty($target))
                 <div class="dropdown">
-                    <div role="button" class="text-2xl text-2xl" data-dropdown aria-expanded="false">
+                    <div role="button" class="text-2xl" data-dropdown aria-expanded="false">
                         {!! $newLabel !!}
                         <x-icon class="fa-solid fa-chevron-down" />
                         <span class="sr-only">Change type</span>

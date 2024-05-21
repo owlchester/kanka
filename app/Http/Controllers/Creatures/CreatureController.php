@@ -31,14 +31,13 @@ class CreatureController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Creature\Creature::class)
             ->route('creatures.creatures', $options);
 
-        // @phpstan-ignore-next-line
         $this->rows = $creature
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with([
-                'creature', 'creature.entity',
-                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'
+                'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
+                'parent', 'parent.entity',
             ])
             ->paginate(15);
 

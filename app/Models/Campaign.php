@@ -38,11 +38,11 @@ use Illuminate\Support\Collection;
  * @property string $css
  * @property string $theme
  * @property int $boost_count
- * @property integer $visible_entity_count
+ * @property int $visible_entity_count
  * @property array $ui_settings
- * @property boolean $is_open
- * @property boolean $is_featured
- * @property boolean $is_discreet
+ * @property bool|int $is_open
+ * @property bool|int $is_featured
+ * @property bool|int $is_discreet
  * @property Carbon $featured_until
  * @property string $featured_reason
  * @property array|null $default_images
@@ -80,7 +80,6 @@ class Campaign extends Model
     public const LAYER_COUNT_MIN = 1;
     public const LAYER_COUNT_MAX = 10;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',

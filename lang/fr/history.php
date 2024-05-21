@@ -20,7 +20,7 @@ return [
         'create_post'   => 'L\'utilisateur :user a créé la note ":post" sur :entity',
         'delete'        => 'L\'utilisateur :user a supprimé :entity',
         'delete_post'   => 'L\'utilisateur :user a supprimé une note sur :entity',
-        'reorder_post'  => 'L\'utilisateur :user a réordonné les notes sur :entity',
+        'reorder_post'  => 'L\'utilisateur :user a réordonné les articles sur :entity',
         'restore'       => 'L\'utilisateur :user a restauré :entity',
         'update'        => 'L\'utilisateur :user a modifié :entity',
         'update_post'   => 'L\'utilisateur :user a supprimé la note ":post" sur :entity',

@@ -10,6 +10,8 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,7 +40,6 @@ class Race extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'campaign_id',
@@ -54,14 +55,10 @@ class Race extends MiscModel
      */
     protected string $entityType = 'race';
 
-    protected array $sortableColumns = [
-        'race.name',
-    ];
-
     protected array $sortable = [
         'name',
         'type',
-        'race.name',
+        'parent.name',
     ];
 
     /**
@@ -99,8 +96,12 @@ class Race extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'race',
-            'race.entity',
+            'parent' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
             'races' => function ($sub) {
                 $sub->select('id', 'name', 'race_id');
             },
@@ -235,14 +236,15 @@ class Race extends MiscModel
     }
 
     /**
-     * Races have multiple locations
+     * Races have multiple locations through the race_location table
      */
-    public function locations()
+    public function locations(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\Location', 'race_location');
+        return $this->belongsToMany('App\Models\Location', 'race_location')
+            ->with('entity');
     }
 
-    public function pivotLocations()
+    public function pivotLocations(): HasMany
     {
         return $this->hasMany('App\Models\RaceLocation');
     }

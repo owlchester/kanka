@@ -32,15 +32,14 @@ class FamilyController extends Controller
             ->route('families.families', $options)
         ;
 
-        // @phpstan-ignore-next-line
         $this->rows = $family
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with([
-                'family', 'family.entity',
                 'location', 'location.entity',
-                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'
+                'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
+                'parent', 'parent.entity',
             ])
             ->paginate(15);
 

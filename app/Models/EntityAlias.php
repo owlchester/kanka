@@ -7,15 +7,16 @@ use App\Models\Concerns\EntityAsset;
 use App\Traits\VisibilityIDTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class EntityLink
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer $created_by
+ * @property int $entity_id
+ * @property int $created_by
  * @property string $name
- * @property integer $visibility_id
+ * @property int $visibility_id
  * @property Entity $entity
  * @property User $user
  * @property Campaign $campaign
@@ -35,30 +36,21 @@ class EntityAlias extends Model
     ];
 
     /** EntityAsset booleans */
-    protected $isLink = false;
-    protected $isFile = false;
-    protected $isAlias = true;
+    protected bool $isLink = false;
+    protected bool $isFile = false;
+    protected bool $isAlias = true;
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function visibility()
+    public function visibility(): BelongsTo
     {
         return $this->belongsTo('App\Models\Visibility', 'visibility_id');
     }

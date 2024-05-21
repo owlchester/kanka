@@ -27,7 +27,6 @@ return [
     'fields'            => [
         'campaign-order'        => 'Orden de la lista de campañas',
         'date-format'           => 'Formato de fechas',
-        'default-nested'        => 'Diseño de listas anidadas',
         'editor'                => 'Editor de texto',
         'entity-explore'        => 'Lista de entidades',
         'mentions'              => 'Menciones al editar',
@@ -39,7 +38,6 @@ return [
         'advanced-mentions'     => 'Al editar textos, controla si las menciones se muestran como el nombre de la entidad o como la mención avanzada.',
         'campaign-order'        => 'Cambia el orden en el que aparecen las campañas en el selector de campañas.',
         'date-format'           => 'Cuando esté disponible, controla el formato en el que se mostrarán las fechas del mundo real.',
-        'default-nested'        => 'Controla cómo se muestran por defecto las listas que admiten anidamiento.',
         'editor'                => 'El uso del editor de texto de legado (TinyMCE) no admite menciones en dispositivos móviles, galerías de campañas ni otras funciones avanzadas.',
         'entity-explore'        => 'Controla la forma en que se muestran las listas de entidades en las campañas.',
         'new-entity-workflow'   => 'Controla la interfaz a la que se te dirige tras crear una nueva entidad.',
@@ -51,10 +49,7 @@ return [
         'advanced'  => 'Mostrar menciones avanzadas :code',
         'default'   => 'Menciones como el nombre de la entidad',
     ],
-    'nested'            => [
-        'default'   => 'Listas planas',
-        'nested'    => 'Listas anidadas',
-    ],
+    'nested'            => [],
     'success'           => 'Opciones de apariencia guardadas.',
     'values'            => [
         'pagination'        => ':amount resultados por página',

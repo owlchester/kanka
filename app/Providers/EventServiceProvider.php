@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Auth\Events\Login;
+use PragmaRX\Google2FALaravel\Listeners\LoginViaRemember;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -12,6 +14,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\Event' => [
             'App\Listeners\EventListener',
+        ],
+        Login::class => [
+            LoginViaRemember::class,
         ],
     ];
 

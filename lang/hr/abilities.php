@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'charges'   => 'Punjenja',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Prikaz svih sposobnosti koje nemaju roditeljske sposobnosti. Klikni red da bi vidio/vidjela sposobnosti djecu.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Broj punjenja. Referenciraj se na atribute s {Level}*{CHA}',

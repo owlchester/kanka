@@ -14,9 +14,7 @@ return [
     'fields'        => [
         'children'  => 'Djeca',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Prikazuju se sve oznake koje nemaju oznaku roditelj. Klikni redak da bi vidio/la oznake djecu.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'children'  => 'Popis sadrži sve oznake koje su unutar trenutne oznake, a ne samo one koje su direktno ispod nje.',
         'tag'       => 'Ispod su prikazane sve oznake koje su izravno pod ovom oznakom.',

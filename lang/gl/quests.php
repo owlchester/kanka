@@ -32,8 +32,7 @@ return [
         'role'          => 'Rol',
     ],
     'helpers'       => [
-        'is_completed'      => 'Selecciona se a misión é considerada completa.',
-        'nested_without'    => 'Mostrando todas as misións que non teñen unha misión superior. Fai clic nunha fila para ver as súas submisións.',
+        'is_completed'  => 'Selecciona se a misión é considerada completa.',
     ],
     'hints'         => [
         'quests'    => 'Podes crear unha rede de misións entrelazadas usando o campo "Misión superior".',

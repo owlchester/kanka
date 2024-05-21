@@ -13,13 +13,13 @@ use Illuminate\Support\Str;
  * Class Attribute
  * @package App\Models
  *
- * @property integer $id
- * @property integer $entity_id
+ * @property int $id
+ * @property int $entity_id
  * @property string $name
  * @property string $path
  * @property string $type
- * @property integer $size
- * @property boolean $is_private
+ * @property int $size
+ * @property bool|int $is_private
  * @property string $visibility
  */
 class EntityFile extends Model
@@ -28,7 +28,6 @@ class EntityFile extends Model
     use EntityAsset;
     use VisibilityIDTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'name',

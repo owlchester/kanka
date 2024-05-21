@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'fulltext'      => 'Search everywhere',
     'lookup'        => [
         'empty'     => 'No results',
         'hint'      => 'Type at least 3 letters to search for entities in the campaign.',

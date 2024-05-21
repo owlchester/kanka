@@ -22,9 +22,7 @@ return [
     'fields'        => [
         'charges'   => 'Usos',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Mostrando todas las habilidades que no tienen superior. Haz clic sobre una fila para mostrar las habilidades anidadas.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Cantidad de usos. Puedes hacer referencia a un atributo con {Nivel}*{CHA}',

@@ -16,8 +16,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class AttributeTemplate
  * @package App\Models
  *
- * @property integer|null $attribute_template_id
- * @property integer|null $entity_type_id
+ * @property int|null $attribute_template_id
+ * @property int|null $entity_type_id
  * @property AttributeTemplate|null $attributeTemplate
  * @property AttributeTemplate[] $attributeTemplates
  * @property EntityType $entityType
@@ -30,10 +30,6 @@ class AttributeTemplate extends MiscModel
     use HasRecursiveRelationships;
     use SoftDeletes;
 
-    /**
-     * Fields that can be mass-assigned
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'slug',
@@ -114,6 +110,8 @@ class AttributeTemplate extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
+            'parent',
+            'entityType',
             'children' => function ($sub) {
                 $sub->select('id', 'attribute_template_id');
             }
@@ -187,6 +185,7 @@ class AttributeTemplate extends MiscModel
             }
         }
 
+        $entity->touch();
         return $order;
     }
 
@@ -257,5 +256,14 @@ class AttributeTemplate extends MiscModel
             $columns['is_private'] = __('crud.fields.is_private');
         }
         return $columns;
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'campaign_id' => $this->entity->campaign_id,
+            'entity_id' => $this->entity->id,
+            'name' => $this->name,
+        ];
     }
 }

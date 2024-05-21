@@ -47,15 +47,7 @@ class Timeline extends MiscModel
     protected array $sortable = [
         'name',
         'type',
-        'timeline.name',
-    ];
-
-    /**
-     * Fields that can be sorted on
-     */
-    protected array $sortableColumns = [
-        'calendar.name',
-        'timeline.name',
+        'parent.name',
     ];
 
     /**
@@ -102,10 +94,12 @@ class Timeline extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'timeline' => function ($sub) {
-                $sub->select('id', 'name', 'timeline_id');
+            'parent' => function ($sub) {
+                $sub->select('id', 'name');
             },
-            'timeline.entity',
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
             'eras' => function ($sub) {
                 $sub->select('id', 'timeline_id');
             },

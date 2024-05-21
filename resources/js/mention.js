@@ -39,7 +39,7 @@ export default function dynamicMentions() {
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    var data = JSON.parse(xhr.responseText);
+                    let data = JSON.parse(xhr.responseText);
                     cb(data);
                 } else if (xhr.status === 403) {
                     cb([]);

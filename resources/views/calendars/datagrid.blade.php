@@ -1,9 +1,5 @@
-@inject ('datagrid', 'App\Renderers\DatagridRenderer')
-
+<?php /** @var \App\Models\Calendar $model */ ?>
 {!! $datagrid
-    ->campaign($campaign)
-    ->service($filterService)
-    ->models($models)
     ->columns([
         // Avatar
         [
@@ -12,6 +8,9 @@
         // Name
         'name',
         'type',
+        [
+            'type' => 'parent',
+        ],
         [
             'label' => __('calendars.fields.date'),
             'render' => function($model) {

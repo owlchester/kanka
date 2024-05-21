@@ -16,6 +16,11 @@ class ExploreController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
+    public function __construct()
+    {
+        $this->middleware('adless');
+    }
+
     /**
      * Exploration view for a map
      */

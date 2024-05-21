@@ -13,11 +13,8 @@ use App\Services\Entity\PrivacyService;
  */
 class PrivacyController extends Controller
 {
-    /**  */
     protected PrivacyService $service;
 
-    /**
-     */
     public function __construct(PrivacyService $service)
     {
         $this->service = $service;
@@ -51,6 +48,7 @@ class PrivacyController extends Controller
         $misc = $entity->child;
         $misc->is_private = !$misc->is_private;
         $misc->update(['is_private' => $misc->is_private]);
+        $entity->update(['is_private' => $misc->is_private]);
 
         return response()->json([
             'toast' => __('entities/permissions.quick.success.' . ($misc->is_private ? 'private' : 'public'), [

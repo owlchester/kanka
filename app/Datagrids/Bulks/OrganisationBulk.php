@@ -7,7 +7,7 @@ class OrganisationBulk extends Bulk
     protected array $fields = [
         'name',
         'type',
-        'location_id',
+        'locations',
         'organisation_id',
         'tags',
         'private_choice',

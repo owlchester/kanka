@@ -10,10 +10,7 @@ return [
         'author'    => 'Autor',
         'date'      => 'Datum',
     ],
-    'helpers'       => [
-        'journals'          => 'Zeigen Sie alle oder nur die direkt Untergeordneten Logbücher dieses Logbuchs an.',
-        'nested_without'    => 'Anzeigen aller Journale ohne übergeordnetes Journal. Klicken Sie auf eine Zeile, um die Kinderjournale anzuzeigen.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'journals'      => [],
     'placeholders'  => [

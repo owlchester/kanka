@@ -10,10 +10,7 @@ return [
         'author'    => 'Autor',
         'date'      => 'Fecha',
     ],
-    'helpers'       => [
-        'journals'          => 'Muestra todos o solo los descendientes directos de este diario.',
-        'nested_without'    => 'Mostrando todos los diarios sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'journals'      => [],
     'placeholders'  => [

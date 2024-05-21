@@ -11,23 +11,25 @@ use App\Traits\OrderableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 /**
  * Class Attribute
  * @package App\Models
  *
- * @property integer $id
- * @property integer $entity_id
+ * @property int $id
+ * @property int $entity_id
  * @property string $name
  * @property string|null $value
  * @property int $type_id
- * @property integer $origin_attribute_id
- * @property integer $default_order
- * @property boolean $is_private
- * @property boolean $is_hidden
- * @property boolean $is_pinned
- * @property string $api_key
+ * @property int|null $origin_attribute_id
+ * @property int $default_order
+ * @property int|bool $is_private
+ * @property int|bool $is_hidden
+ * @property int|bool $is_pinned
+ * @property string|null $api_key
  * @property Entity|null $entity
  */
 class Attribute extends Model
@@ -37,6 +39,7 @@ class Attribute extends Model
     use Paginatable;
     use Pinnable;
     use Privatable;
+    use Searchable;
 
     public const TYPE_CHECKBOX = 'checkbox';
     public const TYPE_SECTION = 'section';
@@ -53,7 +56,6 @@ class Attribute extends Model
     public const TYPE_NUMBER_ID = 6;
     public const TYPE_LIST_ID = 7;
 
-    /** @var string[]  */
     protected $fillable = [
         'entity_id',
         'name',
@@ -88,16 +90,13 @@ class Attribute extends Model
 
     protected $mappedName = false;
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function origin()
     {
@@ -377,6 +376,43 @@ class Attribute extends Model
             'default_order',
             'is_pinned',
             'is_hidden',
+        ];
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     */
+    public function getScoutKey()
+    {
+        return $this->getTable() . '_' . $this->id;
+    }
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'entities';
+    }
+
+    protected function makeAllSearchableUsing($query)
+    {
+        return $query
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->leftJoin('entities', $this->getTable() . '.entity_id', '=', 'entities.id')
+            ->has('entity')
+            ->with('entity');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'campaign_id' => $this->entity->campaign_id,
+            'entity_id' => $this->entity_id,
+            'name' => $this->name,
+            'type'  => 'attribute',
+            'entry'  => strip_tags($this->value),
         ];
     }
 }

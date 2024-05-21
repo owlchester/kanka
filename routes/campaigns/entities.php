@@ -9,15 +9,14 @@ Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entity\
 // Abilities
 Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');
 Route::get('/w/{campaign}/abilities/{ability}/entities', 'Abilities\EntityController@index')->name('abilities.entities');
-Route::get('/w/{campaign}/abilities/tree', 'Crud\AbilityController@tree')->name('abilities.tree');
 
 Route::get('/w/{campaign}/abilities/{ability}/entity-add', 'Abilities\EntityController@create')->name('abilities.entity-add');
 Route::post('/w/{campaign}/abilities/{ability}/entity-add', 'Abilities\EntityController@store')->name('abilities.entity-add.save');
 
 //Ability reorder
-Route::get('/w/{campaign}/entity/{entity}/abilities/reorder', [App\Http\Controllers\Entity\Abilities\ReorderController::class, 'index'])
+Route::get('/w/{campaign}/entities/{entity}/entity_abilities/reorder', [App\Http\Controllers\Entity\Abilities\ReorderController::class, 'index'])
     ->name('entities.entity_abilities.reorder');
-Route::post('/w/{campaign}/entity/{entity}/abilities/reorder', [App\Http\Controllers\Entity\Abilities\ReorderController::class, 'save'])
+Route::post('/w/{campaign}/entities/{entity}/entity_abilities/reorder', [App\Http\Controllers\Entity\Abilities\ReorderController::class, 'save'])
     ->name('entities.entity_abilities.reorder-save');
 
 // Maps
@@ -27,7 +26,6 @@ Route::get('/w/{campaign}/maps/{map}/chunks/', 'Maps\ExploreController@chunks')-
 Route::get('/w/{campaign}/maps/{map}/ticker', 'Maps\ExploreController@ticker')->name('maps.ticker');
 Route::get('/w/{campaign}/maps/{map}/{map_marker}/details', 'Maps\Markers\DetailController@index')->name('maps.markers.details');
 Route::post('/w/{campaign}/maps/{map}/{map_marker}/move', 'Maps\Markers\MoveController@index')->name('maps.markers.move');
-Route::get('/w/{campaign}/maps/tree', 'Crud\MapController@tree')->name('maps.tree');
 Route::post('/w/{campaign}/maps/{map}/groups/bulk', 'Maps\Bulks\GroupController@index')->name('maps.groups.bulk');
 Route::post('/w/{campaign}/maps/{map}/groups/reorder', 'Maps\Reorders\GroupController@index')->name('maps.groups.reorder-save');
 
@@ -43,19 +41,16 @@ Route::get('/w/{campaign}/dice_rolls/{dice_roll}/roll', 'Crud\DiceRollController
 Route::delete('/w/{campaign}/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'Crud\DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
 
 // Locations
-Route::get('/w/{campaign}/locations/tree', 'Crud\LocationController@tree')->name('locations.tree');
 Route::get('/w/{campaign}/locations/{location}/characters', 'Locations\CharacterController@index')->name('locations.characters');
 Route::get('/w/{campaign}/locations/{location}/locations', 'Locations\LocationController@index')->name('locations.locations');
 
 // Organisation menu
 Route::get('/w/{campaign}/organisations/{organisation}/members', 'Organisation\MemberController@index')->name('organisations.members');
 Route::get('/w/{campaign}/organisations/{organisation}/organisations', 'Organisation\OrganisationController@organisations')->name('organisations.organisations');
-Route::get('/w/{campaign}/organisations/tree', 'Crud\OrganisationController@tree')->name('organisations.tree');
 
 // Families menu
 Route::get('/w/{campaign}/families/{family}/members', 'Families\MemberController@index')->name('families.members');
 Route::get('/w/{campaign}/families/{family}/families', 'Families\FamilyController@index')->name('families.families');
-Route::get('/w/{campaign}/families/tree', 'Crud\FamilyController@tree')->name('families.tree');
 Route::get('/w/{campaign}/families/{family}/tree', [App\Http\Controllers\Families\TreeController::class, 'index'])->name('families.family-tree');
 Route::get('/w/{campaign}/families/{family}/tree/api', [App\Http\Controllers\Families\Trees\ApiController::class, 'index'])->name('families.family-tree.api');
 Route::get('/w/{campaign}/families/{entity}/tree/entity-api', [App\Http\Controllers\Families\Trees\ApiController::class, 'entity'])->name('families.family-tree.entity-api');
@@ -66,35 +61,28 @@ Route::get('/w/{campaign}/families/{family}/add-member', 'Families\MemberControl
 
 // Items menu
 Route::get('/w/{campaign}/items/{item}/inventories', 'Items\EntityController@index')->name('items.inventories');
-Route::get('/w/{campaign}/items/tree', 'Crud\ItemController@tree')->name('items.tree');
 Route::get('/w/{campaign}/items/{item}/items', 'Items\ItemController@index')->name('items.items');
 
 // Quest menus
-Route::get('/w/{campaign}/quests/tree', 'Crud\QuestController@tree')->name('quests.tree');
 Route::get('/w/{campaign}/quests/{quest}/quests', 'Quests\QuestController@index')->name('quests.quests');
 
 // Races
 Route::get('/w/{campaign}/races/{race}/characters', 'Races\MemberController@index')->name('races.characters');
 Route::get('/w/{campaign}/races/{race}/races', 'Races\RaceController@index')->name('races.races');
-Route::get('/w/{campaign}/races/tree', 'Crud\RaceController@tree')->name('races.tree');
 Route::get('/w/{campaign}/races/{race}/member', 'Races\MemberController@create')->name('races.members.create');
 Route::post('/w/{campaign}/races/{race}/member', 'Races\MemberController@store')->name('races.members.store');
 
 // Creatures
 Route::get('/w/{campaign}/creatures/{creature}/creatures', 'Creatures\CreatureController@index')->name('creatures.creatures');
-Route::get('/w/{campaign}/creatures/tree', 'Crud\CreatureController@tree')->name('creatures.tree');
 
 // Journal
 Route::get('/w/{campaign}/journals/{journal}/journals', 'Journals\JournalController@index')->name('journals.journals');
 
-Route::get('/w/{campaign}/events/tree', 'Crud\EventController@tree')->name('events.tree');
 Route::get('/w/{campaign}/events/{event}/events', 'Events\EventController@index')->name('events.events');
 
-Route::get('/w/{campaign}/timelines/tree', 'Crud\TimelineController@tree')->name('timelines.tree');
 Route::get('/w/{campaign}/timelines/{timeline}/timelines', 'Timelines\TimelineController@index')->name('timelines.timelines');
 
 // Tag menus
-Route::get('/w/{campaign}/tags/tree', 'Crud\TagController@tree')->name('tags.tree');
 Route::get('/w/{campaign}/tags/{tag}/tags', 'Tags\TagController@index')->name('tags.tags');
 Route::get('/w/{campaign}/tags/{tag}/transfer', 'Tags\TransferController@index')->name('tags.transfer');
 Route::post('/w/{campaign}/tags/{tag}/transfer', 'Tags\TransferController@process')->name('tags.transfer');
@@ -111,12 +99,8 @@ Route::post('/w/{campaign}/entities/{entity}/tags/add', 'Entity\TagController@st
 Route::post('/w/{campaign}/bulk/process', 'BulkController@index')->name('bulk.process');
 Route::get('/w/{campaign}/bulk/modal', 'BulkController@modal')->name('bulk.modal');
 
-Route::get('/w/{campaign}/notes/tree', 'Crud\NoteController@tree')->name('notes.tree');
-Route::get('/w/{campaign}/journals/tree', 'Crud\JournalController@tree')->name('journals.tree');
-
 
 // Calendar
-Route::get('/w/{campaign}/calendars/tree', 'Crud\CalendarController@tree')->name('calendars.tree');
 Route::get('/w/{campaign}/calendars/{calendar}/event', 'Calendars\EventController@create')->name('calendars.event.create');
 Route::post('/w/{campaign}/calendars/{calendar}/event', 'Calendars\EventController@store')->name('calendars.event.store');
 Route::get('/w/{campaign}/calendars/{calendar}/month-list', 'Crud\CalendarController@monthList')->name('calendars.month-list');
@@ -284,7 +268,14 @@ Route::get('/w/{campaign}/entities/{entity}/logs', 'Entity\LogController@index')
 Route::get('/w/{campaign}/entities/{entity}/mentions', 'Entity\MentionController@index')->name('entities.mentions');
 
 // Inventory
-Route::get('/w/{campaign}/entities/{entity}/inventory', 'Entity\InventoryController@index')->name('entities.inventory');
+Route::get('/w/{campaign}/entities/{entity}/inventory', 'Entity\InventoryController@index')
+    ->name('entities.inventory');
+Route::post('/w/{campaign}/entities/{entity}/inventory/copy_from', 'Entity\CopyInventoryController@store')
+    ->name('entities.inventory.copy.store');
+Route::get('/w/{campaign}/entities/{entity}/inventory/copy', 'Entity\CopyInventoryController@index')
+    ->name('entities.inventory.copy');
+Route::get('/w/{campaign}/entities/{entity}/inventory/{inventory}/details', 'Entity\Inventory\DetailController@index')
+    ->name('entities.inventory.details');
 
 // Export
 Route::get('/w/{campaign}/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');

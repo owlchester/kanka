@@ -27,7 +27,6 @@ return [
     'fields'            => [
         'campaign-order'        => 'Campaign list order',
         'date-format'           => 'Date formatting',
-        'default-nested'        => 'Nested lists layout',
         'editor'                => 'Text editor',
         'entity-explore'        => 'Entity lists',
         'mentions'              => 'Mentions when editing',
@@ -39,7 +38,6 @@ return [
         'advanced-mentions'     => 'When editing texts, control if mentions are rendered as the entity\'s name, or as the advanced mention.',
         'campaign-order'        => 'Change the order in which campaigns are listed in the campaign switcher.',
         'date-format'           => 'When available, control the format in which to display real world dates.',
-        'default-nested'        => 'Control how lists which support nesting are displayed by default.',
         'editor'                => 'Using the legacy text editor (TinyMCE) doesn\'t support mentions on mobile devices, campaign galleries or other advanced features.',
         'entity-explore'        => 'Control the way in which entity lists are displayed on campaigns.',
         'new-entity-workflow'   => 'Control which interface you are taken to after creating a new entity.',
@@ -50,10 +48,6 @@ return [
     'mentions'          => [
         'advanced'  => 'Display advanced mentions :code',
         'default'   => 'Mentions as the entity name',
-    ],
-    'nested'            => [
-        'default'   => 'Flat lists',
-        'nested'    => 'Nested lists',
     ],
     'success'           => 'Appearance options saved.',
     'values'            => [

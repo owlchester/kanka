@@ -75,5 +75,5 @@
     <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="check" />
     </div>
-    {!! link_to('https://kanka.io/votes', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}
+    {!! link_to('https://app.kanka.io/roadmap', __('tiers.features.roadmap'), null, ['target' => '_blank']) !!}
 </div>

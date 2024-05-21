@@ -12,6 +12,8 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -34,7 +36,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property Collection|Organisation[] $organisations
  * @property Collection|OrganisationMember[] $organisationMemberships
  * @property Collection|ConversationParticipant[] $conversationParticipants
- * @property Collection|Journal[] $journals
  * @property Collection|Item[] $items
  * @property Collection|CharacterTrait[] $appearances
  * @property Collection|CharacterTrait[] $personality
@@ -49,7 +50,6 @@ class Character extends MiscModel
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'slug',
@@ -78,12 +78,15 @@ class Character extends MiscModel
         'sex',
         'is_dead'
     ];
+
     protected array $sortable = [
         'name',
         'type',
         'location.name',
         'is_dead',
     ];
+
+    protected array $exploreGridFields = ['is_dead'];
 
     /**
      * Entity type
@@ -105,9 +108,8 @@ class Character extends MiscModel
 
     /**
      * Explicit filters
-     * @var array
      */
-    protected $explicitFilters = [
+    protected array $explicitFilters = [
         'sex'
     ];
 
@@ -214,74 +216,48 @@ class Character extends MiscModel
             ->with('entity');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function families()
+    public function families(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Family')
             ->orderBy('character_family.id')
             ->with('entity');
     }
 
-    public function characterFamilies()
+    public function characterFamilies(): HasMany
     {
         return $this->hasMany(CharacterFamily::class, 'character_id');
     }
 
-    public function characterRaces()
+    public function characterRaces(): HasMany
     {
         return $this->hasMany(CharacterRace::class, 'character_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function races()
+    public function races(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Race')
             ->orderBy('character_race.id')
             ->with('entity');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function organisationMemberships()
+    public function organisationMemberships(): HasMany
     {
         return $this->hasMany('App\Models\OrganisationMember', 'character_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function organisations()
+    public function organisations(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Organisation', 'organisation_member')
             ->orderBy('organisation_member.id')
             ->with('entity');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function items()
+    public function items(): HasMany
     {
         return $this->hasMany('App\Models\Item', 'character_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function journals()
-    {
-        return $this->hasMany('App\Models\Journal', 'character_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function diceRolls()
+    public function diceRolls(): HasMany
     {
         return $this->hasMany('App\Models\DiceRoll', 'character_id', 'id');
     }
@@ -301,18 +277,12 @@ class Character extends MiscModel
         );
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function conversationParticipants()
+    public function conversationParticipants(): HasMany
     {
         return $this->hasMany('App\Models\ConversationParticipant', 'character_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function characterTraits()
+    public function characterTraits(): HasMany
     {
         return $this->hasMany('App\Models\CharacterTrait', 'character_id', 'id');
     }
@@ -342,19 +312,14 @@ class Character extends MiscModel
     /**
      * Detach children when moving this entity from one campaign to another
      */
-    public function detach()
+    public function detach(): void
     {
-        foreach ($this->journals as $child) {
-            $child->character_id = null;
-            $child->save();
-        }
-
         foreach ($this->items as $child) {
             $child->character_id = null;
             $child->save();
         }
 
-        return parent::detach();
+        parent::detach();
     }
 
     /**

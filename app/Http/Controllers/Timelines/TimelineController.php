@@ -37,7 +37,7 @@ class TimelineController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
-                'timeline', 'timeline.entity'
+                'parent', 'parent.entity',
             ])
             ->filter($filters)
             ->paginate();

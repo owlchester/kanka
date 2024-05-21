@@ -21,8 +21,7 @@ return [
         'is_hidden'         => 'Ocultar do cabeçalho e da dica de contexto',
     ],
     'helpers'       => [
-        'nested_without'    => 'Exibindo todas as tags que não tem uma tag primária. Clique em uma linha para ver as tags secundárias.',
-        'no_children'       => 'No momento não há entidades marcadas com esta tag.',
+        'no_children'   => 'No momento não há entidades marcadas com esta tag.',
     ],
     'hints'         => [
         'children'          => 'Esta lista contém todas entidades diretamente relacionadas a esta tag ou às tags secundárias.',

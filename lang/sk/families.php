@@ -10,10 +10,7 @@ return [
     'fields'        => [
         'members'   => 'Členovia',
     ],
-    'helpers'       => [
-        'descendants'       => 'Tento zoznam obsahuje všetky rody, ktoré sú potomkami tohto rodu a nielen tých, ktoré sp priamymi potomkami.',
-        'nested_without'    => 'Zobraziť všetky rody, ktoré nemajú nadradený rod. Kliknutím na riadok zobrazíš podradené rody.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'members'   => 'Zoznam členov a členiek daného rodu sa zobrazuje na tomto mieste. Úpravou danej postavy je možné ju pridať do daného rodu v poli Rod.',
     ],

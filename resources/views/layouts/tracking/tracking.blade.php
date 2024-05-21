@@ -20,12 +20,13 @@
     @endif
     <!-- End Google Analytics -->
 @endif
-@ads('inline')
-    <script src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-site-id="{{ config('tracking.venatus.id') }}" data-mode="scan" async></script>
-@endads
 
-@ads()
-    @if(!isset($noads))
-    <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" @if(!app()->isProduction())data-adtest="on"@endif></script>
-    @endif
-@endads
+
+@if (\App\Facades\AdCache::canHaveAds())
+    <x-ad section="inline" :campaign="$campaign ?? null">
+        <script id="ad-client" src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-site-id="{{ config('tracking.venatus.id') }}" data-mode="scan" async></script>
+    </x-ad>
+    <x-ad :campaign="$campaign ?? null">
+        <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" @if(!app()->isProduction())data-adtest="on"@endif></script>
+    </x-ad>
+@endif

@@ -8,9 +8,7 @@ return [
     'fields'        => [
         'is_extinct'    => 'Éteinte',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Affichage de toutes les créatures qui n\'ont pas de créature parent. Clique sur une rangée pour voir les créatures enfants.',
-    ],
+    'helpers'       => [],
     'hints'         => [
         'is_extinct'    => 'Cette créature est éteinte',
     ],

@@ -22,4 +22,9 @@ class Ad extends Model
     {
         return $query->where('section', $section);
     }
+
+    public function isSidebar(): bool
+    {
+        return $this->section == self::SECTION_SIDEBAR;
+    }
 }

@@ -27,7 +27,6 @@ return [
     'fields'            => [
         'campaign-order'        => 'Reihenfolge der Kampagnenliste',
         'date-format'           => 'Datumsformatierung',
-        'default-nested'        => 'Verschachteltes Listenlayout',
         'editor'                => 'Texteditor',
         'entity-explore'        => 'Objektlisten',
         'mentions'              => 'Erwähnungen beim Bearbeiten',
@@ -39,7 +38,6 @@ return [
         'advanced-mentions'     => 'Steuere beim Bearbeiten von Texten, ob Erwähnungen als Name des Objekts oder als erweiterte Erwähnung wiedergegeben werden.',
         'campaign-order'        => 'Ändere die Reihenfolge, in der Kampagnen im Kampagnenwechsler aufgelistet werden.',
         'date-format'           => 'Wenn verfügbar, steuere das Format, in dem reale Daten angezeigt werden sollen.',
-        'default-nested'        => 'Steuere, wie Listen, die Verschachtelung unterstützen, standardmäßig angezeigt werden.',
         'editor'                => 'Die Verwendung des alten Texteditors (TinyMCE) unterstützt keine Erwähnungen auf Mobilgeräten, Kampagnengalerien oder andere erweiterte Funktionen.',
         'entity-explore'        => 'Steuer die Art und Weise, wie Objektlisten in Kampagnen angezeigt werden.',
         'new-entity-workflow'   => 'Steuer, zu welcher Schnittstelle du weitergeleitet wirst, nachdem du ein neues Objekt erstellt hast.',
@@ -51,10 +49,7 @@ return [
         'advanced'  => 'Erweiterte Erwähnungen anzeigen :code',
         'default'   => 'Erwähnungen als Objektname',
     ],
-    'nested'            => [
-        'default'   => 'Flache Listen',
-        'nested'    => 'Verschachtelte Listen',
-    ],
+    'nested'            => [],
     'success'           => 'Darstellungsoptionen gespeichert.',
     'values'            => [
         'pagination'        => ':amount Ergebnisse pro Seite',

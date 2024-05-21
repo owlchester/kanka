@@ -92,6 +92,6 @@ class Kernel extends HttpKernel
         'subscriptions' => Middleware\Subscriptions::class,
         'fullsetup' => FullSetup::class,
         '2fa' => Middleware\OTPMiddleware::class,
-
+        'adless' => Middleware\Adless::class,
     ];
 }

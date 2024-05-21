@@ -33,8 +33,7 @@ return [
         'role'          => 'Função',
     ],
     'helpers'       => [
-        'is_completed'      => 'Selecione se a missão estiver considerada como concluída.',
-        'nested_without'    => 'Exibindo todas as missões que não tem uma missão primária. Clique em uma linha para ver as missões secundárias.',
+        'is_completed'  => 'Selecione se a missão estiver considerada como concluída.',
     ],
     'hints'         => [
         'quests'    => 'Uma rede de missões interligadas pode ser construída usando o campo de Missão Primária.',

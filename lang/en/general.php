@@ -6,9 +6,10 @@ return [
     'required'      => 'Required',
     'select_all'    => 'Select All',
     'success'       => [
-        'created'   => ':name created.',
-        'deleted'   => ':name removed.',
-        'updated'   => ':name updated.',
+        'created'           => ':name created.',
+        'deleted'           => ':name removed.',
+        'deleted-cancel'    => ':name removed. :cancel.',
+        'updated'           => ':name updated.',
     ],
     'yes'           => 'Yes',
 ];

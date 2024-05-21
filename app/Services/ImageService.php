@@ -90,12 +90,6 @@ class ImageService
                 $dirtySVG = file_get_contents($file);
                 $cleanSVG = $sanitizer->sanitize($dirtySVG);
                 file_put_contents($file, $cleanSVG);
-
-                $xml = simplexml_load_string($cleanSVG);
-                $sizes[0] = $xml->attributes()->width;
-                $sizes[1] = $xml->attributes()->height;
-            } else {
-                $sizes = getimagesize($file->path());
             }
 
             if (!empty($path)) {
@@ -118,12 +112,6 @@ class ImageService
                     $model->image_path = $path;
                 } else {
                     $model->$field = $path;
-                }
-
-                if (!empty($sizes) && $model instanceof Entity && $model->isMap()) {
-                    $model->map->width = $sizes[0];
-                    $model->map->height = $sizes[1];
-                    $model->map->saveQuietly();
                 }
             }
         } catch (Exception $e) {
@@ -190,6 +178,10 @@ class ImageService
                     } else {
                         $path = request()->file($field)->storePublicly($folder);
                     }
+                    // Remap the field name to the proper db field
+                    if ($field === 'image') {
+                        $field = 'image_path';
+                    }
                     $entity->$field = $path;
                 }
             } catch (Exception $e) {
@@ -221,6 +213,12 @@ class ImageService
             $thumb = str_replace('.', '_thumb.', $model->$field);
             if (Storage::has($thumb)) {
                 Storage::delete($thumb);
+            }
+            // If it's a map, reset its height to be re-calculated
+            if ($model instanceof Entity && $model->isMap()) {
+                $model->map->height = null;
+                $model->map->width = null;
+                $model->map->saveQuietly();
             }
         } catch (Exception $e) {
             // silence exception, didn't find the image to delete.

@@ -1,6 +1,6 @@
 <template>
     <div class="nav-switcher flex items-center justify-center h-12">
-        <div class="campaigns inline cursor-pointer text-center px-3 text-2xl" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
+        <div class="campaigns inline cursor-pointer text-center px-3 text-2xl hover:text-primary-focus" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
             <GridSvg :size="7" />
             <span class="sr-only">Campaigns</span>
         </div>

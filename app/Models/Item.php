@@ -10,6 +10,7 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Item
@@ -19,9 +20,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $price
  * @property string $size
  * @property string $weight
- * @property integer|null $item_id
- * @property integer|null $character_id
- * @property integer|null $location_id
+ * @property int|null $item_id
+ * @property int|null $character_id
+ * @property int|null $location_id
  * @property Character|null $character
  * @property Location|null $location
  * @property Item[] $items
@@ -29,15 +30,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Item extends MiscModel
 {
-    use Acl    ;
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
     use HasFilters;
+    use HasRecursiveRelationships;
     use SoftDeletes;
     use SortableTrait;
 
-    /** @var string[]  */
     protected $fillable = [
         'name',
         'campaign_id',
@@ -57,7 +58,7 @@ class Item extends MiscModel
         'type',
         'price',
         'size',
-        'item_id',
+        'parent.name',
     ];
 
     /**
@@ -73,7 +74,6 @@ class Item extends MiscModel
         'size',
         'location.name',
         'character.name',
-        'item_id',
     ];
 
     /**
@@ -163,8 +163,11 @@ class Item extends MiscModel
             'items' => function ($sub) {
                 $sub->select('id', 'name', 'item_id');
             },
-            'item' => function ($sub) {
+            'parent' => function ($sub) {
                 $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'children' => function ($sub) {
                 $sub->select('id', 'item_id');

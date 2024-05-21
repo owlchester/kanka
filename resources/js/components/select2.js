@@ -58,7 +58,7 @@ $(document).ready(function() {
                     cache: true
                 },
                 templateResult: function (item) {
-                    var $span = '';
+                    let $span = '';
                     if (item.image) {
                         $span = $("<span class='flex gap-2 items-center text-left'>" +
                             "<img src='" + item.image + "' class='rounded-full flex-none w-6 h-6'/>" +

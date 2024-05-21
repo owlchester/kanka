@@ -8,7 +8,7 @@ use App\Http\Requests\StoreRelation;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Relation;
-use App\Services\Entity\ConnectionService;
+use App\Services\Entity\Connections\RelatedService;
 use App\Services\Entity\RelationService;
 use App\Traits\GuestAuthTrait;
 
@@ -16,10 +16,10 @@ class RelationController extends Controller
 {
     use GuestAuthTrait;
 
-    protected ConnectionService $connectionService;
+    protected RelatedService $connectionService;
     protected RelationService $relationService;
 
-    public function __construct(ConnectionService $connectionService, RelationService $relationService)
+    public function __construct(RelatedService $connectionService, RelationService $relationService)
     {
         $this->connectionService = $connectionService;
         $this->relationService = $relationService;

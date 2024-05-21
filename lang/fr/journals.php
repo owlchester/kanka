@@ -10,10 +10,7 @@ return [
         'author'    => 'Auteur',
         'date'      => 'Date',
     ],
-    'helpers'       => [
-        'journals'          => 'Afficher tous les sous-journaux de ce journal.',
-        'nested_without'    => 'Affichage des journaux sans parent. Cliquer sur une rangée pour afficher les journaux enfants.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'journals'      => [],
     'placeholders'  => [

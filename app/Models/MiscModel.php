@@ -16,10 +16,12 @@ use App\Models\Scopes\SubEntityScopes;
 use App\Traits\SourceCopiable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable as Scout;
 
 /**
  * Class MiscModel
@@ -35,7 +37,7 @@ use Illuminate\Support\Str;
  * @property string $image
  * @property string $tooltip
  * @property string $header_image
- * @property boolean $is_private
+ * @property bool|int $is_private
  * @property string[] $nullableForeignKeys
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -48,31 +50,24 @@ abstract class MiscModel extends Model
     use LastSync;
     use Orderable;
     use Paginatable;
+    use Scout;
     use Searchable;
-    //Tooltip,
     use Sortable;
     use SourceCopiable;
     use SubEntityScopes;
 
-    /** @var Entity Performance based entity */
+
+    /** Performance based entity */
     protected Entity $cachedEntity;
 
-    /**
-     * @var string Entity type
-     */
+    /** Entity type (character, location) */
     protected string $entityType;
-
-    /**
-     * Fields that can be ordered on
-     */
-    protected array $sortableColumns = [];
 
     /**
      * Explicit fields for filtering.
      * Ex. ['sex']
-     * @var array
      */
-    protected $explicitFilters = [];
+    protected array $explicitFilters = [];
 
     /**
      * Fields that can be set to null (foreign keys)
@@ -82,10 +77,9 @@ abstract class MiscModel extends Model
 
     /**
      * Default ordering
-     * @var string
      */
-    protected $defaultOrderField = 'name';
-    protected $defaultOrderDirection = 'asc';
+    protected string $defaultOrderField = 'name';
+    protected string $defaultOrderDirection = 'asc';
 
     /**
      * Array of our custom model events declared under model property $observables
@@ -151,7 +145,8 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * Every misc model has an attached entity
+     * @return HasOne
      */
     public function entity()
     {
@@ -161,6 +156,7 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Determine if model inheriting miscModel has an actual entity
      */
     public function hasEntity(): bool
     {
@@ -170,13 +166,13 @@ abstract class MiscModel extends Model
     /**
      * @return string|null (menu links)
      */
-    public function getEntityType()
+    public function getEntityType(): string|null
     {
         return $this->entityType;
     }
 
     /**
-     * Deterine of the model has an associated entity (bookmarks don't)
+     * Determine if the model has an associated entity type (bookmarks don't)
      */
     public function hasEntityType(): bool
     {
@@ -184,7 +180,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @param string $action = 'show'
      * @throws Exception
      */
     public function getLink(string $action = 'show'): string
@@ -206,11 +201,11 @@ abstract class MiscModel extends Model
     /**
      * Detach children entities from this one. This is for the "Move" functionality, to keep a clean data set.
      */
-    public function detach()
+    public function detach(): void
     {
         // Loop on children attributes and detach.
         $attributes = $this->getAttributes();
-        foreach ($attributes as $attribute) {
+        foreach ($attributes as $attribute => $value) {
             if (str_contains($attribute, '_id')   && $attribute != 'campaign_id') {
                 $this->$attribute = null;
             }
@@ -219,6 +214,7 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Determine if the model has an entry text field
      */
     public function hasEntry(): bool
     {
@@ -231,6 +227,8 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Build the menu items for the model.
+     * Todo: move this to somewhere else, it doesn't need to be in the model
      */
     public function menuItems(array $items = []): array
     {
@@ -302,7 +300,7 @@ abstract class MiscModel extends Model
 
 
         // Each entity can have assets
-        if ($this->entity->hasFiles()) {
+        if ($campaign->enabled('assets') && $this->entity->hasFiles()) {
             $items['third']['assets'] = [
                 'name' => 'crud.tabs.assets',
                 'route' => 'entities.entity_assets.index',
@@ -391,11 +389,11 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * @return string|null
      */
     public function getEntryForEditionAttribute()
     {
-        $text = Mentions::parseForEdit($this);
-        return $text;
+        return Mentions::parseForEdit($this);
     }
 
     /**
@@ -417,9 +415,9 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @return string|null
+     * Get the entity tooltip attribute, because forms are weird (we could bypass this easily)
      */
-    public function getEntityTooltipAttribute()
+    public function getEntityTooltipAttribute(): string|null
     {
         if ($this->entity) {
             return $this->entity->tooltip;
@@ -429,9 +427,8 @@ abstract class MiscModel extends Model
 
     /**
      * Get the model's entity image uuid
-     * @return string|null
      */
-    public function getEntityImageUuidAttribute()
+    public function getEntityImageUuidAttribute(): string|null
     {
         if ($this->entity) {
             return $this->entity->image_uuid;
@@ -463,20 +460,6 @@ abstract class MiscModel extends Model
         return static::withoutEvents(function () {
             return $this->touch();
         });
-    }
-
-    /**
-     * Elements ignored in the change logs
-     * @return string[]
-     */
-    public function ignoredLogAttributes(): array
-    {
-        return [
-            'slug',
-            'campaign_id',
-            'updated_at',
-            'deleted_at',
-        ];
     }
 
     /**
@@ -623,5 +606,51 @@ abstract class MiscModel extends Model
             $columns['is_private'] = __('crud.fields.is_private');
         }
         return $columns;
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     */
+    public function getScoutKey()
+    {
+        return $this->getTable() . '_' . $this->id;
+    }
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'entities';
+    }
+
+    protected function makeAllSearchableUsing($query)
+    {
+        return $query
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->leftJoin('entities', function ($join) {
+                $join->on('entities.entity_id', $this->getTable() . '.id')
+                    ->where('entities.type_id', $this->entityTypeId());
+            })
+            ->has('entity')
+            ->with('entity');
+    }
+
+    public function toSearchableArray()
+    {
+        // Some models like DiceRolls have no entry, so don't go into scout. Other have no entry because they
+        // are coming from the quick creator or new mention parser.
+        if (!in_array('entry', $this->getFillable()) || !in_array('entry', array_keys($this->getAttributes()))) {
+            return [];
+        }
+
+        return [
+            'campaign_id' => $this->entity->campaign_id,
+            'entity_id' => $this->entity->id,
+            'name' => $this->name,
+            'type'  => $this->type,
+            'entry'  => strip_tags($this->entry),
+        ];
     }
 }

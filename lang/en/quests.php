@@ -31,8 +31,7 @@ return [
         'role'          => 'Role',
     ],
     'helpers'       => [
-        'is_completed'      => 'The quest is considered as completed.',
-        'nested_without'    => 'Displaying all quests that don\'t have a parent quest. Click on a row to see the children quests.',
+        'is_completed'  => 'The quest is considered as completed.',
     ],
     'hints'         => [
         'quests'    => 'A web of interlocking quests can be built using the Parent Quest field.',

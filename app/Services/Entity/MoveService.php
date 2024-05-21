@@ -105,13 +105,13 @@ class MoveService
         DB::beginTransaction();
         try {
             $newModel = $this->entity->child->replicate(['campaign_id']);
-            $newModel->campaign_id = $this->to->id;
             // Remove any foreign keys that wouldn't make any sense in the new campaign
-            foreach ($newModel->getAttributes() as $attribute) {
+            foreach ($newModel->getAttributes() as $attribute => $value) {
                 if (str_contains($attribute, '_id')) {
                     $newModel->$attribute = null;
                 }
             }
+            $newModel->campaign_id = $this->to->id;
 
             CampaignLocalization::forceCampaign($this->to);
 

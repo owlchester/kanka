@@ -7,22 +7,15 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreEvent;
 use App\Models\Campaign;
 use App\Models\Event;
-use App\Traits\TreeControllerTrait;
 
 class EventController extends CrudController
 {
-    use TreeControllerTrait;
-
-    /**
-     */
     protected string $view = 'events';
     protected string $route = 'events';
-    protected $module = 'events';
+    protected string $module = 'events';
 
-    /** @var string Model */
-    protected $model = Event::class;
+    protected string $model = Event::class;
 
-    /** @var string Filter */
     protected string $filter = EventFilter::class;
 
     public function store(StoreEvent $request, Campaign $campaign)

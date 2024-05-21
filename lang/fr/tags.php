@@ -24,8 +24,7 @@ return [
         'is_hidden'         => 'Caché de l\'entête et des infobulles',
     ],
     'helpers'       => [
-        'nested_without'    => 'Affichage des étiquettes sans parent. Cliquer sur une rangée pour afficher les étiquettes enfants.',
-        'no_children'       => 'Il n\'y a actuellement aucune entité avec cette étiquette.',
+        'no_children'   => 'Il n\'y a actuellement aucune entité avec cette étiquette.',
     ],
     'hints'         => [
         'children'          => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',

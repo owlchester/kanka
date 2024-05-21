@@ -3,16 +3,22 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Orderable;
+use App\Models\Concerns\Searchable;
+use App\Models\Concerns\Sortable;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property DiceRoll|null $diceRoll
  */
-class DiceRollResult extends MiscModel
+class DiceRollResult extends Model
 {
     use HasFilters;
+    use Orderable;
+    use Searchable;
+    use Sortable;
 
 
-    /** @var string[]  */
     protected $fillable = [
         'dice_roll_id',
         'created_by',
@@ -31,8 +37,8 @@ class DiceRollResult extends MiscModel
         'created_at',
     ];
 
-    protected $defaultOrderField = 'created_at';
-    protected $defaultOrderDirection = 'DESC';
+    protected string $defaultOrderField = 'created_at';
+    protected string $defaultOrderDirection = 'DESC';
 
     /**
      * We want to use the dice_roll entity type for permissions

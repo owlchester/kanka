@@ -61,7 +61,6 @@ TEXT
         'is_discreet'                       => 'Discreta',
         'locale'                            => 'Idioma',
         'name'                              => 'Nombre',
-        'nested'                            => 'Anidar las listas de entidades siempre que sea posible',
         'open'                              => 'Inscripciones abiertas',
         'past_featured'                     => 'Campaña destacada previamente',
         'post_collapsed'                    => 'Los nuevos posts en las entidades están colapsados por defecto.',
@@ -457,7 +456,6 @@ TEXT
             'entity_history'    => 'Registros históricos de la entidad',
             'entity_image'      => 'Imagen de la entidad',
             'member_list'       => 'Lista de miembros de la campaña',
-            'nested'            => 'Disposición por defecto de las listas',
             'post_collapsed'    => 'Valor de colapsado/expandido por defecto de los posts',
         ],
         'helpers'           => [
@@ -473,10 +471,6 @@ TEXT
         'members'           => [
             'hidden'    => 'Solo visible para administradores de campaña',
             'visible'   => 'Visible para miembros',
-        ],
-        'nested'            => [
-            'nested'    => 'Anidada',
-            'user'      => 'Predeterminado del usuario',
         ],
         'other'             => 'Otros',
     ],

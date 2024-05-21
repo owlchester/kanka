@@ -15,9 +15,7 @@ return [
     'fields'        => [
         'charges'   => 'Aktiválások száma',
     ],
-    'helpers'       => [
-        'nested_without'    => 'Minden olyan képesség kijelzése, amelynek nincs szülő képessége. Klikkelj egy sorra, hogy lásd a gyermekképességeit.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Aktiválások száma. Az attribútumokra az alábbi módon hivatkozhatsz: {Szint}*{Karizma}',

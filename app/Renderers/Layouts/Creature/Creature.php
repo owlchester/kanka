@@ -28,10 +28,10 @@ class Creature extends Layout
                 'label' => 'crud.fields.type',
             ],
             'creature' => [
-                'key' => 'creature.name',
+                'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => function ($model) {
-                    return $model->creature?->tooltipedLink();
+                    return $model->parent?->tooltipedLink();
                 },
                 'visible' => function () {
                     return !request()->has('parent_id');

@@ -36,13 +36,10 @@ class Tag extends Layout
                 },
             ],
             'tag' => [
-                'key' => 'tag.name',
+                'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => function ($model) {
-                    if (!$model->tag) {
-                        return null;
-                    }
-                    return $model->tag->tooltipedLink();
+                    return $model->parent?->tooltipedLink();
                 },
                 'visible' => function () {
                     return !request()->has('tag_id');
