@@ -27,7 +27,7 @@ class ImageRemoveService
             $colour,
             [
                 'entity' => $this->entity->name,
-                'link' => $this->entity->url(),
+                'link' => route('entities.show', [$this->entity, $this->campaign]),
             ]
         );
     }
