@@ -11,7 +11,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Http\Request;
 use App\Services\ImageService;
 use App\Models\Entity;
 
@@ -31,11 +30,11 @@ class DeleteEntityImage implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct($data)
     {
-        $this->entityId = $request->post('entity');
-        $this->removeHeader = $request->post('remove_header');
-        $this->removeImage = $request->post('remove_image');
+        $this->entityId = $data['entity'];
+        $this->removeHeader = $data['remove_header'];
+        $this->removeImage = $data['remove_image'];
     }
 
     /**
@@ -52,7 +51,6 @@ class DeleteEntityImage implements ShouldQueue
         if ($this->removeHeader) {
             $this->deleteImage('header_image');
         }
-
         Log::info('Removed image or header from entity #' . $this->entityId . ' for copyright reasons');
     }
 
