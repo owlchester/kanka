@@ -155,6 +155,9 @@ return [
             'helpers'   => [
                 'name'  => 'Você pode fazer referência ao nome da entidade aleatória com {name}',
             ],
+            'type'      => [
+                'all'   => 'Tudo',
+            ],
         ],
         'recent'                    => [
             'advanced_filter'   => 'Filtro avançado',

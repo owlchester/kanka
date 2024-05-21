@@ -3,11 +3,14 @@
 return [
     'children'      => [
         'actions'   => [
-            'add'   => 'Pridať novú kategóriu',
+            'add'           => 'Pridať novú kategóriu',
+            'add_entity'    => 'Pridať nový objekt',
         ],
         'create'    => [
-            'attach_success'    => '{1} :count objekt pridaný do kategórie :name.|[2,4] :count objekty pridané do kategórie :name.|[5,*] :count objektov pridaných do kategórie :name.',
-            'modal_title'       => 'Pridať objekty k :name.',
+            'attach_success'        => '{1} :count objekt pridaný do kategórie :name.|[2,4] :count objekty pridané do kategórie :name.|[5,*] :count objektov pridaných do kategórie :name.',
+            'attach_success_entity' => 'Kategórie pre :name úspešne pridané.',
+            'entity'                => 'Pridať kategórie k :name',
+            'modal_title'           => 'Pridať objekty k :name.',
         ],
     ],
     'create'        => [

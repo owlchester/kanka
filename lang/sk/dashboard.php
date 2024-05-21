@@ -155,6 +155,9 @@ return [
             'helpers'   => [
                 'name'  => 'Referencie na náhodný objekt môžeš vložiť pomocou {name}',
             ],
+            'type'      => [
+                'all'   => 'Všetko',
+            ],
         ],
         'recent'                    => [
             'advanced_filter'   => 'Rozšírený filter',

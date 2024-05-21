@@ -156,6 +156,9 @@ return [
             'helpers'   => [
                 'name'  => 'Puedes referenciar el nombre de la entidad aleatoria con {name}',
             ],
+            'type'      => [
+                'all'   => 'Todos',
+            ],
         ],
         'recent'                    => [
             'advanced_filter'   => 'Filtro avanzado',

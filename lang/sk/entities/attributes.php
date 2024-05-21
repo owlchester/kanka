@@ -74,6 +74,7 @@ return [
         'success'   => 'Šablóna atribútov :name použitá na :entity',
         'title'     => 'Použiť šablónu atribútov na :name',
     ],
+    'title'         => 'Atribúty',
     'toasts'        => [
         'lock'      => 'Atribút uzamknutý',
         'pin'       => 'Atribút pripnutý',

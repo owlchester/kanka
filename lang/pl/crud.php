@@ -18,6 +18,7 @@ return [
         'help'              => 'Pomoc',
         'json-export'       => 'Eksport (JSON)',
         'manage_links'      => 'Zarządzaj odnośnikami',
+        'markdown-export'   => 'Eksport (zaznaczone)',
         'move'              => 'Zmień lub przenieś',
         'new'               => 'Nowe',
         'new_child'         => 'Nowy element pochodny',

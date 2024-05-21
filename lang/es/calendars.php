@@ -55,6 +55,10 @@ return [
         'success'   => 'Evento \':event\' añadido al calendario.',
     ],
     'events'        => [
+        'bulks'     => [
+            'delete'    => '{1} Se ha eliminado :count evento.|[2,*] Se han eliminado :count eventos.',
+            'patch'     => '{1} Se ha actualizado :count evento.|[2,*] Se han actualizado :count eventos.',
+        ],
         'end'       => '(fin)',
         'filters'   => [
             'show_after'    => 'Mostrar hoy y después',

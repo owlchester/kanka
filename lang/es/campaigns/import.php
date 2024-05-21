@@ -9,7 +9,12 @@ return [
         'file'      => 'Exportar archivo ZIP',
         'updated'   => 'Última actualización',
     ],
+    'form'          => 'Formulario de carga',
     'limitation'    => 'Sólo se aceptan archivos zip. :size máximo.',
+    'progress'      => [
+        'uploading' => 'Subiendo',
+        'validating'=> 'Validando',
+    ],
     'status'        => [
         'failed'    => 'Fallida',
         'finished'  => 'Terminada',

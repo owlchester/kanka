@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'clear'             => 'Zmazať všetko',
         'first'             => 'Pridať zakladateľa/ku',
+        'founder'           => 'Pridať nového/ú zakladateľa/ku',
         'rename-relation'   => 'Premenovať vzťah',
         'reset'             => 'Zahodiť zmeny',
         'save'              => 'Uložiť',
@@ -19,21 +20,25 @@ return [
             'confirm'   => 'Naozaj chceš reinicializovať všetky dáta z rodokmeňa?',
         ],
         'entity'    => [
-            'add'   => [
+            'add'       => [
+                'founder'   => 'Zakladateľ/ka',
                 'member'    => 'Člen/ka',
                 'success'   => 'Objekt pridaný.',
                 'title'     => 'Pridať objekt',
             ],
-            'child' => [
+            'child'     => [
                 'success'   => 'Dieťa pridané.',
                 'title'     => 'Pridať dieťa',
             ],
-            'edit'  => [
+            'edit'      => [
                 'helper'    => 'Zaškrtni túto možnosť, ak je vzťah neznámy. Postavu môžeš pridať neskôr.',
                 'success'   => 'Objekt aktualizovaný.',
                 'title'     => 'Aktualizovať objekt',
             ],
-            'remove'=> [
+            'founder'   => [
+                'title' => 'Pridanie nového/ú zakladateľa/ku',
+            ],
+            'remove'    => [
                 'confirm'   => 'Naozaj chceš odstrániť tento objekt z rodokmeňa?',
                 'success'   => 'Objekt odstránený.',
             ],

@@ -9,7 +9,12 @@ return [
         'file'      => 'Exportovaný ZIP súbor',
         'updated'   => 'Posledná aktulizácia',
     ],
+    'form'          => 'Nahrať formulár',
     'limitation'    => 'Akceptované sú iba ZIP súbory. Max :size.',
+    'progress'      => [
+        'uploading' => 'Prebieha nahrávanie',
+        'validating'=> 'Prebieha kontrola',
+    ],
     'status'        => [
         'failed'    => 'Zlyhaný',
         'finished'  => 'Ukončený',

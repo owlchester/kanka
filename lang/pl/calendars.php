@@ -56,6 +56,10 @@ return [
         'success'   => 'Dodano do kalendarza wydarzenie \':event\'.',
     ],
     'events'        => [
+        'bulks'     => [
+            'delete'    => '{1} Usunięto :count przypomnienie.|[2,4] Usunięto :count przypomnienia.|[5,*] Usunięto :count przypomnień.',
+            'patch'     => '{1} Zmieniono :count przypomnienie.|[2,4] Zmieniono :count przypomnienia.|[5,*] Zmieniono :count przypomnień.',
+        ],
         'end'       => '(koniec)',
         'filters'   => [
             'show_after'    => 'Pokaż aktualną datę i dalej',

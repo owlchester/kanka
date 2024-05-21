@@ -3,11 +3,14 @@
 return [
     'children'      => [
         'actions'   => [
-            'add'   => 'Añadir etiqueta nueva',
+            'add'           => 'Añadir etiqueta nueva',
+            'add_entity'    => 'Añadir a entidad',
         ],
         'create'    => [
-            'attach_success'    => '{1} Se ha añadido :count entidad a la etiqueta :name.|[2,*] Se han añadido :count entidades a la etiqueta :name.',
-            'modal_title'       => 'Añadir entidades a :name',
+            'attach_success'        => '{1} Se ha añadido :count entidad a la etiqueta :name.|[2,*] Se han añadido :count entidades a la etiqueta :name.',
+            'attach_success_entity' => 'Etiquetas actualizadas con éxito para :name.',
+            'entity'                => 'Añadir etiquetas a :name',
+            'modal_title'           => 'Añadir entidades a :name',
         ],
     ],
     'create'        => [

@@ -56,6 +56,10 @@ return [
         'success'   => 'Udalosť ":event" pridaná do kalendára.',
     ],
     'events'        => [
+        'bulks'     => [
+            'delete'    => '{1} Zmazaná :count pripomienka.|[2,4] Zmazané :count pripomienky.[5,*] Zmazaných :count pripomienok.',
+            'patch'     => '{1} Aktualizovaná :count pripomienka.|[2,4] Aktualizované :count pripomienky.[5,*] Aktualizovaných :count pripomienok.',
+        ],
         'end'       => '(koniec)',
         'filters'   => [
             'show_after'    => 'Zobraziť od dnes ďalej',

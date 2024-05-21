@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'clear'             => 'Usuń wszystko',
         'first'             => 'Dodaj założyciela',
+        'founder'           => 'Dodaj założyciela',
         'rename-relation'   => 'Zmień nazwę relacji',
         'reset'             => 'Odrzuć zmiany',
         'save'              => 'Zapisz',
@@ -19,21 +20,25 @@ return [
             'confirm'   => 'Czy na pewno chcesz usunąć wszystkie dane i rozpocząć tworzenie rodowodu od nowa?',
         ],
         'entity'    => [
-            'add'   => [
+            'add'       => [
+                'founder'   => 'Założyciel',
                 'member'    => 'Członek',
                 'success'   => 'Dodano element.',
                 'title'     => 'Dodaj element',
             ],
-            'child' => [
+            'child'     => [
                 'success'   => 'Dziecko dodane.',
                 'title'     => 'Dodaj dziecko',
             ],
-            'edit'  => [
+            'edit'      => [
                 'helper'    => 'Zaznacz, jeżeli relacja jest nieznana. Postać będzie można dodać później.',
                 'success'   => 'Zmieniono element.',
                 'title'     => 'Zmień element',
             ],
-            'remove'=> [
+            'founder'   => [
+                'title' => 'Dodawanie założyciela',
+            ],
+            'remove'    => [
                 'confirm'   => 'Czy na pewno chcesz usunąć ten element z rodowodu?',
                 'success'   => 'Usunięto element.',
             ],

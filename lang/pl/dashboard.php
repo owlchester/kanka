@@ -155,6 +155,9 @@ return [
             'helpers'   => [
                 'name'  => 'Możesz wskazać nazwę losowego elementu przy pomocy {name}.',
             ],
+            'type'      => [
+                'all'   => 'Wszystkie',
+            ],
         ],
         'recent'                    => [
             'advanced_filter'   => 'Filtry zaawansowane',

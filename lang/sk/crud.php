@@ -18,6 +18,7 @@ return [
         'help'              => 'Pomoc',
         'json-export'       => 'Exportovať (json)',
         'manage_links'      => 'Spravovať linky',
+        'markdown-export'   => 'Export (Markdown)',
         'move'              => 'Premiestniť',
         'new'               => 'Nový',
         'new_child'         => 'Nový podobjekt',

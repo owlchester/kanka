@@ -18,6 +18,7 @@ return [
         'help'              => 'Ayuda',
         'json-export'       => 'Exportar (JSON)',
         'manage_links'      => 'Configurar enlaces',
+        'markdown-export'   => 'Exportar (Markdown)',
         'move'              => 'Mover',
         'new'               => 'Nuevo',
         'new_child'         => 'Nuevo hijo',

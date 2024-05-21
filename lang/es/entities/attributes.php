@@ -74,6 +74,7 @@ return [
         'success'   => 'Plantilla de atributos :name aplicada a :entity',
         'title'     => 'Aplicar plantilla de atributos a :name',
     ],
+    'title'         => 'Atributos',
     'toasts'        => [
         'lock'      => 'Atributo bloqueado',
         'pin'       => 'Atributo fijado',
