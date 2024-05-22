@@ -128,13 +128,13 @@ class EntityWebhookJob implements ShouldQueue
 
     protected function isInvalid(Webhook $webhook, array $entityTags): bool
     {
-        //Check that entity has at least one of the tags the webhook has.
-        if ($webhook->tags()->count() > 0) {
-            $tags = $webhook->tags()->pluck('tags.id')->all();
-
-            if (!empty(array_intersect($entityTags, $tags))) {
-                return true;
-            }
+        // Check that entity has at least one of the tags the webhook has.
+        if ($webhook->tags()->count() === 0) {
+            return false;
+        }
+        $tags = $webhook->tags()->pluck('tags.id')->all();
+        if (empty(array_intersect($entityTags, $tags))) {
+            return true;
         }
         return false;
     }
