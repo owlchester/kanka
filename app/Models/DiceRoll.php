@@ -86,7 +86,7 @@ class DiceRoll extends MiscModel
     /**
      * @return mixed|string
      */
-    public function entry()
+    public function parsedEntry()
     {
         return '';
     }

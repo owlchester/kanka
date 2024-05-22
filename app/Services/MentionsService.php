@@ -383,7 +383,7 @@ class MentionsService
                     if ($field === 'entry') {
                         if ($this->enableEntryField) {
                             $this->lockEntryRendering();
-                            $parsedTargetEntry = $entity->child->entry();
+                            $parsedTargetEntry = $entity->child->parsedEntry();
                             $this->unlockEntryRendering();
                         } else {
                             $parsedTargetEntry = $entity->child->entry;

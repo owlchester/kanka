@@ -63,7 +63,7 @@ class QuestElement extends Model
 
     /**
      */
-    public function entry()
+    public function parsedEntry()
     {
         return Mentions::mapAny($this, 'description');
     }

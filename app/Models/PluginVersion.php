@@ -516,7 +516,7 @@ class PluginVersion extends Model
                 'name' => $abi->ability->name,
                 'slug' => $abi->ability->slug,
                 'type' => $abi->ability->type,
-                'entry' => $abi->ability->entry(),
+                'entry' => $abi->ability->parsedEntry(),
                 'charges' => $abi->ability->charges,
                 'used_charges' => $abi->charges,
                 'thumb' => '<img src="' . Avatar::entity($abi->ability->entity)->child($abi->ability)->size(40)->thumbnail() . '" class="ability-thumb"></i>',

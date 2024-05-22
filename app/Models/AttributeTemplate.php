@@ -219,7 +219,7 @@ class AttributeTemplate extends MiscModel
      * Attribute Templates have no entry field
      * @return mixed|string
      */
-    public function entry()
+    public function parsedEntry()
     {
         return '';
     }

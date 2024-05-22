@@ -11,7 +11,7 @@
                 </div>
             @endcan
         @endif
-        {!! $model->entry() !!}
+        {!! $model->parsedEntry() !!}
     </div>
 </article>
 @endif

@@ -1,7 +1,7 @@
 <div class="preview overflow-hidden relative max-h-52" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
     {!! $slot !!}
     <div class="entity-content">
-        {!! $model->entry() !!}
+        {!! $model->parsedEntry() !!}
     </div>
 
     @include('dashboard.widgets.previews._members')

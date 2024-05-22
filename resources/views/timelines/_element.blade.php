@@ -79,7 +79,7 @@
 
                 @if ($element->use_entity_entry && $element->entity && $element->entity->child->hasEntry())
                     <div class="timeline-entity-content">
-                        {!! $element->entity->child->entry() !!}
+                        {!! $element->entity->child->parsedEntry() !!}
                     </div>
                 @endif
             </div>

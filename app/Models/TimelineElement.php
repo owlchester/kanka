@@ -113,7 +113,7 @@ class TimelineElement extends Model
 
     /**
      */
-    public function entry()
+    public function parsedEntry()
     {
         return Mentions::mapAny($this);
     }

@@ -46,7 +46,7 @@
                     @endif
                 </div>
                 <div class="entity-note-body post-body  overflow-x-auto">
-                    {!! $post->entry() !!}
+                    {!! $post->parsedEntry() !!}
                 </div>
 
                 <div class="post-footer entity-note-footer text-right text-muted text-xs ">

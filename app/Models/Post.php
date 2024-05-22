@@ -144,7 +144,7 @@ class Post extends Model
 
     /**
      */
-    public function entry()
+    public function parsedEntry()
     {
         return Mentions::mapPost($this);
     }
