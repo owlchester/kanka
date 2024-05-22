@@ -101,7 +101,7 @@
 
     <p class="text-neutral-content">
         @if ($inventory->item && $inventory->copy_item_entry)
-            {!! $inventory->item->entry() !!}
+            {!! $inventory->item->parsedEntry() !!}
         @else
             {!! $inventory->description !!}
         @endif

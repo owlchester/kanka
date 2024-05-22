@@ -52,7 +52,7 @@ trait TooltipTrait
 
         /** @var MiscModel $child */
         $child = $this->child;
-        $text = $child->entry();
+        $text = $child->parsedEntry();
         $text = strip_tags($text, $this->allowedTooltipTags());
         $text = Str::limit($text, 500);
         return $text;

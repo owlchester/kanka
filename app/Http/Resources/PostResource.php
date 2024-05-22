@@ -20,7 +20,7 @@ class PostResource extends EntityChild
             'name' => $model->name,
             'visibility_id' => (int) $model->visibility_id->value,
             'entry' => $model->entry,
-            'entry_parsed' => $model->entry(),
+            'entry_parsed' => $model->parsedEntry(),
             //            'is_pinned' => (bool) $this->is_pinned,
             'position' => $model->position,
             'settings' => $model->settings,

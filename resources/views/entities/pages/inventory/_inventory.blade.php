@@ -53,7 +53,7 @@
                 @endif<br />
                 <span class="text-sm text-muted">
                     @if ($item->item && $item->copy_item_entry)
-                        {!! $item->item->entry() !!}
+                        {!! $item->item->parsedEntry() !!}
                     @else
                     {{ $item->description }}
                     @endif

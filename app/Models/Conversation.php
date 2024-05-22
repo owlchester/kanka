@@ -125,13 +125,6 @@ class Conversation extends MiscModel
 
     /**
      */
-    public function entry()
-    {
-        return '';
-    }
-
-    /**
-     */
     public function forCharacters(): bool
     {
         return $this->target_id == self::TARGET_CHARACTERS;

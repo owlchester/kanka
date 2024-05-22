@@ -61,13 +61,13 @@
             </div>
             <div class="flex flex-col">
                 <x-box>
-                    @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry()))
+                    @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry))
                         <a href="{{ route('campaigns.edit', $campaign) }}">
                             {{ __('campaigns.helpers.no_entry') }}
                         </a>
                     @else
                     <div class="entity-content">
-                        {!! $campaign->entry() !!}
+                        {!! $campaign->parsedEntry() !!}
                     </div>
                     @endif
                 </x-box>

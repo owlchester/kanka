@@ -3,6 +3,7 @@
 namespace App\Services\Submenus;
 
 use App\Facades\Module;
+use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Database\Eloquent\Model;
@@ -14,11 +15,11 @@ class SubmenuService
     use CampaignAware;
     use EntityAware;
 
-    protected Model $model;
+    protected Model|MiscModel $model;
     protected array $items = [];
     protected array $ordered;
 
-    public function model(Model $model): self
+    public function model(Model|MiscModel $model): self
     {
         $this->model = $model;
         return $this;
@@ -57,6 +58,7 @@ class SubmenuService
         }
 
         // Each entity can have abilities
+        // @phpstan-ignore-next-line
         if ($this->campaign->enabled('abilities') && $this->model->entityTypeId() != config('entities.ids.ability')) {
             $this->items['third']['abilities'] = [
                 'name' => Module::plural(config('entities.ids.ability'), 'crud.tabs.abilities'),
@@ -141,9 +143,9 @@ class SubmenuService
         $className = Str::afterLast(get_class($this->model), '\\');
         $submenuName = 'App\Services\Submenus\\' . $className . 'Submenu';
         try {
-            /** @var BaseSubmenu $object */
+            /** @var CharacterSubmenu $object */
             $object = app()->make($submenuName);
-            //$this->items = array_merge($this->items, $object->model($this->model)->extra());
+            // @phpstan-ignore-next-line
             $this->items += $object->model($this->model)->campaign($this->campaign)->extra();
         } catch (\Exception $e) {
             // Some modules like convos have no submenu

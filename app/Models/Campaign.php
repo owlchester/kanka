@@ -131,7 +131,7 @@ class Campaign extends Model
             return $this->excerpt();
         }
         if (!empty(strip_tags($this->entry))) {
-            return strip_tags(mb_substr($this->entry(), 0, 1000)) . ' ...';
+            return strip_tags(mb_substr($this->parsedEntry(), 0, 1000)) . ' ...';
         }
         return '';
     }
@@ -261,7 +261,7 @@ class Campaign extends Model
 
     /**
      */
-    public function entry()
+    public function parsedEntry()
     {
         return Mentions::mapAny($this);
     }

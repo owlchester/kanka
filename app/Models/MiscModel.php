@@ -189,7 +189,7 @@ abstract class MiscModel extends Model
 
     /**
      */
-    public function entry()
+    public function parsedEntry()
     {
         return Mentions::map($this);
     }

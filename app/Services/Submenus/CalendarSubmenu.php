@@ -2,11 +2,15 @@
 
 namespace App\Services\Submenus;
 
+use App\Models\Calendar;
+
 class CalendarSubmenu extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {
-        $count = $this->model->calendarEvents()->has('entity')->count();
+        /** @var Calendar $calendar */
+        $calendar = $this->model;
+        $count = $calendar->calendarEvents()->has('entity')->count();
         $items = [];
         if ($count > 0) {
             $items['second']['events'] = [

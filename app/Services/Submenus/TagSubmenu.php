@@ -3,6 +3,7 @@
 namespace App\Services\Submenus;
 
 use App\Facades\Module;
+use App\Models\Tag;
 
 class TagSubmenu extends BaseSubmenu implements EntitySubmenu
 {
@@ -10,10 +11,12 @@ class TagSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
 
-        $count = $this->model->descendants->count();
+        /** @var Tag $model */
+        $model = $this->model;
+        $count = $model->descendants->count();
         if ($count > 0) {
             $items['second']['tags'] = [
-                'name' => Module::plural($this->model->entityTypeId(), 'entities.tags'),
+                'name' => Module::plural($model->entityTypeId(), 'entities.tags'),
                 'route' => 'tags.tags',
                 'count' => $count,
             ];

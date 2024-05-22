@@ -1,7 +1,7 @@
 {!! $slot !!}
 
 <div class="entity-content">
-    {!! $model->entry() !!}
+    {!! $model->parsedEntry() !!}
 </div>
 
 @include('dashboard.widgets.previews._members')

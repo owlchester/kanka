@@ -9,7 +9,7 @@
     @endif
     @if ($marker->entity && $marker->entity->child->hasEntry())
         <div class="marker-entry entity-content">
-            {!! $marker->entity->child->entry() !!}
+            {!! $marker->entity->child->parsedEntry() !!}
         </div>
     @endif
     <x-dialog.footer :dialog="true">

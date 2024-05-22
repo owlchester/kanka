@@ -2,12 +2,16 @@
 
 namespace App\Services\Submenus;
 
+use App\Models\Quest;
+
 class QuestSubmenu extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {
         $items = [];
-        $count = $this->model->elements()->with('entity')->has('entity')->count();
+        /** @var Quest $model */
+        $model = $this->model;
+        $count = $model->elements()->with('entity')->has('entity')->count();
         $items['second']['elements'] = [
             'name' => 'quests.show.tabs.elements',
             'route' => 'quests.quest_elements.index',
