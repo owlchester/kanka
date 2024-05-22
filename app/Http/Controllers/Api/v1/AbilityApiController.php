@@ -47,6 +47,7 @@ class AbilityApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         $model = Ability::create($data);
         $this->crudSave($model);
+
         return new Resource($model);
     }
 

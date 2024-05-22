@@ -46,7 +46,7 @@ class BookmarkApiController extends ApiController
         /** @var Bookmark $model */
         $model = Bookmark::create($data);
         $this->crudSave($model);
-        $model->refresh();
+
         return new Resource($model);
     }
 
