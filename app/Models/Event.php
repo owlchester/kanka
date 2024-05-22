@@ -163,19 +163,6 @@ class Event extends MiscModel
     }
 
     /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $items['second']['events'] = [
-            'name' => Module::plural($this->entityTypeId(), 'entities.events'),
-            'route' => 'events.events',
-            'count' => $this->descendants()->count()
-        ];
-
-        return parent::menuItems($items);
-    }
-
-    /**
      * Determine if the model has profile data to be displayed
      */
     public function showProfileInfo(): bool

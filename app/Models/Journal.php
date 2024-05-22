@@ -146,18 +146,6 @@ class Journal extends MiscModel
     }
 
     /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $items['second']['journals'] = [
-            'name' => Module::plural($this->entityTypeId(), 'entities.journals'),
-            'route' => 'journals.journals',
-            'count' => $this->descendants()->count()
-        ];
-        return parent::menuItems($items);
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function journal()

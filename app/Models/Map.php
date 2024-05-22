@@ -271,35 +271,6 @@ class Map extends MiscModel
     }
 
     /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $items['second']['maps'] = [
-            'name' => Module::plural($this->entityTypeId(), 'entities.maps'),
-            'route' => 'maps.maps',
-            'count' => $this->maps()->count()
-        ];
-        if (auth()->check() && auth()->user()->can('update', $this)) {
-            $items['second']['layers'] = [
-                'name' => 'maps.panels.layers',
-                'route' => 'maps.map_layers.index',
-                'count' => $this->layers->count()
-            ];
-            $items['second']['groups'] = [
-                'name' => 'maps.panels.groups',
-                'route' => 'maps.map_groups.index',
-                'count' => $this->groups->count()
-            ];
-            $items['second']['markers'] = [
-                'name' => 'maps.panels.markers',
-                'route' => 'maps.map_markers.index',
-                'count' => $this->markers->count()
-            ];
-        }
-        return parent::menuItems($items);
-    }
-
-    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int

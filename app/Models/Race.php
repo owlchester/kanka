@@ -199,22 +199,6 @@ class Race extends MiscModel
     }
 
     /**
-     * Menu elements for the rendering
-     */
-    public function menuItems(array $items = []): array
-    {
-        $count = $this->descendants()->count();
-        if ($count > 0) {
-            $items['second']['races'] = [
-                'name' => Module::plural($this->entityTypeId(), 'entities.races'),
-                'route' => 'races.races',
-                'count' => $count
-            ];
-        }
-        return parent::menuItems($items);
-    }
-
-    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int

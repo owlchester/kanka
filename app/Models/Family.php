@@ -251,26 +251,6 @@ class Family extends MiscModel
     }
 
     /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $items['second']['families'] = [
-            'name' => Module::plural($this->entityTypeId(), 'entities.families'),
-            'route' => 'families.families',
-            'count' => $this->descendants()->count()
-        ];
-
-        if (config('services.stripe.enabled')) {
-            $items['second']['tree'] = [
-                'name' => 'families.show.tabs.tree',
-                'route' => 'families.family-tree',
-            ];
-        }
-
-        return parent::menuItems($items);
-    }
-
-    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int

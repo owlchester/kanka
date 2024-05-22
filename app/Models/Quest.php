@@ -265,19 +265,6 @@ class Quest extends MiscModel
     }
 
     /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $count = $this->elements()->with('entity')->has('entity')->count();
-        $items['second']['elements'] = [
-            'name' => 'quests.show.tabs.elements',
-            'route' => 'quests.quest_elements.index',
-            'count' => $count
-        ];
-        return parent::menuItems($items);
-    }
-
-    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int

@@ -216,21 +216,6 @@ class Tag extends MiscModel
     }
 
     /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $count = $this->descendants->count();
-        if ($count > 0) {
-            $items['second']['tags'] = [
-                'name' => Module::plural($this->entityTypeId(), 'entities.tags'),
-                'route' => 'tags.tags',
-                'count' => $count,
-            ];
-        }
-        return parent::menuItems($items);
-    }
-
-    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int

@@ -159,24 +159,6 @@ class Ability extends MiscModel
     }
 
     /**
-     * Menu items for the entity
-     */
-    public function menuItems(array $items = []): array
-    {
-        $items['second']['abilities'] = [
-            'name' => Module::plural($this->entityTypeId(), 'entities.abilities'),
-            'route' => 'abilities.abilities',
-            'count' => $this->descendants()->count()
-        ];
-        $items['second']['entities'] = [
-            'name' => 'abilities.show.tabs.entities',
-            'route' => 'abilities.entities',
-            'count' => $this->entities()->count()
-        ];
-        return parent::menuItems($items);
-    }
-
-    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int

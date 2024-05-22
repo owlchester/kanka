@@ -1,5 +1,6 @@
-<?php use \Illuminate\Support\Arr; ?>
-@php $modelMenuItems = $model->menuItems(); @endphp
+<?php use \Illuminate\Support\Arr;
+$modelMenuItems = \App\Facades\Submenu::campaign($campaign)->model($model)->entity($entity)->items();
+?>
 <div class="hidden md:flex flex-col gap-5">
 @foreach ($modelMenuItems as $section => $menuItems)
     <x-box css="entity-menu{{ $section }}" :padding="0">

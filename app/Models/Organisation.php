@@ -300,22 +300,6 @@ class Organisation extends MiscModel
     }
 
     /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $count = $this->descendants()->count();
-        if ($count > 0) {
-            $items['second']['organisations'] = [
-                'name' => Module::plural($this->entityTypeId(), 'entities.organisations'),
-                'route' => 'organisations.organisations',
-                'count' => $count,
-            ];
-        }
-
-        return parent::menuItems($items);
-    }
-
-    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int
