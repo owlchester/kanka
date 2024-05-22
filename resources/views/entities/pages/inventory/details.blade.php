@@ -80,15 +80,24 @@
 
     </div>
 
-    <h1 class="text-2xl">
-        @if ($inventory->item)
-            <a href="{{ route('entities.show', [$campaign, $inventory->item->entity]) }}">
-                {!! $inventory->item->name !!}
-            </a>
-        @else
-            {!! $inventory->name !!}
-        @endif
-    </h1>
+    <div class="flex gap-2 items-center">
+        <h1 class="text-2xl grow">
+            @if ($inventory->item)
+                {!! $inventory->item->tooltipedLink() !!}
+            @else
+                {!! $inventory->name !!}
+            @endif
+        </h1>
+
+    @if ($inventory->item)
+        <div class="flex gap-2 item-entity-tags">
+            @foreach ($inventory->item->entity->tags as $tag)
+                @if (!$tag->entity) @continue @endif
+                <x-tags.bubble :tag="$tag" />
+            @endforeach
+        </div>
+    @endif
+    </div>
 
     <p class="text-neutral-content">
         @if ($inventory->item && $inventory->copy_item_entry)

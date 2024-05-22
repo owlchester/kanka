@@ -9,15 +9,12 @@ use Illuminate\View\Component;
 
 class Bubble extends Component
 {
-    public Tag $tag;
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        Tag $tag,
+        public Tag $tag,
     ) {
-        $this->tag = $tag;
     }
 
     /**
