@@ -23,5 +23,6 @@ class ApiController extends Controller
                 $model->entity->touch();
             }
         }
+        $model->refresh();
     }
 }

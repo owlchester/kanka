@@ -57,6 +57,7 @@ class CalendarApiController extends ApiController
         /** @var Calendar $model */
         $model = Calendar::create($data);
         $this->crudSave($model);
+
         return new Resource($model);
     }
 

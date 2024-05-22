@@ -48,7 +48,7 @@ class CreatureApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         $model = Creature::create($data);
         $this->crudSave($model);
-        $model->refresh();
+
         return new Resource($model);
     }
 
