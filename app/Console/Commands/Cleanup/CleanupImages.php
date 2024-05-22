@@ -14,7 +14,9 @@ class CleanupImages extends Command
      *
      * @var string
      */
-    protected $signature = 'cleanup:images {folder=w}';
+    protected $signature = 'cleanup:images {folder=w} {max=500} {dry=0}';
+
+    protected bool $dry = true;
 
     /**
      * The console command description.
@@ -24,6 +26,7 @@ class CleanupImages extends Command
     protected $description = 'Delete old images from s3';
 
     protected int $count = 0;
+    protected int $max = 0;
 
     /**
      * Execute the console command.
@@ -31,6 +34,17 @@ class CleanupImages extends Command
     public function handle()
     {
         $folder = $this->argument('folder');
+        $this->max = (int) $this->argument('max');
+
+        $dry = $this->argument('dry');
+        if ($dry === '1') {
+            $this->dry = false;
+        }
+
+        $this->info('Cleaning up ' . $folder);
+        if ($this->dry) {
+            $this->warn('This is a dry run. Nothing will get deleted.');
+        }
         $directories = Storage::directories($folder . '/');
         $chunks = array_chunk($directories, 500);
         foreach ($chunks as $chunk) {
@@ -57,11 +71,23 @@ class CleanupImages extends Command
                 if (empty($id)) {
                     continue;
                 }
-                Storage::deleteDirectory($folder . '/' . $id);
+                if (!$this->dry) {
+                    Storage::deleteDirectory($folder . '/' . $id);
+                }
                 $this->count++;
+            }
+            if ($this->dry) {
+                $this->info(implode(',', $nullCampaigns));
+            }
+            if ($this->count > $this->max) {
+                $this->info('Reached max amount of ' . $this->max);
+                return;
             }
         }
 
+        if ($this->dry) {
+            return;
+        }
         $this->info('Deleted ' . $this->count . ' images/folders.');
     }
 }
