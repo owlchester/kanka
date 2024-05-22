@@ -16,5 +16,4 @@ parameters:
         - ./app/Models/EntityMention.php
         - ./app/Models/ImageMention.php
 
-    checkMissingIterableValueType: false
     treatPhpDocTypesAsCertain: false
