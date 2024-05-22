@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\HasFilters;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;

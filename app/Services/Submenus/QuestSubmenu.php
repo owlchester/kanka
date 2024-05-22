@@ -2,7 +2,7 @@
 
 namespace App\Services\Submenus;
 
-class QuestSubmenu  extends BaseSubmenu implements EntitySubmenu
+class QuestSubmenu extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {
