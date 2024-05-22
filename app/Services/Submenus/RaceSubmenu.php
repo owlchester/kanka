@@ -3,16 +3,19 @@
 namespace App\Services\Submenus;
 
 use App\Facades\Module;
+use App\Models\Race;
 
 class RaceSubmenu  extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {
         $items = [];
-        $count = $this->model->descendants()->count();
+        /** @var Race $model */
+        $model = $this->model;
+        $count = $model->descendants()->count();
         if ($count > 0) {
             $items['second']['races'] = [
-                'name' => Module::plural($this->model->entityTypeId(), 'entities.races'),
+                'name' => Module::plural($model->entityTypeId(), 'entities.races'),
                 'route' => 'races.races',
                 'count' => $count
             ];

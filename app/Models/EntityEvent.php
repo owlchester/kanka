@@ -7,6 +7,7 @@ use App\Models\Scopes\EntityEventScopes;
 use Exception;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\VisibilityIDTrait;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * Class EntityEvent
  * @package App\Models
  *
+ * @property int $id
  * @property int $entity_id
  * @property int $calendar_id
  * @property string $date
@@ -34,7 +36,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property EntityEvent|null $death
  * @property EntityEventType|null $type
  */
-class EntityEvent extends MiscModel
+class EntityEvent extends Model
 {
     use Blameable;
     use EntityEventScopes;
@@ -45,8 +47,8 @@ class EntityEvent extends MiscModel
     /** @var string */
     public $table = 'entity_events';
 
-    /** @var string|null Cached readable date */
-    protected string|null $readableDate = null;
+    /** @var string Cached readable date */
+    protected string $readableDate;
 
     protected $fillable = [
         'calendar_id',
@@ -85,7 +87,7 @@ class EntityEvent extends MiscModel
         return $this->belongsTo(Calendar::class, 'calendar_id');
     }
 
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class, 'entity_id');
     }
@@ -99,7 +101,7 @@ class EntityEvent extends MiscModel
      */
     public function readableDate(): string
     {
-        if ($this->readableDate === null) {
+        if (!isset($this->readableDate)) {
             // Replace month with real month, and year maybe
             $months = $this->calendar->months();
             $years = $this->calendar->years();

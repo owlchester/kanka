@@ -2,12 +2,16 @@
 
 namespace App\Services\Submenus;
 
+use App\Models\Item;
+
 class ItemSubmenu  extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {
         $items = [];
-        $inventoryCount = $this->model->inventories()->with('item')->has('entity')->count();
+        /** @var Item $item */
+        $item = $this->model;
+        $inventoryCount = $item->inventories()->with('item')->has('entity')->count();
         if ($inventoryCount > 0) {
             $items['second']['inventories'] = [
                 'name' => 'items.show.tabs.inventories',

@@ -4,23 +4,27 @@ namespace App\Services\Submenus;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Module;
+use App\Models\Location;
 
 class LocationSubmenu  extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {
         $items = [];
+        /** @var Location $location */
+        $location = $this->model;
 
-        $count = $this->model->descendants()->has('location')->count();
+        // @phpstan-ignore-next-line
+        $count = $location->descendants()->has('location')->count();
         if ($count > 0) {
             $items['second']['locations'] = [
-                'name' => Module::plural($this->model->entityTypeId(), 'entities.locations'),
+                'name' => Module::plural($location->entityTypeId(), 'entities.locations'),
                 'route' => 'locations.locations',
                 'count' => $count
             ];
         }
 
-        $count = $this->model->allCharacters()->count();
+        $count = $location->allCharacters()->count();
         if ($this->campaign->enabled('characters') && $count > 0) {
             $items['second']['characters'] = [
                 'name' => Module::plural(config('entities.ids.character'), 'entities.characters'),

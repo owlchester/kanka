@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
  * @property int $impersonated_by
  * @property int $action
  * @property int $post_id
- * @property string|array  $changes
+ * @property null|string|array  $changes
  * @property Entity|null $entity
  * @property User|null $user
  * @property User|null $impersonator

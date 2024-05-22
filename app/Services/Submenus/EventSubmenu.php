@@ -3,16 +3,19 @@
 namespace App\Services\Submenus;
 
 use App\Facades\Module;
+use App\Models\Event;
 
 class EventSubmenu extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {
         $items = [];
+        /** @var Event $event */
+        $event = $this->model;
         $items['second']['events'] = [
-            'name' => Module::plural($this->model->entityTypeId(), 'entities.events'),
+            'name' => Module::plural($event->entityTypeId(), 'entities.events'),
             'route' => 'events.events',
-            'count' => $this->model->descendants()->count()
+            'count' => $event->descendants()->count()
         ];
         return $items;
     }

@@ -186,6 +186,9 @@ trait EntityRelations
         );
     }
 
+    /**
+     * @return Collection|Tag[]
+     */
     public function tagsWithEntity(bool $excludeHidden = false): Collection
     {
         if (!isset($this->tagsWithEntity)) {

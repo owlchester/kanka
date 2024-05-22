@@ -3,21 +3,24 @@
 namespace App\Services\Submenus;
 
 use App\Facades\Module;
+use App\Models\Ability;
 
 class AbilitySubmenu  extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {
         $items = [];
+        /** @var Ability $ability */
+        $ability = $this->model;
         $items['second']['abilities'] = [
-            'name' => Module::plural($this->model->entityTypeId(), 'entities.abilities'),
+            'name' => Module::plural($ability->entityTypeId(), 'entities.abilities'),
             'route' => 'abilities.abilities',
-            'count' => $this->model->descendants()->count()
+            'count' => $ability->descendants()->count()
         ];
         $items['second']['entities'] = [
             'name' => 'abilities.show.tabs.entities',
             'route' => 'abilities.entities',
-            'count' => $this->model->entities()->count()
+            'count' => $ability->entities()->count()
         ];
         return $items;
     }
