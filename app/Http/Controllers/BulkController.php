@@ -56,10 +56,16 @@ class BulkController extends Controller
                 return $this->batch();
             }
         } catch (TranslatableException $e) {
+            if (app()->isLocal()) {
+                throw $e;
+            }
             return redirect()
                 ->back()
                 ->with('error', __('crud.bulk.errors.general', ['hint' => $e->getTranslatedMessage()]));
         } catch (Exception $e) {
+            if (app()->isLocal()) {
+                throw $e;
+            }
             return redirect()
                 ->back()
                 ->with('error', __('crud.bulk.errors.general', ['hint' => $e->getMessage()]));

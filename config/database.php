@@ -142,7 +142,7 @@ return [
 
     'redis' => [
 
-        'client' => 'predis',
+        'client' => env('REDIS_CLIENT', 'predis'),
 
         // Used for the queue
         'default' => [

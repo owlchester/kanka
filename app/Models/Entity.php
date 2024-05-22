@@ -489,7 +489,7 @@ class Entity extends Model
         $inventory = [];
         $items = $this->inventories()->with(['image', 'item', 'item.entity', 'item.entity.image'])->get();
         foreach ($items as $item) {
-            if ($item->item_id && empty($item->item)) {
+            if ($item->item_id && (empty($item->item) || empty($item->item->entity))) {
                 continue;
             }
             $position = $item->position ?: __('entities/inventories.default_position');

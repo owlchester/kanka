@@ -668,7 +668,10 @@ class Map extends MiscModel
      */
     public function explorable(): bool
     {
-        if (!($this->entity->hasImage()) && !$this->isReal()) {
+        if ($this->isReal()) {
+            return true;
+        }
+        if (!$this->entity->hasImage()) {
             return false;
         }
         return !($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));

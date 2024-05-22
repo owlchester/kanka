@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
-use App\Models\Campaign;
 use App\Models\Relation;
 use App\Services\Entity\MoveService;
 use App\Services\Entity\TagService;
@@ -32,17 +31,16 @@ class BulkService
 
     protected MoveService $moveService;
 
-
-    /** @var string Entity name */
+    /** Entity name */
     protected string $entityName;
 
-    /** @var array Ids of entities */
-    protected $ids;
+    /** Ids of entities */
+    protected array $ids;
 
-    /** @var int Total entities submitted for update */
+    /** Total entities submitted for update */
     protected int $total = 0;
 
-    /** @var int Total entities that were updated */
+    /** Total entities that were updated */
     protected int $count = 0;
 
     public function __construct(
@@ -361,7 +359,7 @@ class BulkService
             if ($locationsAction === 'remove') {
                 // @phpstan-ignore-next-line
                 $entity->locations()->detach($locationIds);
-            } else {
+            } elseif (!empty($locationIds)) {
                 $this->saveLocations($entity, $locationIds);
             }
 
