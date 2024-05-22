@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
@@ -143,18 +142,6 @@ class Journal extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['journal_id', 'author_id', 'date', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
-    }
-
-    /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $items['second']['journals'] = [
-            'name' => Module::plural($this->entityTypeId(), 'entities.journals'),
-            'route' => 'journals.journals',
-            'count' => $this->descendants()->count()
-        ];
-        return parent::menuItems($items);
     }
 
     /**

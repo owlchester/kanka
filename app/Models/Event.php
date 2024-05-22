@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
@@ -160,19 +159,6 @@ class Event extends MiscModel
     public function getParentKeyName()
     {
         return 'event_id';
-    }
-
-    /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $items['second']['events'] = [
-            'name' => Module::plural($this->entityTypeId(), 'entities.events'),
-            'route' => 'events.events',
-            'count' => $this->descendants()->count()
-        ];
-
-        return parent::menuItems($items);
     }
 
     /**

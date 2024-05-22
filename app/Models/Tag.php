@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
@@ -213,21 +212,6 @@ class Tag extends MiscModel
     public function entityTags()
     {
         return $this->hasMany(EntityTag::class);
-    }
-
-    /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $count = $this->descendants->count();
-        if ($count > 0) {
-            $items['second']['tags'] = [
-                'name' => Module::plural($this->entityTypeId(), 'entities.tags'),
-                'route' => 'tags.tags',
-                'count' => $count,
-            ];
-        }
-        return parent::menuItems($items);
     }
 
     /**

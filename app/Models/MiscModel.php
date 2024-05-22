@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
-use App\Facades\Img;
 use App\Facades\Mentions;
-use App\Facades\Module;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -17,7 +14,6 @@ use App\Traits\SourceCopiable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Str;
@@ -56,10 +52,6 @@ abstract class MiscModel extends Model
     use SourceCopiable;
     use SubEntityScopes;
 
-
-    /** Performance based entity */
-    protected Entity $cachedEntity;
-
     /** Entity type (character, location) */
     protected string $entityType;
 
@@ -95,53 +87,6 @@ abstract class MiscModel extends Model
     public function crudSaved()
     {
         $this->fireModelEvent('crudSaved', false);
-    }
-
-    /**
-     * Get the thumbnail (or default image) of an entity
-     * @param int $width If 0, get the full-sized version
-     * @return string
-     */
-    public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
-    {
-        $entity = $this->cachedEntity ?? $this->entity;
-        if (empty($this->$field) || $entity->$field) {
-            return $this->getImageFallback($width);
-        }
-
-        $img = Img::resetCrop()
-            ->crop($width, (!empty($height) ? $height : $width));
-
-
-        if (!empty($width)) {
-            if (!empty($entity->focus_x) && !empty($entity->focus_y)) {
-                $img = $img->focus($entity->focus_x, $entity->focus_y);
-            }
-        }
-        return $img
-            ->url($this->$field);
-    }
-
-    /**
-     * Get the image fallback image
-     */
-    protected function getImageFallback(int $size = 40): string
-    {
-        // Campaign could have something set up
-        $campaign = CampaignLocalization::getCampaign();
-
-        $entity = $this->cachedEntity ?? $this->entity;
-        if (!empty($entity->image)) {
-            return $entity->image->getUrl($size, $size);
-        } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
-            return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]);
-        } elseif (auth()->check() && auth()->user()->isGoblin()) {
-            // Goblins and above have nicer icons
-            return '/images/defaults/patreon/' . $this->getTable() . '_thumb.png';
-        }
-
-        // Default fallback
-        return '/images/defaults/' . $this->getTable() . '_thumb.jpg';
     }
 
     /**
@@ -224,145 +169,6 @@ abstract class MiscModel extends Model
         }
         // If all that's in the entry is two \n, then there is no real content
         return mb_strlen($this->entry) > 2;
-    }
-
-    /**
-     * Build the menu items for the model.
-     * Todo: move this to somewhere else, it doesn't need to be in the model
-     */
-    public function menuItems(array $items = []): array
-    {
-        $campaign = CampaignLocalization::getCampaign();
-
-        $items['first']['story'] = [
-            'name' => 'crud.tabs.story',
-            'route' => 'entities.show',
-            'entity' => true,
-            'button' => auth()->check() && auth()->user()->can('update', $this) ? [
-                'url' => route('entities.story.reorder', [$campaign, $this->entity->id]),
-                'icon' => 'fa-solid fa-arrow-up-arrow-down',
-                'tooltip' => __('entities/story.reorder.icon_tooltip'),
-            ] : null,
-        ];
-
-
-        // Each entity can have relations
-        if (!isset($this->hasRelations) || $this->hasRelations === true) {
-            $items['first']['relations'] = [
-                'name' => 'crud.tabs.connections',
-                'route' => 'entities.relations.index',
-                'count' => $this->entity->relationships()->has('target')->count(),
-                'entity' => true,
-                'icon' => 'fa-solid fa-users',
-            ];
-        }
-
-        // Each entity can have abilities
-        if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
-            $items['third']['abilities'] = [
-                'name' => Module::plural(config('entities.ids.ability'), 'crud.tabs.abilities'),
-                'route' => 'entities.entity_abilities.index',
-                'count' => 0, //$this->entity->abilities()->has('ability')->count(),
-                'entity' => true,
-                'icon' => 'ra ra-fire-symbol',
-            ];
-        }
-
-        if ($campaign->enabled('calendars')) {
-            $items['third']['reminders'] = [
-                'name' => 'crud.tabs.reminders',
-                'route' => 'entities.entity_events.index',
-                'count' => 0, //$this->entity->abilities()->has('ability')->count(),
-                'entity' => true,
-                'icon' => 'ra ra-sun-moon',
-            ];
-        }
-
-        if ($this->entity->accessAttributes()) {
-            $items['third']['attributes'] = [
-                'name' => 'crud.tabs.attributes',
-                'route' => 'entities.attributes',
-                'entity' => true,
-                'icon' => '',
-            ];
-        }
-
-        // Each entity can have an inventory
-        if ($campaign->enabled('inventories')) {
-            $items['third']['inventory'] = [
-                'name' => 'crud.tabs.inventory',
-                'route' => 'entities.inventory',
-                'count' => 0, //$this->entity->inventories()->has('item')->count(),
-                'entity' => true,
-                'icon' => 'ra ra-round-bottom-flask',
-            ];
-        }
-
-
-        // Each entity can have assets
-        if ($campaign->enabled('assets') && $this->entity->hasFiles()) {
-            $items['third']['assets'] = [
-                'name' => 'crud.tabs.assets',
-                'route' => 'entities.entity_assets.index',
-                'count' => $this->entity->assets()->filtered($campaign->boosted())->count(),
-                'entity' => true,
-                'icon' => 'fa-solid fa-file',
-            ];
-        }
-
-        // Check if and how many times entity has been mentioned
-        $mentionsCount = $this->entity->mentionsCount();
-        if (auth()->check() && $mentionsCount > 0) {
-            $items['fourth']['mentions'] = [
-                'name' => 'crud.tabs.mentions',
-                'route' => 'entities.mentions',
-                'entity' => true,
-                'count' => $mentionsCount,
-                'icon' => 'fa-solid fa-lock',
-            ];
-        }
-
-        // Permissions for the admin?
-        if (auth()->check() && auth()->user()->can('permission', $this)) {
-            $items['fourth']['permissions'] = [
-                'name' => 'crud.tabs.permissions',
-                'route' => 'entities.permissions',
-                'entity' => true,
-                'icon' => 'fa-solid fa-lock',
-                'ajax' => true,
-                'id' => 'entity-permissions-link'
-            ];
-        }
-
-        //dump($items);
-        $menuItems = [];
-        if (Arr::has($items, 'first')) {
-            $menuItems[] = $items['first'];
-        }
-        if (Arr::has($items, 'second')) {
-            $menuItems[] = $items['second'];
-        }
-        if (Arr::has($items, 'third')) {
-            $sortedItems = array_combine(array_keys($items['third']), array_column($items['third'], 'name'));
-            foreach ($sortedItems as $key => $item) {
-                $sortedItems[$key] = __($item);
-            }
-
-            $collator = new \Collator(app()->getLocale());
-            $collator->asort($sortedItems);
-
-            $sortedMenuItems = [];
-            foreach ($sortedItems as $key => $item) {
-                $sortedMenuItems[$key] = $items['third'][$key];
-            }
-
-            $menuItems[] = $sortedMenuItems;
-        }
-        if (Arr::has($items, 'fourth')) {
-            $menuItems[] = $items['fourth'];
-        }
-
-        return $menuItems;
     }
 
     /**
@@ -463,16 +269,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Parse the entity object to the child to avoid multiple db calls
-     * @return $this
-     */
-    public function withEntity(Entity $entity): self
-    {
-        $this->cachedEntity = $entity;
-        return $this;
-    }
-
-    /**
      * Copy related elements to new target. Override this in individual models (ex maps)
      */
     public function copyRelatedToTarget(MiscModel $target)
@@ -481,6 +277,7 @@ abstract class MiscModel extends Model
 
     /**
      * Available datagrid actions
+     * Todo: move this out of the model
      * @return string[]
      * @throws Exception
      */

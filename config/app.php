@@ -237,6 +237,7 @@ return [
         App\Providers\EntitySetupServiceProvider::class,
         App\Providers\UserDateServiceProvider::class,
         App\Providers\ModuleServiceProvider::class,
+        App\Providers\SubmenuServiceProvider::class,
         App\Providers\Logs\ApiLogServiceProvider::class,
         App\Providers\DomainServiceProvider::class,
         App\Providers\LimitServiceProvider::class,

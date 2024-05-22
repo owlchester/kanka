@@ -254,21 +254,6 @@ class Item extends MiscModel
     {
         return $this->belongsTo('App\Models\Item', 'item_id', 'id');
     }
-    /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $inventoryCount = $this->inventories()->with('item')->has('entity')->count();
-        if ($inventoryCount > 0) {
-            $items['second']['inventories'] = [
-                'name' => 'items.show.tabs.inventories',
-                'route' => 'items.inventories',
-                'count' => $inventoryCount
-            ];
-        }
-
-        return parent::menuItems($items);
-    }
 
     /**
      * Get the entity_type id from the entity_types table

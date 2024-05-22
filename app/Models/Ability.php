@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\Mentions;
-use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
@@ -156,24 +155,6 @@ class Ability extends MiscModel
         }
 
         parent::detach();
-    }
-
-    /**
-     * Menu items for the entity
-     */
-    public function menuItems(array $items = []): array
-    {
-        $items['second']['abilities'] = [
-            'name' => Module::plural($this->entityTypeId(), 'entities.abilities'),
-            'route' => 'abilities.abilities',
-            'count' => $this->descendants()->count()
-        ];
-        $items['second']['entities'] = [
-            'name' => 'abilities.show.tabs.entities',
-            'route' => 'abilities.entities',
-            'count' => $this->entities()->count()
-        ];
-        return parent::menuItems($items);
     }
 
     /**

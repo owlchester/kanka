@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
-use App\Facades\CampaignLocalization;
-use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
@@ -320,37 +318,6 @@ class Character extends MiscModel
         }
 
         parent::detach();
-    }
-
-    /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $canEdit = auth()->check() && auth()->user()->can('update', $this);
-        $campaign = CampaignLocalization::getCampaign();
-
-        $items['second']['profile'] = [
-            'name' => 'entities/profile.show.tab_name',
-            'route' => 'entities.profile',
-            'entity' => true,
-
-            'button' => auth()->check() && auth()->user()->can('update', $this) ? [
-                'url' => $this->getLink('edit'),
-                'icon' => 'fa-solid fa-pencil',
-                'tooltip' => __('crud.edit'),
-            ] : null,
-        ];
-
-        $count = $this->organisationMemberships()->has('organisation')->count();
-        if ($campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
-            $items['second']['organisations'] = [
-                'name' => Module::plural(config('entities.ids.organisation'), 'entities.organisations'),
-                'route' => 'characters.organisations',
-                'count' => $count
-            ];
-        }
-
-        return parent::menuItems($items);
     }
 
     /**

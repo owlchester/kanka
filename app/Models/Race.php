@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
-use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
@@ -196,22 +195,6 @@ class Race extends MiscModel
                 $join->on('cr.character_id', '=', 'characters.id');
             })
             ->whereIn('cr.race_id', $raceIds);
-    }
-
-    /**
-     * Menu elements for the rendering
-     */
-    public function menuItems(array $items = []): array
-    {
-        $count = $this->descendants()->count();
-        if ($count > 0) {
-            $items['second']['races'] = [
-                'name' => Module::plural($this->entityTypeId(), 'entities.races'),
-                'route' => 'races.races',
-                'count' => $count
-            ];
-        }
-        return parent::menuItems($items);
     }
 
     /**

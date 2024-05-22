@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
@@ -159,30 +158,6 @@ class Timeline extends MiscModel
     public function getParentKeyName()
     {
         return 'timeline_id';
-    }
-
-    /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $items['second']['timelines'] = [
-            'name' => Module::plural($this->entityTypeId(), 'entities.timelines'),
-            'route' => 'timelines.timelines',
-            'count' => $this->descendants()->count()
-        ];
-        if (auth()->check() && auth()->user()->can('update', $this)) {
-            $items['second']['eras'] = [
-                'name' => 'timelines.fields.eras',
-                'route' => 'timelines.timeline_eras.index',
-                'count' => $this->eras->count()
-            ];
-            $items['second']['reorder'] = [
-                'name' => 'timelines.show.tabs.reorder',
-                'route' => 'timelines.reorder',
-            ];
-        }
-
-        return parent::menuItems($items);
     }
 
     /**

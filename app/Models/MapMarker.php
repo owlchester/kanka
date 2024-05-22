@@ -425,11 +425,6 @@ class MapMarker extends Model
 
         $iconStyles = [];
         $iconStyles[] = 'background-color: ' . $this->backgroundColour();
-        /*if ($this->entity && $this->icon == 4 && $this->entity->child) {
-            $entityImage = '<div class="marker-entity" style="background-image: url(' .
-                $this->entity->child->thumbnail(400) .
-            ');"></div>';
-        }*/
 
         $iconShape = '<div style="background-color: ' . $this->backgroundColour() . '" class="marker-pin"></div>';
 

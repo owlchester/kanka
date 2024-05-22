@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\HasFilters;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
@@ -276,41 +274,6 @@ class Location extends MiscModel
         }
 
         parent::detach();
-    }
-
-
-    /**
-     */
-    public function menuItems(array $items = []): array
-    {
-        $campaign = CampaignLocalization::getCampaign();
-
-        $count = $this->descendants()->has('location')->count();
-        if ($count > 0) {
-            $items['second']['locations'] = [
-                'name' => Module::plural($this->entityTypeId(), 'entities.locations'),
-                'route' => 'locations.locations',
-                'count' => $count
-            ];
-        }
-
-        $count = $this->allCharacters()->count();
-        if ($campaign->enabled('characters') && $count > 0) {
-            $items['second']['characters'] = [
-                'name' => Module::plural(config('entities.ids.character'), 'entities.characters'),
-                'route' => 'locations.characters',
-                'count' => $count
-            ];
-        }
-        /*$count = $this->events()->count();
-        if ($campaign->enabled('events') && $count > 0) {
-            $items['second']['events'] = [
-                'name' => 'locations.show.tabs.events',
-                'route' => 'locations.events',
-                'count' => $count
-            ];
-        }*/
-        return parent::menuItems($items);
     }
 
     /**
