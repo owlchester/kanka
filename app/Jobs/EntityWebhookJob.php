@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use App\Facades\Avatar;
+use Exception;
 
 class EntityWebhookJob implements ShouldQueue
 {
@@ -111,7 +112,12 @@ class EntityWebhookJob implements ShouldQueue
                     ],
                 ];
             }
-            Http::post($webhook->url, $data);
+
+            try {
+                Http::post($webhook->url, $data);
+            } catch (Exception $e) {
+                // Don't do anything with failures
+            }
         }
     }
 

@@ -13,6 +13,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Exception;
 
 class TestWebhookJob implements ShouldQueue
 {
@@ -123,7 +124,11 @@ class TestWebhookJob implements ShouldQueue
             ];
         }
 
-        Http::post($this->webhook->url, $data);
+        try {
+            Http::post($this->webhook->url, $data);
+        } catch (Exception $e) {
+            // Don't do anything with failures
+        }
     }
 
     public function failure()
