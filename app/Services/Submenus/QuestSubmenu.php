@@ -4,7 +4,7 @@ namespace App\Services\Submenus;
 
 use App\Models\Quest;
 
-class QuestSubmenu  extends BaseSubmenu implements EntitySubmenu
+class QuestSubmenu extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {

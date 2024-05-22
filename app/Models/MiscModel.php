@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
-use App\Facades\Module;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -15,7 +14,6 @@ use App\Traits\SourceCopiable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Support\Str;

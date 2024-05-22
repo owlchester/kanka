@@ -4,5 +4,5 @@ namespace App\Services\Submenus;
 
 interface EntitySubmenu
 {
-    function extra(): array;
+    public function extra(): array;
 }

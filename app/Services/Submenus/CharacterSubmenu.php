@@ -2,11 +2,10 @@
 
 namespace App\Services\Submenus;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Models\Character;
 
-class CharacterSubmenu  extends BaseSubmenu implements EntitySubmenu
+class CharacterSubmenu extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {

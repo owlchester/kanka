@@ -5,7 +5,7 @@ namespace App\Services\Submenus;
 use App\Facades\Module;
 use App\Models\Family;
 
-class FamilySubmenu  extends BaseSubmenu implements EntitySubmenu
+class FamilySubmenu extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {

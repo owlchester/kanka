@@ -4,7 +4,7 @@ namespace App\Services\Submenus;
 
 use App\Models\Item;
 
-class ItemSubmenu  extends BaseSubmenu implements EntitySubmenu
+class ItemSubmenu extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array
     {
