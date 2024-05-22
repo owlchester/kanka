@@ -276,6 +276,9 @@ Route::get('/w/{campaign}/entities/{entity}/inventory/copy', 'Entity\CopyInvento
     ->name('entities.inventory.copy');
 Route::get('/w/{campaign}/entities/{entity}/inventory/{inventory}/details', 'Entity\Inventory\DetailController@index')
     ->name('entities.inventory.details');
+Route::delete('/w/{campaign}/entities/{entity}/inventory/delete_section', 'Entity\InventoryController@deleteSection')
+    ->name('entities.inventory.delete.section');
+
 
 // Export
 Route::get('/w/{campaign}/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');

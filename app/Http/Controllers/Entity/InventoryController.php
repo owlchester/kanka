@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInventory;
 use App\Http\Requests\UpdateInventory;
+use Illuminate\Http\Request;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Inventory;
@@ -102,8 +103,6 @@ class InventoryController extends Controller
             ]);
         }
 
-
-
         return redirect()
             ->route('entities.inventory', [$campaign, $entity])
             ->with('success_raw', $success);
@@ -152,6 +151,28 @@ class InventoryController extends Controller
             ->route('entities.inventory', [$campaign, $entity])
             ->with('success_raw', __('entities/inventories' . '.update.success', [
                 'item' => $inventory->itemName(),
+                'entity' => $entity->name
+            ]));
+    }
+
+    /**
+     */
+    public function deleteSection(Campaign $campaign, Entity $entity, Request $request)
+    {
+        $this->authorize('update', $entity->child);
+
+        $position = $request->get('position');
+
+        if (isset($position) && $position !==  __('entities/inventories.default_position')) {
+            Inventory::where('entity_id', $entity->id)->where('position', $position)->delete();
+        } else {
+            Inventory::where('entity_id', $entity->id)->where('position', '')->delete();
+        }
+
+        return redirect()
+            ->route('entities.inventory', [$campaign, $entity])
+            ->with('success_raw', __('entities/inventories.destroy.success_position', [
+                'position' => $position,
                 'entity' => $entity->name
             ]));
     }
