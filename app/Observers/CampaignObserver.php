@@ -61,8 +61,8 @@ class CampaignObserver
         }
 
         // Handle image. Let's use a service for this.
-        ImageService::handle($campaign, 'campaigns');
-        ImageService::handle($campaign, 'campaigns', 'header_image');
+        ImageService::handle($campaign, 'w');
+        ImageService::handle($campaign, 'w', 'header_image');
     }
 
     /**

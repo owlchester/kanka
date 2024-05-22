@@ -31,7 +31,6 @@ class StarterService
             'name' => __('starter.campaign.name', ['user' => $this->user->name]),
             'entry' => '',
             'excerpt' => '',
-            'ui_settings' => ['nested' => true]
         ];
         $this->campaign = Campaign::create($data);
         CampaignCache::campaign($this->campaign);
