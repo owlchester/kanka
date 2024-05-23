@@ -29,8 +29,6 @@
         @endif
         <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @include('partials.errors')
-
-
         <x-grid type="1/1">
             @include('maps.markers._form', ['model' => null])
             <x-box.footer>

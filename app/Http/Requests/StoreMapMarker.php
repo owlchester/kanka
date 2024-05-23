@@ -49,6 +49,7 @@ class StoreMapMarker extends FormRequest
             'opacity' => 'nullable|min:0|max:100|integer',
 
             'marker_size' => 'nullable|integer|min:10',
+            'from' => 'nullable|string',
         ];
 
         return $this->clean($rules);

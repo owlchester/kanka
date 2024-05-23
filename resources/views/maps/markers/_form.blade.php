@@ -232,5 +232,8 @@ $sizeOptions = [
 </div>
 
 {!! Form::hidden('shape_id', (!isset($model) ? !empty($source) ? $source->shape_id : 1 : null)) !!}
+@if (isset($from) && $from === base64_encode('maps.explore:' . $map->id))
+    <input type="hidden" name="from" value="explore" />
+@endif
 
 @includeWhen(isset($model), 'editors.editor')

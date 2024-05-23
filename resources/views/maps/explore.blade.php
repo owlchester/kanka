@@ -174,8 +174,6 @@
         @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.explore:' . $map->id)])
 
     </x-dialog>
-
-                {!! Form::hidden('from', 'explore') !!}
                 {!! Form::close() !!}
             </div>
         </div>
