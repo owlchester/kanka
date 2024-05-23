@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInventory;
 use App\Http\Requests\UpdateInventory;
-use Illuminate\Http\Request;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Inventory;
