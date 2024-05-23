@@ -157,28 +157,6 @@ class InventoryController extends Controller
 
     /**
      */
-    public function deleteSection(Campaign $campaign, Entity $entity, Request $request)
-    {
-        $this->authorize('update', $entity->child);
-
-        $position = $request->get('position');
-
-        if (isset($position) && $position !==  __('entities/inventories.default_position')) {
-            Inventory::where('entity_id', $entity->id)->where('position', $position)->delete();
-        } else {
-            Inventory::where('entity_id', $entity->id)->where('position', '')->delete();
-        }
-
-        return redirect()
-            ->route('entities.inventory', [$campaign, $entity])
-            ->with('success_raw', __('entities/inventories.destroy.success_position', [
-                'position' => $position,
-                'entity' => $entity->name
-            ]));
-    }
-
-    /**
-     */
     public function destroy(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->authorize('update', $entity->child);

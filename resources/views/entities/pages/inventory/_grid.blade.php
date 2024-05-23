@@ -31,7 +31,7 @@
                         <td class="text-right">
                             <x-button.delete-confirm size="sm" target="#delete-position-{{ \Illuminate\Support\Str::slug($position) }}" iconOnly=true />
                             {!! Form::open(['method' => 'DELETE',
-                                'route' => ['entities.inventory.delete.section', $campaign, $entity, 'position' => $position],
+                                'route' => ['entities.inventory.delete.section', $campaign, $entity, $items['0']],
                                 'style'=>'display:inline',
                                 'id' => 'delete-position-' . \Illuminate\Support\Str::slug($position)])
                             !!}
