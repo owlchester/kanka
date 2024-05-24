@@ -171,12 +171,9 @@
         footer="maps.markers._new-footer"
         :form="['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']">
         @include('partials.errors')
-        @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.explore:' . $map->id)])
+        @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => 'explore'])
 
     </x-dialog>
-
-                {!! Form::hidden('from', 'explore') !!}
-                {!! Form::close() !!}
             </div>
         </div>
     </div>

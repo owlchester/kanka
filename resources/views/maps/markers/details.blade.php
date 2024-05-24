@@ -82,7 +82,8 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
             <x-button.delete-confirm css="join-item" target="#delete-marker-confirm-form-{{ $marker->id }}" />
         </div>
     </div>
-    {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $campaign, $marker->map, $marker, 'from' => 'map'], 'style' => 'display:inline', 'id' => 'delete-marker-confirm-form-' . $marker->id]) !!}
+    {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $campaign, $marker->map, $marker], 'style' => 'display:inline', 'id' => 'delete-marker-confirm-form-' . $marker->id]) !!}
+    <input name="from" type="hidden" value="explore" />
     {!! Form::close() !!}
 
 @endcan
