@@ -172,10 +172,6 @@
         :form="['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']">
         @include('partials.errors')
         @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => 'explore'])
-
     </x-dialog>
-            </div>
-        </div>
-    </div>
 @endcan
 @endsection
