@@ -54,13 +54,14 @@
 </x-forms.field>
 
 <x-forms.field field="tags">
+    <input type="hidden" name="save-tags" value="1" />
+
     <x-forms.tags
         :campaign="$campaign"
         :model="$webhook ?? null"
-        allowClear="true"
+        allowClear="false"
         :dropdownParent="$dropdownParent ?? null"
     ></x-forms.tags>
-    <input type="hidden" name="save_tags" value="1" />
 </x-forms.field>
 
 </x-grid>

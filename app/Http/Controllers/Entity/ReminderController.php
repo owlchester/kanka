@@ -24,8 +24,6 @@ class ReminderController extends Controller
     use HasDatagrid;
     use HasSubview;
 
-    /**
-     */
     protected string $view = 'entity_event';
     protected string $route = 'entity_event';
 
@@ -147,7 +145,9 @@ class ReminderController extends Controller
         $next = request()->get('next', null);
         $from = request()->get('from', null);
         if (!empty($from)) {
-            $from = Calendar::find($from);
+            if ($from !== 'calendar') {
+                $from = Calendar::find($from);
+            }
         }
 
         return view('calendars.events.edit', compact(
@@ -224,16 +224,11 @@ class ReminderController extends Controller
             return redirect()
                 ->route('entities.entity_events.index', [$campaign, $entity])
                 ->with('success', $success);
-        }
-
-        // Redirect to the calendar if that's where we came from
-        $previous = url()->previous();
-        if (str_contains($previous, '/calendars/')) {
+        } elseif (Str::startsWith($next, 'calendar.')) {
             return redirect()
-                ->to($entityEvent->calendar->getLink())
+                ->route('entities.show', [$campaign, $entityEvent->calendar->entity])
                 ->with('success', $success);
         }
-
         return redirect()
             ->route('entities.entity_events.index', [$campaign, $entity])
             ->with('success', $success);

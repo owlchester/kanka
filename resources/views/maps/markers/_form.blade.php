@@ -232,5 +232,7 @@ $sizeOptions = [
 </div>
 
 {!! Form::hidden('shape_id', (!isset($model) ? !empty($source) ? $source->shape_id : 1 : null)) !!}
-
+@if (isset($from))
+    <input type="hidden" name="from" value="{{ $from }}" />
+@endif
 @includeWhen(isset($model), 'editors.editor')

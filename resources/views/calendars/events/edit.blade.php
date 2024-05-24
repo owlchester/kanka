@@ -47,5 +47,11 @@
     @if (request()->has('layout'))
         {!! Form::hidden('layout', request()->get('layout')) !!}
     @endif
+    @if (!empty($from))
+        {!! Form::hidden('from', $from) !!}
+    @endif
+    @if (!empty($next))
+        {!! Form::hidden('next', $next) !!}
+    @endif
     {!! Form::close() !!}
 @endsection
