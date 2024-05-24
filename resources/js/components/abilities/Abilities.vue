@@ -1,51 +1,17 @@
 <template>
     <div class="viewport box-abilities relative flex flex-col gap-5">
         <div v-if="loading" class="load more text-center">
-            <i class="fa-solid fa-spin fa-spinner"></i>
+            <i class="fa-solid fa-spin fa-spinner" aria-hidden="true"></i>
         </div>
 
         <div class="flex gap-5 flex-wrap">
-            <parent v-for="parent in parents"
-                :key="parent.id"
-                :ability="parent">
+            <parent v-for="group in groups"
+                :key="group.id"
+                :group="group"
+                 :permission="permission"
+                 :meta="meta"
+                 :trans="trans">
             </parent>
-        </div>
-
-        <div v-if="show_parent" class="flex flex-col gap-5">
-            <div v-if="parent.entry" class="parent-box p-3 rounded bg-box shadow-xs">
-                <div class="parent-header mb-2">
-                    <a class="text-lg" v-bind:href="parent.url">
-                        {{ parent.name }}
-                    </a>
-                </div>
-                <div class="entity-content parent-body" v-html="parent.entry">
-
-                </div>
-            </div>
-            <ability v-for="ability in parent.abilities"
-                :key="ability.id"
-                :ability="ability"
-                :permission="permission"
-                :meta="meta"
-                :trans="json_trans">
-            </ability>
-        </div>
-
-        <div class="flex flex-col gap-5">
-            <ability v-if="!show_parent" v-for="ability in abilities"
-                     :key="ability.id"
-                     :ability="ability"
-                     :permission="permission"
-                     :meta="meta"
-                     :trans="json_trans">
-            </ability>
-        </div>
-
-        <AbilityForm :trans="json_trans">
-        </AbilityForm>
-
-        <div v-if="waiting" class="box-waiting absolute top-0 w-full h-full bg-black/20 text-center">
-            <i class="fa-solid fa-spin fa-spinner fa-4x mt-5"></i>
         </div>
     </div>
 </template>
@@ -71,12 +37,9 @@
 
         data() {
             return {
-                abilities: [],
-                parents: [],
+                groups: [],
                 meta: [],
                 loading: true,
-                show_parent: false,
-                parent: null,
                 waiting: false,
                 modal: false,
                 json_trans: [],
@@ -88,23 +51,11 @@
               fetch(this.api)
                   .then(response => response.json())
                   .then(response => {
-                    this.abilities = response.data.abilities;
-                    this.parents = response.data.parents;
+                    this.groups = response.data.groups;
                     this.meta = response.data.meta;
                     this.loading = false;
                     this.waiting = false;
-
-
-                    if (this.parent) {
-                        // We need to find our parent again to "reload" it properly
-                        this.parent = this.parents[this.parent.id];
-                        this.showParent(this.parent);
-                    }
                 });
-            },
-            //
-            showParent: function (parent) {
-                this.show_parent = !!parent;
             },
 
             /**
@@ -138,11 +89,11 @@
 
         mounted() {
             this.getAbilities();
-
-            this.emitter.on('click_parent', (parent) => {
-                this.parent = parent;
-                this.showParent(parent);
-            });
+            //
+            // this.emitter.on('click_parent', (parent) => {
+            //     this.parent = parent;
+            //     this.showParent(parent);
+            // });
 
             this.emitter.on('delete_ability', (ability) => {
                 this.deleteAbility(ability);
@@ -156,4 +107,6 @@
             window.ajaxTooltip();
         }
     }
+</script>
+<script setup>
 </script>

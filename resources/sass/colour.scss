@@ -148,4 +148,8 @@
   --tw-text-opacity: 1;
   color:hsl(var(--a)/var(--tw-text-opacity));
 }
+.hover\:text-accent-content:hover {
+  --tw-text-opacity: 1;
+  color:hsl(var(--ac)/var(--tw-text-opacity));
+}
 
