@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Campaigns;
 
 use App\Jobs\Campaigns\Delete;
+use App\Jobs\DeletedCampaignCleanupJob;
 use App\Models\Campaign;
 use Illuminate\Console\Command;
 
@@ -43,6 +44,7 @@ class DeleteCommand extends Command
         $campaign = Campaign::where('id', $campaignId)->first();
         if ($campaign) {
             Delete::dispatch($campaign);
+            DeletedCampaignCleanupJob::dispatch($campaign);
             $this->info('Queued campaign #' . $campaignId . ' for deletion');
         } else {
             $this->info('Invalid campaign ID');

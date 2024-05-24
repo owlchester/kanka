@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Jobs\DeletedCampaignCleanupJob;
 use App\Models\Campaign;
 use App\Services\ImageService;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,6 +33,7 @@ class PurgeService
                 foreach ($campaigns as $campaign) {
                     if (!$this->dry) {
                         ImageService::cleanup($campaign);
+                        DeletedCampaignCleanupJob::dispatch($campaign);
                         $campaign->delete();
                         Log::info('Services\Campaigns\PurgeService', ['campaign' => $campaign->id]);
                     }
