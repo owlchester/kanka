@@ -8,7 +8,6 @@
     @foreach ($entity->orderedInventory() as $position => $items)
         <div class="flex flex-col gap-4" data-position="{{ \Illuminate\Support\Str::slug($position) }}">
             <div class="section-title flex gap-4 items-center">
-
                 <h2 class="grow text-2xl">
                     <x-icon class="fa-solid fa-arrow-right" />
                     {!! $position ?? "Unsorted" !!}
@@ -29,11 +28,18 @@
                         <a href="#" class="rounded hidden link link-accent bg-box">
                             <x-icon class="fa-solid fa-times" />
                         </a>
+                        <td class="text-right">
+                            <x-button.delete-confirm size="sm" target="#delete-position-{{ \Illuminate\Support\Str::slug($position) }}" iconOnly=true />
+                            {!! Form::open(['method' => 'DELETE',
+                                'route' => ['entities.inventory.delete.section', $campaign, $entity, $items['0']],
+                                'style'=>'display:inline',
+                                'id' => 'delete-position-' . \Illuminate\Support\Str::slug($position)])
+                            !!}
+                            {!! Form::close() !!}
+                        </td>
                     @endcan
-
                 </div>
             </div>
-
             <div class="flex gap-4 flex-wrap">
                 @foreach ($items as $item)
                     @include('entities.pages.inventory._item')

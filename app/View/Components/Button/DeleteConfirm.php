@@ -12,6 +12,8 @@ class DeleteConfirm extends Component
     public ?string $size;
     public ?string $text;
     public ?string $css;
+    public ?bool $iconOnly;
+
     /**
      * Create a new component instance.
      */
@@ -20,11 +22,13 @@ class DeleteConfirm extends Component
         string $size = null,
         string $text = null,
         string $css = null,
+        bool $iconOnly = false,
     ) {
         $this->target = $target;
         $this->size = $size;
         $this->text = $text;
         $this->css = $css;
+        $this->iconOnly = $iconOnly;
     }
 
     /**

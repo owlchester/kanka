@@ -223,6 +223,7 @@ function initDynamicDelete() {
         }
 
         $(this).data('confirming', 1);
+        $(this).find('span').addClass('md:inline');
         $(this).find('span').html($(this).data('confirm'));
     });
 

@@ -102,8 +102,6 @@ class InventoryController extends Controller
             ]);
         }
 
-
-
         return redirect()
             ->route('entities.inventory', [$campaign, $entity])
             ->with('success_raw', $success);

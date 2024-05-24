@@ -4,5 +4,5 @@
    data-target="{{ $target }}"
 >
     <x-icon class="trash"></x-icon>
-    <span class="hidden md:inline">{{ $text ?? __('crud.remove') }}</span>
+        <span class="hidden @if(!$iconOnly) md:inline @endif">{{ $text ?? __('crud.remove') }}</span>
 </a>
