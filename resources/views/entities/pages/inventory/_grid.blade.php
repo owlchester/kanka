@@ -29,13 +29,15 @@
                             <x-icon class="fa-solid fa-times" />
                         </a>
                         <td class="text-right">
-                            <x-button.delete-confirm size="sm" target="#delete-position-{{ \Illuminate\Support\Str::slug($position) }}" iconOnly=true />
-                            {!! Form::open(['method' => 'DELETE',
-                                'route' => ['entities.inventory.delete.section', $campaign, $entity, $items['0']],
-                                'style'=>'display:inline',
-                                'id' => 'delete-position-' . \Illuminate\Support\Str::slug($position)])
-                            !!}
-                            {!! Form::close() !!}
+                            <a href="#" class="btn2 btn-default btn-sm text-error"
+                               role="button"
+                                data-toggle="dialog"
+                                data-target="primary-dialog"
+                                data-url="{{ route('confirm-delete', [$campaign, 'route' => route('entities.inventory.delete.section', [$campaign, $entity, $items['0']]), 'name' => $position, 'permanent' => true]) }}"
+                                title="{{ __('crud.remove') }}">
+                                    <x-icon class="trash"></x-icon>
+                                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                                </a>
                         </td>
                     @endcan
                 </div>
