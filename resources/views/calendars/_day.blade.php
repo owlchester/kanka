@@ -83,7 +83,7 @@
                     <div class="calendar-event-block rounded-sm text-left p-1 relative overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
                         @if ($canEdit)
 @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
-                            data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.entity_events.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->entity->id, $event->id]) + $routeOptions) }}"
+                            data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.entity_events.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->entity->id, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
                         @else
                             data-url="{{ $event->entity->url() }}"
                         @endif
