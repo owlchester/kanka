@@ -32,7 +32,7 @@ class Preset extends Model
     ];
 
     public $casts = [
-        'config' => 'array'
+        'config' => 'array',
         'visibility_id' => \App\Enums\Visibility::class,
     ];
 
