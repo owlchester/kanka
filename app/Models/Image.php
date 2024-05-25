@@ -71,16 +71,15 @@ class Image extends Model
         'visibility_id',
     ];
 
-    /**
-     * @return BelongsTo
-     */
-    public function user()
+    public $casts = [
+        'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    /**
-     */
     public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);
@@ -102,27 +101,27 @@ class Image extends Model
             ->where('is_folder', true);
     }
 
-    public function entities()
+    public function entities(): HasMany
     {
         return $this->hasMany(Entity::class, 'image_uuid', 'id');
     }
 
-    public function inventories()
+    public function inventories(): HasMany
     {
         return $this->hasMany(Inventory::class, 'image_uuid', 'id');
     }
 
-    public function headers()
+    public function headers(): HasMany
     {
         return $this->hasMany(Entity::class, 'header_uuid', 'id');
     }
 
-    public function visibility()
+    public function visibility(): BelongsTo
     {
         return $this->belongsTo(Visibility::class);
     }
 
-    public function mentions()
+    public function mentions(): HasMany
     {
         return $this->hasMany(ImageMention::class, 'image_id', 'id');
     }

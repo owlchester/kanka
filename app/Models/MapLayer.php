@@ -53,6 +53,10 @@ class MapLayer extends Model
         'position',
     ];
 
+    public $casts = [
+        'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
