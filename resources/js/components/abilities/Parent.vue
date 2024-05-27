@@ -28,8 +28,7 @@
                     :key="ability.id"
                     :ability="ability"
                      :permission="permission"
-                     :meta="meta"
-                     :trans="trans">
+                     :meta="meta">
             </ability>
         </div>
     </div>
@@ -43,12 +42,10 @@
             'group',
             'permission',
             'meta',
-            'trans'
         ],
 
         data() {
             return {
-                active: false,
                 collapsed: false
             };
         },
@@ -67,14 +64,7 @@
         methods: {
             click: function(group) {
                 this.collapsed = !this.collapsed;
-                this.emitter.emit('click_parent', this.active ? null : group);
             },
         },
-
-        mounted() {
-            this.emitter.on('click_parent', (ab) => {
-                this.active = ab && ab.id === this.group.id;
-            });
-        }
     }
 </script>

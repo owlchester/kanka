@@ -56,7 +56,6 @@ export default defineConfig({
 
             'resources/sass/vendor.scss',
             'resources/sass/app.scss',
-            'resources/sass/abilities.scss',
             'resources/sass/export.scss',
             'resources/sass/map-v3.scss',
             'resources/sass/subscription.scss',
