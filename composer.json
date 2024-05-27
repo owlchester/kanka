@@ -38,7 +38,7 @@
         "mcamara/laravel-localization": "^1.7",
         "meilisearch/meilisearch-php": "^1.4",
         "orhanerday/open-ai": "^4.7",
-        "owlchester/laravel-translation-manager": "^10.0",
+        "owlchester/laravel-translation-manager": "^11.0",
         "pragmarx/google2fa-laravel": "^2.0",
         "predis/predis": "^1.1",
         "sentry/sentry-laravel": "^4.0",
