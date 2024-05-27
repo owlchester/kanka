@@ -187,7 +187,7 @@ class CrudController extends Controller
                     );
                 }
             }
-        } elseif ($nested) {
+        } elseif ($nested && $this->filterService->activeFiltersCount() === 0) {
             // @phpstan-ignore-next-line
             $base->whereNull($model->getTable() . '.' . $model->getParentKeyName());
         }
