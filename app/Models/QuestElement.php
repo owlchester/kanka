@@ -29,9 +29,6 @@ class QuestElement extends Model
     use Blameable;
     use HasFactory;
     use Searchable;
-    /**
-     * Traits
-     */
     use SimpleSortableTrait;
     use VisibilityIDTrait;
 
@@ -43,6 +40,10 @@ class QuestElement extends Model
         'role',
         'colour',
         'visibility_id'
+    ];
+
+    public $casts = [
+        'visibility_id' => \App\Enums\Visibility::class,
     ];
 
     /**

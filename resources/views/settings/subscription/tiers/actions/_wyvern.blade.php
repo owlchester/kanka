@@ -7,7 +7,7 @@
 @if ($user->hasPayPal())
     @if (!$user->isWyvern() && !$user->isElemental())
         <a class="btn2 btn-block btn-sm btn-primary" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => $tier, 'period' => 'yearly']) }}">
-            {{ __('tiers.actions.subscribe.choose', ['tier' => 'Wyvern']) }}
+            {{ __('tiers.actions.subscribe.choose', ['tier' => $tier->name]) }}
         </a>
     @endif
 @else
@@ -21,7 +21,7 @@
         </a>
     @else
         <a class="btn2 btn-block btn-sm btn-primary price-monthly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => $tier, 'period' => 'monthly']) }}">
-            {{ __('tiers.actions.subscribe.choose', ['tier' => 'Wyvern']) }}
+            {{ __('tiers.actions.subscribe.choose', ['tier' => $tier->name]) }}
         </a>
     @endif
 
@@ -32,7 +32,7 @@
         </a>
     @else
         <a class="btn2 btn-block btn-sm btn-primary price-yearly" data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => $tier, 'period' => 'yearly']) }}">
-            {{ __('tiers.actions.subscribe.choose', ['tier' => 'Wyvern']) }}
+            {{ __('tiers.actions.subscribe.choose', ['tier' => $tier->name]) }}
         </a>
     @endif
 @endif

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52e56a7735475c2bc1be38d2781c75d7",
+    "content-hash": "82a8baca1021f008f079a1f81756fd5e",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -5719,23 +5719,22 @@
         },
         {
             "name": "owlchester/laravel-translation-manager",
-            "version": "10.0.1",
+            "version": "11.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/owlchester/laravel-translation-manager.git",
-                "reference": "9ef9cb7a7b3057ce42be6a4a6b8014716e75bc69"
+                "reference": "8006a532b6110643f359724960dfe7e6fdab1d1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/owlchester/laravel-translation-manager/zipball/9ef9cb7a7b3057ce42be6a4a6b8014716e75bc69",
-                "reference": "9ef9cb7a7b3057ce42be6a4a6b8014716e75bc69",
+                "url": "https://api.github.com/repos/owlchester/laravel-translation-manager/zipball/8006a532b6110643f359724960dfe7e6fdab1d1a",
+                "reference": "8006a532b6110643f359724960dfe7e6fdab1d1a",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^3.0",
-                "illuminate/support": "^9.0|^10.0",
-                "illuminate/translation": "^9.0|^10.0",
-                "laravelcollective/html": "^6.3",
+                "illuminate/support": "^9.0|^10.0|^11.0",
+                "illuminate/translation": "^9.0|^10.0|^11.0",
                 "php": ">=8.0.2",
                 "symfony/finder": "^6.0"
             },
@@ -5766,19 +5765,24 @@
                     "name": "Vladimir Schneider",
                     "email": "vladimir.schneider@gmail.com",
                     "role": "Developer"
+                },
+                {
+                    "name": "Jay Payne",
+                    "email": "hello@kanka.io",
+                    "role": "Developer"
                 }
             ],
             "description": "Enhanced Laravel Translation Manager",
-            "homepage": "https://github.com/vsch/laravel-translation-manager",
+            "homepage": "https://github.com/owlchester/laravel-translation-manager",
             "keywords": [
                 "laravel",
                 "translations",
                 "translator"
             ],
             "support": {
-                "source": "https://github.com/owlchester/laravel-translation-manager/tree/10.0.1"
+                "source": "https://github.com/owlchester/laravel-translation-manager/tree/11.0.0"
             },
-            "time": "2023-04-21T14:12:36+00:00"
+            "time": "2024-05-27T17:16:38+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",

@@ -48,6 +48,10 @@ class EntityAbility extends Model
         'note',
     ];
 
+    public $casts = [
+        'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity');

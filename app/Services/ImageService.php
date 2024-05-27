@@ -52,12 +52,14 @@ class ImageService
 
                 $file = $tempImage;
                 // Clean up the file name because weird letters can confuse thumbor
+                //$cleanImageName = Str::replace('&', '', $externalFile);
                 $cleanImageName = Str::slug(
                     Str::before(
                         Str::before($externalFile, '%3F'),
                         '?'
                     )
                 );
+                dd($cleanImageName);
                 $cleanImageName = str_replace(['.', '/'], ['', ''], $cleanImageName);
                 $path = "{$folder}/" . uniqid() . "_" . Str::limit($cleanImageName, 20, '');
 
@@ -139,7 +141,10 @@ class ImageService
                     copy($externalUrl, $tempImage);
 
                     $file = $tempImage;
-                    $path = rtrim($folder, '/') . '/' . uniqid() . '_' . $externalFile;
+                    // Discord and other services add lots of params to the url after the file ext,
+                    // so we need strip it all down.
+                    $imageExt = Str::before(pathinfo($tempImage, PATHINFO_EXTENSION), '?');
+                    $path = rtrim($folder, '/') . '/' . uniqid('url_') . '.' . $imageExt;
 
                     // Check if file is too big
                     $copiedFileSize = ceil(filesize($tempImage) / 1000);
