@@ -59,7 +59,6 @@ class ImageService
                         '?'
                     )
                 );
-                dd($cleanImageName);
                 $cleanImageName = str_replace(['.', '/'], ['', ''], $cleanImageName);
                 $path = "{$folder}/" . uniqid() . "_" . Str::limit($cleanImageName, 20, '');
 

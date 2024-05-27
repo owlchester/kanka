@@ -12,6 +12,7 @@ use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +24,7 @@ use Illuminate\Support\Str;
 class DatagridRenderer
 {
     use CampaignAware;
+    use UserAware;
 
     protected string $hidden = ' hidden lg:table-cell';
     protected array $columns = [];
@@ -32,7 +34,6 @@ class DatagridRenderer
 
     protected array $options = [];
     protected Collection|LengthAwarePaginator|array $models;
-    protected User|null $user;
 
     protected FilterService|null $filterService = null;
 
@@ -45,7 +46,6 @@ class DatagridRenderer
      */
     public function __construct()
     {
-        $this->user = auth()->user();
     }
 
 
@@ -193,7 +193,7 @@ class DatagridRenderer
                 );
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
-                if (!$this->user || !UserCache::user($this->user)->admin()) {
+                if (!isset($this->user) || !UserCache::user($this->user)->admin()) {
                     return null;
                 }
                 $html = $this->route(
@@ -430,7 +430,7 @@ class DatagridRenderer
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private
-                if (!$this->user || !UserCache::user($this->user)->admin()) {
+                if (!isset($this->user) || !UserCache::user($this->user)->admin()) {
                     return null;
                 }
                 $content = $model->is_private ?
@@ -523,7 +523,7 @@ class DatagridRenderer
     private function renderActionRow($model): string
     {
         $actions = '';
-        if ($this->user && $this->user->can('update', $model)) {
+        if (isset($this->user) && $this->user->can('update', $model)) {
             $actions .= ' <a href="'
                 . route($this->getOption('baseRoute') . '.edit', [$this->campaign, $model])
                 . '" title="' . __('crud.edit') . '">
