@@ -64,6 +64,10 @@ class Handler extends ExceptionHandler
                     'message' => __('errors.503.json'),
                 ], 503);
             }
+            // For stripe, we want them to try again later
+            if (request()->is('stripe/*')) {
+                return response()->json(['maintenance'], 503);
+            }
             return response()->view('errors.maintenance', [
                 'message' => $exception->getMessage(),
                 //'retry' => $exception->retryAfter
