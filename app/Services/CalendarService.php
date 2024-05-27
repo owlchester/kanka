@@ -9,11 +9,14 @@ use App\Models\CalendarWeather;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Models\Event;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Stevebauman\Purify\Facades\Purify;
 
 class CalendarService
 {
+    use CampaignAware;
+
     protected Calendar $calendar;
 
     public function calendar(Calendar $calendar): self
@@ -106,6 +109,7 @@ class CalendarService
             $event = new Event();
             $event->name = $data['name'];
             $event->date = $data['year'] . '-' . $data['month'] . '-' . $data['day'];
+            $event->campaign_id = $this->campaign->id;
             if ($event->save()) {
                 return $event->entity;
             }
