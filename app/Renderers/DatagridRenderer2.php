@@ -275,6 +275,7 @@ class DatagridRenderer2
         $attributes = [];
         foreach($row->rowAttributes() as $attr => $val) {
             if ($val instanceof UnitEnum) {
+                // @phpstan-ignore-next-line
                 $val = $val->value;
             }
             $attributes[] = 'data-' . $attr . '="' . $val . '"';
