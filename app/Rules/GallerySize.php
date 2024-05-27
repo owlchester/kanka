@@ -28,6 +28,7 @@ class GallerySize implements ValidationRule
                 $fail(__('campaigns/gallery.errors.storage', ['available' => $available]));
             }
         } catch (Exception $e) {
+            $available = $service->human($available);
             $fail(__('campaigns/gallery.errors.storage', ['available' => $available]));
         }
     }
