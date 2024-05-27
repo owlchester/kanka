@@ -274,6 +274,9 @@ class CrudController extends Controller
             ->models($models)
             ->campaign($campaign)
             ->service($this->filterService);
+        if (auth()->check()) {
+            $this->datagrid->user(auth()->user());
+        }
         $data['datagrid'] = $this->datagrid;
         $data['filterService'] = $this->filterService;
         return view('cruds.index', $data);
