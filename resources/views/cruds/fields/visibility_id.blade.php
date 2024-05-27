@@ -22,7 +22,7 @@ if (!isset($model) || ($model->created_by == auth()->user()->id)) {
 }
 
 // If it's a visibility self & admin, and we're not the creator, we can't change this
-if (isset($model) && $model->visibility_id === Visibility::AdminSelf->value && $model->created_by !== auth()->user()->id) {
+if (isset($model) && $model->visibility_id === Visibility::AdminSelf && $model->created_by !== auth()->user()->id) {
     $options = [Visibility::AdminSelf->value => __('crud.visibilities.admin-self')];
 }
 
@@ -30,9 +30,9 @@ if (isset($model) && $model->visibility_id === Visibility::AdminSelf->value && $
 // as it's a custom permission for the user to be able to edit this model.
 if (isset($model) && (
     (
-        (in_array($model->visibility_id, [Visibility::Admin->value, Visibility::AdminSelf->value]) && !auth()->user()->isAdmin())
+        (in_array($model->visibility_id, [Visibility::Admin, Visibility::AdminSelf]) && !auth()->user()->isAdmin())
         &&
-        (in_array($model->visibility_id, [Visibility::Self->value, Visibility::AdminSelf->value]) && !($model->created_by == auth()->user()->id))
+        (in_array($model->visibility_id, [Visibility::Self, Visibility::AdminSelf]) && !($model->created_by == auth()->user()->id))
     )
     ||
     // Or if it's admin-self, we're an admin, but we didn't create it

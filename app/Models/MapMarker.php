@@ -93,6 +93,7 @@ class MapMarker extends Model
 
     public $casts = [
         'polygon_style' => 'array',
+        'visibility_id' => \App\Enums\Visibility::class,
     ];
 
     /** @var bool Editing the map */

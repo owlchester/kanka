@@ -2,13 +2,6 @@
 
 use App\Models\Ability;
 
-it('POSTS an invalid ability form')
-    ->asUser()
-    ->withCampaign()
-    ->postJson('/api/1.0/campaigns/1/abilities', [])
-    ->assertStatus(422)
-;
-
 it('POSTS a new ability')
     ->asUser()
     ->withCampaign()

@@ -46,6 +46,10 @@ class MapGroup extends Model
         'is_shown',
     ];
 
+    public $casts = [
+        'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

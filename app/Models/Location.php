@@ -163,6 +163,7 @@ class Location extends MiscModel
         return $this->hasMany('App\Models\Map', 'location_id', 'id')
             ->with('entity')
             ->with('entity.image')
+            ->has('entity')
             ->select(['id', 'name', 'is_real']);
     }
 

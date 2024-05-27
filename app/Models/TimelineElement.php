@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 
@@ -59,26 +60,21 @@ class TimelineElement extends Model
         'use_event_date',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function timeline()
+    public $casts = [
+        'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    public function timeline(): BelongsTo
     {
         return $this->belongsTo(Timeline::class, 'timeline_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function era()
+    public function era(): BelongsTo
     {
         return $this->belongsTo(TimelineEra::class, 'era_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class, 'entity_id');
     }

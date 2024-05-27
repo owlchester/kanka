@@ -17,10 +17,10 @@
                 @endif
             </h3>
         </div>
-        <div class="flex-none flex gap-2 items-center">
+        <div class="flex-none flex gap-1 items-center">
             @if (auth()->check())
-            <span id="visibility-icon-{{ $post->id }}" class="cursor-pointer" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
-                {!! $post->visibilityIcon('') !!}
+            <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
+                {!! $post->visibilityIcon() !!}
             </span>
                 <div class="dropdown">
                     <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">

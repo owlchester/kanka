@@ -2,6 +2,7 @@
 
 namespace App\Renderers;
 
+use UnitEnum;
 use App\Renderers\Layouts\Columns\Action;
 use App\Renderers\Layouts\Columns\Column;
 use App\Renderers\Layouts\Columns\Checkbox;
@@ -273,6 +274,9 @@ class DatagridRenderer2
     {
         $attributes = [];
         foreach($row->rowAttributes() as $attr => $val) {
+            if ($val instanceof UnitEnum) {
+                $val = $val->value;
+            }
             $attributes[] = 'data-' . $attr . '="' . $val . '"';
         }
         return implode(' ', $attributes);

@@ -90,7 +90,7 @@ class PayPalService
             $sub = new Subscription();
             $sub->user_id = $this->user->id;
             $sub->type = 'kanka';
-            $sub->stripe_id = 'manual_sub_' . uniqid();
+            $sub->stripe_id = 'paypal_' . uniqid();
             $sub->stripe_status = 'canceled';
             $sub->stripe_price = 'paypal_' . $this->user->pledge;
             $sub->quantity = 1;

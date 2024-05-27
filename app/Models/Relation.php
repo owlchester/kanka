@@ -83,6 +83,10 @@ class Relation extends Model
 
     public string $defaultOrderField = 'relation';
 
+    public $casts = [
+        'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
     /**
      *
      */

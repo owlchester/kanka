@@ -1,3 +1,4 @@
+<?php /** @var \App\User $user */ ?>
 <x-dialog.header>
     {{ __('settings.subscription.change.title') }}
 </x-dialog.header>

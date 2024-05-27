@@ -50,7 +50,8 @@ class EntityAsset extends Model
     ];
 
     public $casts = [
-        'metadata' => 'array'
+        'metadata' => 'array',
+        'visibility_id' => \App\Enums\Visibility::class,
     ];
 
     public function entity(): BelongsTo
