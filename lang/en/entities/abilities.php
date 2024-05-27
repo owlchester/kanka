@@ -15,6 +15,12 @@ return [
         'note'      => 'Note',
         'position'  => 'Position',
     ],
+    'charges' => [
+        'left' => ':amount left',
+    ],
+    'groups' => [
+        'unorganised' => 'Unorganised',
+    ],
     'helpers'   => [
         'note'      => 'You can reference entities using advanced mentions (ex :code) and attributes of the entity (ex :attr) in this field.',
         'recharge'  => 'Reset all charges for abilities that have been used.',
@@ -38,6 +44,9 @@ return [
         'helper'    => 'Attach abilities to this entity. You can always edit the visibility or remove an ability. Abilities belonging to the same parent ability will display as filter boxes.',
         'reorder'   => 'Reorder',
         'title'     => ':name Abilities',
+    ],
+    'types' => [
+        'unorganised' => 'Abilities are grouped by their parent field, and fallback to being here.',
     ],
     'update'    => [
         'success'   => 'Entity ability :ability updated.',

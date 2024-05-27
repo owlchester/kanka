@@ -133,9 +133,9 @@ class EntityWebhookJob implements ShouldQueue
             return false;
         }
         $tags = $webhook->tags()->pluck('tags.id')->all();
-        if (empty(array_intersect($entityTags, $tags))) {
-            return true;
-        }
-        return false;
+        return (bool) (empty(array_intersect($entityTags, $tags)))
+
+
+        ;
     }
 }

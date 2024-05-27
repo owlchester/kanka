@@ -270,6 +270,10 @@ blockquote {
     --tw-bg-opacity: 1;
     background-color:hsl(var(--b3)/var(--tw-bg-opacity))
 }
+.hover\:bg-accent:hover {
+    --tw-bg-opacity: 1;
+    background-color:hsl(var(--a)/var(--tw-bg-opacity))
+}
 
 .hover\:shadow-md:hover {
     --tw-shadow-color: hsl(var(--n)/1);
