@@ -36,16 +36,16 @@ class ImporterService
     /**  */
     protected array $loadedPosts = [];
 
-    /** @var null|Collection */
-    protected $importedEntities = null;
+    /** */
+    protected Collection $importedEntities;
 
-    /** @var array updated entities */
+    /** updated entities */
     protected array $updated = [];
 
-    /** @var array created entities */
+    /** created entities */
     protected array $created = [];
 
-    /** @var array entities that are to be skipped */
+    /** entities that are to be skipped */
     protected array $skippedEntities = [];
 
     protected bool $forcePrivate = false;
@@ -130,8 +130,12 @@ class ImporterService
         // Updating?
         /** @var Entity $model */
         $model = null;
-        $entity = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->where('type_id', $pluginEntity->type_id)->first();
-        $modifiedEntity = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->first();
+        $entity = $this->importedEntities
+            ->where('marketplace_uuid', $pluginEntity->uuid)
+            ->where('type_id', $pluginEntity->type_id)->first();
+        $modifiedEntity = $this->importedEntities
+            ->where('marketplace_uuid', $pluginEntity->uuid)
+            ->first();
 
         if ($entity) {
             $this->entityIds[$pluginEntity->id] = $entity->id;
@@ -157,6 +161,7 @@ class ImporterService
             $model = new $className();
             $model->name = $pluginEntity->name;
             //$model->entry = $this->$pluginEntity->entry;
+            $model->campaign_id = $this->campaign->id;
             $model->save();
 
             $entity = $model->entity;
