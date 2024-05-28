@@ -36,16 +36,16 @@ class ImporterService
     /**  */
     protected array $loadedPosts = [];
 
-    /** @var null|Collection */
-    protected $importedEntities = null;
+    /** */
+    protected Collection $importedEntities;
 
-    /** @var array updated entities */
+    /** updated entities */
     protected array $updated = [];
 
-    /** @var array created entities */
+    /** created entities */
     protected array $created = [];
 
-    /** @var array entities that are to be skipped */
+    /** entities that are to be skipped */
     protected array $skippedEntities = [];
 
     protected bool $forcePrivate = false;
@@ -130,8 +130,12 @@ class ImporterService
         // Updating?
         /** @var Entity $model */
         $model = null;
-        $entity = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->where('type_id', $pluginEntity->type_id)->first();
-        $modifiedEntity = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->first();
+        $entity = $this->importedEntities
+            ->where('marketplace_uuid', $pluginEntity->uuid)
+            ->where('type_id', $pluginEntity->type_id)->first();
+        $modifiedEntity = $this->importedEntities
+            ->where('marketplace_uuid', $pluginEntity->uuid)
+            ->first();
 
         if ($entity) {
             $this->entityIds[$pluginEntity->id] = $entity->id;
@@ -157,6 +161,7 @@ class ImporterService
             $model = new $className();
             $model->name = $pluginEntity->name;
             //$model->entry = $this->$pluginEntity->entry;
+            $model->campaign_id = $this->campaign->id;
             $model->save();
 
             $entity = $model->entity;
@@ -174,7 +179,7 @@ class ImporterService
 
     /**
      */
-    protected function importFields(PluginVersionEntity $pluginEntity)
+    protected function importFields(PluginVersionEntity $pluginEntity): void
     {
         if (in_array($pluginEntity->id, $this->skippedEntities)) {
             return;
@@ -217,9 +222,7 @@ class ImporterService
     {
         //dump("field $field => $value");
         // parent mapping
-        if ($field == 'location_id' && $pluginEntity->type_id == config('entities.ids.location')) {
-            $field = 'location_id';
-        } elseif ($field == 'gender') {
+        if ($field == 'gender') {
             $field = 'sex';
         }
         // Foreign key
@@ -290,7 +293,7 @@ class ImporterService
     /**
      * Create or update a relation
      */
-    protected function saveRelation(array $data, string $uuid, int $ownerId)
+    protected function saveRelation(array $data, string $uuid, int $ownerId): void
     {
         //dump("New relation for $ownerId");
         //dump($data);
@@ -320,7 +323,7 @@ class ImporterService
 
     /**
      */
-    protected function saveOrganisationMember(array $data, string $uuid, int $characterId, PluginVersionEntity $pluginEntity)
+    protected function saveOrganisationMember(array $data, string $uuid, int $characterId, PluginVersionEntity $pluginEntity): void
     {
         // Check the target org
         //dump('adding org member for ' . $characterId);
@@ -350,7 +353,7 @@ class ImporterService
 
     /**
      */
-    protected function saveQuestElement(array $data, string $uuid, int $questId, PluginVersionEntity $pluginEntity)
+    protected function saveQuestElement(array $data, string $uuid, int $questId, PluginVersionEntity $pluginEntity): void
     {
         //dump('importing a quest element.');
 
@@ -401,7 +404,7 @@ class ImporterService
 
     /**
      */
-    protected function importBlock(string $block, array $values = null)
+    protected function importBlock(string $block, array $values = null): void
     {
         if (empty($values)) {
             return;
@@ -429,7 +432,7 @@ class ImporterService
     }
 
 
-    protected function importTags(array $values = null)
+    protected function importTags(array $values = null): void
     {
         if (empty($values)) {
             return;
@@ -475,7 +478,7 @@ class ImporterService
     /**
      * Load
      */
-    protected function loadRelations(MiscModel $misc)
+    protected function loadRelations(MiscModel $misc): void
     {
         $this->loadedRelations = [];
         /** @var Relation $relation */
@@ -489,7 +492,7 @@ class ImporterService
 
     /**
      */
-    protected function loadPosts(int $entityId)
+    protected function loadPosts(int $entityId): void
     {
         $this->loadedPosts = [];
         $posts = Post::where('entity_id', $entityId)
@@ -535,7 +538,7 @@ class ImporterService
 
     /**
      */
-    protected function importPosts(PluginVersionEntity $entity, int $entityId)
+    protected function importPosts(PluginVersionEntity $entity, int $entityId): void
     {
         if (empty($entity->posts)) {
             return;
@@ -571,9 +574,8 @@ class ImporterService
     }
 
     /**
-     * @return CampaignPlugin|null
      */
-    protected function campaignPlugin()
+    protected function campaignPlugin(): CampaignPlugin|null
     {
         return CampaignPlugin::where('campaign_id', $this->campaign->id)
             ->where('plugin_id', $this->plugin->id)
