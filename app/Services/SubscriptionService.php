@@ -2,31 +2,24 @@
 
 namespace App\Services;
 
-use App\Http\Requests\SubscriptionCancel;
+use App\Enums\PricingPeriod;
+use App\Exceptions\TranslatableException;
 use App\Jobs\DiscordRoleJob;
-use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
-use App\Jobs\Emails\SubscriptionFailedEmailJob;
 use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
-use App\Jobs\SubscriptionEndJob;
 use App\Models\Pledge;
 use App\Models\Role;
-use App\Models\SubscriptionCancellation;
-use App\Models\SubscriptionSource;
 use App\Models\Tier;
+use App\Models\TierPrice;
 use App\Models\UserLog;
-use App\Notifications\Header;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\PaymentMethod;
 use Stripe\Card;
-use Stripe\Charge;
-use Stripe\Customer as StripeCustomer;
 use Stripe\Source;
 use Stripe\Stripe;
 
@@ -41,23 +34,21 @@ class SubscriptionService
 
     protected Tier $tier;
 
+    protected TierPrice $tierPrice;
+
     /** @var string|null */
     protected $plan = null;
 
-    /** @var string monthly/yearly */
-    protected $period;
-
-    /** @var string giropay,sofort,ideal */
-    protected $method;
+    protected PricingPeriod $period;
 
     /** @var bool set to true if the request comes from a webhook */
     protected bool $webhook = false;
 
     /** @var bool if the user has cancelled */
-    protected $cancelled = false;
+    protected bool $cancelled = false;
 
-    /** @var null|string applied coupon */
-    protected $coupon = null;
+    /** @var string applied coupon */
+    protected string $coupon;
 
     /** Value of the subscription */
     protected float $subscriptionValue = 0;
@@ -77,35 +68,23 @@ class SubscriptionService
 
     /**
      * @return $this
-     */
-    public function method(string $method): self
-    {
-        $this->method = $method;
-        return $this;
-    }
-
-    /**
-     * @return $this
      * @throws Exception
      */
-    public function period(string $period): self
+    public function period(PricingPeriod $period): self
     {
         $this->period = $period;
-        if (!in_array($period, ['monthly', 'yearly'])) {
-            throw new Exception("Unknown period '{$period}'.");
-        }
         return $this;
     }
 
     public function yearly(): self
     {
-        $this->period = 'yearly';
+        $this->period = PricingPeriod::Yearly;
         return $this;
     }
 
     public function monthly(): self
     {
-        $this->period = 'monthly';
+        $this->period = PricingPeriod::Monthly;
         return $this;
     }
 
@@ -132,7 +111,7 @@ class SubscriptionService
      */
     public function coupon(string $coupon = null): self
     {
-        if ($this->period === 'yearly' && !empty($coupon)) {
+        if ($this->period === PricingPeriod::Yearly && !empty($coupon)) {
             $this->coupon = $coupon;
         }
         return $this;
@@ -142,22 +121,10 @@ class SubscriptionService
      * Change plans
      *
      */
-    public function change(array $request): self
+    public function change(): self
     {
-        // Get the correct plan
-        $this->plan = null;
-        if ($this->toOwlbear()) {
-            $this->plan = $this->owlbearPlanID();
-        } elseif ($this->toWyvern()) {
-            $this->plan = $this->wyvernPlanID();
-        } elseif ($this->toElemental()) {
-            $this->plan = $this->elementalPlanID();
-        }
-
-        $this->request($request);
-
         // Update the user's payment plan
-        $paymentMethodID = Arr::get($request, 'payment_id');
+        $paymentMethodID = Arr::get($this->request, 'payment_id');
         $this->user->addPaymentMethod($paymentMethodID);
         $this->user->updateDefaultPaymentMethod($paymentMethodID);
 
@@ -169,10 +136,16 @@ class SubscriptionService
             $expiresAt = Carbon::createFromDate($card->exp_year, $card->exp_month)->endOfMonth();
             $this->user->card_expires_at = $expiresAt;
             $this->user->save();
+
+            // Check that someone isn't using a VPN
+            if ($this->user->currency() === 'brl' && $card->country !== 'BR') {
+                throw (new TranslatableException('subscription.errors.invalid_card_country.brl'))->setOptions(['email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>']);
+            }
         }
 
+
         // Subscribe
-        $this->subscribe($this->plan, $paymentMethodID);
+        $this->subscribe($paymentMethodID);
         return $this;
     }
 
@@ -182,12 +155,12 @@ class SubscriptionService
      * @return $this
      * @throws \Laravel\Cashier\Exceptions\IncompletePayment
      */
-    public function subscribe($planID, $paymentID): self
+    public function subscribe(string $paymentID): self
     {
         // New subscriber
         if (!$this->user->subscribed('kanka')) {
-            $this->user->newSubscription('kanka', $planID)
-                ->withCoupon($this->coupon)
+            $this->user->newSubscription('kanka', $this->tierPrice()->stripe_id)
+                ->withCoupon($this->coupon ?? null)
                 ->create($paymentID);
 
             $this->user->log(UserLog::TYPE_SUB_NEW);
@@ -197,10 +170,10 @@ class SubscriptionService
 
         // If going down from elemental to owlbear, keep it as is until the current billing period
         if ($this->downgrading()) {
-            $this->user->subscription('kanka')->swap($planID);
+            $this->user->subscription('kanka')->swap($this->tierPrice()->stripe_id);
             $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
         } else {
-            $this->user->subscription('kanka')->swapAndInvoice($planID);
+            $this->user->subscription('kanka')->swapAndInvoice($this->tierPrice()->stripe_id);
             $this->user->log(UserLog::TYPE_SUB_UPGRADE);
         }
 
@@ -235,15 +208,13 @@ class SubscriptionService
             return $this;
         }
 
-        $plan = in_array($planID, $this->elementalPlans()) ? Pledge::ELEMENTAL :
-            (in_array($planID, $this->wyvernPlans()) ? Pledge::WYVERN : Pledge::OWLBEAR);
 
         // Determine if the pledge was changed or not
-        $new = !$this->upgrading($plan);
+        $new = !$this->upgrading();
 
         // Add the necessary roles and pledge data
-        $this->user->pledge = $plan;
-        $this->user->update(['pledge' => $plan]);
+        $this->user->pledge = $this->tier->name;
+        $this->user->update(['pledge' => $this->tier->name]);
 
         // We're so far, good. Let's add the user to the subscriber group
         $role = Role::where('name', '=', Pledge::ROLE)->first();
@@ -252,7 +223,6 @@ class SubscriptionService
         }
 
         // Anything that can fail, send to the queue
-        $period = !empty($this->period) ? $this->period : (in_array($planID, $this->yearlyPlans()) ? 'yearly' : 'monthly');
         DiscordRoleJob::dispatch($this->user)->delay(now()->addSeconds($new ? 0 : 30));
 
         // If Stripe is confirming that a sub is renewed, we don't want to do anything more
@@ -262,82 +232,17 @@ class SubscriptionService
 
         // Don't send emails when called from the webhook
         if (!$this->webhook) {
-            SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
-            if ($plan == Pledge::ELEMENTAL) {
-                WelcomeSubscriptionEmailJob::dispatch($this->user, 'elemental');
-            } elseif ($plan == Pledge::WYVERN) {
-                WelcomeSubscriptionEmailJob::dispatch($this->user, 'wyvern');
-            } elseif ($plan == Pledge::OWLBEAR) {
-                WelcomeSubscriptionEmailJob::dispatch($this->user, 'owlbear');
-            }
+            SubscriptionCreatedEmailJob::dispatch($this->user, ($this->period->isYearly() ? 'yearly' : 'monthly'), $new);
+            WelcomeSubscriptionEmailJob::dispatch($this->user, $this->tier);
 
             // Save the new sub value
             if (isset($this->tier)) {
-                $this->subscriptionValue = $period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
+                $this->subscriptionValue = $this->tierPrice()->cost;
             }
         }
 
 
         return $this;
-    }
-
-    /**
-     * A payment from a credit card failed so we need to warn the user and us
-     */
-    public function failed()
-    {
-        // Notify admin
-        SubscriptionFailedEmailJob::dispatch($this->user);
-    }
-
-    /**
-     * @throws \Stripe\Exception\ApiErrorException
-     */
-    public function prepare(Request $request): Source
-    {
-        $amount = $this->period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
-        $amount *= 100;
-
-        Stripe::setApiKey(config('cashier.secret'));
-        $data = [
-            'type' => $this->method,
-            'amount' => $amount,
-            'currency' => 'eur',
-            'owner' => ['email' => $this->user->email],
-            'redirect' => ['return_url' => route('settings.subscription.alt-callback')],
-            'statement_descriptor' => 'Kanka ' . $this->tier->name,
-        ];
-
-        if ($this->method === 'sofort') {
-            $languages = ['en', 'de', 'es', 'it', 'fr', 'nl', 'pl'];
-            $data['sofort'] = [
-                'country' => $request->get('sofort-country'),
-                'preferred_language' => in_array($this->user->locale, $languages) ? $this->user->locale : 'en',
-            ];
-        } elseif ($this->method === 'giropay') {
-            $data['owner'] = [
-                'name' => $request->get('accountholder-name')
-            ];
-        }
-
-        // Create the source object
-        $source = Source::create($data);
-
-        // Tell stripe to attach this source to the user
-        $clientSource = StripeCustomer::createSource($this->user->stripe_id, ['source' => $source->id]);
-
-        $subSource = SubscriptionSource::create([
-            'user_id' => $this->user->id,
-            'source_id' => $source->id,
-            'tier' => $this->tier->code,
-            'period' => $this->period,
-            'status' => 'prepare',
-            'method' => $this->method,
-        ]);
-
-        //Log::info('New sub_source id: ' . $subSource->id);
-
-        return $source;
     }
 
     /**
@@ -361,7 +266,7 @@ class SubscriptionService
      */
     public function amount(): string
     {
-        $amount = $this->period === 'yearly' ? $this->tier->yearly : $this->tier->monthly;
+        $amount = $this->tierPrice()->cost;
         return number_format($amount, 2);
     }
 
@@ -370,274 +275,24 @@ class SubscriptionService
      */
     public function currentPlan(): string
     {
-        if ($this->user->subscribedToPrice($this->owlbearPlans(), 'kanka')) {
-            return Pledge::OWLBEAR;
-        } elseif ($this->user->subscribedToPrice($this->wyvernPlans(), 'kanka')) {
-            return Pledge::WYVERN;
-        } elseif ($this->user->subscribedToPrice($this->elementalPlans(), 'kanka')) {
-            return Pledge::ELEMENTAL;
-        } elseif ($this->user->pledge) {
-            return $this->user->pledge;
+        $price = $this->user->subscription('kanka')->stripe_price;
+        /** @var TierPrice $tier */
+        $tier = TierPrice::where('stripe_id', $price)->first();
+        if (empty($tier)) {
+            return $this->user->pledge ?? Pledge::KOBOLD;
         }
-        // Free user?
-        return Pledge::KOBOLD;
+        return $tier->tier->name;
     }
 
     /**
      * Cancel the user's subscription to Kanka
      */
-    public function cancel(SubscriptionCancel $request): bool
-    {
-        $this->user->subscription('kanka')->cancel();
-
-        if (!$this->webhook) {
-            SubscriptionCancellation::create([
-                'user_id' => $this->user->id,
-                'reason' => $request->reason,
-                'custom' => $request->reason_custom,
-                'tier'  => $this->user->pledge,
-                'duration' => $this->user->subscription('kanka')->created_at->diffInDays(Carbon::now()),
-            ]);
-
-            // Anything that can fail, send to a queue
-            SubscriptionCancelEmailJob::dispatch($this->user, $request->reason, $request->reason_custom);
-
-            // Dispatch the job when the subscription actually ends
-            SubscriptionEndJob::dispatch($this->user)
-                ->delay(
-                    $this->user->subscription('kanka')->ends_at
-                );
-        }
-
-        // Log on the user that they cancelled
-        $this->user->log(UserLog::TYPE_SUB_CANCEL);
-
-        $this->cancelled = true;
-
-        return true;
-    }
 
     /**
      */
     public function canceled(): bool
     {
         return $this->cancelled;
-    }
-
-    /**
-     * @return bool
-     * @throws \Stripe\Exception\ApiErrorException
-     */
-    public function sourceCharge(array $payload)
-    {
-        /** @var SubscriptionSource $source */
-        $source = SubscriptionSource::where('source_id', Arr::get($payload, 'data.object.id'))
-            ->firstOrFail();
-        $this->user($source->user);
-
-        $this->tier(Tier::where('name', $source->tier)->first());
-        $amount = ($source->period === 'yearly' ? $this->tier->yearly : $this->tier->monthly) * 100;
-
-        try {
-            // Charge the user
-            Stripe::setApiKey(config('cashier.secret'));
-
-            $charge = Charge::create([
-                'amount' => $amount,
-                'currency' => $source->currency(),
-                'source' => $source->source_id,
-                'description' => 'Kanka ' . ucfirst($source->tier) . ' ' . $source->period,
-                'customer' => $source->user->stripe_id,
-            ]);
-
-            $source->charge_id = $charge->id;
-            $source->status = $charge->status;
-            $source->save();
-
-            // While the payment is pending, it can take up to two days for it to complete. So we'll assume
-            // that the user is properly subscribed.
-            $this->user->pledge = $source->tier;
-            $this->user->update(['pledge' => $source->tier]);
-
-            // We're so far, good. Let's add the user to the subscriber group
-            $role = Role::where('name', '=', Pledge::ROLE)->first();
-            if ($role && !$this->user->hasRole(Pledge::ROLE)) {
-                $this->user->roles()->attach($role->id);
-            }
-
-            // Anything that can fail, send to the queue
-            DiscordRoleJob::dispatch($this->user);
-            SubscriptionCreatedEmailJob::dispatch($this->user, $source->period, true);
-
-            // Create the fake cashier subscription
-            $end = Carbon::now()->addMonth();
-            if ($source->period === 'yearly') {
-                $end = Carbon::now()->addYear();
-            }
-
-            \Laravel\Cashier\Subscription::create([
-                'user_id' => $this->user->id,
-                'type' => 'kanka',
-                'stripe_id' => $source->method . '_' . $source->id,
-                'stripe_status' => 'active',
-                'stripe_price' => $source->plan(),
-                'quantity' => 1,
-                'ends_at' => $end
-            ]);
-
-
-            // Notify the user in app about the change
-            $this->user->notify(
-                new Header(
-                    'subscriptions.started',
-                    'fa-solid fa-credit-card',
-                    'green'
-                )
-            );
-        } catch (Exception $e) {
-            $this->user->notify(
-                new Header(
-                    'subscriptions.charge_fail',
-                    'fa-solid fa-credit-card',
-                    'red'
-                )
-            );
-
-            throw $e;
-        }
-
-        return true;
-    }
-
-    /**
-     * About 0.2% of sofort payments fail, so we need to handle them.
-     * @return bool
-     * @throws Exception
-     */
-    public function chargeFailed(array $payload)
-    {
-        $chargeID = Arr::get($payload, 'data.object.charge');
-        if (empty($chargeID)) {
-            // If the source is empty, means this is a failed charge for a credit card, not a sofort payment.
-            $this->failed();
-            return false;
-        }
-
-        /** @var SubscriptionSource|null $source */
-        $source = SubscriptionSource::where('charge_id', $chargeID)->first();
-        if (empty($source)) {
-            throw new Exception('Unhandled charge fail? ChargeID: ' . $chargeID);
-        }
-        $this->user = $source->user;
-
-        // user was deleted. The welterbrand check can probably be removed, it's because the old code looked for a
-        // source with the charge ID, and welterbrand was our first subscriber without a charge ID, so it would
-        // always trigger his subscription and cancel it incorrectly.
-        if (empty($this->user) || $this->user->id == 27078) {
-            Log::info('Subscription charge failed for welterbrand');
-            return true;
-        }
-        Log::info('Subscription charge failed (giropay/sofort)', ['user_id' => $this->user->id]);
-        $source->update(['status' => 'failed']);
-
-
-        // Remove all the user's stuff directly
-        if ($this->user->subscribed('kanka')) {
-            $this->user->subscription('kanka')->delete();
-        }
-
-        // Anything that can fail, send to a queue
-        SubscriptionCancelEmailJob::dispatch($this->user, $source->method . ' charge failed');
-
-        // Dispatch the job when the subscription actually ends
-        SubscriptionEndJob::dispatch($this->user);
-
-        // Log info on the user
-        $this->user->log(UserLog::TYPE_SUB_FAIL);
-
-        return true;
-    }
-
-    /**
-     * Validate the stripe source
-     * @throws \Stripe\Exception\ApiErrorException
-     */
-    public function validSource(string $secret): bool
-    {
-        Stripe::setApiKey(config('cashier.secret'));
-
-        $source = Source::retrieve($secret);
-
-        return $source->status != 'failed';
-    }
-
-    /**
-     */
-    public function owlbearPlanID(): string
-    {
-        return $this->user->billedInEur() ?
-            config('subscription.owlbear.eur.' . $this->period) :
-            config('subscription.owlbear.usd.' . $this->period);
-    }
-
-    /**
-     */
-    public function wyvernPlanID(): string
-    {
-        return $this->user->billedInEur() ?
-            config('subscription.wyvern.eur.' . $this->period) :
-            config('subscription.wyvern.usd.' . $this->period);
-    }
-
-    /**
-     */
-    public function elementalPlanID(): string
-    {
-        return $this->user->billedInEur() ?
-            config('subscription.elemental.eur.' . $this->period) :
-            config('subscription.elemental.usd.' . $this->period);
-    }
-
-    /**
-     */
-    public function owlbearPlans(): array
-    {
-        return array_merge(
-            config('subscription.owlbear.monthly'),
-            config('subscription.owlbear.yearly'),
-        );
-    }
-
-    /**
-     */
-    public function wyvernPlans(): array
-    {
-        return array_merge(
-            config('subscription.wyvern.monthly'),
-            config('subscription.wyvern.yearly'),
-        );
-    }
-
-
-    /**
-     */
-    public function yearlyPlans(): array
-    {
-        return array_merge(
-            config('subscription.owlbear.yearly'),
-            config('subscription.wyvern.yearly'),
-            config('subscription.elemental.yearly'),
-        );
-    }
-
-    /**
-     */
-    public function elementalPlans(): array
-    {
-        return array_merge(
-            config('subscription.elemental.monthly'),
-            config('subscription.elemental.yearly'),
-        );
     }
 
     public function subscriptionValue(): int
@@ -665,14 +320,13 @@ class SubscriptionService
 
     /**
      * Determine if a user is upgrading their plan to a higher tier
-     * @param string $plan
      */
-    protected function upgrading($plan): bool
+    protected function upgrading(): bool
     {
-        if ($this->user->pledge == Pledge::OWLBEAR && in_array($plan, [Pledge::WYVERN, Pledge::ELEMENTAL])) {
+        if ($this->user->pledge == Pledge::OWLBEAR && in_array($this->tier->name, [Pledge::WYVERN, Pledge::ELEMENTAL])) {
             return true;
         }
-        return (bool) ($this->user->pledge == Pledge::WYVERN && $plan == Pledge::ELEMENTAL);
+        return (bool) ($this->user->pledge == Pledge::WYVERN && $this->tier->name == Pledge::ELEMENTAL);
     }
 
     /**
@@ -695,24 +349,11 @@ class SubscriptionService
     }
 
     /**
+     * If the target tier is owlbear
      */
     protected function toOwlbear(): bool
     {
         return $this->tier->name == Pledge::OWLBEAR;
-    }
-
-    /**
-     */
-    protected function toWyvern(): bool
-    {
-        return $this->tier->name == Pledge::WYVERN;
-    }
-
-    /**
-     */
-    protected function toElemental(): bool
-    {
-        return $this->tier->name == Pledge::ELEMENTAL;
     }
 
     /**
@@ -725,5 +366,22 @@ class SubscriptionService
             ->where('type_id', UserLog::TYPE_LOGIN)
             ->whereIn('country', $countries)
             ->count() > 0;
+    }
+
+    protected function isYearly(): bool
+    {
+        return $this->period === PricingPeriod::Yearly;
+    }
+
+    protected function tierPrice(): TierPrice
+    {
+        if (isset($this->tierPrice)) {
+            return $this->tierPrice;
+        }
+
+        return $this->tierPrice = TierPrice::where('tier_id', $this->tier->id)
+            ->where('currency', $this->user->currency())
+            ->where('period', $this->isYearly() ? PricingPeriod::Yearly->value : PricingPeriod::Monthly->value)
+            ->first();
     }
 }

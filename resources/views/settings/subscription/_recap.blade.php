@@ -1,4 +1,7 @@
-<?php /** @var \App\User $user */?>
+<?php /**
+ * @var \App\User $user
+ * @var \App\Models\TierPrice $current
+ * */?>
 @php
 $cols = 1;
 $colClass = 'lg:grid-cols-1';
@@ -50,18 +53,12 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
         </div>
         <div class="{{ $box }}">
             <div class="text-xl text-center">
-                @if ($user->subscribedToPrice($service->yearly()->owlbearPlanID(), 'kanka'))
-                    {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
-                @elseif ($user->subscribedToPrice($service->monthly()->owlbearPlanID(), 'kanka'))
-                    {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
-                @elseif ($user->subscribedToPrice($service->yearly()->wyvernPlanID(), 'kanka'))
-                    {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
-                @elseif ($user->subscribedToPrice($service->monthly()->wyvernPlanID(), 'kanka'))
-                    {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
-                @elseif ($user->subscribedToPrice($service->yearly()->elementalPlanID(), 'kanka'))
-                    {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
-                @elseif ($user->subscribedToPrice($service->monthly()->elementalPlanID(), 'kanka'))
-                    {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
+                @if (!empty($current))
+                    @if ($current->isYearly())
+                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => number_format($current->cost, 2), 'currency' => \Illuminate\Support\Str::upper($current->currency)]) }}
+                    @else
+                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => number_format($current->cost, 2), 'currency' => \Illuminate\Support\Str::upper($current->currency)]) }}
+                    @endif
                 @else
                     {{ __('front.pricing.tier.free') }}
                 @endif
@@ -73,7 +70,7 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
         <a class="{{ $box }}" href="#" data-toggle="dialog"
            data-target="primary-dialog" data-url="{{ route('billing.currency') }}">
             <div class="text-xl text-center">
-                {{ $user->billedInEur() ? 'EUR' : 'USD' }}
+                <span class="uppercase">{{ $user->currency() }}</span>
                 <i class="fa-solid fa-pencil-alt" aria-hidden="true"></i>
                 <span class="sr-only">{{ __('crud.edit') }}</span>
             </div>

@@ -2,15 +2,21 @@
 
 namespace App\Models;
 
+use App\Enums\PricingPeriod;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 /**
+ * @property int $id
  * @property string $code
  * @property string $name
  * @property float $monthly
  * @property float $yearly
+ *
+ * @property Collection|TierPrice[] $prices
  */
 class Tier extends Model
 {
@@ -20,6 +26,11 @@ class Tier extends Model
         'yearly',
         'position',
     ];
+
+    public function prices(): HasMany
+    {
+        return $this->hasMany(TierPrice::class);
+    }
 
     public function scopeOrdered(Builder $query): Builder
     {
@@ -75,5 +86,19 @@ class Tier extends Model
             config('subscription.' . $this->code . '.monthly'),
             config('subscription.' . $this->code . '.yearly'),
         );
+    }
+
+    public function price(string $currency, PricingPeriod $period): string
+    {
+        /** @var TierPrice $price */
+        $price = $this->prices
+            ->where('currency', $currency)
+            ->where('period', $period)
+            ->first();
+        if (empty($price)) {
+            return $this->{$period->name};
+        }
+
+        return $price->cost;
     }
 }

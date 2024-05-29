@@ -161,6 +161,11 @@ return [
 
     'lazy' => env('APP_LAZY', false),
 
+    /**
+     * Default user country fallback, used for local development to simulate a user from a specific country
+     */
+    'default_country' => env('DEFAULT_COUNTRY', 'CH'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

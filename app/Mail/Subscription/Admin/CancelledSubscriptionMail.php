@@ -44,7 +44,7 @@ class CancelledSubscriptionMail extends Mailable
     {
         return $this
             ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
-            ->subject('Subscription: Cancelled ' . $this->user->pledge)
+            ->subject('Sub: Cancelled ' . $this->user->pledge)
             ->tag('admin-cancelled')
             ->view('emails.subscriptions.cancelled.html');
     }

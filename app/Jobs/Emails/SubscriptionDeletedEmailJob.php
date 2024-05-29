@@ -22,7 +22,7 @@ class SubscriptionDeletedEmailJob implements ShouldQueue
     /**
      * @var int
      */
-    public $userId;
+    public int $userId;
 
     /**
      *

@@ -172,6 +172,7 @@ return [
         'currencies'            => [
             'eur'   => 'EUR',
             'usd'   => 'USD',
+            'brl'   => 'BRL',
         ],
         'currency'              => [
             'title' => 'Change your preferred billing currency',

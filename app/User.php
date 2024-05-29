@@ -253,6 +253,8 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         if ($this->billedInEur()) {
             return '€';
+        } elseif ($this->billedInBrl()) {
+            return 'R$';
         }
         return 'US$';
     }
@@ -263,6 +265,14 @@ class User extends \Illuminate\Foundation\Auth\User
     public function billedInEur(): bool
     {
         return $this->currency() === 'eur';
+    }
+
+    /**
+     * Determine if the user is billed in BRL
+     */
+    public function billedInBrl(): bool
+    {
+        return $this->currency() === 'brl';
     }
 
     /**

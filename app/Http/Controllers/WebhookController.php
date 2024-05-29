@@ -65,55 +65,6 @@ class WebhookController extends CashierController
     }
 
     /**
-     * For users using sofort, ideal etc, we need to handle this async call
-     */
-    public function handleSucceededCharge(array $payload)
-    {
-        // User notification. Maybe even an email
-        Log::debug('succeeded charge', $payload);
-        if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
-            /** @var User $user */
-            $charge = $payload['data']['object']['charge'];
-
-            $source = SubscriptionSource::where(['user_id' => $user->id, 'charge_id', $charge])->first();
-            if ($source) {
-                // Do something?
-            }
-        }
-
-        return $this->successMethod();
-    }
-
-    public function handleSourceChargeable(array $payload)
-    {
-        /** @var SubscriptionService $subscription */
-        $subscription = app()->make(SubscriptionService::class);
-
-        $subscription
-            ->sourceCharge($payload);
-
-        return $this->successMethod();
-    }
-
-    /**
-     * Charge Failed can happen on any medium (cc, sofort, giropay)
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
-    public function handleChargeFailed(array $payload)
-    {
-        if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
-            /** @var User $user */
-            /** @var SubscriptionService $subscription */
-            $subscription = app()->make(SubscriptionService::class);
-            $subscription
-                ->user($user)
-                ->webhook()
-                ->chargeFailed($payload);
-        }
-        return $this->successMethod();
-    }
-
-    /**
      * Check if a request is to cancel a user
      */
     protected function isCancelling(array $data): bool

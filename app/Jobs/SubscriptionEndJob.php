@@ -29,11 +29,9 @@ class SubscriptionEndJob implements ShouldQueue
      */
     public $tries = 1;
 
-    /** @var int  */
-    public $userId;
+    public int $userId;
 
-    /** @var bool */
-    public $cancelled;
+    public bool $cancelled;
 
     public function __construct(User $user, bool $cancelled = false)
     {
