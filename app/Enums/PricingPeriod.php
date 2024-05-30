@@ -14,4 +14,9 @@ enum PricingPeriod: int
             default => false,
         };
     }
+
+    public function lowerName(): string
+    {
+        return strtolower($this->name);
+    }
 }

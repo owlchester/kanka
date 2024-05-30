@@ -27,14 +27,14 @@ class SubscriptionUpgradeService
         return $this;
     }
 
-    public function upgradePrice(): string
+    public function upgradePrice(): float|int
     {
         $monthly = true;
 
         $price = $this->tier->price($this->user->currency(), $this->period);
 
         if (!$this->user->subscribed('kanka') || $this->user->hasManualSubscription()) {
-            return (string) $price;
+            return $price;
         }
         if ($this->user->isStripeYearly() || $this->user->hasPayPal()) {
             $monthly = false;
@@ -45,27 +45,30 @@ class SubscriptionUpgradeService
         if ($this->user->isElemental()) {
             $code = 'elemental';
             if (!$monthly) {
-                return '';
+                return 0;
             }
         } elseif ($this->user->isWyvern()) {
             $code = 'wyvern';
         }
         $this->tier = Tier::where('code', $code)->first();
-        $oldPrice = $this->tier->price($this->user->currency(), $monthly ? PricingPeriod::Monthly : PricingPeriod::Yearly);
+        $oldPrice = $this->tier->price(
+            $this->user->currency(),
+            $monthly ? PricingPeriod::Monthly : PricingPeriod::Yearly
+        );
         $endPeriod = $this->endPeriod();
         if ($this->period === PricingPeriod::Yearly) {
             // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Number of Days in a Full Year)
             // If going from monthly to yearly, we divide the current sub up on a month
             $duration = $monthly ? 31 : 365;
-            $price = round((floatval($price) - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / $duration), 2);
+            $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / $duration), 2);
 
         } elseif ($monthly && $this->period === PricingPeriod::Monthly) {
             // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Total Days in the Month)
-            $price = round((floatval($price) - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / 31), 2);
+            $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / 31), 2);
         } elseif ($this->period === PricingPeriod::Monthly) {
             // Switching from a yearly plan to a monthly plan, this gets interesting
             $remaining = 365;
-            $price = round((floatval($price) - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / $remaining), 2);
+            $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / $remaining), 2);
         }
 
         return max(0, $price);
