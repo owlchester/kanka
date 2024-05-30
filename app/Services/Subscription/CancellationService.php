@@ -10,7 +10,6 @@ use App\Models\SubscriptionCancellation;
 use App\Models\UserLog;
 use App\Traits\UserAware;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class CancellationService
 {

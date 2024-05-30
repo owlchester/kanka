@@ -20,7 +20,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Laravel\Cashier\PaymentMethod;
 use Stripe\Card;
-use Stripe\Source;
 use Stripe\Stripe;
 
 class SubscriptionService
@@ -119,7 +118,6 @@ class SubscriptionService
 
     /**
      * When the stripe API calls us, we get a plan_id that needs to be transformed into a tier and tierprice
-     * @param string $plan
      *
      * @return $this
      */
@@ -164,8 +162,6 @@ class SubscriptionService
     }
 
     /**
-     * @param string $planID
-     * @param string $paymentID
      * @return $this
      * @throws \Laravel\Cashier\Exceptions\IncompletePayment
      */
@@ -196,7 +192,6 @@ class SubscriptionService
 
     /**
      * Setup the user's pledge, role, discord
-     * @param string|null $planID
      * @return $this
      */
     public function finish(): self

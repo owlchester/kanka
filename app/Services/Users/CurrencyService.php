@@ -19,7 +19,6 @@ class CurrencyService
 
     /**
      * Build a list of currencies available to the user
-     * @return array
      */
     public function availableCurrencies(): array
     {

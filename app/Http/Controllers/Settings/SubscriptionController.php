@@ -8,7 +8,6 @@ use App\Facades\DataLayer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Models\Tier;
-use App\Models\TierPrice;
 use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
 use App\Services\Users\CurrencyService;

@@ -58,10 +58,10 @@ class MigrateImageFolder extends Command
             ->whereNotNull('image_path')
             ->where('image_path', 'not like', 'w/%')
             ->chunk(5000, function ($entities) {
-            foreach ($entities as $entity) {
-                $this->move($entity);
-            }
-        });
+                foreach ($entities as $entity) {
+                    $this->move($entity);
+                }
+            });
         $this->bar->finish();
         $this->info('');
         $this->info($now->format('H:i:s') . ': Migrated ' . $this->count . ' entities.');

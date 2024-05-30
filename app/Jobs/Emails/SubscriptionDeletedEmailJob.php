@@ -20,7 +20,6 @@ class SubscriptionDeletedEmailJob implements ShouldQueue
     use SerializesModels;
 
     /**
-     * @var int
      */
     public int $userId;
 
