@@ -39,7 +39,7 @@ class Tier extends Model
 
     public function isFree(): bool
     {
-        return empty($this->monthly);
+        return $this->name === Pledge::KOBOLD;
     }
     public function isPopular(): bool
     {

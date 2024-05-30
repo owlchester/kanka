@@ -12,16 +12,10 @@ class CancelledSubscriptionMail extends Mailable
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var User
-     */
-    public $user;
+    public User $user;
 
-    /**
-     * @var string
-     */
-    public $reason;
-    public $custom;
+    public string|null $reason;
+    public string|null $custom;
 
     /**
      * Create a new message instance.

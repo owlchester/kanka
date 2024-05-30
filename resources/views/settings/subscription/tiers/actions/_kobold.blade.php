@@ -1,5 +1,6 @@
+<?php /** @var \App\Models\TierPrice $current */?>
 @if (!$user->hasPayPal())
-    @if($currentPlan === \App\Models\Pledge::KOBOLD)
+    @if(empty($current))
         <span class="btn2 btn-block btn-sm">
             {{ __('tiers.current') }}
         </span>

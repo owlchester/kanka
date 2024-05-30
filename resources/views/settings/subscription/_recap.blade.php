@@ -45,7 +45,7 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
     @else
         <div class="{{ $box }}">
             <div class="text-xl  text-center">
-                {{ $currentPlan }}
+                {{ $current->tier->name ?? \App\Models\Pledge::KOBOLD }}
             </div>
             <div class="text-muted">
                 {{ __('settings.subscription.fields.plan') }}

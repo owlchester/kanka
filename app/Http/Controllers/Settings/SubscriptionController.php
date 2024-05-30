@@ -53,7 +53,7 @@ class SubscriptionController extends Controller
 
         $stripeApiToken = config('cashier.key', null);
         $status = $this->subscription->user($user)->status();
-        $currentPlan = $this->subscription->currentPlan();
+        $current = $this->subscription->currentPlan();
         $service = $this->subscription;
         $currency = $user->currencySymbol();
         $invoices = !empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
@@ -72,12 +72,9 @@ class SubscriptionController extends Controller
             }
         }
 
-        $current = $user->subscribed('kanka') ? TierPrice::where('stripe_id', $user->subscription('kanka')->stripe_price)->first() : null;
-
         return view('settings.subscription.index', compact(
             'stripeApiToken',
             'status',
-            'currentPlan',
             'user',
             'currency',
             'current',

@@ -37,7 +37,9 @@ class WebhookController extends CashierController
             // Also if the user is cancelling, we've already handled that in Kanka, we don't need to handle it here, but
             // stripe will still tell us about it.
             if ($status != 'past_due' && !$this->isCancelling($payload)) {
-                $service->user($user)->webhook()->finish($payload['data']['object']['plan']['id']);
+                $service->user($user)->webhook()
+                    ->plan($payload['data']['object']['plan']['id'])
+                    ->finish();
             }
         }
         return $response;

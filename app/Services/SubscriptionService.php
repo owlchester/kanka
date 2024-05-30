@@ -118,6 +118,20 @@ class SubscriptionService
     }
 
     /**
+     * When the stripe API calls us, we get a plan_id that needs to be transformed into a tier and tierprice
+     * @param string $plan
+     *
+     * @return $this
+     */
+    public function plan(string $plan): self
+    {
+        /** @var TierPrice|null $price */
+        $price = TierPrice::where('stripe_id', $plan)->first();
+        $this->tier = $price->tier;
+        return $this;
+    }
+
+    /**
      * Change plans
      *
      */
@@ -138,7 +152,7 @@ class SubscriptionService
             $this->user->save();
 
             // Check that someone isn't using a VPN
-            if ($this->user->currency() === 'brl' && $card->country !== 'BR') {
+            if (app()->isProduction() && $this->user->currency() === 'brl' && $card->country !== 'BR') {
                 throw (new TranslatableException('subscription.errors.invalid_card_country.brl'))->setOptions(['email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>']);
             }
         }
@@ -185,11 +199,8 @@ class SubscriptionService
      * @param string|null $planID
      * @return $this
      */
-    public function finish($planID = null): self
+    public function finish(): self
     {
-        if (empty($planID) && !empty($this->plan)) {
-            $planID = $this->plan;
-        }
 
         // If the user is cancelling through the interface, don't do anything else
         if ($this->cancelled) {
@@ -232,7 +243,7 @@ class SubscriptionService
 
         // Don't send emails when called from the webhook
         if (!$this->webhook) {
-            SubscriptionCreatedEmailJob::dispatch($this->user, ($this->period->isYearly() ? 'yearly' : 'monthly'), $new);
+            SubscriptionCreatedEmailJob::dispatch($this->user, $this->period, $new);
             WelcomeSubscriptionEmailJob::dispatch($this->user, $this->tier);
 
             // Save the new sub value
@@ -273,15 +284,18 @@ class SubscriptionService
     /**
      * Get the user's current plan
      */
-    public function currentPlan(): string
+    public function currentPlan(): TierPrice|null
     {
+        if (!$this->user->subscribed('kanka')) {
+            return null;
+        }
         $price = $this->user->subscription('kanka')->stripe_price;
         /** @var TierPrice $tier */
         $tier = TierPrice::where('stripe_id', $price)->first();
         if (empty($tier)) {
-            return $this->user->pledge ?? Pledge::KOBOLD;
+            return null;
         }
-        return $tier->tier->name;
+        return $tier;
     }
 
     /**
