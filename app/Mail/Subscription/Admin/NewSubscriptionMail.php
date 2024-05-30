@@ -2,6 +2,7 @@
 
 namespace App\Mail\Subscription\Admin;
 
+use App\Enums\PricingPeriod;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -13,23 +14,18 @@ class NewSubscriptionMail extends Mailable
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var User
-     */
-    public $user;
+    public User $user;
 
-    /** @var bool */
-    public $new;
+    public bool $new;
 
-    /** @var string */
-    public $period;
+    public PricingPeriod $period;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, string $period = 'monthly')
+    public function __construct(User $user, PricingPeriod $period)
     {
         $this->user = $user;
         $this->period = $period;
@@ -53,7 +49,7 @@ class NewSubscriptionMail extends Mailable
             $action = 'Renewed';
         }
 
-        $subject = 'Subscription: ' . $action . ' ' . ucfirst($this->period) . ' ' . $this->user->pledge;
+        $subject = 'Sub: ' . $action . ' ' . ucfirst($this->period->name) . ' ' . $this->user->pledge;
         return $this
             ->from(['address' => config('app.email'), 'name' => 'Kanka Admin'])
             ->subject($subject)

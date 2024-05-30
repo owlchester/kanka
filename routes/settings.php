@@ -20,6 +20,7 @@ use App\Http\Controllers\Settings\Apps\DiscordController;
 use App\Http\Controllers\PasswordSecurityController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\Layout\NavigationController;
+use App\Http\Controllers\Settings\Subscription\CancellationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
@@ -64,13 +65,11 @@ Route::get('/subscription', [SubscriptionController::class, 'index'])->name('set
 Route::get('/subscription/change/{tier}', [SubscriptionController::class, 'change'])->name('settings.subscription.change');
 Route::get('/subscription/callback', [SubscriptionController::class, 'callback'])->name('settings.subscription.callback');
 Route::post('/subscription/change/{tier}', [SubscriptionController::class, 'subscribe'])->name('settings.subscription.subscribe');
-Route::post('/subscription/cancel', [SubscriptionController::class, 'cancel'])->name('settings.subscription.cancel');
+Route::get('/subscription/unsubscribe', [CancellationController::class, 'index'])->name('settings.subscription.unsubscribe');
+Route::post('/subscription/cancel', [CancellationController::class, 'save'])->name('settings.subscription.cancel');
 Route::get('/billing/payment-method', [PaymentMethodController::class, 'index'])->name('billing.payment-method');
 Route::patch('/billing/payment-method', [PaymentMethodController::class, 'save'])->name('billing.payment-method.save');
 Route::get('/billing/currency', [PaymentMethodController::class, 'currency'])->name('billing.currency');
-
-Route::post('/subscription/alt-subscribe/{tier}', [SubscriptionController::class, 'altSubscribe'])->name('settings.subscription.alt-subscribe');
-Route::get('/subscription/alt-callback', [SubscriptionController::class, 'altCallback'])->name('settings.subscription.alt-callback');
 
 Route::get('/billing/history', [HistoryController::class, 'index'])->name('billing.history');
 Route::get('/billing/history/download/{invoice}', [HistoryController::class, 'download'])->name('billing.history.download');

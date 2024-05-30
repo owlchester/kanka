@@ -1,0 +1,57 @@
+<?php /** @var \App\User $user */ ?>
+@php
+    $endDate = date($user->date_format, $user->subscription('kanka')->upcomingInvoice()?->period_end);
+@endphp
+<x-dialog.header>
+    {{ __('settings.subscription.change.title') }}
+</x-dialog.header>
+
+<article class="text-center max-w-xl container">
+
+    {!! Form::open([
+        'route' => ['settings.subscription.cancel'],
+        'method' => 'POST',
+        'id' => 'cancellation-confirm',
+        'class' => 'subscription-form text-left'
+    ]) !!}
+        <x-grid type="1/1">
+
+            <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
+
+            <x-helper>
+                {!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}
+            </x-helper>
+
+            <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">
+                <x-grid type="1/1">
+                    {!! Form::select('reason', [
+                '' => __('crud.select'),
+                'financial' => __('settings.subscription.cancel.options.financial'),
+                'not_for' => __('settings.subscription.cancel.options.not_for'),
+                'not_using' => __('settings.subscription.cancel.options.not_using'),
+                'not_playing' => __('settings.subscription.cancel.options.not_playing'),
+                'missing_features' => __('settings.subscription.cancel.options.missing_features'),
+                'competitor' => __('settings.subscription.cancel.options.competitor'),
+                'custom' => __('settings.subscription.cancel.options.other')
+                ], null, ['class' => 'w-full']) !!}
+
+                    {!! Form::textarea(
+                        'reason_custom',
+                        null,
+                        [
+                            'placeholder' => __('settings.subscription.placeholders.reason'),
+                            'class' => 'w-full',
+                            'rows' => 4,
+                            'id' => 'cancel-reason-custom'
+                        ]
+                    ) !!}
+                </x-grid>
+            </x-forms.field>
+
+            <button class="btn2 btn-lg btn-block btn-error btn-outline subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                <span>{{ __('settings.subscription.actions.cancel_sub') }}</span>
+                <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
+            </button>
+        </x-grid>
+    {!! Form::close() !!}
+</article>

@@ -9,7 +9,7 @@ class CountryService
      */
     public function getCountry(): string
     {
-        $country = 'CH';
+        $country = config('app.default_country');
         if (isset($_SERVER["HTTP_CF_IPCOUNTRY"])) {
             $country = mb_substr($_SERVER["HTTP_CF_IPCOUNTRY"], 0, 6);
         }

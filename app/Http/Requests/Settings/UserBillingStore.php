@@ -12,7 +12,7 @@ class UserBillingStore extends FormRequest
         return [
             'currency' => [
                 'nullable',
-                Rule::in(['eur']),
+                Rule::in(['usd', 'eur', 'brl']),
             ]
         ];
     }

@@ -4,16 +4,19 @@ namespace App\Http\Controllers\Billing;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserBillingStore;
+use App\Services\Users\CurrencyService;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentMethodController extends Controller
 {
+    protected CurrencyService $currencyService;
     /**
      * PaymentMethodController constructor.
      */
-    public function __construct()
+    public function __construct(CurrencyService $currencyService)
     {
         $this->middleware(['auth', 'identity', 'subscriptions']);
+        $this->currencyService = $currencyService;
     }
 
     /**
@@ -36,10 +39,13 @@ class PaymentMethodController extends Controller
         ];
         $translations = json_encode($translations);
 
+        $currencies = $this->currencyService->availableCurrencies();
+
         return view('billing.payment-method', compact(
             'stripeApiToken',
             'user',
-            'translations'
+            'translations',
+            'currencies',
         ));
     }
 
@@ -48,7 +54,9 @@ class PaymentMethodController extends Controller
         $content = auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended() ?
             '_blocked' : '_form';
         return view('settings.subscription.currency.edit')
-            ->with('content', $content);
+            ->with('content', $content)
+            ->with('currencies', $this->currencyService->availableCurrencies())
+        ;
     }
 
     /**
@@ -58,11 +66,11 @@ class PaymentMethodController extends Controller
         $user = $request->user();
 
         $from = $request->get('from', 'billing.payment-method');
-        $settings = $user->saveSettings($request->only('currency'));
+        $user->saveSettings($request->only('currency'));
         $user->save();
 
         return redirect()
             ->route($from)
-            ->with('success', trans('settings.subscription.success.currency'));
+            ->with('success', __('settings.subscription.success.currency'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Emails;
 
+use App\Enums\PricingPeriod;
 use App\Mail\Subscription\Admin\NewSubscriptionMail;
 use App\User;
 use Illuminate\Bus\Queueable;
@@ -24,8 +25,7 @@ class SubscriptionCreatedEmailJob implements ShouldQueue
     /** @var bool if new or changed */
     public $new;
 
-    /** @var string yearly/monthly */
-    public $period;
+    public PricingPeriod $period;
 
     /** @var int how many times the job can fail before quitting */
     public $tries = 3;
@@ -34,7 +34,7 @@ class SubscriptionCreatedEmailJob implements ShouldQueue
      * WelcomeEmailJob constructor.
      * @param bool $new if it's a new sub or a changed sub
      */
-    public function __construct(User $user, string $period = 'monthly', bool $new = true)
+    public function __construct(User $user, PricingPeriod $period, bool $new = true)
     {
         $this->userId = $user->id;
         $this->new = $new;

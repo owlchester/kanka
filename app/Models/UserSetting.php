@@ -183,7 +183,8 @@ trait UserSetting
         }
         foreach ($data as $key => $value) {
             if (empty($value) && isset($settings[$key])) {
-                unset($settings[$key]);
+                unset($settings[$key], $settings[$key]);
+
             } elseif (!empty($value)) {
                 $settings[$key] = Purify::clean($value);
             }

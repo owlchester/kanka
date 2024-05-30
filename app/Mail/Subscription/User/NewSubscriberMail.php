@@ -2,6 +2,7 @@
 
 namespace App\Mail\Subscription\User;
 
+use App\Models\Tier;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -12,19 +13,15 @@ class NewSubscriberMail extends Mailable
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var User
-     */
-    public $user;
-
-    public string $tier;
+    public User $user;
+    public Tier $tier;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, string $tier)
+    public function __construct(User $user, Tier $tier)
     {
         $this->user = $user;
         $this->tier = $tier;
@@ -41,6 +38,6 @@ class NewSubscriberMail extends Mailable
             ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
             ->subject('Thank you, and welcome!')
             ->tag('elemental')
-            ->view('emails.subscriptions.new.' . $this->tier);
+            ->view('emails.subscriptions.new.' . $this->tier->code);
     }
 }

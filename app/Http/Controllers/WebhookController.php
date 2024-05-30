@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\SubscriptionEndJob;
-use App\Models\SubscriptionSource;
 use App\Models\UserLog;
 use App\Services\Subscription\PaymentMethodService;
 use App\Services\SubscriptionService;
@@ -37,7 +36,9 @@ class WebhookController extends CashierController
             // Also if the user is cancelling, we've already handled that in Kanka, we don't need to handle it here, but
             // stripe will still tell us about it.
             if ($status != 'past_due' && !$this->isCancelling($payload)) {
-                $service->user($user)->webhook()->finish($payload['data']['object']['plan']['id']);
+                $service->user($user)->webhook()
+                    ->plan($payload['data']['object']['plan']['id'])
+                    ->finish();
             }
         }
         return $response;
@@ -62,55 +63,6 @@ class WebhookController extends CashierController
         }
 
         return $response;
-    }
-
-    /**
-     * For users using sofort, ideal etc, we need to handle this async call
-     */
-    public function handleSucceededCharge(array $payload)
-    {
-        // User notification. Maybe even an email
-        Log::debug('succeeded charge', $payload);
-        if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
-            /** @var User $user */
-            $charge = $payload['data']['object']['charge'];
-
-            $source = SubscriptionSource::where(['user_id' => $user->id, 'charge_id', $charge])->first();
-            if ($source) {
-                // Do something?
-            }
-        }
-
-        return $this->successMethod();
-    }
-
-    public function handleSourceChargeable(array $payload)
-    {
-        /** @var SubscriptionService $subscription */
-        $subscription = app()->make(SubscriptionService::class);
-
-        $subscription
-            ->sourceCharge($payload);
-
-        return $this->successMethod();
-    }
-
-    /**
-     * Charge Failed can happen on any medium (cc, sofort, giropay)
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
-    public function handleChargeFailed(array $payload)
-    {
-        if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
-            /** @var User $user */
-            /** @var SubscriptionService $subscription */
-            $subscription = app()->make(SubscriptionService::class);
-            $subscription
-                ->user($user)
-                ->webhook()
-                ->chargeFailed($payload);
-        }
-        return $this->successMethod();
     }
 
     /**

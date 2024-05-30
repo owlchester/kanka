@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Enums\PricingPeriod;
+use App\Exceptions\TranslatableException;
 use App\Facades\DataLayer;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Settings\UserAltSubscribeStore;
 use App\Http\Requests\Settings\UserSubscribeStore;
-use App\Http\Requests\SubscriptionCancel;
 use App\Models\Tier;
 use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
+use App\Services\Users\CurrencyService;
 use App\Services\Users\EmailValidationService;
 use App\User;
 use Exception;
@@ -25,30 +26,38 @@ class SubscriptionController extends Controller
 
     protected EmailValidationService $emailValidation;
 
+    protected CurrencyService $currencyService;
+
     /**
      * SubscriptionController constructor.
      */
-    public function __construct(SubscriptionService $service, SubscriptionUpgradeService $subscriptionUpgradeService, EmailValidationService $validationService)
-    {
+    public function __construct(
+        SubscriptionService $service,
+        SubscriptionUpgradeService $subscriptionUpgradeService,
+        EmailValidationService $validationService,
+        CurrencyService $currencyService
+    ) {
         $this->middleware(['auth', 'identity', 'subscriptions']);
         $this->subscription = $service;
         $this->subscriptionUpgrade = $subscriptionUpgradeService;
         $this->emailValidation = $validationService;
+        $this->currencyService = $currencyService;
     }
 
     public function index()
     {
         /** @var User $user */
         $user = auth()->user();
+        $this->currencyService->user($user)->setDefaultCurrency();
 
         $stripeApiToken = config('cashier.key', null);
         $status = $this->subscription->user($user)->status();
-        $currentPlan = $this->subscription->currentPlan();
+        $current = $this->subscription->currentPlan();
         $service = $this->subscription;
         $currency = $user->currencySymbol();
         $invoices = !empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
         $tracking = session()->get('sub_tracking');
-        $tiers = Tier::ordered()->get();
+        $tiers = Tier::with('prices')->ordered()->get();
         $isPayPal = $user->hasPayPal();
         $hasManual = $user->hasManualSubscription();
         $gaTrackingEvent = null;
@@ -65,9 +74,9 @@ class SubscriptionController extends Controller
         return view('settings.subscription.index', compact(
             'stripeApiToken',
             'status',
-            'currentPlan',
             'user',
             'currency',
+            'current',
             'service',
             'invoices',
             'tracking',
@@ -80,24 +89,35 @@ class SubscriptionController extends Controller
 
     public function change(Request $request, Tier $tier)
     {
+        if ($tier->isFree()) {
+            dd('Cancel instead');
+        }
         $user = $request->user();
-        $period = $request->get('period', 'monthly');
+        $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
 
-        $amount = $this->subscription->user($request->user())->tier($tier)->period($period)->amount();
+        $amount = $this->subscription
+            ->user($request->user())
+            ->tier($tier)
+            ->period($period)
+            ->amount();
         $card = $user->hasPaymentMethod() ? Arr::first($user->paymentMethods()) : null;
         if (empty($user->stripe_id)) {
             $user->createAsStripeCustomer();
         }
         $intent = $user->createSetupIntent();
-        $cancel = $tier->isFree();
         $isDowngrading = $this->subscription->downgrading();
-        $isYearly = $period === 'yearly';
+        $isYearly = $period->isYearly();
         $hasPromo = false; //\Carbon\Carbon::create(2023, 11, 28)->isFuture();
         $limited = $this->subscription->isLimited();
         if ($user->hasPayPal() || $user->hasManualSubscription()) {
             $limited = true;
         }
-        $upgrade = $this->subscriptionUpgrade->user($user)->tier($tier)->upgradePrice($period);
+        $upgrade = $this->subscriptionUpgrade
+            ->user($user)
+            ->tier($tier)
+            ->period($period)
+            ->upgradePrice()
+        ;
         $currency = $user->currencySymbol();
 
         if ($user->isFrauding()) {
@@ -110,7 +130,6 @@ class SubscriptionController extends Controller
             'amount',
             'card',
             'intent',
-            'cancel',
             'currency',
             'user',
             'upgrade',
@@ -119,19 +138,6 @@ class SubscriptionController extends Controller
             'limited',
             'isYearly',
         ));
-    }
-
-    public function cancel(SubscriptionCancel $request)
-    {
-        $this->subscription
-            ->user($request->user())
-            ->cancel($request);
-
-        return redirect()
-            ->route('settings.subscription', ['cancelled' => 1])
-            ->with('success', __('settings.subscription.success.cancel'))
-            ->with('sub_tracking', 'cancel')
-            ->with('sub_value', 0);
     }
 
     /**
@@ -145,11 +151,13 @@ class SubscriptionController extends Controller
                 ->withError(__('settings.subscription.errors.failed', ['email' => config('app.email')]));
         }
         try {
+            $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
             $this->subscription->user($request->user())
                 ->tier($tier)
-                ->period($request->get('period'))
+                ->period($period)
                 ->coupon($request->get('coupon'))
-                ->change($request->all())
+                ->request($request->all())
+                ->change()
                 ->finish();
 
             $flash = 'subscribed';
@@ -167,48 +175,17 @@ class SubscriptionController extends Controller
                 // @phpstan-ignore-next-line
                 [$exception->payment->id, 'redirect' => route('settings.subscription.callback')]
             );
+        } catch (TranslatableException $e) {
+            return redirect()
+                ->route('settings.subscription')
+                ->with('error_raw', $e->getTranslatedMessage())
+            ;
         } catch (Exception $e) {
             // Error? json
             return response()->json([
                 'error' => true,
                 'message' => $e->getMessage(),
             ]);
-        }
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws \Stripe\Exception\ApiErrorException
-     */
-    public function altSubscribe(UserAltSubscribeStore $request, Tier $tier)
-    {
-        if ($tier->isFree()) {
-            abort(401);
-        }
-        $source = $this->subscription->user($request->user())
-            ->tier($tier)
-            ->period($request->get('period'))
-            ->method($request->get('method'))
-            ->prepare($request);
-
-        // @phpstan-ignore-next-line
-        return redirect($source->redirect->url);
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Stripe\Exception\ApiErrorException
-     */
-    public function altCallback(Request $request)
-    {
-        if ($this->subscription->validSource($request->get('source'))) {
-            return redirect()
-                ->route('settings.subscription')
-                ->withSuccess(__('settings.subscription.success.alternative'));
-        } else {
-            return redirect()
-                ->route('settings.subscription')
-                ->withErrors(__('settings.subscription.errors.callback'));
         }
     }
 

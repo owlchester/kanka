@@ -3,6 +3,7 @@
 namespace App\Jobs\Emails\Subscriptions;
 
 use App\Mail\Subscription\User\NewSubscriberMail;
+use App\Models\Tier;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -18,11 +19,9 @@ class WelcomeSubscriptionEmailJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /** @var int user id */
     public int $userId;
 
-    /** @var string owlbear, wyvern or elemental */
-    public string $tier;
+    public int $tierId;
 
     /** @var int how many times the job can fail before quitting */
     public $tries = 3;
@@ -30,10 +29,10 @@ class WelcomeSubscriptionEmailJob implements ShouldQueue
     /**
      * WelcomeEmailJob constructor.
      */
-    public function __construct(User $user, string $tier = 'owlbear')
+    public function __construct(User $user, Tier $tier)
     {
         $this->userId = $user->id;
-        $this->tier = $tier;
+        $this->tierId = $tier->id;
     }
 
     /**
@@ -48,10 +47,11 @@ class WelcomeSubscriptionEmailJob implements ShouldQueue
             return;
         }
 
-        // Send an email to the admins
+        $tier = Tier::find($this->tierId);
+
         Mail::to($user->email)
             ->send(
-                new NewSubscriberMail($user, $this->tier)
+                new NewSubscriberMail($user, $tier)
             );
     }
 }

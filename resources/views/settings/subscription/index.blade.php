@@ -82,13 +82,13 @@
                             @else
                                 <div class="price price-monthly flex flex-col gap-1">
                                     <div class="text-4xl">
-                                        <span class="text-sm">{{ $user->currencySymbol() }}</span>{{ number_format($tier->monthly, 2) }}
+                                        <span class="text-sm">{{ $user->currencySymbol() }}</span>{{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Monthly), 2) }}
                                     </div>
                                     <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_monthly') }}</span>
                                 </div>
                                 <div class="price price-yearly flex flex-col gap-1">
                                     <div class="text-4xl">
-                                        <span class="text-sm">{{ $user->currencySymbol() }}</span>{{ number_format($tier->yearly, 2) }}
+                                        <span class="text-sm">{{ $user->currencySymbol() }}</span>{{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly), 2) }}
                                     </div>
                                     <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_yearly') }}</span>
                                 </div>
@@ -115,7 +115,7 @@
                     </div>
                     @if (!$tier->isFree() && $tier->isCurrent($user) && $user->subscribed('kanka') && !$isPayPal && !$hasManual && !$user->subscription('kanka')->onGracePeriod())
                         <div class="self-bottom">
-                            <a class="btn2 btn-block btn-sm btn-error " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => 1]) }}">
+                            <a class="btn2 btn-block btn-sm btn-error " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.unsubscribe') }}">
                                 {{ __('settings.subscription.subscription.actions.cancel') }}
                             </a>
                         </div>

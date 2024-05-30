@@ -12,16 +12,10 @@ class CancelledSubscriptionMail extends Mailable
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var User
-     */
-    public $user;
+    public User $user;
 
-    /**
-     * @var string
-     */
-    public $reason;
-    public $custom;
+    public string|null $reason;
+    public string|null $custom;
 
     /**
      * Create a new message instance.
@@ -44,7 +38,7 @@ class CancelledSubscriptionMail extends Mailable
     {
         return $this
             ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
-            ->subject('Subscription: Cancelled ' . $this->user->pledge)
+            ->subject('Sub: Cancelled ' . $this->user->pledge)
             ->tag('admin-cancelled')
             ->view('emails.subscriptions.cancelled.html');
     }
