@@ -88,7 +88,7 @@ class Tier extends Model
         );
     }
 
-    public function price(string $currency, PricingPeriod $period): string
+    public function price(string $currency, PricingPeriod $period): float
     {
         /** @var TierPrice $price */
         $price = $this->prices
@@ -96,7 +96,7 @@ class Tier extends Model
             ->where('period', $period)
             ->first();
         if (empty($price)) {
-            return $this->{$period->name};
+            return 0.00;
         }
 
         return $price->cost;
