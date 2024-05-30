@@ -45,12 +45,17 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
     @else
         <div class="{{ $box }}">
             <div class="text-xl  text-center">
+                @if ($user->hasPayPal())
+                    {{ $user->pledge }}
+                @else
                 {{ $current->tier->name ?? \App\Models\Pledge::KOBOLD }}
+                @endif
             </div>
             <div class="text-muted">
                 {{ __('settings.subscription.fields.plan') }}
             </div>
         </div>
+        @if (!$user->hasPayPal())
         <div class="{{ $box }}">
             <div class="text-xl text-center">
                 @if (!empty($current))
@@ -67,6 +72,7 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
                 {{ __('settings.subscription.fields.billing') }}
             </div>
         </div>
+        @endif
         <a class="{{ $box }}" href="#" data-toggle="dialog"
            data-target="primary-dialog" data-url="{{ route('billing.currency') }}">
             <div class="text-xl text-center">
