@@ -44,14 +44,14 @@ class Form extends Component
 
         if (!auth()->user()->can('vote', $feat)) {
             /** @var FeatureVote $vote */
-            $vote = new FeatureVote;
+            $vote = new FeatureVote();
             $vote->feature_id = $feat->id;
             $vote->user_id = auth()->user()->id;
             $vote->save();
             $feat->upvote_count++;
             $feat->updateQuietly();
         }
-        
+
         NewFeatureEmailJob::dispatch($feat);
 
         if ($this->file) {
