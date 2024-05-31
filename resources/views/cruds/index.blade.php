@@ -60,7 +60,7 @@
 
         @if($models->hasPages())
         <div class="">
-            {{ $models->appends($filterService->pagination())->onEachSide(0)->links() }}
+            {{ $models->appends(isset($filterService) ? $filterService->pagination() : null)->onEachSide(0)->links() }}
         </div>
         @endif
         @if (isset($entityTypeId))
