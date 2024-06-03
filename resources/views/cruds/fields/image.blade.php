@@ -39,7 +39,7 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
     <div class="flex flex-row gap-2">
         <div class="grow flex flex-col gap-2 w-full">
             <div class="image-file field">
-                {!! Form::file('image', ['class' => 'image w-full', 'accept' => $inputFileTypes, 'id' => 'image_field_' . rand()]) !!}
+                <input type="file" name="image" class="image w-full" id="image_field_{{ rand() }}" accept="{{ $inputFileTypes }}" />
             </div>
             <div class="image-url field">
                 {!! Form::text(

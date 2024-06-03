@@ -16,7 +16,7 @@
             <div class="grid gap-2 grid-cols-4">
                 <div class="col-span-3 flex flex-col gap-2 ">
                     <div class="field field-header-image">
-                        {!! Form::file('header_image', ['class' => 'image w-full', 'id' => 'header_image']) !!}
+                        <input type="file" name="header_image" class="image w-full" id="header_image" accept=".jpg, .jpeg, .png, .gif, .webp, .gif" />
                     </div>
                     <div class="field field-header-url">
                         {!! Form::text('header_image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full']) !!}

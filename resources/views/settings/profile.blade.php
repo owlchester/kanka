@@ -52,7 +52,7 @@
                     @endif
                 </div>
                 <x-forms.field field="avatar" :label="__('settings.profile.avatar')">
-                    {!! Form::file('avatar', ['class' => 'image']) !!}
+                    <input type="file" name="avatar" class="image w-full" id="header_image" accept=".jpg, .jpeg, .png, .gif, .webp, .gif" />
 
                     @if (!empty(auth()->user()->avatar) && auth()->user()->avatar != 'users/default.png')
                         <div class="rounded-full">

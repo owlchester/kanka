@@ -10,6 +10,6 @@
         field="file"
         :required="true"
         :label="__('entities/files.fields.file')">
-        {!! Form::file('default_entity_image', ['class' => 'image w-full']) !!}
+        <input type="file" name="default_entity_image" class="image w-full" accept=".jpg, .jpeg, .png, .gif, .webp" />
     </x-forms.field>
 </x-grid>

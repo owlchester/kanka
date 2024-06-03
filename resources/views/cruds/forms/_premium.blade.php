@@ -41,7 +41,7 @@
             <div class="flex flex-row gap-2">
                 <div class="flex flex-col gap-2 @if ((!empty($model->entity) && !empty($model->entity->header_image))) col-span-3 @else col-span-4 @endif">
                     <x-forms.field field="header-file">
-                        {!! Form::file('header_image', array('class' => 'image')) !!}
+                        <input type="file" name="header_image" class="image w-full" id="header_image_{{ rand() }}" accept=".jpg, .jpeg, .png, .gif, .webp" />
                     </x-forms.field>
                     <x-forms.field field="header-url">
                         {!! Form::text('header_image_url', $headerUrlPreset, ['placeholder' => __('crud.placeholders.image_url'), 'class' => '']) !!}

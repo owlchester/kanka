@@ -19,7 +19,7 @@
                 <div class="basis-3/4 flex flex-col gap-2">
                     <x-forms.field
                         field="header-image">
-                        {!! Form::file('header_image', ['class' => 'image w-full', 'id' => 'header_image']) !!}
+                        <input type="file" name="header_image" class="image w-full" id="header_image" accept=".jpg, .jpeg, .png, .gif, .webp, .gif" />
                     </x-forms.field>
                     <x-forms.field
                         field="image-url">
