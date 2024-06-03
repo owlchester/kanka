@@ -24,7 +24,7 @@
             :label="__('calendars.fields.length')"
             :helper="__('calendars.hints.event_length')"
             :tooltip="true">
-            {!! Form::number('length', null, ['placeholder' => __('calendars.placeholders.length'), 'maxlength' => 0, 'data-url' => route('calendars.event-length', [$campaign, 'calendar' => isset($calendar) ? $calendar : 0])]) !!}
+        <input type="number" name="length" class="w-full" value="{{ old('length', $model->length ?? 1) }}" placeholder="{{ __('calendars.placeholders.length') }}" aria-label="{{ __('calendars.placeholders.length') }}" data-url="{{ route('calendars.event-length', [$campaign, 'calendar' => $calendar ?? 0]) }}" />
             <p class="length-warning hidden text-error">
                 {!!  __('calendars.warnings.event_length', ['documentation' => link_to('https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation'), ['target' => '_blank'], null, false)])!!}
             </p>

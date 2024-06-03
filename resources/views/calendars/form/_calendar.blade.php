@@ -14,7 +14,7 @@
             :label="__('calendars.fields.start_offset')"
             :tooltip="true"
             :helper="__('calendars.helpers.start_offset')">
-            {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset')->string(0)) !!}
+            <input type="number" name="start_offset" value="{{ FormCopy::field('start_offset')->string(0) ?: old('start_offset', $model->start_offset ?? null) }}" />
         </x-forms.field>
 
         <x-forms.field
@@ -116,16 +116,16 @@
         </x-forms.field>
         <div class="grid grid-cols-2 gap-2 md:gap-5" id="calendar-leap-year" style="@if (isset($model) && $model->has_leap_year || request()->old('has_leap_year') || (isset($source) && $source->has_leap_year))@else display:none; @endif">
             <x-forms.field field="year-amount" :label="__('calendars.fields.leap_year_amount')">
-                {!! Form::number('leap_year_amount', FormCopy::field('leap_year_amount')->string(), ['placeholder' => __('calendars.placeholders.leap_year_amount'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="number" name="leap_year_amount" value="{{ FormCopy::field('leap_year_amount')->string(0) ?: old('leap_year_amount', $model->leap_year_amount ?? null) }}" class="w-full" maxlength="191" placeholder="{{ __('calendars.placeholders.leap_year_amount') }}"/>
             </x-forms.field>
             <x-forms.field field="leap-month" :label="__('calendars.fields.leap_year_month')">
-                {!! Form::number('leap_year_month', FormCopy::field('leap_year_month')->string(), ['placeholder' => __('calendars.placeholders.leap_year_month'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="number" name="leap_year_month" value="{{ FormCopy::field('leap_year_month')->string(0) ?: old('leap_year_month', $model->leap_year_month ?? null) }}" class="w-full" maxlength="191" placeholder="{{ __('calendars.placeholders.leap_year_month') }}"/>
             </x-forms.field>
             <x-forms.field field="leap-offset" :label="__('calendars.fields.leap_year_offset')">
-                {!! Form::number('leap_year_offset', FormCopy::field('leap_year_offset')->string(), ['placeholder' => __('calendars.placeholders.leap_year_offset'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="number" name="leap_year_offset" value="{{ FormCopy::field('leap_year_offset')->string(0) ?: old('leap_year_offset', $model->leap_year_offset ?? null) }}" class="w-full" maxlength="191" placeholder="{{ __('calendars.placeholders.leap_year_offset') }}"/>
             </x-forms.field>
             <x-forms.field field="leap-start" :label="__('calendars.fields.leap_year_start')">
-                {!! Form::number('leap_year_start', FormCopy::field('leap_year_start')->string(), ['placeholder' => __('calendars.placeholders.leap_year_start'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="number" name="leap_year_start" value="{{ FormCopy::field('leap_year_start')->string(0) ?: old('leap_year_start', $model->leap_year_start ?? null) }}" class="w-full" maxlength="191" placeholder="{{ __('calendars.placeholders.leap_year_start') }}"/>
             </x-forms.field>
         </div>
     </div>
@@ -143,7 +143,7 @@
                     </div>
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
-                        {!! Form::number('year_number[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.year.number')]) !!}
+                        <input type="number" name="year_number[]" value="" class="w-full" maxlength="191" placeholder="{{ __('calendars.parameters.year.number') }}"/>
                     </div>
                 </div>
 

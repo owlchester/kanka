@@ -110,7 +110,7 @@ $weekNumber = 1;
     {!! Form::open(['route' => ['calendars.show', $campaign, $model], 'method' => 'GET']) !!}
     <x-dialog id="calendar-year-switcher" :title="__('calendars.modals.switcher.title')" footer="calendars.year-switcher._footer">
         <x-forms.field field="year" :label="__('calendars.fields.year')">
-            {!! Form::number('year', null, ['placeholder' => e($renderer->currentYear())]) !!}
+            <input type="number" name="year" placeholder="{{ $renderer->currentYear() }}" />
         </x-forms.field>
 
         @if ($renderer->isYearlyLayout() && !$model->yearlyLayout())

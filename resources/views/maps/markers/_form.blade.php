@@ -133,17 +133,12 @@ $sizeOptions = [
                 </x-forms.field>
 
                 <x-forms.field field="width" :label="__('maps/markers.fields.polygon_style.stroke-width')">
-                    {!! Form::number('polygon_style[stroke-width]', \App\Facades\FormCopy::field('polygon_style[stroke-width]')->string(), ['class' => '', 'maxlength' => 2, 'step' => 1, 'max' => 99, 'min' => 0, 'id' => 'stroke-width']) !!}
+
+                    <input type="number" name="polygon_style[stroke-width]" value="{{ \App\Facades\FormCopy::field('polygon_style[stroke-width]')->string() ?: old('polygon_style[stroke-width]', $model->polygon_style['stroke-width'] ?? null) }}" id="stroke-width" step="1" min="0" max="99" maxlength="2" />
                 </x-forms.field>
 
                 <x-forms.field field="opacity" :label="__('maps/markers.fields.polygon_style.stroke-opacity')">
-                    {!! Form::number('polygon_style[stroke-opacity]', \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string(), [
-                    'maxlength' => 3,
-                    'step' => 10,
-                    'max' => 100,
-                    'min' => 0,
-                    'id' => 'stroke-opacity'
-                ]) !!}
+                    <input type="number" name="polygon_style[stroke-opacity]" value="{{ \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string() ?: old('polygon_style[stroke-opacity]', $model->polygon_style['stroke-opacity'] ?? null) }}" id="stroke-opacity" step="10" min="0" max="100" maxlength="3" />
                 </x-forms.field>
             </x-grid>
         </div>
@@ -218,16 +213,16 @@ $sizeOptions = [
 
     <x-grid :hidden="!$model && empty($source)">
         <x-forms.field field="latitude" :label="__('maps/markers.fields.latitude')">
-            {!! Form::number('latitude', \App\Facades\FormCopy::field('latitude')->string(), ['class' => '', 'id' => 'marker-latitude', 'step' => 0.001]) !!}
+            <input type="number" name="latitude" value="{{ \App\Facades\FormCopy::field('latitude')->string() ?: old('latitude', $model->latitude ?? null) }}" id="marker-latitude" step="0.001" />
         </x-forms.field>
 
         <x-forms.field field="longitude" :label="__('maps/markers.fields.longitude')">
-            {!! Form::number('longitude', \App\Facades\FormCopy::field('longitude')->string(), ['class' => '', 'id' => 'marker-longitude', 'step' => 0.001]) !!}
+            <input type="number" name="longitude" value="{{ \App\Facades\FormCopy::field('longitude')->string() ?: old('longitude', $model->longitude ?? null) }}" id="marker-longitude" step="0.001" />
         </x-forms.field>
     </x-grid>
 </div>
 
-<input type="hidden" name="shape_id" value="{{ (!isset($model) ? !empty($source) ? $source->shape_id : 1 : 0) }}" />
+<input type="hidden" name="shape_id" value="{{ $source->shape_id ?? $model->shape_id ?? 1 }}" />
 @if (isset($from))
     <input type="hidden" name="from" value="{{ $from }}" />
 @endif

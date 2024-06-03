@@ -68,7 +68,8 @@ if (isset($inventory)) {
         :required="true"
         :label="__('entities/inventories.fields.amount')"
         :helper="__('entities/inventories.helpers.amount')">
-        {!! Form::number('amount', (empty($inventory) ? 1 : null), ['class' => '', 'max' => 1000000000, 'min' => 0, 'required']) !!}
+
+        <input type="number" name="amount" class="w-full" value="{{ old('amount', $inventory->amount ?? 1) }}" min="0" step="10" max="1000000000" required />
     </x-forms.field>
 
     <x-forms.field

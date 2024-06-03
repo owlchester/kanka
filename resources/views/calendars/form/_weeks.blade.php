@@ -133,7 +133,7 @@
                     </div>
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.weeks.number') }}</label>
-                        {!! Form::number('week_number[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.weeks.number')]) !!}
+                        <input type="number" name="week_number[]" class="w-full" value="" placeholder="{{ __('calendars.parameters.weeks.number') }}" />
                     </div>
                 </div>
                 <div class="flex items-center gap-2">

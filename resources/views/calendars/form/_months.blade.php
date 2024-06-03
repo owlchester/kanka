@@ -55,11 +55,7 @@
 
                     <div class="field">
                         <label class="sr-only">{{ __('calendars.parameters.month.length') }}</label>
-                        {!! Form::number('month_length[]', $month['length'], [
-                            'class' => 'w-full',
-                            'maxlength' => 4,
-                            'aria-label' => __('calendars.parameters.month.length'),
-                        ]) !!}
+                        <input type="number" name="month_length[]" class="w-full" value="{{ $month['length'] }}" maxlength="4" aria-label="{{ __('calendars.parameters.month.length') }}" placeholder="{{ __('calendars.parameters.month.length') }}" />
                     </div>
 
                     <div class="field">
@@ -111,8 +107,7 @@
             </div>
             <div class="field">
                 <label class="sr-only">{{ __('calendars.parameters.month.length') }}</label>
-                {!! Form::number('month_length[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.month.length'),
-                        'aria-label' => __('calendars.parameters.month.length'),]) !!}
+                <input type="number" name="month_length[]" class="w-full" value="" maxlength="4" aria-label="{{ __('calendars.parameters.month.length') }}" placeholder="{{ __('calendars.parameters.month.length') }}" />
             </div>
             <div class="field">
                 <label class="sr-only">{{ __('calendars.parameters.month.alias') }}</label>

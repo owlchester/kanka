@@ -6,7 +6,7 @@
     @include('cruds.fields.relation')
 
     @include('cruds.fields.colour_picker')
-    @include('cruds.fields.attitude')
+    @include('cruds.fields.attitude', ['model' => $relation ?? null])
 
     @include('cruds.fields.visibility_id', ['model' => $relation ?? null])
 

@@ -9,17 +9,18 @@
         <x-forms.field
             field="year"
             :label="__('calendars.fields.current_year')">
-            {!! Form::number('current_year', !empty($model) ? $model->currentDate('year') : (isset($source) ? $source->currentDate('year') : null)) !!}
+
+            <input type="number" name="current_year" class="w-full" value="{{ !empty($model) ? $model->currentDate('year') : (isset($source) ? $source->currentDate('year') : null) }}" placeholder="{{ __('calendars.fields.current_year') }}" aria-label="{{ __('calendars.fields.current_year') }}" />
         </x-forms.field>
         <x-forms.field
             field="month"
             :label="__('calendars.fields.current_month')">
-            {!! Form::number('current_month', !empty($model) ? $model->currentDate('month') : (isset($source) ? $source->currentDate('month') : null)) !!}
+            <input type="number" name="current_month" class="w-full" value="{{ !empty($model) ? $model->currentDate('month') : (isset($source) ? $source->currentDate('month') : null) }}" placeholder="{{ __('calendars.fields.current_month') }}" aria-label="{{ __('calendars.fields.current_month') }}" />
         </x-forms.field>
         <x-forms.field
             field="day"
             :label="__('calendars.fields.current_day')">
-            {!! Form::number('current_day', !empty($model) ? $model->currentDate('date') : (isset($source) ? $source->currentDate('date') : null)) !!}
+            <input type="number" name="current_day" class="w-full" value="{{ !empty($model) ? $model->currentDate('date') : (isset($source) ? $source->currentDate('date') : null) }}" placeholder="{{ __('calendars.fields.current_day') }}" aria-label="{{ __('calendars.fields.current_day') }}" />
         </x-forms.field>
 
     </div>

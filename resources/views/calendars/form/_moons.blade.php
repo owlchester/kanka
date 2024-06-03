@@ -58,7 +58,7 @@ if (!empty($moonNames)) {
                     </div>
                     <div class="field">
                         <label class="sr-only">{{ __('calendars.parameters.moon.fullmoon') }}</label>
-                        {!! Form::number('moon_fullmoon[]', $fullmoon['fullmoon'], ['class' => 'w-full', 'step' => 'any', 'min' => 1, 'aria-label' => __('calendars.parameters.moon.fullmoon')]) !!}
+                        <input type="number" name="moon_fullmoon[]" class="w-full" value="{{  $fullmoon['fullmoon'] }}" step="any" min="1" placeholder="{{ __('calendars.parameters.moon.fullmoon') }}" aria-label="{{ __('calendars.parameters.moon.fullmoon') }}" />
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
@@ -69,7 +69,7 @@ if (!empty($moonNames)) {
                     <div class="flex gap-2 items-center">
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.moon.offset') }}</label>
-                            {!! Form::number('moon_offset[]', $fullmoon['offset'], ['class' => 'w-full', 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
+                            <input type="number" name="moon_offset[]" class="w-full" value="{{  $fullmoon['offset'] }}" placeholder="{{ __('calendars.parameters.moon.offset') }}" aria-label="{{ __('calendars.parameters.moon.offset') }}" />
                         </div>
                         <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                             <x-icon class="trash" />
@@ -99,7 +99,7 @@ if (!empty($moonNames)) {
                 </div>
                 <div class="field">
                     <label class="sr-only">{{ __('calendars.parameters.moon.fullmoon') }}</label>
-                    {!! Form::number('moon_fullmoon[]', null, ['class' => 'w-full', 'step' => 'any', 'min' => 1, 'aria-label' => __('calendars.parameters.moon.fullmoon')]) !!}
+                    <input type="number" name="moon_fullmoon[]" class="w-full" value="" step="any" min="1" placeholder="{{ __('calendars.parameters.moon.fullmoon') }}" aria-label="{{ __('calendars.parameters.moon.fullmoon') }}" />
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-2">
@@ -110,7 +110,7 @@ if (!empty($moonNames)) {
                 <div class="flex gap-2 items-center">
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.moon.offset') }}</label>
-                        {!! Form::number('moon_offset[]', null, ['class' => 'w-full', 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
+                        <input type="number" name="moon_offset[]" class="w-full" value="" placeholder="{{ __('calendars.parameters.moon.offset') }}" aria-label="{{ __('calendars.parameters.moon.offset') }}" />
                     </div>
                     <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                         <x-icon class="trash" />

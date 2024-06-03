@@ -29,7 +29,7 @@
     </x-forms.field>
 
     @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#primary-dialog'] : [])
-    @include('cruds.fields.attitude')
+    @include('cruds.fields.attitude', ['model' => $relation ?? null])
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
     <x-forms.field field="field-two-way" :label="__('entities/relations.fields.two_way')">

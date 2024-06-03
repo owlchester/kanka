@@ -56,11 +56,8 @@ if (!empty($oldCalendarID)) {
                 <x-forms.field
                     field="year"
                     :label="__('calendars.fields.year')">
-                    {!! Form::number(
-                        'calendar_year',
-                        FormCopy::field('calendar_year')->string(),
-                        ['class' => '']
-                    ) !!}
+
+                    <input type="number" name="calendar_year" class="w-full" value="{{ FormCopy::field('calendar_year')->string() ?: old('calendar_year', $model->calendar_year ?? null) }}" />
                 </x-forms.field>
 
                 <x-forms.field
@@ -89,7 +86,7 @@ if (!empty($oldCalendarID)) {
                 <x-forms.field
                     field="length"
                     :label="__('calendars.fields.length')">
-                    {!! Form::number('calendar_length', FormCopy::field('calendar_length')->string(), ['class' => '']) !!}
+                    <input type="number" name="calendar_length" class="w-full" value="{{ FormCopy::field('calendar_length')->string() ?: old('calendar_length', $model->calendar_length ?? null) }}" />
                 </x-forms.field>
 
                 <x-forms.field

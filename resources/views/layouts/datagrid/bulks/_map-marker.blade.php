@@ -64,7 +64,7 @@ $groups[-1] = __('crud.filters.options.none');
     </x-forms.field>
 
     <x-forms.field field="opacity" :label="__('maps/markers.fields.opacity')">
-        {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : null)), ['class' => '', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0, 'id' => 'opacity'] ) !!}
+        <input type="number" name="opacity" class="w-full" value="{{ $source->opacity ?? old('opacity', $model->opacity ?? null) }}" min="0" step="10" max="100" id="opacity" maxlength="3" />
     </x-forms.field>
 
     <x-forms.field field="bg-colour" :label="__('maps/markers.fields.bg_colour')">

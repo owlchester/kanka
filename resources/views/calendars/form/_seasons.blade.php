@@ -48,13 +48,14 @@
 
                     <div class="field">
                         <label class="sr-only">{{ __('calendars.parameters.seasons.month') }}</label>
-                        {!! Form::number('season_month[]', $season['month'], ['class' => 'w-full']) !!}
+                        <input type="number" name="season_month[]" class="w-full" value="{{ $season['month'] }}" placeholder="{{ __('calendars.parameters.seasons.month') }}" />
                     </div>
 
                     <div class="flex gap-2 items-center">
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.seasons.day') }}</label>
-                            {!! Form::number('season_day[]', $season['day'], ['class' => 'w-full']) !!}
+                            <input type="number" name="season_day[]" class="w-full" value="{{ $season['day'] }}" placeholder="{{ __('calendars.parameters.seasons.day') }}" />
+
                         </div>
                         <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                             <x-icon class="trash"></x-icon>
@@ -84,13 +85,13 @@
 
             <div class="field">
                 <label class="sr-only">{{ __('calendars.parameters.seasons.month') }}</label>
-                {!! Form::number('season_month[]', null, ['class' => 'w-full']) !!}
+                <input type="number" name="season_month[]" class="w-full" value="" placeholder="{{ __('calendars.parameters.seasons.month') }}" />
             </div>
 
             <div class="flex gap-2 items-center">
                 <div class="grow field">
                     <label class="sr-only">{{ __('calendars.parameters.seasons.day') }}</label>
-                    {!! Form::number('season_day[]', null, ['class' => 'w-full']) !!}
+                    <input type="number" name="season_day[]" class="w-full" value="" placeholder="{{ __('calendars.parameters.seasons.day') }}" />
                 </div>
                 <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                     <x-icon class="trash"></x-icon>

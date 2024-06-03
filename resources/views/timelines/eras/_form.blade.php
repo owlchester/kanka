@@ -17,11 +17,11 @@
     </x-forms.field>
 
     <x-forms.field field="start" :label="__('timelines/eras.fields.start_year')">
-        {!! Form::number('start_year', null, ['placeholder' => __('timelines/eras.placeholders.start_year'), 'class' => '', 'maxlength' => 8]) !!}
+        <input type="number" name="start_year" class="w-full" value="" maxlength="8" aria-label="{{ __('timelines/eras.placeholders.start_year') }}" placeholder="{{ __('timelines/eras.placeholders.start_year') }}" />
     </x-forms.field>
 
     <x-forms.field field="end" :label="__('timelines/eras.fields.end_year')">
-        {!! Form::number('end_year', null, ['placeholder' => __('timelines/eras.placeholders.end_year'), 'class' => '', 'maxlength' => 8]) !!}
+        <input type="number" name="end_year" class="w-full" value="" maxlength="8" aria-label="{{ __('timelines/eras.placeholders.end_year') }}" placeholder="{{ __('timelines/eras.placeholders.end_year') }}" />
     </x-forms.field>
 
     <x-forms.field field="collapsed" css="col-span-2" :label="__('timelines/eras.fields.is_collapsed')">
