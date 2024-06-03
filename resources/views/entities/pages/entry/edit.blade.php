@@ -17,8 +17,13 @@
 
         @include('partials.errors')
 
+    <x-box>
         <x-forms.field field="entry">
-            {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+            <textarea name="entry"
+                      id="entry"
+                      class="html-editor"
+                      rows="3"
+            >{!! $entity->child->entryForEdition !!}</textarea>
         </x-forms.field>
 
         <div class="flex gap-2 items-center">
@@ -28,6 +33,7 @@
             <button class="btn2 btn-primary" id="form-submit-main">{{ __('crud.update') }}</button>
         </div>
 
+    </x-box>
     {!! Form::close() !!}
 
     {{-- For bragi --}}

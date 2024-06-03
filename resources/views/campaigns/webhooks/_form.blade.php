@@ -40,7 +40,8 @@
         :helper="__('campaigns/webhooks.helper.message')"
         link="https://docs.kanka.io/en/latest/features/campaigns/webhooks.html#mappings"
         >
-        {!! Form::textarea('message', null, ['placeholder' => __('campaigns/webhooks.placeholders.message'), 'class' => '', 'maxlength' => 400, 'rows' => 4]) !!}
+
+        <textarea name="message" class="w-full" rows="4" placeholder="{{ __('campaigns/webhooks.placeholders.message') }}" maxlength="400">{!! old('message', $webhook->message ?? null) !!}</textarea>
     </x-forms.field>
 </div>
 
@@ -49,7 +50,7 @@
     :label="__('campaigns/webhooks.fields.enabled')">
     <input type="hidden" name="status" value="0" />
     <x-checkbox :text="__('campaigns/webhooks.helper.active')">
-        {!! Form::checkbox('status', 1, isset($webhook) ? $webhook->status : 1) !!}
+        {!! Form::checkbox('status', 1, $webhook->status ?? 1) !!}
     </x-checkbox>
 </x-forms.field>
 

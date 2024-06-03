@@ -91,17 +91,8 @@
                                 'missing_features' => __('settings.subscription.cancel.options.missing_features'),
                                 'custom' => __('settings.subscription.cancel.options.custom')
                             ], null, ['class' => 'w-full select-reveal-field', 'data-change-target' => '#downgrade-reason-custom']) !!}
-                            {!! Form::textarea(
-                                'reason_custom',
-                                null,
-                                [
-                                    'placeholder' => __('settings.subscription.placeholders.downgrade_reason'),
-                                    'class' => '',
-                                    'style' => 'display: none',
-                                    'rows' => 4,
-                                    'id' => 'downgrade-reason-custom'
-                                ]
-                            )!!}
+
+                            <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.downgrade_reason') }}" class="w-full" rows="4" id="downgrade-reason-custom" style="display: none"></textarea>
                         </div>
 
                     @endif

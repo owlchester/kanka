@@ -50,7 +50,7 @@
         <x-forms.field
             field="entry"
             :label="__('campaigns.fields.description')">
-            {!! Form::textarea('entryForEdition', null, ['class' => 'w-full html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+            <textarea name="entry" id="entry" class="w-full html-editor">{!! old('entry', $campaign->entryForEdition ?? null) !!}</textarea>
         </x-forms.field>
 
         @include('cruds.fields.image', ['model' => $campaign ?? null, 'campaignImage' => true, 'imageLabel' => 'campaigns.fields.image', 'recommended' => '280x210'])

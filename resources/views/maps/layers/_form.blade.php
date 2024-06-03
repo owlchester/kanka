@@ -26,7 +26,12 @@ $typeOptions = [
     <x-forms.field
         field="entry col-span-2"
         :label="__('crud.fields.entry')">
-        {!! Form::textarea('entry', null, ['class' => ' html-editor', 'id' => 'layer-entry', 'name' => 'entry']) !!}
+
+                    <textarea name="entry"
+                              id="layer-entry"
+                              class="html-editor"
+                              rows="3"
+                    >{!! old('entry', $model->entryForEdition ?? null) !!}</textarea>
     </x-forms.field>
 
     @include('cruds.fields.visibility_id')

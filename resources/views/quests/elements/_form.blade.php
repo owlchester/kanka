@@ -25,7 +25,12 @@
         field="description"
         css="col-span-2"
         :label="__('quests.elements.fields.description')">
-        {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'description', 'name' => 'description']) !!}
+
+        <textarea name="description"
+                  id="element-entry"
+                  class="html-editor"
+                  rows="3"
+        >{!! old('description', $model->entryForEdition ?? null) !!}</textarea>
     </x-forms.field>
 
     <x-forms.field

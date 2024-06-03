@@ -116,7 +116,7 @@ $sizeOptions = [
                         </a>
                     </div>
                     @endif
-                        {!! Form::textarea('custom_shape', \App\Facades\FormCopy::field('custom_shape')->string(), ['class' => '', 'rows' => 2, 'placeholder' => __('maps/markers.placeholders.custom_shape')]) !!}
+                        <textarea name="custom_shape" class="w-full" rows="2" placeholder="{{ __('maps/markers.placeholders.custom_shape') }}">{!! \App\Facades\FormCopy::field('custom_shape')->string() ?: old('custom_shape', $model->custom_shape ?? null) !!}</textarea>
                     @else
                         <x-cta :campaign="$campaign" image="0">
                             <p>{{ __('maps/markers.pitches.poly') }}</p>
@@ -190,11 +190,7 @@ $sizeOptions = [
         </div>
         <div class="md:col-span-2 map-marker-entry-entry" style="{{ (!$model->hasEntry() ? 'display: none' : '') }}">
             <x-forms.field field="entry" :label=" __('crud.fields.entry')">
-                {!! Form::textarea(
-                    'entry',
-                    \App\Facades\FormCopy::field('entry')->string(),
-                    ['class' => ' html-editor', 'id' => 'marker-entry', 'name' => 'entry']
-                ) !!}
+                <textarea name="entry" class="w-full html-editor" id="marker-entry" rows="3">{!! \App\Facades\FormCopy::field('entry')->string() ?: old('entry', $model->entry ?? null) !!}</textarea>
             </x-forms.field>
         </div>
         @endif

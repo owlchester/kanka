@@ -23,7 +23,12 @@ if (!empty($era)) {
     @include('cruds.fields.entity')
 
     <x-forms.field field="entry" css="md:col-span-2" :label="__('crud.fields.entry')">
-        {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'element-entry', 'name' => 'entry']) !!}
+
+        <textarea name="entry"
+            id="element-entry"
+            class="html-editor"
+            rows="3"
+            >{!! old('entry', $model->entryForEdition ?? null) !!}</textarea>
         <input type="hidden" name="use_entity_entry" value="0" />
         <x-checkbox :text="__('timelines/elements.fields.use_entity_entry')">
             {!! Form::checkbox('use_entity_entry') !!}

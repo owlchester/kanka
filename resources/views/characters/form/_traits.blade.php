@@ -87,13 +87,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                         </div>
                         <div class="field-personality-entry">
                             <label class="sr-only field">{{ __('characters.labels.personality.entry') }}</label>
-                            {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, [
-                                'class' => 'w-full',
-                                'placeholder' => __('characters.placeholders.personality_entry'),
-                                'spellcheck' => 'true',
-                                'rows' => 3,
-                                'aria-label' => __('characters.labels.personality.entry'),
-                            ]) !!}
+                            <textarea name="personality_entry[{{ $trait->id }}]" placeholder="{{ __('characters.placeholders.personality_entry') }}" class="w-full" rows="3" spellcheck="true" aria-label="{{ __('characters.labels.personality.entry') }}">{!! old('personality_entry[' . $trait->id . ']', $trait->entry) !!}</textarea>
                         </div>
                     </div>
                 @endforeach
@@ -203,13 +197,8 @@ $role = \App\Facades\CampaignCache::adminRole();
             </div>
             <div class="field-personality-entry field">
                 <label class="sr-only">{{ __('characters.labels.personality.entry') }}</label>
-                {!! Form::textarea('personality_entry[]', null, [
-                    'class' => 'w-full',
-                    'placeholder' => __('characters.placeholders.personality_entry'),
-                    'spellcheck' => 'true',
-                    'rows' => 3,
-                    'aria-label' => __('characters.labels.personality.entry'),
-                ]) !!}
+
+                <textarea name="personality_entry[]" placeholder="{{ __('characters.placeholders.personality_entry') }}" class="w-full" rows="3" spellcheck="true" aria-label="{{ __('characters.labels.personality.entry') }}"></textarea>
             </div>
         </div>
     </template>

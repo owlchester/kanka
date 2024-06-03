@@ -8,7 +8,7 @@
             :tooltip="true"
             :helper="__('campaigns.helpers.excerpt')"
         >
-            {!! Form::textarea('excerptForEdition', null, ['class' => 'w-full html-editor', 'id' => 'excerpt', 'name' => 'excerpt']) !!}
+            <textarea name="excerpt" id="excerpt" class="w-full html-editor">{!! old('excerpt', $campaign->excerptForEdition) !!}</textarea>
         </x-forms.field>
 
         <x-forms.field field="header" :label="__('campaigns.fields.header_image')" :tooltip="true" :helper="__('campaigns.helpers.header_image')">

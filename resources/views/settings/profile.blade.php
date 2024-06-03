@@ -30,7 +30,7 @@
                     <x-forms.field field="bio" :label="__('profiles.fields.bio')" :helper="__('profiles.settings.helpers.bio', [
     'link' => link_to_route('users.profile', __('profiles.settings.helpers.profile'), $user, ['target' => '_blank'])
     ])">
-                        {!! Form::textarea('profile[bio]', null, ['placeholder' => __('profiles.placeholders.bio'), 'class' => 'rounded border p-2 w-full', 'rows' => 5, 'maxlength' => 300]) !!}
+                        <textarea name="profile[bio]" placeholder="{{ __('profiles.placeholders.bio') }}" class="w-full rounded border p-2" rows="5" maxlength="300">{!! old('profile[bio]', \Illuminate\Support\Arr::get($user->profile, 'bio')) !!}</textarea>
                     </x-forms.field>
 
                     <x-forms.field field="share-login" :label="__('profiles.fields.login_sharing')">

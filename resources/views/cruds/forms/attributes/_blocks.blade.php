@@ -14,16 +14,12 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
             <div class="{{ $nameBlock }}">
                 <div class="field">
                     <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
-                    {!! Form::text('attr_name[$TMP_ID$]', null, [
-                        'placeholder' => __('entities/attributes.placeholders.attribute'),
-                        'class' => 'w-full',
-                        'maxlength' => 191
-                    ]) !!}
+                    <input type="text" name="attr_name[$TMP_ID$]" placeholder="{{ __('entities/attributes.placeholders.attribute') }}" class="w-full" maxlength="191" />
                 </div>
             </div>
             <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
-                {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'w-full kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live', $campaign)]) !!}
+                <input type="text" name="attr_value[$TMP_ID$]" placeholder="{{ __('entities/attributes.placeholders.value') }}" class="w-full kanka-mentions" maxlength="191" data-remote="{{ route('search.live', $campaign) }}" />
             </div>
             <div class="{{ $actionBlock }}">
                 <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />
@@ -54,12 +50,12 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
             <div class="{{ $nameBlock }}">
                 <div class="field">
                     <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
-                    {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.block'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                    <input type="text" name="attr_name[$TMP_ID$]" placeholder="{{ __('entities/attributes.placeholders.attribute') }}" class="w-full" maxlength="191" />
                 </div>
             </div>
             <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
-                {!! Form::textarea('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'w-full kanka-mentions', 'rows' => 3, 'data-remote' => route('search.live', $campaign)]) !!}
+                <textarea name="attr_value[$TMP_ID$]" placeholder="{{ __('entities/attributes.placeholders.value') }}" class="w-full" rows="3" data-remote="{{ route('search.live', $campaign) }}"></textarea>
             </div>
             <div class="{{ $actionBlock }}">
                 <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />
@@ -90,11 +86,11 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
             </div>
             <div class="field {{ $nameBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
-                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="text" name="attr_name[$TMP_ID$]" placeholder="{{ __('entities/attributes.placeholders.number') }}" class="w-full" maxlength="191" />
             </div>
             <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
-                {!! Form::number('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'w-full']) !!}
+                <input type="number" name="attr_value[$TMP_ID$]" placeholder="{{ __('entities/attributes.placeholders.value') }}" class="w-full kanka-mentions" maxlength="191"  />
             </div>
             <div class="{{ $actionBlock }}">
                 <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />
@@ -124,10 +120,10 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
             </div>
             <div class="field {{ $nameBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.checkbox') }}</label>
-                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.checkbox'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="text" name="attr_name[$TMP_ID$]" placeholder="{{ __('entities/attributes.placeholders.checkbox') }}" class="w-full" maxlength="191" />
             </div>
             <div class="{{ $textBlock }}">
-                {!! Form::checkbox('attr_value[$TMP_ID$]', 1, false) !!}
+                <input type="checkbox" name="attr_value[$TMP_ID$]" value="1" />
             </div>
             <div class="{{ $actionBlock }}">
                 <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />
@@ -159,7 +155,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
             </div>
             <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.section') }}</label>
-                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.section'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="text" name="attr_name[$TMP_ID$]" placeholder="{{ __('entities/attributes.placeholders.section') }}" class="w-full" maxlength="191" />
             </div>
             <input type="hidden" name="attr_value[$TMP_ID$]" value="" />
             <div class="{{ $actionBlock }}">
@@ -190,15 +186,11 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
             </div>
             <div class="field {{ $nameBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
-                {!! Form::text('attr_name[$TMP_ID$]', null, [
-                    'placeholder' => __('entities/attributes.placeholders.random.name'),
-                    'class' => 'w-full',
-                    'maxlength' => 191
-                ]) !!}
+                <input type="text" name="attr_name[$TMP_ID$]" placeholder="{{ __('entities/attributes.placeholders.random.name') }}" class="w-full" maxlength="191" />
             </div>
             <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
-                {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.random.value'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="number" name="attr_value[$TMP_ID$]" placeholder="{{ __('entities/attributes.placeholders.random.value') }}" class="w-full" maxlength="191"  />
             </div>
             <div class="{{ $actionBlock }}">
                 <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />

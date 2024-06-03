@@ -13,13 +13,5 @@ $old = old('entry');
         </a>
     </div>
 
-    {!! Form::textarea(
-        'entryForEdition',
-        !empty($old) ? $old : FormCopy::field('entryForEdition')->string(),
-        [
-            'class' => 'w-full html-editor',
-            'id' => 'entry',
-            'name' => 'entry'
-        ]
-    ) !!}
+    <textarea id="entry" name="entry" class="w-full html-editor" rows="3">{!! FormCopy::field('entryForEdition')->string() ?: old('entry', $model->entryForEdition ?? null) !!}</textarea>
 </div>

@@ -23,15 +23,14 @@
             :required="true"
             :label="__('crud.fields.name')">
             @if ($mode === 'bulk')
-            {!! Form::textarea('name', null, [
-                'placeholder' => __('entities.creator.bulk_names'),
-                'autocomplete' => 'off',
-                'class' => '',
-                'rows' => 4,
-                'data-live' => route('search.live', $campaign),
-                'data-type' => $singularType,
-                'id' => 'qq-name-field'
-            ]) !!}
+                <textarea name="name"
+                          autocomplete="off"
+                          class="w-full"
+                          id="qq-name-field"
+                          rows="4"
+                          data-live="{{ route('search.live', $campaign) }}"
+                          data-type="{{ $singularType }}"
+                          placeholder="{{ __('entities.creator.bulk_names') }}"></textarea>
             @else
                 {!! Form::text('name', null, [
                     'placeholder' => $type === 'posts' ? __('posts.placeholders.name') : __('crud.placeholders.name'),

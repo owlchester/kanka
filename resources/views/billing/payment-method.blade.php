@@ -61,8 +61,7 @@
             <p class="help-block">
                 {{ __('settings.billing.placeholder') }}
             </p>
-            {!! Form::textarea('profile[billing]', null, ['class' => 'rounded border p-2 w-full mb-2', 'rows' => 5, 'maxlength' => 1024]) !!}
-
+        <textarea name="profile[billing]" placeholder="" class="w-full rounded border p-2 mb-2" rows="5" maxlength="1024">{!! old('profile[billing]', \Illuminate\Support\Arr::get($user->profile, 'billing')) !!}</textarea>
             <div class="text-right">
                 <x-buttons.confirm type="primary"  outline="true">
                     <x-icon class="save"></x-icon>

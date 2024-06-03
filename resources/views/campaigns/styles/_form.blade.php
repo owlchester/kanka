@@ -10,7 +10,7 @@
     :required="true"
     :label="__('campaigns/styles.fields.content')"
     :helper="__('campaigns.helpers.css')">
-    {!! Form::textarea('content', null, ['class' => 'codemirror', 'id' => 'css', 'spellcheck' => 'false']) !!}
+    <textarea name="content" id="css" class="codemirror" spellcheck="false">{!! old('content', $style->content ?? null) !!}</textarea>
 </x-forms.field>
 
 <x-forms.field field="enabled" :label=" __('campaigns/styles.fields.is_enabled')">

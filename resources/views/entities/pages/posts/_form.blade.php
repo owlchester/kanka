@@ -67,7 +67,12 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 @endif
 
                 <x-forms.field field="entry" css="md:col-span-2" id="field-entry" :hidden="isset($layoutHelper)">
-                    {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+
+                    <textarea name="entry"
+                              id="entry"
+                              class="html-editor"
+                              rows="3"
+                    >{!! old('entry', $model->entryForEdition ?? null) !!}</textarea>
                 </x-forms.field>
                 <x-forms.field field="location" id="field-location" :hidden="isset($layoutHelper)">
                     @include('cruds.fields.location', ['from' => null])

@@ -34,17 +34,7 @@
                 'competitor' => __('settings.subscription.cancel.options.competitor'),
                 'custom' => __('settings.subscription.cancel.options.other')
                 ], null, ['class' => 'w-full']) !!}
-
-                    {!! Form::textarea(
-                        'reason_custom',
-                        null,
-                        [
-                            'placeholder' => __('settings.subscription.placeholders.reason'),
-                            'class' => 'w-full',
-                            'rows' => 4,
-                            'id' => 'cancel-reason-custom'
-                        ]
-                    ) !!}
+                    <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.reason') }}" class="w-full" rows="4" id="cancel-reason-custom"></textarea>
                 </x-grid>
             </x-forms.field>
 
