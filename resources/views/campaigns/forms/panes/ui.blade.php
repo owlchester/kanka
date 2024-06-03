@@ -48,7 +48,7 @@ if (!isset($model) || !$model->boosted()) {
                 :helper="__('campaigns.ui.helpers.member-list')">
                 {!! Form::select('ui_settings[hide_members]', [0 => __('campaigns.ui.members.visible'), 1 => __('campaigns.ui.members.hidden')], null, $boostedFormFields) !!}
                 @if (!isset($model) || !$model->boosted())
-                    {!! Form::hidden('ui_settings[hide_members]', 0) !!}
+                    <input type="hidden" name="ui_settings[hide_members]" value="0" />
                 @endif
             </x-forms.field>
 
@@ -58,7 +58,7 @@ if (!isset($model) || !$model->boosted()) {
                 :helper="__('campaigns.ui.helpers.entity-history')">
                 {!! Form::select('ui_settings[hide_history]', [0 => __('campaigns.ui.entity_history.visible'), 1 => __('campaigns.ui.entity_history.hidden')], null, $boostedFormFields) !!}
                 @if (!isset($model) || !$model->boosted())
-                    {!! Form::hidden('ui_settings[hide_history]', 0) !!}
+                    <input type="hidden" name="ui_settings[hide_history]" value="0" />
                 @endif
             </x-forms.field>
         </x-grid>
@@ -74,7 +74,7 @@ if (!isset($model) || !$model->boosted()) {
                 :label="__('campaigns.ui.fields.entity_image')">
                 {!! Form::select('ui_settings[tooltip_image]', [0 => __('campaigns.privacy.hidden'), 1 => __('campaigns.privacy.visible')], null, $boostedFormFields) !!}
                 @if (!isset($model) || !$model->boosted())
-                    {!! Form::hidden('ui_settings[tooltip_image]', 0) !!}
+                    <input type="hidden" name="ui_settings[tooltip_image]" value="0" />
                     <x-helper :text="__('callouts.premium.limitation')" />
                 @endif
             </x-forms.field>

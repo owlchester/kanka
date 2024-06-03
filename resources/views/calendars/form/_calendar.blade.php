@@ -3,7 +3,7 @@
     <div class="flex gap-5 flex-col">
 
         <x-forms.field field="skip-zero" :label="__('calendars.fields.skip_year_zero')">
-            {!! Form::hidden('skip_year_zero', 0) !!}
+            <input type="hidden" name="skip_year_zero" value="0" />
             <x-checkbox :text="__('calendars.hints.skip_year_zero')">
                 {!! Form::checkbox('skip_year_zero', 1, !empty($model) ? $model->skip_year_zero : 0) !!}
             </x-checkbox>
@@ -39,14 +39,14 @@
         @include('cruds.fields.format')
 
         <x-forms.field field="incrementing" :label="__('calendars.fields.is_incrementing')">
-            {!! Form::hidden('is_incrementing', 0) !!}
+            <input type="hidden" name="is_incrementing" value="0" />
             <x-checkbox :text="__('calendars.hints.is_incrementing')">
                 {!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
             </x-checkbox>
         </x-forms.field>
 
         <x-forms.field field="birthdays" :label="__('calendars.fields.show_birthdays')">
-            {!! Form::hidden('show_birthdays', 0) !!}
+            <input type="hidden" name="show_birthdays" value="0" />
             <x-checkbox :text="__('calendars.hints.show_birthdays')">
                 {!! Form::checkbox('show_birthdays', 1, FormCopy::field('show_birthdays')->string()) !!}
             </x-checkbox>
@@ -109,7 +109,7 @@
         <hr class="m-0" />
 
         <x-forms.field field="leap-year" :label="__('calendars.fields.leap_year')">
-            {!! Form::hidden('has_leap_year', 0) !!}
+            <input type="hidden" name="has_leap_year" value="0" />
             <x-checkbox :text="__('calendars.hints.leap_year')">
                 {!! Form::checkbox('has_leap_year', 1, FormCopy::field('has_leap_year')->string()) !!}
             </x-checkbox>

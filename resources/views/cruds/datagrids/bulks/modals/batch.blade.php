@@ -25,8 +25,7 @@
 </x-dialog>
 <input type="hidden" name="datagrid-action" value="batch" />
 <input type="hidden" name="entity" value="{{ $name }}" />
-
-{!! Form::hidden('mode', $mode) !!}
-{!! Form::hidden('models', null, ['id' => 'datagrid-bulk-batch-models']) !!}
+<input type="hidden" name="mode" value="{{ $mode }}" />
+<input type="hidden" name="models" value="" id="datagrid-bulk-batch-models" />
 {!! Form::close() !!}
 

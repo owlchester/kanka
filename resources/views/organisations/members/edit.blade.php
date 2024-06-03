@@ -13,6 +13,6 @@
         'content' => 'organisations.members._form',
         'dialog' => true,
     ])
-    {!! Form::hidden('organisation_id', $model->id) !!}
+    <input type="hidden" name="organisation_id" value="{{ $model->id }}" />
     {!! Form::close() !!}
 @endsection

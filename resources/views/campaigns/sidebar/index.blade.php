@@ -68,7 +68,7 @@
                     @endif
 
                     <input type="hidden" name="order[{{ $name }}_start]" value="1" />
-                    {!! Form::hidden('section_' . $name . '_start', 1) !!}
+                    <input type="hidden" name="section_{{ $name }}_start" value="1" />
                     <ul class="list-none mt-2 m-0 p-0 pl-4 sidebar-sortable nested-sortable basis-full flex flex-col gap-2">
                         @foreach ($setup['children'] as $childName => $child)
                             <li class="flex md:items-center flex-wrap @if (\Illuminate\Support\Arr::get($child, 'disabled') === true) alert-warning @endif" id="{{ $childName }}">
@@ -94,7 +94,7 @@
                         @endforeach
                     </ul>
                     <input type="hidden" name="order[{{ $name }}_end]" value="1" />
-                    {!! Form::hidden('section_' . $name . '_end', 1) !!}
+                    <input type="hidden" name="section_{{ $name }}_end" value="1" />
                 </li>
             @endforeach
             </ul>

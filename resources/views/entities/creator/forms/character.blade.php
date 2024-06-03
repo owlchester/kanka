@@ -16,4 +16,4 @@
 
 
 
-{!! Form::hidden('is_personality_visible', $campaign->entity_personality_visibility ? 0 : 1) !!}
+<input type="hidden" name="is_personality_visible" value="{{ $campaign->entity_personality_visibility ? 0 : 1 }}" />

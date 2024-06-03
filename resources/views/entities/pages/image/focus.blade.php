@@ -43,8 +43,8 @@
 'route' => ['entities.image.focus', $campaign, $entity],
 'method' => 'POST'
 ]) !!}
-    {!! Form::hidden('focus_x', null) !!}
-    {!! Form::hidden('focus_y', null) !!}
+    <input type="hidden" name="focus_x" />
+    <input type="hidden" name="focus_y" />
 
 
     <x-dialog.footer>

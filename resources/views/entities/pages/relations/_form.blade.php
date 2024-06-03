@@ -59,7 +59,7 @@
             'link' => '<a href="' . $relation->target->url() . '" data-toggle="tooltip-ajax" data-id="' . $relation->target_id . '" data-url="' . route('entities.tooltip', [$campaign, $relation->target->id]) . "\">" . $relation->target->name . '</a>'
             ]) !!}</p>
             <x-forms.field field="unmirror">
-                {!! Form::hidden('unmirror', 0) !!}
+                <input type="hidden" name="unmirror" value="0" />
                 <x-checkbox :text="__('entities/relations.fields.unmirror')">
                     {!! Form::checkbox('unmirror', 1)!!}
                 </x-checkbox>

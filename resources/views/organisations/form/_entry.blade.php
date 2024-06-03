@@ -18,7 +18,7 @@
 @endif
 
     <x-forms.field field="defunct" :label="__('organisations.fields.is_defunct')">
-        {!! Form::hidden('is_defunct', 0) !!}
+        <input type="hidden" name="is_defunct" value="0" />
         <x-checkbox :text="__('organisations.hints.is_defunct')">
             {!! Form::checkbox('is_defunct', 1, $model->is_defunct ?? '' )!!}
         </x-checkbox>

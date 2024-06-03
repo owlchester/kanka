@@ -48,7 +48,7 @@
                 </x-forms.field>
 
                 <x-forms.field field="singular" css="col-span-2" :label="__('dashboard.widgets.recent.singular')">
-                    {!! Form::hidden('config[singular]', 0) !!}
+                    <input type="hidden" name="config[singular]" value="0" />
                     <div class="checkbox" data-animate="collapse" data-target="#widget-advanced">
                         <x-checkbox :text="__('dashboard.widgets.recent.help')">
                             {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null)) !!}

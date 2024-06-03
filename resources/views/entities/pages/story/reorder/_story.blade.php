@@ -1,5 +1,5 @@
 <x-reorder.child id="story">
-    {!! Form::hidden('posts[story]', 'story') !!}
+    <input type="hidden" name="posts[story]" value="story" />
     <div class="dragger pr-3">
         <span class="fa-solid fa-ellipsis-v" aria-hidden="true"></span>
     </div>

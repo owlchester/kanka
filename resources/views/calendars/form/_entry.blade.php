@@ -38,7 +38,7 @@
 </x-grid>
 
 @if (request()->has('redirect'))
-    {!! Form::hidden('redirect', request()->get('redirect')) !!}
+    <input type="hidden" name="redirect" value="{{ request()->get('redirect') }}"/>
 @endif
 
 @section('scripts')

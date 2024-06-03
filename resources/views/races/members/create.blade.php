@@ -17,6 +17,6 @@
         'submit' => __('races.members.create.submit'),
         'dialog' => true,
     ])
-    {!! Form::hidden('race_id', $model->id) !!}
+    <input type="hidden" name="race_id" value="{{ $model->id }}" />
     {!! Form::close() !!}
 @endsection

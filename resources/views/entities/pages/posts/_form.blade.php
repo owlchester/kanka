@@ -99,4 +99,4 @@ $layoutOptions = $layoutDefault + $layoutOptions
     </div>
 </div>
 
-{!! Form::hidden('entity_id', $entity->id) !!}
+<input type="hidden" name="entity_id" value="{{ $entity->id }}" />

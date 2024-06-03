@@ -47,7 +47,7 @@
 <x-forms.field
     field="status"
     :label="__('campaigns/webhooks.fields.enabled')">
-    {!! Form::hidden('status', 0) !!}
+    <input type="hidden" name="status" value="0" />
     <x-checkbox :text="__('campaigns/webhooks.helper.active')">
         {!! Form::checkbox('status', 1, isset($webhook) ? $webhook->status : 1) !!}
     </x-checkbox>

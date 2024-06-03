@@ -21,7 +21,7 @@ $entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->ex
         </x-forms.field>
 
 {{--        <x-forms.field field="nested" :label="__('bookmarks.fields.is_nested')">--}}
-{{--            {!! Form::hidden('options[is_nested]', 0) !!}--}}
+{{--            <input type="hidden" name="options[is_nested]" value="0" />--}
 {{--            <x-checkbox :text="__('bookmarks.fields.is_nested')">--}}
 {{--                {!! Form::checkbox('options[is_nested]', 1, empty($model->options) ? false : $model->options['is_nested']) !!}--}}
 {{--            </x-checkbox>--}}

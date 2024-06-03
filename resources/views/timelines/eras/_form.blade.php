@@ -20,7 +20,7 @@
     </x-forms.field>
 
     <x-forms.field field="collapsed" css="col-span-2" :label="__('timelines/eras.fields.is_collapsed')">
-        {!! Form::hidden('is_collapsed', 0) !!}
+        <input type="hidden" name="is_collapsed" value="0" />
         <x-checkbox :text="__('timelines/eras.helpers.is_collapsed')">
             {!! Form::checkbox('is_collapsed', 1) !!}
         </x-checkbox>

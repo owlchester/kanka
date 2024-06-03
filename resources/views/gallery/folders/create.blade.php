@@ -6,6 +6,6 @@
     'dialog' => true,
 ])
 @if(!empty($folder))
-    {!! Form::hidden('folder_id', $folder->id) !!}
+    <input type="hidden" name="folder_id" value="{{ $folder->id }}" />
 @endif
 {!! Form::close() !!}

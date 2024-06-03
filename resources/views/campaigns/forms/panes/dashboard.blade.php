@@ -14,8 +14,7 @@
             field="header"
             :label="__('campaigns.fields.header_image')">
             <p class="text-neutral-content m-0 md:hidden">{{ __('campaigns.helpers.header_image') }}</p>
-            {!! Form::hidden('remove-header_image') !!}
-            {!! Form::hidden('remove-header_image') !!}
+            <input type="hidden" name="remove-header_image" />
             <div class="flex gap-2 ">
                 <div class="basis-3/4 flex flex-col gap-2">
                     <x-forms.field

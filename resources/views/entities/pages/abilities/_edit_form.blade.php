@@ -4,7 +4,7 @@
         field="ability"
         :label="__('entities.ability')">
         {!! $ability->ability->tooltipedLink() !!}
-        {!! Form::hidden('ability_id', $ability->ability_id) !!}
+        <input type="hidden" name="ability_id" value="{{ $ability->ability_id }}" />
     </x-forms.field>
 
     <x-forms.field

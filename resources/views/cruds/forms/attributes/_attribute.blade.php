@@ -27,7 +27,7 @@ if ($attribute->isSection()) {
             'maxlength' => 191,
             'disabled' => 'disabled'
         ]) !!}
-            {!! Form::hidden('attr_name[' . $id . ']', $attribute->name) !!}
+        <input type="hidden" name="attr_name[{{ $id }}]" value="{{ $attribute->name }}" />
         @else
         {!! Form::text('attr_name[' . $id . ']', $attribute->name, [
             'placeholder' => $placeholder,
@@ -38,12 +38,12 @@ if ($attribute->isSection()) {
         @endif
     </div>
     @if ($attribute->isSection())
-        {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
+        <input type="hidden" name="attr_value[{{ $id }}]" value="{{ $attribute->value }}" />
     @else
     <div class="grow field">
         <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
         @if ($attribute->isCheckbox())
-            {!! Form::hidden('attr_value[' . $id . ']', 0) !!}
+            <input type="hidden" name="attr_value[{{ $id }}]" value="0" />
             {!! Form::checkbox('attr_value[' . $id . ']', 1, $attribute->value) !!}
         @elseif ($attribute->isText())
             {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, [
@@ -54,9 +54,9 @@ if ($attribute->isSection()) {
                 'aria-label' => __('entities/attributes.fields.value')
             ]) !!}
         @elseif ($attribute->isSection())
-            {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
+            <input type="hidden" name="attr_value[{{ $id }}]" value="{{ $attribute->value }}" />
         @elseif($attribute->name == '_layout')
-            {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
+            <input type="hidden" name="attr_value[{{ $id }}]" value="{{ $attribute->value }}" />
             <div class="rounded bg-base-200 p-2">
             {{ $attribute->value }}
             </div>
@@ -74,13 +74,13 @@ if ($attribute->isSection()) {
     </div>
     @endif
     <div class="flex gap-3">
-        {!! Form::hidden('attr_is_pinned[' . $id . ']', $attribute->isPinned()) !!}
+        <input type="hidden" name="attr_is_pinned[{{ $id }}]" value="{{ $attribute->isPinned() }}" />
         <i class="cursor-pointer fa-star @if($attribute->isPinned()) fa-solid @else fa-regular @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="@if($attribute->isPinned()) {{ __('entities/attributes.visibility.entry') }} @else  {{ __('entities/attributes.visibility.tab') }} @endif"
         data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
         ></i>
 
         @if ($isAdmin)
-        {!! Form::hidden('attr_is_private[' . $id . ']', $attribute->is_private) !!}
+            <input type="hidden" name="attr_is_private[{{ $id }}]" value="{{ $attribute->is_private() }}" />
         <i class="cursor-pointer fa-solid @if($attribute->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
            data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
         ></i>
@@ -93,5 +93,5 @@ if ($attribute->isSection()) {
         @endcan
     </div>
 
-    {!! Form::hidden('attr_type[' . $id . ']', $attribute->type_id) !!}
+    <input type="hidden" name="attr_type[{{ $id }}]" value="{{ $attribute->type_id }}" />
 </div>

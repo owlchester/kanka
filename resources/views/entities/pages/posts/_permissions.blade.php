@@ -51,7 +51,7 @@
             <i class="fa-solid fa-users" aria-hidden="true"></i> {{ __('entities/notes.actions.add_role') }}
         </a>
     </div>
-    {!! Form::hidden('permissions', true) !!}
+    <input type="hidden" name="permissions" value="1" />
 </div>
 
 @section('modals')

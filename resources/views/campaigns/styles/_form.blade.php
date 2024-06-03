@@ -14,7 +14,7 @@
 </x-forms.field>
 
 <x-forms.field field="enabled" :label=" __('campaigns/styles.fields.is_enabled')">
-    {!! Form::hidden('is_enabled', 0) !!}
+    <input type="hidden" name="is_enabled" value="0" />
         <x-checkbox :text="__('campaigns/styles.helpers.is_enabled')">
             {!! Form::checkbox('is_enabled', 1, !isset($style) ? true : $style->is_enabled) !!}
         </x-checkbox>

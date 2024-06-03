@@ -16,7 +16,7 @@ $fromOrg = request()->get('from') === 'org';
 @endphp
 {{ csrf_field() }}
 @if ($fromOrg)
-   {!! Form::hidden('organisation_id') !!}
+        <input type="hidden" name="organisation_id" />
 @else
     @include('cruds.fields.organisation', [
         'model' => $member ?? null,

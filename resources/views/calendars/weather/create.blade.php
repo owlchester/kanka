@@ -18,11 +18,11 @@
         'dialog' => true,
     ])
 
-    {!! Form::hidden('year', $year) !!}
-    {!! Form::hidden('month', $month) !!}
-    {!! Form::hidden('day', $day) !!}
+    <input type="hidden" name="year" value="{{ $year }}" />
+    <input type="hidden" name="month" value="{{ $month }}" />
+    <input type="hidden" name="day" value="{{ $day }}" />
     @if (request()->has('layout'))
-        {!! Form::hidden('layout', request()->get('layout')) !!}
+        <input type="hidden" name="layout" value="{{ request()->get('layout') }}" />
     @endif
 
     {!! Form::close() !!}

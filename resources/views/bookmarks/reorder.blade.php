@@ -28,7 +28,7 @@
             <div class="element-live-reorder sortable-elements flex flex-col gap-2">
                 @foreach($links as $link)
                     <div class="element bg-base-200 rounded flex gap-2 p-2" data-id="{{ $link->id }}">
-                        {!! Form::hidden('bookmark[]', $link->id) !!}
+                        <input type="hidden" name="bookmark[]" value="{{ $link->id }}" />
                         <div class="dragger pr-3">
                             <span class="fa-solid fa-ellipsis-v" aria-hidden="true"></span>
                         </div>

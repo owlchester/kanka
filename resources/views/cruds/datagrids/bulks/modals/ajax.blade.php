@@ -5,6 +5,6 @@
         </div>
     </div>
 </div>
-{!! Form::hidden('models', null, ['id' => 'datagrid-bulk-ajax-models']) !!}
-{!! Form::hidden('mode', $mode) !!}
+<input type="hidden" name="mode" value="{{ $mode }}" />
+<input type="hidden" name="models" value="" id="datagrid-bulk-ajax-models" />
 {!! Form::close() !!}

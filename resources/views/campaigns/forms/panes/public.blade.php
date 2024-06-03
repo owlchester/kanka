@@ -28,7 +28,7 @@
 
             <x-forms.field field="discreet" :label="__('campaigns.fields.is_discreet')" :disabled="true">
                 @if (isset($model) && $model->boosted())
-                {!! Form::hidden('is_discreet', 0) !!}
+                    <input type="hidden" name="is_discreet" value="0" />
                     <x-checkbox :text="__('campaigns.helpers.is_discreet', ['public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'))])">
                         {!! Form::checkbox('is_discreet', 1, $model->is_discreet ?? '', []) !!}
                     </x-checkbox>

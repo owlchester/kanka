@@ -18,6 +18,6 @@
         'submit' => __('campaigns.roles.users.actions.add'),
         'dialog' => true,
     ])
-    {!! Form::hidden('campaign_role_id', $role->id) !!}
+    <input type="hidden" name="campaign_role_id" value="{{ $role->id }}"/>
     {!! Form::close() !!}
 @endsection

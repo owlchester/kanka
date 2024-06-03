@@ -29,6 +29,6 @@ $permissions = $permissionService->type($entity->type_id)->entityPermissions($en
         'content' => 'cruds.permissions.permissions_table',
         'dialog' => true,
     ])
-    {!! Form::hidden('entity_id', $entity->id) !!}
+    <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
     {!! Form::close() !!}
 @endsection

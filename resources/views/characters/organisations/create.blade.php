@@ -23,6 +23,6 @@
         'dropdownParent' => '#primary-dialog',
     ])
 
-    {!! Form::hidden('character_id', $model->id) !!}
+    <input type="hidden" name="character_id" value="{{ $model->id }}" />
     {!! Form::close() !!}
 @endsection

@@ -21,7 +21,7 @@
                 </button>
             </div>
         </div>
-        {!! Form::hidden('conversation_id', $model->id) !!}
+        <input type="hidden" name="conversation_id" value="{{ $model->id }}" />
         {!! Form::close() !!}
     @endif
 @endcan

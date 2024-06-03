@@ -11,7 +11,7 @@
 
 @section('content')
     {!! Form::open([
-        'route' => $formOptions, 
+        'route' => $formOptions,
         'method' => 'POST',
         'data-shortcut' => 1,
         'class' => 'ajax-subform',
@@ -23,6 +23,6 @@
         'submit' =>  __('tags.children.actions.add'),
         'dialog' => true,
     ])
-    {!! Form::hidden('tag_id', $model->entity->id) !!}
+    <input type="hidden" name="tag_id" value="{{ $model->entity->id }}" />
     {!! Form::close() !!}
 @endsection

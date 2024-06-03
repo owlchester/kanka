@@ -26,7 +26,7 @@
         'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
     ])
 
-    {!! Form::hidden('entity_id', $entity->id) !!}
+    <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
     @if (!empty($next))
         <input type="hidden" name="next" value="{{ $next }}" />
     @endif

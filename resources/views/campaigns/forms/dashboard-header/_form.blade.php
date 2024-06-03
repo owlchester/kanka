@@ -12,7 +12,7 @@
         </x-forms.field>
 
         <x-forms.field field="header" :label="__('campaigns.fields.header_image')" :tooltip="true" :helper="__('campaigns.helpers.header_image')">
-            {!! Form::hidden('remove-header_image') !!}
+            <input type="hidden" name="remove-header_image" />
             <div class="grid gap-2 grid-cols-4">
                 <div class="col-span-3 flex flex-col gap-2 ">
                     <div class="field field-header-image">

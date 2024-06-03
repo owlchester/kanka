@@ -119,7 +119,7 @@ $weekNumber = 1;
             @if ($model->yearlyLayout())
                 <input type="hidden" name="layout" value="month">
             @endif
-            {!! Form::hidden('month', $renderer->currentMonthId()) !!}
+            <input type="hidden" name="month" value="{{ $renderer->currentMonthId() }}" />
         @endif
     </x-dialog>
     {!! Form::close() !!}

@@ -8,5 +8,5 @@
         'dialog' => true,
         'dropdownParent' => '#primary-dialog',
     ])
-{!! Form::hidden('uid', $uid) !!}
+<input type="hidden" name="uid" value="{{ $uid }}" />
 {!! Form::close() !!}

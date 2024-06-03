@@ -36,7 +36,7 @@
         <input type="hidden" name="next" value="{{ $next }}" />
     @endif
     @if (request()->has('layout'))
-        {!! Form::hidden('layout', request()->get('layout')) !!}
+        <input type="hidden" name="layout" value="{{ request()->get('layout') }}" />
     @endif
     {!! Form::close() !!}
 
@@ -45,13 +45,13 @@
         'route' => ['entities.entity_events.destroy', $campaign, $entity->id, $entityEvent->id],
         'id' => 'delete-reminder-' . $entityEvent->id]) !!}
     @if (request()->has('layout'))
-        {!! Form::hidden('layout', request()->get('layout')) !!}
+        <input type="hidden" name="layout" value="{{ request()->get('layout') }}" />
     @endif
     @if (!empty($from))
-        {!! Form::hidden('from', $from) !!}
+        <input type="hidden" name="from" value="{{ $from }}" />
     @endif
     @if (!empty($next))
-        {!! Form::hidden('next', $next) !!}
+        <input type="hidden" name="next" value="{{ $next }}" />
     @endif
     {!! Form::close() !!}
 @endsection

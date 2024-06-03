@@ -9,7 +9,7 @@
     <div class="element-live-reorder sortable-elements flex flex-col gap-1">
         @foreach($rows as $layer)
             <x-reorder.child :id="$layer->id">
-                {!! Form::hidden('layer[]', $layer->id) !!}
+                <input type="hidden" name="layer[]" value="{{ $layer->id }}" />
                 <div class="dragger pr-3">
                     <span class="fa-solid fa-ellipsis-v"></span>
                 </div>

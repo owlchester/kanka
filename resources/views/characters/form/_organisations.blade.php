@@ -54,7 +54,7 @@ $statuses = [
                 </div>
                 @if ($isAdmin)
                     <div class="">
-                        {!! Form::hidden('organisation_privates[' . $organisation->id . ']', $organisation->is_private) !!}
+                        <input type="hidden" name="organisation_privates[{{ $organisation->id }}]" value="{{ $organisation->is_private }}" />
                         <i class="fa-solid @if($organisation->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                     </div>
                 @endif
@@ -75,7 +75,7 @@ $statuses = [
 </x-grid>
 
 
-{!! Form::hidden('character_save_organisations', 1) !!}
+<input type="hidden" name="character_save_organisations" value="1"/>
 
 @section('modals')
     @parent
@@ -108,7 +108,7 @@ $statuses = [
             </div>
             @if ($isAdmin)
                 <div class="">
-                    {!! Form::hidden('organisation_privates[]', 0) !!}
+                    <input type="hidden" name="organisation_privates[]" value="0"/>
                     <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                 </div>
             @endif

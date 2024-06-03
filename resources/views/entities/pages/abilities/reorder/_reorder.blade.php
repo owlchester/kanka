@@ -17,7 +17,7 @@
                 <div class="children sortable-elements flex flex-col gap-1">
                     @foreach($parent as $ability)
                         <x-reorder.child id="$ability->id">
-                            {!! Form::hidden('ability[]', $ability->id) !!}
+                            <input type="hidden" name="ability[]" value="{{ $ability->id }}" />
                             <div class="dragger relative pr-3">
                                 <span class="fa-solid fa-sort" aria-hidden="true"></span>
                             </div>

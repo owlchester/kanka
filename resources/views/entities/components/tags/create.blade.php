@@ -11,7 +11,7 @@
 
 @section('content')
     {!! Form::open([
-        'route' => $formOptions, 
+        'route' => $formOptions,
         'method' => 'POST',
         'data-shortcut' => 1,
         'class' => 'ajax-subform',
@@ -24,6 +24,6 @@
         'dialog' => true,
     ])
 
-    {!! Form::hidden('entity_id', $model->entity->id) !!}
+    <input type="hidden" name="entity_id" value="{{ $model->entity->id }}" />
     {!! Form::close() !!}
 @endsection

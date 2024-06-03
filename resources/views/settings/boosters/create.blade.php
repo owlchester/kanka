@@ -13,6 +13,6 @@
     'actions' => 'settings.boosters.create._actions',
     'dialog' => true,
 ])
-{!! Form::hidden('action', $superboost ? 'superboost' : 'boost') !!}
-{!! Form::hidden('campaign_id', $campaign->id) !!}
+<input type="hidden" name="action" value="{{ $superboost ? 'superboost' : 'boost' }}" />
+<input type="hidden" name="campaign_id" value="{{ $campaign->id }}" />
 {!! Form::close() !!}

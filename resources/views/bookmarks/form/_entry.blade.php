@@ -105,7 +105,7 @@ if (isset($model)) {
 
     <x-forms.field field="active" :label="__('bookmarks.fields.active')" :tooltip="true"
                    :helper="__('bookmarks.helpers.active')">
-        {!! Form::hidden('is_active', 0) !!}
+        <input type="hidden" name="is_active" value="0" />
 
         <x-checkbox :text="__('bookmarks.visibilities.is_active')">
             {!! Form::checkbox('is_active', 1, isset($model) ? $model->is_active : 1) !!}

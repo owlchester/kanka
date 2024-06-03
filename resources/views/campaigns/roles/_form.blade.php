@@ -11,8 +11,8 @@
     <x-forms.field
         field="duplicate"
         :label="__('campaigns.roles.fields.copy_permissions')">
-        {!! Form::hidden('role_id', $roleId) !!}
-        {!! Form::hidden('duplicate', 0) !!}
+        <input type="hidden" name="role_id" value="{{ $roleId }}" />
+        <input type="hidden" name="duplicate" value="0" />
         <x-checkbox :text="__('campaigns.roles.helper.permissions_helper')">
             {!! Form::checkbox('duplicate', 1, null, ['id' => 'duplicate']) !!}
         </x-checkbox>

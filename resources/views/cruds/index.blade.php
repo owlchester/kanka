@@ -64,7 +64,7 @@
         </div>
         @endif
         @if (isset($entityTypeId))
-        {!! Form::hidden('page', request()->get('page')) !!}
+            <input type="hidden" name="page" value="{{ request()->get('page') }}" />
         {!! Form::close() !!}
         @endif
 

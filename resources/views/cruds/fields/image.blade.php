@@ -31,7 +31,7 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
     return;
 }
 ?>
-{!! Form::hidden('remove-image') !!}
+<input type="hidden" name="remove-image" />
 <div class="field field-image flex flex-col gap-1 @if (!empty($imageRequired) && $imageRequired) required @endif">
 
     <label>{{ __($label) }}</label>

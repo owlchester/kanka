@@ -18,7 +18,7 @@
         'dialog' => true,
     ])
 
-    {!! Form::hidden('entity_id', $entity->id) !!}
+    <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
     {!! Form::close() !!}
 
     {!! Form::open(['method' => 'DELETE', 'route' => ['entities.inventories.destroy', 'campaign' => $campaign, 'entity' => $entity, 'inventory' => $inventory], 'id' => 'delete-inventory-' . $inventory->id]) !!}

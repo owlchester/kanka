@@ -8,7 +8,7 @@
     @include('cruds.fields.entry2')
 
     <x-forms.field field="extinct" :label="__('creatures.fields.is_extinct')">
-        {!! Form::hidden('is_extinct', 0) !!}
+        <input type="hidden" name="is_extinct" value="0" />
         <x-checkbox :text="__('creatures.hints.is_extinct')">
             {!! Form::checkbox('is_extinct', 1, $model->is_extinct ?? '' )!!}
         </x-checkbox>

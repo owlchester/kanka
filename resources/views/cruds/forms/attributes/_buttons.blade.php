@@ -65,7 +65,7 @@
     <hr />
     <x-forms.field field="attributes-private"
                    :label="__('entities/attributes.fields.is_private')">
-        {!! Form::hidden('is_attributes_private', 0) !!}
+        <input type="hidden" name="is_attributes_private" value="0" />
         <x-checkbox :text="__('entities/attributes.helpers.is_private', [
     'admin-role' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
     ])">

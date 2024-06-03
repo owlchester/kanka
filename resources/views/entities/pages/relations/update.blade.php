@@ -23,9 +23,9 @@
     @if(!empty($from))
         <input type="hidden" name="from" value="{{ $from }}" />
     @endif
-    {!! Form::hidden('owner_id', $entity->id) !!}
-    {!! Form::hidden('option', request()->get('option')) !!}
-    {!! Form::hidden('mode', request()->get('mode')) !!}
+    <input type="hidden" name="owner_id" value="{{ $entity->id }}" />
+    <input type="hidden" name="option" value="{{ request()->get('option') }}" />
+    <input type="hidden" name="mode" value="{{ request()->get('mode') }}" />
 
     {!! Form::close() !!}
 

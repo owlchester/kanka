@@ -25,7 +25,7 @@ $options = [
         {!! Form::select('option', $options, $option, ['class' => 'w-full join-item']) !!}
         <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn2 btn-primary btn-sm join-item" />
     </div>
-{!! Form::hidden('mode', 'map') !!}
+<input type="hidden" name="mode" value="map" />
 {!! Form::close() !!}
 
 <x-box css="box box-solid box-entity-relations box-entity-relations-explorer">

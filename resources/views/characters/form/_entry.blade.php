@@ -21,7 +21,7 @@
     <x-forms.field
         field="dead"
         :label="__('characters.fields.is_dead')">
-        {!! Form::hidden('is_dead', 0) !!}
+        <input type="hidden" name="is_dead" value="0" />
         <x-checkbox :text="__('characters.hints.is_dead')">
             {!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : (!empty($source) ? FormCopy::field('is_dead')->boolean() : 0))) !!}
         </x-checkbox>

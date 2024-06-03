@@ -30,7 +30,7 @@
                     </x-checkbox>
                 </x-forms.field>
             @else
-                {!! Form::hidden('copy', 1) !!}
+                <input type="hidden" name="copy" value="1" />
             @endcan
 
             @includeIf($entity->pluralType() . '.bulk.modals._copy_to_campaign')

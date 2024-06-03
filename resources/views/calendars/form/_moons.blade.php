@@ -78,7 +78,7 @@ if (!empty($moonNames)) {
                 </div>
             </x-grid>
         </div>
-        {!! Form::hidden('moon_id[]', $fullmoon['id']) !!}
+        <input type="hidden" name="moon_id[]" value="{{ $fullmoon['id'] }}" />
     @endforeach
 </div>
 </x-grid>
@@ -118,7 +118,7 @@ if (!empty($moonNames)) {
                 </div>
             </div>
         </x-grid>
-        {!! Form::hidden('moon_id[]', null) !!}
+        <input type="hidden" name="moon_id[]" value="" />
     </div>
 </template>
 @endsection

@@ -68,7 +68,7 @@
                                     'class' => 'hidden',
                                     'id' => 'delete-thumb-' . $image['uuid']
                                 ]) !!}
-                        {!! Form::hidden('entity_type', $image['type']) !!}
+                            <input type="hidden" name="entity_type" value="{{ $image['type'] }}" />
                         {!! Form::close() !!}
                         @endcan
                     </div>

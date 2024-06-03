@@ -10,7 +10,7 @@
     <div class="element-live-reorder sortable-elements flex flex-col gap-1">
         @foreach($rows as $group)
             <x-reorder.child :id="$group->id">
-                {!! Form::hidden('group[]', $group->id) !!}
+                <input type="hidden" name="group[]" value="{{ $group->id }}" />
                 <div class="dragger pr-3">
                     <span class="fa-solid fa-ellipsis-v"></span>
                 </div>

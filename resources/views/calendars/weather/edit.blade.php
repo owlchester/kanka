@@ -20,11 +20,11 @@
         'dialog' => true,
     ])
 
-    {!! Form::hidden('year', $weather->year) !!}
-    {!! Form::hidden('month', $weather->month) !!}
-    {!! Form::hidden('day', $weather->day) !!}
+    <input type="hidden" name="year" value="{{ $weather->year }}" />
+    <input type="hidden" name="month" value="{{ $weather->month }}" />
+    <input type="hidden" name="day" value="{{ $weather->day }}" />
     @if (request()->has('layout'))
-        {!! Form::hidden('layout', request()->get('layout')) !!}
+        <input type="hidden" name="layout" value="{{ request()->get('layout') }}" />
     @endif
     {!! Form::close() !!}
 
@@ -34,10 +34,10 @@
         'route' => ['calendars.calendar_weather.destroy', $campaign, $weather->calendar->id, $weather->id],
         'id' => 'delete-weather-' . $weather->id]) !!}
     @if (request()->has('layout'))
-        {!! Form::hidden('layout', request()->get('layout')) !!}
-        {!! Form::hidden('year', $year) !!}
-        {!! Form::hidden('month', $month) !!}
-        {!! Form::hidden('day', $day) !!}
+        <input type="hidden" name="layout" value="{{ request()->get('layout') }}" />
+        <input type="hidden" name="year" value="{{ $year }}" />
+        <input type="hidden" name="month" value="{{ $month }}" />
+        <input type="hidden" name="day" value="{{ $day }}" />
     @endif
     {!! Form::close() !!}
 @endsection

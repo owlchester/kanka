@@ -17,6 +17,6 @@
         'submit' => __('families.members.create.submit'),
         'dialog' => true,
     ])
-    {!! Form::hidden('family_id', $model->id) !!}
+    <input type="hidden" name="family_id" value="{{ $model->id }}" />
     {!! Form::close() !!}
 @endsection

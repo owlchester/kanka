@@ -60,10 +60,10 @@
             {{ $models->appends('parent_id', request()->get('parent_id'))->onEachSide(0)->links() }}
         </div>
         @endif
-        {!! Form::hidden('entity', $name) !!}
-        {!! Form::hidden('datagrid-action', 'print') !!}
-        {!! Form::hidden('page', request()->get('page')) !!}
-        {!! Form::hidden('mode', $mode) !!}
+        <input type="hidden" name="entity" value="{{ $name }}" />
+        <input type="hidden" name="datagrid-action" value="print" />
+            <input type="hidden" name="page" value="{{ request()->get('page') }}" />
+            <input type="hidden" name="mode" value="{{ $mode }}" />
         {!! Form::close() !!}
 
     @endif

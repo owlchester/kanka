@@ -19,8 +19,8 @@
             'dialog' => true,
         ])
 
-    {!! Form::hidden('entity_id', $entity->id) !!}
-    {!! Form::hidden('owner_id', $entity->id) !!}
+    <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
+    <input type="hidden" name="owner_id" value="{{ $entity->id }}" />
     {!! Form::close() !!}
 @endsection
 

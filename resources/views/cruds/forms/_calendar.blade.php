@@ -16,8 +16,8 @@ if (!empty($oldCalendarID)) {
 }
 ?>
 @if (isset($model) && $model->hasCalendarButNoAccess())
-    {!! Form::hidden('calendar_id', $model->calendarReminder()->calendar_id) !!}
-    {!! Form::hidden('calendar_skip', true) !!}
+    <input type="hidden" name="calendar_id" value="{{ $model->calendarReminder()->calendar_id }}" />
+    <input type="hidden" name="calendar_skip" value="1" />
     @php return; @endphp
 @endif
 <div class="field-calendar-date">
@@ -31,7 +31,7 @@ if (!empty($oldCalendarID)) {
 
     <div class="entity-calendar-form" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
         @if (count($calendars) == 1)
-            {!! Form::hidden('calendar_id', isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : FormCopy::field('calendar_id')->string(), ['id' => 'calendar_id']) !!}
+            <input type="hidden" name="calendar_id" value="{{ isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : FormCopy::field('calendar_id')->string() }}" />
         @else
             <input type="hidden" name="calendar_id" />
             <div class="grid gap-2 md:gap-4 md:grid-cols-3 mb-4">

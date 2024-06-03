@@ -8,13 +8,13 @@
     @include('cruds.fields.entry2')
 
     <x-forms.field field="auto-apply" :label="__('tags.fields.is_auto_applied')">
-        {!! Form::hidden('is_auto_applied', 0) !!}
+        <input type="hidden" name="is_auto_applied" value="0" />
         <x-checkbox :text="__('tags.hints.is_auto_applied')">
             {!! Form::checkbox('is_auto_applied', 1, $model->is_auto_applied ?? '' )!!}
         </x-checkbox>
     </x-forms.field>
     <x-forms.field field="hidden" :label="__('tags.fields.is_hidden')">
-        {!! Form::hidden('is_hidden', 0) !!}
+        <input type="hidden" name="is_hidden" value="0" />
         <x-checkbox :text="__('tags.hints.is_hidden')">
             {!! Form::checkbox('is_hidden', 1, $model->is_hidden ?? '' )!!}
         </x-checkbox>

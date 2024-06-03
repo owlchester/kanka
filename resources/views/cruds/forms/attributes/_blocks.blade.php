@@ -26,13 +26,13 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'w-full kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live', $campaign)]) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
+                <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
 
                 @if ($isAdmin)
-                    {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
+                    <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
                     <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
@@ -43,7 +43,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
-            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_STANDARD_ID) !!}
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_STANDARD_ID }}" />
         </div>
     </template>
     <template id="text_template">
@@ -62,13 +62,13 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 {!! Form::textarea('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'w-full kanka-mentions', 'rows' => 3, 'data-remote' => route('search.live', $campaign)]) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
+                <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
 
                 @if ($isAdmin)
-                    {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
+                    <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
                     <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
@@ -79,7 +79,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 </a>
             </div>
 
-            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_TEXT_ID) !!}
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_TEXT_ID }}" />
         </div>
     </template>
 
@@ -97,13 +97,13 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 {!! Form::number('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'w-full']) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
+                <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
 
                 @if ($isAdmin)
-                    {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
+                    <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
                     <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
@@ -114,7 +114,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 </a>
             </div>
 
-            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_NUMBER_ID) !!}
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_NUMBER_ID }}" />
         </div>
     </template>
     <template id="checkbox_template">
@@ -130,13 +130,13 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 {!! Form::checkbox('attr_value[$TMP_ID$]', 1, false) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
+                <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
 
                 @if ($isAdmin)
-                    {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
+                    <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
                     <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
@@ -148,7 +148,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 </a>
             </div>
 
-            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_CHECKBOX_ID) !!}
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_CHECKBOX_ID }}" />
         </div>
     </template>
 
@@ -161,15 +161,15 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 <label class="sr-only">{{ __('entities/attributes.labels.section') }}</label>
                 {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.section'), 'class' => 'w-full', 'maxlength' => 191]) !!}
             </div>
-            {!! Form::hidden('attr_value[$TMP_ID$]', null) !!}
+            <input type="hidden" name="attr_value[$TMP_ID$]" value="" />
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
+                <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
 
                 @if ($isAdmin)
-                    {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
+                    <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
                     <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
@@ -179,7 +179,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
-            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_SECTION_ID) !!}
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_SECTION_ID }}" />
         </div>
     </template>
 
@@ -201,13 +201,13 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.random.value'), 'class' => 'w-full', 'maxlength' => 191]) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
+                <input type="hidden" name="attr_is_pinned[$TMP_ID$]" value="0" />
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
 
                 @if ($isAdmin)
-                    {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
+                    <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
                     <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
@@ -217,7 +217,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
-            {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_RANDOM_ID) !!}
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_RANDOM_ID }}" />
         </div>
     </template>
 @endsection

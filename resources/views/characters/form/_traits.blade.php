@@ -51,7 +51,7 @@ $role = \App\Facades\CampaignCache::adminRole();
         <x-forms.field
             field="appearance-pinned"
             :label="__('characters.fields.is_appearance_pinned')">
-            {!! Form::hidden('is_appearance_pinned', 0) !!}
+            <input type="hidden" name="is_appearance_pinned" value="0" />
 
             <x-checkbox :text="__('characters.hints.is_appearance_pinned')">
                 {!! Form::checkbox('is_appearance_pinned', 1, (!empty($model) ? $model->is_appearance_pinned : (!empty($source) ? FormCopy::field('is_appearance_pinned')->boolean() : null))) !!}
@@ -115,7 +115,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 field="personality-pinned"
                 :label="__('characters.fields.is_personality_pinned')"
             >
-                {!! Form::hidden('is_personality_pinned', 0) !!}
+                <input type="hidden" name="is_personality_pinned" value="0" />
                 <x-checkbox :text="__('characters.hints.is_personality_pinned')">
                     {!! Form::checkbox('is_personality_pinned', 1, (!empty($model) ? $model->is_personality_pinned : (!empty($source) ? FormCopy::field('is_personality_pinned')->boolean() : null))) !!}
                 </x-checkbox>
@@ -124,7 +124,7 @@ $role = \App\Facades\CampaignCache::adminRole();
 
         @if (\App\Facades\UserCache::user(auth()->user())->admin())
                 <hr>
-                {!! Form::hidden('is_personality_visible', 0) !!}
+            <input type="hidden" name="is_personality_visible" value="0" />
             <x-forms.field
                 field="personality-visible"
                 :label="__('characters.fields.is_personality_visible')"
@@ -136,7 +136,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 </x-checkbox>
             </x-forms.field>
         @else
-            {!! Form::hidden('is_personality_visible', 1) !!}
+            <input type="hidden" name="is_personality_visible" value="1" />
         @endif
     </x-grid>
 </x-grid>

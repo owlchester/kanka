@@ -13,5 +13,5 @@
         'dialog' => true,
     ])
 
-{!! Form::hidden('campaign_id', $campaign->id) !!}
+<input type="hidden" name="campaign_id" value="{{ $campaign->id }}" />
 {!! Form::close() !!}

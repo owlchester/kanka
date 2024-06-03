@@ -32,7 +32,7 @@ if ($firstPost && $firstPost->position >= 0) {
 
 
             <x-reorder.child :id="$note->id">
-                {!! Form::hidden('posts[' . $note->id . '][id]', $note->id) !!}
+                <input type="hidden" name="posts[{{ $note->id }}][id]" value="{{ $note->id }}" />
                 <div class="dragger pr-3">
                     <span class="fa-solid fa-ellipsis-v"></span>
                 </div>

@@ -1,6 +1,6 @@
 <x-forms.field
     field="copy-eras">
-    {!! Form::hidden('copy_eras', null) !!}
+    <input type="hidden" name="copy_eras" value="" />
     <x-checkbox :text="__('timelines.fields.copy_eras')">
         {!! Form::checkbox('copy_eras', 1, true) !!}
     </x-checkbox>
@@ -8,7 +8,7 @@
 
 <x-forms.field
     field="copy-elements">
-    {!! Form::hidden('copy_elements', null) !!}
+    <input type="hidden" name="copy_elements" value="" />
     <x-checkbox :text="__('timelines.fields.copy_elements')">
         {!! Form::checkbox('copy_elements', 1, true) !!}
     </x-checkbox>
