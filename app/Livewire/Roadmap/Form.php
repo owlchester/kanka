@@ -42,7 +42,7 @@ class Form extends Component
         $feat->status_id = FeatureStatus::Draft;
         $feat->save();
 
-        if (!auth()->user()->can('vote', $feat)) {
+        if (auth()->user()->can('vote', $feat)) {
             /** @var FeatureVote $vote */
             $vote = new FeatureVote();
             $vote->feature_id = $feat->id;
