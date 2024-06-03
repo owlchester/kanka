@@ -74,7 +74,7 @@ if (isset($model) && $model->isChunked()) {
         :label="__('maps.fields.distance_name')">
         {!! Form::text(
             'config[distance_name]',
-            FormCopy::field('config[distance_name]')->string(),
+            $source->config['distance_name'] ?? null,
             [
                 'placeholder' => __('maps.placeholders.distance_name'),
                 'class' => '',
@@ -89,7 +89,7 @@ if (isset($model) && $model->isChunked()) {
         :tooltip="true"
         :helper="__('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2')"
         >
-        <input type="number" name="config[distance_measure]" class="w-full" value="{{ FormCopy::field('config[distance_measure]')->string() ?: old('config[distance_measure]', $model->config['distance_measure'] ?? null) }}" min="0.001" max="100.99" step="0.0001"/>
+        <input type="number" name="config[distance_measure]" class="w-full" value="{{ $source->config['distance_measure'] ?? old('config[distance_measure]', $model->config['distance_measure'] ?? null) }}" min="0.001" max="100.99" step="0.0001"/>
     </x-forms.field>
 
     <hr class="col-span-2 m-0" />

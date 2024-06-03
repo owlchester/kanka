@@ -128,17 +128,17 @@ $sizeOptions = [
 
                 <x-forms.field field="stroke" :label="__('maps/markers.fields.polygon_style.stroke')">
                     <span>
-                    {!! Form::text('polygon_style[stroke]', \App\Facades\FormCopy::field('polygon_style[stroke]')->string(), ['class' => ' spectrum']) !!}
+                    {!! Form::text('polygon_style[stroke]', $source->polygon_style['stroke'] ?? null, ['class' => ' spectrum']) !!}
                     </span>
                 </x-forms.field>
 
                 <x-forms.field field="width" :label="__('maps/markers.fields.polygon_style.stroke-width')">
 
-                    <input type="number" name="polygon_style[stroke-width]" value="{{ \App\Facades\FormCopy::field('polygon_style[stroke-width]')->string() ?: old('polygon_style[stroke-width]', $model->polygon_style['stroke-width'] ?? null) }}" id="stroke-width" step="1" min="0" max="99" maxlength="2" />
+                    <input type="number" name="polygon_style[stroke-width]" value="{{ $source->polygon_style['stroke-width'] ?? old('polygon_style[stroke-width]', $model->polygon_style['stroke-width'] ?? null) }}" id="stroke-width" step="1" min="0" max="99" maxlength="2" />
                 </x-forms.field>
 
                 <x-forms.field field="opacity" :label="__('maps/markers.fields.polygon_style.stroke-opacity')">
-                    <input type="number" name="polygon_style[stroke-opacity]" value="{{ \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string() ?: old('polygon_style[stroke-opacity]', $model->polygon_style['stroke-opacity'] ?? null) }}" id="stroke-opacity" step="10" min="0" max="100" maxlength="3" />
+                    <input type="number" name="polygon_style[stroke-opacity]" value="{{ $source->polygon_style['stroke-opacity'] ?? old('polygon_style[stroke-opacity]', $model->polygon_style['stroke-opacity'] ?? null) }}" id="stroke-opacity" step="10" min="0" max="100" maxlength="3" />
                 </x-forms.field>
             </x-grid>
         </div>

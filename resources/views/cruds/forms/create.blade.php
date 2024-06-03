@@ -32,7 +32,7 @@
                 <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                     <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
 
-                    @includeIf($name . '.form._tabs', ['source' => $source])
+                    @includeIf($name . '.form._tabs')
 
                     @if ($tabBoosted && config('services.stripe.enabled'))
                         <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
@@ -56,36 +56,36 @@
         <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
             <div class="tab-pane pane-entry {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
                 <x-grid type="1/1">
-                    @include($name . '.form._entry', ['source' => $source])
+                    @include($name . '.form._entry')
                 </x-grid>
             </div>
-            @includeIf($name . '.form._panes', ['source' => $source])
+            @includeIf($name . '.form._panes')
 
             @if ($tabBoosted && config('services.stripe.enabled'))
                 <div class="tab-pane pane-premium {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
                     <x-grid type="1/1">
-                        @include('cruds.forms._premium', ['source' => $source])
+                        @include('cruds.forms._premium')
                     </x-grid>
                 </div>
             @endif
             @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
                 <div class="tab-pane pane-copy {{ (request()->get('tab') == 'copy' ? ' active' : '') }}" id="form-copy">
                     <x-grid type="1/1">
-                        @include('cruds.forms._copy', ['source' => $source])
+                        @include('cruds.forms._copy')
                     </x-grid>
                 </div>
             @endif
             @if ($tabAttributes)
             <div class="tab-pane pane-attributes {{ (request()->get('tab') == 'attributes' ? ' active' : '') }}" id="form-attributes">
                 <x-grid type="1/1">
-                    @include('cruds.forms._attributes', ['source' => $source])
+                    @include('cruds.forms._attributes')
                 </x-grid>
             </div>
             @endif
             @if ($tabPermissions)
             <div class="tab-pane pane-permissions {{ (request()->get('tab') == 'permissions' ? ' active' : '') }}" id="form-permissions">
                 <x-grid type="1/1">
-                    @include('cruds.forms._permission', ['source' => $source])
+                    @include('cruds.forms._permission')
                 </x-grid>
             </div>
             @endif
