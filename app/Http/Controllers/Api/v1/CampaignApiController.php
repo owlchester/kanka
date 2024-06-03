@@ -30,6 +30,7 @@ class CampaignApiController extends ApiController
     public function store(Request $request)
     {
         $model = Campaign::create($request->all());
+        $model->refresh();
         return new CampaignResource($model);
     }
 

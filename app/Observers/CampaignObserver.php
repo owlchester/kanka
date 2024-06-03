@@ -44,8 +44,9 @@ class CampaignObserver
         // Purity text
         $campaign->name = $this->purify($campaign->name);
         $campaign->entry = $this->purify(Mentions::codify($campaign->entry));
-        $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
-
+        if (property_exists($campaign, 'excerpt')) {
+            $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
+        }
         //$campaign->slug = Str::slug($campaign->name, '');
         $campaign->updated_by = auth()->user()->id;
 
