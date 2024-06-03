@@ -17,6 +17,6 @@ enum PricingPeriod: int
 
     public function lowerName(): string
     {
-        return strtolower($this->name);
+        return mb_strtolower($this->name);
     }
 }
