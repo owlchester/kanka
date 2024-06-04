@@ -26,7 +26,7 @@
             @can('update', $entity->child)
                 <x-forms.field field="copy" css="form-check" :label="__('entities/move.fields.copy')">
                     <x-checkbox :text="__('entities/move.helpers.copy')">
-                        {!! Form::checkbox('copy', 1, true) !!}
+                        <input type="checkbox" name="copy" value="1" @if (old('copy', true)) checked="checked" @endif />
                     </x-checkbox>
                 </x-forms.field>
             @else

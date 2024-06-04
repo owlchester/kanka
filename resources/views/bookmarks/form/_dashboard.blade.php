@@ -17,7 +17,7 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
         <input type="hidden" name="options[default_dashboard]" value="0" />
         <x-forms.field field="default" :label="__('bookmarks.fields.default_dashboard')">
             <x-checkbox :text="__('bookmarks.helpers.default_dashboard')">
-                {!! Form::checkbox('options[default_dashboard]', 1, empty($model->options) ? false : \Illuminate\Support\Arr::get($model->options, 'default_dashboard')) !!}
+                <input type="checkbox" name="options[default_dashboard]" value="1" @if (old('options[default_dashboard]', empty($model->options) ? false : \Illuminate\Support\Arr::get($model->options, 'default_dashboard'))) checked="checked" @endif/>
             </x-checkbox>
         </x-forms.field>
     </x-grid>

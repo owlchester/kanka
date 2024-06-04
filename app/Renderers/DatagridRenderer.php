@@ -120,7 +120,7 @@ class DatagridRenderer
         $html = '';
         // Checkbox for delete
         if (auth()->check()) {
-            $html .= '<th class="col-checkbox">' . Form::checkbox('all', 1, false, ['id' => 'datagrid-select-all']) . '</th>';
+            $html .= '<th class="col-checkbox"><input type="checkbox" name="all" value="1" id="datagrid-select-all" /></th>';
         }
 
         foreach ($this->columns as $column) {
@@ -335,7 +335,7 @@ class DatagridRenderer
 
         // Bulk
         if (auth()->check()) {
-            $html .= '<td class="w-8">' . Form::checkbox('model[]', $model->id, false) . '</td>';
+            $html .= '<td class="w-8"><input type="checkbox" name="model[]" value="' . $model->id . '" /></td>';
         }
 
         foreach ($this->columns as $column) {

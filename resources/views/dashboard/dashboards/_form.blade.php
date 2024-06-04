@@ -35,7 +35,7 @@
     <input type="hidden" name="copy_widgets" value="0" />
     <x-forms.field field="copy" :label="__('dashboard.dashboards.fields.copy_widgets')">
         <x-checkbox :text="__('dashboard.dashboards.helpers.copy_widgets', ['name' => $source->name])">
-            {!! Form::checkbox('copy_widgets', 1, true) !!}
+            <input type="checkbox" name="copy_widgets" value="1" @if (old('copy_widgets', true)) checked="checked" @endif />
         </x-checkbox>
         <input type="hidden" name="source" value="{{ $source->id }}" />
     </x-forms.field>

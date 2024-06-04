@@ -27,7 +27,7 @@
     <x-forms.field field="collapsed" css="col-span-2" :label="__('timelines/eras.fields.is_collapsed')">
         <input type="hidden" name="is_collapsed" value="0" />
         <x-checkbox :text="__('timelines/eras.helpers.is_collapsed')">
-            {!! Form::checkbox('is_collapsed', 1) !!}
+            <input type="checkbox" name="is_collapsed" value="1" @if (old('is_collapsed', $model->is_collapsed ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 </x-grid>

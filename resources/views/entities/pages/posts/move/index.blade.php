@@ -20,7 +20,7 @@
 
             <x-forms.field field="copy" css="form-check" :label="__('entities/notes.move.copy_title')">
                 <x-checkbox :text="__('entities/notes.move.copy')">
-                    {!! Form::checkbox('copy', 1, true) !!}
+                    <input type="checkbox" name="copy" value="1" @if (old('copy', true)) checked="checked" @endif />
                 </x-checkbox>
             </x-forms.field>
         </x-grid>

@@ -62,7 +62,7 @@ $sizeOptions = [
                 <x-forms.field field="draggable" css="" :label="__('maps/markers.fields.is_draggable')">
                     <input type="hidden" name="is_draggable" value="0" />
                     <x-checkbox :text="__('maps/markers.helpers.draggable')">
-                        {!! Form::checkbox('is_draggable', 1, (!empty($source) ? $source->is_draggable : null)) !!}
+                        <input type="checkbox" name="is_draggable" value="1" @if (old('is_draggable', $source->is_draggable ?? $model->is_draggable ?? false)) checked="checked" @endif />
                     </x-checkbox>
                 </x-forms.field>
             </x-grid>
@@ -203,7 +203,7 @@ $sizeOptions = [
         <x-forms.field field="is_popupless" :label="__('maps/markers.fields.popupless')">
             <input type="hidden" name="is_popupless" value="0" />
             <x-checkbox :text="__('maps/markers.helpers.is_popupless')">
-                {!! Form::checkbox('is_popupless', 1, FormCopy::field('is_popupless')->string()) !!}
+                <input type="checkbox" name="is_popupless" value="1" @if ($source->is_popupless ?: old('is_popupless', $model->is_popupless ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
 

@@ -108,7 +108,7 @@ if (isset($model)) {
         <input type="hidden" name="is_active" value="0" />
 
         <x-checkbox :text="__('bookmarks.visibilities.is_active')">
-            {!! Form::checkbox('is_active', 1, isset($model) ? $model->is_active : 1) !!}
+            <input type="checkbox" name="is_active" value="1" @if (old('is_active', $model->is_active ?? true)) checked="checked" @endif />
         </x-checkbox>
 
     </x-forms.field>

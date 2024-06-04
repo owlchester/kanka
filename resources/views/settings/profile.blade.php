@@ -36,7 +36,7 @@
                     <x-forms.field field="share-login" :label="__('profiles.fields.login_sharing')">
                         <input type="hidden" name="has_last_login_sharing" value="0" />
                         <x-checkbox :text="__('profiles.fields.last_login_share')">
-                            {!! Form::checkbox('has_last_login_sharing') !!}
+                            <input type="checkbox" name="has_last_login_sharing" value="1" @if (old('has_last_login_sharing', auth()->user()->has_last_login_sharing ?? false)) checked="checked" @endif />
                         </x-checkbox>
                     </x-forms.field>
 
@@ -46,7 +46,7 @@
                             <x-checkbox :text="__('profiles.fields.hide_subscription', [
     'hall_of_fame' => link_to('https://kanka.io/hall-of-fame', __('front/hall-of-fame.title'), null, ['target' => '_blank'])
     ])">
-                                {!! Form::checkbox('settings[hide_subscription]', 1) !!}
+                                <input type="checkbox" name="settings[hide_subscription]" value="1" @if (old('settings[hide_subscription]', auth()->user()->settings['hide_subscription'] ?? false)) checked="checked" @endif />
                             </x-checkbox>
                         </x-forms.field>
                     @endif

@@ -17,7 +17,7 @@ if (isset($model) && $model->isChunked()) {
         :label="__('maps.fields.is_real')">
         <input type="hidden" name="is_real" value="0" />
         <x-checkbox :text="__('maps.helpers.is_real')">
-            {!! Form::checkbox('is_real') !!}
+            <input type="checkbox" name="is_real" value="1" @if (old('is_real', $model->is_real ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 
@@ -26,7 +26,7 @@ if (isset($model) && $model->isChunked()) {
         :label="__('maps.fields.has_clustering')">
         <input type="hidden" name="has_clustering" value="0" />
         <x-checkbox :text="__('maps.helpers.has_clustering')">
-            {!! Form::checkbox('has_clustering', 1, !isset($model) ? true : $model->has_clustering) !!}
+            <input type="checkbox" name="has_clustering" value="1" @if (old('has_clustering', $model->has_clustering ?? true)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 

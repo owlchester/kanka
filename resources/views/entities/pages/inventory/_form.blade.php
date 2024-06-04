@@ -85,14 +85,14 @@ if (isset($inventory)) {
     <x-forms.field field="equipped" :label="__('entities/inventories.fields.is_equipped')">
         <input type="hidden" name="is_equipped" value="0" />
         <x-checkbox :text="__('entities/inventories.helpers.is_equipped')">
-            {!! Form::checkbox('is_equipped', 1, isset($inventory) ? $inventory->is_equipped : null) !!}
+            <input type="checkbox" name="is_equipped" value="1" @if (old('is_equipped', $inventory->is_equipped ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 
     <x-forms.field field="copy" :label="__('entities/inventories.fields.copy_entity_entry_v2')">
         <input type="hidden" name="copy_item_entry" value="0" />
         <x-checkbox :text="__('entities/inventories.helpers.copy_entity_entry_v2')">
-            {!! Form::checkbox('copy_item_entry') !!}
+            <input type="checkbox" name="copy_item_entry" value="1" @if (old('copy_item_entry', $inventory->copy_item_entry ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 

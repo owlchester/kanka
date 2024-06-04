@@ -12,7 +12,7 @@
         :label="__('maps/groups.fields.is_shown')">
         <input type="hidden" name="is_shown" value="0" />
         <x-checkbox :text="__('maps/groups.hints.is_shown')">
-            {!! Form::checkbox('is_shown', 1, isset($model) ? $model->is_shown : 1) !!}
+            <input type="checkbox" name="is_shown" value="1" @if (old('is_shown', $model->is_shown ?? true)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 

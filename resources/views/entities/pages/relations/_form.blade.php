@@ -34,7 +34,7 @@
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
     <x-forms.field field="field-two-way" :label="__('entities/relations.fields.two_way')">
         <x-checkbox :text="__('entities/relations.hints.two_way')">
-            {!! Form::checkbox('two_way', 1, null, ['data-animate' => 'collapse', 'data-target' => '#two-way-relation']) !!}
+            <input type="checkbox" name="two_way" value="1" @if (old('two_way', false)) checked="checked" @endif data-animate="collapse" data-target="#two-way-relation" />
         </x-checkbox>
     </x-forms.field>
 
@@ -61,7 +61,7 @@
             <x-forms.field field="unmirror">
                 <input type="hidden" name="unmirror" value="0" />
                 <x-checkbox :text="__('entities/relations.fields.unmirror')">
-                    {!! Form::checkbox('unmirror', 1)!!}
+                    <input type="checkbox" name="unmirror" value="1" @if (old('unmirror', false)) checked="checked" @endif />
                 </x-checkbox>
             </x-forms.field>
         </x-alert>

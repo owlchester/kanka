@@ -14,7 +14,8 @@ if (isset($privacyToggle)) {
         <x-checkbox :text="__('crud.fields.is_private_v3', [
     'admin-role' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get(\App\Facades\CampaignCache::adminRole(), 'name', __('campaigns.roles.admin_role')), [$campaign], ['target' => '_blank'])
 ])">
-            {!! Form::checkbox('is_private', 1, empty($model) ? (!empty($source) ? $source->is_private : $campaign->entity_visibility) : $model->is_private, $data) !!}
+
+            <input type="checkbox" name="is_private" value="1" @if (old('is_private', $source->is_private ?? $model->is_private ?? $campaign->entity_visibility)) checked="checked" @endif data-toggle="entity-privacy" />
         </x-checkbox>
     </div>
 </div>

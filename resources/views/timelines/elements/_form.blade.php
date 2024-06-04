@@ -31,7 +31,7 @@ if (!empty($era)) {
             >{!! old('entry', $model->entryForEdition ?? null) !!}</textarea>
         <input type="hidden" name="use_entity_entry" value="0" />
         <x-checkbox :text="__('timelines/elements.fields.use_entity_entry')">
-            {!! Form::checkbox('use_entity_entry') !!}
+            <input type="checkbox" name="use_entity_entry" value="1" @if (old('use_entity_entry', $model->use_entity_entry ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 
@@ -42,7 +42,7 @@ if (!empty($era)) {
     <x-forms.field field="event-date" :label="__('timelines/elements.fields.use_event_date')">
         <input type="hidden" name="use_event_date" value="0" />
         <x-checkbox :text="__('timelines/elements.helpers.date')">
-            {!! Form::checkbox('use_event_date') !!}
+            <input type="checkbox" name="use_event_date" value="1" @if (old('use_event_date', $model->use_event_date ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 
@@ -98,7 +98,7 @@ if (!empty($era)) {
     <x-forms.field field="collapsed" :label="__('timelines/eras.fields.is_collapsed')">
         <input type="hidden" name="is_collapsed" value="0" />
         <x-checkbox :text="__('timelines/elements.helpers.is_collapsed')">
-            {!! Form::checkbox('is_collapsed', 1) !!}
+            <input type="checkbox" name="is_collapsed" value="1" @if (old('is_collapsed', $model->is_collapsed ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 </x-grid>

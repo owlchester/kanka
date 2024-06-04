@@ -13,7 +13,7 @@
     @if(empty($relation) && (!isset($mirror) || $mirror == true))
         <x-forms.field field="two-way">
             <x-checkbox :text="__('entities/relations.hints.two_way')" :label="__('entities/relations.fields.two_way')">
-                {!! Form::checkbox('two_way', 1, null, ['data-animate' => 'collapse', 'data-target' => '#two-way-relation']) !!}
+                <input type="checkbox" name="two_way" value="1" @if (old('two_way', false)) checked="checked" @endif data-animate="collapse" data-target="#two-way-relation" />
             </x-checkbox>
         </x-forms.field>
 

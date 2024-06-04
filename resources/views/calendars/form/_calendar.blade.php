@@ -5,7 +5,7 @@
         <x-forms.field field="skip-zero" :label="__('calendars.fields.skip_year_zero')">
             <input type="hidden" name="skip_year_zero" value="0" />
             <x-checkbox :text="__('calendars.hints.skip_year_zero')">
-                {!! Form::checkbox('skip_year_zero', 1, !empty($model) ? $model->skip_year_zero : 0) !!}
+                <input type="checkbox" name="skip_year_zero" value="1" @if (old('skip_year_zero', $source->skip_year_zero ?? $model->skip_year_zero ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
 
@@ -41,14 +41,14 @@
         <x-forms.field field="incrementing" :label="__('calendars.fields.is_incrementing')">
             <input type="hidden" name="is_incrementing" value="0" />
             <x-checkbox :text="__('calendars.hints.is_incrementing')">
-                {!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
+                <input type="checkbox" name="is_incrementing" value="1" @if (old('is_incrementing', $source->is_incrementing ?? $model->is_incrementing ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
 
         <x-forms.field field="birthdays" :label="__('calendars.fields.show_birthdays')">
             <input type="hidden" name="show_birthdays" value="0" />
             <x-checkbox :text="__('calendars.hints.show_birthdays')">
-                {!! Form::checkbox('show_birthdays', 1, FormCopy::field('show_birthdays')->string()) !!}
+                <input type="checkbox" name="show_birthdays" value="1" @if (old('show_birthdays', $source->show_birthdays ?? $model->show_birthdays ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
     </div>
@@ -111,7 +111,7 @@
         <x-forms.field field="leap-year" :label="__('calendars.fields.leap_year')">
             <input type="hidden" name="has_leap_year" value="0" />
             <x-checkbox :text="__('calendars.hints.leap_year')">
-                {!! Form::checkbox('has_leap_year', 1, FormCopy::field('has_leap_year')->string()) !!}
+                <input type="checkbox" name="has_leap_year" value="1" @if (old('has_leap_year', $source->has_leap_year ?? $model->has_leap_year ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
         <div class="grid grid-cols-2 gap-2 md:gap-5" id="calendar-leap-year" style="@if (isset($model) && $model->has_leap_year || request()->old('has_leap_year') || (isset($source) && $source->has_leap_year))@else display:none; @endif">
