@@ -137,7 +137,10 @@ trait SubEntityScopes
             $relations[] = 'entity.image';
         }
 
-        return $query->has('entity')->with($relations);
+        return $query
+            ->select($this->getTable() . '.*')
+            ->has('entity')
+            ->with($relations);
     }
 
     public function scopeJoinEntity(Builder $query): Builder
@@ -149,7 +152,6 @@ trait SubEntityScopes
         $this->hasJoinedEntity = true;
 
         return $query
-            ->select($this->getTable() . '.*')
             ->leftJoin('entities as e', function ($join) {
                 $join->on('e.entity_id', '=', $this->getTable() . '.id');
                 // @phpstan-ignore-next-line
