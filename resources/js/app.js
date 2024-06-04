@@ -54,7 +54,7 @@ function initAdblocker() {
         return;
     }
     fetch(adscript.src, {
-        headers: {'X-Requested-With': 'XMLHttpRequest'}
+        // headers: {'X-Requested-With': 'XMLHttpRequest'}
     })
     .catch(() => {
         let reminder = document.getElementById('adblock-plea');
