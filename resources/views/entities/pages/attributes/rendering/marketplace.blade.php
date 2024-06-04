@@ -5,6 +5,9 @@
  * @var \App\Models\Entity $entity
  * @var \App\Models\MiscModel $model
  */
+if (!isset($entity)) {
+    $entity = $model->entity;
+}
 ?>
 
 @if ($plugin->version->isDraft())
@@ -15,7 +18,7 @@
 
 <x-box css="box-entity-attributes">
     <div class="marketplace-template-{{ $plugin->plugin->uuid }}">
-        {!! $plugin->version->content(isset($entity) ? $entity : $model->entity) !!}
+        {!! $plugin->version->content($entity) !!}
     </div>
 </x-box>
 
@@ -26,7 +29,7 @@
 
         /** Entity attributes **/
         :root {
-        @foreach ((isset($entity) ? $entity->allAttributes : $model->entity->allAttributes) as $attribute) @if ($attribute->isText()) @continue @endif
+        @foreach ($entity->allAttributes as $attribute) @if ($attribute->isText()) @continue @endif
 --attribute-{{ \Illuminate\Support\Str::slug($attribute->name) }}: {{ trim(preg_replace('/\s+/', ' ', $attribute->value)) }};
         @endforeach
 }
@@ -37,5 +40,26 @@
     @parent
     <script>
     {!! $plugin->version->javascript !!}
+    </script>
+    <script>
+        const entityData = {
+            name: `{{ $entity->name }}`,
+            is_private: {{ $entity->is_private ? 'true' : 'false' }},
+            type: {
+                id: {{ $entity->type_id }},
+                code: "{{ $entity->type() }}",
+                custom: `{!! \App\Facades\Module::singular($entity->type_id) !!}`,
+            },
+            attributes: {
+@foreach ($entity->allAttributes as $attr)
+@if ($attr->isText())
+"{{ \Illuminate\Support\Str::slug($attr->name) }}": `{!! $attr->value !!}`,
+@else
+"{{ \Illuminate\Support\Str::slug($attr->name) }}": `{!! $attr->value !!}`,
+@endif
+
+@endforeach
+            }
+        }
     </script>
 @endsection
