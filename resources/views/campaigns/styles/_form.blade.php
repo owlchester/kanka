@@ -2,7 +2,7 @@
     field="name"
     :required="true"
     :label="__('campaigns/styles.fields.name')">
-    {!! Form::text('name', null, ['class' => '']) !!}
+    <input type="text" name="name" placeholder="{{ __('campaigns/styles.placeholders.name') }}" maxlength="191" required value="{{ old('name', $style->name ?? null) }}" />
 </x-forms.field>
 
 <x-forms.field

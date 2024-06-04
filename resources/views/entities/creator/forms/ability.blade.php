@@ -6,15 +6,6 @@
     <x-forms.field
         field="charges"
         :label="__('abilities.fields.charges')">
-        {!! Form::text(
-            'charges',
-            FormCopy::field('charges')->string(),
-            [
-                'placeholder' => __('abilities.placeholders.charges'),
-                'class' => '',
-                'maxlength' => 120,
-                'autocomplete' => 'off'
-            ]
-        ) !!}
+        <input type="text" name="charges" value="{{ old('charges', $source->charges ?? $model->charges ?? null) }}" maxlength="191" class="w-full" placeholder="{{ __('abilities.placeholders.charges') }}" autocomplete="off" />
     </x-forms.field>
 </x-grid>

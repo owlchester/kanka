@@ -28,7 +28,7 @@
     <x-forms.field
         field="suffix"
         :label="__('calendars.fields.suffix')">
-        {!! Form::text('suffix', FormCopy::field('suffix')->string(), ['placeholder' => __('calendars.placeholders.suffix'), 'maxlength' => 45]) !!}
+        <input type="text" name="suffix" value="{{ old('suffix', $source->suffix ?? $model->suffix ?? null) }}" maxlength="45" class="w-full" placeholder="{{ __('calendars.placeholders.suffix') }}" />
     </x-forms.field>
 
     @include('cruds.fields.entry2')

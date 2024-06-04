@@ -1,13 +1,6 @@
 <x-forms.field
     field="charges"
     :label="__('abilities.fields.charges')">
-    {!! Form::text(
-        'charges',
-        FormCopy::field('charges')->string(),
-        [
-            'placeholder' => trans('abilities.placeholders.charges'),
-            'maxlength' => 120,
-            'autocomplete' => 'off'
-        ]
-    ) !!}
+
+    <input type="text" name="charges" value="{{ old('charges', $source->charges ?? $model->charges ?? null) }}" maxlength="120" class="w-full"  autocomplete="off" placeholder="{{ __('abilities.placeholders.charges') }}" />
 </x-forms.field>

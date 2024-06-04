@@ -2,5 +2,5 @@
     field="relation"
     :required="!isset($bulk)"
     :label="__('entities/relations.fields.relation')">
-    {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+    <input type="text" name="relation" value="{{ old('relation', $source->relation ?? $model->relation ?? null) }}" maxlength="191" class="w-full"  placeholder="{{ __('entities/relations.placeholders.relation') }}" />
 </x-forms.field>

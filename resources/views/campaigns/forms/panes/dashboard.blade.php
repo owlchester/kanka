@@ -23,7 +23,7 @@
                     </x-forms.field>
                     <x-forms.field
                         field="image-url">
-                        {!! Form::text('header_image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full']) !!}
+                        <input type="text" name="header_image_url" value="{{ old('header_image_url') }}" maxlength="255" class="w-full" placeholder="{{ __('crud.placeholders.image_url') }}" />
                     </x-forms.field>
 
                     <p class="text-neutral-content m-0">

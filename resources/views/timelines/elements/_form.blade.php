@@ -17,7 +17,7 @@ if (!empty($era)) {
     </x-forms.field>
 
     <x-forms.field field="name" :label="__('crud.fields.name')">
-        {!! Form::text('name', null, ['class' => '', 'placeholder' => __('timelines/elements.placeholders.name')]) !!}
+        <input type="text" name="name" placeholder="{{ __('timelines/elements.placeholders.name') }}" value="{{ old('name', $model->name ?? null) }}" maxlength="191" />
     </x-forms.field>
 
     @include('cruds.fields.entity')
@@ -36,7 +36,7 @@ if (!empty($era)) {
     </x-forms.field>
 
     <x-forms.field field="date" :label="__('timelines/elements.fields.date')">
-        {!! Form::text('date', null, ['placeholder' => __('timelines/elements.placeholders.date'), 'class' => '', 'maxlength' => 45]) !!}
+        <input type="text" name="date" value="{{ old('date', $source->date ?? $model->date ?? null) }}" placeholder="{{ __('timelines/elements.placeholders.date') }}" maxlength="45" />
     </x-forms.field>
 
     <x-forms.field field="event-date" :label="__('timelines/elements.fields.use_event_date')">
@@ -55,17 +55,8 @@ if (!empty($era)) {
     </x-forms.field>
 
     <x-forms.field field="icon" :label="__('timelines/elements.fields.icon')">
-        {!! Form::text(
-            'icon',
-            null,
-            ['class' => '',
-                'placeholder' => 'fa-solid fa-gem, ra ra-sword',
-                ($campaign->boosted() ? null : 'disabled'),
-                'list' => 'timeline-element-icon-list',
-                'autocomplete' => 'off',
-                'data-paste' => 'fontawesome',
-            ])
-        !!}
+
+        <input type="text" name="icon" value="{{ old('icon', $source->icon ?? $model->icon ?? null) }}" placeholder="fa-solid fa-gem, ra ra-sword" class="w-full" autocomplete="off" data-paste="fontawesome" list="timeline-element-icon-list" maxlength="45" @if (!$campaign->boosted()) disabled="disabled" @endif />
         <div class="hidden">
             <datalist id="timeline-element-icon-list">
                 @foreach (\App\Facades\TimelineElementCache::iconSuggestion() as $icon)

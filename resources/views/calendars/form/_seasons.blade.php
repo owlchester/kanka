@@ -42,7 +42,7 @@
                         </div>
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.seasons.name') }}</label>
-                            {!! Form::text('season_name[]', $season['name'], ['class' => 'w-full']) !!}
+                            <input type="text" name="season_name[]" value="{{ $season['name'] }}" maxlength="191" class="w-full" />
                         </div>
                     </div>
 
@@ -79,7 +79,7 @@
                 </div>
                 <div class="grow field">
                     <label class="sr-only">{{ __('calendars.parameters.seasons.name') }}</label>
-                    {!! Form::text('season_name[]', null, ['class' => 'w-full']) !!}
+                    <input type="text" name="season_name[]" value="" placeholder="{{ __('calendars.parameters.seasons.name') }}" aria-label="{{ __('calendars.parameters.seasons.name') }}" maxlength="191" class="w-full" />
                 </div>
             </div>
 

@@ -16,7 +16,8 @@
     >
     </x-forms.foreign>
     <x-forms.field field="comment" css="col-span-2" :label="__('calendars.fields.comment')">
-        {!! Form::text('comment', null, ['placeholder' => __('calendars.placeholders.comment'), 'maxlength' => 191]) !!}
+
+        <input type="text" name="comment" value="{{ old('comment', $source->comment ?? $model->comment ?? null) }}" class="w-full" maxlength="191" placeholder="{{  __('calendars.placeholders.comment') }}" />
     </x-forms.field>
 
     <x-forms.field
@@ -30,8 +31,6 @@
             </p>
     </x-forms.field>
 
-    <x-forms.field field="colour" :label="__('crud.fields.colour')">
-        {!! Form::text('colour', null, ['class' => ' spectrum', 'maxlength' => 6, 'data-append-to' => '#primary-dialog'] ) !!}
-    </x-forms.field>
+    @include('cruds.fields.colour_picker')
 
 </x-grid>

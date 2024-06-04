@@ -53,7 +53,7 @@ if (!empty($moonNames)) {
                         </div>
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.moon.name') }}</label>
-                            {!! Form::text('moon_name[]', $fullmoon['name'], ['class' => 'w-full', 'aria-label' => __('calendars.parameters.moon.name')]) !!}
+                            <input type="text" name="moon_name[]" value="{{ $fullmoon['name'] }}" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.moon.name') }}" placeholder="{{ __('calendars.parameters.moon.name') }}" />
                         </div>
                     </div>
                     <div class="field">
@@ -94,7 +94,7 @@ if (!empty($moonNames)) {
                     </div>
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.moon.name') }}</label>
-                        {!! Form::text('moon_name[]', null, ['class' => 'w-full', 'aria-label' => __('calendars.parameters.moon.name')]) !!}
+                        <input type="text" name="moon_name[]" value="" placeholder="{{ __('calendars.parameters.moon.name') }}" aria-label="{{ __('calendars.parameters.moon.name') }}" maxlength="191" class="w-full" />
                     </div>
                 </div>
                 <div class="field">

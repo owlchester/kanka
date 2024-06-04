@@ -1,21 +1,12 @@
 <?php
 $required = !isset($bulk);
+$fieldname = $iconFieldName ?? 'icon';
 ?>
 <x-forms.field
     field="icon"
     :label="__('entities/links.fields.icon')">
     @if($campaign->boosted())
-
-        {!! Form::text(
-            $iconFieldName ?? 'icon',
-            null,
-            [
-                'placeholder' => $placeholder ?? 'fa-solid fa-users',
-                'class' => 'w-full',
-                'data-paste' => 'fontawesome',
-                'maxlength' => 45
-            ]
-        ) !!}
+        <input type="text" name="{{ $fieldname }}" value="{{ !isset($bulk) ? old($fieldname, $source->{$fieldname} ?? $model->icon ?? null) : null }}" placeholder="{{ $placeholder ?? 'fa-solid fa-users' }}" class="w-full" autocomplete="off" data-paste="fontawesome" maxlength="45" />
         <x-helper>
             {!! __('entities/links.helpers.icon', [
                 'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),

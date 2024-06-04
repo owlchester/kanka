@@ -5,7 +5,7 @@
     :required="true"
     :label="__('campaigns.roles.fields.name')"
     >
-    {!! Form::text('name', null, ['placeholder' => trans('campaigns.roles.placeholders.name'), 'class' => '', 'maxlength' => 45, 'required']) !!}
+    <input type="text" name="name" placeholder="{{ __('campaigns.roles.placeholders.name') }}" maxlength="45" required value="{{ old('name', $model->name ?? null) }}" />
 </x-forms.field>
 @if (isset($roleId))
     <x-forms.field

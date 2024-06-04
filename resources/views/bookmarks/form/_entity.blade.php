@@ -21,7 +21,6 @@ $menus = [
             'tags' => __('entities.tags'),
         ],
         __('entities.locations') => [
-            'map' => __('entities.map') . ' (' . __('crud.legacy') . ')',
             'characters' => __('entities.characters'),
             'locations' => __('entities.locations'),
         ],
@@ -70,7 +69,7 @@ $menus = array_merge(['' => __('crud.tabs.story')], $menus);
         </x-forms.field>
 
         <x-forms.field field="filter" :label="__('bookmarks.fields.filters')" :hidden="true">
-            {!! Form::text('options[subview_filter]', !isset($model->options['subview_filter']) ? '' : $model->options['subview_filter'], ['placeholder' => 'k=name&s=desc', 'class' => '', 'maxlength' => 191]) !!}
+            <input type="text" name="options[subview_filter]" value="{{ old('options[subview_filter]', $model->options['subview_filter'] ?? null) }}" maxlength="191" class="w-full" placeholder="k=name&s=desc" />
         </x-forms.field>
     </x-grid>
 </x-grid>

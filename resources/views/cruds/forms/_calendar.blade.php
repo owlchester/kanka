@@ -93,7 +93,7 @@ if (!empty($oldCalendarID)) {
                     field="colour"
                     :label="__('crud.fields.colour')">
                     <span>
-                    {!! Form::text('calendar_colour', FormCopy::field('calendar_colour')->string(), ['class' => ' spectrum', 'maxlength' => 7]) !!}
+                        <input type="text" name="calendar_colour" value="{{ old('calendar_colour', $source->calendar_colour ?? $model->calendar_colour ?? null) }}" maxlength="7" class="spectrum" />
                     </span>
                 </x-forms.field>
 

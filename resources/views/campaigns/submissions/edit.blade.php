@@ -22,7 +22,7 @@
                 <x-forms.field
                     field="message"
                     :label="__('campaigns/submissions.fields.approval')">
-                    {!! Form::text('message', null, ['class' => 'w-full', 'maxlength' => 191]) !!}
+                    <input type="text" name="message" value="{{ old('message') }}" maxlength="191" class="w-full" />
                 </x-forms.field>
 
                 <x-buttons.confirm type="primary" full="true">
@@ -37,7 +37,8 @@
             <x-forms.field
                 field="message"
                 :label="__('campaigns/submissions.fields.rejection')">
-                {!! Form::text('rejection', null, ['class' => 'w-full', 'maxlength' => 191]) !!}
+
+                <input type="text" name="rejection" value="{{ old('rejection') }}" maxlength="191" class="w-full" />
             </x-forms.field>
 
             <x-buttons.confirm type="danger" full="true">

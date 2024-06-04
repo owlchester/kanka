@@ -102,7 +102,7 @@
                         <p class="text-neutral-content"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
 
                         <div class="required field">
-                            {!! Form::text('delete', null, ['class' => 'w-full', 'required', 'id' => 'campaign-delete-form']) !!}
+                            <input type="text" name="delete" value="" maxlength="10" required id="campaign-delete-form" class="w-full" />
                         </div>
 
                         <div class="grid grid-cols-2 gap-2">

@@ -37,12 +37,7 @@ $statuses = [
                 </div>
                 <div class="grow field">
                     <label class="sr-only">{{ __('organisations.members.fields.role') }}</label>
-                    {!! Form::text('organisation_roles[' . $organisation->id . ']', $organisation->role, [
-                        'class' => 'w-full',
-                        'placeholder' => __('organisations.members.placeholders.role'),
-                        'spellcheck' => 'true',
-                        'aria-label' => __('organisations.members.fields.role'),
-                    ]) !!}
+                    <input type="text" name="organisation_roles[{{ $organisation->id }}]" value="{{ $organisation->role }}" placeholder="{{ __('organisations.members.placeholders.role') }}" aria-label="{{ __('organisations.members.placeholders.role') }}" maxlength="191" spellcheck="true"  class="w-full" />
                 </div>
                 <div class="field">
                     <label class="sr-only">{{ __('organisations.members.fields.status') }}</label>
@@ -91,12 +86,7 @@ $statuses = [
             </div>
             <div class="grow field">
                 <label class="sr-only">{{ __('organisations.members.fields.role') }}</label>
-                {!! Form::text('organisation_roles[]', null, [
-                    'class' => 'w-full',
-                    'placeholder' => __('organisations.members.placeholders.role'),
-                    'spellcheck' => 'true',
-                    'aria-label' => __('organisations.members.fields.role'),
-                ]) !!}
+                <input type="text" name="organisation_roles[]" value="" placeholder="{{ __('organisations.members.placeholders.role') }}" aria-label="{{ __('organisations.members.placeholders.role') }}" maxlength="191" spellcheck="true"  class="w-full" />
             </div>
             <div class="field">
                 <label class="sr-only">{{ __('organisations.members.fields.status') }}</label>

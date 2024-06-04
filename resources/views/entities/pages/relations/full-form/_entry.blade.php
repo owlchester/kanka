@@ -24,7 +24,7 @@
                     {!! __('entities/relations.fields.target_relation') !!}
                     <x-helpers.tooltip :title="__('entities/relations.hints.target_relation')" />
                 </label>
-                {!! Form::text('target_relation', null, ['class' => '', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
+                <input type="text" name="target_relation" value="{{ old('target_relation', $model->target_relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.target_relation') }}" placeholder="{{ __('entities/relations.placeholders.target_relation') }}" />
                 <p class="text-neutral-content md:hidden">{{ __('entities/relations.hints.target_relation') }}</p>
             </x-forms.field>
         </div>

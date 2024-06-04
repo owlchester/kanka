@@ -19,7 +19,7 @@
                         <input type="file" name="header_image" class="image w-full" id="header_image" accept=".jpg, .jpeg, .png, .gif, .webp, .gif" />
                     </div>
                     <div class="field field-header-url">
-                        {!! Form::text('header_image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full']) !!}
+                        <input type="text" name="header_image_url" value="{{ old('header_image_url') }}" maxlength="255" class="w-full" placeholder="{{ __('crud.placeholders.image_url') }}" />
                     </div>
 
                     <x-helper>

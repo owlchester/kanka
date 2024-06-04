@@ -64,7 +64,7 @@
                 <x-grid type="1/1" css="text-left">
                 @if (!$card)
                     <x-forms.field field="card-name" :label="__('settings.subscription.payment_method.card_name')">
-                        {!! Form::text('card-holder-name', null, ['class' => '']) !!}
+                        <input type="text" name="card-holder-name"  />
                     </x-forms.field>
 
                     <x-forms.field field="card-number" :label="__('settings.subscription.payment_method.card')">

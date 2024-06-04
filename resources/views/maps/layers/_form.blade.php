@@ -11,7 +11,7 @@ $typeOptions = [
         field="name"
         :required="true"
         :label="__('crud.fields.name')">
-        {!! Form::text('name', null, ['placeholder' => __('maps/layers.placeholders.name'), 'class' => '', 'maxlength' => 191, 'required' => true]) !!}
+        <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/layers.placeholders.name') }}" required value="{{ old('name', $model->name ?? null) }}" />
     </x-forms.field>
     @php
         $options = $map->layerPositionOptions(!empty($model->position) ? $model->position : null);

@@ -122,7 +122,7 @@
                 {!! __('profiles.sections.delete.goodbye', ['code' => '<code>goodbye</code>']) !!}
             </p>
             <x-forms.field field="goodbye" :required="true">
-                {!! Form::text('goodbye',null, ['class' => '','required']) !!}
+                <input type="text" name="goodbye" required />
             </x-forms.field>
             <x-buttons.confirm type="danger" outline="true" full="true">
                 <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>

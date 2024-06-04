@@ -17,7 +17,7 @@ $entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->ex
         </x-forms.field>
 
         <x-forms.field field="filters" :label="__('bookmarks.fields.filters')">
-            {!! Form::text('filters', FormCopy::field('filters')->string(), ['placeholder' => __('bookmarks.placeholders.filters'), 'class' => '', 'maxlength' => 191]) !!}
+            <input type="text" name="filters" value="{{ old('filters', $source->filters ?? $model->filters ?? null) }}" placeholder="{{ __('bookmarks.placeholders.filters') }}" maxlength="191" />
         </x-forms.field>
 
 {{--        <x-forms.field field="nested" :label="__('bookmarks.fields.is_nested')">--}}

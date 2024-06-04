@@ -25,10 +25,10 @@
     ])
 @endif
     <x-forms.field field="relation" :required="true" :label="__('entities/relations.fields.relation')">
-        {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => '', 'maxlength' => 191, 'required']) !!}
+        <input type="text" name="relation" value="{{ old('relation', $model->relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.relation') }}" placeholder="{{ __('entities/relations.placeholders.relation') }}" />
     </x-forms.field>
 
-    @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#primary-dialog'] : [])
+    @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#primary-dialog', 'model' => $relation ?? null] : ['model' => $relation ?? null])
     @include('cruds.fields.attitude', ['model' => $relation ?? null])
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
@@ -45,7 +45,7 @@
                 :label="__('entities/relations.fields.target_relation')"
                 :helper="__('entities/relations.hints.target_relation')"
                 :tooltip="true">
-            {!! Form::text('target_relation', null, ['class' => '', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
+                <input type="text" name="target_relation" value="{{ old('target_relation', $model->target_relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.target_relation') }}" placeholder="{{ __('entities/relations.placeholders.target_relation') }}" />
             </x-forms.field>
         </div>
     </div>

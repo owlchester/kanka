@@ -53,7 +53,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
         <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
                 <x-forms.field field="name" :required="true">
-                    {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => '', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
+                    <input type="text" name="name"  placeholder="{{ __('entities/notes.placeholders.name') }}" value="{{ old('name', $model->name ?? null) }}" maxlength="191" required data-bragi-name="{{ $bragiName }}" data-live-disabled="1" />
                 </x-forms.field>
 
                 <x-forms.field field="layout" :hidden="isset($layoutHelper)">
@@ -94,7 +94,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 </x-forms.field>
 
                 <x-forms.field field="class" :label=" __('dashboard.widgets.fields.class')" :tooltip="true" :helper="__('dashboard.widgets.helpers.class')">
-                    {!! Form::text('settings[class]', null, ['class' => '', 'id' => 'config[class]', 'disabled' => !$campaign->boosted() ? 'disabled' : null]) !!}
+                    <input type="text" name="settings[class]" value="{{ old('settings[class]', $model->settings['class'] ?? null) }}" maxlength="191" @if (!$campaign->boosted()) disabled="disabled" @endif class="w-full" id="config[class]" />
                     @includeWhen(!$campaign->boosted(), 'entities.pages.posts._boosted')
                 </x-forms.field>
             </x-grid>

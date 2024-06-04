@@ -20,7 +20,7 @@
 </x-grid>
 <x-grid>
     <x-forms.field field="comment" css="col-span-2" :label="__('calendars.fields.comment')">
-        {!! Form::text('comment', null, ['placeholder' => __('calendars.placeholders.comment'), 'maxlength' => 191]) !!}
+        <input type="text" name="comment" value="{{ old('comment', $entityEvent->comment ?? null) }}" maxlength="191" class="w-full" placeholder="{{ __('calendars.placeholders.comment') }}" />
     </x-forms.field>
     <div id="entity-calendar-modal-add">
         <x-forms.field
@@ -34,7 +34,7 @@
             </p>
         </x-forms.field>
 </div>
-    @include('cruds.fields.colour_picker', ['default' => (!empty($entityEvent) ? null : '#cccccc')])
+    @include('cruds.fields.colour_picker', ['default' => '#cccccc', 'model' => $entityEvent ?? null])
 
     <x-forms.field
         field="recurring"
@@ -43,7 +43,7 @@
     </x-forms.field>
 
     <x-forms.field field="recurring-until" :hidden="!isset($entityEvent) || !$entityEvent->is_recurring" :label="__('calendars.fields.recurring_until')"  id="add_event_recurring_until">
-        {!! Form::text('recurring_until', null, ['placeholder' => __('calendars.placeholders.recurring_until'), 'maxlength' => 12]) !!}
+        <input type="text" name="recurring_until" value="{{ old('recurring_until', $entityEvent->recurring_until ?? null) }}" maxlength="12" class="w-full" placeholder="{{ __('calendars.placeholders.recurring_until') }}" />
     </x-forms.field>
 
     @include('cruds.fields.visibility_id', ['model' => $entityEvent ?? null])

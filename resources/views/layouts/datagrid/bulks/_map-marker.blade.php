@@ -35,16 +35,8 @@ $groups[-1] = __('crud.filters.options.none');
 
     @if ($campaign->boosted())
     <x-forms.field field="custom-icon" :label="__('maps/markers.fields.custom_icon')">
-        {!! Form::text(
-            'custom_icon',
-            null,
-            [
-                'class' => '',
-                'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']),
-                'list' => 'map-marker-icon-list',
-                'autocomplete' => 'off'
-            ])
-        !!}
+
+        <input type="text" name="custom_icon" value="{{ old('custom_icon', $model->custom_icon ?? null) }}" class="w-full" placeholder="{{ __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-sword"']) }}" autocomplete="off" list="map-marker-icon-list" />
 
         <div class="hidden">
             <datalist id="map-marker-icon-list">
@@ -55,9 +47,7 @@ $groups[-1] = __('crud.filters.options.none');
         </div>
     </x-forms.field>
     @endif
-    <x-forms.field field="font-colour" :label="__('maps/markers.fields.font_colour')">
-        {!! Form::text('font_colour', null, ['class' => ' spectrum', 'maxlength' => 6, 'data-append-to' => '#primary-dialog'] ) !!}
-    </x-forms.field>
+    @include('maps.markers.fields.font_colour', ['dropdownParent' => '#primary-dialog'])
 
     <x-forms.field field="is-draggable" :label="__('maps/markers.fields.is_draggable')">
         {{ Form::select('is_draggable',  $typeOptions, null, ['class' => '', 'id' => 'type_id']) }}
@@ -67,9 +57,7 @@ $groups[-1] = __('crud.filters.options.none');
         <input type="number" name="opacity" class="w-full" value="{{ $source->opacity ?? old('opacity', $model->opacity ?? null) }}" min="0" step="10" max="100" id="opacity" maxlength="3" />
     </x-forms.field>
 
-    <x-forms.field field="bg-colour" :label="__('maps/markers.fields.bg_colour')">
-        {!! Form::text('colour', null, ['class' => ' spectrum', 'maxlength' => 6, 'data-append-to' => '#primary-dialog'] ) !!}
-    </x-forms.field>
+    @include('maps.markers.fields.background_colour', ['dropdownParent' => '#primary-dialog'])
 
     <x-forms.field field="group" :label="__('maps/markers.fields.group')">
         {{ Form::select('group_id', $groups, null, ['class' => '', 'id' => 'group_id']) }}

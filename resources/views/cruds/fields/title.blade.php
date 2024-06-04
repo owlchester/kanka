@@ -1,14 +1,7 @@
 <x-forms.field
     field="title"
     :label="__('characters.fields.title')">
-    {!! Form::text(
-        'title',
-        FormCopy::field('title')->string(),
-        [
-            'placeholder' => __('characters.placeholders.title'),
-            'class' => 'w-full',
-            'maxlength' => 191,
-            'spellcheck' => 'true'
-        ]
-    ) !!}
+
+    <input type="text" name="title" value="{{ old('title', $source->title ?? $model->title ?? null) }}"
+           placeholder="{{ __('characters.placeholders.title') }}" maxlength="191" spellcheck="true" />
 </x-forms.field>

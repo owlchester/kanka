@@ -10,7 +10,8 @@
         field="name"
         :required="true"
         :label="__('dashboard.dashboards.fields.name')">
-        {!! Form::text('name', null, ['class' => '', 'placeholder' => __('dashboard.dashboards.placeholders.name')]) !!}
+
+        <input type="text" name="name" placeholder="{{ __('dashboard.dashboards.placeholders.name') }}" maxlength="45" required value="{{ old('name', $dashboard->name ?? null) }}" />
     </x-forms.field>
 
     <div class="field grid grid-cols-2 gap-5">

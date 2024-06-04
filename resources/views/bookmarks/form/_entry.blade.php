@@ -25,16 +25,7 @@ if (isset($model)) {
 
     <x-forms.field field="icon" :label="__('entities/links.fields.icon')">
         @if($campaign->boosted())
-            {!! Form::text(
-                'icon',
-                null,
-                [
-                    'placeholder' => 'fa-solid fa-users',
-                    'class' => '',
-        'data-paste' => 'fontawesome',
-                    'maxlength' => 45
-                ]
-            ) !!}
+            <input type="text" name="icon" value="{{ old('text', $source->icon ?? $model->icon ?? null) }}" placeholder="fa-solid fa-users" data-paste="fontawesome" maxlength="45" />
             <x-helper>
                 {!! __('entities/links.helpers.icon', [
                     'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
@@ -86,7 +77,7 @@ if (isset($model)) {
             :helper="__('dashboard.widgets.helpers.class')"
     >
         @if ($campaign->boosted())
-            {!! Form::text('css', null, ['class' => '', 'id' => 'config[class]', 'maxlength' => 45]) !!}
+            <input type="text" name="css" value="{{ old('css', $model->css ?? null) }}" class="w-full" maxlength="45" id="config[class]" />
             <p class="text-neutral-content md:hidden">
                 {{ __('dashboard.widgets.helpers.class') }}
             </p>

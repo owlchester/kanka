@@ -44,7 +44,7 @@ $fromOrg = request()->get('from') === 'org';
     <x-forms.field
         field="org-role"
         :label="__('characters.organisations.fields.role')">
-        {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'w-full', 'maxlength' => 45]) !!}
+        <input type="text" name="role" value="{{ old('role', $source->role ?? $model->role ?? null) }}" maxlength="45" class="w-full" placeholder="{{ __('organisations.members.placeholders.role') }}" />
     </x-forms.field>
 
     <x-forms.field

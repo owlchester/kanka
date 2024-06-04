@@ -15,24 +15,13 @@ $role = \App\Facades\CampaignCache::adminRole();
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
-                                {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
-                                    'class' => 'w-full',
-                                    'maxlength' => 191,
-                                    'placeholder' => __('characters.placeholders.appearance_name'),
-                                    'spellcheck' => 'true',
-                                    'aria-label' => __('characters.labels.appearance.name'),
-                                ]) !!}
+                                <input type="text" name="appearance_name[{{ $trait->id }}]" value="{{ $trait->name }}" class="w-full" placeholder="{{ __('characters.placeholders.appearance_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance.name') }}" maxlength="191" />
                             </div>
                         </div>
                         <div class="flex gap-1 items-center">
                             <div class="grow field">
                                 <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
-                                {!! Form::text('appearance_entry[' . $trait->id . ']', $trait->entry, [
-                                    'class' => 'w-full',
-                                    'placeholder' => __('characters.placeholders.appearance_entry'),
-                                    'spellcheck' => 'true',
-                                    'aria-label' => __('characters.labels.appearance.entry'),
-                                ]) !!}
+                                <input type="text" name="appearance_entry[{{ $trait->id }}]" value="{{ $trait->entry }}" class="w-full" placeholder="{{ __('characters.placeholders.appearance_entry') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance.entry') }}"  maxlength="191" />
                             </div>
                             <div class="dynamic-row-delete btn2 btn-sm btn-outline btn-error" title="{{ __('crud.remove') }}" role="button" tabindex="0">
                                 <x-icon class="trash"></x-icon>
@@ -73,12 +62,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
-                                {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
-                                    'class' => 'w-full',
-                                    'placeholder' => __('characters.placeholders.personality_name'),
-                                    'spellcheck' => 'true',
-                                    'aria-label' => __('characters.labels.personality.name'),
-                                ]) !!}
+                                <input type="text" name="personality_name[{{ $trait->id }}]" value="{{ $trait->name }}" class="w-full" placeholder="{{ __('characters.placeholders.personality_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.personality.name') }}" maxlength="191" />
                             </div>
                             <div class="dynamic-row-delete btn2 btn-error btn-sm btn-outline" role="button" tabindex="0" >
                                 <x-icon class="trash"></x-icon>
@@ -148,23 +132,13 @@ $role = \App\Facades\CampaignCache::adminRole();
                 @endif
                 <div class="grow field">
                     <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
-                    {!! Form::text('appearance_name[]', null, [
-                        'class' => 'w-full',
-                        'placeholder' => __('characters.placeholders.appearance_name'),
-                        'spellcheck' => 'true',
-                        'aria-label' => __('characters.labels.appearance.name'),
-                    ]) !!}
+                    <input type="text" name="appearance_name[]" class="w-full" placeholder="{{ __('characters.placeholders.appearance_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance_name') }}" maxlength="191" />
                 </div>
             </div>
             <div class="flex gap-1 items-center">
                 <div class="grow field">
                     <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
-                    {!! Form::text('appearance_entry[]', null, [
-                        'class' => 'w-full',
-                        'placeholder' => __('characters.placeholders.appearance_entry'),
-                        'spellcheck' => 'true',
-                        'aria-label' => __('characters.labels.appearance.entry'),
-                    ]) !!}
+                    <input type="text" name="appearance_entry[]" class="w-full" placeholder="{{ __('characters.placeholders.appearance_entry') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance.entry') }}" maxlength="191" />
                 </div>
                 <div class="dynamic-row-delete btn2 btn-sm btn-error btn-outline" role="button" tabindex="0">
                     <x-icon class="trash"></x-icon>
@@ -183,12 +157,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 @endif
                 <div class="grow field">
                     <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
-                    {!! Form::text('personality_name[]', null, [
-                        'class' => 'w-full',
-                        'placeholder' => __('characters.placeholders.personality_name'),
-                        'spellcheck' => 'true',
-                        'aria-label' => __('characters.labels.personality.name'),
-                    ]) !!}
+                    <input type="text" name="personality_name[]" class="w-full" placeholder="{{ __('characters.placeholders.personality_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.personality.name') }}" maxlength="191" />
                 </div>
                 <div class="dynamic-row-delete btn2 btn-error btn-sm btn-outline" title="{{ __('crud.remove') }}" role="button" tabindex="0">
                     <x-icon class="trash"></x-icon>

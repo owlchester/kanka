@@ -18,15 +18,7 @@ if (isset($inventory)) {
         :required="true"
         :helper="__('entities/inventories.helpers.name')"
         :label="__('entities/inventories.fields.name')">
-        {!! Form::text(
-            'name',
-            null,
-            [
-                'placeholder' => __('entities/inventories.placeholders.name'),
-                'class' => '',
-                'max-length' => 45
-            ]
-        ) !!}
+        <input type="text" name="name" value="{{ old('name', $inventory->name ?? null) }}" maxlength="45" class="w-full" placeholder="{{ __('entities/inventories.placeholders.name') }}" />
     </x-forms.field>
 
     <input type="hidden" name="item_id" value="" />
@@ -99,7 +91,7 @@ if (isset($inventory)) {
     @include('cruds.fields.visibility_id', ['model' => $inventory ?? null])
 
     <x-forms.field field="description" css="col-span-3" :label="__('entities/inventories.fields.description')" :helper="__('entities/inventories.helpers.description')">
-        {!! Form::text('description', null, ['placeholder' => __('entities/inventories.placeholders.description'), 'class' => '', 'maxlength' => 191]) !!}
+        <input type="text" name="description" value="{{ old('description', $inventory->description ?? null) }}" maxlength="191" class="w-full" placeholder="{{ __('entities/inventories.placeholders.description') }}" />
     </x-forms.field>
 
 </x-grid>

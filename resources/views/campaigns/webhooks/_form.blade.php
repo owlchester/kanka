@@ -16,7 +16,7 @@
     :required="true"
     :label="__('campaigns/webhooks.fields.url')"
     >
-    {!! Form::text('url', null, ['placeholder' => __('campaigns/webhooks.placeholders.url'), 'class' => '', 'maxlength' => 191, 'required']) !!}
+    <input type="text" name="url" value="{{ old('url', $webhook->url ?? null) }}" maxlength="191" required class="w-full" placeholder="{{ __('campaigns/webhooks.placeholders.url') }}"/>
 </x-forms.field>
 
 <x-forms.field field="target" :label="__('campaigns/webhooks.fields.type')">

@@ -38,7 +38,7 @@
                     :tooltip="true"
                     :helper="__('dashboard.widgets.helpers.filters')"
                     :hidden="empty($model) || empty($model->conf('entity'))">
-                    {!! Form::text('config[filters]', null, ['class' => '', 'maxlength' => 191]) !!}
+                    <input type="text" name="config[filters]" value="{{ old('config[filters]', $model->config['filters'] ?? null) }}" maxlength="191" class="w-full" id="config[filters]" placeholder="" />
                 </x-forms.field>
 
                 @include('dashboard.widgets.forms._tags')

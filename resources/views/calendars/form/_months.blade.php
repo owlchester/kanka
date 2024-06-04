@@ -49,7 +49,7 @@
                         </div>
                         <div class="field">
                             <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
-                            {!! Form::text('month_name[]', $month['name'], ['class' => 'w-full']) !!}
+                            <input type="text" name="month_name[]" value="{{ $month['name'] }}" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.month.name') }}" placeholder="{{ __('calendars.parameters.month.name') }}" />
                         </div>
                     </div>
 
@@ -60,12 +60,7 @@
 
                     <div class="field">
                         <label class="sr-only">{{ __('calendars.parameters.month.alias') }}</label>
-                        {!! Form::text('month_alias[]', \Illuminate\Support\Arr::get($month, 'alias', ''), [
-                            'class' => 'w-full',
-                            'maxlength' => 191,
-                            'placeholder' => __('calendars.parameters.month.alias'),
-                            'aria-label' => __('calendars.parameters.month.name'),
-                        ]) !!}
+                        <input type="text" name="month_alias[]" value="{{ \Illuminate\Support\Arr::get($month, 'alias', '') }}" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.month.alias') }}" placeholder="{{ __('calendars.parameters.month.alias') }}" />
                     </div>
 
                     <div class="flex items-center gap-2">
@@ -98,11 +93,7 @@
                 </div>
                 <div class="field">
                     <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
-                    {!! Form::text('month_name[]', null, [
-                        'class' => 'w-full',
-                        'placeholder' => __('calendars.parameters.month.name'),
-                        'aria-label' => __('calendars.parameters.month.name'),
-                    ]) !!}
+                    <input type="text" name="month_name[]" value="" placeholder="{{ __('calendars.parameters.month.name') }}" aria-label="{{ __('calendars.parameters.month.name') }}" maxlength="191" class="w-full" />
                 </div>
             </div>
             <div class="field">
@@ -111,8 +102,7 @@
             </div>
             <div class="field">
                 <label class="sr-only">{{ __('calendars.parameters.month.alias') }}</label>
-                {!! Form::text('month_alias[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.month.alias'),
-                        'aria-label' => __('calendars.parameters.month.alias'),]) !!}
+                <input type="text" name="month_alias[]" value="" placeholder="{{ __('calendars.parameters.month.alias') }}" aria-label="{{ __('calendars.parameters.month.alias') }}" maxlength="191" class="w-full" />
             </div>
             <div class="flex gap-2 items-center">
                 <div class="field">

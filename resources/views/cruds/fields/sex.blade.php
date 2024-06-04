@@ -1,16 +1,8 @@
 <x-forms.field
     field="sex"
     :label="__('characters.fields.sex')">
-    {!! Form::text(
-        'sex',
-        FormCopy::field('sex')->string(),
-        [
-            'placeholder' => __('characters.placeholders.sex'),
-            'maxlength' => 45,
-            'list' => 'entity-gender-list',
-            'autocomplete' => 'off'
-        ]
-    ) !!}
+
+    <input type="text" name="sex" value="{{ old('sex', $source->sex ?? $model->sex ?? null) }}" placeholder="{{ __('characters.placeholders.title') }}" list="entity-gender-list" autocomplete="off" maxlength="45" spellcheck="true" />
     <datalist id="entity-gender-list">
         @foreach (\App\Facades\CharacterCache::genderSuggestion() as $gender)
             <option value="{{ $gender }}">{{ $gender }}</option>

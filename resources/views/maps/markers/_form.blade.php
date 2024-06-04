@@ -77,7 +77,7 @@ $sizeOptions = [
                 </x-forms.field>
 
                 <x-forms.field field="radius" :label="__('maps/markers.fields.circle_radius')">
-                    {!! Form::text('circle_radius', \App\Facades\FormCopy::field('circle_radius')->string(), ['class' => ' map-marker-circle-radius', 'id' => 'circle_radius', 'style' => (!isset($model) || $model->shape_id != 6) ? 'display:none;' : '']) !!}
+                    <input type="text" name="circle_radius" value="{{ old('circle_radius', $source->circle_radius ?? $model->circle_radius ?? null) }}" class="w-full map-marker-circle-radius" id="circle_radius" style="{{ !isset($model) || $model->shape_id != 6 ? 'display:none;' : null }}" />
                     <div class="map-marker-circle-helper">
                         <x-helper :text="__('maps/markers.helpers.custom_radius')" />
                     </div>
@@ -128,7 +128,8 @@ $sizeOptions = [
 
                 <x-forms.field field="stroke" :label="__('maps/markers.fields.polygon_style.stroke')">
                     <span>
-                    {!! Form::text('polygon_style[stroke]', $source->polygon_style['stroke'] ?? null, ['class' => ' spectrum']) !!}
+
+                    <input type="text" name="polygon_style[stroke]" value="{{ old('polygon_style[stroke]', $source->polygon_style['stroke'] ?? $model->polygon_style['stroke'] ?? null) }}" class="w-full spectrum" maxlength="7" data-append-to="#marker-modal" />
                     </span>
                 </x-forms.field>
 
@@ -168,7 +169,7 @@ $sizeOptions = [
 <div id="marker-main-fields" class="flex flex-col gap-5 w-full">
     <x-grid>
         <x-forms.field field="name" :label="__('crud.fields.name')">
-            {!! Form::text('name', \App\Facades\FormCopy::field('name')->string(), ['placeholder' => __('maps/markers.placeholders.name'), 'class' => '', 'maxlength' => 191, 'id' => 'name']) !!}
+            <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/markers.placeholders.name') }}" value="{{ old('name', $source->name ?? $model->name ?? null) }}" id="name" />
         </x-forms.field>
 
         @include('cruds.fields.entity')
@@ -203,7 +204,7 @@ $sizeOptions = [
         <x-forms.field field="is_popupless" :label="__('maps/markers.fields.popupless')">
             <input type="hidden" name="is_popupless" value="0" />
             <x-checkbox :text="__('maps/markers.helpers.is_popupless')">
-                <input type="checkbox" name="is_popupless" value="1" @if ($source->is_popupless ?: old('is_popupless', $model->is_popupless ?? false)) checked="checked" @endif />
+                <input type="checkbox" name="is_popupless" value="1" @if ($source->is_popupless ?? old('is_popupless', $model->is_popupless ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
 

@@ -72,15 +72,8 @@ if (isset($model) && $model->isChunked()) {
     <x-forms.field
         field="distance-name"
         :label="__('maps.fields.distance_name')">
-        {!! Form::text(
-            'config[distance_name]',
-            $source->config['distance_name'] ?? null,
-            [
-                'placeholder' => __('maps.placeholders.distance_name'),
-                'class' => '',
-                'maxlength' => 20
-            ]
-            ) !!}
+
+        <input type="text" name="config[distance_name]" value="{{ old('config[distance_name]', $source->config['distance_name'] ?? $model->config['distance_name'] ?? null) }}" class="w-full" placeholder="{{ __('maps.placeholders.distance_name') }}" maxlength="20" list="map-marker-icon-list" />
     </x-forms.field>
 
     <x-forms.field

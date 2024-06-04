@@ -44,8 +44,8 @@
                         <input type="file" name="header_image" class="image w-full" id="header_image_{{ rand() }}" accept=".jpg, .jpeg, .png, .gif, .webp" />
                     </x-forms.field>
                     <x-forms.field field="header-url">
-                        {!! Form::text('header_image_url', $headerUrlPreset, ['placeholder' => __('crud.placeholders.image_url'), 'class' => '']) !!}
 
+                        <input type="text" name="header_image_url" value="{{ old('header_image_url', $headerUrlPreset) }}" maxlength="191" class="w-full"  placeholder="{{ __('crud.placeholders.image_url') }}" />
                         <x-helper>
                             {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => Limit::readable()->upload()]) }}
                             {{ __('crud.hints.image_dimension', ['dimension' => '1200x400']) }}

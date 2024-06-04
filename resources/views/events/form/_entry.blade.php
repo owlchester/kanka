@@ -6,7 +6,7 @@
     @include('cruds.fields.location')
 
     <x-forms.field field="date" :label="__('events.fields.date')" :helper="__('events.helpers.date')">
-        {!! Form::text('date', FormCopy::field('date')->string(), ['placeholder' => __('events.placeholders.date'), 'class' => '', 'maxlength' => 191]) !!}
+        <input type="text" name="date" value="{{ old('date', $source->date ?? $model->date ?? null) }}" class="w-full" maxlength="191" placeholder="{{  __('events.placeholders.date') }}" />
     </x-forms.field>
 
     @include('cruds.fields.entry2')

@@ -88,13 +88,13 @@
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
-                                {!! Form::text('year_number[]', $year, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.year.number')]) !!}
+                                <input type="text" name="year_number[]" value="{{ $year }}" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.year.number') }}" placeholder="{{ __('calendars.parameters.year.number') }}" />
                             </div>
                         </div>
                         <div class="flex gap-2 items-center">
                             <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
-                                {!! Form::text('year_name[]', $name, ['class' => 'w-full']) !!}
+                                <input type="text" name="year_name[]" value="{{ $name }}" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.year.name') }}" placeholder="{{ __('calendars.parameters.year.name') }}" />
                             </div>
 
                             <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
@@ -150,7 +150,7 @@
                 <div class="flex gap-2 items-center">
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
-                        {!! Form::text('year_name[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.year.name')]) !!}
+                        <input type="text" name="year_number[]" value="" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.year.number') }}" placeholder="{{ __('calendars.parameters.year.number') }}" />
                     </div>
                     <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
                         <x-icon class="trash"></x-icon>

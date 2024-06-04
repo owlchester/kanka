@@ -6,7 +6,7 @@
             :required="true"
             :label="__('campaigns.fields.name')"
             :helper="__('campaigns.helpers.name')">
-            {!! Form::text('name', null, ['placeholder' => __('campaigns.placeholders.name'), 'required', 'maxlength' => 191]) !!}
+            <input type="text" name="name" placeholder="{{ __('campaigns.placeholders.name') }}" maxlength="191" required value="{{ old('name', $model->name ?? null) }}" />
         </x-forms.field>
 
         <x-forms.field
