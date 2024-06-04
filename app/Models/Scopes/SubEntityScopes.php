@@ -149,7 +149,7 @@ trait SubEntityScopes
         $this->hasJoinedEntity = true;
 
         return $query
-            ->distinct()
+            ->select($this->getTable() . '.*')
             ->leftJoin('entities as e', function ($join) {
                 $join->on('e.entity_id', '=', $this->getTable() . '.id');
                 // @phpstan-ignore-next-line

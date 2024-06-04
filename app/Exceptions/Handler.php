@@ -139,7 +139,7 @@ class Handler extends ExceptionHandler
                 ], 401);
         }
 
-        $limit = app()->isProduction() ? 100 : 500;
+        $limit = app()->isProduction() ? 100 : 2000;
         return response()
             ->json([
                 'code' => 500,
