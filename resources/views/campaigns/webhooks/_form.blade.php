@@ -5,10 +5,13 @@
     :required="true"
     :label="__('campaigns/webhooks.fields.event')"
     >
-    {!! Form::select('action', [
-    \App\Enums\WebhookAction::CREATED->value => __('campaigns/webhooks.fields.events.new'),
-    \App\Enums\WebhookAction::EDITED->value => __('campaigns/webhooks.fields.events.edited'),
-    \App\Enums\WebhookAction::DELETED->value => __('campaigns/webhooks.fields.events.deleted')]) !!}
+    @php
+        $options= [\App\Enums\WebhookAction::CREATED->value => __('campaigns/webhooks.fields.events.new'),
+        \App\Enums\WebhookAction::EDITED->value => __('campaigns/webhooks.fields.events.edited'),
+        \App\Enums\WebhookAction::DELETED->value => __('campaigns/webhooks.fields.events.deleted'),
+        ];
+    @endphp
+    <x-forms.select name="action" :options="$options" :selected="$webhook->action ?? null" />
 </x-forms.field>
 
 <x-forms.field

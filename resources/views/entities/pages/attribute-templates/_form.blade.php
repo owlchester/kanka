@@ -7,6 +7,6 @@
     'boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaigns')),
     'marketplace' => link_to(config('marketplace.url') . '/attribute-templates', __('footer.marketplace'), ['target' => '_blank'])
     ])">
-        {!! Form::select('template_id', $templates, null, ['placeholder' => __('entities/attributes.placeholders.template'), 'class' => '', 'required']) !!}
+        <x-forms.select name="template_id" :options="$templates" :placeholder="__('entities/attributes.placeholders.template')" class="w-full" required />
     </x-forms.field>
 </x-grid>

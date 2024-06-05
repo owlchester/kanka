@@ -396,7 +396,7 @@ TEXT
     ],
     'sharing'                           => [
         'filters'   => 'Public campaigns are visible on the :public-campaigns page. Filling out these fields makes it easier for others to discover it.',
-        'language'  => 'The language in which the campaign\'s content is written.',
+        'language'  => 'The main language in which the campaign\'s content is written.',
         'system'    => 'If playing a TTRPG, the system used to play in the campaign.',
     ],
     'show'                              => [

@@ -30,7 +30,7 @@ $groups[-1] = __('crud.filters.options.none');
 ?>
 <x-grid>
     <x-forms.field field="icon" :label="__('maps/markers.fields.icon')">
-        {!! Form::select('icon', $iconOptions, null, ['class' => '', 'id' => 'icon']) !!}
+        <x-forms.select name="icon" :options="$iconOptions" class="w-full" id="icon" />
     </x-forms.field>
 
     @if ($campaign->boosted())
@@ -50,7 +50,7 @@ $groups[-1] = __('crud.filters.options.none');
     @include('maps.markers.fields.font_colour', ['dropdownParent' => '#primary-dialog'])
 
     <x-forms.field field="is-draggable" :label="__('maps/markers.fields.is_draggable')">
-        {{ Form::select('is_draggable',  $typeOptions, null, ['class' => '', 'id' => 'type_id']) }}
+        <x-forms.select name="is_draggable" :options="$typeOptions" class="w-full" />
     </x-forms.field>
 
     <x-forms.field field="opacity" :label="__('maps/markers.fields.opacity')">
@@ -60,7 +60,7 @@ $groups[-1] = __('crud.filters.options.none');
     @include('maps.markers.fields.background_colour', ['dropdownParent' => '#primary-dialog'])
 
     <x-forms.field field="group" :label="__('maps/markers.fields.group')">
-        {{ Form::select('group_id', $groups, null, ['class' => '', 'id' => 'group_id']) }}
+        <x-forms.select name="group_id" :options="$groups" class="w-full" />
     </x-forms.field>
     @include('cruds.fields.visibility_id', ['bulk' => true])
 </x-grid>

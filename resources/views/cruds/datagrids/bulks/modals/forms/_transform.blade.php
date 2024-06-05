@@ -4,6 +4,6 @@
     </x-helper>
 
     <x-forms.field field="target" :label="__('entities/transform.fields.target')">
-        {!! Form::select('target', $entities, null, ['class' => 'w-full', 'required' => true]) !!}
+        <x-forms.select name="target" :options="$entities" class="w-full" required />
     </x-forms.field>
 </x-grid>

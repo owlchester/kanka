@@ -17,14 +17,14 @@
             <div class="flex flex-col md:flex-row gap-5">
                 <div class="grow flex flex-col gap-5">
                     <x-forms.field field="name" :label="__('profiles.fields.name')" :required="true">
-                        <input type="text" name="name" maxlength="191" placeholder="{{ __('profiles.placeholders.name') }}" class="rounded border p-2 w-full" value="{{ old('name', $user->name ?? null) }}" />
+                        <input type="text" name="name" maxlength="191" placeholder="{{ __('profiles.placeholders.name') }}" class="rounded border p-2 w-full" value="{!! old('name', $user->name ?? null) !!}" />
                     </x-forms.field>
 
                     @php $helper =  __('profiles.helpers.profile-name', [
     'marketplace' => link_to(config('marketplace.url'), __('footer.marketplace'), ['target' => '_blank']),
     'profile' => link_to_route('users.profile', __('profiles.settings.helpers.profile'), $user, ['target' => '_blank'])]) @endphp
                     <x-forms.field field="marketplace-name" :label="__('profiles.fields.profile-name')" :helper="$helper">
-                        <input type="text" name="settings[marketplace_name]" maxlength="32" placeholder="{{ __('profiles.fields.profile-name') }}" class="rounded border p-2 w-full" value="{{ old('name', $user->settings['marketplace_name'] ?? null) }}" />
+                        <input type="text" name="settings[marketplace_name]" maxlength="32" placeholder="{{ __('profiles.fields.profile-name') }}" class="rounded border p-2 w-full" value="{!! old('settings[marketplace_name]', $user->settings['marketplace_name'] ?? null) !!}" />
                     </x-forms.field>
 
                     <x-forms.field field="bio" :label="__('profiles.fields.bio')" :helper="__('profiles.settings.helpers.bio', [

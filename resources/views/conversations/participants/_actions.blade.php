@@ -7,12 +7,7 @@
                 @if ($model->forCharacters())
                     @include('cruds.fields.character', ['allowNew' => false])
                 @else
-                    {!! Form::select(
-                        'user_id',
-                        $memberList,
-                        null,
-                        ['class' => 'w-full']
-                    ) !!}
+                    <x-forms.select name="user_id" :options="$memberList" :selected="$source->user_id ?? $model->user_id ?? null" />
                 @endif
             </div>
             <div class="">

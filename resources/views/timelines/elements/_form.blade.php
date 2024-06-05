@@ -13,11 +13,11 @@ if (!empty($era)) {
 
 <x-grid>
     <x-forms.field field="era" css="md:col-span-2" :required="true" :label="__('timelines/elements.fields.era')">
-        {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => '', 'id' => 'element-era-id']) !!}
+        <x-forms.select name="era_id" :options="$timeline->eras->pluck('name', 'id')" :selected="$source->era_id ?? $model->era_id ?? null" id="element-era-id" />
     </x-forms.field>
 
     <x-forms.field field="name" :label="__('crud.fields.name')">
-        <input type="text" name="name" placeholder="{{ __('timelines/elements.placeholders.name') }}" value="{{ old('name', $model->name ?? null) }}" maxlength="191" />
+        <input type="text" name="name" placeholder="{{ __('timelines/elements.placeholders.name') }}" value="{!! old('name', $model->name ?? null) !!}" maxlength="191" />
     </x-forms.field>
 
     @include('cruds.fields.entity')
@@ -47,12 +47,10 @@ if (!empty($era)) {
     </x-forms.field>
 
     <x-forms.field field="position" :label="__('crud.fields.position')">
-        {!! Form::select('position', $positions, (!empty($model->position) ? -9999 : $oldPosition), ['class' => '', 'name' => 'position']) !!}
+        <x-forms.select name="position" :options="$positions" :selected="(!empty($model->position) ? -9999 : $oldPosition)" />
     </x-forms.field>
 
-    <x-forms.field field="colour" :label="__('crud.fields.colour')">
-        {!! Form::select('colour', FormCopy::colours(false), (!empty($model) ? null : 'grey'), ['class' => ' select2-colour']) !!}
-    </x-forms.field>
+    @include('cruds.fields.colour', ['default' => 'grey'])
 
     <x-forms.field field="icon" :label="__('timelines/elements.fields.icon')">
 

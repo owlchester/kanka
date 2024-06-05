@@ -65,7 +65,7 @@ $menus = array_merge(['' => __('crud.tabs.story')], $menus);
         ])
 
         <x-forms.field field="menu" :label="__('bookmarks.fields.menu')">
-            {!! Form::select('menu', $menus, null, ['class' => '', 'id' => 'entity-selector']) !!}
+            <x-forms.select name="menu" id="entity-selector" :options="$menus" :selected="$model->menu ?? null" />
         </x-forms.field>
 
         <x-forms.field field="filter" :label="__('bookmarks.fields.filters')" :hidden="true">

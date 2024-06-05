@@ -9,7 +9,7 @@
     <x-forms.field
         field="month"
         :label="__('calendars.fields.month')">
-        {!! Form::select('month', isset($calendar) ? $calendar->monthList() : [], (!empty($month) ? $month : null), []) !!}
+        <x-forms.select name="month" :options="$calendar->monthList() ?? []" :selected="$month ?? null" />
     </x-forms.field>
 
     <x-forms.field
@@ -39,7 +39,7 @@
     <x-forms.field
         field="recurring"
         :label="__('calendars.fields.is_recurring')">
-        {!! Form::select('recurring_periodicity', (isset($calendar) ? $calendar->recurringOptions() : []), (isset($entityEvent) && $entityEvent->is_recurring ? $entityEvent->recurring_periodicity : ''), ['class' => 'reminder-periodicity']) !!}
+        <x-forms.select name="recurring_periodicity" :options="$calendar->recurringOptions() ?? []" :selected="$entityEvent->recurring_periodicity ?? null" class="w-full reminder-periodicity" />
     </x-forms.field>
 
     <x-forms.field field="recurring-until" :hidden="!isset($entityEvent) || !$entityEvent->is_recurring" :label="__('calendars.fields.recurring_until')"  id="add_event_recurring_until">
@@ -52,7 +52,7 @@
             field="type"
             :label="__('entities/events.fields.type')"
             :helper=" __('entities/events.helpers.characters', ['more' => link_to('https://docs.kanka.io/en/latest/advanced/age.html', __('crud.actions.find_out_more'), null, ['target' => '_blank'])])">
-            {!! Form::select('type_id', [null => '', 2 => __('entities/events.types.birth'), 3 =>  __('entities/events.types.death')], (isset($entityEvent) ? $entityEvent->type_id : null), []) !!}
+            <x-forms.select name="type_id" :options="[null => '', 2 => __('entities/events.types.birth'), 3 =>  __('entities/events.types.death')]" :selected="$entityEvent->type_id ?? null" />
         </x-forms.field>
     @endif
     @if (!empty($entity) && in_array($entity->typeId(), [config('entities.ids.location'), config('entities.ids.family'), config('entities.ids.organisation')]))
@@ -60,7 +60,7 @@
             field="type"
             :label="__('entities/events.fields.type')"
             :helper="__('entities/events.helpers.founding', ['type' => '<code>' . __('entities/events.types.founded') . '</code>'])">
-            {!! Form::select('type_id', [null => '', 5 => __('entities/events.types.founded')], (isset($entityEvent) ? $entityEvent->type_id : null), []) !!}
+                <x-forms.select name="type_id" :options="[null => '', 5 => __('entities/events.types.founded')]" :selected="$entityEvent->type_id ?? null" />
         </x-forms.field>
     @endif
 </x-grid>

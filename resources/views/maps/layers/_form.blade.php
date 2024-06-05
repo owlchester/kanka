@@ -11,7 +11,7 @@ $typeOptions = [
         field="name"
         :required="true"
         :label="__('crud.fields.name')">
-        <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/layers.placeholders.name') }}" required value="{{ old('name', $model->name ?? null) }}" />
+        <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/layers.placeholders.name') }}" required value="{!! old('name', $model->name ?? null) !!}" />
     </x-forms.field>
     @php
         $options = $map->layerPositionOptions(!empty($model->position) ? $model->position : null);
@@ -20,7 +20,7 @@ $typeOptions = [
     <x-forms.field
         field="type"
         :label="__('maps/layers.fields.type')">
-        {{ Form::select('type_id', $typeOptions, null, ['class' => '', 'id' => 'type_id']) }}
+        <x-forms.select name="type_id" :options="$typeOptions" :selected="$model->type_id ?? null" />
     </x-forms.field>
 
     <x-forms.field
@@ -39,7 +39,7 @@ $typeOptions = [
     <x-forms.field
         field="position"
         :label="__('maps/layers.fields.position')">
-        {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => '']) !!}
+        <x-forms.select name="position" :options="$options" :selected="$model->position ?? $last" />
     </x-forms.field>
 
     <div class="col-span-2">

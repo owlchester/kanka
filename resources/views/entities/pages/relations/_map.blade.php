@@ -22,7 +22,7 @@ $options = [
     'method' => 'GET',
 ]) !!}
     <div class="join w-full">
-        {!! Form::select('option', $options, $option, ['class' => 'w-full join-item']) !!}
+        <x-forms.select name="option" :options="$options" :selected="$option" class="w-full join-item" />
         <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn2 btn-primary btn-sm join-item" />
     </div>
 <input type="hidden" name="mode" value="map" />

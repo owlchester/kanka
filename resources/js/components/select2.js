@@ -20,9 +20,25 @@ $(document).ready(function() {
                 return;
             }
 
-            // Check it isn't the select2-icon
+            let url = $(this).data('url');
             let allowClear = $(this).data('allow-clear');
             let dropdownParent = $(this).data('dropdown-parent');
+
+            if (!url) {
+                $(this).select2({
+                    tags: false,
+                    placeholder: $(this).data('placeholder'),
+                    allowClear: allowClear ?? false,
+                    //tags: $(this).data('tags') || false,
+                    language: $(this).data('language'),
+                    minimumInputLength: 0,
+                    dropdownParent: dropdownParent || '',
+                    width: '100%',
+                });
+                return;
+            }
+
+            // Check it isn't the select2-icon
             $(this).select2({
                 tags: false,
                 placeholder: $(this).data('placeholder'),
@@ -36,7 +52,7 @@ $(document).ready(function() {
                 ajax: {
                     delay: 500,
                     quietMillis: 500,
-                    url: $(this).data('url'),
+                    url: url,
                     dataType: 'json',
                     data: function (params) {
                         return {

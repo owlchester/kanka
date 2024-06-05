@@ -12,6 +12,6 @@
     <x-forms.field
         field="public"
         :label="__('campaigns.fields.public')">
-        {!! Form::select('is_public', [0 => __('campaigns.visibilities.private'), 1 => __('campaigns.visibilities.public')], null, ['class' => 'w-full']) !!}
+        <x-forms.select name="is_public" :options="[0 => __('campaigns.visibilities.private'), 1 => __('campaigns.visibilities.public')]" :selected="$campaign->is_public ?? null" />
     </x-forms.field>
 </x-grid>

@@ -63,24 +63,21 @@ if (!empty($oldCalendarID)) {
                 <x-forms.field
                     field="month"
                     :label="__('calendars.fields.month')">
-                    {!! Form::select(
-                        'calendar_month',
-                        (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])),
-                        FormCopy::field('calendar_month')->string(),
-                        ['class' => ''],
-                        (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthDataProperties(): (!empty($calendar) ? $calendar->monthDataProperties() : []))
-                    ) !!}
+                    <x-forms.select
+                        name="calendar_month"
+                        :options="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : []))"
+                        :selected="$source->calendar_month ?? $model->calendar_month ?? null"
+                        :optionAttributes="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthDataProperties(): (!empty($calendar) ? $calendar->monthDataProperties() : []))" />
                 </x-forms.field>
 
                 <x-forms.field
                     field="day"
                     :label="__('calendars.fields.day')">
-                    {!! Form::select(
-                        'calendar_day',
-                        (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->dayList($model->calendarReminder()->month) : (!empty($calendar) ? $calendar->dayList() : [])),
-                        FormCopy::field('calendar_day')->string(),
-                        ['class' => '']
-                    ) !!}
+                    <x-forms.select
+                        name="calendar_day"
+                        :options="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->dayList($model->calendarReminder()->month) : (!empty($calendar) ? $calendar->dayList() : []))"
+                        :selected="$source->calendar_day ?? $model->calendar_day ?? null"
+                    />
                 </x-forms.field>
 
                 <x-forms.field
@@ -100,7 +97,12 @@ if (!empty($oldCalendarID)) {
                 <x-forms.field
                     field="periodicity"
                     :label="__('calendars.fields.recurring_periodicity')">
-                     {!! Form::select('calendar_recurring_periodicity', (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : [])), null, ['class' => 'reminder-periodicity']) !!}
+                    <x-forms.select
+                        name="calendar_recurring_periodicity"
+                        :options="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : []))"
+                        :selected="$source->calendar_recurring_periodicity ?? $model->calendar_recurring_periodicity ?? null"
+                        class="reminder-periodicity"
+                        />
                 </x-forms.field>
             </div>
         </div>

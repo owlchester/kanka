@@ -20,7 +20,7 @@
             </p>
 
             <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
-                {!! Form::select('campaign', $campaigns, null, ['class' => '']) !!}
+                <x-forms.select name="campaign" :options="$campaigns" class="w-full" />
             </x-forms.field>
 
             @can('update', $entity->child)

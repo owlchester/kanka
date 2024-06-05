@@ -16,16 +16,17 @@
 
 <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">
     <x-grid type="1/1">
-        {!! Form::select('reason', [
-    '' => __('crud.select'),
-    'financial' => __('settings.subscription.cancel.options.financial'),
-    'not_for' => __('settings.subscription.cancel.options.not_for'),
-    'not_using' => __('settings.subscription.cancel.options.not_using'),
-    'not_playing' => __('settings.subscription.cancel.options.not_playing'),
-    'missing_features' => __('settings.subscription.cancel.options.missing_features'),
-    'competitor' => __('settings.subscription.cancel.options.competitor'),
-    'custom' => __('settings.subscription.cancel.options.other')
-    ], null, ['class' => 'w-full']) !!}
+        @php $reasons = [
+            '' => __('crud.select'),
+            'financial' => __('settings.subscription.cancel.options.financial'),
+            'not_for' => __('settings.subscription.cancel.options.not_for'),
+            'not_using' => __('settings.subscription.cancel.options.not_using'),
+            'not_playing' => __('settings.subscription.cancel.options.not_playing'),
+            'missing_features' => __('settings.subscription.cancel.options.missing_features'),
+            'competitor' => __('settings.subscription.cancel.options.competitor'),
+            'custom' => __('settings.subscription.cancel.options.other')
+        ]; @endphp
+        <x-forms.select name="reason" :options="$reasons" class="w-full" />
 
         <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.reason') }}" class="w-full" rows="4" id="cancel-reason-custom"></textarea>
     </x-grid>

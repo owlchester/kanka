@@ -23,7 +23,7 @@
                 field="public"
                 :label="__('campaigns.fields.public')"
                 >
-                {!! Form::select('is_public', [0 => __('campaigns.visibilities.private'), 1 => __('campaigns.visibilities.public')], null, ['class' => '']) !!}
+                <x-forms.select name="is_public" :options="[0 => __('campaigns.visibilities.private'), 1 => __('campaigns.visibilities.public')]" :selected="$campaign->is_public ?? null" />
             </x-forms.field>
 
             <x-forms.field field="discreet" :label="__('campaigns.fields.is_discreet')" :disabled="true">
@@ -67,7 +67,7 @@
                         field="locale"
                         :label="__('campaigns.fields.locale')"
                         :helper="__('campaigns.sharing.language')">
-                    {!! Form::select('locale', $languages->getSupportedLanguagesList(true), null, ['class' => 'w-full']) !!}
+                    <x-forms.select name="locale" :options="$languages->getSupportedLanguagesList(true)" :selected="$campaign->locale ?? null" />
                 </x-forms.field>
                 @php
                     $selected = [];

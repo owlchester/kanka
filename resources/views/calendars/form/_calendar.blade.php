@@ -22,7 +22,7 @@
             :label="__('calendars.fields.reset')"
             :tooltip="true"
             :helper="__('calendars.hints.reset')">
-            {!! Form::select('reset', __('calendars.options.resets')) !!}
+            <x-forms.select name="reset" :options="__('calendars.options.resets')" :selected="$source->reset ?? $model->reset ?? null" />
         </x-forms.field>
 
         <input type="hidden" name="calendar_id" value="" />
@@ -33,7 +33,7 @@
             :label="__('calendars.fields.default_layout')"
             :tooltip="true"
             :helper="__('calendars.helpers.default_layout')">
-            {!! Form::select('parameters[layout]', ['' => __('calendars.layouts.monthly'), 'yearly' => __('calendars.layouts.yearly')])!!}
+            <x-forms.select name="parameters[layout]" :options="['' => __('calendars.layouts.monthly'), 'yearly' => __('calendars.layouts.yearly')]" :selected="$source->parameters['layout'] ?? $model->parameters['layout'] ?? null" />
         </x-forms.field>
 
         @include('cruds.fields.format')

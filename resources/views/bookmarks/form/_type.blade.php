@@ -13,7 +13,7 @@ $entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->ex
 
     <x-grid>
         <x-forms.field field="type" :label="__('crud.fields.type')">
-            {!! Form::select('type', $entityTypes, FormCopy::field('type')->string(), ['class' => '']) !!}
+            <x-forms.select name="type" :options="$entityTypes" :selected="$source->type ?? $model->type ?? null" />
         </x-forms.field>
 
         <x-forms.field field="filters" :label="__('bookmarks.fields.filters')">

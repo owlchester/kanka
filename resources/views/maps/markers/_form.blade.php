@@ -73,7 +73,7 @@ $sizeOptions = [
         <div class="tab-pane @if($activeTab == 3) active @endif" id="marker-circle">
             <x-grid>
                 <x-forms.field field="size" :label="__('maps/markers.fields.size')">
-                    {!! Form::select('size_id', $sizeOptions, \App\Facades\FormCopy::field('size_id')->string(), ['class' => '', 'id' => 'size_id']) !!}
+                    <x-forms.select name="size_id" :options="$sizeOptions" :selected="$source->size_id ?? $model->size_id ?? null" id="size_id" />
                 </x-forms.field>
 
                 <x-forms.field field="radius" :label="__('maps/markers.fields.circle_radius')">
@@ -169,7 +169,7 @@ $sizeOptions = [
 <div id="marker-main-fields" class="flex flex-col gap-5 w-full">
     <x-grid>
         <x-forms.field field="name" :label="__('crud.fields.name')">
-            <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/markers.placeholders.name') }}" value="{{ old('name', $source->name ?? $model->name ?? null) }}" id="name" />
+            <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/markers.placeholders.name') }}" value="{!! old('name', $source->name ?? $model->name ?? null) !!}" id="name" />
         </x-forms.field>
 
         @include('cruds.fields.entity')
@@ -198,7 +198,7 @@ $sizeOptions = [
         </div>
 
         <x-forms.field field="group" :label="__('maps/markers.fields.group')">
-            {{ Form::select('group_id', $map->groupOptions(), \App\Facades\FormCopy::field('group_id')->string(), ['class' => '', 'id' => 'group_id']) }}
+            <x-forms.select name="group_id" :options="$map->groupOptions()" :selected="$source->group_id ?? $model->group_id ?? null" id="group_id" />
         </x-forms.field>
 
         <x-forms.field field="is_popupless" :label="__('maps/markers.fields.popupless')">

@@ -30,7 +30,7 @@
 
         <div class="mb-3 has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
             <div class="flex items-stretch w-full">
-                <input id="name" type="text" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="name" value="{{ old('name') }}" placeholder="{{ __('auth.register.fields.name') }}" required autofocus>
+                <input id="name" type="text" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="name" value="{!! old('name') !!}" placeholder="{{ __('auth.register.fields.name') }}" required autofocus>
             </div>
 
             @if ($errors->has('name'))

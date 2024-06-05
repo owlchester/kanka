@@ -1,15 +1,15 @@
 <div class="grid grid-cols-4 gap-2">
     <div class="col-span-3 text-left">
-        {!! Form::select($field['field'], (!empty($model) ? [$model->id => $model->name] : []),
-            null,
-            [
-                'id' => $field['field'],
-                'class' => 'w-full select2 entity-list-filter',
+        <x-forms.select
+            :name="$field['field']"
+            :options="!empty($model) ? [$model->id => $model->name] : []"
+            :id="$field['field']"
+            class="select2 entity-list-filter"
+            :extra="[
                 'data-url' => $field['route'],
                 'data-placeholder' => $field['placeholder'],
                 'data-dropdown-parent' => '#datagrid-filters'
-            ]
-        ) !!}
+            ]" />
     </div>
     <div class="col-span-1 field">
         @php
@@ -23,11 +23,10 @@
                 unset($options['children']);
             }
         @endphp
-        {!! Form::select(
-            $field['field'] . '_option',
-            $options,
-            $filterService->single($field['field'] . '_option'), [
-                'class' => 'w-full entity-list-option',
-        ]) !!}
+        <x-forms.select
+            :name="$field['field'] . '_option'"
+            :options="$options"
+            :selected="$filterService->single($field['field'] . '_option')"
+            class="entity-list-option" />
     </div>
 </div>

@@ -41,11 +41,11 @@ $statuses = [
                 </div>
                 <div class="field">
                     <label class="sr-only">{{ __('organisations.members.fields.status') }}</label>
-                    {!! Form::select('organisation_statuses[' . $organisation->id . ']', $statuses, $organisation->status_id, ['class' => 'w-full', 'aria-label' => __('organisations.members.fields.status')]) !!}
+                    <x-forms.select name="organisation_statuses[{{ $organisation->id }}]" :options="$statuses" :selected="$organisation->status_id ?? null" :label="__('organisations.members.fields.status')" />
                 </div>
                 <div class="field">
                     <label class="sr-only">{{ __('organisations.members.fields.pinned') }}</label>
-                    {!! Form::select('organisation_pins[' . $organisation->id . ']', $options, $organisation->pin_id, ['class' => 'w-full', 'aria-label' => __('organisations.members.fields.pinned')]) !!}
+                    <x-forms.select name="organisation_pins[{{ $organisation->id }}]" :options="$statuses" :selected="$organisation->pin_id ?? null" :label="__('organisations.members.fields.pinned')" />
                 </div>
                 @if ($isAdmin)
                     <div class="">
@@ -90,11 +90,11 @@ $statuses = [
             </div>
             <div class="field">
                 <label class="sr-only">{{ __('organisations.members.fields.status') }}</label>
-                {!! Form::select('organisation_statuses[]', $statuses, null, ['class' => 'w-full', 'aria-label' => __('organisations.members.fields.status')]) !!}
+                <x-forms.select name="organisation_statuses[]" :options="$statuses" :label="__('organisations.members.fields.status')" />
             </div>
             <div class="field">
                 <label class="sr-only">{{ __('organisations.members.fields.pinned') }}</label>
-                {!! Form::select('organisation_pins[]', $options, null, ['class' => 'w-full', 'aria-label' => __('organisations.members.fields.pinned')]) !!}
+                <x-forms.select name="organisation_pins[]" :options="$statuses" :label="__('organisations.members.fields.pinned')" />
             </div>
             @if ($isAdmin)
                 <div class="">

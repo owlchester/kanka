@@ -31,7 +31,7 @@ $fromOrg = request()->get('from') === 'org';
     <input type="hidden" name="parent_id" value="" />
     @include('cruds.fields.character', [
         'name' => 'parent_id',
-        'preset' => !empty($member) && $member->parent ? $member->parent : null,
+        'preset' => $member->parent ?? null,
         'allowNew' => false,
         'allowClear' => true,
         'label' => __('organisations.members.fields.parent'),
@@ -44,13 +44,13 @@ $fromOrg = request()->get('from') === 'org';
     <x-forms.field
         field="org-role"
         :label="__('characters.organisations.fields.role')">
-        <input type="text" name="role" value="{{ old('role', $source->role ?? $model->role ?? null) }}" maxlength="45" class="w-full" placeholder="{{ __('organisations.members.placeholders.role') }}" />
+        <input type="text" name="role" value="{{ old('role', $source->role ?? $member->role ?? null) }}" maxlength="45" class="w-full" placeholder="{{ __('organisations.members.placeholders.role') }}" />
     </x-forms.field>
 
     <x-forms.field
         field="org-status"
         :label="__('organisations.members.fields.status')">
-        {!! Form::select('status_id', $statuses, null, ['class' => 'w-full']) !!}
+        <x-forms.select name="status_id" :options="$statuses" :selected="$member->status_id ?? null" />
     </x-forms.field>
 
     <x-forms.field
@@ -58,11 +58,11 @@ $fromOrg = request()->get('from') === 'org';
         :label="__('organisations.members.fields.pinned')"
         :helper="__('organisations.members.helpers.pinned')"
         :tooltip="true">
-        {!! Form::select('pin_id', $options, null, ['class' => 'w-full']) !!}
+        <x-forms.select name="pin_id" :options="$options" :selected="$member->pin_id ?? null" />
     </x-forms.field>
 </div>
 
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])
+@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => $member ?? null])
 </x-grid>
 
 

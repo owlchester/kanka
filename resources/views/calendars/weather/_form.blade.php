@@ -6,14 +6,14 @@
         css="col-span-2"
         :required="true"
         :label="__('calendars/weather.fields.weather')">
-        {!! Form::select('weather', __('calendars/weather.options.weather'), null, ['class' => 'w-full']) !!}
+        <x-forms.select name="weather" :options="__('calendars/weather.options.weather')" :selected="$model->weather ?? null" />
     </x-forms.field>
 
     <x-forms.field
         field="name"
         css="col-span-2"
         :label="__('calendars/weather.fields.name')">
-        <input type="text" name="name" placeholder="{{ __('calendars/weather.placeholders.name') }}" maxlength="40" value="{{ old('name', $source->name ?? $weather->name ?? null) }}" />
+        <input type="text" name="name" placeholder="{{ __('calendars/weather.placeholders.name') }}" maxlength="40" value="{!! old('name', $source->name ?? $weather->name ?? null) !!}" />
     </x-forms.field>
 
     <x-forms.field

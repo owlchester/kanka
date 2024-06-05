@@ -33,20 +33,30 @@ if (!isset($model) || !$model->boosted()) {
             <x-forms.field
                 field="theme"
                 :label="__('campaigns.fields.theme')"
-                :helper="__('campaigns.ui.helpers.theme')">
-                {!! Form::select(
-                    'theme_id',
-                    $themes,
-                    null,
-                    $boostedFormFields
-                ) !!}
+                :helper="__('campaigns.ui.helpers.theme')"
+                :tooltip="true">
+                @php $dizzy = [];
+                if (!$campaign->boosted() ?? true) {
+                    foreach ($themes as $i => $n) {
+                        if (empty($i)) continue;
+                        $dizzy[$i] = ['disabled' => true];
+                    }
+                }
+                @endphp
+                <x-forms.select name="theme_id" :options="$themes" :selected="$campaign->theme_id ?? null" :optionAttributes="$dizzy" />
             </x-forms.field>
 
             <x-forms.field
                 field="member-list"
                 :label="__('campaigns.ui.fields.member_list')"
-                :helper="__('campaigns.ui.helpers.member-list')">
-                {!! Form::select('ui_settings[hide_members]', [0 => __('campaigns.ui.members.visible'), 1 => __('campaigns.ui.members.hidden')], null, $boostedFormFields) !!}
+                :helper="__('campaigns.ui.helpers.member-list')"
+                :tooltip="true">
+                @php $dizzy = [];
+                if (!$campaign->boosted() ?? true) {
+                    $dizzy = [1 => ['disabled' => true]];
+                }
+                @endphp
+                <x-forms.select name="ui_settings[hide_members]" :options="[0 => __('campaigns.ui.members.visible'), 1 => __('campaigns.ui.members.hidden')]" :selected="$campaign->ui_settings['hide_members'] ?? null" :optionAttributes="$dizzy" />
                 @if (!isset($model) || !$model->boosted())
                     <input type="hidden" name="ui_settings[hide_members]" value="0" />
                 @endif
@@ -55,8 +65,14 @@ if (!isset($model) || !$model->boosted()) {
             <x-forms.field
                 field="entity-history"
                 :label="__('campaigns.ui.fields.entity_history')"
-                :helper="__('campaigns.ui.helpers.entity-history')">
-                {!! Form::select('ui_settings[hide_history]', [0 => __('campaigns.ui.entity_history.visible'), 1 => __('campaigns.ui.entity_history.hidden')], null, $boostedFormFields) !!}
+                :helper="__('campaigns.ui.helpers.entity-history')"
+                :tooltip="true">
+                @php $dizzy = [];
+                if (!$campaign->boosted() ?? true) {
+                    $dizzy = [1 => ['disabled' => true]];
+                }
+                @endphp
+                <x-forms.select name="ui_settings[hide_history]" :options="[0 => __('campaigns.ui.entity_history.visible'), 1 => __('campaigns.ui.entity_history.hidden')]" :selected="$campaign->ui_settings['hide_history'] ?? null" :optionAttributes="$dizzy" />
                 @if (!isset($model) || !$model->boosted())
                     <input type="hidden" name="ui_settings[hide_history]" value="0" />
                 @endif
@@ -72,7 +88,13 @@ if (!isset($model) || !$model->boosted()) {
             <x-forms.field
                 field="entity-image"
                 :label="__('campaigns.ui.fields.entity_image')">
-                {!! Form::select('ui_settings[tooltip_image]', [0 => __('campaigns.privacy.hidden'), 1 => __('campaigns.privacy.visible')], null, $boostedFormFields) !!}
+
+                @php $dizzy = [];
+                if (!$campaign->boosted() ?? true) {
+                    $dizzy = [1 => ['disabled' => true]];
+                }
+                @endphp
+                <x-forms.select name="ui_settings[tooltip_image]" :options="[0 => __('campaigns.privacy.hidden'), 1 => __('campaigns.privacy.visible')]" :selected="$campaign->ui_settings['tooltip_image'] ?? null" :optionAttributes="$dizzy" />
                 @if (!isset($model) || !$model->boosted())
                     <input type="hidden" name="ui_settings[tooltip_image]" value="0" />
                     <x-helper :text="__('callouts.premium.limitation')" />
@@ -91,7 +113,7 @@ if (!isset($model) || !$model->boosted()) {
                 :label="__('campaigns.ui.fields.connections')"
                 :helper="__('campaigns.ui.helpers.connections')"
                 :tooltip="true">
-                {!! Form::select('ui_settings[connections]', [0 => __('campaigns.ui.connections.explorer'), 1 => __('campaigns.ui.connections.list')], null, ['class' => 'w-full']) !!}
+                <x-forms.select name="ui_settings[connections]" :options="[0 => __('campaigns.ui.connections.explorer'), 1 => __('campaigns.ui.connections.list')]" :selected="$campaign->ui_settings['connections'] ?? null"  />
             </x-forms.field>
 
             <x-forms.field
@@ -99,7 +121,7 @@ if (!isset($model) || !$model->boosted()) {
                 :label="__('campaigns.ui.fields.connections_mode')"
                 :helper="__('campaigns.ui.helpers.connections_mode')"
                 :tooltip="true">
-                {!! Form::select('ui_settings[connections_mode]', [0 => __('campaigns.ui.collapsed.default'), 1 => __('entities/relations.options.only_relations'), 2 => __('entities/relations.options.related'), 3 => __('entities/relations.options.mentions')], null, ['class' => 'w-full']) !!}
+                <x-forms.select name="ui_settings[connections_mode]" :options="[0 => __('campaigns.ui.collapsed.default'), 1 => __('entities/relations.options.only_relations'), 2 => __('entities/relations.options.related'), 3 => __('entities/relations.options.mentions')]" :selected="$campaign->ui_settings['connections_mode'] ?? null"  />
             </x-forms.field>
 
             <x-forms.field
@@ -107,7 +129,7 @@ if (!isset($model) || !$model->boosted()) {
                 :label="__('campaigns.ui.fields.post_collapsed')"
                 :helper="__('campaigns.ui.helpers.post_collapsed')"
                 :tooltip="true">
-                {!! Form::select('ui_settings[post_collapsed]', [0 => __('campaigns.ui.collapsed.default'), 1 => __('campaigns.ui.collapsed.collapsed')], null, ['class' => 'w-full']) !!}
+                <x-forms.select name="ui_settings[post_collapsed]" :options="[0 => __('campaigns.ui.collapsed.default'), 1 => __('campaigns.ui.collapsed.collapsed')]" :selected="$campaign->ui_settings['post_collapsed'] ?? null"  />
             </x-forms.field>
         </x-grid>
     </x-grid>

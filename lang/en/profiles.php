@@ -74,7 +74,7 @@ return [
         'success'   => 'Theme changed.',
         'themes'    => [
             'dark'      => 'Dark',
-            'default'   => 'Default',
+            'default'   => 'Light',
             'future'    => 'Future',
             'midnight'  => 'Midnight Blue',
         ],

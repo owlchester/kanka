@@ -35,11 +35,13 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                     {{ __('settings/appearance.helpers.theme')}}
                     {{ __('settings/appearance.helpers.overridable')}}
                 </p>
-                {!! Form::select('theme', [
-                    '' => __('profiles.theme.themes.default'),
-                    'dark' => __('profiles.theme.themes.dark'),
-                    'midnight' => __('profiles.theme.themes.midnight')
-                ], null, ['class' => ' self-end w-full border rounded p-2']) !!}
+                <x-forms.select
+                    name="theme"
+                    :options="[
+                        '' => __('profiles.theme.themes.default'),
+                        'dark' => __('profiles.theme.themes.dark'),
+                        'midnight' => __('profiles.theme.themes.midnight'),]"
+                    :selected="auth()->user()->theme" class="self-end w-full border rounded p-2" />
             </div>
 
             <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? $highlightClass : '' }}">
@@ -56,7 +58,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <p class="text-sm grow">
                     {{ __('settings/appearance.helpers.pagination')}}
                 </p>
-                {!! Form::select('pagination', $paginationOptions, null, ['class' => ' flex self-end w-full border rounded p-2'], $paginationDisabled) !!}
+                <x-forms.select name="pagination" :options="$paginationOptions" :selected="auth()->user()->pagination" class="self-end w-full border rounded p-2" :optionAttributes="$paginationDisabled" />
             </div>
 
 
@@ -75,14 +77,13 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <p class="text-sm grow">
                     {{ __('settings/appearance.helpers.date-format')}}
                 </p>
-                {!! Form::select('date_format', [
+                <x-forms.select name="date_format" :options="[
                     null => 'Month d, Y',
                     'Y-m-d' => 'Y-m-d',
                     'd.m.Y' => 'd.m.Y',
                     'd-m-y' => 'd-m-y',
                     'm/d/Y' => 'm/d/Y',
-
-                ], null, ['class' => ' flex self-end w-full border rounded p-2']) !!}
+                    ]" :selected="auth()->user()->date_format" class="self-end w-full border rounded p-2" />
 
             </div>
 
@@ -101,14 +102,15 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <p class="text-sm grow">
                     {{ __('settings/appearance.helpers.campaign-order')}}
                 </p>
-                {!! Form::select('campaign_switcher_order_by', [
+
+                <x-forms.select name="campaign_switcher_order_by" :options="[
                     null => __('settings/appearance.campaign-switcher.date_created'),
                     'r_date_created' => __('settings/appearance.campaign-switcher.r_date_created'),
                     'alphabetical' => __('settings/appearance.campaign-switcher.alphabetical'),
                     'r_alphabetical' => __('settings/appearance.campaign-switcher.r_alphabetical'),
                     'date_joined' => __('settings/appearance.campaign-switcher.date_joined'),
                     'r_date_joined' => __('settings/appearance.campaign-switcher.r_date_joined'),
-                ], auth()->user()->campaignSwitcherOrderBy, ['class' => ' flex self-end w-full border rounded p-2']) !!}
+                    ]" :selected="auth()->user()->campaignSwitcherOrderBy" class="self-end w-full border rounded p-2" />
             </div>
 
             @if ($textEditorSelect)
@@ -124,11 +126,10 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                         </a>
                     </div>
                     <p class="text-sm grow">{{ __('settings/appearance.helpers.editor') }}</p>
-                    {!! Form::select('editor', [
+                    <x-forms.select name="editor" :options="[
                         '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
                         'legacy' => __('settings/appearance.editors.legacy', ['name' => 'TinyMCE 4']),
-                    ], null, ['class' => ' flex self-end w-full border rounded p-2']) !!}
-
+                    ]" :selected="auth()->user()->editor" class="self-end w-full border rounded p-2" />
                 </div>
             @endif
 
@@ -146,10 +147,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <p class="text-sm grow">
                     {{ __('settings/appearance.helpers.entity-explore') }}
                 </p>
-                {!! Form::select('entity_explore', [
+
+                <x-forms.select name="entity_explore" :options="[
                         0 => __('settings/appearance.explore.grid'),
                         1 => __('settings/appearance.explore.table'),
-                    ], null, ['class' => ' flex self-end w-full border rounded p-2']) !!}
+                    ]" :selected="auth()->user()->entity_explore" class="self-end w-full border rounded p-2" />
             </div>
 
             <div class="{{ $boxClass }}">
@@ -166,10 +168,10 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <p class="text-sm grow">
                     {!! __('settings/appearance.helpers.advanced-mentions') !!}
                 </p>
-                {!! Form::select('advanced_mentions', [
+                <x-forms.select name="advanced_mentions" :options="[
                         0 => __('settings/appearance.mentions.default'),
                         1 => __('settings/appearance.mentions.advanced', ['code' => '[entity:123]']),
-                    ], auth()->user()->alwaysAdvancedMentions(), ['class' => ' self-end w-full border rounded p-2']) !!}
+                    ]" :selected="auth()->user()->alwaysAdvancedMentions()" class="self-end w-full border rounded p-2"/>
             </div>
 
             <x-buttons.confirm type="primary" full="true">

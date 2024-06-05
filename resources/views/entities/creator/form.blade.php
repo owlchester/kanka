@@ -33,7 +33,7 @@
                           placeholder="{{ __('entities.creator.bulk_names') }}"></textarea>
             @else
 
-                <input type="text" name="name" placeholder="{{ $type === 'posts' ? __('posts.placeholders.name') : __('crud.placeholders.name') }}" autocomplete="off" value="{{ old('name') }}" maxlength="191" required data-live="{{ route('search.live', $campaign) }}" data-type="{{ $singularType }}" data-bulk="true" id="{{ $type === 'posts' ? 'qq-post-name-field' : 'qq-name-field' }}" data-1p-ignore="true" />
+                <input type="text" name="name" placeholder="{{ $type === 'posts' ? __('posts.placeholders.name') : __('crud.placeholders.name') }}" autocomplete="off" value="{!! old('name') !!}" maxlength="191" required data-live="{{ route('search.live', $campaign) }}" data-type="{{ $singularType }}" data-bulk="true" id="{{ $type === 'posts' ? 'qq-post-name-field' : 'qq-name-field' }}" data-1p-ignore="true" />
             @endif
             <x-alert type="warning" class=" my-1 duplicate-entity-warning" :hidden="true">
                 {{ __('entities.creator.duplicate') }}<br />

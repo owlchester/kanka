@@ -28,7 +28,7 @@
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
                 <x-forms.field field="entity-type" :required="true" :label="__('crud.fields.entity_type')">
-                    {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => ' recent-entity-type', 'data-animate' => 'reveal', 'data-target' => '.field-recent-filters']) !!}
+                    <x-forms.select name="config[entity]" :options="$entityTypes" :selected="$model->conf('entity') ?? null" class="w-full recent-entity-type" :extra="['data-animate' => 'reveal', 'data-target' => '.field-recent-filters']" />
                 </x-forms.field>
 
                 <x-forms.field
@@ -44,7 +44,7 @@
                 @include('dashboard.widgets.forms._tags')
 
                 <x-forms.field field="advanced-filters" :label="__('dashboard.widgets.recent.advanced_filter')">
-                    {!! Form::select('config[adv_filter]', $advancedFilters, null, ['class' => '']) !!}
+                    <x-forms.select name="config[adv_filter]" :options="$advancedFilters" :selected="$model->conf('adv_filter') ?? null" />
                 </x-forms.field>
 
                 <x-forms.field field="singular" css="col-span-2" :label="__('dashboard.widgets.recent.singular')">
@@ -71,12 +71,10 @@
                 @include('dashboard.widgets.forms._width')
 
                 <x-forms.field field="order" :label="__('dashboard.widgets.fields.order')">
-                    {!! Form::select('config[order]', [
-                '' => __('dashboard.widgets.orders.recent'),
+                    <x-forms.select name="config[order]" :options="['' => __('dashboard.widgets.orders.recent'),
                 'oldest' => __('dashboard.widgets.orders.oldest'),
                 'name_asc' => __('dashboard.widgets.orders.name_asc'),
-                'name_desc' => __('dashboard.widgets.orders.name_desc'),
-            ], null, ['class' => '']) !!}
+                'name_desc' => __('dashboard.widgets.orders.name_desc')]" :selected="$model->conf('order') ?? null" />
                 </x-forms.field>
                 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
             </x-grid>

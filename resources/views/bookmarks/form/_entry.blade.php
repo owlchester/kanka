@@ -52,7 +52,7 @@ if (isset($model)) {
             :tooltip="true"
             :helper="__('entities/links.helpers.parent')">
         @if ($campaign->boosted())
-            {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'bookmarks' : $model->parent), ['class' => '']) }}
+            <x-forms.select name="parent" :options="$sidebar->campaign($campaign)->availableParents()" :selected="$model->parent ?? 'bookmarks'" />
 
             <p class="text-neutral-content md:hidden">
                 {!! __('entities/links.helpers.parent') !!}

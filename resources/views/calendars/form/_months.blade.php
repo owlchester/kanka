@@ -32,7 +32,12 @@
         $months = $model->months();
     } elseif (isset($source)) {
         $months = $source->months();
-    }?>
+    }
+    $monthTypes = [
+        'intercalary' => __('calendars.month_types.intercalary'),
+        'standard' => __('calendars.month_types.standard'),
+    ];
+    ?>
     <div class="flex flex-col gap-2 calendar-months sortable-elements" data-handle=".sortable-handler">
         <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
             <div class="">{{ __('calendars.parameters.month.name') }}</div>
@@ -66,10 +71,7 @@
                     <div class="flex items-center gap-2">
                         <div class="field">
                             <label class="sr-only">{{ __('calendars.parameters.month.type') }}</label>
-                            {!! Form::select('month_type[]', __('calendars.month_types'), (!empty($month['type']) ? $month['type'] : 'standard'), [
-                                'class' => 'w-full',
-                                'aria-label' => __('calendars.parameters.month.type'),
-                            ]) !!}
+                            <x-forms.select name="month_type[]" :options="$monthTypes" :selected="\Illuminate\Support\Arr::get($month, 'type', 'standard')" class="w-full" :label="__('calendars.parameters.month.type')" />
                         </div>
                         <div>
                             <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
@@ -107,8 +109,7 @@
             <div class="flex gap-2 items-center">
                 <div class="field">
                     <label class="sr-only">{{ __('calendars.parameters.month.type') }}</label>
-                    {!! Form::select('month_type[]', __('calendars.month_types'), 'standard', ['class' => 'w-full',
-                        'aria-label' => __('calendars.parameters.month.type'),]) !!}
+                    <x-forms.select name="month_type[]" :options="$monthTypes" selected="standard" :label="__('calendars.parameters.month.type')" />
                 </div>
                 <div class="">
                     <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">

@@ -84,13 +84,15 @@
 
                         <div class="field-reason">
                             <label>{{ __('settings.subscription.fields.reason') }}</label>
-                            {!! Form::select('reason', [
+
+                            @php $reasons = [
                                 '' => __('crud.select'),
                                 'financial' => __('settings.subscription.cancel.options.financial'),
                                 'not_using' => __('settings.subscription.cancel.options.not_using'),
                                 'missing_features' => __('settings.subscription.cancel.options.missing_features'),
                                 'custom' => __('settings.subscription.cancel.options.custom')
-                            ], null, ['class' => 'w-full select-reveal-field', 'data-change-target' => '#downgrade-reason-custom']) !!}
+                            ]; @endphp
+                            <x-forms.select name="reason" :options="$reasons" class="w-full select-reveal-field" :extra="['data-change-target' => '#downgrade-reason-custom']" />
 
                             <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.downgrade_reason') }}" class="w-full" rows="4" id="downgrade-reason-custom" style="display: none"></textarea>
                         </div>

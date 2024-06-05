@@ -13,6 +13,6 @@
     @include('cruds.fields.visibility_id')
 
     <x-forms.field field="position" :label="__('entities/notes.fields.position')">
-        {!! Form::select('position', [0 => __('posts.position.last'), 1 => __('posts.position.first')], null, ['class' => '']) !!}
+        <x-forms.select name="position" :options="[0 => __('posts.position.last'), 1 => __('posts.position.first')]" class="w-full" />
     </x-forms.field>
 </x-grid>

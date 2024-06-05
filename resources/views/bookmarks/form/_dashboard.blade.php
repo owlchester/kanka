@@ -11,7 +11,7 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
 @if($campaign->boosted())
     <x-grid>
         <x-forms.field field="dashboard" :label="__('bookmarks.fields.dashboard')">
-            {!! Form::select('dashboard_id', $dashboards, FormCopy::field('dashboard_id')->string(), ['class' => '']) !!}
+            <x-forms.select name="dashboard_id" :options="$dashboards" :selected="$source->dashboard_id ?? $model->dashboard_id ?? null" />
         </x-forms.field>
 
         <input type="hidden" name="options[default_dashboard]" value="0" />

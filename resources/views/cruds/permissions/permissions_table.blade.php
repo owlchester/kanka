@@ -52,10 +52,12 @@ $permissionService->campaign($campaign);
             <div class="">
                 <label class="inline md:hidden">{{ __('crud.permissions.actions.read') }}</label>
                 <div class="join w-full field">
-                {!! Form::select("role[$role->id][" . CampaignPermission::ACTION_READ . "]", $actions, $permissionService->action(CampaignPermission::ACTION_READ)->selected('role'), [
-                    'class' => ' join-item w-full',
-                    'aria-label' => __('crud.permissions.actions.read'),
-                ]) !!}
+                    <x-forms.select
+                        name="role[{{ $role->id }}][{{ CampaignPermission::ACTION_READ }}]"
+                        :options="$actions"
+                        :selected="$permissionService->action(CampaignPermission::ACTION_READ)->selected('role')"
+                        class="join-item"
+                        label="__('crud.permissions.actions.read')" />
                 @if ($permissionService->inherited())
                     <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
                         <i class="text-green-500 fa-solid fa-check-circle" aria-hidden="true"></i>
@@ -67,10 +69,12 @@ $permissionService->campaign($campaign);
                 <div class="">
                     <label class="inline md:hidden">{{ __('crud.permissions.actions.edit') }}</label>
                     <div class="join w-full field">
-                        {!! Form::select("role[$role->id][" . CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->action(CampaignPermission::ACTION_EDIT)->selected('role'), [
-                                'class' => 'join-item w-full',
-                                'aria-label' => __('crud.permissions.actions.edit'),
-                            ]) !!}
+                        <x-forms.select
+                            name="role[{{ $role->id }}][{{ CampaignPermission::ACTION_EDIT }}]"
+                            :options="$actions"
+                            :selected="$permissionService->action(CampaignPermission::ACTION_EDIT)->selected('role')"
+                            class="join-item"
+                            label="__('crud.permissions.actions.edit')" />
                         @if ($permissionService->inherited())
                             <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
                                 <i class="text-green-500 fa-solid fa-check-circle" aria-hidden="true"></i>
@@ -81,10 +85,12 @@ $permissionService->campaign($campaign);
                 <div class="">
                     <label class="inline md:hidden">{{ __('crud.permissions.actions.delete') }}</label>
                     <div class="join w-full field">
-                        {!! Form::select("role[$role->id][" . CampaignPermission::ACTION_DELETE ."]", $actions, $permissionService->action(CampaignPermission::ACTION_DELETE)->selected('role'), [
-                            'class' => ' w-full join-item',
-                            'aria-label' => __('crud.permissions.actions.delete'),
-                        ]) !!}
+                        <x-forms.select
+                            name="role[{{ $role->id }}][{{ CampaignPermission::ACTION_DELETE }}]"
+                            :options="$actions"
+                            :selected="$permissionService->action(CampaignPermission::ACTION_DELETE)->selected('role')"
+                            class="join-item"
+                            label="__('crud.permissions.actions.delete')" />
                         @if ($permissionService->inherited())
                             <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
                                 <i class="text-green-500 fa-solid fa-check-circle" aria-hidden="true"></i>
@@ -95,10 +101,12 @@ $permissionService->campaign($campaign);
                 <div class="">
                     <label class="inline md:hidden">{{ __('entities.posts') }}</label>
                     <div class="join w-full field">
-                        {!! Form::select("role[$role->id][" . CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->action(CampaignPermission::ACTION_POSTS)->selected('role'), [
-                                'class' => ' w-full join-item',
-                                'aria-label' => __('entities.posts'),
-                            ]) !!}
+                        <x-forms.select
+                            name="role[{{ $role->id }}][{{ CampaignPermission::ACTION_POSTS }}]"
+                            :options="$actions"
+                            :selected="$permissionService->action(CampaignPermission::ACTION_POSTS)->selected('role')"
+                            class="join-item"
+                            label="__('entities.po')" />
                         @if ($permissionService->inherited())
                             <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
                                 <i class="text-green-500 fa-solid fa-check-circle" aria-hidden="true"></i>
@@ -166,10 +174,12 @@ $permissionService->campaign($campaign);
                 <div class="">
                     <label class="inline md:hidden">{{ __('crud.permissions.actions.read') }}</label>
                     <div class="join w-full field">
-                        {!! Form::select("user[$member->user_id][" . CampaignPermission::ACTION_READ ."]", $actions, $permissionService->action(CampaignPermission::ACTION_READ)->selected('user'), [
-                            'class' => ' w-full join-item',
-                            'aria-label' => __('crud.permissions.actions.read'),
-                        ]) !!}
+                        <x-forms.select
+                            name="user[{{ $member->user_id }}][{{ CampaignPermission::ACTION_READ }}]"
+                            :options="$actions"
+                            :selected="$permissionService->action(CampaignPermission::ACTION_READ)->selected('user')"
+                            class="join-item"
+                            label="__('crud.permissions.actions.read')" />
                         @if ($permissionService->inherited())
                             <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited_by', [
                            'role' => e($permissionService->inheritedRoleName())
@@ -182,10 +192,12 @@ $permissionService->campaign($campaign);
                 <div class="">
                     <label class="inline md:hidden">{{ __('crud.permissions.actions.edit') }}</label>
                     <div class="join w-full field">
-                        {!! Form::select("user[$member->user_id][" . CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->action(CampaignPermission::ACTION_EDIT)->selected('user'), [
-                                'class' => ' w-full join-item',
-                                'aria-label' => __('crud.permissions.actions.edit'),
-                            ]) !!}
+                        <x-forms.select
+                            name="user[{{ $member->user_id }}][{{ CampaignPermission::ACTION_EDIT }}]"
+                            :options="$actions"
+                            :selected="$permissionService->action(CampaignPermission::ACTION_EDIT)->selected('user')"
+                            class="join-item"
+                            label="__('crud.permissions.actions.edit')" />
                         @if ($permissionService->inherited())
                             <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited_by', [
                            'role' => e($permissionService->inheritedRoleName())
@@ -198,10 +210,12 @@ $permissionService->campaign($campaign);
                 <div class="">
                     <label class="inline md:hidden">{{ __('crud.permissions.actions.delete') }}</label>
                     <div class="join w-full field">
-                        {!! Form::select("user[$member->user_id][" . CampaignPermission::ACTION_DELETE . "]", $actions, $permissionService->action(CampaignPermission::ACTION_DELETE)->selected('user'), [
-                                'class' => ' w-full join-item',
-                                'aria-label' => __('crud.permissions.actions.delete'),
-                        ]) !!}
+                        <x-forms.select
+                            name="user[{{ $member->user_id }}][{{ CampaignPermission::ACTION_DELETE }}]"
+                            :options="$actions"
+                            :selected="$permissionService->action(CampaignPermission::ACTION_DELETE)->selected('user')"
+                            class="join-item"
+                            label="__('crud.permissions.actions.delete')" />
                         @if ($permissionService->inherited())
                             <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited_by', [
                            'role' => e($permissionService->inheritedRoleName())
@@ -214,10 +228,12 @@ $permissionService->campaign($campaign);
                 <div class="">
                     <label class="inline md:hidden">{{ __('entities.posts') }}</label>
                     <div class="join w-full field">
-                        {!! Form::select("user[$member->user_id][" . CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->action(CampaignPermission::ACTION_POSTS)->selected('user'), [
-                                'class' => ' w-full join-item',
-                                'aria-label' => __('entities.posts'),
-                            ]) !!}
+                        <x-forms.select
+                            name="user[{{ $member->user_id }}][{{ CampaignPermission::ACTION_POSTS }}]"
+                            :options="$actions"
+                            :selected="$permissionService->action(CampaignPermission::ACTION_POSTS)->selected('user')"
+                            class="join-item"
+                            label="__('entities.posts')" />
                         @if ($permissionService->inherited())
                             <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited_by', [
                            'role' => e($permissionService->inheritedRoleName())
