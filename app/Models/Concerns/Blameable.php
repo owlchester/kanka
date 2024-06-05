@@ -6,6 +6,8 @@ use App\Observers\BlameableObserver;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Trait Blameable
@@ -16,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property User $creator
  * @property User $updater
+ * @property User $remover
  */
 trait Blameable
 {
@@ -30,7 +33,7 @@ trait Blameable
     /**
      * Get the user who created this model
      */
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
     }
@@ -38,23 +41,21 @@ trait Blameable
     /**
      * Get the user who updated this model
      */
-    public function updater()
+    public function updater(): BelongsTo
     {
         return $this->belongsTo('App\User', 'updated_by');
     }
 
     /**
-     *
+     * Get the user who deleted this model
      */
-    public function remover()
+    public function remover(): BelongsTo
     {
         return $this->belongsTo('App\User', 'deleted_by');
     }
 
 
     /**
-     * createdBy Query Scope.
-     *
      *
      */
     public function scopeCreatedBy(Builder $query, $userId): Builder
@@ -66,8 +67,6 @@ trait Blameable
     }
 
     /**
-     * updatedBy Query Scope.
-     *
      *
      */
     public function scopeUpdatedBy(Builder $query, $userId): Builder
@@ -76,5 +75,14 @@ trait Blameable
             $userId = $userId->getKey();
         }
         return $query->where(['updated_by' => $userId]);
+    }
+
+
+    /**
+     * Check if the current model uses SoftDeletes.
+     */
+    public function useSoftDeletes(): bool
+    {
+        return in_array(SoftDeletes::class, class_uses_recursive($this), true);
     }
 }
