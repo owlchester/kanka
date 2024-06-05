@@ -54,7 +54,7 @@ use Collator;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
-
+ *
  */
 class Entity extends Model
 {

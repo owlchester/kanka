@@ -106,7 +106,7 @@ class RecoveryController extends Controller
         }
     }
 
-        /**
+    /**
      * @return \Illuminate\Http\RedirectResponse
      */
     public function recoverPosts(Request $request, Campaign $campaign)

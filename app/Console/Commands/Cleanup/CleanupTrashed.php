@@ -69,7 +69,7 @@ class CleanupTrashed extends Command
                         $this->service->trash($entity);
                     }
                 });
-                Post::onlyTrashed()
+            Post::onlyTrashed()
                 ->where('deleted_at', '<=', $delay)
                 ->chunkById(1000, function ($posts): void {
                     $this->info('Chunk deleting ' . count($posts) . ' posts.');

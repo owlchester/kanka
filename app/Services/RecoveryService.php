@@ -158,7 +158,7 @@ class RecoveryService
         $this->count++;
     }
 
-   /**
+    /**
      * @throws Exception
      */
     public function trashPost(Post $post)

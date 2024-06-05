@@ -51,9 +51,9 @@ class Post extends Model
     use HasFactory;
     use Paginatable;
     use Searchable;
-    use VisibilityIDTrait;
     use SoftDeletes;
     use SortableTrait;
+    use VisibilityIDTrait;
 
     protected $fillable = [
         'entity_id',
