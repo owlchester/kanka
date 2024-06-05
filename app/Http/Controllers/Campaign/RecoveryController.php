@@ -54,6 +54,36 @@ class RecoveryController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function posts(Campaign $campaign)
+    {
+        $this->authorize('recover', $campaign);
+
+        Datagrid::layout(\App\Renderers\Layouts\Campaign\PostRecovery::class)
+            ->permissions(false);
+
+        $rows = $campaign->posts()->onlyTrashed()
+            ->sort(request()->only(['o', 'k']), ['deleted_at' => 'DESC'])
+            ->whereDate('posts.deleted_at', '>=', Carbon::today()->subDays(config('entities.hard_delete_posts')))
+            ->paginate();
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            $html = view('layouts.datagrid._table')
+                ->with('rows', $rows)
+                ->render();
+            return response()->json([
+                'success' => true,
+                'html' => $html,
+            ]);
+        }
+        $isPost = true;
+        return view('campaigns.recovery.index', compact('rows', 'campaign', 'isPost'));
+    }
+
+    /**
      * @return \Illuminate\Http\RedirectResponse
      */
     public function recover(Request $request, Campaign $campaign)
@@ -73,6 +103,29 @@ class RecoveryController extends Controller
             return redirect()
                 ->route('recovery', $campaign)
                 ->with('error', __('campaigns/recovery.error'));
+        }
+    }
+
+        /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function recoverPosts(Request $request, Campaign $campaign)
+    {
+        if (!$campaign->boosted()) {
+            return redirect()
+                ->route('recovery', $campaign)
+                ->with('boosted-pitch', true)
+            ;
+        }
+        try {
+            $count = $this->service->recoverPosts($request->get('model', []));
+            return redirect()
+                ->route('recovery.posts', $campaign)
+                ->with('success', trans_choice('campaigns/recovery.posts.success', $count, ['count' => $count]));
+        } catch (Exception $e) {
+            return redirect()
+                ->route('recovery.posts', $campaign)
+                ->with('error', __('campaigns/recovery.posts.error'));
         }
     }
 }

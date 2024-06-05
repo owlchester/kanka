@@ -38,6 +38,7 @@ use Collator;
  * @property int $type_id
  * @property int $created_by
  * @property int $updated_by
+ * @property int $deleted_by
  * @property bool|int $is_private
  * @property bool|int $is_attributes_private
  * @property string $tooltip
@@ -53,6 +54,7 @@ use Collator;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
+
  */
 class Entity extends Model
 {

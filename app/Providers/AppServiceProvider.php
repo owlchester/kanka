@@ -73,6 +73,7 @@ use App\Observers\UserObserver;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\Webhook;
+use App\Observers\BlameableObserver;
 use App\User;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
