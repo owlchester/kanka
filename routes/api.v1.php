@@ -99,8 +99,8 @@ Route::get('post-layouts', [App\Http\Controllers\Api\v1\PostLayoutApiController:
 Route::get('campaigns/{campaign}/recovery', [App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'index']);
 Route::post('campaigns/{campaign}/recover', [App\Http\Controllers\Api\v1\EntityRecoveryApiController::class, 'recover']);
 
-Route::get('campaigns/{campaign}/posts/recovery', [App\Http\Controllers\Api\v1\PostRecoveryApiController::class, 'index']);
-Route::post('campaigns/{campaign}/posts/recover', [App\Http\Controllers\Api\v1\PostRecoveryApiController::class, 'recover']);
+Route::get('campaigns/{campaign}/recovery/posts', [App\Http\Controllers\Api\v1\PostRecoveryApiController::class, 'index']);
+Route::post('campaigns/{campaign}/recover/posts', [App\Http\Controllers\Api\v1\PostRecoveryApiController::class, 'recover']);
 
 Route::post('campaigns/{campaign}/transform', [App\Http\Controllers\Api\v1\EntityTransformApiController::class, 'transform']);
 

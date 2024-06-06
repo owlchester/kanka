@@ -159,17 +159,6 @@ class RecoveryService
     }
 
     /**
-     * @throws Exception
-     */
-    public function trashPost(Post $post)
-    {
-        $this->postIds[] = $post->id;
-
-        $post->forceDelete();
-        $this->count++;
-    }
-
-    /**
      * @param MiscModel|Location|null $child
      * @throws Exception
      */

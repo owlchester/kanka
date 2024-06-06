@@ -272,6 +272,7 @@ trait CampaignRelations
     {
         return $this->hasMany('App\Models\Relation');
     }
+
     public function posts(): HasManyThrough
     {
         return $this->hasManyThrough(Post::class, Entity::class);

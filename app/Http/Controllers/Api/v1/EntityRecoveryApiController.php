@@ -24,7 +24,7 @@ class EntityRecoveryApiController extends ApiController
      */
     public function index(Campaign $campaign)
     {
-        $this->authorize('access', $campaign);
+        $this->authorize('recover', $campaign);
         return Resource::collection($campaign
             ->entities()->onlyTrashed()
             ->paginate());
@@ -35,7 +35,7 @@ class EntityRecoveryApiController extends ApiController
      */
     public function recover(Request $request, Campaign $campaign)
     {
-        $this->authorize('access', $campaign);
+        $this->authorize('recover', $campaign);
 
         if (!$campaign->boosted()) {
             return response()->json(null, 204);

@@ -156,11 +156,11 @@ The permission integer is set to `0` for `Read`, `1` for `Update`, and `2` for `
 <a name="deleted-posts"></a>
 ## Deleted Posts
 
-You can view the recoverable deleted posts on the `/posts/recovery` endpoint.
+You can view the recoverable deleted posts on the `/recovery/posts` endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `/posts/recovery` | Default |
+| GET/HEAD | `/recovery/posts` | Default |
 
 ### Result
 
@@ -194,11 +194,11 @@ You can view the recoverable deleted posts on the `/posts/recovery` endpoint.
 <a name="recover-posts"></a>
 ## Recover Deleted Posts
 
-You can post an array with the ids of the posts you want to recover to the `posts/recover` endpoint to undo the deletion (this is a boosted/premium only feature).
+You can post an array with the ids of the posts you want to recover to the `/recover/posts` endpoint to undo the deletion (this is a boosted/premium only feature).
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `/posts/recover` | Default |
+| POST | `/recover/posts` | Default |
 
 | Parameter | Type | Description
 | :- | :- | :- |

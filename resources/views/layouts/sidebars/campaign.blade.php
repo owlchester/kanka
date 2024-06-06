@@ -22,7 +22,7 @@
 
                 <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
                     @can('update', $campaign)
-                        <li class="px-2 section-overview {{ $sidebar->activeCampaign('recovery') . $sidebar->activeCampaign('recovery-posts') }}">
+                        <li class="px-2 section-overview {{ $sidebar->activeCampaign('recovery') }}">
                             <x-sidebar.element
                                 :url="route('recovery', [$campaign])"
                                 icon="fa-duotone fa-trash-undo"
