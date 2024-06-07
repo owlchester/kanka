@@ -15,10 +15,8 @@ trait Orderable
      */
     public function scopeOrder(Builder $query, array|null $data)
     {
-        // Default
-        // @phpstan-ignore-next-line
+        // Default values can be defined on the model, or default
         $field = $this->defaultOrderField ?: 'name';
-        // @phpstan-ignore-next-line
         $direction = $this->defaultOrderDirection ?: 'asc';
 
         if (!empty($data) && auth()->check()) {

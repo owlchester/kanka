@@ -37,7 +37,6 @@ class FullTextController extends Controller
         /** @var Entity|null $entity */
         $entity = Entity::where('name', $term)->first();
         if ($entity) {
-            // @phpstan-ignore-next-line
             $term2 = $entity->type() . ':' . $entity->id;
         }
 
