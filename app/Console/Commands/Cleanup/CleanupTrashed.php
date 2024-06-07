@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Cleanup;
 
 use App\Models\Entity;
+use App\Models\Post;
 use App\Services\RecoveryService;
 use App\Traits\HasJobLog;
 use Carbon\Carbon;
@@ -68,6 +69,14 @@ class CleanupTrashed extends Command
                         $this->service->trash($entity);
                     }
                 });
+            Post::onlyTrashed()
+                ->where('deleted_at', '<=', $delay)
+                ->chunkById(1000, function ($posts): void {
+                    $this->info('Chunk deleting ' . count($posts) . ' posts.');
+                    foreach ($posts as $post) {
+                        $this->service->trash($post);
+                    }
+                });
             DB::commit();
         } catch (Exception $e) {
             $this->error($e->getMessage());
@@ -79,6 +88,8 @@ class CleanupTrashed extends Command
         $this->info('Deleted ' . $this->service->count() . ' trashed entities.');
         $log .= '<br />' . 'Deleted ' . $this->service->count() . ' trashed entities.';
 
+        $this->info('Deleted ' . $this->service->countPosts() . ' trashed posts.');
+        $log .= '<br />' . 'Deleted ' . $this->service->countPosts() . ' trashed posts.';
         $this->log($log);
 
         return 0;

@@ -40,11 +40,13 @@ use App\Models\Tag;
 use App\Models\Theme;
 use App\Models\Timeline;
 use App\Models\CampaignImport;
+use App\Models\Post;
 use App\Models\Webhook;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Collection;
 
 /**
@@ -269,6 +271,11 @@ trait CampaignRelations
     public function entityRelations(): HasMany
     {
         return $this->hasMany('App\Models\Relation');
+    }
+
+    public function posts(): HasManyThrough
+    {
+        return $this->hasManyThrough(Post::class, Entity::class);
     }
 
     /**
