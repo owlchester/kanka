@@ -51,6 +51,7 @@ return [
     'features'          => [
         'approved'  => 'Your idea :feature has been approved.',
         'rejected'  => 'Your idea :feature has been rejected, reason: :reason.',
+        'finished'  => 'The development of your idea :feature has concluded!.',
     ],
     'header'            => 'You have :count notifications',
     'index'             => [
