@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static self|Builder preparedSelect()
  * @method static self|Builder preparedGrid()
  * @method static self|Builder recent()
- * @method static self|Builder standardWith()
  * @method static self|Builder withApi()
  */
 trait SubEntityScopes
@@ -101,12 +100,6 @@ trait SubEntityScopes
         return $query->orderBy('updated_at', 'desc');
     }
 
-    /**
-     */
-    public function scopeStandardWith(Builder $query): Builder
-    {
-        return $query->with('entity', 'entitiy.tags');
-    }
 
     /**
      */

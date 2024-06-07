@@ -131,11 +131,6 @@ class Bookmark extends MiscModel
         ]);
     }
 
-    public function scopeStandardWith(Builder $query): Builder
-    {
-        return $query->with(['entity', 'dashboard', 'target']);
-    }
-
     /**
      * Scope for Active menu links
      */
@@ -316,8 +311,8 @@ class Bookmark extends MiscModel
 
         /** @var Entity|null $entity */
         $entity = Entity::inTags($this->tags->pluck('id')->toArray())
+            ->inTypes($entityTypeID)
             ->whereNotIn('entities.id', Dashboard::excluding())
-            ->type($entityTypeID)
             ->inRandomOrder()
             ->first();
 

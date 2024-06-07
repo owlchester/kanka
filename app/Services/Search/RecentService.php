@@ -101,7 +101,7 @@ class RecentService
     public function bookmarks(): array
     {
         $bookmarks = [];
-        $links = Bookmark::active()->standardWith()->ordered()->get();
+        $links = Bookmark::active()->with(['entity', 'dashboard', 'target'])->ordered()->get();
         /** @var Bookmark $link */
         foreach ($links as $link) {
             if (!$link->valid($this->campaign)) {
