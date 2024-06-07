@@ -280,7 +280,7 @@ class SearchService
                 'image' => $img,
                 'name' => $parsedName,
                 'type' => Module::singular($model->type_id, $model->entityType()),
-                'model_type' => $model->type(), // @phpstan-ignore-line
+                'model_type' => $model->type(),
                 'url' => $model->url(),
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
@@ -297,7 +297,6 @@ class SearchService
                     'image' => $img,
                     'name' => $parsedName,
                     'type' => __('maps.actions.explore'),
-                    // @phpstan-ignore-next-line
                     'model_type' => $model->type(),
                     'url' => $model->url('explore'),
                     'alias_id' => $model->alias_id, // @phpstan-ignore-line
@@ -395,7 +394,6 @@ class SearchService
             'is_private' => $entity->is_private,
             'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
             'link' => $entity->url(),
-            // @phpstan-ignore-next-line
             'type' => Module::singular($entity->typeId(), __('entities.' . $entity->type())),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
         ];

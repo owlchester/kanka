@@ -430,7 +430,6 @@ class MentionsService
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
-                    // @phpstan-ignore-next-line
                     . ' data-entity-type="' . $entity->type() . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'

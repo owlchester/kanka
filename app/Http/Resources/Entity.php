@@ -33,7 +33,6 @@ class Entity extends EntityChild
             'image_thumb' => Avatar::entity($model)->size(40)->thumbnail(),
             'has_custom_image' => !empty($model->image_path) && !empty($model->image),
 
-            // @phpstan-ignore-next-line
             'type' => $model->type(),
             'type_id' => $model->type_id,
             'tooltip' => $model->tooltip,

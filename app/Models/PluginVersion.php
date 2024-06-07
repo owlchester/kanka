@@ -427,7 +427,6 @@ class PluginVersion extends Model
         $data['_locale'] = app()->getLocale();
         $data['_entity_name'] = $entity->name;
         $data['_entity_type'] = $entity->child->type;
-        // @phpstan-ignore-next-line
         $data['_entity_type_name'] = $entity->type();
 
         if ($entity->isCharacter()) {

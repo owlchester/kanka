@@ -17,7 +17,6 @@ class ProfileController extends Controller
     {
         $this->authEntityView($entity);
 
-        // @phpstan-ignore-next-line
         if (!view()->exists('entities.pages.profile._' . $entity->type())) {
             return redirect()->to($entity->url());
         }
