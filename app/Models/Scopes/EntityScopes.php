@@ -13,15 +13,15 @@ use Illuminate\Support\Str;
  * @method static self|Builder recentlyModified()
  * @method static self|Builder unmentioned()
  * @method static self|Builder mentionless()
- * @method static self|Builder type(string $type)
  * @method static self|Builder inTags(array $tags)
- * @method static self|Builder inTypes(array $types)
+ * @method static self|Builder inTypes(mixed $types)
  * @method static self|Builder templates(string $entityType)
  * @method static self|Builder apiFilter(array $requests)
  */
 trait EntityScopes
 {
     /**
+     * Order entities by recently modified
      */
     public function scopeRecentlyModified(Builder $query): Builder
     {
@@ -30,6 +30,7 @@ trait EntityScopes
     }
 
     /**
+     * Order entities by their olderst modified
      */
     public function scopeOldestModified(Builder $query): Builder
     {
@@ -38,25 +39,9 @@ trait EntityScopes
     }
 
     /**
+     * Filter entities on specific tags
      */
-    public function scopeType(Builder $query, int $type = null): Builder
-    {
-        if (empty($type)) {
-            return $query;
-        }
-        return $query->where('type_id', $type);
-    }
-
-    /**
-     */
-    public function scopeStandardWith(Builder $query): Builder
-    {
-        return $query->with('tags');
-    }
-
-    /**
-     */
-    public function scopeInTags(Builder $query, array $tags = null)
+    public function scopeInTags(Builder $query, array $tags = null): Builder
     {
         if (empty($tags)) {
             return $query;
@@ -77,9 +62,9 @@ trait EntityScopes
     }
 
     /**
-     * @return Builder
+     * Get entities that are unmentioned
      */
-    public function scopeUnmentioned(Builder $query)
+    public function scopeUnmentioned(Builder $query): Builder
     {
         return $query->select($this->getTable() . '.*')
             ->leftJoin('entity_mentions as em', 'em.target_id', $this->getTable() . '.id')
@@ -87,9 +72,9 @@ trait EntityScopes
     }
 
     /**
-     * @return Builder
+     * Get entities that aren't mentioned anywhere
      */
-    public function scopeMentionless(Builder $query)
+    public function scopeMentionless(Builder $query): Builder
     {
         return $query->select($this->getTable() . '.*')
             ->leftJoin('entity_mentions as em', 'em.entity_id', $this->getTable() . '.id')
@@ -97,9 +82,9 @@ trait EntityScopes
     }
 
     /**
-     * @return Builder
+     * Get entity templates of a specific entity type
      */
-    public function scopeTemplates(Builder $query, int $entityTypeID)
+    public function scopeTemplates(Builder $query, int $entityTypeID): Builder
     {
         return $query
             ->where('type_id', $entityTypeID)
@@ -107,9 +92,9 @@ trait EntityScopes
     }
 
     /**
-     * @return Builder
+     * Default API filter options
      */
-    public function scopeApiFilter(Builder $query, array $request = [])
+    public function scopeApiFilter(Builder $query, array $request = []): Builder
     {
         $related = Arr::get($request, 'related', false);
         $types = Arr::get($request, 'types');
@@ -171,12 +156,16 @@ trait EntityScopes
     }
 
     /**
-     * @return Builder
+     * Filter entities on specific types.
+     * Valid option is 'all'
      */
-    public function scopeInTypes(Builder $query, array $types = null)
+    public function scopeInTypes(Builder $query, mixed $types = null): Builder
     {
-        if (empty($types) || !is_array($types)) {
+        if (empty($types)) {
             return $query;
+        }
+        if (!is_array($types)) {
+            $types = [$types];
         }
 
         // Use to do [0] but that can be get unset by the exclude

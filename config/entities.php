@@ -2,6 +2,7 @@
 
 return [
     'hard_delete' => env('APP_ENTITY_HARD_DELETE', 30),
+    'hard_delete_posts' => env('APP_ENTITY_HARD_DELETE_POSTS', 30),
     'logs' => env('APP_ENTITY_FULL_LOGS', 30),
     'logs_delete' => env('APP_ENTITY_LOGS_DELETE', 365),
 

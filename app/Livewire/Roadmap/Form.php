@@ -4,6 +4,7 @@ namespace App\Livewire\Roadmap;
 
 use App\Enums\FeatureStatus;
 use App\Models\Feature;
+use App\Models\FeatureVote;
 use App\Models\FeatureFile;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -40,6 +41,16 @@ class Form extends Component
         $feat->description = $this->description;
         $feat->status_id = FeatureStatus::Draft;
         $feat->save();
+
+        if (auth()->user()->can('vote', $feat)) {
+            /** @var FeatureVote $vote */
+            $vote = new FeatureVote();
+            $vote->feature_id = $feat->id;
+            $vote->user_id = auth()->user()->id;
+            $vote->save();
+            $feat->upvote_count++;
+            $feat->updateQuietly();
+        }
 
         NewFeatureEmailJob::dispatch($feat);
 

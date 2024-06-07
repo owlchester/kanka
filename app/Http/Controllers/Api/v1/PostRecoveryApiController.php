@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Http\Resources\EntityResource as Resource;
-use App\Http\Requests\RecoverEntity as Request;
+use App\Http\Resources\PostResource as Resource;
+use App\Http\Requests\RecoverPost as Request;
 use App\Services\RecoveryService;
 
-class EntityRecoveryApiController extends ApiController
+class PostRecoveryApiController extends ApiController
 {
     protected RecoveryService $service;
 
@@ -26,7 +26,7 @@ class EntityRecoveryApiController extends ApiController
     {
         $this->authorize('recover', $campaign);
         return Resource::collection($campaign
-            ->entities()->onlyTrashed()
+            ->posts()->onlyTrashed()
             ->paginate());
     }
 
@@ -40,8 +40,8 @@ class EntityRecoveryApiController extends ApiController
         if (!$campaign->boosted()) {
             return response()->json(null, 204);
         }
-        $this->service->recover($request->entities);
+        $this->service->recoverPosts($request->posts);
 
-        return response()->json(['success' => 'Succesfully recovered deleted entities']);
+        return response()->json(['success' => 'Succesfully recovered deleted posts']);
     }
 }

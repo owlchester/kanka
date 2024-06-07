@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Models\Post;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -14,11 +15,17 @@ class RecoveryService
     /** @var array Entity IDs to be deleted */
     protected array $entityIds = [];
 
+    /** @var array Post IDs to be deleted */
+    protected array $postIds = [];
+
     /** @var array Child IDs to be deleted */
     protected array $childIds = [];
 
     /** @var int Number of total deleted entities */
     protected int $count = 0;
+
+    /** @var int Number of total deleted posts */
+    protected int $countPosts = 0;
 
     /**
      */
@@ -27,6 +34,20 @@ class RecoveryService
         $count = 0;
         foreach ($ids as $id) {
             if ($this->entity($id)) {
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    /**
+     */
+    public function recoverPosts(array $ids): int
+    {
+        $count = 0;
+        foreach ($ids as $id) {
+            if ($this->post($id)) {
                 $count++;
             }
         }
@@ -69,6 +90,13 @@ class RecoveryService
     }
 
     /**
+     */
+    public function countPosts(): int
+    {
+        return $this->countPosts;
+    }
+
+    /**
      * Restore an entity and it's child
      * @return bool if the restore worked
      */
@@ -90,6 +118,24 @@ class RecoveryService
         // Refresh the child first to not re-trigger the entity creation on save
         $child->refresh();
         $child->restoreQuietly();
+        return true;
+    }
+
+    /**
+     * Restore an entity and it's child
+     * @return bool if the restore worked
+     */
+    protected function post(int $id): bool
+    {
+        $post = Post::onlyTrashed()->find($id);
+        if (!$post) {
+            return false;
+        }
+        if ($post->entity->deleted_at) {
+            return false;
+        }
+        $post->restore();
+
         return true;
     }
 

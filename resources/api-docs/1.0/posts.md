@@ -7,6 +7,8 @@
 - [Create a Post](#create-post)
 - [Update a Post](#update-post)
 - [Delete a Post](#delete-post)
+- [Deleted Posts](#deleted-posts)
+- [Recover Deleted Posts](#recover-posts)
 
 <a name="all-posts"></a>
 ## All Posts
@@ -150,3 +152,58 @@ Post permissions are exposed with each call. A permission typically looks like t
 A permission is either attached to a `user_id` or a `role_id`, but never to both.
 
 The permission integer is set to `0` for `Read`, `1` for `Update`, and `2` for `Deny`.
+
+<a name="deleted-posts"></a>
+## Deleted Posts
+
+You can view the recoverable deleted posts on the `/recovery/posts` endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `/recovery/posts` | Default |
+
+### Result
+
+```json
+{
+ "data": [
+        {
+            "created_at": "2024-06-05T02:29:03.000000Z",
+            "created_by": 1563,
+            "entity_id": 193,
+            "entry": null,
+            "entry_parsed": "",
+            "id": 4042,
+            "is_private": false,
+            "layout_id": null,
+            "name": "First Encounter",
+            "permissions": [],
+            "position": 1,
+            "settings": {
+                "collapsed": "0",
+                "class": null
+            },
+            "updated_at": "2024-06-05T03:53:09.000000Z",
+            "updated_by": 1,
+            "visibility_id": 1
+        }
+    ],
+}
+```
+
+<a name="recover-posts"></a>
+## Recover Deleted Posts
+
+You can post an array with the ids of the posts you want to recover to the `/recover/posts` endpoint to undo the deletion (this is a boosted/premium only feature).
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| POST | `/recover/posts` | Default |
+
+| Parameter | Type | Description
+| :- | :- | :- |
+| `posts` | `array` | The ids of the posts to recover. |
+
+### Result
+
+> {success} Code 200 with JSON.

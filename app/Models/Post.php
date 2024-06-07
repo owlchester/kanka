@@ -6,11 +6,13 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\SortableTrait;
 use App\Traits\VisibilityIDTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Laravel\Scout\Searchable;
@@ -49,6 +51,8 @@ class Post extends Model
     use HasFactory;
     use Paginatable;
     use Searchable;
+    use SoftDeletes;
+    use SortableTrait;
     use VisibilityIDTrait;
 
     protected $fillable = [
@@ -63,6 +67,12 @@ class Post extends Model
         'settings',
         'location_id',
         'layout_id',
+    ];
+
+    /** @var string[] Fields that can be used to order by */
+    protected array $sortable = [
+        'name',
+        'deleted_at',
     ];
 
     /** @var array<string, string>  */

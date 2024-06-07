@@ -280,7 +280,7 @@ class CampaignDashboardWidget extends Model
         $entityTypeID = (int) config('entities.ids.' . $entityType);
         return $base
             ->inTags($this->tags->pluck('id')->toArray())
-            ->type($entityTypeID)
+            ->inTypes($entityTypeID)
             ->with(['image:campaign_id,id,ext', 'mentions', 'mentions.target', 'mentions.target.tags'])
             ->paginate(10, ['*'], 'page', $page)
         ;
@@ -330,7 +330,7 @@ class CampaignDashboardWidget extends Model
             ->inTags($this->tags->pluck('id')->toArray())
             ->whereNotIn('type_id', [config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.tag')])
             ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
-            ->type($entityTypeID)
+            ->inTypes($entityTypeID)
             ->with(['image'])
             ->inRandomOrder()
             ->first();
