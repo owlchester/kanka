@@ -1,18 +1,22 @@
 $(document).ready(function() {
     // Look for a form to save
-    $.each($('form'), function() {
-        if ($(this).data('shortcut')) {
-            initSaveKeyboardShortcut(this);
-        }
-    });
+    initKeyboardSave();
     initKeyboardShortcuts();
     initPasting();
 
     $(document).on('shown.bs.modal', () => {
         initPasting();
+        initKeyboardShortcuts();
+        initKeyboardSave();
     });
 });
 
+const initKeyboardSave = () => {
+    let fields = document.querySelectorAll('form[data-shortcut]');
+    fields.forEach(function (e) {
+        initSaveKeyboardShortcut(e);
+    });
+};
 function initKeyboardShortcuts() {
     $(document).bind('keydown', function(e) {
         let target = $(e.target);
@@ -68,26 +72,34 @@ function isInputField(ele) {
  * @param form
  */
 function initSaveKeyboardShortcut(form) {
-    $(document).bind('keydown', function(e) {
+    if (form.dataset.shortcutInit) {
+        return;
+    }
+    form.dataset.shortcutInit = 1;
+    form.addEventListener('keydown', function(e) {
         //console.log((e.ctrlKey || e.metaKey), e.key.toLowerCase(), e.key.toLowerCase() === 's', e.shiftKey);
-        // Need to check on lowercase key, because shirt will uppercase it
+        // Need to check on lowercase key, because shift will uppercase it
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
-            //console.log('hey');
-            window.entityFormHasUnsavedChanges = false;
+            e.preventDefault();
+            if (form.dataset.unload) {
+                window.entityFormHasUnsavedChanges = false;
+            }
 
             if (e.shiftKey) {
                 setFormAction('submit-update');
             } else if (e.altKey) {
                 setFormAction('submit-new');
             }
-            $(form).submit();
+            form.requestSubmit();
             return false;
         }
         // Save & Copy
         if ((e.ctrlKey || e.metaKey) && e.altKey && e.key === 'c') {
-            window.entityFormHasUnsavedChanges = false;
+            if (form.dataset.unload) {
+                window.entityFormHasUnsavedChanges = false;
+            }
             setFormAction('submit-copy');
-            $(form).submit();
+            form.submit();
             return false;
         }
     });
