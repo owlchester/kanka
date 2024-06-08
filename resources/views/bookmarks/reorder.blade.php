@@ -13,10 +13,7 @@
 
 
 @section('content')
-    {!! Form::open([
-        'route' => ['bookmarks.reorder-save', $campaign],
-        'method' => 'POST',
-    ]) !!}
+    <x-form :action="['bookmarks.reorder-save', $campaign]">
     <x-grid type="1/1">
         @include('partials.errors')
 
@@ -49,5 +46,5 @@
             {{ __('crud.save') }}
         </button>
     </x-grid>
-    {!! Form::close() !!}
+    </x-form>
 @endsection

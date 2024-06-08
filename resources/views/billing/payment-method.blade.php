@@ -33,7 +33,7 @@
         </div>
 
 
-        {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['billing.payment-method.save']]) !!}
+        <x-form :action="['billing.payment-method.save']" method="PATCH">
             <x-grid type="1/1">
                 @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended())
                     @include('settings.subscription.currency._blocked')
@@ -51,13 +51,13 @@
                     </div>
                 @endif
             </x-grid>
-        {!! Form::close() !!}
+        </x-form>
 
 
         <h3 class="">
             {{ __('settings.billing.title') }}
         </h3>
-        {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing-info']]) !!}
+        <x-form :action="['settings.billing-info']" method="PATCH">
             <p class="help-block">
                 {{ __('settings.billing.placeholder') }}
             </p>
@@ -68,7 +68,7 @@
                     <span>{{ __('settings.billing.save') }}</span>
                 </x-buttons.confirm>
             </div>
-        {!! Form::close() !!}
+        </x-form>
     </x-grid>
 @endsection
 

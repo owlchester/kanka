@@ -21,11 +21,17 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\CampaignRole $plugin
  */?>
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_roles.bulk', $campaign]]) !!} @endif
-    <div id="datagrid-parent">
-        @include('layouts.datagrid._table', ['responsive' => true])
-    </div>
-    @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+    @if(Datagrid::hasBulks())
+        <x-form :action="['campaign_roles.bulk', $campaign]">
+            <div id="datagrid-parent">
+                @include('layouts.datagrid._table', ['responsive' => true])
+            </div>
+        </x-form>
+    @else
+        <div id="datagrid-parent">
+            @include('layouts.datagrid._table', ['responsive' => true])
+        </div>
+    @endif
 
 @section('modals')
     @parent

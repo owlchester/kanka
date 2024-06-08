@@ -22,7 +22,7 @@
     @endif
 
     @if ($superboosted)
-        {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters flex flex-col gap-5']) !!}
+        <x-form :action="['history.index', $campaign]" method="GET" class="history-filters flex flex-col gap-5">
         <div class="flex items-center flex-row-reverse gap-2">
             <div class="field flex-none">
                 <x-forms.select name="action" :options="$actions" :selected="$action" class="w-full" />
@@ -44,7 +44,7 @@
                 <x-icon class="load" />
             </div>
         </div>
-        {!! Form::close() !!}
+        </x-form>
     @endif
 
     @if ($models->count() > 0)

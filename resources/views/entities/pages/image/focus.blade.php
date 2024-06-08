@@ -39,20 +39,15 @@
         <img class="focus-image" src="{{ \App\Facades\Avatar::entity($entity)->original() }}" alt="img" />
     </div>
 
-    {!! Form::open([
-'route' => ['entities.image.focus', $campaign, $entity],
-'method' => 'POST'
-]) !!}
-    <input type="hidden" name="focus_x" />
-    <input type="hidden" name="focus_y" />
-
-
-    <x-dialog.footer>
-        <button type="submit" class="btn2 btn-primary">
-            {{ __('entities/image.actions.save_focus') }}
-        </button>
-    </x-dialog.footer>
-    {!! Form::close() !!}
+    <x-form :action="['entities.image.focus', $campaign, $entity]">
+        <x-dialog.footer>
+            <button type="submit" class="btn2 btn-primary">
+                {{ __('entities/image.actions.save_focus') }}
+            </button>
+        </x-dialog.footer>
+        <input type="hidden" name="focus_x" />
+        <input type="hidden" name="focus_y" />
+    </x-form>
         @endif
 
     @else

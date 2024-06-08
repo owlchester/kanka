@@ -2,10 +2,7 @@
 <h3 class="">
     {{ __('maps/groups.reorder.title') }}
 </h3>
-{!! Form::open([
-    'route' => ['maps.groups.reorder-save', $campaign, 'map' => $model],
-    'method' => 'POST',
-]) !!}
+<x-form :action="['maps.groups.reorder-save', $campaign, 'map' => $model]">
 <div class="box-entity-story-reorder flex flex-col gap-5">
     <div class="element-live-reorder sortable-elements flex flex-col gap-1">
         @foreach($rows as $group)
@@ -29,4 +26,4 @@
         {{ __('maps/groups.reorder.save') }}
     </button>
 </div>
-{!! Form::close() !!}
+</x-form>

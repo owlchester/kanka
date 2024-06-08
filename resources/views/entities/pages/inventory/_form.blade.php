@@ -61,7 +61,7 @@ if (isset($inventory)) {
         :label="__('entities/inventories.fields.amount')"
         :helper="__('entities/inventories.helpers.amount')">
 
-        <input type="number" name="amount" class="w-full" value="{{ old('amount', $inventory->amount ?? 1) }}" min="0" step="10" max="1000000000" required />
+        <input type="number" name="amount" class="w-full" value="{{ old('amount', $inventory->amount ?? 1) }}" min="0" step="1" max="1000000000" required />
     </x-forms.field>
 
     <x-forms.field

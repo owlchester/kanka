@@ -32,7 +32,7 @@
             <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @include('partials.errors')
 
-            {!! Form::model($model, ['route' => ['maps.map_markers.update', $campaign, 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+            <x-form :action="['maps.map_markers.update', $campaign, 'map' => $map, 'map_marker' => $model]" method="PATCH" id="map-marker-form" class="ajax-subform">
             <x-grid type="1/1">
                 @include('maps.markers._form')
 
@@ -50,18 +50,11 @@
             @if (isset($from) && $from === 'explore')
                 <input type="hidden" name="from" value="explore" />
             @endif
-            {!! Form::close() !!}
+            </x-form>
             @endif
     </x-box>
 
-    {!! Form::open([
-        'method' => 'DELETE',
-        'route' => ['maps.map_markers.destroy', $campaign, $model->map_id, $model->id],
-        'style' => 'display:inline',
-        'id' => 'delete-marker-confirm-form-' . $model->id]) !!}
-    {!! Form::close() !!}
-
-
+    <x-form method="DELETE" :action="['maps.map_markers.destroy', $campaign, $model->map_id, $model->id]" id="delete-marker-confirm-form-{{ $model->id }}" />
 @endsection
 
 @if ($map->explorable())

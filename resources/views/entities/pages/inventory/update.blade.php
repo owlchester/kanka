@@ -9,8 +9,7 @@
 ])
 
 @section('content')
-    {!! Form::model($inventory, ['route' => ['entities.inventories.update', $campaign, $entity->id, $inventory], 'method' => 'PATCH', 'data-shortcut' => 1, 'data-maintenance' => 1, 'class' => 'ajax-subform']) !!}
-
+    <x-form method="PATCH" :action="['entities.inventories.update', $campaign, $entity->id, $inventory]" class="ajax-subform">
     @include('partials.forms.form', [
         'title' => __('entities/inventories.update.title', ['name' => $entity->name]),
         'content' => 'entities.pages.inventory._form',
@@ -19,8 +18,7 @@
     ])
 
     <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
-    {!! Form::close() !!}
+    </x-form>
 
-    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.inventories.destroy', 'campaign' => $campaign, 'entity' => $entity, 'inventory' => $inventory], 'id' => 'delete-inventory-' . $inventory->id]) !!}
-    {!! Form::close() !!}
+    <x-form method="DELETE" :action="['entities.inventories.destroy', $campaign, 'entity' => $entity, 'inventory' => $inventory]" id="delete-inventory-{{ $inventory->id }}" />
 @endsection

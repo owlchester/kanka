@@ -9,31 +9,25 @@
     'centered' => true,
 ])
 
-@section('fullpage-form')
-    {!! Form::model($model, [
-        'method' => 'PATCH',
-        'enctype' => 'multipart/form-data',
-        'route' => ['campaigns.update', $campaign],
-        'data-shortcut' => '1',
-        'class' => 'entity-form',
-        'data-unload' => 1,
-        'data-maintenance' => 1,
-    ]) !!}
-@endsection
 
 @section('content')
     @include('partials.errors')
-    @include('campaigns.forms.standard')
 
-    @if(!empty($model) && $campaign->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('campaigns.keep-alive', $campaign) }}" />
-    @endif
+    <x-form
+        method="PATCH"
+        :action="['campaigns.update', $campaign]"
+        files
+        unload
+        class="entity-form"
+    >
+        @include('campaigns.forms.standard')
+
+        @if(!empty($model) && $campaign->hasEditingWarning())
+            <input type="hidden" id="editing-keep-alive" data-url="{{ route('campaigns.keep-alive', $campaign) }}" />
+        @endif
+    </x-form>
 @endsection
 
-
-@section('fullpage-form-end')
-    {!! Form::close() !!}
-@endsection
 
 @include('editors.editor')
 

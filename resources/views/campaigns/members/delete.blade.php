@@ -8,11 +8,7 @@
 <article class="text-left max-w-2xl">
     @include('partials.errors')
 
-    {!! Form::open([
-        'method' => 'DELETE',
-        'route' => ['campaign_users.destroy', [$campaign, $campaignUser->id]],
-         'class' => 'w-full'
-     ]) !!}
+    <x-form method="DELETE" :action="['campaign_users.destroy', $campaign, $campaignUser->id]">
 
     <p class="">
         {!! __('campaigns.members.removal', ['member' => '<strong>' . $campaignUser->user->name. '</strong>']) !!}<br />
@@ -27,6 +23,6 @@
             <span class="remove-button-label">{{ __('crud.remove') }}</span>
         </button>
     </x-dialog.footer>
-    {!! Form::close() !!}
+    </x-form>
 </article>
 

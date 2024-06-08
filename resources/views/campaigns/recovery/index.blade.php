@@ -42,16 +42,17 @@
             </x-cta>
         @endif
 
-        @if(Datagrid::hasBulks() && isset($isPost)) 
-            {!! Form::open(['route' => ['recovery.save.posts', $campaign]]) !!} 
-        @elseif (Datagrid::hasBulks()) 
-            {!! Form::open(['route' => ['recovery.save', $campaign]]) !!} 
-        @endif
-
+        @if(Datagrid::hasBulks())
+            <x-form :action="[isset($isPost) ? 'recovery.save.posts' : 'recovery.save', $campaign]">
+                <div id="datagrid-parent">
+                    @include('layouts.datagrid._table')
+                </div>
+            </x-form>
+        @else
         <div id="datagrid-parent">
             @include('layouts.datagrid._table')
         </div>
-        @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+        @endif
     </div>
 @endsection
 

@@ -10,5 +10,5 @@
     :helper="__('crud.hints.is_star')"
     :tooltip="true"
     link="https://docs.kanka.io/en/latest/features/profile-sidebar/how-to-pin-elements.html">
-    <x-forms.select name="{{ $fieldName ?? 'is_pinned' }}" :options="$pinnedOptions" :selected="$model->isPinned() ?? 0" class="w-full" />
+    <x-forms.select name="{{ $fieldName ?? 'is_pinned' }}" :options="$pinnedOptions" :selected="isset($model) && $model->isPinned()" class="w-full" />
 </x-forms.field>

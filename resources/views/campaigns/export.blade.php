@@ -54,17 +54,11 @@
                 {{ __('crud.cancel') }}
             </x-buttons.confirm>
 
-            {!! Form::open([
-                'method' => 'POST',
-                'route' => [
-                    'campaign.export-process',
-                    $campaign
-                ]
-            ]) !!}
-            <x-buttons.confirm type="primary" full="true">
-                {{ __('crud.click_modal.confirm') }}
-            </x-buttons.confirm>
-            {!! Form::close() !!}
+            <x-form :action="['campaign.export-process', $campaign]">
+                <x-buttons.confirm type="primary" full="true">
+                    {{ __('crud.click_modal.confirm') }}
+                </x-buttons.confirm>
+            </x-form>
         </div>
     </x-dialog>
 @endsection

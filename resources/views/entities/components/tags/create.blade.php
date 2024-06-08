@@ -10,20 +10,13 @@
 ])
 
 @section('content')
-    {!! Form::open([
-        'route' => $formOptions,
-        'method' => 'POST',
-        'data-shortcut' => 1,
-        'class' => 'ajax-subform',
-    ]) !!}
-
-    @include('partials.forms.form', [
-        'title' => __('tags.children.create.entity', ['name' => $model->name]),
-        'content' => 'entities.components.tags._form',
-        'submit' =>  __('tags.children.actions.add_entity'),
-        'dialog' => true,
-    ])
-
-    <input type="hidden" name="entity_id" value="{{ $model->entity->id }}" />
-    {!! Form::close() !!}
+    <x-form :action="$formOptions" class="ajax-subform">
+        @include('partials.forms.form', [
+            'title' => __('tags.children.create.entity', ['name' => $model->name]),
+            'content' => 'entities.components.tags._form',
+            'submit' =>  __('tags.children.actions.add_entity'),
+            'dialog' => true,
+        ])
+        <input type="hidden" name="entity_id" value="{{ $model->entity->id }}" />
+    </x-form>
 @endsection

@@ -126,17 +126,11 @@
                 {{ __('crud.cancel') }}
             </x-buttons.confirm>
 
-            {!! Form::open([
-                'method' => 'DELETE',
-                'route' => [
-                    'modules.reset',
-                    $campaign
-                ]
-            ]) !!}
+            <x-form method="DELETE" :action="['modules.reset', $campaign]">
             <x-buttons.confirm type="danger" full="true" outline="true">
                 {{ __('crud.click_modal.confirm') }}
             </x-buttons.confirm>
-            {!! Form::close() !!}
+            </x-form>
         </div>
     </x-dialog>
 @endsection

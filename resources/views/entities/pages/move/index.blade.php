@@ -10,9 +10,7 @@
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['entities.move', $campaign, $entity->id], 'method' => 'POST']) !!}
-
-    {{ csrf_field() }}
+    <x-form :action="['entities.move', $campaign, $entity->id]">
     <x-box>
         <x-grid type="1/1">
             <p class="text-neutral-content">
@@ -44,5 +42,5 @@
         </x-dialog.footer>
     </x-box>
 
-    {!! Form::close() !!}
+    </x-form>
 @endsection

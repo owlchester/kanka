@@ -59,7 +59,7 @@
         <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
             @if (! $limited)
             <div role="tabpanel" class="tab-pane active" id="card">
-                {!! Form::open(['route' => ['settings.subscription.subscribe', 'tier' => $tier], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
+                <x-form :action="['settings.subscription.subscribe', 'tier' => $tier]" id="subscription-confirm">
 
                 <x-grid type="1/1" css="text-left">
                 @if (!$card)
@@ -111,7 +111,7 @@
                 <input type="hidden" name="period" value="{{ $period->isYearly() ? 'yearly' : 'monthly' }}" />
                 <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
                 <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
-                {!! Form::close() !!}
+                </x-form>
             </div>
             @endif
             <div role="tabpanel" class="tab-pane {{ $limited ? 'active' : null }}" id="paypal">
@@ -137,7 +137,7 @@
                         </x-alert>
                     @endif
 
-                    {!! Form::open(['route' => ['paypal.process-transaction', 'tier' => $tier], 'method' => 'POST', 'class' => 'subscription-form flex flex-row gap-5']) !!}
+                    <x-form :action="['paypal.process-transaction', 'tier' => $tier]" class="subscription-form flex flex-row gap-5">
                         <p class="help-block">
                             {{ __('settings.subscription.helpers.paypal_v3') }}
                         </p>
@@ -151,7 +151,7 @@
                         <input type="hidden" name="period" value="{{ $period->isYearly() ? 'yearly' : 'monthly' }}" />
                         <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
                         <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
-                    {!! Form::close() !!}
+                    </x-form>
                     @endif
                 @endif
                 </x-grid>

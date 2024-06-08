@@ -107,20 +107,20 @@ $weekNumber = 1;
 
 @section('modals')
     @parent
-    {!! Form::open(['route' => ['calendars.show', $campaign, $model], 'method' => 'GET']) !!}
-    <x-dialog id="calendar-year-switcher" :title="__('calendars.modals.switcher.title')" footer="calendars.year-switcher._footer">
-        <x-forms.field field="year" :label="__('calendars.fields.year')">
-            <input type="number" name="year" placeholder="{{ $renderer->currentYear() }}" />
-        </x-forms.field>
+    <x-form :action="['calendars.show', $campaign, $model]" method="GET">
+        <x-dialog id="calendar-year-switcher" :title="__('calendars.modals.switcher.title')" footer="calendars.year-switcher._footer">
+            <x-forms.field field="year" :label="__('calendars.fields.year')">
+                <input type="number" name="year" placeholder="{{ $renderer->currentYear() }}" />
+            </x-forms.field>
 
-        @if ($renderer->isYearlyLayout() && !$model->yearlyLayout())
-            <input type="hidden" name="layout" value="year">
-        @else
-            @if ($model->yearlyLayout())
-                <input type="hidden" name="layout" value="month">
+            @if ($renderer->isYearlyLayout() && !$model->yearlyLayout())
+                <input type="hidden" name="layout" value="year">
+            @else
+                @if ($model->yearlyLayout())
+                    <input type="hidden" name="layout" value="month">
+                @endif
+                <input type="hidden" name="month" value="{{ $renderer->currentMonthId() }}" />
             @endif
-            <input type="hidden" name="month" value="{{ $renderer->currentMonthId() }}" />
-        @endif
-    </x-dialog>
-    {!! Form::close() !!}
+        </x-dialog>
+    </x-form>
 @endsection

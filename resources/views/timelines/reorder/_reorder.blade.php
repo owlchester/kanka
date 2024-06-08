@@ -6,10 +6,7 @@
     </x-alert>
     <?php return; ?>
 @endif
-{!! Form::open([
-        'route' => ['timelines.reorder-save', $campaign, $timeline],
-        'method' => 'POST',
-    ]) !!}
+<x-form :action="['timelines.reorder-save', $campaign, $timeline]">
 <div class="max-w-4xl box-timeline-reorder flex flex-col gap-5">
     <div class="element-live-reorder sortable-elements flex flex-col gap-5">
         @foreach($eras as $era)
@@ -52,4 +49,4 @@
         {{ __('crud.save') }}
     </button>
 </div>
-{!! Form::close() !!}
+</x-form>

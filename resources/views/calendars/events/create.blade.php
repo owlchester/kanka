@@ -11,13 +11,7 @@
 ])
 
 @section('content')
-    {!! Form::open([
-        'method' => 'POST',
-        'route' => ['calendars.event.store', $campaign, $calendar->id],
-        'data-shortcut' => 1,
-        'class' => 'ajax-subform entity-calendar-subform',
-        'data-maintenance' => 1
-    ]) !!}
+    <x-form :action="['calendars.event.store', $campaign, $calendar->id]" class="ajax-subform entity-calendar-subform">
 
     @include('partials.forms.form', [
         'title' => __('calendars.event.create.title', ['name' => $calendar->name]),
@@ -29,6 +23,5 @@
     @if (request()->has('layout'))
         <input type="hidden" name="layout" value="{{ request()->get('layout') }}" />
     @endif
-
-    {!! Form::close() !!}
+    </x-form>
 @endsection

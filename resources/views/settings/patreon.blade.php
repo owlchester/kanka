@@ -43,10 +43,11 @@
         <p class="">
             {{ __('settings.patreon.remove.text') }}
         </p>
-        {!! Form::model(auth()->user(), ['method' => 'DELETE', 'route' => ['settings.patreon.unlink'], 'class' => 'text-center w-full']) !!}
-        <x-buttons.confirm type="danger" outline="true" full="true">
-            {{ __('crud.click_modal.confirm') }}
-        </x-buttons.confirm>
-        {!! Form::close() !!}
+
+        <x-form method="DELETE" :action="['settings.patreon.unlink']" class="text-center">
+            <x-buttons.confirm type="danger" outline="true" full="true">
+                {{ __('crud.click_modal.confirm') }}
+            </x-buttons.confirm>
+        </x-form>
     </x-dialog>
 @endsection

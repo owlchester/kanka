@@ -9,20 +9,15 @@
 ])
 
 @section('content')
-    {!! Form::open([
-        'route' => ['characters.character_organisations.store', $campaign, $model->id],
-        'method'=>'POST',
-        'data-shortcut' => '1'
-    ]) !!}
+    <x-form :action="['characters.character_organisations.store', $campaign, $model->id]">
+        @include('partials.forms.form', [
+            'title' => __('characters.organisations.create.title'),
+            'content' => 'characters.organisations._form',
+            'submit' => __('crud.add'),
+            'dialog' => true,
+            'dropdownParent' => '#primary-dialog',
+        ])
 
-    @include('partials.forms.form', [
-        'title' => __('characters.organisations.create.title'),
-        'content' => 'characters.organisations._form',
-        'submit' => __('crud.add'),
-        'dialog' => true,
-        'dropdownParent' => '#primary-dialog',
-    ])
-
-    <input type="hidden" name="character_id" value="{{ $model->id }}" />
-    {!! Form::close() !!}
+        <input type="hidden" name="character_id" value="{{ $model->id }}" />
+    </x-form>
 @endsection

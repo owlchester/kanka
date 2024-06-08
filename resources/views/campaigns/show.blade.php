@@ -96,7 +96,7 @@
     @if (auth()->check() && auth()->user()->can('roles', $campaign))
         <x-dialog id="campaign-delete-confirm" :title="__('campaigns.destroy.title')">
             @if (auth()->user()->can('delete', $campaign))
-                {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign]]) !!}
+                <x-form method="DELETE" :action="['campaigns.destroy', $campaign]">
                     <x-grid type="1/1">
                         <p class="">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
                         <p class="text-neutral-content"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
@@ -109,14 +109,13 @@
                             <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
                                 {{ __('crud.cancel') }}
                             </x-buttons.confirm>
-                            {!! Form::open(['method' => 'GET', 'route' => ['campaign.leave', $campaign], 'class' => 'w-full']) !!}
                             <x-buttons.confirm type="danger" outline="true" full="true">
                                 <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
                                 {{ __('campaigns.destroy.confirm-button') }}
                             </x-buttons.confirm>
                         </div>
                     </x-grid>
-                {!! Form::close() !!}
+                </x-form>
             @else
                 <p class="">{{ __('campaigns.destroy.helper-v2') }}</p>
                 <a href="{{ route('campaign_users.index', $campaign) }}" class="btn2 btn-sm">

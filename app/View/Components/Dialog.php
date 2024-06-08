@@ -8,33 +8,21 @@ use Illuminate\View\Component;
 
 class Dialog extends Component
 {
-    public string $id;
-    public ?string $title;
-    public ?string $footer;
-    public bool $full;
-    public bool $loading;
-    public bool $dismissible = true;
-    public array $form;
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $title = null,
-        string $id = null,
-        string $footer = null,
-        array $form = [],
-        bool $full = false,
-        bool $loading = false,
-        bool $dismissible = true,
+        public string|null $title = null,
+        public string|null $id = null,
+        public string|null $footer = null,
+        public array $form = [],
+        public bool $full = false,
+        public bool $loading = false,
+        public  bool $dismissible = true,
     ) {
-        $this->id = $id ?? uniqid();
-        $this->title = $title;
-        $this->full = $full;
-        $this->loading = $loading;
-        $this->footer = $footer;
-        $this->dismissible = $dismissible;
-        $this->form = $form;
+        if (empty($this->id)) {
+            $this->id = uniqid();
+        }
     }
 
     /**

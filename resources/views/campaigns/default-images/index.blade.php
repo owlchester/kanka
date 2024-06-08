@@ -59,17 +59,9 @@
                         <div class="mr-2">
                         <x-button.delete-confirm size="sm" target="#delete-thumb-{{ $image['uuid'] }}" />
                         </div>
-                        {!! Form::open([
-                                    'method' => 'DELETE',
-                                    'route' => [
-                                        'campaign.default-images.delete',
-                                        $campaign
-                                    ],
-                                    'class' => 'hidden',
-                                    'id' => 'delete-thumb-' . $image['uuid']
-                                ]) !!}
+                        <x-form method="DELETE" :action="['campaign.default-images.delete', $campaign]" class="hidden" id="delete-thumb-{{ $image['uuid'] }}" >
                             <input type="hidden" name="entity_type" value="{{ $image['type'] }}" />
-                        {!! Form::close() !!}
+                        </x-form>
                         @endcan
                     </div>
 

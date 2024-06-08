@@ -9,14 +9,13 @@
 ])
 
 @section('content')
-    {!! Form::open(array('route' => ['races.members.store', $campaign, $model->id], 'method'=>'POST')) !!}
-
-    @include('partials.forms.form', [
-        'title' => __('races.members.create.title', ['name' => $model->name]),
-        'content' => 'races.members._form',
-        'submit' => __('races.members.create.submit'),
-        'dialog' => true,
-    ])
-    <input type="hidden" name="race_id" value="{{ $model->id }}" />
-    {!! Form::close() !!}
+    <x-form :action="['races.members.store', $campaign, $model->id]">
+        @include('partials.forms.form', [
+            'title' => __('races.members.create.title', ['name' => $model->name]),
+            'content' => 'races.members._form',
+            'submit' => __('races.members.create.submit'),
+            'dialog' => true,
+        ])
+        <input type="hidden" name="race_id" value="{{ $model->id }}" />
+    </x-form>
 @endsection

@@ -1,7 +1,4 @@
-{!! Form::open([
-    'route' => ['campaign_styles.reorder-save', $campaign],
-    'method' => 'POST',
-]) !!}
+<x-form :action="['campaign_styles.reorder-save', $campaign]">
 <div class="flex flex-col gap-5">
     <h3 class="">
         {{ __('campaigns/styles.reorder.title') }}
@@ -30,4 +27,4 @@
         </div>
     </div>
 </div>
-{!! Form::close() !!}
+</x-form>

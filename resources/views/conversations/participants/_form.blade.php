@@ -1,9 +1,6 @@
 <x-grid type="1/1">
     @forelse ($model->participants as $participant)
         @if ($participant->isMember() || (auth()->check() && auth()->user()->can('view', $participant->entity())))
-            @can('update', $model)
-                {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $campaign, $model, $participant]]) !!}
-            @endcan
         <div class="grid grid-cols-2 items-center align-middle gap-5">
             <div class="">
                 @if ($participant->isMember())
@@ -14,11 +11,12 @@
             </div>
 
             @can('update', $model)
-                <button class="btn2 btn-error btn-outline btn-sm">
-                    <x-icon class="trash"></x-icon>
-                    <span class="sr-only">{{ __('crud.remove') }}</span>
-                </button>
-                {!! Form::close() !!}
+                <x-form method="DELETE" :action="['conversations.conversation_participants.destroy', $campaign, $model, $participant]">
+                    <button class="btn2 btn-error btn-outline btn-sm">
+                        <x-icon class="trash"></x-icon>
+                        <span class="sr-only">{{ __('crud.remove') }}</span>
+                    </button>
+                </x-form>
             @endcan
         </div>
         @endif

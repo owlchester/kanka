@@ -12,13 +12,12 @@
 @section('content')
     @include('partials.errors')
 
-    {!! Form::open(['route' => ['entities.attributes.template', [$campaign, $entity->id]], 'method'=>'POST', 'data-shortcut' => '1', 'class' => 'ajax-subform']) !!}
-
+    <x-form :action="['entities.attributes.template', $campaign, $entity->id]" class="ajax-subform">
     @include('partials.forms.form', [
             'title' => __('entities.attribute_template'),
             'content' => 'entities.pages.attribute-templates._form',
             'dialog' => true,
             'actions' => 'entities.pages.attribute-templates._actions',
         ])
-    {!! Form::close() !!}
+    </x-form>
 @endsection

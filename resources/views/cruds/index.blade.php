@@ -29,7 +29,7 @@
     @else
         @if (isset($route))
             <div class="flex flex-stretch gap-2 items-center">
-                    @includeWhen(isset($model) && $model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])
+                    @includeWhen(isset($model) && $model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => [$route . '.index', $campaign]])
                     @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
             </div>
         @endif
@@ -41,7 +41,7 @@
         @include('cruds.datagrids.explore', ['route' => $route . '.index'])
     @else
         @if (isset($entityTypeId))
-        {!! Form::open(['url' => route('bulk.print', [$campaign, 'entity_type' => $entityTypeId]), 'method' => 'POST', 'class' => 'flex flex-col gap-5']) !!}
+            <x-form class="flex flex-col gap-5" :action="['bulk.print', [$campaign, 'entity_type' => $entityTypeId]]">
         @endif
         <x-box :padding="false" >
             <div class="table-responsive">
@@ -65,7 +65,7 @@
         @endif
         @if (isset($entityTypeId))
             <input type="hidden" name="page" value="{{ request()->get('page') }}" />
-        {!! Form::close() !!}
+        </x-form>
         @endif
 
 

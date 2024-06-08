@@ -4,8 +4,7 @@
  * @var \App\Models\CampaignBoost $boost
  */
 ?>
-
-{!! Form::open(['route' => ['campaign_boosts.store']]) !!}
+<x-form :action="['campaign_boosts.store']">
     @include('partials.forms.form', [
         'title' => __('settings/premium.actions.unlock'),
         'content' => 'settings.premium.create._form',
@@ -13,5 +12,5 @@
         'dialog' => true,
     ])
 
-<input type="hidden" name="campaign_id" value="{{ $campaign->id }}" />
-{!! Form::close() !!}
+    <input type="hidden" name="campaign_id" value="{{ $campaign->id }}" />
+</x-form>

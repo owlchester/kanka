@@ -10,12 +10,7 @@
 ])
 
 @section('content')
-    {!! Form::open([
-        'route' => ['quests.quest_elements.store', $campaign, $quest->id],
-        'method'=>'POST',
-        'data-shortcut' => 1,
-        'data-maintenance' => 1,
-    ]) !!}
+    <x-form :action="['quests.quest_elements.store', $campaign, $quest->id]">
     <x-box>
         @include('partials.errors')
 
@@ -54,7 +49,7 @@
             </div>
         </x-dialog.footer>
     </x-box>
-    {!! Form::close() !!}
+    </x-form>
 @endsection
 
 @include('editors.editor')

@@ -2,13 +2,7 @@
 @php
     $endDate = date($user->date_format, $user->upcomingInvoice()?->period_end);
 @endphp
-{!! Form::open([
-    'route' => ['settings.subscription.cancel'],
-    'method' => 'POST',
-    'id' => 'cancellation-confirm',
-    'class' => 'subscription-form text-left'
-]) !!}
-
+<x-form :action="['settings.subscription.cancel']" id="cancellation-confirm" class="subscription-form text-left">
 <x-grid type="1/1">
     <x-helper>
         {!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}
@@ -43,4 +37,4 @@
 <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
 <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
 <input type="hidden" name="is_downgrade" value="true" />
-{!! Form::close() !!}
+</x-form>

@@ -6,7 +6,7 @@
     @endif
 </x-dialog.header>
 <article>
-    {!! Form::model($submission, ['method' => 'PATCH', 'route' => ['campaign_submissions.update', $campaign, $submission->id], 'data-shortcut' => 1, 'class' => 'entity-form w-full max-w-lg text-left']) !!}
+    <x-form :action="['campaign_submissions.update', $campaign, $submission->id]" method="PATCH" class="entity-form w-full max-w-lg text-left">
         @if($action === 'approve')
 
             <x-grid type="1/1">
@@ -49,6 +49,6 @@
         @endif
 
     <input type="hidden" name="action" value="{{ $action }}" />
-    {!! Form::close() !!}
+    </x-form>
 </article>
 

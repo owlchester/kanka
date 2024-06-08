@@ -16,14 +16,12 @@
 ])
 
 @section('content')
-    {!! Form::model($model, ['route' => ['maps.map_groups.update', 'campaign' => $campaign, 'map' => $map, 'map_group' => $model], 'method' => 'PATCH', 'id' => 'map-group-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-maintenance' => 1]) !!}
-
-    @include('partials.forms.form', [
-        'title' => __('maps/groups.edit.title', ['name' => $map->name]),
-        'content' => 'maps.groups._form',
-        'actions' => 'maps.groups._actions',
-        'dialog' => true,
-    ])
-
-    {!! Form::close() !!}
+    <x-form :action="['maps.map_groups.update', 'campaign' => $campaign, 'map' => $map, 'map_group' => $model]" method="PATCH" id="map-group-form" files class="ajax-subform">
+        @include('partials.forms.form', [
+            'title' => __('maps/groups.edit.title', ['name' => $map->name]),
+            'content' => 'maps.groups._form',
+            'actions' => 'maps.groups._actions',
+            'dialog' => true,
+        ])
+    </x-form>
 @endsection

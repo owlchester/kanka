@@ -6,21 +6,21 @@
 
 @section('content')
 
-    {!! Form::model($preset, ['route' => ['preset_types.presets.update', $campaign, $presetType, $preset], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+    <x-form :action="['preset_types.presets.update', $campaign, $presetType, $preset]" method="PATCH">
         @include('partials.forms.form', [
-        'title' => __('presets.edit.title', ['name' => $preset->name]),
-           'content' => 'presets.forms._' . $presetType->code,
-           'deleteID' => '#delete-form-preset-' . $preset->id,
+            'title' => __('presets.edit.title', ['name' => $preset->name]),
+            'content' => 'presets.forms._' . $presetType->code,
+            'deleteID' => '#delete-form-preset-' . $preset->id,
         ])
-    <input type="hidden" name="from" value="{{ $from }}" />
-    {!! Form::close() !!}
+        <input type="hidden" name="from" value="{{ $from }}" />
+    </x-form>
 
 @endsection
 
 @section('modals')
     @parent
-    {!! Form::open(['method' => 'DELETE', 'route' => ['preset_types.presets.destroy', $campaign, 'preset_type' => $presetType, 'preset' => $preset], 'id' => 'delete-form-preset-' . $preset->id]) !!}
+    <x-form method="DELETE" :action="['preset_types.presets.destroy', $campaign, 'preset_type' => $presetType, 'preset' => $preset]" id="delete-form-preset-{{ $preset->id }}">
     <input type="hidden" name="from" value="{{ $from }}" />
-    {!! Form::close() !!}
+    </x-form>
 
 @endsection

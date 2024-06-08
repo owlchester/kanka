@@ -36,7 +36,7 @@ if (!isset($model) || !$model->boosted()) {
                 :helper="__('campaigns.ui.helpers.theme')"
                 :tooltip="true">
                 @php $dizzy = [];
-                if (!$campaign->boosted() ?? true) {
+                if (!isset($campaign) || !$campaign->boosted()) {
                     foreach ($themes as $i => $n) {
                         if (empty($i)) continue;
                         $dizzy[$i] = ['disabled' => true];
@@ -52,7 +52,7 @@ if (!isset($model) || !$model->boosted()) {
                 :helper="__('campaigns.ui.helpers.member-list')"
                 :tooltip="true">
                 @php $dizzy = [];
-                if (!$campaign->boosted() ?? true) {
+                if (!isset($campaign) || !$campaign->boosted()) {
                     $dizzy = [1 => ['disabled' => true]];
                 }
                 @endphp
@@ -68,7 +68,7 @@ if (!isset($model) || !$model->boosted()) {
                 :helper="__('campaigns.ui.helpers.entity-history')"
                 :tooltip="true">
                 @php $dizzy = [];
-                if (!$campaign->boosted() ?? true) {
+                if (!isset($campaign) || !$campaign->boosted()) {
                     $dizzy = [1 => ['disabled' => true]];
                 }
                 @endphp
@@ -90,7 +90,7 @@ if (!isset($model) || !$model->boosted()) {
                 :label="__('campaigns.ui.fields.entity_image')">
 
                 @php $dizzy = [];
-                if (!$campaign->boosted() ?? true) {
+                if (!isset($campaign) || !$campaign->boosted()) {
                     $dizzy = [1 => ['disabled' => true]];
                 }
                 @endphp

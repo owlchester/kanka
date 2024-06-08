@@ -9,12 +9,12 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['entities.inventory.copy.store', $campaign, $entity->id], 'method'=>'POST', 'data-shortcut' => 1, 'data-maintenance' => 1, 'class' => 'ajax-subform']) !!}
+    <x-form :action="['entities.inventory.copy.store', $campaign, $entity->id]" class="ajax-subform">
     @include('partials.forms.form', [
             'title' => __('entities/inventories.copy.title', ['name' => $entity->name]),
             'content' => 'entities.pages.inventory._copy',
             'submit' => __('entities/inventories.actions.copy_inventory'),
             'dialog' => true,
-        ])    
-    {!! Form::close() !!}
+        ])
+    </x-form>
 @endsection

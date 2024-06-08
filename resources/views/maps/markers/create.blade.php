@@ -17,8 +17,8 @@
 ])
 
 @section('content')
+    <x-form :action="['maps.map_markers.store', $campaign, $map]" id="map-marker-form" class="ajax-subform">
     <x-box>
-    {!! Form::open(['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
         @if (request()->ajax())
             <div class="modal-header">
                 <x-dialog.close />
@@ -43,7 +43,7 @@
             </x-box.footer>
         </x-grid>
     </x-box>
-    {!! Form::close() !!}
+    </x-form>
 @endsection
 
 @section('scripts')

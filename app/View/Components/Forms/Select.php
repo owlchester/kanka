@@ -34,11 +34,9 @@ class Select extends Component
     {
         // Form submitted? Re-load the value
         $old = old($this->name);
-        if (null !== $old) {
-            dd('a');
+        if (!is_null($old)) {
             $this->selected = $old;
         } elseif (!empty($this->placeholder)) {
-
             $this->selected = '';
             $this->options = ['' => $this->placeholder] + $this->options;
         }

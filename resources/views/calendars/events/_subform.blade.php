@@ -9,7 +9,7 @@
     <x-forms.field
         field="month"
         :label="__('calendars.fields.month')">
-        <x-forms.select name="month" :options="$calendar->monthList() ?? []" :selected="$month ?? null" />
+        <x-forms.select name="month" :options="isset($calendar) ? $calendar->monthList() : []" :selected="$month ?? null" />
     </x-forms.field>
 
     <x-forms.field
@@ -39,7 +39,7 @@
     <x-forms.field
         field="recurring"
         :label="__('calendars.fields.is_recurring')">
-        <x-forms.select name="recurring_periodicity" :options="$calendar->recurringOptions() ?? []" :selected="$entityEvent->recurring_periodicity ?? null" class="w-full reminder-periodicity" />
+        <x-forms.select name="recurring_periodicity" :options="isset($calendar) ? $calendar->recurringOptions() : []" :selected="$entityEvent->recurring_periodicity ?? null" class="w-full reminder-periodicity" />
     </x-forms.field>
 
     <x-forms.field field="recurring-until" :hidden="!isset($entityEvent) || !$entityEvent->is_recurring" :label="__('calendars.fields.recurring_until')"  id="add_event_recurring_until">

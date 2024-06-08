@@ -26,12 +26,12 @@
 
             @if($plugin->hasUpdate())
                 <div>
-                    {!! Form::open(['route' => ['campaign_plugins.update', [$campaign, $plugin]], 'method' => 'POST', 'class' => 'inline-block']) !!}
-                    <button type="submit" class="btn2 btn-primary btn-sm">
-                        <i class="fa-solid fa-download"></i>
-                        {{ __('campaigns/plugins.actions.update') }}
-                    </button>
-                    {!! Form::close() !!}
+                    <x-form :action="['campaign_plugins.update', $campaign, $plugin]" class="inline-block">
+                        <button type="submit" class="btn2 btn-primary btn-sm">
+                            <i class="fa-solid fa-download"></i>
+                            {{ __('campaigns/plugins.actions.update') }}
+                        </button>
+                    </x-form>
                 </div>
             @endif
         </div>

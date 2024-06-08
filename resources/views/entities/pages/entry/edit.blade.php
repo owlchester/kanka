@@ -13,28 +13,26 @@
 
 @section('content')
 
-    {!! Form::model($entity->child, ['route' => ['entities.entry.update', $campaign, $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form', 'data-maintenance' => 1, 'data-unload' => 1,]) !!}
-
+    <x-form :action="['entities.entry.update', $campaign, $entity]" method="PATCH" class="entity-form entity-entry-form" unsaved>
         @include('partials.errors')
+        <x-box>
+            <x-forms.field field="entry">
+                <textarea name="entry"
+                          id="entry"
+                          class="html-editor"
+                          rows="3"
+                >{!! $entity->child->entryForEdition !!}</textarea>
+            </x-forms.field>
 
-    <x-box>
-        <x-forms.field field="entry">
-            <textarea name="entry"
-                      id="entry"
-                      class="html-editor"
-                      rows="3"
-            >{!! $entity->child->entryForEdition !!}</textarea>
-        </x-forms.field>
-
-        <div class="flex gap-2 items-center">
-            <div class="grow">
-                @include('partials.footer_cancel')
+            <div class="flex gap-2 items-center">
+                <div class="grow">
+                    @include('partials.footer_cancel')
+                </div>
+                <button class="btn2 btn-primary" id="form-submit-main">{{ __('crud.update') }}</button>
             </div>
-            <button class="btn2 btn-primary" id="form-submit-main">{{ __('crud.update') }}</button>
-        </div>
 
-    </x-box>
-    {!! Form::close() !!}
+        </x-box>
+    </x-form>
 
     {{-- For bragi --}}
     @if ($entity->isCharacter())

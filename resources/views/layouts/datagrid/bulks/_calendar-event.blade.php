@@ -31,6 +31,6 @@
             </p>
     </x-forms.field>
 
-    @include('cruds.fields.colour_picker')
+    @include('cruds.fields.colour_picker', ['dropdownParent' => request()->ajax() ? '#primary-dialog' : null])
 
 </x-grid>

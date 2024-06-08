@@ -55,7 +55,7 @@
                     </x-alert>
                 @elseif ($submissions->isEmpty())
                     <x-alert type="info">
-                        {!! __('campaigns/submissions.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open" aria-hidden="true"></i> ' . __('dashboard.actions.join') . '</code>']) !!}
+                        <p>{!! __('campaigns/submissions.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open" aria-hidden="true"></i> ' . __('dashboard.actions.join') . '</code>']) !!}</p>
                     </x-alert>
                 @endif
             @endif

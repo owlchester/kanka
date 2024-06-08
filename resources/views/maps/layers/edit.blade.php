@@ -16,8 +16,7 @@
 ])
 
 @section('content')
-    {!! Form::model($model, ['route' => ['maps.map_layers.update', $campaign, 'map' => $map, 'map_layer' => $model], 'method' => 'PATCH', 'id' => 'map-layer-form', 'enctype' => 'multipart/form-data', 'data-maintenance' => 1]) !!}
-
+    <x-form :action="['maps.map_layers.update', $campaign, 'map' => $map, 'map_layer' => $model]" method="PATCH" id="map-layer-form" files>
     <x-box>
         @include('partials.errors')
 
@@ -34,5 +33,5 @@
         </x-box.footer>
     </x-box>
 
-    {!! Form::close() !!}
+    </x-form>
 @endsection

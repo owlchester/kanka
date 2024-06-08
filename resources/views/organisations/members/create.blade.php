@@ -8,14 +8,13 @@
 ])
 
 @section('content')
-    {!! Form::open(array('route' => ['organisations.organisation_members.store', $campaign, $model->id], 'method'=>'POST')) !!}
-
-    @include('partials.forms.form', [
-        'title' => __('organisations.members.create.title', ['name' => $model->name]),
-        'content' => 'organisations.members._form',
-        'submit' => __('organisations.members.actions.submit'),
-        'dialog' => true,
-    ])
-    <input type="hidden" name="organisation_id" value="{{ $model->id }}" />
-    {!! Form::close() !!}
+    <x-form :action="['organisations.organisation_members.store', $campaign, $model->id]" class="ajax-subform">
+        @include('partials.forms.form', [
+            'title' => __('organisations.members.create.title', ['name' => $model->name]),
+            'content' => 'organisations.members._form',
+            'submit' => __('organisations.members.actions.submit'),
+            'dialog' => true,
+        ])
+        <input type="hidden" name="organisation_id" value="{{ $model->id }}" />
+    </x-form>
 @endsection

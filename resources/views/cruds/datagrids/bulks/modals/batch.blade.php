@@ -1,5 +1,5 @@
 <?php /** @var \App\Datagrids\Bulks\Bulk $bulk */ $fieldCount = 0;?>
-{!! Form::open(['url' => route('bulk.process', $campaign), 'method' => 'POST']) !!}
+<x-form :action="['bulk.process', $campaign]">
 <x-dialog id="bulk-edit" :title="__('crud.bulk.edit.title')" footer="cruds.datagrids.bulks.modals._batch-footer">
     <x-grid>
         @foreach ($bulk->fields() as $field)
@@ -27,5 +27,5 @@
 <input type="hidden" name="entity" value="{{ $name }}" />
 <input type="hidden" name="mode" value="{{ $mode }}" />
 <input type="hidden" name="models" value="" id="datagrid-bulk-batch-models" />
-{!! Form::close() !!}
+</x-form>
 

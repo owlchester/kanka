@@ -9,19 +9,13 @@
 ])
 
 @section('content')
-    {!! Form::open([
-        'route' => $formOptions,
-        'method' => 'POST',
-        'data-shortcut' => 1,
-        'class' => 'ajax-subform',
-    ]) !!}
-
-    @include('partials.forms.form', [
-        'title' => __('abilities.children.create.modal', ['name' => $model->name]),
-        'content' => 'abilities.entities._form',
-        'dialog' => true,
-    ])
-    <input type="hidden" name="ability_id" value="{{ $model->entity->id }}" />
-    {!! Form::close() !!}
+    <x-form class="ajax-subform" :action="$formOptions">
+        @include('partials.forms.form', [
+            'title' => __('abilities.children.create.modal', ['name' => $model->name]),
+            'content' => 'abilities.entities._form',
+            'dialog' => true,
+        ])
+        <input type="hidden" name="ability_id" value="{{ $model->entity->id }}" />
+    </x-form>
 
 @endsection

@@ -9,12 +9,12 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['tags.transfer', [$campaign, $tag->id]], 'method' => 'POST']) !!}
+    <x-form :action="['tags.transfer', $campaign, $tag->id]">
         @include('partials.forms.form', [
             'title' => __('tags.transfer.transfer'),
             'content' => 'tags.transfer._form',
             'submit' =>  __('tags.transfer.transfer'),
             'dialog' => true,
         ])
-    {!! Form::close() !!}
+    </x-form>
 @endsection

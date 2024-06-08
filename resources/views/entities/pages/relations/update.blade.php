@@ -11,29 +11,22 @@
 ])
 
 @section('content')
-    {!! Form::model($relation, ['route' => ['entities.relations.update', $campaign, $entity->id, $relation], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
+    <x-form :action="['entities.relations.update', $campaign, $entity->id, $relation]" method="PATCH" class="ajax-subform">
+        @include('partials.forms.form', [
+            'title' => __('entities/relations.update.title', ['name' => link_to($entity->url(), $entity->name)]),
+            'content' => 'entities.pages.relations._form',
+            'deleteID' => '#delete-relation-' . $relation->id,
+            'dialog' => true,
+        ])
+        @if(!empty($from))
+            <input type="hidden" name="from" value="{{ $from }}" />
+        @endif
+        <input type="hidden" name="owner_id" value="{{ $entity->id }}" />
+        <input type="hidden" name="option" value="{{ request()->get('option') }}" />
+        <input type="hidden" name="mode" value="{{ request()->get('mode') }}" />
+    </x-form>
 
-    @include('partials.forms.form', [
-        'title' => __('entities/relations.update.title', ['name' => link_to($entity->url(), $entity->name)]),
-        'content' => 'entities.pages.relations._form',
-        'deleteID' => '#delete-relation-' . $relation->id,
-        'dialog' => true,
-    ])
-
-    @if(!empty($from))
-        <input type="hidden" name="from" value="{{ $from }}" />
-    @endif
-    <input type="hidden" name="owner_id" value="{{ $entity->id }}" />
-    <input type="hidden" name="option" value="{{ request()->get('option') }}" />
-    <input type="hidden" name="mode" value="{{ request()->get('mode') }}" />
-
-    {!! Form::close() !!}
-
-    {!! Form::open([
-        'method' => 'DELETE',
-        'route' => ['entities.relations.destroy', 'campaign' => $campaign, 'entity' => $entity->id, 'relation' => $relation->id, 'mode' => request()->mode, 'option' => request()->option],
-        'id' => 'delete-relation-' . $relation->id])
-        !!}
+    <x-form method="DELETE" :action="['entities.relations.destroy', 'campaign' => $campaign, 'entity' => $entity->id, 'relation' => $relation->id, 'mode' => request()->mode, 'option' => request()->option]" id="delete-relation-{{ $relation->id }}">
     @if ($relation->isMirrored())<input type="hidden" name="remove_mirrored" value="1" />@endif
-    {!! Form::close() !!}
+    </x-form>
 @endsection

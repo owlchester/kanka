@@ -7,17 +7,12 @@
 ])
 
 @section('content')
-    {!! Form::open([
-        'route' => ['posts.update.visibility', $campaign, $entity, $post],
-        'method' => 'POST',
-        'class' => 'post-visibility'
-    ]) !!}
+    <x-form :action="['posts.update.visibility', $campaign, $entity, $post]" class="post-visibility">
         @include('partials.forms.form', [
             'title' => __('visibilities.title'),
             'content' => 'entities.components.posts._form',
             'dialog' => true,
             'model' => $post
         ])
-
-    {!! Form::close() !!}
+    </x-form>
 @endsection

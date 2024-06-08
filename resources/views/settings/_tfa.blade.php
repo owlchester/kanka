@@ -21,15 +21,15 @@
                     'android' => link_to('https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2', 'Android', ['target' => '_blank']),
                     'ios' => link_to('https://apps.apple.com/us/app/google-authenticator/id388497605', 'iOS', ['target' => '_blank']),
                 ]) !!}</p>
-            {!! Form::open(['route' => 'settings.security.generate-2fa', 'method' => 'POST']) !!}
+                <x-form action="settings.security.generate-2fa">
                 <div class="text-right">
                     <x-buttons.confirm type="primary">
                         {{ __('settings.account.2fa.generate_qr') }}
                     </x-buttons.confirm>
                 </div>
-            {!! Form::close() !!}
+            </x-form>
         @elseif(!$user->passwordSecurity->google2fa_enable)
-            {!! Form::open(['route' => 'settings.security.enable-2fa', 'method' => 'POST']) !!}
+            <x-form action="settings.security.enable-2fa">
                 <x-grid type="1/1">
                     <p>{{ __('settings.account.2fa.activation_helper') }}</p>
 
@@ -47,7 +47,7 @@
                         </x-buttons.confirm>
                     </div>
                 </x-grid>
-            {!! Form::close() !!}
+            </x-form>
        @endif
   @endif
 
@@ -56,18 +56,18 @@
 @section('modals')
     @parent
     @if($user->passwordSecurity?->google2fa_enable)
-    {!! Form::model($user, ['method' => 'POST', 'route' => ['settings.security.disable-2fa']]) !!}
-    <x-dialog id="deactivate-2fa" :title="__('settings.account.2fa.disable.title')">
-        <p class="">
-            {{ __('settings.account.2fa.disable.helper') }}
-        </p>
-        <div class="w-full">
-            <x-buttons.confirm type="danger" outline="true" full="true">
-                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
-                {{ __('crud.click_modal.confirm') }}
-            </x-buttons.confirm>
-        </div>
-    </x-dialog>
-    {!! Form::close() !!}
+        <x-form :action="['settings.security.disable-2fa']">
+            <x-dialog id="deactivate-2fa" :title="__('settings.account.2fa.disable.title')">
+                <p class="">
+                    {{ __('settings.account.2fa.disable.helper') }}
+                </p>
+                <div class="w-full">
+                    <x-buttons.confirm type="danger" outline="true" full="true">
+                        <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                        {{ __('crud.click_modal.confirm') }}
+                    </x-buttons.confirm>
+                </div>
+            </x-dialog>
+        </x-form>
     @endif
 @endsection

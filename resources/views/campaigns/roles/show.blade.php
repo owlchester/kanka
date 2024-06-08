@@ -41,19 +41,17 @@
         @if (!$role->isAdmin())
         <x-box>
             @can('permission', $role)
-            {{ Form::open(['route' => ['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role], 'data-shortcut' => '1']) }}
+                <x-form :action="['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role]">
                     <div class="w-full overflow-y-auto flex flex-col gap-5 pb-5">
-                @include('campaigns.roles._pretty')
+                        @include('campaigns.roles._pretty')
                     </div>
-            @endif
-            @can('permission', $role)
-            <div class="text-right">
-                <button class="btn2 btn-primary">
-                    <x-icon class="save"></x-icon>
-                    {{ __('crud.save') }}
-                </button>
-            </div>
-                {{ Form::close() }}
+                    <div class="text-right">
+                        <button class="btn2 btn-primary">
+                            <x-icon class="save"></x-icon>
+                            {{ __('crud.save') }}
+                        </button>
+                    </div>
+                </x-form>
             @endif
         </x-box>
         @endif

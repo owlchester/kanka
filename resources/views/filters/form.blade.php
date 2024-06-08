@@ -1,12 +1,7 @@
 @php
     use Illuminate\Support\Arr;
 @endphp
-{!! Form::open([
-    'url' => route($route, [$campaign, 'm' => $mode]),
-    'method' => 'GET',
-    'id' => 'crud-filters-form',
-    'class' => 'block'
-]) !!}
+<x-form :action="[$route, $campaign, 'm' => $mode]" method="GET" id="crud-filters-form" class="block">
 <x-dialog.header>
     {{ __('crud.filters.title') }}
 </x-dialog.header>
@@ -100,4 +95,4 @@
     </footer>
 @endif
 <input type="hidden" name="m" value="{{ $mode }}" />
-{!! Form::close() !!}
+</x-form>

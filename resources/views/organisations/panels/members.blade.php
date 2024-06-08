@@ -60,7 +60,7 @@ $all = $model->allMembers()->has('character')->count();
         @endcan
     </div>
 </div>
-<div id="organisation-members">
+<div id="organisation-members" class="overflow-auto">
     @if ($direct === 0 && !$allMembers)
         <x-box>
             <x-helper>

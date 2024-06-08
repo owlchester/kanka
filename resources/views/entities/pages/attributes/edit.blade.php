@@ -17,18 +17,13 @@ $isAdmin = auth()->user()->isAdmin();
     'centered' => true,
 ])
 
-@section('fullpage-form')
-{!! Form::open([
-    'url' => route('entities.attributes.save', [$campaign, $entity]),
-    'method' => 'POST',
-    'data-shortcut' => 1,
-    'data-max-fields' => ini_get('max_input_vars'),
-    'class' => 'entity-form',
-    'data-unload' => 1,
-]) !!}
-@endsection
-
 @section('content')
+    <x-form
+        :action="['entities.attributes.save', $campaign, $entity]"
+        :extra="['data-max-fields' => ini_get('max_input_vars'),]"
+        unload
+        class="entity-form"
+    >
     <x-box>
         <div id="entity-attributes-all">
             <div class="entity-attributes sortable-elements"  data-handle=".sortable-handler" id="add_attribute_target">
@@ -55,12 +50,8 @@ $isAdmin = auth()->user()->isAdmin();
         </div>
 
     </x-box>
+    </x-form>
 @endsection
-
-@section('fullpage-form-end')
-    {!! Form::close() !!}
-@endsection
-
 @section('scripts')
     @vite('resources/js/attributes.js')
 @endsection

@@ -165,13 +165,14 @@
     <x-dialog id="map-marker-modal" :loading="true"></x-dialog>
 
 @can('update', $map)
+    <x-form :action="['maps.map_markers.store', $campaign, $map]" class="ajax-subform" id="map-marker-form">
     <x-dialog
         id="marker-modal"
         :title="__('maps/markers.create.title', ['name' => $map->name])"
-        footer="maps.markers._new-footer"
-        :form="['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']">
+        footer="maps.markers._new-footer">
         @include('partials.errors')
         @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => 'explore'])
     </x-dialog>
+    </x-form>
 @endcan
 @endsection

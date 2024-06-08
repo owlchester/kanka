@@ -13,7 +13,7 @@
             {{ __('settings.profile.title') }}
         </h1>
 
-        {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.profile'], 'data-shortcut' => 1]) !!}
+        <x-form :action="['settings.profile']" method="PATCH">
             <div class="flex flex-col md:flex-row gap-5">
                 <div class="grow flex flex-col gap-5">
                     <x-forms.field field="name" :label="__('profiles.fields.name')" :required="true">
@@ -68,9 +68,9 @@
                     {{ __('settings.profile.actions.update_profile') }}
                 </x-buttons.confirm>
             </div>
-        {!! Form::close() !!}
+        </x-form>
         @if (!app()->isProduction())
-            {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['tutorials.reset']]) !!}
+            <x-form :action="['tutorials.reset']" method="PATCH">
             <div class="flex gap-2 my-5">
                 <h1 class="grow">
                     Reset Tutorials
@@ -79,7 +79,7 @@
                     Reset tutorials
                 </x-buttons.confirm>
             </div>
-            {!! Form::close() !!}
+            </x-form>
         @endif
     </x-grid>
 @endsection

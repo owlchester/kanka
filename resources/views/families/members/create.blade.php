@@ -9,8 +9,7 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['families.members.store', $campaign, $model->id], 'method'=>'POST']) !!}
-
+    <x-form :action="['families.members.store', $campaign, $model->id]" class="ajax-subform">
     @include('partials.forms.form', [
         'title' => __('families.members.create.title', ['name' => $model->name]),
         'content' => 'families.members._form',
@@ -18,5 +17,5 @@
         'dialog' => true,
     ])
     <input type="hidden" name="family_id" value="{{ $model->id }}" />
-    {!! Form::close() !!}
+    </x-form>
 @endsection

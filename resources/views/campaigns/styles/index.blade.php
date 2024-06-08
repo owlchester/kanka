@@ -45,11 +45,17 @@ use App\Facades\Datagrid ?>
                     </x-helper>
                 </x-box>
             @else
-                @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_styles.bulk', $campaign]]) !!} @endif
-                <div id="datagrid-parent" class="">
-                    @include('layouts.datagrid._table', ['rows' => $styles])
-                </div>
-                @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+                @if(Datagrid::hasBulks())
+                    <x-form :action="['campaign_styles.bulk', $campaign]">
+                        <div id="datagrid-parent" class="">
+                            @include('layouts.datagrid._table', ['rows' => $styles])
+                        </div>
+                    </x-form>
+                @else
+                    <div id="datagrid-parent" class="">
+                        @include('layouts.datagrid._table', ['rows' => $styles])
+                    </div>
+                @endif
             @endif
 
             @includeWhen(!$reorderStyles->isEmpty(), 'campaigns.styles._reorder')

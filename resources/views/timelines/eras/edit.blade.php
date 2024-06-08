@@ -16,14 +16,11 @@
 ])
 @section('content')
     @include('partials.errors')
-    {!! Form::model($model, [
-        'route' => ['timelines.timeline_eras.update', $campaign, 'timeline' => $timeline, 'timeline_era' => $model],
-        'method' => 'PATCH',
-        'id' => 'timeline-era-form',
-        'class' => 'ajax-subform',
-        'data-shortcut' => 1,
-        'data-maintenance' => 1,
-    ]) !!}
+    <x-form
+        :action="['timelines.timeline_eras.update', $campaign, 'timeline' => $timeline, 'timeline_era' => $model]"
+        method="PATCH"
+        id="timeline-era-form"
+        class="ajax-subform">
     <x-box>
             @include('timelines.eras._form')
         <x-dialog.footer>
@@ -34,9 +31,9 @@
             </div>
         </x-dialog.footer>
     </x-box>
-    @if (!empty($from))
-        <input type="hidden" name="from" value="{{ $from }}">
-    @endif
-    {!! Form::close() !!}
+        @if (!empty($from))
+            <input type="hidden" name="from" value="{{ $from }}">
+        @endif
+    </x-form>
 @endsection
 

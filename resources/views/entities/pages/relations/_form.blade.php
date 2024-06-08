@@ -25,7 +25,7 @@
     ])
 @endif
     <x-forms.field field="relation" :required="true" :label="__('entities/relations.fields.relation')">
-        <input type="text" name="relation" value="{{ old('relation', $model->relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.relation') }}" placeholder="{{ __('entities/relations.placeholders.relation') }}" />
+        <input type="text" name="relation" value="{{ old('relation', $relation->relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.relation') }}" placeholder="{{ __('entities/relations.placeholders.relation') }}" />
     </x-forms.field>
 
     @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#primary-dialog', 'model' => $relation ?? null] : ['model' => $relation ?? null])
@@ -45,7 +45,7 @@
                 :label="__('entities/relations.fields.target_relation')"
                 :helper="__('entities/relations.hints.target_relation')"
                 :tooltip="true">
-                <input type="text" name="target_relation" value="{{ old('target_relation', $model->target_relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.target_relation') }}" placeholder="{{ __('entities/relations.placeholders.target_relation') }}" />
+                <input type="text" name="target_relation" value="{{ old('target_relation', $relation->target_relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.target_relation') }}" placeholder="{{ __('entities/relations.placeholders.target_relation') }}" />
             </x-forms.field>
         </div>
     </div>

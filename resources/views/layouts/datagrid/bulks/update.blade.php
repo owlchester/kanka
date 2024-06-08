@@ -1,4 +1,4 @@
-<form method="POST" action="{{ $route }}">
+<form method="POST" action="{{ $route }}" data-shortcut="1" class="w-full ajax-submit datagrid2-bulk-update">
     @csrf
     @include('partials.forms.form', [
         'title' => __('crud.bulk.edit.title'),
