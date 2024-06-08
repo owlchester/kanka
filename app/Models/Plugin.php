@@ -34,7 +34,7 @@ class Plugin extends Model
     use SoftDeletes;
     use SortableTrait;
 
-    protected $cachedHasUpdate = null;
+    protected bool $cachedHasUpdate;
 
     public $sortable = [
         'name',
@@ -59,7 +59,7 @@ class Plugin extends Model
      */
     public function hasUpdate(): bool
     {
-        if ($this->cachedHasUpdate !== null) {
+        if (isset($this->cachedHasUpdate)) {
             return $this->cachedHasUpdate;
         }
 

@@ -38,6 +38,9 @@ return [
         'main'      => 'You can create custom CSS styling for your premium campaign. These styles are loaded after any themes from the marketplace that are enabled for the campaign. You can learn more about styling your campaign :here.',
     ],
     'pitch'     => 'Create custom CSS styling to fully customise the look and feel of the campaign.',
+    'placeholders' => [
+        'name' => 'Name of the style',
+    ],
     'reorder'   => [
         'save'      => 'Save new order',
         'success'   => '{1} Reordered :count style.|[2,*] Reordered :count styles.',

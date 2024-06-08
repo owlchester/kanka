@@ -13,7 +13,7 @@ use App\Models\CampaignStyle;
 
 class StyleController extends Controller
 {
-    public const MAX_THEMES = 30;
+    public const int MAX_THEMES = 30;
 
     /**
      * Create a new controller instance.
@@ -78,6 +78,9 @@ class StyleController extends Controller
     public function store(StoreCampaignStyle $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         if ($campaign->styles()->count() >= self::MAX_THEMES) {
             return redirect()->route('campaign_styles.index', $campaign)

@@ -171,6 +171,9 @@ class TimelineEraController extends Controller
             return $this->bulkBatch(route('timelines.eras.bulk', [$campaign, 'timeline' => $timeline]), '_timeline-era', $models);
         }*/
 
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
         $count = $this->bulkProcess($request, TimelineEra::class);
 
         return redirect()

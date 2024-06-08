@@ -79,6 +79,9 @@ class DefaultImageService
             $images = [];
         }
 
+        if (!isset($images[$this->type])) {
+            return false;
+        }
         /** @var Image|null $image */
         $image = Image::find($images[$this->type]);
         if (empty($image)) {

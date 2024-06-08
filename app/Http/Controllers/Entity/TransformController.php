@@ -50,6 +50,9 @@ class TransformController extends Controller
     public function transform(TransformEntityRequest $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('move', $entity->child);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         try {
             $this->transformService

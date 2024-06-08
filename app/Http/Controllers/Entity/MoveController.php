@@ -50,6 +50,9 @@ class MoveController extends Controller
     public function move(MoveEntityRequest $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('view', $entity->child);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $copied = $request->filled('copy');
         try {
