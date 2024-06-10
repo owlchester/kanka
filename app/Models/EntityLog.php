@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\HistoryRequest;
 use App\User;
 use Carbon\Carbon;

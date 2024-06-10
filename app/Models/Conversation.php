@@ -65,7 +65,6 @@ class Conversation extends MiscModel
 
     /**
      * Set to false if this entity type doesn't have relations
-     * @var bool
      */
     public bool $hasRelations = false;
 

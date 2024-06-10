@@ -385,7 +385,8 @@ class CrudController extends Controller
 
             $link = '<a href="' . route(
                 $new->entity ? 'entities.show' : $this->view . '.show',
-                $new->entity ? [$this->campaign, $new->entity] : [$this->campaign, $new->id])
+                $new->entity ? [$this->campaign, $new->entity] : [$this->campaign, $new->id]
+            )
                 . '">' . $new->name . '</a>';
             $success = __('general.success.created', [
                 'name' => $link
@@ -538,8 +539,9 @@ class CrudController extends Controller
             }
 
             $link = '<a href="' . route(
-                    $model->entity ? 'entities.show' : $this->view . '.show',
-                    $model->entity ? [$this->campaign, $model->entity] : [$this->campaign, $model->id])
+                $model->entity ? 'entities.show' : $this->view . '.show',
+                $model->entity ? [$this->campaign, $model->entity] : [$this->campaign, $model->id]
+            )
                 . '">' . $model->name . '</a>';
             $success = __('general.success.updated', [
                 'name' => $link
