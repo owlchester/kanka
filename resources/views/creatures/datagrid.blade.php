@@ -20,10 +20,12 @@
         ],
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')),
-            'render' => function($model) {
+            'render' => function($model) use ($campaign) {
                 $locations = [];
                 foreach ($model->locations as $location) {
-                    $locations[] = $location->tooltipedLink();
+                    $locations[] = \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($location->entity, $campaign)
+                );
                 }
                 return implode( ', ', $locations);
             },

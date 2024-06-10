@@ -29,22 +29,13 @@ class Relation extends Layout
             'target' => [
                 'key' => 'target.name',
                 'label' => 'crud.fields.entity',
-                'render' => function ($relation) {
-                    $icon = '';
-                    if ($relation->target->is_private) {
-                        $icon = '<i class="fa-solid fa-lock" data-title="' . __('crud.is_private') . '" data-toggle="tooltip"></i> ';
-                    }
-                    return $icon . $relation->target->tooltipedLink();
-                }
+                'render' => Standard::ENTITYLINK,
+                'with' => 'target',
             ],
             'location' => [
                 'label' => 'entities.location',
-                'render' => function ($model) {
-                    if (!$model->target->location) {
-                        return null;
-                    }
-                    return $model->target->location->tooltipedLink();
-                },
+                'render' => Standard::LOCATION,
+                'with' => 'target',
             ],
             'attitude' => [
                 'key' => 'attitude',

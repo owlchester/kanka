@@ -14,7 +14,9 @@ if (count($models) === 0) {
     @if(!empty($previousRelation) && $previousRelation == $relation->relation)
     <div class="pinned-relation relation-repeat" data-relation="{{ $relation->target->name }}" data-target="{{ $relation->target_id }}" data-visibility="{{ $relation->visibility_id }}" data-attitude="{{ $relation->attitude }}">
         <div class="text-right">
-            {!! $relation->target->tooltipedLink() !!}
+            <x-entity-link
+                :entity="$relation->target"
+                :campaign="$campaign" />
         </div>
     </div>
     @else
@@ -23,7 +25,9 @@ if (count($models) === 0) {
             {{ $relation->relation }}
         </strong>
         <span class="grow text-right">
-            {!! $relation->target->tooltipedLink() !!}
+            <x-entity-link
+                :entity="$relation->target"
+                :campaign="$campaign" />
         </span>
     </div>
 @php $previousRelation = $relation->relation @endphp

@@ -13,10 +13,12 @@
         </div>
     @endif
 
-    @if ($model->author && $model->author)
+    @if ($model->author)
         <div class="element profile-character">
             <div class="title text-uppercase text-xs">{{ __('journals.fields.author') }}</div>
-            {!! $model->author->tooltipedLink() !!}
+            <x-entity-link
+                :entity="$model->author"
+                :campaign="$campaign" />
         </div>
     @endif
     @include('entities.components.profile._reminder')

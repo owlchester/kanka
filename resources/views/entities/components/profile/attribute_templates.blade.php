@@ -8,7 +8,9 @@
     @if (!empty($model->attributeTemplate))
         <div class="element profile-attribute-template">
             <div class="title text-uppercase text-xs">{{ __('crud.fields.parent') }}</div>
-            {!! $model->attributeTemplate->tooltipedLink() !!}
+            <x-entity-link
+                :entity="$model->attributeTemplate->entity"
+                :campaign="$campaign" />
         </div>
     @endif
 

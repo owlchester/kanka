@@ -12,11 +12,13 @@ $model = $entity->child;
     @endif
 </x-widgets.previews.head>
 <x-widgets.previews.body  :widget="$widget" :campaign="$campaign" :entity="$entity" :model="$model">
-    @if ($campaign->enabled('characters') && !empty($entity->child->character))
+    @if (!empty($model->instigator))
         <dl class="dl-horizontal">
             <dt>{{ __('quests.fields.instigator') }}</dt>
             <dd>
-                {!! $entity->child->character->tooltipedLink() !!}
+                <x-entity-link
+                    :entity="$model->instigator->entity"
+                    :campaign="$campaign" />
             </dd>
         </dl>
     @endif

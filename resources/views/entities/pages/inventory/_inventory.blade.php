@@ -47,7 +47,10 @@
             </td>
             <td>
                 @if ($item->item)
-                    {!! $item->item->tooltipedLink($item->name) !!}
+                    <x-entity-link
+                        :entity="$item->entity"
+                        :name="$item->name"
+                        :campaign="$campaign" />
                 @else
                     {!! $item->name !!}
                 @endif<br />

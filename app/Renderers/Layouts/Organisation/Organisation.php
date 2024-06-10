@@ -30,16 +30,7 @@ class Organisation extends Layout
             'organisation' => [
                 'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
-                'render' => function ($model) {
-                    if (!$model->parent) {
-                        return null;
-                    }
-                    $defunctIcon = null;
-                    if ($model->parent->is_defunct) {
-                        $defunctIcon = ' <i class="fa-solid fa-shop-slash" aria-hidden="true" data-title="' . __('organisations.fields.is_defunct') . '"></i>';
-                    }
-                    return $model->parent->tooltipedLink() . $defunctIcon;
-                },
+                'render' => Standard::ParentLink,
                 'visible' => function () {
                     return !request()->has('parent_id');
                 }

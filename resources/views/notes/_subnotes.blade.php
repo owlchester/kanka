@@ -4,7 +4,12 @@
 <x-box>
     <div class="grid grid-cols-2 gap-5 md:grid-cols-2 xl:grid-cols-5">
         @foreach ($model->notes->sortBy('name') as $subNote)
-            <span>{!! $subNote->tooltipedLink() !!} @if($subNote->is_private) <i class="fa-solid fa-lock"></i> @endif</span>
+            <span>
+                <x-entity-link
+                    :entity="$subNote->entity"
+                    :campaign="$campaign" />
+                @if($subNote->is_private) <x-icon class="fa-solid fa-lock" /> @endif
+            </span>
         @endforeach
     </div>
 </x-box>

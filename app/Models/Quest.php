@@ -19,11 +19,9 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Quest
  * @package App\Models
  * @property int|null $quest_id
- * @property int|null $character_id
  * @property int|null $instigator_id
  * @property bool|int $is_completed
  * @property string $date
- * @property Character|null $character
  * @property Entity|null $instigator
  * @property Quest|null $quest
  * @property Quest[]|Collection $quests
@@ -49,7 +47,6 @@ class Quest extends MiscModel
         'type',
         'entry',
         'is_private',
-        'character_id',
         'instigator_id',
         'is_completed',
         'date',
@@ -221,14 +218,6 @@ class Quest extends MiscModel
     public function getParentKeyName()
     {
         return 'quest_id';
-    }
-
-    /**
-     * The character, aka "Quest Giver"
-     */
-    public function character()
-    {
-        return $this->belongsTo('App\Models\Character');
     }
 
     /**

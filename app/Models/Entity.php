@@ -17,7 +17,6 @@ use App\Models\Concerns\EntityType;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
-use App\Traits\TooltipTrait;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -70,7 +69,6 @@ class Entity extends Model
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
-    use TooltipTrait;
 
     protected $fillable = [
         'campaign_id',

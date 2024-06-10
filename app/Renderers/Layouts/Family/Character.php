@@ -33,22 +33,12 @@ class Character extends Layout
             'location' => [
                 'key' => 'location.name',
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
-                'render' => function ($model) {
-                    if (!$model->location) {
-                        return null;
-                    }
-                    return $model->location->tooltipedLink();
-                },
+                'render' => Standard::LOCATION,
             ],
             'families' => [
                 'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
-                'render' => function ($model) {
-                    $models = [];
-                    foreach ($model->families as $sub) {
-                        $models[] = $sub->tooltipedLink();
-                    }
-                    return implode(', ', $models);
-                },
+                'render' => Standard::ENTITYLIST,
+                'with' => 'families',
                 'visible' => function () {
                     return !request()->has('family_id');
                 }

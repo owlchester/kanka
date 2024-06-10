@@ -4,9 +4,11 @@
 ?>
 @if ($model->tag)
     <div class="entity-header-sub pull-left">
-        <span>
+        <div class="entity-header-sub-element">
             <x-icon :class="\App\Facades\Module::duoIcon('tag')" :title="__('crud.fields.parent')" />
-            {!! $model->tag->tooltipedLink() !!}
-        </span>
+            <x-entity-link
+                :entity="$model->tag->entity"
+                :campaign="$campaign" />
+        </div>
     </div>
 @endif

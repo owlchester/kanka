@@ -30,9 +30,7 @@ class Race extends Layout
             'race' => [
                 'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
-                'render' => function ($model) {
-                    return $model->parent?->tooltipedLink();
-                },
+                'render' => Standard::ParentLink,
             ],
             'characters' => [
                 'label' => Module::plural(config('entities.ids.character'), 'entities.characters'),

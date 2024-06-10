@@ -34,9 +34,7 @@ class Event extends Layout
             'event' => [
                 'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
-                'render' => function ($model) {
-                    return $model->parent?->tooltipedLink();
-                },
+                'render' => Standard::ParentLink,
                 'visible' => function () {
                     return !request()->has('parent_id');
                 }

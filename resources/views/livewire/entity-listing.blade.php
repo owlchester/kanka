@@ -11,7 +11,9 @@
         </a>
 
         <div class="grow break-all">
-            {!! $entity->tooltipedLink($entity->name, false) !!}
+            <x-entity-link
+                :entity="$entity"
+                :campaign="$campaign" />
 
             @if ($entity->is_private)
                 <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" aria-hidden="true"></i>

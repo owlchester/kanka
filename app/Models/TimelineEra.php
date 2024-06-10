@@ -149,16 +149,6 @@ class TimelineEra extends Model
     }
 
     /**
-     * Override the tooltiped link for the datagrid
-     */
-    public function tooltipedLink(string $displayName = null): string
-    {
-        return '<a href="' . $this->getLink() . '">' .
-            (!empty($displayName) ? $displayName : e($this->name)) .
-            '</a>';
-    }
-
-    /**
      */
     public function getEntryForEditionAttribute()
     {
