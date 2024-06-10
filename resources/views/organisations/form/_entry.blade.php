@@ -3,7 +3,7 @@
     @include('cruds.fields.type', ['base' => \App\Models\Organisation::class, 'trans' => 'organisations'])
 
     @include('cruds.fields.organisation', ['isParent' => true])
-    @include('cruds.fields.locations', ['from' => isset($model) ? $model : null, 'quickCreator' => true])
+    @include('cruds.fields.locations', ['from' => $model ?? null, 'quickCreator' => true])
 
     @include('cruds.fields.entry2')
 
@@ -18,9 +18,9 @@
 @endif
 
     <x-forms.field field="defunct" :label="__('organisations.fields.is_defunct')">
-        {!! Form::hidden('is_defunct', 0) !!}
+        <input type="hidden" name="is_defunct" value="0" />
         <x-checkbox :text="__('organisations.hints.is_defunct')">
-            {!! Form::checkbox('is_defunct', 1, $model->is_defunct ?? '' )!!}
+            <input type="checkbox" name="is_defunct" value="1" @if (old('is_defunct', $model->is_defunct ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 

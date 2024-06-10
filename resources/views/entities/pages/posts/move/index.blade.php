@@ -9,9 +9,7 @@
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['posts.move', $campaign, $entity->id, $post->id], 'method' => 'POST']) !!}
-
-    {{ csrf_field() }}
+    <x-form :action="['posts.move', $campaign, $entity->id, $post->id]">
     <x-box>
         <x-grid type="1/1">
             <x-forms.field field="entity" :label="__('entities/notes.move.entity')">
@@ -20,7 +18,7 @@
 
             <x-forms.field field="copy" css="form-check" :label="__('entities/notes.move.copy_title')">
                 <x-checkbox :text="__('entities/notes.move.copy')">
-                    {!! Form::checkbox('copy', 1, true) !!}
+                    <input type="checkbox" name="copy" value="1" @if (old('copy', true)) checked="checked" @endif />
                 </x-checkbox>
             </x-forms.field>
         </x-grid>
@@ -30,5 +28,5 @@
         </x-dialog.footer>
     </x-box>
 
-    {!! Form::close() !!}
+    </x-form>
 @endsection

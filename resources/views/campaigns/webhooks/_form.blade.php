@@ -5,10 +5,13 @@
     :required="true"
     :label="__('campaigns/webhooks.fields.event')"
     >
-    {!! Form::select('action', [
-    \App\Enums\WebhookAction::CREATED->value => __('campaigns/webhooks.fields.events.new'),
-    \App\Enums\WebhookAction::EDITED->value => __('campaigns/webhooks.fields.events.edited'),
-    \App\Enums\WebhookAction::DELETED->value => __('campaigns/webhooks.fields.events.deleted')]) !!}
+    @php
+        $options= [\App\Enums\WebhookAction::CREATED->value => __('campaigns/webhooks.fields.events.new'),
+        \App\Enums\WebhookAction::EDITED->value => __('campaigns/webhooks.fields.events.edited'),
+        \App\Enums\WebhookAction::DELETED->value => __('campaigns/webhooks.fields.events.deleted'),
+        ];
+    @endphp
+    <x-forms.select name="action" :options="$options" :selected="$webhook->action ?? null" />
 </x-forms.field>
 
 <x-forms.field
@@ -16,7 +19,7 @@
     :required="true"
     :label="__('campaigns/webhooks.fields.url')"
     >
-    {!! Form::text('url', null, ['placeholder' => __('campaigns/webhooks.placeholders.url'), 'class' => '', 'maxlength' => 191, 'required']) !!}
+    <input type="text" name="url" value="{{ old('url', $webhook->url ?? null) }}" maxlength="191" required class="w-full" placeholder="{{ __('campaigns/webhooks.placeholders.url') }}"/>
 </x-forms.field>
 
 <x-forms.field field="target" :label="__('campaigns/webhooks.fields.type')">
@@ -40,16 +43,17 @@
         :helper="__('campaigns/webhooks.helper.message')"
         link="https://docs.kanka.io/en/latest/features/campaigns/webhooks.html#mappings"
         >
-        {!! Form::textarea('message', null, ['placeholder' => __('campaigns/webhooks.placeholders.message'), 'class' => '', 'maxlength' => 400, 'rows' => 4]) !!}
+
+        <textarea name="message" class="w-full" rows="4" placeholder="{{ __('campaigns/webhooks.placeholders.message') }}" maxlength="400">{!! old('message', $webhook->message ?? null) !!}</textarea>
     </x-forms.field>
 </div>
 
 <x-forms.field
     field="status"
     :label="__('campaigns/webhooks.fields.enabled')">
-    {!! Form::hidden('status', 0) !!}
+    <input type="hidden" name="status" value="0" />
     <x-checkbox :text="__('campaigns/webhooks.helper.active')">
-        {!! Form::checkbox('status', 1, isset($webhook) ? $webhook->status : 1) !!}
+        <input type="checkbox" name="status" value="1" @if (old('status', $webhook->status ?? true)) checked="checked" @endif />
     </x-checkbox>
 </x-forms.field>
 

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -19,10 +21,7 @@ class ConversationParticipant extends MiscModel
 {
     use HasFactory;
 
-    /**
-     * @var bool|Character|User
-     */
-    protected $loadedEntity = false;
+    protected Character|User|null $loadedEntity;
 
     protected $fillable = [
         'conversation_id',
@@ -38,70 +37,36 @@ class ConversationParticipant extends MiscModel
 
     /**
      * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
     }
 
     /**
      * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo('App\User', 'user_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function conversation()
+    public function conversation(): BelongsTo
     {
         return $this->belongsTo('App\Models\Conversation', 'conversation_id');
     }
 
-    /**
-     * @return string
-     */
-    public function author()
+    public function name(): string
     {
-        if (!empty($this->user_id)) {
-            return $this->user->name;
-        } elseif (!empty($this->character_id)) {
-            return link_to_route(
-                'entities.show',
-                $this->character->name,
-                [$this->character->entity]
-            );
-        } else {
-            return trans('conversations.messages.author_unknown');
-        }
+        return $this->entity()->name ?? __('conversations.messages.author_unknown');
     }
 
-    /**
-     * @return array|\Illuminate\Contracts\Translation\Translator|mixed|null|string
-     */
-    public function name()
-    {
-        return !empty($this->loadedEntity) ?
-            $this->loadedEntity->name :
-            trans('conversations.messages.author_unknown');
-    }
-
-    /**
-     * @return int|null
-     */
-    public function target()
+    public function target(): int|null
     {
         return (!empty($this->character_id) ? Conversation::TARGET_CHARACTERS :
             (!empty($this->user_id) ? Conversation::TARGET_USERS : null));
@@ -131,15 +96,13 @@ class ConversationParticipant extends MiscModel
      */
     protected function loadEntity()
     {
-        if ($this->loadedEntity === false) {
-            if (!empty($this->user_id)) {
-                $this->loadedEntity = $this->user;
-            } else {
-                $this->loadedEntity = $this->character;
-            }
+        if (isset($this->loadedEntity)) {
+            return $this->loadedEntity;
         }
-
-        return $this->loadedEntity;
+        if (!empty($this->user_id)) {
+            return $this->loadedEntity = $this->user;
+        }
+        return $this->loadedEntity = $this->character;
     }
 
     /**

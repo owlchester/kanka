@@ -11,21 +11,14 @@
 
 
 @section('content')
-    {!! Form::model($ability, [
-        'route' => ['entities.entity_abilities.update', $campaign, $entity->id, $ability],
-        'method' => 'PATCH',
-        'data-shortcut' => 1,
-        'class' => 'ajax-subform',
-    ]) !!}
-
-    @include('partials.forms.form', [
+    <x-form :action="['entities.entity_abilities.update', $campaign, $entity->id, $ability]" method="PATCH" class="ajax-subform">
+        @include('partials.forms.form', [
             'title' => __('entities/abilities.update.title', ['name' => $entity->name]),
             'content' => 'entities.pages.abilities._edit_form',
             'deleteID' => '#delete-ability-' . $ability->id,
-        'dialog' => true,
+            'dialog' => true,
         ])
-    {!! Form::close() !!}
+    </x-form>
 
-    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_abilities.destroy', $campaign, 'entity' => $entity, 'entity_ability' => $ability], 'style' => 'display:inline', 'id' => 'delete-ability-' . $ability->id]) !!}
-    {!! Form::close() !!}
+    <x-form method="DELETE" :action="['entities.entity_abilities.destroy', $campaign, 'entity' => $entity, 'entity_ability' => $ability]" id="delete-ability-{{ $ability->id }}" />
 @endsection

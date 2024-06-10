@@ -69,12 +69,12 @@
 
             @can('edit', [$image, $campaign])
             <x-forms.field field="name" :label="__('crud.fields.name')" :required="true">
-                {!! Form::text('name', null, ['maxlength' => 45, 'class' => '']) !!}
+                <input type="text" name="name" maxlength="45" required value="{!! old('name', $image->name ?? null) !!}" />
             </x-forms.field>
 
             @if(!$image->isFolder())
                 <x-forms.field field="folder" :label="__('campaigns/gallery.fields.folder')">
-                    {!! Form::select('folder_id', $folders, null, ['class' => '']) !!}
+                    <x-forms.select name="folder_id" :options="$folders" :selected="$image->folder_id ?? null" />
                 </x-forms.field>
             @endif
 

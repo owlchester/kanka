@@ -11,7 +11,7 @@
 ])
 
 @section('content')
-    {!! Form::model($entityAsset, ['route' => ['entities.entity_assets.update', $campaign, $entity->id, $entityAsset], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
+    <x-form :action="['entities.entity_assets.update', $campaign, $entity->id, $entityAsset]" method="PATCH" class="ajax-subform">
 
     @include('partials.forms.form', [
         'title' => $entityAsset->name,
@@ -20,8 +20,7 @@
         'dialog' => true,
     ])
 
-    {!! Form::close() !!}
+    </x-form>
 
-    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_assets.destroy', $campaign, 'entity' => $entity, 'entity_asset' => $entityAsset], 'style' => 'display:inline', 'id' => 'delete-file-' . $entityAsset->id]) !!}
-    {!! Form::close() !!}
+    <x-form method="DELETE" :action="['entities.entity_assets.destroy', $campaign, 'entity' => $entity, 'entity_asset' => $entityAsset]" id="delete-file-{{ $entityAsset->id }}" />
 @endsection

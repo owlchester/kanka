@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
+use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
@@ -133,5 +134,13 @@ class MapLayer extends Model
         return '<a href="' . $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .
         '</a>';
+    }
+
+
+    /**
+     */
+    public function getEntryForEditionAttribute()
+    {
+        return Mentions::parseForEdit($this);
     }
 }

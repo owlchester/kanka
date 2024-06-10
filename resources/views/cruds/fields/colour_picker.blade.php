@@ -1,17 +1,8 @@
-@php
-$fieldOptions = [
-    'class' => 'spectrum',
-    'maxlength' => 7
-];
-if (isset($dropdownParent)) {
-    $fieldOptions['data-append-to'] = $dropdownParent;
-}
-
-@endphp
 <x-forms.field
     field="colour"
     :label="__('crud.fields.colour')">
     <span>
-    {!! Form::text('colour', $default ?? null, $fieldOptions ) !!}
+        <input type="text" name="colour" value="{{ old('colour', $model->colour ?? $default ?? null) }}"
+           maxlength="7" class="spectrum" @if (isset($dropdownParent)) data-append-to="{{ $dropdownParent }}" @endif />
     </span>
 </x-forms.field>

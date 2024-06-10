@@ -8,14 +8,7 @@
 
 @section('content')
 
-    {!! Form::open([
-        'route' => ['campaign_styles.store', $campaign],
-        'method' => 'POST',
-        'data-shortcut' => 1,
-        'id' => 'campaign-style',
-        'data-max-content' => \App\Http\Requests\StoreCampaignStyle::MAX,
-        'data-error' => '#max-content-error'
-    ]) !!}
+    <x-form :action="['campaign_styles.store', $campaign]" id="campaign-style" :extra="['data-max-content' => \App\Http\Requests\StoreCampaignStyle::MAX, 'data-error' => '#max-content-error']">
     <x-box>
         <x-grid type="1/1">
             @include('partials.errors')
@@ -40,9 +33,7 @@
             @include('campaigns.styles._form-footer')
         </x-dialog.footer>
     </x-box>
-
-    {{ csrf_field() }}
-    {!! Form::close() !!}
+    </x-form>
 @endsection
 
 

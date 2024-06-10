@@ -15,24 +15,13 @@ $role = \App\Facades\CampaignCache::adminRole();
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
-                                {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
-                                    'class' => 'w-full',
-                                    'maxlength' => 191,
-                                    'placeholder' => __('characters.placeholders.appearance_name'),
-                                    'spellcheck' => 'true',
-                                    'aria-label' => __('characters.labels.appearance.name'),
-                                ]) !!}
+                                <input type="text" name="appearance_name[{{ $trait->id }}]" value="{{ $trait->name }}" class="w-full" placeholder="{{ __('characters.placeholders.appearance_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance.name') }}" maxlength="191" />
                             </div>
                         </div>
                         <div class="flex gap-1 items-center">
                             <div class="grow field">
                                 <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
-                                {!! Form::text('appearance_entry[' . $trait->id . ']', $trait->entry, [
-                                    'class' => 'w-full',
-                                    'placeholder' => __('characters.placeholders.appearance_entry'),
-                                    'spellcheck' => 'true',
-                                    'aria-label' => __('characters.labels.appearance.entry'),
-                                ]) !!}
+                                <input type="text" name="appearance_entry[{{ $trait->id }}]" value="{{ $trait->entry }}" class="w-full" placeholder="{{ __('characters.placeholders.appearance_entry') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance.entry') }}"  maxlength="191" />
                             </div>
                             <div class="dynamic-row-delete btn2 btn-sm btn-outline btn-error" title="{{ __('crud.remove') }}" role="button" tabindex="0">
                                 <x-icon class="trash"></x-icon>
@@ -51,10 +40,10 @@ $role = \App\Facades\CampaignCache::adminRole();
         <x-forms.field
             field="appearance-pinned"
             :label="__('characters.fields.is_appearance_pinned')">
-            {!! Form::hidden('is_appearance_pinned', 0) !!}
+            <input type="hidden" name="is_appearance_pinned" value="0" />
 
             <x-checkbox :text="__('characters.hints.is_appearance_pinned')">
-                {!! Form::checkbox('is_appearance_pinned', 1, (!empty($model) ? $model->is_appearance_pinned : (!empty($source) ? FormCopy::field('is_appearance_pinned')->boolean() : null))) !!}
+                <input type="checkbox" name="is_appearance_pinned" value="1" @if (old('is_appearance_pinned', $source->is_appearance_pinned ?? $model->is_appearance_pinned ?? false)) checked="checked" @endif/>
             </x-checkbox>
         </x-forms.field>
     </x-grid>
@@ -73,12 +62,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
-                                {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
-                                    'class' => 'w-full',
-                                    'placeholder' => __('characters.placeholders.personality_name'),
-                                    'spellcheck' => 'true',
-                                    'aria-label' => __('characters.labels.personality.name'),
-                                ]) !!}
+                                <input type="text" name="personality_name[{{ $trait->id }}]" value="{{ $trait->name }}" class="w-full" placeholder="{{ __('characters.placeholders.personality_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.personality.name') }}" maxlength="191" />
                             </div>
                             <div class="dynamic-row-delete btn2 btn-error btn-sm btn-outline" role="button" tabindex="0" >
                                 <x-icon class="trash"></x-icon>
@@ -87,13 +71,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                         </div>
                         <div class="field-personality-entry">
                             <label class="sr-only field">{{ __('characters.labels.personality.entry') }}</label>
-                            {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, [
-                                'class' => 'w-full',
-                                'placeholder' => __('characters.placeholders.personality_entry'),
-                                'spellcheck' => 'true',
-                                'rows' => 3,
-                                'aria-label' => __('characters.labels.personality.entry'),
-                            ]) !!}
+                            <textarea name="personality_entry[{{ $trait->id }}]" placeholder="{{ __('characters.placeholders.personality_entry') }}" class="w-full" rows="3" spellcheck="true" aria-label="{{ __('characters.labels.personality.entry') }}">{!! old('personality_entry[' . $trait->id . ']', $trait->entry) !!}</textarea>
                         </div>
                     </div>
                 @endforeach
@@ -115,28 +93,28 @@ $role = \App\Facades\CampaignCache::adminRole();
                 field="personality-pinned"
                 :label="__('characters.fields.is_personality_pinned')"
             >
-                {!! Form::hidden('is_personality_pinned', 0) !!}
+                <input type="hidden" name="is_personality_pinned" value="0" />
                 <x-checkbox :text="__('characters.hints.is_personality_pinned')">
-                    {!! Form::checkbox('is_personality_pinned', 1, (!empty($model) ? $model->is_personality_pinned : (!empty($source) ? FormCopy::field('is_personality_pinned')->boolean() : null))) !!}
+                    <input type="checkbox" name="is_personality_pinned" value="1" @if (old('is_personality_pinned', $source->is_personality_pinned ?? $model->is_personality_pinned ?? false)) checked="checked" @endif/>
                 </x-checkbox>
             </x-forms.field>
         @endif
 
         @if (\App\Facades\UserCache::user(auth()->user())->admin())
                 <hr>
-                {!! Form::hidden('is_personality_visible', 0) !!}
+            <input type="hidden" name="is_personality_visible" value="0" />
             <x-forms.field
                 field="personality-visible"
                 :label="__('characters.fields.is_personality_visible')"
             >
                 <x-checkbox :text="__('characters.hints.is_personality_visible', [
-        'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
+        'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' target=\'_blank\'>' . \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>'
 ])">
-                    {!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? FormCopy::field('is_personality_visible')->boolean() : !$campaign->entity_personality_visibility))) !!}
+                    <input type="checkbox" name="is_personality_visible" value="1" @if (old('is_personality_visible', $source->is_personality_visible ?? $model->is_personality_visible ?? false)) checked="checked" @endif/>
                 </x-checkbox>
             </x-forms.field>
         @else
-            {!! Form::hidden('is_personality_visible', 1) !!}
+            <input type="hidden" name="is_personality_visible" value="1" />
         @endif
     </x-grid>
 </x-grid>
@@ -154,23 +132,13 @@ $role = \App\Facades\CampaignCache::adminRole();
                 @endif
                 <div class="grow field">
                     <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
-                    {!! Form::text('appearance_name[]', null, [
-                        'class' => 'w-full',
-                        'placeholder' => __('characters.placeholders.appearance_name'),
-                        'spellcheck' => 'true',
-                        'aria-label' => __('characters.labels.appearance.name'),
-                    ]) !!}
+                    <input type="text" name="appearance_name[]" class="w-full" placeholder="{{ __('characters.placeholders.appearance_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance_name') }}" maxlength="191" />
                 </div>
             </div>
             <div class="flex gap-1 items-center">
                 <div class="grow field">
                     <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
-                    {!! Form::text('appearance_entry[]', null, [
-                        'class' => 'w-full',
-                        'placeholder' => __('characters.placeholders.appearance_entry'),
-                        'spellcheck' => 'true',
-                        'aria-label' => __('characters.labels.appearance.entry'),
-                    ]) !!}
+                    <input type="text" name="appearance_entry[]" class="w-full" placeholder="{{ __('characters.placeholders.appearance_entry') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance.entry') }}" maxlength="191" />
                 </div>
                 <div class="dynamic-row-delete btn2 btn-sm btn-error btn-outline" role="button" tabindex="0">
                     <x-icon class="trash"></x-icon>
@@ -189,12 +157,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 @endif
                 <div class="grow field">
                     <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
-                    {!! Form::text('personality_name[]', null, [
-                        'class' => 'w-full',
-                        'placeholder' => __('characters.placeholders.personality_name'),
-                        'spellcheck' => 'true',
-                        'aria-label' => __('characters.labels.personality.name'),
-                    ]) !!}
+                    <input type="text" name="personality_name[]" class="w-full" placeholder="{{ __('characters.placeholders.personality_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.personality.name') }}" maxlength="191" />
                 </div>
                 <div class="dynamic-row-delete btn2 btn-error btn-sm btn-outline" title="{{ __('crud.remove') }}" role="button" tabindex="0">
                     <x-icon class="trash"></x-icon>
@@ -203,13 +166,8 @@ $role = \App\Facades\CampaignCache::adminRole();
             </div>
             <div class="field-personality-entry field">
                 <label class="sr-only">{{ __('characters.labels.personality.entry') }}</label>
-                {!! Form::textarea('personality_entry[]', null, [
-                    'class' => 'w-full',
-                    'placeholder' => __('characters.placeholders.personality_entry'),
-                    'spellcheck' => 'true',
-                    'rows' => 3,
-                    'aria-label' => __('characters.labels.personality.entry'),
-                ]) !!}
+
+                <textarea name="personality_entry[]" placeholder="{{ __('characters.placeholders.personality_entry') }}" class="w-full" rows="3" spellcheck="true" aria-label="{{ __('characters.labels.personality.entry') }}"></textarea>
             </div>
         </div>
     </template>

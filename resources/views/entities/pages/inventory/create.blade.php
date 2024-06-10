@@ -9,14 +9,14 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['entities.inventories.store', $campaign, $entity->id], 'method'=>'POST', 'data-shortcut' => 1, 'data-maintenance' => 1, 'class' => 'ajax-subform']) !!}
-    @include('partials.forms.form', [
+    <x-form :action="['entities.inventories.store', $campaign, $entity->id]" class="ajax-subform">
+        @include('partials.forms.form', [
             'title' => __('entities/inventories.create.title', ['name' => $entity->name]),
             'content' => 'entities.pages.inventory._form',
             'submit' => __('entities/inventories.actions.add'),
             'dialog' => true,
             'multiple' => true,
         ])
-    {!! Form::hidden('entity_id', $entity->id) !!}
-    {!! Form::close() !!}
+    <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
+    </x-form>
 @endsection

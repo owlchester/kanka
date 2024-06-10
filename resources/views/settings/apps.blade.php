@@ -65,18 +65,11 @@
                 {{ __('crud.cancel') }}
             </x-buttons.confirm>
 
-            {!! Form::open([
-                    'method' => 'DELETE',
-                    'route' => [
-                        'settings.discord.destroy'
-                    ],
-                    'style' => 'display:inline',
-                    'id' => 'delete-form-discord'
-                ]) !!}
+            <x-form method="DELETE" :action="['settings.discord.destroy']" id="delete-form-discord">
                 <x-buttons.confirm type="danger" outline="true" full="true">
                     {{ __('crud.click_modal.confirm') }}
                 </x-buttons.confirm>
-            {!! Form::close() !!}
+            </x-form>
         </div>
     </x-dialog>
 @endsection

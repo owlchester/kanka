@@ -22,10 +22,10 @@
     @endif
 
     @if ($superboosted)
-        {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters flex flex-col gap-5']) !!}
+        <x-form :action="['history.index', $campaign]" method="GET" class="history-filters flex flex-col gap-5">
         <div class="flex items-center flex-row-reverse gap-2">
             <div class="field flex-none">
-                {!! Form::select('action', $actions, $action, ['class' => '']) !!}
+                <x-forms.select name="action" :options="$actions" :selected="$action" class="w-full" />
             </div>
             <div class="field flex-none">
                 <select class="" name="user">
@@ -44,7 +44,7 @@
                 <x-icon class="load" />
             </div>
         </div>
-        {!! Form::close() !!}
+        </x-form>
     @endif
 
     @if ($models->count() > 0)
@@ -63,9 +63,16 @@
                         </div>
                         <div class="grow">
                             @if ($superboosted || $count === 0)
+@php
+if (!$log->entity) {
+    $entityLink = '<a href="' . route('recovery', $campaign) . '">' . __('history.unknown.entity') . '</a>';
+} else {
+    $entityLink = $log->entity->tooltipedLink($log->entity->name, false);
+}
+@endphp
                                 {!! __('history.log.' . $log->actionCode(), [
                                     'user' => $log->userLink(),
-                                    'entity' => $log->entityLink(),
+                                    'entity' => $entityLink,
                                     'post' => $log->post?->name,
                                 ]) !!}
                                 @if ($log->impersonator)

@@ -14,18 +14,12 @@
 
 
 @section('content')
-    {!! Form::open([
-        'route' => ['entities.image.replace', $campaign, $entity],
-        'method' => 'POST',
-        'enctype' => 'multipart/form-data',
-        'class' => 'ajax-subform',
-    ]) !!}
+    <x-form :action="['entities.image.replace', $campaign, $entity]" files class="ajax-subform">
         @include('partials.forms.form', [
             'title' => __('entities/image.replace.title', ['name' => $entity->name]),
             'content' => 'entities.pages.image._form',
             'submit' => __('entities/image.actions.save-replace'),
             'dialog' => true,
         ])
-
-    {!! Form::close() !!}
+    </x-form>
 @endsection

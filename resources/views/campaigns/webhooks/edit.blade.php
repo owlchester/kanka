@@ -10,13 +10,12 @@
 ])
 
 @section('content')
-    {!! Form::model($webhook, ['method' => 'PATCH', 'route' => ['webhooks.update', $campaign, $webhook->id], 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
-
-    @include('partials.forms.form', [
+    <x-form :action="['webhooks.update', $campaign, $webhook->id]" method="PATCH" class="ajax-subform">
+        @include('partials.forms.form', [
             'title' => __('campaigns/webhooks.edit.title'),
             'content' => 'campaigns/webhooks._form',
             'submit' => __('crud.update'),
             'dialog' => true,
         ])
-    {!! Form::close() !!}
+    </x-form>
 @endsection

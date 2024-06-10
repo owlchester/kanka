@@ -1,8 +1,5 @@
 <?php /** @var \App\Models\TimelineEra[] $abilities */?>
-{!! Form::open([
-        'route' => ['entities.entity_abilities.reorder-save', $campaign, $entity],
-        'method' => 'POST',
-    ]) !!}
+<x-form :action="['entities.entity_abilities.reorder-save', $campaign, $entity]">
 <div class="box-abilities-reorder w-max-4xl flex flex-col gap-5">
     @foreach($parents as $key => $parent)
         <div class="element-live-reorder flex flex-col gap-1">
@@ -17,7 +14,7 @@
                 <div class="children sortable-elements flex flex-col gap-1">
                     @foreach($parent as $ability)
                         <x-reorder.child id="$ability->id">
-                            {!! Form::hidden('ability[]', $ability->id) !!}
+                            <input type="hidden" name="ability[]" value="{{ $ability->id }}" />
                             <div class="dragger relative pr-3">
                                 <span class="fa-solid fa-sort" aria-hidden="true"></span>
                             </div>
@@ -40,4 +37,4 @@
         {{ __('crud.save') }}
     </button>
 </div>
-{!! Form::close() !!}
+</x-form>

@@ -19,7 +19,7 @@
 @section('content')
     @include('partials.errors')
 
-    {!! Form::model($model, ['route' => ['timelines.timeline_elements.update', $campaign, 'timeline' => $timeline, 'timeline_element' => $model], 'method' => 'PATCH', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+    <x-form :action="['timelines.timeline_elements.update', $campaign, 'timeline' => $timeline, 'timeline_element' => $model]" method="PATCH" id="timeline-element-form" class="ajax-subform">
     <x-box>
         @include('timelines.elements._form')
 
@@ -31,7 +31,7 @@
             </div>
         </x-dialog.footer>
     </x-box>
-    {!! Form::close() !!}
+    </x-form>
 
     @if(!empty($model) && $campaign->hasEditingWarning())
         <input type="hidden" id="editing-keep-alive" data-url="{{ route('timeline-elements.keep-alive', [$campaign, $model->id]) }}" />

@@ -7,47 +7,33 @@
     'centered' => true,
 ])
 
-@section('fullpage-form')
-    {!! Form::open([
-        'method' => 'POST',
-        'enctype' => 'multipart/form-data',
-        'route' => ['relations.store', $campaign],
-        'data-shortcut' => '1',
-        'class' => 'entity-form',
-        'id' => 'entity-form',
-        'data-maintenance' => 1,
-        ]) !!}
-@endsection
 
 @section('content')
+
     @include('cruds.forms._errors')
-
-    <div class="nav-tabs-custom">
-        <div class="flex gap-2 items-center ">
-            <div class="grow overflow-x-auto">
-                <ul class="nav-tabs flex items-stretch w-full" role="tablist">
-                    <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
-                </ul>
+    <x-form files :action="['relations.store', $campaign]" class="entity-form" id="entity-form" unload>
+        <div class="nav-tabs-custom">
+            <div class="flex gap-2 items-center ">
+                <div class="grow overflow-x-auto">
+                    <ul class="nav-tabs flex items-stretch w-full" role="tablist">
+                        <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
+                    </ul>
+                </div>
+                @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
             </div>
-            @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
-        </div>
 
-        <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
-            <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
-                {{ csrf_field() }}
-                @include('entities.pages.relations.full-form._entry', ['source' => $source])
+            <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
+                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
+                    {{ csrf_field() }}
+                    @include('entities.pages.relations.full-form._entry', ['source' => $source])
+                </div>
             </div>
         </div>
-    </div>
-    {!! Form::close() !!}
+    </x-form>
 @endsection
 
 @include('editors.editor')
 
-
-@section('fullpage-form-end')
-    {!! Form::close() !!}
-@endsection
 
 
 @section('scripts')

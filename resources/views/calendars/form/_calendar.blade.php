@@ -3,9 +3,9 @@
     <div class="flex gap-5 flex-col">
 
         <x-forms.field field="skip-zero" :label="__('calendars.fields.skip_year_zero')">
-            {!! Form::hidden('skip_year_zero', 0) !!}
+            <input type="hidden" name="skip_year_zero" value="0" />
             <x-checkbox :text="__('calendars.hints.skip_year_zero')">
-                {!! Form::checkbox('skip_year_zero', 1, !empty($model) ? $model->skip_year_zero : 0) !!}
+                <input type="checkbox" name="skip_year_zero" value="1" @if (old('skip_year_zero', $source->skip_year_zero ?? $model->skip_year_zero ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
 
@@ -14,7 +14,7 @@
             :label="__('calendars.fields.start_offset')"
             :tooltip="true"
             :helper="__('calendars.helpers.start_offset')">
-            {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset')->string(0)) !!}
+            <input type="number" name="start_offset" value="{{ FormCopy::field('start_offset')->string(0) ?: old('start_offset', $model->start_offset ?? null) }}" />
         </x-forms.field>
 
         <x-forms.field
@@ -22,7 +22,7 @@
             :label="__('calendars.fields.reset')"
             :tooltip="true"
             :helper="__('calendars.hints.reset')">
-            {!! Form::select('reset', __('calendars.options.resets')) !!}
+            <x-forms.select name="reset" :options="__('calendars.options.resets')" :selected="$source->reset ?? $model->reset ?? null" />
         </x-forms.field>
 
         <input type="hidden" name="calendar_id" value="" />
@@ -33,22 +33,22 @@
             :label="__('calendars.fields.default_layout')"
             :tooltip="true"
             :helper="__('calendars.helpers.default_layout')">
-            {!! Form::select('parameters[layout]', ['' => __('calendars.layouts.monthly'), 'yearly' => __('calendars.layouts.yearly')])!!}
+            <x-forms.select name="parameters[layout]" :options="['' => __('calendars.layouts.monthly'), 'yearly' => __('calendars.layouts.yearly')]" :selected="$source->parameters['layout'] ?? $model->parameters['layout'] ?? null" />
         </x-forms.field>
 
         @include('cruds.fields.format')
 
         <x-forms.field field="incrementing" :label="__('calendars.fields.is_incrementing')">
-            {!! Form::hidden('is_incrementing', 0) !!}
+            <input type="hidden" name="is_incrementing" value="0" />
             <x-checkbox :text="__('calendars.hints.is_incrementing')">
-                {!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
+                <input type="checkbox" name="is_incrementing" value="1" @if (old('is_incrementing', $source->is_incrementing ?? $model->is_incrementing ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
 
         <x-forms.field field="birthdays" :label="__('calendars.fields.show_birthdays')">
-            {!! Form::hidden('show_birthdays', 0) !!}
+            <input type="hidden" name="show_birthdays" value="0" />
             <x-checkbox :text="__('calendars.hints.show_birthdays')">
-                {!! Form::checkbox('show_birthdays', 1, FormCopy::field('show_birthdays')->string()) !!}
+                <input type="checkbox" name="show_birthdays" value="1" @if (old('show_birthdays', $source->show_birthdays ?? $model->show_birthdays ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
     </div>
@@ -88,13 +88,13 @@
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
-                                {!! Form::text('year_number[]', $year, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.year.number')]) !!}
+                                <input type="text" name="year_number[]" value="{{ $year }}" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.year.number') }}" placeholder="{{ __('calendars.parameters.year.number') }}" />
                             </div>
                         </div>
                         <div class="flex gap-2 items-center">
                             <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
-                                {!! Form::text('year_name[]', $name, ['class' => 'w-full']) !!}
+                                <input type="text" name="year_name[]" value="{{ $name }}" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.year.name') }}" placeholder="{{ __('calendars.parameters.year.name') }}" />
                             </div>
 
                             <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
@@ -109,23 +109,23 @@
         <hr class="m-0" />
 
         <x-forms.field field="leap-year" :label="__('calendars.fields.leap_year')">
-            {!! Form::hidden('has_leap_year', 0) !!}
+            <input type="hidden" name="has_leap_year" value="0" />
             <x-checkbox :text="__('calendars.hints.leap_year')">
-                {!! Form::checkbox('has_leap_year', 1, FormCopy::field('has_leap_year')->string()) !!}
+                <input type="checkbox" name="has_leap_year" value="1" @if (old('has_leap_year', $source->has_leap_year ?? $model->has_leap_year ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
         <div class="grid grid-cols-2 gap-2 md:gap-5" id="calendar-leap-year" style="@if (isset($model) && $model->has_leap_year || request()->old('has_leap_year') || (isset($source) && $source->has_leap_year))@else display:none; @endif">
             <x-forms.field field="year-amount" :label="__('calendars.fields.leap_year_amount')">
-                {!! Form::number('leap_year_amount', FormCopy::field('leap_year_amount')->string(), ['placeholder' => __('calendars.placeholders.leap_year_amount'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="number" name="leap_year_amount" value="{{ FormCopy::field('leap_year_amount')->string(0) ?: old('leap_year_amount', $model->leap_year_amount ?? null) }}" class="w-full" maxlength="191" placeholder="{{ __('calendars.placeholders.leap_year_amount') }}"/>
             </x-forms.field>
             <x-forms.field field="leap-month" :label="__('calendars.fields.leap_year_month')">
-                {!! Form::number('leap_year_month', FormCopy::field('leap_year_month')->string(), ['placeholder' => __('calendars.placeholders.leap_year_month'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="number" name="leap_year_month" value="{{ FormCopy::field('leap_year_month')->string(0) ?: old('leap_year_month', $model->leap_year_month ?? null) }}" class="w-full" maxlength="191" placeholder="{{ __('calendars.placeholders.leap_year_month') }}"/>
             </x-forms.field>
             <x-forms.field field="leap-offset" :label="__('calendars.fields.leap_year_offset')">
-                {!! Form::number('leap_year_offset', FormCopy::field('leap_year_offset')->string(), ['placeholder' => __('calendars.placeholders.leap_year_offset'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="number" name="leap_year_offset" value="{{ FormCopy::field('leap_year_offset')->string(0) ?: old('leap_year_offset', $model->leap_year_offset ?? null) }}" class="w-full" maxlength="191" placeholder="{{ __('calendars.placeholders.leap_year_offset') }}"/>
             </x-forms.field>
             <x-forms.field field="leap-start" :label="__('calendars.fields.leap_year_start')">
-                {!! Form::number('leap_year_start', FormCopy::field('leap_year_start')->string(), ['placeholder' => __('calendars.placeholders.leap_year_start'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+                <input type="number" name="leap_year_start" value="{{ FormCopy::field('leap_year_start')->string(0) ?: old('leap_year_start', $model->leap_year_start ?? null) }}" class="w-full" maxlength="191" placeholder="{{ __('calendars.placeholders.leap_year_start') }}"/>
             </x-forms.field>
         </div>
     </div>
@@ -143,14 +143,14 @@
                     </div>
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
-                        {!! Form::number('year_number[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.year.number')]) !!}
+                        <input type="number" name="year_number[]" value="" class="w-full" maxlength="191" placeholder="{{ __('calendars.parameters.year.number') }}"/>
                     </div>
                 </div>
 
                 <div class="flex gap-2 items-center">
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
-                        {!! Form::text('year_name[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.year.name')]) !!}
+                        <input type="text" name="year_number[]" value="" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.year.number') }}" placeholder="{{ __('calendars.parameters.year.number') }}" />
                     </div>
                     <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
                         <x-icon class="trash"></x-icon>

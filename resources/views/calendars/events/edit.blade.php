@@ -15,20 +15,14 @@
     'centered' => true,
 ])
 @section('content')
-    {!! Form::model($entityEvent, [
-    'method' => 'PATCH',
-    'route' => ['entities.entity_events.update', $campaign, $entity->id, $entityEvent->id],
-    'data-shortcut' => '1',
-    'class' => 'ajax-subform entity-calendar-subform',
-    'data-maintenance' => 1
- ]) !!}
+    <x-form method="PATCH" :action="['entities.entity_events.update', $campaign, $entity->id, $entityEvent->id]" class="ajax-subform entity-calendar-subform">
 
     @include('partials.forms.form', [
-        'title' => __('calendars.event.edit.title', ['name' => link_to($entity->url(), $entity->name)]),
+        'title' => __('calendars.event.edit.title', ['name' => '<a href="' . $entity->url() . '">' . $entity->name . '</a>']),
         'content' => 'calendars.events._form',
         'deleteID' => '#delete-reminder-' . $entityEvent->id,
         'dialog' => true,
-        'dropdownParent' => '#primary-dialog',
+        'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
     ])
 
 
@@ -36,22 +30,18 @@
         <input type="hidden" name="next" value="{{ $next }}" />
     @endif
     @if (request()->has('layout'))
-        {!! Form::hidden('layout', request()->get('layout')) !!}
+        <input type="hidden" name="layout" value="{{ request()->get('layout') }}" />
     @endif
-    {!! Form::close() !!}
-
-    {!! Form::open([
-        'method' => 'DELETE',
-        'route' => ['entities.entity_events.destroy', $campaign, $entity->id, $entityEvent->id],
-        'id' => 'delete-reminder-' . $entityEvent->id]) !!}
+    </x-form>
+    <x-form :action="['entities.entity_events.destroy', $campaign, $entity->id, $entityEvent->id]" method="DELETE" id="delete-reminder-{{ $entityEvent->id }}">
     @if (request()->has('layout'))
-        {!! Form::hidden('layout', request()->get('layout')) !!}
+        <input type="hidden" name="layout" value="{{ request()->get('layout') }}" />
     @endif
     @if (!empty($from))
-        {!! Form::hidden('from', $from) !!}
+        <input type="hidden" name="from" value="{{ $from }}" />
     @endif
     @if (!empty($next))
-        {!! Form::hidden('next', $next) !!}
+        <input type="hidden" name="next" value="{{ $next }}" />
     @endif
-    {!! Form::close() !!}
+    </x-form>
 @endsection

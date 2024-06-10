@@ -4,7 +4,7 @@
         field="ability"
         :label="__('entities.ability')">
         {!! $ability->ability->tooltipedLink() !!}
-        {!! Form::hidden('ability_id', $ability->ability_id) !!}
+        <input type="hidden" name="ability_id" value="{{ $ability->ability_id }}" />
     </x-forms.field>
 
     <x-forms.field
@@ -15,7 +15,7 @@
         'attr' => '<code>{Strength}</code>'
     ])"
         :tooltip="true">
-        {!! Form::textarea('note', null, ['class' => '', 'rows' => 4]) !!}
+        <textarea name="note" class="w-full" rows="4">{!! $ability->note ?? null !!}</textarea>
     </x-forms.field>
 
     @include('cruds.fields.visibility_id', ['model' => $ability])

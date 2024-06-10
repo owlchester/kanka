@@ -17,28 +17,20 @@
 @section('content')
     @include('partials.errors')
 
-    {!! Form::open([
-        'route' => ['timelines.timeline_eras.store', $campaign, $timeline],
-        'method' => 'POST',
-        'id' => 'timeline-era-form',
-        'class' => 'ajax-subform',
-        'data-shortcut' => 1,
-        'data-maintenance' => 1,
-    ]) !!}
-    <x-box>
+    <x-form :action="['timelines.timeline_eras.store', $campaign, $timeline]" id="timeline-era-form" class="ajax-subform">
+        <x-box>
+            @include('timelines.eras._form', ['model' => null])
 
-        @include('timelines.eras._form', ['model' => null])
-
-        <x-dialog.footer>
-            <div class="form-era">
-                <div class="submit-group">
-                    <button class="btn2 btn-primary">{{ __('crud.save') }}</button>
+            <x-dialog.footer>
+                <div class="form-era">
+                    <div class="submit-group">
+                        <button class="btn2 btn-primary">{{ __('crud.save') }}</button>
+                    </div>
                 </div>
-            </div>
-        </x-dialog.footer>
-    </x-box>
-    @if (!empty($from))
-        <input type="hidden" name="from" value="{{ $from }}">
-    @endif
-    {!! Form::close() !!}
+            </x-dialog.footer>
+        </x-box>
+        @if (!empty($from))
+            <input type="hidden" name="from" value="{{ $from }}">
+        @endif
+    </x-form>
 @endsection

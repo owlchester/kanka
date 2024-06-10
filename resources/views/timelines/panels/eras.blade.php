@@ -1,9 +1,15 @@
 <div class="" id="timeline-eras">
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['timelines.eras.bulk', $campaign, 'timeline' => $model]]) !!} @endif
-    <div id="datagrid-parent" class="">
-        @include('layouts.datagrid._table')
-    </div>
-    @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+    @if(Datagrid::hasBulks())
+        <x-form :action="['timelines.eras.bulk', $campaign, 'timeline' => $model]">
+            <div id="datagrid-parent" class="">
+                @include('layouts.datagrid._table')
+            </div>
+        </x-form>
+    @else
+        <div id="datagrid-parent" class="">
+            @include('layouts.datagrid._table')
+        </div>
+    @endif
 
 </div>
 

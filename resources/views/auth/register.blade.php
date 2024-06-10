@@ -30,7 +30,7 @@
 
         <div class="mb-3 has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
             <div class="flex items-stretch w-full">
-                <input id="name" type="text" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="name" value="{{ old('name') }}" placeholder="{{ __('auth.register.fields.name') }}" required autofocus>
+                <input id="name" type="text" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="name" value="{!! old('name') !!}" placeholder="{{ __('auth.register.fields.name') }}" required autofocus>
             </div>
 
             @if ($errors->has('name'))
@@ -70,8 +70,8 @@
         <div class="flex gap-2">
             <div class="grow text-xs text-gray-500">
                 {!! __('auth.register.tos', [
-    'terms' => link_to('https://kanka.io/terms-and-conditions', __('footer.terms'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
-    'privacy' => link_to('https://kanka.io/privacy-policy', __('footer.privacy'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
+    'terms' => '<a href="https://kanka.io/terms-and-conditions" class="text-blue-500 hover:text-blue-800">' . __('footer.terms') . '</a>',
+    'privacy' => '<a href="https://kanka.io/privacy-policy" class="text-blue-500 hover:text-blue-800">' . __('footer.privacy') . '</a>',
     ]) !!}
             </div>
             <div class="flex-none">
@@ -115,7 +115,7 @@
     </div>
 
     <p class="text-sm text-gray-500 dark:text-slate-200">
-        {!! __('auth.register.already', ['login' => link_to('login', __('auth.register.log-in'), ['class' => 'text-blue-500 hover:text-blue-800'])]) !!}
+        {!! __('auth.register.already', ['login' => '<a href="' . route('login') . '" class="text-blue-500" hover:text-blue-800">' . __('auth.register.log-in') . '</a>']) !!}
     </p>
 
 

@@ -29,6 +29,9 @@ class MarkerController extends Controller
                 'campaign' => $campaign, 'map' => $map]), '_map-marker', $models, $map);
         }
 
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
         $count = $this->campaign($campaign)->bulkProcess($request, MapMarker::class);
 
         return redirect()

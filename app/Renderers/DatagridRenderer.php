@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
-use Collective\Html\FormFacade as Form;
 use Illuminate\Support\Str;
 
 class DatagridRenderer
@@ -120,7 +119,7 @@ class DatagridRenderer
         $html = '';
         // Checkbox for delete
         if (auth()->check()) {
-            $html .= '<th class="col-checkbox">' . Form::checkbox('all', 1, false, ['id' => 'datagrid-select-all']) . '</th>';
+            $html .= '<th class="col-checkbox"><input type="checkbox" name="all" value="1" id="datagrid-select-all" /></th>';
         }
 
         foreach ($this->columns as $column) {
@@ -334,7 +333,7 @@ class DatagridRenderer
 
         // Bulk
         if (auth()->check()) {
-            $html .= '<td class="w-8">' . Form::checkbox('model[]', $model->id, false) . '</td>';
+            $html .= '<td class="w-8"><input type="checkbox" name="model[]" value="' . $model->id . '" /></td>';
         }
 
         foreach ($this->columns as $column) {
@@ -440,11 +439,7 @@ class DatagridRenderer
                 /** @var Journal $model */
                 if ($model->entity->calendarDate && $model->entity->calendarDate->calendar && $model->entity->calendarDate->calendar->entity) {
                     $reminder = $model->entity->calendarDate;
-                    $content = link_to_route(
-                        'entities.show',
-                        $reminder->readableDate(),
-                        [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
-                    );
+                    $content = '<a href="' . route('entities.show', [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]) . '">' . $reminder->readableDate() . '</a>';
                 }
             } else {
                 // Exception

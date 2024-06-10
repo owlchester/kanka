@@ -81,8 +81,6 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
         @include('layouts.header', ['toggle' => $showSidebar])
         @includeWhen(isset($campaign) || isset($sidebar) && $sidebar == 'settings', 'layouts.sidebars.' . ($sidebar ?? 'app'))
 
-        @yield('fullpage-form')
-
         <div class="content-wrapper" id="{{ isset($contentId) ? $contentId : "main-content" }}">
             @include('layouts.banner')
 
@@ -133,8 +131,6 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                 </a>
             </div>
         </div>
-
-        @yield('fullpage-form-end')
 
 
         @include('layouts.footer')

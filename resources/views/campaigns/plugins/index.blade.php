@@ -11,14 +11,20 @@
 </div>
 
 @if($campaign->boosted())
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_plugins.bulk', $campaign]]) !!} @endif
-    <div id="datagrid-parent">
-        @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list'), 'responsive' => true])
-    </div>
-    @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+    @if(Datagrid::hasBulks())
+        <x-form :action="['campaign_plugins.bulk', $campaign]">
+            <div id="datagrid-parent">
+                @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list'), 'responsive' => true])
+            </div>
+        </x-form>
+    @else
+        <div id="datagrid-parent">
+            @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list'), 'responsive' => true])
+        </div>
+    @endif
 @else
     <x-cta :campaign="$campaign">
-        <p>{!! __('campaigns/plugins.pitch', ['marketplace' => link_to(config('marketplace.url'), __('footer.marketplace'), null, ['target' => '_blank'])]) !!}</p>
+        <p>{!! __('campaigns/plugins.pitch', ['marketplace' => '<a href="' . config('marketplace.url') . '" target="_blank">' . __('footer.marketplace'). '</a>']) !!}</p>
     </x-cta>
 @endif
 

@@ -21,66 +21,44 @@ if ($attribute->isSection()) {
     <div class="field @if ($attribute->isSection()) grow @endif ">
         <label class="sr-only">{{ __('entities/attributes.labels.' . ($attribute->isSection() ? 'section' : 'name')) }}</label>
         @if($attribute->name == '_layout')
-            {!! Form::text('attr_name[' . $id . ']', $attribute->name, [
-            'placeholder' => __('entities/attributes.placeholders.attribute'),
-            'class' => 'w-full',
-            'maxlength' => 191,
-            'disabled' => 'disabled'
-        ]) !!}
-            {!! Form::hidden('attr_name[' . $id . ']', $attribute->name) !!}
+            <input type="text" name="attr_ignore[{{ $id }}]" value="{{ $attribute->name }}" placeholder="{{ __('entities/attributes.placeholders.attribute') }}" class="w-full" maxlength="191" disabled="disabled" />
+            <input type="hidden" name="attr_name[{{ $id }}]" value="{{ $attribute->name }}" />
         @else
-        {!! Form::text('attr_name[' . $id . ']', $attribute->name, [
-            'placeholder' => $placeholder,
-            'class' => 'w-full',
-            'maxlength' => 191,
-            'aria-label' => __('entities/attributes.labels.name')
-        ]) !!}
+            <input type="text" name="attr_name[{{ $id }}]" value="{{ $attribute->name }}" placeholder="{{ $placeholder }}" class="w-full" maxlength="191" aria-label="{{ __('entities/attributes.labels.name') }}" />
         @endif
     </div>
     @if ($attribute->isSection())
-        {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
+        <input type="hidden" name="attr_value[{{ $id }}]" value="{{ $attribute->value }}" />
     @else
     <div class="grow field">
         <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
         @if ($attribute->isCheckbox())
-            {!! Form::hidden('attr_value[' . $id . ']', 0) !!}
-            {!! Form::checkbox('attr_value[' . $id . ']', 1, $attribute->value) !!}
+            <input type="hidden" name="attr_value[{{ $id }}]" value="0" />
+            <input type="checkbox" name="attr_value[{{ $id }}]" value="1" @if ($attribute->value) checked="checked" @endif />
         @elseif ($attribute->isText())
-            {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, [
-                'placeholder' => __('entities/attributes.placeholders.value'),
-                'class' => 'w-full kanka-mentions',
-                'rows' => 4,
-                'data-remote' => route('search.live', $campaign),
-                'aria-label' => __('entities/attributes.fields.value')
-            ]) !!}
+            <textarea name="attr_value[{{ $id }}]" placeholder="{{ __('entities/attributes.placeholders.value') }}" class="w-full  kanka-mentions" rows="4" aria-label="{{ __('entities/attributes.labels.value') }}" data-remote="{{ route('search.live', $campaign) }}">{{ $attribute->value }}</textarea>
         @elseif ($attribute->isSection())
-            {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
+            <input type="hidden" name="attr_value[{{ $id }}]" value="{{ $attribute->value }}" />
         @elseif($attribute->name == '_layout')
-            {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
+            <input type="hidden" name="attr_value[{{ $id }}]" value="{{ $attribute->value }}" />
             <div class="rounded bg-base-200 p-2">
             {{ $attribute->value }}
             </div>
         @elseif ($attribute->isNumber())
-            {!! Form::number('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'w-full', 'maxlength' => 191]) !!}
+            <input type="number" name="attr_value[{{ $id }}]" value="{{ $attribute->name }}" placeholder="{{ __('entities/attributes.placeholders.number') }}" class="w-full" maxlength="191" aria-label="{{ __('entities/attributes.labels.value') }}" />
         @else
-            {!! Form::text('attr_value[' . $id . ']', $attribute->value, [
-                'placeholder' => __('entities/attributes.placeholders.value'),
-                'class' => 'w-full kanka-mentions',
-                'maxlength' => 191,
-                'data-remote' => route('search.live', $campaign),
-                'aria-label' => __('entities/attributes.labels.value')
-            ]) !!}
+            <input type="text" name="attr_value[{{ $id }}]" value="{{ $attribute->name }}" placeholder="{{ __('entities/attributes.placeholders.value') }}" class="w-full  kanka-mentions" maxlength="191" aria-label="{{ __('entities/attributes.labels.value') }}" data-remote="{{ route('search.live', $campaign) }}" />
         @endif
     </div>
     @endif
     <div class="flex gap-3">
-        {!! Form::hidden('attr_is_pinned[' . $id . ']', $attribute->isPinned()) !!}
+        <input type="hidden" name="attr_is_pinned[{{ $id }}]" value="{{ $attribute->isPinned() }}" />
         <i class="cursor-pointer fa-star @if($attribute->isPinned()) fa-solid @else fa-regular @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="@if($attribute->isPinned()) {{ __('entities/attributes.visibility.entry') }} @else  {{ __('entities/attributes.visibility.tab') }} @endif"
         data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
         ></i>
 
         @if ($isAdmin)
-        {!! Form::hidden('attr_is_private[' . $id . ']', $attribute->is_private) !!}
+            <input type="hidden" name="attr_is_private[{{ $id }}]" value="{{ $attribute->is_private }}" />
         <i class="cursor-pointer fa-solid @if($attribute->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
            data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
         ></i>
@@ -93,5 +71,5 @@ if ($attribute->isSection()) {
         @endcan
     </div>
 
-    {!! Form::hidden('attr_type[' . $id . ']', $attribute->type_id) !!}
+    <input type="hidden" name="attr_type[{{ $id }}]" value="{{ $attribute->type_id }}" />
 </div>

@@ -58,6 +58,9 @@ class ModuleController extends Controller
             return view('campaign.modules')
                 ->with('errors', __('This feature is only available on premium and boosted campaigns'));
         }
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $this->moduleService
             ->campaign($campaign)

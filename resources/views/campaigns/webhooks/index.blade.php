@@ -26,11 +26,17 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Webhook $webhook
  */?>
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['webhooks.bulk', $campaign]]) !!} @endif
+    @if(Datagrid::hasBulks())
+        <x-form :action="['webhooks.bulk', $campaign]">
+            <div id="datagrid-parent">
+                @include('layouts.datagrid._table', ['responsive' => true])
+            </div>
+        </x-form>
+    @else
     <div id="datagrid-parent">
         @include('layouts.datagrid._table', ['responsive' => true])
     </div>
-    @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+    @endif
 @endif
 @section('modals')
     @parent

@@ -2,7 +2,7 @@
     field="name"
     :required="true"
     :label="__('campaigns/styles.fields.name')">
-    {!! Form::text('name', null, ['class' => '']) !!}
+    <input type="text" name="name" placeholder="{{ __('campaigns/styles.placeholders.name') }}" maxlength="191" required value="{!! old('name', $style->name ?? null) !!}" />
 </x-forms.field>
 
 <x-forms.field
@@ -10,13 +10,12 @@
     :required="true"
     :label="__('campaigns/styles.fields.content')"
     :helper="__('campaigns.helpers.css')">
-    {!! Form::textarea('content', null, ['class' => 'codemirror', 'id' => 'css', 'spellcheck' => 'false']) !!}
+    <textarea name="content" id="css" class="codemirror" spellcheck="false">{!! old('content', $style->content ?? null) !!}</textarea>
 </x-forms.field>
 
 <x-forms.field field="enabled" :label=" __('campaigns/styles.fields.is_enabled')">
-    {!! Form::hidden('is_enabled', 0) !!}
-        <x-checkbox :text="__('campaigns/styles.helpers.is_enabled')">
-            {!! Form::checkbox('is_enabled', 1, !isset($style) ? true : $style->is_enabled) !!}
-        </x-checkbox>
-    </div>
+    <input type="hidden" name="is_enabled" value="0" />
+    <x-checkbox :text="__('campaigns/styles.helpers.is_enabled')">
+        <input type="checkbox" name="is_enabled" value="1" @if (old('is_enabled', $style->is_enabled ?? true)) checked="checked" @endif />
+    </x-checkbox>
 </x-forms.field>

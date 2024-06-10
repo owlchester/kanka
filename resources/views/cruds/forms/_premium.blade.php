@@ -7,7 +7,8 @@
                 {{ __('fields.tooltip.description') }}
             </p>
 
-            {!! Form::textarea('entity_tooltip', FormCopy::entity()->field('tooltip')->string(), ['class' => '', 'id' => 'tooltip', 'rows' => 3, 'placeholder' => __('fields.tooltip.description')]) !!}
+        <textarea name="entity_tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('fields.tooltip.description') }}">{!! FormCopy::entity()->field('tooltip')->string() ?: old('entity_tooltip', $model->entity_tooltip ?? null) !!}</textarea>
+
 
             <p class="text-neutral-content">
     @php
@@ -36,15 +37,15 @@
             }
             @endphp
             <p class="text-neutral-content">{{ __('fields.header-image.description') }}</p>
-            {!! Form::hidden('remove-header_image') !!}
+            <input type="hidden" name="remove-header_image" />
             <div class="flex flex-row gap-2">
                 <div class="flex flex-col gap-2 @if ((!empty($model->entity) && !empty($model->entity->header_image))) col-span-3 @else col-span-4 @endif">
                     <x-forms.field field="header-file">
-                        {!! Form::file('header_image', array('class' => 'image')) !!}
+                        <input type="file" name="header_image" class="image w-full" id="header_image_{{ rand() }}" accept=".jpg, .jpeg, .png, .gif, .webp" />
                     </x-forms.field>
                     <x-forms.field field="header-url">
-                        {!! Form::text('header_image_url', $headerUrlPreset, ['placeholder' => __('crud.placeholders.image_url'), 'class' => '']) !!}
 
+                        <input type="text" name="header_image_url" value="{{ old('header_image_url', $headerUrlPreset) }}" maxlength="191" class="w-full"  placeholder="{{ __('crud.placeholders.image_url') }}" />
                         <x-helper>
                             {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => Limit::readable()->upload()]) }}
                             {{ __('crud.hints.image_dimension', ['dimension' => '1200x400']) }}

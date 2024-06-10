@@ -6,7 +6,7 @@
 @if ($attributeTemplate->hasVisibleAttributes($existingAttributeNames))
     <p class="text-neutral-content m-0">
         {!! __('attribute_templates.hints.automatic', [
-            'link' => link_to($attributeTemplate->getLink(), e($attributeTemplate->name))
+            'link' => '<a href="' . $attributeTemplate->getLink() . '">' . $attributeTemplate->name . '</a>'
         ]) !!}
     </p>
     @foreach ($attributeTemplate->entity->attributes()->ordered()->get() as $attribute)

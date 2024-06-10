@@ -14,18 +14,18 @@
     <p>{{ __('emails/welcome.2023.intro.text_2') }}</p>
 
     <p style="text-align: center;">
-        {!! link_to_route('home', __('emails/welcome.2023.intro.link'), ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding'], ['class' => 'mail-btn']) !!}
+        <a href="{{ route('home', ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding']) }}" class="mail-btn">{{ __('emails/welcome.2023.intro.link') }}</a>
     </p>
 
     <p><b>{{ __('emails/welcome.2023.basics.title') }}</b></p>
     <p>{!! __('emails/welcome.2023.basics.text_1', [
-        'kb' => link_to('https://kanka.io/kb', __('footer.kb')),
-        'doc' => link_to('https://docs.kanka.io/en/latest/index.html', __('footer.documentation')),
+        'kb' => '<a target="_blank" href="https://kanka.io/kb">' . __('footer.kb') . '</a>',
+        'doc' => '<a target="_blank" href="https://docs.kanka.io/en/latest/index.html"> ' . __('footer.documentation') . '</a>',
     ]) !!}</p>
 
     <p><b>{{ __('emails/welcome.2023.chat.title') }}</b></p>
     <p>{!! __('emails/welcome.2023.chat.text_1', [
-        'discord' => link_to('https:' . config('social.discord'), 'Discord'),
+        'discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>',
         'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
     ]) !!}</p>
 

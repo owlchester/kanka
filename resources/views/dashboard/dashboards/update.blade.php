@@ -5,11 +5,11 @@
 ])
 
 @section('content')
-    {!! Form::model($dashboard, ['route' => ['campaign_dashboards.update', $campaign, $dashboard], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
-    @include('partials.forms.form', [
-        'title' => __('dashboard.dashboards.update.title', ['name' => $dashboard->name]),
-        'content' => 'dashboard.dashboards._form',
-        'dialog' => true,
-    ])
-    {!! Form::close() !!}
+    <x-form :action="['campaign_dashboards.update', $campaign, $dashboard]" method="PATCH">
+        @include('partials.forms.form', [
+            'title' => __('dashboard.dashboards.update.title', ['name' => $dashboard->name]),
+            'content' => 'dashboard.dashboards._form',
+            'dialog' => true,
+        ])
+    </x-form>
 @endsection

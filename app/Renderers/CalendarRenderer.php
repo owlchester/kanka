@@ -683,17 +683,12 @@ class CalendarRenderer
         $calendarYear = $this->calendar->currentDate('year');
         $calendarMonth = $this->calendar->currentDate('month');
 
-        $options = ['class' => 'btn2 btn-sm'];
+        $disabled = false;
         if ($this->year == $calendarYear && $this->month == $calendarMonth) {
-            $options['disabled'] = 'disabled';
+            $disabled = true;
         }
 
-        return link_to_route(
-            'entities.show',
-            trans('calendars.actions.today'),
-            [$this->campaign, 'entity' => $this->calendar->entity, 'month' => $calendarMonth, 'year' => $calendarYear],
-            $options
-        );
+        return '<a href="' . route('entities.show', [$this->campaign, 'entity' => $this->calendar->entity, 'month' => $calendarMonth, 'year' => $calendarYear]) . '" class="btn2 btn-sm" ' . ($disabled ? 'disabled="disabled"' : null) . '>' . __('calendars.actions.today') . '</a>';
     }
 
     /**

@@ -10,8 +10,8 @@
     <x-forms.field
         field="age"
         :label="__('characters.fields.age')"
-        :helper="__('characters.helpers.age', ['more' => link_to('https://docs.kanka.io/en/latest/advanced/age.html', __('crud.actions.find_out_more'), ['target' => '_blank'])])">
-        {!! Form::text('age', FormCopy::field('age')->string(), ['placeholder' => __('characters.placeholders.age'), 'maxlength' => 25]) !!}
+        :helper="__('characters.helpers.age', ['more' => '<a href=\'https://docs.kanka.io/en/latest/advanced/age.html\' target=\'_blank\'>' . __('crud.actions.find_out_more') . '</a>'])">
+        <input type="text" name="age" value="{{ old('age', $source->age ?? $model->age ?? null) }}" maxlength="25" class="w-full"  autocomplete="off" placeholder="{{ __('characters.placeholders.age') }}" />
     </x-forms.field>
 
     @include('cruds.fields.sex')
@@ -21,9 +21,9 @@
     <x-forms.field
         field="dead"
         :label="__('characters.fields.is_dead')">
-        {!! Form::hidden('is_dead', 0) !!}
+        <input type="hidden" name="is_dead" value="0" />
         <x-checkbox :text="__('characters.hints.is_dead')">
-            {!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : (!empty($source) ? FormCopy::field('is_dead')->boolean() : 0))) !!}
+            <input type="checkbox" name="is_dead" value="1" @if (old('is_dead', $source->is_dead ?? $model->is_dead ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 

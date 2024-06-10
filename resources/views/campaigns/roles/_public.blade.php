@@ -31,7 +31,7 @@
 
         <p>
             {!! __('campaigns/roles.public.test', [
-    'url' => link_to_route('dashboard', null, $campaign)]) !!}
+    'url' => '<a href="' . route('dashboard', $campaign) . '">' . route('dashboard', $campaign) . '</a>']) !!}
         </p>
 
         <p>
@@ -68,7 +68,7 @@
     'title' => __('campaigns.roles.modals.details.title'),
     'textes' => [
         __('campaigns/roles.public.description', ['name' => $role->name]),
-        __('campaigns/roles.public.test', ['url' => link_to_route('dashboard', null, $campaign)]),
+        __('campaigns/roles.public.test', ['url' => '<a href="' . route('dashboard', $campaign) . '">' . route('dashboard', $campaign) . '</a>']),
         '<a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> ' . __('helpers.public') . '</a>'
 ]
 ])

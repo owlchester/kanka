@@ -9,24 +9,15 @@
     'centered' => true,
 ])
 
-@section('fullpage-form')
-    {!! Form::open([
-        'route' => ['entities.posts.store', $campaign, $entity->id],
-        'method'=>'POST',
-        'data-shortcut' => '1',
-        'id' => 'entity-form',
-        'class' => 'entity-form post-form entity-note-form',
-        'data-maintenance' => 1,
-        'data-unload' => 1,
-    ]) !!}
-@endsection
-
 @section('content')
-    @include('entities.pages.posts._form')
+    <x-form
+        :action="['entities.posts.store', $campaign, $entity->id]"
+        :extra="['data-max-fields' => ini_get('max_input_vars'),]"
+        unload
+        class="entity-form post-form"
+    >
+        @include('entities.pages.posts._form')
+    </x-form>
 @endsection
 
 @include('editors.editor', $entity->isCharacter() ? ['name' => 'characters'] : [])
-
-@section('fullpage-form-end')
-    {!! Form::close() !!}
-@endsection

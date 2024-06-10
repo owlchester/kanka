@@ -40,7 +40,7 @@ class DetailController extends Controller
         $name = $mapMarker->name;
         if ($mapMarker->entity) {
             $name = !empty($mapMarker->name) ? $mapMarker->name : $mapMarker->entity->name;
-            $name = link_to($mapMarker->entity->url(), $name, ['target' => '_blank']);
+            $name = '<a href="' . $mapMarker->entity->url() . '" target="_blank">' . $name . '</a>';
         }
         if (request()->has('mobile')) {
             return response()->view('maps.markers.dialog_details', [

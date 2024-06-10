@@ -1,5 +1,5 @@
-{!! Form::open(['url' => $route, 'method' => 'GET', 'class' => 'flex-0 form-inline datagrid-search inline-block', 'role' => 'form']) !!}
-<div class="field field-search">
-    {{ Form::text('term', isset($term) ? $term : null, ['class' => '', 'placeholder' => __('crud.search')]) }}
-</div>
-{!! Form::close() !!}
+<form method="GET" action="{{ $route }}" class="flex-0 !w-fit datagrid-search inline-block" role="form">
+    <div class="field field-search">
+        <input type="text" name="term" value="{{ $term ?? null }}" placeholder="{{ __('crud.search') }}" />
+    </div>
+</form>

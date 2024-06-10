@@ -50,7 +50,7 @@
         <p class="lg:max-w-2xl mx-auto text-center">Kanka is currently unavailable due to planned server maintenance.</p>
        <p class="lg:max-w-2xl mx-auto text-center">This maintenance is planned to last until <a href="https://everytimezone.com/s/78b7fbd3" target="_blank" class="link-light"><i class="fa-solid fa-external-link"></i> 16:00 UTC</a>.</p>
 
-        <p class="lg:max-w-2xl mx-auto text-center">Join us over on our {!! link_to(config('social.discord'), 'Discord', ['class' => 'link-light']) !!} to be notified as soon as the maintenance is over.</p>
+        <p class="lg:max-w-2xl mx-auto text-center">Join us over on our <a href="https://kanka.io/go/discord" class="link-light">Discord</a> to be notified as soon as the maintenance is over.</p>
 
         <div class="hidden">
             <h2 id="maintenance">{{ __('errors.503.title') }}</h2>

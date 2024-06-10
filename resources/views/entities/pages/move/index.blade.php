@@ -10,9 +10,7 @@
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['entities.move', $campaign, $entity->id], 'method' => 'POST']) !!}
-
-    {{ csrf_field() }}
+    <x-form :action="['entities.move', $campaign, $entity->id]">
     <x-box>
         <x-grid type="1/1">
             <p class="text-neutral-content">
@@ -20,17 +18,17 @@
             </p>
 
             <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
-                {!! Form::select('campaign', $campaigns, null, ['class' => '']) !!}
+                <x-forms.select name="campaign" :options="$campaigns" class="w-full" />
             </x-forms.field>
 
             @can('update', $entity->child)
                 <x-forms.field field="copy" css="form-check" :label="__('entities/move.fields.copy')">
                     <x-checkbox :text="__('entities/move.helpers.copy')">
-                        {!! Form::checkbox('copy', 1, true) !!}
+                        <input type="checkbox" name="copy" value="1" @if (old('copy', true)) checked="checked" @endif />
                     </x-checkbox>
                 </x-forms.field>
             @else
-                {!! Form::hidden('copy', 1) !!}
+                <input type="hidden" name="copy" value="1" />
             @endcan
 
             @includeIf($entity->pluralType() . '.bulk.modals._copy_to_campaign')
@@ -44,5 +42,5 @@
         </x-dialog.footer>
     </x-box>
 
-    {!! Form::close() !!}
+    </x-form>
 @endsection

@@ -3,7 +3,7 @@
 
     @include('cruds.fields.type', ['base' => \App\Models\Map::class, 'trans' => 'maps'])
 
-    @include('cruds.fields.map', ['isParent' => true, 'from' => (isset($model) ? $model : null)])
+    @include('cruds.fields.map', ['isParent' => true, 'from' => $model ?? null])
 
     @include('cruds.fields.location')
 

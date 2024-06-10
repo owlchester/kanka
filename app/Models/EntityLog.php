@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\HistoryRequest;
 use App\User;
 use Carbon\Carbon;
@@ -226,15 +225,6 @@ class EntityLog extends Model
             return '<i>' . __('crud.users.unknown') . '</i>';
         }
         return '<strong>' . $this->user->name . '</strong>';
-    }
-
-    public function entityLink(): string
-    {
-        if (!$this->entity) {
-            $campaign = CampaignLocalization::getCampaign();
-            return link_to_route('recovery', __('history.unknown.entity'), [$campaign]);
-        }
-        return $this->entity->tooltipedLink($this->entity->name, false);
     }
 
     public function actions($action): array

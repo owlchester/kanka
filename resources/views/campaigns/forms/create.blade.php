@@ -7,26 +7,13 @@
     'centered' => true,
 ])
 
-@section('fullpage-form')
-    {!! Form::open([
-        'route' => ['create-campaign'],
-        'enctype' => 'multipart/form-data',
-        'method' => 'POST',
-        'data-shortcut' => '1',
-        'class' => 'entity-form',
-        'data-unload' => 1,
-    'data-maintenance' => 1,
-    ]) !!}
-@endsection
-
 @section('content')
     @include('partials.errors')
+    <x-form :action="['create-campaign']" files class="entity-form" unsaved>
     @include('campaigns.forms.standard')
+    </x-form>
 @endsection
 
-@section('fullpage-form-end')
-    {!! Form::close() !!}
-@endsection
 
 @include('editors.editor')
 

@@ -16,10 +16,7 @@ if ($firstPost && $firstPost->position >= 0) {
     $hasEntry = true;
 }
 ?>
-{!! Form::open([
-    'route' => ['entities.story.reorder-save', $campaign, $entity],
-    'method' => 'POST',
-]) !!}
+<x-form :action="['entities.story.reorder-save', $campaign, $entity]">
 <div class="box-entity-story-reorder max-w-4xl flex flex-col gap-5">
     <div class="element-live-reorder sortable-elements flex flex-col gap-1">
         @includeWhen($startWithStory, 'entities.pages.story.reorder._story')
@@ -32,7 +29,7 @@ if ($firstPost && $firstPost->position >= 0) {
 
 
             <x-reorder.child :id="$note->id">
-                {!! Form::hidden('posts[' . $note->id . '][id]', $note->id) !!}
+                <input type="hidden" name="posts[{{ $note->id }}][id]" value="{{ $note->id }}" />
                 <div class="dragger pr-3">
                     <span class="fa-solid fa-ellipsis-v"></span>
                 </div>
@@ -64,4 +61,4 @@ if ($firstPost && $firstPost->position >= 0) {
     </button>
 </div>
 
-{!! Form::close() !!}
+</x-form>

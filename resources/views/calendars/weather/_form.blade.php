@@ -6,38 +6,38 @@
         css="col-span-2"
         :required="true"
         :label="__('calendars/weather.fields.weather')">
-        {!! Form::select('weather', __('calendars/weather.options.weather'), null, ['class' => 'w-full']) !!}
+        <x-forms.select name="weather" :options="__('calendars/weather.options.weather')" :selected="$model->weather ?? null" />
     </x-forms.field>
 
     <x-forms.field
         field="name"
         css="col-span-2"
         :label="__('calendars/weather.fields.name')">
-        {!! Form::text('name', null, ['class' => 'w-full', 'placeholder' => __('calendars/weather.placeholders.name'), 'maxlength' => 40]) !!}
+        <input type="text" name="name" placeholder="{{ __('calendars/weather.placeholders.name') }}" maxlength="40" value="{!! old('name', $source->name ?? $weather->name ?? null) !!}" />
     </x-forms.field>
 
     <x-forms.field
         field="temperature"
         :label="__('calendars/weather.fields.temperature')">
-        {!! Form::text('temperature', null, ['class' => 'w-full', 'placeholder' => __('calendars/weather.placeholders.temperature')]) !!}
+        <input type="text" name="wind" value="{{ old('temperature', $weather->temperature ?? null) }}" placeholder="{{ __('calendars/weather.placeholders.temperature') }}" aria-label="{{ __('calendars/weather.placeholders.temperature') }}" maxlength="191" class="w-full" />
     </x-forms.field>
 
     <x-forms.field
         field="precipitation"
         :label="__('calendars/weather.fields.precipitation')">
-        {!! Form::text('precipitation', null, ['class' => 'w-full', 'placeholder' => __('calendars/weather.placeholders.precipitation')]) !!}
+        <input type="text" name="precipitation" value="{{ old('precipitation', $weather->precipitation ?? null) }}" placeholder="{{ __('calendars/weather.placeholders.precipitation') }}" aria-label="{{ __('calendars/weather.placeholders.precipitation') }}" maxlength="191" class="w-full" />
     </x-forms.field>
 
     <x-forms.field
         field="winds"
         :label="__('calendars/weather.fields.wind')">
-        {!! Form::text('wind', null, ['class' => 'w-full', 'placeholder' => __('calendars/weather.placeholders.wind')]) !!}
+        <input type="text" name="wind" value="{{ old('wind', $weather->wind ?? null) }}" placeholder="{{ __('calendars/weather.placeholders.wind') }}" aria-label="{{ __('calendars/weather.placeholders.wind') }}" maxlength="191" class="w-full" />
     </x-forms.field>
 
     <x-forms.field
         field="effect"
         :label="__('calendars/weather.fields.effect')">
-        {!! Form::text('effect', null, ['class' => 'w-full', 'placeholder' => __('calendars/weather.placeholders.effect')]) !!}
+        <input type="text" name="effect" value="{{ old('effect', $weather->effect ?? null) }}" placeholder="{{ __('calendars/weather.placeholders.effect') }}" aria-label="{{ __('calendars/weather.placeholders.effect') }}" maxlength="191" class="w-full" />
     </x-forms.field>
 
 @include('cruds.fields.visibility_id', ['model' => $weather ?? null])

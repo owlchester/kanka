@@ -4,5 +4,5 @@
     :helper="__('dashboard.widgets.helpers.class')"
     :tooltip="true"
 >
-    {!! Form::text('config[class]', null, ['class' => '', 'id' => 'config[class]', 'disabled' => !$boosted ? 'disabled' : null]) !!}
+    <input type="text" name="config[class]" value="{{ old('config[class]', $model->config['class'] ?? null) }}" maxlength="191" class="w-full" id="config[class]" @if (!$boosted) disabled="disabled" @endif placeholder="" />
 </x-forms.field>

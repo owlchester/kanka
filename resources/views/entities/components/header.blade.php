@@ -236,7 +236,11 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                         <hr class="m-0" />
                         <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity->id]) }}">
                             <x-icon class="fa-regular fa-clone"></x-icon>
-                            {{ __('crud.actions.move') }}
+                            @can('update', $model)
+                                {{ __('crud.actions.move') }}
+                            @else
+                                {{ __('crud.actions.copy') }}
+                            @endcan
                         </x-dropdowns.item>
                     @endif
 

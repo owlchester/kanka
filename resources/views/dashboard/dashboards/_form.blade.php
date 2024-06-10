@@ -10,7 +10,8 @@
         field="name"
         :required="true"
         :label="__('dashboard.dashboards.fields.name')">
-        {!! Form::text('name', null, ['class' => '', 'placeholder' => __('dashboard.dashboards.placeholders.name')]) !!}
+
+        <input type="text" name="name" placeholder="{{ __('dashboard.dashboards.placeholders.name') }}" maxlength="45" required value="{!! old('name', $dashboard->name ?? null) !!}" />
     </x-forms.field>
 
     <div class="field grid grid-cols-2 gap-5">
@@ -32,12 +33,12 @@
 
 
 @if(!empty($source))
-    {!! Form::hidden('copy_widgets', null) !!}
+    <input type="hidden" name="copy_widgets" value="0" />
     <x-forms.field field="copy" :label="__('dashboard.dashboards.fields.copy_widgets')">
         <x-checkbox :text="__('dashboard.dashboards.helpers.copy_widgets', ['name' => $source->name])">
-            {!! Form::checkbox('copy_widgets', 1, true) !!}
+            <input type="checkbox" name="copy_widgets" value="1" @if (old('copy_widgets', true)) checked="checked" @endif />
         </x-checkbox>
-        {!! Form::hidden('source', $source->id) !!}
+        <input type="hidden" name="source" value="{{ $source->id }}" />
     </x-forms.field>
 @endif
 </div>

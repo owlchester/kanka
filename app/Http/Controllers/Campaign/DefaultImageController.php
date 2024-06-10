@@ -84,7 +84,10 @@ class DefaultImageController extends Controller
     public function destroy(DefaultImageDestroy $request, Campaign $campaign)
     {
         $this->authorize('recover', $campaign);
-        $this->service->campaign($campaign)->type($request->post('entity_type'))->destroy();
+        $this->service
+            ->campaign($campaign)
+            ->type($request->post('entity_type'))
+            ->destroy();
 
         return redirect()->route('campaign.default-images', $campaign)
             ->with(

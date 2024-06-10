@@ -43,7 +43,7 @@ class MemberController extends Controller
             ->select('organisation_member.*')
             ->with([
                 'organisation', 'organisation.entity',
-                'parent', 'parent.character',
+                'parent', 'parent.character', 'parent.character.entity',
                 'character', 'character.entity', 'character.entity.image',
                 'character.location', 'character.location.entity'])
             ->has('character')
@@ -79,6 +79,9 @@ class MemberController extends Controller
     public function store(StoreOrganisationMember $request, Campaign $campaign, Organisation $organisation)
     {
         $this->authorize('member', $organisation);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $relation = OrganisationMember::create($request->all());
         return redirect()->route('entities.show', [$campaign, $organisation->entity])
@@ -123,6 +126,9 @@ class MemberController extends Controller
         OrganisationMember $organisationMember
     ) {
         $this->authorize('member', $organisation);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $organisationMember->update($request->all());
         return redirect()->route('entities.show', [$campaign, $organisation->entity])

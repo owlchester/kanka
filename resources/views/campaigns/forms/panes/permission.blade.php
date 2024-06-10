@@ -18,21 +18,21 @@ $visibilities = [
                 field="privacy"
                 :label="__('campaigns.fields.entity_privacy')"
                 :helper="__('campaigns.helpers.entity_privacy')">
-                {!! Form::select('entity_visibility', [0 => __('campaigns.privacy.visible'), 1 => __('campaigns.privacy.private')], null, ['class' => '']) !!}
+                <x-forms.select name="entity_visibility" :options="[0 => __('campaigns.privacy.visible'), 1 => __('campaigns.privacy.private')]" :selected="$campaign->entity_visibility ?? null" />
             </x-forms.field>
 
             <x-forms.field
                 field="related-visibility"
                 :label="__('campaigns.fields.related_visibility')"
                 :helper="__('campaigns.helpers.related_visibility')">
-                    {!! Form::select('settings[default_visibility]', $visibilities, null, ['class' => '']) !!}
+                <x-forms.select name="settings[default_visibility]" :options="$visibilities" :selected="$campaign->settings['default_visibility'] ?? null" />
             </x-forms.field>
 
             <x-forms.field
                 field="character_personality_visibility"
                 :label="__('campaigns.fields.character_personality_visibility')"
                 :helper="__('campaigns.helpers.character_personality_visibility')">
-                {!! Form::select('entity_personality_visibility', [0 => __('campaigns.privacy.visible'), 1 => __('campaigns.privacy.private')], null, ['class' => '']) !!}
+                <x-forms.select name="entity_personality_visibility" :options="[0 => __('campaigns.privacy.visible'), 1 => __('campaigns.privacy.private')]" :selected="$campaign->entity_personality_visibility ?? null" />
             </x-forms.field>
         </x-grid>
     </x-grid>

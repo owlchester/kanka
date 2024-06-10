@@ -38,12 +38,7 @@
                     {{ __('campaigns/sidebar.helpers.reordering') }}
                 </p>
             </x-tutorial>
-            {!! Form::open([
-                'route' => ['campaign-sidebar-save', $campaign],
-                'method' => 'POST',
-                'class' => 'sidebar-setup form-inline form-mobile-inline',
-                'data-shortcut' => 1
-            ]) !!}
+            <x-form :action="['campaign-sidebar-save', $campaign]" class="sidebar-setup form-inline form-mobile-inline">
         <x-box>
             <x-grid type="1/1">
             <ul class="list-none m-0 p-0 flex flex-col gap-2 sidebar-sortable nested-sortable">
@@ -58,7 +53,7 @@
                             </span>
                             <input type="text" class="w-20 lg:w-40" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] ?? null }}" placeholder="{{ $setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
                         </div>
-                        <input type="text" class="w-40 lg:w-80" name="{{ $name }}_label" value="{{ $setup['custom_label'] ?? null }}" placeholder="{{ $setup['label'] ?? __($setup['label_key'])  }}" maxlength="90" />
+                        <input type="text" class="w-40 lg:w-80" name="{{ $name }}_label" value="{!! $setup['custom_label'] ?? null !!}" placeholder="{{ $setup['label'] ?? __($setup['label_key'])  }}" maxlength="90" />
                         <span class="text-neutral-content text-xs hidden md:!inline">( {{ $setup['label'] ?? __($setup['label_key']) }} )</span>
                         <input type="hidden" name="order[{{ $name }}]" value="1" />
                     </div>
@@ -68,7 +63,7 @@
                     @endif
 
                     <input type="hidden" name="order[{{ $name }}_start]" value="1" />
-                    {!! Form::hidden('section_' . $name . '_start', 1) !!}
+                    <input type="hidden" name="section_{{ $name }}_start" value="1" />
                     <ul class="list-none mt-2 m-0 p-0 pl-4 sidebar-sortable nested-sortable basis-full flex flex-col gap-2">
                         @foreach ($setup['children'] as $childName => $child)
                             <li class="flex md:items-center flex-wrap @if (\Illuminate\Support\Arr::get($child, 'disabled') === true) alert-warning @endif" id="{{ $childName }}">
@@ -81,7 +76,7 @@
                                         </span>
                                         <input type="text" class="w-20 lg:w-40" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] ?? null }}" placeholder="{{ $child['icon'] ?? null }}" data-paste="fontawesome" maxlength="50" />
                                     </div>
-                                    <input type="text" class="w-40 lg:w-80" name="{{ $childName }}_label" value="{{ $child['custom_label'] ?? null }}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" />
+                                    <input type="text" class="w-40 lg:w-80" name="{{ $childName }}_label" value="{!! $child['custom_label'] ?? null !!}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" />
                                     <span class="hidden md:flex text-neutral-content text-xs">
                                         ( {{ $child['label'] ?? __($child['label_key']) }}
                                         @if (\Illuminate\Support\Arr::get($child, 'disabled') === true) <i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}"></i>
@@ -94,7 +89,7 @@
                         @endforeach
                     </ul>
                     <input type="hidden" name="order[{{ $name }}_end]" value="1" />
-                    {!! Form::hidden('section_' . $name . '_end', 1) !!}
+                    <input type="hidden" name="section_{{ $name }}_end" value="1" />
                 </li>
             @endforeach
             </ul>
@@ -110,7 +105,7 @@
             </div>
             </x-grid>
         </x-box>
-        {!! Form::close() !!}
+        </x-form>
         @endif
     </div>
 
@@ -118,13 +113,7 @@
 
 @section('modals')
 
-    {!! Form::open([
-        'method' => 'DELETE',
-        'route' => [
-            'campaign-sidebar-reset',
-            $campaign
-        ]
-    ]) !!}
+    <x-form method="DELETE" :action="['campaign-sidebar-reset', $campaign]">
     <x-dialog id="reset-confirm" :title="__('campaigns/sidebar.reset.title')">
         <p>{{ __('campaigns/sidebar.reset.warning') }}</p>
 
@@ -138,5 +127,5 @@
                 </x-buttons.confirm>
         </div>
     </x-dialog>
-    {!! Form::close() !!}
+    </x-form>
 @endsection

@@ -13,54 +13,48 @@ if (!empty($era)) {
 
 <x-grid>
     <x-forms.field field="era" css="md:col-span-2" :required="true" :label="__('timelines/elements.fields.era')">
-        {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => '', 'id' => 'element-era-id']) !!}
+        <x-forms.select name="era_id" :options="$timeline->eras->pluck('name', 'id')" :selected="$source->era_id ?? $model->era_id ?? null" id="element-era-id" />
     </x-forms.field>
 
     <x-forms.field field="name" :label="__('crud.fields.name')">
-        {!! Form::text('name', null, ['class' => '', 'placeholder' => __('timelines/elements.placeholders.name')]) !!}
+        <input type="text" name="name" placeholder="{{ __('timelines/elements.placeholders.name') }}" value="{!! old('name', $model->name ?? null) !!}" maxlength="191" />
     </x-forms.field>
 
     @include('cruds.fields.entity')
 
     <x-forms.field field="entry" css="md:col-span-2" :label="__('crud.fields.entry')">
-        {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'element-entry', 'name' => 'entry']) !!}
-        {!! Form::hidden('use_entity_entry', 0) !!}
+
+        <textarea name="entry"
+            id="element-entry"
+            class="html-editor"
+            rows="3"
+            >{!! old('entry', $model->entryForEdition ?? null) !!}</textarea>
+        <input type="hidden" name="use_entity_entry" value="0" />
         <x-checkbox :text="__('timelines/elements.fields.use_entity_entry')">
-            {!! Form::checkbox('use_entity_entry') !!}
+            <input type="checkbox" name="use_entity_entry" value="1" @if (old('use_entity_entry', $model->use_entity_entry ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 
     <x-forms.field field="date" :label="__('timelines/elements.fields.date')">
-        {!! Form::text('date', null, ['placeholder' => __('timelines/elements.placeholders.date'), 'class' => '', 'maxlength' => 45]) !!}
+        <input type="text" name="date" value="{{ old('date', $source->date ?? $model->date ?? null) }}" placeholder="{{ __('timelines/elements.placeholders.date') }}" maxlength="45" />
     </x-forms.field>
 
     <x-forms.field field="event-date" :label="__('timelines/elements.fields.use_event_date')">
-        {!! Form::hidden('use_event_date', 0) !!}
+        <input type="hidden" name="use_event_date" value="0" />
         <x-checkbox :text="__('timelines/elements.helpers.date')">
-            {!! Form::checkbox('use_event_date') !!}
+            <input type="checkbox" name="use_event_date" value="1" @if (old('use_event_date', $model->use_event_date ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 
     <x-forms.field field="position" :label="__('crud.fields.position')">
-        {!! Form::select('position', $positions, (!empty($model->position) ? -9999 : $oldPosition), ['class' => '', 'name' => 'position']) !!}
+        <x-forms.select name="position" :options="$positions" :selected="(!empty($model->position) ? -9999 : $oldPosition)" />
     </x-forms.field>
 
-    <x-forms.field field="colour" :label="__('crud.fields.colour')">
-        {!! Form::select('colour', FormCopy::colours(false), (!empty($model) ? null : 'grey'), ['class' => ' select2-colour']) !!}
-    </x-forms.field>
+    @include('cruds.fields.colour', ['default' => 'grey'])
 
     <x-forms.field field="icon" :label="__('timelines/elements.fields.icon')">
-        {!! Form::text(
-            'icon',
-            null,
-            ['class' => '',
-                'placeholder' => 'fa-solid fa-gem, ra ra-sword',
-                ($campaign->boosted() ? null : 'disabled'),
-                'list' => 'timeline-element-icon-list',
-                'autocomplete' => 'off',
-                'data-paste' => 'fontawesome',
-            ])
-        !!}
+
+        <input type="text" name="icon" value="{{ old('icon', $source->icon ?? $model->icon ?? null) }}" placeholder="fa-solid fa-gem, ra ra-sword" class="w-full" autocomplete="off" data-paste="fontawesome" list="timeline-element-icon-list" maxlength="45" @if (!$campaign->boosted()) disabled="disabled" @endif />
         <div class="hidden">
             <datalist id="timeline-element-icon-list">
                 @foreach (\App\Facades\TimelineElementCache::iconSuggestion() as $icon)
@@ -77,12 +71,12 @@ if (!empty($era)) {
             @if (auth()->check() && auth()->user()->hasBoosters())
                 <x-helper>
                     <x-icon class="premium" />
-                    {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaign])]) !!}
+                    {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}
                 </x-helper>
             @else
                 <x-helper>
                     <x-icon class="premium" />
-                    {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
+                    {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaign') . '</a>']) !!}
                 </x-helper>
             @endif
         @endif
@@ -91,9 +85,9 @@ if (!empty($era)) {
     @include('cruds.fields.visibility_id')
 
     <x-forms.field field="collapsed" :label="__('timelines/eras.fields.is_collapsed')">
-        {!! Form::hidden('is_collapsed', 0) !!}
+        <input type="hidden" name="is_collapsed" value="0" />
         <x-checkbox :text="__('timelines/elements.helpers.is_collapsed')">
-            {!! Form::checkbox('is_collapsed', 1) !!}
+            <input type="checkbox" name="is_collapsed" value="1" @if (old('is_collapsed', $model->is_collapsed ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 </x-grid>

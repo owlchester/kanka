@@ -1,6 +1,6 @@
 <li data-ago="{{ isset($future) ? $reminder->inDays() : $reminder->daysAgo() }}" class="flex gap-2">
     <div class="grow">
-        {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
+        <a href="{{ $reminder->entity->url() }}">{!! $reminder->entity->name !!}</a>
 
         @if (app()->environment('local'))
             @if (isset($future))

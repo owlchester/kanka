@@ -22,13 +22,12 @@
 /** @var \App\Services\PermissionService $permissionService */
 $permissions = $permissionService->type($entity->type_id)->entityPermissions($entity);
 @endphp
-    {!! Form::open(['route' => ['entities.permissions', $campaign, $entity->id], 'method'=>'POST', 'data-shortcut' => '1']) !!}
-
-    @include('partials.forms.form', [
-        'title' => __('crud.permissions.title', ['name' => $entity->name]),
-        'content' => 'cruds.permissions.permissions_table',
-        'dialog' => true,
-    ])
-    {!! Form::hidden('entity_id', $entity->id) !!}
-    {!! Form::close() !!}
+    <x-form :action="['entities.permissions', $campaign, $entity->id]">
+        @include('partials.forms.form', [
+            'title' => __('crud.permissions.title', ['name' => $entity->name]),
+            'content' => 'cruds.permissions.permissions_table',
+            'dialog' => true,
+        ])
+        <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
+    </x-form>
 @endsection

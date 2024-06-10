@@ -15,16 +15,11 @@
             <x-alert type="info">
                 <p class="m-0">
                     {!! __('campaigns/builder.help', [
-                    'docs' => link_to('https://docs.kanka.io/en/latest/features/campaigns/theme-builder.html', __('footer.documentation', ['target' => '_blank']))
+                    'docs' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/campaigns/theme-builder.html">' . __('footer.documentation') . '</a>'
                 ]) !!}
             </x-alert>
 
-            {!! Form::open([
-                'route' => ['campaign_styles.builder-save', $campaign],
-                'method' => 'POST',
-                'data-shortcut' => 1,
-                'id' => 'theme-builder',
-            ]) !!}
+            <x-form :action="['campaign_styles.builder-save', $campaign]" id="theme-builder">
 
             @include('partials.errors')
             <x-box>
@@ -111,14 +106,10 @@
             <div class="hidden">
                 <textarea id="field-theme" name="config">{!! $config !!}</textarea>
             </div>
-            {!! Form::close() !!}
+            </x-form>
 
             @if(!empty($config))
-                {!! Form::open([
-                'method' => 'DELETE',
-                'route' => ['campaign_styles.builder-reset', $campaign],
-                'id' => 'delete-reset']) !!}
-                {!! Form::close() !!}
+                <x-form method="DELETE" :action="['campaign_styles.builder-reset', $campaign]" id="delete-reset" />
             @endif
 
             @include('campaigns.styles._preview')

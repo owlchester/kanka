@@ -80,16 +80,12 @@
             <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
                 {{ __('crud.cancel') }}
             </x-buttons.confirm>
-            {!! Form::open([
-                'method' => 'POST',
-                'route' => 'notifications.clear-all',
-                'id' => 'notifications-clear'
-            ]) !!}
+            <x-form :action="['notifications.clear-all']" id="notifications-clear">
                 <x-buttons.confirm type="danger" full="true" ouline="true">
                     <x-icon class="trash"></x-icon>
                     <span>{{ __('crud.remove') }}</span>
                 </x-buttons.confirm>
-            {!! Form::close() !!}
+            </x-form>
         </div>
     </x-dialog>
 @endsection

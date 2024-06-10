@@ -31,7 +31,7 @@
     @else
         <x-alert type="warning">
             <p>
-                {!! __('settings.patreon.deprecated', ['subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))]) !!}
+                {!! __('settings.patreon.deprecated', ['subscription' => '<a href="' . route('settings.subscription') . '">' . __('settings.menu.subscription') . '</a>']) !!}
             </p>
         </x-alert>
     @endif
@@ -43,10 +43,11 @@
         <p class="">
             {{ __('settings.patreon.remove.text') }}
         </p>
-        {!! Form::model(auth()->user(), ['method' => 'DELETE', 'route' => ['settings.patreon.unlink'], 'class' => 'text-center w-full']) !!}
-        <x-buttons.confirm type="danger" outline="true" full="true">
-            {{ __('crud.click_modal.confirm') }}
-        </x-buttons.confirm>
-        {!! Form::close() !!}
+
+        <x-form method="DELETE" :action="['settings.patreon.unlink']" class="text-center">
+            <x-buttons.confirm type="danger" outline="true" full="true">
+                {{ __('crud.click_modal.confirm') }}
+            </x-buttons.confirm>
+        </x-form>
     </x-dialog>
 @endsection

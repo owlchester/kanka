@@ -17,10 +17,8 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['maps.map_layers.store', $campaign, $map], 'method' => 'POST', 'id' => 'map-layer-form', 'enctype' => 'multipart/form-data', 'data-maintenance' => 1]) !!}
-
+    <x-form :action="['maps.map_layers.store', $campaign, $map]" files id="map-layer-form">
         <x-box>
-
             @include('partials.errors')
 
             @include('maps.layers._form', ['model' => null])
@@ -35,5 +33,5 @@
             </x-box.footer>
     </x-box>
 
-    {!! Form::close() !!}
+    </x-form>
 @endsection

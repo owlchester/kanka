@@ -8,7 +8,7 @@
         field="parameters"
         :required="true"
         :label="__('dice_rolls.fields.parameters')">
-        {!! Form::text('parameters', FormCopy::field('parameters')->string(), ['placeholder' => __('dice_rolls.placeholders.parameters'), 'class' => '', 'maxlength' => 191]) !!}
+        <input type="text" name="parameters" value="{{ old('parameters', $source->parameters ?? $model->parameters ?? null) }}" maxlength="191" class="w-full" placeholder="{{ __('dice_rolls.placeholders.parameters') }}" />
         <a href="//docs.kanka.io/en/latest/entities/dice-rolls.html#creating-a-dice-roll-template" target="_blank">{{ __('dice_rolls.hints.parameters') }}</a>
     </x-forms.field>
     @include('cruds.fields.image')

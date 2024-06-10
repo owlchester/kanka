@@ -145,7 +145,7 @@ class ImporterService
             $model = $entity->child;
 
             if (!$this->skipUpdates) {
-                $this->updated[] = link_to($entity->url(), $entity->name);
+                $this->updated[] = '<a href="' . $entity->url() . '">' . $entity->name . '</a>';
             } else {
                 $this->skippedEntities[] = $pluginEntity->id;
             }
@@ -172,7 +172,7 @@ class ImporterService
             $this->entityTypes[$pluginEntity->id] = $model->getEntityType();
             $this->entityIds[$pluginEntity->id] = $model->entity->id;
 
-            $this->created[] = link_to($entity->url(), $model->name);
+            $this->created[] = '<a href="' . $entity->url() . '">' . $entity->name . '</a>';
         }
         $this->models[$pluginEntity->id] = $model;
     }

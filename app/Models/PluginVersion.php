@@ -519,7 +519,7 @@ class PluginVersion extends Model
                 'charges' => $abi->ability->charges,
                 'used_charges' => $abi->charges,
                 'thumb' => '<img src="' . Avatar::entity($abi->ability->entity)->child($abi->ability)->size(40)->thumbnail() . '" class="ability-thumb"></i>',
-                'link' => link_to($abi->ability->getLink(), $abi->ability->name, ['class' => 'ability-link']),
+                'link' => '<a href="' . $abi->ability->getLink() . '" class="ability-link">' . $abi->ability->name . '</a>',
                 'tags' => $tags,
                 'parent' => $parent,
             ];

@@ -17,16 +17,13 @@ $options = [
     <?php return ?>
 @endif
 
-{!! Form::open([
-    'route' => ['entities.relations.index', $campaign, $entity],
-    'method' => 'GET',
-]) !!}
+<x-form :action="['entities.relations.index', $campaign, $entity]" method="GET">
     <div class="join w-full">
-        {!! Form::select('option', $options, $option, ['class' => 'w-full join-item']) !!}
+        <x-forms.select name="option" :options="$options" :selected="$option" class="w-full join-item" />
         <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn2 btn-primary btn-sm join-item" />
     </div>
-{!! Form::hidden('mode', 'map') !!}
-{!! Form::close() !!}
+    <input type="hidden" name="mode" value="map" />
+</x-form>
 
 <x-box css="box box-solid box-entity-relations box-entity-relations-explorer">
     <div class="text-center text-xg" id="spinner">

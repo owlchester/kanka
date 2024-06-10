@@ -13,10 +13,7 @@
 
 
 @section('content')
-    {!! Form::open([
-        'route' => ['bookmarks.reorder-save', $campaign],
-        'method' => 'POST',
-    ]) !!}
+    <x-form :action="['bookmarks.reorder-save', $campaign]">
     <x-grid type="1/1">
         @include('partials.errors')
 
@@ -28,7 +25,7 @@
             <div class="element-live-reorder sortable-elements flex flex-col gap-2">
                 @foreach($links as $link)
                     <div class="element bg-base-200 rounded flex gap-2 p-2" data-id="{{ $link->id }}">
-                        {!! Form::hidden('bookmark[]', $link->id) !!}
+                        <input type="hidden" name="bookmark[]" value="{{ $link->id }}" />
                         <div class="dragger pr-3">
                             <span class="fa-solid fa-ellipsis-v" aria-hidden="true"></span>
                         </div>
@@ -49,5 +46,5 @@
             {{ __('crud.save') }}
         </button>
     </x-grid>
-    {!! Form::close() !!}
+    </x-form>
 @endsection

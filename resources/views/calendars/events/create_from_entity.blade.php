@@ -11,13 +11,7 @@
 ])
 @section('content')
 
-    {!! Form::open([
-        'method' => 'POST',
-        'route' => ['entities.entity_events.store', $campaign, $entity->id],
-        'data-shortcut' => 1,
-        'class' => 'ajax-subform',
-        'data-maintenance' => 1,
-    ]) !!}
+    <x-form :action="['entities.entity_events.store', $campaign, $entity->id]" class="ajax-subform">
 
     @include('partials.forms.form', [
         'title' => __('calendars.event.create.title', ['name' => $entity->name]),
@@ -26,9 +20,9 @@
         'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
     ])
 
-    {!! Form::hidden('entity_id', $entity->id) !!}
+    <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
     @if (!empty($next))
         <input type="hidden" name="next" value="{{ $next }}" />
     @endif
-    {!! Form::close() !!}
+    </x-form>
 @endsection

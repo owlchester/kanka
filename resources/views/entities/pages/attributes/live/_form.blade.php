@@ -4,7 +4,7 @@
         <input type="hidden" name="value" value="" />
         <input type="checkbox" name="value" @if($attribute->value) checked="checked" @endif />
     @elseif ($attribute->isText())
-        {!! Form::textarea('value', $attribute->value, ['class' => '', 'rows' => 4]) !!}
+        <textarea name="value" class="w-full" rows="4">{!! $attribute->value !!}</textarea>
     @elseif ($attribute->isNumber())
         <input type="number" name="value" class="" maxlength="20" value="{{ $attribute->value }}"
                @if ($attribute->validConstraints()) max="{{ $attribute->numberMax() }}" min="{{ $attribute->numberMin() }}" @endif />

@@ -7,51 +7,49 @@
  */
 $(document).ready(function () {
     initSubforms();
-    $(document).on('shown.bs.modal shown.bs.popover', function () {
+    $(document).on('shown.bs.modal', function () {
         initSubforms();
     });
 });
 
-function initSubforms() {
-    let subForms = $('.ajax-subform');
-    if (subForms.length === 0) {
-        return;
-    }
-    //remove current submit event just in case it isn't clear
-    subForms.off('submit');
-    subForms.on('submit', function (e) {
-        // If the form is valid, submit it for real this time (ajax submit worked)
-        let formIsValid = $(this).attr('is-valid');
-        if (formIsValid) {
-            return true;
-        }
+const initSubforms = () => {
+    let subForms = document.querySelectorAll('.ajax-subform');
+    subForms.forEach(function(subform) {
+        //subform.removeEventListener('submit');
+        subform.onsubmit = function(e) {
+            // If the form is valid, submit it for real this time (ajax submit worked)
+            // let formIsValid = subform.getAttribute('is-valid');
+            // if (formIsValid) {
+            //     return true;
+            // }
 
-        // Disable global alert when redirection occurs
-        window.entityFormHasUnsavedChanges = false;
-        e.preventDefault();
-        startAnimation($(this));
+            // Disable global alert when redirection occurs
+            window.entityFormHasUnsavedChanges = false;
+            e.preventDefault();
+            startAnimation($(subform));
 
-        let formData = new FormData(this);
-        $.ajax({
-            url: $(this).attr('action'),
-            method: $(this).attr('method'),
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            context: this,
-        }).done(function () {
-            // If the validation succeeded, confirm its validity
-            $(this).attr('is-valid', true);
-            $(this).off('submit');
-            //console.log('form is valid?', currentAjaxForm, currentAjaxForm.attr('is-valid'));
-            // resubmit the form
-            $(this).submit();
-        }).fail(function (err) {
-            displayErrors($(this), err);
-        });
+            let formData = new FormData(subform);
+            $.ajax({
+                url: subform.getAttribute('action'),
+                method: subform.getAttribute('method'),
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                context: subform,
+            }).done(function () {
+                // If the validation succeeded, confirm its validity
+                // subform.setAttribute('is-valid', 'true');
+                subform.submit();
+                // return true;
+            }).fail(function (err) {
+                displayErrors($(this), err);
+            });
+        };
     });
-}
+    //remove current submit event just in case it isn't clear
+
+};
 
 const displayErrors = (form, error) => {
     //console.debug('error', err);
@@ -109,7 +107,7 @@ const displayErrors = (form, error) => {
 
     // Reset submit buttons
     stopAnimation(form);
-} ;
+};
 
 const startAnimation = (form) => {
     form.find('.submit-group').find('.btn2').addClass('btn-disabled');

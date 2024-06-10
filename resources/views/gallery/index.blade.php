@@ -100,7 +100,7 @@ if ($folder) {
                     </div>
                 </div>
             </div>
-            {!! Form::hidden('folder_id', $folder?->id) !!}
+            <input type="hidden" name="folder_id" value="{{ $folder?->id }}" />
         </form>
         @endcan
 

@@ -10,13 +10,12 @@
 ])
 
 @section('content')
-    {!! Form::model($role, ['method' => 'PATCH', 'route' => ['campaign_roles.update', $campaign, $role->id], 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
-
-    @include('partials.forms.form', [
+    <x-form :action="['campaign_roles.update', $campaign, $role->id]" method="PATCH" class="entity-form">
+        @include('partials.forms.form', [
             'title' => __('campaigns.roles.edit.title', ['name' => $role->name]),
             'content' => 'campaigns.roles._form',
             'submit' => __('campaigns.roles.actions.rename'),
             'dialog' => true,
         ])
-    {!! Form::close() !!}
+    </x-form>
 @endsection

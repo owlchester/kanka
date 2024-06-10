@@ -3,5 +3,5 @@
     :label="__('dashboard.widgets.fields.name')"
     :tooltip="true"
     :helper="isset($random) ?__('dashboard.widgets.random.helpers.name') : null">
-    {!! Form::text('config[text]', null, ['class' => '']) !!}
+    <input type="text" name="config[text]" value="{{ old('config[text]', $model->config['text'] ?? null) }}" maxlength="191" class="w-full" id="config[text]" placeholder="" />
 </x-forms.field>

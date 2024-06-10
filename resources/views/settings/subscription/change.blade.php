@@ -59,12 +59,12 @@
         <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
             @if (! $limited)
             <div role="tabpanel" class="tab-pane active" id="card">
-                {!! Form::open(['route' => ['settings.subscription.subscribe', 'tier' => $tier], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
+                <x-form :action="['settings.subscription.subscribe', 'tier' => $tier]" id="subscription-confirm">
 
                 <x-grid type="1/1" css="text-left">
                 @if (!$card)
                     <x-forms.field field="card-name" :label="__('settings.subscription.payment_method.card_name')">
-                        {!! Form::text('card-holder-name', null, ['class' => '']) !!}
+                        <input type="text" name="card-holder-name"  />
                     </x-forms.field>
 
                     <x-forms.field field="card-number" :label="__('settings.subscription.payment_method.card')">
@@ -84,24 +84,17 @@
 
                         <div class="field-reason">
                             <label>{{ __('settings.subscription.fields.reason') }}</label>
-                            {!! Form::select('reason', [
+
+                            @php $reasons = [
                                 '' => __('crud.select'),
                                 'financial' => __('settings.subscription.cancel.options.financial'),
                                 'not_using' => __('settings.subscription.cancel.options.not_using'),
                                 'missing_features' => __('settings.subscription.cancel.options.missing_features'),
                                 'custom' => __('settings.subscription.cancel.options.custom')
-                            ], null, ['class' => 'w-full select-reveal-field', 'data-change-target' => '#downgrade-reason-custom']) !!}
-                            {!! Form::textarea(
-                                'reason_custom',
-                                null,
-                                [
-                                    'placeholder' => __('settings.subscription.placeholders.downgrade_reason'),
-                                    'class' => '',
-                                    'style' => 'display: none',
-                                    'rows' => 4,
-                                    'id' => 'downgrade-reason-custom'
-                                ]
-                            )!!}
+                            ]; @endphp
+                            <x-forms.select name="reason" :options="$reasons" class="w-full select-reveal-field" :extra="['data-change-target' => '#downgrade-reason-custom']" />
+
+                            <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.downgrade_reason') }}" class="w-full" rows="4" id="downgrade-reason-custom" style="display: none"></textarea>
                         </div>
 
                     @endif
@@ -118,7 +111,7 @@
                 <input type="hidden" name="period" value="{{ $period->isYearly() ? 'yearly' : 'monthly' }}" />
                 <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
                 <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
-                {!! Form::close() !!}
+                </x-form>
             </div>
             @endif
             <div role="tabpanel" class="tab-pane {{ $limited ? 'active' : null }}" id="paypal">
@@ -144,7 +137,7 @@
                         </x-alert>
                     @endif
 
-                    {!! Form::open(['route' => ['paypal.process-transaction', 'tier' => $tier], 'method' => 'POST', 'class' => 'subscription-form flex flex-row gap-5']) !!}
+                    <x-form :action="['paypal.process-transaction', 'tier' => $tier]" class="subscription-form flex flex-row gap-5">
                         <p class="help-block">
                             {{ __('settings.subscription.helpers.paypal_v3') }}
                         </p>
@@ -158,7 +151,7 @@
                         <input type="hidden" name="period" value="{{ $period->isYearly() ? 'yearly' : 'monthly' }}" />
                         <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
                         <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
-                    {!! Form::close() !!}
+                    </x-form>
                     @endif
                 @endif
                 </x-grid>
@@ -167,9 +160,9 @@
     </div>
 
         <p class="help-block">
-            {!! __('settings.subscription.helpers.stripe', ['stripe' => link_to('https://stripe.com', 'Stripe', ['target' => '_blank'])]) !!}
+            {!! __('settings.subscription.helpers.stripe', ['stripe' => '<a href="https://stripe.com" target="_blank">Stripe</a>']) !!}
     @if($isYearly)
-            <br />{!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
+            <br />{!! __('settings.subscription.trial_period', ['email' => '<a href="mailto' . config('app.email') . '">' . config('app.email') . '</a>']) !!}
     @endif
         </p>
     </div></x-grid>

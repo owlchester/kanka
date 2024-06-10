@@ -39,7 +39,7 @@ $first = true;
     @foreach ($permissions['permissions'] as $perm)
         <div class="text-center md:w-40 overflow-hidden">
             <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
-                {!! Form::checkbox('permissions[' . $perm['key'] . ']', $permissions['entityType']->id, $perm['enabled'], ['data-action' => $perm['action']]) !!}
+                <input type="checkbox" name="permissions[{{ $perm['key'] }}]" value="{{ $permissions['entityType']->id }}" @if ($perm['enabled']) checked="checked" @endif data-action="{{ $perm['action'] }}" />
                 <div class="state p-success-o p-on">
                     <x-icon class="icon {{ $perm['icon'] }}" />
                     <label class="sm:hidden">
@@ -89,7 +89,7 @@ $first = true;
     @foreach ($permissions as $perm)
         <div class="md:w-40 overflow-hidden">
             <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
-                {!! Form::checkbox('permissions[' . $perm['key'] . ']', $entity, $perm['enabled'], ['data-action' => $perm['action']]) !!}
+                <input type="checkbox" name="permissions[{{ $perm['key'] }}]" value="{{ $entity }}" @if ($perm['enabled']) checked="checked" @endif data-action="{{ $perm['action'] }}" />
                 <div class="state p-success-o p-on">
                     <x-icon class="icon {{ $perm['icon'] }}" />
                     <label class="sm:hidden">
@@ -117,7 +117,7 @@ $first = true;
         @foreach ($permissions as $perm)
             <div class="md:w-40 overflow-hidden">
                 <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
-                    {!! Form::checkbox('permissions[' . $perm['key'] . ']', $entity, $perm['enabled'], ['data-action' => $perm['action']]) !!}
+                    <input type="checkbox" name="permissions[{{ $perm['key'] }}]" value="{{ $entity }}" @if ($perm['enabled']) checked="checked" @endif data-action="{{ $perm['action'] }}" />
                     <div class="state p-success-o p-on">
                         <x-icon class="icon {{ $perm['icon'] }}" />
                         <label class="sm:hidden">

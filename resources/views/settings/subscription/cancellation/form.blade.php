@@ -8,12 +8,7 @@
 
 <article class="text-center max-w-xl container">
 
-    {!! Form::open([
-        'route' => ['settings.subscription.cancel'],
-        'method' => 'POST',
-        'id' => 'cancellation-confirm',
-        'class' => 'subscription-form text-left'
-    ]) !!}
+    <x-form :action="['settings.subscription.cancel']" id="cancellation-confirm" class="subscription-form text-left">
         <x-grid type="1/1">
 
             <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
@@ -24,27 +19,18 @@
 
             <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">
                 <x-grid type="1/1">
-                    {!! Form::select('reason', [
-                '' => __('crud.select'),
-                'financial' => __('settings.subscription.cancel.options.financial'),
-                'not_for' => __('settings.subscription.cancel.options.not_for'),
-                'not_using' => __('settings.subscription.cancel.options.not_using'),
-                'not_playing' => __('settings.subscription.cancel.options.not_playing'),
-                'missing_features' => __('settings.subscription.cancel.options.missing_features'),
-                'competitor' => __('settings.subscription.cancel.options.competitor'),
-                'custom' => __('settings.subscription.cancel.options.other')
-                ], null, ['class' => 'w-full']) !!}
-
-                    {!! Form::textarea(
-                        'reason_custom',
-                        null,
-                        [
-                            'placeholder' => __('settings.subscription.placeholders.reason'),
-                            'class' => 'w-full',
-                            'rows' => 4,
-                            'id' => 'cancel-reason-custom'
-                        ]
-                    ) !!}
+                    @php $reasons = [
+                        '' => __('crud.select'),
+                        'financial' => __('settings.subscription.cancel.options.financial'),
+                        'not_for' => __('settings.subscription.cancel.options.not_for'),
+                        'not_using' => __('settings.subscription.cancel.options.not_using'),
+                        'not_playing' => __('settings.subscription.cancel.options.not_playing'),
+                        'missing_features' => __('settings.subscription.cancel.options.missing_features'),
+                        'competitor' => __('settings.subscription.cancel.options.competitor'),
+                        'custom' => __('settings.subscription.cancel.options.other')
+                    ]; @endphp
+                    <x-forms.select name="reason" :options="$reasons" class="w-full" />
+                    <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.reason') }}" class="w-full" rows="4" id="cancel-reason-custom"></textarea>
                 </x-grid>
             </x-forms.field>
 
@@ -53,5 +39,5 @@
                 <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
             </button>
         </x-grid>
-    {!! Form::close() !!}
+    </x-form>
 </article>

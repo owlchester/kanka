@@ -11,8 +11,7 @@
                     </div>
 
                     <div class="flex items-center gap-2">
-                        {!! Form::select('perm_role_perm[]', $permissions, $perm->permission, ['class' => ' grow']) !!}
-
+                        <x-forms.select name="perm_role_perm[]" :options="$permissions" :selected="$perm->permission" class="grow" />
                         <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                             <x-icon class="trash"></x-icon>
                             <span class="sr-only">{{ __('crud.remove') }}</span>
@@ -31,7 +30,7 @@
                     </div>
 
                     <div class="flex items-center gap-2">
-                        {!! Form::select('perm_user_perm[]', $permissions, $perm->permission, ['class' => ' grow']) !!}
+                        <x-forms.select name="perm_user_perm[]" :options="$permissions" :selected="$perm->permission" class="grow" />
 
                         <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                             <x-icon class="trash"></x-icon>
@@ -51,7 +50,7 @@
             <i class="fa-solid fa-users" aria-hidden="true"></i> {{ __('entities/notes.actions.add_role') }}
         </a>
     </div>
-    {!! Form::hidden('permissions', true) !!}
+    <input type="hidden" name="permissions" value="1" />
 </div>
 
 @section('modals')
@@ -81,9 +80,7 @@
             </div>
 
             <div class="flex items-center gap-2">
-                {!! Form::select('perm_user_perm[]', $permissions, null, [
-                    'class' => ' grow'
-                ]) !!}
+                <x-forms.select name="perm_user_perm[]" :options="$permissions" class="grow" />
                 <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                     <x-icon class="trash"></x-icon>
                 </button>
@@ -96,9 +93,7 @@
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="w-full join-item" />
             </div>
             <div class="flex items-center gap-2">
-                {!! Form::select('perm_role_perm[]', $permissions, null, [
-                    'class' => ' grow'
-                ]) !!}
+                <x-forms.select name="perm_role_perm[]" :options="$permissions" class="grow" />
                 <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                     <x-icon class="trash"></x-icon>
                 </button>

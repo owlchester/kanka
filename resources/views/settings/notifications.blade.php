@@ -17,7 +17,7 @@
         </p>
         <x-forms.field field="mail-release" :label="__('profiles.newsletter.options.monthly')">
             <x-checkbox :text="__('front/newsletter.groups.all')">
-                {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
+                <input type="checkbox" name="mail_release" value="1" @if (old('mail_release', $user->mail_release ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
     </x-grid>

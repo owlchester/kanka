@@ -55,6 +55,9 @@ const openDialog = (target, url, focus) => {
         loadDialogContent(url, target);
     } else if(focus) {
         let focusEle = document.querySelector(focus);
+        if (!focusEle) {
+            return;
+        }
         focusEle.focus();
     }
 };

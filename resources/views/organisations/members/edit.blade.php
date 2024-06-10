@@ -6,13 +6,12 @@
     ]
 ])
 @section('content')
-    {!! Form::model($member, ['method' => 'PATCH', 'route' => ['organisations.organisation_members.update', $campaign, $model->id, $member->id], 'data-shortcut' => 1]) !!}
-
-    @include('partials.forms.form', [
-        'title' => __('organisations.members.edit.title', ['name' => $model->name]),
-        'content' => 'organisations.members._form',
-        'dialog' => true,
-    ])
-    {!! Form::hidden('organisation_id', $model->id) !!}
-    {!! Form::close() !!}
+    <x-form :action="['organisations.organisation_members.update', $campaign, $model->id, $member->id]" method="PATCH" class="ajax-subform">
+        @include('partials.forms.form', [
+            'title' => __('organisations.members.edit.title', ['name' => $model->name]),
+            'content' => 'organisations.members._form',
+            'dialog' => true,
+        ])
+        <input type="hidden" name="organisation_id" value="{{ $model->id }}" />
+    </x-form>
 @endsection

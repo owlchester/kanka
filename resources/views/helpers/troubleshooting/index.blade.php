@@ -8,7 +8,7 @@
     <div class="max-w-2xl mx-auto">
         <h1 class="mb-3">{{ __('helpers.troubleshooting.subtitle') }}</h1>
 
-        {!! Form::open(['route' => 'troubleshooting.generate', 'method' => 'POST']) !!}
+        <x-form action="'troubleshooting.generate">
         <x-box>
             <x-grid type="1/1">
                 <p class="">
@@ -27,7 +27,7 @@
                 </x-alert>
             @else
                 <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
-                    {!! Form::select('campaign', $campaigns, null, ['class' => '']) !!}
+                    <x-forms.select name="campaign" :options="$campaigns" class="w-full" />
                 </x-forms.field>
             @endif
 
@@ -38,6 +38,6 @@
             @endif
             </x-grid>
         </x-box>
-        {!! Form::close() !!}
+        </x-form>
     </div>
 @endsection

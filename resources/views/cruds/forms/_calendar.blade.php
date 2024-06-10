@@ -16,8 +16,8 @@ if (!empty($oldCalendarID)) {
 }
 ?>
 @if (isset($model) && $model->hasCalendarButNoAccess())
-    {!! Form::hidden('calendar_id', $model->calendarReminder()->calendar_id) !!}
-    {!! Form::hidden('calendar_skip', true) !!}
+    <input type="hidden" name="calendar_id" value="{{ $model->calendarReminder()->calendar_id }}" />
+    <input type="hidden" name="calendar_skip" value="1" />
     @php return; @endphp
 @endif
 <div class="field-calendar-date">
@@ -31,7 +31,7 @@ if (!empty($oldCalendarID)) {
 
     <div class="entity-calendar-form" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
         @if (count($calendars) == 1)
-            {!! Form::hidden('calendar_id', isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : FormCopy::field('calendar_id')->string(), ['id' => 'calendar_id']) !!}
+            <input type="hidden" name="calendar_id" value="{{ isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : FormCopy::field('calendar_id')->string() }}" />
         @else
             <input type="hidden" name="calendar_id" />
             <div class="grid gap-2 md:gap-4 md:grid-cols-3 mb-4">
@@ -56,54 +56,53 @@ if (!empty($oldCalendarID)) {
                 <x-forms.field
                     field="year"
                     :label="__('calendars.fields.year')">
-                    {!! Form::number(
-                        'calendar_year',
-                        FormCopy::field('calendar_year')->string(),
-                        ['class' => '']
-                    ) !!}
+
+                    <input type="number" name="calendar_year" class="w-full" value="{{ FormCopy::field('calendar_year')->string() ?: old('calendar_year', $model->calendar_year ?? null) }}" />
                 </x-forms.field>
 
                 <x-forms.field
                     field="month"
                     :label="__('calendars.fields.month')">
-                    {!! Form::select(
-                        'calendar_month',
-                        (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])),
-                        FormCopy::field('calendar_month')->string(),
-                        ['class' => ''],
-                        (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthDataProperties(): (!empty($calendar) ? $calendar->monthDataProperties() : []))
-                    ) !!}
+                    <x-forms.select
+                        name="calendar_month"
+                        :options="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : []))"
+                        :selected="$source->calendar_month ?? $model->calendar_month ?? null"
+                        :optionAttributes="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthDataProperties(): (!empty($calendar) ? $calendar->monthDataProperties() : []))" />
                 </x-forms.field>
 
                 <x-forms.field
                     field="day"
                     :label="__('calendars.fields.day')">
-                    {!! Form::select(
-                        'calendar_day',
-                        (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->dayList($model->calendarReminder()->month) : (!empty($calendar) ? $calendar->dayList() : [])),
-                        FormCopy::field('calendar_day')->string(),
-                        ['class' => '']
-                    ) !!}
+                    <x-forms.select
+                        name="calendar_day"
+                        :options="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->dayList($model->calendarReminder()->month) : (!empty($calendar) ? $calendar->dayList() : []))"
+                        :selected="$source->calendar_day ?? $model->calendar_day ?? null"
+                    />
                 </x-forms.field>
 
                 <x-forms.field
                     field="length"
                     :label="__('calendars.fields.length')">
-                    {!! Form::number('calendar_length', FormCopy::field('calendar_length')->string(), ['class' => '']) !!}
+                    <input type="number" name="calendar_length" class="w-full" value="{{ FormCopy::field('calendar_length')->string() ?: old('calendar_length', $model->calendar_length ?? null) }}" />
                 </x-forms.field>
 
                 <x-forms.field
                     field="colour"
                     :label="__('crud.fields.colour')">
                     <span>
-                    {!! Form::text('calendar_colour', FormCopy::field('calendar_colour')->string(), ['class' => ' spectrum', 'maxlength' => 7]) !!}
+                        <input type="text" name="calendar_colour" value="{{ old('calendar_colour', $source->calendar_colour ?? $model->calendar_colour ?? null) }}" maxlength="7" class="spectrum" />
                     </span>
                 </x-forms.field>
 
                 <x-forms.field
                     field="periodicity"
                     :label="__('calendars.fields.recurring_periodicity')">
-                     {!! Form::select('calendar_recurring_periodicity', (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : [])), null, ['class' => 'reminder-periodicity']) !!}
+                    <x-forms.select
+                        name="calendar_recurring_periodicity"
+                        :options="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : []))"
+                        :selected="$source->calendar_recurring_periodicity ?? $model->calendar_recurring_periodicity ?? null"
+                        class="reminder-periodicity"
+                        />
                 </x-forms.field>
             </div>
         </div>

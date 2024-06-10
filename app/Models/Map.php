@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
@@ -645,30 +644,6 @@ class Map extends MiscModel
             return false;
         }
         return !($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));
-    }
-
-    /**
-     * The explore link for a map, or the chunking process icon
-     */
-    public function exploreLink(): string
-    {
-        if (!$this->explorable()) {
-            return '';
-        }
-        if ($this->isChunked()) {
-            if ($this->chunkingError()) {
-                return '<i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" data-title="' .
-                    __('maps.errors.chunking.error', ['discord' => 'Discord']) . '"></i>';
-            } elseif ($this->chunkingRunning()) {
-                return '<i class="fa-solid fa-spin fa-spinner" data-toggle="tooltip" data-title="' .
-                    __('maps.tooltips.chunking.running') . '"></i>';
-            }
-        }
-        $campaign = CampaignLocalization::getCampaign();
-        return '<a href="' . route('maps.explore', [$campaign, $this->id]) . '" target="_blank" ' .
-            'data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '">' .
-            '<i class="fa-solid fa-map" data-tree="escape"></i>' .
-            '</a>';
     }
 
     /**

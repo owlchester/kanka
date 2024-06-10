@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasFilters;
 use App\Traits\CampaignTrait;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -18,10 +20,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $target_id
  * @property bool $is_private
  * @property bool $is_closed
+ *
+ * @property ConversationParticipant[]|Collection $participants
+ * @property ConversationMessage[]|Collection $messages
  */
 class Conversation extends MiscModel
 {
-    use Acl    ;
+    use Acl;
     use CampaignTrait;
     use HasFactory;
     use HasFilters;
@@ -37,8 +42,8 @@ class Conversation extends MiscModel
         'is_closed'
     ];
 
-    public const TARGET_USERS = 1;
-    public const TARGET_CHARACTERS = 2;
+    public const int TARGET_USERS = 1;
+    public const int TARGET_CHARACTERS = 2;
 
     /**
      * Entity type
@@ -60,27 +65,20 @@ class Conversation extends MiscModel
 
     /**
      * Set to false if this entity type doesn't have relations
-     * @var bool
      */
-    public $hasRelations = false;
+    public bool $hasRelations = false;
 
     /**
      * @var string[] Extra relations loaded for the API endpoint
      */
     public array $apiWith = ['messages', 'participants'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function messages()
+    public function messages(): HasMany
     {
         return $this->hasMany('App\Models\ConversationMessage', 'conversation_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function participants()
+    public function participants(): HasMany
     {
         return $this->hasMany('App\Models\ConversationParticipant', 'conversation_id');
     }
@@ -89,7 +87,7 @@ class Conversation extends MiscModel
      * Get a list of participants
      * @return array
      */
-    public function participantsList($withNames = true, $users = false)
+    public function participantsList(bool $withNames = true, bool $users = false)
     {
         $participants = [];
         foreach ($this->participants as $participant) {

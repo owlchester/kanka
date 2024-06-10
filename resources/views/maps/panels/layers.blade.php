@@ -9,11 +9,17 @@
 </h3>
 
 <div class="" id="map-layers">
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.layers.bulk', $campaign, 'map' => $model]]) !!} @endif
-    <div id="datagrid-parent">
-        @include('layouts.datagrid._table', ['responsive' => true])
-    </div>
-    @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+    @if(Datagrid::hasBulks())
+        <x-form :action="['maps.layers.bulk', $campaign, 'map' => $model]">
+            <div id="datagrid-parent">
+                @include('layouts.datagrid._table', ['responsive' => true])
+            </div>
+        </x-form>
+    @else
+        <div id="datagrid-parent">
+            @include('layouts.datagrid._table', ['responsive' => true])
+        </div>
+    @endif
 
 </div>
 @includeWhen($rows->count() > 1, 'maps.layers._reorder')

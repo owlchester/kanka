@@ -59,12 +59,8 @@
                             </td>
                             <td class="text-right">
                                 <x-button.delete-confirm size="sm" target="#delete-invite-{{ $relation->id}}" />
-                                {!! Form::open(['method' => 'DELETE',
-                                    'route' => ['campaign_invites.destroy', $campaign, $relation->id],
-                                    'style'=>'display:inline',
-                                    'id' => 'delete-invite-' . $relation->id])
-                                !!}
-                                {!! Form::close() !!}
+
+                                <x-form method="DELETE" :action="['campaign_invites.destroy', $campaign, $relation->id]" id="delete-invite-{{ $relation->id }}" />
                             </td>
                         </tr>
                     @endforeach

@@ -1,7 +1,4 @@
-{!! Form::open([
-    'route' => ['campaign_styles.reorder-save', $campaign],
-    'method' => 'POST',
-]) !!}
+<x-form :action="['campaign_styles.reorder-save', $campaign]">
 <div class="flex flex-col gap-5">
     <h3 class="">
         {{ __('campaigns/styles.reorder.title') }}
@@ -10,7 +7,7 @@
         <div class="element-live-reorder sortable-elements flex flex-col gap-1">
             @foreach($reorderStyles as $style)
                 <x-reorder.child :id="$style->id">
-                    {!! Form::hidden('style[]', $style->id) !!}
+                    <input type="hidden" name="style[]" value="{{ $style->id }}"/>
                     <div class="pr-3">
                         <span class="fa-solid fa-ellipsis-v"></span>
                     </div>
@@ -30,4 +27,4 @@
         </div>
     </div>
 </div>
-{!! Form::close() !!}
+</x-form>

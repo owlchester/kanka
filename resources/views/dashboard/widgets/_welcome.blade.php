@@ -6,8 +6,8 @@
     <p>
         {!! __('dashboards/widgets/welcome.intros.1', [
 'user' => auth()->check() ? '<strong>' . auth()->user()->name . '</strong>' : __('crud.users.unknown'),
-'characters' => link_to_route('characters.index', __('entities.characters'), [$campaign]),
-'locations' => link_to_route('locations.index', __('entities.locations'), [$campaign]),
+'characters' => '<a href="' . route('characters.index', [$campaign]) . '">' . __('entities.characters') . '</a>',
+'locations' => '<a href="' . route('locations.index', [$campaign]) . '">' . __('entities.locations') . '</a>',
 ]) !!}
     </p>
 
@@ -18,7 +18,7 @@
             </a>',
             'letter' => '<kbd>N</kbd>',
             'characters' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-user" aria-hidden="true"></i> ' . __('entities.character') . '</span>',
-            'entities' => link_to('https://docs.kanka.io/en/latest/entities/overview.html', __('abilities.show.tabs.entities') . ' <i class="fa-solid fa-external-link" aria-hidden="true"></i>', ['target' => '_blank'], null, false),
+            'entities' => '<a target="_blank" href="https://docs.kanka.io/en/latest/entities/overview.html">' . __('abilities.show.tabs.entities') . ' <i class="fa-solid fa-external-link" aria-hidden="true"></i></a>',
         ]) !!}
     </p>
     <p class="font-bold">
@@ -30,7 +30,7 @@
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.1', [
     'code' => '<code>@</code>',
-    'mention' => link_to('https://docs.kanka.io/en/latest/features/mentions.html', __('dashboards/widgets/welcome.tricks.mention') . ' <i class="fa-solid fa-external-link" aria-hidden="true"></i>', ['target' => '_blank'], null, false)
+    'mention' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/mentions.html">' . __('dashboards/widgets/welcome.tricks.mention') . ' <i class="fa-solid fa-external-link" aria-hidden="true"></i></a>',
 ]) !!}
         </li>
         <li class="">
@@ -41,7 +41,7 @@
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.3', [
-    'posts' => link_to('https://docs.kanka.io/en/latest/features/posts.html', __('entities.posts') . ' <i class="fa-solid fa-external-link" aria-hidden="true"></i>', ['target' => '_blank'], null, false)]) !!}
+    'posts' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/posts.html">' . __('entities.posts') . ' <i class="fa-solid fa-external-link" aria-hidden="true"></i></a>']) !!}
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.4', [
@@ -64,23 +64,21 @@
     <ul class="flex flex-col gap-2">
         <li class="">
             {!! __('dashboards/widgets/welcome.endings.1', [
-    'kb' => link_to('https://kanka.io/kb', __('footer.kb')),
-    'documentation' => link_to('https://docs.kanka.io', __('footer.documentation'))
+    'kb' => '<a target="_blank" href="https://kanka.io/kb">' . __('footer.kb') . '</a>',
+    'documentation' => '<a target="_blank" href="https://docs.kanka.io">' . __('footer.documentation') . '</a>'
 ]) !!}
         </li>
         <li class="">
-            {!! __('dashboards/widgets/welcome.endings.2', [
-    'discord' => link_to(config('social.discord'), 'Discord', ['target' => 'discord'])
-]) !!}
+            {!! __('dashboards/widgets/welcome.endings.2', ['discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>']) !!}
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.endings.3', [
-    'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'))
+    'public-campaigns' => '<a href="https://kanka.io/campaigns"> ' . __('footer.public-campaigns') . '</a>'
 ]) !!}
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.endings.4', [
-    'supporting-us' => link_to_route('settings.subscription', __('dashboards/widgets/welcome.endings.supporting-us'))
+    'supporting-us' => '<a href="' . route('settings.subscription') . '">' .  __('dashboards/widgets/welcome.endings.supporting-us') . '</a>'
 ]) !!}
         </li>
     </ul>

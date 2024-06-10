@@ -14,21 +14,15 @@
     'centered' => true,
 ])
 
-@section('fullpage-form')
-{!! Form::model($model, [
-    'method' => 'PATCH',
-    'enctype' => 'multipart/form-data',
-    'route' => [$name . '.update', [$campaign, $model->id]],
-    'data-shortcut' => '1',
-    'data-max-fields' => ini_get('max_input_vars'),
-    'class' => 'entity-form',
-    'id' => 'entity-form',
-    'data-maintenance' => 1,
-    'data-unload' => 1,
-]) !!}
-@endsection
-
 @section('content')
+    <x-form
+        method="PATCH"
+        :action="[$name . '.update', $campaign, $model->id]"
+        files
+        unsaved
+        class="entity-form"
+        id="entity-form"
+        :extra="['data-max-files' => ini_get('max_input_vars')]">
     <x-grid type="1/1">
         @include('cruds.forms._errors')
 
@@ -84,14 +78,10 @@
     @if(!empty($model->entity) && $campaign->hasEditingWarning())
         <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', [$campaign, $model->entity->id]) }}" />
     @endif
+    </x-form>
 @endsection
 
 @include('editors.editor')
-
-
-@section('fullpage-form-end')
-    {!! Form::close() !!}
-@endsection
 
 @section('modals')
     @parent

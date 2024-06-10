@@ -30,6 +30,9 @@ class LayerController extends Controller
             return $this->campaign($campaign)->bulkBatch(route('maps.layers.bulk', [$campaign, 'map' => $map]), '_map-layer', $models);
         }
 
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
         $count = $this->bulkProcess($request, MapLayer::class);
 
         return redirect()

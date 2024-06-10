@@ -1,47 +1,46 @@
 <x-helper>{{ __('crud.helpers.copy_options') }}</x-helper>
 <x-forms.field
     field="copy-posts">
-    {!! Form::hidden('copy_source_notes', null) !!}
+    <input type="hidden" name="copy_source_notes" value="0" />
     <x-checkbox :text="__('crud.fields.copy_posts')">
-        {!! Form::checkbox('copy_source_notes', 1, true) !!}
+        <input type="checkbox" name="copy_source_notes" value="1" @if (old('copy_source_notes', true)) checked="checked" @endif />
     </x-checkbox>
 </x-forms.field>
 <x-forms.field
     field="replace-mentions">
-    {!! Form::hidden('replace_mentions', null) !!}
+    <input type="hidden" name="replace_mentions" value="0" />
     <x-checkbox :text="__('crud.fields.replace_mentions')">
-        {!! Form::checkbox('replace_mentions', 1, true) !!}
+        <input type="checkbox" name="replace_mentions" value="1" @if (old('replace_mentions', true)) checked="checked" @endif />
     </x-checkbox>
 </x-forms.field>
 <x-forms.field
     field="copy-abilities">
-    {!! Form::hidden('copy_source_abilities', null) !!}
+    <input type="hidden" name="copy_source_abilities" value="0" />
     <x-checkbox :text="__('crud.fields.copy_abilities')">
-        {!! Form::checkbox('copy_source_abilities', 1, request()->filled('template')) !!}
+        <input type="checkbox" name="copy_source_abilities" value="1" @if (old('copy_source_abilities', request()->filled('template'))) checked="checked" @endif />
     </x-checkbox>
 </x-forms.field>
 <x-forms.field
     field="copy-inventory">
-    {!! Form::hidden('copy_source_inventory', null) !!}
+    <input type="hidden" name="copy_source_inventory" value="0" />
     <x-checkbox :text="__('crud.fields.copy_inventory')">
-        {!! Form::checkbox('copy_source_inventory', 1, request()->filled('template')) !!}
+        <input type="checkbox" name="copy_source_inventory" value="1" @if (old('copy_source_inventory', request()->filled('template'))) checked="checked" @endif />
     </x-checkbox>
 </x-forms.field>
 
 <x-forms.field
     field="copy-permissions">
-    {!! Form::hidden('copy_source_permissions', null) !!}
+    <input type="hidden" name="copy_source_permissions" value="0" />
     <x-checkbox :text="__('crud.fields.copy_permissions')">
-        {!! Form::checkbox('copy_source_permissions', 1, request()->filled('template')) !!}
+        <input type="checkbox" name="copy_source_permissions" value="1" @if (old('copy_source_permissions', request()->filled('template'))) checked="checked" @endif />
     </x-checkbox>
 </x-forms.field>
 @if ($campaign->boosted())
     <x-forms.field
     field="copy-links">
-        {!! Form::hidden('copy_source_links', null) !!}
-
+        <input type="hidden" name="copy_source_links" value="0" />
         <x-checkbox :text="__('crud.fields.copy_links')">
-            {!! Form::checkbox('copy_source_links', 1, request()->filled('template')) !!}
+            <input type="checkbox" name="copy_source_links" value="1" @if (old('copy_source_links', request()->filled('template'))) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 @endif

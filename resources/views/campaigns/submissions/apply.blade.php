@@ -6,7 +6,7 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['campaign.apply.save', $campaign], 'method'=>'POST', 'class' => 'max-w-xl']) !!}
+    <x-form :action="['campaign.apply.save', $campaign]" class="max-w-xl">
     @include('partials.forms.form', [
         'title' => __('campaigns/submissions.apply.title', ['name' => $campaign->name]),
         'content' => 'campaigns.submissions._apply',
@@ -14,10 +14,9 @@
         'deleteID' =>  $submission ? '#delete-submission' : null,
         'dialog' => true,
     ])
-    {!! Form::close() !!}
+    </x-form>
 
     @if($submission)
-        {!! Form::open(['method' => 'DELETE','route' => ['campaign.apply.remove', $campaign], 'style '=> 'display:inline', 'id' => 'delete-submission']) !!}
-        {!! Form::close() !!}
+        <x-form method="DELETE" :action="['campaign.apply.remove', $campaign]" id="delete-submission" />
     @endif
 @endsection

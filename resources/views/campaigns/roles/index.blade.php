@@ -21,11 +21,17 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\CampaignRole $plugin
  */?>
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_roles.bulk', $campaign]]) !!} @endif
-    <div id="datagrid-parent">
-        @include('layouts.datagrid._table', ['responsive' => true])
-    </div>
-    @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+    @if(Datagrid::hasBulks())
+        <x-form :action="['campaign_roles.bulk', $campaign]">
+            <div id="datagrid-parent">
+                @include('layouts.datagrid._table', ['responsive' => true])
+            </div>
+        </x-form>
+    @else
+        <div id="datagrid-parent">
+            @include('layouts.datagrid._table', ['responsive' => true])
+        </div>
+    @endif
 
 @section('modals')
     @parent
@@ -39,12 +45,11 @@
         'title' => __('campaigns.show.tabs.roles'),
         'textes' => [
             __('campaigns.roles.helper.1', [
-                'admin' => link_to_route(
+                'admin' => '<a href="' . route(
                     'campaigns.campaign_roles.admin',
-                    \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
                     $campaign,
-                    ['target' => '_blank']
-                )
+                ) . '" target="_blank">' .
+                    \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>',
             ]),
             __('campaigns.roles.helper.2'),
             __('campaigns.roles.helper.3'),

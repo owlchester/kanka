@@ -32,7 +32,12 @@
         $months = $model->months();
     } elseif (isset($source)) {
         $months = $source->months();
-    }?>
+    }
+    $monthTypes = [
+        'intercalary' => __('calendars.month_types.intercalary'),
+        'standard' => __('calendars.month_types.standard'),
+    ];
+    ?>
     <div class="flex flex-col gap-2 calendar-months sortable-elements" data-handle=".sortable-handler">
         <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
             <div class="">{{ __('calendars.parameters.month.name') }}</div>
@@ -49,36 +54,24 @@
                         </div>
                         <div class="field">
                             <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
-                            {!! Form::text('month_name[]', $month['name'], ['class' => 'w-full']) !!}
+                            <input type="text" name="month_name[]" value="{{ $month['name'] }}" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.month.name') }}" placeholder="{{ __('calendars.parameters.month.name') }}" />
                         </div>
                     </div>
 
                     <div class="field">
                         <label class="sr-only">{{ __('calendars.parameters.month.length') }}</label>
-                        {!! Form::number('month_length[]', $month['length'], [
-                            'class' => 'w-full',
-                            'maxlength' => 4,
-                            'aria-label' => __('calendars.parameters.month.length'),
-                        ]) !!}
+                        <input type="number" name="month_length[]" class="w-full" value="{{ $month['length'] }}" maxlength="4" aria-label="{{ __('calendars.parameters.month.length') }}" placeholder="{{ __('calendars.parameters.month.length') }}" />
                     </div>
 
                     <div class="field">
                         <label class="sr-only">{{ __('calendars.parameters.month.alias') }}</label>
-                        {!! Form::text('month_alias[]', \Illuminate\Support\Arr::get($month, 'alias', ''), [
-                            'class' => 'w-full',
-                            'maxlength' => 191,
-                            'placeholder' => __('calendars.parameters.month.alias'),
-                            'aria-label' => __('calendars.parameters.month.name'),
-                        ]) !!}
+                        <input type="text" name="month_alias[]" value="{{ \Illuminate\Support\Arr::get($month, 'alias', '') }}" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.month.alias') }}" placeholder="{{ __('calendars.parameters.month.alias') }}" />
                     </div>
 
                     <div class="flex items-center gap-2">
                         <div class="field">
                             <label class="sr-only">{{ __('calendars.parameters.month.type') }}</label>
-                            {!! Form::select('month_type[]', __('calendars.month_types'), (!empty($month['type']) ? $month['type'] : 'standard'), [
-                                'class' => 'w-full',
-                                'aria-label' => __('calendars.parameters.month.type'),
-                            ]) !!}
+                            <x-forms.select name="month_type[]" :options="$monthTypes" :selected="\Illuminate\Support\Arr::get($month, 'type', 'standard')" class="w-full" :label="__('calendars.parameters.month.type')" />
                         </div>
                         <div>
                             <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
@@ -102,28 +95,21 @@
                 </div>
                 <div class="field">
                     <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
-                    {!! Form::text('month_name[]', null, [
-                        'class' => 'w-full',
-                        'placeholder' => __('calendars.parameters.month.name'),
-                        'aria-label' => __('calendars.parameters.month.name'),
-                    ]) !!}
+                    <input type="text" name="month_name[]" value="" placeholder="{{ __('calendars.parameters.month.name') }}" aria-label="{{ __('calendars.parameters.month.name') }}" maxlength="191" class="w-full" />
                 </div>
             </div>
             <div class="field">
                 <label class="sr-only">{{ __('calendars.parameters.month.length') }}</label>
-                {!! Form::number('month_length[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.month.length'),
-                        'aria-label' => __('calendars.parameters.month.length'),]) !!}
+                <input type="number" name="month_length[]" class="w-full" value="" maxlength="4" aria-label="{{ __('calendars.parameters.month.length') }}" placeholder="{{ __('calendars.parameters.month.length') }}" />
             </div>
             <div class="field">
                 <label class="sr-only">{{ __('calendars.parameters.month.alias') }}</label>
-                {!! Form::text('month_alias[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.month.alias'),
-                        'aria-label' => __('calendars.parameters.month.alias'),]) !!}
+                <input type="text" name="month_alias[]" value="" placeholder="{{ __('calendars.parameters.month.alias') }}" aria-label="{{ __('calendars.parameters.month.alias') }}" maxlength="191" class="w-full" />
             </div>
             <div class="flex gap-2 items-center">
                 <div class="field">
                     <label class="sr-only">{{ __('calendars.parameters.month.type') }}</label>
-                    {!! Form::select('month_type[]', __('calendars.month_types'), 'standard', ['class' => 'w-full',
-                        'aria-label' => __('calendars.parameters.month.type'),]) !!}
+                    <x-forms.select name="month_type[]" :options="$monthTypes" selected="standard" :label="__('calendars.parameters.month.type')" />
                 </div>
                 <div class="">
                     <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">

@@ -29,6 +29,9 @@ class GroupController extends Controller
             return $this->bulkBatch(route('maps.groups.bulk', [$campaign, 'map' => $map]), '_map-group', $models);
         }
 
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
         $count = $this->bulkProcess($request, MapGroup::class);
 
         return redirect()

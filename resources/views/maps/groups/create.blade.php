@@ -16,16 +16,13 @@
 ])
 
 @section('content')
-
-    {!! Form::open(['route' => ['maps.map_groups.store', $campaign, $map], 'method' => 'POST', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
-
-    @include('partials.forms.form', [
-        'title' => __('maps/groups.create.title', ['name' => $map->name]),
-        'content' => 'maps.groups._form',
-        'formParams' => ['model' => null, 'map' => $map],
-        'actions' => 'maps.groups._actions',
-        'dialog' => true,
-    ])
-
-    {!! Form::close() !!}
+    <x-form :action="['maps.map_groups.store', $campaign, $map]">
+        @include('partials.forms.form', [
+            'title' => __('maps/groups.create.title', ['name' => $map->name]),
+            'content' => 'maps.groups._form',
+            'formParams' => ['model' => null, 'map' => $map],
+            'actions' => 'maps.groups._actions',
+            'dialog' => true,
+        ])
+    </x-form>
 @endsection

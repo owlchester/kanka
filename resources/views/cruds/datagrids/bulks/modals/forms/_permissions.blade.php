@@ -20,33 +20,17 @@ $actions = [
         <tr>
             <td>{{ $role->name }}</td>
             <td class="field">
-                {!! Form::select(
-                'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_READ . ']',
-                $actions,
-                'ignore',
-                ['class' => 'w-full']) !!}
+                <x-forms.select name="role[{{ $role->id }}][{{ \App\Models\CampaignPermission::ACTION_READ }}]" :options="$actions" selected="ignore" />
             </td>
             @if (!$role->is_public)
                 <td class="field">
-                    {!! Form::select(
-                    'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_EDIT . ']',
-                    $actions,
-                    'ignore',
-                    ['class' => 'w-full']) !!}
+                    <x-forms.select name="role[{{ $role->id }}][{{ \App\Models\CampaignPermission::ACTION_EDIT }}]" :options="$actions" selected="ignore" />
                 </td>
                 <td class="field">
-                    {!! Form::select(
-                    'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_DELETE . ']',
-                    $actions,
-                    'ignore',
-                    ['class' => 'w-full']) !!}
+                    <x-forms.select name="role[{{ $role->id }}][{{ \App\Models\CampaignPermission::ACTION_DELETE }}]" :options="$actions" selected="ignore" />
                 </td>
                 <td class="field">
-                    {!! Form::select(
-                    'role[' . $role->id . '][' . \App\Models\CampaignPermission::ACTION_POSTS . ']',
-                    $actions,
-                    'ignore',
-                    ['class' => 'w-full']) !!}
+                    <x-forms.select name="role[{{ $role->id }}][{{ \App\Models\CampaignPermission::ACTION_POSTS }}]" :options="$actions" selected="ignore" />
                 </td>
             @else
                 <td colspan="3"></td>
@@ -68,32 +52,16 @@ $actions = [
         <tr>
             <td>{{ $member->user->name }}</td>
             <td class="field">
-                {!! Form::select(
-                'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_READ . ']',
-                $actions,
-                'ignore',
-                ['class' => 'w-full']) !!}
+                <x-forms.select name="user[{{ $member->user_id }}][{{ \App\Models\CampaignPermission::ACTION_READ }}]" :options="$actions" selected="ignore" />
             </td>
             <td class="field">
-                {!! Form::select(
-                'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_EDIT . ']',
-                $actions,
-                'ignore',
-                ['class' => 'w-full']) !!}
+                <x-forms.select name="user[{{ $member->user_id }}][{{ \App\Models\CampaignPermission::ACTION_EDIT }}]" :options="$actions" selected="ignore" />
             </td>
             <td class="field">
-                {!! Form::select(
-                'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_DELETE . ']',
-                $actions,
-                'ignore',
-                ['class' => 'w-full']) !!}
+                <x-forms.select name="user[{{ $member->user_id }}][{{ \App\Models\CampaignPermission::ACTION_DELETE }}]" :options="$actions" selected="ignore" />
             </td>
             <td class="field">
-                {!! Form::select(
-                'user[' . $member->user_id . '][' . \App\Models\CampaignPermission::ACTION_POSTS . ']',
-                $actions,
-                'ignore',
-                ['class' => 'w-full']) !!}
+                <x-forms.select name="user[{{ $member->user_id }}][{{ \App\Models\CampaignPermission::ACTION_POSTS }}]" :options="$actions" selected="ignore" />
             </td>
         </tr>
     @endforeach

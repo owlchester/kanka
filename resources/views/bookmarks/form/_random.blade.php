@@ -10,7 +10,7 @@ $entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->ex
 
     <x-grid>
         <x-forms.field field="random-type" :label="__('bookmarks.fields.random_type')">
-            {!! Form::select('random_entity_type', $entityTypes, FormCopy::field('random_entity_type')->string(), ['class' => '']) !!}
+            <x-forms.select name="random_entity_type" :options="$entityTypes" :selected="$source->random_entity_type ?? $model->random_entity_type ?? null" />
         </x-forms.field>
 
         <div>

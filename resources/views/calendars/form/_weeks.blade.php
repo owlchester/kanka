@@ -33,7 +33,7 @@
                         </div>
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
-                            {!! Form::text('weekday[]', $weekday, ['class' => 'w-full']) !!}
+                            <input type="text" name="weekday[]" value="{{ $weekday }}" placeholder="{{ __('calendars.parameters.weeks.name') }}" aria-label="{{ __('calendars.parameters.weeks.name') }}" maxlength="191" class="w-full" />
                         </div>
                         <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                             <x-icon class="trash"></x-icon>
@@ -85,13 +85,13 @@
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.weeks.number') }}</label>
-                                {!! Form::text('week_number[]', $week, ['class' => 'w-full']) !!}
+                                <input type="text" name="week_number[]" value="{{ $week }}" placeholder="{{ __('calendars.parameters.weeks.number') }}" aria-label="{{ __('calendars.parameters.weeks.number') }}" maxlength="191" class="w-full" />
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
                             <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
-                                {!! Form::text('week_name[]', $name, ['class' => 'w-full']) !!}
+                                <input type="text" name="week_name[]" value="{{ $week }}" placeholder="{{ __('calendars.parameters.weeks.name') }}" aria-label="{{ __('calendars.parameters.weeks.name') }}" maxlength="191" class="w-full" />
                             </div>
                             <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                                 <x-icon class="trash" />
@@ -115,7 +115,7 @@
                 </div>
                 <div class="grow field">
                     <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
-                    {!! Form::text('weekday[]', null, ['class' => 'w-full', 'aria-label' => __('calendars.parameters.weeks.name')]) !!}
+                    <input type="text" name="weekday[]" value="" placeholder="{{ __('calendars.parameters.weeks.name') }}" aria-label="{{ __('calendars.parameters.weeks.name') }}" maxlength="191" class="w-full" />
                 </div>
                 <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                     <x-icon class="trash" />
@@ -133,13 +133,13 @@
                     </div>
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.weeks.number') }}</label>
-                        {!! Form::number('week_number[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.weeks.number')]) !!}
+                        <input type="number" name="week_number[]" class="w-full" value="" placeholder="{{ __('calendars.parameters.weeks.number') }}" />
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
-                        {!! Form::text('week_name[]', null, ['class' => 'w-full', 'placeholder' => __('calendars.parameters.weeks.name')]) !!}
+                        <input type="text" name="week_name[]" value="" placeholder="{{ __('calendars.parameters.weeks.name') }}" aria-label="{{ __('calendars.parameters.weeks.name') }}" maxlength="191" class="w-full" />
                     </div>
                     <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                         <x-icon class="trash" />

@@ -53,11 +53,11 @@ $layoutOptions = $layoutDefault + $layoutOptions
         <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
                 <x-forms.field field="name" :required="true">
-                    {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => '', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
+                    <input type="text" name="name"  placeholder="{{ __('entities/notes.placeholders.name') }}" value="{!! old('name', $model->name ?? null) !!}" maxlength="191" required data-bragi-name="{{ $bragiName }}" data-live-disabled="1" />
                 </x-forms.field>
 
                 <x-forms.field field="layout" :hidden="isset($layoutHelper)">
-                    {!! Form::select('layout_id', $layoutOptions, isset($model) ? $model->layout_id : '',['class' => '', 'id' => 'post-layout-selector']) !!}
+                    <x-forms.select name="layout_id" :options="$layoutOptions" :selected="$source->layout_id ?? $model->layout_id ?? null"  id="post-layout-selector" />
                     <div id="post-layout-subform" style="display: none">
                         @includeWhen(!$campaign->superboosted(), 'entities.pages.posts._boosted')
                     </div>
@@ -67,7 +67,12 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 @endif
 
                 <x-forms.field field="entry" css="md:col-span-2" id="field-entry" :hidden="isset($layoutHelper)">
-                    {!! Form::textarea('entryForEdition', null, ['class' => ' html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+
+                    <textarea name="entry"
+                              id="entry"
+                              class="html-editor"
+                              rows="3"
+                    >{!! old('entry', $model->entryForEdition ?? null) !!}</textarea>
                 </x-forms.field>
                 <x-forms.field field="location" id="field-location" :hidden="isset($layoutHelper)">
                     @include('cruds.fields.location', ['from' => null])
@@ -76,7 +81,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 @include('cruds.fields.visibility_id')
 
                 <x-forms.field field="position" :label="__('crud.fields.position')">
-                    {!! Form::select('position', $options, (!empty($model->position) ? -9999 : $last), ['class' => '']) !!}
+                    <x-forms.select name="position" :options="$options" :selected="(!empty($model->position) ? -9999 : $last)" class="w-full" />
                 </x-forms.field>
                 @php
                     $collapsedOptions = [
@@ -85,11 +90,11 @@ $layoutOptions = $layoutDefault + $layoutOptions
                     ];
                 @endphp
                 <x-forms.field field="display" id="field-display" :hidden="isset($layoutHelper)" :label="__('entities/notes.fields.display')">
-                    {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => '']) !!}
+                    <x-forms.select name="settings[collapsed]" :options="$collapsedOptions" :selected="$defaultCollapsed" class="w-full" />
                 </x-forms.field>
 
                 <x-forms.field field="class" :label=" __('dashboard.widgets.fields.class')" :tooltip="true" :helper="__('dashboard.widgets.helpers.class')">
-                    {!! Form::text('settings[class]', null, ['class' => '', 'id' => 'config[class]', 'disabled' => !$campaign->boosted() ? 'disabled' : null]) !!}
+                    <input type="text" name="settings[class]" value="{{ old('settings[class]', $model->settings['class'] ?? null) }}" maxlength="191" @if (!$campaign->boosted()) disabled="disabled" @endif class="w-full" id="config[class]" />
                     @includeWhen(!$campaign->boosted(), 'entities.pages.posts._boosted')
                 </x-forms.field>
             </x-grid>
@@ -99,4 +104,4 @@ $layoutOptions = $layoutDefault + $layoutOptions
     </div>
 </div>
 
-{!! Form::hidden('entity_id', $entity->id) !!}
+<input type="hidden" name="entity_id" value="{{ $entity->id }}" />

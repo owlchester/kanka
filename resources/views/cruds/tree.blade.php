@@ -39,7 +39,7 @@
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['nested' => true, 'sub' => 'tree'])
     @else
-        {!! Form::open(['url' => route('bulk.process', $campaign), 'method' => 'POST', 'class' => 'flex flex-col gap-5']) !!}
+        <x-form :action="['bulk.process', $campaign]" class="flex flex-col gap-5">
         <x-box :padding="false">
             <div class="table-responsive">
                 @include($name . '._tree')
@@ -60,11 +60,11 @@
             {{ $models->appends('parent_id', request()->get('parent_id'))->onEachSide(0)->links() }}
         </div>
         @endif
-        {!! Form::hidden('entity', $name) !!}
-        {!! Form::hidden('datagrid-action', 'print') !!}
-        {!! Form::hidden('page', request()->get('page')) !!}
-        {!! Form::hidden('mode', $mode) !!}
-        {!! Form::close() !!}
+        <input type="hidden" name="entity" value="{{ $name }}" />
+        <input type="hidden" name="datagrid-action" value="print" />
+            <input type="hidden" name="page" value="{{ request()->get('page') }}" />
+            <input type="hidden" name="mode" value="{{ $mode }}" />
+        </x-form>
 
     @endif
     </div>

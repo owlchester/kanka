@@ -37,7 +37,7 @@
                 <x-forms.field
                     field="name"
                     :label="__('crud.fields.name')">
-                    {!! Form::text('name', null, ['placeholder' => __('crud.placeholders.name'), 'maxlength' => 191]) !!}
+                    <input type="text" name="name" placeholder="{{ __('crud.placeholders.name') }}" maxlength="191" value="{!! old('name', $source->name ?? $model->name ?? null) !!}" />
                 </x-forms.field>
             </div>
             <div class="self-start">

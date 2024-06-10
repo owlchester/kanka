@@ -51,6 +51,7 @@ class AclScope implements Scope
                 return $builder;
             }
 
+            // @phpstan-ignore-next-link
             return $builder->withoutGlobalScope($this);
         });
     }

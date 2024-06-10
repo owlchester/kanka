@@ -10,7 +10,7 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['campaign_roles.store', $campaign], 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
+    <x-form :action="['campaign_roles.store', $campaign]" class="ajax-subform">
 
     @include('partials.forms.form', [
             'title' => __('campaigns.roles.create.title'),
@@ -19,5 +19,5 @@
             'dialog' => true,
         ])
 
-    {!! Form::close() !!}
+    </x-form>
 @endsection

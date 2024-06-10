@@ -8,13 +8,12 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['campaign_invites.store', $campaign], 'method' => 'POST', 'class' => 'ajax-subform']) !!}
-
-    @include('partials.forms.form', [
-        'title' => __('campaigns.invites.actions.link'),
-        'content' => 'campaigns.invites._form',
-        'submit' => __('campaigns.invites.create.buttons.create'),
-        'dialog' => true,
-    ])
-    {!! Form::close() !!}
+    <x-form :action="['campaign_invites.store', $campaign]" class="ajax-subform">
+        @include('partials.forms.form', [
+            'title' => __('campaigns.invites.actions.link'),
+            'content' => 'campaigns.invites._form',
+            'submit' => __('campaigns.invites.create.buttons.create'),
+            'dialog' => true,
+        ])
+    </x-form>
 @endsection

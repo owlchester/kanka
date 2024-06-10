@@ -6,14 +6,14 @@
     @include('cruds.fields.relation')
 
     @include('cruds.fields.colour_picker')
-    @include('cruds.fields.attitude')
+    @include('cruds.fields.attitude', ['model' => $relation ?? null])
 
     @include('cruds.fields.visibility_id', ['model' => $relation ?? null])
 
     @if(empty($relation) && (!isset($mirror) || $mirror == true))
         <x-forms.field field="two-way">
             <x-checkbox :text="__('entities/relations.hints.two_way')" :label="__('entities/relations.fields.two_way')">
-                {!! Form::checkbox('two_way', 1, null, ['data-animate' => 'collapse', 'data-target' => '#two-way-relation']) !!}
+                <input type="checkbox" name="two_way" value="1" @if (old('two_way', false)) checked="checked" @endif data-animate="collapse" data-target="#two-way-relation" />
             </x-checkbox>
         </x-forms.field>
 
@@ -24,7 +24,7 @@
                     {!! __('entities/relations.fields.target_relation') !!}
                     <x-helpers.tooltip :title="__('entities/relations.hints.target_relation')" />
                 </label>
-                {!! Form::text('target_relation', null, ['class' => '', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
+                <input type="text" name="target_relation" value="{{ old('target_relation', $model->target_relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.target_relation') }}" placeholder="{{ __('entities/relations.placeholders.target_relation') }}" />
                 <p class="text-neutral-content md:hidden">{{ __('entities/relations.hints.target_relation') }}</p>
             </x-forms.field>
         </div>

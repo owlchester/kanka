@@ -11,17 +11,14 @@
 ])
 
 @section('content')
-    {!! Form::model($entityAsset, ['route' => ['entities.entity_assets.update', $campaign, $entity->id, $entityAsset], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
+    <x-form :action="['entities.entity_assets.update', $campaign, $entity->id, $entityAsset]" method="PATCH" class="ajax-subform">
+        @include('partials.forms.form', [
+            'title' => $entityAsset->name,
+            'content' => 'entities.pages.aliases._form',
+            'deleteID' => '#delete-alias-' . $entityAsset->id,
+            'dialog' => true,
+        ])
+    </x-form>
 
-    @include('partials.forms.form', [
-        'title' => $entityAsset->name,
-        'content' => 'entities.pages.aliases._form',
-        'deleteID' => '#delete-alias-' . $entityAsset->id,
-        'dialog' => true,
-    ])
-
-    {!! Form::close() !!}
-
-    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_assets.destroy', $campaign, 'entity' => $entity, 'entity_asset' => $entityAsset], 'style' => 'display:inline', 'id' => 'delete-alias-' . $entityAsset->id]) !!}
-    {!! Form::close() !!}
+    <x-form method="DELETE" :action="['entities.entity_assets.destroy', $campaign, 'entity' => $entity, 'entity_asset' => $entityAsset]" id="delete-alias-{{ $entityAsset->id }}" />
 @endsection

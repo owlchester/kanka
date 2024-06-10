@@ -18,15 +18,7 @@ if (isset($inventory)) {
         :required="true"
         :helper="__('entities/inventories.helpers.name')"
         :label="__('entities/inventories.fields.name')">
-        {!! Form::text(
-            'name',
-            null,
-            [
-                'placeholder' => __('entities/inventories.placeholders.name'),
-                'class' => '',
-                'max-length' => 45
-            ]
-        ) !!}
+        <input type="text" name="name" value="{!! old('name', $inventory->name ?? null) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/inventories.placeholders.name') }}" />
     </x-forms.field>
 
     <input type="hidden" name="item_id" value="" />
@@ -68,37 +60,35 @@ if (isset($inventory)) {
         :required="true"
         :label="__('entities/inventories.fields.amount')"
         :helper="__('entities/inventories.helpers.amount')">
-        {!! Form::number('amount', (empty($inventory) ? 1 : null), ['class' => '', 'max' => 1000000000, 'min' => 0, 'required']) !!}
+
+        <input type="number" name="amount" class="w-full" value="{{ old('amount', $inventory->amount ?? 1) }}" min="0" step="1" max="1000000000" required />
     </x-forms.field>
 
     <x-forms.field
         field="position"
         :label="__('entities/inventories.fields.position')">
-        {!! Form::select('position', $positionOptions, $positionPreset, [
-            'data-placeholder' => __('entities/inventories.placeholders.position'),
-            'class' => 'position-dropdown',
-        ]) !!}
+        <x-forms.select name="position" :options="$positionOptions" :selected="$positionPreset" class="w-full position-dropdown" :extra="['data-placeholder' => __('entities/inventories.placeholders.position')]" />
     </x-forms.field>
 
 
     <x-forms.field field="equipped" :label="__('entities/inventories.fields.is_equipped')">
-        {!! Form::hidden('is_equipped', 0) !!}
+        <input type="hidden" name="is_equipped" value="0" />
         <x-checkbox :text="__('entities/inventories.helpers.is_equipped')">
-            {!! Form::checkbox('is_equipped', 1, isset($inventory) ? $inventory->is_equipped : null) !!}
+            <input type="checkbox" name="is_equipped" value="1" @if (old('is_equipped', $inventory->is_equipped ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 
     <x-forms.field field="copy" :label="__('entities/inventories.fields.copy_entity_entry_v2')">
-        {!! Form::hidden('copy_item_entry', 0) !!}
+        <input type="hidden" name="copy_item_entry" value="0" />
         <x-checkbox :text="__('entities/inventories.helpers.copy_entity_entry_v2')">
-            {!! Form::checkbox('copy_item_entry') !!}
+            <input type="checkbox" name="copy_item_entry" value="1" @if (old('copy_item_entry', $inventory->copy_item_entry ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 
     @include('cruds.fields.visibility_id', ['model' => $inventory ?? null])
 
     <x-forms.field field="description" css="col-span-3" :label="__('entities/inventories.fields.description')" :helper="__('entities/inventories.helpers.description')">
-        {!! Form::text('description', null, ['placeholder' => __('entities/inventories.placeholders.description'), 'class' => '', 'maxlength' => 191]) !!}
+        <input type="text" name="description" value="{!! old('description', $inventory->description ?? null) !!}" maxlength="191" class="w-full" placeholder="{{ __('entities/inventories.placeholders.description') }}" />
     </x-forms.field>
 
 </x-grid>

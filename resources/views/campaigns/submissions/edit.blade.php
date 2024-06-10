@@ -6,7 +6,7 @@
     @endif
 </x-dialog.header>
 <article>
-    {!! Form::model($submission, ['method' => 'PATCH', 'route' => ['campaign_submissions.update', $campaign, $submission->id], 'data-shortcut' => 1, 'class' => 'entity-form w-full max-w-lg text-left']) !!}
+    <x-form :action="['campaign_submissions.update', $campaign, $submission->id]" method="PATCH" class="entity-form w-full max-w-lg text-left">
         @if($action === 'approve')
 
             <x-grid type="1/1">
@@ -16,13 +16,13 @@
                     field="role"
                     :label="__('campaigns.members.fields.role')"
                     :required="true">
-                    {!! Form::select('role_id', $campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id'), null, ['class' => 'w-full']) !!}
+                    <x-forms.select name="role_id" :options="$campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id')" class="w-full" />
                 </x-forms.field>
 
                 <x-forms.field
                     field="message"
                     :label="__('campaigns/submissions.fields.approval')">
-                    {!! Form::text('message', null, ['class' => 'w-full', 'maxlength' => 191]) !!}
+                    <input type="text" name="message" value="{!! old('message') !!}" maxlength="191" class="w-full" />
                 </x-forms.field>
 
                 <x-buttons.confirm type="primary" full="true">
@@ -37,7 +37,8 @@
             <x-forms.field
                 field="message"
                 :label="__('campaigns/submissions.fields.rejection')">
-                {!! Form::text('rejection', null, ['class' => 'w-full', 'maxlength' => 191]) !!}
+
+                <input type="text" name="rejection" value="{!! old('rejection') !!}" maxlength="191" class="w-full" />
             </x-forms.field>
 
             <x-buttons.confirm type="danger" full="true">
@@ -48,6 +49,6 @@
         @endif
 
     <input type="hidden" name="action" value="{{ $action }}" />
-    {!! Form::close() !!}
+    </x-form>
 </article>
 

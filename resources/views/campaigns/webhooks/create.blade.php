@@ -10,14 +10,12 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['webhooks.store', $campaign], 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'ajax-subform']) !!}
-
-    @include('partials.forms.form', [
+    <x-form :action="['webhooks.store', $campaign]" class="ajax-subform">
+        @include('partials.forms.form', [
             'title' => __('campaigns/webhooks.create.title'),
             'content' => 'campaigns/webhooks._form',
             'save' => __('campaigns/webhooks.actions.add'),
             'dialog' => true,
         ])
-
-    {!! Form::close() !!}
+    </x-form>
 @endsection

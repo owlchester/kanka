@@ -41,15 +41,21 @@ use App\Facades\Datagrid ?>
             @if ($styles->count() === 0)
                 <x-box>
                     <x-helper>
-                        {!! __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]) !!}
+                        {!! __('campaigns/styles.helpers.main', ['here' => '<a href="https://blog.kanka.io/category/tutorials" target="_blank">' . __('campaigns/styles.helpers.here') . '</a>']) !!}
                     </x-helper>
                 </x-box>
             @else
-                @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_styles.bulk', $campaign]]) !!} @endif
-                <div id="datagrid-parent" class="">
-                    @include('layouts.datagrid._table', ['rows' => $styles])
-                </div>
-                @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+                @if(Datagrid::hasBulks())
+                    <x-form :action="['campaign_styles.bulk', $campaign]">
+                        <div id="datagrid-parent" class="">
+                            @include('layouts.datagrid._table', ['rows' => $styles])
+                        </div>
+                    </x-form>
+                @else
+                    <div id="datagrid-parent" class="">
+                        @include('layouts.datagrid._table', ['rows' => $styles])
+                    </div>
+                @endif
             @endif
 
             @includeWhen(!$reorderStyles->isEmpty(), 'campaigns.styles._reorder')
@@ -68,7 +74,7 @@ use App\Facades\Datagrid ?>
         'id' => 'theming-help',
         'title' => __('campaigns.show.tabs.styles'),
         'textes' => [
-            __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]),
+            __('campaigns/styles.helpers.main', ['here' => '<a href="https://blog.kanka.io/category/tutorials" target="_blank">' . __('campaigns/styles.helpers.here') . '</a>']),
     ]])
 
 @endsection

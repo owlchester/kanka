@@ -7,20 +7,9 @@
     'centered' => true,
 ])
 
-@section('fullpage-form')
-    {!! Form::model($relation, [
-    'method' => 'PATCH',
-    'enctype' => 'multipart/form-data',
-    'route' => ['relations.update', $campaign, $relation],
-    'data-shortcut' => '1',
-    'class' => 'entity-form',
-    'id' => 'entity-form',
-    'data-maintenance' => 1
-    ]) !!}
-@endsection
-
 @section('content')
     @include('cruds.forms._errors')
+    <x-form files method="PATCH" :action="['relations.update', $campaign, $relation]" class="entity-form" id="entity-form">
     <div class="nav-tabs-custom">
         <div class="flex gap-2 items-center ">
             <div class="grow overflow-x-auto">
@@ -36,15 +25,11 @@
             </div>
         </div>
     </div>
-    {!! Form::close() !!}
+    </x-form>
 @endsection
 
 @include('editors.editor')
 
-
-@section('fullpage-form-end')
-    {!! Form::close() !!}
-@endsection
 
 
 @section('scripts')

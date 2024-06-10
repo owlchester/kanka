@@ -35,7 +35,7 @@
                                     {{ __('entities/logs.actions.' . $log->actionCode(), ['post' => $log->post?->name]) }}
                                 </td>
                                 <td class="">@if ($log->user)
-                                        {!! link_to_route('users.profile', $log->user->name, $log->user, ['target' => '_blank']) !!}
+                                         <a href="{{  route('users.profile', $log->user) }}">{!! $log->user->name !!}}</a>
                                     @else
                                         {{  __('crud.history.unknown') }}
                                     @endif

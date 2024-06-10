@@ -7,9 +7,9 @@
 
     @include('cruds.fields.date')
     <x-forms.field field="completed" :label="__('quests.fields.is_completed')">
-        {!! Form::hidden('is_completed', 0) !!}
+        <input type="hidden" name="is_completed" value="0" />
         <x-checkbox :text="__('quests.helpers.is_completed')">
-            {!! Form::checkbox('is_completed', 1, (!empty($model) ? $model->is_completed : (!empty($source) ? FormCopy::field('is_completed')->boolean() : 0))) !!}
+            <input type="checkbox" name="is_completed" value="1" @if ($source->is_completed ?? old('is_completed', $model->is_completed ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 

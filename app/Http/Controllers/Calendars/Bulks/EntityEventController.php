@@ -29,6 +29,9 @@ class EntityEventController extends Controller
                 'campaign' => $campaign, 'calendar' => $calendar]), '_calendar-event', $models, $calendar);
         }
 
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
         $count = $this->campaign($campaign)->bulkProcess($request, EntityEvent::class);
 
         return redirect()

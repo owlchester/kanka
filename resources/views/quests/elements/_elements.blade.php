@@ -51,18 +51,7 @@
                             </a>
                         </div>
 
-                        {!! Form::open([
-                            'method' => 'DELETE',
-                            'route' => [
-                                'quests.quest_elements.destroy',
-                                $campaign,
-                                $model,
-                                $element
-                            ],
-                            'class' => 'hidden',
-                            'id' => 'delete-form-' . $element->id
-                        ]) !!}
-                        {!! Form::close() !!}
+                        <x-form method="DELETE" :action="['quests.quest_elements.destroy', $campaign, $model, $element]" id="delete-form-{{ $element->id }}" />
                     @endcan
                 </div>
             </div>

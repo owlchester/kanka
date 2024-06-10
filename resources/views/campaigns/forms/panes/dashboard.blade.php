@@ -7,24 +7,23 @@
             :label="__('campaigns.fields.excerpt')"
             :helper="__('campaigns.helpers.excerpt')"
             :tooltip="true">
-            {!! Form::textarea('excerptForEdition', null, ['class' => 'w-full html-editor', 'id' => 'excerpt', 'name' => 'excerpt']) !!}
+            <textarea name="excerpt" id="excerpt" class="w-full html-editor">{!! old('excerpt', $model->excerptForEdition ?? null) !!}</textarea>
         </x-forms.field>
 
         <x-forms.field
             field="header"
             :label="__('campaigns.fields.header_image')">
             <p class="text-neutral-content m-0 md:hidden">{{ __('campaigns.helpers.header_image') }}</p>
-            {!! Form::hidden('remove-header_image') !!}
-            {!! Form::hidden('remove-header_image') !!}
+            <input type="hidden" name="remove-header_image" />
             <div class="flex gap-2 ">
                 <div class="basis-3/4 flex flex-col gap-2">
                     <x-forms.field
                         field="header-image">
-                        {!! Form::file('header_image', ['class' => 'image w-full', 'id' => 'header_image']) !!}
+                        <input type="file" name="header_image" class="image w-full" id="header_image" accept=".jpg, .jpeg, .png, .gif, .webp, .gif" />
                     </x-forms.field>
                     <x-forms.field
                         field="image-url">
-                        {!! Form::text('header_image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'w-full']) !!}
+                        <input type="text" name="header_image_url" value="{{ old('header_image_url') }}" maxlength="255" class="w-full" placeholder="{{ __('crud.placeholders.image_url') }}" />
                     </x-forms.field>
 
                     <p class="text-neutral-content m-0">

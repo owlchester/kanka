@@ -19,17 +19,17 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         <p class="mb-0">
             @if ($campaign->premium())
                 {!! __('settings/boosters.campaign.premium', [
-    'user' => link_to_route('users.profile', $boost->user->displayName(), $boost->user_id, ['target' => '_blank']),
+    'user' => '<a href="' . route('users.profile', $boost->user_id) . '">' . $boost->user->displayName() . '</a>',
     'time' => $boost->created_at->format('M Y')
     ]) !!}
             @elseif ($campaign->superboosted())
                 {!! __('settings/boosters.campaign.superboosted', [
-    'user' => link_to_route('users.profile', $boost->user->displayName(), $boost->user_id, ['target' => '_blank']),
+    'user' => '<a href="' . route('users.profile', $boost->user_id) . '">' . $boost->user->displayName() . '</a>',
     'time' => $boost->created_at->format('M Y')
     ]) !!}
             @elseif ($campaign->boosted())
                 {!! __('settings/boosters.campaign.boosted', [
-        'user' => link_to_route('users.profile', $boost->user->displayName(), $boost->user_id, ['target' => '_blank']),
+    'user' => '<a href="' . route('users.profile', $boost->user_id) . '">' . $boost->user->displayName() . '</a>',
     'time' => $boost->created_at->format('M Y')
         ]) !!}
             @else

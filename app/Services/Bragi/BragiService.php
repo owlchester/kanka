@@ -26,11 +26,7 @@ class BragiService
         $data = [
             'header' => __('bragi.intro', [
                 'name' => '<strong>Bragi</strong>',
-                'here' => link_to(
-                    '//docs.kanka.io/en/latest/features/bragi.html',
-                    __('bragi.here'),
-                    ['target' => '_blank']
-                )
+                'here' => '<a href="https://docs.kanka.io/en/latest/features/bragi.html" target="_blank">' . __('bragi.here') . '</a>',
             ]),
         ];
         if (!$this->user->hasTokens()) {

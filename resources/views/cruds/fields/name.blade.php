@@ -6,19 +6,11 @@ $required = !isset($bulk);
     field="name"
     :label="__('crud.fields.name')"
     :required="$required">
-    {!! Form::text(
-        'name',
-        null,
-        [
-            'placeholder' => __('crud.placeholders.name'),
-            'maxlength' => 191,
-            'data-live' => route('search.live', $campaign),
-            'data-type' => \Illuminate\Support\Str::singular($trans),
-            'data-duplicate' => '.duplicate-warning',
-            'data-id' => (isset($model) && !empty($model->id) && !empty($model->entity) ? $model->entity->id : null),
-            'required' => $required ? 'required' : null
-        ]
-    ) !!}
+    <input type="text" name="name" placeholder="{{ __('crud.placeholders.name') }}" maxlength="191" data-live="{{ route('search.live', $campaign) }}"
+           data-type="{{ \Illuminate\Support\Str::singular($trans) }}" data-duplicate=".duplicate-warning" data-1p-ignore="true"
+           data-id="{{ $model->entity->id ?? null }}"
+           @if ($required) required="required" @endif
+    value="{!! old('name', $model->name ?? null) !!}" />
 
     <div class="text-warning-content duplicate-warning flex flex-col gap-1" style="display: none">
         <span>{{ __('entities.creator.duplicate') }}</span>

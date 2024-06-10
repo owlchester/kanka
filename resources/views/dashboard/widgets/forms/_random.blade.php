@@ -24,7 +24,7 @@
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
                 <x-forms.field field="random-type" :required="true" :label="__('bookmarks.fields.random_type')">
-                    {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => ' recent-entity-type']) !!}
+                    <x-forms.select name="config[entity]" :options="$entityTypes" :selected="$model->conf('entity') ?? null" class="w-full recent-entity-type" />
                 </x-forms.field>
 
                 <x-forms.field field="recent-filters"
@@ -33,7 +33,7 @@
                     :tooltip="true"
                     link="https://docs.kanka.io/en/latest/guides/dashboard.html"
                     :helper="__('dashboard.widgets.helpers.filters')">
-                    {!! Form::text('config[filters]', null, ['class' => '', 'maxlength' => 191]) !!}
+                    <input type="text" name="config[filters]" value="{{ old('config[filters]', $model->config['filters'] ?? null) }}" maxlength="191" class="w-full" id="config[filters]" placeholder="" />
                 </x-forms.field>
 
                 @include('dashboard.widgets.forms._name', ['random' => true])

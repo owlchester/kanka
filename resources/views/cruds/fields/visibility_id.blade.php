@@ -49,5 +49,11 @@ $visibilityUniqueID = uniqid('visibility_');
     :tooltip="true"
     :helper="__('visibilities.tooltip')"
     link="//docs.kanka.io/en/latest/advanced/visibility.html">
-    {{ Form::select('visibility_id', $options, empty($model) ? (isset($bulk) ? null : $campaign->defaultVisibilityID()) : ($model->visibility_id instanceof Visibility ? $model->visibility_id->value : $model->visibility_id), ['class' => 'w-full', 'id' => $visibilityUniqueID]) }}
+    <x-forms.select
+        name="visibility_id"
+        :options="$options"
+        :selected="empty($model) ? (isset($bulk) ? null : $campaign->defaultVisibilityID()) : ($model->visibility_id instanceof Visibility ? $model->visibility_id->value : $model->visibility_id)"
+        class="w-full"
+        :id="$visibilityUniqueID"
+        />
 </x-forms.field>

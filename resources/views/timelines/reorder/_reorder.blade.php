@@ -6,15 +6,12 @@
     </x-alert>
     <?php return; ?>
 @endif
-{!! Form::open([
-        'route' => ['timelines.reorder-save', $campaign, $timeline],
-        'method' => 'POST',
-    ]) !!}
+<x-form :action="['timelines.reorder-save', $campaign, $timeline]">
 <div class="max-w-4xl box-timeline-reorder flex flex-col gap-5">
     <div class="element-live-reorder sortable-elements flex flex-col gap-5">
         @foreach($eras as $era)
             <div class="element bg-base-200 rounded flex flex-col gap-2 p-2" data-id="{{ $era->id }}">
-                {!! Form::hidden('timeline_era[]', $era->id) !!}
+                <input type="hidden" name="timeline_era[]" value="{{ $era->id }}" />
                 <div class="dragger pr-3">
                     <span class="fa-solid fa-sort"></span>
                 </div>
@@ -32,7 +29,7 @@
                             @continue
                         @endif
                             <x-reorder.child id="element-{{ $element->id }}">
-                                {!! Form::hidden('timeline_element[' . $era->id . '][]', $element->id) !!}
+                                <input type="hidden" name="timeline_element[{{ $era->id }}][]" value="{{ $element->id }}" />
                                 <div class="dragger relative dragger pr-3 rounded-icon">
                                     {!! $element->htmlIcon(false) !!}
                                 </div>
@@ -52,4 +49,4 @@
         {{ __('crud.save') }}
     </button>
 </div>
-{!! Form::close() !!}
+</x-form>

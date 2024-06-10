@@ -18,7 +18,7 @@
         </h1>
         <p class="text-lg">
             {!! __('settings.subscription.billing.helper', [
-                'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
+                'stripe' => '<a href="https://www.stripe.com" target="_blank">Stripe</a>'
             ]) !!}
         </p>
 
@@ -33,13 +33,13 @@
         </div>
 
 
-        {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['billing.payment-method.save']]) !!}
+        <x-form :action="['billing.payment-method.save']" method="PATCH">
             <x-grid type="1/1">
                 @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended())
                     @include('settings.subscription.currency._blocked')
                 @else
                     <x-forms.field field="currency" :label="__('settings.subscription.fields.currency')">
-                        {!! Form::select('currency', $currencies, auth()->user()->currency(), []) !!}
+                        <x-forms.select name="currency" :options="$currencies" :selected="auth()->user()->currency()" />
                     </x-forms.field>
 
                     <div class="text-right">
@@ -51,25 +51,24 @@
                     </div>
                 @endif
             </x-grid>
-        {!! Form::close() !!}
+        </x-form>
 
 
         <h3 class="">
             {{ __('settings.billing.title') }}
         </h3>
-        {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing-info']]) !!}
+        <x-form :action="['settings.billing-info']" method="PATCH">
             <p class="help-block">
                 {{ __('settings.billing.placeholder') }}
             </p>
-            {!! Form::textarea('profile[billing]', null, ['class' => 'rounded border p-2 w-full mb-2', 'rows' => 5, 'maxlength' => 1024]) !!}
-
+        <textarea name="profile[billing]" placeholder="" class="w-full rounded border p-2 mb-2" rows="5" maxlength="1024">{!! old('profile[billing]', \Illuminate\Support\Arr::get($user->profile, 'billing')) !!}</textarea>
             <div class="text-right">
                 <x-buttons.confirm type="primary"  outline="true">
                     <x-icon class="save"></x-icon>
                     <span>{{ __('settings.billing.save') }}</span>
                 </x-buttons.confirm>
             </div>
-        {!! Form::close() !!}
+        </x-form>
     </x-grid>
 @endsection
 

@@ -7,31 +7,22 @@
 ])
 
 @section('content')
-    {!! Form::model($style, [
-        'route' => ['campaign_styles.update', $campaign, $style],
-        'method' => 'PATCH',
-        'data-shortcut' => 1,
-        'id' => 'campaign-style',
-        'data-max-content' => \App\Http\Requests\StoreCampaignStyle::MAX,
-        'data-error' => '#max-content-error'
-    ]) !!}
-    <x-box>
-        <x-grid type="1/1">
-            @include('partials.errors')
+    <x-form :action="['campaign_styles.update', $campaign, $style]" method="PATCH" id="campaign-style" :extra="['data-max-content' => \App\Http\Requests\StoreCampaignStyle::MAX, 'data-error' => '#max-content-error']">
+        <x-box>
+            <x-grid type="1/1">
+                @include('partials.errors')
 
-            <x-alert type="error" id="max-content-error" :hidden="true">
-                {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
-            </x-alert>
+                <x-alert type="error" id="max-content-error" :hidden="true">
+                    {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
+                </x-alert>
 
-            @include('campaigns.styles._form')
-        </x-grid>
-        <x-dialog.footer>
-            @include('campaigns.styles._form-footer')
-        </x-dialog.footer>
-    </x-box>
-
-    {{ csrf_field() }}
-    {!! Form::close() !!}
+                @include('campaigns.styles._form')
+            </x-grid>
+            <x-dialog.footer>
+                @include('campaigns.styles._form-footer')
+            </x-dialog.footer>
+        </x-box>
+    </x-form>
 @endsection
 
 @section('scripts')

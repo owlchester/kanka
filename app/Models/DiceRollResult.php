@@ -46,7 +46,7 @@ class DiceRollResult extends Model
     protected string $entityType = 'dice_roll';
 
     /** @var bool No relations for this entity "type" */
-    protected $hasRelations = false;
+    protected bool $hasRelations = false;
 
     /**
      *

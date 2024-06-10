@@ -6,12 +6,12 @@
 
 @section('content')
 
-    {!! Form::open(['route' => ['campaign_dashboards.store', $campaign], 'method' => 'POST', 'data-shortcut' => 1]) !!}
+    <x-form :action="['campaign_dashboards.store', $campaign]">
     @include('partials.forms.form', [
         'dialog' => true,
         'title' => __('dashboard.dashboards.create.title'),
         'content' => 'dashboard.dashboards._form',
         'dialog' => true,
     ])
-    {!! Form::close() !!}
+    </x-form>
 @endsection

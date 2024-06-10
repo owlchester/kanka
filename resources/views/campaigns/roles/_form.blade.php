@@ -5,16 +5,16 @@
     :required="true"
     :label="__('campaigns.roles.fields.name')"
     >
-    {!! Form::text('name', null, ['placeholder' => trans('campaigns.roles.placeholders.name'), 'class' => '', 'maxlength' => 45, 'required']) !!}
+    <input type="text" name="name" placeholder="{{ __('campaigns.roles.placeholders.name') }}" maxlength="45" required value="{!! old('name', $model->name ?? null) !!}" />
 </x-forms.field>
 @if (isset($roleId))
     <x-forms.field
         field="duplicate"
         :label="__('campaigns.roles.fields.copy_permissions')">
-        {!! Form::hidden('role_id', $roleId) !!}
-        {!! Form::hidden('duplicate', 0) !!}
+        <input type="hidden" name="role_id" value="{{ $roleId }}" />
+        <input type="hidden" name="duplicate" value="0" />
         <x-checkbox :text="__('campaigns.roles.helper.permissions_helper')">
-            {!! Form::checkbox('duplicate', 1, null, ['id' => 'duplicate']) !!}
+            <input type="checkbox" name="duplicate" value="1" @if (old('duplicate', true)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 @endif

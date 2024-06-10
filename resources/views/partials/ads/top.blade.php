@@ -20,8 +20,8 @@
 
     <p class="text-center text-muted my-2">
         {!! __('misc.ads.remove_v3', [
-            'subscribing' => link_to_route('settings.subscription', __('misc.ads.subscribing')),
-            'boosting' => link_to('https://kanka.io/premium', __('misc.ads.premium')),
+            'subscribing' => '<a href="' . route('settings.subscription') . '">' . __('misc.ads.subscribing') . '</a>',
+            'boosting' => '<a href="https://kanka.io/premium">' . __('misc.ads.premium') . '</a>',
         ]) !!}
     </p>
 </x-ad>

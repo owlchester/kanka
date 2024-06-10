@@ -23,26 +23,17 @@
             :required="true"
             :label="__('crud.fields.name')">
             @if ($mode === 'bulk')
-            {!! Form::textarea('name', null, [
-                'placeholder' => __('entities.creator.bulk_names'),
-                'autocomplete' => 'off',
-                'class' => '',
-                'rows' => 4,
-                'data-live' => route('search.live', $campaign),
-                'data-type' => $singularType,
-                'id' => 'qq-name-field'
-            ]) !!}
+                <textarea name="name"
+                          autocomplete="off"
+                          class="w-full"
+                          id="qq-name-field"
+                          rows="4"
+                          data-live="{{ route('search.live', $campaign) }}"
+                          data-type="{{ $singularType }}"
+                          placeholder="{{ __('entities.creator.bulk_names') }}"></textarea>
             @else
-                {!! Form::text('name', null, [
-                    'placeholder' => $type === 'posts' ? __('posts.placeholders.name') : __('crud.placeholders.name'),
-                    'autocomplete' => 'off',
-                    'class' => '',
-                    'maxlength' => 191,
-                    'data-live' => route('search.live', $campaign),
-                    'data-type' => $singularType,
-                    'data-bulk' => true,
-                    'id' => $type === 'posts' ? 'qq-post-name-field' : 'qq-name-field'
-                ]) !!}
+
+                <input type="text" name="name" placeholder="{{ $type === 'posts' ? __('posts.placeholders.name') : __('crud.placeholders.name') }}" autocomplete="off" value="{!! old('name') !!}" maxlength="191" required data-live="{{ route('search.live', $campaign) }}" data-type="{{ $singularType }}" data-bulk="true" id="{{ $type === 'posts' ? 'qq-post-name-field' : 'qq-name-field' }}" data-1p-ignore="true" />
             @endif
             <x-alert type="warning" class=" my-1 duplicate-entity-warning" :hidden="true">
                 {{ __('entities.creator.duplicate') }}<br />
