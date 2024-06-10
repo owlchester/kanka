@@ -64,6 +64,11 @@ class RecoveryController extends Controller
                 ->with('boosted-pitch', true)
             ;
         }
+
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         try {
             $count = $this->service->recover($request->get('model', []));
             return redirect()
