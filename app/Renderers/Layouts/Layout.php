@@ -62,7 +62,7 @@ abstract class Layout
     {
         if ($model instanceof Entity) {
             return \Illuminate\Support\Facades\Blade::renderComponent(
-            // @phpstan-ignore-next-line
+                // @phpstan-ignore-next-line
                 new \App\View\Components\EntityLink($model, $this->campaign)
             );
         }
