@@ -23,7 +23,7 @@
                                     <i class="fa-solid fa-lock" aria-hidden="true" aria-label="{{ __('crud.is_private') }}" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
                                 @endif
                                     <x-entity-link
-                                        :entity="$element->entity->entity"
+                                        :entity="$element->entity"
                                         :name="$element->name"
                                         :campaign="$campaign" />
                             @else

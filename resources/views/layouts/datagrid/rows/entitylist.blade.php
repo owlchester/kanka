@@ -1,5 +1,5 @@
 @php
-$relation = $with[0];
+$relation = $with;
 @endphp
 <div class="flex flex-wrap gap-1">
 @foreach ($model->$relation as $rel)

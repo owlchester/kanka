@@ -6,14 +6,14 @@
         :entity="$model"
         :campaign="$campaign" />
 @elseif (!empty($with))
-    @if ($model->{$with} instanceof Entity)
+    @if ($model->{$with} instanceof \App\Models\Entity)
         @if ($model->{$with}->is_private)
             <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
         @endif
         <x-entity-link
             :entity="$model->{$with}"
             :campaign="$campaign" />
-    @elseif (!empty($model->{$with}))
+    @elseif (!empty($model->{$with}) && $model->{$with} && $model->{$with}->entity)
         @if ($model->{$with}->entity->is_private)
             <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
         @endif
