@@ -129,17 +129,6 @@ class TimelineElement extends Model
         return '<i class="fa fa-solid fa-hourglass-half bg-' . $this->colour . ' ' . $min . '" aria-hidden="true"></i>';
     }
 
-    /**
-     */
-    public function htmlName(): string
-    {
-        if (empty($this->entity_id)) {
-            return $this->name;
-        }
-
-        return $this->entity->tooltipedLink($this->name, false);
-    }
-
     public function mentionName(): string
     {
         if (!empty($this->name)) {

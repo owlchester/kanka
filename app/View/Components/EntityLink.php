@@ -34,7 +34,7 @@ class EntityLink extends Component
 
     public function name(): string
     {
-        if (isset($this->name)) {
+        if (!empty($this->name)) {
             return $this->name;
         }
         return $this->entity->name;

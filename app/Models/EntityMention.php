@@ -253,52 +253,6 @@ class EntityMention extends Model
         return !empty($this->entity_id) && !empty($this->entity);
     }
 
-    /**
-     * Get the entity link with ajax tooltip.
-     * When coming from an entity first, call this method on the entity. It avoids some back and worth.
-     * Todo: move this out of the model
-     */
-    public function mentionLink(): string
-    {
-        if ($this->isQuestElement()) {
-            if ($this->questElement && $this->entity) {
-                return $this->entity->tooltipedLink() .
-                    ' - ' . $this->questElement->skipAllIcon()->visibilityIcon() .
-                    ' <a class="name" href="' .
-                    $this->getLink() . '">' .
-                    $this->questElement->name() .
-                    '</a>';
-            }
-            return 'Unknown';
-        } elseif ($this->isTimelineElement()) {
-            if ($this->timelineElement && $this->entity) {
-                return $this->entity->tooltipedLink() .
-                    ' - ' . $this->timelineElement->skipAllIcon()->visibilityIcon() .
-                    ' <a class="name" href="' .
-                    $this->getLink() . '">' .
-                    $this->timelineElement->elementName() .
-                    '</a>';
-            }
-        } elseif ($this->isPost()) {
-            if ($this->post && $this->entity) {
-                return $this->entity->tooltipedLink() .
-                    ' - ' . $this->post->skipAllIcon()->visibilityIcon() .
-                    ' <a class="name" href="' .
-                    $this->getLink() . '">' .
-                    $this->post->name .
-                    '</a>';
-            }
-        } elseif ($this->entity) {
-            return $this->entity->tooltipedLink();
-        } elseif ($this->isCampaign()) {
-            return '<a class="name" href="' .
-                route('overview', $this->campaign) . '">' .
-                $this->campaign->name .
-                '</a>';
-        }
-        return __('crud.hidden');
-    }
-
     public function exportFields(): array
     {
         return [

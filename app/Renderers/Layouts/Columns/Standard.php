@@ -15,6 +15,7 @@ class Standard extends Column
     public const ENTITYLIST = 'entitylist';
     public const ParentLink = 'parentlink';
     public const LOCATION = 'location';
+    public const MENTION_LINK = 'mention-link';
     public const VISIBILITY = 'visibility';
     public const VISIBILITY_PIVOT = 'visibility_pivot';
     public const DATE = 'date';
@@ -58,6 +59,7 @@ class Standard extends Column
             self::VISIBILITY,
             self::VISIBILITY_PIVOT,
             self::DATE,
+            self::MENTION_LINK,
         ]);
     }
 

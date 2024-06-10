@@ -14,7 +14,12 @@
                 <h3 class="grow flex gap-2 items-center cursor-pointer element-toggle m-0 {{ $element->collapsed() ? 'animate-collapsed' : null }} text-base" data-animate="collapse" data-target="#timeline-element-body-{{ $element->id }}">
                     <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
                     <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
-                    {!! $element->htmlName() !!}
+
+                    @if ($element->entity)
+                        <x-entity-link :entity="$element->entity" :name="$element->name" :campaign="$campaign" />
+                    @else
+                        {!! $element->name !!}
+                    @endif
 
                     @if (isset($element->date) || $element->use_event_date && isset($element->entity->event->date))
                         <span class="text-neutral-content text-sm">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
