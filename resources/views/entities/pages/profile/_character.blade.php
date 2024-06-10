@@ -28,7 +28,10 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                     @php $existingRaces[$race->id] = true; @endphp
                 <p class="entity-race" data-foreign="{{ $race->id }}">
                     <b>{{ __('entities.race') }}</b><br />
-                    {!! $race->tooltipedLink() !!}
+
+                    <x-entity-link
+                        :entity="$race->entity"
+                        :campaign="$campaign" />
                 </p>
                 @endforeach
             @endif
@@ -41,7 +44,9 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                     @php $existingFamilies[$family->id] = true; @endphp
                     <p class="entity-family" data-foreign="{{ $family->id }}">
                         <b>{{ __('entities.families') }}</b><br />
-                        {!! $family->tooltipedLink() !!}
+                        <x-entity-link
+                            :entity="$family->entity"
+                            :campaign="$campaign" />
                     </p>
                 @endforeach
             @endif

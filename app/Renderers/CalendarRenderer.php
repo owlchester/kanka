@@ -675,20 +675,17 @@ class CalendarRenderer
     }
 
     /**
-     * Show a button for today if the current view isn't the current year-month.
-     * @return string
+     * Determine if the "today" button is disabled.
      */
-    public function todayButton()
+    public function todayButtonIsDisabled(): bool
     {
         $calendarYear = $this->calendar->currentDate('year');
         $calendarMonth = $this->calendar->currentDate('month');
 
-        $disabled = false;
         if ($this->year == $calendarYear && $this->month == $calendarMonth) {
-            $disabled = true;
+            return true;
         }
-
-        return '<a href="' . route('entities.show', [$this->campaign, 'entity' => $this->calendar->entity, 'month' => $calendarMonth, 'year' => $calendarYear]) . '" class="btn2 btn-sm" ' . ($disabled ? 'disabled="disabled"' : null) . '>' . __('calendars.actions.today') . '</a>';
+        return false;
     }
 
     /**

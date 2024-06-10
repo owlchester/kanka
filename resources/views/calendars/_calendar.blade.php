@@ -15,7 +15,12 @@ $weekNumber = 1;
 <?php $canEdit = auth()->check() && auth()->user()->can('update', $model) ?>
 {{ $renderer->campaign($campaign)->setCalendar($model) }}
 <div class="calendar-toolbar flex gap-2 items-center">
-    {{ $renderer->todayButton() }}
+    <a
+        href="{{ route('entities.show', [$campaign, 'entity' => $model->entity, 'month' => $renderer->currentMonthId(), 'year' => $renderer->currentYear()]) }}"
+        class="btn2 btn-sm @if ($renderer->todayButtonIsDisabled()) btn-disabled" disabled="disabled @endif"
+    >
+        {{ __('calendars.actions.today') }}
+    </a>
 
     @if (!$renderer->isYearlyLayout())
     <div class="join">

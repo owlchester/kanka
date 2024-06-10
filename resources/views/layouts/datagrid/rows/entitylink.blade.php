@@ -1,12 +1,31 @@
 @if ($model instanceof \App\Models\Entity)
     @if ($model->is_private)
-        <i class="fa-solid fa-lock" aria-hidden="true" data-title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+        <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
     @endif
-    {!! $model->tooltipedLink() !!}
-    <?php return ?>
+    <x-entity-link
+        :entity="$model"
+        :campaign="$campaign" />
+@elseif (!empty($with))
+    @if ($model->{$with} instanceof Entity)
+        @if ($model->{$with}->is_private)
+            <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
+        @endif
+        <x-entity-link
+            :entity="$model->{$with}"
+            :campaign="$campaign" />
+    @elseif (!empty($model->{$with}))
+        @if ($model->{$with}->entity->is_private)
+            <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
+        @endif
+        <x-entity-link
+            :entity="$model->{$with}->entity"
+            :campaign="$campaign" />
+    @endif
+@else
+    @if ($model->entity->is_private)
+        <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
+    @endif
+    <x-entity-link
+        :entity="$model->entity"
+        :campaign="$campaign" />
 @endif
-
-@if ($model->entity->is_private)
-    <i class="fa-solid fa-lock" aria-hidden="true" data-title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
-@endif
-{!! $model->entity->tooltipedLink() !!}

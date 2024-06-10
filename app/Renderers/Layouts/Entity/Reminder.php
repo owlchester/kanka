@@ -3,6 +3,7 @@
 namespace App\Renderers\Layouts\Entity;
 
 use App\Models\EntityEvent;
+use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
 class Reminder extends Layout
@@ -17,9 +18,8 @@ class Reminder extends Layout
             'calendar' => [
                 'key' => 'calendar.name',
                 'label' => 'entities.calendar',
-                'render' => function (EntityEvent $reminder) {
-                    return $reminder->calendar->tooltipedLink();
-                }
+                'render' => Standard::ENTITYLINK,
+                'with' => 'calendar',
             ],
             'date' => [
                 'key' => 'date',

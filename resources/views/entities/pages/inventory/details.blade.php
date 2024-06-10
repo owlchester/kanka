@@ -52,7 +52,9 @@
                             </div>
                             <div class="flex flex-col gap-0">
                                 <div class="font-extrabold text-xl">
-                                    {!! $inventory->item->location->tooltipedLink() !!}
+                                    <x-entity-link
+                                        :entity="$inventory->item->location->entity"
+                                        :campaign="$campaign" />
                                 </div>
                                 <div class="text-neutral-content">
                                     {{ \App\Facades\Module::singular(config('entities.ids.location'), __('entities.location'))  }}
@@ -83,7 +85,9 @@
     <div class="flex gap-2 items-center">
         <h1 class="text-2xl grow">
             @if ($inventory->item)
-                {!! $inventory->item->tooltipedLink() !!}
+                <x-entity-link
+                    :entity="$inventory->item->entity"
+                    :campaign="$campaign" />
             @else
                 {!! $inventory->name !!}
             @endif

@@ -3,12 +3,12 @@
  */
 ?>
 @if ($model->ability)
-    <div class="entity-header-sub pull-left">
-        @if($model->ability)
+    <div class="entity-header-sub-element">
         <span data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
             <x-icon :class="\App\Facades\Module::duoIcon('ability')" :title="__('crud.fields.parent')" />
-            {!! $model->ability->tooltipedLink() !!}
+            <x-entity-link
+                :entity="$model->ability->entity"
+                :campaign="$campaign" />
         </span>
-        @endif
     </div>
 @endif

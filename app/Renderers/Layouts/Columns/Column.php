@@ -3,6 +3,7 @@
 namespace App\Renderers\Layouts\Columns;
 
 use App\Models\MiscModel;
+use App\Traits\CampaignAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
@@ -11,11 +12,13 @@ use Illuminate\Support\Arr;
  */
 abstract class Column
 {
+    use CampaignAware;
+
     /** @var Model|MiscModel */
     protected $model;
 
     /** @var array */
-    protected $config;
+    protected array $config;
 
     /**
      */

@@ -3,8 +3,10 @@
  */
 ?>
 @if ($model->organisation)
-    <div class="entity-header-sub pull-left">
+    <div class="entity-header-sub-element">
         <x-icon :class="\App\Facades\Module::duoIcon('organisation')" :title="__('crud.fields.parent')" />
-        {!! $model->organisation->tooltipedLink() !!}
+        <x-entity-link
+            :entity="$model->organisation->entity"
+            :campaign="$campaign" />
     </div>
 @endif

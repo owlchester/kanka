@@ -2,6 +2,9 @@
 
 namespace App\Renderers\Layouts;
 
+use App\Models\Entity;
+use Illuminate\Database\Eloquent\Model;
+
 abstract class Layout
 {
     public const ONLY_DESKTOP = 'hidden lg:table-cell';
@@ -51,5 +54,16 @@ abstract class Layout
         }
 
         return $this->visibleColumns;
+    }
+
+
+    protected function entityLink(Model $model): string
+    {
+        if ($model instanceof Entity) {
+            return \Illuminate\Support\Facades\Blade::renderComponent(
+                new \App\View\Components\EntityLink($model, $this->campaign)
+            );
+        }
+        return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
     }
 }

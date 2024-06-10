@@ -17,7 +17,9 @@
                     @if ($inventory->entity->is_private)
                         <i class="fa-solid fa-lock" data-title="{{ __('crud.is_private') }}" data-toggle="tooltip" aria-hidden="true"></i>
                     @endif
-                    {!! $inventory->entity->tooltipedLink() !!}
+                    <x-entity-link
+                        :entity="$inventory->entity"
+                        :campaign="$campaign" />
                 </td>
                 <td class="hidden md:block">{{ $inventory->amount }}</td>
                 <td class="hidden md:block">{{ $inventory->position }}</td>

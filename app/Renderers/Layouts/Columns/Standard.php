@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Columns;
 
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Closure;
@@ -11,6 +12,9 @@ class Standard extends Column
     public const CHARACTER = 'character';
     public const IMAGE = 'image';
     public const ENTITYLINK = 'entitylink';
+    public const ENTITYLIST = 'entitylist';
+    public const ParentLink = 'parentlink';
+    public const LOCATION = 'location';
     public const VISIBILITY = 'visibility';
     public const VISIBILITY_PIVOT = 'visibility_pivot';
     public const DATE = 'date';
@@ -48,6 +52,9 @@ class Standard extends Column
             self::IMAGE,
             self::TAGS,
             self::ENTITYLINK,
+            self::LOCATION,
+            self::ENTITYLIST,
+            self::ParentLink,
             self::VISIBILITY,
             self::VISIBILITY_PIVOT,
             self::DATE,
@@ -57,11 +64,12 @@ class Standard extends Column
     /**
      * Render a defined view
      */
-    protected function view(string $view, array $extra = null): string
+    protected function view(string $view, mixed $extra = null): string
     {
         return view('layouts.datagrid.rows.' . $view)
             ->with('model', $this->model)
             ->with('with', $extra)
+            ->with('campaign', $this->campaign)
             ->render();
     }
 }

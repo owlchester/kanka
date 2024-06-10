@@ -9,7 +9,9 @@
                 @continue
             @endif
             @php $existingLocations[$location->id] = true; @endphp
-            {!! $location->tooltipedLink() !!}
+            <x-entity-link
+                :entity="$location->entity"
+                :campaign="$campaign" />
         @endforeach
     </div>
 @endif

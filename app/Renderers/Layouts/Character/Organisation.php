@@ -22,13 +22,8 @@ class Organisation extends Layout
             'organisation' => [
                 'key' => 'organisation.name',
                 'label' => Module::singular(config('entities.ids.organisation'), 'entities.organisation'),
-                'render' => function ($model) {
-                    $defunctIcon = null;
-                    if ($model->organisation->is_defunct) {
-                        $defunctIcon = ' <i class="fa-solid fa-shop-slash" data-title="' . __('organisations.fields.is_defunct') . '" aria-hidden="true"></i>';
-                    }
-                    return $model->organisation->tooltipedLink() . $defunctIcon . '<br />' . $model->organisation->type;
-                },
+                'render' => Standard::ENTITYLINK,
+                'with' => 'organisation',
             ],
             'role' => [
                 'key' => 'role',
@@ -47,12 +42,8 @@ class Organisation extends Layout
             'location' => [
                 'key' => 'location.name',
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
-                'render' => function ($model) {
-                    if (!$model->organisation->location) {
-                        return null;
-                    }
-                    return $model->organisation->location->tooltipedLink();
-                },
+                'render' => Standard::LOCATION,
+                'with' => 'organisation',
             ],
             'pinned' => [
                 'label' => '<i class="fa-solid fa-star" data-title="' . __('organisations.members.fields.pinned') . '" data-toggle="tooltip"></i>',

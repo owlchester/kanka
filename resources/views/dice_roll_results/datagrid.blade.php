@@ -9,8 +9,10 @@
         [
             'label' => __('entities.dice_roll'),
             'field' => 'diceRoll.name',
-            'render' => function($model) {
-                return $model->diceRoll->tooltipedLink();
+            'render' => function($model) use ($campaign) {
+               return \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($model->diceRoll, $campaign)
+                );
             }
         ],
         [
@@ -18,9 +20,11 @@
             'field' => 'diceRoll.character.name',
             'disableSort' => true,
             'visible' => $campaign->enabled('characters'),
-            'render' => function($model) {
+            'render' => function($model) use ($campaign) {
                 if ($model->diceRoll->character) {
-                    return $model->diceRoll->character->tooltipedLink();
+                   return \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($model->diceRoll->character->entity, $campaign)
+                );
                 }
             }
         ],

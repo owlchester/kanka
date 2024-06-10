@@ -120,14 +120,4 @@ class MapGroup extends Model
         $campaign = CampaignLocalization::getCampaign();
         return route('maps.map_groups.edit', [$campaign, 'map' => $this->map_id, $this->id]);
     }
-
-    /**
-     * Override the tooltiped link for the datagrid
-     */
-    public function tooltipedLink(string $displayName = null): string
-    {
-        return '<a href="' . $this->getLink() . '">' .
-            (!empty($displayName) ? $displayName : e($this->name)) .
-        '</a>';
-    }
 }

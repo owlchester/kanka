@@ -3,9 +3,12 @@
  */
 ?>
 @if ($model->item)
-    <div class="entity-header-sub pull-left">
-        <x-icon :class="\App\Facades\Module::duoIcon('item')" :title="__('crud.fields.parent')" />
-        {!! $model->item->tooltipedLink() !!}
+    <div class="entity-header-sub entity-header-line">
+        <div class="entity-header-sub-element">
+            <x-icon :class="\App\Facades\Module::duoIcon('item')" :title="__('crud.fields.parent')" />
+            <x-entity-link
+                :entity="$model->event->entity"
+                :campaign="$campaign" />
+        </div>
     </div>
 @endif
-

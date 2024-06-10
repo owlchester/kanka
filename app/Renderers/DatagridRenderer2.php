@@ -2,6 +2,7 @@
 
 namespace App\Renderers;
 
+use App\Models\Entity;
 use UnitEnum;
 use App\Renderers\Layouts\Columns\Action;
 use App\Renderers\Layouts\Columns\Column;
@@ -20,7 +21,7 @@ class DatagridRenderer2
     use CampaignAware;
 
     /** @var Layout */
-    protected $layout;
+    protected Layout $layout;
 
     /**  */
     protected array $deleteForms = [];
@@ -34,8 +35,7 @@ class DatagridRenderer2
     protected $routeName = null;
     protected array $routeOptions = [];
 
-    /** @var bool|array */
-    protected $bulks = false;
+    protected array $bulks;
 
     protected Closure $highlight;
 
@@ -108,10 +108,10 @@ class DatagridRenderer2
         $columns = [];
 
         if ($this->hasBulks()) {
-            $columns[] = new Checkbox($model, []);
+            $columns[] = (new Checkbox($model, []))->campaign($this->campaign);
         }
         foreach ($this->layout->visibleColumns() as $key => $col) {
-            $columns[] = new Standard($model, $col);
+            $columns[] = (new Standard($model, $col))->campaign($this->campaign);
         }
         if ($this->hasActions() && auth()->check()) {
             $action = new Action($model, $this->layout->actions(), $this->permissions);
@@ -137,7 +137,7 @@ class DatagridRenderer2
      */
     public function bulks(): array
     {
-        if ($this->bulks !== false) {
+        if (isset($this->bulks)) {
             return $this->bulks;
         }
 
@@ -281,5 +281,15 @@ class DatagridRenderer2
             $attributes[] = 'data-' . $attr . '="' . $val . '"';
         }
         return implode(' ', $attributes);
+    }
+
+    protected function entityLink(Model $model): string
+    {
+        if ($model instanceof Entity) {
+            return \Illuminate\Support\Facades\Blade::renderComponent(
+                new \App\View\Components\EntityLink($model, $this->campaign)
+            );
+        }
+        return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
     }
 }

@@ -30,19 +30,12 @@ class Family extends Layout
             'location' => [
                 'key' => 'location.name',
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
-                'render' => function ($model) {
-                    if (!$model->location) {
-                        return null;
-                    }
-                    return $model->location->tooltipedLink();
-                },
+                'render' => Standard::LOCATION,
             ],
             'family' => [
                 'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
-                'render' => function ($model) {
-                    return $model->parent?->tooltipedLink();
-                },
+                'render' => Standard::ParentLink,
                 'visible' => function () {
                     return !request()->has('parent_id');
                 }

@@ -67,7 +67,9 @@
 if (!$log->entity) {
     $entityLink = '<a href="' . route('recovery', $campaign) . '">' . __('history.unknown.entity') . '</a>';
 } else {
-    $entityLink = $log->entity->tooltipedLink($log->entity->name, false);
+    $entityLink = \Illuminate\Support\Facades\Blade::renderComponent(
+    new \App\View\Components\EntityLink($log->entity, $campaign)
+    );
 }
 @endphp
                                 {!! __('history.log.' . $log->actionCode(), [

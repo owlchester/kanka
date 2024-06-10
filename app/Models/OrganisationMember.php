@@ -8,6 +8,7 @@ use App\Models\Concerns\Privatable;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class OrganisationMember
@@ -66,10 +67,7 @@ class OrganisationMember extends Model
         //'character.location.name',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
@@ -77,15 +75,12 @@ class OrganisationMember extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function organisation()
+    public function organisation(): BelongsTo
     {
         return $this->belongsTo('App\Models\Organisation', 'organisation_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function parent()
+    public function parent(): BelongsTo
     {
         return $this->belongsTo('App\Models\OrganisationMember', 'parent_id');
     }
@@ -95,14 +90,13 @@ class OrganisationMember extends Model
         return $this->organisation->entity->tags;
     }
 
-    /**
-     */
     public function pinned(): bool
     {
         return !empty($this->pin_id);
     }
 
     /**
+     * Determine if the member is pinned to the character
      */
     public function pinnedToCharacter(): bool
     {
@@ -110,6 +104,7 @@ class OrganisationMember extends Model
     }
 
     /**
+     * Determine if the member is pinned to the org
      */
     public function pinnedToOrganisation(): bool
     {
@@ -117,6 +112,7 @@ class OrganisationMember extends Model
     }
 
     /**
+     * Determine if the member is pinned to both the org and character
      */
     public function pinnedToBoth(): bool
     {
@@ -124,6 +120,7 @@ class OrganisationMember extends Model
     }
 
     /**
+     * Determine if the member is inactive
      */
     public function inactive(): bool
     {
@@ -131,6 +128,7 @@ class OrganisationMember extends Model
     }
 
     /**
+     * Determine if the member status is unknown
      */
     public function unknown(): bool
     {
@@ -138,9 +136,8 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return Builder
      */
-    public function scopePinned(Builder $query, int $pin)
+    public function scopePinned(Builder $query, int $pin): Builder
     {
         return $query->where('pin_id', $pin);
     }
@@ -189,5 +186,10 @@ class OrganisationMember extends Model
             ->has('organisation')
             ->has('organisation.entity')
             ->leftJoin('organisations as c', 'c.id', 'organisation_member.organisation_id');
+    }
+
+    public function getSuperiorAttribute()
+    {
+        return $this->parent?->character;
     }
 }

@@ -3,7 +3,9 @@
     <x-forms.field
         field="ability"
         :label="__('entities.ability')">
-        {!! $ability->ability->tooltipedLink() !!}
+        <x-entity-link
+            :entity="$ability->ability->entity"
+            :campaign="$campaign" />
         <input type="hidden" name="ability_id" value="{{ $ability->ability_id }}" />
     </x-forms.field>
 
