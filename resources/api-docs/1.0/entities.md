@@ -199,6 +199,47 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
 
 Notice the new array objects `attributes`, `entity_files`, `entity_events`, `posts`, `entity_abilities` and `relations`.
 
+<a name="recent-entities"></a>
+## Recently modified Entities
+
+You can see the 10 most recently edited entities on the `entities/recent` endpoint with the following option.
+
+| Parameter | Values | Description |
+| :- | :- | :- |
+| `amount` | `int` | Number of most recently edited entities to show, has to be a value from 1 to 10, 1 being the default |
+
+### Result
+
+
+```json
+{
+    "data": [
+        {
+            "id": 8,
+            "name": "Sword of Cebolla",
+            "type": "item",
+            "type_id": 5,
+            "child_id": 1,
+            "tags": [],
+            "is_private": false,
+            "is_template": false,
+            "campaign_id": 1,
+            "is_attributes_private": false,
+            "tooltip": null,
+            "header_image": null,
+            "image_uuid": null,
+            "created_at": "2023-08-22T20:22:21.000000Z",
+            "created_by": null,
+            "updated_at": "2024-08-22T20:22:21.000000Z",
+            "updated_by": null,
+            "urls": {
+                "view": "{url}",
+                "api": "{url}"
+            }
+        }
+    ],
+}
+```
 
 <a name="create-entities"></a>
 ## Create Entities
