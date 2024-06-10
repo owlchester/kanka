@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Columns;
 
-use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Closure;

@@ -6,7 +6,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\Component;
 
 class EntityLink extends Component
@@ -19,9 +18,8 @@ class EntityLink extends Component
         public Campaign $campaign,
         public ?string $name = null,
         public bool $bottom = false,
-    )
-    {
-        //
+    ) {
+
     }
 
     /**

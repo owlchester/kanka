@@ -73,7 +73,6 @@ class OrganisationMember extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function organisation(): BelongsTo
     {

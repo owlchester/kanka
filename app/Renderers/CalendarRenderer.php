@@ -682,10 +682,10 @@ class CalendarRenderer
         $calendarYear = $this->calendar->currentDate('year');
         $calendarMonth = $this->calendar->currentDate('month');
 
-        if ($this->year == $calendarYear && $this->month == $calendarMonth) {
-            return true;
-        }
-        return false;
+        return (bool) ($this->year == $calendarYear && $this->month == $calendarMonth)
+
+
+        ;
     }
 
     /**

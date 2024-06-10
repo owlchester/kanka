@@ -20,7 +20,7 @@ class DatagridRenderer2
 {
     use CampaignAware;
 
-    /** @var Layout */
+    /**  */
     protected Layout $layout;
 
     /**  */

@@ -17,7 +17,7 @@ abstract class Column
     /** @var Model|MiscModel */
     protected $model;
 
-    /** @var array */
+    /**  */
     protected array $config;
 
     /**
