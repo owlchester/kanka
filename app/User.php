@@ -150,7 +150,7 @@ class User extends \Illuminate\Foundation\Auth\User
         $roleLinks = [];
         foreach ($roles as $role) {
             if (auth()->user()->isAdmin()) {
-                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, [$campaign, $role->id]);
+                $roleLinks[] = '<a href="' . route('campaign_roles.show', [$campaign, $role->id]) . '">' .  $role->name . '</a>';
             } else {
                 $roleLinks[] = $role->name;
             }

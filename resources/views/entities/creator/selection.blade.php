@@ -28,13 +28,8 @@
 
         <div class="quick-creator-footertext-center">
             <p class="m-4 text-neutral-content text-xs">{!! __('entities.creator.missing_v2', [
-        'learn-more' => link_to(
-            '//docs.kanka.io/en/latest/features/quick-creator.html',
-            '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front/newsletter.actions.learn_more'),
-            ['target' => '_blank'],
-            null,
-            false
-            )]) !!}</p>
+        'learn-more' => '<a href="//docs.kanka.io/en/latest/features/quick-creator.html" target="_blank">' .
+            '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front/newsletter.actions.learn_more') . '</a>']) !!}</p>
         </div>
     </article>
 </div>

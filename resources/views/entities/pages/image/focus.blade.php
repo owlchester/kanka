@@ -19,7 +19,7 @@
     @if ($campaign->boosted())
         @if($campaign->superboosted() && empty($entity->image_path) && !empty($entity->image_uuid))
             <x-alert type="warning">
-                <p>{!! __('entities/image.focus.warning_v2', ['gallery' => link_to_route('campaign.gallery.index', __('sidebar.gallery'), $campaign)]) !!}</p>
+                <p>{!! __('entities/image.focus.warning_v2', ['gallery' => '<a href="' . route('campaign.gallery.index', $campaign) . '">' . __('sidebar.gallery') . '</a>']) !!}</p>
             </x-alert>
             <p>
                 <a href="{{ $model->getLink() }}">
@@ -54,7 +54,7 @@
         <x-alert type="warning">
             <p>
             {!! __('entities/image.focus.unboosted', [
-    'boosted-campaigns' => link_to(\App\Facades\Domain::toFront('pricing'), __('concept.premium-campaigns'), ['#premium'])
+    'boosted-campaigns' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>'
 ]) !!}
             </p>
         </x-alert>

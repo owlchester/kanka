@@ -61,8 +61,8 @@ class MemberService
                     'campaigns.roles.users.errors.cant_kick_admins'
                 ))->setOptions([
                     'admin' => $role->campaignRole->name,
-                    'discord' => link_to(config('social.discord'), 'Discord'),
-                    'email' => link_to('mailto:' . config('app.email'), config('app.email'))
+                    'discord' => '<a href="' . config('social.discord') . '>Discord</a>',
+                    'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>',
                 ]);
             }
             $role->delete();
@@ -147,8 +147,8 @@ class MemberService
                 'campaigns.roles.users.errors.cant_kick_admins'
             ))->setOptions([
                 'admin' => $this->userCampaignRole->campaignRole->name,
-                'discord' => link_to(config('social.discord'), 'Discord'),
-                'email' => link_to('mailto:' . config('app.email'), config('app.email'))
+                'discord' => '<a href="' . config('social.discord') . '>Discord</a>',
+                'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>',
             ]);
         }
 

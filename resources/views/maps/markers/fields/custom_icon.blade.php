@@ -1,7 +1,7 @@
 @php $helper = __('maps/markers.helpers.custom_icon_v2', [
         'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>',
 'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>',
-'docs' => link_to('https://docs.kanka.io/en/latest/entities/maps/markers.html#custom-icon', __('footer.documentation'), ['target' => '_blank'])
+'docs' => '<a href="https://docs.kanka.io/en/latest/entities/maps/markers.html#custom-icon" target="_blank">' . __('footer.documentation') . '</a>',
 ]);
  $fieldname = $fieldname ?? 'custom_icon';
  @endphp
@@ -15,11 +15,11 @@
     @if (!$campaign->boosted())
         @if (auth()->check() && auth()->user()->hasBoosters())
             <x-helper>
-                <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
+                <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}
             </x-helper>
         @else
             <x-helper>
-                <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to('https://kanka.io/premium', __('concept.boosted-campaign'))]) !!}
+                <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium">' . __('concepts.premium-campaign') . '</a>']) !!}
             </x-helper>
         @endif
     @endif

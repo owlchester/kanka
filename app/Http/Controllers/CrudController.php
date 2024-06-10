@@ -108,7 +108,7 @@ class CrudController extends Controller
             return redirect()->route('dashboard', $this->campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), [$this->campaign, '#' . $this->module]),
+                    'fix' => '<a href="' . route('campaign.modules', [$this->campaign, '#' . $this->module]) . '">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -383,16 +383,12 @@ class CrudController extends Controller
                 $new->entity->crudSaved();
             }
 
+            $link = '<a href="' . route(
+                $new->entity ? 'entities.show' : $this->view . '.show',
+                $new->entity ? [$this->campaign, $new->entity] : [$this->campaign, $new->id])
+                . '">' . $new->name . '</a>';
             $success = __('general.success.created', [
-                'name' => $new->entity ? link_to_route(
-                    'entities.show',
-                    $new->name,
-                    [$this->campaign, $new->entity]
-                ) : link_to_route(/** Menu link **/
-                    $this->view . '.show',
-                    $new->name,
-                    [$this->campaign, $new->id]
-                )
+                'name' => $link
             ]);
 
             session()->flash('success_raw', $success);
@@ -541,16 +537,12 @@ class CrudController extends Controller
                 }
             }
 
+            $link = '<a href="' . route(
+                    $model->entity ? 'entities.show' : $this->view . '.show',
+                    $model->entity ? [$this->campaign, $model->entity] : [$this->campaign, $model->id])
+                . '">' . $model->name . '</a>';
             $success = __('general.success.updated', [
-                'name' => $model->entity ? link_to_route(
-                    'entities.show',
-                    $model->name,
-                    [$this->campaign, $model->entity]
-                ) : link_to_route(/** Menu link **/
-                    $this->view . '.show',
-                    $model->name,
-                    [$this->campaign, $model]
-                )
+                'name' => $link
             ]);
 
             if ($model->entity) {
@@ -608,7 +600,7 @@ class CrudController extends Controller
         return redirect()->route($this->route . '.index', $this->campaign)
             ->with('success_raw', __('general.success.deleted-cancel', [
                 'name' => $model->name,
-                'cancel' => link_to_route('recovery', __('crud.cancel'), [$model->campaign])
+                'cancel' => '<a href="' . route('recovery', $model->campaign) . '">' . __('crud.cancel') . '</a>'
             ]));
     }
 

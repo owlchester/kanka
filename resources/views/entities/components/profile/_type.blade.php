@@ -4,10 +4,6 @@
         @php
         $defaultOptions = [$campaign];
         @endphp
-        {!! link_to_route(
-            $entity->pluralType() . '.index',
-            $model->type,
-            $defaultOptions + ['_clean' => true, 'type' => $model->type]
-        ); !!}
+        <a href="{{ route($entity->pluralType() . '.index', $defaultOptions + ['_clean' => true, 'type' => $model->type]) }}">{!! $model->type !!}</a>
     </div>
 @endif

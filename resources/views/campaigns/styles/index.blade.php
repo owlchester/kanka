@@ -41,7 +41,7 @@ use App\Facades\Datagrid ?>
             @if ($styles->count() === 0)
                 <x-box>
                     <x-helper>
-                        {!! __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]) !!}
+                        {!! __('campaigns/styles.helpers.main', ['here' => '<a href="https://blog.kanka.io/category/tutorials" target="_blank">' . __('campaigns/styles.helpers.here') . '</a>']) !!}
                     </x-helper>
                 </x-box>
             @else
@@ -74,7 +74,7 @@ use App\Facades\Datagrid ?>
         'id' => 'theming-help',
         'title' => __('campaigns.show.tabs.styles'),
         'textes' => [
-            __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]),
+            __('campaigns/styles.helpers.main', ['here' => '<a href="https://blog.kanka.io/category/tutorials" target="_blank">' . __('campaigns/styles.helpers.here') . '</a>']),
     ]])
 
 @endsection

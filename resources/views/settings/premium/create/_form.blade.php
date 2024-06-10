@@ -5,7 +5,7 @@
     @if (auth()->check() && auth()->user()->hasBoosters())
         <p>
             {!! __('settings/boosters.boost.errors.out-of-boosters', [
-                'upgrade' => link_to_route('settings.subscription', __('settings/boosters.boost.upgrade')),
+                'upgrade' => '<a href="' . route('settings.subscription') . '">' . __('settings/boosters.boost.upgrade') . '</a>',
                 'cost' => '<code>' . 1 . '</code>',
                 'available' => '<strong>' . auth()->user()->availableBoosts() . '</strong>'
             ]) !!}

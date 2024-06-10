@@ -34,7 +34,7 @@ class InventoryController extends Controller
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), [$campaign, '#inventories']),
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#inventories']) . '">' . __('crud.fix-this-issue') . '</a>'
                 ])
             );
         }

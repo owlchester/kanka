@@ -16,7 +16,7 @@
         <div class="">{{ __('front.features.patreon.upload_limit_map') }}</div>
         <div class="">10 mb</div>
 
-        <div class="">{!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}</div>
+        <div class="">{!! __('front.features.patreon.discord', ['discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>']) !!}</div>
         <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
     </div>
 

@@ -160,9 +160,9 @@
     </div>
 
         <p class="help-block">
-            {!! __('settings.subscription.helpers.stripe', ['stripe' => link_to('https://stripe.com', 'Stripe', ['target' => '_blank'])]) !!}
+            {!! __('settings.subscription.helpers.stripe', ['stripe' => '<a href="https://stripe.com" target="_blank">Stripe</a>']) !!}
     @if($isYearly)
-            <br />{!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
+            <br />{!! __('settings.subscription.trial_period', ['email' => '<a href="mailto' . config('app.email') . '">' . config('app.email') . '</a>']) !!}
     @endif
         </p>
     </div></x-grid>

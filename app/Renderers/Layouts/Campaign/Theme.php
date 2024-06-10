@@ -26,7 +26,7 @@ class Theme extends Layout
                 'label' => 'campaigns/styles.fields.name',
                 'render' => function ($model) {
                     $campaign = CampaignLocalization::getCampaign();
-                    return link_to_route('campaign_styles.edit', $model->name, [$campaign, $model]);
+                    return '<a href="' . route('campaign_styles.edit', [$campaign, $model]) . '">' . $model->name . '</a>';
                 },
             ],
             'length' => [

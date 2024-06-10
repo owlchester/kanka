@@ -439,11 +439,7 @@ class DatagridRenderer
                 /** @var Journal $model */
                 if ($model->entity->calendarDate && $model->entity->calendarDate->calendar && $model->entity->calendarDate->calendar->entity) {
                     $reminder = $model->entity->calendarDate;
-                    $content = link_to_route(
-                        'entities.show',
-                        $reminder->readableDate(),
-                        [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
-                    );
+                    $content = '<a href="' . route('entities.show', [$this->campaign, $reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]) . '">' . $reminder->readableDate() . '</a>';
                 }
             } else {
                 // Exception

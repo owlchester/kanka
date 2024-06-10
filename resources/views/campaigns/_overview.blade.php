@@ -46,7 +46,7 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
         @php
         $booster = $campaign->boosts()->first();
         if ($booster) {
-            $link = link_to_route('users.profile', $booster->user->name, [$booster->user]);
+            $link = '<a href="' . route('users.profile', [$booster->user]) . '">' . $booster->user->name,  . '</a>';
         } else {
             $link = __('crud.unknown');
         }

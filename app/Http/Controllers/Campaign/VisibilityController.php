@@ -37,7 +37,7 @@ class VisibilityController extends Controller
         ]);
 
         $success = __('campaigns/public.update.' . ($campaign->isPublic() ? 'public' : 'private'), [
-            'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), ['target' => '_blank']),
+            'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' . __('footer.public-campaigns') . '</a>',
         ]);
 
         if ($request->get('from') === 'overview') {

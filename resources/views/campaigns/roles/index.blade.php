@@ -45,12 +45,11 @@
         'title' => __('campaigns.show.tabs.roles'),
         'textes' => [
             __('campaigns.roles.helper.1', [
-                'admin' => link_to_route(
+                'admin' => '<a href="' . route(
                     'campaigns.campaign_roles.admin',
-                    \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
                     $campaign,
-                    ['target' => '_blank']
-                )
+                ) . '" target="_blank">' .
+                    \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>',
             ]),
             __('campaigns.roles.helper.2'),
             __('campaigns.roles.helper.3'),

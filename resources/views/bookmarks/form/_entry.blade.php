@@ -18,6 +18,8 @@ if (isset($model)) {
         $isRandom = true;
     }
 }
+$settingsLink = '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>';
+$premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campaign') . '</a>';
 ?>
 @inject('sidebar', 'App\Services\SidebarService')
 <x-grid>
@@ -28,19 +30,19 @@ if (isset($model)) {
             <input type="text" name="icon" value="{{ old('text', $source->icon ?? $model->icon ?? null) }}" placeholder="fa-solid fa-users" data-paste="fontawesome" maxlength="45" />
             <x-helper>
                 {!! __('entities/links.helpers.icon', [
-                    'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
-                    'rpgawesome' => link_to('https://nagoshiashumari.github.io/Rpg-Awesome/', 'RPGAwesome', ['target' => '_blank']),
-                    'docs' => link_to('https://docs.kanka.io/en/latest/articles/available-icons.html', __('footer.documentation', ['target' => '_blank']))
+                    'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">FontAwesome</a>',
+                    'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPGAwesom</a>',
+                    'docs' => '<a href="hhttps://docs.kanka.io/en/latest/articles/available-icons.html" target="_blank">' . __('footer.documentation',) . '</a>',
                 ]) !!}
             </x-helper>
         @else
             @if (auth()->user()->hasBoosters())
             <x-helper>
-                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
+                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => $settingsLink]) !!}
             </x-helper>
             @else
                 <x-helper>
-                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
+                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => $premiumLink]) !!}
                 </x-helper>
             @endif
         @endif
@@ -60,11 +62,11 @@ if (isset($model)) {
         @else
             @if (auth()->user()->hasBoosters())
                 <x-helper>
-                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
+                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => $settingsLink]) !!}
                 </x-helper>
             @else
                 <x-helper>
-                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
+                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => $premiumLink]) !!}
                 </x-helper>
             @endif
         @endif
@@ -84,11 +86,11 @@ if (isset($model)) {
         @else
             @if (auth()->user()->hasBoosters())
             <x-helper>
-                {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
+                {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => $settingsLink]) !!}
             </x-helper>
             @else
                 <x-helper>
-                    {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
+                    {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => $premiumLink]) !!}
                 </x-helper>
             @endif
         @endif

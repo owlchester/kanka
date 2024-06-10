@@ -19,9 +19,9 @@
 
         <p class="text-lg">
             {!! __('subscription.benefits.main', [
-                'more' => link_to(Domain::toFront('pricing'), __('subscription.benefits.more'), '#paid-features'),
-                'boosters' => link_to(Domain::toFront('premium'), __('concept.premium-campaigns')),
-                'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
+                'more' => '<a href="https://kanka.io/pricingp" target="_blank">' . __('footer.public-campaigns') . '</a>',
+                'boosters' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>',
+                'stripe' => '<a href="https://stripe.com" target="_blank">Stripe</a>'
             ]) !!}
         </p>
 
@@ -126,7 +126,7 @@
 
         <x-helper>
             {!! __('settings.subscription.trial_period', [
-                'email' => link_to('mailto:' .  config('app.email'), config('app.email'))
+                'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
             ]) !!}
         </x-helper>
     </x-grid>

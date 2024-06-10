@@ -5,8 +5,8 @@
             <x-tutorial code="public_campaign_helper">
                 <p class="mb-2">
                     {!! __('campaigns/public.helpers.main', [
-                        'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), null, ['target' => '_blank']),
-                        'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), $campaign, ['target' => '_blank'])
+                        'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' .  __('footer.public-campaigns') . '</a>',
+                        'public-role' => '<a href="' . route('campaigns.campaign_roles.public', $campaign). '" target="_blank">' .  __('campaigns.members.roles.public') . '</a>',
                     ]) !!}
                 </p>
                 <p>
@@ -29,11 +29,11 @@
             <x-forms.field field="discreet" :label="__('campaigns.fields.is_discreet')" :disabled="true">
                 @if (isset($model) && $model->boosted())
                     <input type="hidden" name="is_discreet" value="0" />
-                    <x-checkbox :text="__('campaigns.helpers.is_discreet', ['public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'))])">
+                    <x-checkbox :text="__('campaigns.helpers.is_discreet', ['public-campaigns' => '<a href=\'https://kanka.io/campaigns\'>' . __('footer.public-campaigns') . '</a>'])">
                         <input type="checkbox" name="is_discreet" value="1" @if (old('is_discreet', $model->is_discreet ?? false)) checked="checked" @endif />
                     </x-checkbox>
                 @else
-                    <x-checkbox :text="__('campaigns.helpers.is_discreet_locked', ['public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'))])">
+                    <x-checkbox :text="__('campaigns.helpers.is_discreet_locked', ['public-campaigns' => '<a href=\'https://kanka.io/campaigns\'>' . __('footer.public-campaigns') . '</a>'])">
                         <input type="checkbox" name="premium_feature" value="1" disabled="disabled" />
                     </x-checkbox>
                 @endif
@@ -47,7 +47,7 @@
                 @if ($model->publicHasNoVisibility())
                     <x-alert type="warning">
                         {!! __('campaigns.helpers.public_no_visibility', [
-        'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'), $campaign)
+        'fix' => '<a href="' . route('campaigns.campaign_roles.public', $campaign) . '">' . __('crud.fix-this-issue') . '</a>',
         ]) !!}
                     </x-alert>
                 @endif
@@ -58,7 +58,7 @@
 
             <p>
                 {!! __('campaigns.sharing.filters', [
-        'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), null, ['target' => '_blank'])
+        'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' . __('footer.public-campaigns') . '</a>'
         ]) !!}
             </p>
 

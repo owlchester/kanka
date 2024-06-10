@@ -70,8 +70,8 @@
         <div class="flex gap-2">
             <div class="grow text-xs text-gray-500">
                 {!! __('auth.register.tos', [
-    'terms' => link_to('https://kanka.io/terms-and-conditions', __('footer.terms'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
-    'privacy' => link_to('https://kanka.io/privacy-policy', __('footer.privacy'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
+    'terms' => '<a href="https://kanka.io/terms-and-conditions" class="text-blue-500 hover:text-blue-800">' . __('footer.terms') . '</a>',
+    'privacy' => '<a href="https://kanka.io/privacy-policy" class="text-blue-500 hover:text-blue-800">' . __('footer.privacy') . '</a>',
     ]) !!}
             </div>
             <div class="flex-none">
@@ -115,7 +115,7 @@
     </div>
 
     <p class="text-sm text-gray-500 dark:text-slate-200">
-        {!! __('auth.register.already', ['login' => link_to('login', __('auth.register.log-in'), ['class' => 'text-blue-500 hover:text-blue-800'])]) !!}
+        {!! __('auth.register.already', ['login' => '<a href="' . route('login') . '" class="text-blue-500" hover:text-blue-800">' . __('auth.register.log-in') . '</a>']) !!}
     </p>
 
 

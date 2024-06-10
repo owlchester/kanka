@@ -18,7 +18,7 @@
     <x-form method="PATCH" :action="['entities.entity_events.update', $campaign, $entity->id, $entityEvent->id]" class="ajax-subform entity-calendar-subform">
 
     @include('partials.forms.form', [
-        'title' => __('calendars.event.edit.title', ['name' => link_to($entity->url(), $entity->name)]),
+        'title' => __('calendars.event.edit.title', ['name' => '<a href="' . $entity->url() . '">' . $entity->name . '</a>']),
         'content' => 'calendars.events._form',
         'deleteID' => '#delete-reminder-' . $entityEvent->id,
         'dialog' => true,

@@ -31,7 +31,6 @@
         "laravel/scout": "^10.5",
         "laravel/socialite": "^5.0",
         "laravel/ui": "^4.2.1",
-        "laravelcollective/html": "^6.0",
         "league/flysystem-aws-s3-v3": "^3.5",
         "league/html-to-markdown": "^5.1",
         "livewire/livewire": "^3.3",

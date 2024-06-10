@@ -71,12 +71,12 @@ if (!empty($era)) {
             @if (auth()->check() && auth()->user()->hasBoosters())
                 <x-helper>
                     <x-icon class="premium" />
-                    {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaign])]) !!}
+                    {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}
                 </x-helper>
             @else
                 <x-helper>
                     <x-icon class="premium" />
-                    {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to('https://kanka.io/premium', __('concept.premium-campaign'))]) !!}
+                    {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaign') . '</a>']) !!}
                 </x-helper>
             @endif
         @endif

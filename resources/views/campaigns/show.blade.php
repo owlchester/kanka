@@ -25,7 +25,7 @@
                 @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
                     <x-alert type="warning">
                         <p>{!! __('campaigns.helpers.public_no_visibility', [
-    'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'), $campaign)
+    'fix' => '<a href="' . route('campaigns.campaign_roles.public', $campaign) . '">' . __('crud.fix-this-issue') . '</a>'
 ]) !!}</p>
                     </x-alert>
                 @endif

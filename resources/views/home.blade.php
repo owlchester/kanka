@@ -73,7 +73,7 @@ use App\Enums\Widget;
                 <x-alert type="info">
                     <p>
                     {!! __('dashboard.setup.tutorial.text', [
-        'blog' => link_to('https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/', __('dashboard.setup.tutorial.blog'), ['target' => '_blank'])
+    'blog' => '<a href="https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/" target="_blank">' . __('dashboard.setup.tutorial.blog') . '</a>',
     ]) !!}
                     </p>
                 </x-alert>

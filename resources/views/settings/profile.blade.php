@@ -21,15 +21,16 @@
                     </x-forms.field>
 
                     @php $helper =  __('profiles.helpers.profile-name', [
-    'marketplace' => link_to(config('marketplace.url'), __('footer.marketplace'), ['target' => '_blank']),
-    'profile' => link_to_route('users.profile', __('profiles.settings.helpers.profile'), $user, ['target' => '_blank'])]) @endphp
+    'marketplace' => '<a href="' . config('marketplace.url') . '" target="_blank">' . __('footer.marketplace'). '</a>',
+    'profile' => '<a href="' . route('users.profile', $user) . '" target="_blank">' . __('profiles.settings.helpers.profile') . '</a>']) @endphp
                     <x-forms.field field="marketplace-name" :label="__('profiles.fields.profile-name')" :helper="$helper">
                         <input type="text" name="settings[marketplace_name]" maxlength="32" placeholder="{{ __('profiles.fields.profile-name') }}" class="rounded border p-2 w-full" value="{!! old('settings[marketplace_name]', $user->settings['marketplace_name'] ?? null) !!}" />
                     </x-forms.field>
 
-                    <x-forms.field field="bio" :label="__('profiles.fields.bio')" :helper="__('profiles.settings.helpers.bio', [
-    'link' => link_to_route('users.profile', __('profiles.settings.helpers.profile'), $user, ['target' => '_blank'])
-    ])">
+                    @php $helper = __('profiles.settings.helpers.bio', [
+    'link' => '<a href="' . route('users.profile', $user) . '" target="_blank">' . __('profiles.settings.helpers.profile') . '</a>'
+    ]); @endphp
+                    <x-forms.field field="bio" :label="__('profiles.fields.bio')" :helper="$helper">
                         <textarea name="profile[bio]" placeholder="{{ __('profiles.placeholders.bio') }}" class="w-full rounded border p-2" rows="5" maxlength="300">{!! old('profile[bio]', \Illuminate\Support\Arr::get($user->profile, 'bio')) !!}</textarea>
                     </x-forms.field>
 
@@ -44,7 +45,7 @@
                         <x-forms.field field="hide-sub" :label="__('profiles.fields.subscription_hiding')">
                             <input type="hidden" name="settings[hide_subscription]" value="0" />
                             <x-checkbox :text="__('profiles.fields.hide_subscription', [
-    'hall_of_fame' => link_to('https://kanka.io/hall-of-fame', __('front/hall-of-fame.title'), null, ['target' => '_blank'])
+    'hall_of_fame' => '<a href=\'https://kanka.io/hall-of-fame\' target=\'_blank\'>' . __('front/hall-of-fame.title') . '</a>',
     ])">
                                 <input type="checkbox" name="settings[hide_subscription]" value="1" @if (old('settings[hide_subscription]', auth()->user()->settings['hide_subscription'] ?? false)) checked="checked" @endif />
                             </x-checkbox>
@@ -58,9 +59,7 @@
                         <div class="rounded-full">
                             <img class="avatar rounded-full avatar-user" src="{{ auth()->user()->getAvatarUrl(200) }}" width="200" height="200" alt="{{ auth()->user()->name }}">
                         </div>
-
                     @endif
-
                 </x-forms.field>
             </div>
             <div class="text-right">

@@ -14,12 +14,12 @@
                 <p>{{ __('settings.account.2fa.social') }}</p>
         @elseif(empty($user->passwordSecurity))
                 <p>
-                    {{ __('settings.account.2fa.helper') }} {!! link_to('https://docs.kanka.io/en/latest/account/security/two-factor-authentication.html', __('settings.account.2fa.learn_more')) !!}
+                    {{ __('settings.account.2fa.helper') }} <a href="https://docs.kanka.io/en/latest/account/security/two-factor-authentication.html">{{ __('settings.account.2fa.learn_more') }}</a>
                 </p>
 
                 <p>{!! __('settings.account.2fa.enable_instructions', [
-                    'android' => link_to('https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2', 'Android', ['target' => '_blank']),
-                    'ios' => link_to('https://apps.apple.com/us/app/google-authenticator/id388497605', 'iOS', ['target' => '_blank']),
+                    'android' => '<a target="_blank" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Android</a>',
+                    'ios' => '<a target="_blank" href="https://apps.apple.com/us/app/google-authenticator/id388497605">iOS</a>',
                 ]) !!}</p>
                 <x-form action="settings.security.generate-2fa">
                 <div class="text-right">

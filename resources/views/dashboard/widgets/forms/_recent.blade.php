@@ -63,7 +63,7 @@
                     @else
                         <x-helper>
                             {!! __('dashboard.widgets.advanced_options_boosted', [
-                    'boosted_campaign' => link_to(\App\Facades\Domain::toFront('pricing'), __('concept.boosted-campaign'), '#boost', ['target' => '_blank'])]) !!}
+                    'boosted_campaign' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>']) !!}
                         </x-helper>
                     @endif
                 </div>

@@ -1,5 +1,5 @@
 @if ($isLink)
-    {!! link_to($url, $title) !!}
+    <a href="{{ $url }}">{!! $title !!}</a>
 @else
     {!! $title !!}
 @endif

@@ -232,7 +232,7 @@ class EntityLog extends Model
     {
         if (!$this->entity) {
             $campaign = CampaignLocalization::getCampaign();
-            return link_to_route('recovery', __('history.unknown.entity'), [$campaign]);
+            return '<a href="' . route('recovery', $campaign) . '">' . __('history.unknown.entity') . '</a>';
         }
         return $this->entity->tooltipedLink($this->entity->name, false);
     }

@@ -18,7 +18,7 @@
         </h1>
         <p class="text-lg">
             {!! __('settings.subscription.billing.helper', [
-                'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
+                'stripe' => '<a href="https://www.stripe.com" target="_blank">Stripe</a>'
             ]) !!}
         </p>
 

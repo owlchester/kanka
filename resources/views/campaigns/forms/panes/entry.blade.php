@@ -18,7 +18,7 @@
                 <x-helper>{!! __('campaigns/vanity.helper', [
     'default' => '<code>w/' . (isset($model) ? $model->id : 123456) . '</code>',
     'example' => '<code>w/exandria-unlimited</code>',
-    'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('footer.documentation', ['target' => '_blank']))
+    'learn-more' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html">' . __('footer.documentation') . '</a>'
     ]) !!}</x-helper>
 
                 <input type="text" maxlength="45" name="vanity" class="w-full" data-url="{{ route('campaign.vanity-validate', $model) }}" value="{{ old('vanity') }}"/>
@@ -33,7 +33,7 @@
                 <x-helper>{!! __('campaigns/vanity.helper', [
     'default' => '<code>w/' . (isset($model) ? $model->id : 123456) . '</code>',
     'example' => '<code>w/exandria-unlimited</code>',
-    'learn-more' => link_to('https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html', __('footer.documentation', ['target' => '_blank']))
+    'learn-more' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html">' . __('footer.documentation') . '</a>'
     ]) !!}</x-helper>
                 @if (isset($model))
                     @if ($model->legacyBoosted())

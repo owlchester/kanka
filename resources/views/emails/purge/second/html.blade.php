@@ -40,7 +40,7 @@
     <p>{{ __('emails/purge/first.assure') }}</p>
 
     <p>{!! __('emails/purge/first.help', [
-        'discord' => link_to('https:' . config('social.discord'), 'Discord'),
+        'discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>',
         'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
     ]) !!}</p>
 

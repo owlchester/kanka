@@ -10,7 +10,7 @@
     <x-forms.field
         field="age"
         :label="__('characters.fields.age')"
-        :helper="__('characters.helpers.age', ['more' => link_to('https://docs.kanka.io/en/latest/advanced/age.html', __('crud.actions.find_out_more'), ['target' => '_blank'])])">
+        :helper="__('characters.helpers.age', ['more' => '<a href=\'https://docs.kanka.io/en/latest/advanced/age.html\' target=\'_blank\'>' . __('crud.actions.find_out_more') . '</a>'])">
         <input type="text" name="age" value="{{ old('age', $source->age ?? $model->age ?? null) }}" maxlength="25" class="w-full"  autocomplete="off" placeholder="{{ __('characters.placeholders.age') }}" />
     </x-forms.field>
 

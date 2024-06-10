@@ -48,7 +48,7 @@ if (!empty($widget->conf('entity'))) {
 
             @if ($widget->entity)
                 <div class="widget-entity">
-                    {{ link_to($widget->entity->url(), $widget->entity->name) }}
+                    <a href="{{ $widget->entity->url() }}">{!! $widget->entity->name !!}</a>
                 </div>
             @endif
 

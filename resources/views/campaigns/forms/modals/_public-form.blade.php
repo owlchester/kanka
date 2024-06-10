@@ -1,8 +1,8 @@
 <x-grid type="1/1">
     <x-alert type="info">
         <p>{!! __('campaigns/public.helpers.main', [
-        'public-campaigns' => link_to('https://kanka.io/campaigns', __('footer.public-campaigns'), null, ['target' => '_blank']),
-        'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), $campaign, ['target' => '_blank'])
+        'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' . __('footer.public-campaigns') . '</a>',
+        'public-role' => '<a href="' . route('campaigns.campaign_roles.public', $campaign) . '" target="_blank">' . __('campaigns.members.roles.public') . '</a>',
     ]) !!}</p>
         <p>
             <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>

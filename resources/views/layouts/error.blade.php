@@ -56,8 +56,9 @@
 
         <p class="lg:max-w-2xl mx-auto text-center">
             {!! __('errors.footer', [
-    'discord' => link_to(config('social.discord'), 'Discord', ['class' => 'link-light']),
-    'email' => link_to('mailto:' . config('app.email'), config('app.email'),  ['class' => 'link-light'])]) !!}
+    'discord' => '<a href="' . config('social.discord') . '" class="link-light">Discord</a>',
+    'email' => '<a href="mailto:' . config('app.email') . '" class="link-light">' . config('app.email') . '</a>',
+]) !!}
         </p>
     </div>
 </section>

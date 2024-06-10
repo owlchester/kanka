@@ -15,7 +15,7 @@
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">@if ($model->explorable())
                 @if ($model->isChunked() && $model->chunkingError())
                     <x-alert type="error">
-                        {!! __('maps.errors.chunking.error', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
+                        {!! __('maps.errors.chunking.error', ['discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>']) !!}
                     </x-alert>
                 @elseif ($model->isChunked() && !$model->chunkingReady())
                     <x-alert type="warning">

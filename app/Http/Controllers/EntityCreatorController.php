@@ -148,7 +148,7 @@ class EntityCreatorController extends Controller
                 }
             }
             $createdEntities[] = $new;
-            $links[] = link_to($new->entity->url(), $new->name);
+            $links[] = '<a href="' . $new->entity->url() . '">' . $new->name . '</a>';
         }
 
         // If no entity was created, we throw the standard error

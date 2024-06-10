@@ -69,12 +69,8 @@ class InviteController extends Controller
         $invitation = CampaignInvite::create($data);
 
         $link = route('campaigns.join', [$invitation->token]);
-        $copy = link_to('#', '<i class="fa-solid fa-copy"></i> ' . __('campaigns.invites.actions.copy'), [
-            'data-clipboard' => $link,
-            'data-toggle' => 'tooltip',
-            'data-toast' => __('crud.alerts.copy_invite'),
-            'title' => __('campaigns.invites.actions.copy')
-        ], null, false);
+        $copy = '<a href="#" data-clipboard="' . $link . '" data-toggle="tooltip" data-toast="' . __('crud.alerts.copy_invite') . '" title="' . __('campaigns.invites.actions.copy') . '"><i class="fa-solid fa-copy"></i> ' . __('campaigns.invites.actions.copy') . '</a>';
+
 
         return redirect()->route('campaign_users.index', $campaign)
             ->with(

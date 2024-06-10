@@ -13,7 +13,7 @@
 @section('content')
     <x-form :action="['entities.relations.update', $campaign, $entity->id, $relation]" method="PATCH" class="ajax-subform">
         @include('partials.forms.form', [
-            'title' => __('entities/relations.update.title', ['name' => link_to($entity->url(), $entity->name)]),
+            'title' => __('entities/relations.update.title', ['name' => '<a href="' .$entity->url() . '">' . $entity->name . '</a>']),
             'content' => 'entities.pages.relations._form',
             'deleteID' => '#delete-relation-' . $relation->id,
             'dialog' => true,

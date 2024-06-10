@@ -3,11 +3,11 @@
         @if (auth()->user()->hasBoosterNomenclature())
             <x-icon class="fa-regular fa-rocket text-boostd" />
     </div>
-    {!! link_to('https://kanka.io/premium', 6 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
+    <a href="https://kanka.io/premium" target="_blank">6 {{ __('tiers.features.boosters') }}</a>
     @else
         <x-icon class="fa-regular fa-gem text-boost" />
 </div>
-{!! link_to('https://kanka.io/premium', 3 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
+<a href="https://kanka.io/premium" target="_blank">3 {{ __('concept.premium-campaigns') }}</a>
 @endif
 </div>
 
@@ -51,7 +51,7 @@
         <x-icon class="check" />
     </div>
     <div>
-    {!! __('tiers.features.discord', ['discord' => link_to('https://kanka.io/go/discord', 'Discord')]) !!}
+    {!! __('tiers.features.discord', ['discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>',]) !!}
     </div>
 </div>
 
@@ -60,7 +60,7 @@
         <x-icon class="check" />
     </div>
     <div>
-    {!! __('tiers.features.hall_of_fame', ['hall-of-fame' => link_to('https://kanka.io/go/discord', __('front/hall-of-fame.title'))]) !!}
+    {!! __('tiers.features.hall_of_fame', ['hall-of-fame' => '<a href="https://kanka.io/hall-of-fame">' . __('front/hall-of-fame.title') . '</a>']) !!}
     </div>
 </div>
 
@@ -75,5 +75,5 @@
     <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="check" />
     </div>
-    {!! link_to('https://app.kanka.io/roadmap', __('tiers.features.roadmap'), null, ['target' => '_blank']) !!}
+    <a href="{{ route('roadmap') }}">{{ __('tiers.features.roadmap') }}</a>
 </div>

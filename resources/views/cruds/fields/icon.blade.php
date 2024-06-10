@@ -9,19 +9,19 @@ $fieldname = $iconFieldName ?? 'icon';
         <input type="text" name="{{ $fieldname }}" value="{{ !isset($bulk) ? old($fieldname, $source->{$fieldname} ?? $model->icon ?? null) : null }}" placeholder="{{ $placeholder ?? 'fa-solid fa-users' }}" class="w-full" autocomplete="off" data-paste="fontawesome" maxlength="45" />
         <x-helper>
             {!! __('entities/links.helpers.icon', [
-                'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
-                'rpgawesome' => link_to('https://nagoshiashumari.github.io/Rpg-Awesome/', 'RPGAwesome', ['target' => '_blank']),
-                'docs' => link_to('https://docs.kanka.io/en/latest/articles/available-icons.html', __('footer.documentation', ['target' => '_blank']))
+                'fontawesome' => '<a target="_blank" href="' . config('fontawesome.search') .'">FontAwesome</a>',
+                'rpgawesome' => '<a target="_blank" href="https://nagoshiashumari.github.io/Rpg-Awesome/">RPGAwesome</a>',
+                'docs' => '<a target="_blank" href="https://docs.kanka.io/en/latest/articles/available-icons.html">' . __('footer.documentation') . '</a>'
             ]) !!}
         </x-helper>
     @else
         @if (auth()->user()->hasBoosters())
             <x-helper>
-                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaign])]) !!}
+                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}
             </x-helper>
         @else
             <x-helper>
-                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to('https://kanka.io/premium', __('concept.premium-campaigns'))]) !!}
+                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>']) !!}
             </x-helper>
         @endif
     @endif
