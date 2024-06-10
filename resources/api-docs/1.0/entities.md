@@ -7,6 +7,7 @@
 - [Single Entity](#entity)
 - [Filtering Entities](#filtering-entities)
 - [Related Entities](#related-entities)
+- [Recently Edited Entities](#recent-entities)
 - [Create Entities](#create-entities)
 - [Transform Entities](#transform-entities)
 - [Transfer Entities](#transfer-entities)
