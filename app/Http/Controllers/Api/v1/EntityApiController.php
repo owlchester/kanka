@@ -52,13 +52,14 @@ class EntityApiController extends ApiController
         }
 
         $this->authorize('access', $campaign);
-        return Resource::collection($campaign->entities()
-            ->apiFilter(request()->all())
-            ->orderBy('updated_at', 'DESC')
-            ->limit(min(max(1, request()->get('amount')), 10))
-            ->lastSync(request()->get('lastSync'))
-            ->get()
-            );
+        return Resource::collection(
+            $campaign->entities()
+                ->apiFilter(request()->all())
+                ->orderBy('updated_at', 'DESC')
+                ->limit(min(max(1, request()->get('amount')), 10))
+                ->lastSync(request()->get('lastSync'))
+                ->get()
+        );
     }
 
     /**
