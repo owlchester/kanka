@@ -44,7 +44,6 @@ class MoveController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function move(MoveEntityRequest $request, Campaign $campaign, Entity $entity)
