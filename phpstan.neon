@@ -13,7 +13,6 @@ parameters:
         - ./*/*/FileToBeExcluded.php
         - ./app/Models/Concerns/*.php
         - ./app/Console/Commands/*.php
-        - ./app/Models/EntityMention.php
-        - ./app/Models/ImageMention.php
+        - ./app/Models/Scopes/AclScope.php
 
     treatPhpDocTypesAsCertain: false

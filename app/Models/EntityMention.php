@@ -140,29 +140,33 @@ class EntityMention extends Model
     public function scopePrepareCount(Builder $query): Builder
     {
         return $query->where(function ($sub) {
-            // @phpstan-ignore-next-line
             return $sub
                 ->where(function ($subEnt) {
+                    // @phpstan-ignore-next-line
                     return $subEnt
                         ->entity()
                         ->has('entity');
                 })
                 ->orWhere(function ($subPost) {
+                    // @phpstan-ignore-next-line
                     return $subPost
                         ->post()
                         ->has('post.entity');
                 })
                 ->orWhere(function ($subQuestElement) {
+                    // @phpstan-ignore-next-line
                     return $subQuestElement
                         ->questElement()
                         ->has('questElement.entity');
                 })
                 ->orWhere(function ($subTimelineElement) {
+                    // @phpstan-ignore-next-line
                     return $subTimelineElement
                         ->timelineElement()
                         ->has('timelineElement.entity');
                 })
                 ->orWhere(function ($subCam) {
+                    // @phpstan-ignore-next-line
                     return $subCam->campaign();
                 });
         });
