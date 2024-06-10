@@ -21,13 +21,16 @@ class ConversationParticipantController extends Controller
     public function store(StoreConversationParticipant $request, Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('update', $conversation);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $participant = new ConversationParticipant();
         $participant = $participant->create($request->all());
 
         return redirect()
-            ->to($conversation->getLink())
-            ->with('success', trans('conversations.participants.create.success', [
+            ->route('entities.show', [$campaign, $conversation->entity])
+            ->with('success', __('conversations.participants.create.success', [
                 'name' => $conversation->name,
                 'entity' => $participant->name()
             ]));

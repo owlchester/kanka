@@ -63,7 +63,7 @@ class AttributeTemplate extends MiscModel
     ];
 
     /** @var bool Attribute templates don't have inventory, relations or abilities */
-    public $hasRelations = false;
+    public bool $hasRelations = false;
 
     public function attributeTemplate(): BelongsTo
     {

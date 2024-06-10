@@ -252,6 +252,7 @@ class EntityMention extends Model
     /**
      * Get the entity link with ajax tooltip.
      * When coming from an entity first, call this method on the entity. It avoids some back and worth.
+     * Todo: move this out of the model
      */
     public function mentionLink(): string
     {

@@ -228,15 +228,6 @@ class EntityLog extends Model
         return '<strong>' . $this->user->name . '</strong>';
     }
 
-    public function entityLink(): string
-    {
-        if (!$this->entity) {
-            $campaign = CampaignLocalization::getCampaign();
-            return '<a href="' . route('recovery', $campaign) . '">' . __('history.unknown.entity') . '</a>';
-        }
-        return $this->entity->tooltipedLink($this->entity->name, false);
-    }
-
     public function actions($action): array
     {
         if ($action == self::ACTION_CREATE || $action == self::ACTION_CREATE_POST) {

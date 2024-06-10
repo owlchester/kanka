@@ -63,9 +63,16 @@
                         </div>
                         <div class="grow">
                             @if ($superboosted || $count === 0)
+@php
+if (!$log->entity) {
+    $entityLink = '<a href="' . route('recovery', $campaign) . '">' . __('history.unknown.entity') . '</a>';
+} else {
+    $entityLink = $log->entity->tooltipedLink($log->entity->name, false);
+}
+@endphp
                                 {!! __('history.log.' . $log->actionCode(), [
                                     'user' => $log->userLink(),
-                                    'entity' => $log->entityLink(),
+                                    'entity' => $entityLink,
                                     'post' => $log->post?->name,
                                 ]) !!}
                                 @if ($log->impersonator)

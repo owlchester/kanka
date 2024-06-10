@@ -648,30 +648,6 @@ class Map extends MiscModel
     }
 
     /**
-     * The explore link for a map, or the chunking process icon
-     */
-    public function exploreLink(): string
-    {
-        if (!$this->explorable()) {
-            return '';
-        }
-        if ($this->isChunked()) {
-            if ($this->chunkingError()) {
-                return '<i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" data-title="' .
-                    __('maps.errors.chunking.error', ['discord' => 'Discord']) . '"></i>';
-            } elseif ($this->chunkingRunning()) {
-                return '<i class="fa-solid fa-spin fa-spinner" data-toggle="tooltip" data-title="' .
-                    __('maps.tooltips.chunking.running') . '"></i>';
-            }
-        }
-        $campaign = CampaignLocalization::getCampaign();
-        return '<a href="' . route('maps.explore', [$campaign, $this->id]) . '" target="_blank" ' .
-            'data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '">' .
-            '<i class="fa-solid fa-map" data-tree="escape"></i>' .
-            '</a>';
-    }
-
-    /**
      * Prepare groups for clustering
      */
     public function checkinGroups(): string

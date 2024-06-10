@@ -1,7 +1,7 @@
 @can('update', $model)
     <?php $memberList = $campaign->membersList($model->participantsList(false, true)); ?>
     @if($model->forCharacters() || count($memberList) > 0)
-        <x-form :action="['conversations.conversation_participants.store', $campaign, $model">
+        <x-form :action="['conversations.conversation_participants.store', $campaign, $model]">
         <div class="flex gap-2 items-end w-full">
             <div class="grow">
                 @if ($model->forCharacters())
@@ -11,7 +11,7 @@
                 @endif
             </div>
             <div class="">
-                <button class="btn2 btn-primary btn-sm">
+                <button type="submit" class="btn2 btn-primary btn-sm">
                     <x-icon class="plus"></x-icon> {{ __('crud.add') }}
                 </button>
             </div>
