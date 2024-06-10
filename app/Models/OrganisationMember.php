@@ -22,9 +22,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool $is_private
  * @property int $pin_id
  * @property int $status_id
- * @property Character $character
- * @property Organisation $organisation
- * @property OrganisationMember $parent
+ * @property Character|null $character
+ * @property Organisation|null $organisation
+ * @property OrganisationMember|null $parent
  *
  */
 class OrganisationMember extends Model

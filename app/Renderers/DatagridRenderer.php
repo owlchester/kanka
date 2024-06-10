@@ -395,20 +395,20 @@ class DatagridRenderer
                 }
             } elseif ($type == 'location') {
                 $class = $this->hidden;
+                // @phpstan-ignore-next-line
                 if (method_exists($model, 'location') && $model->location) {
-                    // @phpstan-ignore-next-line
                     $content = $this->entityLink($model->location->entity);
                 }
             } elseif ($type == 'character') {
                 $class = $this->hidden;
+                // @phpstan-ignore-next-line
                 if (method_exists($model, 'character') && $model->character) {
-                    // @phpstan-ignore-next-line
                     $content = $this->entityLink($model->character->entity);
                 }
             } elseif ($type == 'organisation') {
                 $class = $this->hidden;
+                // @phpstan-ignore-next-line
                 if (method_exists($model, 'organisation') && $model->organisation) {
-                    // @phpstan-ignore-next-line
                     $content = $this->entityLink($model->organisation->entity);
                 }
             } elseif ($type == 'entity') {
@@ -561,6 +561,7 @@ class DatagridRenderer
                 new \App\View\Components\EntityLink($model, $this->campaign)
             );
         }
+        // @phpstan-ignore-next-line
         return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
     }
 }

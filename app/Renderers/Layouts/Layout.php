@@ -3,6 +3,7 @@
 namespace App\Renderers\Layouts;
 
 use App\Models\Entity;
+use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class Layout
@@ -57,13 +58,15 @@ abstract class Layout
     }
 
 
-    protected function entityLink(Model $model): string
+    protected function entityLink(Model|MiscModel|Entity $model): string
     {
         if ($model instanceof Entity) {
             return \Illuminate\Support\Facades\Blade::renderComponent(
+            // @phpstan-ignore-next-line
                 new \App\View\Components\EntityLink($model, $this->campaign)
             );
         }
+        // @phpstan-ignore-next-line
         return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
     }
 }

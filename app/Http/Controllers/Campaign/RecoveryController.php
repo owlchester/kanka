@@ -53,11 +53,11 @@ class RecoveryController extends Controller
         return view('campaigns.recovery.index', compact('rows', 'campaign'));
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function recover(Request $request, Campaign $campaign)
     {
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
         if (!$campaign->boosted()) {
             return redirect()
                 ->route('recovery', $campaign)

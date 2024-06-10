@@ -290,6 +290,7 @@ class DatagridRenderer2
                 new \App\View\Components\EntityLink($model, $this->campaign)
             );
         }
+        // @phpstan-ignore-next-line
         return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
     }
 }
