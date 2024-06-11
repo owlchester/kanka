@@ -548,7 +548,7 @@ class DatagridRenderer
     protected function entityLink(Model $model): string
     {
         if ($model instanceof Entity) {
-            return \Illuminate\Support\Facades\Blade::renderComponent(
+            return Blade::renderComponent(
                 new \App\View\Components\EntityLink($model, $this->campaign)
             );
         }
