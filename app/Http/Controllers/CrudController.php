@@ -589,13 +589,15 @@ class CrudController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function crudDestroy(Model|MiscModel $model)
     {
         /** @var MiscModel $model */
         $this->authorize('delete', $model);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $model->delete();
 

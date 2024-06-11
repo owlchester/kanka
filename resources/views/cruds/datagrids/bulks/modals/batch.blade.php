@@ -1,5 +1,5 @@
 <?php /** @var \App\Datagrids\Bulks\Bulk $bulk */ $fieldCount = 0;?>
-<x-form :action="['bulk.process', $campaign]">
+<x-form :action="['bulk.process', $campaign]" direct>
 <x-dialog id="bulk-edit" :title="__('crud.bulk.edit.title')" footer="cruds.datagrids.bulks.modals._batch-footer">
     <x-grid>
         @foreach ($bulk->fields() as $field)

@@ -10,7 +10,7 @@
 
 <div class="" id="map-layers">
     @if(Datagrid::hasBulks())
-        <x-form :action="['maps.layers.bulk', $campaign, 'map' => $model]">
+        <x-form :action="['maps.layers.bulk', $campaign, 'map' => $model]" direct>
             <div id="datagrid-parent">
                 @include('layouts.datagrid._table', ['responsive' => true])
             </div>

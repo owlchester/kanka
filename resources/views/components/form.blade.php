@@ -1,8 +1,8 @@
 <form
     method="{{ $method == 'GET' ? 'GET' : 'POST' }}"
     action="{{ $action() }}"
-@if ($method === 'POST')    data-maintenance="1"@endif
     role="form"
+@if ($method === 'POST' && $direct)    data-maintenance="1" @endif
 @if ($files) enctype="multipart/form-data" @endif
 @if ($unsaved) data-unload="1" @endif
 @if ($shortcut && $method !== 'DELETE') data-shortcut="1" @endif

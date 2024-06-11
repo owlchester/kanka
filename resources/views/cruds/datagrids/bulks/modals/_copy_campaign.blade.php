@@ -1,4 +1,4 @@
-<x-form :action="['bulk.copy-to-campaign.apply', $campaign, $entityType]">
+<x-form :action="['bulk.copy-to-campaign.apply', $campaign, $entityType]" direct>
     @include('partials.forms.form', [
         'title' => __('crud.copy_to_campaign.bulk_title'),
         'content' => 'cruds.datagrids.bulks.modals.forms._copy',
