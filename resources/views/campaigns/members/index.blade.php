@@ -29,7 +29,7 @@
             </x-cta>
         @endif
         @if(Datagrid::hasBulks())
-            <x-form :action="['campaign_roles.bulk', $campaign]">
+            <x-form :action="['campaign_roles.bulk', $campaign]" direct>
                 <div id="datagrid-parent">
                     @include('layouts.datagrid._table', ['responsive' => true])
                 </div>

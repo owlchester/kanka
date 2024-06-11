@@ -1,6 +1,6 @@
 <div class="" id="timeline-eras">
     @if(Datagrid::hasBulks())
-        <x-form :action="['timelines.eras.bulk', $campaign, 'timeline' => $model]">
+        <x-form :action="['timelines.eras.bulk', $campaign, 'timeline' => $model]" direct>
             <div id="datagrid-parent" class="">
                 @include('layouts.datagrid._table')
             </div>

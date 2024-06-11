@@ -1,4 +1,4 @@
-<x-form :action="['bulk.permissions.apply', $campaign, $entityType]">
+<x-form :action="['bulk.permissions.apply', $campaign, $entityType]" direct>
     @include('partials.forms.form', [
         'title' => __('crud.bulk.permissions.title'),
         'content' => 'cruds.datagrids.bulks.modals.forms._permissions',

@@ -27,7 +27,7 @@
  * @var \App\Models\Webhook $webhook
  */?>
     @if(Datagrid::hasBulks())
-        <x-form :action="['webhooks.bulk', $campaign]">
+        <x-form :action="['webhooks.bulk', $campaign]" direct>
             <div id="datagrid-parent">
                 @include('layouts.datagrid._table', ['responsive' => true])
             </div>

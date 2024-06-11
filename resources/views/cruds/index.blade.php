@@ -41,7 +41,7 @@
         @include('cruds.datagrids.explore', ['route' => $route . '.index'])
     @else
         @if (isset($entityTypeId))
-            <x-form class="flex flex-col gap-5" :action="['bulk.print', [$campaign, 'entity_type' => $entityTypeId]]">
+            <x-form class="flex flex-col gap-5" :action="['bulk.print', [$campaign, 'entity_type' => $entityTypeId]]" direct>
         @endif
         <x-box :padding="false" >
             <div class="table-responsive">

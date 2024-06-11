@@ -18,6 +18,7 @@ class Form extends Component
         public bool $files = false,
         public bool $shortcut = true,
         public bool $unsaved = false,
+        public bool $direct = false,
         public string $id = '',
         public string $class = '',
         public array $extra = [],
