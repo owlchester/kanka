@@ -62,6 +62,11 @@ class PostRecoveryController extends Controller
                 ->with('boosted-pitch', true)
             ;
         }
+
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         try {
             $count = $this->service->recoverPosts($request->get('model', []));
             return redirect()
