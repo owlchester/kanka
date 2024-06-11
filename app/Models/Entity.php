@@ -17,6 +17,7 @@ use App\Models\Concerns\EntityType;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
+use App\Traits\HasTooltip;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -64,6 +65,7 @@ class Entity extends Model
     use EntityRelations;
     use EntityScopes;
     use EntityType;
+    use HasTooltip;
     use LastSync;
     use Paginatable;
     use Searchable;

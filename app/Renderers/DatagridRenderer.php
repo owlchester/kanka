@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 
 class DatagridRenderer
@@ -497,17 +498,7 @@ class DatagridRenderer
         $content = '';
         $actions = $model->datagridActions($this->campaign);
         if (!empty($actions)) {
-            $content = '
-        <div class="dropdown">
-            <a role="button" class="cursor-pointer" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="datagrid-submenu-' . $model->id . '" aria-label="Quick actions menu" data-tree="escape">
-                <i class="fa-solid fa-ellipsis-v" data-tree="escape"></i>
-                <span class="sr-only">' . __('crud.actions.actions') . '</span>
-            </a>
-            <div class="dropdown-menu hidden" role="menu" id="datagrid-submenu-' . $model->id . '">
-                ' . implode("\n", $actions) . '
-            </div>
-        </div>
-        ';
+            $content = Blade::render('cruds.datagrids._row-actions', ['campaign' => $this->campaign, 'model' => $model, 'actions' => $actions]);
         }
 
         return '<td class="text-center table-actions w-14">' . $content . '</td>';
@@ -557,7 +548,7 @@ class DatagridRenderer
     protected function entityLink(Model $model): string
     {
         if ($model instanceof Entity) {
-            return \Illuminate\Support\Facades\Blade::renderComponent(
+            return Blade::renderComponent(
                 new \App\View\Components\EntityLink($model, $this->campaign)
             );
         }

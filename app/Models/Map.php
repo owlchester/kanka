@@ -736,20 +736,22 @@ class Map extends MiscModel
         $actions = parent::datagridActions($campaign);
 
         if (auth()->check() && auth()->user()->can('update', $this)) {
-            $newActions[] = '<hr class="m-0" />';
-            $newActions[] = '
-                <a href="' . route('maps.map_layers.index', [$campaign, $this]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm" data-name="layers">
-                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> ' . __('maps.panels.layers') . '
-                </a>
-            ';
-            $newActions[] = '
-                <a href="' . route('maps.map_groups.index', [$campaign, $this]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm" data-name="groups">
-                    <i class="fa-solid fa-map-signs" aria-hidden="true"></i> ' . __('maps.panels.groups') . '
-                </a>';
-            $newActions[] = '
-                <a href="' . route('maps.map_markers.index', [$campaign, $this]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm" data-name="markers">
-                    <i class="fa-solid fa-map-pin" aria-hidden="true"></i> ' . __('maps.panels.markers') . '
-                </a>';
+            $newActions[] = null;
+            $newActions[] = [
+                'route' => route('maps.map_layers.index', [$campaign, $this]),
+                'icon' => 'fa-solid fa-layer-group',
+                'label' => 'maps.panels.layers',
+            ];
+            $newActions[] = [
+                'route' => route('maps.map_groups.index', [$campaign, $this]),
+                'icon' => 'fa-solid fa-map-signs',
+                'label' => 'maps.panels.groups',
+            ];
+            $newActions[] = [
+                'route' => route('maps.map_markers.index', [$campaign, $this]),
+                'icon' => 'fa-solid fa-map-pin',
+                'label' => 'maps.panels.markers',
+            ];
         }
         array_splice($actions, 2, 0, $newActions);
 
