@@ -269,28 +269,31 @@ abstract class MiscModel extends Model
 
         // Relations & Inventory
         if (!isset($this->hasRelations)) {
-            $actions[] = '
-                <a href="' . route('entities.relations.index', [$campaign, $this->entity]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm">
-                    <i class="fa-solid fa-users" aria-hidden="true"></i> ' . __('crud.tabs.connections') . '
-                </a>';
+            $actions[] = [
+                'route' => route('entities.relations.index', [$campaign, $this->entity]),
+                'icon' => 'fa-solid fa-users',
+                'label' => 'crud.tabs.connections'
+            ];
 
             if ($campaign->enabled('inventories')) {
-                $actions[] = '
-                <a href="' . route('entities.inventory', [$campaign, $this->entity]) . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm text-base-conten" data-name="inventory">
-                    <i class="ra ra-round-bottom-flask" aria-hidden="true"></i> ' . __('crud.tabs.inventory') . '
-                </a>';
+                $actions[] = [
+                    'route' => route('entities.inventory', [$campaign, $this->entity]),
+                    'icon' => 'fa-solid fa-gem',
+                    'label' => 'crud.tabs.inventory'
+                ];
             }
         }
 
 
         if (auth()->check() && auth()->user()->can('update', $this)) {
             if (!empty($actions)) {
-                $actions[] = '<hr class="m-0" />';
+                $actions[] = null;
             }
-            $actions[] = '
-                <a href="' . $this->getLink('edit') . '" class="p-1 hover:bg-base-200 rounded flex items-center gap-2 text-sm text-base-conten" data-name="edit">
-                    <i class="fa-solid fa-edit" aria-hidden="true"></i> ' . __('crud.edit') . '
-                </a>';
+            $actions[] = [
+                'route' => $this->getLink('edit'),
+                'icon' => 'fa-solid fa-edit',
+                'label' => 'crud.edit'
+            ];
         }
 
         return $actions;
