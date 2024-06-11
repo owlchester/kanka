@@ -16,7 +16,9 @@
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')) !!}
             </div>
-            {!! $model->character->tooltipedLink() !!}
+            <x-entity-link
+                :entity="$model->character->entity"
+                :campaign="$campaign" />
         </div>
     @endif
 </x-sidebar.profile>

@@ -33,23 +33,13 @@ class Character extends Layout
             'families' => [
                 'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
                 'class' => self::ONLY_DESKTOP,
-                'render' => function ($model) {
-                    $models = [];
-                    foreach ($model->families as $sub) {
-                        $models[] = $sub->tooltipedLink();
-                    }
-                    return implode(', ', $models);
-                }
+                'render' => Standard::ENTITYLIST,
+                'with' => 'families',
             ],
             'location' => [
                 'key' => 'location.name',
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
-                'render' => function ($model) {
-                    if (!$model->location) {
-                        return null;
-                    }
-                    return $model->location->tooltipedLink();
-                },
+                'render' => Standard::LOCATION,
                 'visible' => function () {
                     return !request()->has('location_id');
                 }
@@ -57,13 +47,8 @@ class Character extends Layout
             'races' => [
                 'label' => Module::plural(config('entities.ids.race'), 'entities.races'),
                 'class' => self::ONLY_DESKTOP,
-                'render' => function ($model) {
-                    $models = [];
-                    foreach ($model->races as $sub) {
-                        $models[] = $sub->tooltipedLink();
-                    }
-                    return implode(', ', $models);
-                }
+                'render' => Standard::ENTITYLIST,
+                'with' => 'races',
             ],
             'tags' => [
                 'render' => Standard::TAGS

@@ -12,9 +12,11 @@
         [
             'label' => __('entities.character'),
             'field' => 'character.name',
-            'render' => function($model) {
+            'render' => function($model) use ($campaign) {
                 if ($model->character) {
-                    return $model->character->tooltipedLink();
+                    return \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($model->character, $campaign)
+                    );
                 }
             }
         ],

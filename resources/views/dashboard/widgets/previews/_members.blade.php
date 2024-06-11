@@ -30,7 +30,11 @@ $members = $entity->isFamily()
     <div class="grid grid-cols-1 gap-2 members">
             <?php /** @var \App\Models\CharacterFamily $member */?>
         @foreach ($members as $member)
-            <div class="">{!! $member->tooltipedLink() !!}</div>
+            <div class="">
+                <x-entity-link
+                    :entity="$model->entity"
+                    :campaign="$campaign" />
+            </div>
         @endforeach
     </div>
 @else
@@ -42,7 +46,11 @@ $members = $entity->isFamily()
             @endif
             <div class="grid grid-cols-2 gap-2 members" data-role="{{ Illuminate\Support\Str::slug($member->role) }}"  data-status="{{ $member->status_id }}">
                 <div class="font-extrabold">{{ $member->role }}</div>
-                <div>{!! $member->character->tooltipedLink() !!}</div>
+                <div>
+                    <x-entity-link
+                        :entity="$member->character->entity"
+                        :campaign="$campaign" />
+                </div>
             </div>
         @endforeach
     </div>

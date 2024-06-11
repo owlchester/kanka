@@ -17,7 +17,7 @@ class Era extends Layout
                 'key' => 'name',
                 'label' => 'crud.fields.name',
                 'render' => function ($model) {
-                    return $model->tooltipedLink();
+                    return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
                 },
             ],
             'abbreviation' => [

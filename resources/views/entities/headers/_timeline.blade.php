@@ -3,10 +3,12 @@
  */
 ?>
 @if ($model->timeline)
-    <div class="entity-header-sub pull-left">
-        <span data-title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
+    <div class="entity-header-sub entity-header-line">
+        <div class="entity-header-sub-element">
             <x-icon :class="\App\Facades\Module::duoIcon('timeline')" :title="__('crud.fields.parent')" />
-            {!! $model->timeline->tooltipedLink() !!}
-        </span>
+            <x-entity-link
+                :entity="$model->timeline->entity"
+                :campaign="$campaign" />
+        </div>
     </div>
 @endif

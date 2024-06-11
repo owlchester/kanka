@@ -25,8 +25,13 @@
         [
             'field' => 'author.name',
             'label' => __('journals.fields.author'),
-            'render' => function($model) {
-                return $model->author ? $model->author->tooltipedLink() : null;
+            'render' => function($model) use ($campaign) {
+                if (!$model->author) {
+                    return '';
+                }
+                return \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($model->author, $campaign)
+                );
             },
         ],
         [

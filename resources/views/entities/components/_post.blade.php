@@ -41,7 +41,7 @@
                     @if ($post->location)
                     <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
                         <x-icon entity="location" />
-                        {!! $post->location->tooltipedLink() !!}
+                        <x-entity-link :entity="$post->location->entity" :campaign="$campaign" />
                     </span>
                     @endif
                 </div>

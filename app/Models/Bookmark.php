@@ -362,16 +362,6 @@ class Bookmark extends MiscModel
     }
 
     /**
-     * Override the tooltiped link for the datagrid
-     */
-    public function tooltipedLink(string $displayName = null): string
-    {
-        return '<a href="' . $this->getLink() . '">' .
-            (!empty($displayName) ? $displayName : e($this->name)) .
-        '</a>';
-    }
-
-    /**
      * Determine if the bookmark is valid
      */
     public function valid(Campaign $campaign): bool

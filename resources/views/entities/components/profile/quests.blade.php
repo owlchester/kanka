@@ -8,7 +8,9 @@
     @if (!empty($model->instigator))
         <div class="element profile-instigator">
             <div class="title text-uppercase text-xs">{{ __('quests.fields.instigator') }}</div>
-            {!! $model->instigator->tooltipedLink() !!}
+            <x-entity-link
+                :entity="$model->instigator"
+                :campaign="$campaign" />
         </div>
     @endif
 

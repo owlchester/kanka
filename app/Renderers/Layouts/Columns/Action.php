@@ -3,19 +3,16 @@
 namespace App\Renderers\Layouts\Columns;
 
 use App\Renderers\Layouts\Layout;
-use App\Traits\CampaignAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 class Action extends Column
 {
-    use CampaignAware;
-
     /** @var array Available actions to render */
-    protected $actions = [];
+    protected array $actions = [];
 
     /** @var array Params passed to the individual action routes, ie ['from' => 'calendar'] for workflow */
-    protected $params = [];
+    protected array $params = [];
 
     /**
      */

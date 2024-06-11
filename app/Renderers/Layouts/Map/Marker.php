@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Map;
 
+use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
 class Marker extends Layout
@@ -22,9 +23,7 @@ class Marker extends Layout
             ],
             'entity_id' => [
                 'label' => 'crud.fields.entity',
-                'render' => function ($model) {
-                    return $model->entity?->tooltipedLink();
-                }
+                'renter' => Standard::ENTITYLINK,
             ],
             'groups' => [
                 'label' => 'maps/markers.fields.group',

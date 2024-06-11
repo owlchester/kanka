@@ -37,19 +37,13 @@ class Journal extends Layout
             'author' => [
                 'key' => 'author.name',
                 'label' => 'journals.fields.author',
-                'render' => function ($model) {
-                    if (!$model->author) {
-                        return null;
-                    }
-                    return $model->author->tooltipedLink();
-                },
+                'render' => Standard::ENTITYLINK,
+                'with' => 'author',
             ],
             'parent' => [
                 'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
-                'render' => function ($model) {
-                    return $model->parent?->tooltipedLink();
-                },
+                'render' => Standard::ParentLink,
                 'visible' => function () {
                     return !request()->has('parent_id');
                 }

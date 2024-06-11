@@ -3,7 +3,9 @@
     @if ($model->is_private)
         <i class="fa-solid fa-lock" aria-hidden="true" data-title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
     @endif
-    {!! $model->tooltipedLink() !!}
+    <x-entity-link
+        :entity="$model->entity"
+        :campaign="$campaign" />
     @if ($model->is_dead)
         <i class="fa-solid fa-skull" aria-hidden="true" data-title="{{ __('characters.fields.is_dead') }}"></i>
     @endif
@@ -15,7 +17,9 @@
 @if ($model->character->is_private)
     <i class="fa-solid fa-lock" aria-hidden="true" data-title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
 @endif
-{!! $model->character->tooltipedLink() !!}
+<x-entity-link
+    :entity="$model->character->entity"
+    :campaign="$campaign" />
 @if ($model->character->is_dead)
     <i class="fa-solid fa-skull" aria-hidden="true" data-title="{{ __('characters.fields.is_dead') }}"></i>
 @endif

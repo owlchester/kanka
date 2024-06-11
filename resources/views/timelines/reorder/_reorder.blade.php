@@ -34,7 +34,11 @@
                                     {!! $element->htmlIcon(false) !!}
                                 </div>
                                 <div class="name overflow-hidden grow">
-                                    {!! $element->htmlName(false) !!}
+                                    @if ($element->entity)
+                                        <x-entity-link :entity="$element->entity" :name="$element->name" :campaign="$campaign" />
+                                    @else
+                                        {!! $element->name !!}
+                                    @endif
                                     @if (isset($element->date))<span class="text-xs text-neutral-content">({{ $element->date }})</span>@endif
                                 </div>
                             </x-reorder.child>

@@ -6,18 +6,20 @@
             'field' => 'owner_id',
             'label' => __('entities/relations.fields.owner'),
             'class' => null,
-            'render' => function($model) {
-                return $model->owner->tooltipedLink();
-                //return '<a href="' . $model->owner->url() . '">' . $model->owner->name . '</a>';
+            'render' => function($model) use ($campaign) {
+                return \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($model->owner, $campaign)
+                );
             }
         ],
         [
             'field' => 'target_id',
             'label' => __('entities/relations.fields.target'),
             'class' => null,
-            'render' => function($model) {
-                return $model->target->tooltipedLink();
-                //return '<a href="' . $model->target->url() . '">' . $model->target->name . '</a>';
+            'render' => function($model)  use($campaign) {
+                return \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($model->target, $campaign)
+                );
             }
         ],
         [

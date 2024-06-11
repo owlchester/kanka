@@ -357,7 +357,7 @@ class DatagridRenderer
         if (is_string($column)) {
             // Just for name, a link to the view
             if ($column == 'name') {
-                $content = $model->tooltipedLink();
+                $content = $this->entityLink($model);
             } else {
                 // Handle boolean values (has, is)
                 if ($this->isBoolean($column)) {
@@ -395,26 +395,26 @@ class DatagridRenderer
                 }
             } elseif ($type == 'location') {
                 $class = $this->hidden;
-                if (method_exists($model, 'location')) {
-                    // @phpstan-ignore-next-line
-                    $content = $model->location?->tooltipedLink();
+                // @phpstan-ignore-next-line
+                if (method_exists($model, 'location') && $model->location) {
+                    $content = $this->entityLink($model->location->entity);
                 }
             } elseif ($type == 'character') {
                 $class = $this->hidden;
-                if (method_exists($model, 'character')) {
-                    // @phpstan-ignore-next-line
-                    $content = $model->character?->tooltipedLink();
+                // @phpstan-ignore-next-line
+                if (method_exists($model, 'character') && $model->character) {
+                    $content = $this->entityLink($model->character->entity);
                 }
             } elseif ($type == 'organisation') {
                 $class = $this->hidden;
-                if (method_exists($model, 'organisation')) {
-                    // @phpstan-ignore-next-line
-                    $content = $model->organisation?->tooltipedLink();
+                // @phpstan-ignore-next-line
+                if (method_exists($model, 'organisation') && $model->organisation) {
+                    $content = $this->entityLink($model->organisation->entity);
                 }
             } elseif ($type == 'entity') {
                 $class = $this->hidden;
                 if ($model->entity) {
-                    $content = $model->entity->tooltipedLink();
+                    $content = $this->entityLink($model->entity);
                 }
             } elseif ($type == 'parent') {
                 $class = $this->hidden;
@@ -423,7 +423,7 @@ class DatagridRenderer
                 }
                 // @phpstan-ignore-next-line
                 if ($model->parent) {
-                    $content = $model->parent->tooltipedLink();
+                    $content = $this->entityLink($model->parent->entity);
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private
@@ -552,5 +552,16 @@ class DatagridRenderer
     {
         $this->nestedFilter = $key;
         return $this;
+    }
+
+    protected function entityLink(Model $model): string
+    {
+        if ($model instanceof Entity) {
+            return \Illuminate\Support\Facades\Blade::renderComponent(
+                new \App\View\Components\EntityLink($model, $this->campaign)
+            );
+        }
+        // @phpstan-ignore-next-line
+        return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
     }
 }

@@ -23,10 +23,12 @@
             'label' => __('entities.families'),
             'visible' => $campaign->enabled('families'),
             'disableSort' => true,
-            'render' => function($model) {
+            'render' => function($model) use ($campaign) {
                 $families = [];
                 foreach ($model->families as $family) {
-                    $families[] = $family->tooltipedLink();
+                    $families[] = \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($family->entity, $campaign)
+                );
                 }
                 return implode( ', ', $families);
             }
@@ -39,10 +41,12 @@
             'label' => __('entities.races'),
             'visible' => $campaign->enabled('races'),
             'disableSort' => true,
-            'render' => function($model) {
+            'render' => function($model) use ($campaign) {
                 $races = [];
                 foreach ($model->races as $race) {
-                    $races[] = $race->tooltipedLink();
+                    $races[] = \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($race->entity, $campaign)
+                );
                 }
                 return implode( ', ', $races);
             }

@@ -10,7 +10,9 @@
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.family')) !!}
             </div>
-            {!! $model->family->tooltipedLink() !!}
+            <x-entity-link
+                :entity="$model->family->entity"
+                :campaign="$campaign" />
         </div>
     @endif
 

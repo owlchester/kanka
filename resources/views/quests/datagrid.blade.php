@@ -15,8 +15,13 @@
         [
             'field' => 'instigator.name',
             'label' => __('quests.fields.instigator'),
-            'render' => function($model) {
-                return $model->instigator?->tooltipedLink();
+            'render' => function($model) use ($campaign) {
+                if (!$model->instigator) {
+                    return '';
+                }
+                return \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($model->instigator, $campaign)
+                );
             },
         ],
         [

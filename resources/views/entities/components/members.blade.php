@@ -11,9 +11,13 @@ $previousRelation = null;
     <div class="pinned-member flex gap-2" data-character="{{ $member->character_id }}" data-organisation="{{ $member->organisation_id }}" data-role="{{ $member->role }}" data-private="{{ $member->is_private }}">
         <div class="grow text-right">
             @if ($model instanceof \App\Models\Character)
-                {!! $member->organisation->tooltipedLink() !!}
+                <x-entity-link
+                    :entity="$member->organisation->entity"
+                    :campaign="$campaign" />
             @else
-                {!! $member->character->tooltipedLink() !!}
+                <x-entity-link
+                    :entity="$member->character->entity"
+                    :campaign="$campaign" />
             @endif
         </div>
     </div>
@@ -24,9 +28,13 @@ $previousRelation = null;
         </strong>
         <div class="grow text-right">
             @if ($model instanceof \App\Models\Character)
-                {!! $member->organisation->tooltipedLink() !!}
+                <x-entity-link
+                    :entity="$member->organisation->entity"
+                    :campaign="$campaign" />
             @else
-                {!! $member->character->tooltipedLink() !!}
+                <x-entity-link
+                    :entity="$member->character->entity"
+                    :campaign="$campaign" />
            @endif
         </div>
     </div>

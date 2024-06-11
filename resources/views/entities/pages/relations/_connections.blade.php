@@ -42,13 +42,12 @@
                         <x-entities.thumbnail :entity="$connection" :title="$connection->name"></x-entities.thumbnail>
                     </td>
                     <td>
-                        {!! $connection->tooltipedLink() !!}
+                        <x-entity-link
+                            :entity="$connection"
+                            :campaign="$campaign" />
 
                         @if ($connection->type() == 'map')
-                            <a href="{{ route('maps.explore', [$campaign, $connection->entity_id]) }}"
-                               class="btn2 btn-xs btn-primary" target="_blank">
-                                <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
-                            </a>
+                            @includeWhen($connection->map->explorable(), 'maps._explore-link', ['map' => $connection->map])
                         @endif
                     </td>
                     <td>

@@ -203,24 +203,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Get the entity link with ajax tooltip.
-     * When coming from an entity first, call this method on the entity. It avoids some back and worth.
-     */
-    public function tooltipedLink(string $displayName = null): string
-    {
-        if (empty($this->entity)) {
-            return e($this->name);
-        }
-
-        $campaign = CampaignLocalization::getCampaign();
-        return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
-            'data-url="' . route('entities.tooltip', [$campaign, $this->entity->id]) . '" href="' .
-            $this->getLink() . '">' .
-            (!empty($displayName) ? $displayName : $this->name) .
-        '</a>';
-    }
-
-    /**
      * Get the entity tooltip attribute, because forms are weird (we could bypass this easily)
      */
     public function getEntityTooltipAttribute(): string|null

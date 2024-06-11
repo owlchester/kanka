@@ -14,7 +14,10 @@
                 {!! \App\Facades\Module::singular(config('entities.ids.map'), __('entities.map')) !!}
             </div>
             @foreach ($model->maps as $map)
-                {!! $map->tooltipedLink() !!} @include('maps._explore-link')<br />
+                <x-entity-link
+                    :entity="$map->entity"
+                    :campaign="$campaign" />
+                @include('maps._explore-link')<br />
             @endforeach
         </div>
     @endif

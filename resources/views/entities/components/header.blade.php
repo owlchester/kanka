@@ -300,7 +300,9 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             </div>
         </div>
 
+        <div class="entity-header-sub flex gap-4 items-center flex-wrap">
         @includeIf('entities.headers._' . $model->getEntityType())
+        </div>
 
         @yield($entityHeaderActions ?? 'entity-header-actions')
     </div>

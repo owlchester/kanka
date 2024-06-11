@@ -22,7 +22,9 @@
                     @continue
                 @endif
                 @php $existingRaces[$family->id] = true; @endphp
-                {!! $family->tooltipedLink() !!}
+                <x-entity-link
+                    :entity="$family->entity"
+                    :campaign="$campaign" />
             @endforeach            </div>
     @endif
 
@@ -38,7 +40,9 @@
                     @continue
                 @endif
                 @php $existingRaces[$race->id] = true; @endphp
-                {!! $race->tooltipedLink() !!}
+                <x-entity-link
+                    :entity="$race->entity"
+                    :campaign="$campaign" />
             @endforeach
         </div>
         @elseif ($model->races->isEmpty() && $model->hasAge())
@@ -58,7 +62,9 @@
                     @continue
                 @endif
                 @php $existingRaces[$race->id] = true; @endphp
-                {!! $race->tooltipedLink() !!}
+                    <x-entity-link
+                        :entity="$race->entity"
+                        :campaign="$campaign" />
             @endforeach
             <span>{{ $model->age }}</span>
         </div>

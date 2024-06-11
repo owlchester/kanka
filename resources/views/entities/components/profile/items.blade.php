@@ -23,7 +23,9 @@
     @if ($model->character)
         <div class="element profile-character">
             <div class="title text-uppercase text-xs">{{ __('items.fields.character') }}</div>
-            {!! $model->character->tooltipedLink() !!}
+            <x-entity-link
+                :entity="$model->$character->entity"
+                :campaign="$campaign" />
         </div>
     @endif
 

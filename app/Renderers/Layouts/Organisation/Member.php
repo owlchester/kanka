@@ -40,22 +40,14 @@ class Member extends Layout
             'superior' => [
                 'key' => 'parent_id',
                 'label' => 'organisations.members.fields.parent',
-                'render' => function ($model) {
-                    if (empty($model->parent) || empty($model->parent->character)) {
-                        return '';
-                    }
-                    return $model->parent->character->tooltipedLink();
-                }
+                'render' => Standard::ENTITYLINK,
+                'with' => 'superior',
             ],
             'location' => [
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'class' => self::ONLY_DESKTOP,
-                'render' => function ($model) {
-                    if (!$model->character->location) {
-                        return null;
-                    }
-                    return $model->character->location->tooltipedLink();
-                },
+                'render' => Standard::LOCATION,
+                'with' => 'character',
             ],
             'pinned' => [
                 'label' => '<i class="fa-solid fa-star" data-title="' . __('organisations.members.fields.pinned') . '" data-toggle="tooltip"></i>',
