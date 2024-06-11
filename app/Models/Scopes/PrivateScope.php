@@ -18,9 +18,6 @@ class PrivateScope implements Scope
     {
         // Only apply these scopes in non-console mode.
         if (app()->runningInConsole()) {
-            // However, if we are in console mode (exporting), we need a way to avoid people accessing "self" notes.
-            // Todo: how to handle this use case properly? Not exporting "self" seems silly
-            // $builder->where($model->getTable() . 'visibility', '!=', Visibility::VISIBILITY_SELF);
             return;
         }
 

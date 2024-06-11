@@ -35,7 +35,9 @@ if (empty($entity)) {
                     @includeWhen(!$entity->pinnedFiles->isEmpty() || !$entity->pinnedAliases->isEmpty(), 'entities.components.assets')
                     @include('entities.components.relations')
                     @includeWhen(method_exists($model, 'pinnedMembers') && !$model->pinnedMembers->isEmpty(), 'entities.components.members')
-                    @includeWhen($entity->accessAttributes(), 'entities.components.attributes')
+                    @can('view-attributes', [$entity, $campaign])
+                        @include('entities.components.attributes')
+                    @endcan
                 </div>
             </div>
         </div>

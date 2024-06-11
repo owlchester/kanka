@@ -368,9 +368,7 @@ class PermissionService
     }
 
     /**
-     * Load the user's permissions. This table doesn't involve the campaign_id of the campaign, so we
-     * have to load every permission...
-     * Todo: add a limit to the current campaign
+     * Load the user's permissions.
      */
     protected function loadUserPermissions(): void
     {

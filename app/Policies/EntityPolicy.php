@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -18,6 +19,18 @@ class EntityPolicy
             return true;
         }
         return !$entity->is_attributes_private || $user && UserCache::user($user)->admin();
+    }
+
+    public function viewAttributes(?User $user, Entity $entity, Campaign $campaign): bool
+    {
+        if (!$campaign->enabled('entity_attributes')) {
+            return false;
+        }
+
+        if (!$entity->is_attributes_private) {
+            return true;
+        }
+        return $user && UserCache::user($user)->admin();
     }
 
     public function privacy(User $user): bool

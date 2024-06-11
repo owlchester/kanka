@@ -8,8 +8,10 @@ if (isset($model)) {
     $attributes = $model->entity->attributes()->ordered()->get();
     $entity = $model->entity;
 } elseif (isset($source)) {
-    $attributes = $source->entity->attributes()->ordered()->get();
-    $entity = $source->entity;
+    if (auth()->user()->can('view-attributes', [$source->entity, $campaign])) {
+        $attributes = $source->entity->attributes()->ordered()->get();
+        $entity = $source->entity;
+    }
 }
 $isAdmin = Auth::user()->isAdmin();
 $existingAttributeNames = [];

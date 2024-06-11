@@ -6,6 +6,11 @@ $modelMenuItems = \App\Facades\Submenu::campaign($campaign)->model($model)->enti
     <x-box css="entity-menu{{ $section }}" :padding="0">
         <x-menu>
             @foreach ($menuItems as $key => $menuItem)
+                @if (Arr::has($menuItem, 'perm'))
+                    @cannot($menuItem['perm'], [$model->entity, $campaign])
+                        @continue
+                    @endcannot
+                @endif
                 <x-menu.element
                     :active="!empty($active) && $active == $key"
                     :route="route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $model : $model->entity)])"

@@ -16,7 +16,7 @@
     <x-form :action="['settings.account.email']" method="PATCH">
         <x-grid type="1/1">
             <x-forms.field field="email" :required="true" :label="__('profiles.fields.email')">
-                {!! Form::email('email', null, ['placeholder' => __('profiles.placeholders.email'), 'class' => '']) !!}
+                <input type="email" name="email" value="{{ old('email', $user->email) }}" placeholder="{{ __('profiles.placeholders.email') }}" />
             </x-forms.field>
 
             <div class="text-right">
@@ -36,10 +36,10 @@
         <x-form :action="['settings.account.password']" method="PATCH">
         <x-grid type="1/1">
             <x-forms.field field="new-password" :required="true" :label="__('profiles.fields.new_password')">
-                {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => '']) !!}
+                <input type="password" name="password_new" placeholder="{{ __('profiles.placeholders.new_password') }}" />
             </x-forms.field>
             <x-forms.field field="password-confirm" :required="true" :label="__('profiles.fields.new_password_confirmation')">
-                {!! Form::password('password_new_confirmation', ['placeholder' => __('profiles.placeholders.new_password_confirmation'), 'class' => '']) !!}
+                <input type="password" name="password_new_confirmation" placeholder="{{ __('profiles.placeholders.new_password_confirmation') }}" />
             </x-forms.field>
 
             <div class="text-right">
@@ -59,7 +59,7 @@
         <x-grid type="1/1">
             <p class="help">{{ __('settings.account.social.helper', ['provider' => ucfirst($user->provider)]) }}</p>
             <x-forms.field field="new-password" :label="__('profiles.fields.new_password')">
-                {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => '']) !!}
+                <input type="password" name="password_new" placeholder="{{ __('profiles.placeholders.new_password') }}" />
             </x-forms.field>
 
             <div class="text-right">

@@ -72,7 +72,7 @@
 @endif
 @endforeach
 
-@if($entity->accessAttributes())
+@can('view-attributes', [$entity, $campaign])
 ## {{ __('entities/attributes.title') }}
 
 @foreach($entity->starredAttributes() as $attribute)
@@ -88,4 +88,4 @@
 * **{!! $attribute->name() !!}**: {!! $attribute->mappedValue() !!}
 @endif
 @endforeach
-@endif
+@endcan

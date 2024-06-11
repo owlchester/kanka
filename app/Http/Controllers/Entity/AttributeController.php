@@ -40,10 +40,7 @@ class AttributeController extends Controller
         }
 
         $this->authEntityView($entity);
-
-        if (!$entity->accessAttributes()) {
-            abort(403);
-        }
+        $this->authorize('view-attributes', [$entity, $campaign]);
 
         $template = null;
         $marketplaceTemplate = null;
@@ -76,10 +73,7 @@ class AttributeController extends Controller
             );
         }
         $this->authEntityView($entity);
-
-        if (!$entity->accessAttributes()) {
-            abort(403);
-        }
+        $this->authorize('view-attributes', [$entity, $campaign]);
 
         $template = null;
         $marketplaceTemplate = null;

@@ -121,7 +121,6 @@ class EntityMappingService
             $singularType = config('entities.ids.' . $singularType);
 
             // Determine the real campaign id from the model.
-            // Todo: why can't we use CampaignLocalization? Because this was used by the migration script?
             $campaignId = $model->campaign_id;
             if ($model instanceof Campaign) {
                 $campaignId = $model->id;
@@ -239,7 +238,6 @@ class EntityMappingService
             $id = $data;
 
             // Determine the real campaign id from the model.
-            // Todo: why can't we use CampaignLocalization? Because this was used by the migration script?
             if ($model instanceof Post) {
                 $campaignId = $model->entity->campaign_id;
             } else {

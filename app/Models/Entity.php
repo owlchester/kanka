@@ -347,23 +347,6 @@ class Entity extends Model
     }
 
     /**
-     * Todo: this should be a policy?
-     */
-    public function accessAttributes(): bool
-    {
-        $campaign = CampaignLocalization::getCampaign();
-
-        if (!$campaign->enabled('entity_attributes')) {
-            return false;
-        }
-
-        if (!$this->is_attributes_private) {
-            return true;
-        }
-        return auth()->check() && auth()->user()->isAdmin();
-    }
-
-    /**
      * Count the number of mentions this entity has
      */
     public function mentionsCount(): int
@@ -381,7 +364,7 @@ class Entity extends Model
         if ($this->pinnedRelations->isNotEmpty()) {
             return true;
         }
-        if ($this->accessAttributes() && $this->starredAttributes()->isNotEmpty()) {
+        if ($this->starredAttributes()->isNotEmpty()) {
             return true;
         }
         return (bool) ($this->pinnedFiles->isNotEmpty());
