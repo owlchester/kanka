@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\CalendarsClearElapsed;
 use App\Models\Calendar;
 use App\Services\Calendars\AdvancerService;
 use App\Traits\HasJobLog;
@@ -26,13 +27,14 @@ class CalendarAdvancer extends Command
      */
     protected $description = 'Increment the date of all advancing calendars.';
 
-    /** @var int Calendars that were advanced */
+    /** Calendars that were advanced */
     protected int $count = 0;
 
-    /** @var array Errors that happened */
+    /** Errors that happened */
     protected array $errors = [];
 
     protected AdvancerService $service;
+
     /**
      * Create a new command instance.
      *
@@ -56,6 +58,8 @@ class CalendarAdvancer extends Command
             foreach ($calendars as $calendar) {
                 try {
                     $this->service->calendar($calendar)->advance();
+                    // Consoles don't have observers at the moment because Jay makes terrible life choices
+                    CalendarsClearElapsed::dispatch($calendar);
                     $this->count++;
                 } catch (Exception $e) {
                     $this->errors[$calendar->id] = $e->getMessage();
