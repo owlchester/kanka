@@ -51,7 +51,7 @@
         <x-forms.field
             field="type"
             :label="__('entities/events.fields.type')"
-            :helper=" __('entities/events.helpers.characters', ['more' => '<a target=\'_blank\' href=\'https://docs.kanka.io/en/latest/advanced/age.html\'>' . __('crud.actions.find_out_more') . '</a>'">
+            :helper=" __('entities/events.helpers.characters', ['more' => '<a target=\'_blank\' href=\'https://docs.kanka.io/en/latest/advanced/age.html\'>' . __('crud.actions.find_out_more') . '</a>'])">
             <x-forms.select name="type_id" :options="[null => '', 2 => __('entities/events.types.birth'), 3 =>  __('entities/events.types.death')]" :selected="$entityEvent->type_id ?? null" />
         </x-forms.field>
     @endif
