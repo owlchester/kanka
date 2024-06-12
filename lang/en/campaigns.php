@@ -182,8 +182,7 @@ TEXT
         ],
         'invite'                => [
             'description'   => 'Invite friends and players to the campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',
-            'more'          => 'You can add more roles on the :link.',
-            'roles_page'    => 'Roles page',
+            'more'          => 'More roles can be created on the :link page.',
             'title'         => 'Invites',
         ],
         'manage_roles'          => 'Manage user roles',

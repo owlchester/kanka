@@ -96,7 +96,7 @@
             __('campaigns.members.invite.more', [
                         'link' =>
                             '<a href="' . route('campaign_roles.index', $campaign) . '">'
-                            . __('campaigns.members.invite.roles_page') . '</a>'
+                            . __('campaigns.show.tabs.roles') . '</a>'
                     ])
         ]
     ])
