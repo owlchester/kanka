@@ -134,7 +134,7 @@ const initAttributeHandlers = () => {
     });
 };
 
-let liveEditURL, liveEditModal, liveEditCurrentUID;
+let liveEditURL, liveEditModal;
 const initLiveAttributes = () => {
     let config = $('[name="live-attribute-config"]');
     if (config.length === 0) {
@@ -156,7 +156,6 @@ const initLiveAttributes = () => {
         //console.log('clicked on live edit parsed');
 
         let id = $(this).data('id');
-        liveEditCurrentUID = $(this).data('uid');
 
         let url = liveEditURL + '?id=' + id + '&uid=' + $(this).data('uid');
 
@@ -165,6 +164,11 @@ const initLiveAttributes = () => {
         });
         window.openDialog('live-attribute-dialog', url);
 
+    });
+
+
+    $(document).on('shown.bs.modal', function () {
+        initNewLiveAttributeForm();
     });
 };
 
@@ -203,5 +207,40 @@ const listenToLiveForm = () => {
         });
 
         return false;
+    });
+};
+
+const initNewLiveAttributeForm = () => {
+    const forms = document.querySelectorAll('form.live-attribute-form');
+    const primaryModal = document.getElementById('primary-dialog');
+    forms.forEach(function (form) {
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            $.ajax({
+                method: 'POST',
+                context: this,
+                url: form.getAttribute('action'),
+                data: $(form).serialize()
+            }).done(function (result) {
+
+                primaryModal.getElementsByTagName('article')[0].innerHTML = '';
+                primaryModal.close();
+
+                let target = document.querySelector('[data-live-id="' + result.id + '"]');
+                //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
+                target.dataset.dataAttribute = result.attribute;
+                target.innerHTML = result.value;
+
+                window.showToast(result.success);
+
+            }).fail(function (result) {
+                //alert('error! check console logs');
+                //console.error('live-edit-error', result);
+                if (result.responseJSON.message) {
+                    window.showToast(result.responseJSON.message, 'error');
+                }
+                primaryModal.close();
+            });
+        };
     });
 };

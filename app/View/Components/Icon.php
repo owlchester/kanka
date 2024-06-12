@@ -9,34 +9,19 @@ use Illuminate\View\Component;
 
 class Icon extends Component
 {
-    public string $class;
-    public ?string $title;
-    public ?string $tooltip;
-    public ?string $link;
-    public ?string $size;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $class = null,
-        string $entity = null,
-        string $tooltip = null,
-        string $title = null,
-        string $link = null,
-        string $size = null,
+        public ?string $class = null,
+        public ?string $entity = null,
+        public ?string $tooltip = null,
+        public ?string $title = null,
+        public ?string $link = null,
+        public ?string $size = null,
+        public ?string $label = null,
     ) {
-        if (empty($class) && !empty($entity)) {
-            $this->class = $this->mapEntity($entity);
-        } elseif (!empty($class)) {
-            $this->class = $this->map($class);
-        } else {
-            $this->class = '';
-        }
-        $this->tooltip = $tooltip;
-        $this->title = $title;
-        $this->link = $link;
-        $this->size = $size;
     }
 
     /**
@@ -44,6 +29,11 @@ class Icon extends Component
      */
     public function render(): View|Closure|string
     {
+        if (empty($this->class) && !empty($this->entity)) {
+            $this->class = $this->mapEntity($this->entity);
+        } elseif (!empty($this->class)) {
+            $this->class = $this->map($this->class);
+        }
         return view('components.icon');
     }
 

@@ -120,7 +120,9 @@ Route::get('/w/{campaign}/entities/{entity}/attributes/edit', [App\Http\Controll
 Route::post('/w/{campaign}/entities/{entity}/attributes/save', [App\Http\Controllers\Entity\AttributeController::class, 'save'])->name('entities.attributes.save');
 Route::get('/w/{campaign}/entities/{entity}/attributes/live-edit/', [App\Http\Controllers\Entity\AttributeController::class, 'liveEdit'])
     ->name('entities.attributes.live.edit');
-Route::post('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}/save', [App\Http\Controllers\Entity\AttributeController::class, 'liveSave'])
+Route::get('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}', [App\Http\Controllers\Entity\Attributes\LiveController::class, 'index'])
+    ->name('entities.attributes.live.edit2');
+Route::post('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}/save', [App\Http\Controllers\Entity\Attributes\LiveController::class, 'save'])
     ->name('entities.attributes.live.save');
 
 Route::model('attribute', App\Models\Attribute::class);

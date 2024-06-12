@@ -217,4 +217,35 @@ class AttributeMentionService
         }
         return false;
     }
+
+    public function organise(Collection $attributes): array
+    {
+        $sections = [];
+        $section = null;
+        /** @var Attribute $attribute */
+        foreach ($attributes as $attribute) {
+            if ($attribute->isSection()) {
+                if (!is_null($section)) {
+                    $sections[] = $section;
+                }
+                $section = [
+                    'id' => $attribute->id,
+                    'name' => $attribute->name(),
+                    'is_private' => $attribute->is_private,
+                    'attributes' => []
+                ];
+                continue;
+            } elseif (is_null($section)) {
+                $section = [
+                    'id' => 0,
+                    'attributes' => []
+                ];
+            }
+
+            $section['attributes'][] = $attribute;
+        }
+
+
+        return $sections;
+    }
 }

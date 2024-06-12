@@ -39,3 +39,12 @@
         display: none;
     }
 }
+
+.collapsed\:show {
+    --fa-display: none;
+}
+.animate-collapsed {
+    .collapsed\:flip {
+        rotate: (180deg) ;
+    }
+}

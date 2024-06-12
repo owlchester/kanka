@@ -93,7 +93,7 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes.js": {
-    "file": "assets/attributes-868359f2.js",
+    "file": "assets/attributes-eb3fe4c7.js",
     "imports": [
       "_sortable.esm-0d19b1d3.js",
       "_mention-b4456db3.js"
@@ -240,7 +240,7 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-da16ebf2.css",
+    "file": "assets/app-adec04f4.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
