@@ -24,8 +24,7 @@ class GoodBye implements Rule
      */
     public function passes($attribute, $value)
     {
-        // Todo: mb_strtolower
-        return Str::is($value, 'goodbye') || Str::is($value, 'Goodbye');
+        return Str::is(mb_strtolower($value), 'goodbye');
     }
 
     /**

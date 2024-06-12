@@ -50,8 +50,6 @@ class CampaignPermission extends Model
     public const ACTION_GALLERY_BROWSE = 15;
     public const ACTION_GALLERY_UPLOAD = 16;
 
-    protected array $cachedSegments;
-
     protected $fillable = [
         'campaign_role_id',
         'campaign_id',
@@ -104,59 +102,6 @@ class CampaignPermission extends Model
     }
 
     /**
-     * Get the entity id
-     */
-    public function entityId()
-    {
-        $segments = $this->segments();
-        return $segments[count($segments) - 1];
-    }
-
-    /**
-     */
-    public function action()
-    {
-        $segments = $this->segments();
-        $segment = count($segments) - (empty($this->entity_id) ? 1 : 2);
-        if (!isset($segments[$segment])) {
-            return null;
-        }
-        return $segments[$segment];
-    }
-
-    /**
-     * Determine if a permission targets an entity by checking the last part of the segment
-     * @return bool
-     */
-    public function targetsEntity()
-    {
-        $segments = $this->segments();
-        return is_numeric($segments[count($segments) - 1]);
-    }
-
-    public function type()
-    {
-        $segments = $this->segments();
-        //dd('CPT: Error 2');
-
-        // Todo: move this info somewhere else so we can avoid a massive split
-        if (Str::startsWith($this->key, 'attribute_template')) {
-            $segments[0] = 'attribute_template';
-        } elseif (Str::startsWith($this->key, 'dice_roll')) {
-            $segments[0] = 'dice_roll';
-        }
-        return $segments[0];
-    }
-
-    protected function segments(): array
-    {
-        if (!isset($this->cachedSegments)) {
-            $this->cachedSegments = explode('_', $this->key);
-        }
-        return $this->cachedSegments;
-    }
-
-    /**
      * Copy an entity inventory to another target
      */
     public function copyTo(Entity $target, int $from, int $to)
@@ -196,20 +141,6 @@ class CampaignPermission extends Model
             return '_' . $this->action . '_' . $this->entity_type_id . '_' . $this->misc_id;
         }*/
         return '_' . $this->action . '_' . $this->misc_id;
-    }
-
-    /**
-     * Check if the key is invalid (old corrupt data)
-     */
-    public function invalidKey(): bool
-    {
-        // If we have an entity id, assume we are valid and end early
-        if (!empty($this->entity_id)) {
-            return false;
-        }
-        $segments = $this->segments();
-        $end = last($segments);
-        return is_numeric($end) && empty($this->entity_id);
     }
 
     public function isGallery(): bool

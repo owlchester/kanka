@@ -77,7 +77,6 @@ class TransformService
                 // @phpstan-ignore-next-line
                 $this->new->location_id = $this->child->locations()->first()->id;
             } elseif (in_array('location_id', $this->fillable)) {
-                // Todo: fix crash when location is empty
                 // @phpstan-ignore-next-line
                 $this->new->setParentId($this->child->locations()->first()->id);
             }
