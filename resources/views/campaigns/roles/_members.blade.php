@@ -8,11 +8,6 @@
     {{ __('campaigns.roles.members') }}
 </h3>
 
-@if ($members->isEmpty())
-    <x-alert type="info">
-        <div class="">{{__('campaigns.roles.hints.empty_role')}}</div>
-    </x-alert>
-@endif
 
 <div class="flex flex-wrap gap-2 flex-stretch">
     @if ($members->isNotEmpty())
@@ -40,6 +35,10 @@
 
             </div>
         @endforeach
+    @else
+        <x-alert type="info grow">
+            <div class="">{{__('campaigns.roles.hints.empty_role')}}</div>
+        </x-alert>
     @endif
     @can('user', $role)
         <a href="{{ route('campaign_roles.campaign_role_users.create', [$campaign, 'campaign_role' => $role]) }}"
