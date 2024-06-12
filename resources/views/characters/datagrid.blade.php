@@ -13,7 +13,7 @@
             'field' => 'is_dead',
             'render' => function($model) {
                 if ($model->is_dead) {
-                    return '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '" aria-hidden="true"></i>';
+                    return '<i class="ra ra-skull" data-toggle="tooltip" data-title="' . __('characters.hints.is_dead') . '" aria-hidden="true"></i> <span class="sr-only">' . __('characters.fields.is_dead') . '</span>';
                 }
                 return '';
             },

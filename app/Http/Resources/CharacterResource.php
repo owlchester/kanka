@@ -17,11 +17,8 @@ class CharacterResource extends EntityResource
         /** @var Character $model */
         $model = $this->resource;
 
-        // Fallback for old api calls
-        // TODO: optimize to not re-do a db query
-        $raceIDs = $model->races()->pluck('races.id');
-
-        $familyIDs = $model->families()->pluck('families.id');
+        $raceIDs = $model->races->pluck('id');
+        $familyIDs = $model->families->pluck('id');
 
         $character = [
             'title' => $model->title,

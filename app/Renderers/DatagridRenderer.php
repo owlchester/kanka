@@ -197,7 +197,7 @@ class DatagridRenderer
                 }
                 $html = $this->route(
                     'is_private',
-                    '<i class="fa-solid fa-lock" title="' . __('crud.fields.is_private') . '" aria-hidden="true"></i> <span class="sr-only">' . __('crud.fields.is_private') . '</span>'
+                    '<i class="fa-solid fa-lock" data-title="' . __('crud.fields.is_private') . '" aria-hidden="true" data-toggle="tooltip"></i> <span class="sr-only">' . __('crud.fields.is_private') . '</span>'
                 );
                 $class = 'w-14 text-center';
             } elseif ($type == 'calendar_date') {
@@ -363,7 +363,7 @@ class DatagridRenderer
                 // Handle boolean values (has, is)
                 if ($this->isBoolean($column)) {
                     $icon = $column == 'is_dead' ? 'ra ra-skull' : 'fa-solid fa-check-circle';
-                    $content = $model->{$column} ? '<i class="' . $icon . '"></i>' : '';
+                    $content = $model->{$column} ? '<i class="' . $icon . '" aria-hidden="true"></i>' : '';
                 } else {
                     $content = e($model->{$column});
                 }
@@ -432,7 +432,7 @@ class DatagridRenderer
                     return null;
                 }
                 $content = $model->is_private ?
-                    '<i class="fa-solid fa-lock" title="' . __('crud.is_private') . '" aria-hidden="true"></i> <span class="sr-only">' . __('crud.is_private') . '</span>' :
+                    '<i class="fa-solid fa-lock" data-title="' . __('crud.is_private') . '" aria-hidden="true" data-toggle="tooltip"></i> <span class="sr-only">' . __('crud.is_private') . '</span>' :
                     null;
                 $class = ' text-center';
             } elseif ($type == 'calendar_date') {
