@@ -63,10 +63,6 @@ class PostRecoveryController extends Controller
             ;
         }
 
-        if (request()->ajax()) {
-            return response()->json(['success' => true]);
-        }
-
         try {
             $count = $this->service->recoverPosts($request->get('model', []));
             return redirect()

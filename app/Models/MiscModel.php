@@ -260,7 +260,6 @@ abstract class MiscModel extends Model
     /**
      * Available datagrid actions
      * Todo: move this out of the model
-     * @return string[]
      * @throws Exception
      */
     public function datagridActions(Campaign $campaign): array
