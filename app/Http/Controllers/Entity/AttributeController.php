@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateEntityAttribute;
-use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Attributes\TemplateService;
 use App\Services\AttributeService;
 use App\Traits\GuestAuthTrait;
-use Stevebauman\Purify\Facades\Purify;
 
 /**
  * Attribute Controller
@@ -164,37 +161,5 @@ class AttributeController extends Controller
         }
 
         return response()->view('entities.pages.attributes.live.edit', compact('campaign', 'attribute', 'entity', 'uid'));
-    }
-
-    public function liveSave(UpdateEntityAttribute $request, Campaign $campaign, Entity $entity, Attribute $attribute)
-    {
-        $this->authorize('update', $entity->child);
-
-        if ($attribute->entity_id !== $entity->id) {
-            abort(404);
-        }
-
-        $attribute->update([
-            'value' => Purify::clean($request->get('value'))
-        ]);
-        // Track that the entity was updated
-        $entity->touch();
-        $entity->child->touchSilently();
-        $attributeValue = null;
-        $result = $attribute->mappedValue();
-        $attributeValue = $result;
-        if ($attribute->isText()) {
-            $result = nl2br($result);
-            $attributeValue = $result;
-        } elseif ($attribute->isCheckbox()) {
-            $result = '<i class="fa-solid fa-' . ($attribute->value ? 'check' : 'times') . '"></i>';
-            $attributeValue = $attribute->value ? 'true' : 'false';
-        }
-        return response()->json([
-            'value' => $result,
-            'attribute' => $attributeValue,
-            'uid' => $request->get('uid'),
-            'success' => __('entities/attributes.live.success', ['attribute' => $attribute->name()])
-        ]);
     }
 }

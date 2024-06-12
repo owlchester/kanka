@@ -65,6 +65,9 @@ return [
     'ranges'        => [
         'text'  => 'Available options: :options',
     ],
+    'sections'      => [
+        'unorganised' => 'Unorganised',
+    ],
     'show'          => [
         'hidden'    => 'Hidden Attributes',
         'title'     => ':name Attributes',
