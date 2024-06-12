@@ -30,13 +30,9 @@
             </button>
         </div>
         @if (!$role->isAdmin())
-            <x-alert type="info">
-                <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<code>' . $role->name . '</code>']) !!}</p>
-            </x-alert>
+            <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<span class="font-extrabold text-accent">' . $role->name . '</span>']) !!}</p>
         @else
-            <x-alert type="info">
-                <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<code>' . $role->name . '</code>']) !!} </p>
-            </x-alert>
+            <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<span class="font-extrabold text-accent">' . $role->name . '</span>']) !!} </p>
         @endif
         @if (!$role->isAdmin())
         <x-box>

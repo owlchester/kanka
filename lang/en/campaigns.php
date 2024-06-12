@@ -182,8 +182,7 @@ TEXT
         ],
         'invite'                => [
             'description'   => 'Invite friends and players to the campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',
-            'more'          => 'You can add more roles on the :link.',
-            'roles_page'    => 'Roles page',
+            'more'          => 'More roles can be created on the :link page.',
             'title'         => 'Invites',
         ],
         'manage_roles'          => 'Manage user roles',
@@ -275,7 +274,7 @@ TEXT
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
             'empty_role'            => 'The role doesn\'t have any members in it yet.',
             'role_admin'            => 'Members of the :name role can automatically access every entity and feature in the campaign.',
-            'role_permissions'      => 'Enable the :name role to do the following actions on all entities.',
+            'role_permissions'      => 'Use this interface to allow the :name role to do the following actions on all entities.',
         ],
         'members'       => 'Members',
         'modals'        => [
