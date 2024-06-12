@@ -225,7 +225,7 @@ class AttributeMentionService
         /** @var Attribute $attribute */
         foreach ($attributes as $attribute) {
             if ($attribute->isSection()) {
-                if (!is_null($section)) {
+                if (null !== $section) {
                     $sections[] = $section;
                 }
                 $section = [
@@ -235,7 +235,7 @@ class AttributeMentionService
                     'attributes' => []
                 ];
                 continue;
-            } elseif (is_null($section)) {
+            } elseif (null === $section) {
                 $section = [
                     'id' => 0,
                     'attributes' => []

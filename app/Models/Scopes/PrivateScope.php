@@ -2,7 +2,6 @@
 
 namespace App\Models\Scopes;
 
-use App\Models\Visibility;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;

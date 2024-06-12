@@ -50,8 +50,8 @@ class LiveController extends Controller
             $attributeValue = $result;
         } elseif ($attribute->isCheckbox()) {
             $result = '<i ' .
-                'class="fa-solid fa-' . ($attribute->value ? 'check' : 'times') . '" '.
-                'aria-hidden="true" '.
+                'class="fa-solid fa-' . ($attribute->value ? 'check' : 'times') . '" ' .
+                'aria-hidden="true" ' .
                 'aria-label="' . ($attribute->value ? 'checked' : 'unchecked') . '"></i>';
             $attributeValue = $attribute->value ? 'true' : 'false';
         }
