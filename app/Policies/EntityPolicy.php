@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\Entity;

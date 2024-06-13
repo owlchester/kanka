@@ -6,7 +6,6 @@ use App\Facades\Module;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
-use Illuminate\Auth\Access\Gate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
