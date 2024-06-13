@@ -12,7 +12,7 @@
 ])
 @section('content')
     <form class="pagination-ajax-body max-w-2xl">
-        <x-dialog.header>{{ $entity->name }}</x-dialog.header>
+        <x-dialog.header>@if (!isset($post)) {{ $entity->name }} @else {{ $entity->name }} - {{ $post->name }} @endif</x-dialog.header>
         <article>
             <div class="modal-loading text-center text-xl p-5" style="display: none">
                 <x-icon class="load" />
@@ -35,7 +35,7 @@
                                     {{ __('entities/logs.actions.' . $log->actionCode(), ['post' => $log->post?->name]) }}
                                 </td>
                                 <td class="">@if ($log->user)
-                                         <a href="{{  route('users.profile', $log->user) }}">{!! $log->user->name !!}}</a>
+                                         <a href="{{  route('users.profile', $log->user) }}">{!! $log->user->name !!}</a>
                                     @else
                                         {{  __('crud.history.unknown') }}
                                     @endif
