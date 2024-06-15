@@ -184,3 +184,5 @@ Route::patch('/w/{campaign}/webhooks/{webhook}/toggle', [App\Http\Controllers\Ca
 Route::get('/w/{campaign}/webhooks/{webhook}/status', [App\Http\Controllers\Campaign\WebhookController::class, 'status'])->name('webhooks.status');
 Route::post('/w/{campaign}/webhooks/bulk', [App\Http\Controllers\Campaign\WebhookController::class, 'bulk'])->name('webhooks.bulk');
 Route::get('/w/{campaign}/webhooks/{webhook}/test', [App\Http\Controllers\Campaign\WebhookController::class, 'test'])->name('webhooks.test');
+
+Route::get('/w/{campaign}/templates/load', [\App\Http\Controllers\Templates\LoadController::class, 'index'])->name('templates.load-attributes');

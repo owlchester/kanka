@@ -9,10 +9,13 @@ return [
         'save_and_edit'     => 'Apply and Edit',
         'save_and_story'    => 'Apply and View',
         'show_hidden'       => 'Show hidden attributes',
+        'toggle_privacy' => 'Private/Public',
+        'load' => 'Load'
     ],
     'errors'        => [
         'loop'      => 'There is an endless loop in this attribute calculation!',
         'too_many'  => 'There are too many fields on this entity, can\'t add more attributes. Delete some attributes first before being able to add more.',
+        'no_attribute_selected' => 'Select one or more attributes first.'
     ],
     'fields'        => [
         'attribute'             => 'Attribute',
@@ -21,6 +24,7 @@ return [
         'is_star'               => 'Pinned',
         'template'              => 'Template',
         'value'                 => 'Value',
+        'preferences'                 => 'Preferences',
     ],
     'filters'       => [
         'name'  => 'Attribute name',
@@ -75,6 +79,10 @@ return [
     'template'      => [
         'success'   => 'Attribute template :name applied to :entity',
         'title'     => 'Apply an attribute template for :name',
+        'load' => [
+            'title' => 'Load from template',
+            'success' => 'Template loaded'
+        ],
     ],
     'title'         => 'Attributes',
     'toasts'        => [
@@ -82,6 +90,8 @@ return [
         'pin'       => 'Attribute pinned',
         'unlock'    => 'Attribute unlocked',
         'unpin'     => 'Attribute unpinned',
+        'bulk_privacy' => 'Attributes privacy toggled',
+        'bulk_deleted' => 'Attributes deleted',
     ],
     'tutorial'      => 'Attributes are little bits of information attached to an entity. For example, a character might have an :hp and :str stat, while a location might have a :pop one. This can easily be tracked with attributes.',
     'types'         => [
@@ -92,7 +102,7 @@ return [
         'number'    => 'Number',
         'random'    => 'Random',
         'section'   => 'Section',
-        'text'      => 'Multiline Text',
+        'text'      => 'Multiline',
     ],
     'update'        => [
         'success'   => 'Attributes for :entity updated.',

@@ -82,6 +82,7 @@ class AttributeService
         $this->stars = Arr::get($request, 'attr_is_pinned', []);
         $templateId = Arr::get($request, 'template_id', null);
 
+
         $this->purifyConfig();
 
         foreach ($this->names as $id => $name) {

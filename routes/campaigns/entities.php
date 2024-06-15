@@ -124,6 +124,8 @@ Route::get('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}', [
     ->name('entities.attributes.live.edit2');
 Route::post('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}/save', [App\Http\Controllers\Entity\Attributes\LiveController::class, 'save'])
     ->name('entities.attributes.live.save');
+Route::get('/w/{campaign}/entities/{entity}/attributes/api', [App\Http\Controllers\Entity\Attributes\ApiController::class, 'index'])
+    ->name('entities.attributes.api');
 
 Route::model('attribute', App\Models\Attribute::class);
 

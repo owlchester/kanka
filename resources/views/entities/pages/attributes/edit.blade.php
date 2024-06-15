@@ -22,36 +22,44 @@ $isAdmin = auth()->user()->isAdmin();
         :action="['entities.attributes.save', $campaign, $entity]"
         :extra="['data-max-fields' => ini_get('max_input_vars'),]"
         unload
-        class="entity-form"
+        class="entity-form flex flex-col gap-5"
     >
-    <x-box>
-        <div id="entity-attributes-all">
-            <div class="entity-attributes sortable-elements"  data-handle=".sortable-handler" id="add_attribute_target">
-                @foreach ($r = $entity->attributes()->ordered()->get() as $attribute)
-                    @if (!$attribute->is_hidden)
-                        @include('cruds.forms.attributes._attribute')
-                    @endif
-                @endforeach
+        @if(request()->has('old'))
+        <x-box>
+            <div id="entity-attributes-all">
+                <div class="entity-attributes sortable-elements"  data-handle=".sortable-handler" id="add_attribute_target">
+                    @foreach ($r = $entity->attributes()->ordered()->get() as $attribute)
+                        @if (!$attribute->is_hidden)
+                            @include('cruds.forms.attributes._attribute')
+                        @endif
+                    @endforeach
+                </div>
             </div>
-        </div>
 
-        @include('cruds.forms.attributes._blocks', ['existing' => $r->count()])
-        @include('cruds.forms.attributes._buttons', ['model' => $entity->child, 'existing' => $r->count()])
+            @include('cruds.forms.attributes._blocks', ['existing' => $r->count()])
+            @include('cruds.forms.attributes._buttons', ['model' => $entity->child, 'existing' => $r->count()])
 
-        <div class="flex gap-2 items-center">
-            <a href="{{ url()->previous() }}" class="btn2 btn-ghost">
-                {{ __('crud.cancel') }}
-            </a>
-            <div class="grow text-right">
-                <button class="btn2 btn-primary">
-                    {{ __('crud.save') }}
-                </button>
+            <div class="flex gap-2 items-center">
+                <a href="{{ url()->previous() }}" class="btn2 btn-ghost">
+                    {{ __('crud.cancel') }}
+                </a>
+                <div class="grow text-right">
+                    <button class="btn2 btn-primary">
+                        {{ __('crud.save') }}
+                    </button>
+                </div>
             </div>
-        </div>
 
-    </x-box>
+        </x-box>
+        @endif
+
+        <x-box :padding="false">
+            <div id="attributes-manager">
+            <attributes-manager api="{{ route('entities.attributes.api', [$campaign, $entity]) }}" />
+        </x-box>
     </x-form>
 @endsection
 @section('scripts')
     @vite('resources/js/attributes.js')
+    @vite('resources/js/attributes-manager.js')
 @endsection

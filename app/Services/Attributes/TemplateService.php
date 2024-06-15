@@ -94,7 +94,7 @@ class TemplateService
                 'is_private' => false,
                 'type_id' => $type,
                 'is_pinned' => false,
-                'is_hidden' => Arr::get($attribute, 'is_hidden', false)
+                'is_hidden' => Arr::get($attribute, 'is_hidden', false),
             ]);
         }
 
@@ -196,7 +196,7 @@ class TemplateService
             'block' => Attribute::TYPE_SECTION_ID,
             Attribute::TYPE_RANDOM => Attribute::TYPE_RANDOM_ID,
             Attribute::TYPE_NUMBER => Attribute::TYPE_NUMBER_ID,
-            Attribute::TYPE_LIST => Attribute::TYPE_LIST_ID
+            Attribute::TYPE_LIST => Attribute::TYPE_LIST_ID,
         ];
 
         if (isset($mapping[$type])) {
@@ -219,5 +219,94 @@ class TemplateService
             return new $templates[$template]();
         }
         return false;
+    }
+
+    public function api(string|int $template): array
+    {
+        $templateIdInt = (int) $template;
+        if (Str::isUuid($template)) {
+            return $this->loadMarketplaceTemplate($template);
+        } elseif (is_integer($templateIdInt) && !empty($templateIdInt)) {
+            return $this->loadCampaignTemplate($template);
+        }
+        return [];
+    }
+
+    protected function loadMarketplaceTemplate(string $template): array
+    {
+        $plugin = $this->getMarketplacePlugin($template, $this->campaign);
+        if (empty($plugin)) {
+            return [];
+        }
+
+        $attributes = [];
+        foreach ($plugin->version->attributes as $attribute) {
+            // If the config is simply a name, we default to a small varchar
+            if (!is_array($attribute)) {
+                continue;
+            }
+
+            // Don't re-create existing attributes.
+            $name = Arr::get($attribute, 'name', 'unknown');
+            $type = Arr::get($attribute, 'type', '');
+            $type = $this->mapAttributeTypeToID($type);
+            $value = Arr::get($attribute, 'value', '');
+
+            list($type, $value) = $this->randomService->randomAttribute($type, $value);
+
+            $attributes[] = [
+                'name' => $name,
+                'value' => $value,
+                'is_private' => false,
+                'is_pinned' => false,
+                'is_hidden' => (bool) Arr::get($attribute, 'is_hidden', false),
+                'is_checked' => false,
+                'is_deleted' => false,
+
+                'is_checkbox' => $type === Attribute::TYPE_CHECKBOX_ID,
+                'is_multiline' => $type === Attribute::TYPE_TEXT_ID,
+                'is_section' => $type === Attribute::TYPE_SECTION_ID,
+                'is_number' => $type === Attribute::TYPE_NUMBER_ID,
+            ];
+        }
+
+        // Layout attribute for rendering
+            $attributes[] = [
+                'name' => '_layout',
+                'value' => $plugin->version->uuid,
+                'is_private' => false,
+                'is_pinned' => false,
+            ];
+
+        return $attributes;
+    }
+
+    protected function loadCampaignTemplate(int $templateId): array
+    {
+        $template = AttributeTemplate::findOrFail($templateId);
+        $attributes = [];
+
+        /** @var Attribute $attribute */
+        foreach ($template->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
+
+            list($type, $value) = $this->randomService->randomAttribute($attribute->type_id, $attribute->value);
+
+            $attributes[] = [
+                'name' => $attribute->name,
+                'value' => $attribute->value,
+                'is_private' => false,
+                'is_pinned' => false,
+                'is_hidden' => false,
+                'is_checked' => false,
+                'is_deleted' => false,
+
+                'is_checkbox' => $attribute->isCheckbox() === Attribute::TYPE_CHECKBOX_ID,
+                'is_multiline' => $attribute->isText() === Attribute::TYPE_TEXT_ID,
+                'is_section' => $attribute->isSection() === Attribute::TYPE_SECTION_ID,
+                'is_number' => $attribute->isNumber() === Attribute::TYPE_NUMBER_ID,
+            ];
+        }
+
+        return $attributes;
     }
 }
