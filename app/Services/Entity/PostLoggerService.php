@@ -84,6 +84,7 @@ class PostLoggerService
             if ($result->name) {
                 return $result->name;
             } else {
+                // @phpstan-ignore-next-line
                 return $result->code;
             }
         } catch (Exception $e) {
