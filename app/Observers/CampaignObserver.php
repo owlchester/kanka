@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Models\Campaign;
+use App\Models\CampaignBoost;
 use App\Models\CampaignUser;
 use App\Models\CampaignRole;
 use App\Models\Genre;
@@ -159,8 +160,10 @@ class CampaignObserver
      */
     public function deleted(Campaign $campaign)
     {
-        SearchCleanupService::cleanup($campaign);
-        ImageService::cleanup($campaign);
+        if ($campaign->isForceDeleting()) {
+            SearchCleanupService::cleanup($campaign);
+            ImageService::cleanup($campaign);
+        }
         UserCache::clear();
     }
 
@@ -170,23 +173,30 @@ class CampaignObserver
      */
     public function deleting(Campaign $campaign)
     {
-        // Technically, only a campaign with a single user can be deleted.
-        foreach ($campaign->members as $member) {
-            $member->user->notify(new Header(
-                'campaign.deleted',
-                'trash',
-                'yellow',
-                [
-                    'campaign' => $campaign->name
-                ]
-            ));
-            $member->delete();
+
+        if ($campaign->isForceDeleting()) {
+            // Technically, only a campaign with a single user can be deleted.
+            foreach ($campaign->members as $member) {
+                $member->delete();
+            }
+            // Delete the campaign settings.
+            $campaign->setting->delete();
+
+            ImageService::cleanup($campaign, 'header_image');
+        } else {
+            // Delete boosters, so the user can use them on other campaigns.
+            CampaignBoost::where('campaign_id', $campaign->id)->delete();
+            foreach ($campaign->members as $member) {
+                $member->user->notify(new Header(
+                    'campaign.deleted',
+                    'trash',
+                    'yellow',
+                    [
+                        'campaign' => $campaign->name
+                    ]
+                ));
+            }
         }
-
-        // Delete the campaign setting
-        $campaign->setting->delete();
-
-        ImageService::cleanup($campaign, 'header_image');
     }
 
     /**

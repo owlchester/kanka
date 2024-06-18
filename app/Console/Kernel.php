@@ -7,6 +7,7 @@ use App\Console\Commands\CalendarAdvancer;
 use App\Console\Commands\Campaigns\VisibileEntityCountCommand;
 use App\Console\Commands\Cleanup\CleanupEntityLogs;
 use App\Console\Commands\Cleanup\CleanupTrashed;
+use App\Console\Commands\Cleanup\CleanupTrashedCampaigns;
 use App\Console\Commands\Cleanup\CleanupUsers;
 use App\Console\Commands\RegenerateDiscordToken;
 use App\Console\Commands\Subscriptions\EndSubscriptions;
@@ -46,6 +47,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
         $schedule->command(AnonymiseUserLogs::class)->dailyAt('03:50');
         $schedule->command(CleanupTrashed::class)->dailyAt('02:15');
+        $schedule->command(CleanupTrashedCampaigns::class)->dailyAt('02:45');
         $schedule->command(CleanupUsers::class)->dailyAt('01:50');
     }
 

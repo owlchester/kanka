@@ -9,5 +9,6 @@ return [
         'second' => [
             'limit' => 7,
         ],
-    ]
+    ],
+    'hard_delete' => env('APP_CAMPAIGN_HARD_DELETE', 24),
 ];

@@ -14,6 +14,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -69,6 +70,7 @@ class Campaign extends Model
     use CampaignScopes;
     use HasFactory;
     use LastSync;
+    use SoftDeletes;
 
     /**
      * Visibility of a campaign
