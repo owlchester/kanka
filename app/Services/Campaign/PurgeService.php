@@ -64,10 +64,10 @@ class PurgeService
                 }
             });
 
-            JobLog::create([
-                'name' => 'cleanup:trashed-campaigns',
-                'result' => implode('<br />', $this->ids)
-            ]);
+        JobLog::create([
+            'name' => 'cleanup:trashed-campaigns',
+            'result' => implode('<br />', $this->ids)
+        ]);
         return $this->count;
     }
 
