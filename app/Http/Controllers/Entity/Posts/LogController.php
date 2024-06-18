@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Entity;
+namespace App\Http\Controllers\Entity\Posts;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Post;
 
-class PostLogController extends Controller
+class LogController extends Controller
 {
     public function index(Campaign $campaign, Entity $entity, Post $post)
     {
