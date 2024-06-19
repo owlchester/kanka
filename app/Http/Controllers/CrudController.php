@@ -9,7 +9,6 @@ use App\Facades\Breadcrumb;
 use App\Facades\FormCopy;
 use App\Facades\Module;
 use App\Facades\Permissions;
-use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Bookmark;

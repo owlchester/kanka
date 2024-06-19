@@ -180,8 +180,9 @@ class ApiService
                     $templateTotalAttributes,
                     [
                         'link' => '<a href="' . $template->getLink() . '">' . $template->name . '</a>',
-                        'count' => "<strong>$templateTotalAttributes</strong>",
-                    ])
+                        'count' => "<strong>{$templateTotalAttributes}</strong>",
+                    ]
+                )
             ];
         }
 

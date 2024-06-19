@@ -11,10 +11,12 @@ class LoadController extends Controller
 {
     protected TemplateService $templateService;
 
-    public function __construct(TemplateService $templateService) {
+    public function __construct(TemplateService $templateService)
+    {
         $this->templateService = $templateService;
     }
-    public function index(Request $request, Campaign $campaign) {
+    public function index(Request $request, Campaign $campaign)
+    {
 
         return response()->json(
             $this
