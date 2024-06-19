@@ -40,6 +40,6 @@ class Delete implements ShouldQueue
         if (!$campaign) {
             return;
         }
-        $campaign->delete();
+        $campaign->forceDelete();
     }
 }

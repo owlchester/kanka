@@ -8,6 +8,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
 use App\Models\Concerns\CampaignLimit;
 use App\Models\Concerns\LastSync;
+use App\Models\Concerns\Blameable;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\User;
@@ -50,11 +51,13 @@ use Illuminate\Support\Collection;
  * @property array|null $settings
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  * @property int $created_by
  * @property int $updated_by
+ * @property int $deleted_by
  * @property int $follower
  * @property bool $is_hidden
- *
+
  * UI virtual Settings
  * @property bool $tooltip_family
  * @property bool $tooltip_image
@@ -71,6 +74,7 @@ class Campaign extends Model
     use HasFactory;
     use LastSync;
     use SoftDeletes;
+    use Blameable;
 
     /**
      * Visibility of a campaign

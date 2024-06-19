@@ -32,6 +32,7 @@ use Laravel\Scout\Searchable;
  * @property int|null $layout_id
  * @property string|null $marketplace_uuid
  * @property bool|int $is_private
+ * @property int $deleted_by
  * @property bool|int $is_pinned
  * @property int $position
  * @property array $settings
@@ -41,6 +42,7 @@ use Laravel\Scout\Searchable;
  * @property EntityMention[]|Collection $mentions
  * @property PostPermission[]|Collection $permissions
  * @property ImageMention[]|Collection $imageMentions
+ * @property Carbon $deleted_at
  *
  * @method static Builder|self pinned()
  */

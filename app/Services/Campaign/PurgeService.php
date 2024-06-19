@@ -35,9 +35,7 @@ class PurgeService
                 /** @var Campaign $campaign */
                 foreach ($campaigns as $campaign) {
                     if (!$this->dry) {
-                        ImageService::cleanup($campaign);
-                        DeletedCampaignCleanupJob::dispatch($campaign);
-                        $campaign->delete();
+                        $campaign->forceDelete();
                         Log::info('Services\Campaigns\PurgeService', ['campaign' => $campaign->id]);
                     }
                     $this->count++;
@@ -56,8 +54,6 @@ class PurgeService
                 /** @var Campaign $campaign */
                 foreach ($campaigns as $campaign) {
                     $this->ids[] = $campaign->id;
-                    ImageService::cleanup($campaign);
-                    DeletedCampaignCleanupJob::dispatch($campaign);
                     $campaign->forceDelete();
                     Log::info('Services\Campaigns\PurgeService', ['campaign' => $campaign->id]);
                     $this->count++;

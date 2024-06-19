@@ -13,6 +13,7 @@ return new class () extends Migration {
         Schema::table('campaigns', function (Blueprint $table) {
             $table->softDeletes();
             $table->index('deleted_at');
+            $table->unsignedInteger('deleted_by')->nullable();
             $table->foreign('deleted_by')->references('id')->on('users')->nullOnDelete();
         });
     }
@@ -23,7 +24,9 @@ return new class () extends Migration {
     public function down(): void
     {
         Schema::table('campaigns', function (Blueprint $table) {
+            $table->dropForeign('deleted_by');
             $table->dropIndex('deleted_at');
+            $table->dropColumn('deleted_by');
             $table->dropColumn('deleted_at');
         });
     }

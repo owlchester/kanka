@@ -163,8 +163,10 @@ class CampaignObserver
         if ($campaign->isForceDeleting()) {
             SearchCleanupService::cleanup($campaign);
             ImageService::cleanup($campaign);
+            ImageService::cleanup($campaign, 'header_image');
+        } else {
+            UserCache::clear();
         }
-        UserCache::clear();
     }
 
     /**
@@ -181,8 +183,6 @@ class CampaignObserver
             }
             // Delete the campaign settings.
             $campaign->setting->delete();
-
-            ImageService::cleanup($campaign, 'header_image');
         } else {
             // Delete boosters, so the user can use them on other campaigns.
             CampaignBoost::where('campaign_id', $campaign->id)->delete();

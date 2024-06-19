@@ -46,7 +46,7 @@ class CleanupService
             if ($member->campaign->members->count() <= 1) {
                 SearchCleanupService::cleanup($member->campaign);
                 ImageService::cleanup($member->campaign);
-                $member->campaign->delete();
+                $member->campaign->forceDelete();
             }
         }
         return $this;

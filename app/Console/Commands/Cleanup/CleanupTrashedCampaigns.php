@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands\Cleanup;
 
+use App\Models\Campaign;
+use App\Observers\CampaignObserver;
 use App\Services\Campaign\PurgeService;
 use App\Traits\HasJobLog;
 use Illuminate\Console\Command;
@@ -47,6 +49,8 @@ class CleanupTrashedCampaigns extends Command
      */
     public function handle()
     {
+        Campaign::observe(CampaignObserver::class);
+
         $this->service->purgeDeleted();
         $this->info('');
         $this->info('Deleted ' . $this->service->count() . ' trashed campaigns.');
