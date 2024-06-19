@@ -11,11 +11,11 @@ use App\Facades\Module;
 use App\Facades\Permissions;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\MiscModel;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
+use App\Services\AttributeService;
 use App\Services\MultiEditingService;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
@@ -79,6 +79,8 @@ class CrudController extends Controller
      */
     protected DatagridSorter $datagridSorter;
 
+    protected AttributeService $attributeService;
+
     /** If the auth check was already performed on this controller */
     protected bool $alreadyAuthChecked = false;
 
@@ -90,11 +92,11 @@ class CrudController extends Controller
 
     protected Request $request;
 
-    public function __construct()
+    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService)
     {
-        $this->middleware('campaign.member');
-        $this->filterService = new FilterService();
-        $this->datagrid = new DatagridRenderer();
+        $this->filterService = $filterService;
+        $this->datagrid = $datagridRenderer;
+        $this->attributeService = $attributeService;
     }
 
     public function index(Request $request, Campaign $campaign)
@@ -317,14 +319,12 @@ class CrudController extends Controller
             }
         }
         $model = new $this->model();
-        $templates = $this->buildAttributeTemplates($model->entityTypeId());
 
         $params['campaign'] = $this->campaign;
         $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes && $this->campaign->enabled('entity_attributes');
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
-        $params['entityAttributeTemplates'] = $templates;
         $params['entityType'] = $model->hasEntityType() ? $model->getEntityType() : null;
         $params['title'] = __($this->view . '.create.title');
 
@@ -381,7 +381,21 @@ class CrudController extends Controller
             // MenuLink have no entity attached to them.
             if ($new->entity) {
                 $new->entity->crudSaved();
+
+                if (auth()->user()->can('attributes', $new->entity)) {
+                    $this->attributeService
+                        ->campaign($this->campaign)
+                        ->entity($new->entity)
+                        ->save($request->get('attribute', []));
+
+                    // When copying an entity, the user probably wants to update all mentions of attributes to ones on the new entity.
+                    if ($request->has('replace_mentions') && $request->filled('replace_mentions') && $new->entity->child->isFillable('entry')) {
+                        $this->attributeService
+                            ->replaceMentions((int) $request->post('copy_source_id'));
+                    }
+                }
             }
+
 
             $link = '<a href="' . route(
                 $new->entity ? 'entities.show' : $this->view . '.show',
@@ -536,6 +550,13 @@ class CrudController extends Controller
                 if ($model->wasChanged() && !$model->entity->wasChanged()) {
                     $model->entity->touch();
                 }
+
+                if (auth()->user()->can('attributes', $model->entity)) {
+                    $this->attributeService
+                        ->campaign($this->campaign)
+                        ->entity($model->entity)
+                        ->save($request->get('attribute', []));
+                }
             }
 
             $link = '<a href="' . route(
@@ -620,33 +641,6 @@ class CrudController extends Controller
             }
         }
         return $data;
-    }
-
-    /**
-     * Get a list of all attribute templates available for this entity type.
-     * @param string $type
-     */
-    protected function buildAttributeTemplates($type): array
-    {
-        $attributeTemplates = [];
-        $ids = [];
-        $templates = AttributeTemplate::where(['entity_type_id' => $type])
-            ->with(['entity', 'entity.attributes'])
-            ->get();
-        /** @var AttributeTemplate $attr */
-        foreach ($templates as $attr) {
-            $attributeTemplates[] = $attr;
-            $ids[] = $attr->id;
-            /** @var AttributeTemplate $child */
-            foreach ($attr->ancestors()->with('entity')->get() as $child) {
-                if (!in_array($child->id, $ids)) {
-                    $ids[] = $child->id;
-                    $attributeTemplates[] = $child;
-                }
-            }
-        }
-
-        return $attributeTemplates;
     }
 
     /**

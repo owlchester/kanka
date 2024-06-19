@@ -9,7 +9,6 @@ use App\Jobs\EntityWebhookJob;
 use App\Enums\WebhookAction;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
-use App\Services\AttributeService;
 use App\Services\Entity\TagService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
@@ -21,8 +20,6 @@ class EntityObserver
 
     protected PermissionService $permissionService;
 
-    protected AttributeService $attributeService;
-
     protected TagService $tagService;
 
     /**
@@ -30,11 +27,9 @@ class EntityObserver
      */
     public function __construct(
         PermissionService $permissionService,
-        AttributeService $attributeService,
         TagService $tagService
     ) {
         $this->permissionService = $permissionService;
-        $this->attributeService = $attributeService;
         $this->tagService = $tagService;
     }
 
@@ -47,7 +42,6 @@ class EntityObserver
         ImageService::entity($entity, 'w/' . $entity->campaign_id);
         $this->saveTags($entity);
         $this->savePermissions($entity);
-        $this->saveAttributes($entity);
         $this->savePremium($entity);
 
         if ($entity->isDirty()) {
@@ -121,35 +115,6 @@ class EntityObserver
     }
 
     /**
-     * @return $this
-     * @throws \Exception
-     */
-    protected function saveAttributes(Entity $entity): self
-    {
-        // If we're not in an interface that has attributes, don't go any further
-        if (!request()->has('attr_name') && !request()->has('save-attributes') || !auth()->user()->can('attributes', $entity)) {
-            return $this;
-        }
-        $data = request()->only(
-            'attr_name',
-            'attr_value',
-            'attr_is_private',
-            'attr_is_pinned',
-            'attr_type',
-            'template_id',
-            'is_attributes_private'
-        );
-        $this->attributeService->entity($entity)->save($data);
-        $sourceId = request()->post('copy_source_id');
-
-        if (request()->has('replace_mentions') && request()->filled('replace_mentions') && $entity->child->isFillable('entry')) {
-            $source = Entity::findOrFail($sourceId);
-            $this->attributeService->replaceMentions($source);
-        }
-        return $this;
-    }
-
-    /**
      */
     public function created(Entity $entity)
     {
@@ -186,9 +151,6 @@ class EntityObserver
             $entity->reloadChild();
         }
 
-        if (!request()->has('attr_name')) {
-            $this->attributeService->applyEntityTemplates($entity);
-        }
         EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::CREATED->value);
     }
 

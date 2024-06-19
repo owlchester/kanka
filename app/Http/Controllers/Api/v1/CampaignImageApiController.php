@@ -16,7 +16,6 @@ class CampaignImageApiController extends ApiController
 
     public function __construct(GalleryService $galleryService)
     {
-        $this->middleware('campaign.superboosted');
         $this->service = $galleryService;
     }
 

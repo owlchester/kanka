@@ -551,7 +551,7 @@ class DatagridRenderer
             return Blade::renderComponent(
                 new \App\View\Components\EntityLink($model, $this->campaign)
             );
-        } elseif ($model->entity) {
+        } elseif ($model->entity) {// @phpstan-ignore-line
             return Blade::renderComponent(
                 new \App\View\Components\EntityLink($model->entity, $this->campaign)
             );

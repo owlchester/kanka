@@ -24,7 +24,6 @@ class EntityCreatorController extends Controller
     public function __construct(EntityService $entityService, PopularService $popularService)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
         $this->entityService = $entityService;
         $this->popularService = $popularService;
     }

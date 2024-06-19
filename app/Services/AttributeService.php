@@ -12,8 +12,10 @@ use App\Services\Attributes\TemplateService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
+use Exception;
 
 class AttributeService
 {
@@ -30,6 +32,7 @@ class AttributeService
     protected array $types;
     protected array $privates;
     protected array $stars;
+    protected array $hidden;
     protected bool $touched = false;
 
     protected RandomService $randomService;
@@ -56,47 +59,30 @@ class AttributeService
 
     /**
      * Add form attributes to an entity
-     * @throws \Exception
+     * @throws Exception
      */
-    public function save(array $request): self
+    public function save(array $attributes): self
     {
         // First, let's get all the stuff for this entity
         $existingAttributes = $this->entity->attributes()
             // Need with() for saving to meilisearch
             ->with('entity')
-            ->where('is_hidden', '0')
             ->get();
-
-        //Dont load hidden attributes for deletion, unless deleting all.
-        if (empty($request) || Arr::get($request, 'delete-all-attributes') === '1') {
-            $existingAttributes = $this->entity->attributes()->get();
-        }
         foreach ($existingAttributes as $att) {
             $this->existing[$att->id] = $att;
         }
 
-        $this->names = Arr::get($request, 'attr_name', []);
-        $this->values = Arr::get($request, 'attr_value', []);
-        $this->types = Arr::get($request, 'attr_type', []);
-        $this->privates = Arr::get($request, 'attr_is_private', []);
-        $this->stars = Arr::get($request, 'attr_is_pinned', []);
-        $templateId = Arr::get($request, 'template_id', null);
-
         $this->purifyConfig();
 
-        foreach ($this->names as $id => $name) {
-            $this->saveAttribute($id, $name);
+
+        foreach ($attributes as $attribute) {
+            $this->saveAttribute($attribute);
         }
 
         // Remaining existing have been deleted
         foreach ($this->existing as $id => $attribute) {
             $this->touched = true;
             $attribute->delete();
-        }
-
-        // If a template id was provided, try and add it to the new entity.
-        if (!empty($templateId)) {
-            $this->apply($this->entity, $templateId);
         }
 
         return $this;
@@ -116,60 +102,59 @@ class AttributeService
         return $this;
     }
 
-    protected function saveAttribute($id, $name): self
+    protected function saveAttribute(string $attributeJson): self
     {
-        // Skip empties, which are probably the templates, but still allow an attribute called '0'
-        if (empty($name) || $name == '$TMP_ID') {
-            if ($name !== '0') {
+        try {
+            /** @var Attribute $attr */
+            $attr = json_decode($attributeJson);
+
+            if (empty($attr->name)) {
                 return $this;
             }
-        }
+            $name = Purify::clean($attr->name, $this->purifyConfig);
+            $value = Purify::clean($attr->value ?? '', $this->purifyConfig);
+            // Save empty strings as null
+            $value = $value === '' ? null : $value;
 
-        $name = Purify::clean($name, $this->purifyConfig);
-        $value = Purify::clean($this->values[$id] ?? '', $this->purifyConfig);
-        $typeID = $this->types[$id] ?? '';
-        $isPrivate = !empty($this->privates[$id]);
-        $isStar = !empty($this->stars[$id]);
-
-        // Save empty strings as null
-        $value = $value === '' ? null : $value;
-
-        // Edit an existing attribute
-        if (!empty($this->existing[$id])) {
             /** @var Attribute $attribute */
-            $attribute = $this->existing[$id];
-            $attribute->type_id = $typeID;
+            $attribute = Arr::get($this->existing, $attr->id);
+            if (empty($attribute)) {
+                $attribute = new Attribute();
+            }
+
+            // If the linked entity isn't an attribute template, we might be dealing with a random value
+            if (!$this->entity->isAttributeTemplate()) {
+                // @phpstan-ignore-next-line
+                list($attr->type, $value) = $this->randomService->randomAttribute($attr->type, $value);
+            }
+
             $attribute->name = $name;
             $attribute->setValue($value);
-            $attribute->is_private = $isPrivate ? 1 : 0;
-            $attribute->is_pinned = $isStar ? 1 : 0;
+            $attribute->is_private = $attr->is_private;
+            $attribute->is_pinned = $attr->is_pinned;
+            $attribute->type_id = $attr->type; // @phpstan-ignore-line
+            // Some fields can only be defined on creation
+            if (!$attribute->exists) {
+                $attribute->entity_id = $this->entity->id;
+                $attribute->is_hidden = $attr->is_hidden;
+                $attribute->origin_attribute_id = $attr->source_id ?? null;
+            }
             $attribute->default_order = $this->order;
-            if ($attribute->isDirty()) {
+            if ($attribute->isDirty() || !$attribute->exists) {
                 $this->touched = true;
             }
             $attribute->save();
 
-            // Remove it from the list of existing ids so it doesn't get deleted
-            unset($this->existing[$id]);
-        } else {
-            // Special case if the attribute is a random
-            if ($this->entity->typeId() != config('entities.ids.attribute_template')) {
-                list($typeID, $value) = $this->randomService->randomAttribute($typeID, $value);
+            // Remove it from the list of existing ids, so that it doesn't get deleted
+            unset($this->existing[$attr->id]);
+            $this->order++;
+        } catch (Exception $e) {
+            if (app()->isProduction()) {
+                Log::error($e->getMessage());
+            } else {
+                throw $e;
             }
-
-            $attribute = new Attribute([
-                'entity_id' => $this->entity->id,
-                'type_id' => $typeID,
-                'name' => $name,
-                'is_private' => $isPrivate,
-                'is_pinned' => $isStar,
-                'default_order' => $this->order,
-            ]);
-            $attribute->setValue($value);
-            $attribute->save();
-            $this->touched = true;
         }
-        $this->order++;
 
         return $this;
     }
@@ -301,8 +286,10 @@ class AttributeService
         return $this;
     }
 
-    public function replaceMentions(Entity $source): self
+    public function replaceMentions(int $sourceId): self
     {
+        $source = Entity::findOrFail($sourceId);
+
         $sourceAttributes = [];
         foreach ($source->attributes as $attribute) {
             $sourceAttributes[Str::slug($attribute->name)] = $attribute->id;

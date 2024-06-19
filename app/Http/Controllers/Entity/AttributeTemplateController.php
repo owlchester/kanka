@@ -17,7 +17,6 @@ class AttributeTemplateController extends Controller
     public function __construct(AttributeService $service, TemplateService $templateService)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
 
         $this->service = $service;
         $this->templateService = $templateService;

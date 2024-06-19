@@ -232,7 +232,7 @@ class RolePermissionService
         // Delete existing that weren't updated
         foreach ($existing as $permission) {
             // Only delete if it's a "general" and not an entity specific permission
-            if (!is_numeric($permission->entityId())) {
+            if (!is_numeric($permission->entity_id)) {
                 $permission->delete();
             }
         }

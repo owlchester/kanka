@@ -15,13 +15,13 @@ class FolderController extends Controller
     public function __construct(GalleryService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
         $this->service = $service;
     }
 
     public function create(Campaign $campaign)
     {
         $this->authorize('gallery', $campaign);
+
         $folder = request()->get('folder');
         if (!empty($folder)) {
             $folder = Image::where('is_default', false)
@@ -38,6 +38,7 @@ class FolderController extends Controller
     public function store(GalleryImageFolderStore $request, Campaign $campaign)
     {
         $this->authorize('gallery', $campaign);
+
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }

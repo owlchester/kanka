@@ -1,4 +1,5 @@
-<x-forms.field field="name">
+<?php /* @var \App\Models\Attribute $attribute */?>
+<x-forms.field field="name" css="w-full">
     <label for="name">{!! $attribute->name() !!}</label>
     @if ($attribute->isCheckbox())
         <input type="hidden" name="value" value="" />
@@ -16,6 +17,6 @@
         </select>
         <x-helper>{{ __('entities/attributes.ranges.text', ['options' => $attribute->listRangeText()]) }}</x-helper>
     @else
-        <input type="text" name="value" class="" maxlength="191" value="{{ $attribute->value }}" />
+        <input type="text" name="value" class="w-full" maxlength="191" value="{{ $attribute->value }}" />
     @endif
 </x-forms.field>

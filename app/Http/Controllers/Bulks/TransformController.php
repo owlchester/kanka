@@ -21,7 +21,6 @@ class TransformController extends Controller
         $this->typeService = $typeService;
 
         $this->middleware('auth');
-        $this->middleware('campaign.member');
     }
 
     public function index(Campaign $campaign, EntityType $entityType)

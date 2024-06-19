@@ -21,7 +21,6 @@ class TemplateController extends Controller
         $this->attributeService = $attributeService;
 
         $this->middleware('auth');
-        $this->middleware('campaign.member');
     }
 
     public function index(Campaign $campaign, EntityType $entityType)

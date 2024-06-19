@@ -14,8 +14,6 @@ class GalleryFolderController extends Controller
     public function __construct(GalleryService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.superboosted');
-
         $this->service = $service;
     }
 

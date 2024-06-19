@@ -175,6 +175,14 @@ class Attribute extends Model
     }
 
     /**
+     * Determine if an attribute is of the "random" type
+     */
+    public function isRandom(): bool
+    {
+        return $this->type_id === self::TYPE_RANDOM_ID;
+    }
+
+    /**
      * Copy an attribute to another target
      * @return bool
      */

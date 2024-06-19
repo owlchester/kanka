@@ -16,7 +16,6 @@ class GalleryController extends Controller
     public function __construct(GalleryService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
         $this->service = $service;
     }
 

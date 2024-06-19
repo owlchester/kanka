@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use App\Facades\Module;
 
 /**
  * @property int $id
  * @property string $code
+ * @property AttributeTemplates[]|Collection $attributeTemplates
  *
  * @method static self|Builder exclude(array $ids)
  */
@@ -37,6 +40,11 @@ class EntityType extends Model
     public function scopeExclude(Builder $query, array $exclude): Builder
     {
         return $query->whereNotIn('id', $exclude);
+    }
+
+    public function attributeTemplates(): HasMany
+    {
+        return $this->hasMany(AttributeTemplate::class, 'entity_type_id');
     }
 
     /**

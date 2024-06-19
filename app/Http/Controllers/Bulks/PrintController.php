@@ -17,7 +17,6 @@ class PrintController extends Controller
         $this->bulkService = $bulkService;
 
         $this->middleware('auth');
-        $this->middleware('campaign.member');
     }
 
     public function index(Campaign $campaign, EntityType $entityType)

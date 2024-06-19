@@ -24,7 +24,6 @@ class RoleController extends Controller
     public function __construct(RolePermissionService $rolePermissionService)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
         $this->service = $rolePermissionService;
     }
 
@@ -34,9 +33,8 @@ class RoleController extends Controller
      */
     public function index(Campaign $campaign)
     {
-        Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignRole::class);
-
         $this->authorize('roles', $campaign);
+        Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignRole::class);
 
         $roles = $campaign->roles()
             ->sort(request()->only(['o', 'k']))
