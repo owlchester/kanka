@@ -241,10 +241,9 @@ class AttributeMentionService
                     'attributes' => []
                 ];
             }
-
             $section['attributes'][] = $attribute;
         }
-
+        $sections[] = $section;
 
         return $sections;
     }

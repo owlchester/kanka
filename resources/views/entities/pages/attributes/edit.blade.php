@@ -55,7 +55,48 @@ $isAdmin = auth()->user()->isAdmin();
 
         <x-box :padding="false">
             <div id="attributes-manager">
-            <attributes-manager api="{{ route('entities.attributes.api', [$campaign, $entity]) }}" />
+                <attributes-manager api="{{ route('attributes.api-entity', [$campaign, $entity]) }}" />
+            </div>
+
+            <x-alert type="warning" class="alert-too-many-fields mt-6" :hidden="true">
+                {!! __('entities/attributes.errors.too_many', [
+                'max' => number_format(ini_get('max_input_vars'))
+                ]) !!}
+            </x-alert>
+
+
+            @if (auth()->user()->isAdmin() && $entity->is_attributes_private)
+                @php
+                    $role = \App\Facades\CampaignCache::adminRole();
+                @endphp
+                <div class="m-5 flex flex-col gap-2">
+                    <hr />
+                    <x-forms.field field="attributes-private"
+                                   :label="__('entities/attributes.fields.is_private')">
+                        <input type="hidden" name="is_attributes_private" value="0" />
+                        <x-checkbox :text="__('entities/attributes.helpers.is_private', [
+    'admin-role' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' target=\'_blank\'>' . \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>',
+    ])">
+                            <input type="checkbox" name="is_attributes_private" value="1" @if (old('is_attributes_private', $entity->is_attributes_private ?? false)) checked="checked" @endif />
+                        </x-checkbox>
+                    </x-forms.field>
+
+                <x-alert type="warning">
+                    <p>This feature is deprecated. By unchecking it, you will no longer be able to activate it. You can now toggle the private status of all attributes of the entity at once instead.</p>
+                </x-alert>
+            </div>
+            @endif
+
+            <div class="flex gap-2 items-center p-4">
+                <a href="{{ url()->previous() }}" class="btn2 btn-ghost">
+                    {{ __('crud.cancel') }}
+                </a>
+                <div class="grow text-right">
+                    <button class="btn2 btn-primary">
+                        {{ __('crud.save') }}
+                    </button>
+                </div>
+            </div>
         </x-box>
     </x-form>
 @endsection

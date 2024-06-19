@@ -271,12 +271,15 @@ class TemplateService
         }
 
         // Layout attribute for rendering
-            $attributes[] = [
-                'name' => '_layout',
-                'value' => $plugin->version->uuid,
-                'is_private' => false,
-                'is_pinned' => false,
-            ];
+        $attributes[] = [
+            'name' => '_layout',
+            'value' => $plugin->version->uuid,
+            'is_private' => false,
+            'is_pinned' => false,
+            'is_hidden' => false,
+            'is_checked' => false,
+            'is_deleted' => false,
+        ];
 
         return $attributes;
     }
@@ -290,15 +293,17 @@ class TemplateService
         foreach ($template->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
 
             list($type, $value) = $this->randomService->randomAttribute($attribute->type_id, $attribute->value);
+            $attribute->type_id = $type;
 
             $attributes[] = [
                 'name' => $attribute->name,
-                'value' => $attribute->value,
+                'value' => $value,
                 'is_private' => false,
                 'is_pinned' => false,
                 'is_hidden' => false,
                 'is_checked' => false,
                 'is_deleted' => false,
+                'source_id' => $attribute->id,
 
                 'is_checkbox' => $attribute->isCheckbox() === Attribute::TYPE_CHECKBOX_ID,
                 'is_multiline' => $attribute->isText() === Attribute::TYPE_TEXT_ID,

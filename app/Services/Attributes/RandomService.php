@@ -32,6 +32,7 @@ class RandomService
             if (Str::contains($this->value, ',')) {
                 return $this->fromList();
             } elseif (Str::contains($this->value, '-')) {
+                $this->type = Attribute::TYPE_NUMBER_ID;
                 return $this->fromRange();
             }
         } catch (Exception $e) {

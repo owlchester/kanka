@@ -1,67 +1,127 @@
 <template>
     <div v-bind:class="rowClass(attribute)">
-        <div class="w-6 md:w-8 pt-2">
+        <div v-if="attribute.template" class="basis-full w-full">
+            <p v-html="attribute.template.text" class="text-neutral-content"></p>
+        </div>
+        <div class="w-6 md:w-8 pt-2" v-if="!attribute.is_hidden">
             <i class="fa-light fa-grip-vertical handle cursor-move" aria-hidden="true"/>
         </div>
-        <div class="w-6 md:w-8 pt-2">
-            <input v-bind:name="attributeName(attribute)" type="checkbox" v-model="attribute.is_checked" v-bind:value="attribute.id" v-bind:placeholder="placeholderName(attribute)" />
+        <div class="w-6 md:w-8 pt-2" v-else>
+            <i class="fa-solid fa-user-secret" aria-hidden="true"/>
         </div>
-        <div class="grow flex flex-col md:flex-row gap-1">
+        <div class="w-6 md:w-8 pt-2">
+            <input type="checkbox"
+                   v-model="attribute.is_checked"
+                   tabindex="-1"
+                   v-bind:value="attribute.id"
+                   v-bind:placeholder="placeholderName(attribute)" />
+        </div>
+        <div class="grow flex flex-col md:flex-row gap-2">
             <div v-if="attribute.is_section" class="grow">
-                <input type="text" class="w-full" :value="attribute.name" v-bind:name="attributeName(attribute)" v-bind:placeholder="placeholderName(attribute)" />
+                <input type="text"
+                       class="w-full"
+                       v-model="attribute.name"
+                       :id="'name-' + attribute.id"
+                       v-bind:placeholder="placeholderName(attribute)" />
+            </div>
+            <div v-else-if="attribute.is_hidden" class="md:w-40 flex-none bg-base-200 rounded flex items-center">
+                <div class="w-full break-normal px-2" v-html="attribute.name"></div>
             </div>
             <div v-else class="md:w-40 flex-none">
-                <input type="text" class="w-full" :value="attribute.name" v-bind:name="attributeName(attribute)" v-bind:placeholder="placeholderName(attribute)" />
+                <attributes-manager-mention-field
+                    :attribute="attribute"
+                    :placeholder="placeholderName(attribute)"
+                    type="text"
+                    property="name"
+                    :mentionApi="mentionApi"
+                    @field-blur="checkIfRanged()"
+                />
             </div>
 
             <div v-if="attribute.is_multiline" class="grow">
-                <textarea class="w-full" rows="3" :value="attribute.value" v-bind:name="attributeValue(attribute)" v-bind:placeholder="placeholderValue(attribute)"></textarea>
+                <attributes-manager-mention-field
+                    :attribute="attribute"
+                    :placeholder="placeholderValue(attribute)"
+                    type="textarea"
+                    property="value"
+                    :mentionApi="mentionApi"
+                />
             </div>
             <div v-else-if="attribute.is_checkbox" class="grow flex items-center">
-                <input type="checkbox" :value="attribute.value" v-model="attribute.value" v-bind:name="attributeValue(attribute)" v-bind:placeholder="placeholderValue(attribute)" />
+                <input type="checkbox"
+                       v-model="attribute.value"
+                       :id="'value-' + attribute.id"
+                       v-bind:placeholder="placeholderValue(attribute)" />
             </div>
-            <div v-else-if="attribute.is_number" class="grow">
-                <input type="number" class="w-full" :value="attribute.value" v-bind:name="attributeValue(attribute)" v-bind:placeholder="placeholderValue(attribute)" />
+            <div v-else-if="attribute.is_number" class="grow relative">
+                <input
+                    type="number"
+                    class="w-full"
+                    v-model="attribute.value"
+                    :id="'value-' + attribute.id"
+                    v-bind:placeholder="placeholderValue(attribute)"
+                    v-bind:min="attributeMin(attribute)"
+                    v-bind:max="attributeMax(attribute)"
+                />
             </div>
-            <div v-else-if="isLayout(attribute)" class="grow bg-base-200 rounded flex items-center select-none">
-                <input type="hidden" v-bind:name="attributeValue(attribute)"  :value="attribute.value" />
+            <div v-else-if="isDisabled(attribute)" class="grow bg-base-200 rounded flex items-center select-none">
                 <div class="w-full break-normal px-2" v-html="attribute.value"></div>
             </div>
             <div v-else-if="!attribute.is_section" class="grow">
-                <input type="text" class="w-full" :value="attribute.value" v-bind:name="attributeValue(attribute)" v-bind:placeholder="placeholderValue(attribute)" />
+                <attributes-manager-mention-field
+                    :attribute="attribute"
+                    :placeholder="placeholderValue(attribute)"
+                    type="text"
+                    property="value"
+                    :mentionApi="mentionApi"
+                    v-if="!isRanged"
+                />
+                <select
+                    v-else
+                    class="w-full"
+                    v-model="attribute.value"
+                    :id="'value-' + attribute.id">
+                    <option v-for="(value, index) in rangedOptions(attribute)" :key="index" v-bind:value="value" v-html="value"></option>
+                </select>
             </div>
         </div>
 
-        <div class="flex text-xl gap-2 lg:block lg:text-base pt-2 flex-none">
-            <a role="button" @click="pinnedToggle(attribute)" class="lg:w-16 text-center inline-block cursor-pointer text-base-content hover:text-accent">
+        <div class="flex text-xl gap-2 lg:text-base pt-2 flex-none">
+            <a role="button" @click="pinnedToggle(attribute)" class="w-6 lg:w-16 text-center inline-block cursor-pointer text-base-content hover:text-accent" v-if="!attribute.is_hidden">
                 <i v-bind:class="pinnedClass(attribute)"  v-bind:aria-label="pinnedLabel(attribute)" />
-                <input type="hidden" v-bind:name="pinnedFieldName(attribute)" value="1" v-if="attribute.is_pinned" />
             </a>
-            <a v-if="props.isAdmin" role="button" @click="privateToggle(attribute)" class="lg:w-16 inline-block text-center cursor-pointer text-base-content hover:text-accent" >
+            <a v-if="props.isAdmin && !attribute.is_hidden" role="button" @click="privateToggle(attribute)" class="w-6 lg:w-16 inline-block text-center cursor-pointer text-base-content hover:text-accent" >
                 <i v-bind:class="privateClass(attribute)" v-bind:aria-label="privateLabel(attribute)" />
-                <input type="hidden" v-bind:name="privateFieldName(attribute)" value="1" v-if="attribute.is_private" />
             </a>
-            <a role="button" class="lg:w-16 inline-block text-center flex-none cursor-pointer hover:text-error text-base-content"  @click="$emit('remove', attribute)">
+            <a role="button" class="w-6 lg:w-16 inline-block text-center flex-none cursor-pointer hover:text-error text-base-content" @click="$emit('remove', attribute)" v-if="!attribute.is_hidden">
                 <i class="fa-regular fa-trash-can" v-bind:aria-label="trans('columns.delete')" v-bind:title="trans('columns.delete')" />
             </a>
         </div>
-        <input type="hidden" :value="hiddenValue(attribute)" v-bind:name="hiddenName(attribute)" />
+
+        <input type="hidden" name="attribute[]" :value="configValue(attribute)" />
     </div>
 </template>
 
 <script setup lang="ts">
 
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 
 const props = defineProps<{
     attribute: Object
     i18n,
     isAdmin: Boolean,
+    showHidden: Boolean,
     searchTerm: String,
+    mentionApi: String,
 }>()
 
 const emit = defineEmits(['remove'])
+const isRanged = ref(false)
 
+
+onMounted(() => {
+    checkIfRanged()
+})
 
 const trans = (k) => {
     if (!k.includes('.')) {
@@ -86,24 +146,15 @@ const rowClass = (attribute) => {
             return 'hidden'
         }
     }
-    return 'flex gap-2 w-full px-4'
+    if (!props.showHidden && attribute.is_hidden) {
+        return 'hidden'
+    }
+    return 'flex gap-2 w-full px-4 ' + (attribute.template ? 'flex-wrap' : null)
 }
 
-
-const hiddenName = (attribute) => {
+const typeName = (attribute) => {
     return 'attr_type[' + attribute.id + ']'
 }
-
-
-const pinnedFieldName = (attribute) => {
-    return 'attr_is_pinned[' + attribute.id + ']'
-}
-
-
-const privateFieldName = (attribute) => {
-    return 'attr_is_private[' + attribute.id + ']'
-}
-
 
 
 const placeholderName = (attribute) => {
@@ -120,7 +171,7 @@ const placeholderValue = (attribute) => {
     return trans('placeholders.value')
 }
 
-const hiddenValue = (attribute) => {
+const typeValue = (attribute) => {
     if (attribute.is_checkbox) {
         return 3
     } else if (attribute.is_multiline) {
@@ -135,19 +186,20 @@ const hiddenValue = (attribute) => {
     return 1
 }
 
-
 const pinnedClass = (attribute) => {
     if (attribute.is_pinned) {
         return 'fa-solid fa-thumbtack rotate-45 transition-all';
     }
     return 'fa-regular fa-thumbtack transition-all';
 }
+
 const pinnedLabel = (attribute) => {
     if (attribute.is_pinned) {
         return 'Pinned';
     }
     return 'Unpinned';
 }
+
 const pinnedToggle = (attribute) => {
     attribute.is_pinned = !attribute.is_pinned;
     /*const attribute = attributes.value.find(attribute => attribute.id === id);
@@ -155,28 +207,79 @@ const pinnedToggle = (attribute) => {
         attribute.is_pinned = !attribute.is_pinned;
     }*/
 }
+
 const privateClass = (attribute) => {
     if (attribute.is_private) {
         return 'fa-solid fa-lock-keyhole';
     }
     return 'fa-regular fa-unlock-keyhole';
 }
+
 const privateLabel = (attribute) => {
     if (attribute.is_private) {
         return 'Private';
     }
     return 'Public';
 }
+
 const privateToggle = (attribute) => {
     attribute.is_private = !attribute.is_private;
-    /*const attribute = attributes.value.find(attribute => attribute.id === id);
-    if (attribute) {
-        attribute.is_private = !attribute.is_private;
-    }*/
 }
 
-const isLayout = (attribute) => {
-    return attribute.name === '_layout';
+const isDisabled = (attribute) => {
+    return attribute.is_hidden || attribute.name === '_layout';
+}
+
+const configValue = (attribute) => {
+    return JSON.stringify({
+        id: attribute.id,
+        name: attribute.name,
+        value: attribute.value,
+        type: typeValue(attribute),
+        is_private: attribute.is_private,
+        is_pinned: attribute.is_pinned,
+        is_hidden: attribute.is_hidden,
+        source_id: attribute.source_id,
+    })
+}
+
+const attributeMin = (attribute) => {
+    const regex = /\[range:(\d+),(\d+)\]/;
+    const match = attribute.name.match(regex);
+    if (!match) {
+        return null;
+    }
+    return parseInt(match[1])
+}
+
+const attributeMax = (attribute) => {
+    const regex = /\[range:(\d+),(\d+)\]/;
+    const match = attribute.name.match(regex);
+    if (!match) {
+        return null;
+    }
+    return parseInt(match[2])
+}
+
+const checkIfRanged = () => {
+    const regex = /\[range:(.*)+\]/;
+    const match = props.attribute.name.match(regex);
+    if (match) {
+        isRanged.value = true
+    } else {
+        isRanged.value = false
+    }
+}
+
+const rangedOptions = (attribute) => {
+    const regex = /\[range:(.*)+\]/;
+    const match = attribute.name.match(regex);
+    let rangedOptions = []
+    if (match) {
+        rangedOptions = match[1].split(',').map(value => value.trim());
+        rangedOptions.unshift([])
+    }
+    return rangedOptions
 }
 
 </script>

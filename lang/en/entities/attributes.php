@@ -51,7 +51,7 @@ return [
     ],
     'placeholders'  => [
         'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
-        'block'     => 'Block name',
+        'block'     => 'Multiline name',
         'checkbox'  => 'Checkbox name',
         'icon'      => [
             'class' => 'FontAwesome or RPG Awesome class: fas fa-users',

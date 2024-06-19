@@ -4,14 +4,14 @@
         <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
     </div>
     <div class="flex flex-col gap-2 lg:gap-5 relative" v-else>
-        <div class="flex gap-5 justify-end px-4 pt-4">
-            <input type="text" v-bind:placeholder="trans('actions.search')" class="md:w-80" v-model="searchTerm" />
+        <div class="flex gap-2 lg:gap-2 justify-end px-4 pt-4">
+            <input type="text" v-bind:placeholder="trans('actions.search')" class="grow md:flex-none md:w-80" v-model="searchTerm" />
             <div class="relative">
-                <a role="button" @click="toggleFilters()" class="btn2 btn-default">
-                    <i class="fa-solid fa-filter" aria-hidden="true" />
+                <a role="button" @click="toggleFilters()" class="btn2 btn-default btn-sm">
+                    <i class="fa-solid fa-bars-filter" aria-hidden="true" />
                     <span v-html="trans('actions.filters')"></span>
                 </a>
-                <div class="border shadow rounded bg-base-100 p-4 absolute top-12 right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
+                <div class="border shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
                     <div class="flex gap-2">
                         <div>
                             <input type="checkbox" v-model="showHidden" value="1" id="_show_hidden_attributes" />
@@ -32,10 +32,10 @@
                 <span v-html="trans('actions.toggle')"></span>
             </a>
             <a role="button" class="btn2 md:ml-auto" @click="toggleTemplates()">
-                <i class="fa-regular fa-star" aria-hidden="true" />
+                <i class="fa-regular fa-file-import" aria-hidden="true" />
                 <span v-html="trans('actions.load')"></span>
             </a>
-            <a href="https://docs.kanka.io" class="btn2 btn-ghost">
+            <a href="https://docs.kanka.io" target="_blank" class="btn2 btn-ghost">
                 <i class="fa-solid fa-question-circle" aria-hidden="true" />
                 <span v-html="trans('actions.help')"></span>
             </a>
@@ -60,29 +60,30 @@
                 <div class="lg:hidden flex-none text-center" v-html="trans('columns.preferences')">
                 </div>
             </div>
-            <draggable v-model="attributes" handle=".handle" class="w-full flex flex-col gap-2">
+            <draggable v-model="visibleAttributes" handle=".handle" class="w-full flex flex-col gap-2">
                 <attributes-manager-attribute
-                    v-for="attribute in visibleAttributes()"
+                    v-for="attribute in visibleAttributes"
                     :key="attribute.id"
                     :attribute="attribute"
                     :isAdmin="isAdmin()"
+                    :showHidden="showHidden"
                     :i18n="i18n"
-                    :searchTerm="searchTerm"
-                    @remove="remove"
-                ></attributes-manager-attribute>
-                <div v-if="visibleAttributes().length === 0" class="w-full p-2 italic" v-html="trans('filters.no_results')">
-                </div>
+                    :search-term="searchTerm"
+                    :mention-api="meta.mentions"
+                    @remove="removeAttribute"
+                >
+                </attributes-manager-attribute>
             </draggable>
-            <div class="flex gap-2 items-center rounded odd:bg-base-200" v-if="showHidden" v-for="attribute in hiddenAttributes()" :key="attribute.id">
-                <div class="w-6 md:w-8 p-2">
-                    <i class="fa-solid fa-user-secret" aria-hidden="true"></i>
-                </div>
-                <div class="w-6 md:w-8 p-2"></div>
-                <div class="md:w-40 p-2" v-html="attribute.name"></div>
-                <div class="grow p-2" v-html="attribute.value"></div>
+            <div v-if="visibleAttributes.length === 0" class="w-full px-5 italic" v-html="trans('filters.no_results')">
             </div>
         </div>
-        <attributes-manager-form :attributes="attributes" :i18n="i18n" :newAttributeID="newAttributeID" @incrementNewAttributeID="incrementNewAttributeID"></attributes-manager-form>
+        <attributes-manager-form
+            :attributes="attributes"
+            :visible-attributes="visibleAttributes"
+            :i18n="i18n"
+            :newAttributeID="newAttributeID"
+            @incrementNewAttributeID="incrementNewAttributeID">
+        </attributes-manager-form>
     </div>
 
     <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="templates-dialog" aria-modal="true" v-if="!loading">
@@ -121,13 +122,14 @@ const props = defineProps<{
 }>()
 
 
-const attributes = ref([]);
-var i18n = [];
-var meta = [];
-var templates = [];
-const loading = ref(true);
+const attributes = ref([])
+const visibleAttributes = ref([])
+var i18n = []
+var meta = []
+var templates = []
+const loading = ref(true)
 const checkedAll = ref(false)
-const deletedAttributes = ref([]);
+const deletedAttributes = ref([])
 const dragging = ref(false)
 const showHidden = ref(false)
 const showFilters = ref(false)
@@ -141,7 +143,8 @@ onMounted(() => {
         .then(response => response.json())
         .then(response => {
             response.attributes.forEach(a => {
-                attributes.value.push(a);
+                attributes.value.push(a)
+                visibleAttributes.value.push(a)
             })
             meta = response.meta;
             i18n = response.i18n;
@@ -173,11 +176,11 @@ const handleKeyDown = (event) => {
         if (attribute) {
             attribute.is_deleted = false;
         }
+        refreshVisibleAttributes()
     }
 };
 
 const trans = (k) => {
-    //console.log('i18n');
     if (!k.includes('.')) {
         return k;
     }
@@ -188,6 +191,9 @@ const trans = (k) => {
 const toggleAll = () => {
     let checked = checkedAll.value;
     attributes.value.forEach(attribute => {
+        if (attribute.is_hidden && !showHidden.value) {
+            return
+        }
         attribute.is_checked = checked;
     });
 }
@@ -195,6 +201,10 @@ const remove = (attribute) => {
     attribute.is_deleted = true
     attribute.is_checked = false
     deletedAttributes.value.push(attribute.id);
+}
+const removeAttribute = (attribute) => {
+    remove(attribute)
+    refreshVisibleAttributes()
 }
 
 const deleteClass = () => {
@@ -214,6 +224,7 @@ const deleteAll = () => {
     selected.forEach(attribute => {
         remove(attribute);
     });
+    refreshVisibleAttributes()
     checkedAll.value = false;
     window.showToast(trans('toasts.toggle_deleted'));
 }
@@ -241,28 +252,17 @@ const togglePrivate = () => {
     window.showToast(trans('toasts.toggled_privacy'));
 }
 
+const refreshVisibleAttributes = () => {
+    visibleAttributes.value = undeletedAttributes()
+}
+
 
 const isAdmin = () => {
     return meta.is_admin;
 }
 
-const visibleAttributes = () => {
-    let attr = attributes.value.filter(attr => !attr.is_deleted && !attr.is_hidden)
-    return attr;
-}
-
-const hiddenAttributes = () => {
-    let attr = attributes.value
-        .filter(attr => !attr.is_deleted)
-        .filter(a => a.is_hidden === true)
-
-    if (searchTerm.value) {
-        return attr.filter(function (attr) {
-            return attr.name.includes(searchTerm.value) ||
-                (attr.value ? attr.value.includes(searchTerm.value) : false)
-        })
-    }
-    return attr;
+const undeletedAttributes = () => {
+    return attributes.value.filter(attr => !attr.is_deleted)
 }
 
 const toggleFilters = () => {
@@ -290,30 +290,26 @@ const loadTemplate = () => {
     }
 
     let url = meta.template + '?template=' + template.value
-    console.log('url', url)
     fetch(url)
         .then(response => response.json())
         .then(response => {
-            console.log(response)
             response.forEach(attr => importAttribute(attr))
             closeModal()
             window.showToast(trans('toasts.template_loaded'))
             template.value = null
-            console.log(attributes)
         })
 }
 
 const importAttribute = (attribute) => {
     let ex = attributes.value.find(attr => attr.name == attribute.name && !attr.is_deleted);
-    console.log(ex)
     if (ex) {
         return
     }
 
-    console.log('adding')
 
     attribute['id'] = newAttributeID.value--
     attributes.value.push(attribute)
+    visibleAttributes.value.push(attribute)
 }
 
 const incrementNewAttributeID = () => {

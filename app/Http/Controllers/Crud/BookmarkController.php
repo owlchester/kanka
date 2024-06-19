@@ -28,14 +28,6 @@ class BookmarkController extends CrudController
 
     protected string $forceMode = 'table';
 
-    /**
-     * ItemController constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     protected function getNavActions(): CrudController
     {
         $this->addNavAction(

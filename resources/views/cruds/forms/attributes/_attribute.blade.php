@@ -45,9 +45,9 @@ if ($attribute->isSection()) {
             {{ $attribute->value }}
             </div>
         @elseif ($attribute->isNumber())
-            <input type="number" name="attr_value[{{ $id }}]" value="{{ $attribute->name }}" placeholder="{{ __('entities/attributes.placeholders.number') }}" class="w-full" maxlength="191" aria-label="{{ __('entities/attributes.labels.value') }}" />
+            <input type="number" name="attr_value[{{ $id }}]" value="{{ $attribute->value }}" placeholder="{{ __('entities/attributes.placeholders.number') }}" class="w-full" maxlength="191" aria-label="{{ __('entities/attributes.labels.value') }}" />
         @else
-            <input type="text" name="attr_value[{{ $id }}]" value="{{ $attribute->name }}" placeholder="{{ __('entities/attributes.placeholders.value') }}" class="w-full  kanka-mentions" maxlength="191" aria-label="{{ __('entities/attributes.labels.value') }}" data-remote="{{ route('search.live', $campaign) }}" />
+            <input type="text" name="attr_value[{{ $id }}]" value="{{ $attribute->value }}" placeholder="{{ __('entities/attributes.placeholders.value') }}" class="w-full  kanka-mentions" maxlength="191" aria-label="{{ __('entities/attributes.labels.value') }}" data-remote="{{ route('search.live', $campaign) }}" />
         @endif
     </div>
     @endif

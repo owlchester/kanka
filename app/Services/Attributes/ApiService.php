@@ -7,20 +7,28 @@ use App\Models\AttributeTemplate;
 use App\Models\CampaignPlugin;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use App\Traits\EntityTypeAware;
 
 class ApiService
 {
     use CampaignAware;
     use EntityAware;
+    use EntityTypeAware;
 
     protected array $attributes = [];
 
+    protected bool $copy = false;
+    protected bool $template = false;
+
+    public function copy(): self
+    {
+        $this->copy = true;
+        return $this;
+    }
 
     public function build(): array
     {
-        foreach ($this->entity->attributes()->ordered()->get() as $attribute) {
-            $this->parseAttribute($attribute);
-        }
+        $this->buildAttributes();
         return [
             'attributes' => $this->attributes,
             'i18n' => $this->i18n(),
@@ -86,14 +94,64 @@ class ApiService
         return [
             'has_hidden' => false,
             'is_admin' => auth()->check() && auth()->user()->isAdmin(),
-            'template' => route('templates.load-attributes', $this->campaign)
+            'template' => route('templates.load-attributes', $this->campaign),
+            'mentions' => route('search.live', $this->campaign),
         ];
     }
 
-    protected function parseAttribute(Attribute $attribute): void
+    protected function buildAttributes(): void
+    {
+
+        $this->buildAutoTemplates();
+        if (isset($this->entity)) {
+            foreach ($this->entity->attributes()->ordered()->get() as $attribute) {
+                $this->parseAttribute($attribute);
+            }
+        }
+    }
+
+    protected function buildAutoTemplates(): void
+    {
+        if (!isset($this->entityType)) {
+            return;
+        }
+        $templates = $this->entityType
+            ->attributeTemplates()
+            ->with(['entity', 'entity.attributes', 'ancestors'])
+            ->get();
+        /** @var AttributeTemplate $attr */
+        foreach ($templates as $template) {
+            $this->addTemplate($template);
+            /** @var AttributeTemplate $child */
+            foreach ($template->ancestors as $child) {
+                /*if (!in_array($child->id, $ids)) {
+                    $ids[] = $child->id;
+                    $attributeTemplates[] = $child;
+                }*/
+                $this->addTemplate($child);
+            }
+        }
+    }
+
+    protected function addTemplate(AttributeTemplate $template): void
+    {
+        $first = true;
+        $count = $template->entity->attributes->count();
+        $this->template = true;
+        foreach ($template->entity->attributes as $attribute) {
+            $this->parseAttribute($attribute, $first ? $template : null, $count);
+            $first = false;
+        }
+        $this->template = false;
+
+        // Update the helper text of the attribute
+    }
+
+    protected function parseAttribute(Attribute $attribute, AttributeTemplate $template = null, int $templateTotalAttributes = 0): void
     {
         $formatted = [
-            'id' => $attribute->id,
+            'id' => $this->copy ? null : $attribute->id,
+            'source_id' => $this->template ? $attribute->id : null,
             'name' => $attribute->name,
             'value' => $attribute->value,
             'is_section' => $attribute->isSection(),
@@ -112,6 +170,21 @@ class ApiService
             $formatted['values'] = $attribute->listRange();
         }
 
+        if ($template) {
+            $formatted['template'] = [
+                'id' => $template->id,
+                'name' => $template->name,
+                'url' => $template->getLink(),
+                'text' => trans_choice(
+                    'attribute_templates.hints.automatic',
+                    $templateTotalAttributes,
+                    [
+                        'link' => '<a href="' . $template->getLink() . '">' . $template->name . '</a>',
+                        'count' => "<strong>$templateTotalAttributes</strong>",
+                    ])
+            ];
+        }
+
         $this->attributes[] = $formatted;
     }
 
@@ -127,13 +200,6 @@ class ApiService
         foreach ($campaignTemplates as $id => $name) {
             $templates[$key][$id] = $name;
         }
-
-        // Kanka templates - deprecated as of 1.30
-        //        $key = __('attributes/templates.list.kanka');
-        //        foreach (config('attribute-templates.templates') as $code => $class) {
-        //            $template = new $class();
-        //            $templates[$key][$code] = $template->name();
-        //        }
 
         // If the campaign isn't boosted, or the marketplace isn't enable, end here
         if (!$this->campaign->boosted() || !config('marketplace.enabled')) {
