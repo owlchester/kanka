@@ -19,7 +19,6 @@ class RoleUserController extends Controller
     public function __construct(MemberService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
 
         $this->service = $service;
     }

@@ -15,6 +15,7 @@ class CampaignMember
      */
     public function handle($request, Closure $next)
     {
+        dd('am i even useful to you anymore');
         // Make sure we have an id
         $campaignId = CampaignLocalization::getCampaign()->id;
         if (empty($campaignId)) {

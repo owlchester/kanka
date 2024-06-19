@@ -9,16 +9,6 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('campaign.member');
-    }
-
-    /**
      * Old deprecated search page
      */
     public function search(Request $request, Campaign $campaign): RedirectResponse

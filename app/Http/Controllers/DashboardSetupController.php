@@ -16,7 +16,6 @@ class DashboardSetupController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
     }
 
     /**
@@ -45,6 +44,7 @@ class DashboardSetupController extends Controller
      */
     public function reorder(Campaign $campaign)
     {
+        $this->authorize('dashboard', $campaign);
         $position = 0;
         $widgets = (array) request()->post('widgets', []);
         foreach ($widgets as $i => $widget) {

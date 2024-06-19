@@ -94,7 +94,6 @@ class CrudController extends Controller
 
     public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService)
     {
-        $this->middleware('campaign.member');
         $this->filterService = $filterService;
         $this->datagrid = $datagridRenderer;
         $this->attributeService = $attributeService;

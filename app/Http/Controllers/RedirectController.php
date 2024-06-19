@@ -18,7 +18,6 @@ class RedirectController extends Controller
     public function __construct(EntityService $entityService)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
 
         $this->entity = $entityService;
     }

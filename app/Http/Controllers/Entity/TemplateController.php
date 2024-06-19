@@ -19,7 +19,6 @@ class TemplateController extends Controller
     public function __construct(TemplateService $templateService)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
         $this->service = $templateService;
     }
 

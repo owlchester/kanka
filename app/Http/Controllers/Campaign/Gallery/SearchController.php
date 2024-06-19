@@ -11,7 +11,6 @@ class SearchController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
     }
 
     public function index(Campaign $campaign)
