@@ -59,7 +59,7 @@ class AttributeService
 
     /**
      * Add form attributes to an entity
-     * @throws \Exception
+     * @throws Exception
      */
     public function save(array $attributes): self
     {
