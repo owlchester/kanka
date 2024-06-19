@@ -12,8 +12,10 @@ use App\Services\Attributes\TemplateService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
+use Exception;
 
 class AttributeService
 {
@@ -103,49 +105,56 @@ class AttributeService
     protected function saveAttribute(string $attributeJson): self
     {
         try {
+            /** @var Attribute $attr */
             $attr = json_decode($attributeJson);
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
-        if (empty($attr->name)) {
-            return $this;
-        }
-        $name = Purify::clean($attr->name, $this->purifyConfig);
-        $value = Purify::clean($attr->value ?? '', $this->purifyConfig);
-        // Save empty strings as null
-        $value = $value === '' ? null : $value;
 
-        /** @var Attribute $attribute */
-        $attribute = Arr::get($this->existing, $attr->id);
-        if (empty($attribute)) {
-            $attribute = new Attribute();
-        }
+            if (empty($attr->name)) {
+                return $this;
+            }
+            $name = Purify::clean($attr->name, $this->purifyConfig);
+            $value = Purify::clean($attr->value ?? '', $this->purifyConfig);
+            // Save empty strings as null
+            $value = $value === '' ? null : $value;
 
-        // If the linked entity isn't an attribute template, we might be dealing with a random value
-        if (!$this->entity->isAttributeTemplate()) {
-            list($attr->type, $value) = $this->randomService->randomAttribute($attr->type, $value);
-        }
+            /** @var Attribute $attribute */
+            $attribute = Arr::get($this->existing, $attr->id);
+            if (empty($attribute)) {
+                $attribute = new Attribute();
+            }
 
-        $attribute->name = $name;
-        $attribute->setValue($value);
-        $attribute->is_private = $attr->is_private;
-        $attribute->is_pinned = $attr->is_pinned;
-        $attribute->type_id = $attr->type;
-        // Some fields can only be defined on creation
-        if (!$attribute->exists) {
-            $attribute->entity_id = $this->entity->id;
-            $attribute->is_hidden = $attr->is_hidden;
-            $attribute->origin_attribute_id = $attr->source_id ?? null;
-        }
-        $attribute->default_order = $this->order;
-        if ($attribute->isDirty() || !$attribute->exists) {
-            $this->touched = true;
-        }
-        $attribute->save();
+            // If the linked entity isn't an attribute template, we might be dealing with a random value
+            if (!$this->entity->isAttributeTemplate()) {
+                // @phpstan-ignore-next-line
+                list($attr->type, $value) = $this->randomService->randomAttribute($attr->type, $value);
+            }
 
-        // Remove it from the list of existing ids, so that it doesn't get deleted
-        unset($this->existing[$attr->id]);
-        $this->order++;
+            $attribute->name = $name;
+            $attribute->setValue($value);
+            $attribute->is_private = $attr->is_private;
+            $attribute->is_pinned = $attr->is_pinned;
+            $attribute->type_id = $attr->type; // @phpstan-ignore-line
+            // Some fields can only be defined on creation
+            if (!$attribute->exists) {
+                $attribute->entity_id = $this->entity->id;
+                $attribute->is_hidden = $attr->is_hidden;
+                $attribute->origin_attribute_id = $attr->source_id ?? null;
+            }
+            $attribute->default_order = $this->order;
+            if ($attribute->isDirty() || !$attribute->exists) {
+                $this->touched = true;
+            }
+            $attribute->save();
+
+            // Remove it from the list of existing ids, so that it doesn't get deleted
+            unset($this->existing[$attr->id]);
+            $this->order++;
+        } catch (Exception $e) {
+            if (app()->isProduction()) {
+                Log::error($e->getMessage());
+            } else {
+                throw $e;
+            }
+        }
 
         return $this;
     }

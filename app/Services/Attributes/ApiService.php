@@ -101,7 +101,6 @@ class ApiService
 
     protected function buildAttributes(): void
     {
-
         $this->buildAutoTemplates();
         if (isset($this->entity)) {
             foreach ($this->entity->attributes()->ordered()->get() as $attribute) {
@@ -119,7 +118,7 @@ class ApiService
             ->attributeTemplates()
             ->with(['entity', 'entity.attributes', 'ancestors'])
             ->get();
-        /** @var AttributeTemplate $attr */
+        /** @var AttributeTemplate $template */
         foreach ($templates as $template) {
             $this->addTemplate($template);
             /** @var AttributeTemplate $child */

@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Datagrids\Actions\RelationDatagridActions;
 use App\Datagrids\Filters\RelationFilter;
 use App\Http\Requests\StoreRelation;
+use App\Renderers\DatagridRenderer;
+use App\Services\AttributeService;
 use App\Services\Entity\RelationService;
 use App\Models\Campaign;
 use App\Models\Relation;
+use App\Services\FilterService;
 
 class RelationController extends CrudController
 {
@@ -35,10 +38,12 @@ class RelationController extends CrudController
     protected string $filter = RelationFilter::class;
 
 
-    public function __construct(RelationService $relationService)
+    public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService, RelationService $relationService)
     {
-        parent::__construct();
         $this->middleware('auth');
+        $this->filterService = $filterService;
+        $this->datagrid = $datagridRenderer;
+        $this->attributeService = $attributeService;
         $this->relationService = $relationService;
     }
 
