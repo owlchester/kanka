@@ -57,7 +57,7 @@ use Illuminate\Support\Collection;
  * @property int $deleted_by
  * @property int $follower
  * @property bool $is_hidden
-
+ *
  * UI virtual Settings
  * @property bool $tooltip_family
  * @property bool $tooltip_image
@@ -67,6 +67,7 @@ use Illuminate\Support\Collection;
  */
 class Campaign extends Model
 {
+    use Blameable;
     use Boosted;
     use CampaignLimit;
     use CampaignRelations;
@@ -74,7 +75,6 @@ class Campaign extends Model
     use HasFactory;
     use LastSync;
     use SoftDeletes;
-    use Blameable;
 
     /**
      * Visibility of a campaign

@@ -2,10 +2,8 @@
 
 namespace App\Services\Campaign;
 
-use App\Jobs\DeletedCampaignCleanupJob;
 use App\Models\Campaign;
 use App\Models\JobLog;
-use App\Services\ImageService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
