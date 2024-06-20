@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\PricingPeriod;
 use App\Exceptions\TranslatableException;
 use App\Jobs\DiscordRoleJob;
+use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
 use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
@@ -230,6 +231,7 @@ class SubscriptionService
 
         // Anything that can fail, send to the queue
         DiscordRoleJob::dispatch($this->user)->delay(now()->addSeconds($new ? 0 : 30));
+        MailSettingsChangeJob::dispatch($this->user);
 
         // If Stripe is confirming that a sub is renewed, we don't want to do anything more
         if ($this->renewal()) {
@@ -252,9 +254,9 @@ class SubscriptionService
     }
 
     /**
-     * @return int
+     * Get the status of the user's subscription
      */
-    public function status()
+    public function status(): int
     {
         if (!$this->user->subscribed('kanka')) {
             return self::STATUS_UNSUBSCRIBED;
@@ -304,10 +306,14 @@ class SubscriptionService
         return $this->cancelled;
     }
 
+    /**
+     * Get the subscription value
+     */
     public function subscriptionValue(): int
     {
         return (int) $this->subscriptionValue;
     }
+
     /**
      * Determine if a user is downgrading
      */

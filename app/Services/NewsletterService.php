@@ -70,16 +70,19 @@ class NewsletterService
     /**
      * @param array $options
      */
-    public function update($options): bool
+    public function update(array $options): bool
     {
         try {
             // Build the interests of the user
             $interests = [];
             if (Arr::has($options, 'releases')) {
                 $interests[] = config('mailerlite.groups.all');
+                if ($this->user && $this->user->isSubscriber()) {
+                    $interests[] = config('mailerlite.groups.subs');
+                }
             }
 
-            $email = $this->user ? $this->user->email : $this->email;
+            $email = $this->user?->email ?? $this->email;
 
             $data = [
                 'email' => $email,

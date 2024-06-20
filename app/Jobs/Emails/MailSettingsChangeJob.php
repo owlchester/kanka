@@ -17,10 +17,7 @@ class MailSettingsChangeJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var int
-     */
-    public $userId;
+    public int $userId;
 
     /** @var int how many times the job can fail before quitting */
     public $tries = 3;
