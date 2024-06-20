@@ -42,27 +42,6 @@ class EntityApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function recent(Campaign $campaign)
-    {
-        if (config('app.debug')) {
-            DB::enableQueryLog();
-        }
-
-        $this->authorize('access', $campaign);
-        return Resource::collection(
-            $campaign->entities()
-                ->apiFilter(request()->all())
-                ->orderBy('updated_at', 'DESC')
-                ->limit(min(max(1, request()->get('amount')), 10))
-                ->lastSync(request()->get('lastSync'))
-                ->get()
-        );
-    }
-
-    /**
      * @return Resource
      */
     public function show(Campaign $campaign, Entity $entity)

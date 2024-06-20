@@ -73,7 +73,7 @@ Route::get('campaigns/{campaign}/entities/templates', [App\Http\Controllers\Api\
 Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', [App\Http\Controllers\Api\v1\EntityTemplateApiController::class, 'switch']);
 
 Route::get('campaigns/{campaign}/entities', [App\Http\Controllers\Api\v1\EntityApiController::class, 'index']);
-Route::get('campaigns/{campaign}/entities/recent', [App\Http\Controllers\Api\v1\EntityApiController::class, 'recent']);
+Route::get('campaigns/{campaign}/entities/recent', [App\Http\Controllers\Api\v1\RecentEntityApiController::class, 'index']);
 Route::post('campaigns/{campaign}/entities', [App\Http\Controllers\Api\v1\EntityApiController::class, 'put']);
 Route::get('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'show']);
 Route::get('campaigns/{campaign}/entities/{entity}/mentions', [App\Http\Controllers\Api\v1\EntityMentionApiController::class, 'index']);
