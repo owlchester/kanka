@@ -8,12 +8,14 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
 use App\Models\Concerns\CampaignLimit;
 use App\Models\Concerns\LastSync;
+use App\Models\Concerns\Blameable;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -49,8 +51,10 @@ use Illuminate\Support\Collection;
  * @property array|null $settings
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  * @property int $created_by
  * @property int $updated_by
+ * @property int $deleted_by
  * @property int $follower
  * @property bool $is_hidden
  *
@@ -63,12 +67,14 @@ use Illuminate\Support\Collection;
  */
 class Campaign extends Model
 {
+    use Blameable;
     use Boosted;
     use CampaignLimit;
     use CampaignRelations;
     use CampaignScopes;
     use HasFactory;
     use LastSync;
+    use SoftDeletes;
 
     /**
      * Visibility of a campaign
