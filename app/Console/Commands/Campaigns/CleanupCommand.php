@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands\Campaigns;
 
+use App\Models\Campaign;
+use App\Observers\CampaignObserver;
 use App\Services\Campaign\PurgeService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -28,6 +30,7 @@ class CleanupCommand extends Command
     public function handle()
     {
         $this->info(Carbon::now());
+        Campaign::observe(CampaignObserver::class);
 
         /** @var PurgeService $service */
         $service = app()->make(PurgeService::class);
