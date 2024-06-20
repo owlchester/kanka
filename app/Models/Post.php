@@ -123,6 +123,15 @@ class Post extends Model
     }
 
     /**
+     * List of logs for this post
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function logs()
+    {
+        return $this->hasMany('App\Models\EntityLog', 'post_id', 'id');
+    }
+
+    /**
      * List of images that mention this entity
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

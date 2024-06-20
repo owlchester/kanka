@@ -2,8 +2,10 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\Identity;
 use App\Http\Requests\MovePostRequest;
 use App\Models\Entity;
+use App\Models\EntityLog;
 use App\Models\Post;
 use App\Services\EntityMappingService;
 
@@ -50,6 +52,8 @@ class PostService
         // Update the "mentioned in" mapping for the entity
         $this->mappingService->mapPost($newPost);
 
+        $this->log($newPost, EntityLog::ACTION_CREATE_POST);
+
         return $newPost;
     }
 
@@ -66,6 +70,22 @@ class PostService
         $this->post->entity_id = $this->entityId;
         $this->post->save();
 
+        //Transfer post logs to new entity too.
+        $this->post->logs()->update(['entity_id' => $this->entityId]);
+
+        $this->log($this->post, EntityLog::ACTION_UPDATE_POST);
+
         return $this->post;
+    }
+
+    private function log(Post $post, int $action)
+    {
+        $log = new EntityLog();
+        $log->entity_id = $post->entity->id;
+        $log->created_by = auth()->user()->id;
+        $log->post_id = $post->id;
+        $log->impersonated_by = Identity::getImpersonatorId();
+        $log->action = $action;
+        $log->save();
     }
 }

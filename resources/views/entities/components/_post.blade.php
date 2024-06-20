@@ -50,6 +50,13 @@
                 </div>
 
                 <div class="post-footer entity-note-footer text-right text-muted text-xs ">
+
+                @can('update', $model)
+                <a href="{{ route('entities.posts.logs', [$campaign, $model->entity, $post]) }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.posts.logs', [$campaign, $model->entity, $post]) }}" title="{{ __('crud.history.view') }}" class="print-none">
+                    <x-icon class="fa-solid fa-history" />
+                </a>
+                @endcan
+
                     <span class="post-footer-element post-created entity-note-footer-element entity-note-created" data-title="{{ __('entities/notes.footer.created', [
         'user' => $post->created_by ? e(\App\Facades\UserCache::name($post->created_by)) : __('crud.users.unknown'),
         'date' => $post->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">

@@ -6,6 +6,7 @@ use App\Facades\Mentions;
 use App\Models\PostPermission;
 use App\Models\Post;
 use App\Services\EntityMappingService;
+use App\Services\Entity\PostLoggerService;
 use App\Facades\Identity;
 use App\Models\EntityLog;
 
@@ -20,10 +21,16 @@ class PostObserver
     protected EntityMappingService $entityMappingService;
 
     /**
+     * Service used to log changes to posts
      */
-    public function __construct(EntityMappingService $entityMappingService)
+    protected PostLoggerService $postLoggerService;
+
+    /**
+     */
+    public function __construct(EntityMappingService $entityMappingService, PostLoggerService $postLoggerService)
     {
         $this->entityMappingService = $entityMappingService;
+        $this->postLoggerService = $postLoggerService;
     }
 
     /**
@@ -56,7 +63,6 @@ class PostObserver
     public function created(Post $post)
     {
         $this->log($post, EntityLog::ACTION_CREATE_POST);
-        //dd($log);
 
         //$entity->is_created_now = true;
     }
@@ -70,7 +76,9 @@ class PostObserver
             return;
         }
 
-        $this->log($post, EntityLog::ACTION_UPDATE_POST);
+        $changes = $this->postLoggerService->postDirty($post);
+
+        $this->log($post, EntityLog::ACTION_UPDATE_POST, $changes);
     }
 
     /**
@@ -108,7 +116,7 @@ class PostObserver
     }
     /**
      */
-    private function log(Post $post, int $action)
+    private function log(Post $post, int $action, array $changes = [])
     {
         $log = new EntityLog();
         $log->entity_id = $post->entity->id;
@@ -118,6 +126,9 @@ class PostObserver
         }
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = $action;
+        if (!empty($changes)) {
+            $log->changes = $changes;
+        }
         $log->save();
     }
     /**
@@ -187,6 +198,10 @@ class PostObserver
         // Cleanup permissions that are no longer used
         foreach ($existing as $oldPermission) {
             $oldPermission->delete();
+        }
+
+        if (!$post->isDirty()) {
+            $this->log($post, EntityLog::ACTION_UPDATE_POST);
         }
 
         return true;

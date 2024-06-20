@@ -267,6 +267,7 @@ Route::get('/w/{campaign}/entities/{entity}/tooltip', 'Entity\TooltipController@
 
 // Entity files
 Route::get('/w/{campaign}/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
+Route::get('/w/{campaign}/entities/{entity}/post/{post}/logs', 'Entity\Posts\LogController@index')->name('entities.posts.logs');
 Route::get('/w/{campaign}/entities/{entity}/mentions', 'Entity\MentionController@index')->name('entities.mentions');
 
 // Inventory
