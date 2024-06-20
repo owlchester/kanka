@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\UserLog;
@@ -60,6 +61,7 @@ class WebhookController extends CashierController
             // Cleanup the user "now". This used to have a delay, but if Stripe is calling this endpoint,
             // it's that the user's sub has ended.
             SubscriptionEndJob::dispatch($user);
+            MailSettingsChangeJob::dispatch($user);
         }
 
         return $response;

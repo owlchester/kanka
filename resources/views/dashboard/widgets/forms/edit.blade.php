@@ -1,6 +1,6 @@
 @include('partials.errors')
 
-<x-form :action="['campaign_dashboard_widgets.update', $campaign, $model]" method="PATCH"></x-form>
+<x-form :action="['campaign_dashboard_widgets.update', $campaign, $model]" method="PATCH">
     @include('partials.forms.form', [
         'dialog' => true,
         'mode' => 'edit',
