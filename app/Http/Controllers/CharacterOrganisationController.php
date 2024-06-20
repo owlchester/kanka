@@ -95,6 +95,9 @@ class CharacterOrganisationController extends Controller
         CharacterOrganisation $characterOrganisation
     ) {
         $this->authorize('organisation', [$character, 'edit']);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $characterOrganisation->update($request->all());
 

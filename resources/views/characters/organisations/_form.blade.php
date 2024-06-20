@@ -14,9 +14,8 @@ $statuses = [
 
 $fromOrg = request()->get('from') === 'org';
 @endphp
-{{ csrf_field() }}
 @if ($fromOrg)
-        <input type="hidden" name="organisation_id" />
+        <input type="hidden" name="organisation_id" value="{{ $member->organisation_id }}" />
 @else
     @include('cruds.fields.organisation', [
         'model' => $member ?? null,

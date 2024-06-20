@@ -12,7 +12,6 @@ $statuses = [
 ];
 @endphp
 
-{{ csrf_field() }}
 <x-grid>
 
     <div class="col-span-2">

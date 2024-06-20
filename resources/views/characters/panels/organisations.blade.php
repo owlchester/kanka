@@ -11,7 +11,7 @@
         $rows->withPath(route('characters.organisations', [$campaign, $character]));
     @endphp
 @endif
-<div class="" id="character-organisations">
+<div class="overflow-auto" id="character-organisations">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table')
     </div>
