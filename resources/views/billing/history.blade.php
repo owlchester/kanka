@@ -14,6 +14,7 @@
         </h1>
         <p class="text-lg">
             {{ __('billing/invoices.description') }}
+            {{ __('billing/invoices.paypal') }}
         </p>
 
         <table class="table table-default table-borderless table-hover">
