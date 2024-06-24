@@ -9,35 +9,20 @@ use Illuminate\View\Component;
 
 class Cta extends Component
 {
-    public ?string $title;
-    public ?string $cta;
-    public Campaign $campaign;
-    public bool $image;
-    public bool $limit;
-    public bool $superboost;
-    public bool $minimal;
-    public bool $max;
     /**
      * Create a new component instance.
      */
     public function __construct(
-        Campaign $campaign,
-        string $title = null,
-        string $cta = null,
-        bool $image = true,
-        bool $limit = false,
-        bool $superboost = false,
-        bool $minimal = false,
-        bool $max = false,
+        public Campaign $campaign,
+        public ?string $title = null,
+        public ?string $cta = null,
+        public bool $image = true,
+        public bool $limit = false,
+        public bool $superboost = false,
+        public bool $premium = false,
+        public bool $minimal = false,
+        public  bool $max = false,
     ) {
-        $this->campaign = $campaign;
-        $this->title = $title;
-        $this->cta = $cta;
-        $this->image = $image;
-        $this->limit = $limit;
-        $this->superboost = $superboost;
-        $this->minimal = $minimal;
-        $this->max = $max;
     }
 
     /**

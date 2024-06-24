@@ -11,6 +11,8 @@
             <h4 class="text-2xl">
                 @if ($limit)
                     {{ __('callouts.booster.limit') }}
+                @elseif ($premium)
+                {{ __('callouts.premium.title') }}
                 @else
                 {{ __('callouts.booster.titles.' . ($superboost ? 'superboosted' : 'boosted')) }}
                 @endif
@@ -22,6 +24,8 @@
                 @if (!$max)
                     @if (!empty($cta))
                         <p>{!! $cta !!}</p>
+                    @elseif ($premium)
+                        <p>{{ __('callouts.premium.limitation') }}</p>
                     @elseif (!$minimal)
                     <p>{{ __('callouts.booster.limitations.' . ($superboost ? 'superboosted' : 'boosted')) }}</p>
                     @endif
@@ -40,7 +44,7 @@
                     @endif
                 @else
                     <a href="https://kanka.io/premium" target="_blank" class="btn2 bg-boost text-white btn-lg btn-block">
-                        {!! __('callouts.booster.learn-more') !!}
+                        {!! __('callouts.premium.learn-more') !!}
                     </a>
                 @endif
             @endif

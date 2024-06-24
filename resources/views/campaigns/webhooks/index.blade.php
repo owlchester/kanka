@@ -19,7 +19,7 @@
     @endif
 </div>
 @if (!$campaign->premium())
-    <x-cta :campaign="$campaign">
+    <x-cta :campaign="$campaign" premium>
         <p>{!! __('campaigns/webhooks.pitch') !!}</p>
     </x-cta>
 @else
