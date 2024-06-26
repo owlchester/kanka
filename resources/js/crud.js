@@ -36,7 +36,6 @@ $(document).ready(function () {
     registerStoryActions();
     registerStoryLoadMore();
     registerTrustDomain();
-    registerPrivacyToggle();
 });
 
 /**
@@ -564,20 +563,6 @@ function registerDynamicRowDelete() {
             }
             $(this).click();
         });
-    });
-}
-
-/**
- * Show a warning when the entity is set to private
- */
-function registerPrivacyToggle() {
-    $('input[data-toggle="entity-privacy"]').change(function () {
-        let selector = $('#entity-is-private');
-        if ($(this).prop('checked')) {
-            selector.show();
-        } else {
-            selector.hide();
-        }
     });
 }
 

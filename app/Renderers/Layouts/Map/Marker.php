@@ -23,7 +23,7 @@ class Marker extends Layout
             ],
             'entity_id' => [
                 'label' => 'crud.fields.entity',
-                'renter' => Standard::ENTITYLINK,
+                'render' => Standard::ENTITYLINK,
             ],
             'groups' => [
                 'label' => 'maps/markers.fields.group',

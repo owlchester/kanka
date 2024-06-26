@@ -21,7 +21,7 @@
             :entity="$model->{$with}->entity"
             :campaign="$campaign" />
     @endif
-@else
+@elseif($model->entity)
     @if ($model->entity->is_private)
         <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
     @endif

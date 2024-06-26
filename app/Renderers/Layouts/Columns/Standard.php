@@ -24,8 +24,11 @@ class Standard extends Column
      */
     public function __toString(): string
     {
+        if (!isset($this->config['render']) && isset($this->config['renter'])) {
+            return 'Mispelt _render_';
+        }
         if (!isset($this->config['render'])) {
-            return (string) $this->model->{$this->config['key']};
+            return (string)$this->model->{$this->config['key']};
         }
 
         $render = $this->config['render'];

@@ -17,61 +17,113 @@ const initKeyboardSave = () => {
         initSaveKeyboardShortcut(e);
     });
 };
-function initKeyboardShortcuts() {
+const initKeyboardShortcuts = () => {
+    const quickCreatorButton = $('.quick-creator-button');
+    let kbEditTarget = $('[data-keyboard="edit"]');
+    document.addEventListener('keydown', function (event) {
+        const target = event.target;
+        if (event.key === ']') {
+            // ] to toggle sidebar
+            if (isInputField(target)) {
+                return;
+            }
+            event.preventDefault();
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            sidebarToggle.click();
+            sidebarToggle.blur();
+        } else if (event.key === 'k') {
+            // k for search
+            if (isInputField(target)) {
+                return;
+            }
+            const sidebarToggle = document.getElementById('entity-lookup');
+            sidebarToggle.focus();
+            event.preventDefault();
+        } else if (event.key === 'n' && !(event.ctrlKey || event.metaKey) && !event.altKey && quickCreatorButton.length > 0) {
+            // n for quick creator. Don't re-open if already opened
+            if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
+                return;
+            }
+            quickCreatorButton[0].click();
+        } else if (event.key === 'e' && !(event.ctrlKey || event.metaKey) && kbEditTarget.length === 1) {
+            //console.log('click edit link', kbEditTarget.first());
+            if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
+                return;
+            }
+            kbEditTarget[0].click();
+        } else if (event.key === 'Escape') {
+            //console.log('escape', entityModal.has('.qq-modal-selection').length);
+            // ESC to close quick creator selection modal
+            const entityModal = document.getElementById('entity-modal');
+            if (entityModal.classList.contains('qq-modal-selection').length === 1) {
+                entityModal.modal('hide');
+            }
+        }
+    });
     $(document).bind('keydown', function(e) {
         let target = $(e.target);
         let entityModal = $('#entity-modal');
         let quickCreatorButton = $('.quick-creator-button');
         let kbEditTarget = $('[data-keyboard="edit"]');
         //console.log('which', e.which);
-        if (e.key === ']') {
-            // ] to toggle sidebar
-            if (isInputField(target)) {
-                return;
-            }
-            $('.sidebar-toggle').click().blur();
-        } else if (e.key === 'k') {
-            // k for search
-            if (isInputField(target)) {
-                return;
-            }
-            $('#entity-lookup').focus();
-            return false; // don't add the k to the search field
-        } else if (e.key === 'n' && !(e.ctrlKey || e.metaKey) && !e.altKey && quickCreatorButton.length > 0) {
-            // n for quick creator. Don't re-open if already opened
-            if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
-                return;
-            }
-            quickCreatorButton[0].click();
-        } else if (e.key === 'e' && !(e.ctrlKey || e.metaKey) && kbEditTarget.length === 1) {
-            //console.log('click edit link', kbEditTarget.first());
-            if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
-                return;
-            }
-            kbEditTarget[0].click();
-        } else if (e.key === 'Escape') {
-            //console.log('escape', entityModal.has('.qq-modal-selection').length);
-            // ESC to close quick creator selection modal
-            if (entityModal.has('.qq-modal-selection').length === 1) {
-                entityModal.modal('hide');
-            }
-        }
+        // if (e.key === ']') {
+        //     // ] to toggle sidebar
+        //     if (isInputField(target)) {
+        //         return;
+        //     }
+        //     $('.sidebar-toggle').click().blur();
+        // } else
+        // if (e.key === 'k') {
+        //     // k for search
+        //     if (isInputField(target)) {
+        //         return;
+        //     }
+        //     $('#entity-lookup').focus();
+        //     return false; // don't add the k to the search field
+        // } else if (e.key === 'n' && !(e.ctrlKey || e.metaKey) && !e.altKey && quickCreatorButton.length > 0) {
+        //     // n for quick creator. Don't re-open if already opened
+        //     if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
+        //         return;
+        //     }
+        //     quickCreatorButton[0].click();
+        // } else if (e.key === 'e' && !(e.ctrlKey || e.metaKey) && kbEditTarget.length === 1) {
+        //     //console.log('click edit link', kbEditTarget.first());
+        //     if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
+        //         return;
+        //     }
+        //     kbEditTarget[0].click();
+        // } else if (e.key === 'Escape') {
+        //     //console.log('escape', entityModal.has('.qq-modal-selection').length);
+        //     // ESC to close quick creator selection modal
+        //     if (entityModal.has('.qq-modal-selection').length === 1) {
+        //         entityModal.modal('hide');
+        //     }
+        // }
     });
-}
+};
 
-function isInputField(ele) {
-    if (ele.length === 0) {
+const isInputField = (target) => {
+    if (!target || target.length === 0) {
         return false;
     }
-    return ele.is('input') || ele.is('select') || ele.is('textarea') ||
-        ele.attr('contentEditable') === 'true' || ele.hasClass('CodeMirror');
-}
+    const tagNames = ['input', 'textarea', 'select'];
+    if (tagNames.includes(target.tagName.toLowerCase())) {
+        return true;
+    }
+    else if (target.getAttribute('contentEditable') === 'true') {
+        return true;
+    }
+    else if (target.classList.contains('CodeMirror')) {
+        return true;
+    }
+    return false;
+};
 
 /**
  * Handle saving form
  * @param form
  */
-function initSaveKeyboardShortcut(form) {
+const initSaveKeyboardShortcut = (form) => {
     if (form.dataset.shortcutInit) {
         return;
     }
@@ -109,7 +161,7 @@ function initSaveKeyboardShortcut(form) {
  * Change the default action to follow after the form submission
  * @param action
  */
-function setFormAction(action) {
+const setFormAction = (action) => {
     let entityFormDefaultAction = $('#form-submit-main');
     if (!entityFormDefaultAction) {
         return;
@@ -125,21 +177,28 @@ function setFormAction(action) {
  * easier.
  */
 const initPasting = () => {
-    $('input[data-paste="fontawesome"]').on('paste', function(e) {
-        e.preventDefault();
-        let text;
-        if (e.clipboardData || e.originalEvent.clipboardData) {
-            text = (e.originalEvent || e).clipboardData.getData('text/plain');
-        } else if (window.clipboardData) {
-            text = window.clipboardData.getData('Text');
-        }
-        if (text.startsWith('<i class="fa') || text.startsWith('<i class="ra')) {
-            let className = $(text).attr('class');
-            if (className) {
-                $(this).val(className);
-                return;
+    const fields = document.querySelectorAll('input[data-paste="fontawesome"]');
+    fields.forEach(function (field) {
+        field.addEventListener('paste', function (e) {
+            e.preventDefault();
+            // window.clipboardData is used for older browsers
+            const pasteData = (e.clipboardData || window.clipboardData).getData('text');
+
+            if (pasteData.startsWith('<i class="fa') || pasteData.startsWith('<i class="ra')) {
+                // Create a temporary container to parse the HTML
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = pasteData;
+
+                // Find the FontAwesome or RPGAwesome icon in the pasted HTML
+                const icon = tempDiv.querySelector('i');
+
+                let iconClass = icon.getAttribute('class');
+                if (iconClass) {
+                    field.value = iconClass;
+                    return;
+                }
             }
-        }
-        $(this).val(text);
+            field.value = pasteData;
+        });
     });
-}
+};
