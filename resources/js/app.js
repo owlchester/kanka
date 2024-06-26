@@ -360,6 +360,7 @@ import './timelines';
 import './utility/sortable';
 import './utility/formError';
 import './utility/dialog';
+import './togglers';
 
 // VueJS elements
 //import './navigation');
