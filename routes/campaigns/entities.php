@@ -36,6 +36,8 @@ Route::post('/w/{campaign}/maps/{map}/markers/bulk', 'Maps\Bulks\MarkerControlle
 
 // Character
 Route::get('/w/{campaign}/characters/{character}/organisations', 'Characters\OrganisationController@index')->name('characters.organisations');
+Route::get('/w/{campaign}/characters/{character}/races/management', 'Characters\Races\ManagementController@index')->name('characters.races.management');
+Route::post('/w/{campaign}/characters/{character}/races/save', 'Characters\Races\ManagementController@save')->name('characters.races.save');
 
 Route::get('/w/{campaign}/dice_rolls/{dice_roll}/roll', 'Crud\DiceRollController@roll')->name('dice_rolls.roll');
 Route::delete('/w/{campaign}/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'Crud\DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');

@@ -45,6 +45,7 @@ $(document).ready(function() {
         initImageRemoval();
         initFeedbackButtons();
         initDismissible();
+        window.initSortable()
     });
 });
 

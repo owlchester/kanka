@@ -55,6 +55,11 @@
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!},
                 {{ __('characters.fields.age') }}
+                @if (auth()->check() && auth()->user()->can('raceManagement', $model))
+                    <span role="button" tabindex="0" class="entity-races-icon" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $model]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                        <i class="fa-solid fa-pencil" data-title="{{ __('characters.races.title') }}" aria-hidden="true"></i>
+                    </span>
+                @endif
             </div>
             @php $existingRaces = []; @endphp
             @foreach ($model->races as $race)
