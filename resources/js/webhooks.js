@@ -1,19 +1,13 @@
-$(document).ready(function () {
-    initWebhooksForm();
-});
-
-function initWebhooksForm() {
-    let selector = $('#webhook-selector');
-    if (selector.length === 0) {
+const initWebhooksForm = () => {
+    let selector = document.getElementById('webhook-selector');
+    if (!selector) {
         return false;
     }
-    selector.change(function (e) {
+    selector.addEventListener('change', function (e) {
         e.preventDefault();
-        let selected = $(this).find(":selected");
-
-        $('.webhook-subform').addClass('hidden');
-
-        let target = selected.data('target');
-        $(target).removeClass('hidden');
+        let selected = this.options[this.selectedIndex];
+        document.querySelector('.webhook-subform').classList.add('hidden');
+        document.querySelector(selected.dataset.target)?.classList.remove('hidden');
     });
-}
+};
+initWebhooksForm();

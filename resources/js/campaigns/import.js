@@ -1,18 +1,17 @@
 import axios from "axios";
 
-$(document).ready(function() {
-    initExport();
-});
 
-var fileProgress;
+const progressUploading = document.querySelector('.progress-uploading');
+const progressValidating = document.querySelector('.progress-validating');
+let fileProgress;
 
 const initExport = () => {
-    let form = document.getElementById('campaign-import-form');
+    const form = document.getElementById('campaign-import-form');
     if (!form) {
         return;
     }
 
-    fileProgress = $('.progress');
+    fileProgress = document.querySelector('.progress');
 
     form.onsubmit = (e) => {
         e.preventDefault();
@@ -53,27 +52,26 @@ const startProcess = (form, data) => {
         },
         onUploadProgress: function (progressEvent) {
             let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            $('[role="progressbar"]').css(
-                'width',
-                percentCompleted + '%'
-            );
+            document.querySelector('[role="progressbar"]').style.width = percentCompleted + '%';
 
             if (percentCompleted === 100) {
-                $('.progress-uploading').hide();
-                $('.progress-validating').show();
+                progressUploading.classList.add('hidden');
+                progressValidating.classList.remove('hidden');
             }
-            $('.progress-percent').show().html(percentCompleted);
+            const progress = document.querySelector('.progress-percent');
+            progress.classList.remove('hidden');
+            progress.innerHTML = percentCompleted;
         }
     };
 
-    fileProgress.show();
-    $('.progress-uploading').show();
-    $('.progress-validating').hide();
+    fileProgress.classList.remove('hidden');
+    progressUploading.classList.remove('hidden');
+    progressValidating.classList.add('hidden');
 
     axios
         .post(form.action, data, config)
         .then(function (res) {
-            fileProgress.hide();
+            fileProgress.classList.add('hidden');
 
             if (res.data.success) {
                 window.location.reload();
@@ -81,7 +79,7 @@ const startProcess = (form, data) => {
         })
         .catch(function (err) {
             form.classList.remove('hidden');
-            fileProgress.hide();
+            fileProgress.classList.add('hidden');
 
             if (err.response && err.response.data.message) {
                 fileError.text(err.response.data.message).fadeToggle();
@@ -96,4 +94,6 @@ const startProcess = (form, data) => {
             let loading = document.querySelector('.loading');
             loading.classList.remove('loading');
         });
-}
+};
+
+initExport();
