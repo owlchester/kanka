@@ -53,7 +53,7 @@ class ManagementController extends Controller
         CharacterRace::where('character_id', $character->id)->delete();
         foreach ($request->get('character_race') as $newRace) {
             //We just want to reorder, not add whatever the user sends as a request.
-            if (in_array($newRace, $races) ) {
+            if (in_array($newRace, $races)) {
                 $characterRace = new CharacterRace();
                 $characterRace->race_id = $newRace;
                 $characterRace->character_id = $character->id;

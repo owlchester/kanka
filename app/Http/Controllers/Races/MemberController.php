@@ -34,7 +34,7 @@ class MemberController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Race\Character::class)
             ->route('races.characters', $options);
 
-            $this->rows = $race
+        $this->rows = $race
             ->{$relation}()
             ->select('character_race.*')
             ->with([

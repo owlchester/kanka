@@ -8,7 +8,6 @@ use App\Models\Concerns\Privatable;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
  * @property int $character_id
  * @property int $race_id

@@ -44,7 +44,7 @@ class Character extends Layout
                     foreach ($model->character->races as $rel) {
                         $html .= '<a class="name"
                         data-toggle="tooltip-ajax"
-                        data-id="' . $rel->entity->id .'"
+                        data-id="' . $rel->entity->id . '"
                         data-url="' . route('entities.tooltip', [$rel->entity->campaign_id, $rel->entity->id]) . '"
                         href="' . $rel->entity->url() . '">' . $rel->name . '</a>';
                     }
