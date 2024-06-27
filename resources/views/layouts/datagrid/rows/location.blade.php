@@ -1,4 +1,4 @@
-@if (empty($with))
+@if (empty($with) && $model->location)
     <x-entity-link
         :entity="$model->location->entity"
         :campaign="$campaign" />

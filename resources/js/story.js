@@ -1,6 +1,6 @@
 $(document).ready(function () {
     initImageFocus();
-    $(document).on('shown.bs.modal shown.bs.popover', function() {
+    $(document).on('shown.bs.modal', function() {
         initImageFocus()
      });
 });
@@ -17,41 +17,41 @@ const initImageFocus = () => {
 
     scaledImage.addEventListener('click', function (e) {
         // Get the original dimensions of the image
-        let originalWidth = scaledImage.naturalWidth;
-        let originalHeight = scaledImage.naturalHeight;
+        const originalWidth = scaledImage.naturalWidth;
+        const originalHeight = scaledImage.naturalHeight;
 
         // Get the click coordinates
-        let clickX = e.clientX - scaledImage.getBoundingClientRect().left;
-        let clickY = e.clientY - scaledImage.getBoundingClientRect().top;
+        const clickX = e.clientX - scaledImage.getBoundingClientRect().left;
+        const clickY = e.clientY - scaledImage.getBoundingClientRect().top;
 
         // Calculate the coordinates with respect to the original size
-        let originalX = (clickX / scaledImage.clientWidth) * originalWidth;
-        let originalY = (clickY / scaledImage.clientHeight) * originalHeight;
+        const originalX = (clickX / scaledImage.clientWidth) * originalWidth;
+        const originalY = (clickY / scaledImage.clientHeight) * originalHeight;
 
         // Calculate the coordinates as a percentage, so that the focus point can be placed correctly to scale
-        let percentageX = (originalX / originalWidth) * 100;
-        let percentageY = (originalY / originalHeight) * 100;
+        const percentageX = (originalX / originalWidth) * 100;
+        const percentageY = (originalY / originalHeight) * 100;
 
         drawBullseye(percentageY, percentageX);
-        $('input[name="focus_x"]').val(parseInt(originalX));
-        $('input[name="focus_y"]').val(parseInt(originalY));
+        document.querySelector('input[name="focus_x"]').value = parseInt(originalX);
+        document.querySelector('input[name="focus_y"]').value = parseInt(originalY);
     });
 
     bullseye.addEventListener('click', function () {
         bullseye.style.display = 'none';
-        $('input[name="focus_x"]').val("");
-        $('input[name="focus_y"]').val("");
+        document.querySelector('input[name="focus_x"]').value = '';
+        document.querySelector('input[name="focus_y"]').value = '';
     });
 
     // Place the bullseye on the page
     if (bullseye.dataset.focusX && bullseye.dataset.focusY) {
         // Get the original dimensions of the image
-        let originalWidth = scaledImage.naturalWidth;
-        let originalHeight = scaledImage.naturalHeight;
+        const originalWidth = scaledImage.naturalWidth;
+        const originalHeight = scaledImage.naturalHeight;
 
         // Calculate the coordinates as a percentage, so that the focus point can be placed correctly to scale
-        let left = (bullseye.dataset.focusX / originalWidth) * 100;
-        let top = (bullseye.dataset.focusY / originalHeight) * 100;
+        const left = (bullseye.dataset.focusX / originalWidth) * 100;
+        const top = (bullseye.dataset.focusY / originalHeight) * 100;
 
         drawBullseye(top, left);
     }

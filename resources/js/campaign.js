@@ -2,7 +2,6 @@ import Sortable from "sortablejs";
 
 $(document).ready(function() {
     registerModules();
-    registerUserRoles();
     registerCodeMirror();
     registerSidebarSetup();
     registerRoles();
@@ -13,46 +12,40 @@ $(document).ready(function() {
 /**
  * Register Modules change for campaign settings
  */
-function registerModules() {
-    if ($('#campaign-modules').length === 0) {
+const registerModules = () => {
+    const modulePage = document.getElementById('campaign-modules');
+    if (!modulePage) {
         return;
     }
-    $('input[name="enabled"]').change(function (e) {
-        e.preventDefault();
-        let header = $(this).closest('.box-module').find('h3');
-        if (header.hasClass('loading')) {
-            return;
-        }
-        header.addClass('loading');
+    const fields = document.querySelectorAll('input[name="enabled"]');
+    fields.forEach(function (field) {
+        registerModuleChange(field);
+    });
+};
+
+const registerModuleChange = (field) => {
+    field.addEventListener('change', function (event) {
+        event.preventDefault();
+        field.closest('.toggle').classList.add('!hidden');
+        field.closest('.box-module').querySelector('.action-loading').classList.remove('hidden');
 
         axios
-            .post($(this).data('url'))
+            .post(field.dataset.url)
             .then(response => {
-                let el = $(this);
-                el.closest('.box-module').find('h3').removeClass('loading');
+                field.closest('.toggle').classList.remove('!hidden');
+                field.closest('.box-module').querySelector('.action-loading').classList.add('hidden');
                 if (!response.data.success) {
                     return;
                 }
                 if (response.data.status) {
-                    el.closest('.box-module').addClass('module-enabled');
+                    field.closest('.box-module').classList.add('module-enabled');
                 } else {
-                    el.closest('.box-module').removeClass('module-enabled');
+                    field.closest('.box-module').classList.remove('module-enabled');
                 }
                 window.showToast(response.data.toast);
-        });
+            });
     });
-}
-
-/**
- * User role admin quick interface
- */
-function registerUserRoles() {
-    $('.btn-user-roles').popover({
-        html: true,
-        sanitize: false,
-        trigger: 'focus',
-    });
-}
+};
 
 /** Toggling an action on a permission **/
 function registerRoles() {
@@ -64,16 +57,18 @@ function registerRoles() {
 
 function togglePublicRole(e) {
     e.preventDefault();
-    this.classList.add('loading');
+    this.querySelector('.module-icon').classList.add('hidden');
+    this.querySelector('.loading-animation').classList.remove('hidden');
 
     axios.post(this.dataset.url)
         .then(res => {
-            this.classList.remove('loading');
+            this.querySelector('.module-icon').classList.remove('hidden');
+            this.querySelector('.loading-animation').classList.add('hidden');
             if (res.data.success) {
                 if (res.data.status) {
-                    $(this).addClass('enabled');
+                    this.classList.add('enabled');
                 } else {
-                    $(this).removeClass('enabled');
+                    this.classList.remove('enabled');
                 }
                 window.showToast(res.data.toast);
             }
@@ -84,9 +79,9 @@ function togglePublicRole(e) {
  * Initiate codemirror editor in the theming section
  */
 function registerCodeMirror() {
-    $.each($('.codemirror'), function () {
-        let elementID = $(this).attr('id');
-        CodeMirror.fromTextArea(document.getElementById(elementID), {
+    const editors = document.querySelectorAll('.codemirror');
+    editors.forEach(function (editor) {
+        CodeMirror.fromTextArea(document.getElementById(editor.id), {
             extraKeys: {"Ctrl-Space": "autocomplete"},
             lineNumbers: true,
             lineWrapping: true,
@@ -111,8 +106,7 @@ function registerSidebarSetup() {
             onMove: function (/**Event*/evt, /**Event*/originalEvent) {
                 let self = evt.dragged;
                 let target = evt.related;
-                // Couldn't figure out how to do this in pure js, so falling back on jQuery
-                let targetParentIsFixed = $(target).parents('.fixed-position').length > 0;
+                let targetParentIsFixed = target.parentNode.closest('.fixed-position') != null;
                 if (self.classList.contains('fixed-position') && targetParentIsFixed) {
                     return false;
                 }
@@ -127,61 +121,65 @@ function registerSidebarSetup() {
  * Register events for campaign themes, notably the max size of a css field
  */
 function registerCampaignThemes() {
-    let forms = $('form#campaign-style');
-    if (forms.length === 0) {
+    const form = document.querySelector('form#campaign-style');
+    if (!form) {
         return;
     }
 
-    forms.on('submit', function (e) {
-        let error = $($(this).data('error'));
-        let length = $('textarea[name="content"]').val().length;
-        if (length < $(this).data('max-content')) {
-            error.hide();
+    console.log(form);
+    form.addEventListener('submit', function (e) {
+        let error = document.querySelector(form.dataset.error);
+        const content = document.querySelector('textarea[name="content"]');
+        let length = content.value.length;
+        if (length < form.dataset.maxContent) {
+            error.classList.add('hidden');
             return true;
         }
 
         // Show a custom error message to the user
-        error.show();
-
-        $('form .submit-group .btn').prop('disabled', false);
-
+        error.classList.remove('hidden');
+        e.preventDefault();
         return false;
     });
 }
 
 function registerVanityUrl() {
-    $('input[name="vanity"]').focusout(function (e) {
-        let vanity = $(this).val();
-        let errBlock = $('#vanity-error');
-        let successBlock = $('#vanity-success');
-        let loading = $('#vanity-loading');
-        errBlock.html('').hide();
-        successBlock.hide();
+    const vanityField = document.querySelector('input[name="vanity"]');
+    if (!vanityField) {
+        return;
+    }
+    vanityField.addEventListener('focusout', function (e) {
+        let vanity = this.value;
+        let errBlock = document.getElementById('vanity-error');
+        let successBlock = document.getElementById('vanity-success');
+        let loading = document.getElementById('vanity-loading');
+        errBlock.innerHTML = '';
+        errBlock.classList.add('hidden');
+        successBlock.classList.add('hidden');
         if (!vanity) {
             return;
         }
 
-        loading.show();
+        successBlock.classList.remove('hidden');
         let data = {};
         data.vanity = vanity;
-        $.post({
-            url: $(this).data('url'),
-            method: 'POST',
-            context: this,
-            data: data
-        }).done(function (res) {
-            $(this).val(res.vanity);
-            successBlock.find('code').html(res.vanity);
-            successBlock.show();
-            errBlock.hide();
-            loading.hide();
-        }).fail(function (err) {
-            //console.error(err);
-            let errorString = '';
-            err.responseJSON.errors.vanity.forEach(error => errorString += error + ' ');
-            errBlock.html(errorString).show();
-            successBlock.hide();
-            loading.hide();
-        });
+
+        axios
+            .post(this.dataset.url, data)
+            .then(res => {
+                vanityField.value = res.data.vanity;
+                successBlock.querySelector('code').innerHTML = res.data.vanity;
+                errBlock.classList.add('hidden');
+                loading.classList.add('hidden');
+                successBlock.classList.remove('hidden');
+            })
+            .catch((err) => {
+                let errorString = '';
+                err.response.data.errors.vanity.forEach(error => errorString += error + ' ');
+                errBlock.innerHTML = errorString;
+                errBlock.classList.remove('hidden');
+                successBlock.classList.add('hidden');
+                loading.classList.add('hidden');
+            });
     });
 }

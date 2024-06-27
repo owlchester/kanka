@@ -1,10 +1,10 @@
 import ajaxModal from "./components/ajax-modal";
 
-var datagrid2DeleteConfirm = false;
-var datagrid2Form;
-var datagrid2Table;
+let datagrid2DeleteConfirm = false;
+let datagrid2Form;
+let datagrid2Table;
 
-var datagrid2Observer = new IntersectionObserver(function(entries) {
+const datagrid2Observer = new IntersectionObserver(function(entries) {
     // isIntersecting is true when element and viewport are overlapping
     // isIntersecting is false when element and viewport don't overlap
     if(entries[0].isIntersecting === true) {
@@ -20,6 +20,7 @@ $(document).ready(function () {
     registerBulkActions();
     toggleCrudMultiDelete();
     registerDatagrids2();
+    treeViewInit();
 
     $(document).on('shown.bs.modal', function () {
         registerBulkActions();
@@ -245,3 +246,32 @@ function datagrid2Reorder(ele) {
         datagrid2Table.find('tfoot').addClass('bg-danger');
     });
 }
+
+/**
+ * Go through table trs to add on click support
+ */
+const treeViewInit = () => {
+    const treeViewLoader = document.querySelector('.list-treeview');
+    if (!treeViewLoader) {
+        return;
+    }
+
+    let link = treeViewLoader.dataset.url;
+
+    const rows = document.querySelectorAll('.table-nested > tbody > tr');
+    rows.forEach(function (row) {
+        let children = row.dataset.children;
+        if (parseInt(children) > 0) {
+            row.classList.add('tr-hover');
+            row.classList.add('cursor-pointer');
+            row.addEventListener('click', function (event) {
+                const target = event.target;
+                // Don't trigger the click on the checkbox (used for bulk actions)
+                //console.log('click tr', target);
+                if (event.target.type !== 'checkbox' && target.dataset.tree !== 'escape') {
+                    window.location = link + '?parent_id=' + row.dataset.id + '&m=table';
+                }
+            });
+        }
+    });
+};

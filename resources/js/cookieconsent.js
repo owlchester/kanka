@@ -3,16 +3,15 @@ import 'cookieconsent/build/cookieconsent.min.js';
 let setup, tracking, api;
 
 $(document).ready(function() {
-    let field = $('#cookieconsent');
-    if (field.length === 0) {
-        //console.log('none');
+    let field = document.getElementById('cookieconsent');
+    if (!field) {
         return;
     }
 
-    setup = field.data('setup');
-    api = field.data('api');
+    setup = field.dataset.setup;
+    api = field.dataset.api;
     //console.log('cookieconsent setup', setup);
-    tracking = field.data('tracking');
+    tracking = field.dataset.tracking;
     initCookieConsent();
 });
 

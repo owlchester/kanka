@@ -1,26 +1,23 @@
-var api;
-
-$(document).ready(function() {
-    if ($('#newsletter-api').length === 1) {
-        init();
+const api = document.getElementById('newsletter-api');
+const init = () => {
+    if (!api) {
+        return;
     }
-});
 
-function init()
-{
-    api = $('#newsletter-api').val();
-    handle($('input[name="mail_release"]'));
-}
+    const fields = document.querySelectorAll('input[name="mail_release"]');
+    fields.forEach(field => {
+        field.addEventListener('change', function (e) {
+            let name = this.name;
+            let data = {};
+            data[name] = this.checked ? 1 : 0;
 
-function handle(element) {
-
-    $(element).change(function () {
-        let name = this.name;
-        let data = {};
-        data[name] = this.checked ? 1 : 0;
-
-        $.post(api, data).done(function (res) {
-            window.showToast(res.message);
+            axios.post(api.value, data)
+                .then(res => {
+                    window.showToast(res.data.message);
+                });
         });
     });
-}
+};
+init();
+
+

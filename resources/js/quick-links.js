@@ -4,34 +4,37 @@ $(document).ready(function () {
 });
 
 function initQuickLinksForm() {
-    let selector = $('#bookmark-selector');
-    if (selector.length === 0) {
+    let selector = document.getElementById('bookmark-selector');
+    if (!selector) {
         return false;
     }
-    selector.change(function (e) {
+    selector.addEventListener('change', function (e) {
         e.preventDefault();
-        let selected = $(this).find(":selected");
+        let selected = selector.options[selector.selectedIndex];
 
-        $('.bookmark-subform').addClass('hidden');
-
-        let target = selected.data('target');
-        $(target).removeClass('hidden');
+        const subforms = document.querySelectorAll('.bookmark-subform');
+        subforms.forEach(subform => {
+            subform.classList.add('hidden');
+        });
+        let target = document.querySelector(selected.dataset.target);
+        if (target) {
+            target.classList.remove('hidden');
+        }
     });
 }
 
 function showFilterField() {
-    let selector = $('#entity-selector');
-    if (selector.length === 0) {
+    const selector = document.getElementById('entity-selector');
+    if (!selector) {
         return false;
-    } else if (selector.val() != '') {
-        $('#filter-subform').show();
+    } else if (selector.value !== '') {
+        document.getElementById('filter-subform').style.removeProperty('display');
     }
-    selector.change(function () {
-        if (selector.val() == '') {
-            $('#filter-subform').hide();
-            console.log(selector.val());
+    selector.addEventListener('change', function () {
+        if (selector.value === '') {
+            document.getElementById('filter-subform').style.display = 'none';
         } else {
-            $('#filter-subform').show();
+            document.getElementById('filter-subform').style.removeProperty('display');
         }
     });
 }

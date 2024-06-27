@@ -18,8 +18,8 @@ const initKeyboardSave = () => {
     });
 };
 const initKeyboardShortcuts = () => {
-    const quickCreatorButton = $('.quick-creator-button');
-    let kbEditTarget = $('[data-keyboard="edit"]');
+    const quickCreatorButton = document.querySelector('.quick-creator-button');
+    let kbEditTarget = document.querySelector('[data-keyboard="edit"]');
     document.addEventListener('keydown', function (event) {
         const target = event.target;
         if (event.key === ']') {
@@ -39,18 +39,18 @@ const initKeyboardShortcuts = () => {
             const sidebarToggle = document.getElementById('entity-lookup');
             sidebarToggle.focus();
             event.preventDefault();
-        } else if (event.key === 'n' && !(event.ctrlKey || event.metaKey) && !event.altKey && quickCreatorButton.length > 0) {
+        } else if (event.key === 'n' && !(event.ctrlKey || event.metaKey) && !event.altKey && quickCreatorButton) {
             // n for quick creator. Don't re-open if already opened
             if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
                 return;
             }
-            quickCreatorButton[0].click();
-        } else if (event.key === 'e' && !(event.ctrlKey || event.metaKey) && kbEditTarget.length === 1) {
+            quickCreatorButton.click();
+        } else if (event.key === 'e' && !(event.ctrlKey || event.metaKey) && kbEditTarget) {
             //console.log('click edit link', kbEditTarget.first());
             if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
                 return;
             }
-            kbEditTarget[0].click();
+            kbEditTarget.click();
         } else if (event.key === 'Escape') {
             //console.log('escape', entityModal.has('.qq-modal-selection').length);
             // ESC to close quick creator selection modal
@@ -59,46 +59,6 @@ const initKeyboardShortcuts = () => {
                 entityModal.modal('hide');
             }
         }
-    });
-    $(document).bind('keydown', function(e) {
-        let target = $(e.target);
-        let entityModal = $('#entity-modal');
-        let quickCreatorButton = $('.quick-creator-button');
-        let kbEditTarget = $('[data-keyboard="edit"]');
-        //console.log('which', e.which);
-        // if (e.key === ']') {
-        //     // ] to toggle sidebar
-        //     if (isInputField(target)) {
-        //         return;
-        //     }
-        //     $('.sidebar-toggle').click().blur();
-        // } else
-        // if (e.key === 'k') {
-        //     // k for search
-        //     if (isInputField(target)) {
-        //         return;
-        //     }
-        //     $('#entity-lookup').focus();
-        //     return false; // don't add the k to the search field
-        // } else if (e.key === 'n' && !(e.ctrlKey || e.metaKey) && !e.altKey && quickCreatorButton.length > 0) {
-        //     // n for quick creator. Don't re-open if already opened
-        //     if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
-        //         return;
-        //     }
-        //     quickCreatorButton[0].click();
-        // } else if (e.key === 'e' && !(e.ctrlKey || e.metaKey) && kbEditTarget.length === 1) {
-        //     //console.log('click edit link', kbEditTarget.first());
-        //     if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
-        //         return;
-        //     }
-        //     kbEditTarget[0].click();
-        // } else if (e.key === 'Escape') {
-        //     //console.log('escape', entityModal.has('.qq-modal-selection').length);
-        //     // ESC to close quick creator selection modal
-        //     if (entityModal.has('.qq-modal-selection').length === 1) {
-        //         entityModal.modal('hide');
-        //     }
-        // }
     });
 };
 
@@ -162,15 +122,14 @@ const initSaveKeyboardShortcut = (form) => {
  * @param action
  */
 const setFormAction = (action) => {
-    let entityFormDefaultAction = $('#form-submit-main');
+    const entityFormDefaultAction = document.getElementById('form-submit-main');
     if (!entityFormDefaultAction) {
         return;
     }
 
-    entityFormDefaultAction
-        .attr('name', action);
-    $('#submit-mode').attr('name', action);
-}
+    entityFormDefaultAction.name = action;
+    document.getElementById('submit-mode').name = action;
+};
 
 /**
  * Strip HTML from fontAwesome or RPGAwesome and just keep the class to make people's lives

@@ -16,7 +16,6 @@ try {
 } catch (e) {}
 
 import 'select2';
-import 'spectrum-colorpicker';
 
 
 /**

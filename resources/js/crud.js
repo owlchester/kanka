@@ -435,18 +435,6 @@ function registerPermissionToggler() {
     });
 }
 
-function initSpectrum() {
-    if (!$.isFunction($.fn.spectrum)) {
-        return;
-    }
-    $(".spectrum").spectrum({
-        preferredFormat: "hex",
-        showInput: true,
-        showPalette: true,
-        allowEmpty: true
-    });
-}
-
 /**
  * Expand/Collapse all posts on the overview of an entity
  */

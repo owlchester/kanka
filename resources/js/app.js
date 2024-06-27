@@ -12,11 +12,8 @@ $(document).ready(function() {
 
     window.initForeignSelect();
     window.initDialogs();
-    initSpectrum();
+    initColourPicker();
     initSubmenuSwitcher();
-
-    // Treeview for locations
-    treeViewInit();
 
     manageTabs();
 
@@ -40,7 +37,7 @@ $(document).ready(function() {
         window.ajaxTooltip();
         window.initDropdowns();
         initAjaxPagination();
-        initSpectrum();
+        initColourPicker();
         initDynamicDelete();
         initImageRemoval();
         initFeedbackButtons();
@@ -66,12 +63,9 @@ function initAdblocker() {
 }
 
 /**
- * Initiate spectrum for the various fields
+ * Initiate color for the various fields
  */
-function initSpectrum() {
-    /*if (!$.isFunction($.fn.spectrum)) {
-        return;
-    }*/
+function initColourPicker() {
 
     Coloris.init();
     Coloris({
@@ -98,43 +92,8 @@ function initSpectrum() {
             e.stopPropagation();
         });
     });
-    /*$.each($('.spectrum'), function () {
-        $(this).spectrum({
-            preferredFormat: "hex",
-            showInput: true,
-            showPalette: true,
-            allowEmpty: true,
-            appendTo: $(this).data('append-to') ?? null,
-        });
-    });*/
 }
 
-
-/**
- * Go through table trs to add on click support
- */
-function treeViewInit() {
-    let treeViewLoader = $('.list-treeview');
-    if (treeViewLoader.length === 0) {
-        return;
-    }
-
-    let link = treeViewLoader.data('url');
-    $.each($('.table-nested > tbody > tr'), function () {
-        let children = $(this).data('children');
-        if (parseInt(children) > 0) {
-            $(this).addClass('tr-hover cursor-pointer');
-            $(this).on('click', function (e) {
-                let target = $(e.target);
-                // Don't trigger the click on the checkbox (used for bulk actions)
-                //console.log('click tr', target);
-                if (e.target.type !== 'checkbox' && target.data('tree') !== 'escape') {
-                    window.location = link + '?parent_id=' + $(this).data('id') + '&m=table';
-                }
-            });
-        }
-    });
-}
 
 /**
  * Save and manage tabs for when refreshing
@@ -341,6 +300,7 @@ const initDismissible = () => {
 import './keyboard';
 import './crud';
 import './post';
+import './post-layouts';
 import './calendar';
 import './keep-alive';
 //import './search');
@@ -349,7 +309,6 @@ import './datagrids';
 import './animations';
 import './quick-links';
 import './webhooks';
-import './post-layouts';
 import './members';
 import './campaign';
 import './clipboard';
