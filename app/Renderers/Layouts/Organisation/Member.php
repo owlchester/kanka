@@ -34,7 +34,11 @@ class Member extends Layout
                     } elseif ($model->unknown()) {
                         $icon = '<i class="fa-solid fa-question mr-1" data-title="' . __('organisations.members.status.unknown') . '" data-toggle="tooltip"></i>';
                     }
-                    return $icon . $model->role;
+                    $private = '';
+                    if ($model->is_private) {
+                        $private = '<i class="fa-solid fa-lock" aria-hidden="true"></i> ';
+                    }
+                    return $icon . $private . $model->role;
                 }
             ],
             'superior' => [
