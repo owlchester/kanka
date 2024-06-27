@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\Privatable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,8 +10,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CharacterRace extends Model
 {
-    use Privatable;
-
     public $table = 'character_race';
 
     protected $fillable = [
