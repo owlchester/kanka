@@ -21,7 +21,7 @@
                 @if(!empty($existingFamilies[$family->id]))
                     @continue
                 @endif
-                @php $existingRaces[$family->id] = true; @endphp
+                @php $existingFamilies[$family->id] = true; @endphp
                 <x-entity-link
                     :entity="$family->entity"
                     :campaign="$campaign" />
@@ -40,13 +40,14 @@
                 @endif
             </div>
             @php $existingRaces = []; @endphp
-            @foreach ($model->races as $race)
-                @if(!empty($existingRaces[$race->id]))
+            @foreach ($model->characterRaces as $race)
+                @if(!empty($existingRaces[$race->race_id]))
                     @continue
                 @endif
-                @php $existingRaces[$race->id] = true; @endphp
+                @php $existingRaces[$race->race_id] = true; @endphp
+                @if ($race->is_private) <x-icon class="fa-solid fa-lock" /> @endif
                 <x-entity-link
-                    :entity="$race->entity"
+                    :entity="$race->race->entity"
                     :campaign="$campaign" />
             @endforeach
         </div>
