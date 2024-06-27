@@ -21,6 +21,10 @@ class ManagementController extends Controller
 
     public function index(Campaign $campaign, Character $character)
     {
+        // Check that the user has permission to actually be here
+        if (!auth()->user()->can('raceManagement', $character)) {
+            return redirect()->route('dashboard', $campaign);
+        }
         $this->campaign($campaign)->authEntityView($character->entity);
 
         $races = $character

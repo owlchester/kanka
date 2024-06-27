@@ -46,9 +46,11 @@
                 @endif
                 @php $existingRaces[$race->race_id] = true; @endphp
                 @if ($race->is_private) <x-icon class="fa-solid fa-lock" /> @endif
-                <x-entity-link
-                    :entity="$race->race->entity"
-                    :campaign="$campaign" />
+                @if ($race->race)
+                    <x-entity-link
+                        :entity="$race->race->entity"
+                        :campaign="$campaign" />
+                @endif
             @endforeach
         </div>
         @elseif ($model->races->isEmpty() && $model->hasAge())
@@ -73,9 +75,11 @@
                     @continue
                 @endif
                 @php $existingRaces[$race->id] = true; @endphp
+                @if ($race->race)
                     <x-entity-link
                         :entity="$race->entity"
                         :campaign="$campaign" />
+                @endif
             @endforeach
             <span>{{ $model->age }}</span>
         </div>

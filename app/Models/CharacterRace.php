@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
+use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
+
 
 /**
  * @property int $character_id
@@ -12,7 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CharacterRace extends Model
 {
+    use HasFilters;
+    use Paginatable;
     use Privatable;
+    use SortableTrait;
 
     public $table = 'character_race';
 

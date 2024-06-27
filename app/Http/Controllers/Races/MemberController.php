@@ -25,7 +25,7 @@ class MemberController extends Controller
 
         $options = ['campaign' => $campaign, 'race' => $race];
         $filters = [];
-        $relation = 'allCharacters';
+        $relation = 'characterRaces';
         if (request()->has('race_id')) {
             $options['race_id'] = (int) request()->get('race_id');
             $filters['race_id'] = $options['race_id'];
@@ -34,17 +34,18 @@ class MemberController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Race\Character::class)
             ->route('races.characters', $options);
 
-        $this->rows = $race
+            $this->rows = $race
             ->{$relation}()
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
+            ->select('character_race.*')
             ->with([
-                'location', 'location.entity',
-                'families', 'families.entity',
-                'races', 'races.entity',
-                'entity', 'entity.tags', 'entity.image', 'entity.tags.entity'
-            ])
-            ->has('entity')
+                'race', 'race.entity',
+                'character', 'character.entity', 'character.entity.image',
+                'character.location', 'character.location.entity'])
+            ->has('character')
+            ->has('character.entity')
+            ->leftJoin('characters as c', 'c.id', 'character_race.character_id')
+            ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
+            ->filter($filters)
             ->paginate(15);
 
         return $this->campaign($campaign)->datagridAjax();

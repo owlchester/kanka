@@ -180,6 +180,12 @@ class Race extends MiscModel
         return $this->hasMany('App\Models\Race', 'race_id', 'id');
     }
 
+    public function characterRaces(): HasMany
+    {
+        return $this->hasMany(CharacterRace::class, 'race_id')
+            ->with(['character', 'character.entity']);
+    }
+
     /**
      * Get all characters in the location and descendants
      */
