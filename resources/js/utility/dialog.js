@@ -77,14 +77,6 @@ const loadDialogContent = (url, target) => {
             target.show();
             if (typeof $ === 'function') {
                 $(document).trigger('shown.bs.modal'); // Get tooltips, select2 and delete-confirmation to re-generate
-
-                // Todo: Move to app event listener
-                $('.btn-manage-perm').click(function (e) {
-                    e.preventDefault();
-                    target.close();
-                    let permTarget = $(this).data('target');
-                    $(permTarget).click();
-                });
             } else {
                 document.dispatchEvent(dialogLoadedEvent);
             }

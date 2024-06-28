@@ -126,7 +126,6 @@ function registerCampaignThemes() {
         return;
     }
 
-    console.log(form);
     form.addEventListener('submit', function (e) {
         let error = document.querySelector(form.dataset.error);
         const content = document.querySelector('textarea[name="content"]');

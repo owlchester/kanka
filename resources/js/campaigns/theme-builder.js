@@ -2,13 +2,9 @@ import { colord } from "colord";
 import tippy from "tippy.js";
 import Coloris from "@melloware/coloris";
 
-let fieldTheme;
+const fieldTheme = document.getElementById('field-theme');
 let theme = {};
 
-$(document).ready(function () {
-    init();
-    initDemoTooltip();
-});
 
 const init = () => {
     loadPreviousConfig();
@@ -29,15 +25,16 @@ const init = () => {
         colourPicked(event);
     });
 
-    $('#theme-builder').on('submit', function () {
-        let btn = $('#form-submit-main');
-        btn.addClass('loading').prop('disabled', true);
+    const form = document.getElementById('theme-builder');
+    form.onsubmit = (e) => {
+        const btn = document.getElementById('form-submit-main');
+        btn.classList.add('loading');
+        btn.setAttribute('disabled', 'disabled');
 
         // Grab the data from
-        fieldTheme.val(JSON.stringify(theme));
-
+        fieldTheme.value = JSON.stringify(theme);
         return true;
-    });
+    };
 };
 
 const colourPicked = (event) => {
@@ -46,9 +43,7 @@ const colourPicked = (event) => {
 };
 
 const loadPreviousConfig = () => {
-    fieldTheme = $('#field-theme');
-
-    let val = fieldTheme.val();
+    let val = fieldTheme.value;
     if (!val) {
         console.log('no config');
         return;
@@ -57,7 +52,6 @@ const loadPreviousConfig = () => {
     Object.entries(json).forEach(([variable, value]) => {
         theme[variable] = value;
     });
-
 };
 
 const updateColour = (colour, target) => {
@@ -144,3 +138,6 @@ const tooltipContent = () => {
     return str;
 };
 
+
+init();
+initDemoTooltip();

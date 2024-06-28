@@ -1,7 +1,13 @@
 
 window.formErrorHandler = function(err, form) {
-    $('.input-error').removeClass('input-error');
-    $('.text-error').remove();
+    const existingErrors = document.querySelectorAll('.input-error');
+    existingErrors.forEach(field => {
+        field.classList.remove('input-error');
+    });
+    const textError = document.querySelector('.text-error');
+    if (textError) {
+        textError.remove();
+    }
 
     // Re-enable the submit button
     $(form).find('.btn-primary')
@@ -17,7 +23,7 @@ window.formErrorHandler = function(err, form) {
 
     // If it's 403, the session is gone
     if (err.status === 403) {
-        $('#entity-form-403-error').show();
+        document.querySelector('#entity-form-403-error').classList.remove('hidden');
         return;
     }
 

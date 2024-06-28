@@ -2,8 +2,6 @@
  * Crud
  */
 
-import ajaxModal from "./components/ajax-modal";
-
 var entityFormActions;
 
 // Entity Calendar
@@ -16,8 +14,6 @@ var entityName;
 
 $(document).ready(function () {
     registerDynamicRows();
-
-    ajaxModal();
 
     registerEntityFormActions();
     registerUnsavedChanges();

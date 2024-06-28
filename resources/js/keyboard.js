@@ -1,9 +1,4 @@
 $(document).ready(function() {
-    // Look for a form to save
-    initKeyboardSave();
-    initKeyboardShortcuts();
-    initPasting();
-
     $(document).on('shown.bs.modal', () => {
         initPasting();
         initKeyboardShortcuts();
@@ -161,3 +156,7 @@ const initPasting = () => {
         });
     });
 };
+
+initKeyboardSave();
+initKeyboardShortcuts();
+initPasting();

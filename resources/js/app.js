@@ -28,7 +28,7 @@ $(document).ready(function() {
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
      */
-    $(document).on('shown.bs.modal shown.bs.popover', function() {
+    $(document).on('shown.bs.modal', function() {
         // Also re-bind select2 elements on modal show
         window.initForeignSelect();
         window.initTags();
@@ -42,6 +42,7 @@ $(document).ready(function() {
         initImageRemoval();
         initFeedbackButtons();
         initDismissible();
+        initPermBtn();
     });
 });
 
@@ -114,10 +115,9 @@ function manageTabs() {
     tabLink.on("shown.bs.tab", function (e) {
         e.preventDefault();
         let tabId = $(e.target).attr("href").substr(1);
-        let dataToggle = $(e.target).attr('ajax-modal');
         let nohash = $(e.target).data("nohash");
 
-        if ((dataToggle && dataToggle === 'ajax-modal') || (nohash)) {
+        if (nohash) {
             // Modal? Don't do more.
             return true;
         }
@@ -263,21 +263,24 @@ const initFeedbackButtons = () => {
     });
 
     // We should move this to a custom event handler?
-    $('#quick-privacy-select').change(function () {
-        let toggleUrl = $(this).data('url');
+    const quickPrivacy = document.getElementById('quick-privacy-select');
+    if (quickPrivacy) {
+        quickPrivacy.addEventListener('change', function () {
+            const toggleUrl = this.dataset.url;
 
-        axios
-            .post(toggleUrl)
-            .then(response => {
-                window.showToast(response.data.toast);
-                let body = document.querySelector('body');
-                if (!response.data.status) {
-                    body.classList.add('kanka-entity-private');
-                } else {
-                    body.classList.remove('kanka-entity-private');
-                }
-            });
-    });
+            axios
+                .post(toggleUrl)
+                .then(response => {
+                    window.showToast(response.data.toast);
+                    let body = document.querySelector('body');
+                    if (response.data.status) {
+                        body.classList.add('kanka-entity-private');
+                    } else {
+                        body.classList.remove('kanka-entity-private');
+                    }
+                });
+        });
+    }
 };
 
 const initDismissible = () => {
@@ -296,6 +299,19 @@ const initDismissible = () => {
     });
 };
 
+const initPermBtn = () => {
+    const btn = document.querySelector('.btn-manage-perm');
+    if (!btn) {
+        return;
+    }
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.closeDialog('primary-dialog');
+        let permTarget = btn.dataset.target;
+        document.querySelector(permTarget).click();
+    });
+};
+
 // Splitting off the js files into logical blocks
 import './keyboard';
 import './crud';
@@ -303,7 +319,6 @@ import './post';
 import './post-layouts';
 import './calendar';
 import './keep-alive';
-//import './search');
 import './quick-creator';
 import './datagrids';
 import './animations';

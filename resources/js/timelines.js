@@ -1,52 +1,49 @@
-let oldEra, eraAdd;
-
-$(document).ready(function () {
-    registerElementForm();
-});
+let oldEra;
 
 /**
  * Dynamically update the element's "position" dropdown field based on the selected era.
  */
-function registerElementForm() {
-    let field = $('#element-era-id');
-    if (field.length === 0) {
+const registerElementForm = () => {
+    const field = document.getElementById('element-era-id');
+    if (!field) {
         return;
     }
-    oldEra = field.val();
-
-    if (field.length === 1) {
-        field.on('change', function () {
-            // Load era list
-            loadTimelineEra(field.val());
-        });
-    }
-}
+    oldEra = field.value;
+    field.addEventListener('change', function () {
+        // Load era list
+        loadTimelineEra(field.value);
+    });
+};
 
 /**
  *
  * @param eraID
  */
-function loadTimelineEra(eraID) {
+const loadTimelineEra = (eraID) => {
     eraID = parseInt(eraID);
-    let url = $('input[name="era-data-url"]').data('url').replace('/0/', '/' + eraID + '/');
-    let oldPosition = $('input[name="oldPosition"]').data('url');
+    let url = document.querySelector('input[name="era-data-url"]').dataset.url.replace('/0/', '/' + eraID + '/');
+    let oldPosition = document.querySelector('input[name="oldPosition"]').dataset.url;
 
-    $.ajax(url)
-        .done(function (data) {
-            let eraField = $('select[name="position"]');
-            eraField.html('');
+    axios.get(url)
+        .then(res => {
+            let eraField = document.querySelector('select[name="position"]');
+            eraField.innerHTML = '';
             let id = 1;
-            $.each(data.positions, function (i) {
-                let position = data.positions[i];
-                let selected = ' selected="selected"';
-
+            const options = Object.entries(res.data.positions);
+            options.forEach(function (position, i) {
+                const newOption = document.createElement('option');
+                newOption.text = position[1];
                 if (oldPosition && !i && (oldEra == eraID)) {
-                    eraField.append('<option value="" data-length="' + position.length + '" ' + selected + '>' + position + '</option>');
+                    newOption.value = 1;
+                    eraField.appendChild(newOption);
                 }
                 if (i) {
-                    eraField.append('<option value="' + id + '" data-length="' + position.length + '" ' + selected + '>' + position + '</option>');
+                    newOption.value = id;
+                    eraField.appendChild(newOption);
                 }
                 id++;
             });
         });
-}
+};
+
+registerElementForm();

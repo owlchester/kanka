@@ -1,8 +1,8 @@
 @php $unique = 'alert-' . uniqid(); @endphp
-<div class="alert alert-{{ $type }} {!! $class ?? null !!} border-0 rounded p-4 flex shadow-xs gap-2 items-center
+<div class="alert alert-{{ $type }} {!! $class ?? null !!} border-0 rounded p-4 flex shadow-xs gap-2 items-center {{ $hidden ? 'hidden' : null }}
 @if ($dismissible) opacity-100 duration-150 transition-opacity {{ $unique }} @endif"
      @if ($id) id="{{ $id }}" @endif
-@if ($hidden) style="display: none" @endif>
+>
     <div class="grow flex flex-col gap-2">
         {!! $slot !!}
     </div>

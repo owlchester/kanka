@@ -1,9 +1,4 @@
 $(document).ready(function() {
-    // Look for a form to save
-    registerPrivacyTogglers();
-    registerEntityPrivacyAlert();
-
-
     $(document).on('shown.bs.modal', () => {
         registerPrivacyTogglers();
     });
@@ -45,12 +40,20 @@ const registerPrivacyToggler = (element) => {
  * Show a warning when the entity is set to private
  */
 const registerEntityPrivacyAlert = () => {
-    $('input[data-toggle="entity-privacy"]').change(function () {
-        let selector = $('#entity-is-private');
-        if ($(this).prop('checked')) {
-            selector.show();
+    const field = document.querySelector('input[data-toggle="entity-privacy"]');
+    if (!field) {
+        return;
+    }
+    field.addEventListener('change', function () {
+        let selector = document.getElementById('entity-is-private');
+        if (this.checked) {
+            selector.classList.remove('hidden')
         } else {
-            selector.hide();
+            selector.classList.add('hidden')
         }
     });
 };
+
+// Look for a form to save
+registerPrivacyTogglers();
+registerEntityPrivacyAlert();

@@ -111,10 +111,10 @@
         <x-forms.field field="leap-year" :label="__('calendars.fields.leap_year')">
             <input type="hidden" name="has_leap_year" value="0" />
             <x-checkbox :text="__('calendars.hints.leap_year')">
-                <input type="checkbox" name="has_leap_year" value="1" @if (old('has_leap_year', $source->has_leap_year ?? $model->has_leap_year ?? false)) checked="checked" @endif />
+                <input type="checkbox" name="has_leap_year" id="has_leap_year" value="1" @if (old('has_leap_year', $source->has_leap_year ?? $model->has_leap_year ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
-        <div class="grid grid-cols-2 gap-2 md:gap-5" id="calendar-leap-year" style="@if (isset($model) && $model->has_leap_year || request()->old('has_leap_year') || (isset($source) && $source->has_leap_year))@else display:none; @endif">
+        <div class="grid grid-cols-2 gap-2 md:gap-5 @if (isset($model) && $model->has_leap_year || request()->old('has_leap_year') || (isset($source) && $source->has_leap_year))@else hidden @endif" id="calendar-leap-year">
             <x-forms.field field="year-amount" :label="__('calendars.fields.leap_year_amount')">
                 <input type="number" name="leap_year_amount" value="{{ FormCopy::field('leap_year_amount')->string(0) ?: old('leap_year_amount', $model->leap_year_amount ?? null) }}" class="w-full" maxlength="191" placeholder="{{ __('calendars.placeholders.leap_year_amount') }}"/>
             </x-forms.field>

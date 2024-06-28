@@ -1,7 +1,6 @@
 $(document).ready(function () {
-    initImageFocus();
     $(document).on('shown.bs.modal', function() {
-        initImageFocus()
+        initImageFocus();
      });
 });
 
@@ -62,3 +61,6 @@ const drawBullseye = (top, left) => {
     bullseye.style.left = (left) + '%';
     bullseye.style.display = 'inherit';
 };
+
+
+initImageFocus();

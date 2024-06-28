@@ -40,7 +40,7 @@
                     <a href="{{ route('history.index', $campaign) }}" role="button" class="btn2 btn-sm">{{ __('crud.actions.reset') }}</a>
                 </div>
             @endif
-            <div class="flex-none filters-loading" style="display: none">
+            <div class="flex-none filters-loading hidden">
                 <x-icon class="load" />
             </div>
         </div>

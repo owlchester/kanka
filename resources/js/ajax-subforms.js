@@ -67,7 +67,7 @@ const displayErrors = (form, error) => {
 
     // If it's 403, the session is gone
     if (error.status === 403) {
-        $('#entity-form-403-error').show();
+        document.querySelector('#entity-form-403-error').classList.remove('hidden');
         stopAnimation(form);
     }
 
