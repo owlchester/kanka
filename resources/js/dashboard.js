@@ -1,142 +1,84 @@
 import Sortable from "sortablejs";
 
-var widgetVisible = new IntersectionObserver(function(entries) {
+const widgetVisible = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if(entry.isIntersecting) {
-            renderWidget(entries[0].target);
+            entries.forEach(widget => {
+                renderWidget(widget.target);
+            });
         }
     });
 }, { threshold: [0] });
-
-$(document).ready(function() {
-
-    if ($('[data-render]').length > 0) {
-        document.querySelectorAll('[data-render]').forEach((i) => {
-            if (i) {
-                widgetVisible.observe(i);
-            }
-        });
-    }
-
-    $('.preview-switch').click(function (e) {
-        e.preventDefault();
-
-        let preview = $('#widget-preview-body-' + $(this).data('widget'));
-        if (preview.hasClass('max-h-52')) {
-            preview.removeClass('max-h-52');
-            $(this).html('<i class="fa-solid fa-chevron-up"></i>');
-            $(this).parent().find('.gradient-to-base-100').hide();
-        } else {
-            preview.addClass('max-h-52');
-            $(this).html('<i class="fa-solid fa-chevron-down"></i>');
-            $(this).parent().find('.gradient-to-base-100').show();
-        }
-
-    });
-
-    if ($('.campaign-dashboard-widgets').length === 1) {
-        initDashboardAdminUI();
-    }
-
-    initDashboardRecent();
-    initDashboardCalendars();
-    initFollow();
-    removePreviewExpander();
-
-    initWelcomePulse();
-});
 
 /**
  *
  */
 const initDashboardAdminUI = () => {
+    if (!document.querySelector('.campaign-dashboard-widgets')) {
+        return;
+    }
 
     let el = document.getElementById('widgets');
     new Sortable(el, {
         handle: '.handle',
         onEnd: function (/**Event*/evt) {
-            $.post({
-                url: $('#widgets').data('url'),
-                dataType: 'json',
-                data: $('input[name="widgets[]"]').serialize()
-            }).done(function(res) {
-                if (res.success && res.message) {
-                    window.showToast(res.message);
-                }
+
+            const url = document.getElementById('widgets').dataset.url;
+            let serializedData = '';
+            const inputs = document.querySelectorAll('input[name="widgets[]"]');
+            inputs.forEach(input => {
+                serializedData += `${input.name}=${encodeURIComponent(input.value)}&`;
             });
+
+            axios.post(url, serializedData)
+                .then(res => {
+                    if (res.data.success && res.data.message) {
+                        window.showToast(res.data.message);
+                    }
+                });
         }
     });
 
     $(document).on('shown.bs.modal', function() {
-        let summernoteConfig = $('#summernote-config');
-        if (summernoteConfig.length > 0) {
+        const summernoteConfig = document.getElementById('summernote-config');
+        if (summernoteConfig) {
             window.initSummernote();
         }
 
-        $.each($('[data-img="delete"]'), function () {
-            $(this).click(function (e) {
+        const img = document.querySelectorAll('[data-img="delete"]');
+        img.forEach(i => {
+            i.addEventListener('click', function (e) {
                 e.preventDefault();
-                $('input[name=' + $(this).data('target') + ']')[0].value = 1;
-                $(this).parent().parent().hide();
+                document.querySelector('input[name=' + i.dataset.target + ']').value = 1;
+                i.closest('.preview').classList.add('hidden');
             });
         });
     });
 };
 
-/**
- *
- */
-const initDashboardRecent = () => {
-    const elements = document.querySelectorAll('.widget-recent-more');
-    elements.forEach(el => {
-        el.addEventListener('click', loadMoreEntities);
-    });
-}
-
-function loadMoreEntities (e) {
-    e.preventDefault();
-    $(this).find('.spinner').show();
-    $(this).find('span').hide();
-
-    $.ajax({
-        url: $(this).data('url'),
-        context: this
-    }).done(function(data) {
-        $(this).closest('.widget-recent-list').append(data);
-        $(this).remove();
-
-        initDashboardRecent();
-        window.ajaxTooltip();
-    });
-}
 
 /**
  *
  */
 const initDashboardCalendars = () => {
-    $('.widget-calendar-switch').unbind('click').click(function(e) {
-        e.preventDefault();
+    const switchers = document.querySelectorAll('.widget-calendar-switch');
+    if (switchers.length === 0) {
+        return;
+    }
+    switchers.forEach(switcher => {
+        switcher.addEventListener('click', (e) => {
+            e.preventDefault();
 
-        let url = $(this).data('url'),
-            widget = $(this).data('widget');
+            const url = switcher.dataset.url;
+            const id = switcher.dataset.widget;
 
-        $('#widget-body-' + widget).hide();
-        $('#widget-loading-' + widget).show();
+            document.querySelector('#widget-body-' + id).classList.add('hidden');
+            document.querySelector('#widget-loading-' + id).classList.remove('hidden');
 
-        $.ajax({
-            url: url,
-            method: 'POST',
-            context: this
-        }).done(function(data) {
-            if (!data) {
-                return;
-            }
-            // Redirect page
-            let widget = $(this).data('widget');
-            $('#widget-loading-' + widget).hide();
-            $('#widget-body-' + widget).html(data).show();
-            $(document).trigger('shown.bs.modal');
-            initDashboardCalendars();
+            axios.post(url)
+                .then(res => {
+                    renderCalendar(id, res.data);
+                });
         });
     });
 };
@@ -145,76 +87,62 @@ const initDashboardCalendars = () => {
  * Follow / Unfollow a campaign
  */
 const initFollow = () => {
-    const btn = $('#campaign-follow');
-    const text = $('#campaign-follow-text');
+    const btn = document.querySelector('#campaign-follow');
+    const text = document.querySelector('campaign-follow-text');
 
-    if (btn.length !== 1) {
+    if (!btn) {
         return;
     }
 
-    const status = btn.data('following');
+    const status = btn.dataset.following;
     if (status) {
-        text.html(btn.data('unfollow'));
+        text.innerHTML = btn.dataset.unfollow;
     } else {
-        text.html(btn.data('follow'));
+        text.innerHTML = btn.dataset.follow;
     }
-    btn.show();
+    btn.classList.remove('hidden');
 
     btn.click(function (e) {
         e.preventDefault();
-
-        $.post({
-            url: $(this).data('url'),
-            method: 'POST'
-        }).done(function(data) {
-            if (data.following) {
-                text.html(btn.data('unfollow'));
-            } else {
-                text.html(btn.data('follow'));
-            }
+        axios.post(btn.dataset.url)
+            .then(res => {
+                if (res.data.following) {
+                    text.innerHTML = btn.dataset.unfollow;
+                } else {
+                    text.innerHTML = btn.dataset.follow;
+                }
         });
     });
 };
 
-const removePreviewExpander = () => {
-    $.each($('[data-toggle="preview"]'), function() {
-        // If we are exactly the max-height, some content is hidden
-        // console.log('compare', $(this).height(), 'vs', $(this).css('max-height'));
-        if ($(this).height() === parseInt($(this).css('max-height'))) {
-            $(this).next().removeClass('hidden');
-        } else {
-            $(this).removeClass('pinned-entity preview');
-        }
-        //$(this).next().removeClass('hidden');
-    });
-};
 
 /**
  * Render an deferred-rendering widget
  * @param widget
  */
-function renderWidget(widget) {
-    widget = $(widget);
-    $.ajax({
-        url: widget.data('render'),
-        context: this,
-    }).done(function (res) {
-        let id = widget.data('id');
-        $('#widget-loading-' + id).hide();
-        $('#widget-body-' + id).html(res).show();
-
-        $(document).trigger('shown.bs.modal');
-        initDashboardCalendars();
+const renderWidget = (widget) => {
+    axios.get(widget.dataset.render)
+        .then(res => {
+            let id = widget.dataset.id;
+            renderCalendar(id, res.data);
     });
-}
+};
 
-function initWelcomePulse() {
+const renderCalendar = (id, html) => {
+    document.querySelector('#widget-loading-' + id).classList.add('hidden');
+    document.querySelector('#widget-body-' + id).innerHTML = html;
+    document.querySelector('#widget-body-' + id).classList.remove('hidden');
+    $(document).trigger('shown.bs.modal');
+    initDashboardCalendars();
+};
+
+const initWelcomePulse = () => {
     document.querySelectorAll('[data-pulse]').forEach((el) => {
         el.addEventListener('click', clickWelcomePulse);
     });
-}
+};
 
-function clickWelcomePulse(e) {
+const clickWelcomePulse = (e) => {
     e.preventDefault();
     let target = document.querySelector(this.dataset.pulse);
     let content = this.dataset.content;
@@ -228,4 +156,33 @@ function clickWelcomePulse(e) {
         interactive: true,
         trigger: 'manual',
     });
-}
+};
+
+const initPreviewExpander = () => {
+    document.querySelectorAll('.preview-switch').forEach(preview => {
+        preview.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            let overlay = document.querySelector('#widget-preview-body-' + preview.dataset.widget);
+            if (overlay.classList.contains('max-h-52')) {
+                overlay.classList.remove('max-h-52');
+                preview.innerHTML = '<i class="fa-solid fa-chevron-up" aria-hidden="true"></i>';
+                preview.parentNode.querySelector('.gradient-to-base-100').classList.add('hidden');
+            } else {
+                overlay.classList.add('max-h-52');
+                preview.innerHTML = '<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>';
+                preview.parentNode.querySelector('.gradient-to-base-100').classList.remove('hidden');
+            }
+        });
+    });
+};
+
+initDashboardCalendars();
+initFollow();
+initWelcomePulse();
+initPreviewExpander();
+initDashboardAdminUI();
+
+document.querySelectorAll('[data-render]')?.forEach((i) => {
+    widgetVisible.observe(i);
+});

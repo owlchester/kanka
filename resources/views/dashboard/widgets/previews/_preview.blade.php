@@ -1,4 +1,4 @@
-<div class="preview overflow-hidden relative max-h-52" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
+<div class="preview overflow-hidden relative max-h-52" id="widget-preview-body-{{ $widget->id }}">
     {!! $slot !!}
     <div class="entity-content">
         {!! $model->parsedEntry() !!}

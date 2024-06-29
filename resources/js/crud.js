@@ -1,16 +1,8 @@
 /**
  * Crud
  */
-
 let entityFormActions;
 
-
-$(document).ready(function () {
-    registerDynamicRows();
-    registerDropdownFormActions();
-    registerUnsavedChanges();
-    registerModalLoad();
-});
 
 /**
  * Re-register any events that need to be binded when a modal is loaded
@@ -99,81 +91,86 @@ const registerDropdownFormActions = () => {
  */
 function registerUnsavedChanges() {
     // Return early if we have no elements to handle
-    entityFormActions = $('form[data-unload="1"]');
+    entityFormActions = document.querySelectorAll('form[data-unload="1"]');
     if (entityFormActions.length === 0) {
         return;
     }
-    let save = $('#form-submit-main');
+    let save = document.querySelector('#form-submit-main');
 
     // Save every input change
-    $(document).on('change', ':input', function () {
-        if ($(this).data('skip-unsaved')) {
-            return;
-        }
-        window.entityFormHasUnsavedChanges = true;
+    const inputs = document.querySelectorAll('input', 'checkbox', 'select', 'textarea');
+    inputs.forEach(input => {
+        input.addEventListener('change', function (e) {
+            if (input.dataset.skipUnsaved) {
+                return;
+            }
+            window.entityFormHasUnsavedChanges = true;
+        });
     });
 
-    if (save.length === 1) {
-        // Another way to bind the event
-        $(window).bind('beforeunload', function (e) {
-            if (window.entityFormHasUnsavedChanges) {
-                return "Unsaved data warning";
-            }
-        });
+    if (!save) {
+        return;
     }
+    // Another way to bind the event
+    window.addEventListener('beforeunload', function (e) {
+        if (window.entityFormHasUnsavedChanges) {
+            e.preventDefault();
+            e.returnValue = 'Unsaved data warning';
+        }
+    });
 }
 
 /**
  * When the entity form is submitted, we want to ajax validate the request first
  */
-function registerFormMaintenance() {
-    $('form[data-maintenance="1"]').each(function() {
-        // Because we call this function again on each modal shown (for loading forms in modals), we need to
-        // save on each form if the listener has already been added, to avoid having multiple onSubmits on
-        // the same element for the same feature.
-        if ($(this).data('with-maintenance') === true) {
-            return;
-        }
-        $(this).data('with-maintenance', true);
-
-        $(this).submit(function (e) {
-            if ($(this).data('checked-maintenance') === true) {
-                return true;
-            }
-            e.preventDefault();
-
-            // If it's a form with images, we need to handle it a little bit differently
-            let ajaxData = {
-                url: $(this).attr('action'),
-                method: $(this).attr('method'),
-                data: $(this).serialize(),
-                context: this,
-            };
-            // If the form has files (ignoring the summernote one), include it
-            if ($(this).find('input[type="file"]').not('.note-image-input').length > 0) {
-                let formData = new FormData(this);
-                ajaxData = {
-                    url: $(this).attr('action'),
-                    method: $(this).attr('method'),
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    context: this,
-                };
-            }
-
-            $.ajax(ajaxData).done(function () {
-                // If the validation succeeded, we can really submit the form
-                $(this)
-                    .data('checked-maintenance', true)
-                    .submit();
-            }).fail(function (err) {
-                window.formErrorHandler(err, this);
-            });
-        });
-    });
-}
+// function registerFormMaintenance() {
+//     $('form[data-maintenance="1"]').each(function() {
+//         // Because we call this function again on each modal shown (for loading forms in modals), we need to
+//         // save on each form if the listener has already been added, to avoid having multiple onSubmits on
+//         // the same element for the same feature.
+//         if ($(this).data('with-maintenance') === true) {
+//             return;
+//         }
+//         $(this).data('with-maintenance', true);
+//
+//         $(this).submit(function (e) {
+//             if ($(this).data('checked-maintenance') === true) {
+//                 return true;
+//             }
+//             e.preventDefault();
+//
+//             // If it's a form with images, we need to handle it a little bit differently
+//             let ajaxData = {
+//                 url: $(this).attr('action'),
+//                 method: $(this).attr('method'),
+//                 data: $(this).serialize(),
+//                 context: this,
+//             };
+//             // If the form has files (ignoring the summernote one), include it
+//             if ($(this).find('input[type="file"]').not('.note-image-input').length > 0) {
+//                 let formData = new FormData(this);
+//                 ajaxData = {
+//                     url: $(this).attr('action'),
+//                     method: $(this).attr('method'),
+//                     data: formData,
+//                     cache: false,
+//                     contentType: false,
+//                     processData: false,
+//                     context: this,
+//                 };
+//             }
+//
+//             $.ajax(ajaxData).done(function () {
+//                 // If the validation succeeded, we can really submit the form
+//                 $(this)
+//                     .data('checked-maintenance', true)
+//                     .submit();
+//             }).fail(function (err) {
+//                 window.formErrorHandler(err, this);
+//             });
+//         });
+//     });
+// }
 
 
 /**
@@ -181,18 +178,21 @@ function registerFormMaintenance() {
  * Used in the calendar forms extensively
  */
 const registerDynamicRows = () => {
-    $('.dynamic-row-add').on('click', function(e) {
-        e.preventDefault();
+    const rows = document.querySelectorAll('.dynamic-row-add');
+    rows.forEach(row => {
+        row.addEventListener('click', function (e) {
+            e.preventDefault();
 
-        let target = $(this).data('target');
-        let template = $(this).data('template');
-        $('.' + target).append('<div class="">' +
-            $('#' + template).html() +
-            '</div>');
+            const target = row.dataset.target;
+            const template = row.dataset.template;
+            const child = document.createElement('div');
+            child.innerHTML = document.querySelector('#' + template).innerHTML;
+            document.querySelector('.' + target).append(child);
 
-        registerDynamicRowDelete();
-        $(document).trigger('shown.bs.modal');
-        return false;
+            registerDynamicRowDelete();
+            $(document).trigger('shown.bs.modal');
+            return false;
+        });
     });
     registerDynamicRowDelete();
 };
@@ -201,22 +201,29 @@ const registerDynamicRows = () => {
  * Register a listener to delete a dynamically added row in the forms
  */
 const registerDynamicRowDelete = () => {
-    $.each($('.dynamic-row-delete'), function () {
-        if ($(this).data('init') === 1) {
+    const rows = document.querySelectorAll('.dynamic-row-delete');
+    rows.forEach(row => {
+        if (row.dataset.init === 1) {
             return;
         }
-        $(this).data('init', 1).on('click', function (e) {
+        row.dataset.init = 1;
+        row.addEventListener('click', function (e) {
             e.preventDefault();
-            $(this).closest('.parent-delete-row').remove();
-        }).on('keydown', function (e) {
+            row.closest('.parent-delete-row').remove();
+        });
+        row.addEventListener('keydown', function (e) {
             // Support for pressing enter on a span
             if (e.key !== 'Enter') {
                 return;
             }
-            $(this).click();
+            row.click();
         });
     });
 };
 
 
+registerDynamicRows();
+registerDropdownFormActions();
+registerUnsavedChanges();
+registerModalLoad();
 registerEntityNameCheck();

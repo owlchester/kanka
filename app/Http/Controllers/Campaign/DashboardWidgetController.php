@@ -73,6 +73,9 @@ class DashboardWidgetController extends Controller
     public function store(StoreCampaignDashboardWidget $request, Campaign $campaign)
     {
         $this->authorize('dashboard', $campaign);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
@@ -121,6 +124,9 @@ class DashboardWidgetController extends Controller
     public function update(StoreCampaignDashboardWidget $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('dashboard', $campaign);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         //get all request data
         $input = $request->all();
