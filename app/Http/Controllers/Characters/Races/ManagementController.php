@@ -21,10 +21,8 @@ class ManagementController extends Controller
 
     public function index(Campaign $campaign, Character $character)
     {
-        // Check that the user has permission to actually be here
-        if (!auth()->user()->can('raceManagement', $character)) {
-            return redirect()->route('dashboard', $campaign);
-        }
+        $this->authorize('raceManagement', $character);
+
         $this->campaign($campaign)->authEntityView($character->entity);
 
         $races = $character
@@ -44,11 +42,8 @@ class ManagementController extends Controller
      */
     public function save(Campaign $campaign, Character $character, ManageRaces $request)
     {
-        $this->authorize('update', $character);
-        if (!auth()->user()->can('raceManagement', $character)) {
-            return redirect()
-                ->route('entities.show', [$campaign, $character->entity]);
-        }
+        $this->authorize('raceManagement', $character);
+
         $races = $character->races()->pluck('races.id')->toArray();
         $privates = $request->get('race_privates');
 
