@@ -129,7 +129,7 @@
 
 @section('modals')
     @parent
-    <x-form :action="['maps.map_markers.store', $campaign, $model]" class="ajax-subform">
+    <x-form :action="['maps.map_markers.store', $campaign, $model]">
     <x-dialog
         id="marker-modal"
         :title="__('maps/markers.create.title', ['name' => $model->name])"

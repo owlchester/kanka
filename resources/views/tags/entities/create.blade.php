@@ -10,7 +10,7 @@
 ])
 
 @section('content')
-    <x-form :action="$formOptions" class="ajax-subform">
+    <x-form :action="$formOptions">
         @include('partials.forms.form', [
             'title' => __('tags.children.create.modal_title', ['name' => $model->name]),
             'content' => 'tags.entities._form',

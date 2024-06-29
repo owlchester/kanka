@@ -10,7 +10,7 @@
 ])
 
 @section('content')
-    <x-form :action="['campaign_roles.store', $campaign]" class="ajax-subform">
+    <x-form :action="['campaign_roles.store', $campaign]">
 
     @include('partials.forms.form', [
             'title' => __('campaigns.roles.create.title'),

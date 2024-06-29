@@ -29,7 +29,7 @@ $options = [
     <div class="text-center text-xg" id="spinner">
         <x-icon class="load" />
     </div>
-    <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$campaign, $entity, 'option' => $option]) }}"></div>
+    <div id="cy" class="cy hidden" data-url="{{ route('entities.relations_map', [$campaign, $entity, 'option' => $option]) }}"></div>
 </x-box>
 
 @section('scripts')

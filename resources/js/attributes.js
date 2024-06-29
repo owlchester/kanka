@@ -1,171 +1,65 @@
-import Sortable from "sortablejs";
-
-/**
- * When adding a new attribute, we give it a negative id to avoid issues with checkboxes losing information
- * @type {number}
- */
-let attribute_id_count = -1000;
 let maxFields = false;
-let maxFieldAlert;
+const maxFieldAlert = document.querySelector('.alert-too-many-fields');
 
-const target = $('#add_attribute_target');
-
-import dynamicMentions from "./mention";
+let liveEditURL, liveEditModal;
 
 $(document).ready(function() {
     initLiveAttributes();
-    if ($('#add_attribute_target').length === 0) {
+    if (!document.getElementById('add_attribute_target')) {
         return;
     }
-    initAttributeUI();
 
-    let maxConfig = $('[data-max-fields]');
-    if (maxConfig.length === 1) {
-        maxFields = maxConfig.data('max-fields');
-        maxFieldAlert = $('.alert-too-many-fields');
+    const maxConfig = document.querySelector('[data-max-fields]');
+    if (maxConfig) {
+        maxFields = maxConfig.dataset.maxFields;
     }
 });
 
-/**
- * Initiate on click handles for attribute interface
- */
-const initAttributeUI = () => {
-    initAttributeHandlers();
-    initAddAttribute();
-
-    // Delete all visible attributes
-    $('#attributes-delete-all-confirm-submit').click(function(e) {
-        e.preventDefault();
-
-        $(this).siblings('input[name="delete-all-attributes"]').val(1);
-        $('#entity-attributes-all .attribute_delete').click();
-        $('#attributes-delete-all-confirm').modal('hide');
-        if (maxFieldAlert) {
+const initAddAttribute = () => {
+    if (maxFields !== false) {
+        const fieldCount = $('form :input').length + 4;
+        //console.log('checking', fieldCount, 'vs', maxFields);
+        if (fieldCount > maxFields) {
+            maxFieldAlert.show();
+            return;
+        } else {
             maxFieldAlert.hide();
         }
-
-        $(this).closest('dialog')[0].close();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-
-        return false;
-    });
-
-    $.each($('[data-toggle="private"]'), function () {
-        // Add the title first
-        if ($(this).hasClass('fa-lock')) {
-            $(this).prop('title', $(this).data('private'));
-        } else {
-            $(this).prop('title', $(this).data('public'));
-        }
-    });
-
-    $(document).on('shown.bs.modal', function () {
-        initAddAttribute();
-    });
+    }
 };
 
-const initAddAttribute = () => {
-    $('[data-attribute-template]').unbind('click').click(function (e) {
-        e.preventDefault();
 
-        if (maxFields !== false) {
-            let fieldCount = $('form :input').length + 4;
-            //console.log('checking', fieldCount, 'vs', maxFields);
-            if (fieldCount > maxFields) {
-                maxFieldAlert.show();
-                return;
-            } else {
-                maxFieldAlert.hide();
-            }
-        }
-        attribute_id_count -= 1;
-
-        let template = $(this).data('attribute-template');
-        let html = $(template).html().replace(/\$TMP_ID\$/g, attribute_id_count);
-        target.append(html);
-        initAttributeHandlers();
-        dynamicMentions();
-
-        return false;
-    });
-};
-
-/**
- * This function rebinds the delete on all buttons
- */
-const initAttributeHandlers = () => {
-    $.each($('.attribute_delete'), function() {
-        $(this).unbind('click');
-        $(this).on('click', function() {
-            $(this).parent().parent().remove();
-
-            if (maxFieldAlert) {
-                maxFieldAlert.hide();
-            }
-        });
-    });
-
-    $('[data-toggle="private"]').unbind('click').click(function() {
-        if ($(this).hasClass('fa-lock')) {
-            // Unlock
-            $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
-            $(this).prev('input:hidden').val("0");
-            window.showToast($(this).data('unlock'));
-        } else {
-            // Lock
-            $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
-            $(this).prev('input:hidden').val("1");
-            window.showToast($(this).data('lock'));
-        }
-    });
-
-    $('[data-toggle="star"]').unbind('click').click(function () {
-        if ($(this).hasClass('fa-regular')) {
-            // Unlock
-            $(this).removeClass('fa-regular').addClass('fa-solid').prop('title', $(this).data('entry'));
-            $(this).prev('input:hidden').val("1");
-            window.showToast($(this).data('pin'));
-        } else {
-            // Lock
-            $(this).removeClass('fa-solid').addClass('fa-regular').prop('title', $(this).data('tab'));
-            $(this).prev('input:hidden').val("0");
-            window.showToast($(this).data('unpin'));
-        }
-    });
-};
-
-let liveEditURL, liveEditModal;
 const initLiveAttributes = () => {
-    let config = $('[name="live-attribute-config"]');
-    if (config.length === 0) {
+    const config = document.querySelector('[name="live-attribute-config"]');
+    if (!config) {
         return;
     }
 
-    liveEditURL = config.data('live');
-    liveEditModal = $('#live-attribute-dialog');
+    liveEditURL = config.dataset.live;
+    liveEditModal = document.getElementById('live-attribute-dialog');
 
     // Add the live-edit-parsed attribute to variables to confirm that they are valid
     let uid = 1;
-    $.each($('.live-edit'), function () {
-        $(this).addClass('live-edit-parsed');
-        $(this).attr('data-uid', uid);
+    const fields = document.querySelectorAll('.live-edit');
+    fields.forEach(field => {
+        field.classList.add('live-edit-parsed');
+        field.dataset.uid = uid;
         uid++;
     });
 
-    $('.live-edit-parsed').unbind('click').click(function () {
-        //console.log('clicked on live edit parsed');
+    const parsedFields = document.querySelectorAll('.live-edit-parsed');
+    parsedFields.forEach(field => {
+        field.addEventListener('click', function (e) {
+            const id = field.dataset.id;
+            const url = liveEditURL + '?id=' + id + '&uid=' + field.dataset.uid;
 
-        let id = $(this).data('id');
+            $(document).on('shown.bs.modal', function () {
+                listenToLiveForm();
+            });
+            window.openDialog('live-attribute-dialog', url);
 
-        let url = liveEditURL + '?id=' + id + '&uid=' + $(this).data('uid');
-
-        $(document).on('shown.bs.modal', function () {
-            listenToLiveForm();
         });
-        window.openDialog('live-attribute-dialog', url);
-
     });
-
 
     $(document).on('shown.bs.modal', function () {
         initNewLiveAttributeForm();
@@ -173,41 +67,36 @@ const initLiveAttributes = () => {
 };
 
 const listenToLiveForm = () => {
-    liveEditModal.find('form').unbind('submit').submit(function (e) {
+    liveEditModal.querySelector('form').onsubmit = function(e) {
         e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        axios.post(form.getAttribute('action'), formData)
+            .then(result => {
+                liveEditModal.querySelector('article').innerHTML = '';
+                const dialog = document.getElementById('live-attribute-dialog');
+                dialog.close();
 
-        $.ajax({
-            method: 'POST',
-            context: this,
-            url: $(this).attr('action'),
-            data: $(this).serialize()
-        }).done(function (result) {
+                const target = document.querySelector('[data-uid="' + result.data.uid + '"]');
+                //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
+                target.dataset.attribute = result.data.attribute;
+                target.innerHTML = result.data.value;
+                if (result.data.value) {
+                    target.classList.remove('empty-value');
+                } else {
+                    target.classList.add('empty-value');
+                }
 
-            liveEditModal.find('article').html('');
-            let dialog = document.getElementById('live-attribute-dialog');
-            dialog.close();
-
-            let target = $('[data-uid="' + result.uid + '"]');
-            //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
-            target.attr('data-attribute', result.attribute);
-            target.html(result.value);
-            if (result.value) {
-                target.removeClass('empty-value');
-            } else {
-                target.addClass('empty-value');
-            }
-
-            window.showToast(result.success);
-
-        }).fail(function (result) {
-            //alert('error! check console logs');
-            //console.error('live-edit-error', result);
-            let dialog = document.getElementById('live-attribute-dialog');
-            dialog.close();
-        });
+                window.showToast(result.data.success);
+            })
+            .catch (err => {
+                //alert('error! check console logs');
+                //console.error('live-edit-error', result);
+                document.getElementById('live-attribute-dialog').close();
+            });
 
         return false;
-    });
+    };
 };
 
 const initNewLiveAttributeForm = () => {
@@ -216,31 +105,25 @@ const initNewLiveAttributeForm = () => {
     forms.forEach(function (form) {
         form.onsubmit = (e) => {
             e.preventDefault();
-            $.ajax({
-                method: 'POST',
-                context: this,
-                url: form.getAttribute('action'),
-                data: $(form).serialize()
-            }).done(function (result) {
+            const formData = new FormData(form);
+            axios.post(form.getAttribute('action'), formData)
+                .then(res => {
+                    primaryModal.querySelector('article').innerHTML = '';
+                    primaryModal.close();
 
-                primaryModal.getElementsByTagName('article')[0].innerHTML = '';
-                primaryModal.close();
+                    const target = document.querySelector('[data-live-id="' + res.data.id + '"]');
+                    //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
+                    target.dataset.dataAttribute = res.data.attribute;
+                    target.innerHTML = res.data.value;
 
-                let target = document.querySelector('[data-live-id="' + result.id + '"]');
-                //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
-                target.dataset.dataAttribute = result.attribute;
-                target.innerHTML = result.value;
-
-                window.showToast(result.success);
-
-            }).fail(function (result) {
-                //alert('error! check console logs');
-                //console.error('live-edit-error', result);
-                if (result.responseJSON.message) {
-                    window.showToast(result.responseJSON.message, 'error');
-                }
-                primaryModal.close();
-            });
+                    window.showToast(res.data.success);
+                })
+                .catch(err => {
+                    if (err.response.data.message) {
+                        window.showToast(err.response.data.message, 'error');
+                    }
+                    primaryModal.close();
+                });
         };
     });
 };

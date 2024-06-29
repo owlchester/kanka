@@ -8,7 +8,7 @@
 ])
 
 @section('content')
-    <x-form :action="['campaign_invites.store', $campaign]" class="ajax-subform">
+    <x-form :action="['campaign_invites.store', $campaign]">
         @include('partials.forms.form', [
             'title' => __('campaigns.invites.actions.link'),
             'content' => 'campaigns.invites._form',

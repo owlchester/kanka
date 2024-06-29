@@ -15,6 +15,7 @@
             @include('partials.errors')
             @include('quests.elements._form')
             <x-dialog.footer>
+                <input id="submit-mode" type="hidden" value="true"/>
                 <div class="join">
                     <button class="btn2 btn-primary join-item" id="form-submit-main">
                         {{ __('crud.save') }}

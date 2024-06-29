@@ -2,20 +2,20 @@
  * Crud
  */
 
-var entityFormActions;
+let entityFormActions;
 
 // Entity Calendar
-var entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarHiddenField;
-var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
-var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
-var entityCalendarModalForm;
+let entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarHiddenField;
+let entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
+let entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
+let entityCalendarModalForm;
 
-var entityName;
+let entityName;
 
 $(document).ready(function () {
     registerDynamicRows();
 
-    registerEntityFormActions();
+    registerDropdownFormActions();
     registerUnsavedChanges();
 
     entityName = $('#form-entry input[name="name"]');
@@ -23,9 +23,7 @@ $(document).ready(function () {
         registerEntityNameCheck();
     }
 
-    registerFormSubmitAnimation();
     registerEntityCalendarForm();
-    registerFormMaintenance();
     registerEntityCalendarModal();
     registerModalLoad();
     registerPermissionToggler();
@@ -40,8 +38,7 @@ $(document).ready(function () {
 function registerModalLoad() {
     $(document).on('shown.bs.modal shown.bs.popover', function () {
         registerEntityCalendarModal();
-        registerEntityFormActions();
-        registerFormMaintenance();
+        registerDropdownFormActions();
     });
 }
 
@@ -82,36 +79,36 @@ function registerEntityNameCheck() {
 }
 
 /**
- *
+ * Forms have dropdown actions to select which submit is being
+ * done. Instead of using submit buttons like normal people,
+ * we use links that set the main action's name.
  */
-function registerEntityFormActions() {
+const registerDropdownFormActions = () => {
     // Return early if there are no elements in the page to be handled
-    entityFormActions = $('.form-submit-actions');
+    entityFormActions = document.querySelectorAll('.form-submit-actions');
     if (entityFormActions.length === 0) {
         return;
     }
-    let entityFormMainButton = $('#form-submit-main');
-    let entityFormSubmitMode = $('#submit-mode');
+    let entityFormMainButton = document.getElementById('form-submit-main');
+    let entityFormSubmitMode = document.getElementById('submit-mode');
     if (entityFormSubmitMode === undefined) {
         throw new Error("No submit mode hidden input found");
     }
 
     // Register click on each sub action
-    $.each(entityFormActions, function () {
-        if ($(this).data('loaded') === 1) {
+    entityFormActions.forEach(action => {
+        if(action.dataset.loaded === '1') {
             return;
         }
-        $(this).data('loaded', 1);
-
-        $(this).unbind('click').on('click', function () {
-            //console.log('setting the submit name to ' + $(this).data('action'));
-            entityFormSubmitMode.attr('name', $(this).data('action'));
-            entityFormMainButton.trigger("click");
-
+        action.dataset.loaded = '1';
+        action.addEventListener('click', function (event) {
+            entityFormSubmitMode.name = action.dataset.action;
+            entityFormMainButton.click();
+            event.preventDefault();
             return false;
         });
     });
-}
+};
 
 /**
  * On all forms, we want to animate the submit button when it's clicked.
@@ -242,14 +239,14 @@ function registerEntityCalendarModal() {
         if (!$(this).val()) {
             return;
         }
-        let url = $(this).data('url').replace('/0/', '/' + entityCalendarField.val() + '/')
+        const url = $(this).data('url').replace('/0/', '/' + entityCalendarField.val() + '/');
 
-        let params = {
+        const params = {
             day: entityCalendarDayField.val(),
             month: entityCalendarMonthField.val(),
             year: entityCalendarYearField.val(),
             length: $(this).val(),
-        }
+        };
 
         $.ajax(url, {data: params}).done(function (data) {
             if (data.overflow == true) {
@@ -501,15 +498,16 @@ function registerTrustDomain() {
             }
             keyValue += newDomain;
         }
+
         let expires = new Date();
         expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000));
-        document.cookie = cookieName + '=' + keyValue + ';expires=' + expires.toUTCString() + ';sameSite=Strict;path=/';
+        document.cookie = cookieName + '=' + keyValue + ';path=/;expires=' + expires.toUTCString() + ';sameSite=Strict';
     });
 }
 
 /**
  * Register a listened to add dynamic rows in the forms
- * Used in the calendar forms extensivly
+ * Used in the calendar forms extensively
  */
 function registerDynamicRows() {
     $('.dynamic-row-add').on('click', function(e) {

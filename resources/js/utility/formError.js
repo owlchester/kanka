@@ -1,5 +1,6 @@
 
 window.formErrorHandler = function(err, form) {
+    // Remove any existing errors from the form
     const existingErrors = document.querySelectorAll('.input-error');
     existingErrors.forEach(field => {
         field.classList.remove('input-error');
@@ -10,14 +11,16 @@ window.formErrorHandler = function(err, form) {
     }
 
     // Re-enable the submit button
-    $(form).find('.btn-primary')
-        .prop('disabled', false)
-        .removeClass('loading');
+    const submitBtn = form.querySelector('.btn-primary');
+    if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+    }
 
     // If we have a 503 error status, let's assume it's from cloudflare and help the user
     // properly save their data.
     if (err.status === 503) {
-        window.showToast(err.responseJSON.message, 'error');
+        window.showToast(err.data.message, 'error');
         return;
     }
 
@@ -28,15 +31,19 @@ window.formErrorHandler = function(err, form) {
     }
 
     // Loop through the errors to add the class and error message
-    let errors = err.responseJSON.errors;
+    const errors = err.data.errors;
     let logs = [];
 
-    let errorKeys = Object.keys(errors);
+    const errorKeys = Object.keys(errors);
     let foundAllErrors = true;
     errorKeys.forEach(function (i) {
-        let errorSelector = $('[name="' + i + '"]');
-        if (errorSelector.length > 0) {
-            errorSelector.addClass('input-error').parent().append('<div class="text-error">' + errors[i][0] + '</div>');
+        let errorSelector = document.querySelector('[name="' + i + '"]');
+        if (errorSelector) {
+            errorSelector.classList.add('input-error');
+            const errorElement = document.createElement('div');
+            errorElement.classList.add('text-error');
+            errorElement.innerHTML = errors[i][0];
+            errorSelector.parentNode.append(errorElement);
         } else {
             foundAllErrors = false;
             logs.push(errors[i][0]);
@@ -47,32 +54,43 @@ window.formErrorHandler = function(err, form) {
 
     // If not all error fields could be found, show a generic error message on top of the form.
     if (!foundAllErrors) {
-        let genericError = $('#entity-form-generic-error .error-logs');
-        genericError.html('');
+        const genericError = document.querySelector('#entity-form-generic-error .error-logs');
+        genericError.innerHTML = '';
         logs.forEach(function (i) {
-            let msg = i + "<br />";
-            genericError.append(msg);
+            genericError.append(i);
         });
-        $('#entity-form-generic-error').show();
+        document.querySelector('#entity-form-generic-error').classList.remove('hidden');
     }
 
-    // No tabs? Try no further
-    if ($(form).find('.tab-content').length === 0) {
+    jumpToError(form, errors);
+};
+
+const jumpToError = (form, errors) => {
+    // Find the first error and if it has an associated field
+    const firstErrorName = Object.keys(errors)[0];
+    const firstErrorField = form.querySelector('[name="' + firstErrorName + '"]');
+    // It's a generic error unrelated to a field? End it here
+    if (!firstErrorField) {
         return;
     }
 
-    let firstItem = Object.keys(errors)[0];
-    let firstItemDom = document.getElementsByName(firstItem);
+    // No tabs? Try and focus on the field directly
+    if (!form.querySelector('.tab-content')) {
+        focusOnField(firstErrorField);
+        return;
+    }
 
     // If we can actually find the first element, switch to it and the correct tab.
-    if (!firstItemDom[0]) {
-        return;
-    }
-    $('.tab-content .active').removeClass('active');
-    $('.nav-tabs li.active').removeClass('active');
-    let firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
-    firstPane.addClass('active');
-    $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
+    document.querySelector('.tab-content .active').classList.remove('active');
+    document.querySelector('.nav-tabs li.active').classList.remove('active');
+    const firstPane = document.querySelector('[name="' + firstErrorName + '"').closest('.tab-pane');
+    firstPane.classList.add('active');
+    document.querySelector('a[href="#' + firstPane.id + '"]').closest('li').classList.add('active');
 
-    firstItemDom[0].scrollIntoView({ behavior: 'smooth' });
-}
+    focusOnField(firstErrorField);
+};
+
+const focusOnField = (field) => {
+    field.focus();
+    field.scrollIntoView({ behavior: 'smooth' });
+};

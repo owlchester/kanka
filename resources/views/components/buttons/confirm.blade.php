@@ -1,5 +1,5 @@
 <{{ $element }}
-    class="btn2 {{ $sizes }}
+    class="btn2 btn-primary {{ $sizes }}
     @if ($full) w-full @endif {{ $colours }}"
     @if ($target) data-toggle="dialog" data-target="{{ $target }}"@endif
     @if ($name) name="{{ $name }}"@endif

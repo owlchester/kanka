@@ -8,7 +8,7 @@
 ])
 
 @section('content')
-    <x-form :action="['organisations.organisation_members.store', $campaign, $model->id]" class="ajax-subform">
+    <x-form :action="['organisations.organisation_members.store', $campaign, $model->id]">
         @include('partials.forms.form', [
             'title' => __('organisations.members.create.title', ['name' => $model->name]),
             'content' => 'organisations.members._form',

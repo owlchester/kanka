@@ -165,7 +165,7 @@
     <x-dialog id="map-marker-modal" :loading="true"></x-dialog>
 
 @can('update', $map)
-    <x-form :action="['maps.map_markers.store', $campaign, $map]" class="ajax-subform" id="map-marker-form">
+    <x-form :action="['maps.map_markers.store', $campaign, $map]" id="map-marker-form">
     <x-dialog
         id="marker-modal"
         :title="__('maps/markers.create.title', ['name' => $map->name])"

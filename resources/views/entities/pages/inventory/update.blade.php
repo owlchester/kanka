@@ -9,7 +9,7 @@
 ])
 
 @section('content')
-    <x-form method="PATCH" :action="['entities.inventories.update', $campaign, $entity->id, $inventory]" class="ajax-subform">
+    <x-form method="PATCH" :action="['entities.inventories.update', $campaign, $entity->id, $inventory]">
     @include('partials.forms.form', [
         'title' => __('entities/inventories.update.title', ['name' => $entity->name]),
         'content' => 'entities.pages.inventory._form',

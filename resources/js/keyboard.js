@@ -50,7 +50,7 @@ const initKeyboardShortcuts = () => {
             //console.log('escape', entityModal.has('.qq-modal-selection').length);
             // ESC to close quick creator selection modal
             const entityModal = document.getElementById('entity-modal');
-            if (entityModal.classList.contains('qq-modal-selection').length === 1) {
+            if (entityModal?.classList.contains('qq-modal-selection').length === 1) {
                 entityModal.modal('hide');
             }
         }
@@ -83,7 +83,7 @@ const initSaveKeyboardShortcut = (form) => {
         return;
     }
     form.dataset.shortcutInit = 1;
-    form.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function(e) {
         //console.log((e.ctrlKey || e.metaKey), e.key.toLowerCase(), e.key.toLowerCase() === 's', e.shiftKey);
         // Need to check on lowercase key, because shift will uppercase it
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {

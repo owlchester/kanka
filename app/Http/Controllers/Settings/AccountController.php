@@ -14,6 +14,7 @@ use App\Services\Account\DeletionService;
 class AccountController extends Controller
 {
     protected DeletionService $deletionService;
+
     /**
      * Create a new controller instance.
      *
@@ -84,10 +85,12 @@ class AccountController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(DeleteSettingsAccount $request)
     {
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
         $this->deletionService
             ->user($request->user())
             ->delete();

@@ -10,7 +10,7 @@
 ])
 
 @section('content')
-    <x-form :action="['entities.entity_abilities.store', $campaign, $entity]" class="ajax-subform">
+    <x-form :action="['entities.entity_abilities.store', $campaign, $entity]">
 
     @include('partials.forms.form', [
         'title' => __('entities/abilities.create.title', ['name' => $entity->name]),

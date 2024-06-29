@@ -17,7 +17,7 @@
 @section('content')
     @include('partials.errors')
 
-    <x-form :action="['timelines.timeline_eras.store', $campaign, $timeline]" id="timeline-era-form" class="ajax-subform">
+    <x-form :action="['timelines.timeline_eras.store', $campaign, $timeline]" id="timeline-era-form">
         <x-box>
             @include('timelines.eras._form', ['model' => null])
 

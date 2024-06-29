@@ -34,9 +34,11 @@
                 </x-grid>
             </x-forms.field>
 
-            <button class="btn2 btn-lg btn-block btn-error btn-outline subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+            <button class="btn2 btn-lg btn-block btn-primary btn-error btn-outline subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                 <span>{{ __('settings.subscription.actions.cancel_sub') }}</span>
-                <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
+                <span class="spinner hidden">
+                    <x-icon class="fa-solid fa-spin fa-spinner" />
+                </span>
             </button>
         </x-grid>
     </x-form>

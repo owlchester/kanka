@@ -116,18 +116,18 @@
         </p>
 
         <x-form :action="['settings.account.destroy']" method="PATCH">
-        <x-grid type="1/1">
-            <p>
-                {!! __('profiles.sections.delete.goodbye', ['code' => '<code>goodbye</code>']) !!}
-            </p>
-            <x-forms.field field="goodbye" :required="true">
-                <input type="text" name="goodbye" required />
-            </x-forms.field>
-            <x-buttons.confirm type="danger" outline="true" full="true">
-                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
-                {{ __('profiles.sections.delete.confirm') }}
-            </x-buttons.confirm>
-        </x-grid>
+            <x-grid type="1/1">
+                <p>
+                    {!! __('profiles.sections.delete.goodbye', ['code' => '<code>goodbye</code>']) !!}
+                </p>
+                <x-forms.field field="goodbye" :required="true">
+                    <input type="text" name="goodbye" required />
+                </x-forms.field>
+                <x-buttons.confirm type="danger" outline="true" full="true">
+                    <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                    {{ __('profiles.sections.delete.confirm') }}
+                </x-buttons.confirm>
+            </x-grid>
         </x-form>
     </x-dialog>
 @endsection

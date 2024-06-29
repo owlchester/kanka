@@ -9,7 +9,7 @@
 
 @section('content')
     @include('partials.errors')
-    <x-form :action="['characters.character_organisations.update', $campaign, $model->id, $member->id]" method="PATCH" class="ajax-subform" >
+    <x-form :action="['characters.character_organisations.update', $campaign, $model->id, $member->id]" method="PATCH" >
         @include('partials.forms.form', [
             'title' => __('characters.organisations.edit.title', ['name' => $model->name]),
             'content' => 'characters.organisations._form',

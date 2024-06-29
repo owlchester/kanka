@@ -59,7 +59,7 @@
         <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
             @if (! $limited)
             <div role="tabpanel" class="tab-pane active" id="card">
-                <x-form :action="['settings.subscription.subscribe', 'tier' => $tier]" id="subscription-confirm">
+                <x-form :action="['settings.subscription.subscribe', 'tier' => $tier]" id="subscription-confirm" direct>
 
                 <x-grid type="1/1" css="text-left">
                 @if (!$card)
@@ -90,19 +90,20 @@
                                 'financial' => __('settings.subscription.cancel.options.financial'),
                                 'not_using' => __('settings.subscription.cancel.options.not_using'),
                                 'missing_features' => __('settings.subscription.cancel.options.missing_features'),
-                                'custom' => __('settings.subscription.cancel.options.custom')
+                                'custom' => __('settings.subscription.cancel.options.other')
                             ]; @endphp
-                            <x-forms.select name="reason" :options="$reasons" class="w-full select-reveal-field" :extra="['data-change-target' => '#downgrade-reason-custom']" />
+                            <div class="flex flex-col gap-2">
+                                <x-forms.select name="reason" :options="$reasons" class="w-full select-reveal-field" :extra="['data-change-target' => '#downgrade-reason-custom']" />
 
-                            <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.downgrade_reason') }}" class="w-full" rows="4" id="downgrade-reason-custom" style="display: none"></textarea>
+                                <textarea name="reason_custom" placeholder="{{ __('settings.subscription.placeholders.downgrade_reason') }}" class="w-full" rows="4" id="downgrade-reason-custom"></textarea>
+                            </div>
                         </div>
 
                     @endif
                 @endif
                 <div class="text-center">
                     <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
-                        <span>{{ __('settings.subscription.actions.subscribe') }}</span>
-                        <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
+                        {{ __('settings.subscription.actions.subscribe') }}
                     </button>
                 </div>
                 </x-grid>
@@ -143,8 +144,7 @@
                         </p>
                         <div class="text-center">
                             <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
-                                <span>{{ __('settings.subscription.actions.subscribe') }}</span>
-                                <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
+                                {{ __('settings.subscription.actions.subscribe') }}
                             </button>
                         </div>
                         <input type="hidden" name="coupon" id="coupon" value="" />

@@ -10,7 +10,7 @@
 @section('content')
     @include('partials.errors')
 
-    <x-form :action="['campaign_roles.campaign_role_users.store', $campaign, 'campaign_role' => $role]" class="ajax-subform">
+    <x-form :action="['campaign_roles.campaign_role_users.store', $campaign, 'campaign_role' => $role]">
 
     @include('partials.forms.form', [
         'title' => __('campaigns.roles.users.actions.add'),

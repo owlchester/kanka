@@ -1,4 +1,4 @@
-<x-form :action="['campaign.gallery.folders.store', $campaign]" class="ajax-subform">
+<x-form :action="['campaign.gallery.folders.store', $campaign]">
     @include('partials.forms.form', [
         'title' => __('campaigns/gallery.new_folder.title'),
         'content' => 'gallery.folders._form',

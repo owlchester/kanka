@@ -19,8 +19,7 @@
     <x-form
         :action="['timelines.timeline_eras.update', $campaign, 'timeline' => $timeline, 'timeline_era' => $model]"
         method="PATCH"
-        id="timeline-era-form"
-        class="ajax-subform">
+        id="timeline-era-form">
     <x-box>
             @include('timelines.eras._form')
         <x-dialog.footer>
