@@ -36,4 +36,8 @@ class CharacterRace extends Model
     {
         return $this->belongsTo(Race::class);
     }
+
+    public function getCharacterRacesAttribute() {
+        return $this->character->races;
+    }
 }

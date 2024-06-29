@@ -39,18 +39,8 @@ class Character extends Layout
             'races' => [
                 'label' => Module::plural(config('entities.ids.race'), 'entities.races'),
                 'class' => self::ONLY_DESKTOP,
-                'render' => function ($model) {
-                    $html = '<div class="flex flex-wrap gap-1">';
-                    foreach ($model->character->races as $rel) {
-                        $html .= '<a class="name"
-                        data-toggle="tooltip-ajax"
-                        data-id="' . $rel->entity->id . '"
-                        data-url="' . route('entities.tooltip', [$rel->entity->campaign_id, $rel->entity->id]) . '"
-                        href="' . $rel->entity->url() . '">' . $rel->name . '</a>';
-                    }
-                    $html .= '</div>';
-                    return $html;
-                },
+                'render' => Standard::ENTITYLIST,
+                'with' => 'characterRaces',
                 'visible' => function () {
                     return !request()->has('race_id');
                 }
