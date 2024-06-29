@@ -11,6 +11,11 @@
         @if (!$tag->entity) @continue @endif
         <x-tags.bubble :tag="$tag" />
     @endforeach
+@elseif ($model instanceof \App\Models\CharacterRace)
+    @foreach ($model->character->entity->tags as $tag)
+        @if (!$tag->entity) @continue @endif
+        <x-tags.bubble :tag="$tag" />
+    @endforeach
 @else
     @foreach ($model->tags() as $tag)
         @if (!$tag->entity) @continue @endif

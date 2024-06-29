@@ -35,17 +35,17 @@ class NewsletterSubCommand extends Command
         User::whereNotNull('pledge')
             ->where('settings', 'like', '%mail_release%')
             ->chunk(500, function ($users) {
-            foreach ($users as $user) {
-                if (!$user->mail_release) {
-                    continue;
+                foreach ($users as $user) {
+                    if (!$user->mail_release) {
+                        continue;
+                    }
+                    $options = [
+                        'releases' => (bool) $user->mail_release
+                    ];
+                    $this->service->user($user)->update($options);
+                    $this->count++;
                 }
-                $options = [
-                    'releases' => (bool) $user->mail_release
-                ];
-                $this->service->user($user)->update($options);
-                $this->count++;
-            }
-        });
+            });
 
         $this->info('Processes ' . $this->count . ' users.');
     }

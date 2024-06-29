@@ -21,7 +21,7 @@
                 @if(!empty($existingFamilies[$family->id]))
                     @continue
                 @endif
-                @php $existingRaces[$family->id] = true; @endphp
+                @php $existingFamilies[$family->id] = true; @endphp
                 <x-entity-link
                     :entity="$family->entity"
                     :campaign="$campaign" />
@@ -33,15 +33,21 @@
         <div class="element profile-race">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
+                @if (auth()->check() && auth()->user()->can('raceManagement', $model))
+                    <span role="button" tabindex="0" class="entity-races-icon" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $model]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                        <i class="fa-solid fa-pencil" data-title="{{ __('characters.races.title') }}" aria-hidden="true"></i>
+                    </span>
+                @endif
             </div>
             @php $existingRaces = []; @endphp
-            @foreach ($model->races as $race)
-                @if(!empty($existingRaces[$race->id]))
+            @foreach ($model->characterRaces as $race)
+                @if(!empty($existingRaces[$race->race_id]))
                     @continue
                 @endif
-                @php $existingRaces[$race->id] = true; @endphp
+                @php $existingRaces[$race->race_id] = true; @endphp
+                @if ($race->is_private) <x-icon class="fa-solid fa-lock" /> @endif
                 <x-entity-link
-                    :entity="$race->entity"
+                    :entity="$race->race->entity"
                     :campaign="$campaign" />
             @endforeach
         </div>
@@ -55,6 +61,11 @@
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!},
                 {{ __('characters.fields.age') }}
+                @if (auth()->check() && auth()->user()->can('raceManagement', $model))
+                    <span role="button" tabindex="0" class="entity-races-icon" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $model]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                        <i class="fa-solid fa-pencil" data-title="{{ __('characters.races.title') }}" aria-hidden="true"></i>
+                    </span>
+                @endif
             </div>
             @php $existingRaces = []; @endphp
             @foreach ($model->races as $race)
@@ -62,9 +73,9 @@
                     @continue
                 @endif
                 @php $existingRaces[$race->id] = true; @endphp
-                    <x-entity-link
-                        :entity="$race->entity"
-                        :campaign="$campaign" />
+                <x-entity-link
+                    :entity="$race->entity"
+                    :campaign="$campaign" />
             @endforeach
             <span>{{ $model->age }}</span>
         </div>

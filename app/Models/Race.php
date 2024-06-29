@@ -27,6 +27,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Race[] $races
  * @property Location|null $location
  * @property Collection|Location[] $locations
+ * @property Collection|CharacterRace[] $characterRaces
  */
 class Race extends MiscModel
 {
@@ -177,6 +178,12 @@ class Race extends MiscModel
     public function races()
     {
         return $this->hasMany('App\Models\Race', 'race_id', 'id');
+    }
+
+    public function characterRaces(): HasMany
+    {
+        return $this->hasMany(CharacterRace::class, 'race_id')
+            ->with(['character', 'character.entity']);
     }
 
     /**

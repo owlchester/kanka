@@ -36,6 +36,7 @@ $(document).ready(function() {
         window.initTooltips();
         window.ajaxTooltip();
         window.initDropdowns();
+        window.initSortable();
         initAjaxPagination();
         initColourPicker();
         initDynamicDelete();

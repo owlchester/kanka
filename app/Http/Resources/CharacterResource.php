@@ -17,7 +17,7 @@ class CharacterResource extends EntityResource
         /** @var Character $model */
         $model = $this->resource;
 
-        $raceIDs = $model->races->pluck('id');
+        $raceIDs = $model->characterRaces->pluck('race.id');
         $familyIDs = $model->families->pluck('id');
 
         $character = [

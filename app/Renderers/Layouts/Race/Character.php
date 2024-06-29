@@ -16,7 +16,8 @@ class Character extends Layout
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
+                'with' => ['target' => 'character']
             ],
             'character_id' => [
                 'key' => 'name',
@@ -27,7 +28,7 @@ class Character extends Layout
                 'key' => 'type',
                 'label' => 'crud.fields.type',
                 'render' => function ($model) {
-                    return $model->type;
+                    return $model->character->type;
                 },
             ],
             'location' => [
@@ -39,7 +40,7 @@ class Character extends Layout
                 'label' => Module::plural(config('entities.ids.race'), 'entities.races'),
                 'class' => self::ONLY_DESKTOP,
                 'render' => Standard::ENTITYLIST,
-                'with' => 'races',
+                'with' => 'characterRaces',
                 'visible' => function () {
                     return !request()->has('race_id');
                 }

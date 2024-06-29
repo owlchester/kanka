@@ -18,7 +18,7 @@ class CharacterPolicy extends MiscPolicy
      */
     public function personality(User $user, Character $entity)
     {
-        return $entity->is_personality_visible || UserCache::user($user)->admin() ;
+        return $entity->is_personality_visible || UserCache::user($user)->admin();
     }
 
     /**
@@ -27,5 +27,14 @@ class CharacterPolicy extends MiscPolicy
     public function organisation(User $user, Character $entity)
     {
         return  $this->update($user, $entity);
+    }
+
+
+    /**
+     * @return bool|mixed
+     */
+    public function raceManagement(User $user, Character $entity)
+    {
+        return UserCache::user($user)->admin();
     }
 }

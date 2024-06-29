@@ -43,9 +43,12 @@
             'disableSort' => true,
             'render' => function($model) use ($campaign) {
                 $races = [];
-                foreach ($model->races as $race) {
+                foreach ($model->characterRaces as $race) {
+                    if (!$race->race || !$race->race->entity) {
+                        continue;
+                    }
                     $races[] = \Illuminate\Support\Facades\Blade::renderComponent(
-                    new \App\View\Components\EntityLink($race->entity, $campaign)
+                    new \App\View\Components\EntityLink($race->race->entity, $campaign)
                 );
                 }
                 return implode( ', ', $races);

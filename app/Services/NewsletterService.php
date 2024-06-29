@@ -68,7 +68,6 @@ class NewsletterService
     }
 
     /**
-     * @param array $options
      */
     public function update(array $options): bool
     {
