@@ -4,75 +4,58 @@
 
 let entityFormActions;
 
-// Entity Calendar
-let entityCalendarAdd, entityCalendarForm, entityCalendarField, entityCalendarHiddenField;
-let entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
-let entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
-let entityCalendarModalForm;
-
-let entityName;
 
 $(document).ready(function () {
     registerDynamicRows();
-
     registerDropdownFormActions();
     registerUnsavedChanges();
-
-    entityName = $('#form-entry input[name="name"]');
-    if (entityName.length === 1) {
-        registerEntityNameCheck();
-    }
-
-    registerEntityCalendarForm();
-    registerEntityCalendarModal();
     registerModalLoad();
-    registerPermissionToggler();
-    registerStoryActions();
-    registerStoryLoadMore();
-    registerTrustDomain();
 });
 
 /**
  * Re-register any events that need to be binded when a modal is loaded
  */
 function registerModalLoad() {
-    $(document).on('shown.bs.modal shown.bs.popover', function () {
-        registerEntityCalendarModal();
+    $(document).on('shown.bs.modal', function () {
         registerDropdownFormActions();
     });
 }
 
 function registerEntityNameCheck() {
-    if (entityName.data('live-disabled')) {
+    const field = document.querySelector('#form-entry input[name="name"]');
+    if (!field) {
         return;
     }
-    entityName.focusout(function () {
+    if (field.dataset.liveDisabled) {
+        return;
+    }
+    field.addEventListener('focusout', function (event) {
         // Don't bother if the user didn't set any value
-        if (!$(this).val()) {
+        if (!field.value) {
             return;
         }
-        let block = $(this).data('duplicate');
-        let entityCreatorDuplicateWarning = $(block);
-        let url = $(this).data('live') +
-            '?q=' + encodeURIComponent($(this).val()) +
-            '&type=' + $(this).data('type') +
-            '&exclude=' + $(this).data('id');
-        entityCreatorDuplicateWarning.hide();
-        const field = entityCreatorDuplicateWarning.find('.duplicates');
+        const block = this.dataset.duplicate;
+        const entityCreatorDuplicateWarning = document.querySelector(block);
+        const url = this.dataset.live +
+            '?q=' + encodeURIComponent(this.value) +
+            '&type=' + this.dataset.type +
+            '&exclude=' + this.dataset.id;
+        entityCreatorDuplicateWarning.classList.add('hidden');
+        const duplicates = entityCreatorDuplicateWarning.querySelector('.duplicates');
 
         // Check if an entity of the same type already exists, and warn when it does.
         fetch(url)
             .then((response) => response.json())
             .then((res) => {
-                field.innerHTML = '';
+                duplicates.innerHTML = '';
                 res.forEach(entity => {
-                    let link = document.createElement('a');
+                    const link = document.createElement('a');
                     link.href = entity.url;
                     link.text = entity.name;
-                    field.append(link);
+                    duplicates.appendChild(link);
                 });
                 if (res.length > 0) {
-                    entityCreatorDuplicateWarning.show();
+                    entityCreatorDuplicateWarning.classList.remove('hidden');
                 }
             });
     });
@@ -110,229 +93,6 @@ const registerDropdownFormActions = () => {
     });
 };
 
-/**
- * On all forms, we want to animate the submit button when it's clicked.
- */
-function registerFormSubmitAnimation() {
-    $.each($('form'), function () {
-        $(this).on('submit', function () {
-            // Saving, skip alert.
-            window.entityFormHasUnsavedChanges = false;
-
-            // Find the main button
-            let submit = $(this).find('.btn-primary');
-            if (submit.length > 0) {
-                $.each(submit, function () {
-                    if ($(this).parent().hasClass('dropdown') || $(this).hasClass('quick-creator-subform')) {
-                        $(this).prop('disabled', true);
-                    } else {
-                        $(this)
-                            .prop('disabled', true)
-                            .addClass('loading');
-                    }
-                });
-
-                // Inject the selected option for the "workflow" (submit-action)
-                $(this).append('<input type="hidden" name="' + $('#form-submit-main').attr('name') + '" />');
-            }
-
-            return true;
-        });
-    });
-}
-
-function registerEntityCalendarForm() {
-    entityCalendarAdd = $('#entity-calendar-form-add');
-    entityCalendarField = $('select[name="calendar_id"]');
-    entityCalendarHiddenField = $('input[name="calendar_id"]'); // Campaigns with a single calendar
-    entityCalendarModalForm = $('.entity-calendar-modal-form');
-    entityCalendarSubForm = $('.entity-calendar-subform');
-    entityCalendarCancel = $('#entity-calendar-form-cancel');
-    entityCalendarForm = $('.entity-calendar-form');
-    entityCalendarYearField = $('input[name="calendar_year"]');
-    entityCalendarMonthField = $('select[name="calendar_month"]');
-    entityCalendarDayField = $('select[name="calendar_day"]');
-    entityCalendarLoading = $('.entity-calendar-loading');
-
-    if (entityCalendarAdd.length === 1) {
-        entityCalendarAdd.on('click', function (e) {
-            e.preventDefault();
-
-            entityCalendarAdd.hide();
-            entityCalendarForm.show();
-
-            let defaultCalendarId = $(this).data('default-calendar');
-            if (defaultCalendarId) {
-                entityCalendarHiddenField.val(defaultCalendarId);
-                entityCalendarCancel.show();
-                entityCalendarSubForm.show();
-                loadCalendarDates(defaultCalendarId);
-            }
-            return false;
-        });
-
-        entityCalendarCancel.on('click', function (e) {
-            e.preventDefault();
-            entityCalendarField.val(null);
-            entityCalendarHiddenField.val(null);
-            entityCalendarCancel.hide();
-            calendarHideSubform();
-        });
-    }
-
-    if (entityCalendarField.length === 1) {
-        entityCalendarField.on('change', function () {
-            entityCalendarSubForm.hide();
-            // No new calendar selected? hide everything again
-            if (!$(this).val()) {
-                calendarHideSubform();
-                return false;
-            }
-            // Load month list
-            entityCalendarYearField = $('input[name="calendar_year"]');
-            entityCalendarMonthField = $('select[name="calendar_month"]');
-            entityCalendarDayField = $('select[name="calendar_day"]');
-
-            if (entityCalendarYearField.length === 0 && $('input[name="year"]').length === 1) {
-                entityCalendarYearField = $('input[name="year"]');
-                entityCalendarMonthField = $('select[name="month"]');
-                entityCalendarDayField = $('input[name="day"]');
-            }
-            loadCalendarDates(entityCalendarField.val());
-        });
-    }
-
-    registerMonthChange();
-}
-
-function registerEntityCalendarModal() {
-    if ($('#entity-calendar-modal-add').length === 0) {
-        return;
-    }
-    entityCalendarAdd = $('input[name=calendar-data-url]');
-    entityCalendarField = $('select[name="calendar_id"]');
-    entityCalendarYearField = $('input[name="year"]');
-    entityCalendarMonthField = $('select[name="month"]');
-    entityCalendarDayField = $('input[name="day"]');
-    entityCalendarLoading = $('.entity-calendar-loading');
-    entityCalendarSubForm = $('.entity-calendar-subform');
-
-    entityCalendarField.on('change', function () {
-        entityCalendarSubForm.hide();
-        // No new calendar selected? hide everything again
-        if (!entityCalendarField.val()) {
-            calendarHideSubform();
-            return;
-        }
-        // Load month list
-        loadCalendarDates(entityCalendarField.val());
-    });
-
-    //var defaultCalendarId = entityCalendarAdd.data('default-calendar');
-    if (entityCalendarField.val()) {
-        entityCalendarCancel.show();
-        entityCalendarSubForm.show();
-        loadCalendarDates(entityCalendarField.val());
-    }
-
-    $('.entity-calendar-subform input[name="length"]').focusout(function () {
-        if (!$(this).val()) {
-            return;
-        }
-        const url = $(this).data('url').replace('/0/', '/' + entityCalendarField.val() + '/');
-
-        const params = {
-            day: entityCalendarDayField.val(),
-            month: entityCalendarMonthField.val(),
-            year: entityCalendarYearField.val(),
-            length: $(this).val(),
-        };
-
-        $.ajax(url, {data: params}).done(function (data) {
-            if (data.overflow == true) {
-                $('.length-warning').show();
-            } else {
-                $('.length-warning').hide();
-            }
-        });
-    });
-}
-
-
-
-
-/**
- *
- * @param calendarID
- */
-const loadCalendarDates = (calendarID) => {
-    entityCalendarLoading.show();
-
-    calendarID = parseInt(calendarID);
-    let url = $('input[name="calendar-data-url"]').data('url').replace('/0/', '/' + calendarID + '/');
-    fetch(url)
-        .then((response) => response.json())
-        .then(data => {
-            let selectedDay = entityCalendarDayField.val();
-            entityCalendarYearField.html('');
-            entityCalendarMonthField.html('');
-            entityCalendarDayField.html('');
-            let id = 1;
-            let monthLength = 1;
-            if (!selectedDay) {
-                selectedDay = data.current.day;
-            }
-            let currentMonth = parseInt(data.current.month);
-            $.each(data.months, function (i) {
-                let month = data.months[i];
-                let selected = id === currentMonth ? ' selected="selected"' : '';
-                entityCalendarMonthField.append('<option value="' + id + '" data-length="' + month.length + '" ' + selected + '>' + this.name + '</option>');
-
-                if (id === currentMonth) {
-                    monthLength = month.length;
-                }
-                id++;
-            });
-
-            for (let d = 1; d < monthLength; d++) {
-                let selected = d == selectedDay ? ' selected="selected"' : '';
-                entityCalendarDayField.append('<option value="' + d + '" ' + selected + '>' + d + '</option>');
-            }
-            entityCalendarLoading.hide();
-            entityCalendarSubForm.show();
-
-            //entityCalendarDayField.val(data.current.day);
-            entityCalendarYearField.val(data.current.year);
-
-            // Put new options
-            $('select.reminder-periodicity option').remove();
-            $.each(data.recurring, function (key, value) {
-                //console.log('moon', key, value);
-                $('select.reminder-periodicity').append('<option value="' + key + '">' + value + '</option>');
-            });
-
-            $('input[name="length"]').val(1);
-
-            // However, if there is only one result, select id.
-            if (data.length === 1) {
-                entityCalendarMonthField.val(data[0].id);
-            }
-        });
-};
-
-
-/**
- *
- */
-function calendarHideSubform() {
-    entityCalendarForm.hide();
-    entityCalendarAdd.show();
-
-    $('input[name="calendar_day"]').val(null);
-    $('input[name="calendar_month"]').val(null);
-    $('input[name="calendar_year"]').val(null);
-    $('select[name="calendar_id"]').val(null);
-}
 
 /**
  * If we change something on a form, avoid losing data when going away.
@@ -416,100 +176,11 @@ function registerFormMaintenance() {
 }
 
 
-function registerPermissionToggler() {
-    $('.permission-toggle').change(function () {
-        let action = $(this).data('action');
-        let selector = "input[data-action=" + action + "]";
-        if ($(this).prop('checked')) {
-            $(selector).prop("checked", true);
-        } else {
-            $(selector).prop("checked", false);
-        }
-    });
-}
-
-/**
- * Expand/Collapse all posts on the overview of an entity
- */
-function registerStoryActions() {
-    $('.btn-post-collapse').unbind('click').click(function () {
-        let elements = document.querySelectorAll('.element-toggle');
-        elements.forEach((e) => {
-            e.classList.add('animate-collapsed');
-            let target = document.querySelector(e.dataset.target);
-            target.classList.add('hidden');
-        });
-        return false;
-    });
-
-    $('.btn-post-expand').unbind('click').click(function () {
-        let elements = document.querySelectorAll('.element-toggle');
-        elements.forEach((e) => {
-            e.classList.remove('animate-collapsed');
-            let target = document.querySelector(e.dataset.target);
-            target.classList.remove('hidden');
-        });
-        return false;
-    });
-}
-
-/*
- *
- */
-function registerStoryLoadMore() {
-    $('.story-load-more').click(function (e) {
-        e.preventDefault();
-        let btn = $(this);
-
-        $(this).addClass('loading');
-
-        fetchMorePosts($(this).data('url'))
-            .then(result => {
-                btn.parent().remove();
-                $('.entity-posts').append(result);
-                registerStoryLoadMore();
-                registerStoryActions();
-                $(document).trigger('shown.bs.modal');
-            })
-            .catch(() => {
-                btn.removeClass('loading');
-            });
-        return false;
-    });
-}
-
-async function fetchMorePosts(url) {
-    const result = await fetch(url);
-    return await result.text();
-}
-
-function registerTrustDomain() {
-    $('.domain-trust').click(function () {
-        let cookieName = 'kanka_trusted_domains';
-
-        let keyValue = document.cookie.match('(^|;) ?' + cookieName + '=([^;]*)(;|$)');
-        keyValue = keyValue ? keyValue[2] : '';
-
-        // If not yet in it
-        let newDomain = $(this).data('domain');
-        if (!keyValue.includes(newDomain)) {
-            if (keyValue) {
-                keyValue += '|';
-            }
-            keyValue += newDomain;
-        }
-
-        let expires = new Date();
-        expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000));
-        document.cookie = cookieName + '=' + keyValue + ';path=/;expires=' + expires.toUTCString() + ';sameSite=Strict';
-    });
-}
-
 /**
  * Register a listened to add dynamic rows in the forms
  * Used in the calendar forms extensively
  */
-function registerDynamicRows() {
+const registerDynamicRows = () => {
     $('.dynamic-row-add').on('click', function(e) {
         e.preventDefault();
 
@@ -524,12 +195,12 @@ function registerDynamicRows() {
         return false;
     });
     registerDynamicRowDelete();
-}
+};
 
 /**
  * Register a listener to delete a dynamically added row in the forms
  */
-function registerDynamicRowDelete() {
+const registerDynamicRowDelete = () => {
     $.each($('.dynamic-row-delete'), function () {
         if ($(this).data('init') === 1) {
             return;
@@ -545,31 +216,7 @@ function registerDynamicRowDelete() {
             $(this).click();
         });
     });
-}
+};
 
-/**
- * Fire an event whenever the month field is changed
- */
-function registerMonthChange() {
-    $('select[name="calendar_month"]').change(function () {
-        let length = $(this).find(':selected').data('length');
-        rebuildCalendarDayList(length);
-    });
-}
 
-/**
- * Rebuild the calendar day select, and select the current date
- * @param max
- */
-function rebuildCalendarDayList(max) {
-    let selectedDay = entityCalendarDayField.val();
-    if (selectedDay > max) {
-        selectedDay = max;
-    }
-
-    entityCalendarDayField.html('');
-    for (let d = 1; d <= max; d++) {
-        let selected = d == selectedDay ? ' selected="selected"' : '';
-        entityCalendarDayField.append('<option value="' + d + '" ' + selected + '>' + d + '</option>');
-    }
-}
+registerEntityNameCheck();

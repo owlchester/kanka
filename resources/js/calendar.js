@@ -1,87 +1,93 @@
-var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
+const calendarYearSwitcher = document.querySelector('#calendar-year-switcher');
 
 $(document).ready(function() {
-    // View
-    calendarYearSwitcher = $('#calendar-year-switcher');
-    if (calendarYearSwitcher.length === 1) {
-        calendarYearSwitcherField = $('#calendar-year-switcher-field');
-        calendarEventModal = $('#add-calendar-event');
-
-        initCalendarEventBlock();
-    }
-
-
     $(document).on('shown.bs.modal', function() {
         initCalendarEventModal();
     });
-    if ($('select[name="recurring_periodicity"]').length === 1) {
-        initCalendarEventModal();
-    }
-
-    registerKeyboardShortcuts();
 });
 
-function initCalendarEventBlock() {
-    $('.calendar-event-block').each(function() {
-        if ($(this).data('toggle') !== 'dialog' && $(this).data('url')) {
-            $(this).click(function () {
-                window.location = $(this).data('url');
+const initCalendarEventBlock = () => {
+    const blocks = document.querySelectorAll('.calendar-event-block');
+    blocks.forEach(block => {
+        if (block.dataset.toggle !== 'dialog' && block.dataset.url) {
+            block.addEventListener('click', function () {
+                window.location = block.dataset.url;
             });
         }
     });
-}
+};
 
-function initCalendarEventModal() {
-    $('select[name="recurring_periodicity"]').change(function () {
-        if (this.value) {
-            $('.field-recurring-until').show();
+const initCalendarEventModal = () => {
+    const recurring = document.querySelector('select[name="recurring_periodicity"]');
+    if (!recurring) {
+        return;
+    }
+    recurring.onchange = function (e) {
+        const until = document.querySelector('.field-recurring-until');
+        if (recurring.value) {
+            until.classList.remove('hidden');
         } else {
-            $('.field-recurring-until').hide();
+            until.classList.add('hidden');
         }
-    });
+    };
 
-    $('#calendar-action-existing').click(function(e) {
+    const first = document.querySelector('#calendar-event-first');
+    const newEvent = document.querySelector('.calendar-new-event-field');
+    const existingEvent = document.querySelector('.calendar-existing-event-field');
+    const subform = document.querySelector('#calendar-event-subform');
+
+    document.querySelector('#calendar-action-existing').addEventListener('click', function(e) {
         e.preventDefault();
-        $('#calendar-event-first').hide();
-        $('.calendar-new-event-field').hide();
-        $('#calendar-event-subform').fadeToggle();
-        $('#calendar-event-submit').toggle();
+        first.classList.add('!hidden');
+        newEvent.classList.add('hidden');
+        existingEvent.classList.remove('hidden');
+        subform.classList.remove('hidden');
     });
 
-    $('#calendar-action-new').click(function(e) {
+    document.querySelector('#calendar-action-new').addEventListener('click', function(e) {
         e.preventDefault();
-        $('#calendar-event-first').hide();
-        $('.calendar-existing-event-field').hide();
-        $('#calendar-event-subform').fadeToggle();
-        $('#calendar-event-submit').toggle();
+        first.classList.add('!hidden');
+        newEvent.classList.remove('hidden');
+        existingEvent.classList.add('hidden');
+        subform.classList.remove('hidden');
     });
 
-    $('#calendar-event-switch').click(function(e) {
+    document.querySelector('#calendar-event-switch').addEventListener('click', function(e) {
         e.preventDefault();
-        $('#calendar-event-subform').hide();
-        $('#calendar-event-first').fadeToggle();
-        $('.calendar-existing-event-field').show();
-        $('.calendar-new-event-field').show();
-
-        $('#calendar-event-submit').toggle();
+        subform.classList.add('hidden');
+        first.classList.remove('!hidden');
+        existingEvent.classList.remove('hidden');
+        newEvent.classList.remove('hidden');
     });
-}
+};
 
 /**
  * Register keyboard shortcuts for previous/next view
  */
-function registerKeyboardShortcuts() {
-    if ($('[data-shortcut="previous"]').length === 0) {
+const registerKeyboardShortcuts = () => {
+    if (!document.querySelector('[data-shortcut="previous"]')) {
         return;
     }
-    $(document).bind('keydown', function(e) {
+    document.addEventListener('keydown', function(e) {
         // Ctrl + <- for previous, Ctrl + -> for next
         if ((e.ctrlKey || e.metaKey) && e.which === 37) {
-            $('[data-shortcut="previous"]').addClass('loading')[0].click();
+            const previous = document.querySelector('[data-shortcut="previous"]');
+            previous.classList.add('loading');
+            previous.click();
         } else if ((e.ctrlKey || e.metaKey) && e.which === 39) {
-            $('[data-shortcut="next"]').addClass('loading')[0].click();
+            const next = document.querySelector('[data-shortcut="next"]');
+            next.classList.add('loading');
+            next.click();
         }
-
     });
+};
 
+
+if (calendarYearSwitcher) {
+    initCalendarEventBlock();
+}
+registerKeyboardShortcuts();
+
+if (document.querySelector('select[name="recurring_periodicity"]')) {
+    initCalendarEventModal();
 }

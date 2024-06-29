@@ -1,14 +1,5 @@
 import Sortable from "sortablejs";
 
-$(document).ready(function() {
-    registerModules();
-    registerCodeMirror();
-    registerSidebarSetup();
-    registerRoles();
-    registerCampaignThemes();
-    registerVanityUrl();
-});
-
 /**
  * Register Modules change for campaign settings
  */
@@ -48,14 +39,14 @@ const registerModuleChange = (field) => {
 };
 
 /** Toggling an action on a permission **/
-function registerRoles() {
+const registerRoles = () =>  {
     let elements = document.querySelectorAll('.public-permission');
     elements.forEach(el => {
         el.addEventListener('click', togglePublicRole);
     });
-}
+};
 
-function togglePublicRole(e) {
+const togglePublicRole = (e) => {
     e.preventDefault();
     this.querySelector('.module-icon').classList.add('hidden');
     this.querySelector('.loading-animation').classList.remove('hidden');
@@ -73,12 +64,12 @@ function togglePublicRole(e) {
                 window.showToast(res.data.toast);
             }
         });
-}
+};
 
 /**
  * Initiate codemirror editor in the theming section
  */
-function registerCodeMirror() {
+const registerCodeMirror = () => {
     const editors = document.querySelectorAll('.codemirror');
     editors.forEach(function (editor) {
         CodeMirror.fromTextArea(document.getElementById(editor.id), {
@@ -88,9 +79,9 @@ function registerCodeMirror() {
             theme: 'dracula',
         });
     });
-}
+};
 
-function registerSidebarSetup() {
+const registerSidebarSetup = () => {
     let nestedSortables = [].slice.call(document.querySelectorAll('.nested-sortable'));
 
     // Loop through each nested sortable element
@@ -114,13 +105,13 @@ function registerSidebarSetup() {
             },
         });
     }
-}
+};
 
 
 /**
  * Register events for campaign themes, notably the max size of a css field
  */
-function registerCampaignThemes() {
+const registerCampaignThemes = () => {
     const form = document.querySelector('form#campaign-style');
     if (!form) {
         return;
@@ -140,9 +131,9 @@ function registerCampaignThemes() {
         e.preventDefault();
         return false;
     });
-}
+};
 
-function registerVanityUrl() {
+const registerVanityUrl = () => {
     const vanityField = document.querySelector('input[name="vanity"]');
     if (!vanityField) {
         return;
@@ -181,4 +172,31 @@ function registerVanityUrl() {
                 loading.classList.add('hidden');
             });
     });
-}
+};
+
+
+const registerPermissionToggleAll = () => {
+    const togglers = document.querySelectorAll('.permission-toggle');
+    togglers.forEach(toggler => {
+        toggler.addEventListener('change', function (e) {
+            let action = this.dataset.action;
+            let selector = document.querySelectorAll('input[data-action="' + action + '"]');
+            selector.forEach(checkbox => {
+                if (this.checked) {
+                    checkbox.checked = true;
+                } else {
+                    checkbox.checked = false;
+                }
+            });
+        });
+    });
+};
+
+
+registerModules();
+registerCodeMirror();
+registerSidebarSetup();
+registerRoles();
+registerCampaignThemes();
+registerVanityUrl();
+registerPermissionToggleAll();

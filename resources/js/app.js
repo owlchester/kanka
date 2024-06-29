@@ -315,9 +315,11 @@ const initPermBtn = () => {
 // Splitting off the js files into logical blocks
 import './keyboard';
 import './crud';
+import './entities';
 import './post';
 import './post-layouts';
 import './calendar';
+import './forms/calendar-date';
 import './keep-alive';
 import './quick-creator';
 import './datagrids';

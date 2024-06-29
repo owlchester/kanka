@@ -12,7 +12,7 @@ $required = !isset($bulk);
            @if ($required) required="required" @endif
     value="{!! old('name', $model->name ?? null) !!}" />
 
-    <div class="text-warning-content duplicate-warning flex flex-col gap-1" style="display: none">
+    <div class="text-warning-content duplicate-warning flex flex-col gap-1 hidden">
         <span>{{ __('entities.creator.duplicate') }}</span>
         <div class="duplicates flex flex-wrap gap-2 items-center"></div>
     </div>
