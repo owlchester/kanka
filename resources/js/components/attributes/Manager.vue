@@ -35,7 +35,7 @@
                 <i class="fa-regular fa-file-import" aria-hidden="true" />
                 <span v-html="trans('actions.load')"></span>
             </a>
-            <a href="https://docs.kanka.io" target="_blank" class="btn2 btn-ghost">
+            <a href="https://docs.kanka.io/en/latest/features/attributes.html" target="_blank" class="btn2 btn-ghost">
                 <i class="fa-solid fa-question-circle" aria-hidden="true" />
                 <span v-html="trans('actions.help')"></span>
             </a>

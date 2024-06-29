@@ -8,26 +8,16 @@ use Illuminate\View\Component;
 
 class Alert extends Component
 {
-    public string $type;
-    public ?string $id;
-    public ?string $class;
-    public bool $dismissible;
-    public bool $hidden;
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $type,
-        string $id = null,
-        string $class = null,
-        bool $dismissible = false,
-        bool $hidden = false,
+        public string $type,
+        public null|string $id = null,
+        public null|string $class = null,
+        public bool $dismissible = false,
+        public bool $hidden = false,
     ) {
-        $this->type = $type;
-        $this->id = $id;
-        $this->class = $class;
-        $this->dismissible = $dismissible;
-        $this->hidden = $hidden;
     }
 
     /**

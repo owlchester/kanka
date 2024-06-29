@@ -3,26 +3,31 @@ $(document).ready(function () {
 });
 
 function initPostLayoutsForm() {
-    let selector = $('#post-layout-selector');
-    if (selector.length === 0) {
+    let selector = document.getElementById('post-layout-selector');
+    if (!selector) {
         return;
     }
-    selector.change(function (e) {
+
+    const fieldEntry = document.querySelector('.field-entry');
+    const fieldLocation = document.querySelector('.field-location');
+    const fieldDisplay = document.querySelector('.field-display');
+    const subform = document.querySelector('#post-layout-subform');
+    selector.addEventListener('change', function (e) {
         e.preventDefault();
-        let selected = $(this).find(":selected").val();
+        let selected = this.value;
 
         if (selected === '') {
-            $('.field-entry').show();
-            $('.field-location').show();
-            $('.field-display').show();
+            fieldEntry.style.removeProperty('display');
+            fieldEntry.style.removeProperty('display');
+            fieldDisplay.style.removeProperty('display');
 
-            $('#post-layout-subform').hide();
+            subform.style.display = 'none';
         } else {
-            $('.field-entry').hide();
-            $('.field-location').hide();
-            $('.field-display').hide();
+            fieldEntry.style.display = 'none';
+            fieldLocation.style.display = 'none';
+            fieldDisplay.style.display = 'none';
 
-            $('#post-layout-subform').show();
+            subform.style.removeProperty('display');
         }
     });
 }

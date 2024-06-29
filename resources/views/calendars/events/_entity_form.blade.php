@@ -21,11 +21,11 @@ $onlyOneCalendar = count($calendars) == 1;
 </x-grid>
 
 
-<div class="entity-calendar-subform" style="{{ $onlyOneCalendar ? '' : 'display: none' }}">
+<div class="entity-calendar-subform {{ $onlyOneCalendar ? '' : 'hidden' }}">
     @include('calendars.events._subform')
 </div>
 
-<div class="entity-calendar-loading" style="display: none">
+<div class="entity-calendar-loading hidden">
     <p class="text-center">
         <x-icon class="load" />
     </p>

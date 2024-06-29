@@ -1,15 +1,13 @@
-$(document).ready(function () {
-    initHistoryFilters();
-});
 
-function initHistoryFilters()
-{
-    let form = $('form.history-filters');
-    let filters = $('.history-filters select');
-    filters.on('change', function () {
-        $('.filters-loading').show();
-        console.log('changed');
-        form.submit();
-        filters.prop('disabled', true);
+const initHistoryFilters = () => {
+    const form = document.querySelector('form.history-filters');
+    const filters = document.querySelectorAll('.history-filters select');
+    filters.forEach(filter => {
+        filter.addEventListener('change', function () {
+            document.querySelector('.filters-loading').classList.remove('hidden');
+            form.requestSubmit();
+            filters.disabled = true;
+        });
     });
-}
+};
+initHistoryFilters();

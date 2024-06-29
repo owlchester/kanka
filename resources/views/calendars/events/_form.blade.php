@@ -1,11 +1,9 @@
-
 @if (!empty($from))
     <x-alert type="warning">
         {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
     </x-alert>
 @endif
 
-{{ csrf_field() }}
 @if (empty($entityEvent))
     <x-grid id="calendar-event-first">
         <a href="#" class="btn2 text-2" id="calendar-action-existing">
@@ -24,7 +22,7 @@
     </x-grid>
 @endif
 
-<div id="calendar-event-subform" class="flex flex-col gap-5" style="{{ empty($entityEvent) ? 'display:none' : null }}">
+<div id="calendar-event-subform" class="flex flex-col gap-5 {{ empty($entityEvent) ? 'hidden' : null }}">
     @if (empty($entityEvent))
         <div class="flex gap-2 md:gap-4 items-center">
             <div class="grow calendar-existing-event-field">

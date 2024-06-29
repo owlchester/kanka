@@ -31,7 +31,12 @@ class CancellationService
             throw new TranslatableException('subscription/cancellation.errors.not_subscribed');
         }
 
-        $this->user->subscription('kanka')->cancel();
+        try {
+            $this->user->subscription('kanka')->cancel();
+        } catch (\Exception $e) {
+            // On local machines, subs get dropped from stripe and it causes issues
+            $this->user->subscription('kanka')->delete();
+        }
 
         $this->user->log(UserLog::TYPE_SUB_CANCEL);
         if ($this->webhook) {
@@ -41,7 +46,7 @@ class CancellationService
             'user_id' => $this->user->id,
             'reason' => $this->request->reason,
             'custom' => $this->request->reason_custom,
-            'tier'  => $this->user->pledge,
+            'tier'  => $this->user->pledge ?? 'Owlbear',
             'duration' => $this->user->subscription('kanka')->created_at->diffInDays(Carbon::now()),
         ]);
 

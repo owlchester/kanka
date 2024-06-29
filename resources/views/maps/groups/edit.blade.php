@@ -16,7 +16,7 @@
 ])
 
 @section('content')
-    <x-form :action="['maps.map_groups.update', 'campaign' => $campaign, 'map' => $map, 'map_group' => $model]" method="PATCH" id="map-group-form" files class="ajax-subform">
+    <x-form :action="['maps.map_groups.update', 'campaign' => $campaign, 'map' => $map, 'map_group' => $model]" method="PATCH" id="map-group-form" files>
         @include('partials.forms.form', [
             'title' => __('maps/groups.edit.title', ['name' => $map->name]),
             'content' => 'maps.groups._form',

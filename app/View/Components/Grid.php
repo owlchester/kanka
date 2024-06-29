@@ -8,24 +8,16 @@ use Illuminate\View\Component;
 
 class Grid extends Component
 {
-    public ?string $id;
-    public ?string $type;
-    public ?string $css;
-    public bool $hidden;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $id = null,
-        string $type = null,
-        string $css = null,
-        bool $hidden = false,
+        public null|string $id = null,
+        public null|string $type = null,
+        public null|string $css = null,
+        public bool $hidden = false,
     ) {
-        $this->id = $id;
-        $this->type = $type;
-        $this->css = $css;
-        $this->hidden = $hidden;
     }
 
     /**

@@ -9,13 +9,24 @@
     <x-forms.field
         field="month"
         :label="__('calendars.fields.month')">
-        <x-forms.select name="month" :options="isset($calendar) ? $calendar->monthList() : []" :selected="$month ?? null" />
+        <x-forms.select
+                name="month"
+                id="reminder_month"
+                :options="isset($calendar) ? $calendar->monthList() : []"
+                :selected="$month ?? $entityEvent->month ?? null"
+                :optionAttributes="!empty($calendar) ? $calendar->monthDataProperties() : []"
+        />
     </x-forms.field>
 
     <x-forms.field
         field="day"
         :label="__('calendars.fields.day')">
-        <input type="number" name="day" value="{{ $day ?? old('day', $entityEvent->day ?? null) }}" />
+        <x-forms.select
+                name="day"
+                id="reminder_day"
+                :options="isset($calendar) ? $calendar->dayList($month ?? $entityEvent->month ?? $calendar->month) : []"
+                :selected="$day ?? $source->day ?? $entityEvent->day ?? null"
+        />
     </x-forms.field>
 </x-grid>
 <x-grid>
@@ -28,7 +39,7 @@
             :label="__('calendars.fields.length')"
             :helper="__('calendars.hints.event_length')"
             :tooltip="true">
-            <input type="number" name="length" class="w-full" value="{{ old('length', $entityEvent->length ?? 1) }}" placeholder="{{ __('calendars.placeholders.length') }}" aria-label="{{ __('calendars.placeholders.length') }}" data-url="{{ route('calendars.event-length', [$campaign, 'calendar' => $calendar ?? 0]) }}" />
+            <input type="number" name="length" id="reminder_length" class="w-full" value="{{ old('length', $entityEvent->length ?? 1) }}" placeholder="{{ __('calendars.placeholders.length') }}" aria-label="{{ __('calendars.placeholders.length') }}" data-url="{{ route('calendars.event-length', [$campaign, 'calendar' => $calendar ?? 0]) }}" />
             <p class="length-warning hidden text-error">
                 {!!  __('calendars.warnings.event_length', ['documentation' => '<a target="_blank" href="https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders"><i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation') . '</a>'])!!}
             </p>

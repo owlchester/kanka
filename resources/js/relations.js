@@ -7,14 +7,16 @@ $(document).ready(function () {
     initCytoscape();
 });
 
-var cy, cySelector;
-var entity, relation;
-var elementList = [];
+let cy;
+let entity, relation;
+let elementList = [];
 const DEFAULT_COLOUR = '#777777';
 
-function initCytoscape() {
+const cySelector = document.getElementById('cy');
 
-    if($('#cy').length === 0) {
+const initCytoscape = () => {
+
+    if(!cySelector) {
         return;
     }
 
@@ -22,11 +24,9 @@ function initCytoscape() {
     cytoscape.use( dblclick );
     cytoscape.use( coseBilkent );
     cytoscape.use( panzoom );
-    // Selector
-    cySelector = $('#cy');
 
     cy = cytoscape({
-        container: document.getElementById('cy'), // container to render in
+        container: cySelector, // container to render in
         wheelSensitivity: 0.5,
         style: cytoscape.stylesheet()
             .selector('node')
@@ -36,14 +36,14 @@ function initCytoscape() {
                 'height': 80,
                 'width': 80,
                 'background-fit': 'cover',
-                'border-color': $('#cy').parent().css('color'),
+                'border-color': window.getComputedStyle(cySelector.parentNode).color,
                 'border-width': 3,
-                'color': $('#cy').css('color'),
+                'color': window.getComputedStyle(cySelector).color,
                 'text-wrap': 'wrap',
                 'text-margin-y': '-8px',
                 'text-background-opacity': 1,
-                'text-background-color': $('#cy').css('background-color'),
-                'text-border-color': $('#cy').css('background-color'),
+                'text-background-color': window.getComputedStyle(cySelector).backgroundColor,
+                'text-border-color': window.getComputedStyle(cySelector).backgroundColor,
                 'text-border-width': 3,
                 'text-border-opacity': 1
             })
@@ -56,9 +56,9 @@ function initCytoscape() {
                 'target-arrow-color': 'data(colour)',
                 'width': 'data(attitude)',
                 'text-background-opacity': 1,
-                'color': $('#cy').css('color'),
-                'text-background-color': $('#cy').css('background-color'),
-                'text-border-color': $('#cy').css('background-color'),
+                'color': window.getComputedStyle(cySelector).color,
+                'text-background-color': window.getComputedStyle(cySelector).backgroundColor,
+                'text-border-color': window.getComputedStyle(cySelector).backgroundColor,
                 'text-border-width': 3,
                 'text-border-opacity': 1
             }),
@@ -76,23 +76,17 @@ function initCytoscape() {
     cy.dblclick();
 
     loadMap();
-}
+};
 
-function loadMap() {
-    fetch(cySelector.data('url'))
+const loadMap = () => {
+    fetch(cySelector.dataset.url)
         .then((response) => response.json())
         .then((res) => {
             parseMap(res);
         });
-    /*$.ajax({
-        url: cySelector.data('url'),
-        type: 'GET',
-        dataType: 'json',
-        success: parseMap
-    });*/
-}
+};
 
-function parseMap(res) {
+const parseMap = (res) => {
     //console.log('result from map api', res);
 
     for(entity in res.entities) {
@@ -123,8 +117,8 @@ function parseMap(res) {
             }
         };
         // if the relation does not have a colour, use the default
-        if (!element.data.coluor) {
-            element.data.coluor = DEFAULT_COLOUR;
+        if (!element.data.colour) {
+            element.data.colour = DEFAULT_COLOUR;
         }
         if (!element.data.attitude) {
             element.data.attitude = 0;
@@ -132,12 +126,10 @@ function parseMap(res) {
         element.data.attitude = getWidthFromAttitude(element.data.attitude);
         elementList.push(element);
     }
-    //console.log('elements', elementList);
-
     renderRelations();
-}
+};
 
-function renderRelations() {
+const renderRelations = () => {
     // add all of the elements (nodes and edges) to the graph. Remove orphans to keep the graph clean.
     cy.add(elementList);
     cy.nodes().forEach(function(node) {
@@ -154,7 +146,7 @@ function renderRelations() {
 
     // wait until images load to display graph
     displayOnLoad();
-}
+};
 
 function addEntityToOrphans(node) {
     // hide the node, we dont want to show orphans unless asked
@@ -234,7 +226,7 @@ async function displayOnLoad() {
             await sleep(300);
         }
     }
-    $("#spinner").hide();
-    cySelector.show();
+    document.getElementById("spinner").classList.add('hidden');
+    cySelector.classList.remove('hidden');
 }
 

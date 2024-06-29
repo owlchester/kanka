@@ -19,7 +19,7 @@
 @section('content')
     @include('partials.errors')
 
-    <x-form :action="['timelines.timeline_elements.update', $campaign, 'timeline' => $timeline, 'timeline_element' => $model]" method="PATCH" id="timeline-element-form" class="ajax-subform">
+    <x-form :action="['timelines.timeline_elements.update', $campaign, 'timeline' => $timeline, 'timeline_element' => $model]" method="PATCH" id="timeline-element-form">
     <x-box>
         @include('timelines.elements._form')
 

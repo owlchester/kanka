@@ -18,7 +18,7 @@
 @section('content')
     @include('partials.errors')
 
-    <x-form :action="['timelines.timeline_elements.store', $campaign, $timeline]" id="timeline-element-form" class="ajax-subform" files>
+    <x-form :action="['timelines.timeline_elements.store', $campaign, $timeline]" id="timeline-element-form" files>
     <x-box>
         @include('timelines.elements._form', ['model' => null])
         <x-dialog.footer>

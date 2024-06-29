@@ -25,17 +25,16 @@ function registerEditWarning() {
     keepAliveEnabled = false;
 
     // Handle clicks
-    $('#entity-edit-warning-ignore').click(function (e) {
+    const field = document.getElementById('entity-edit-warning-ignore');
+    field.addEventListener('click', function (e) {
         e.preventDefault();
         keepAliveEnabled = true;
 
-        $.ajax({
-            url: $(this).data('url'),
-            type: 'POST',
-            context: this
-        }).done(function () {
-            multiEditingModal.close();
-        });
+        axios
+            .post(field.dataset.url)
+            .then(() => {
+                multiEditingModal.close();
+            });
     });
 }
 
@@ -43,12 +42,11 @@ function registerEditWarning() {
  * Set up the keep alive pulse configuration
  */
 function registerEditKeepAlive() {
-    let field = $('#editing-keep-alive');
-    if (field.length === 0) {
+    const field = document.getElementById('editing-keep-alive');
+    if (!field) {
         return;
     }
-    keepAliveUrl = field.data('url');
-
+    keepAliveUrl = field.dataset.url;
     setTimeout(keepAlivePulse, keepAliveTimer);
 }
 

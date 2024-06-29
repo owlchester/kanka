@@ -23,13 +23,12 @@ if (!empty($oldCalendarID)) {
 <div class="field-calendar-date">
     <x-helper>{{ __('crud.hints.calendar_date') }}</x-helper>
 
-    <a href="#" id="entity-calendar-form-add" class="btn2 btn-sm"
-       style="<?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "display: none" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}">
+    <a href="#" id="entity-calendar-form-add" class="btn2 btn-sm <?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "hidden" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}">
         <x-icon entity="calendar" />
         {{ __('crud.forms.actions.calendar') }}
     </a>
 
-    <div class="entity-calendar-form" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
+    <div class="entity-calendar-form <?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "hidden" : null)?>">
         @if (count($calendars) == 1)
             <input type="hidden" name="calendar_id" value="{{ isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : FormCopy::field('calendar_id')->string() }}" />
         @else
@@ -51,7 +50,7 @@ if (!empty($oldCalendarID)) {
             </div>
         @endif
 
-        <div class="entity-calendar-subform" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
+        <div class="entity-calendar-subform <?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "hidden" : null)?>">
             <div class="grid gap-2 md:gap-4 md:grid-cols-3">
                 <x-forms.field
                     field="year"
@@ -65,6 +64,7 @@ if (!empty($oldCalendarID)) {
                     :label="__('calendars.fields.month')">
                     <x-forms.select
                         name="calendar_month"
+                        id="reminder_month"
                         :options="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : []))"
                         :selected="$source->calendar_month ?? $model->calendar_month ?? null"
                         :optionAttributes="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthDataProperties(): (!empty($calendar) ? $calendar->monthDataProperties() : []))" />
@@ -75,6 +75,7 @@ if (!empty($oldCalendarID)) {
                     :label="__('calendars.fields.day')">
                     <x-forms.select
                         name="calendar_day"
+                        id="reminder_day"
                         :options="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->dayList($model->calendarReminder()->month) : (!empty($calendar) ? $calendar->dayList() : []))"
                         :selected="$source->calendar_day ?? $model->calendar_day ?? null"
                     />
@@ -83,7 +84,7 @@ if (!empty($oldCalendarID)) {
                 <x-forms.field
                     field="length"
                     :label="__('calendars.fields.length')">
-                    <input type="number" name="calendar_length" class="w-full" value="{{ FormCopy::field('calendar_length')->string() ?: old('calendar_length', $model->calendar_length ?? null) }}" />
+                    <input type="number" name="calendar_length" id="reminder_length" class="w-full" value="{{ FormCopy::field('calendar_length')->string() ?: old('calendar_length', $model->calendar_length ?? null) }}" />
                 </x-forms.field>
 
                 <x-forms.field
@@ -106,13 +107,13 @@ if (!empty($oldCalendarID)) {
                 </x-forms.field>
             </div>
         </div>
-        <div class="entity-calendar-loading text-center p-4" style="display: none">
+        <div class="entity-calendar-loading text-center p-4 hidden">
             <x-icon class="load" />
         </div>
 
 
         <div class="text-right mt-2">
-            <a href="#" id="entity-calendar-form-cancel" class="btn2 btn-ghost btn-sm" style="@if ((((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else display:none @endif">
+            <a href="#" id="entity-calendar-form-cancel" class="btn2 btn-ghost btn-sm @if ((((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else hidden @endif">
                 <x-icon class="fa-solid fa-eraser" />
                 {{ __('crud.remove') }}
             </a>

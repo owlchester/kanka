@@ -11,7 +11,7 @@
 ])
 
 @section('content')
-    <x-form :action="['calendars.event.store', $campaign, $calendar->id]" class="ajax-subform entity-calendar-subform">
+    <x-form :action="['calendars.event.store', $campaign, $calendar->id]" class="entity-calendar-subform">
 
     @include('partials.forms.form', [
         'title' => __('calendars.event.create.title', ['name' => $calendar->name]),

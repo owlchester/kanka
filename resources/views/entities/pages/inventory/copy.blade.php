@@ -9,7 +9,7 @@
 ])
 
 @section('content')
-    <x-form :action="['entities.inventory.copy.store', $campaign, $entity->id]" class="ajax-subform">
+    <x-form :action="['entities.inventory.copy.store', $campaign, $entity->id]">
     @include('partials.forms.form', [
             'title' => __('entities/inventories.copy.title', ['name' => $entity->name]),
             'content' => 'entities.pages.inventory._copy',

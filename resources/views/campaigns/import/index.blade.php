@@ -59,13 +59,13 @@
                         </x-box>
                     </form>
 
-                    <div class="progress w-full bg-gray" style="display: none">
+                    <div class="progress w-full bg-gray hidden">
                         <div class="text-center text-2xl py-4">
                             <x-icon class="load" />
                             <p class="progress-uploading">
                                 {{ __('campaigns/import.progress.uploading') }} <span class="progress-percent">0</span>%
                             </p>
-                            <p class="progress-validating" style="display: none">
+                            <p class="progress-validating hidden">
                                 {{ __('campaigns/import.progress.validating') }}
                             </p>
                         </div>

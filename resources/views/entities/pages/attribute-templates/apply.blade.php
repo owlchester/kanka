@@ -12,7 +12,7 @@
 @section('content')
     @include('partials.errors')
 
-    <x-form :action="['entities.attributes.template', $campaign, $entity->id]" class="ajax-subform">
+    <x-form :action="['entities.attributes.template', $campaign, $entity->id]">
     @include('partials.forms.form', [
             'title' => __('entities.attribute_template'),
             'content' => 'entities.pages.attribute-templates._form',

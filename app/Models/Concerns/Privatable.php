@@ -4,6 +4,9 @@ namespace App\Models\Concerns;
 
 use App\Models\Scopes\PrivateScope;
 
+/**
+ * @property bool|int $is_private
+ */
 trait Privatable
 {
     /**

@@ -1,49 +1,52 @@
 export default function deleteConfirm() {
     // Delete confirm dialog
-    $.each($('.delete-confirm'), function () {
-        $(this).click(function () {
-            let name = $(this).data('name');
-            let target = $(this).data('delete-target');
-            let targetModal = $(this).data('target');
-
-            $(targetModal).find('.target-name').text(name);
-
-            if ($(this).data('mirrored')) {
-                $('#delete-confirm-mirror').show();
-            } else {
-                $('#delete-confirm-mirror').hide();
-            }
-
-            if ($(this).data('recoverable')) {
-                $(targetModal).find('.permanent').hide();
-                $(targetModal).find('.recoverable').show();
-            } else {
-                $(targetModal).find('.recoverable').hide();
-                $(targetModal).find('.permanent').show();
-            }
-
-            if (target) {
-                $('.delete-confirm-submit').data('target', target);
-            }
-        });
-    });
+    // const elements = document.querySelectorAll('.delete-confirm');
+    // elements.forEach(btn => {
+    //     btn.addEventListener('click', function () {
+    //         let name = this.dataset.name;
+    //         let target = this.dataset.deleteTarget;
+    //         let targetModal = this.dataset.target;
+    //
+    //         $(targetModal).find('.target-name').text(name);
+    //
+    //         if (this.dataset.mirrored) {
+    //             $('#delete-confirm-mirror').show();
+    //         } else {
+    //             $('#delete-confirm-mirror').hide();
+    //         }
+    //
+    //         if ($(this).data('recoverable')) {
+    //             $(targetModal).find('.permanent').hide();
+    //             $(targetModal).find('.recoverable').show();
+    //         } else {
+    //             $(targetModal).find('.recoverable').hide();
+    //             $(targetModal).find('.permanent').show();
+    //         }
+    //
+    //         if (target) {
+    //             $('.delete-confirm-submit').data('target', target);
+    //         }
+    //     });
+    // });
 
 
     // Submit modal form
-    $.each($('.delete-confirm-submit'), function (index) {
-        $(this).unbind('click');
-        $(this).click(function (e) {
-            let target = $(this).data('target');
+    const elements = document.querySelectorAll('.delete-confirm-submit');
+    elements.forEach(btn => {
+        if(btn.dataset.deleteInit === '1') {
+            return;
+        }
+        btn.dataset.deleteInit = '1';
+        btn.addEventListener('click', function (e) {
+            let target = this.dataset.target;
             //console.log('Submit delete confirmation', target);
             if (target) {
-                $('#' + target + ' input[name=remove_mirrored]').val(
-                    $('#delete-confirm-mirror-checkbox').is(':checked') ? 1 : 0
-                );
-                //console.log('target', target, $('#' + target));
-                $('#' + target).submit();
+                document.querySelector('#' + target + ' input[name=remove_mirrored]').value =
+                document.getElementById('delete-confirm-mirror-checkbox').checked ? 1 : 0;
+                document.getElementById(target).requestSubmit();
             } else {
-                $('#delete-confirm-form').submit();
+                document.getElementById('delete-confirm-form').requestSubmit();
             }
-        })
+        });
     });
 }

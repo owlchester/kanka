@@ -28,7 +28,7 @@ $enabled = $campaign->enabled($module);
     </x-box>
 @else
     <x-box css="box-module overflow-hidden flex flex-wrap flex-col select-none {{ $enabled ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $module }}" :padding="false">
-        <div class="header p-2 bg-neutral text-neutral-content flex items-center gap-2 ">
+        <div class="header p-2 bg-neutral text-neutral-content flex items-center gap-2 transition-all duration-300">
             <i class="flex-0 text-lg {{ $icon }}" aria-hidden="true"></i>
             <span class="text-lg grow break-all">
                 {!! $moduleName !!}
@@ -58,21 +58,24 @@ $enabled = $campaign->enabled($module);
                 </p>
                 @if (isset($deprecated))
                 <div class="text-center text-sm">
-                        <span data-toggle="tooltip" data-title="{{ __('campaigns.settings.deprecated.help') }}">
-                            <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
-                            {{ __('campaigns.settings.deprecated.title') }}
-                        </span>
-                        <span class="md:hidden">{{ __('campaigns.settings.deprecated.help') }}</span>
+                    <span data-toggle="tooltip" data-title="{{ __('campaigns.settings.deprecated.help') }}">
+                        <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                        {{ __('campaigns.settings.deprecated.title') }}
+                    </span>
+                    <span class="md:hidden">{{ __('campaigns.settings.deprecated.help') }}</span>
                     </div>
                 @endif
             </div>
             @can('update', $campaign)
             <div class="footer text-center my-4">
                 <label class="toggle">
-                    <input type="checkbox" name="enabled" data-url="{{ route('campaign.modules.toggle', [$campaign, 'module' => $module]) }}" @if ($enabled) checked="checked" @endif>
+                    <input type="checkbox" id="toggle_{{ $module }}" name="enabled" data-url="{{ route('campaign.modules.toggle', [$campaign, 'module' => $module]) }}" @if ($enabled) checked="checked" @endif>
                     <span class="slider module-enabled"></span>
                     <span class="sr-only">Check to enable the {{ $module }} module</span>
                 </label>
+                <div class="action-loading hidden">
+                    <x-icon class="load" />
+                </div>
             </div>
             @endcan
         </div>

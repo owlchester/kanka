@@ -15,7 +15,7 @@
     'centered' => true,
 ])
 @section('content')
-    <x-form method="PATCH" :action="['entities.entity_events.update', $campaign, $entity->id, $entityEvent->id]" class="ajax-subform entity-calendar-subform">
+    <x-form method="PATCH" :action="['entities.entity_events.update', $campaign, $entity->id, $entityEvent->id]" class="entity-calendar-subform">
 
     @include('partials.forms.form', [
         'title' => __('calendars.event.edit.title', ['name' => '<a href="' . $entity->url() . '">' . $entity->name . '</a>']),

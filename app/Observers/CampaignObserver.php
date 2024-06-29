@@ -44,8 +44,11 @@ class CampaignObserver
     {
         // Purity text
         $campaign->name = $this->purify($campaign->name);
-        $campaign->entry = $this->purify(Mentions::codify($campaign->entry));
-        if (property_exists($campaign, 'excerpt')) {
+        $attributes = $campaign->getAttributes();
+        if (array_key_exists('entry', $attributes)) {
+            $campaign->entry = $this->purify(Mentions::codify($campaign->entry));
+        }
+        if (array_key_exists('excerpt', $attributes)) {
             $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
         }
         //$campaign->slug = Str::slug($campaign->name, '');

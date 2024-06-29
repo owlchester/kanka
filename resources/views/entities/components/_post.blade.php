@@ -12,13 +12,13 @@
             <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
             <h3 class="post-title grow {{ $post->collapsed() ? "collapsed" : null }}"  >
                 {{ $post->name  }}
-                @if (app()->environment('local'))
+                @if (app()->isLocal())
                     <sup class="text-xs">({{ $post->position }})</sup>
                 @endif
             </h3>
         </div>
         <div class="flex-none flex gap-1 items-center">
-            @if (auth()->check())
+            @if (auth()->check() && auth()->user()->can('post', [$entity->child, 'edit', $post]))
             <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
                 {!! $post->visibilityIcon() !!}
             </span>

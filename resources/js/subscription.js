@@ -1,40 +1,37 @@
 // Strip variables for the page
-var stripe, elements, card;
+let stripe, elements, card;
 
 // Form status
-var formSubmit = false;
-var formSubmitBtn;
+let formSubmitBtn;
 
 // Coupon stuff
-var couponField, couponSuccess, couponError, couponId, couponValidating;
+let couponField, couponSuccess, couponError, couponId, couponValidating;
 
-var subscribeModal, pricingOverview;
+const subscribeModal = document.getElementById('subscribe-confirm');
 
 $(document).ready(function() {
     initStripe();
     initPeriodToggle();
-    subscribeModal = $('#subscribe-confirm');
     $(document).on('shown.bs.modal', () => {
         initConfirmListener();
     });
 });
 
 // Initialize the stripe API
-function initStripe() {
-    let token = $('#stripe-token');
-    stripe = Stripe(token.val());
+const initStripe = () => {
+    const token = document.getElementById('stripe-token');
+    stripe = Stripe(token.value);
 
     // Create an instance of Elements.
     elements = stripe.elements();
-}
+};
 
 // When the modal is opened and loaded, inject stripe if needed and the form validator
-function initConfirmListener()
-{
-    formSubmitBtn = $('.subscription-confirm-button');
+const initConfirmListener = ()=> {
+    formSubmitBtn = document.querySelector('.subscription-confirm-button');
 
-    let cardSelector = $('#card-element');
-    if (cardSelector.length === 1) {
+    let cardSelector = document.getElementById('card-element');
+    if (cardSelector) {
         // First time opening the modal, initiate a new card
         if (!card) {
             // Custom styling can be passed to options when creating an Element.
@@ -63,121 +60,131 @@ function initConfirmListener()
         card.mount('#card-element');
     }
 
-    $('#subscription-confirm').submit(function (e) {
-        // If we've passed the strip validation, we can go further
-        if (formSubmit) {
-            return true;
-        }
+    document.getElementById('subscription-confirm')?.addEventListener('submit', subscribe);
 
-        e.preventDefault();
-        formSubmitBtn.addClass('disabled').addClass('loading');
-        formSubmitBtn.prop('disabled', 'disabled');
 
-        let intentToken = $('input[name="subscription-intent-token"]');
-        let errorMessage = $('.alert-error');
-        errorMessage.hide();
+    couponField = document.getElementById('coupon-check');
+    if (couponField) {
+        couponSuccess = document.getElementById('coupon-success');
+        couponError = document.getElementById('coupon-invalid');
+        couponId = document.getElementById('coupon');
+        couponValidating = document.getElementById('coupon-validating');
+        couponField.addEventListener('change', checkCoupon);
+        couponField.addEventListener('focusout', checkCoupon);
+    }
+};
 
-        // If the form already has a payment id, we don't need stripe to add the new one
-        let cardID = $('input[name="payment_id"]');
-        if (cardID.val()) {
-            formSubmit = true;
-            $('#subscription-confirm').submit();
-            return false;
-        }
-
-        stripe.confirmCardSetup(
-            intentToken.val(), {
-                payment_method: {
-                    card: card,
-                    billing_details: {
-                        name: $('input[name="card-holder-name"]').val()
-                    }
-                }
-            }
-        ).then(function (result) {
-            if (result.error) {
-                formSubmitBtn.removeClass('disabled').removeClass('loading');
-                formSubmitBtn.prop('disabled', '');
-                errorMessage.text(result.error.message).show();
-                return false;
-            } else {
-                cardID.val(result.setupIntent.payment_method);
-                formSubmit = true;
-                $('#subscription-confirm').submit();
-
-            }
-        }.bind(this));
-    });
-
-    $('.subscription-form').submit(function () {
-        formSubmitBtn.addClass('disabled')
-            .find('span').hide()
-            .parent().find('.spinner').show();
-
-        return true;
-    });
-
-    couponField = $('#coupon-check');
-    couponSuccess = $('#coupon-success');
-    couponError = $('#coupon-invalid');
-    couponId = $('#coupon');
-    couponValidating = $('#coupon-validating');
-
-    couponField.change(function() {
-        checkCoupon();
-    });
-    couponField.focusout(function () {
-        checkCoupon();
-    });
-}
-
-function checkCoupon() {
-    let coupon = couponField.val();
-    let url = couponField.data('url');
+const checkCoupon = (event) => {
+    const element = event.target;
+    const coupon = element.value;
+    const url = element.dataset.url;
 
     if (!coupon) {
-        formSubmitBtn.removeClass('disabled').prop('disabled', false);
+        formSubmitBtn.classList.remove('btn-disabled', 'loading');
+        formSubmitBtn.disabled = false;
     }
-    couponValidating.removeClass('hidden');
+    couponValidating.classList.remove('hidden');
     fetch(url + '&coupon=' + coupon)
         .then((response) => response.json())
         .then((result) => {
-            formSubmitBtn.removeClass('disabled').prop('disabled', false);
-            couponValidating.addClass('hidden');
+            formSubmitBtn.classList.remove('btn-disabled', 'loading');
+            formSubmitBtn.disabled = false;
+            couponValidating.classList.add('hidden');
 
             if (!result.valid) {
-                couponSuccess.hide();
-                couponError.html(result.error).show();
-                couponId.val('');
-                subscribeModal.removeClass('valid-coupon');
+                couponSuccess.classList.add('hidden');
+                couponError.innerHTML = result.error;
+                couponError.classList.remove('hidden');
+                couponId.value = '';
+                subscribeModal.classList.remove('valid-coupon');
 
                 return;
             }
 
-            $('#pricing-now').html(result.price);
-            couponError.hide();
-            couponSuccess.html(result.discount).show();
-            couponId.val(result.coupon);
-            subscribeModal.addClass('valid-coupon');
+            document.getElementById('pricing-now').innerHTML = result.price;
+            couponError.classList.add('hidden');
+            couponSuccess.innerHTML = result.discount;
+            couponSuccess.classList.remove('hidden');
+            couponId.value = result.coupon;
+            subscribeModal.classList.add('valid-coupon');
         }).catch((result) => {
-            couponValidating.addClass('hidden');
+            couponValidating.classList.add('hidden');
             if (result.responseJSON) {
-                couponError.html(result.responseJSON.message).show();
+                couponError.innerHTML = result.responseJSON.message;
+                couponError.classList.remove('hidden');
             }
         });
-}
+};
+
+const subscribe = (event) => {
+    const form = event.target;
+    if (form.dataset.valid) {
+        return true;
+    }
+    event.preventDefault();
+    disableSubmit(event);
+
+    const intentToken = document.querySelector('input[name="subscription-intent-token"]');
+    const errorMessage = document.querySelector('.alert-error');
+    errorMessage.classList.add('hidden');
+
+    // If the form already has a payment id, we don't need stripe to add the new one
+    const cardID = document.querySelector('input[name="payment_id"]');
+    if (cardID.value) {
+        form.dataset.valid = '1';
+        // Let the animation handler do its thing
+        form.requestSubmit();
+        return false;
+    }
+
+    stripe.confirmCardSetup(
+        intentToken.value, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: document.querySelector('input[name="card-holder-name"]').value
+                }
+            }
+        }
+    ).then(function (result) {
+        if (result.error) {
+            formSubmitBtn.classList.remove('disabled', 'loading');
+            formSubmitBtn.disabled = '';
+            errorMessage.innerHTML = result.error.message;
+            errorMessage.classList.remove('hidden');
+            return false;
+        } else {
+            cardID.value = result.setupIntent.payment_method;
+            // Let the animation handler do its thing
+            form.dataset.valid = '1';
+            form.requestSubmit();
+        }
+    }.bind(this));
+};
 
 function initPeriodToggle() {
-    pricingOverview = $('#pricing-overview');
-    $('input[name="period"]').change(function () {
+    const pricingOverview = document.getElementById('pricing-overview');
+    const toggler = document.querySelector('input[name="period"]');
+    toggler.addEventListener('change', function () {
         if (this.checked) {
-            pricingOverview.removeClass('period-month').addClass('period-year');
+            pricingOverview.classList.remove('period-month');
+            pricingOverview.classList.add('period-year');
         } else {
-            pricingOverview.removeClass('period-year').addClass('period-month');
+            pricingOverview.classList.remove('period-year');
+            pricingOverview.classList.add('period-month');
         }
     });
 
-    if ($('input[name="period"]').is(':checked')) {
-        pricingOverview.removeClass('period-month').addClass('period-year');
+    if (toggler.checked) {
+        pricingOverview.classList.remove('period-month');
+        pricingOverview.classList.add('period-year');
     }
-}
+};
+
+const disableSubmit = (event) => {
+    const form = event.target;
+    const submitBtn = form.querySelector('.subscription-confirm-button');
+    submitBtn.classList.add('disabled', 'loading');
+    submitBtn.disabled = true;
+    return true;
+};

@@ -22,7 +22,7 @@
             </x-alert>
             @endif
 
-            <x-alert type="error" id="max-content-error" :hidden="true">
+            <x-alert type="error" id="max-content-error" class="hidden">
                 {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
             </x-alert>
 

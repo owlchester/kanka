@@ -17,7 +17,7 @@
 ])
 
 @section('content')
-    <x-form :action="['maps.map_markers.store', $campaign, $map]" id="map-marker-form" class="ajax-subform">
+    <x-form :action="['maps.map_markers.store', $campaign, $map]" id="map-marker-form">
     <x-box>
         @if (request()->ajax())
             <div class="modal-header">

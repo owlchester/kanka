@@ -72,25 +72,6 @@
         <!-- Footer -->
         @include('layouts.footer')
 
-    </div><!-- ./wrapper -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100">
-                <div class="modal-header">
-                    <x-dialog.close />
-                    <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p>{!! __('crud.delete_modal.description_v2', ['tag' => '<b><span id="target-name"></span></b>']) !!}</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn2 btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn2 btn-danger delete-confirm-submit"><span class="fa-solid fa-trash" aria-hidden="true"></span> {{ __('crud.delete_modal.delete') }}</button>
-                </div>
-            </div>
-        </div>
     </div>
 
 @yield('modals')

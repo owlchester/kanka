@@ -43,8 +43,15 @@
 
     <div class="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         @foreach (\App\Models\EntityType::whereNot('id', config('entities.ids.bookmark'))->get() as $entityType)
-            <div class="public-permission flex flex-col gap-2 rounded items-center text-center justify-center break-all overflow-x-hidden cursor-pointer text-lg px-2 py-5 {{ $permissionService->type($entityType->id)->can() ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$campaign, $role, 'entity' => $entityType->id, 'action' => \App\Models\CampaignPermission::ACTION_READ]) }}">
-                <i class="block text-2xl {{ \App\Facades\Module::duoIcon($entityType->code) }}" aria-hidden="true"></i>
+            <div class="public-permission flex flex-col gap-2 rounded items-center text-center justify-center break-all overflow-x-hidden cursor-pointer text-lg px-2 py-5 select-none {{ $permissionService->type($entityType->id)->can() ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$campaign, $role, 'entity' => $entityType->id, 'action' => \App\Models\CampaignPermission::ACTION_READ]) }}">
+                <div class="block text-2xl">
+                    <div class="module-icon">
+                        <x-icon class="{{ \App\Facades\Module::duoIcon($entityType->code) }}" />
+                    </div>
+                    <div class="loading-animation hidden">
+                        <x-icon class="fa-solid fa-spinner fa-spin" />
+                    </div>
+                </div>
 
                 <div class="">{!! $entityType->plural() !!}</div>
                 @if (!$campaign->enabled($entityType->pluralCode()))

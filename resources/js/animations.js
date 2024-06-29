@@ -1,5 +1,3 @@
-
-
 const initAnimations = () => {
     const collapsers = document.querySelectorAll('[data-animate="collapse"]');
     collapsers.forEach((e) => {

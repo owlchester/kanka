@@ -22,11 +22,11 @@
     ]) !!}</x-helper>
 
                 <input type="text" maxlength="45" name="vanity" class="w-full" data-url="{{ route('campaign.vanity-validate', $model) }}" value="{{ old('vanity') }}"/>
-                <p style="display: none" id="vanity-loading">
+                <p class="hidden" id="vanity-loading">
                     <x-icon class="loading" />
                 </p>
-                <p class="text-error" style="display: none" id="vanity-error"></p>
-                <div class="alert alert-success my-1 rounded px-2 py-1" style="display: none" id="vanity-success">
+                <p class="text-error hidden" id="vanity-error"></p>
+                <div class="alert alert-success my-1 rounded px-2 py-1 hidden" id="vanity-success">
                     <p>{!! __('campaigns/vanity.available', ['vanity' => '<code></code>']) !!}</p>
                 </div>
             @else

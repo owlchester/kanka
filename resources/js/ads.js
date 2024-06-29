@@ -2,29 +2,22 @@ $(document).ready(function () {
     initAdManager();
 });
 
-function initAdManager()
-{
+const initAdManager = () => {
     return;
 
-    let ads = $('.nativead-manager');
+    const ads = document.querySelectorAll('.nativead-manager');
     if (ads.lenght === 0) {
         return;
     }
 
-    $.each(ads, function () {
-        // This ad
-       /*console.log('found an ad', $(this));
-        let ad = $(this);
-        let url = $(this).data('url');
-
-        console.log('wat', $(this).data('src'));
+    ads.forEach(function (ad) {
+        //console.log('found an ad', ad);
         let video = document.createElement('video');
         video.id = 'webmvid';
-        video.source.src = $(this).data('src');
+        video.source.src = ad.dataset.src;
         video.type = 'video/webm';
-        video.control = false
+        video.control = false;
         video.removeAttribute("poster");
-        video.appendTo($(this));
-        console.log(video);*/
+        ad.parentNode.insertBefore(video, ad.nextSibling);
     });
 }

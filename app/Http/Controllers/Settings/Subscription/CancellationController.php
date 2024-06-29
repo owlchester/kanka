@@ -28,6 +28,9 @@ class CancellationController extends Controller
 
     public function save(SubscriptionCancel $request)
     {
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
         $this->service
             ->user($request->user())
             ->request($request)

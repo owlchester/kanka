@@ -11,7 +11,7 @@
 ])
 
 @section('content')
-    <x-form :action="['entities.relations.store', $campaign, $entity->id]" class="ajax-subform">
+    <x-form :action="['entities.relations.store', $campaign, $entity->id]">
         @include('partials.forms.form', [
                 'title' => __('entities/relations.create.title', ['name' => $entity->name]),
                 'content' => 'entities.pages.relations._form',

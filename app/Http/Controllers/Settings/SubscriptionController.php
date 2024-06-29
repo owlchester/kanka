@@ -150,6 +150,9 @@ class SubscriptionController extends Controller
                 ->route('settings.subscription')
                 ->withError(__('settings.subscription.errors.failed', ['email' => config('app.email')]));
         }
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
         try {
             $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
             $this->subscription->user($request->user())

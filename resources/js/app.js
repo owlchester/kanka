@@ -12,11 +12,8 @@ $(document).ready(function() {
 
     window.initForeignSelect();
     window.initDialogs();
-    initSpectrum();
+    initColourPicker();
     initSubmenuSwitcher();
-
-    // Treeview for locations
-    treeViewInit();
 
     manageTabs();
 
@@ -31,7 +28,7 @@ $(document).ready(function() {
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
      */
-    $(document).on('shown.bs.modal shown.bs.popover', function() {
+    $(document).on('shown.bs.modal', function() {
         // Also re-bind select2 elements on modal show
         window.initForeignSelect();
         window.initTags();
@@ -39,13 +36,14 @@ $(document).ready(function() {
         window.initTooltips();
         window.ajaxTooltip();
         window.initDropdowns();
+        window.initSortable();
         initAjaxPagination();
-        initSpectrum();
+        initColourPicker();
         initDynamicDelete();
         initImageRemoval();
         initFeedbackButtons();
         initDismissible();
-        window.initSortable()
+        initPermBtn();
     });
 });
 
@@ -67,12 +65,9 @@ function initAdblocker() {
 }
 
 /**
- * Initiate spectrum for the various fields
+ * Initiate color for the various fields
  */
-function initSpectrum() {
-    /*if (!$.isFunction($.fn.spectrum)) {
-        return;
-    }*/
+function initColourPicker() {
 
     Coloris.init();
     Coloris({
@@ -99,43 +94,8 @@ function initSpectrum() {
             e.stopPropagation();
         });
     });
-    /*$.each($('.spectrum'), function () {
-        $(this).spectrum({
-            preferredFormat: "hex",
-            showInput: true,
-            showPalette: true,
-            allowEmpty: true,
-            appendTo: $(this).data('append-to') ?? null,
-        });
-    });*/
 }
 
-
-/**
- * Go through table trs to add on click support
- */
-function treeViewInit() {
-    let treeViewLoader = $('.list-treeview');
-    if (treeViewLoader.length === 0) {
-        return;
-    }
-
-    let link = treeViewLoader.data('url');
-    $.each($('.table-nested > tbody > tr'), function () {
-        let children = $(this).data('children');
-        if (parseInt(children) > 0) {
-            $(this).addClass('tr-hover cursor-pointer');
-            $(this).on('click', function (e) {
-                let target = $(e.target);
-                // Don't trigger the click on the checkbox (used for bulk actions)
-                //console.log('click tr', target);
-                if (e.target.type !== 'checkbox' && target.data('tree') !== 'escape') {
-                    window.location = link + '?parent_id=' + $(this).data('id') + '&m=table';
-                }
-            });
-        }
-    });
-}
 
 /**
  * Save and manage tabs for when refreshing
@@ -156,10 +116,9 @@ function manageTabs() {
     tabLink.on("shown.bs.tab", function (e) {
         e.preventDefault();
         let tabId = $(e.target).attr("href").substr(1);
-        let dataToggle = $(e.target).attr('ajax-modal');
         let nohash = $(e.target).data("nohash");
 
-        if ((dataToggle && dataToggle === 'ajax-modal') || (nohash)) {
+        if (nohash) {
             // Modal? Don't do more.
             return true;
         }
@@ -305,21 +264,24 @@ const initFeedbackButtons = () => {
     });
 
     // We should move this to a custom event handler?
-    $('#quick-privacy-select').change(function () {
-        let toggleUrl = $(this).data('url');
+    const quickPrivacy = document.getElementById('quick-privacy-select');
+    if (quickPrivacy) {
+        quickPrivacy.addEventListener('change', function () {
+            const toggleUrl = this.dataset.url;
 
-        axios
-            .post(toggleUrl)
-            .then(response => {
-                window.showToast(response.data.toast);
-                let body = document.querySelector('body');
-                if (!response.data.status) {
-                    body.classList.add('kanka-entity-private');
-                } else {
-                    body.classList.remove('kanka-entity-private');
-                }
-            });
-    });
+            axios
+                .post(toggleUrl)
+                .then(response => {
+                    window.showToast(response.data.toast);
+                    let body = document.querySelector('body');
+                    if (response.data.status) {
+                        body.classList.add('kanka-entity-private');
+                    } else {
+                        body.classList.remove('kanka-entity-private');
+                    }
+                });
+        });
+    }
 };
 
 const initDismissible = () => {
@@ -338,19 +300,33 @@ const initDismissible = () => {
     });
 };
 
+const initPermBtn = () => {
+    const btn = document.querySelector('.btn-manage-perm');
+    if (!btn) {
+        return;
+    }
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.closeDialog('primary-dialog');
+        let permTarget = btn.dataset.target;
+        document.querySelector(permTarget).click();
+    });
+};
+
 // Splitting off the js files into logical blocks
 import './keyboard';
 import './crud';
+import './entities';
 import './post';
+import './post-layouts';
 import './calendar';
+import './forms/calendar-date';
 import './keep-alive';
-//import './search');
 import './quick-creator';
 import './datagrids';
 import './animations';
 import './quick-links';
 import './webhooks';
-import './post-layouts';
 import './members';
 import './campaign';
 import './clipboard';
@@ -368,4 +344,4 @@ import './togglers';
 import './header';
 //import './ads');
 import './utility/tippy';
-import './ajax-subforms';
+import './maintenance';

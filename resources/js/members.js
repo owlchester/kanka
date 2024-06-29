@@ -1,30 +1,28 @@
+
 $(document).ready(function() {
-    $(document).on('shown.bs.modal shown.bs.popover', function() {
+    $(document).on('shown.bs.modal', function() {
         initFormMembersSelect();
     });
-    if ($('.form-members').count === 0) {
-        return;
-    }
     initFormMembersSelect();
 });
 
 function initFormMembersSelect() {
-    $.each($('.form-members'), function () {
-        let me = $(this);
-        if (me.data('loaded') === 1) {
+    const formMembers = document.querySelectorAll('.form-members');
+    formMembers.forEach((form) => {
+        if (form.dataset.loaded === 1) {
             return;
         }
-        me.data('loaded', 1);
-        let allowClear = me.data('allow-clear');
+        form.dataset.loaded = 1;
+        let allowClear = form.dataset.allowClear;
 
-        me.select2({
+        $(form).select2({
             tags: true,
             allowClear: allowClear || true,
-            minimumInputLength: 0,
+            minimumInputLength: 2,
             ajax: {
                 quietMillis: 500,
                 delay: 500,
-                url: me.data('url'),
+                url: form.dataset.url,
                 dataType: 'json',
                 data: function (params) {
                     return {

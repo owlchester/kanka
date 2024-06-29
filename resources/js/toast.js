@@ -1,19 +1,23 @@
-$(document).ready(function () {
-    registerToastDismiss();
-});
-
 /** Handle closing of a toast **/
-function registerToastDismiss() {
-    $('.toast-container [data-toggle="dismiss"]').unbind('click').on('click', function (e) {
-        e.preventDefault();
-        let target= $(this).closest('.toast-message');
-        target.removeClass('opacity-100').addClass('opacity-0');
+const registerToastDismiss = () => {
+    const dismisses = document.querySelectorAll('.toast-container [data-toggle="dismiss"]');
+    dismisses.forEach(element => {
+        if (element.dataset.init === '1') {
+            return;
+        }
+        element.dataset.init = '1';
+        element.addEventListener('click', function (e) {
+            e.preventDefault();
+            let target= element.closest('.toast-message');
+            target.classList.remove('opacity-100');
+            target.classList.add('opacity-0');
 
-        setTimeout(function () {
-            target.remove();
-        }, 150);
+            setTimeout(function () {
+                target.remove();
+            }, 150);
+        });
     });
-}
+};
 
 /** Show an expiring message at the bottom right of the page **/
 window.showToast = function(message, css) {
@@ -21,19 +25,30 @@ window.showToast = function(message, css) {
     if (css === 'error') {
         css = 'bg-error text-error-content';
     }
-    let $container = $('<div class="' + css + ' opacity-100 duration-150 transition-opacity rounded">');
-    $container.html('<div class="toast-message p-2 flex gap-2 items-center">'
+    const container = document.createElement('div');
+    container.classList.add('opacity-100', 'duration-150', 'transition-opacity', 'rounded');
+    if (css) {
+        const classes = css.split(' ');
+        classes.forEach(cssClass => {
+            container.classList.add(cssClass);
+        })
+    }
+    container.innerHTML = '<div class="toast-message p-2 flex gap-2 items-center">'
         + '<span class="grow"> ' + message + '</span>'
         + '<span class="flex-none"><i class="fa-regular fa-circle-xmark cursor-pointer " data-toggle="dismiss"></i></span>'
-        + '</div');
+        + '</div>';
 
-    $('.toast-container').append($container);
+    document.querySelector('.toast-container').appendChild(container);
     setTimeout(function() {
-        $container.removeClass('opacity-100').addClass('opacity-0');
+        container.classList.remove('opacity-100');
+        container.classList.add('opacity-0');
         setTimeout(function () {
-            $container.remove();
+            container.remove();
         }, 150);
     }, 3000);
     registerToastDismiss();
 };
+
+
+registerToastDismiss();
 

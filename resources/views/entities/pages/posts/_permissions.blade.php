@@ -2,7 +2,7 @@
     <div class="max-w-4xl flex flex-col gap-2">
         @if(!empty($model))
             @foreach ($model->permissions()->onlyRoles()->with('role')->get() as $perm)
-                <x-grid>
+                <x-grid css="perm-row">
                     <div class="join">
                         <span class="join-item flex items-center bg-base-200 p-2 rounded">
                             <i class="fa-solid fa-users" aria-hidden="true"></i>
@@ -12,16 +12,16 @@
 
                     <div class="flex items-center gap-2">
                         <x-forms.select name="perm_role_perm[]" :options="$permissions" :selected="$perm->permission" class="grow" />
-                        <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
+                        <a role="button" class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                             <x-icon class="trash"></x-icon>
                             <span class="sr-only">{{ __('crud.remove') }}</span>
-                        </button>
+                        </a>
                     </div>
                     <input type="hidden" name="perm_role[]" value="{{ $perm->role_id }}" />
                 </x-grid>
             @endforeach
             @foreach ($model->permissions()->onlyUsers()->with('user')->get() as $perm)
-                <x-grid>
+                <x-grid css="perm-row">
                     <div class="join">
                         <span class="join-item flex items-center bg-base-200 p-2 rounded">
                             <i class="fa-solid fa-user" aria-hidden="true"></i>
@@ -32,9 +32,9 @@
                     <div class="flex items-center gap-2">
                         <x-forms.select name="perm_user_perm[]" :options="$permissions" :selected="$perm->permission" class="grow" />
 
-                        <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
+                        <a role="button" class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                             <x-icon class="trash"></x-icon>
-                        </button>
+                        </a>
                     </div>
                     <input type="hidden" name="perm_user[]" value="{{ $perm->user_id }}" />
                 </x-grid>
@@ -43,10 +43,10 @@
         <div id="post-perm-target" class=""></div>
     </div>
     <div class="join">
-        <a href="#" class="join-item btn2 btn-outline" data-toggle="dialog" data-target="post-new-user">
+        <a href="#" class="join-item btn2 btn-ghost" data-toggle="dialog" data-target="post-new-user">
             <i class="fa-solid fa-user" aria-hidden="true"></i> {{ __('entities/notes.actions.add_user') }}
         </a>
-        <a href="#" class="join-item btn2 btn-outline" data-toggle="dialog" data-target="post-new-role">
+        <a href="#" class="join-item btn2 btn-ghost" data-toggle="dialog" data-target="post-new-role">
             <i class="fa-solid fa-users" aria-hidden="true"></i> {{ __('entities/notes.actions.add_role') }}
         </a>
     </div>
@@ -72,8 +72,8 @@
         </x-grid>
     </x-dialog>
 
-    <div class="hidden">
-        <x-grid id="post-perm-user-template">
+    <div class="hidden" id="post-perm-templates">
+        <x-grid id="post-perm-user-template" css="perm-row">
             <div class="join">
                 <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="w-full join-item" />
@@ -81,24 +81,24 @@
 
             <div class="flex items-center gap-2">
                 <x-forms.select name="perm_user_perm[]" :options="$permissions" class="grow" />
-                <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
+                <a role="button" class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                     <x-icon class="trash"></x-icon>
-                </button>
+                </a>
             </div>
             <input type="hidden" name="perm_user[]" value="$SELECTEDID$" />
         </x-grid>
-        <x-grid id="post-perm-role-template">
+        <x-grid id="post-perm-role-template" css="perm-row">
             <div class="join">
                 <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="w-full join-item" />
             </div>
             <div class="flex items-center gap-2">
                 <x-forms.select name="perm_role_perm[]" :options="$permissions" class="grow" />
-                <button class="btn2 btn-error btn-sm btn-outline post-delete-perm">
+                <a role="button" class="btn2 btn-error btn-sm btn-outline post-delete-perm">
                     <x-icon class="trash"></x-icon>
-                </button>
+                </a>
             </div>
             <input type="hidden" name="perm_role[]" value="$SELECTEDID$" />
         </x-grid>
-        </div>
+    </div>
 @endsection
