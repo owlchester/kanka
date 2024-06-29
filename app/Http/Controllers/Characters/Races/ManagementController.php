@@ -45,7 +45,10 @@ class ManagementController extends Controller
     public function save(Campaign $campaign, Character $character, ManageRaces $request)
     {
         $this->authorize('update', $character);
-
+        if (!auth()->user()->can('raceManagement', $character)) {
+            return redirect()
+                ->route('entities.show', [$campaign, $character->entity]);
+        }
         $races = $character->races()->pluck('races.id')->toArray();
         $privates = $request->get('race_privates');
 

@@ -39,7 +39,7 @@ class MemberController extends Controller
             ->select('character_race.*')
             ->with([
                 'race', 'race.entity',
-                'character', 'character.entity', 'character.entity.image',
+                'character', 'character.entity', 'character.entity.tags', 'character.entity.tags.entity', 'character.entity.image',
                 'character.location', 'character.location.entity'])
             ->has('character')
             ->has('character.entity')
