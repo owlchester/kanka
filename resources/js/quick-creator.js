@@ -1,267 +1,253 @@
-var quickCreatorModalID = '#primary-dialog';
-var quickCreatorSubmitBtn;
+let quickCreatorSubmitBtns;
 
 let loadingArticle, selectionArticle, formArticle;
-
-$(document).ready(function () {
-    $(document).on('shown.bs.modal shown.bs.popover', function() {
-        quickCreatorUI();
-    });
-
-    $('.quick-creator-subform').click(function () {
-        $(document).on('shown.bs.modal', function() {
-            quickCreatorSubformHandler();
-        });
-        window.openDialog('primary-dialog', $(this).data('url'));
-    });
-});
 
 
 /**
  * Quick Entity Creator UI
  */
-function quickCreatorUI() {
-    loadingArticle = $('#qq-modal-loading');
-    selectionArticle = $('#qq-modal-selection');
-    formArticle = $('#qq-modal-form');
-    $('[data-toggle="entity-creator"]').unbind('click').click(function(e) {
-        e.preventDefault();
+const quickCreatorUI = () => {
+    loadingArticle = document.querySelector('#qq-modal-loading');
+    selectionArticle = document.querySelector('#qq-modal-selection');
+    formArticle = document.querySelector('#qq-modal-form');
+    document.querySelectorAll('[data-toggle="entity-creator"]').forEach(element => {
+        element.addEventListener('click', buildEntityForm);
+    });
+};
 
-        let type = $(this).data('type');
-        if (type === 'inline') {
-            $('.quick-creator-body').hide();
-            $('.quick-creator-footer').hide();
-            $('.quick-creator-loading').show();
-        } else {
-            quickCreatorLoadingModal();
-        }
+const buildEntityForm = (event) => {
+    event.preventDefault();
+    const element = event.currentTarget;
 
-        $.ajax({
-            url: $(this).data('url'),
-            context: this
-        }).done(function (data) {
+    const type = element.dataset.type;
+    if (type === 'inline') {
+        document.querySelector('.quick-creator-body').classList.add('hidden');
+        document.querySelector('.quick-creator-footer').classList.add('hidden');
+        document.querySelector('.quick-creator-loading').classList.remove('!hidden');
+    } else {
+        quickCreatorLoadingModal();
+    }
 
-            loadingArticle.hide();
-            selectionArticle.hide();
-            formArticle.show().html(data);
+    axios.get(element.dataset.url)
+        .then(res => {
+            loadingArticle.classList.add('!hidden');
+            selectionArticle.classList.add('!hidden');
+            formArticle.innerHTML = res.data;
+            formArticle.classList.remove('!hidden');
 
             quickCreatorSubformHandler();
             quickCreatorToggles();
             $(document).trigger('shown.bs.modal');
         });
 
-        return false;
-    });
-}
+    return false;
+};
 
-function quickCreatorDuplicateName() {
-    $('#qq-name-field').unbind('focusout').focusout(function() {
+const quickCreatorDuplicateName = () => {
+    const field = document.querySelector('#qq-name-field');
+    if (!field || field.dataset.init === '1') {
+        return;
+    }
+    field.dataset.init = '1';
+    field.addEventListener('focusout', function () {
         // Don't bother if the user didn't set any value
-        if (!$(this).val()) {
+        if (!this.value) {
             return;
         }
 
-        $(this).parent().parent().find('.duplicate-entity-warning').hide();
+        const warning = this.parentNode.querySelector('.duplicate-entity-warning');
+        warning.classList.add('hidden');
         // Check if an entity of the same type already exists, and warn when it does.
-        $.ajax({
-            'url': $(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type'),
-            context: this
-        }).done(function (res) {
-            if (res.length > 0) {
-                let entities = Object.keys(res).map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'; }).join(', ');
-                $(this).parent().parent().find('.duplicate-entities').html(entities);
-                $(this).parent().parent().find('.duplicate-entity-warning').show();
-            } else {
-                $(this).parent().parent().find('.duplicate-entity-warning').hide();
+        const url = this.dataset.live + '?q=' + this.value + '&type=' + this.dataset.type;
+        axios.get(url)
+            .then(res => {
+            if (res.data.length === 0) {
+                warning.classList.add('hidden');
+                return;
             }
+            const entities = Object.keys(res.data)
+                .map(function (k) { return '<a href="' + res.data[k].url + '">' + res.data[k].name + '</a>'; })
+                .join(', ');
+            field.parentNode.querySelector('.duplicate-entities').innerHTML = entities;
+            console.log(entities);
+            warning.classList.remove('hidden');
         });
     });
-}
+};
 
-function quickCreatorLoadingModal() {
-    $('#qq-modal-form').hide();
-    $('#qq-modal-selection').hide();
-    $('#qq-modal-loading').show();
-}
+const quickCreatorLoadingModal = () => {
+    document.querySelector('#qq-modal-form').classList.add('!hidden');
+    document.querySelector('#qq-modal-selection').classList.add('!hidden');
+    document.querySelector('#qq-modal-loading').classList.remove('!hidden');
+};
 
 /**
  *
  */
-function quickCreatorSubformHandler() {
+const quickCreatorSubformHandler = () => {
 
-    quickCreatorSubmitBtn = $('.quick-creator-submit');
-    if (quickCreatorSubmitBtn.length === 0) {
+    quickCreatorSubmitBtns = document.querySelectorAll('.quick-creator-submit');
+    if (quickCreatorSubmitBtns.length === 0) {
         return;
     }
 
     quickCreatorDuplicateName();
-
-    // Back button
-    quickCreatorBackButton();
     quickCreatorToggles();
 
-    // If we click on edit, we want to be redirected afterwards
-    quickCreatorSubmitBtn.on('click', function (e) {
-        let action = $(this).data('action');
-        if (!action) {
+    // If we click on edit, we want to be redirected afterwards. This is because the form's onsubmit re-casts the
+    // form as a formdata object
+    quickCreatorSubmitBtns.forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            let action = this.value;
+            if (!action) {
+                return true;
+            }
+
+            document.querySelector('#entity-creator-form [name="action"]').value = action;
+            console.log('its ', document.querySelector('#entity-creator-form [name="action"]').value);
             return true;
-        }
-
-        $('#entity-creator-form [name="action"]').val(action);
-
-        return true;
+        });
     });
 
-    $('#entity-creator-form').submit(function(e) {
+    document.getElementById('entity-creator-form').onsubmit = function (e) {
 
+        const form = e.target;
         e.preventDefault();
-        quickCreatorSubmitBtn
-            .prop('disabled', true)
-            .find('span').hide()
-            .parent().find('i.fa-spin').show();
+        quickCreatorSubmitBtns.forEach(btn => btn.classList.add('btn-disabled', 'loading'));
 
-        $('div.text-error').remove();
+        const errors = document.querySelectorAll('div.text-error');
+        errors.forEach(error => error.remove());
 
-        $.post({
-            url: $(this).attr('action'),
-            data: $(this).serialize(),
-            context: this
-        }).done(function (result) {
-            // New entity was created, let's follow that redirect
-            //console.log('result', result);
-            if (typeof result === 'object') {
-                if (result.redirect) {
-                    window.location.replace(result.redirect);
+        const data = new FormData(form);
+        axios.post(form.getAttribute('action'), data)
+            .then(res => {
+                // New entity was created, let's follow that redirect
+                //console.log('result', result);
+                if (typeof res.data === 'object') {
+                    if (res.data.redirect) {
+                        window.location.replace(res.data.redirect);
+                        return;
+                    }
+                    let option = new Option(res.data._name, res.data._id);
+                    let field = document.querySelector('#' + res.data._target);
+                    if (res.data._multi) {
+                        let selectedValues = field.value;
+                        selectedValues.push(res.data._id);
+                        field.append(option).value = selectedValues;
+                    } else {
+                        field.children().remove().end().append(option).val(res.data._id);
+                    }
+                    field.trigger('change');
+
+                    document.querySelector('#qq-modal-form').innerHTML = '';
+                    document.querySelector('#qq-modal-form').classList.remove('!hidden');
+
+                    document.querySelector('#qq-modal-loading').classList.add('!hidden');
+                    document.querySelector('#qq-modal-selection').classList.remove('!hidden');
+
+                    const target = document.getElementById('primary-dialog');
+                    target.close();
+
+                    quickCreatorHandleEvents();
+
                     return;
                 }
-                let option = new Option(result._name, result._id);
-                let field = $('#' + result._target);
-                if (result._multi) {
-                    let selectedValues = field.val();
-                    selectedValues.push(result._id);
-                    field.append(option).val(selectedValues);
-                } else {
-                    field.children().remove().end().append(option).val(result._id);
-                }
-                field.trigger('change');
 
-                $('#qq-modal-form').html('').show();
-                $('#qq-modal-loading').hide();
-                $('#qq-modal-selection').show();
+                let target = document.getElementById('qq-modal-form');
+                target.innerHTML = res.data;
 
-                let target = document.getElementById('primary-dialog');
-                target.close();
-
+                quickCreatorUI();
                 quickCreatorHandleEvents();
+            })
+            .catch(function (err) {
+                /** @property {string} responseJSON - json errors from response  */
+                if (err.data.errors) {
+                    let errors = err.data.errors;
 
+                    let errorKeys = Object.keys(errors);
+                    let foundAllErrors = true;
+                    errorKeys.forEach(function (i) {
+                        let errorSelector = document.querySelector('#entity-creator-form [name="' + i + '"]');
+                        if (errorSelector) {
+                            errorSelector.classList.add('input-error');
+
+                            const errorElement = document.createElement('div');
+                            errorElement.classList.add('text-error');
+                            errorElement.innerHTML = errors[i][0];
+                            errorSelector.parentNode.append(errorElement);
+                        } else {
+                            foundAllErrors = false;
+                        }
+                    });
+
+                    let firstItem = Object.keys(errors)[0];
+                    let firstItemDom = document.querySelector('#entity-creator-form input[name="' + firstItem + '"]');
+
+                    // If we can actually find the first element, switch to it and the correct tab.
+                    if (firstItemDom) {
+                        firstItemDom.scrollIntoView({behavior: 'smooth'});
+                    }
+                }
+                quickCreatorSubmitBtns.forEach(btn => btn.classList.remove('btn-disabled', 'loading'));
+
+                document.querySelector('#entity-creator-form [name="action"]').value = '';
+            });
+
+    };
+};
+
+const quickCreatorToggles = () => {
+    document.querySelectorAll('.qq-mode-toggle').forEach(element => {
+        element.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            if (this.classList.contains('active')) {
                 return;
             }
 
-            let target = document.getElementById('qq-modal-form');
-            target.innerHTML = result;
+            document.querySelector('.qq-mode-toggle').classList.remove('active');
+            this.classList.add('active');
 
-            //$('#qq-modal-form').html(result).show();
-            //$('#qq-modal-loading').hide();
-            quickCreatorUI();
-            quickCreatorHandleEvents();
+            document.querySelector('.quick-creator-body').classList.add('hidden');
+            document.querySelector('.quick-creator-footer').classList.add('hidden');
+            document.querySelector('.quick-creator-loading').classList.remove('!hidden');
 
-        }).fail(function (err) {
-            /** @property {string} responseJSON - json errors from response  */
-            if (err.responseJSON.errors) {
-                let errors = err.responseJSON.errors;
-
-                let errorKeys = Object.keys(errors);
-                let foundAllErrors = true;
-                errorKeys.forEach(function (i) {
-                    let errorSelector = $('#entity-creator-form [name="' + i + '"]');
-                    if (errorSelector.length > 0) {
-                        errorSelector.addClass('input-error').parent().append('<div class="text-error">' + errors[i][0] + '</div>');
-                    } else {
-                        foundAllErrors = false;
-                    }
-                });
-
-                let firstItem = Object.keys(errors)[0];
-                let firstItemDom = $('#entity-creator-form input[name="' + firstItem + '"]');
-
-                // If we can actually find the first element, switch to it and the correct tab.
-                if (firstItemDom[0]) {
-                    firstItemDom[0].scrollIntoView({behavior: 'smooth'});
-
-                    // Switch tabs/pane
-                    $('.tab-content .active').removeClass('active');
-                    $('.nav-tabs li.active').removeClass('active');
-                    let firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
-                    firstPane.addClass('active');
-                    $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
-                }
-            }
-            quickCreatorSubmitBtn
-                .prop('disabled', false)
-                .find('i.fa-spin').hide()
-                .parent().find('span').show();
-
-            $('#entity-creator-form [name="action"]').val('');
+            axios.get(this.dataset.url)
+                .then(res => {
+                    formArticle.innerHTML = res.data;
+                    formArticle.classList.remove('!hidden');
+                    quickCreatorHandleEvents();
+                    $(document).trigger('shown.bs.modal');
+                })
+            ;
         });
     });
-}
 
-function quickCreatorBackButton() {
-    $('#entity-creator-back').click(function(e) {
+    document.querySelector('.qq-action-more')?.addEventListener('click', function (e) {
         e.preventDefault();
-        quickCreatorLoadingModal();
-
-        $.ajax({
-            url: $(this).data('url'),
-            context: this
-        }).done(function (result) {
-            let target = $(this).data('target');
-            formArticle.html(result).show();
-            loadingArticle.hide();
-            quickCreatorUI();
-        });
-    });
-}
-
-function quickCreatorToggles() {
-    $('.qq-mode-toggle').unbind('click').on('click', function (e) {
-        e.preventDefault();
-
-        if ($(this).hasClass('active')) {
-            return;
-        }
-
-        $('.qq-mode-toggle').removeClass('active');
-        $(this).addClass('active');
-
-        $('.quick-creator-body').hide();
-        $('.quick-creator-footer').hide();
-        $('.quick-creator-loading').show();
-
-        $.ajax({
-            url: $(this).data('url')
-        })
-            .done(function (result) {
-                formArticle.html(result).show();
-                quickCreatorHandleEvents();
-                $(document).trigger('shown.bs.modal');
-            })
-        ;
-    });
-
-    $('.qq-action-more').unbind('click').on('click', function (e) {
-        e.preventDefault();
-        $(this).hide();
-        $('.qq-more-fields').show();
+        this.classList.add('hidden');
+        document.querySelector('.qq-more-fields').classList.remove('hidden');
     });
 
     quickCreatorUI();
-}
+};
 
-function quickCreatorHandleEvents() {
-
+const quickCreatorHandleEvents = () => {
     quickCreatorToggles();
     quickCreatorDuplicateName();
-    quickCreatorBackButton();
     quickCreatorSubformHandler();
-}
+};
+
+const initQuickCreatorFromField = () => {
+    const btns = document.querySelectorAll('.quick-creator-subform');
+    btns.forEach(btn => {
+        btn.addEventListener('click',  e => {
+            window.openDialog('primary-dialog', btn.dataset.url);
+        });
+    });
+};
+$(document).on('shown.bs.modal', function() {
+    quickCreatorUI();
+    quickCreatorSubformHandler();
+});
+initQuickCreatorFromField();

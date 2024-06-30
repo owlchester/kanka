@@ -41,11 +41,11 @@
             </x-alert>
         </x-forms.field>
 
-        <a href="#" class="qq-action-more text-uppercase cursor-pointer text-sm" style="{{ $singularType === 'post' ? 'display: none' : null }}">
-            <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
+        <a href="#" class="qq-action-more text-uppercase cursor-pointer text-sm {{ $singularType === 'post' ? 'hidden' : null }}">
+            <x-icon class="fa-solid fa-caret-down" />
             {{ __('entities.creator.actions.more') }}
         </a>
-        <div class="qq-more-fields flex flex-col gap-5" style="{{ $singularType !== 'post' ? 'display: none' : null }}">
+        <div class="qq-more-fields flex flex-col gap-5 {{ $singularType !== 'post' ? 'hidden' : null }}">
             @php $allowNew = false; $dropdownParent = '#primary-dialog';@endphp
             @include('entities.creator.forms.' . $singularType)
 
@@ -64,26 +64,23 @@
     <div class="quick-creator-footer">
 
             <div class="join mr-4">
-                <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.create') }}">
+                <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.create') }}" name="next">
                     <span>
                         {!! __('entities.creator.actions.create', ['type' => $singular ?? $entityType]) !!}
                     </span>
-                    <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
                 </button>
-                <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" data-action="more" title="{{ __('entities.creator.tooltips.create_more') }}">
+                <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" name="next" data-entity-type="{{ $singularType }}" value="more" title="{{ __('entities.creator.tooltips.create_more') }}">
                     <span>
-                        <i class="fa-solid fa-plus-square" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-plus-square" />
                     </span>
-                    <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
                 </button>
             </div>
 
             @if ($mode !== 'bulk')
-                <button type="submit" class="btn2 btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" data-action="edit" title="{{ __('entities.creator.tooltips.edit') }}">
+                <button type="submit" class="btn2 btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.edit') }}" name="next" value="edit">
                     <span>
                         {{ __('crud.edit') }}
                     </span>
-                    <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
                 </button>
             @endif
 
@@ -92,7 +89,7 @@
             </a>
     </div>
     @endif
-    <div class="quick-creator-loading p-8 text-center text-lg" style="display: none">
+    <div class="quick-creator-loading p-8 text-center text-lg hidden">
         <x-icon class="load" />
     </div>
 </div>
@@ -101,10 +98,9 @@
     </article>
     <footer class="bg-base-200 flex flex-wrap gap-3 justify-center items-center p-3">
         <button class="btn2 btn-primary quick-creator-submit" data-entity-type="{{ $singularType }}">
-                <span>
-                    <x-icon class="plus"></x-icon> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
-                </span>
-            <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
+            <span>
+                <x-icon class="plus"></x-icon> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
+            </span>
         </button>
     </footer>
 @endif

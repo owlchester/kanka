@@ -3,13 +3,13 @@
 
 </x-dialog.header>
 @endif
-<article id="qq-modal-loading" style="display: none">
+<article id="qq-modal-loading" class="!hidden">
     <div class="text-center text-4xl">
-        <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+        <x-icon class="fa-solid fa-spinner fa-spin" />
         <span class="sr-only">Loading...</span>
     </div>
 </article>
-<article id="qq-modal-form" style="display: none">
+<article id="qq-modal-form" class="!hidden">
 </article>
 <div class="container">
     <article id="qq-modal-selection">
