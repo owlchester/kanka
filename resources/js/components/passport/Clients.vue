@@ -285,7 +285,6 @@
 
                 this.openModal('editModal');
                 this.$refs.editName.focus();
-                //$('#modal-edit-client').modal('show');
             },
 
             /**
@@ -312,7 +311,6 @@
                         form.redirect = '';
                         form.errors = [];
 
-                        //$(modal).modal('hide');
                         this.closeModal(modal);
                     })
                     .catch(error => {

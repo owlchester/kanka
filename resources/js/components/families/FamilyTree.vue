@@ -126,7 +126,7 @@
           <div class="field field field-colour flex flex-col gap-1">
             <label>{{ this.texts.modals.fields.colour }}</label>
             <div>
-              <input v-model="colour" name="colour" type="text" maxlength="7" data-append-to="#family-tree-modal" class="w-full spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
+              <input v-model="colour" name="colour" type="text" maxlength="7" data-append-to="#family-tree-modal" class="w-full spectrum" id="family_tree_colour" @keyup.enter="saveModal()" ref="colour" />
             </div>
           </div>
 
@@ -204,7 +204,6 @@ export default {
             maxX: 0,
             maxY: 0,
 
-            colourField: 'input[name="colour"]',
             modal: 'family-tree-modal',
             founderField: 'select[name="founder_id_ft"]',
             entityField: 'select[name="character_id_ft"]',
@@ -397,7 +396,7 @@ export default {
                 if (object.uuid === this.currentUuid) {
                     object.role = this.relation;
                     object.cssClass = this.cssClass;
-                    object.colour = $(this.colourField).val();
+                    object.colour = this.colour;
                     object.visibility = this.visibility;
                     object.isUnknown = this.isUnknown;
                     result.push(object);
@@ -423,7 +422,6 @@ export default {
         },
         addRelation() {
             let entity_id = $(this.entityField).val();
-            this.colour = $(this.colourField).val();
             if (this.isUnknown) {
                 this.insertUnknownRelation();
                 this.isDirty = true;
@@ -638,7 +636,7 @@ export default {
                     object.role = this.relation;
                     object.isUnknown = this.isUnknown;
                     object.cssClass = this.cssClass;
-                    object.colour = $(this.colourField).val();
+                    object.colour = this.colour;
                     object.visibility = this.visibility;
                     object.entity_id = object.entity_id;
                     result.push(object);
@@ -674,7 +672,7 @@ export default {
                     }
                     object.role = this.relation;
                     object.cssClass = this.cssClass;
-                    object.colour = $(this.colourField).val();
+                    object.colour = this.colour;
                     object.visibility = this.visibility;
                     object.isUnknown = this.isUnknown;
                     object.entity_id = entity_id;
