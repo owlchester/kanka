@@ -324,6 +324,7 @@ import './forms/calendar-date';
 import './keep-alive';
 import './quick-creator';
 import './datagrids';
+import './datagrids2';
 import './animations';
 import './quick-links';
 import './webhooks';

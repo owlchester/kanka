@@ -11,13 +11,13 @@
 <div id="map-groups" class="">
     @if(Datagrid::hasBulks())
         <x-form :action="['maps.groups.bulk', $campaign, 'map' => $model]" direct>
-            <div id="datagrid-parent">
-                @include('layouts.datagrid._table', ['responsive' => true])
+            <div id="datagrid-parent" class="table-responsive">
+                @include('layouts.datagrid._table')
             </div>
         </x-form>
     @else
-        <div id="datagrid-parent">
-            @include('layouts.datagrid._table', ['responsive' => true])
+        <div id="datagrid-parent" class="table-responsive">
+            @include('layouts.datagrid._table')
         </div>
     @endif
 </div>

@@ -47,12 +47,12 @@ use App\Facades\Datagrid ?>
             @else
                 @if(Datagrid::hasBulks())
                     <x-form :action="['campaign_styles.bulk', $campaign]" direct>
-                        <div id="datagrid-parent" class="">
+                        <div id="datagrid-parent" class="table-responsive">
                             @include('layouts.datagrid._table', ['rows' => $styles])
                         </div>
                     </x-form>
                 @else
-                    <div id="datagrid-parent" class="">
+                    <div id="datagrid-parent" class="table-responsive">
                         @include('layouts.datagrid._table', ['rows' => $styles])
                     </div>
                 @endif

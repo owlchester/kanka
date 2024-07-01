@@ -46,7 +46,7 @@ class MemberController extends Controller
                 'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'
             ])
             ->has('entity')
-            ->paginate(15);
+            ->paginate();
 
         // Ajax Datagrid
         if (request()->ajax()) {

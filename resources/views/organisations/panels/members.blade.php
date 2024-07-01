@@ -6,7 +6,7 @@ $allMembers = false;
 $datagridOptions = [
     $campaign,
     $model,
-    'init' => 1
+    'init' => 1,
 ];
 if (request()->has('all')) {
     $datagridOptions['all'] = 1;

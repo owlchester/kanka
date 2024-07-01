@@ -17,6 +17,7 @@
             'content' => 'campaigns.roles._form',
             'save' => __('campaigns.roles.actions.add'),
             'dialog' => true,
+            'model' => null,
         ])
 
     </x-form>

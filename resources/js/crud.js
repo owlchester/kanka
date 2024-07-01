@@ -91,21 +91,29 @@ const registerDropdownFormActions = () => {
  */
 function registerUnsavedChanges() {
     // Return early if we have no elements to handle
-    entityFormActions = document.querySelectorAll('form[data-unload="1"]');
-    if (entityFormActions.length === 0) {
+    const forms = document.querySelectorAll('form[data-unload="1"]');
+    if (forms.length === 0) {
         return;
     }
-    let save = document.querySelector('#form-submit-main');
+    const save = document.querySelector('#form-submit-main');
 
     // Save every input change
-    const inputs = document.querySelectorAll('input', 'checkbox', 'select', 'textarea');
+    const inputs = document.querySelectorAll('form[data-unload="1"] input, form[data-unload="1"] select, form[data-unload="1"] textarea');
     inputs.forEach(input => {
-        input.addEventListener('change', function (e) {
-            if (input.dataset.skipUnsaved) {
-                return;
-            }
+        // Skip based on a data property, of it its old bootstrap fields (summernote)
+        if (input.dataset.skipUnsaved || input.classList.contains('form-control')) {
+            return;
+        }
+        // Standard input fields are simple
+        input.addEventListener('change', function () {
             window.entityFormHasUnsavedChanges = true;
         });
+        // For select2 fields, we need to listen to onchange directly, because jquery won't trigger the change event
+        if (input.classList.contains('select2')) {
+            input.onchange = () => {
+                window.entityFormHasUnsavedChanges = true;
+            };
+        }
     });
 
     if (!save) {

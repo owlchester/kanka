@@ -1,16 +1,15 @@
 $(document).ready(function() {
     window.initForeignSelect = function () {
-        if ($('select.select2').length === 0) {
+        const fields = document.querySelectorAll('select.select2');
+        if (fields.length === 0) {
             return;
         }
-        $.each($('select.select2'), function (index) {
-
-            if ($(this).hasClass('select2-hidden-accessible')) {
+        fields.forEach(field => {
+            if (field.classList.contains('select2-hidden-accessible')) {
                 return;
             }
-            if ($(this).hasClass('campaign-genres')) {
-
-                $(this).select2({
+            if (field.classList.contains('campaign-genres')) {
+                $(field).select2({
                     tags: false,
                     allowClear: true,
                     dropdownParent: '',
@@ -20,33 +19,34 @@ $(document).ready(function() {
                 return;
             }
 
-            let url = $(this).data('url');
-            let allowClear = $(this).data('allow-clear');
-            let dropdownParent = $(this).data('dropdown-parent');
+            const url = field.dataset.url;
+            const allowClear = field.dataset.allowClear;
+            const dropdownParent = field.dataset.dropdownParent || '';
+            const placeholder = field.dataset.placeholder;
 
             if (!url) {
-                $(this).select2({
+                $(field).select2({
                     tags: false,
-                    placeholder: $(this).data('placeholder'),
+                    placeholder: placeholder,
                     allowClear: allowClear ?? false,
                     //tags: $(this).data('tags') || false,
-                    language: $(this).data('language'),
+                    language: field.dataset.language,
                     minimumInputLength: 0,
-                    dropdownParent: dropdownParent || '',
+                    dropdownParent: dropdownParent,
                     width: '100%',
                 });
                 return;
             }
 
             // Check it isn't the select2-icon
-            $(this).select2({
+            $(field).select2({
                 tags: false,
-                placeholder: $(this).data('placeholder'),
+                placeholder: placeholder,
                 allowClear: allowClear || true,
                 //tags: $(this).data('tags') || false,
-                language: $(this).data('language'),
+                language: field.dataset.language,
                 minimumInputLength: 0,
-                dropdownParent: dropdownParent || '',
+                dropdownParent: dropdownParent,
                 width: '100%',
 
                 ajax: {
@@ -65,7 +65,7 @@ $(document).ready(function() {
                         };
                     },
                     error: function(response) {
-                        console.log('error', response);
+                        //console.log('error', response);
                         if (response.status === 503) {
                             window.showToast(response.responseJSON.message, 'error');
                         }
@@ -73,58 +73,88 @@ $(document).ready(function() {
                     },
                     cache: true
                 },
-                templateResult: function (item) {
-                    let $span = '';
-                    if (item.image) {
-                        $span = $("<span class='flex gap-2 items-center text-left'>" +
-                            "<img src='" + item.image + "' class='rounded-full flex-none w-6 h-6'/>" +
-                            "<span class='grow'>" + item.text + "</span>" +
-                            "</span>");
-                    } else {
-                        $span = $("<span>" + item.text + "</span>");
-                    }
-                    return $span;
-                },
+                templateResult: formatResultList,
+                templateSelection: formatResult,
                 createTag: function (data) {
                     return null;
                 }
             });
         });
 
-        // Select2 with local search
-        $('select.select2-local').select2({
-            placeholder: $(this).data('placeholder'),
-            language: $(this).data('language'),
+        initLocalSelects();
+        initColourSelects();
+    };
+});
+
+const formatResultList = (item) => {
+    const element = document.createElement('span');
+    if (item.image) {
+        element.classList.add('flex', 'gap-2', 'items-center', 'text-left');
+        element.innerHTML =  "<img src='" + item.image + "' class='rounded-full flex-none w-6 h-6'/>" +
+            "<span class='grow'>" + item.text + "</span>";
+    } else {
+        element.innerHTML = item.text;
+    }
+    return element;
+};
+
+const formatResult = (item) => {
+    if (!item.id) {
+        return item.text;
+    }
+    const ele = document.createElement('span');
+    ele.innerHTML = item.text;
+    return ele;
+};
+
+const initLocalSelects = () => {
+    // Select2 with local search
+    const fields = document.querySelectorAll('select.select2-local');
+    if (fields.length === 0) {
+        return;
+    }
+    fields.forEach(field => {
+        $(field).select2({
+            placeholder: field.dataset.placeholder,
+            language: field.dataset.language,
             allowClear: true
         });
+    });
+};
 
-        // Select2 with colour box
-        $('select.select2-colour').select2({
+const initColourSelects = () => {
+    // Select2 with local search
+    const fields = document.querySelectorAll('select.select2-colour');
+    if (fields.length === 0) {
+        return;
+    }
+    fields.forEach(field => {
+        $(field).select2({
+            placeholder: field.dataset.placeholder,
+            language: field.dataset.language,
             allowClear: false,
             templateResult: select2ColourState,
             templateSelection: select2ColourState,
         });
-    }
-});
+    });
+};
 
-function select2ColourState (state) {
+const select2ColourState = (state) => {
     if (state.id === 'none') {
         return state.text;
     }
 
-    let $state = $(
+    const span = $(
         '<span><div class="badge label bg-' + state.id + '"> </div>' + state.text + '</span>'
     );
-    return $state;
-}
+    return span;
+};
 
 // Load the translations into memory
-import "select2/dist/js/i18n/ca.js";
 import "select2/dist/js/i18n/de.js";
 import "select2/dist/js/i18n/en.js";
 import "select2/dist/js/i18n/es.js";
 import "select2/dist/js/i18n/fr.js";
-import "select2/dist/js/i18n/hu.js";
 import "select2/dist/js/i18n/it.js";
 import "select2/dist/js/i18n/nl.js";
 import "select2/dist/js/i18n/pl.js";

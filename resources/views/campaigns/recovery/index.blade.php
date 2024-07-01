@@ -44,12 +44,12 @@
 
         @if(Datagrid::hasBulks())
             <x-form :action="[isset($isPost) ? 'recovery.save.posts' : 'recovery.save', $campaign]" :shortcut="false">
-                <div id="datagrid-parent">
+                <div id="datagrid-parent" class="table-responsive">
                     @include('layouts.datagrid._table')
                 </div>
             </x-form>
         @else
-        <div id="datagrid-parent">
+        <div id="datagrid-parent" class="table-responsive">
             @include('layouts.datagrid._table')
         </div>
         @endif

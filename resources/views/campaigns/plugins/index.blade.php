@@ -13,13 +13,13 @@
 @if($campaign->boosted())
     @if(Datagrid::hasBulks())
         <x-form :action="['campaign_plugins.bulk', $campaign]" direct>
-            <div id="datagrid-parent">
-                @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list'), 'responsive' => true])
+            <div id="datagrid-parent" class="table-responsive">
+                @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list')])
             </div>
         </x-form>
     @else
-        <div id="datagrid-parent">
-            @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list'), 'responsive' => true])
+        <div id="datagrid-parent" class="table-responsive">
+            @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list')])
         </div>
     @endif
 @else
