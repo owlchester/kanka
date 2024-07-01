@@ -37,7 +37,7 @@ $specificTheme = null;
         'resources/sass/map-v3.scss',
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet{{ config('app.leaflet_source') }}/dist/leaflet.css" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
     @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
         @php $specificTheme = $themeOverride; @endphp
         @if($themeOverride != 'base')
@@ -152,7 +152,7 @@ $specificTheme = null;
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
 <!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet{{ config('app.leaflet_source') }}/dist/leaflet.js" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
