@@ -25,7 +25,7 @@
 @section('scripts')
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet{{ config('app.leaflet_source') }}/dist/leaflet.js" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
+    <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
@@ -91,7 +91,7 @@
 
 @section('styles')
     @parent
-    <link rel="stylesheet" href="https://unpkg.com/leaflet{{ config('app.leaflet_source') }}/dist/leaflet.css" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
+    <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
     @vite('resources/sass/map-v3.scss')
 
     <style>
