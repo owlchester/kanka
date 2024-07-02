@@ -7,11 +7,15 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $character_id
  * @property int $race_id
  * @property bool $is_private
+ * @property null|Character $character
+ * @property Collection|Race[] $characterRaces
+ * @property null|Race $race
  */
 class CharacterRace extends Model
 {
@@ -28,11 +32,11 @@ class CharacterRace extends Model
         'is_private',
     ];
 
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo(Character::class);
     }
-    public function race()
+    public function race(): BelongsTo
     {
         return $this->belongsTo(Race::class);
     }

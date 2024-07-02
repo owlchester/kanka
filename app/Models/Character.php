@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $location_id
  * @property Race|null $race
  * @property Collection|Race[] $races
+ * @property Collection|CharacterRace[] $characterRaces
  * @property Collection|Organisation[] $organisations
  * @property Collection|OrganisationMember[] $organisationMemberships
  * @property Collection|ConversationParticipant[] $conversationParticipants

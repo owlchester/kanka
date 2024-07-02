@@ -39,12 +39,6 @@ class DashboardWidgetController extends Controller
             ->with('dashboard', $dashboard);
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
     public function create(Campaign $campaign)
     {
         $this->authorize('dashboard', $campaign);
@@ -67,8 +61,6 @@ class DashboardWidgetController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreCampaignDashboardWidget $request, Campaign $campaign)
     {
@@ -82,12 +74,12 @@ class DashboardWidgetController extends Controller
         $widget = CampaignDashboardWidget::create($data);
 
         return redirect()
-            ->route('dashboard.setup', $widget->dashboard_id ? [$campaign, 'dashboard' => $widget->dashboard_id] : $campaign)
+            ->route('dashboard.setup', $widget->dashboard_id ?
+                [$campaign, 'dashboard' => $widget->dashboard_id] : $campaign)
             ->with('success', __('dashboard.widgets.create.success'));
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function show(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
@@ -95,8 +87,6 @@ class DashboardWidgetController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
@@ -118,8 +108,6 @@ class DashboardWidgetController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreCampaignDashboardWidget $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
@@ -136,7 +124,8 @@ class DashboardWidgetController extends Controller
         $campaignDashboardWidget->update($input);
 
         return redirect()
-            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : $campaign)
+            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ?
+                [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : $campaign)
             ->with('success', __('dashboard.widgets.update.success'));
     }
 
@@ -146,7 +135,8 @@ class DashboardWidgetController extends Controller
         $campaignDashboardWidget->delete();
 
         return redirect()
-            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : $campaign)
+            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ?
+                [$campaign, 'dashboard' => $campaignDashboardWidget->dashboard_id] : $campaign)
             ->with('success', __('dashboard.widgets.delete.success'));
     }
 

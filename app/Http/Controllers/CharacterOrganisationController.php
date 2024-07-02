@@ -84,10 +84,6 @@ class CharacterOrganisationController extends Controller
         ]);
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function update(
         StoreOrganisationMember $request,
         Campaign $campaign,
