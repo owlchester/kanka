@@ -166,6 +166,14 @@ return [
      */
     'default_country' => env('DEFAULT_COUNTRY', 'CH'),
 
+    /**
+     * Leaflet version.
+     */
+
+    'leaflet_source' => env('LEAFLET_SOURCE', '@1.9.4'),
+    'leaflet_css' => env('LEAFLET_CSS', 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY='),
+    'leaflet_js' => env('LEAFLET_JS', 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo='),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
