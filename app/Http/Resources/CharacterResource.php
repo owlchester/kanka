@@ -17,7 +17,7 @@ class CharacterResource extends EntityResource
         /** @var Character $model */
         $model = $this->resource;
 
-        $raceIDs = $model->characterRaces->where('is_private', false)->pluck('race.id');
+        $raceIDs = $model->characterRaces->pluck('race.id');
         $privateRaceIDs = $model->characterRaces->where('is_private', true)->pluck('race.id');
         $familyIDs = $model->families->pluck('id');
 
