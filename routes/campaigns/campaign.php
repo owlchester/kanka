@@ -127,9 +127,8 @@ if (config('marketplace.enabled')) {
 Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect');
 
 // Campaign Dashboard Widgets
-Route::get('/w/{campaign}/dashboard-setup', 'DashboardSetupController@index')->name('dashboard.setup');
-Route::post('/w/{campaign}/dashboard-setup', 'DashboardSetupController@save')->name('dashboard.setup');
-Route::post('/w/{campaign}/dashboard-setup/reorder', [App\Http\Controllers\DashboardSetupController::class, 'reorder'])->name('dashboard.reorder');
+Route::get('/w/{campaign}/dashboard-setup', [App\Http\Controllers\Dashboards\SetupController::class, 'index'])->name('dashboard.setup');
+Route::post('/w/{campaign}/dashboard-setup/reorder', [App\Http\Controllers\Dashboards\SetupController::class, 'save'])->name('dashboard.reorder');
 Route::get('/w/{campaign}/dashboard/widgets/recent/{id}', 'DashboardController@recent')->name('dashboard.recent');
 Route::get('/w/{campaign}/dashboard/widgets/unmentioned/{id}', 'DashboardController@unmentioned')->name('dashboard.unmentioned');
 Route::post('/w/{campaign}/dashboard/widgets/calendar/{campaignDashboardWidget}/add', [App\Http\Controllers\Widgets\CalendarWidgetController::class, 'add'])->name('dashboard.calendar.add');

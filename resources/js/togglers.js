@@ -19,14 +19,14 @@ const registerPrivacyToggler = (element) => {
     element.addEventListener('click', function (event) {
         const closestInputSibling = element.previousElementSibling;
         console.log(closestInputSibling);
-        if (element.classList.contains('fa-lock')) {
-            element.classList.remove('fa-lock');
-            element.classList.add('fa-unlock-alt');
+        if (element.classList.contains('fa-lock-keyhole')) {
+            element.classList.remove('fa-lock-keyhole', 'fa-solid');
+            element.classList.add('fa-unlock-keyhole', 'fa-regular');
             element.setAttribute('title', element.dataset.public);
             closestInputSibling.value = 0;
         } else {
-            element.classList.remove('fa-unlock-alt');
-            element.classList.add('fa-lock');
+            element.classList.remove('fa-unlock-keyhole', 'fa-regular');
+            element.classList.add('fa-lock-keyhole', 'fa-solid');
             element.setAttribute('title', element.dataset.private);
             closestInputSibling.value = 1;
             //element.prev('input:hidden').val("1");

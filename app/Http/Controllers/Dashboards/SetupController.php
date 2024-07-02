@@ -1,27 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboards;
 
+use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 
-class DashboardSetupController extends Controller
+class SetupController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign)
     {
         $this->authorize('dashboard', $campaign);
@@ -40,11 +32,12 @@ class DashboardSetupController extends Controller
     }
 
     /**
-     * Reorder the dashboard widgets
+     * Save the new dashboard widgets order
      */
-    public function reorder(Campaign $campaign)
+    public function save(Campaign $campaign)
     {
         $this->authorize('dashboard', $campaign);
+
         $position = 0;
         $widgets = (array) request()->post('widgets', []);
         foreach ($widgets as $i => $widget) {

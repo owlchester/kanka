@@ -23,7 +23,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                                 <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
                                 <input type="text" name="appearance_entry[{{ $trait->id }}]" value="{{ $trait->entry }}" class="w-full" placeholder="{{ __('characters.placeholders.appearance_entry') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance.entry') }}"  maxlength="191" />
                             </div>
-                            <div class="dynamic-row-delete btn2 btn-sm btn-outline btn-error" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                            <div class="dynamic-row-delete cursor-pointer hover:text-error text-base-content text-lg" title="{{ __('crud.remove') }}" role="button" tabindex="0">
                                 <x-icon class="trash"></x-icon>
                                 <span class="sr-only">{{ __('crud.remove') }}</span>
                             </div>
@@ -64,7 +64,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                                 <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
                                 <input type="text" name="personality_name[{{ $trait->id }}]" value="{{ $trait->name }}" class="w-full" placeholder="{{ __('characters.placeholders.personality_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.personality.name') }}" maxlength="191" />
                             </div>
-                            <div class="dynamic-row-delete btn2 btn-error btn-sm btn-outline" role="button" tabindex="0" >
+                            <div class="dynamic-row-delete cursor-pointer hover:text-error text-base-content text-lg" role="button" tabindex="0" >
                                 <x-icon class="trash"></x-icon>
                                 <span class="sr-only">{{ __('crud.remove') }}</span>
                             </div>
@@ -140,7 +140,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
                     <input type="text" name="appearance_entry[]" class="w-full" placeholder="{{ __('characters.placeholders.appearance_entry') }}" spellcheck="true" aria-label="{{ __('characters.labels.appearance.entry') }}" maxlength="191" />
                 </div>
-                <div class="dynamic-row-delete btn2 btn-sm btn-error btn-outline" role="button" tabindex="0">
+                <div class="dynamic-row-delete cursor-pointer hover:text-error text-base-content text-lg" role="button" tabindex="0">
                     <x-icon class="trash"></x-icon>
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </div>
@@ -159,7 +159,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
                     <input type="text" name="personality_name[]" class="w-full" placeholder="{{ __('characters.placeholders.personality_name') }}" spellcheck="true" aria-label="{{ __('characters.labels.personality.name') }}" maxlength="191" />
                 </div>
-                <div class="dynamic-row-delete btn2 btn-error btn-sm btn-outline" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                <div class="dynamic-row-delete cursor-pointer hover:text-error text-base-content text-lg" title="{{ __('crud.remove') }}" role="button" tabindex="0">
                     <x-icon class="trash"></x-icon>
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </div>

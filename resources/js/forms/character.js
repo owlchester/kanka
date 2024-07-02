@@ -1,65 +1,65 @@
-var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
-
-
-$(document).ready(function () {
-
-    characterOrganisations = $('.character-organisations');
-
-    characterAddOrganisation = $('#add_organisation');
-    if (characterAddOrganisation.length === 1) {
-        initCharacterOrganisation();
-    }
-});
+const organisations = document.querySelector('.character-organisations');
+const addBtn = document.querySelector('#add_organisation');
+const template = document.querySelector('#template_organisation')
 
 /**
  *
  */
-function initCharacterOrganisation() {
-    characterTemplateOrganisation = $('#template_organisation');
-    characterAddOrganisation.on('click', function (e) {
+const initCharacterOrganisation = () => {
+    if (!organisations) {
+        return;
+    }
+    addBtn.addEventListener('click', function (e) {
         e.preventDefault();
 
-        $(characterOrganisations).append(characterTemplateOrganisation.html());
+        const child = document.createElement('div');
+        child.classList.add('parent-row');
+        child.innerHTML = template.innerHTML;
+        organisations.append(child);
 
         // Replace the temp class with the real class. We need this to avoid having two select2 fields
-        characterOrganisations.find('.tmp-org').removeClass('tmp-org').addClass('select2');
+        organisations.querySelectorAll('.tmp-org')?.forEach(child => {
+            child.classList.remove('tmp-org');
+            child.classList.add('select2');
+        });
 
         // Handle deleting already loaded blocks
         characterDeleteRowHandler();
 
         // Fake a modal loaded to re-register the togglers
         $(document).trigger('shown.bs.modal');
-
         return false;
     });
 
     characterDeleteRowHandler();
-}
+};
 
 /**
  *
  */
-function characterDeleteRowHandler() {
+const characterDeleteRowHandler = () => {
 
-    $.each($('.member-delete'), function () {
-        if ($(this).data('init') === 1) {
+    const deletes = document.querySelectorAll('.member-delete');
+    deletes?.forEach((ele) => {
+        if (ele.dataset.init === '1') {
             return;
         }
-        $(this).data('init', 1);
-        $(this).on('click', function (e) {
+        ele.dataset.init = '1';
+        ele.addEventListener('click', (e) => {
             e.preventDefault();
-            $(this).closest($(this).data('target')).remove();
-        }).on('keydown', function (e) {
-            // Support for pressing enter on a span
+            ele.closest(ele.dataset.target).remove();
+        });
+        ele.addEventListener('keydown', (e) => {
             if (e.key !== 'Enter') {
                 return;
             }
-            $(this).click();
+            ele.click();
         });
     });
 
     // Always re-calc the sortable traits
     window.initSortable();
     window.initForeignSelect();
-}
+};
 
+initCharacterOrganisation();

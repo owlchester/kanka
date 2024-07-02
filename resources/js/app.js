@@ -8,22 +8,6 @@ import.meta.glob([
 ]);
 
 $(document).ready(function() {
-    initPageHeight();
-
-    window.initForeignSelect();
-    window.initDialogs();
-    initColourPicker();
-    initSubmenuSwitcher();
-
-    manageTabs();
-
-    dynamicMentions();
-    initAjaxPagination();
-    initDynamicDelete();
-    initImageRemoval();
-    initFeedbackButtons();
-    initDismissible();
-    initAdblocker();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -346,3 +330,21 @@ import './header';
 //import './ads');
 import './utility/tippy';
 import './maintenance';
+
+
+initPageHeight();
+
+window.initForeignSelect();
+window.initDialogs();
+initColourPicker();
+initSubmenuSwitcher();
+
+manageTabs();
+
+dynamicMentions();
+initAjaxPagination();
+initDynamicDelete();
+initImageRemoval();
+initFeedbackButtons();
+initDismissible();
+initAdblocker();

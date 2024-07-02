@@ -22,9 +22,9 @@ $statuses = [
 ];
 ?>
 <x-grid type="1/1">
-    <div class="character-organisations flex flex-col gap-5">
+    <div class="character-organisations flex flex-col gap-2 md:gap-4">
         @foreach ($organisations as $organisation)
-            <div class="flex flex-wrap md:flex-no-wrap items-start gap-2 md:gap-2 member-row">
+            <div class="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-2 member-row">
                 <div class="field">
                     <select name="organisations[{{ $organisation->id }}]" class="w-full select2" style="width: 100%"
                         data-url="{{ route('organisations.find', $campaign) }}"
@@ -48,16 +48,16 @@ $statuses = [
                     <x-forms.select name="organisation_pins[{{ $organisation->id }}]" :options="$statuses" :selected="$organisation->pin_id ?? null" :label="__('organisations.members.fields.pinned')" />
                 </div>
                 @if ($isAdmin)
-                    <div class="">
+                    <div class="text-lg">
                         <input type="hidden" name="organisation_privates[{{ $organisation->id }}]" value="{{ $organisation->is_private }}" />
-                        <i class="fa-solid @if($organisation->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                        <i class="cursor-pointer hover:text-accent @if($organisation->is_private) fa-solid fa-lock-keyhole @else fa-regular fa-unlock-keyhole @endif" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                     </div>
                 @endif
-                <div class="">
-                    <span class="member-delete btn2 btn-sm btn-error btn-outline" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".member-row">
+                <div class="flex items-center">
+                    <div class="member-delete cursor-pointer hover:text-error text-base-content text-lg" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".member-row">
                         <x-icon class="trash"></x-icon>
                         <span class="sr-only">{{ __('crud.remove') }}</span>
-                    </span>
+                    </div>
                 </div>
             </div>
         @endforeach
@@ -75,7 +75,7 @@ $statuses = [
 @section('modals')
     @parent
     <template id="template_organisation">
-        <div class="flex flex-wrap md:flex-no-wrap items-start gap-2 md:gap-2 member-row">
+        <div class="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-2 member-row">
             <div class="field">
                 <select name="organisations[]" class="w-full tmp-org" style="width: 100%"
                         data-url="{{ route('organisations.find', $campaign) }}"
@@ -97,13 +97,13 @@ $statuses = [
                 <x-forms.select name="organisation_pins[]" :options="$statuses" :label="__('organisations.members.fields.pinned')" />
             </div>
             @if ($isAdmin)
-                <div class="">
+                <div class="text-lg">
                     <input type="hidden" name="organisation_privates[]" value="0"/>
-                    <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                    <i class="fa-regular fa-unlock-keyhole cursor-pointer hover:text-accent " data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                 </div>
             @endif
-            <div class="">
-                <span class="member-delete btn2 btn-sm btn-error btn-outline" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".member-row">
+            <div class="text-lg">
+                <span class="member-delete cursor-pointer hover:text-error text-base-content" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".parent-row">
                     <x-icon class="trash"></x-icon>
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </span>

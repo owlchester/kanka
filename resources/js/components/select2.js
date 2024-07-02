@@ -1,90 +1,88 @@
-$(document).ready(function() {
-    window.initForeignSelect = function () {
-        const fields = document.querySelectorAll('select.select2');
-        if (fields.length === 0) {
+window.initForeignSelect = function () {
+    const fields = document.querySelectorAll('select.select2');
+    if (fields.length === 0) {
+        return;
+    }
+    fields.forEach(field => {
+        if (field.classList.contains('select2-hidden-accessible')) {
             return;
         }
-        fields.forEach(field => {
-            if (field.classList.contains('select2-hidden-accessible')) {
-                return;
-            }
-            if (field.classList.contains('campaign-genres')) {
-                $(field).select2({
-                    tags: false,
-                    allowClear: true,
-                    dropdownParent: '',
-                    width: '100%',
-                    maximumSelectionLength: 3,
-                });
-                return;
-            }
+        if (field.classList.contains('campaign-genres')) {
+            $(field).select2({
+                tags: false,
+                allowClear: true,
+                dropdownParent: '',
+                width: '100%',
+                maximumSelectionLength: 3,
+            });
+            return;
+        }
 
-            const url = field.dataset.url;
-            const allowClear = field.dataset.allowClear;
-            const dropdownParent = field.dataset.dropdownParent || '';
-            const placeholder = field.dataset.placeholder;
+        const url = field.dataset.url;
+        const allowClear = field.dataset.allowClear;
+        const dropdownParent = field.dataset.dropdownParent || '';
+        const placeholder = field.dataset.placeholder;
 
-            if (!url) {
-                $(field).select2({
-                    tags: false,
-                    placeholder: placeholder,
-                    allowClear: allowClear ?? false,
-                    //tags: $(this).data('tags') || false,
-                    language: field.dataset.language,
-                    minimumInputLength: 0,
-                    dropdownParent: dropdownParent,
-                    width: '100%',
-                });
-                return;
-            }
-
-            // Check it isn't the select2-icon
+        if (!url) {
             $(field).select2({
                 tags: false,
                 placeholder: placeholder,
-                allowClear: allowClear || true,
+                allowClear: allowClear ?? false,
                 //tags: $(this).data('tags') || false,
                 language: field.dataset.language,
                 minimumInputLength: 0,
                 dropdownParent: dropdownParent,
                 width: '100%',
-
-                ajax: {
-                    delay: 500,
-                    quietMillis: 500,
-                    url: url,
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    error: function(response) {
-                        //console.log('error', response);
-                        if (response.status === 503) {
-                            window.showToast(response.responseJSON.message, 'error');
-                        }
-                        return { results: [] }; // Return dataset to load after error
-                    },
-                    cache: true
-                },
-                templateResult: formatResultList,
-                templateSelection: formatResult,
-                createTag: function (data) {
-                    return null;
-                }
             });
-        });
+            return;
+        }
 
-        initLocalSelects();
-        initColourSelects();
-    };
-});
+        // Check it isn't the select2-icon
+        $(field).select2({
+            tags: false,
+            placeholder: placeholder,
+            allowClear: allowClear || true,
+            //tags: $(this).data('tags') || false,
+            language: field.dataset.language,
+            minimumInputLength: 0,
+            dropdownParent: dropdownParent,
+            width: '100%',
+
+            ajax: {
+                delay: 500,
+                quietMillis: 500,
+                url: url,
+                dataType: 'json',
+                data: function (params) {
+                    return {
+                        q: $.trim(params.term)
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                error: function(response) {
+                    //console.log('error', response);
+                    if (response.status === 503) {
+                        window.showToast(response.responseJSON.message, 'error');
+                    }
+                    return { results: [] }; // Return dataset to load after error
+                },
+                cache: true
+            },
+            templateResult: formatResultList,
+            templateSelection: formatResult,
+            createTag: function (data) {
+                return null;
+            }
+        });
+    });
+
+    initLocalSelects();
+    initColourSelects();
+};
 
 const formatResultList = (item) => {
     const element = document.createElement('span');
