@@ -357,7 +357,11 @@ trait EntityMapper
                 continue;
             }
             $foreignID = ImportIdMapper::get($model, $pivot[$field]);
-            $this->model->{$model}()->attach($foreignID);
+            if (array_key_exists('is_private', $pivot)) {
+                $this->model->{$model}()->attach($foreignID, ['is_private' => $pivot['is_private']]);
+            } else {
+                $this->model->{$model}()->attach($foreignID);
+            }
         }
         return $this;
     }
