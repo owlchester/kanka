@@ -1,41 +1,30 @@
 import axios from "axios";
 
-var loader, gallery, search;
-var fileDrop, fileProgress, fileUploadField, fileError;
-var galleryForm;
-var maxFiles;
-var maxError;
+const loader = document.querySelector('#gallery-loader');
+const gallery = document.querySelector('#gallery-images');
+const search = document.querySelector('#gallery-search');
+const bulkDelete = document.querySelector('#bulk-delete');
+const bulkForm = document.querySelector('form#gallery-bulk');
 
-let bulkDelete, bulkForm;
+const galleryForm = document.getElementById('gallery-form');
 
-$(document).ready(function() {
-    initGallery();
-    initUploader();
-    registerEvents();
-});
+const fileProgress = document.querySelector('.progress');
+const fileError = document.querySelector('.gallery-error');
 
-function initGallery() {
-    loader = $('#gallery-loader');
-    gallery = $('#gallery-images');
-    search = $('#gallery-search');
-    bulkDelete = $('#bulk-delete');
-    bulkForm = $('form#gallery-bulk');
+let maxFiles;
+let maxError;
 
-    galleryForm = document.getElementById('gallery-form');
 
-    fileDrop = $('.uploader');
-    fileProgress = $('.progress');
-    fileUploadField = $('#file-upload');
-    fileError = $('.gallery-error');
+const initGallery = () => {
+    const config = document.querySelector('#gallery-config');
+    maxFiles = config.dataset.max;
+    maxError = config.dataset.error;
 
-    let config = $('#gallery-config');
-    maxFiles = config.data('max');
-    maxError = config.data('error');
-
-    search.on('blur', function(e) {
+    search.addEventListener('blur', function(e) {
         e.preventDefault();
         initSearch();
-    }).bind('keydown', function(e) {
+    });
+    search.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             e.preventDefault();
             initSearch();
@@ -44,41 +33,33 @@ function initGallery() {
 
     registerUploadEvents();
 
-    bulkForm.submit(function (e) {
+    bulkForm.onsubmit = function (e) {
         e.preventDefault();
 
-        let data = new FormData();
-        $.each($('li[data-selected="1"]'), function (i) {
-            data.append('file[]', $(this).data('id'));
+        const data = new FormData();
+        document.querySelectorAll('li[data-selected="1"]')?.forEach(ele => {
+            data.append('file[]', ele.dataset.id);
         });
 
-        let folder = $('input[name="folder_id"]');
+        const folder = document.querySelector('input[name="folder_id"]');
         if (folder) {
-            data.append('folder_id', folder.val());
+            data.append('folder_id', folder.value);
         }
 
-        $.ajax({
-            url: $(this).attr('action'),
-            method: 'POST',
-            context: this,
-            data: data,
-            cache: false,
-            contentType: false,
-            processData: false
-        }).done(function(res) {
-            $('li[data-selected="1"]').remove();
-            let target = document.getElementById('bulk-destroy-dialog');
-            target.close();
+        axios.post(bulkForm.getAttribute('action'), data)
+            .then(res => {
+                document.querySelectorAll('li[data-selected="1"]')?.forEach(ele => ele.remove());
+                let target = document.getElementById('bulk-destroy-dialog');
+                target.close();
 
-            bulkDelete.addClass('btn-disabled');
+                bulkDelete.classList.add('btn-disabled');
 
-            window.showToast(res.toast);
-            return false;
-        });
-
+                window.showToast(res.data.toast);
+                return false;
+            });
         return false;
-    });
-}
+    };
+};
 
 const registerUploadEvents = () => {
     if (!galleryForm) {
@@ -105,9 +86,9 @@ const registerUploadEvents = () => {
                 return;
             }
 
-            let folder = $('input[name="folder_id"]');
+            let folder = document.querySelector('input[name="folder_id"]');
             if (folder) {
-                data.append('folder_id', folder.val());
+                data.append('folder_id', folder.value);
             }
             uploadFiles(data);
             galleryForm.classList.remove('drop-shadow', 'dropping');
@@ -131,22 +112,22 @@ const registerUploadEvents = () => {
  *
  */
 function initSearch() {
-    gallery.hide();
-    loader.show();
+    gallery.classList.add('hidden');
+    loader.classList.remove('hidden');
 
-    $.ajax({
-        url: search.data('url') + '?q=' + search.val()
-    }).done(function(data) {
-        loader.hide();
-        gallery.html(data).show();
-        registerEvents();
-    });
+    axios.get(search.dataset.url + '?q=' + search.value)
+        .then(res => {
+            loader.classList.add('hidden');
+            gallery.innerHTML = res.data;
+            gallery.classList.remove('hidden');
+            registerEvents();
+        });
 }
 
 /**
  *
  */
-function initUploader() {
+const initUploader = () => {
     if (!galleryForm) {
         return;
     }
@@ -169,14 +150,14 @@ function initUploader() {
             data.append('file[]', file);
         });
 
-        let folder = $('input[name="folder_id"]');
+        let folder = document.querySelector('input[name="folder_id"]');
         if (folder) {
-            data.append('folder_id', folder.val());
+            data.append('folder_id', folder.value);
         }
 
         uploadFiles(data);
     };
-}
+};
 
 const alertTooManyFiles = () => {
     window.showToast(maxError, 'error');
@@ -189,29 +170,27 @@ const uploadFiles = (data) => {
         },
         onUploadProgress: function (progressEvent) {
             let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            $('[role="progressbar"]').css(
-                'width',
-                percentCompleted + '%'
-            );
+            document.querySelector('[role="progressbar"]').style.width = percentCompleted + '%';
         }
     };
 
-    fileProgress.show();
+    fileProgress.classList.remove('hidden');
 
     axios
         .post(galleryForm.action, data, config)
         .then(function (res) {
 
-            fileProgress.hide();
+            fileProgress.classList.add('hidden');
 
             if (res.data.success) {
                 res.data.images.forEach(image => {
 
                     // Do we have a folder to add to?
-                    let last = $('li[data-folder]').last();
-
-                    if (last.length === 1) {
-                        $(image).insertAfter($('li[data-folder]').last());
+                    const folders = document.querySelectorAll('li[data-folder]');
+                    if (folders.length > 1) {
+                        const lastFolder = folders[folders.length - 1];
+                        console.log('last folder', lastFolder, image);
+                        lastFolder.insertAdjacentHTML('afterend', image);
                     } else {
                         gallery.prepend(image);
                     }
@@ -221,7 +200,7 @@ const uploadFiles = (data) => {
             }
         })
         .catch(function (err) {
-            fileProgress.hide();
+            fileProgress.classList.add('hidden');
 
             if (err.response && err.response.data.message) {
                 fileError.text(err.response.data.message).fadeToggle();
@@ -238,38 +217,43 @@ const uploadFiles = (data) => {
 };
 
 
-function registerEvents() {
-    $('#gallery-images li')
-        .unbind('click')
-        .on('click', function (e) {
+const registerEvents = () => {
+    document.querySelectorAll('#gallery-images li')?.forEach(ele => {
+        if (ele.dataset.binded === '1') {
+            return;
+        }
+        ele.dataset.binded = '1';
+        ele.addEventListener('click', function (e) {
             if (e.shiftKey) {
-                if (!$(this).data('id')) {
+                if (!ele.dataset.id) {
                     return;
                 }
-                $(this).toggleClass('border-2 border-blue-500');
-                if ($(this).attr('data-selected') === '1') {
-                    $(this).attr('data-selected', '');
+                ele.classList.toggle('border-2');
+                ele.classList.toggle('border-blue-500');
+                if (ele.getAttribute('data-selected') === '1') {
+                    ele.setAttribute('data-selected', '');
                 } else {
-                    $(this).attr('data-selected', 1);
+                   ele.setAttribute('data-selected', 1);
                 }
                 registerShift();
                 return;
             }
-            let folder = $(this).data('folder');
+            let folder = ele.dataset.folder;
             if (folder) {
                 window.location = folder;
                 return;
             }
-
-            window.openDialog('primary-dialog', $(this).data('url'));
+            window.openDialog('primary-dialog', ele.dataset.url);
+        });
     });
-}
+};
+
 const registerShift = () => {
-    let selected = $('li[data-selected="1"]');
+    let selected = document.querySelectorAll('li[data-selected="1"]');
     if (selected.length === 0) {
-        bulkDelete.addClass('btn-disabled');
+        bulkDelete.classList.add('btn-disabled');
     } else {
-        bulkDelete.removeClass('btn-disabled');
+        bulkDelete.classList.remove('btn-disabled');
     }
 };
 
@@ -281,3 +265,8 @@ const updateStorage = (storage) => {
     let used = document.getElementById('storage-used');
     used.innerHTML = storage.used;
 };
+
+
+initGallery();
+initUploader();
+registerEvents();

@@ -123,7 +123,10 @@ class Image extends Model
 
     public function mentions(): HasMany
     {
-        return $this->hasMany(ImageMention::class, 'image_id', 'id');
+        return $this->hasMany(ImageMention::class, 'image_id', 'id')
+            ->with('entity')
+            ->with('post')
+            ;
     }
 
     public function inEntities(): array
