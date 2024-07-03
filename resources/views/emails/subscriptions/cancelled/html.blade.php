@@ -13,7 +13,7 @@
     @elseif (!empty($reason))
         <p>
             <strong>Reason provided: </strong><br />
-            {{ $reason }}<br />
+            {{ __('settings.subscription.cancel.options.' . $reason) }}<br />
         </p>
     @endif
 
