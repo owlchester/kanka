@@ -22,6 +22,10 @@ if (isset($model)) {
 }
 
 $options = $entity->postPositionOptions(!empty($model->position) ? $model->position : null);
+if (isset($template)) {
+    $model = $template;
+    $model->name = '';
+}
 $last = array_key_last($options);
 
 $bragiName = $entity->isCharacter() ? $entity->name : null;
@@ -45,6 +49,9 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 @can('permission', $entity->child)
                     <x-tab.tab target="permissions" :title="__('entities/notes.show.advanced')"></x-tab.tab>
                 @endcan
+                @if(auth()->user()->isAdmin() && !empty($templates))
+                    <x-tab.tab target="templates" :title="__('entities/attributes.template.load.title')"></x-tab.tab>
+                @endif
             </ul>
         </div>
         @include('entities.pages.posts._save-options')
@@ -99,8 +106,8 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 </x-forms.field>
             </x-grid>
         </div>
-
         @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.posts._permissions')
+        @includeWhen(auth()->user()->isAdmin() && !empty($templates), 'entities.pages.posts._templates')
     </div>
 </div>
 

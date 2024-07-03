@@ -32,6 +32,15 @@
         {{ __('entities/notes.move.move') }}
     </x-dropdowns.item>
 @endif
+@if (auth()->check() && auth()->user()->can('template', $post))
+    <x-dropdowns.item :link="route('posts.template', [$campaign, 'post' => $post])" icon="@if($post->is_template) fa-solid @else fa-regular @endif fa-star">
+        @if ($post->is_template)
+            {{ __('entities/actions.templates.unset') }}
+        @else
+            {{ __('entities/actions.templates.set') }}
+        @endif
+    </x-dropdowns.item>
+@endif
 <hr class="m-0" />
 <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, 'entity' => $entity])" icon="fa-solid fa-arrows-v">
     {{ __('entities/story.reorder.icon_tooltip') }}
