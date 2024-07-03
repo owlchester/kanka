@@ -37,7 +37,7 @@ const buildEntityForm = (event) => {
 
             quickCreatorSubformHandler();
             quickCreatorToggles();
-            $(document).trigger('shown.bs.modal');
+            window.triggerEvent();
         });
 
     return false;
@@ -69,7 +69,6 @@ const quickCreatorDuplicateName = () => {
                 .map(function (k) { return '<a href="' + res.data[k].url + '">' + res.data[k].name + '</a>'; })
                 .join(', ');
             field.parentNode.querySelector('.duplicate-entities').innerHTML = entities;
-            console.log(entities);
             warning.classList.remove('hidden');
         });
     });
@@ -104,7 +103,6 @@ const quickCreatorSubformHandler = () => {
             }
 
             document.querySelector('#entity-creator-form [name="action"]').value = action;
-            console.log('its ', document.querySelector('#entity-creator-form [name="action"]').value);
             return true;
         });
     });
@@ -133,17 +131,26 @@ const quickCreatorSubformHandler = () => {
                     if (res.data._multi) {
                         let selectedValues = field.value;
                         selectedValues.push(res.data._id);
-                        field.append(option).value = selectedValues;
+                        // todo this still is jquery $( $.
+                        field.appendChild(option);
+                        field.value = selectedValues;
                     } else {
-                        field.children().remove().end().append(option).val(res.data._id);
+                        while (field.options.length > 0) {
+                            field.options.remove(0);
+                        }
+                        field.appendChild(option);
+                        field.value = res.data._id;
                     }
-                    field.trigger('change');
+                    field.dispatchEvent(new Event('change'));
 
-                    document.querySelector('#qq-modal-form').innerHTML = '';
-                    document.querySelector('#qq-modal-form').classList.remove('!hidden');
+                    const form = document.querySelector('#qq-modal-form');
+                    if (form) {
+                        form.innerHTML = '';
+                        form.classList.remove('!hidden');
+                    }
 
-                    document.querySelector('#qq-modal-loading').classList.add('!hidden');
-                    document.querySelector('#qq-modal-selection').classList.remove('!hidden');
+                    document.querySelector('#qq-modal-loading')?.classList.add('!hidden');
+                    document.querySelector('#qq-modal-selection')?.classList.remove('!hidden');
 
                     const target = document.getElementById('primary-dialog');
                     target.close();
@@ -159,39 +166,41 @@ const quickCreatorSubformHandler = () => {
                 quickCreatorUI();
                 quickCreatorHandleEvents();
             })
-            .catch(function (err) {
-                /** @property {string} responseJSON - json errors from response  */
-                if (err.data.errors) {
-                    let errors = err.data.errors;
-
-                    let errorKeys = Object.keys(errors);
-                    let foundAllErrors = true;
-                    errorKeys.forEach(function (i) {
-                        let errorSelector = document.querySelector('#entity-creator-form [name="' + i + '"]');
-                        if (errorSelector) {
-                            errorSelector.classList.add('input-error');
-
-                            const errorElement = document.createElement('div');
-                            errorElement.classList.add('text-error');
-                            errorElement.innerHTML = errors[i][0];
-                            errorSelector.parentNode.append(errorElement);
-                        } else {
-                            foundAllErrors = false;
-                        }
-                    });
-
-                    let firstItem = Object.keys(errors)[0];
-                    let firstItemDom = document.querySelector('#entity-creator-form input[name="' + firstItem + '"]');
-
-                    // If we can actually find the first element, switch to it and the correct tab.
-                    if (firstItemDom) {
-                        firstItemDom.scrollIntoView({behavior: 'smooth'});
-                    }
-                }
-                quickCreatorSubmitBtns.forEach(btn => btn.classList.remove('btn-disabled', 'loading'));
-
-                document.querySelector('#entity-creator-form [name="action"]').value = '';
-            });
+            // .catch(function (err) {
+            //     /** @property {string} responseJSON - json errors from response  */
+            //     console.log(err);
+            //     if (err.data.errors) {
+            //         let errors = err.data.errors;
+            //
+            //         let errorKeys = Object.keys(errors);
+            //         let foundAllErrors = true;
+            //         errorKeys.forEach(function (i) {
+            //             let errorSelector = document.querySelector('#entity-creator-form [name="' + i + '"]');
+            //             if (errorSelector) {
+            //                 errorSelector.classList.add('input-error');
+            //
+            //                 const errorElement = document.createElement('div');
+            //                 errorElement.classList.add('text-error');
+            //                 errorElement.innerHTML = errors[i][0];
+            //                 errorSelector.parentNode.append(errorElement);
+            //             } else {
+            //                 foundAllErrors = false;
+            //             }
+            //         });
+            //
+            //         let firstItem = Object.keys(errors)[0];
+            //         let firstItemDom = document.querySelector('#entity-creator-form input[name="' + firstItem + '"]');
+            //
+            //         // If we can actually find the first element, switch to it and the correct tab.
+            //         if (firstItemDom) {
+            //             firstItemDom.scrollIntoView({behavior: 'smooth'});
+            //         }
+            //     }
+            //     quickCreatorSubmitBtns.forEach(btn => btn.classList.remove('btn-disabled', 'loading'));
+            //
+            //     document.querySelector('#entity-creator-form [name="action"]').value = '';
+            // })
+        ;
 
     };
 };
@@ -217,7 +226,7 @@ const quickCreatorToggles = () => {
                     formArticle.innerHTML = res.data;
                     formArticle.classList.remove('!hidden');
                     quickCreatorHandleEvents();
-                    $(document).trigger('shown.bs.modal');
+                    window.triggerEvent();
                 })
             ;
         });
@@ -246,7 +255,8 @@ const initQuickCreatorFromField = () => {
         });
     });
 };
-$(document).on('shown.bs.modal', function() {
+
+window.onEvent(function() {
     quickCreatorUI();
     quickCreatorSubformHandler();
 });

@@ -1,5 +1,5 @@
 window.initTags = function() {
-    document.querySelectorAll('.form-tags')?.forEach(ele =>  {
+    document.querySelectorAll('.form-tags')?.forEach(function (ele)  {
         if (ele.classList.contains("select2-hidden-accessible")) {
             return;
         }
@@ -19,7 +19,6 @@ window.initTags = function() {
                 url: ele.dataset.url,
                 dataType: 'json',
                 data: function (params) {
-                    console.log(params);
                     return {
                         q: params.term?.trim()
                     };
@@ -32,7 +31,7 @@ window.initTags = function() {
                 cache: true
             },
             createTag: function (params) {
-                const term = params.term.trim();
+                const term = params.term?.trim();
 
                 if (term === '') {
                     return null;
@@ -63,22 +62,30 @@ window.initTags = function() {
                     span.classList.add('new-tag');
                     span.title = ele.dataset.newTag;
                     span.innerHTML = state.text + ' <i class="fa-solid fa-plus-circle" aria-hidden="true"></i>';
-                    return span;
                 }
 
-                let el = $(state.element);
+                let el = state.element;
+                let colours = [];
                 if (state.colour) {
-                    $(container).addClass(state.colour);
-                } else if(el.data('colour')) {
-                    $(container).addClass(el.data('colour'));
+                    colours = state.colour.trim().split(' ');
+                } else if(el.dataset.colour) {
+                    colours = el.dataset.colour.trim().split(' ');
                 }
-                $(container).addClass('text-left');
+                if (colours.length > 0) {
+                    colours.forEach(colour => {
+                        if (colour.trim().length === 0) {
+                            return;
+                        }
+                        container[0].classList.add(colour);
+                    });
+                }
+                container[0].classList.add('text-left');
                 return state.text;
             },
         });
     });
 
-    document.querySelectorAll('.position-dropdown')?.forEach(ele => {
+    document.querySelectorAll('.position-dropdown')?.forEach(function (ele) {
         if (ele.classList.contains("select2-hidden-accessible")) {
             return;
         }
@@ -93,7 +100,7 @@ window.initTags = function() {
             placeholder: ele.dataset.placeholder,
             minimumInputLength: 0,
             createTag: function (params) {
-                const term = params.term.trim();
+                const term = params.term?.trim();
 
                 if (term === '') {
                     return null;

@@ -1,4 +1,5 @@
-$(document).on('shown.bs.modal', function() {
+
+window.onEvent(function() {
     initFormMembersSelect();
 });
 

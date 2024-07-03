@@ -14,21 +14,6 @@ const isMobile = window.matchMedia("only screen and (max-width: 760px)");
 
 const shapeField = document.querySelector('input[name="shape_id"]');
 
-$(document).ready(function() {
-
-    window.map.invalidateSize();
-
-    window.map.on('popupopen', function (ev) {
-        window.initDialogs();
-    });
-
-    // When the sidebar gets triggers, we need to tell the map that its bounds have changed
-    $(document).on('expanded.pushMenu collapsed.pushMenu', function () {
-        window.map.invalidateSize();
-    });
-
-});
-
 const initTabs = () => {
     const pin = document.querySelector('a[href="#marker-pin"]');
     if (!pin) {
@@ -90,12 +75,17 @@ const initMapExplore = () => {
                 handleCloseMarker();
                 mapPageBody.classList.add('sidebar-open');
 
-                $(document).trigger('shown.bs.modal');
+                window.triggerEvent();
             });
     };
 
     initTicker();
     initLegend();
+
+    // When the sidebar gets triggers, we need to tell the map that its bounds have changed
+    $(document).on('expanded.pushMenu collapsed.pushMenu', function () {
+        window.map.invalidateSize();
+    });
 };
 
 /**
@@ -513,6 +503,11 @@ function handleExploreMapClick(ev) {
 
 window.handleExploreMapClick = handleExploreMapClick;
 
+window.map.invalidateSize();
+
+window.map.on('popupopen', function (ev) {
+    window.initDialogs();
+});
 
 initMapExplore();
 initForms();

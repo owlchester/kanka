@@ -8,7 +8,7 @@ let entityFormActions;
  * Re-register any events that need to be binded when a modal is loaded
  */
 function registerModalLoad() {
-    $(document).on('shown.bs.modal', function () {
+    window.onEvent(function() {
         registerDropdownFormActions();
     });
 }
@@ -145,7 +145,7 @@ const registerDynamicRows = () => {
             document.querySelector('.' + target).append(child);
 
             registerDynamicRowDelete();
-            $(document).trigger('shown.bs.modal');
+            window.triggerEvent();
             return false;
         });
     });

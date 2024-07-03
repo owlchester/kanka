@@ -1,10 +1,5 @@
-$(document).ready(function () {
-    initQuickLinksForm();
-    showFilterField();
-});
-
-function initQuickLinksForm() {
-    let selector = document.getElementById('bookmark-selector');
+const initQuickLinksForm = () => {
+    const selector = document.getElementById('bookmark-selector');
     if (!selector) {
         return false;
     }
@@ -21,9 +16,9 @@ function initQuickLinksForm() {
             target.classList.remove('hidden');
         }
     });
-}
+};
 
-function showFilterField() {
+const showFilterField = () => {
     const selector = document.getElementById('entity-selector');
     if (!selector) {
         return false;
@@ -37,4 +32,7 @@ function showFilterField() {
             document.getElementById('filter-subform').style.removeProperty('display');
         }
     });
-}
+};
+
+initQuickLinksForm();
+showFilterField();

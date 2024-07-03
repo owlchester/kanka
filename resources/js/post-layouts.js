@@ -1,8 +1,4 @@
-$(document).ready(function () {
-    initPostLayoutsForm();
-});
-
-function initPostLayoutsForm() {
+const initPostLayoutsForm = () => {
     let selector = document.getElementById('post-layout-selector');
     if (!selector) {
         return;
@@ -32,3 +28,4 @@ function initPostLayoutsForm() {
     });
 }
 
+initPostLayoutsForm();

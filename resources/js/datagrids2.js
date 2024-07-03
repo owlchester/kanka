@@ -102,7 +102,7 @@ const loadDatagrid = (element, datagrid) => {
             }
             const newDatagrid = target.querySelector('[data-render="datagrid2"]');
             initDatagrid(newDatagrid);
-            $(document).trigger('shown.bs.modal'); // Get tooltips to re-generate
+            window.triggerEvent();
         })
         .catch(err => {
             console.error('datagrid2 error', datagrid, datagrid.parentNode);
@@ -166,7 +166,7 @@ const registerBulkClick = (datagrid, element) => {
             const target = document.getElementById('primary-dialog');
             target.innerHTML = res.data;
             window.openDialog('primary-dialog');
-            $(document).trigger('shown.bs.modal'); // Get tooltips, select2 and delete-confirmation to re-generate
+            window.triggerEvent();
         });
     });
 };
@@ -185,6 +185,6 @@ const checkedModels = (datagrid) => {
 initOnloadDatagrids();
 initDatagrids();
 
-$(document).on('shown.bs.modal', function () {
+window.onEvent(function() {
     initDatagrids();
 });

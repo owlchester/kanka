@@ -27,7 +27,7 @@ const initCharacterOrganisation = () => {
         characterDeleteRowHandler();
 
         // Fake a modal loaded to re-register the togglers
-        $(document).trigger('shown.bs.modal');
+        window.triggerEvent();
         return false;
     });
 

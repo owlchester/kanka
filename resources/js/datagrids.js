@@ -4,12 +4,10 @@
 const registerBulkActions = () => {
     const actions = document.querySelectorAll('[data-bulk-action]');
     actions?.forEach(action => {
-        if (action.dataset.loaded === '1') {
-            return
-        }
-        action.dataset.loaded = '1'
+        // These fields are in tippy, and duplicated in the dom when clicked
         action.addEventListener('click', (e) => {
-            setBulkModels(action.dataset.bulkAction)
+            e.preventDefault();
+            setBulkModels(action.dataset.bulkAction);
         });
     });
     const prints = document.querySelectorAll('.bulk-print');
@@ -75,7 +73,7 @@ const setBulkModels = (modelField) => {
     });
 
     if (modelField === 'ajax') {
-        $(document).on('shown.bs.modal', function () {
+        window.onEvent(function() {
             document.querySelector('#primary-dialog input[name="models"]').value = values.toString();
         });
     } else {
@@ -144,6 +142,6 @@ registerBulkActions();
 toggleCrudMultiDelete();
 treeViewInit();
 
-$(document).on('shown.bs.modal', function () {
+window.onEvent(function() {
     registerBulkActions();
 });

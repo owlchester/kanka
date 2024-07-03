@@ -43,7 +43,7 @@ const registerStoryLoadMore = () => {
                 document.querySelector('.entity-posts').insertAdjacentHTML('beforeend', result.data);
                 registerStoryLoadMore();
                 registerStoryActions();
-                $(document).trigger('shown.bs.modal');
+                window.triggerEvent();
             })
             .catch(() => {
                 more.classList.remove('loading');

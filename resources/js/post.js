@@ -1,7 +1,7 @@
 const addPermBtn = document.querySelectorAll('.post-perm-add');
 
-$(document).ready(function () {
-    $(document).on('shown.bs.modal', function() {
+const init = () => {
+    window.onEvent(function() {
         initPostVisibility();
     });
 
@@ -10,12 +10,12 @@ $(document).ready(function () {
     }
     registerAdvancedPermissions();
     registerPermissionDeleteEvents();
-});
+};
 
 /**
 * Add advanced permissions on a post
 */
-function registerAdvancedPermissions() {
+const registerAdvancedPermissions = () => {
     addPermBtn.forEach((btn) => {
         btn.addEventListener('click', function (ev) {
             ev.preventDefault();
@@ -55,12 +55,12 @@ function registerAdvancedPermissions() {
             return false;
         });
     });
-}
+};
 
 /**
  * Remove an advanced permission from a post
  */
-function registerPermissionDeleteEvents() {
+const registerPermissionDeleteEvents = () => {
     const deletes = document.querySelectorAll('.post-delete-perm');
     console.log(deletes);
     deletes.forEach((btn) => {
@@ -72,7 +72,7 @@ function registerPermissionDeleteEvents() {
             btn.removeEventListener('click', arguments.callee);
         });
     });
-}
+};
 
 const initPostVisibility = () => {
     const form = document.querySelector('form.post-visibility');
@@ -91,4 +91,6 @@ const initPostVisibility = () => {
             });
         return false;
     });
-}
+};
+
+init();

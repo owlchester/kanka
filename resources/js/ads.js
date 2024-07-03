@@ -1,12 +1,6 @@
-$(document).ready(function () {
-    initAdManager();
-});
-
 const initAdManager = () => {
-    return;
-
     const ads = document.querySelectorAll('.nativead-manager');
-    if (ads.lenght === 0) {
+    if (ads.length === 0) {
         return;
     }
 
@@ -20,4 +14,5 @@ const initAdManager = () => {
         video.removeAttribute("poster");
         ad.parentNode.insertBefore(video, ad.nextSibling);
     });
-}
+};
+initAdManager();

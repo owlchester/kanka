@@ -1,12 +1,8 @@
-const calendarYearSwitcher = document.querySelector('#calendar-year-switcher');
-
-$(document).ready(function() {
-    $(document).on('shown.bs.modal', function() {
-        initCalendarEventModal();
-    });
-});
 
 const initCalendarEventBlock = () => {
+    if (!document.querySelector('#calendar-year-switcher')) {
+        return;
+    }
     const blocks = document.querySelectorAll('.calendar-event-block');
     blocks.forEach(block => {
         if (block.dataset.toggle !== 'dialog' && block.dataset.url) {
@@ -22,7 +18,7 @@ const initCalendarEventModal = () => {
     if (!recurring) {
         return;
     }
-    recurring.onchange = function (e) {
+    recurring.onchange = function () {
         const until = document.querySelector('.field-recurring-until');
         if (recurring.value) {
             until.classList.remove('hidden');
@@ -83,11 +79,12 @@ const registerKeyboardShortcuts = () => {
 };
 
 
-if (calendarYearSwitcher) {
-    initCalendarEventBlock();
-}
+initCalendarEventBlock();
 registerKeyboardShortcuts();
 
 if (document.querySelector('select[name="recurring_periodicity"]')) {
     initCalendarEventModal();
 }
+window.onEvent(function() {
+    initCalendarEventModal();
+});

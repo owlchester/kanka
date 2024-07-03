@@ -76,7 +76,7 @@ const loadDialogContent = (url, target) => {
             target.innerHTML = response;
             target.show();
             if (typeof $ === 'function') {
-                $(document).trigger('shown.bs.modal'); // Get tooltips, select2 and delete-confirmation to re-generate
+                window.triggerEvent();
             } else {
                 document.dispatchEvent(dialogLoadedEvent);
             }

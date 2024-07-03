@@ -4,7 +4,7 @@ let calendarMonthField, calendarYearField, calendarDayField;
 let calendarCancel, calendarLoading, calendarSubForm;
 let calendarModalForm;
 
-$(document).on('shown.bs.modal', function () {
+window.onEvent(function() {
     registercalendarModal();
 });
 

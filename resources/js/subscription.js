@@ -9,13 +9,13 @@ let couponField, couponSuccess, couponError, couponId, couponValidating;
 
 const subscribeModal = document.getElementById('subscribe-confirm');
 
-$(document).ready(function() {
+const init = () => {
     initStripe();
     initPeriodToggle();
-    $(document).on('shown.bs.modal', () => {
+    window.onEvent(function() {
         initConfirmListener();
     });
-});
+};
 
 // Initialize the stripe API
 const initStripe = () => {
@@ -188,3 +188,5 @@ const disableSubmit = (event) => {
     submitBtn.disabled = true;
     return true;
 };
+
+init();

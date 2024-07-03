@@ -1,35 +1,4 @@
 export default function deleteConfirm() {
-    // Delete confirm dialog
-    // const elements = document.querySelectorAll('.delete-confirm');
-    // elements.forEach(btn => {
-    //     btn.addEventListener('click', function () {
-    //         let name = this.dataset.name;
-    //         let target = this.dataset.deleteTarget;
-    //         let targetModal = this.dataset.target;
-    //
-    //         $(targetModal).find('.target-name').text(name);
-    //
-    //         if (this.dataset.mirrored) {
-    //             $('#delete-confirm-mirror').show();
-    //         } else {
-    //             $('#delete-confirm-mirror').hide();
-    //         }
-    //
-    //         if ($(this).data('recoverable')) {
-    //             $(targetModal).find('.permanent').hide();
-    //             $(targetModal).find('.recoverable').show();
-    //         } else {
-    //             $(targetModal).find('.recoverable').hide();
-    //             $(targetModal).find('.permanent').show();
-    //         }
-    //
-    //         if (target) {
-    //             $('.delete-confirm-submit').data('target', target);
-    //         }
-    //     });
-    // });
-
-
     // Submit modal form
     const elements = document.querySelectorAll('.delete-confirm-submit');
     elements.forEach(btn => {

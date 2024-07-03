@@ -3,7 +3,7 @@ const maxFieldAlert = document.querySelector('.alert-too-many-fields');
 
 let liveEditURL, liveEditModal;
 
-$(document).ready(function() {
+const init = () => {
     initLiveAttributes();
     if (!document.getElementById('add_attribute_target')) {
         return;
@@ -13,17 +13,17 @@ $(document).ready(function() {
     if (maxConfig) {
         maxFields = maxConfig.dataset.maxFields;
     }
-});
+};
 
 const initAddAttribute = () => {
     if (maxFields !== false) {
         const fieldCount = $('form :input').length + 4;
         //console.log('checking', fieldCount, 'vs', maxFields);
         if (fieldCount > maxFields) {
-            maxFieldAlert.show();
+            maxFieldAlert.classList.remove('hidden');
             return;
         } else {
-            maxFieldAlert.hide();
+            maxFieldAlert.classList.add('hidden');
         }
     }
 };
@@ -49,11 +49,11 @@ const initLiveAttributes = () => {
 
     const parsedFields = document.querySelectorAll('.live-edit-parsed');
     parsedFields.forEach(field => {
-        field.addEventListener('click', function (e) {
+        field.addEventListener('click', function () {
             const id = field.dataset.id;
             const url = liveEditURL + '?id=' + id + '&uid=' + field.dataset.uid;
 
-            $(document).on('shown.bs.modal', function () {
+            window.onEvent(function() {
                 listenToLiveForm();
             });
             window.openDialog('live-attribute-dialog', url);
@@ -61,7 +61,7 @@ const initLiveAttributes = () => {
         });
     });
 
-    $(document).on('shown.bs.modal', function () {
+    window.onEvent(function() {
         initNewLiveAttributeForm();
     });
 };
@@ -89,7 +89,7 @@ const listenToLiveForm = () => {
 
                 window.showToast(result.data.success);
             })
-            .catch (err => {
+            .catch (() => {
                 //alert('error! check console logs');
                 //console.error('live-edit-error', result);
                 document.getElementById('live-attribute-dialog').close();
@@ -127,3 +127,5 @@ const initNewLiveAttributeForm = () => {
         };
     });
 };
+
+init();

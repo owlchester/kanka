@@ -1,8 +1,7 @@
-$(document).ready(function () {
-    $(document).on('shown.bs.modal', function() {
-        initImageFocus();
-     });
-});
+
+window.onEvent(function() {
+    initImageFocus();
+ });
 
 let bullseye;
 let scaledImage;

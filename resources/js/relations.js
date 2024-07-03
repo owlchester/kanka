@@ -3,9 +3,6 @@ import coseBilkent from 'cytoscape-cose-bilkent';
 import panzoom from 'cytoscape-panzoom';
 import dblclick from 'cytoscape-dblclick';
 
-$(document).ready(function () {
-    initCytoscape();
-});
 
 let cy;
 let entity, relation;
@@ -230,3 +227,4 @@ async function displayOnLoad() {
     cySelector.classList.remove('hidden');
 }
 
+initCytoscape();

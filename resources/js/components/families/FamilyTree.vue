@@ -328,7 +328,7 @@ export default {
         showDialog() {
             window.openDialog(this.modal);
             window.initForeignSelect();
-            $(document).trigger('shown.bs.modal');
+          window.triggerEvent();
         },
         resetVariables() {
             this.isAddingChild = false;

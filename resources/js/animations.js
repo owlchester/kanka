@@ -34,7 +34,7 @@ function change (e) {
     }
 }
 
-$(document).on('shown.bs.modal', function (){
+window.onEvent(function() {
     initAnimations();
 });
 initAnimations();

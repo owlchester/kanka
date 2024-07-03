@@ -1,11 +1,3 @@
-$(document).ready(function() {
-    $(document).on('shown.bs.modal', () => {
-        initPasting();
-        initKeyboardShortcuts();
-        initKeyboardSave();
-    });
-});
-
 const initKeyboardSave = () => {
     let fields = document.querySelectorAll('form[data-shortcut]');
     fields.forEach(function (e) {
@@ -13,10 +5,11 @@ const initKeyboardSave = () => {
     });
 };
 const initKeyboardShortcuts = () => {
-    const quickCreatorButton = document.querySelector('.quick-creator-button');
-    let kbEditTarget = document.querySelector('[data-keyboard="edit"]');
     document.addEventListener('keydown', function (event) {
         const target = event.target;
+        const entityModal = document.getElementById('primary-dialog');
+        const quickCreatorButton = document.querySelector('.quick-creator-button');
+        let kbEditTarget = document.querySelector('[data-keyboard="edit"]');
         if (event.key === ']') {
             // ] to toggle sidebar
             if (isInputField(target)) {
@@ -31,27 +24,25 @@ const initKeyboardShortcuts = () => {
             if (isInputField(target)) {
                 return;
             }
+            event.preventDefault();
             const sidebarToggle = document.getElementById('entity-lookup');
             sidebarToggle.focus();
-            event.preventDefault();
         } else if (event.key === 'n' && !(event.ctrlKey || event.metaKey) && !event.altKey && quickCreatorButton) {
             // n for quick creator. Don't re-open if already opened
-            if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
+            if (isInputField(target) || entityModal?.open) {
                 return;
             }
             quickCreatorButton.click();
         } else if (event.key === 'e' && !(event.ctrlKey || event.metaKey) && kbEditTarget) {
             //console.log('click edit link', kbEditTarget.first());
-            if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
+            if (isInputField(target) || entityModal?.open) {
                 return;
             }
             kbEditTarget.click();
         } else if (event.key === 'Escape') {
-            //console.log('escape', entityModal.has('.qq-modal-selection').length);
             // ESC to close quick creator selection modal
-            const entityModal = document.getElementById('entity-modal');
             if (entityModal?.classList.contains('qq-modal-selection').length === 1) {
-                entityModal.modal('hide');
+                window.closeDialog(entityModal);
             }
         }
     });
@@ -160,3 +151,9 @@ const initPasting = () => {
 initKeyboardSave();
 initKeyboardShortcuts();
 initPasting();
+
+window.onEvent(function() {
+    initPasting();
+    initKeyboardShortcuts();
+    initKeyboardSave();
+});

@@ -28,7 +28,6 @@ window.initForeignSelect = function () {
                 tags: false,
                 placeholder: placeholder,
                 allowClear: allowClear ?? false,
-                //tags: $(this).data('tags') || false,
                 language: field.dataset.language,
                 minimumInputLength: 0,
                 dropdownParent: dropdownParent,
@@ -42,7 +41,6 @@ window.initForeignSelect = function () {
             tags: false,
             placeholder: placeholder,
             allowClear: allowClear || true,
-            //tags: $(this).data('tags') || false,
             language: field.dataset.language,
             minimumInputLength: 0,
             dropdownParent: dropdownParent,
@@ -142,9 +140,8 @@ const select2ColourState = (state) => {
         return state.text;
     }
 
-    const span = $(
-        '<span><div class="badge label bg-' + state.id + '"> </div>' + state.text + '</span>'
-    );
+    const span = document.createElement('span');
+    span.innerHTML = '<div class="badge label bg-\' + state.id + \'"> </div>' + state.text;
     return span;
 };
 

@@ -1,4 +1,5 @@
-import './tags.js';
+import './events';
+import './tags';
 import './components/select2.js';
 import Coloris from "@melloware/coloris";
 import dynamicMentions from "./mention";
@@ -10,7 +11,7 @@ import.meta.glob([
 /**
  * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
  */
-$(document).on('shown.bs.modal', function() {
+window.onEvent(function() {
     // Also re-bind select2 elements on modal show
     window.initForeignSelect();
     window.initTags();
@@ -136,7 +137,7 @@ const initAjaxPagination = () => {
                 .then(response => {
                     paginationAjaxBody.parentNode.innerHTML = response;
                     initAjaxPagination();
-                    $(document).trigger('shown.bs.modal');
+                    window.triggerEvent();
                 });
         });
     });

@@ -86,7 +86,7 @@ const initDropdowns = () => {
             interactive: true,
             trigger: "click",
             onShown(instance) {
-                $(document).trigger('shown.bs.modal');
+                window.triggerEvent();
             }
         });
     });

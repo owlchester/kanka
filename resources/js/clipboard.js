@@ -52,6 +52,6 @@ async function copyToClipboard(textToCopy, el) {
 }
 
 initCopyToClipboard();
-$(document).on('shown.bs.modal', function (e) {
+window.onEvent(function() {
     initCopyToClipboard();
 });

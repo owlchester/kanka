@@ -12,7 +12,7 @@ const init = () => {
 
     window.openDialog('edit-warning', config.dataset.url);
 
-    $(document).on('shown.bs.modal', function () {
+    window.onEvent(function() {
         registerEditWarning();
     });
     registerEditKeepAlive();

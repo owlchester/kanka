@@ -4,16 +4,14 @@
  * making sure the app is properly running. If an error comes
  * back, errors are displayed to the user.
  */
-$(document).ready(function () {
-    $(document).on('shown.bs.modal', function () {
-        initMaintenanceForms();
-    });
-});
 
 const initMaintenanceForms = () => {
     const subForms = document.querySelectorAll('form[data-maintenance="1"]');
     subForms.forEach(function(subform) {
         subform.addEventListener('submit', onMaintenanceFormSubmit);
+    });
+    window.onEvent(function() {
+        initMaintenanceForms();
     });
 };
 

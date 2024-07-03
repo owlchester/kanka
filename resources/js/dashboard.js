@@ -39,7 +39,7 @@ const initDashboardAdminUI = () => {
         }
     });
 
-    $(document).on('shown.bs.modal', function() {
+    window.onEvent(function() {
         const summernoteConfig = document.getElementById('summernote-config');
         if (summernoteConfig) {
             window.initSummernote();
@@ -132,7 +132,7 @@ const renderCalendar = (id, html) => {
     document.querySelector('#widget-loading-' + id).classList.add('hidden');
     document.querySelector('#widget-body-' + id).innerHTML = html;
     document.querySelector('#widget-body-' + id).classList.remove('hidden');
-    $(document).trigger('shown.bs.modal');
+    window.triggerEvent();
     initDashboardCalendars();
 };
 

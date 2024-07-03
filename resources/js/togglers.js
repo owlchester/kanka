@@ -1,8 +1,7 @@
-$(document).ready(function() {
-    $(document).on('shown.bs.modal', () => {
-        registerPrivacyTogglers();
-    });
+window.onEvent(function() {
+    registerPrivacyTogglers();
 });
+
 
 const registerPrivacyTogglers = () => {
     const elements = document.querySelectorAll('[data-toggle="private"]');

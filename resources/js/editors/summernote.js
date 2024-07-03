@@ -383,7 +383,6 @@ const uploadImage = ($summernote, file) => {
 
     let formData = new FormData();
     formData.append("file[]", file);
-    //formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
     axios.post(summernoteConfig.dataset.galleryUpload, formData)
         .then(res => {
             //console.log('result', result);
