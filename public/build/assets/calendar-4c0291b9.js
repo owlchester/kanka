@@ -1,0 +1,1 @@
+const e=document.querySelector("input#has_leap_year");e.addEventListener("change",function(){const c=document.getElementById("calendar-leap-year");console.log("me",e.checked),e.checked?c.classList.remove("hidden"):c.classList.add("hidden")});

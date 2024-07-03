@@ -50,6 +50,9 @@ class CharacterOrganisationController extends Controller
     public function store(StoreOrganisationMember $request, Campaign $campaign, Character $character)
     {
         $this->authorize('organisation', [$character, 'add']);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $relation = OrganisationMember::create($request->all());
         return redirect()->route('characters.organisations', [$campaign, $character->id])

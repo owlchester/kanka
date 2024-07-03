@@ -43,6 +43,9 @@ class LinkController extends Controller
     public function store(StoreEntityLink $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only(['name', 'url', 'position', 'icon', 'visibility_id']);
         $data['entity_id'] = $entity->id;

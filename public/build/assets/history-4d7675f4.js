@@ -1,0 +1,1 @@
+const o=()=>{const t=document.querySelector("form.history-filters"),e=document.querySelectorAll(".history-filters select");e.forEach(r=>{r.addEventListener("change",function(){document.querySelector(".filters-loading").classList.remove("hidden"),t.requestSubmit(),e.disabled=!0})})};o();

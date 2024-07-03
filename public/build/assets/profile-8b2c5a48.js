@@ -1,0 +1,1 @@
+const t=document.getElementById("newsletter-api"),i=()=>{if(!t)return;document.querySelectorAll('input[name="mail_release"]').forEach(n=>{n.addEventListener("change",function(l){let a=this.name,e={};e[a]=this.checked?1:0,axios.post(t.value,e).then(s=>{window.showToast(s.data.message)})})})};i();

@@ -43,12 +43,14 @@ class StartController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreCampaign $request)
     {
         $this->authorize('create', 'App\Models\Campaign');
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $first = !Auth::user()->hasCampaigns();
         $options = $request->all();

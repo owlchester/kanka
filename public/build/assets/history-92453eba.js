@@ -1,1 +1,0 @@
-$(document).ready(function(){i()});function i(){let e=$("form.history-filters"),t=$(".history-filters select");t.on("change",function(){$(".filters-loading").show(),console.log("changed"),e.submit(),t.prop("disabled",!0)})}
