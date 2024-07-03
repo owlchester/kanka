@@ -65,8 +65,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content bg-base-100 rounded-2xl">
                 <div class="modal-body text-center">
-                    <x-alert type="error" id="campaign-imageupload-error" :hidden="true"></x-alert>
-                    <x-alert type="error" id="campaign-imageupload-permission" :hidden="true">
+                    <x-alert type="error" id="campaign-imageupload-error" hidden></x-alert>
+                    <x-alert type="error" id="campaign-imageupload-permission" hidden>
                         <p>{!! __('campaigns/gallery.errors.permissions', [
     'permission' => '<code>' . __('campaigns.roles.permissions.actions.gallery.upload') . '</code>']
     ) !!}</p>

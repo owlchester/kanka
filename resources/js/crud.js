@@ -129,59 +129,6 @@ function registerUnsavedChanges() {
 }
 
 /**
- * When the entity form is submitted, we want to ajax validate the request first
- */
-// function registerFormMaintenance() {
-//     $('form[data-maintenance="1"]').each(function() {
-//         // Because we call this function again on each modal shown (for loading forms in modals), we need to
-//         // save on each form if the listener has already been added, to avoid having multiple onSubmits on
-//         // the same element for the same feature.
-//         if ($(this).data('with-maintenance') === true) {
-//             return;
-//         }
-//         $(this).data('with-maintenance', true);
-//
-//         $(this).submit(function (e) {
-//             if ($(this).data('checked-maintenance') === true) {
-//                 return true;
-//             }
-//             e.preventDefault();
-//
-//             // If it's a form with images, we need to handle it a little bit differently
-//             let ajaxData = {
-//                 url: $(this).attr('action'),
-//                 method: $(this).attr('method'),
-//                 data: $(this).serialize(),
-//                 context: this,
-//             };
-//             // If the form has files (ignoring the summernote one), include it
-//             if ($(this).find('input[type="file"]').not('.note-image-input').length > 0) {
-//                 let formData = new FormData(this);
-//                 ajaxData = {
-//                     url: $(this).attr('action'),
-//                     method: $(this).attr('method'),
-//                     data: formData,
-//                     cache: false,
-//                     contentType: false,
-//                     processData: false,
-//                     context: this,
-//                 };
-//             }
-//
-//             $.ajax(ajaxData).done(function () {
-//                 // If the validation succeeded, we can really submit the form
-//                 $(this)
-//                     .data('checked-maintenance', true)
-//                     .submit();
-//             }).fail(function (err) {
-//                 window.formErrorHandler(err, this);
-//             });
-//         });
-//     });
-// }
-
-
-/**
  * Register a listened to add dynamic rows in the forms
  * Used in the calendar forms extensively
  */

@@ -4,11 +4,11 @@ import Tribute from "tributejs";
 export default function dynamicMentions() {
 
     const SELECTOR = '.kanka-mentions'; //:not(.kanka-mentions-tribute)';
-    const fields = $(SELECTOR);
-    if (fields.length === 0) {
+    const firstField = document.querySelector(SELECTOR);
+    if (!firstField) {
         return;
     }
-    const remoteUrl = fields.first().data('remote');
+    const remoteUrl = firstField.dataset.remote;
 
     const tribute = new Tribute({
         values: function (text, cb) {

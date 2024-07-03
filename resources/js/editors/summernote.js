@@ -1,35 +1,35 @@
-var summernoteConfig;
-var advancedRequest = false;
+const summernoteConfig = document.querySelector('#summernote-config');
+let advancedRequest = false;
 
-$(document).ready(function () {
-    summernoteConfig = $('#summernote-config');
-    if (summernoteConfig.length > 0) {
-        window.initSummernote();
-    }
-});
 
 /**
  * Initialize summernote when available
  */
 window.initSummernote = function() {
-    const $summernote = $('.html-editor').summernote({
+    document.querySelectorAll('.html-editor')?.forEach(function (field) {
+        initField(field);
+    });
+};
+
+const initField = (field) => {
+    $(field).summernote({
         height: '300px',
-        maximumImageFileSize: parseInt(summernoteConfig.data('filesize')) * 1024,
-        lang: editorLang(summernoteConfig.data('locale')),
+        maximumImageFileSize: parseInt(summernoteConfig.dataset.filesize) * 1024,
+        lang: editorLang(summernoteConfig.dataset.locale),
         hintSelect: 'next',
-        placeholder: summernoteConfig.data('placeholder'),
-        dialogsInBody: summernoteConfig.data('dialogs') === 1,
+        placeholder: summernoteConfig.dataset.placeholder,
+        dialogsInBody: summernoteConfig.dataset.dialogs === 1,
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
             ['color', ['color']],
-            ['kanka', ['aroba', (summernoteConfig.data('bragi') !== undefined ? 'bragi' : null)]],
+            ['kanka', ['aroba', (summernoteConfig.dataset.bragi !== undefined ? 'bragi' : null)]],
             ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']],
             ['table', ['table', 'tableofcontent']],
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
-            ['view', ['fullscreen', 'codeview', 'prettify', 'help']],
-            (summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null),
+            ['view', ['fullscreen', 'codeview', 'prettify']],
+            (summernoteConfig.dataset.gallery ? ['extensions', ['summernoteGallery', 'help']] : null),
         ],
 
         popover: {
@@ -48,13 +48,13 @@ window.initSummernote = function() {
         },
         callbacks: {
             onImageUpload: function (files) {
-                uploadImage($summernote, files[0]);
+                uploadImage($(field), files[0]);
             },
             onChange: function() {
                 window.entityFormHasUnsavedChanges = true;
             },
             onChangeCodeview: function(contents, $editable) {
-                $(this).summernote('code', contents);
+                $(field).summernote('code', contents);
             },
             /*onBlur: function() {
                 console.log('blury');
@@ -63,24 +63,24 @@ window.initSummernote = function() {
         summernoteGallery: {
             source: {
                 // data: [],
-                url: summernoteConfig.data('gallery'),
+                url: summernoteConfig.dataset.gallery,
                 responseDataKey: 'data',
                 nextPageKey: 'links.next',
             },
             modal: {
                 loadOnScroll: true,
                 maxHeight: 350,
-                title: summernoteConfig.data('gallery-title'),
-                close_text: summernoteConfig.data('gallery-close'),
-                ok_text: summernoteConfig.data('gallery-add'),
-                selectAll_text: summernoteConfig.data('gallery-select-all'),
-                deselectAll_text: summernoteConfig.data('gallery-deselect-all'),
-                noImageSelected_msg: summernoteConfig.data('gallery-error'),
+                title: summernoteConfig.dataset.galleryTitle,
+                close_text: summernoteConfig.dataset.galleryClose,
+                ok_text: summernoteConfig.dataset.galleryAdd,
+                selectAll_text: summernoteConfig.dataset.gallerySelectAll,
+                deselectAll_text: summernoteConfig.dataset.galleryDeselectAll,
+                noImageSelected_msg: summernoteConfig.dataset.galleryError,
             }
         },
         bragi: {
             source: {
-                url: summernoteConfig.data('bragi'),
+                url: summernoteConfig.dataset.bragi,
             },
             buttonLabel: '<i class="fa-brands fa-pied-piper-hat"></i>',
         },
@@ -207,7 +207,7 @@ window.initSummernote = function() {
             },
         },
     });
-}
+};
 
 /**
  * Search for entities
@@ -216,18 +216,14 @@ window.initSummernote = function() {
  */
 function hintEntities(keyword, callback) {
 
-    $.ajax({
-        url: summernoteConfig.data('mention') + '?q=' + keyword + '&new=1',
-        type: 'get',
-        dataType: 'json',
-        async: true
-    })
-        .done(callback)
-        .fail(function (response) {
-            if (response.status === 503) {
-                window.showToast(response.responseJSON.message, 'error');
+    axios.get(summernoteConfig.dataset.mention + '?q=' + keyword + '&new=1')
+        .then(res => callback(res.data))
+        .catch(err => {
+            if (err.resonse.status === 503) {
+                window.showToast(err.response.data.message, 'error');
             }
-    });
+        })
+    ;
 }
 
 /**
@@ -236,13 +232,8 @@ function hintEntities(keyword, callback) {
  * @param callback
  */
 function hintMonths(keyword, callback) {
-
-    $.ajax({
-        url: summernoteConfig.data('months') + '?q=' + keyword,
-        type: 'get',
-        dataType: 'json',
-        async: true
-    }).done(callback);
+    axios.get(summernoteConfig.dataset.months + '?q=' + keyword)
+        .then(res => callback(res.data));
 }
 
 /**
@@ -251,17 +242,12 @@ function hintMonths(keyword, callback) {
  * @param callback
  */
 function attributeSearch(keyword, callback) {
-    if (!summernoteConfig.data('attributes')) {
+    if (!summernoteConfig.dataset.attributes) {
         //console.log('entity not yet created');
         return false;
     }
-
-    $.ajax({
-        url: summernoteConfig.data('attributes') + '?q=' + keyword,
-        type: 'get',
-        dataType: 'json',
-        async: true
-    }).done(callback);
+    axios.get(summernoteConfig.dataset.attributes + '?q=' + keyword)
+        .then(res => callback(res.data));
 }
 
 /**
@@ -272,14 +258,14 @@ function attributeSearch(keyword, callback) {
 function hintTemplate(item) {
     let type = (item.type ? ' (' + item.type + ')' : '');
     if (item.image) {
-        return '<div class="entity-hint">' +
-            item.image +
+        const div = document.createElement('div');
+        div.classList.add('entity-hint');
+        div.innerHTML = item.image +
             '<div class="entity-hint-name">' +
             item.fullname +
             type +
-            '</div>' +
-        '</div>';
-
+            '</div>';
+        return div;
     }
     return item.fullname + type;
 }
@@ -298,47 +284,48 @@ function attributeTemplate(item) {
  * @param item
  * @returns {string|*}
  */
-function hintContent(item) {
+const hintContent = (item) => {
     if (item.id) {
+        const span = document.createElement('span');
         let mention = '[' + item.model_type + ':' + item.id + item.fullname + ']';
         let advancedMention = '[' + item.model_type + ':' + item.id + item.advanced_mention + ']';
         if (item.alias_id) {
             mention = '[' + item.model_type + ':' + item.id + item.advanced_mention + '|alias:' + item.alias_id + item.advanced_mention_alias + ']';
-            return $('<span>' + mention + '</span>')[0];
+            span.innerHTML = mention;
+            return span;
         }
-        if (summernoteConfig.data('advanced-mention')) {
-            return $('<span>' + advancedMention + '</span>')[0];
+        if (summernoteConfig.dataset.advancedMention) {
+            span.innerHTML = advancedMention;
+            return span;
         }
         if (advancedRequest) {
-            return $('<span>' + advancedMention + '</span>')[0];
+            span.innerHTML = advancedMention;
+            return span;
         }
         //console.log('standard');
-        return $('<a />', {
-            text: item.fullname,
-            href: '#',
-            class: 'mention',
-            'data-name': item.fullname,
-            'data-mention': '[' + item.model_type + ':' + item.id + ']',
-        })[0];
+        const link = document.createElement('a');
+        link.text = item.fullname;
+        link.href = '#';
+        link.classList.add('mention');
+        link.dataset.name = item.fullname;
+        link.dataset.mention = '[' + item.model_type + ':' + item.id + ']';
+        return link;
     } else if (item.url) {
+        const mention = document.createElement('a');
+        mention.text = item.fullname;
+        mention.href = item.url;
         if (item.tooltip) {
-            return $('<a />', {
-                text: item.fullname,
-                href: item.url,
-                title: item.tooltip.replace(/["]/g, '\''),
-                'data-toggle': 'tooltip',
-                'data-html': 'true',
-            })[0];
+            mention.title = item.tooltip.replace(/["]/g, '\'');
+            mention.dataset.toggle = 'tooltip';
+            mention.dataset.html = true;
+            return mention;
         }
-        return $('<a />', {
-            text: item.fullname,
-            href: item.url,
-        })[0];
+        return mention;
     } else if (item.inject) {
         return item.inject;
     }
     return item.fullname;
-}
+};
 
 /**
  *
@@ -347,15 +334,15 @@ function hintContent(item) {
  */
 function attributeContent(item)
 {
-    if (summernoteConfig.data('advanced-mention')) {
+    if (summernoteConfig.dataset.advancedMention) {
         return '{attribute:' + item.id + '}';
     }
-    return $('<a />', {
-        href: '#',
-        class: 'attribute attribute-mention',
-        text: '{' + item.name + '}',
-        'data-attribute': '{attribute:' + item.id + '}'
-    })[0]
+    const link = document.createElement('a');
+    link.href = '#';
+    link.classList.add('attribute', 'attribute-mention');
+    link.text = '{' + item.name + '}';
+    link.dataset.attribute =  '{attribute:' + item.id + '}';
+    return link;
 }
 
 /**
@@ -385,57 +372,51 @@ function editorLang(locale) {
  * Upload a file through summernote
  * @param file
  */
-function uploadImage($summernote, file) {
-    let modal = $('#campaign-imageupload-modal');
+const uploadImage = ($summernote, file) => {
+    const modal = document.querySelector('#campaign-imageupload-modal');
     // Check if the campaign is superboosted
-    if (!summernoteConfig.data('gallery-upload')) {
-        modal.modal();
+    if (!summernoteConfig.dataset.galleryUpload) {
+        $(modal).modal();
         console.warn('Campaign isn\'t superboosted');
         return;
     }
 
     let formData = new FormData();
     formData.append("file[]", file);
-    formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
-    $.ajax({
-        url: summernoteConfig.data('gallery-upload'),
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: 'POST',
-        success: function(result) {
+    //formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+    axios.post(summernoteConfig.dataset.galleryUpload, formData)
+        .then(res => {
             //console.log('result', result);
-            $summernote.summernote('insertImage', result, function ($image) {
-                $image.attr('src', result);
+            $summernote.summernote('insertImage', res.data, function ($image) {
+                $image.attr('src', res.data);
             });
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
+        })
+        .catch(err => {
             // Depending on the error, we need to handle the user differently
             //console.log(textStatus + " " + errorThrown);
             //console.log(jqXHR);
-            let error = $('#campaign-imageupload-error');
-            let permission = $('#campaign-imageupload-permission');
+            let error = document.querySelector('#campaign-imageupload-error');
+            let permission = document.querySelector('#campaign-imageupload-permission');
 
-            error.hide();
-            permission.hide();
+            error.classList.add('hidden');
+            permission.classList.add('hidden');
 
-            if (jqXHR.status === 422) {
-                error.text(buildErrors(jqXHR.responseJSON.errors)).show();
-            } else if (jqXHR.status === 403) {
-                permission.show();
+            if (err.response.status === 422) {
+                error.innerHTML = buildErrors(err.response.data.errors);
+                error.classList.remove('hidden');
+            } else if (err.response.status === 403) {
+                permission.classList.remove('hidden');
             }
-            modal.modal();
-        }
-    });
-}
+            $(modal).modal();
+        });
+};
 
 /**
  *
  * @param data
  * @returns {string}
  */
-function buildErrors(data) {
+const buildErrors = (data) => {
     let errors = '';
     for (let key in data) {
         // skip loop if the property is from prototype
@@ -444,4 +425,11 @@ function buildErrors(data) {
         errors += data[key] + "\n";
     }
     return errors;
-}
+};
+
+// We have to wait for ready to load all of summernote, otherwise our plugins won't register
+$(document).ready(function () {
+    if (summernoteConfig) {
+        window.initSummernote();
+    }
+});
