@@ -1,96 +1,111 @@
-$(document).ready(function() {
-    window.initTags = function() {
-        $.each($('.form-tags'), function () {
-            if ($(this).hasClass("select2-hidden-accessible")) {
-                return;
-            }
+window.initTags = function() {
+    document.querySelectorAll('.form-tags')?.forEach(ele =>  {
+        if (ele.classList.contains("select2-hidden-accessible")) {
+            return;
+        }
+        if (ele.dataset.loaded === 1) {
+            return;
+        }
+        ele.dataset.loaded = 1;
 
-            $(this).select2({
-                tags: $(this).data('allow-new'),
-                allowClear: $(this).data('allow-clear'),
-                dropdownParent: $(this).data('dropdown-parent') || '',
-                minimumInputLength: 0,
-                ajax: {
-                    quietMillis: 500,
-                    delay: 500,
-                    url: $(this).data('url'),
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            q: $.trim(params.term)
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                },
-                createTag: function (params) {
-                    let term = $.trim(params.term);
-
-                    if (term === '') {
-                        return null;
-                    }
-
+        $(ele).select2({
+            tags: ele.dataset.allowNew,
+            allowClear: ele.dataset.allowClear,
+            dropdownParent: ele.dataset.dropdownParent || '',
+            minimumInputLength: 0,
+            ajax: {
+                quietMillis: 500,
+                delay: 500,
+                url: ele.dataset.url,
+                dataType: 'json',
+                data: function (params) {
+                    console.log(params);
                     return {
-                        id: term,
-                        text: term,
-                        newTag: true // add additional parameters
+                        q: params.term?.trim()
                     };
                 },
-                templateResult: function (item) {
-                    let $span = $("<span class='block grow text-left'>" + item.text + "</span>");
-                    if (item.colour) {
-                        $span = $("<span class='flex gap-2 items-center text-left'>" +
-                            "<span class='rounded-full flex-none w-6 h-6 " + item.colour + "' /></span>" +
-                            "<span class='grow'>" + item.text + "</span>" +
-                            "</span>");
-                    }
-                    return $span;
-                },
-                templateSelection : function (state, container) {
-                    if (state.newTag) {
-                        return $('<span class="new-tag" title="' + $('#tags').data('new-tag') + '">' + state.text + ' <i class="fa-solid fa-plus-circle" aria-hidden="true"></i></span>');
-                    }
-
-                    let el = $(state.element);
-                    if (state.colour) {
-                        $(container).addClass(state.colour);
-                    } else if(el.data('colour')) {
-                        $(container).addClass(el.data('colour'));
-                    }
-                    $(container).addClass('text-left');
-                    return state.text;
-                },
-            });
-        });
-        $.each($('.position-dropdown'), function () {
-            if ($(this).hasClass("select2-hidden-accessible")) {
-                return;
-            }
-            $(this).select2({
-                tags: true,
-                allowClear: true,
-                dropdownParent: $(this).data('dropdown-parent') || '',
-                placeholder: $(this).data('placeholder'),
-                minimumInputLength: 0,
-                createTag: function (params) {
-                    let term = $.trim(params.term);
-        
-                    if (term === '') {
-                        return null;
-                    }
+                processResults: function (data) {
                     return {
-                        id: term,
-                        text: term,
-                        newTag: true // add additional parameters
+                        results: data
                     };
                 },
-            });
-        });
-    };
+                cache: true
+            },
+            createTag: function (params) {
+                const term = params.term.trim();
 
-    window.initTags();
-});
+                if (term === '') {
+                    return null;
+                }
+
+                return {
+                    id: term,
+                    text: term,
+                    newTag: true // add additional parameters
+                };
+            },
+            templateResult: function (item) {
+                const temp = document.createElement('span');
+                temp.classList.add('block', 'grow', 'text-left');
+                temp.innerHTML = item.text;
+                if (item.colour) {
+                    temp.classList.add('flex', 'gap-2', 'items-center', 'text-left');
+                    temp.innerHTML =
+                        "<span class='rounded-full flex-none w-6 h-6 " + item.colour + "' /></span>" +
+                        "<span class='grow'>" + item.text + "</span>"
+                    ;
+                }
+                return temp;
+            },
+            templateSelection : function (state, container) {
+                if (state.newTag) {
+                    const span = document.createElement('span');
+                    span.classList.add('new-tag');
+                    span.title = ele.dataset.newTag;
+                    span.innerHTML = state.text + ' <i class="fa-solid fa-plus-circle" aria-hidden="true"></i>';
+                    return span;
+                }
+
+                let el = $(state.element);
+                if (state.colour) {
+                    $(container).addClass(state.colour);
+                } else if(el.data('colour')) {
+                    $(container).addClass(el.data('colour'));
+                }
+                $(container).addClass('text-left');
+                return state.text;
+            },
+        });
+    });
+
+    document.querySelectorAll('.position-dropdown')?.forEach(ele => {
+        if (ele.classList.contains("select2-hidden-accessible")) {
+            return;
+        }
+        if (ele.dataset.loaded === 1) {
+            return;
+        }
+        ele.dataset.loaded = 1;
+        $(ele).select2({
+            tags: true,
+            allowClear: true,
+            dropdownParent: ele.dataset.dropdownParent || '',
+            placeholder: ele.dataset.placeholder,
+            minimumInputLength: 0,
+            createTag: function (params) {
+                const term = params.term.trim();
+
+                if (term === '') {
+                    return null;
+                }
+                return {
+                    id: term,
+                    text: term,
+                    newTag: true // add additional parameters
+                };
+            },
+        });
+    });
+};
+
+window.initTags();

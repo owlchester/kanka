@@ -77,7 +77,7 @@ $sizeOptions = [
                 </x-forms.field>
 
                 <x-forms.field field="radius" :label="__('maps/markers.fields.circle_radius')">
-                    <input type="text" name="circle_radius" value="{{ old('circle_radius', $source->circle_radius ?? $model->circle_radius ?? null) }}" class="w-full map-marker-circle-radius" id="circle_radius" style="{{ !isset($model) || $model->shape_id != 6 ? 'display:none;' : null }}" />
+                    <input type="text" name="circle_radius" value="{{ old('circle_radius', $source->circle_radius ?? $model->circle_radius ?? null) }}" class="w-full map-marker-circle-radius {{ !isset($model) || $model->shape_id != 6 ? 'hidden' : null }}" id="circle_radius" />
                     <div class="map-marker-circle-helper">
                         <x-helper :text="__('maps/markers.helpers.custom_radius')" />
                     </div>
@@ -110,7 +110,7 @@ $sizeOptions = [
                             <x-icon class="pencil"></x-icon>
                             {{ __('maps/markers.actions.start-drawing') }}
                         </a>
-                        <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm" style="display: none">
+                        <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm hidden">
                             <x-icon class="fa-solid fa-eraser"></x-icon>
                             {{ __('maps/markers.actions.reset-polygon') }}
                         </a>
@@ -181,10 +181,10 @@ $sizeOptions = [
                 </x-alert>
             </div>
         @else
-        <div class="md:col-span-2" style="{{ ($model->hasEntry() ? 'display: none' : '') }}">
+        <div class="md:col-span-2 {{ ($model->hasEntry() ? 'hidden' : '') }}">
             <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
         </div>
-        <div class="md:col-span-2 map-marker-entry-entry" style="{{ (!$model->hasEntry() ? 'display: none' : '') }}">
+        <div class="md:col-span-2 map-marker-entry-entry {{ (!$model->hasEntry() ? 'hidden' : '') }}" style="">
             <x-forms.field field="entry" :label=" __('crud.fields.entry')">
                 <textarea name="entry" class="w-full html-editor" id="marker-entry" rows="3">{!! \App\Facades\FormCopy::field('entry')->string() ?: old('entry', $model->entry ?? null) !!}</textarea>
             </x-forms.field>

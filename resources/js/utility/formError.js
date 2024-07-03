@@ -84,8 +84,10 @@ const jumpToError = (form, errors) => {
     document.querySelector('.tab-content .active').classList.remove('active');
     document.querySelector('.nav-tabs li.active').classList.remove('active');
     const firstPane = document.querySelector('[name="' + firstErrorName + '"').closest('.tab-pane');
-    firstPane.classList.add('active');
-    document.querySelector('a[href="#' + firstPane.id + '"]').closest('li').classList.add('active');
+    if (firstPane) {
+        firstPane.classList.add('active');
+        document.querySelector('a[href="#' + firstPane.id + '"]').closest('li').classList.add('active');
+    }
 
     focusOnField(firstErrorField);
 };

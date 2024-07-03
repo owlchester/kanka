@@ -1,21 +1,22 @@
 const multiEditingModal = document.querySelector('dialog#edit-warning');
 const keepAliveTimer = 300 * 1000; // 5 minutes
+let config = document.querySelector('input[name="edit-warning"]');
 let keepAliveUrl;
 let keepAliveEnabled = true;
 
-$(document).ready(function () {
+
+const init = () => {
     if (!multiEditingModal) {
         return;
     }
 
-    let config = document.querySelector('input[name="edit-warning"]');
     window.openDialog('edit-warning', config.dataset.url);
 
     $(document).on('shown.bs.modal', function () {
         registerEditWarning();
     });
     registerEditKeepAlive();
-});
+};
 
 /**
  *
@@ -41,30 +42,29 @@ function registerEditWarning() {
 /**
  * Set up the keep alive pulse configuration
  */
-function registerEditKeepAlive() {
+const registerEditKeepAlive = () => {
     const field = document.getElementById('editing-keep-alive');
     if (!field) {
         return;
     }
     keepAliveUrl = field.dataset.url;
     setTimeout(keepAlivePulse, keepAliveTimer);
-}
+};
 
 /**
  * Send a pulse to the backend that the user is still editing the entity
  */
-function keepAlivePulse() {
+const keepAlivePulse = () => {
     if (!keepAliveEnabled) {
         setTimeout(keepAlivePulse, keepAliveTimer);
         return;
     }
 
-    $.ajax({
-        url: keepAliveUrl,
-        type: 'POST'
-    })
-    .done(function() {
-        //console.log('kept alive');
-        setTimeout(keepAlivePulse, keepAliveTimer);
-    });
-}
+    axios.post(keepAliveUrl)
+        .then(() => {
+            //console.log('kept alive');
+            setTimeout(keepAlivePulse, keepAliveTimer);
+        });
+};
+
+init();

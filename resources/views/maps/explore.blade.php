@@ -162,7 +162,7 @@
 @endsection
 
 @section('modals')
-    <x-dialog id="map-marker-modal" :loading="true"></x-dialog>
+    <x-dialog id="map-marker-modal" loading full></x-dialog>
 
 @can('update', $map)
     <x-form :action="['maps.map_markers.store', $campaign, $map]" id="map-marker-form">

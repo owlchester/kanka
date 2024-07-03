@@ -1,9 +1,8 @@
 import 'cookieconsent/build/cookieconsent.min.js';
-
+const field = document.getElementById('cookieconsent');
 let setup, tracking, api;
 
-$(document).ready(function() {
-    let field = document.getElementById('cookieconsent');
+const initCookieConsent = () => {
     if (!field) {
         return;
     }
@@ -12,10 +11,7 @@ $(document).ready(function() {
     api = field.dataset.api;
     //console.log('cookieconsent setup', setup);
     tracking = field.dataset.tracking;
-    initCookieConsent();
-});
 
-const initCookieConsent = () => {
     //console.log('init cookie consent');
     window.cookieconsent.initialise({
         type: 'opt-in',

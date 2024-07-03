@@ -7,28 +7,25 @@ import.meta.glob([
     '../images/**',
 ]);
 
-$(document).ready(function() {
-
-    /**
-     * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
-     */
-    $(document).on('shown.bs.modal', function() {
-        // Also re-bind select2 elements on modal show
-        window.initForeignSelect();
-        window.initTags();
-        window.initDialogs();
-        window.initTooltips();
-        window.ajaxTooltip();
-        window.initDropdowns();
-        window.initSortable();
-        initAjaxPagination();
-        initColourPicker();
-        initDynamicDelete();
-        initImageRemoval();
-        initFeedbackButtons();
-        initDismissible();
-        initPermBtn();
-    });
+/**
+ * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
+ */
+$(document).on('shown.bs.modal', function() {
+    // Also re-bind select2 elements on modal show
+    window.initForeignSelect();
+    window.initTags();
+    window.initDialogs();
+    window.initTooltips();
+    window.ajaxTooltip();
+    window.initDropdowns();
+    window.initSortable();
+    initAjaxPagination();
+    initColourPicker();
+    initDynamicDelete();
+    initImageRemoval();
+    initFeedbackButtons();
+    initDismissible();
+    initPermBtn();
 });
 
 function initAdblocker() {
@@ -85,152 +82,172 @@ function initColourPicker() {
  * Save and manage tabs for when refreshing
  * Move this to crud or forms
  */
-function manageTabs() {
-    let tabLink = $('.nav-tabs li a');
-    tabLink.click(function (e) {
-        e.preventDefault();
-
-        // If tab isn't ajax request
-        if (!$(this).data('url')) {
-            $(this).tab('show');
-        }
-    });
-
-    // store the currently selected tab in the hash value
-    tabLink.on("shown.bs.tab", function (e) {
-        e.preventDefault();
-        let tabId = $(e.target).attr("href").substr(1);
-        let nohash = $(e.target).data("nohash");
-
-        if (nohash) {
-            // Modal? Don't do more.
-            return true;
-        }
-        // We fake a tab_ to avoid page jumps from the browser
-        window.location.hash = 'tab_' + tabId;
-    });
-
-    // on load of the page: switch to the currently selected tab
-    let tabHash = window.location.hash.replace('tab_', '');
-    $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
-}
-
-function initImageRemoval() {
-    $.each($('[data-img="delete"]'), function () {
-        $(this).unbind('click').click(function (e) {
+const manageTabs = () => {
+    const tabs = document.querySelectorAll('.nav-tabs li a');
+    tabs?.forEach(function (tab) {
+        tab.addEventListener('click', function (e) {
             e.preventDefault();
-            $('input[name=' + $(this).data('target') + ']')[0].value = 1;
-            $(this).closest('.preview').hide();
+            const parent = tab.closest('.nav-tabs-custom');
+
+            // Disable all but this tab
+            parent.querySelectorAll('.nav-tabs li').forEach(function (subtab) {
+                subtab.classList.remove('active');
+            });
+            tab.parentNode.classList.add('active');
+
+            // Disable all but this panel
+            parent.querySelectorAll('.tab-pane').forEach(function (subtab) {
+                subtab.classList.remove('active');
+            });
+
+            const target = document.querySelector(tab.getAttribute('href'));
+            target.classList.add('active');
         });
     });
 }
 
+const initImageRemoval = () => {
+    document.querySelectorAll('[data-img="delete"]')?.forEach(function (preview) {
+        preview.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector('input[name=' + preview.dataset.target + ']').value = 1;
+            preview.closest('.preview').classList.add('hidden');
+        });
+    });
+};
+
 /**
  * Replace pagination for ajax links
  */
-function initAjaxPagination() {
-    $('.pagination-ajax-links a').on('click', function(e) {
-        e.preventDefault();
-        let paginationAjaxBody = $('.pagination-ajax-body');
-        paginationAjaxBody.find('.modal-loading').show();
-        paginationAjaxBody.find('.pagination-ajax-content').hide();
+const initAjaxPagination = () => {
+    document.querySelectorAll('.pagination-ajax-links a').forEach(function (link) {
+        if (link.dataset.loaded === '1') {
+            return
+        }
+        link.dataset.loaded = '1';
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const paginationAjaxBody = document.querySelector('.pagination-ajax-body');
+            paginationAjaxBody.querySelector('.modal-loading').classList.remove('hidden');
+            paginationAjaxBody.querySelector('.pagination-ajax-content').classList.add('hidden');
 
-        fetch($(this).attr('href'))
-            .then(response => response.text())
-            .then(response => {
-                paginationAjaxBody.parent().html(response);
-                initAjaxPagination();
-                $(document).trigger('shown.bs.modal');
-            });
-        return false;
+            fetch(link.getAttribute('href'))
+                .then(response => response.text())
+                .then(response => {
+                    paginationAjaxBody.parentNode.innerHTML = response;
+                    initAjaxPagination();
+                    $(document).trigger('shown.bs.modal');
+                });
+        });
     });
-}
+};
 
 /**
  * Popover delete confirmation with button, rather than a modal. Used for displaying a confirmation
  * in a modal.
  */
-function initDynamicDelete() {
-    $('[data-toggle="confirm-delete"]').unbind('click').on('click', function (e) {
-        e.preventDefault();
-        if ($(this).data('confirming') === 1) {
-            $(this).addClass('loading');
-            $(this).html('');
-            let target = $(this).data('target');
-            if ($(target).length === 0) {
-                console.error('Unknown target', target);
-            } else {
-                $(target).submit();
-            }
-
+const initDynamicDelete = () => {
+    document.querySelectorAll('[data-toggle="confirm-delete"]')?.forEach(function (ele) {
+        if (ele.dataset.loaded === '1') {
             return;
         }
+        ele.dataset.loaded = '1';
+        ele.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (ele.dataset.confirming === '1') {
+                ele.classList.add('loading');
+                ele.innerHTML = ''
+                const target = document.querySelector(ele.dataset.target);
+                if (!target) {
+                    console.error('Unknown target', target);
+                } else {
+                    target.requestSubmit();
+                }
 
-        $(this).data('confirming', 1);
-        $(this).find('span').addClass('md:inline');
-        $(this).find('span').html($(this).data('confirm'));
+                return;
+            }
+
+            ele.dataset.confirming = '1';
+            ele.querySelector('span').classList.add('md:inline');
+            ele.querySelector('span').innerHTML = ele.dataset.confirm;
+        });
     });
+    document.querySelectorAll('a[data-toggle="delete-form"]')?.forEach(function (ele) {
+        if (ele.dataset.loaded === '1') {
+            return;
+        }
+        ele.dataset.loaded = '1';
+        ele.addEventListener('click', function (e) {
+            e.preventDefault();
 
-    $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {
+            const target = document.querySelector(ele.dataset.target);
+            target.requestSubmit();
+        });
+    });
+};
+
+
+const initSubmenuSwitcher = () => {
+    document.querySelector('.submenu-switcher')?.addEventListener('change', function (e) {
         e.preventDefault();
-        let target = $(this).data('target');
-        //console.log('target', target);
-        $(target).submit();
+        const ele = e.target;
+        const selected = ele.options[ele.selectedIndex];
+        window.location.href = selected.dataset.route;
     });
-}
-
-
-function initSubmenuSwitcher() {
-    $('.submenu-switcher').change(function (e) {
-        e.preventDefault();
-
-        let selected = $(this).find(":selected");
-        window.location.href = selected.data('route');
-    });
-}
-
-
-
+};
 
 /**
  * AdminLTE legacy. The CSS is a bit weird, for small pages we need to force a min-height
  * So that the footer is at the bottom, and so that the sidebar can be fully scrolled
  */
-function initPageHeight() {
+const initPageHeight = () => {
     let controlSidebar = 0;
 
     const heights = {
-        window: $(window).height(),
-        header: $('header').length > 0 ? $('header').outerHeight() : 0,
-        footer: $('.main-footer').length > 0 ? $('.main-footer').outerHeight() : 0,
-        sidebar: $('.main-sidebar .sidebar').length > 0 ? $('.main-sidebar .sidebar').height() : 0,
+        window: window.innerHeight,
+        header: document.querySelector('header') ? outerHeight(document.querySelector('header')) : 0,
+        footer: document.querySelector('.main-footer') ? outerHeight(document.querySelector('.main-footer')) : 0,
+        sidebar: document.querySelector('.main-sidebar .sidebar') ? outerHeight(document.querySelector('.main-sidebar .sidebar')) : 0,
         controlSidebar
     };
 
-    let max = heighestValue(heights);
+    const max = heighestValue(heights);
 
-    let $contentSelector = $('.content-wrapper');
+    const $contentSelector = document.querySelector('.content-wrapper');
     if (max === heights.controlSidebar) {
-        $contentSelector.css('min-height', max);
+        $contentSelector.style.minHeight = max;
     } else if (max === heights.window) {
-        $contentSelector.css('min-height', (max - heights.header - heights.footer));
+        $contentSelector.style.minHeight = (max - heights.header - heights.footer);
     } else {
-        $contentSelector.css('min-height', (max - heights.header));
+        $contentSelector.style.minHeight = (max - heights.header);
     }
-}
+};
 
-function heighestValue(numbers) {
+const outerHeight = (el, includeMargin = false) => {
+    // Get the height of the element including padding
+    let height = el.getBoundingClientRect().height;
+
+    // Optionally include the margin
+    if (includeMargin) {
+        const style = getComputedStyle(el);
+        height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+    }
+
+    return height;
+};
+
+const heighestValue = (numbers) => {
     // Calculate the maximum number in a list
     let max = 0;
 
     Object.keys(numbers).forEach(key => {
         if (numbers[key] > max) {
-            max = numbers[key]
+            max = numbers[key];
         }
-    })
+    });
 
     return max;
-}
+};
 
 /**
  * When clicking on these buttons, adds a "loading" spinner to indicate that something is happening

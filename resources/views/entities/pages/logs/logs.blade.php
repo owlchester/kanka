@@ -14,10 +14,10 @@
     <form class="pagination-ajax-body max-w-2xl">
         <x-dialog.header>@if (!isset($post)) {{ $entity->name }} @else {{ $entity->name }} - {{ $post->name }} @endif</x-dialog.header>
         <article>
-            <div class="modal-loading text-center text-xl p-5" style="display: none">
+            <div class="modal-loading text-center text-xl p-5 hidden">
                 <x-icon class="load" />
             </div>
-            <div class="pagination-ajax-content">
+            <div class="pagination-ajax-content w-full">
                 <table class="table table-hover break-all">
                     <thead>
                         <tr>

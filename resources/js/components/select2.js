@@ -55,7 +55,7 @@ window.initForeignSelect = function () {
                 dataType: 'json',
                 data: function (params) {
                     return {
-                        q: $.trim(params.term)
+                        q: params.term?.trim()
                     };
                 },
                 processResults: function (data) {

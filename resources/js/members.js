@@ -1,12 +1,8 @@
-
-$(document).ready(function() {
-    $(document).on('shown.bs.modal', function() {
-        initFormMembersSelect();
-    });
+$(document).on('shown.bs.modal', function() {
     initFormMembersSelect();
 });
 
-function initFormMembersSelect() {
+const initFormMembersSelect = () => {
     const formMembers = document.querySelectorAll('.form-members');
     formMembers.forEach((form) => {
         if (form.dataset.loaded === 1) {
@@ -26,7 +22,7 @@ function initFormMembersSelect() {
                 dataType: 'json',
                 data: function (params) {
                     return {
-                        q: $.trim(params.term)
+                        q: params.term?.trim()
                     };
                 },
                 processResults: function (data) {
@@ -42,3 +38,5 @@ function initFormMembersSelect() {
         });
     });
 }
+
+initFormMembersSelect();

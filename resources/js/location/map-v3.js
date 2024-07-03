@@ -1,6 +1,8 @@
-let mapPageBody;
-let sidebarMap, sidebarMarker;
-let markerModal, markerModalContent, markerModalTitle;
+const mapPageBody = document.querySelector('#map-body');
+
+const sidebarMap = document.querySelector('#sidebar-map');
+const sidebarMarker = document.querySelector('#sidebar-marker');
+const markerModal = document.querySelector('#map-marker-modal');
 
 // Polygon layout style
 let eraseTempPolygonBtn;
@@ -9,6 +11,8 @@ let polygonStrokeWeight, polygonStrokeColour, polygonStrokeOpacity, polygonColou
 let tickerTimeout, tickerUrl, tickerTs;
 
 const isMobile = window.matchMedia("only screen and (max-width: 760px)");
+
+const shapeField = document.querySelector('input[name="shape_id"]');
 
 $(document).ready(function() {
 
@@ -23,58 +27,50 @@ $(document).ready(function() {
         window.map.invalidateSize();
     });
 
-    // Event fired when clicking on an existing map point
+});
 
-    $('a[href="#marker-pin"]').click(function (e) {
-        $('input[name="shape_id"]').val(1);
-        $('#map-marker-bg-colour').show();
+const initTabs = () => {
+    const pin = document.querySelector('a[href="#marker-pin"]');
+    if (!pin) {
+        return;
+    }
+    pin.addEventListener('click', function () {
+        shapeField.value = 1;
+        document.querySelector('#map-marker-bg-colour').classList.remove('hidden');
         showMainFields();
     });
-    $('a[href="#marker-label"]').click(function (e) {
-        $('input[name="shape_id"]').val(2);
-        $('#map-marker-bg-colour').hide();
+    document.querySelector('a[href="#marker-label"]').addEventListener('click', function () {
+        shapeField.value = 2;
+        document.querySelector('#map-marker-bg-colour').classList.add('hidden');
         showMainFields();
     });
-    $('a[href="#marker-circle"]').click(function (e) {
-        $('input[name="shape_id"]').val(3);
-        $('#map-marker-bg-colour').show();
+    document.querySelector('a[href="#marker-circle"]').addEventListener('click', function () {
+        shapeField.value = 3;
+        document.querySelector('#map-marker-bg-colour').classList.remove('hidden');
         showMainFields();
     });
-    $('a[href="#marker-poly"]').click(function (e) {
-        $('input[name="shape_id"]').val(5);
-        $('#map-marker-bg-colour').show();
+    document.querySelector('a[href="#marker-poly"]').addEventListener('click', function () {
+        shapeField.value = 5;
+        document.querySelector('#map-marker-bg-colour').classList.remove('hidden');
         showMainFields();
     });
-    $('a[href="#presets"]').click(function (e) {
-        loadPresets($(this).data('presets'));
+    document.querySelector('a[href="#presets"]')?.addEventListener('click', function (e) {
+        loadPresets(e.target.dataset.presets);
     });
-    $('a[href="#form-markers"]').click(function (e) {
+    document.querySelector('a[href="#form-markers"]')?.addEventListener('click', function () {
         window.map.invalidateSize();
     });
-
-    initMapExplore();
-    initMapForms();
-    initMapEntryClick();
-    initPolygonDrawing();
-    registerModes();
-});
+};
 
 /**
  *
  */
-function initMapExplore()
-{
+const initMapExplore = () => {
     //console.log('initMapExplore', '');
-    mapPageBody = $('#map-body');
-    if (mapPageBody.length === 0) {
+    if (!mapPageBody) {
         //console.log('initMapExplore', 'no explore mode');
         return;
     }
-    sidebarMap = $('#sidebar-map');
-    sidebarMarker = $('#sidebar-marker');
-    markerModal = $('#map-marker-modal');
-    markerModalTitle = $('#map-marker-modal-title');
-    markerModalContent = $('#map-marker-modal-content');
 
     window.markerDetails = function(url) {
         showSidebar();
@@ -87,11 +83,12 @@ function initMapExplore()
         fetch(url)
             .then((response) => response.json())
             .then((result) => {
-                sidebarMarker.html(result.body).show()
-                    .parent().find('.spinner').hide();
+                sidebarMarker.innerHTML = result.body;
+                sidebarMarker.classList.remove('hidden');
+                sidebarMarker.parentNode.querySelector('.spinner').classList.add('hidden');
 
                 handleCloseMarker();
-                mapPageBody.addClass('sidebar-open');
+                mapPageBody.classList.add('sidebar-open');
 
                 $(document).trigger('shown.bs.modal');
             });
@@ -99,67 +96,75 @@ function initMapExplore()
 
     initTicker();
     initLegend();
-}
+};
 
 /**
  * When submitting the layer or marker form from the map modal, disable the map form unsaved changed
  * alert.
  */
-function initMapForms()
-{
-    $('select[name="size_id"]').change(function (e) {
-        if (this.value == 6) {
-            $('.map-marker-circle-helper').hide();
-            $('.map-marker-circle-radius').show();
-        } else {
-            $('.map-marker-circle-radius').hide();
-            $('.map-marker-circle-helper').show();
-        }
-    });
+const initForms = () => {
+    initTabs();
+    initCircle();
+    initPolygonDrawing();
 
     //console.info('mapsv3', 'initMapForms');
-    let markerForm = $('#map-marker-form');
-    if ($('#entity-form').length === 0 && $('.map-marker-edit-form').length === 0) {
+    const markerForm = document.querySelector('#map-marker-form');
+    const markerEditForm = document.querySelector('.map-marker-edit-form');
+    if (!markerForm && !markerEditForm) {
         //console.info('initMapForms empty');
         return;
     }
 
-    markerForm.unbind('submit').on('submit', function() {
+    markerForm.onsubmit = function() {
         window.entityFormHasUnsavedChanges = false;
-    });
-
+    };
 
     initLegend();
-}
+};
 
-function showSidebar()
+const initCircle = () => {
+    const size = document.querySelector('select[name="size_id"]');
+    if (!size) {
+        return;
+    }
+    size.addEventListener('change', function (e) {
+        if (size.value == 6) {
+            document.querySelector('.map-marker-circle-helper').classList.add('hidden');
+            document.querySelector('.map-marker-circle-radius').classList.remove('hidden');
+        } else {
+            document.querySelector('.map-marker-circle-radius').classList.add('hidden');
+            document.querySelector('.map-marker-circle-helper').classList.remove('hidden');
+        }
+    });
+};
+
+const showSidebar = () =>
 {
     // On mobile use the modal instead of the sidebar
     if (isMobile.matches) {
-        markerModalContent.find('.spinner').show();
-        markerModalContent.find('.content').hide();
-        markerModal.modal('toggle');
         return;
     }
 
     //window.map.invalidateSize();
-    mapPageBody.removeClass('sidebar-collapse').addClass('sidebar-open');
-    sidebarMap.hide();
-    sidebarMarker.html('').show();
-    sidebarMarker.parent().find('.spinner').show();
+    mapPageBody.classList.remove('sidebar-collapse');
+    mapPageBody.classList.add('sidebar-open');
+    sidebarMap.classList.add('hidden');
+    sidebarMarker.innerHTML = '';
+    sidebarMarker.classList.remove('hidden');
+    sidebarMarker.parentNode.querySelector('.spinner').classList.remove('hidden');
     invalidateMapOnSidebar();
-}
+};
 
-function handleCloseMarker()
+const handleCloseMarker = () =>
 {
-    $('.marker-close').click(function (ev) {
-        sidebarMarker.hide();
-        sidebarMap.show();
+    document.querySelector('.marker-close')?.addEventListener('click', function () {
+        sidebarMarker.classList.add('hidden');
+        sidebarMap.classList.remove('hidden');
     });
-}
+};
 
 const initTicker = () => {
-    let config = document.getElementById('ticker-config');
+    const config = document.getElementById('ticker-config');
     tickerTimeout = config.dataset.timeout;
     tickerUrl = config.dataset.url;
     tickerTs = config.dataset.ts;
@@ -187,79 +192,91 @@ const mapTicker = () => {
 };
 
 const initLegend = () => {
-    $('.map-legend-marker').click(function (ev) {
-        ev.preventDefault();
-        window.map.panTo(L.latLng($(this).data('lat'), $(this).data('lng')));
-        window[$(this).data('id')].openPopup();
+    document.querySelectorAll('.map-legend-marker')?.forEach(el => {
+        el.addEventListener('click', function (ev) {
+            ev.preventDefault();
+            window.map.panTo(L.latLng(el.dataset.lat, el.dataset.lng));
+            window[el.dataset.id].openPopup();
+        });
     });
 
-    $('a.sidebar-toggle').click(function () {
+    document.querySelector('a.sidebar-toggle')?.addEventListener('click', function () {
         invalidateMapOnSidebar();
     });
 };
 
-function invalidateMapOnSidebar() {
+const invalidateMapOnSidebar = () => {
     setTimeout(() => {
         // Invalidate the map size when the sidebar is rendered/hidden
         window.map.invalidateSize();
     }, 500);
-}
-function initMapEntryClick() {
-    $('.map-marker-entry-click').click(function (e) {
+};
+
+const initMapEntryClick = () => {
+    document.querySelector('.map-marker-entry-click')?.addEventListener('click', function (e) {
         e.preventDefault();
-        $(this).parent().hide();
-        $('.map-marker-entry-entry').show();
+        const el = e.target;
+        el.parentNode.classList.add('hidden');
+        document.querySelector('.map-marker-entry-entry').classList.remove('hidden');
     });
-}
+};
 
 /**
  * Register switching in and out of edit mode
  */
-function registerModes() {
-    $('.btn-mode-enable').click(function (e) {
+const registerModes = () => {
+    const enable = document.querySelector('.btn-mode-enable');
+    if (!enable) {
+        return;
+    }
+    enable.addEventListener('click', function (e) {
         e.preventDefault();
         window.exploreEditMode = true;
-        $('body').addClass('map-edit-mode');
+        document.querySelector('body').classList.add('map-edit-mode');
     });
-    $('.btn-mode-disable').click(function (e) {
+    document.querySelector('.btn-mode-disable').addEventListener('click', function (e) {
         e.preventDefault();
         window.exploreEditMode = false;
-        $('body').removeClass('map-edit-mode');
+        document.querySelector('body').classList.remove('map-edit-mode');
         if (window.polygon) {
             window.map.removeLayer(window.polygon);
         }
     });
-    $('.btn-mode-drawing').click(function (e) {
+    document.querySelector('.btn-mode-drawing').addEventListener('click', function (e) {
         e.preventDefault();
         endDrawing();
     });
-}
+};
 
-function endDrawing() {
+const endDrawing = () => {
     window.drawingPolygon = false;
-    $('body').removeClass('map-drawing-mode');
+    document.querySelector('body').classList.remove('map-drawing-mode');
     window.openDialog('marker-modal');
-}
-function initPolygonDrawing() {
+};
 
-    $('#start-drawing-polygon').on('click', function (e) {
+const initPolygonDrawing = () => {
+    const start = document.querySelector('#start-drawing-polygon');
+    if (!start) {
+        return;
+    }
+    start.addEventListener('click', function (e) {
         e.preventDefault();
         window.exploreEditMode = false;
         window.startNewPolygon();
-        window.showToast($(this).data('toast'));
-        $('body').addClass('map-drawing-mode');
+        window.showToast(e.target.dataset.toast);
+        document.querySelector('body').classList.add('map-drawing-mode');
 
         window.closeDialog('marker-modal');
     });
 
-    eraseTempPolygonBtn = $('#reset-polygon');
-    eraseTempPolygonBtn.click(function (e) {
+    eraseTempPolygonBtn = document.querySelector('#reset-polygon');
+    eraseTempPolygonBtn.addEventListener('click', function (e) {
         e.preventDefault();
         if (window.polygon) {
             window.map.removeLayer(window.polygon);
         }
-        $('textarea[name="custom_shape"]').val('');
-        eraseTempPolygonBtn.hide();
+        document.querySelector('textarea[name="custom_shape"]').value = '';
+        eraseTempPolygonBtn.classList.add('hidden');
 
         window.startNewPolygon();
     });
@@ -277,7 +294,7 @@ function initPolygonDrawing() {
             fillOpacity: polygonOpacity,
         });
     });
-}
+};
 
 window.startNewPolygon = function () {
     window.polygon = window.map.editTools.startPolygon();
@@ -299,8 +316,8 @@ window.startNewPolygon = function () {
 };
 
 window.setPolygonPosition = function (coords) {
-    let shape = $('textarea[name="custom_shape"]');
-    shape.val(coords);
+    let shape = document.querySelector('textarea[name="custom_shape"]');
+    shape.value = coords;
 };
 
 
@@ -333,29 +350,27 @@ const updateLabel = (data) => {
     if (!points) {
         return;
     }
-    $('#marker-latitude').val(points.lat.toFixed(3));
-    $('#marker-longitude').val(points.lng.toFixed(3));
+    document.querySelector('#marker-latitude').value = points.lat.toFixed(3);
+    document.querySelector('#marker-longitude').value = points.lng.toFixed(3);
 };
 
 const isPolygon = () => {
-    let shape = document.getElementsByName('shape_id');
-    return Number(shape[0].value) === 5;
+    return Number(shapeField.value) === 5;
 };
 const isLabel = () => {
-    let shape = document.getElementsByName('shape_id');
-    return Number(shape[0].value) === 2;
+    return Number(shapeField.value) === 2;
 };
 
 window.addPolygonPosition = function(lat, lng) {
-    let shape = $('textarea[name="custom_shape"]');
-    let current = shape.val();
+    const shape = document.querySelector('textarea[name="custom_shape"]');
+    let current = shape.value;
     if (current.length > 0) {
         current += ' ';
     }
-    shape.val(current + lat + ',' + lng);
+    shape.value = current + lat + ',' + lng;
 
     // Redraw the polygon
-    let coords = shape.val();
+    let coords = shape.value;
     let blocks = coords.trim(" ").split(" ");
     let coordsData = [];
 
@@ -382,101 +397,101 @@ window.addPolygonPosition = function(lat, lng) {
         linejoin: 'round',
     });
     window.polygon.addTo(window.map);
-    eraseTempPolygonBtn.show();
+    eraseTempPolygonBtn.classList.remove('hidden');
 };
 
-function getPolygonStyle() {
-    polygonStrokeColour = $('input[name="polygon_style[stroke]"]').val();
+const getPolygonStyle = () => {
+    polygonStrokeColour = document.querySelector('input[name="polygon_style[stroke]"]')?.value;
     if (!polygonStrokeColour || polygonStrokeColour.length < 7) {
         polygonStrokeColour = 'red';
     }
 
-    polygonStrokeOpacity = $('input[name="polygon_style[stroke-opacity]"]').val();
+    polygonStrokeOpacity = document.querySelector('input[name="polygon_style[stroke-opacity]"]').value;
     if (isNaN(polygonStrokeOpacity) || !polygonStrokeOpacity) {
         polygonStrokeOpacity = 1;
     } else {
         polygonStrokeOpacity = polygonStrokeOpacity / 100;
     }
 
-    polygonColour = $('input[name="colour"]').val();
+    polygonColour = document.querySelector('input[name="colour"]').value;
     if (!polygonColour || polygonColour.length < 7) {
         polygonColour = 'red';
     }
 
-    polygonOpacity = $('input[name="opacity"]').val();
+    polygonOpacity = document.querySelector('input[name="opacity"]').value;
     if (isNaN(polygonOpacity)) {
         polygonOpacity = 0.5;
     } else {
         polygonOpacity = polygonOpacity / 100;
     }
 
-    polygonStrokeWeight = $('input[name="polygon_style[stroke-width]"]').val();
+    polygonStrokeWeight = document.querySelector('input[name="polygon_style[stroke-width]"]').value;
     if (isNaN(polygonStrokeWeight) || !polygonStrokeWeight) {
         polygonStrokeWeight = 1;
     }
-}
+};
 
-function showMainFields() {
-    $('#marker-main-fields').show();
-    $('#marker-footer').show();
-}
+const showMainFields = () => {
+    document.querySelector('#marker-main-fields')?.classList.remove('hidden');
+    document.querySelector('#marker-footer')?.classList.remove('hidden');
+};
 
-function loadPresets(url) {
-    $('#marker-main-fields').hide();
-    $('#marker-footer').hide();
+const loadPresets = (url) => {
+    document.querySelector('#marker-main-fields')?.classList.add('hidden');
+    document.querySelector('#marker-footer')?.classList.add('hidden');
 
     // If presets have already been loaded, skip loading/rendering of the list
-    if ($('.marker-preset-list .fa-spinner').length === 0) {
+    const list = document.querySelector('.marker-preset-list');
+    if (list.dataset.loaded === '1') {
         return;
     }
+    list.dataset.loaded = '1';
 
-    //console.log('load from', url);
     fetch(url)
         .then(response => response.text())
         .then(response => {
-            $('.marker-preset-list').html(response);
+            list.innerHTML = response;
             handlePresetClick();
         });
-}
+};
 
-function handlePresetClick() {
-    $('.preset-use').on('click', function (e) {
-        e.preventDefault();
+const handlePresetClick = () => {
+    document.querySelectorAll('.preset-use')?.forEach(preset => {
+        preset.addEventListener('click', function (e) {
+            e.preventDefault();
 
-        let url = $(this).data('url');
-        $(this).find('.fa-spin').show();
+            let url =   preset.dataset.url;
+            preset.classList.add('loading');
 
-        $.ajax({
-            url: url,
-            context: this,
-        }).done(function (result) {
-            // Switch stuff around
-            $(this).find('.fa-spin').hide();
+            axios.get(url).then(res => {
+                // Switch stuff around
+                preset.classList.remove('loading');
 
-            Object.keys(result.preset).forEach(key => {
-                let val = result.preset[key];
+                Object.keys(res.data.preset).forEach(key => {
+                    let val = res.data.preset[key];
 
-                let field = $('[name="' + key + '"]');
-                if (field.length === 0) {
-                    //console.info('markerPreset', 'unknown field', key);
-                    return;
-                }
-                if (key.endsWith('colour')) {
-                    field.val(val);
-                    document.querySelector('[name="' + key + '"]').dispatchEvent(new Event('input', ));
-                } else {
-                    field.val(val);
-                }
+                    let field = document.querySelector('[name="' + key + '"]');
+                    if (!field) {
+                        //console.info('markerPreset', 'unknown field', key);
+                        return;
+                    }
+                    if (key.endsWith('colour')) {
+                        field.value = val;
+                        document.querySelector('[name="' + key + '"]').dispatchEvent(new Event('input',));
+                    } else {
+                        field.value = val;
+                    }
+                });
+                document.querySelector('a[href="#marker-pin"]').click();
             });
-            $('a[href="#marker-pin"]').click();
         });
     });
-}
+};
 
 /**
  * Why is this here?
  */
-const handleExploreMapClick = (ev) => {
+function handleExploreMapClick(ev) {
     if (!window.exploreEditMode) {
         return;
     }
@@ -491,10 +506,15 @@ const handleExploreMapClick = (ev) => {
     }
     //console.log('Click', 'lat', position.lat, 'lng', position.lng);
     // AJAX request
-    //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
-    $('#marker-latitude').val(lat);
-    $('#marker-longitude').val(lng);
+    document.querySelector('#marker-latitude').value = lat;
+    document.querySelector('#marker-longitude').value = lng;
     window.openDialog('marker-modal');
-};
+}
 
 window.handleExploreMapClick = handleExploreMapClick;
+
+
+initMapExplore();
+initForms();
+initMapEntryClick();
+registerModes();
