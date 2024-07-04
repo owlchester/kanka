@@ -28,7 +28,7 @@ class PostController extends Controller
         $templates = Post::template()->pluck('name', 'id')->all();
 
         $template = request()->input('template');
-        if (!empty($template)) {
+        if (!empty($template) && $this->authorize('useTemplates', $campaign)) {
             $template = Post::template()->where('id', $template)->first();
         }
 
