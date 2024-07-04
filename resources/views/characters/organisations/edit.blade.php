@@ -13,7 +13,6 @@
         @include('partials.forms.form', [
             'title' => __('characters.organisations.edit.title', ['name' => $model->name]),
             'content' => 'characters.organisations._form',
-            'deleteID' => '#delete-character-organisation-' . $member->id,
             'dialog' => true,
             'dropdownParent' => '#primary-dialog',
         ])
@@ -23,7 +22,6 @@
             <input type="hidden" name="from" value="{{ request()->get('from') }}" />
         @endif
     </x-form>
-    <x-form method="DELETE" :action="['characters.character_organisations.destroy', $campaign, $model->id, $member->id]" id="delete-character-organisation-{{ $member->id }}" />
 
 @endsection
 
