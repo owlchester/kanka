@@ -32,7 +32,7 @@
         {{ __('entities/notes.move.move') }}
     </x-dropdowns.item>
 @endif
-@if (auth()->check() && auth()->user()->can('template', $post))
+@if (auth()->check() && auth()->user()->can('useTemplates', $campaign))
     <x-dropdowns.item :link="route('posts.template', [$campaign, 'post' => $post])" icon="@if($post->is_template) fa-solid @else fa-regular @endif fa-star">
         @if ($post->is_template)
             {{ __('entities/actions.templates.unset') }}

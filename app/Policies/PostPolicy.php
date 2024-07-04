@@ -13,9 +13,6 @@ class PostPolicy
 
     public function template(?User $user, Post $post): bool
     {
-        if ($post->exists === false) {
-            return true;
-        }
         return !$post->layout_id && $user && UserCache::user($user)->admin();
     }
 }

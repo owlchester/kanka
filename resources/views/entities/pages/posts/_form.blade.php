@@ -49,7 +49,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 @can('permission', $entity->child)
                     <x-tab.tab target="permissions" :title="__('entities/notes.show.advanced')"></x-tab.tab>
                 @endcan
-                @if(auth()->user()->isAdmin() && !empty($templates))
+                @if (auth()->user()->can('useTemplates', $campaign) && !empty($templates))
                     <x-tab.tab target="templates" :title="__('entities/attributes.template.load.title')"></x-tab.tab>
                 @endif
             </ul>

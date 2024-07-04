@@ -33,8 +33,7 @@ use Laravel\Scout\Searchable;
  * @property string|null $marketplace_uuid
  * @property bool|int $is_private
  * @property int $deleted_by
- * @property bool|int $is_pinned
- * @property bool $is_template
+ * @property bool|int $is_template
  * @property int $position
  * @property array $settings
  * @property Entity|null $entity
@@ -191,7 +190,7 @@ class Post extends Model
     /**
      * @return Builder
      */
-    public function scopeOrdered(Builder $query)
+    public function scopeOrdered(Builder $query): Builder
     {
         return $query
             ->orderBy('position');
@@ -200,7 +199,7 @@ class Post extends Model
     /**
      * @return Builder
      */
-    public function scopeTemplate(Builder $query)
+    public function scopeTemplate(Builder $query): Builder
     {
         return $query->where('is_template', true);
     }
