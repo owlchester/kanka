@@ -1,5 +1,4 @@
 <?php /** @var \App\Models\Race[] $races */?>
-{{ csrf_field() }}
 
 @if (!$races)
     <x-alert type="warning">
@@ -7,25 +6,27 @@
     </x-alert>
     <?php return; ?>
 @endif
-<div class="max-w-4xl box-timeline-reorder flex flex-col gap-5" id="add_attribute_target">
-    <div class="element-live-reorder sortable-elements flex flex-col gap-5">
+<div class="w-full character-races-reorder flex flex-col gap-2">
+    <div class="@if ($races->count() > 1) element-live-reorder sortable-elements @endif flex flex-col gap-2">
         @foreach($races as $race)
-            <div class="element bg-base-200 rounded flex flex-col gap-2 p-2" data-id="{{ $race->race_id }}">
+            <x-reorder.child id="element-{{ $race->race_id }}">
                 <input type="hidden" name="character_race[]" value="{{ $race->race_id }}" />
-                <div class="dragger pr-3">
-                    <span class="fa-solid fa-sort"></span>
+                @if ($races->count() > 1)
+                <div class="dragger">
+                    <x-icon class="fa-solid fa-sort" />
                 </div>
-            <div class="flex flex-wrap md:flex-no-wrap items-start gap-2 md:gap-2 member-row">
-                    <x-entities.thumbnail :entity="$race->race->entity" :title="$race->race->name"></x-entities.thumbnail>
+               @endif
+                <div class="flex flex-wrap md:flex-no-wrap gap-2 md:gap-2 member-row items-center flex-grow">
+                    <x-entities.thumbnail :entity="$race->race->entity" :title="$race->race->name" />
                     <x-entity-link
                         :entity="$race->race->entity"
                         :campaign="$campaign" />
-                    <div class="">
-                        <input type="hidden" name="race_privates[{{ $race->race_id }}]" value="{{ $race->is_private }}" />
-                        <i class="fa-solid @if($race->is_private) fa-lock @else fa-unlock-alt @endif" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
-                    </div>
                 </div>
-            </div>
+                <div class="grow-0 px-2 text-lg">
+                    <input type="hidden" name="race_privates[{{ $race->race_id }}]" value="{{ $race->is_private }}" />
+                    <i class="cursor-pointer hover:text-accent @if($race->is_private) fa-solid fa-lock-keyhole @else fa-regular fa-unlock-keyhole  @endif" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                </div>
+            </x-reorder.child>
         @endforeach
     </div>
 </div>

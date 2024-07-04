@@ -24,7 +24,6 @@
 
             <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
-                    {{ csrf_field() }}
                     @include('entities.pages.relations.full-form._entry', ['source' => $source])
                 </div>
             </div>

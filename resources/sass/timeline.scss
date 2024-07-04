@@ -2,7 +2,7 @@
  * Timelines
  */
 
-.timeline > li > i:is(.ra, .fa, .fab, .far, .fas, .fa-solid, .fa-brands, .fa-thin, .fa-duotone) {
+.timeline > li > i:is(.ra, .fa, .fab, .far, .fas, .fa-solid, .fa-regular, .fa-brands, .fa-thin, .fa-duotone) {
     line-height: 30px;
     --tw-text-opacity: 1;
     color: hsl(var(--bc)/var(--tw-text-opacity));

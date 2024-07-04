@@ -8,16 +8,11 @@
         @foreach($rows as $group)
             <x-reorder.child :id="$group->id">
                 <input type="hidden" name="group[]" value="{{ $group->id }}" />
-                <div class="dragger pr-3">
-                    <span class="fa-solid fa-ellipsis-v"></span>
+                <div class="dragger">
+                    <x-icon class="fa-solid fa-sort" />
                 </div>
-                <div class="name overflow-hidden grow">
-                    {!! $group->name !!}
-                    @if ($group->type)
-                        <span class="text-neutral-content text-xs">
-                            ({{ $group->type }})
-                        </span>
-                    @endif
+                <div class="overflow-hidden grow flex flex-no-wrap items-center">
+                    <span class="truncate">{!! $group->name !!}</span>
                 </div>
             </x-reorder.child>
         @endforeach

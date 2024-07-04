@@ -1,5 +1,3 @@
-{{ csrf_field() }}
-
 <x-grid>
 @if(empty($relation))
     <x-forms.foreign

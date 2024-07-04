@@ -17,7 +17,6 @@ const registerPrivacyToggler = (element) => {
     element.dataset.togglerinit = '1';
     element.addEventListener('click', function (event) {
         const closestInputSibling = element.previousElementSibling;
-        console.log(closestInputSibling);
         if (element.classList.contains('fa-lock-keyhole')) {
             element.classList.remove('fa-lock-keyhole', 'fa-solid');
             element.classList.add('fa-unlock-keyhole', 'fa-regular');

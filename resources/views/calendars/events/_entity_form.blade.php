@@ -1,7 +1,6 @@
 <?php
 $onlyOneCalendar = count($calendars) == 1;
 ?>
-{{ csrf_field() }}
 <x-grid type="1/1">
     <div id="entity-calendar-modal-form w-full">
         <div class="field-calendar entity-calendar-selector w-full">

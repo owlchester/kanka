@@ -9,6 +9,7 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Scout\Searchable;
 
 /**
@@ -118,7 +119,7 @@ class QuestElement extends Model
 
     /**
      */
-    public function editingUsers()
+    public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'entity_user')
             ->using(EntityUser::class)

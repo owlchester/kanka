@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 
@@ -80,9 +82,8 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return Builder
      */
-    public function scopeOrdered(Builder $query)
+    public function scopeOrdered(Builder $query): Builder
     {
         return $query
             ->with('entity')
@@ -115,6 +116,7 @@ class TimelineElement extends Model
     }
 
     /**
+     * Todo: This shouldn't be in the model, but a blade component instead
      */
     public function htmlIcon(bool $absolute = true): string
     {
@@ -165,7 +167,7 @@ class TimelineElement extends Model
 
     /**
      */
-    public function editingUsers()
+    public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'entity_user')
             ->using(EntityUser::class)
@@ -174,9 +176,8 @@ class TimelineElement extends Model
 
     /**
      * List of entities that mention this entity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function mentions()
+    public function mentions(): HasMany
     {
         return $this->hasMany('App\Models\EntityMention', 'timeline_element_id', 'id');
     }

@@ -27,7 +27,7 @@ class ManagementController extends Controller
 
         $races = $character
             ->characterRaces()
-            ->with(['race', 'race.entity'])
+            ->with(['race', 'race.entity', 'race.entity.image'])
             ->get();
 
         return view('characters.races.reorder', compact(

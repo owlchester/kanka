@@ -24,13 +24,16 @@
         <div class="box-entity-story-reorder max-w-4xl flex flex-col gap-5">
             <div class="element-live-reorder sortable-elements flex flex-col gap-2">
                 @foreach($links as $link)
-                    <div class="element bg-base-200 rounded flex gap-2 p-2" data-id="{{ $link->id }}">
+                    <x-reorder.child :id="$link->id">
                         <input type="hidden" name="bookmark[]" value="{{ $link->id }}" />
-                        <div class="dragger pr-3">
-                            <span class="fa-solid fa-ellipsis-v" aria-hidden="true"></span>
+                        <div class="dragger">
+                            <x-icon class="fa-solid fa-sort" />
                         </div>
-                        <div class="name overflow-hidden grow">
-                            <i class="{{ $link->icon() }}"></i> {!! $link->name !!}
+                        <div class="grow flex items-center flex-no-wrap gap-2 overflow-hidden">
+                            <i class="{{ $link->icon() }}" aria-hidden="true"></i>
+                            <span class="truncate">
+                                {!! $link->name !!}
+                            </span>
                         </div>
                         <div class="self-end">
                             @if ($link->is_private)
@@ -38,7 +41,7 @@
                                    data-toggle="tooltip"></i>
                             @endif
                         </div>
-                    </div>
+                    </x-reorder.child>
                 @endforeach
             </div>
         </div>

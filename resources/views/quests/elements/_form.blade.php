@@ -1,5 +1,3 @@
-{{ csrf_field() }}
-
 <x-helper>
  {{ __('quests.elements.fields.entity_or_name') }}
 </x-helper>

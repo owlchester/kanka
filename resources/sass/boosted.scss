@@ -109,6 +109,12 @@
     max-width: 100%;
 }
 
+.comma-separated {
+  .element ~ .element::before {
+    content: ', ';
+  }
+}
+
 /**
  * Everything is a grid now
  */

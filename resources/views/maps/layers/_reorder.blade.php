@@ -7,11 +7,11 @@
         @foreach($rows as $layer)
             <x-reorder.child :id="$layer->id">
                 <input type="hidden" name="layer[]" value="{{ $layer->id }}" />
-                <div class="dragger pr-3">
-                    <span class="fa-solid fa-ellipsis-v"></span>
+                <div class="dragger">
+                    <x-icon class="fa-solid fa-sort" />
                 </div>
-                <div class="name overflow-hidden grow">
-                    {!! $layer->name !!}
+                <div class="overflow-hidden grow flex flex-no-wrap items-center gap-2">
+                    <span class="truncate">{!! $layer->name !!}</span>
                     <span class="text-neutral-content text-xs">
                         ({{ __('maps/layers.short_types.' . $layer->typeName()) }})
                     </span>

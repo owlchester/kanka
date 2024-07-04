@@ -4,30 +4,7 @@
  */
 .element-live-reorder {
     .element {
-        display: flex;
-        flex-flow: row wrap;
         cursor: grab;
-
-        .rounded-icon {
-            i {
-                border-radius: 50%;
-                width: 30px;
-                height: 30px;
-                font-size: 15px;
-                line-height: 30px;
-                text-align: center;
-                display: block;
-            }
-        }
-
-        .name {
-            i {
-                min-width: 20px;
-            }
-            i.ra {
-                display: var(--fa-display,inline-block);
-            }
-        }
 
         select {
             height: 28px;

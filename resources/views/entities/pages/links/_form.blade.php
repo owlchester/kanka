@@ -1,4 +1,3 @@
-{{ csrf_field() }}
 <x-grid>
     <x-forms.field
         field="name"

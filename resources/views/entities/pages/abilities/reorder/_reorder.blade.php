@@ -15,11 +15,11 @@
                     @foreach($parent as $ability)
                         <x-reorder.child id="$ability->id">
                             <input type="hidden" name="ability[]" value="{{ $ability->id }}" />
-                            <div class="dragger relative pr-3">
-                                <span class="fa-solid fa-sort" aria-hidden="true"></span>
+                            <div class="dragger relative">
+                                <x-icon class="fa-solid fa-sort" />
                             </div>
-                            <div class="name grow">
-                                {!! $ability->ability->name !!}
+                            <div class="overflow-hidden grow flex flex-no-wrap items-center gap-2">
+                                <span class="truncate">{!! $ability->ability->name !!}</span>
                                 @if ($ability->ability->type)
                                 <span class="text-xs text-neutral-content">
                                     ({!! $ability->ability->type!!})

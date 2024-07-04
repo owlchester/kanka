@@ -30,13 +30,13 @@ if ($firstPost && $firstPost->position >= 0) {
 
             <x-reorder.child :id="$note->id">
                 <input type="hidden" name="posts[{{ $note->id }}][id]" value="{{ $note->id }}" />
-                <div class="dragger pr-3">
-                    <span class="fa-solid fa-ellipsis-v"></span>
+                <div class="dragger">
+                    <x-icon class="fa-solid fa-sort" />
                 </div>
-                <div class="name overflow-hidden grow">
+                <div class="truncate flex-grow">
                     {!! $note->name !!}
                 </div>
-                <div class="px-2 self-end">
+                <div class="px-2 grow-0">
                     <select name="posts[{{ $note->id }}][collapsed]" class="">
                         <option value="0">{{ __('entities/notes.states.expanded') }}</option>
                         <option value="1" @if ($note->collapsed()) selected="selected" @endif>{{ __('entities/notes.states.collapsed') }}</option>

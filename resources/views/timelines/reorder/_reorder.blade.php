@@ -12,14 +12,16 @@
         @foreach($eras as $era)
             <div class="element bg-base-200 rounded flex flex-col gap-2 p-2" data-id="{{ $era->id }}">
                 <input type="hidden" name="timeline_era[]" value="{{ $era->id }}" />
-                <div class="dragger pr-3">
-                    <span class="fa-solid fa-sort"></span>
-                </div>
-                <div class="name overflow-hidden grow">
-                    {!! $era->name !!}
-                    <span class="text-xs text-neutral-content">
-                        {!! $era->ages()!!}
-                    </span>
+                <div class="flex gap-2 items-center">
+                    <div class="dragger flex-grow-0">
+                        <x-icon class="fa-solid fa-sort" />
+                    </div>
+                    <div class="overflow-hidden grow flex flex-no-wrap items-center gap-2">
+                        <span class="truncate">{!! $era->name !!}</span>
+                        <span class="text-xs text-neutral-content">
+                            {!! $era->ages()!!}
+                        </span>
+                    </div>
                 </div>
 
                 @if (!$era->orderedElements->isEmpty())
@@ -30,16 +32,19 @@
                         @endif
                             <x-reorder.child id="element-{{ $element->id }}">
                                 <input type="hidden" name="timeline_element[{{ $era->id }}][]" value="{{ $element->id }}" />
-                                <div class="dragger relative dragger pr-3 rounded-icon">
+                                <x-icon class="fa-solid fa-sort" />
+                                <div class="dragger relative rounded-full text-2xl text-center grow-0 w-8">
                                     {!! $element->htmlIcon(false) !!}
                                 </div>
-                                <div class="name overflow-hidden grow">
+                                <div class="overflow-hidden flex-grow">
                                     @if ($element->entity)
                                         <x-entity-link :entity="$element->entity" :name="$element->name" :campaign="$campaign" />
                                     @else
                                         {!! $element->name !!}
                                     @endif
-                                    @if (isset($element->date))<span class="text-xs text-neutral-content">({{ $element->date }})</span>@endif
+                                    @if (isset($element->date))
+                                        <span class="text-xs text-neutral-content">({{ $element->date }})</span>
+                                    @endif
                                 </div>
                             </x-reorder.child>
                     @endforeach

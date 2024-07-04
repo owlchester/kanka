@@ -1,4 +1,3 @@
-{{ csrf_field() }}
 <x-grid>
     @include('cruds.fields.owner', ['owner' => !empty($relation) ? $relation->owner : null])
     @include('cruds.fields.target', ['target' => !empty($relation) ? $relation->target : null])

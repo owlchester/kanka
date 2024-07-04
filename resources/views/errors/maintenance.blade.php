@@ -15,7 +15,6 @@
     <title>{{ __('errors.503.title') }} - {{ config('app.name', 'Kanka') }}</title>
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="shortcut icon" href="/images/favicon/favicon.ico" type="image/x-icon" />

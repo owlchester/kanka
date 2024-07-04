@@ -1,5 +1,4 @@
 <?php /** @var \App\Models\Tag $model */?>
-{{ csrf_field() }}
 <x-grid type="1/1">
     <x-forms.foreign
         field="entities"

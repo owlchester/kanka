@@ -13,7 +13,7 @@ if (!empty($era)) {
 
 <x-grid>
     <x-forms.field field="era" css="md:col-span-2" :required="true" :label="__('timelines/elements.fields.era')">
-        <x-forms.select name="era_id" :options="$timeline->eras->pluck('name', 'id')" :selected="$source->era_id ?? $model->era_id ?? null" id="element-era-id" />
+        <x-forms.select name="era_id" :options="$timeline->eras->pluck('name', 'id')" :selected="$era->id ?? $source->era_id ?? $model->era_id ?? null" id="element-era-id" />
     </x-forms.field>
 
     <x-forms.field field="name" :label="__('crud.fields.name')">

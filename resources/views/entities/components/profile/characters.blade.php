@@ -16,16 +16,21 @@
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!}
             </div>
+            <div class="comma-separated">
             @php $existingFamilies = []; @endphp
             @foreach ($model->families as $family)
                 @if(!empty($existingFamilies[$family->id]))
                     @continue
                 @endif
                 @php $existingFamilies[$family->id] = true; @endphp
-                <x-entity-link
-                    :entity="$family->entity"
-                    :campaign="$campaign" />
-            @endforeach            </div>
+                <span class="element">
+                    <x-entity-link
+                        :entity="$family->entity"
+                        :campaign="$campaign" />
+                </span>
+            @endforeach
+            </div>
+        </div>
     @endif
 
     @if (!$model->races->isEmpty() || $model->hasAge())
@@ -35,21 +40,13 @@
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
                 @if (auth()->check() && auth()->user()->can('raceManagement', $model))
                     <span role="button" tabindex="0" class="entity-races-icon" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $model]) }}" data-target="primary-dialog" aria-haspopup="dialog">
-                        <i class="fa-solid fa-pencil" data-title="{{ __('characters.races.title') }}" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-pencil" title="{{ __('characters.races.title', ['name' => $model->name]) }}" tooltip />
                     </span>
                 @endif
             </div>
-            @php $existingRaces = []; @endphp
-            @foreach ($model->characterRaces as $race)
-                @if(!empty($existingRaces[$race->race_id]))
-                    @continue
-                @endif
-                @php $existingRaces[$race->race_id] = true; @endphp
-                @if ($race->is_private) <x-icon class="fa-solid fa-lock" /> @endif
-                <x-entity-link
-                    :entity="$race->race->entity"
-                    :campaign="$campaign" />
-            @endforeach
+            <div class="comma-separated">
+                @include('entities.components.profile.character_races')
+            </div>
         </div>
         @elseif ($model->races->isEmpty() && $model->hasAge())
         <div class="element profile-age">
@@ -63,20 +60,13 @@
                 {{ __('characters.fields.age') }}
                 @if (auth()->check() && auth()->user()->can('raceManagement', $model))
                     <span role="button" tabindex="0" class="entity-races-icon" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $model]) }}" data-target="primary-dialog" aria-haspopup="dialog">
-                        <i class="fa-solid fa-pencil" data-title="{{ __('characters.races.title') }}" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-pencil" title="{{ __('characters.races.title', ['name' => $model->name]) }}" tooltip />
                     </span>
                 @endif
             </div>
-            @php $existingRaces = []; @endphp
-            @foreach ($model->races as $race)
-                @if(!empty($existingRaces[$race->id]))
-                    @continue
-                @endif
-                @php $existingRaces[$race->id] = true; @endphp
-                <x-entity-link
-                    :entity="$race->entity"
-                    :campaign="$campaign" />
-            @endforeach
+            <div class="comma-separated inline">
+                @include('entities.components.profile.character_races')
+            </div>,
             <span>{{ $model->age }}</span>
         </div>
         @endif
@@ -97,7 +87,7 @@
         @else
             <div class="element profile-gender-pronouns">
                 <div class="title text-uppercase text-xs">{{ __('characters.fields.sex') }}, {{ __('characters.fields.pronouns') }}</div>
-                <span>{{ $model->sex }}</span>
+                <span>{{ $model->sex }}</span>,
                 <span>{{ $model->pronouns }}</span>
             </div>
         @endif

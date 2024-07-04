@@ -11,30 +11,33 @@
     <div class="timeline-item p-0 pb-2 relative rounded-sm ml-16 mr-4">
         <x-box css="flex gap-2 flex-col p-2" :padding="0">
             <div class="timeline-item-head flex gap-2 items-center">
-                <h3 class="grow flex gap-2 items-center cursor-pointer element-toggle m-0 {{ $element->collapsed() ? 'animate-collapsed' : null }} text-base" data-animate="collapse" data-target="#timeline-element-body-{{ $element->id }}">
-                    <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
-                    <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
+                <h3 class="grow flex gap-2 items-center cursor-pointer element-toggle m-0 overflow-hidden {{ $element->collapsed() ? 'animate-collapsed' : null }} text-base" data-animate="collapse" data-target="#timeline-element-body-{{ $element->id }}">
+                    <x-icon class="fa-solid fa-chevron-up icon-show" />
+                    <x-icon class="fa-solid fa-chevron-down icon-hide" />
 
+                    <span class="truncate">
                     @if ($element->entity)
                         <x-entity-link :entity="$element->entity" :name="$element->name" :campaign="$campaign" />
-                    @else
-                        {!! $element->name !!}
-                    @endif
 
-                    @if (isset($element->date) || $element->use_event_date && isset($element->entity->event->date))
-                        <span class="text-neutral-content text-sm">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
+                        @if($element->entity && $element->entity->is_private)
+                            <x-icon class="fa-solid fa-lock" title="{{ __('timelines/elements.helpers.entity_is_private') }}" tooltip />
+                        @endif
+                    @else
+                        <span>{!! $element->name !!}</span>
                     @endif
-                    @if($element->entity && $element->entity->is_private)
-                        <i class="fa-solid fa-lock" data-title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                    @endif
+                    </span>
                 </h3>
+
+                @if (isset($element->date) || $element->use_event_date && isset($element->entity->event->date))
+                    <span class="text-neutral-content text-sm truncate">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
+                @endif
                 <div class="flex-none flex items-center gap-2">
-                    @if (auth()->check()) {!! $element->visibilityIcon('btn-box-tool') !!}@endif
+                    @if (auth()->check()) {!! $element->visibilityIcon('') !!}@endif
 
                     @can('update', $timeline)
                         <div class="dropdown inline">
-                            <a class="btn2 btn-xs btn-ghost" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
-                                <i class="fa-solid fa-ellipsis-v" aria-hidden="true"></i>
+                            <a class="btn2 btn-xs btn-ghost" data-dropdown aria-expanded="false" data-placement="right">
+                                <x-icon class="fa-solid fa-ellipsis-v" />
                                 <span class="sr-only">{{__('crud.actions.actions') }}</span>
                             </a>
                             <div class="dropdown-menu hidden" role="menu">

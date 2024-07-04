@@ -45,7 +45,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
     </div>
 </div>
 <div id="race-characters">
-    <div id="datagrid-parent" class="table-responsive">
+    <div id="datagrid-parent" class="overflow-auto table-responsive">
         @include('layouts.datagrid._table', ['datagridUrl' => route('races.characters', $datagridOptions)])
     </div>
 </div>
