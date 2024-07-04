@@ -291,7 +291,6 @@ class CampaignPolicy
     }
 
     /**
-     * @return bool
      */
     public function useTemplates(?User $user, Campaign $campaign): bool
     {
