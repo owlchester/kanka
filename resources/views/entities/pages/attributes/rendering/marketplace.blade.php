@@ -39,9 +39,6 @@ if (!isset($entity)) {
 @section('scripts')
     @parent
     <script>
-    {!! $plugin->version->javascript !!}
-    </script>
-    <script>
         const entityData = {
             name: `{{ $entity->name }}`,
             is_private: {{ $entity->is_private ? 'true' : 'false' }},
@@ -61,5 +58,8 @@ if (!isset($entity)) {
 @endforeach
             }
         }
+    </script>
+    <script>
+        {!! $plugin->version->javascript !!}
     </script>
 @endsection
