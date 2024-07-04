@@ -126,7 +126,7 @@ class Image extends Model
         return $this->hasMany(ImageMention::class, 'image_id', 'id')
             ->with('entity')
             ->with('post')
-            ;
+        ;
     }
 
     public function inEntities(): array
