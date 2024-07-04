@@ -131,7 +131,6 @@ const quickCreatorSubformHandler = () => {
                     if (res.data._multi) {
                         let selectedValues = field.value;
                         selectedValues.push(res.data._id);
-                        // todo this still is jquery $( $.
                         field.appendChild(option);
                         field.value = selectedValues;
                     } else {

@@ -17,6 +17,8 @@ const init = () => {
 
 const initAddAttribute = () => {
     if (maxFields !== false) {
+        // Todo: migrate to vue and vanila js.
+        // This is also wrong, as it looks for all form inputs (search, logout, bulk) instead of the current form)
         const fieldCount = $('form :input').length + 4;
         //console.log('checking', fieldCount, 'vs', maxFields);
         if (fieldCount > maxFields) {

@@ -15,7 +15,7 @@
         unsaved
         class="entity-form"
         id="entity-form"
-        :extra="['data-max-files' => ini_get('max_input_vars')]">
+        :extra="['data-max-fields' => ini_get('max_input_vars')]">
 
         <x-grid type="1/1">
         @include('cruds.forms._errors')

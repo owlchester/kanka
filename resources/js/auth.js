@@ -14,13 +14,6 @@ function initFormBlocker() {
             document.getElementById('btn-wait').style.display = '';
         };
     }
-
-    /*.on('submit', function (e) {
-        $(this).find('.btn-save').hide();
-        $(this).find('.btn-wait').show();
-
-        return true;
-    });*/
 }
 
 /**

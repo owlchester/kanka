@@ -80,12 +80,15 @@ class ApiService
                 'toggle_deleted' => __('entities/attributes.toasts.bulk_deleted'),
                 'toggled_privacy' => __('entities/attributes.toasts.bulk_privacy'),
                 'template' => __('entities/attributes.template.load.success'),
+                'max_reached' => __('entities/attributes.errors.too_many', [
+                    'max' => number_format(ini_get('max_input_vars'))
+                ])
             ],
             'templates' => [
                 'title' => __('entities/attributes.template.load.title'),
                 'template' => __('entities/attributes.fields.template'),
                 'load' => __('entities/attributes.actions.load'),
-            ]
+            ],
         ];
     }
 
@@ -96,6 +99,7 @@ class ApiService
             'is_admin' => auth()->check() && auth()->user()->isAdmin(),
             'template' => route('templates.load-attributes', $this->campaign),
             'mentions' => route('search.live', $this->campaign),
+            'max' => ini_get('max_input_vars'),
         ];
     }
 
