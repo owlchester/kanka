@@ -188,7 +188,6 @@ class Post extends Model
     }
 
     /**
-     * @return Builder
      */
     public function scopeOrdered(Builder $query): Builder
     {
@@ -197,7 +196,6 @@ class Post extends Model
     }
 
     /**
-     * @return Builder
      */
     public function scopeTemplate(Builder $query): Builder
     {
