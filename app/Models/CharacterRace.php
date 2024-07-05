@@ -36,6 +36,7 @@ class CharacterRace extends Model
     {
         return $this->belongsTo(Character::class);
     }
+
     public function race(): BelongsTo
     {
         return $this->belongsTo(Race::class);

@@ -199,7 +199,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                     <x-icon class="fa-solid fa-link"></x-icon>
                                     {{ __('crud.actions.copy_mention') }}
                                 </x-dropdowns.item>
-                            @if (auth()->user()->isAdmin())
+                            @if (auth()->user()->can('useTemplates', $campaign))
                                     <x-dropdowns.item :link="route('entities.template', [$campaign, $entity])">
                                         @if($entity->is_template)
                                             <x-icon class="fa-regular fa-star"></x-icon>

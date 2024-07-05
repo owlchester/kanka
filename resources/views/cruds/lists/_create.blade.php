@@ -10,7 +10,7 @@
                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </button>
             <div class="dropdown-menu hidden" role="menu" id="templates-submenu">
-                @if ($templates->isNotEmpty())
+                @if (auth()->user()->can('useTemplates', $campaign) && $templates->isNotEmpty())
                     @foreach ($templates as $entityTemplate)
                         <x-dropdowns.item
                             :link="route($route . '.create', [$campaign, 'copy' => $entityTemplate->entity_id, 'template' => true])"

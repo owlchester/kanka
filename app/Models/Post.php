@@ -34,7 +34,7 @@ use Laravel\Scout\Searchable;
  * @property string|null $marketplace_uuid
  * @property bool|int $is_private
  * @property int $deleted_by
- * @property bool|int $is_pinned
+ * @property bool|int $is_template
  * @property int $position
  * @property array $settings
  * @property Entity|null $entity
@@ -70,6 +70,7 @@ class Post extends Model
         'settings',
         'location_id',
         'layout_id',
+        'is_template'
     ];
 
     /** @var string[] Fields that can be used to order by */
@@ -188,13 +189,20 @@ class Post extends Model
     }
 
     /**
-     * @return Builder
      */
-    public function scopeOrdered(Builder $query)
+    public function scopeOrdered(Builder $query): Builder
     {
         return $query
             ->orderBy('position');
     }
+
+    /**
+     */
+    public function scopeTemplate(Builder $query): Builder
+    {
+        return $query->where('is_template', true);
+    }
+
 
     /**
      */

@@ -282,12 +282,18 @@ class CampaignPolicy
         );
     }
 
-
     /**
      * @return bool
      */
     protected function checkPermission(int $action, User $user, Campaign $campaign = null)
     {
         return EntityPermission::hasPermission(0, $action, $user, null, $campaign);
+    }
+
+    /**
+     */
+    public function useTemplates(?User $user, Campaign $campaign): bool
+    {
+        return $this->isAdmin($user);
     }
 }
