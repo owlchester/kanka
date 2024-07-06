@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $system
@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DiceRoll extends MiscModel
 {
     use Acl;
-    use CampaignTrait;
+    use HasCampaign;
     use HasFactory;
     use HasFilters;
     use SoftDeletes;

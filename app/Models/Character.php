@@ -4,16 +4,16 @@ namespace App\Models;
 
 use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
-use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Character
@@ -42,7 +42,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Character extends MiscModel
 {
     use Acl;
-    use CampaignTrait;
+    use HasCampaign;
     use ExportableTrait;
     use HasFactory;
     use HasFilters;

@@ -9,13 +9,13 @@ use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
+use App\Models\Concerns\Copiable;
 use App\Models\Scopes\SubEntityScopes;
-use App\Traits\SourceCopiable;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
-use Exception;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as Scout;
 
@@ -24,7 +24,6 @@ use Laravel\Scout\Searchable as Scout;
  * @package App\Models
  *
  * @property int $id
- * @property int $campaign_id
  * @property string $name
  * @property string $type
  * @property string $slug
@@ -37,7 +36,6 @@ use Laravel\Scout\Searchable as Scout;
  * @property string[] $nullableForeignKeys
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property Campaign $campaign
  * @property int $created_by
  * @property int $updated_by
  */
@@ -49,7 +47,7 @@ abstract class MiscModel extends Model
     use Scout;
     use Searchable;
     use Sortable;
-    use SourceCopiable;
+    use Copiable;
     use SubEntityScopes;
 
     /** Entity type (character, location) */

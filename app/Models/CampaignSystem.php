@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\CampaignTrait;
+use App\Models\Concerns\HasCampaign;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class CampaignSystem extends Pivot
 {
-    use CampaignTrait;
+    use HasCampaign;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

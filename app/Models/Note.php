@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
-use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -23,7 +23,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Note extends MiscModel
 {
     use Acl;
-    use CampaignTrait;
+    use HasCampaign;
     use ExportableTrait;
     use HasFactory;
     use HasFilters;

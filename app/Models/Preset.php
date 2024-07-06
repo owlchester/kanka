@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
-use App\Traits\CampaignTrait;
+use App\Models\Concerns\HasCampaign;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
 class Preset extends Model
 {
     use Blameable;
-    use CampaignTrait;
+    use HasCampaign;
     use VisibilityIDTrait;
 
     public $fillable = [

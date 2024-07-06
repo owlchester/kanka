@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Traits;
+namespace App\Models\Concerns;
 
-trait SourceCopiable
+trait Copiable
 {
     /**
      */

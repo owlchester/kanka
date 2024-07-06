@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Facades\Img;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\LastSync;
-use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibilityIDTrait;
 use App\User;
@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Storage;
  * @package App\Models
  *
  * @property string $id
- * @property int $campaign_id
  * @property string $name
  * @property string $ext
  * @property int $size
@@ -36,7 +35,6 @@ use Illuminate\Support\Facades\Storage;
  * @property Image $imageFolder
  *
  * @property User $user
- * @property Campaign $campaign
  * @property Image[] $folders
  * @property Image[] $images
  * @property Entity[] $entities
@@ -58,7 +56,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class Image extends Model
 {
-    use CampaignTrait;
+    use HasCampaign;
     use ExportableTrait;
     use HasFactory;
     use LastSync;

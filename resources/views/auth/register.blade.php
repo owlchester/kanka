@@ -10,7 +10,7 @@
 
     @if (session()->has('info'))
         <div class="p-4 rounded bg-blue-200 text-blue-800 mb-2">
-            {{ session()->get('info') }}
+            {!! session()->get('info') !!}
         </div>
     @endif
     @if (count($errors) > 0)

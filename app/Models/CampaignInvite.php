@@ -2,20 +2,24 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasCampaign;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
  * Class CampaignInvite
  * @package App\Models
  *
  * @property int $id
  * @property int $role_id
- * @property int $campaign_id
- * @property int $created_by
+ * @property int|null $created_by
  * @property string $token
- * @property bool $is_active
+ * @property bool|int $is_active
  * @property int $validity
  */
 class CampaignInvite extends MiscModel
 {
+    use HasCampaign;
+
     /**
      * @var string
      */
@@ -30,18 +34,7 @@ class CampaignInvite extends MiscModel
         'validity',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function campaign()
-    {
-        return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function role()
+    public function role(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignRole', 'role_id', 'id');
     }

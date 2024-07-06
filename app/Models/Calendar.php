@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Relations\CalendarRelations;
-use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -40,7 +40,7 @@ class Calendar extends MiscModel
 {
     use Acl;
     use CalendarRelations;
-    use CampaignTrait;
+    use HasCampaign;
     use ExportableTrait;
     use HasFactory;
     use HasFilters;

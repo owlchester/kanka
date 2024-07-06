@@ -4,13 +4,15 @@ namespace App\Observers;
 
 use App\Jobs\CalendarsClearElapsed;
 use App\Models\Calendar;
+use App\Models\MiscModel;
 
 class CalendarObserver extends MiscObserver
 {
-    public function saved(Calendar $calendar)
+    public function saved(MiscModel $model)
     {
-        if ($calendar->isDirty(['date'])) {
-            CalendarsClearElapsed::dispatch($calendar);
+        parent::saved($model);
+        if ($model->isDirty(['date'])) {
+            CalendarsClearElapsed::dispatch($model);
         }
     }
 }

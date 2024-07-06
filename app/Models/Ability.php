@@ -4,14 +4,14 @@ namespace App\Models;
 
 use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
-use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -31,7 +31,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Ability extends MiscModel
 {
     use Acl;
-    use CampaignTrait;
+    use HasCampaign;
     use ExportableTrait;
     use HasFactory;
     use HasFilters;

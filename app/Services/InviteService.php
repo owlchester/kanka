@@ -21,10 +21,6 @@ class InviteService
 
     public FollowService $campaignFollowService;
 
-
-    /**
-     * InviteService constructor.
-     */
     public function __construct(FollowService $campaignFollowService)
     {
         $this->campaignFollowService = $campaignFollowService;
@@ -47,7 +43,7 @@ class InviteService
         }
 
         // Inactive (removed campaigns won't have their token still in the db)
-        if ($invite->is_active == false) {
+        if (!$invite->is_active) {
             throw new Exception(__('campaigns.invites.error.inactive_token'));
         }
 
@@ -57,7 +53,7 @@ class InviteService
 
         if (auth()->guest()) {
             Session::put('invite_token', $invite->token);
-            throw new RequireLoginException(__('campaigns.invites.error.login'));
+            throw new RequireLoginException(__('campaigns.invites.error.join', ['campaign' => '<strong>' . $invite->campaign->name . '</strong>']));
         }
 
         $this->join($invite->token);

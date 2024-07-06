@@ -6,9 +6,9 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
-use App\Traits\SourceCopiable;
-use App\Traits\VisibilityIDTrait;
 use App\Models\Concerns\SortableTrait;
+use App\Models\Concerns\Copiable;
+use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -49,7 +49,7 @@ class MapMarker extends Model
     use HasFactory;
     use Paginatable;
     use SortableTrait;
-    use SourceCopiable;
+    use Copiable;
     use VisibilityIDTrait;
 
     public const SHAPE_MARKER = 1;

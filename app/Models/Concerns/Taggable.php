@@ -5,6 +5,7 @@ namespace App\Models\Concerns;
 use App\Models\Tag;
 use App\Observers\TaggableObserver;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Trait Taggable
@@ -23,7 +24,7 @@ trait Taggable
         static::observe(app(TaggableObserver::class));
     }
 
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }

@@ -9,22 +9,22 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityLogs;
+use App\Models\Concerns\EntityType;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SortableTrait;
-use App\Models\Concerns\EntityType;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
-use App\Traits\CampaignTrait;
 use App\Traits\HasTooltip;
 use Carbon\Carbon;
+use Collator;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Collator;
 
 /**
  * Class Entity
@@ -32,7 +32,6 @@ use Collator;
  *
  * @property int $id
  * @property int $entity_id
- * @property int $campaign_id
  * @property string $name
  * @property string $type
  * @property int $type_id
@@ -60,7 +59,7 @@ class Entity extends Model
 {
     use Acl;
     use Blameable;
-    use CampaignTrait;
+    use HasCampaign;
     use EntityLogs;
     use EntityRelations;
     use EntityScopes;

@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
 use App\Enums\WebhookAction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Facades\CampaignLocalization;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
  * @property int $feature_id
- * @property int $campaign_id
  * @property int $status
  * @property string $path
  * @property Feature $feature
@@ -22,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Webhook extends Model
 {
+    use HasCampaign;
     use Paginatable;
     use SortableTrait;
 
@@ -49,11 +49,6 @@ class Webhook extends Model
             'id',
             'id'
         );
-    }
-
-    public function campaign(): BelongsTo
-    {
-        return $this->belongsTo(Campaign::class, 'campaign_id');
     }
 
     public function typeKey(): string

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\CampaignTrait;
+use App\Models\Concerns\HasCampaign;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CampaignSubmission extends Model
 {
-    use CampaignTrait;
+    use HasCampaign;
 
     public $fillable = [
         'text',

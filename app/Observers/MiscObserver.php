@@ -85,16 +85,18 @@ abstract class MiscObserver
      */
     public function updated(MiscModel $model)
     {
-        if (!$model->entity) {
-            throw new \Exception('Model with no entity?');
+        // Clear the cache suggestion for the entity type
+        if ($model->isDirty('type')) {
+            EntityCache::clearSuggestion($model);
         }
+    }
+
+    public function saved(MiscModel $model)
+    {
         EntityLogger::model($model);
 
         // Take care of mentions for the entity.
         $this->syncMentions($model, $model->entity);
-
-        // Clear some cache
-        EntityCache::clearSuggestion($model);
     }
 
     /**

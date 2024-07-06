@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Services\Attributes\RandomService;
-use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,7 +25,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class AttributeTemplate extends MiscModel
 {
     use Acl;
-    use CampaignTrait;
+    use HasCampaign;
     use HasFilters;
     use HasRecursiveRelationships;
     use SoftDeletes;

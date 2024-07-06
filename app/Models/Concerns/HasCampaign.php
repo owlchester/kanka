@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Traits;
+namespace App\Models\Concerns;
 
 use App\Models\Campaign;
 use App\Models\Scopes\CampaignScope;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Trait CampaignTrait
- * @package App\Traits
+ * Trait HasCampaign
+ * @package App\Models\concerns
  *
  * @property int $campaign_id
  * @property Campaign $campaign
  *
  * @method static Builder|self allCampaigns()
  */
-trait CampaignTrait
+trait HasCampaign
 {
     /** @var bool Determine if the query context is limited to the current campaign */
     protected bool $withCampaignLimit = true;
@@ -39,12 +40,12 @@ trait CampaignTrait
     /**
      * @return void
      */
-    public static function bootCampaignTrait()
+    public static function bootHasCampaign()
     {
         static::addGlobalScope(new CampaignScope());
     }
 
-    public function campaign()
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class, 'campaign_id');
     }

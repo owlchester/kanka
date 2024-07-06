@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
-use App\Traits\CampaignTrait;
-use App\Traits\ExportableTrait;
 use App\Traits\CalendarDateTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -29,7 +29,7 @@ class Event extends MiscModel
 {
     use Acl;
     use CalendarDateTrait;
-    use CampaignTrait;
+    use HasCampaign;
     use ExportableTrait;
     use HasFactory;
     use HasFilters;

@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
+use App\Enums\Widget;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Taggable;
 use App\Services\FilterService;
-use App\Traits\CampaignTrait;
 use Exception;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use App\Enums\Widget;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class CampaignDashboardWidget
@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class CampaignDashboardWidget extends Model
 {
-    use CampaignTrait;
+    use HasCampaign;
     use HasFactory;
     use LastSync;
     use Taggable;

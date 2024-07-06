@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\Privatable;
 use App\Models\Concerns\Taggable;
-use App\Traits\CampaignTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +19,6 @@ use Illuminate\Support\Str;
  * Class Bookmark
  * @package App\Models
  *
- * @property int $campaign_id
  * @property string $name
  * @property string|null $tab
  * @property string|null $menu
@@ -44,7 +43,7 @@ use Illuminate\Support\Str;
  */
 class Bookmark extends MiscModel
 {
-    use CampaignTrait;
+    use HasCampaign;
     use HasFactory;
     use Privatable;
     use Taggable;
