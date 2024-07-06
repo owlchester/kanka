@@ -1,3 +1,4 @@
+<? /** @var \App\Models\Post $post */?>
 @can('post', [$model, 'edit', $post])
     <x-dropdowns.item :link="route('entities.posts.edit', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])" icon="edit">
         {{ __('crud.edit') }}
@@ -32,15 +33,15 @@
         {{ __('entities/notes.move.move') }}
     </x-dropdowns.item>
 @endif
-@if (auth()->check() && auth()->user()->can('useTemplates', $campaign))
-    <x-dropdowns.item :link="route('posts.template', [$campaign, 'post' => $post])" icon="@if($post->is_template) fa-solid @else fa-regular @endif fa-star">
-        @if ($post->is_template)
+@can('setTemplates', $campaign)
+    <x-dropdowns.item :link="route('posts.template', [$campaign, 'post' => $post])" :icon="($post->isTemplate() ? 'fa-solid' : 'fa-regular') . ' fa-star'">
+        @if ($post->isTemplate())
             {{ __('entities/actions.templates.unset') }}
         @else
             {{ __('entities/actions.templates.set') }}
         @endif
     </x-dropdowns.item>
-@endif
+@endcan
 <hr class="m-0" />
 <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, 'entity' => $entity])" icon="fa-solid fa-arrows-v">
     {{ __('entities/story.reorder.icon_tooltip') }}

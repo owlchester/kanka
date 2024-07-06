@@ -7,7 +7,7 @@
 ])
 
 @section('content')
-    <x-form :action="['posts.update.visibility', $campaign, $entity, $post]" class="post-visibility">
+    <x-form :action="['posts.update.visibility', $campaign, $entity, $post]" class="post-visibility" direct>
         @include('partials.forms.form', [
             'title' => __('visibilities.title'),
             'content' => 'entities.components.posts._form',

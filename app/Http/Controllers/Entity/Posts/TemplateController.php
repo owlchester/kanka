@@ -27,12 +27,12 @@ class TemplateController extends Controller
      */
     public function update(Campaign $campaign, Post $post)
     {
-        $this->authorize('template', $post);
+        $this->authorize('setTemplates', $campaign);
         $this->service->post($post)->toggle();
         return redirect()->back()
             ->with(
                 'success',
-                __('entities/actions.templates.success.' . ($post->is_template ? 'set' : 'unset'), ['name' => $post->name])
+                __('entities/actions.templates.success.' . ($post->isTemplate() ? 'set' : 'unset'), ['name' => $post->name])
             );
     }
 }

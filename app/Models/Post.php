@@ -7,6 +7,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
+use App\Models\Concerns\Templatable;
 use App\Traits\VisibilityIDTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -56,6 +57,7 @@ class Post extends Model
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
+    use Templatable;
     use VisibilityIDTrait;
 
     protected $fillable = [
@@ -196,13 +198,6 @@ class Post extends Model
             ->orderBy('position');
     }
 
-    /**
-     */
-    public function scopeTemplate(Builder $query): Builder
-    {
-        return $query->where('is_template', true);
-    }
-
 
     /**
      */
@@ -255,5 +250,10 @@ class Post extends Model
             'type'  => 'post',
             'entry' => strip_tags($this->entry),
         ];
+    }
+
+    public function isTemplate(): bool
+    {
+        return $this->is_template;
     }
 }

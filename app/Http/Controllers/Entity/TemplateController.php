@@ -33,7 +33,7 @@ class TemplateController extends Controller
         return redirect()->back()
             ->with(
                 'success',
-                __('entities/actions.templates.success.' . ($entity->is_template ? 'set' : 'unset'), ['name' => $entity->name])
+                __('entities/actions.templates.success.' . ($entity->isTemplate() ? 'set' : 'unset'), ['name' => $entity->name])
             );
     }
 }

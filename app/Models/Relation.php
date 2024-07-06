@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -24,9 +25,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $attitude
  * @property int|null $mirror_id
  * @property int $owner_id
- * @property int $campaign_id
  * @property int $target_id
- * @property bool $is_pinned
+ * @property bool|int $is_pinned
  * @property string $colour
  * @property string $marketplace_uuid
  *
@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Relation extends Model
 {
     use Blameable;
+    use HasCampaign;
     use HasFactory;
     use HasFilters;
     use Orderable;

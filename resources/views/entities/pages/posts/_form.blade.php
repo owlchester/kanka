@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\Models\PostPermission $perm
+ * @var \App\Models\Post $model
  */
 
 use App\Models\PostLayout;
@@ -97,7 +98,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                     ];
                 @endphp
                 <x-forms.field field="display" id="field-display" :hidden="isset($layoutHelper)" :label="__('entities/notes.fields.display')">
-                    <x-forms.select name="settings[collapsed]" :options="$collapsedOptions" :selected="$defaultCollapsed" class="w-full" />
+                    <x-forms.select name="settings[collapsed]" :options="$collapsedOptions" :selected="$model?->collapsed() ?? $defaultCollapsed" class="w-full" />
                 </x-forms.field>
 
                 <x-forms.field field="class" :label=" __('dashboard.widgets.fields.class')" :tooltip="true" :helper="__('dashboard.widgets.helpers.class')">

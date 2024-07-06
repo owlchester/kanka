@@ -87,8 +87,8 @@ trait EntityScopes
     public function scopeTemplates(Builder $query, int $entityTypeID): Builder
     {
         return $query
-            ->where('type_id', $entityTypeID)
-            ->where('is_template', 1);
+            ->template()
+            ->where('type_id', $entityTypeID);
     }
 
     /**

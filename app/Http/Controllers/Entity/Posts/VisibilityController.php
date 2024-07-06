@@ -45,7 +45,7 @@ class VisibilityController extends Controller
 
         $post->update($request->all());
 
-        return Response()->json(['toast' => __('visibilities.toast'), 'icon' => $post->visibilityIcon('btn-box-tool'), 'post_id' => $post->id, 'visibility_id' => $post->visibility_id]);
+        return response()->json(['toast' => __('visibilities.toast'), 'icon' => $post->visibilityIcon('btn-box-tool'), 'post_id' => $post->id, 'visibility_id' => $post->visibility_id]);
     }
 
 }

@@ -201,7 +201,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                 </x-dropdowns.item>
                             @if (auth()->user()->can('useTemplates', $campaign))
                                     <x-dropdowns.item :link="route('entities.template', [$campaign, $entity])">
-                                        @if($entity->is_template)
+                                        @if($entity->isTemplate())
                                             <x-icon class="fa-regular fa-star"></x-icon>
                                             {{ __('entities/actions.templates.unset') }}
                                         @else

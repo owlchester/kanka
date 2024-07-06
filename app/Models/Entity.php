@@ -15,6 +15,7 @@ use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SortableTrait;
+use App\Models\Concerns\Templatable;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\HasTooltip;
@@ -44,7 +45,6 @@ use Illuminate\Support\Str;
  * @property string $header_image
  * @property string|null $image_uuid
  * @property string|null $header_uuid
- * @property bool|int $is_template
  * @property string|null $marketplace_uuid
  * @property int|null $focus_x
  * @property int|null $focus_y
@@ -70,6 +70,7 @@ class Entity extends Model
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
+    use Templatable;
 
     protected $fillable = [
         'campaign_id',

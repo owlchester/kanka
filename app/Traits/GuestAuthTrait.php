@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Models\CampaignPermission;
+use App\Models\Character;
 use App\Models\Entity;
 use App\Models\MiscModel;
 
@@ -55,6 +56,7 @@ trait GuestAuthTrait
         $permission = EntityPermission::hasPermission($modelType, $action, null, $model, $campaign);
         //        dd($permission);
 
+        // @phpstan-ignore-next-line
         if ($campaign->id != $model->campaign_id || !$permission) {
             // Raise an error
             abort(403);
@@ -75,6 +77,7 @@ trait GuestAuthTrait
         $campaign = CampaignLocalization::getCampaign();
         $permission = EntityPermission::hasPermission($model->entityTypeId(), $action, null, $model, $campaign);
 
+        // @phpstan-ignore-next-line
         if ($campaign->id != $model->campaign_id || !$permission) {
             // Raise an error
             abort(403);

@@ -6,6 +6,7 @@ use App\Models\Concerns\Paginatable;
 use App\User;
 use Carbon\Carbon;
 use App\Models\Concerns\SortableTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -33,18 +34,12 @@ class CampaignUser extends Pivot
 
     protected $fillable = ['user_id', 'campaign_id'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function campaign()
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
@@ -74,10 +69,7 @@ class CampaignUser extends Pivot
         return $this->roles()->where(['is_admin' => true])->count() > 0;
     }
 
-    /**
-     * @return Builder
-     */
-    public function scopeSearch(Builder $builder, string $search = null)
+    public function scopeSearch(Builder $builder, string $search = null): Builder
     {
         return $builder
             ->select($this->getTable() . '.*')
@@ -87,9 +79,8 @@ class CampaignUser extends Pivot
 
     /**
      * Only get users of a campaign who aren't admins (used for the bulk permission UI)
-     * @return Builder|\Illuminate\Database\Query\Builder
      */
-    public function scopeWithoutAdmins(Builder $builder)
+    public function scopeWithoutAdmins(Builder $builder): Builder
     {
         return $builder
             ->distinct()
@@ -106,10 +97,7 @@ class CampaignUser extends Pivot
             });
     }
 
-    /**
-     * @return Builder
-     */
-    public function scopeCampaignUser(Builder $builder, int $campaignID, int $userID)
+    public function scopeCampaignUser(Builder $builder, int $campaignID, int $userID): Builder
     {
         return $builder
             ->where('campaign_id', $campaignID)

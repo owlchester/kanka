@@ -17,14 +17,13 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property int $id
- * @property int $campaign_id
- * @property int $created_by
+ * @property int|null $created_by
  * @property string $name
  * @property string $content
  * @property Carbon $updated_at
  * @property Carbon $created_at
- * @property bool $is_enabled
- * @property bool $is_theme
+ * @property bool|int $is_enabled
+ * @property bool|int $is_theme
  * @property int $order
  *
  * @method static self|Builder enabled($enabled = true)
@@ -53,26 +52,12 @@ class CampaignStyle extends Model
 
     public $defaultSort = ['order', 'id'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function campaign()
-    {
-        return $this->belongsTo('App\Models\Campaign');
-    }
-
-    /**
-     * @return Builder
-     */
-    public function scopeEnabled(Builder $query, bool $enabled = true)
+    public function scopeEnabled(Builder $query, bool $enabled = true): Builder
     {
         return $query->where('is_enabled', $enabled);
     }
 
-    /**
-     * @return Builder
-     */
-    public function scopeTheme(Builder $query, bool $theme = true)
+    public function scopeTheme(Builder $query, bool $theme = true): Builder
     {
         return $query->where('is_theme', $theme);
     }

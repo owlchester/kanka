@@ -81,7 +81,7 @@ class ApiService
                 'toggled_privacy' => __('entities/attributes.toasts.bulk_privacy'),
                 'template' => __('entities/attributes.template.load.success'),
                 'max_reached' => __('entities/attributes.errors.too_many', [
-                    'max' => number_format(ini_get('max_input_vars'))
+                    'max' => number_format((int) ini_get('max_input_vars'))
                 ])
             ],
             'templates' => [

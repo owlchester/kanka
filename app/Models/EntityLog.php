@@ -193,7 +193,7 @@ class EntityLog extends Model
         // Custom mapping
         $custom = [
             'header_uuid' => 'fields.header-image.title',
-            'is_template' => 'fields.header-image.title',
+            'is_template' => 'entities/actions.templates.toggle',
             'is_attributes_private' => 'entities/attributes.fields.is_private',
         ];
         if (!empty($custom[$name])) {

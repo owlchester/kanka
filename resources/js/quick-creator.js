@@ -22,7 +22,7 @@ const buildEntityForm = (event) => {
     const type = element.dataset.type;
     if (type === 'inline') {
         document.querySelector('.quick-creator-body').classList.add('hidden');
-        document.querySelector('.quick-creator-footer').classList.add('hidden');
+        document.querySelector('.quick-creator-footer')?.classList.add('hidden');
         document.querySelector('.quick-creator-loading').classList.remove('!hidden');
     } else {
         quickCreatorLoadingModal();
@@ -217,7 +217,7 @@ const quickCreatorToggles = () => {
             this.classList.add('active');
 
             document.querySelector('.quick-creator-body').classList.add('hidden');
-            document.querySelector('.quick-creator-footer').classList.add('hidden');
+            document.querySelector('.quick-creator-footer')?.classList.add('hidden');
             document.querySelector('.quick-creator-loading').classList.remove('!hidden');
 
             axios.get(this.dataset.url)

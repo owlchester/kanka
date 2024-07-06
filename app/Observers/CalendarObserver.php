@@ -12,6 +12,7 @@ class CalendarObserver extends MiscObserver
     {
         parent::saved($model);
         if ($model->isDirty(['date'])) {
+            /** @var Calendar $model */
             CalendarsClearElapsed::dispatch($model);
         }
     }

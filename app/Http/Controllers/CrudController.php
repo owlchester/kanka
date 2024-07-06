@@ -625,6 +625,7 @@ class CrudController extends Controller
         return redirect()->route($this->route . '.index', $this->campaign)
             ->with('success_raw', __('general.success.deleted-cancel', [
                 'name' => $model->name,
+                // @phpstan-ignore-next-line
                 'cancel' => '<a href="' . route('recovery', $model->campaign) . '">' . __('crud.cancel') . '</a>'
             ]));
     }

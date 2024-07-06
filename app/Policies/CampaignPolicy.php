@@ -296,4 +296,8 @@ class CampaignPolicy
     {
         return $this->isAdmin($user);
     }
+    public function setTemplates(?User $user, Campaign $campaign): bool
+    {
+        return $this->isAdmin($user);
+    }
 }

@@ -79,8 +79,7 @@ const initPostVisibility = () => {
     if (!form) {
         return;
     }
-    form.addEventListener('submit', function (e) {
-        //console.log('submitting the form');
+    form.onsubmit = function (e) {
         e.preventDefault();
         axios
             .post(this.getAttribute('action'), {visibility_id: this.querySelector('[name="visibility_id"]').value})
@@ -90,7 +89,7 @@ const initPostVisibility = () => {
                 window.showToast(res.data.toast);
             });
         return false;
-    });
+    };
 };
 
 init();
