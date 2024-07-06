@@ -34,7 +34,7 @@
     </x-dropdowns.item>
 @endif
 @can('setTemplates', $campaign)
-    <x-dropdowns.item :link="route('posts.template', [$campaign, 'post' => $post])" :icon="($post->isTemplate() ? 'fa-solid' : 'fa-regular') . ' fa-star'">
+    <x-dropdowns.item :link="route('posts.template', [$campaign, 'post' => $post])" :icon="($post->isTemplate() ? 'fa-regular' : 'fa-solid') . ' fa-star'">
         @if ($post->isTemplate())
             {{ __('entities/actions.templates.unset') }}
         @else
