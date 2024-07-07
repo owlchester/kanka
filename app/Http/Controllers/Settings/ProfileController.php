@@ -34,10 +34,12 @@ class ProfileController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StoreSettingsProfile $request)
     {
+        if ($request->ajax()) {
+            return response()->json();
+        }
         /** @var User $user */
         $user = $request->user();
 

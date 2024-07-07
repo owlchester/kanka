@@ -42,7 +42,6 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(\Illuminate\Http\Request $request)
@@ -52,6 +51,10 @@ class CampaignBoostController extends Controller
         $campaign = Campaign::findOrFail($campaignId);
         CampaignCache::campaign($campaign);
         $this->authorize('access', $campaign);
+
+        if ($request->ajax()) {
+            return response()->json();
+        }
 
         if (auth()->user()->hasBoosterNomenclature()) {
             try {
@@ -115,7 +118,6 @@ class CampaignBoostController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(\Illuminate\Http\Request $request, CampaignBoost $campaignBoost)
@@ -128,6 +130,9 @@ class CampaignBoostController extends Controller
         // If the user created the boost, allow them to update it. We don't check the campaign because there is
         // no campaign in the url.
         $this->authorize('destroy', $campaignBoost);
+        if ($request->ajax()) {
+            return response()->json();
+        }
 
         try {
             $this->campaignBoostService
@@ -173,6 +178,9 @@ class CampaignBoostController extends Controller
     public function destroy(CampaignBoost $campaignBoost)
     {
         $this->authorize('destroy', $campaignBoost);
+        if (request()->ajax()) {
+            return response()->json();
+        }
         $this->campaignBoostService
             ->user(auth()->user())
             ->campaign($campaignBoost->campaign)
