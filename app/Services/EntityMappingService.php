@@ -10,7 +10,6 @@ use App\Models\EntityMention;
 use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
-use App\Models\MiscModel;
 
 use App\Traits\MentionTrait;
 use Exception;
@@ -19,6 +18,13 @@ use Illuminate\Database\Eloquent\Model;
 class EntityMappingService
 {
     use MentionTrait;
+
+    protected Model|Post|Entity|QuestElement|TimelineElement|Campaign $model;
+
+    protected int $entities;
+    protected int $createdImages = 0;
+    protected int $updatedImages = 0;
+    protected int $deletedImages = 0;
 
     /**
      * If exceptions should be thrown. Probably not.
@@ -32,74 +38,157 @@ class EntityMappingService
 
     /**
      * Set errors and verbose to silent
-     * @return $this
      */
-    public function silent()
+    public function silent(): self
     {
         $this->throwExceptions = false;
         $this->verbose = false;
         return $this;
     }
 
-
-    /**
-     * @return int
-     * @throws Exception
-     */
-    public function mapEntity(Entity $entity)
+    public function with(Model|Post|Entity|QuestElement|TimelineElement|Campaign $model): self
     {
-        //dd('test');
-        return $this->images($entity)->map($entity);
+        $this->model = $model;
+        return $this;
     }
 
     /**
      * @throws Exception
      */
-    public function mapPost(Post $post)
+    public function map(): self
     {
-        return $this->images($post)->map($post);
+        return $this
+            ->images()
+            ->entry();
     }
 
     /**
-     * @throws Exception
      */
-    public function mapQuestElement(QuestElement $questElement)
+    protected function createNewMention(int $target): void
     {
-        return $this->map($questElement);
+        $mention = new EntityMention();
+
+        // Determine what kind of entity this is
+        // Todo: should be the model that gives us this info, not for the service to figure out
+        if ($this->model instanceof Campaign) {
+            $mention->campaign_id = $this->model->id;
+        } elseif ($this->model instanceof Post) {
+            $mention->post_id = $this->model->id;
+            $mention->entity_id = $this->model->entity_id;
+
+            // If we are making a reference to ourselves, no need to save it
+            if ($this->model->entity_id == $target) {
+                return;
+            }
+        } elseif ($this->model instanceof TimelineElement) {
+            $mention->timeline_element_id = $this->model->id;
+            $mention->entity_id = $this->model->timeline->entity->id;
+
+            // If we are making a reference to ourselves, no need to save it
+            if ($this->model->timeline_id == $target) {
+                return;
+            }
+        } elseif ($this->model instanceof QuestElement) {
+            $mention->quest_element_id = $this->model->id;
+            $mention->entity_id = $this->model->quest->entity->id;
+
+            // If we are making a reference to ourselves, no need to save it
+            if ($this->model->quest_id == $target) {
+                return;
+            }
+        } else {
+            $mention->entity_id = $this->model->id;
+
+            // If we are making a reference to ourselves, no need to save it
+            if ($this->model->id == $target) {
+                return;
+            }
+        }
+        $mention->target_id = $target;
+        $mention->save();
     }
 
     /**
-     * @throws Exception
+     * Entities and Posts will track gallery images uses in their text
      */
-    public function mapTimelineElement(TimelineElement $timelineElement)
+    protected function images(): self
     {
-        return $this->map($timelineElement);
+        if (!method_exists($this->model, 'imageMentions')) {
+            return $this;
+        }
+        $images = [];
+        if ($this->model instanceof Entity) {
+            $images = $this->extractImages($this->model->child->entry);
+        } elseif ($this->model instanceof Post) {
+            $images = $this->extractImages($this->model->entry);
+        }
+        $existingTargets = [];
+        if ($this->model instanceof Entity) {
+            /** @var ImageMention $map */
+            foreach ($this->model->imageMentions()->whereNull('post_id')->get() as $map) {
+                $existingTargets[$map->image_id] = $map;
+            }
+        } else {
+            foreach ($this->model->imageMentions as $map) {
+                $existingTargets[$map->image_id] = $map;
+            }
+        }
+
+        foreach ($images as $data) {
+            $id = $data;
+
+            // Determine the real campaign id from the model.
+            if ($this->model instanceof Post) {
+                $campaignId = $this->model->entity->campaign_id;
+            } else {
+                $campaignId = $this->model->campaign_id;
+            }
+
+            /** @var Image|null $target */
+            $target = Image::where([
+                'id' => $id,
+                'campaign_id' => $campaignId
+            ])->first();
+            if (!$target) {
+                continue;
+            }
+            // Don't map the same image multiple times
+            if (!empty($existingTargets[$target->id])) {
+                if ($this->model instanceof Post && $existingTargets[$target->id]->post_id == $this->model->id) {
+                    unset($existingTargets[$target->id]);
+                    $this->updatedImages++;
+                    continue;
+                } elseif ($this->model instanceof Entity && !$existingTargets[$target->id]->post_id) {
+                    unset($existingTargets[$target->id]);
+                    $this->updatedImages++;
+                    continue;
+                }
+            }
+            $this->createNewImageMention($target->id);
+        }
+
+        // Existing mappings that are no longer needed
+        foreach ($existingTargets as $targetId => $map) {
+            $map->delete();
+            $this->deletedImages++;
+        }
+
+        return $this;
     }
 
-    public function mapCampaign(Campaign $campaign)
-    {
-        return $this->map($campaign);
-    }
-
-    /**
-     * @param MiscModel|Entity|Post|Campaign|mixed $model
-     * @throws Exception
-     */
-    protected function map($model): int
+    protected function entry(): self
     {
         $existingTargets = [];
-        foreach ($model->mentions as $map) {
+        foreach ($this->model->mentions as $map) {
             $existingTargets[$map->target_id] = $map;
         }
         $createdMappings = 0;
         $existingMappings = 0;
 
-        if ($model instanceof Entity) {
-            $mentions = $this->extract($model->child->entry);
-        } elseif ($model instanceof QuestElement) {
-            $mentions = $this->extract($model->description);
+        if ($this->model instanceof Entity) {
+            $mentions = $this->extract($this->model->child->entry);
         } else {
-            $mentions = $this->extract($model->entry);
+            $mentions = $this->extract($this->model->{$this->model->entryFieldName()});
         }
 
         foreach ($mentions as $data) {
@@ -121,149 +210,27 @@ class EntityMappingService
             $singularType = config('entities.ids.' . $singularType);
 
             // Determine the real campaign id from the model.
-            $campaignId = $model->campaign_id;
-            if ($model instanceof Campaign) {
-                $campaignId = $model->id;
-            } elseif ($model instanceof Post) {
-                $campaignId = $model->entity->campaign_id;
-            } elseif ($model instanceof TimelineElement) {
-                $campaignId = $model->timeline->campaign_id;
-            } elseif ($model instanceof QuestElement) {
-                $campaignId = $model->quest->campaign_id;
-            }
+            $campaignId = $this->campaignID();
 
             /** @var Entity|null $target */
             $target = Entity::where([
-                'type_id' => $singularType, 'id' => $id, 'campaign_id' => $campaignId
+                'type_id' => $singularType,
+                'id' => $id,
+                'campaign_id' => $campaignId
             ])->first();
-            if ($target) {
-                //$this->log("- Mentions " . $model->id);
-                // Do we already have this mention mapped?
-                if (!empty($existingTargets[$target->id])) {
-                    //$this->log("- already have mapping");
-                    unset($existingTargets[$target->id]);
-                    $existingMappings++;
-                    continue;
-                }
-
-                $this->createNewMention($model, $target->id);
-                $createdMappings++;
+            if (!$target) {
+                continue;
             }
-        }
-
-        // Existing mappings that are no longer needed
-        $deletedMappings = 0;
-        foreach ($existingTargets as $targetId => $map) {
-            $map->delete();
-            $deletedMappings++;
-        }
-
-        return $createdMappings;
-    }
-
-    /**
-     * @param MiscModel|Post|TimelineElement|QuestElement|Campaign $model
-     */
-    protected function createNewMention($model, int $target)
-    {
-        $mention = new EntityMention();
-
-        // Determine what kind of entity this is
-        if ($model instanceof Campaign) {
-            $mention->campaign_id = $model->id;
-        } elseif ($model instanceof Post) {
-            $mention->post_id = $model->id;
-            $mention->entity_id = $model->entity_id;
-
-            // If we are making a reference to ourselves, no need to save it
-            if ($model->entity_id == $target) {
-                return;
-            }
-        } elseif ($model instanceof TimelineElement) {
-            $mention->timeline_element_id = $model->id;
-            $mention->entity_id = $model->timeline->entity->id;
-
-            // If we are making a reference to ourselves, no need to save it
-            if ($model->timeline_id == $target) {
-                return;
-            }
-        } elseif ($model instanceof QuestElement) {
-            $mention->quest_element_id = $model->id;
-            $mention->entity_id = $model->quest->entity->id;
-
-            // If we are making a reference to ourselves, no need to save it
-            if ($model->quest_id == $target) {
-                return;
-            }
-        } else {
-            $mention->entity_id = $model->id;
-
-            // If we are making a reference to ourselves, no need to save it
-            if ($model->id == $target) {
-                return;
-            }
-        }
-        $mention->target_id = $target;
-        $mention->save();
-    }
-
-    /**
-     * @param Model|Post|Entity $model
-     * @return $this
-     */
-    protected function images(Model $model): self
-    {
-        if ($model instanceof Entity) {
-            $images = $this->extractImages($model->child->entry);
-        } else {
-            /** @var Post $model */
-            $images = $this->extractImages($model->entry);
-        }
-        $existingTargets = [];
-        if ($model instanceof Entity) {
-            /** @var ImageMention $map */
-            foreach ($model->imageMentions()->whereNull('post_id')->get() as $map) {
-                $existingTargets[$map->image_id] = $map;
-            }
-        } else {
-            foreach ($model->imageMentions as $map) {
-                $existingTargets[$map->image_id] = $map;
-            }
-        }
-
-        $createdMappings = 0;
-        $existingMappings = 0;
-
-        foreach ($images as $data) {
-            $id = $data;
-
-            // Determine the real campaign id from the model.
-            if ($model instanceof Post) {
-                $campaignId = $model->entity->campaign_id;
-            } else {
-                $campaignId = $model->campaign_id;
+            // Do we already have this mention mapped?
+            if (!empty($existingTargets[$target->id])) {
+                //$this->log("- already have mapping");
+                unset($existingTargets[$target->id]);
+                $existingMappings++;
+                continue;
             }
 
-            /** @var Image|null $target */
-            $target = Image::where([
-                'id' => $id, 'campaign_id' => $campaignId
-            ])->first();
-            if ($target) {
-                // Do we already have this mention mapped?
-                if (!empty($existingTargets[$target->id])) {
-                    if ($model instanceof Post && $existingTargets[$target->id]->post_id == $model->id) {
-                        unset($existingTargets[$target->id]);
-                        $existingMappings++;
-                        continue;
-                    } elseif ($model instanceof Entity && !$existingTargets[$target->id]->post_id) {
-                        unset($existingTargets[$target->id]);
-                        $existingMappings++;
-                        continue;
-                    }
-                }
-                $this->createNewImageMention($model, $target->id);
-                $createdMappings++;
-            }
+            $this->createNewMention($target->id);
+            $createdMappings++;
         }
 
         // Existing mappings that are no longer needed
@@ -276,22 +243,37 @@ class EntityMappingService
         return $this;
     }
 
+    protected function campaignID(): int
+    {
+        // Todo: should be a method on the object or something, not the service's job to figure out
+        if ($this->model instanceof Campaign) {
+            return $this->model->id;
+        } elseif ($this->model instanceof Post) {
+            return $this->model->entity->campaign_id;
+        } elseif ($this->model instanceof TimelineElement) {
+            return $this->model->timeline->campaign_id;
+        } elseif ($this->model instanceof QuestElement) {
+            return $this->model->quest->campaign_id;
+        }
+        return $this->model->campaign_id;
+    }
+
     /**
-     * @param MiscModel|Post|TimelineElement|QuestElement|Campaign $model
      */
-    protected function createNewImageMention($model, string $target)
+    protected function createNewImageMention(string $target): void
     {
         $mention = new ImageMention();
 
         // Determine what kind of entity this is
-        if ($model instanceof Post) {
-            $mention->post_id = $model->id;
-            $mention->entity_id = $model->entity_id;
-        } else {
-            $mention->entity_id = $model->id;
+        if ($this->model instanceof Post) {
+            $mention->post_id = $this->model->id;
+            $mention->entity_id = $this->model->entity_id;
+        } elseif ($this->model instanceof Entity) {
+            $mention->entity_id = $this->model->id;
         }
         $mention->image_id = $target;
         $mention->save();
+        $this->createdImages++;
     }
 
     /**

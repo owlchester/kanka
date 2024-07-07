@@ -7,7 +7,7 @@
                 {{ __('fields.tooltip.description') }}
             </p>
 
-        <textarea name="entity_tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('fields.tooltip.description') }}">{!! FormCopy::entity()->field('tooltip')->string() ?: old('entity_tooltip', $model->entity_tooltip ?? null) !!}</textarea>
+        <textarea name="entity_tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('fields.tooltip.description') }}">{!! FormCopy::entity()->field('tooltip')->string() ?: old('entity_tooltip', $model->entity->tooltip ?? null) !!}</textarea>
 
 
             <p class="text-neutral-content">

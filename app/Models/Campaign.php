@@ -7,6 +7,7 @@ use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
 use App\Models\Concerns\CampaignLimit;
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Blameable;
 use App\Models\Relations\CampaignRelations;
@@ -28,7 +29,6 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property string $slug
  * @property string $locale
- * @property string $entry
  * @property string $image
  * @property Carbon|string $export_date
  * @property int $visibility_id
@@ -72,6 +72,7 @@ class Campaign extends Model
     use CampaignLimit;
     use CampaignRelations;
     use CampaignScopes;
+    use HasEntry;
     use HasFactory;
     use LastSync;
     use SoftDeletes;
@@ -263,20 +264,6 @@ class Campaign extends Model
     public function isHidden(): bool
     {
         return $this->is_hidden;
-    }
-
-    /**
-     */
-    public function parsedEntry()
-    {
-        return Mentions::mapAny($this);
-    }
-
-    /**
-     */
-    public function getEntryForEditionAttribute()
-    {
-        return Mentions::parseForEdit($this);
     }
 
     /**

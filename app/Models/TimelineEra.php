@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class TimelineEra
@@ -55,24 +57,21 @@ class TimelineEra extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function timeline()
+    public function timeline(): BelongsTo
     {
         return $this->belongsTo(Timeline::class, 'timeline_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function elements()
+    public function elements(): HasMany
     {
         return $this->hasMany(TimelineElement::class, 'era_id');
     }
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function orderedElements()
+    public function orderedElements(): HasMany
     {
         return $this->elements()
             ->ordered()
@@ -80,9 +79,8 @@ class TimelineEra extends Model
     }
 
     /**
-     * @return Builder
      */
-    public function scopeOrdered(Builder $query)
+    public function scopeOrdered(Builder $query): Builder
     {
         return $query
             ->orderBy('position')

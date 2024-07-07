@@ -380,7 +380,7 @@ class MentionsService
                     if ($field == 'calendar_date' && $child->calendar_id) {
                         $data['text'] = $child->calendarReminder()->readableDate();
                     }
-                    if ($field === 'entry') {
+                    if ($field === 'entry' && method_exists($entity->child, 'parsedEntry')) {
                         if ($this->enableEntryField) {
                             $this->lockEntryRendering();
                             $parsedTargetEntry = $entity->child->parsedEntry();

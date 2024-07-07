@@ -11,6 +11,7 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\EntityType;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasMentions;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
@@ -65,6 +66,7 @@ class Entity extends Model
     use EntityScopes;
     use EntityType;
     use HasTooltip;
+    use HasMentions;
     use LastSync;
     use Paginatable;
     use Searchable;
@@ -190,6 +192,9 @@ class Entity extends Model
                 $text = Mentions::mapEntity($this);
                 return (string)strip_tags($text);
             }
+        }
+        if (!$this->child->hasEntry()) {
+            return '';
         }
         return Str::limit(strip_tags($this->child->parsedEntry()), 500);
     }
@@ -344,16 +349,6 @@ class Entity extends Model
         }
 
         return $this->header->getUrl(1200, 400);
-    }
-
-    /**
-     * Count the number of mentions this entity has
-     */
-    public function mentionsCount(): int
-    {
-        return $this->targetMentions()
-            ->prepareCount()
-            ->count();
     }
 
     /**

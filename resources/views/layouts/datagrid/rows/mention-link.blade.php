@@ -20,7 +20,7 @@
 @elseif ($model->isTimelineElement())
     @if ($model->timelineElement && $model->entity)
         - {!! $model->timelineElement->skipAllIcon()->visibilityIcon() !!}
-        <a href="{{ $model->getLink() }}">{!! $model->timelineElement->name() !!}</a>
+        <a href="{{ $model->getLink() }}">{!! $model->timelineElement->elementName() !!}</a>
     @endif
 @elseif ($model->isPost())
     @if ($model->post && $model->entity)

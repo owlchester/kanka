@@ -2,20 +2,20 @@
 
 namespace App\Models\Concerns;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 trait Boosted
 {
     /**
      * List of boosts the campaign is receiving
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function boosts()
+    public function boosts(): HasMany
     {
         return $this->hasMany('App\Models\CampaignBoost', 'campaign_id', 'id');
     }
 
     /**
      * Determine if the campaign is boosted
-     * @param bool $superboosted false
      */
     public function boosted(bool $superboosted = false): bool
     {

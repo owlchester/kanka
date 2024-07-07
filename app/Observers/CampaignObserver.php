@@ -15,7 +15,6 @@ use App\Models\CampaignSetting;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\Campaign\SearchCleanupService;
-use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use App\Services\Users\CampaignService;
 use Illuminate\Support\Facades\Auth;
@@ -24,16 +23,10 @@ class CampaignObserver
 {
     use PurifiableTrait;
 
-    /**
-     * Service used to build the map of the entity
-     */
-    protected EntityMappingService $entityMappingService;
-
     protected CampaignService $campaignService;
 
-    public function __construct(EntityMappingService $entityMappingService, CampaignService $campaignService)
+    public function __construct(CampaignService $campaignService)
     {
-        $this->entityMappingService = $entityMappingService;
         $this->campaignService = $campaignService;
     }
 
@@ -45,9 +38,6 @@ class CampaignObserver
         // Purity text
         $campaign->name = $this->purify($campaign->name);
         $attributes = $campaign->getAttributes();
-        if (array_key_exists('entry', $attributes)) {
-            $campaign->entry = $this->purify(Mentions::codify($campaign->entry));
-        }
         if (array_key_exists('excerpt', $attributes)) {
             $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
         }
@@ -139,11 +129,6 @@ class CampaignObserver
      */
     public function saved(Campaign $campaign)
     {
-        // If the posts's entry has changed, we need to re-build it's map.
-        if ($campaign->isDirty('entry')) {
-            $this->entityMappingService->mapCampaign($campaign);
-        }
-
         $this->saveGenres($campaign);
         $this->saveSystems($campaign);
 

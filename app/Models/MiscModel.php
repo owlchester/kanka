@@ -30,7 +30,6 @@ use Laravel\Scout\Searchable as Scout;
  * @property string $type
  * @property string $slug
  * @property Entity|null $entity
- * @property string $entry
  * @property string $image
  * @property string $tooltip
  * @property string $header_image
@@ -163,8 +162,7 @@ abstract class MiscModel extends Model
      */
     public function hasEntry(): bool
     {
-        $excludedTypes = ['dice_roll', 'conversation', 'attribute_template'];
-        if (in_array($this->getEntityType(), $excludedTypes)) {
+        if (!method_exists($this, 'parsedEntry')) {
             return false;
         }
         // If all that's in the entry is two \n, then there is no real content
@@ -185,43 +183,6 @@ abstract class MiscModel extends Model
             ->take($take)
             ->pluck('type')
             ->all();
-    }
-
-    /**
-     */
-    public function parsedEntry()
-    {
-        return Mentions::map($this);
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getEntryForEditionAttribute()
-    {
-        return Mentions::parseForEdit($this);
-    }
-
-    /**
-     * Get the entity tooltip attribute, because forms are weird (we could bypass this easily)
-     */
-    public function getEntityTooltipAttribute(): string|null
-    {
-        if ($this->entity) {
-            return $this->entity->tooltip;
-        }
-        return null;
-    }
-
-    /**
-     * Get the model's entity image uuid
-     */
-    public function getEntityImageUuidAttribute(): string|null
-    {
-        if ($this->entity) {
-            return $this->entity->image_uuid;
-        }
-        return null;
     }
 
     /**

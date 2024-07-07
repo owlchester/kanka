@@ -36,6 +36,9 @@ trait HasTooltip
 
         /** @var MiscModel $child */
         $child = $this->child;
+        if (!method_exists($child, 'parsedEntry')) {
+            return '';
+        }
         $text = $child->parsedEntry();
         $text = strip_tags($text, $this->allowedTooltipTags());
         $text = Str::limit($text, 500);

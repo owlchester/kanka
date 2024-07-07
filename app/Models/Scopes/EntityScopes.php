@@ -11,8 +11,6 @@ use Illuminate\Support\Str;
  * @package App\Models\Scopes
  *
  * @method static self|Builder recentlyModified()
- * @method static self|Builder unmentioned()
- * @method static self|Builder mentionless()
  * @method static self|Builder inTags(array $tags)
  * @method static self|Builder inTypes(mixed $types)
  * @method static self|Builder templates(string $entityType)
@@ -59,26 +57,6 @@ trait EntityScopes
         }
 
         return $query;
-    }
-
-    /**
-     * Get entities that are unmentioned
-     */
-    public function scopeUnmentioned(Builder $query): Builder
-    {
-        return $query->select($this->getTable() . '.*')
-            ->leftJoin('entity_mentions as em', 'em.target_id', $this->getTable() . '.id')
-            ->whereNull('em.id');
-    }
-
-    /**
-     * Get entities that aren't mentioned anywhere
-     */
-    public function scopeMentionless(Builder $query): Builder
-    {
-        return $query->select($this->getTable() . '.*')
-            ->leftJoin('entity_mentions as em', 'em.entity_id', $this->getTable() . '.id')
-            ->whereNull('em.id');
     }
 
     /**

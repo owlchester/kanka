@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -20,7 +21,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @package App\Models
  * @property string $name
  * @property string $type
- * @property string $entry
  * @property string $image
  * @property string|null $map
  * @property bool|int $is_private
@@ -37,9 +37,10 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Location extends MiscModel
 {
     use Acl;
-    use HasCampaign;
     use ExportableTrait;
+    use HasCampaign;
     use HasFactory;
+    use HasEntry;
     use HasFilters;
     use HasRecursiveRelationships;
     use SoftDeletes;

@@ -84,14 +84,6 @@ class DiceRoll extends MiscModel
     }
 
     /**
-     * @return mixed|string
-     */
-    public function parsedEntry()
-    {
-        return '';
-    }
-
-    /**
      * Determine if the model has profile data to be displayed
      */
     public function showProfileInfo(): bool

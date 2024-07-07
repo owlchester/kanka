@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Templatable;
@@ -13,7 +13,9 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -52,6 +54,7 @@ class Post extends Model
 {
     use Acl;
     use Blameable;
+    use HasEntry;
     use HasFactory;
     use Paginatable;
     use Searchable;
@@ -88,69 +91,61 @@ class Post extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function location()
+    public function location(): BelongsTo
     {
         return $this->belongsTo('App\Models\Location', 'location_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function layout()
+    public function layout(): BelongsTo
     {
         return $this->belongsTo('App\Models\PostLayout', 'layout_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function permissions()
+    public function permissions(): HasMany
     {
         return $this->hasMany(PostPermission::class, 'post_id', 'id');
     }
 
     /**
      * List of entities that mention this entity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function mentions()
+    public function mentions(): HasMany
     {
         return $this->hasMany('App\Models\EntityMention', 'post_id', 'id');
     }
 
     /**
      * List of logs for this post
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function logs()
+    public function logs(): HasMany
     {
         return $this->hasMany('App\Models\EntityLog', 'post_id', 'id');
     }
 
     /**
      * List of images that mention this entity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function imageMentions()
+    public function imageMentions(): HasMany
     {
         return $this->hasMany('App\Models\ImageMention', 'post_id', 'id');
     }
 
     /**
      * Copy an post to another target
-     * @return Post
      */
-    public function copyTo(Entity $target)
+    public function copyTo(Entity $target): Post
     {
         $new = $this->replicate(['entity_id', 'created_by']);
         $new->entity_id = $target->id;
@@ -165,29 +160,6 @@ class Post extends Model
         }
 
         return $new;
-    }
-
-    /**
-     */
-    public function parsedEntry()
-    {
-        return Mentions::mapPost($this);
-    }
-
-    /**
-     * @return bool
-     */
-    /*public function hasEntity(): bool
-    {
-        return true;
-    }*/
-
-    /**
-     */
-    public function getEntryForEditionAttribute()
-    {
-        $text = Mentions::parseForEdit($this);
-        return $text;
     }
 
     /**
@@ -250,10 +222,5 @@ class Post extends Model
             'type'  => 'post',
             'entry' => strip_tags($this->entry),
         ];
-    }
-
-    public function isTemplate(): bool
-    {
-        return $this->is_template;
     }
 }

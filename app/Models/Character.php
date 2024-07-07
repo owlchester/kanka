@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -44,6 +45,7 @@ class Character extends MiscModel
     use Acl;
     use HasCampaign;
     use ExportableTrait;
+    use HasEntry;
     use HasFactory;
     use HasFilters;
     use SoftDeletes;

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasEntry;
 use App\Traits\VisibilityIDTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -24,7 +24,6 @@ use Laravel\Scout\Searchable;
  * @property int $era_id
  * @property int $entity_id
  * @property string $name
- * @property string $entry
  * @property string $date
  * @property int $position
  * @property string $colour
@@ -42,6 +41,7 @@ use Laravel\Scout\Searchable;
 class TimelineElement extends Model
 {
     use Blameable;
+    use HasEntry;
     use HasFactory;
     use Searchable;
     use VisibilityIDTrait;
@@ -98,21 +98,6 @@ class TimelineElement extends Model
             return $this->entity->name;
         }
         return $this->name;
-    }
-
-    /**
-     */
-    public function getEntryForEditionAttribute()
-    {
-        $text = Mentions::parseForEdit($this);
-        return $text;
-    }
-
-    /**
-     */
-    public function parsedEntry()
-    {
-        return Mentions::mapAny($this);
     }
 
     /**

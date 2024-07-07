@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\Mentions;
+use App\Models\Concerns\HasEntry;
 use App\User;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
@@ -28,10 +29,13 @@ use Laravel\Scout\Searchable;
 class QuestElement extends Model
 {
     use Blameable;
+    use HasEntry;
     use HasFactory;
     use Searchable;
     use SimpleSortableTrait;
     use VisibilityIDTrait;
+
+    protected string $entryField = 'description';
 
     protected $fillable = [
         'quest_id',
@@ -61,21 +65,6 @@ class QuestElement extends Model
     public function entity()
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
-    }
-
-    /**
-     */
-    public function parsedEntry()
-    {
-        return Mentions::mapAny($this, 'description');
-    }
-
-    /**
-     */
-    public function getEntryForEditionAttribute()
-    {
-        $text = Mentions::parseForEdit($this, 'description');
-        return $text;
     }
 
     /**

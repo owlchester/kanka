@@ -199,9 +199,8 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Determine if the attribute templates has visible (to show on the entity creation _attributes tab) attributes
-     * @param array $names
      */
-    public function hasVisibleAttributes($names = []): bool
+    public function hasVisibleAttributes(array $names = []): bool
     {
         if (!$this->entity) {
             return false;
@@ -213,15 +212,6 @@ class AttributeTemplate extends MiscModel
             }
         }
         return $visible;
-    }
-
-    /**
-     * Attribute Templates have no entry field
-     * @return mixed|string
-     */
-    public function parsedEntry()
-    {
-        return '';
     }
 
     /**
@@ -264,6 +254,7 @@ class AttributeTemplate extends MiscModel
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity->id,
             'name' => $this->name,
+            'type' => 'attribute_template',
         ];
     }
 }

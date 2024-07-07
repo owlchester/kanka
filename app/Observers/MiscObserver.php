@@ -4,11 +4,8 @@ namespace App\Observers;
 
 use App\Facades\EntityCache;
 use App\Facades\EntityLogger;
-use App\Facades\Mentions;
-use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Observers\Concerns\Copiable;
-use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use Illuminate\Support\Str;
 
@@ -16,14 +13,6 @@ abstract class MiscObserver
 {
     use Copiable;
     use PurifiableTrait;
-
-    /**Service to build the mention "map" of the entity */
-    protected EntityMappingService $entityMappingService;
-
-    public function __construct(EntityMappingService $entityMappingService)
-    {
-        $this->entityMappingService = $entityMappingService;
-    }
 
     /**
      */
@@ -37,11 +26,6 @@ abstract class MiscObserver
         // Or if we are deleting, we don't want to re-do the whole set foreign ids to null
         if (request()->isMethod('delete') === true) {
             return;
-        }
-
-        $attributes = $model->getAttributes();
-        if (array_key_exists('entry', $attributes)) {
-            $model->entry = $this->purify(Mentions::codify($model->entry));
         }
 
         // Is private hook for non-admin (who can't set is_private)
@@ -94,20 +78,5 @@ abstract class MiscObserver
     public function saved(MiscModel $model)
     {
         EntityLogger::model($model);
-
-        // Take care of mentions for the entity.
-        $this->syncMentions($model, $model->entity);
-    }
-
-    /**
-     * When saving an entity, we can to update our mentions if they have been changed
-     */
-    protected function syncMentions(MiscModel $model, Entity $entity)
-    {
-        //$this->entityMappingService->verbose = true;
-        // If the entity's entry has changed, we need to re-build it's map.
-        if ($model->isDirty('entry')) {
-            $this->entityMappingService->silent()->mapEntity($entity);
-        }
     }
 }

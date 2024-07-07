@@ -4,20 +4,12 @@ namespace App\Observers;
 
 use App\Facades\Mentions;
 use App\Models\TimelineElement;
-use App\Services\EntityMappingService;
 use App\Facades\TimelineElementCache;
 
 class TimelineElementObserver
 {
     use PurifiableTrait;
     use ReorderTrait;
-
-    protected EntityMappingService $entityMappingService;
-
-    public function __construct(EntityMappingService $entityMappingService)
-    {
-        $this->entityMappingService = $entityMappingService;
-    }
 
     /**
      */
@@ -45,10 +37,6 @@ class TimelineElementObserver
     {
         TimelineElementCache::clearSuggestion();
         $this->reorder($timelineElement);
-        // If the quest element's entry has changed, we need to re-build it's map.
-        if ($timelineElement->isDirty('entry')) {
-            $this->entityMappingService->mapTimelineElement($timelineElement);
-        }
     }
 
     public function deleted()

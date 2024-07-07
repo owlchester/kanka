@@ -1,8 +1,10 @@
 <div class="preview overflow-hidden relative max-h-52" id="widget-preview-body-{{ $widget->id }}">
     {!! $slot !!}
+    @if ($model->hasEntry())
     <div class="entity-content">
         {!! $model->parsedEntry() !!}
     </div>
+    @endif
 
     @include('dashboard.widgets.previews._members')
     @include('dashboard.widgets.previews._relations')

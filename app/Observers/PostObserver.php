@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Facades\Mentions;
 use App\Models\PostPermission;
 use App\Models\Post;
-use App\Services\EntityMappingService;
 use App\Services\Entity\PostLoggerService;
 use App\Facades\Identity;
 use App\Models\EntityLog;
@@ -16,20 +15,14 @@ class PostObserver
     use ReorderTrait;
 
     /**
-     * Service used to build the map of the entity
-     */
-    protected EntityMappingService $entityMappingService;
-
-    /**
      * Service used to log changes to posts
      */
     protected PostLoggerService $postLoggerService;
 
     /**
      */
-    public function __construct(EntityMappingService $entityMappingService, PostLoggerService $postLoggerService)
+    public function __construct(PostLoggerService $postLoggerService)
     {
-        $this->entityMappingService = $entityMappingService;
         $this->postLoggerService = $postLoggerService;
     }
 
@@ -37,11 +30,6 @@ class PostObserver
      */
     public function saving(Post $post)
     {
-
-        // When creating a post on the API, we might not have an entry
-        if (isset($post->entry)) {
-            $post->entry = $this->purify(Mentions::codify($post->entry));
-        }
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($post->is_private)) {
             $post->is_private = false;
@@ -93,11 +81,6 @@ class PostObserver
         // last updated date to reflect changes in the dashboard.
         $post->entity->touchSilently();
         $post->entity->child->touchSilently();
-
-        // If the post's entry has changed, we need to re-build it's map.
-        if ($post->isDirty('entry')) {
-            $this->entityMappingService->mapPost($post);
-        }
     }
 
     /**

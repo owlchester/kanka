@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -46,8 +47,9 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Map extends MiscModel
 {
     use Acl;
-    use HasCampaign;
     use ExportableTrait;
+    use HasCampaign;
+    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;

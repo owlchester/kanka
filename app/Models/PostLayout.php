@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class PostLayout
@@ -25,17 +26,15 @@ class PostLayout extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function entityType()
+    public function entityType(): BelongsTo
     {
         return $this->belongsTo('App\Models\EntityType', 'entity_type_id', 'id');
     }
 
     /**
-     * @return Builder
      */
-    public function scopeEntity(Builder $query, int $type)
+    public function scopeEntity(Builder $query, int $type): Builder
     {
         return $query->whereNull('entity_type_id')->orWhere('entity_type_id', $type);
     }

@@ -14,7 +14,6 @@ use App\Models\EntityAsset;
 use App\Models\EntityEvent;
 use App\Models\EntityEventType;
 use App\Models\EntityLink;
-use App\Models\EntityMention;
 use App\Models\EntityTag;
 use App\Models\EntityUser;
 use App\Models\Image;
@@ -43,9 +42,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Tag[]|Collection $tags
  * @property EntityTag[]|Collection $entityTags
  * @property Post[]|Collection $posts
- * @property EntityMention[]|Collection $mentions
  * @property Inventory[]|Collection $inventories
- * @property EntityMention[]|Collection $targetMentions
  * @property EntityAbility[]|Collection $abilities
  * @property EntityLink[]|Collection $links
  * @property CampaignDashboardWidget[]|Collection $widgets
@@ -343,29 +340,6 @@ trait EntityRelations
         return $this->hasMany('App\Models\CampaignPermission', 'entity_id', 'id');
     }
 
-    /**
-     * List of entities that mention this entity
-     */
-    public function mentions(): HasMany
-    {
-        return $this->hasMany('App\Models\EntityMention', 'entity_id', 'id');
-    }
-
-    /**
-     * List of entities that mention this entity
-     */
-    public function imageMentions(): HasMany
-    {
-        return $this->hasMany('App\Models\ImageMention', 'entity_id', 'id');
-    }
-
-    /**
-     * List of entities that mention this entity
-     */
-    public function targetMentions(): HasMany
-    {
-        return $this->hasMany('App\Models\EntityMention', 'target_id', 'id');
-    }
 
     public function mapMarkers(): HasMany
     {

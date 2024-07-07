@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,6 +26,7 @@ class Note extends MiscModel
     use Acl;
     use HasCampaign;
     use ExportableTrait;
+    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
