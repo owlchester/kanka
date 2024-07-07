@@ -393,7 +393,7 @@ class ImportService
         $this->campaign->excerpt = $this->mentions($this->campaign->excerpt);
         $this->campaign->save();
 
-        $this->entityMappingService->silent()->mapCampaign($this->campaign);
+        $this->entityMappingService->silent()->with($this->campaign)->map();
         return $this;
     }
 

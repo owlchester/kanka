@@ -196,6 +196,7 @@ class Entity extends Model
         if (!$this->child->hasEntry()) {
             return '';
         }
+        // @phpstan-ignore-next-line
         return Str::limit(strip_tags($this->child->parsedEntry()), 500);
     }
 

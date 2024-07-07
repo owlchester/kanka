@@ -46,11 +46,10 @@ class PostService
     protected function copy(): Post
     {
         $entity = Entity::findOrFail($this->entityId);
-        /** @var Post $newPost */
         $newPost = $this->post->copyTo($entity);
 
         // Update the "mentioned in" mapping for the entity
-        $this->mappingService->mapPost($newPost);
+        $this->mappingService->with($newPost)->map();
 
         $this->log($newPost, EntityLog::ACTION_CREATE_POST);
 

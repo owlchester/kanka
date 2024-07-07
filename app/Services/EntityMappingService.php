@@ -73,8 +73,8 @@ class EntityMappingService
         if ($this->model instanceof Campaign) {
             $mention->campaign_id = $this->model->id;
         } elseif ($this->model instanceof Post) {
-            $mention->post_id = $this->model->id;
-            $mention->entity_id = $this->model->entity_id;
+            $mention->post_id = $this->post()->id;
+            $mention->entity_id = $this->post()->entity_id;
 
             // If we are making a reference to ourselves, no need to save it
             if ($this->model->entity_id == $target) {
@@ -97,10 +97,11 @@ class EntityMappingService
                 return;
             }
         } else {
+            // @phpstan-ignore-next-line
             $mention->entity_id = $this->model->id;
 
             // If we are making a reference to ourselves, no need to save it
-            if ($this->model->id == $target) {
+            if ($this->model->id == $target) { // @phpstan-ignore-line
                 return;
             }
         }
@@ -118,9 +119,9 @@ class EntityMappingService
         }
         $images = [];
         if ($this->model instanceof Entity) {
-            $images = $this->extractImages($this->model->child->entry);
+            $images = $this->extractImages($this->entity()->child->entry);
         } elseif ($this->model instanceof Post) {
-            $images = $this->extractImages($this->model->entry);
+            $images = $this->extractImages($this->post()->entry);
         }
         $existingTargets = [];
         if ($this->model instanceof Entity) {
@@ -139,9 +140,9 @@ class EntityMappingService
 
             // Determine the real campaign id from the model.
             if ($this->model instanceof Post) {
-                $campaignId = $this->model->entity->campaign_id;
+                $campaignId = $this->post()->entity->campaign_id;
             } else {
-                $campaignId = $this->model->campaign_id;
+                $campaignId = $this->entity()->campaign_id;
             }
 
             /** @var Image|null $target */
@@ -179,6 +180,7 @@ class EntityMappingService
     protected function entry(): self
     {
         $existingTargets = [];
+        // @phpstan-ignore-next-line
         foreach ($this->model->mentions as $map) {
             $existingTargets[$map->target_id] = $map;
         }
@@ -186,8 +188,9 @@ class EntityMappingService
         $existingMappings = 0;
 
         if ($this->model instanceof Entity) {
-            $mentions = $this->extract($this->model->child->entry);
+            $mentions = $this->extract($this->entity()->child->entry);
         } else {
+            // @phpstan-ignore-next-line
             $mentions = $this->extract($this->model->{$this->model->entryFieldName()});
         }
 
@@ -255,6 +258,7 @@ class EntityMappingService
         } elseif ($this->model instanceof QuestElement) {
             return $this->model->quest->campaign_id;
         }
+        // @phpstan-ignore-next-line
         return $this->model->campaign_id;
     }
 
@@ -288,5 +292,16 @@ class EntityMappingService
                 echo "<br />";
             }
         }
+    }
+
+    protected function post(): Post
+    {
+        // @phpstan-ignore-next-line
+        return $this->model;
+    }
+    protected function entity(): Entity
+    {
+        // @phpstan-ignore-next-line
+        return $this->model;
     }
 }

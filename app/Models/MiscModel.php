@@ -26,6 +26,7 @@ use Laravel\Scout\Searchable as Scout;
  * @property int $id
  * Still keep campaign_id for phpstan
  * @property int $campaign_id
+ * @property string $entry
  * @property string $name
  * @property string $type
  * @property string $slug

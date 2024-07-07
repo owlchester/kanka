@@ -303,8 +303,10 @@ class AttributeService
             $searchAttributes[] = '{attribute:' . $sourceAttributes[$slug] . '}';
             $replaceAttributes[] = '{attribute:' . $attribute->id . '}';
         }
-        $entry = Str::replace($searchAttributes, $replaceAttributes, $this->entity->child->entry);
-        $this->entity->child->update(['entry' => $entry]);
+        if ($this->entity->child->hasEntry()) {
+            $entry = Str::replace($searchAttributes, $replaceAttributes, $this->entity->child->entry);
+            $this->entity->child->update(['entry' => $entry]);
+        }
         foreach ($this->entity->posts as $post) {
             $post->entry = Str::replace($searchAttributes, $replaceAttributes, $post->entry);
             $post->updateQuietly();
