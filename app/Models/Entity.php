@@ -60,13 +60,13 @@ class Entity extends Model
 {
     use Acl;
     use Blameable;
-    use HasCampaign;
     use EntityLogs;
     use EntityRelations;
     use EntityScopes;
     use EntityType;
-    use HasTooltip;
+    use HasCampaign;
     use HasMentions;
+    use HasTooltip;
     use LastSync;
     use Paginatable;
     use Searchable;

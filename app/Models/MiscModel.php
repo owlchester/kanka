@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
-use App\Facades\Mentions;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -43,13 +42,13 @@ use Laravel\Scout\Searchable as Scout;
  */
 abstract class MiscModel extends Model
 {
+    use Copiable;
     use LastSync;
     use Orderable;
     use Paginatable;
     use Scout;
     use Searchable;
     use Sortable;
-    use Copiable;
     use SubEntityScopes;
 
     /** Entity type (character, location) */

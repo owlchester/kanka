@@ -32,8 +32,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Ability extends MiscModel
 {
     use Acl;
-    use HasCampaign;
     use ExportableTrait;
+    use HasCampaign;
     use HasEntry;
     use HasFactory;
     use HasFilters;

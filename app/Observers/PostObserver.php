@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\Mentions;
 use App\Models\PostPermission;
 use App\Models\Post;
 use App\Services\Entity\PostLoggerService;

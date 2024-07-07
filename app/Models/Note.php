@@ -24,8 +24,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Note extends MiscModel
 {
     use Acl;
-    use HasCampaign;
     use ExportableTrait;
+    use HasCampaign;
     use HasEntry;
     use HasFactory;
     use HasFilters;

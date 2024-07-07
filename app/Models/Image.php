@@ -56,8 +56,8 @@ use Illuminate\Support\Facades\Storage;
  */
 class Image extends Model
 {
-    use HasCampaign;
     use ExportableTrait;
+    use HasCampaign;
     use HasFactory;
     use LastSync;
     use VisibilityIDTrait;

@@ -31,8 +31,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Creature extends MiscModel
 {
     use Acl;
-    use HasCampaign;
     use ExportableTrait;
+    use HasCampaign;
     use HasEntry;
     use HasFactory;
     use HasFilters;

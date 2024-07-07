@@ -39,8 +39,8 @@ class Location extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasFactory;
     use HasEntry;
+    use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
     use SoftDeletes;
