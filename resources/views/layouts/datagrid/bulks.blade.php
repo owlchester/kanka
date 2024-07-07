@@ -27,9 +27,6 @@ $hasOthers = false;
         @endforeach
     </div>
 </div>
-<a href="#" class="btn2 btn-disabled datagrid-spinner text-lg" style="display:none">
-    <x-icon class="load" />
-</a>
 <input type="hidden" name="action" value="" />
 
 @section('modals')

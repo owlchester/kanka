@@ -136,8 +136,8 @@ const registerBulk = (datagrid) => {
             }
 
             // Disable the whole dropdown and replace it with a spinning wheel
-            datagrid.querySelectorAll('.datagrid-bulk-actions')?.forEach(ele => ele.classList.add('hidden'));
-            datagrid.querySelector('.datagrid-spinner').classList.remove('hidden');
+            datagrid.parentNode.querySelectorAll('.datagrid-bulk-actions .btn2')?.forEach(ele => ele.classList.add('btn-disabled'));
+            datagrid.parentNode.querySelector('.datagrid-bulk-actions .btn2').classList.add('loading');
             form.submit();
         });
     });
