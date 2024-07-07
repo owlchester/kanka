@@ -65,7 +65,7 @@ trait HasMentions
     public function mentionsCount(): int
     {
         return $this->targetMentions()
-            ->prepareCount()
+            ->filterValid()
             ->count();
     }
 }

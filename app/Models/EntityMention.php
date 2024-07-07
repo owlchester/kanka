@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Concerns\SortableTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 
 /**
@@ -25,7 +26,7 @@ use Illuminate\Support\Arr;
  * @property Entity|null $target
  * @property Campaign|null $campaign
  *
- * @method static self|Builder prepareCount()
+ * @method static self|Builder filterValid()
  */
 class EntityMention extends Model
 {
@@ -46,49 +47,43 @@ class EntityMention extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function target()
+    public function target(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'target_id', 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post()
+    public function post(): BelongsTo
     {
         return $this->belongsTo('App\Models\Post', 'post_id', 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function timelineElement()
+    public function timelineElement(): BelongsTo
     {
         return $this->belongsTo('App\Models\TimelineElement', 'timeline_element_id', 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function questElement()
+    public function questElement(): BelongsTo
     {
         return $this->belongsTo('App\Models\QuestElement', 'quest_element_id', 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function campaign()
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
@@ -137,72 +132,78 @@ class EntityMention extends Model
      * Build the query that will loop on the various mentions to get the total count.
      * The AclTrait on entities and posts makes sure only visible things get added to the query.
      */
-    public function scopePrepareCount(Builder $query): Builder
+    public function scopeFilterValid(Builder $query): Builder
     {
         return $query->where(function ($sub) {
             return $sub
                 ->where(function ($subEnt) {
                     // @phpstan-ignore-next-line
                     return $subEnt
-                        ->entity()
+                        ->onEntity()
                         ->has('entity');
                 })
                 ->orWhere(function ($subPost) {
                     // @phpstan-ignore-next-line
                     return $subPost
-                        ->post()
+                        ->onPost()
                         ->has('post.entity');
                 })
                 ->orWhere(function ($subQuestElement) {
                     // @phpstan-ignore-next-line
                     return $subQuestElement
-                        ->questElement()
-                        ->has('questElement.entity');
+                        ->onQuestElement()
+                        ->has('questElement.quest.entity');
                 })
                 ->orWhere(function ($subTimelineElement) {
                     // @phpstan-ignore-next-line
                     return $subTimelineElement
-                        ->timelineElement()
-                        ->has('timelineElement.entity');
+                        ->onTimelineElement()
+                        ->has('timelineElement.timeline.entity');
                 })
                 ->orWhere(function ($subCam) {
                     // @phpstan-ignore-next-line
-                    return $subCam->campaign();
+                    return $subCam->onCampaign();
                 });
         });
     }
 
     /**
      */
-    public function scopeEntity(Builder $query): Builder
+    public function scopeOnEntity(Builder $query): Builder
     {
-        return $query->whereNotNull('entity_mentions.entity_id');
+        return $query->where(function ($sub) {
+            $sub->whereNotNull('entity_mentions.entity_id')
+                ->whereNull('entity_mentions.post_id')
+                ->whereNull('entity_mentions.timeline_element_id')
+                ->whereNull('entity_mentions.quest_element_id')
+            ;
+        });
     }
 
     /**
      */
-    public function scopePost(Builder $query): Builder
+    public function scopeOnPost(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.post_id');
     }
 
     /**
      */
-    public function scopeTimelineElement(Builder $query): Builder
+    public function scopeOnTimelineElement(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.timeline_element_id');
     }
 
     /**
      */
-    public function scopeQuestElement(Builder $query): Builder
+    public function scopeOnQuestElement(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.quest_element_id');
     }
 
     /**
      */
-    public function scopeCampaign(Builder $query): Builder
+    public function scopeOnCampaign(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.campaign_id');
     }
@@ -230,6 +231,7 @@ class EntityMention extends Model
     }
 
     /**
+     * Todo: move this out of the model
      */
     public function getLink(): string
     {

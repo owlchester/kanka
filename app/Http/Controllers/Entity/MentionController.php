@@ -65,18 +65,7 @@ class MentionController extends Controller
                     $sub->select('id', 'type_id', 'entity_id', 'name', 'is_private');
                 },*/
             ])
-            ->where(function ($pref) {
-                return $pref
-                    ->where(function ($subEnt) {
-                        return $subEnt
-                            ->entity()
-                            ->has('entity');
-                    })
-                    ->orWhere(function ($subCam) {
-                        return $subCam->campaign();
-                    })
-                ;
-            })
+            ->filterValid()
             ->paginate();
 
         // Ajax Datagrid

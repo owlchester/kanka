@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Mention;
 
+use App\Models\EntityMention;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -22,7 +23,7 @@ class Mention extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
-                'render' => function ($model) {
+                'render' => function (EntityMention $model) {
                     if ($model->isCampaign()) {
                         return __('entities.campaign');
                     }
