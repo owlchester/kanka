@@ -249,6 +249,11 @@ class Character extends MiscModel
             ->with('entity');
     }
 
+    public function publicRaces(): BelongsToMany
+    {
+        return $this->races()->where('character_race.is_private', false);
+    }
+
     public function organisationMemberships(): HasMany
     {
         return $this->hasMany('App\Models\OrganisationMember', 'character_id', 'id');

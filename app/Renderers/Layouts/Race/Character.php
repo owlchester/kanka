@@ -20,19 +20,19 @@ class Character extends Layout
                 'with' => ['target' => 'character']
             ],
             'character_id' => [
-                'key' => 'name',
+                'key' => 'character.name',
                 'label' => Module::singular(config('entities.ids.character'), 'entities.character'),
                 'render' => Standard::CHARACTER,
             ],
             'type' => [
-                'key' => 'type',
+                'key' => 'character.type',
                 'label' => 'crud.fields.type',
                 'render' => function ($model) {
                     return $model->character->type;
                 },
             ],
             'location' => [
-                'key' => 'location.name',
+                'with' => 'character',
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'render' => Standard::LOCATION,
             ],
