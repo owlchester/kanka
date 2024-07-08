@@ -7,7 +7,6 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
