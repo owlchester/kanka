@@ -12,6 +12,9 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -93,7 +96,7 @@ class Organisation extends MiscModel
         'organisation_id'
     ];
 
-    protected $organisationAndDescendantIds = false;
+    protected array $organisationAndDescendantIds;
 
     /**
      * Performance with for datagrids
@@ -209,7 +212,7 @@ class Organisation extends MiscModel
     /**
      * Parent
      */
-    public function organisation()
+    public function organisation(): BelongsTo
     {
         return $this->belongsTo('App\Models\Organisation', 'organisation_id', 'id');
     }
@@ -217,7 +220,7 @@ class Organisation extends MiscModel
     /**
      * Children
      */
-    public function organisations()
+    public function organisations(): HasMany
     {
         return $this->hasMany('App\Models\Organisation', 'organisation_id', 'id');
     }
@@ -231,9 +234,8 @@ class Organisation extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function location()
+    public function location(): BelongsTo
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
@@ -241,21 +243,20 @@ class Organisation extends MiscModel
     /**
      * Organisations have multiple locations
      */
-    public function locations()
+    public function locations(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Location', 'organisation_location')
             ->with('entity');
     }
 
-    public function pivotLocations()
+    public function pivotLocations(): HasMany
     {
         return $this->hasMany('App\Models\OrganisationLocation');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function members()
+    public function members(): HasMany
     {
         return $this->hasMany('App\Models\OrganisationMember', 'organisation_id', 'id');
     }
@@ -272,15 +273,14 @@ class Organisation extends MiscModel
 
     /**
      * Get a list of this organisation and descendant ids
-     * @return array|bool
      */
-    public function organisationAndDescendantIds()
+    public function organisationAndDescendantIds(): array
     {
-        if ($this->organisationAndDescendantIds === false) {
+        if (!isset($this->organisationAndDescendantIds)) {
             $this->organisationAndDescendantIds = [$this->id];
             foreach ($this->descendants as $descendant) {
                 $this->organisationAndDescendantIds[] = $descendant->id;
-            };
+            }
         }
         return $this->organisationAndDescendantIds;
     }
