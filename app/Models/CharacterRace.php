@@ -50,11 +50,7 @@ class CharacterRace extends Model
 
     public function getCharacterRacesAttribute()
     {
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            return $this->character()->with('races')->first()->races;
-        }
-
-        return $this->character->publicRaces()->get();
+        return $this->character->races;
     }
 
     public function getCharacterLocationAttribute()
