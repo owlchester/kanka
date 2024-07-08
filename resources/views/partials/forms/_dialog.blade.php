@@ -9,6 +9,10 @@
     @include($content)
 </article>
 <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3 md:rounded-b">
-    @include('partials.forms.dialog.footer')
+    @if (isset($footer))
+        @include($footer)
+    @else
+        @include('partials.forms.dialog.footer')
+    @endif
 </footer>
 

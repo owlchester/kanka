@@ -161,6 +161,7 @@ const quickCreatorSubformHandler = () => {
 
                 let target = document.getElementById('qq-modal-form');
                 target.innerHTML = res.data;
+                window.triggerEvent();
 
                 quickCreatorUI();
                 quickCreatorHandleEvents();
