@@ -334,7 +334,6 @@ import './members';
 import './campaign';
 import './clipboard';
 import './toast';
-import './sidebar';
 import './banner';
 import './timelines';
 import './utility/sortable';

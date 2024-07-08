@@ -11,7 +11,7 @@ window._ = _;
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+    //require('bootstrap-sass');
 
 } catch (e) {}
 
@@ -45,39 +45,6 @@ if (token) {
     });
 }
 
-/**
- * When clicking on the sidebar, save the new state in a cookie so that the next page load auto-collapsed
- */
-$(function () {
-    "use strict";
-
-    $(document).on('click', '.sidebar-toggle', function () {
-        $('.sidebar-menu').pushMenu('toggle');
-        let body = $('body');
-
-        let toggleState = 'opened';
-        if(body.hasClass('sidebar-collapse')){
-            toggleState = 'closed';
-        }
-
-        let date = new Date();
-        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-        let expires = " expires=" + date.toGMTString();
-        let secure = location.protocol === 'https:' ? 'secure; ' : '';
-        document.cookie = "toggleState="+toggleState+"; path=/; " + secure + "samesite=lax; " + expires;
-    });
-
-    let re = new RegExp('toggleState' + "=([^;]+)");
-    let value = re.exec(document.cookie);
-    let toggleState = (value != null) ? decodeURI(value[1]) : null;
-    if (toggleState === 'closed'){
-        $("body").addClass('sidebar-collapse hold-transition').delay(100).queue(function(){
-            $(this).removeClass('hold-transition');
-        });
-    }
-});
-
-
 $(document).ready(function () {
     registerVendorEvents();
 });
@@ -88,7 +55,7 @@ $(document).on('select2:open', () => {
     allFound[allFound.length - 1].focus();
 });
 
-function registerVendorEvents() {
+const registerVendorEvents = () => {
     // Open select2 dropdowns on focus. Don't add this in
     // initSelect2 since we only need this binded once.
     $(document).on('focus', '.select2.select2-container', function (e) {
@@ -97,4 +64,4 @@ function registerVendorEvents() {
             $(this).siblings('select').select2('open');
         }
     });
-}
+};

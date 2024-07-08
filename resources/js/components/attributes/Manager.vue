@@ -124,9 +124,9 @@ const props = defineProps<{
 
 const attributes = ref([])
 const visibleAttributes = ref([])
-var i18n = []
-var meta = []
-var templates = []
+let i18n = []
+let meta = []
+let templates = []
 const loading = ref(true)
 const checkedAll = ref(false)
 const deletedAttributes = ref([])
@@ -136,7 +136,7 @@ const showFilters = ref(false)
 const showTemplates = ref(false)
 const searchTerm = ref(null)
 const template = ref(null)
-var newAttributeID = ref(0)
+const newAttributeID = ref(0)
 
 onMounted(() => {
     fetch(props.api)

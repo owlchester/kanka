@@ -86,9 +86,8 @@ trait SortableTrait
 
     /**
      * Sort on a foreign relation
-     * @return Builder
      */
-    protected function scopeSortOnForeign(Builder $query, string $key, string $order)
+    protected function scopeSortOnForeign(Builder $query, string $key, string $order): Builder
     {
         $segments = explode('.', $key);
         $relationName = $segments[0];
