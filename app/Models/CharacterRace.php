@@ -32,6 +32,11 @@ class CharacterRace extends Model
         'is_private',
     ];
 
+    protected array $sortable = [
+        'character.name',
+        'character.type',
+    ];
+
     public function character(): BelongsTo
     {
         return $this->belongsTo(Character::class);
@@ -45,5 +50,10 @@ class CharacterRace extends Model
     public function getCharacterRacesAttribute()
     {
         return $this->character->races;
+    }
+
+    public function getCharacterLocationAttribute()
+    {
+        return $this->character->location;
     }
 }

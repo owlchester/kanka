@@ -189,7 +189,7 @@ class Race extends MiscModel
     }
 
     /**
-     * Get all characters in the location and descendants
+     * Get all characters in the race and descendants
      */
     public function allCharacters()
     {
@@ -204,6 +204,18 @@ class Race extends MiscModel
                 $join->on('cr.character_id', '=', 'characters.id');
             })
             ->whereIn('cr.race_id', $raceIds);
+    }
+
+    /**
+     * Get all characters in the race and descendants
+     */
+    public function allCharacterRaces()
+    {
+        $raceIds = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $raceIds[] = $descendant->id;
+        };
+        return CharacterRace::groupBy('character_id')->distinct('character_id')->whereIn('race_id', $raceIds)->with('character');
     }
 
     /**

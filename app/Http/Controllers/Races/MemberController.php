@@ -24,12 +24,10 @@ class MemberController extends Controller
         $this->campaign($campaign)->authEntityView($race->entity);
 
         $options = ['campaign' => $campaign, 'race' => $race];
-        $filters = [];
-        $relation = 'characterRaces';
+        $relation = 'allCharacterRaces';
         if (request()->has('race_id')) {
             $options['race_id'] = (int) request()->get('race_id');
-            $filters['race_id'] = $options['race_id'];
-            $relation = 'characters';
+            $relation = 'characterRaces';
         }
         Datagrid::layout(\App\Renderers\Layouts\Race\Character::class)
             ->route('races.characters', $options);
@@ -40,12 +38,13 @@ class MemberController extends Controller
             ->with([
                 'race', 'race.entity',
                 'character', 'character.entity', 'character.entity.tags', 'character.entity.tags.entity', 'character.entity.image',
-                'character.location', 'character.location.entity'])
+                'character.location', 'character.location.entity',
+                'character.characterRaces'
+            ])
             ->has('character')
             ->has('character.entity')
             ->leftJoin('characters as c', 'c.id', 'character_race.character_id')
             ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
-            ->filter($filters)
             ->paginate(15);
 
         return $this->campaign($campaign)->datagridAjax();
