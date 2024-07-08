@@ -26,6 +26,7 @@ $options = $entity->postPositionOptions(!empty($model->position) ? $model->posit
 if (isset($template)) {
     $model = $template;
     $model->name = '';
+    $model->position = null;
 }
 $last = array_key_last($options);
 
