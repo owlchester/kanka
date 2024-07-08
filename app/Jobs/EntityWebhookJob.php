@@ -129,7 +129,7 @@ class EntityWebhookJob implements ShouldQueue
     protected function isInvalid(Webhook $webhook, array $entityTags): bool
     {
         //Check if the entity is private or the webhook supports private entities.
-        if ($this->entity->is_private && $webhook->skipPrivate() ) {
+        if ($this->entity->is_private && $webhook->skipPrivate()) {
             return true;
         }
 

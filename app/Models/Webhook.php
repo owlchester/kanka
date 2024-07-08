@@ -100,7 +100,7 @@ class Webhook extends Model
 
     public function skipPrivate(): bool
     {
-        if (Arr::has($this->settings, 'skip_private')){
+        if (Arr::has($this->settings, 'skip_private')) {
             return Arr::get($this->settings, 'skip_private');
         }
 
