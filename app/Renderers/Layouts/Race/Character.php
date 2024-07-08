@@ -39,7 +39,7 @@ class Character extends Layout
             'races' => [
                 'label' => Module::plural(config('entities.ids.race'), 'entities.races'),
                 'class' => self::ONLY_DESKTOP,
-                'render' => function($model) {
+                'render' => function ($model) {
                     $races = [];
                     foreach ($model->character->characterRaces as $race) {
                         if (!$race->race || !$race->race->entity) {
@@ -47,7 +47,7 @@ class Character extends Layout
                         }
                         $races[] = $this->entityLink($race->race);
                     }
-                    return implode( ', ', $races);
+                    return implode(', ', $races);
                 },
                 'visible' => function () {
                     return !request()->has('race_id');

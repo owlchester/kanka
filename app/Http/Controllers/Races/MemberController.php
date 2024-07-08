@@ -38,9 +38,9 @@ class MemberController extends Controller
             ->with([
                 'race', 'race.entity',
                 'character', 'character.entity', 'character.entity.tags', 'character.entity.tags.entity', 'character.entity.image',
-                'character.location', 'character.location.entity', 
+                'character.location', 'character.location.entity',
                 'character.characterRaces'
-                ])
+            ])
             ->has('character')
             ->has('character.entity')
             ->leftJoin('characters as c', 'c.id', 'character_race.character_id')
