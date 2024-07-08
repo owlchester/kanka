@@ -8,6 +8,7 @@ use App\Models\Concerns\Paginatable;
 use App\Enums\WebhookAction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 use App\Facades\CampaignLocalization;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $path
  * @property Feature $feature
  * @property int $action
+ * @property array|null $settings
  */
 class Webhook extends Model
 {
@@ -31,6 +33,11 @@ class Webhook extends Model
         'type',
         'message',
         'status',
+        'settings',
+    ];
+
+    protected $casts = [
+        'settings' => 'array',
     ];
 
     protected array $sortable = [
@@ -89,5 +96,14 @@ class Webhook extends Model
             ->where('campaign_id', $campaignId)
             ->where('action', $action)
             ->where('status', 1);
+    }
+
+    public function skipPrivate(): bool
+    {
+        if (Arr::has($this->settings, 'skip_private')) {
+            return Arr::get($this->settings, 'skip_private');
+        }
+
+        return false;
     }
 }

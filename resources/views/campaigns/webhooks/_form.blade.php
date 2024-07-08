@@ -68,5 +68,12 @@
     ></x-forms.tags>
 </x-forms.field>
 
+<x-forms.field field="skip-private" :label="__('campaigns/webhooks.fields.private_entities.skip')">
+    <input type="hidden" name="settings[skip_private]" value="0" />
+    <x-checkbox :text="__('campaigns/webhooks.fields.private_entities.helper')">
+        <input type="checkbox" name="settings[skip_private]" value="1" @if (isset($webhook) && $webhook->skipPrivate()) checked="checked" @endif />
+    </x-checkbox>
+</x-forms.field>
+
 </x-grid>
 
