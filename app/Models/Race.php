@@ -12,6 +12,7 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -161,7 +162,7 @@ class Race extends MiscModel
     /**
      * Characters belonging to this race
      */
-    public function characters()
+    public function characters(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Character', 'character_race');
     }
@@ -169,7 +170,7 @@ class Race extends MiscModel
     /**
      * Parent Race
      */
-    public function race()
+    public function race(): BelongsTo
     {
         return $this->belongsTo('App\Models\Race', 'race_id', 'id');
     }
@@ -177,7 +178,7 @@ class Race extends MiscModel
     /**
      * Children Races
      */
-    public function races()
+    public function races(): HasMany
     {
         return $this->hasMany('App\Models\Race', 'race_id', 'id');
     }
@@ -263,5 +264,15 @@ class Race extends MiscModel
         }
 
         return parent::showProfileInfo();
+    }
+
+    /**
+     * Detach children when moving this entity from one campaign to another
+     */
+    public function detach(): void
+    {
+        // Pivot tables can be deleted directly
+        $this->characters()->detach();
+        $this->locations()->detach();
     }
 }

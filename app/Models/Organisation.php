@@ -51,14 +51,14 @@ class Organisation extends MiscModel
         'organisation_id',
         'type',
         'is_private',
-        'is_defunct'
+        'is_defunct',
     ];
 
     protected array $sortable = [
         'name',
         'type',
         'parent.name',
-        'is_defunct'
+        'is_defunct',
     ];
 
     /**
@@ -93,7 +93,7 @@ class Organisation extends MiscModel
      * @var string[]
      */
     public array $nullableForeignKeys = [
-        'organisation_id'
+        'organisation_id',
     ];
 
     protected array $organisationAndDescendantIds;
@@ -290,14 +290,9 @@ class Organisation extends MiscModel
      */
     public function detach(): void
     {
-        foreach ($this->children()->get() as $child) {
-            $child->organisations()->detatch($this->id);
-        }
-        foreach ($this->members as $child) {
-            $child->delete();
-        }
-
-        parent::detach();
+        // Pivot tables can be deleted directly
+        $this->members()->delete();
+        $this->locations()->detach();
     }
 
     /**

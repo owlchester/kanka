@@ -12,6 +12,9 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -187,12 +190,12 @@ class Family extends MiscModel
 
     /**
      */
-    public function members()
+    public function members(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Character', 'character_family');
     }
 
-    public function pivotMembers()
+    public function pivotMembers(): HasMany
     {
         return $this->hasMany(CharacterFamily::class);
     }
@@ -200,16 +203,15 @@ class Family extends MiscModel
     /**
      * Parent
      */
-    public function family()
+    public function family(): BelongsTo
     {
         return $this->belongsTo('App\Models\Family', 'family_id', 'id');
     }
 
     /**
      * Children
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function families()
+    public function families(): HasMany
     {
         return $this->hasMany('App\Models\Family', 'family_id', 'id');
     }
@@ -238,17 +240,7 @@ class Family extends MiscModel
      */
     public function detach(): void
     {
-        foreach ($this->members as $child) {
-            $child->family_id = null;
-            $child->save();
-        }
-
-        foreach ($this->families as $family) {
-            $family->family_id = null;
-            $family->save();
-        }
-
-        parent::detach();
+        $this->members()->detach();
     }
 
     /**

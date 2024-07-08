@@ -151,12 +151,7 @@ class Ability extends MiscModel
      */
     public function detach(): void
     {
-        foreach ($this->abilities as $child) {
-            $child->ability_id = null;
-            $child->save();
-        }
-
-        parent::detach();
+        $this->entities()->detach();
     }
 
     /**

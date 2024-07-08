@@ -170,7 +170,6 @@ class Tag extends MiscModel
             //                $child->child->save();
             //            }
         }
-        parent::detach();
     }
 
     /**

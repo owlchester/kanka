@@ -12,6 +12,9 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -173,7 +176,7 @@ class Creature extends MiscModel
     /**
      * Parent creature
      */
-    public function creature()
+    public function creature(): BelongsTo
     {
         return $this->belongsTo(Creature::class, 'creature_id', 'id');
     }
@@ -181,7 +184,7 @@ class Creature extends MiscModel
     /**
      * Children creatures
      */
-    public function creatures()
+    public function creatures(): HasMany
     {
         return $this->hasMany(Creature::class, 'creature_id', 'id');
     }
@@ -210,7 +213,7 @@ class Creature extends MiscModel
     /**
      * Creatures have multiple locations
      */
-    public function locations()
+    public function locations(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Location', 'creature_location')
             ->with('entity');
@@ -238,5 +241,14 @@ class Creature extends MiscModel
     public function isExtinct(): bool
     {
         return (bool) $this->is_extinct;
+    }
+
+    /**
+     * Detach children when moving this entity from one campaign to another
+     */
+    public function detach(): void
+    {
+        // Pivot tables can be deleted directly
+        $this->locations()->detach();
     }
 }

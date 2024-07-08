@@ -4,7 +4,6 @@ namespace App\Services\Entity;
 
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
-use App\Facades\UserCache;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Character;
@@ -200,7 +199,7 @@ class MoveService
             $this->entity->permissions()->delete();
 
             // Detach is a custom function on a child to remove itself from where it is parent to other entities.
-            $child->detach();
+            $this->cleanupChild($child);
 
             // Update Entity first, as there are no hooks on the Entity model.
             CampaignLocalization::forceCampaign($this->to);
@@ -227,9 +226,38 @@ class MoveService
             $success = true;
         } catch (Exception $e) {
             DB::rollBack();
+            if (app()->isLocal()) {
+                throw $e;
+            }
         }
 
         CampaignLocalization::forceCampaign($this->campaign);
         return $success;
+    }
+
+    protected function cleanupChild(MiscModel $model)
+    {
+        // Loop on children attributes and detach.
+        $attributes = $model->getAttributes();
+        foreach ($attributes as $attribute => $value) {
+            if (Str::endsWith($attribute, '_id')  && $attribute != 'campaign_id') {
+                $model->$attribute = null;
+            }
+        }
+
+        // If they have nested children, look for the direct children
+        if (method_exists($model, 'children') && method_exists($this, 'getParentKeyName')) {
+            // @phpstan-ignore-next-line
+            foreach ($model->children as $child) {
+                $parentField = $child->getParentKeyName();
+                $child->$parentField = null;
+                $child->saveQuietly();
+            }
+        }
+
+        if (method_exists($model, 'detach')) {
+            $model->detach();
+        }
+        $model->saveQuietly();
     }
 }

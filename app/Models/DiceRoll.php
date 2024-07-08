@@ -7,12 +7,15 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $system
  * @property string $parameters
- * @property int $character_id
+ * @property int|null $character_id
+ * @property Character $character
  */
 class DiceRoll extends MiscModel
 {
@@ -60,17 +63,13 @@ class DiceRoll extends MiscModel
 
     /**
      * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function diceRollResults()
+    public function diceRollResults(): HasMany
     {
         return $this->hasMany('App\Models\DiceRollResult', 'dice_roll_id');
     }

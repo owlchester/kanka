@@ -31,6 +31,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Location[]|Collection $locations
  * @property Character[]|Collection $characters
  * @property Organisation[]|Collection $organisations
+ * @property Creature[]|Collection $creatures
+ * @property Race[]|Collection $races
  * @property Family[]|Collection $families
  * @property Item[]|Collection $items
  */
@@ -149,11 +151,6 @@ class Location extends MiscModel
         return $this->belongsToMany('App\Models\Creature', 'creature_location');
     }
 
-    public function locationAttributes(): HasMany
-    {
-        return $this->hasMany('App\Models\LocationAttribute', 'location_id', 'id');
-    }
-
     public function items(): HasMany
     {
         return $this->hasMany('App\Models\Item', 'location_id', 'id');
@@ -194,10 +191,7 @@ class Location extends MiscModel
             ->has('entity');
     }
 
-    /**
-     * @return HasMany
-     */
-    public function families()
+    public function families(): HasMany
     {
         return $this->hasMany('App\Models\Family', 'location_id', 'id');
     }
@@ -216,33 +210,14 @@ class Location extends MiscModel
         return Family::whereIn($table->getTable() . '.location_id', $locationIds)->with('location');
     }
 
-    /**
-     * @return HasMany
-     */
-    public function journals()
+    public function journals(): HasMany
     {
         return $this->hasMany('App\Models\Journal', 'location_id', 'id');
     }
 
-    /**
-     * @return HasMany
-     */
-    public function organisations()
+    public function organisations(): BelongsToMany
     {
-        return $this->hasMany('App\Models\Organisation', 'location_id', 'id');
-    }
-
-    /**
-     * Get all characters in the location and descendants
-     */
-    public function allOrganisations()
-    {
-        $locationIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $locationIds[] = $descendant->id;
-        };
-
-        return Organisation::whereIn('location_id', $locationIds)->with('location');
+        return $this->belongsToMany('App\Models\Organisation', 'organisation_location');
     }
 
     /**
@@ -252,30 +227,23 @@ class Location extends MiscModel
     {
         foreach ($this->characters as $child) {
             $child->location_id = null;
-            $child->save();
-        }
-
-        foreach ($this->locations as $child) {
-            $child->location_id = null;
-            $child->save();
-        }
-
-        foreach ($this->organisations as $child) {
-            $child->location_id = null;
-            $child->save();
+            $child->saveQuietly();
         }
 
         foreach ($this->families as $child) {
             $child->location_id = null;
-            $child->save();
+            $child->saveQuietly();
         }
 
         foreach ($this->items as $child) {
             $child->location_id = null;
-            $child->save();
+            $child->saveQuietly();
         }
 
-        parent::detach();
+        // Pivot tables can be deleted directly
+        $this->races()->delete();
+        $this->creatures()->delete();
+        $this->organisations()->delete();
     }
 
     /**

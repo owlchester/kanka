@@ -258,19 +258,6 @@ class Map extends MiscModel
     }
 
     /**
-     * Detach children when moving this entity from one campaign to another
-     */
-    public function detach(): void
-    {
-        foreach ($this->maps as $child) {
-            $child->map_id = null;
-            $child->save();
-        }
-
-        parent::detach();
-    }
-
-    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int

@@ -12,6 +12,7 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -37,6 +38,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Collection|OrganisationMember[] $organisationMemberships
  * @property Collection|ConversationParticipant[] $conversationParticipants
  * @property Collection|Item[] $items
+ * @property Collection|DiceRoll[] $diceRolls
  * @property Collection|CharacterTrait[] $appearances
  * @property Collection|CharacterTrait[] $personality
  */
@@ -214,9 +216,8 @@ class Character extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function location()
+    public function location(): BelongsTo
     {
         return $this
             ->belongsTo('App\Models\Location', 'location_id', 'id')
@@ -225,21 +226,24 @@ class Character extends MiscModel
 
     public function families(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\Family')
+        return $this->belongsToMany(Family::class)
             ->orderBy('character_family.id')
             ->with('entity');
     }
 
     public function characterFamilies(): HasMany
     {
-        return $this->hasMany(CharacterFamily::class, 'character_id');
+        return $this->hasMany(CharacterFamily::class, 'character_id')
+            ->has('family')
+        ;
     }
 
     public function characterRaces(): HasMany
     {
         return $this->hasMany(CharacterRace::class, 'character_id')
             ->has('race')
-            ->with(['race', 'race.entity']);
+            ->with(['race', 'race.entity'])
+        ;
     }
 
     public function races(): BelongsToMany
@@ -325,10 +329,16 @@ class Character extends MiscModel
     {
         foreach ($this->items as $child) {
             $child->character_id = null;
-            $child->save();
+            $child->saveQuietly();
+        }
+        foreach ($this->diceRolls as $child) {
+            $child->character_id = null;
+            $child->saveQuietly();
         }
 
-        parent::detach();
+        $this->organisations()->detach();
+        $this->races()->detach();
+        $this->families()->detach();
     }
 
     /**

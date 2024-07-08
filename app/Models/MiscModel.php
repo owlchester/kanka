@@ -143,21 +143,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Detach children entities from this one. This is for the "Move" functionality, to keep a clean data set.
-     */
-    public function detach(): void
-    {
-        // Loop on children attributes and detach.
-        $attributes = $this->getAttributes();
-        foreach ($attributes as $attribute => $value) {
-            if (str_contains($attribute, '_id')   && $attribute != 'campaign_id') {
-                $this->$attribute = null;
-            }
-        }
-        $this->save();
-    }
-
-    /**
      * Determine if the model has an entry text field
      */
     public function hasEntry(): bool

@@ -10,6 +10,7 @@ use App\Models\Relations\CalendarRelations;
 use App\Traits\ExportableTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
@@ -36,6 +37,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property array $parameters
  * @property bool $skip_year_zero
  * @property bool $show_birthdays
+ * @property Calendar[]|Collection $calendars
  */
 class Calendar extends MiscModel
 {
@@ -362,8 +364,6 @@ class Calendar extends MiscModel
         foreach ($this->calendarEvents as $child) {
             $child->delete();
         }
-
-        parent::detach();
     }
 
     /**

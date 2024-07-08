@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $int
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $family_id
  * @property Carbon $created_at
  * @property Carbon $modified_at
+ * @property null|Character $character
+ * @property null|Family $family
  */
 class CharacterFamily extends Model
 {
@@ -21,11 +24,12 @@ class CharacterFamily extends Model
 
     public $table = 'character_family';
 
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo(Character::class);
     }
-    public function family()
+
+    public function family(): BelongsTo
     {
         return $this->belongsTo(Family::class);
     }

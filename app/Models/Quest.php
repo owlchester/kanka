@@ -247,12 +247,7 @@ class Quest extends MiscModel
         foreach ($this->elements as $child) {
             $child->delete();
         }
-        foreach ($this->quests as $quest) {
-            $quest->quest_id = null;
-            $quest->save();
-        }
         $this->instigator_id = null;
-        parent::detach();
     }
 
     /**
