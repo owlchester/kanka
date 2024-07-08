@@ -34,6 +34,10 @@ return [
             'new'       => 'New entity',
         ],
         'message'   => 'Message',
+        'private_entities' => [
+            'skip'      => 'Skip private entities',
+            'helper'    => 'Don\'t trigger the webhook when updating private entities.'
+        ],
         'type'      => 'Type',
         'types'     => [
             'custom'    => 'Message',
