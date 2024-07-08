@@ -33,7 +33,7 @@
         </div>
 
 
-        <x-form :action="['billing.payment-method.save']" method="PATCH">
+        <x-form :action="['billing.payment-method.save']" method="PATCH" direct>
             <x-grid type="1/1">
                 @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended())
                     @include('settings.subscription.currency._blocked')
@@ -57,7 +57,7 @@
         <h3 class="">
             {{ __('settings.billing.title') }}
         </h3>
-        <x-form :action="['settings.billing-info']" method="PATCH">
+        <x-form :action="['settings.billing-info']" method="PATCH" direct>
             <p class="help-block">
                 {{ __('settings.billing.placeholder') }}
             </p>

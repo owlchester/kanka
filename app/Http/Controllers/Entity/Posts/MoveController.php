@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Entity;
+namespace App\Http\Controllers\Entity\Posts;
 
 use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
@@ -10,7 +10,7 @@ use App\Models\Entity;
 use App\Models\Post;
 use App\Services\Entity\PostService;
 
-class PostMoveController extends Controller
+class MoveController extends Controller
 {
     protected PostService $service;
 
@@ -37,6 +37,9 @@ class PostMoveController extends Controller
     public function move(MovePostRequest $request, Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
         /** @var Entity|null $newEntity */
         $newEntity = Entity::where(['id' => $request['entity']])->first();
         $this->authorize('update', $newEntity->child);

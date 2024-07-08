@@ -36,7 +36,7 @@
                 <div v-if="ability.type" class="visible md:hidden">
                     <div class="inline-block bg-base-200 p-2 rounded-xl" v-html="ability.type"></div>
                 </div>
-                <p class="text-sm" v-if="ability.entry" v-html="ability.entry"></p>
+                <div class="entity-content" v-if="ability.entry" v-html="ability.entry"></div>
                 <div class="flex gap-2 items-center" v-if="ability.tags">
                     <a v-for="tag in ability.tags"
                        class="rounded-lg bg-base-200 text-xs py-1 px-2 text-base-content"

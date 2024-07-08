@@ -19,11 +19,12 @@
         class="entity-form post-form"
     >
     <x-grid type="1/1">
-    @include('entities.pages.posts._form')
+        @include('cruds.forms._errors')
+        @include('entities.pages.posts._form')
 
-    <div class="">
-        <x-button.delete-confirm target="#delete-form-note-{{ $model->id}}" />
-    </div>
+        <div class="">
+            <x-button.delete-confirm target="#delete-form-note-{{ $model->id}}" />
+        </div>
     </x-grid>
 
     @if(!empty($model) && $campaign->hasEditingWarning())

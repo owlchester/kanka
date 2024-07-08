@@ -165,42 +165,14 @@ const quickCreatorSubformHandler = () => {
                 quickCreatorUI();
                 quickCreatorHandleEvents();
             })
-            // .catch(function (err) {
-            //     /** @property {string} responseJSON - json errors from response  */
-            //     console.log(err);
-            //     if (err.data.errors) {
-            //         let errors = err.data.errors;
-            //
-            //         let errorKeys = Object.keys(errors);
-            //         let foundAllErrors = true;
-            //         errorKeys.forEach(function (i) {
-            //             let errorSelector = document.querySelector('#entity-creator-form [name="' + i + '"]');
-            //             if (errorSelector) {
-            //                 errorSelector.classList.add('input-error');
-            //
-            //                 const errorElement = document.createElement('div');
-            //                 errorElement.classList.add('text-error');
-            //                 errorElement.innerHTML = errors[i][0];
-            //                 errorSelector.parentNode.append(errorElement);
-            //             } else {
-            //                 foundAllErrors = false;
-            //             }
-            //         });
-            //
-            //         let firstItem = Object.keys(errors)[0];
-            //         let firstItemDom = document.querySelector('#entity-creator-form input[name="' + firstItem + '"]');
-            //
-            //         // If we can actually find the first element, switch to it and the correct tab.
-            //         if (firstItemDom) {
-            //             firstItemDom.scrollIntoView({behavior: 'smooth'});
-            //         }
-            //     }
-            //     quickCreatorSubmitBtns.forEach(btn => btn.classList.remove('btn-disabled', 'loading'));
-            //
-            //     document.querySelector('#entity-creator-form [name="action"]').value = '';
-            // })
+            .catch(err => {
+                if (err.response) {
+                    window.formErrorHandler(err.response, form);
+                }
+                quickCreatorSubmitBtns.forEach(btn => btn.classList.remove('btn-disabled', 'loading'));
+                document.querySelector('#entity-creator-form [name="action"]').value = '';
+            })
         ;
-
     };
 };
 

@@ -295,7 +295,7 @@ const loadTemplate = () => {
         .then(response => {
             response.forEach(attr => importAttribute(attr))
             closeModal()
-            window.showToast(trans('toasts.template_loaded'))
+            window.showToast(trans('toasts.template'))
             template.value = null
         })
 }

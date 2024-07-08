@@ -16,7 +16,10 @@
         unload
         class="entity-form post-form"
     >
-        @include('entities.pages.posts._form')
+        <x-grid type="1/1">
+            @include('cruds.forms._errors')
+            @include('entities.pages.posts._form')
+        </x-grid>
     </x-form>
 @endsection
 

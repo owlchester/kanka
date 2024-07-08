@@ -33,7 +33,10 @@ const onMaintenanceFormSubmit = (event) => {
             form.submit();
         })
         .catch(err => {
-            window.formErrorHandler(err.response, form);
+            // Result with a response, hopefully a 422 error
+            if (err.response) {
+                window.formErrorHandler(err.response, form);
+            }
             stopAnimation(form);
         })
     ;

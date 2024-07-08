@@ -5,7 +5,7 @@
     </div>
 
     <div>{!! __('crud.delete_modal.recoverable', [
-'boosted-campaign' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>',
+'boosted-campaign' => '<a href="' . \App\Facades\Domain::toFront('premium') . '" target="_blank">' . __('concept.premium-campaigns') . '</a>',
 'day' => config('entities.hard_delete')
 ])!!}</div>
 </div>

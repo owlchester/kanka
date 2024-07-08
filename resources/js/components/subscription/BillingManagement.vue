@@ -38,13 +38,13 @@
                 <h4 id="modal-card-label">
                     {{ translate('new_card') }}
                 </h4>
-                <button type="button" class="rounded-full" @click="closeModal('accessModal')" title="Close">
+                <button type="button" class="rounded-full" @click="closeModal('cardModal')" title="Close">
                     <i class="fa-solid fa-times" aria-hidden="true"></i>
                     <span class="sr-only">Close</span>
                 </button>
             </header>
             <article class="text-justify">
-                <div class="mb-2 w-full field">
+                <div class="mb-2 w-full field text-left">
                     <label>{{ translate('card_name') }}</label>
                     <input id="card-holder-name" type="text" v-model="name" class="w-full">
                 </div>

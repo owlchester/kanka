@@ -27,7 +27,6 @@ class StorePost extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'entity_id' => 'required|exists:entities,id',
             'name' => 'required|max:191',
             'visibility_id' => 'nullable|exists:visibilities,id',
             'is_pinned' => 'boolean',

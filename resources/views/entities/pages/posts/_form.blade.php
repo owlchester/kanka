@@ -61,7 +61,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
         <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
                 <x-forms.field field="name" :required="true">
-                    <input type="text" name="name"  placeholder="{{ __('entities/notes.placeholders.name') }}" value="{!! old('name', $model->name ?? null) !!}" maxlength="191" required data-bragi-name="{{ $bragiName }}" data-live-disabled="1" />
+                    <input type="text" name="name"  placeholder="{{ __('entities/notes.placeholders.name') }}" value="{!! old('name', $model->name ?? null) !!}" maxlength="191" data-bragi-name="{{ $bragiName }}" data-live-disabled="1" />
                 </x-forms.field>
 
                 <x-forms.field field="layout" :hidden="isset($layoutHelper)">
@@ -111,5 +111,3 @@ $layoutOptions = $layoutDefault + $layoutOptions
         @includeWhen(auth()->user()->isAdmin() && !empty($templates), 'entities.pages.posts._templates')
     </div>
 </div>
-
-<input type="hidden" name="entity_id" value="{{ $entity->id }}" />

@@ -57,26 +57,24 @@ class PostController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $note = new Post();
-        $note->entity_id = $entity->id;
-        if ($campaign->superboosted()) {
-            $note = $note->create($request->all());
-        } else {
-            $note = $note->create($request->except(['layout_id']));
-        }
+        $post = new Post();
+        $data = $campaign->superboosted() ? $request->all() : $request->except(['layout_id']);
+        $data['entity_id'] = $entity->id;
+        $post->create($data);
+
 
         if ($request->has('submit-new')) {
             $route = route('entities.posts.create', [$campaign, $entity]);
             return response()->redirectTo($route);
         } elseif ($request->has('submit-update')) {
-            $route = route('entities.posts.edit', [$campaign, $entity, $note]);
+            $route = route('entities.posts.edit', [$campaign, $entity, $post]);
             return response()->redirectTo($route);
         }
 
         return redirect()
             ->to($entity->url())
             ->with('success', __('entities/notes.create.success', [
-                'name' => $note->name, 'entity' => $entity->child->name
+                'name' => $post->name, 'entity' => $entity->child->name
             ]));
     }
 
@@ -120,11 +118,12 @@ class PostController extends Controller
             return response()->json(['success' => true]);
         }
 
+        $data = $request->all();
+        unset($data['entity_id']);
         if ($request->isNotFilled('position')) {
-            $post->update($request->except('position'));
-        } else {
-            $post->update($request->all());
+            unset($data['position']);
         }
+        $post->update($data);
 
         /** @var MultiEditingService $editingService */
         $editingService = app()->make(MultiEditingService::class);

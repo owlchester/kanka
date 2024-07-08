@@ -72,14 +72,14 @@ const registerDropdownFormActions = () => {
 
     // Register click on each sub action
     entityFormActions.forEach(action => {
-        if(action.dataset.loaded === '1') {
-            return;
-        }
-        action.dataset.loaded = '1';
+        // if(action.dataset.loaded === '1') {
+        //     return;
+        // }
+        // action.dataset.loaded = '1';
         action.addEventListener('click', function (event) {
+            event.preventDefault();
             entityFormSubmitMode.name = action.dataset.action;
             entityFormMainButton.click();
-            event.preventDefault();
             return false;
         });
     });

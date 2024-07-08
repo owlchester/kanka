@@ -68,9 +68,9 @@
 @if (auth()->check())
     <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3">
 <menu class="flex flex-wrap gap-3 ps-0">
-            <a href="#" class="flex-none btn2 btn-sm flex gap-2 items-center"
-               @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false" @else disabled @endif data-toggle="tooltip" data-title="{{ __('crud.filters.copy_helper') }}">
-                <i class="fa-solid fa-clipboard" aria-hidden="true"></i>
+            <a href="#" class="flex-none btn2 btn-sm flex gap-2 items-center @if ($activeFilters === 0) btn-disabled" @endif
+               @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false"  @endif data-toggle="tooltip" data-title="{{ __('crud.filters.copy_helper') }}">
+                <x-icon class="fa-solid fa-clipboard" />
                 <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
                 <span class="visible md:hidden">{{ __('crud.filters.mobile.copy') }}</span>
             </a>

@@ -141,7 +141,7 @@ const select2ColourState = (state) => {
     }
 
     const span = document.createElement('span');
-    span.innerHTML = '<div class="badge label bg-\' + state.id + \'"> </div>' + state.text;
+    span.innerHTML = '<div class="badge label bg-' + state.id + '"> </div>' + state.text;
     return span;
 };
 

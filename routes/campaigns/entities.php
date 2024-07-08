@@ -257,8 +257,8 @@ Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect
 // Move
 Route::get('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
 Route::post('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move');
-Route::get('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\PostMoveController@index')->name('posts.move');
-Route::post('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\PostMoveController@move')->name('posts.move');
+Route::get('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\Posts\MoveController@index')->name('posts.move');
+Route::post('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\Posts\MoveController@move')->name('posts.move');
 
 // Transform
 Route::get('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');

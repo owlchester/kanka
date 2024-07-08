@@ -51,6 +51,9 @@ a:hover, a:active, a:focus {
     p {
         margin-bottom: 0.75rem;
     }
+    p:last-child {
+        margin-bottom: 0;
+    }
 
     hr {
         margin-top: 1.1rem;
