@@ -15,7 +15,7 @@
             'render' => function($model) use ($campaign) {
                 if ($model->character) {
                     return \Illuminate\Support\Facades\Blade::renderComponent(
-                    new \App\View\Components\EntityLink($model->character, $campaign)
+                        new \App\View\Components\EntityLink($model->character, $campaign)
                     );
                 }
             }

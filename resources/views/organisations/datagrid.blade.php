@@ -16,6 +16,9 @@
             'render' => function($model) use ($campaign) {
                 $locations = [];
                 foreach ($model->locations as $location) {
+                    if (!$location->entity) {
+                        continue;
+                    }
                     $locations[] = \Illuminate\Support\Facades\Blade::renderComponent(
                     new \App\View\Components\EntityLink($location->entity, $campaign)
                 );

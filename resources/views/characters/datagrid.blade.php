@@ -26,6 +26,9 @@
             'render' => function($model) use ($campaign) {
                 $families = [];
                 foreach ($model->families as $family) {
+                    if (!$family->entity) {
+                        continue;
+                    }
                     $families[] = \Illuminate\Support\Facades\Blade::renderComponent(
                     new \App\View\Components\EntityLink($family->entity, $campaign)
                 );
