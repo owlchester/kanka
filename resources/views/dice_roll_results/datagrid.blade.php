@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\DiceRollResult $model */ ?>
 {!! $datagrid
     ->columns([
         // Avatar
@@ -11,7 +12,7 @@
             'field' => 'diceRoll.name',
             'render' => function($model) use ($campaign) {
                return \Illuminate\Support\Facades\Blade::renderComponent(
-                    new \App\View\Components\EntityLink($model->diceRoll, $campaign)
+                    new \App\View\Components\EntityLink($model->diceRoll->entity, $campaign)
                 );
             }
         ],

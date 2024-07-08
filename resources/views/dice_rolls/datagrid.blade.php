@@ -12,10 +12,10 @@
         [
             'label' => __('entities.character'),
             'field' => 'character.name',
-            'render' => function($model) use ($campaign) {
-                if ($model->character) {
+            'render' => function(\App\Models\DiceRoll $model) use ($campaign) {
+                if ($model->character && $model->character->entity) {
                     return \Illuminate\Support\Facades\Blade::renderComponent(
-                        new \App\View\Components\EntityLink($model->character, $campaign)
+                        new \App\View\Components\EntityLink($model->character->entity, $campaign)
                     );
                 }
             }
