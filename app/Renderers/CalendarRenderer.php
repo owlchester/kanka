@@ -1096,7 +1096,10 @@ class CalendarRenderer
 
             // Previous cycles. Twice because sometimes the first full moon appears at the end of a long month, so
             // we need to fill up the month as much as we can.
-            for ($cycles = 1; $cycles <= 2; $cycles++) {
+            // With a big enough offset and fullmoon cycle, the user can end up with no moon on their first month of
+            // the first year?
+            $maxCycles = max(2, 3);
+            for ($cycles = 1; $cycles <= $maxCycles; $cycles++) {
                 $this->addMoonPhases($nextFullMoon - ($moon['fullmoon'] * $cycles), $moon);
             }
 
@@ -1222,8 +1225,10 @@ class CalendarRenderer
     {
         // Moons can be float so we "floor" them
         $nextFullMoon = floor($nextFullMoon);
+
+        // If the next full moon is before year 0... What?
         if ($nextFullMoon < 0) {
-            return;
+            //return;
         }
         if (!isset($this->moons[$nextFullMoon])) {
             $this->moons[$nextFullMoon] = [];

@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-6bf306b1.js",
+    "file": "assets/app-47cf9876.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-0d19b1d3.js",
@@ -251,12 +251,12 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-6b0818bb.css",
+    "file": "assets/app-0a11399b.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-c8285435.css",
+    "file": "assets/auth-a5e91284.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -281,7 +281,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-c3be0adc.css",
+    "file": "assets/front-9f1c3c68.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },

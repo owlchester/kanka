@@ -32,7 +32,7 @@ const initCalendarEventModal = () => {
     const existingEvent = document.querySelector('.calendar-existing-event-field');
     const subform = document.querySelector('#calendar-event-subform');
 
-    document.querySelector('#calendar-action-existing').addEventListener('click', function(e) {
+    document.querySelector('#calendar-action-existing')?.addEventListener('click', function(e) {
         e.preventDefault();
         first.classList.add('!hidden');
         newEvent.classList.add('hidden');
@@ -40,7 +40,7 @@ const initCalendarEventModal = () => {
         subform.classList.remove('hidden');
     });
 
-    document.querySelector('#calendar-action-new').addEventListener('click', function(e) {
+    document.querySelector('#calendar-action-new')?.addEventListener('click', function(e) {
         e.preventDefault();
         first.classList.add('!hidden');
         newEvent.classList.remove('hidden');
@@ -48,7 +48,7 @@ const initCalendarEventModal = () => {
         subform.classList.remove('hidden');
     });
 
-    document.querySelector('#calendar-event-switch').addEventListener('click', function(e) {
+    document.querySelector('#calendar-event-switch')?.addEventListener('click', function(e) {
         e.preventDefault();
         subform.classList.add('hidden');
         first.classList.remove('!hidden');

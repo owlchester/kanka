@@ -22,14 +22,14 @@
     <td class="h-24 text-center break-words align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}">
         <div class="flex flex-col gap-1">
         @if ($day['day'])
-            <div class="flex items-center items-stretch gap-1">
-                <h5 class="m-0 {{ $day['isToday'] ? "badge badge-primary" : null}}">
+            <div class="flex gap-1 items-center">
+                <div class="text-base day-name {{ $day['isToday'] ? "badge badge-primary" : null}}">
                     <span class="day-number">{{ $day['day'] }}</span>
                     <span class="julian-number">{{ $day['julian'] }}</span>
-                </h5>
-                <div class="grow">
+                </div>
+                <div class="grow truncate">
                 @if ($day['day'] == 1 && !empty($showMonth))
-                    <span class="hidden md:inline">{{ $day['month'] }}</span>
+                    <span class="hidden md:inline month-name">{{ $day['month'] }}</span>
                 @endif
                 </div>
                 @if ($canEdit)
@@ -80,7 +80,7 @@
             @endif
             @if (!empty($day['events']))
                 @foreach ($day['events'] as $event)
-                    <div class="calendar-event-block rounded-sm text-left p-1 relative overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
+                    <div class="calendar-event-block text-left rounded-sm p-1 relative cursor-pointer text-sm flex gap-1 flex-col   {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
                         @if ($canEdit)
 @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
                             data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.entity_events.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->entity->id, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
@@ -88,28 +88,42 @@
                             data-url="{{ $event->entity->url() }}"
                         @endif
                         >
-                        @if (Avatar::entity($event->entity)->hasImage())
-                            <a href="{{ $event->entity->url() }}" class="hidden md:inline-block entity-image !w-7 !h-7 pull-left mr-1 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
-                        @endif
-                        <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->entity]) }}" class="block">
-                            {{ $event->entity->name }}
-                            @if ($renderer->isEventStartDate($event, $day['date']))
-                                <span class="text-xs">{{ __('calendars.events.start')}}</span>
-                            @elseif ($renderer->isEventEndDate($event, $day['date']))
-                                <span class="text-xs">{{ __('calendars.events.end')}}</span>
+                        <div class="flex gap-1 items-center">
+                            @if (Avatar::entity($event->entity)->hasImage())
+                                <div class="hidden md:inline grow-0">
+                                    <a href="{{ $event->entity->url() }}" class="entity-image !w-7 !h-7 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
+                                </div>
                             @endif
-                        </span>
-                        @if ($event->isBirth())
-                            @if ($event->year === $day['year'])
-                                <x-icon class="fa-solid fa-baby" title="{{ __('entities/events.types.birth') }}" tooltip="1" />
-                            @else
-                                <x-icon class="fa-solid fa-birthday-cake" title="{{ __('entities/events.types.birthday') }}" tooltip="1" />
+                            <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->entity]) }}" class="grow truncate">
+                                {{ $event->entity->name }}
+                                @if ($renderer->isEventStartDate($event, $day['date']))
+                                    <span class="text-xs">{{ __('calendars.events.start')}}</span>
+                                @elseif ($renderer->isEventEndDate($event, $day['date']))
+                                    <span class="text-xs">{{ __('calendars.events.end')}}</span>
+                                @endif
+                            </span>
+                            @if ($event->isBirth())
+                                @if ($event->year === $day['year'])
+                                    <x-icon class="fa-solid fa-baby" title="{{ __('entities/events.types.birth') }}" tooltip />
+                                @else
+                                    <x-icon class="fa-solid fa-birthday-cake" title="{{ __('entities/events.types.birthday') }}" tooltip />
+                                @endif
                             @endif
-                        @endif
-                        @if ($event->isDeath())
-                            <x-icon class="fa-solid fa-skull" title="{{ __('entities/events.types.death') }}" tooltip="1" />
-                        @endif
-                        {!! $event->getLabel() !!}
+                            @if ($event->isDeath())
+                                <x-icon class="fa-solid fa-skull" title="{{ __('entities/events.types.death') }}" tooltip />
+                            @endif
+                            @if ($event->is_recurring)
+                                <x-icon class="fa-solid fa-arrows-rotate" tooltip :title="__('calendars.fields.is_recurring')" />
+                            @endif
+                        </div>
+                        <div class="reminder-comment">
+                            @if (!empty($event->comment))
+                            <span class="calendar-event-comment grow text-xs" data-toggle="tooltip" data-title="{{ $event->comment }}">
+                                {!! $event->comment !!}
+                            </span>
+                            @endif
+
+                        </div>
                     </div>
                 @endforeach
             @endif

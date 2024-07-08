@@ -48,9 +48,9 @@ class StoreCalendar extends FormRequest
             'show_birthdays' => 'boolean',
             'template_id' => 'nullable',
             'format'      => ['nullable', new CalendarFormat(), 'string', 'max:20'],
-            'moon_offset' => [
-                '*' => new CalendarMoonOffset()
-            ]
+//            'moon_offset' => [
+//                '*' => new CalendarMoonOffset()
+//            ],
         ];
 
         if (request()->has('quick-creator')) {
