@@ -175,7 +175,7 @@ class CharacterObserver extends MiscObserver
             return $this;
         }
 
-        $this->saveMany($character, 'races', request()->get('races', []), Race::class);
+        $this->saveMany($character, 'races', request()->get('races', []), Race::class, 'characterRaces', 'race_id');
 
         return $this;
     }

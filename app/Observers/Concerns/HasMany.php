@@ -7,19 +7,21 @@ use App\Models\MiscModel;
 
 trait HasMany
 {
-    protected function saveMany(MiscModel $model, string $relation, array $values, string $classname): void
+    protected function saveMany(MiscModel $model, string $relation, array $values, string $classname, string $pivotRelation = null, string $pivotId = null): void
     {
         $existing = $unique = $recreate = [];
         // Sometimes we have duplicate ids in the db, which we need to clean up
-        foreach ($model->$relation as $rel) {
+        $relationName = $pivotRelation ?? $relation;
+        $relationID = $pivotId ?? 'id';
+        foreach ($model->$relationName as $rel) {
             // If it already exists, we have an issue
-            if (!empty($existing[$rel->id])) {
-                $recreate[$rel->id] = $rel->id;
-                $model->$relation()->detach($rel->id);
+            if (!empty($existing[$rel->$relationID])) {
+                $recreate[$rel->$relationID] = $rel->$relationID;
+                $model->$relation()->detach($rel->$relationID);
                 continue;
             }
-            $existing[$rel->id] = $rel->id;
-            $unique[$rel->id] = $rel->id;
+            $existing[$rel->$relationID] = $rel->$relationID;
+            $unique[$rel->$relationID] = $rel->$relationID;
         }
 
         if (!empty($recreate)) {
