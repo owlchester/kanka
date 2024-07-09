@@ -57,6 +57,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "private_races": [2, 5],
             "type": null,
             "families": [34],
+            "private_families": [4, 14],
             "is_dead": true,
             "traits": [
                 {

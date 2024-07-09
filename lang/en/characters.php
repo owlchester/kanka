@@ -90,5 +90,11 @@ return [
         'reorder'       => [
             'success'   => 'Character races updated successfully',
         ]
+        ],
+    'families'         => [
+        'title'         => 'Manage families of :name',
+        'reorder'       => [
+            'success'   => 'Character families updated successfully',
+        ]
     ]
 ];

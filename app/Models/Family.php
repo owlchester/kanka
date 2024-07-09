@@ -28,6 +28,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property FamilyTree|null $familyTree
  * @property Collection|Family[] $families
  * @property Collection|Family[] $descendants
+ * @property Collection|CharacterFamily[] $pitvotMembers
  */
 class Family extends MiscModel
 {
@@ -197,7 +198,9 @@ class Family extends MiscModel
 
     public function pivotMembers(): HasMany
     {
-        return $this->hasMany(CharacterFamily::class);
+        return $this->hasMany(CharacterFamily::class)
+            ->with(['character', 'character.entity']);
+
     }
 
     /**
@@ -233,6 +236,18 @@ class Family extends MiscModel
             })
             ->has('entity')
             ->whereIn('cf.family_id', $familyId);
+    }
+
+    /**
+     * Get all characters in the family and descendants
+     */
+    public function allCharacterFamilies()
+    {
+        $familyIDs = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $familyIDs[] = $descendant->id;
+        };
+        return CharacterFamily::groupBy('character_id')->distinct('character_id')->whereIn('character_family.family_id', $familyIDs)->with('character');
     }
 
     /**

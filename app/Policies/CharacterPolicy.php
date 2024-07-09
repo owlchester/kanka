@@ -37,4 +37,12 @@ class CharacterPolicy extends MiscPolicy
     {
         return UserCache::user($user)->admin();
     }
+
+    /**
+     * @return bool|mixed
+     */
+    public function familyManagement(User $user, Character $entity)
+    {
+        return UserCache::user($user)->admin();
+    }
 }

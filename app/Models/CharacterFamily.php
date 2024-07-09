@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Concerns\Privatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $int
  * @property int $character_id
  * @property int $family_id
+ * @property bool $is_private
  * @property Carbon $created_at
  * @property Carbon $modified_at
  * @property null|Character $character
@@ -17,9 +19,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class CharacterFamily extends Model
 {
+    use Privatable;
+
     protected $fillable = [
         'character_id',
         'family_id',
+        'is_private',
     ];
 
     public $table = 'character_family';
@@ -32,6 +37,11 @@ class CharacterFamily extends Model
     public function family(): BelongsTo
     {
         return $this->belongsTo(Family::class);
+    }
+
+    public function getCharacterFamiliesAttribute()
+    {
+        return $this->character->races;
     }
 
     public function exportFields(): array

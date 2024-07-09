@@ -19,7 +19,8 @@ class CharacterResource extends EntityResource
 
         $raceIDs = $model->characterRaces->pluck('race.id');
         $privateRaceIDs = $model->characterRaces->where('is_private', true)->pluck('race.id');
-        $familyIDs = $model->families->pluck('id');
+        $familyIDs = $model->characterFamilies->pluck('family.id');
+        $privateFamilyIDs = $model->characterFamilies->where('is_private', true)->pluck('family.id');
 
         $character = [
             'title' => $model->title,
@@ -31,6 +32,7 @@ class CharacterResource extends EntityResource
             'type' => $model->type,
 
             'families' => $familyIDs,
+            'private_families' => $privateFamilyIDs,
 
             'is_dead' => (bool) $model->is_dead,
             'traits' => CharacterTraitResource::collection($model->characterTraits),

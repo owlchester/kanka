@@ -23,19 +23,19 @@
             'label' => __('entities.families'),
             'visible' => $campaign->enabled('families'),
             'disableSort' => true,
-            'render' => function($model) use ($campaign) {
+            'render' => function ($model) use ($campaign) {
                 $families = [];
-                foreach ($model->families as $family) {
-                    if (!$family->entity) {
+                foreach ($model->characterFamilies as $family) {
+                    if (!$family->family || !$family->family->entity) {
                         continue;
                     }
                     $families[] = \Illuminate\Support\Facades\Blade::renderComponent(
-                    new \App\View\Components\EntityLink($family->entity, $campaign)
-                );
+                        new \App\View\Components\EntityLink($family->family->entity, $campaign)
+                    );
                 }
-                return implode( ', ', $families);
-            }
-        ],
+                return implode(', ', $families);
+            },
+            ],
         [
             'type' => 'location',
             'visible' => $campaign->enabled('locations'),

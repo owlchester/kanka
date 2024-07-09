@@ -158,6 +158,15 @@ class Character extends MiscModel
             'families' => function ($sub) {
                 $sub->select('families.id', 'families.name');
             },
+            'characterFamilies' => function ($sub) {
+                $sub->select('*');
+            },
+            'characterFamilies.family' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'characterFamilies.family.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
             'characterRaces' => function ($sub) {
                 $sub->select('*');
             },
@@ -234,13 +243,16 @@ class Character extends MiscModel
     public function characterFamilies(): HasMany
     {
         return $this->hasMany(CharacterFamily::class, 'character_id')
+            ->orderBy('id')
             ->has('family')
+            ->with(['family', 'family.entity'])
         ;
     }
 
     public function characterRaces(): HasMany
     {
         return $this->hasMany(CharacterRace::class, 'character_id')
+            ->orderBy('id')
             ->has('race')
             ->with(['race', 'race.entity'])
         ;
