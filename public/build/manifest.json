@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-47cf9876.js",
+    "file": "assets/app-7933fb85.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-0d19b1d3.js",
@@ -236,7 +236,7 @@
     "src": "resources/js/settings.js"
   },
   "resources/js/story.js": {
-    "file": "assets/story-93bc8b8b.js",
+    "file": "assets/story-29349fd7.js",
     "isEntry": true,
     "src": "resources/js/story.js"
   },
