@@ -78,6 +78,12 @@ return [
             'quest_member'  => 'Quests that the character is a member of.',
         ],
     ],
+    'races'         => [
+        'reorder'   => [
+            'success'   => 'Character races updated successfully.',
+        ],
+        'title'     => 'Manage races of :name',
+    ],
     'sections'      => [
         'appearance'    => 'Appearance',
         'personality'   => 'Personality',
@@ -85,10 +91,4 @@ return [
     'warnings'      => [
         'personality_hidden'    => 'You aren\'t allowed to edit personality traits on this character.',
     ],
-    'races'         => [
-        'title'         => 'Manage races of :name',
-        'reorder'       => [
-            'success'   => 'Character races updated successfully',
-        ]
-    ]
 ];

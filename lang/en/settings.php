@@ -170,9 +170,9 @@ return [
             'percent_off'   => 'We will discount your first yearly subscription by :percent%!',
         ],
         'currencies'            => [
+            'brl'   => 'BRL',
             'eur'   => 'EUR',
             'usd'   => 'USD',
-            'brl'   => 'BRL',
         ],
         'currency'              => [
             'title' => 'Change your preferred billing currency',

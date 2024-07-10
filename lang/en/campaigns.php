@@ -126,8 +126,8 @@ TEXT
             'already_member'    => 'You are already a member of that campaign.',
             'inactive_token'    => 'This token has already been used, or the campaign no longer exists.',
             'invalid_token'     => 'This token is no longer valid.',
+            'join'              => 'Please log in or register a new account to join :campaign.',
             'login'             => 'Please log in or register to join the campaign.',
-            'join'              => 'Please log in or register a new account to join :campaign.'
         ],
         'fields'                => [
             'created'   => 'Created',

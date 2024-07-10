@@ -14,10 +14,10 @@ return [
         'success_bulk'  => '{0} No item added to :entity.|{1} Added :count item to :entity.|[2,*] Added :count items to :entity.',
         'title'         => 'Add an Item to :name',
     ],
-    'default_position' => 'Unorganised',
-    'destroy'       => [
-        'success'            => 'Item :item removed from :entity.',
-        'success_position'   => 'Items in :position removed from :entity.',
+    'default_position'  => 'Unorganised',
+    'destroy'           => [
+        'success'           => 'Item :item removed from :entity.',
+        'success_position'  => 'Items in :position removed from :entity.',
     ],
     'fields'            => [
         'amount'                => 'Quantity',

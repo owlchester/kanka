@@ -2,10 +2,10 @@
 
 return [
     'create'        => [
-        'title'     => 'New Post',
         'template'  => [
-            'helper'    => 'The campaign admins have defined the following posts as templates that can be re-used.'
-        ]
+            'helper'    => 'The campaign admins have defined the following posts as templates that can be re-used.',
+        ],
+        'title'     => 'New Post',
     ],
     'fields'        => [
         'name'  => 'Name',

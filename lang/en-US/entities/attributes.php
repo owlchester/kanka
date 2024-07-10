@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'sections'      => [
-        'unorganised' => 'Unorganized',
+    'sections'  => [
+        'unorganised'   => 'Unorganized',
     ],
 ];

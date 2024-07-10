@@ -6,6 +6,9 @@ return [
         'reset' => 'Recharge',
         'sync'  => 'Add from races',
     ],
+    'charges'   => [
+        'left'  => ':amount left',
+    ],
     'create'    => [
         'success'           => 'Ability :ability added to :entity.',
         'success_multiple'  => 'Abilities :abilities added to :entity.',
@@ -15,11 +18,8 @@ return [
         'note'      => 'Note',
         'position'  => 'Position',
     ],
-    'charges' => [
-        'left' => ':amount left',
-    ],
-    'groups' => [
-        'unorganised' => 'Unorganised',
+    'groups'    => [
+        'unorganised'   => 'Unorganised',
     ],
     'helpers'   => [
         'note'      => 'You can reference entities using advanced mentions (ex :code) and attributes of the entity (ex :attr) in this field.',
@@ -45,8 +45,8 @@ return [
         'reorder'   => 'Reorder',
         'title'     => ':name Abilities',
     ],
-    'types' => [
-        'unorganised' => 'Abilities are grouped by their parent field, and fallback to being here.',
+    'types'     => [
+        'unorganised'   => 'Abilities are grouped by their parent field, and fallback to being here.',
     ],
     'update'    => [
         'success'   => 'Entity ability :ability updated.',

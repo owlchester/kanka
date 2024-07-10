@@ -26,24 +26,24 @@ return [
         'title'     => 'Update webhook',
     ],
     'fields'        => [
-        'enabled'   => 'Enabled',
-        'event'     => 'Event',
-        'events'    => [
+        'enabled'           => 'Enabled',
+        'event'             => 'Event',
+        'events'            => [
             'deleted'   => 'Deleted entity',
             'edited'    => 'Edited entity',
             'new'       => 'New entity',
         ],
-        'message'   => 'Message',
-        'private_entities' => [
+        'message'           => 'Message',
+        'private_entities'  => [
+            'helper'    => 'Don\'t trigger the webhook when updating private entities.',
             'skip'      => 'Skip private entities',
-            'helper'    => 'Don\'t trigger the webhook when updating private entities.'
         ],
-        'type'      => 'Type',
-        'types'     => [
+        'type'              => 'Type',
+        'types'             => [
             'custom'    => 'Message',
             'payload'   => 'Payload',
         ],
-        'url'       => 'Url',
+        'url'               => 'Url',
     ],
     'helper'        => [
         'active'    => 'If the webhook is currently active',

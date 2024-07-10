@@ -50,8 +50,8 @@ return [
     ],
     'features'          => [
         'approved'  => 'Your idea :feature has been approved.',
-        'rejected'  => 'Your idea :feature has been rejected, reason: :reason.',
         'finished'  => 'Your idea :feature is now available in Kanka!',
+        'rejected'  => 'Your idea :feature has been rejected, reason: :reason.',
     ],
     'header'            => 'You have :count notifications',
     'index'             => [
