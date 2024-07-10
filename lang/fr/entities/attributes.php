@@ -3,22 +3,26 @@
 return [
     'actions'       => [
         'apply_template'    => 'Appliquer un modèle d\'attribut',
+        'load'              => 'Charger',
         'manage'            => 'Gérer',
         'more'              => 'Plus d\'options',
         'remove_all'        => 'Tout supprimer',
         'save_and_edit'     => 'Appliquer et modifier',
         'save_and_story'    => 'Appliquer et voir',
         'show_hidden'       => 'Afficher les attributs cachés',
+        'toggle_privacy'    => 'Privé/Public',
     ],
     'errors'        => [
-        'loop'      => 'Il y a une boucle sur la calculation de cet attribut!',
-        'too_many'  => 'Il y a trop de temps sur cette entité, il n\'est pas possible d\'ajouter plus d\'attributs. Prière de supprimer des attributs avant de pouvoir en ajouter d\'autre.',
+        'loop'                  => 'Il y a une boucle sur la calculation de cet attribut!',
+        'no_attribute_selected' => 'Sélectionner d\'abord un ou plusieurs attributs.',
+        'too_many'              => 'Il y a trop de temps sur cette entité, il n\'est pas possible d\'ajouter plus d\'attributs. Prière de supprimer des attributs avant de pouvoir en ajouter d\'autre.',
     ],
     'fields'        => [
         'attribute'             => 'Attribut',
         'community_templates'   => 'Modèles Communautaires',
         'is_private'            => 'Attributs privés',
         'is_star'               => 'Épinglé',
+        'preferences'           => 'Préférences',
         'template'              => 'Modèle',
         'value'                 => 'Valeur',
     ],
@@ -66,20 +70,29 @@ return [
     'ranges'        => [
         'text'  => 'Options disponibles: :options',
     ],
+    'sections'      => [
+        'unorganised'   => 'Non organisé',
+    ],
     'show'          => [
         'hidden'    => 'Attributs cachés',
         'title'     => 'Attributs de :name',
     ],
     'template'      => [
+        'load'      => [
+            'success'   => 'Modèle chargé',
+            'title'     => 'Chargement à partir d\'un modèle',
+        ],
         'success'   => 'Modèle d\'attribut :name appliqué pour :entity.',
         'title'     => 'Appliquer un modèle d\'attribut pour :name',
     ],
     'title'         => 'Attributs',
     'toasts'        => [
-        'lock'      => 'Attribut verouillé',
-        'pin'       => 'Attribut épinglé',
-        'unlock'    => 'Attribut déverouillé',
-        'unpin'     => 'Attribut non-épinglé',
+        'bulk_deleted'  => 'Attributs supprimés',
+        'bulk_privacy'  => 'Attributs de privacité modifié',
+        'lock'          => 'Attribut verouillé',
+        'pin'           => 'Attribut épinglé',
+        'unlock'        => 'Attribut déverouillé',
+        'unpin'         => 'Attribut non-épinglé',
     ],
     'tutorial'      => 'Les attributs sont des petits bouts d\'information attachés à une entité. Par exemple, un personnage peut avoir une stat :hp et :str, tandis qu\'un lieu peut avoir une stat :pop. Ces informations peuvent être facilement suivies grâce aux attributs.',
     'types'         => [

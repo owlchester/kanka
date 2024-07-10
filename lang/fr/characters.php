@@ -86,6 +86,12 @@ return [
             'quest_member'  => 'Quêtes dont le personnage est membre.',
         ],
     ],
+    'races'         => [
+        'reorder'   => [
+            'success'   => 'Mise à jour réussie des races de personnage.',
+        ],
+        'title'     => 'Gérer les races de :name',
+    ],
     'sections'      => [
         'appearance'    => 'Physique',
         'personality'   => 'Personnalité',

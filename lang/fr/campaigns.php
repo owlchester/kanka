@@ -128,6 +128,7 @@ TEXT
             'already_member'    => 'Tu es déjà un membre de cette campagne.',
             'inactive_token'    => 'Ce code d\'activation a déjà été utilisé, ou la campagne n\'existe plus.',
             'invalid_token'     => 'Ce code d\'activation n\'est plus valide.',
+            'join'              => 'Connecte-toi ou crée un compte pour joindre :campaign.',
             'login'             => 'Connecte-toi ou crée un compte pour joindre la campagne.',
         ],
         'fields'                => [

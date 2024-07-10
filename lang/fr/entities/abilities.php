@@ -4,6 +4,10 @@ return [
     'actions'   => [
         'add'   => 'Ajouter un pouvoir',
         'reset' => 'Réinitialiser les charges',
+        'sync'  => 'Ajouter des races',
+    ],
+    'charges'   => [
+        'left'  => ':amount restant',
     ],
     'create'    => [
         'success'           => 'Pouvoir :ability ajouté à :entity.',
@@ -13,6 +17,9 @@ return [
     'fields'    => [
         'note'      => 'Note',
         'position'  => 'Position',
+    ],
+    'groups'    => [
+        'unorganised'   => 'Inorganisé',
     ],
     'helpers'   => [
         'note'      => 'Ce champ peut référencer des entités en utilisant les mentions avancées (ex :code) et les attributs d\'une entité (ex :attr).',
@@ -37,6 +44,9 @@ return [
         'helper'    => 'Attache des pouvoirs à cette entité. Il est toujours possible de modifier ou de supprimer un pouvoir. Les pouvoirs qui appartiennent au même parent sont groupés ensemble et agissent comme filtres.',
         'reorder'   => 'Réordonner',
         'title'     => 'Pouvoirs de l\'entité :name',
+    ],
+    'types'     => [
+        'unorganised'   => 'Les pouvoirs sont regroupés en fonction de leur parent, ou se retrouvent ici.',
     ],
     'update'    => [
         'success'   => 'Pouvoir d\'entité :ability mis à jour.',

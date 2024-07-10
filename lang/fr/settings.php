@@ -172,6 +172,7 @@ return [
             'percent_off'   => 'Nous appliquerons un rabais de :percent% sur la première année de l\'abonnement!',
         ],
         'currencies'            => [
+            'brl'   => 'BRL',
             'eur'   => 'EUR',
             'usd'   => 'USD',
         ],

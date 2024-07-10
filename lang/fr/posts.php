@@ -2,7 +2,10 @@
 
 return [
     'create'        => [
-        'title' => 'Nouvelle entrée',
+        'template'  => [
+            'helper'    => 'Les administrateurs de la campagne ont défini les articles suivants comme des modèles pouvant être réutilisés.',
+        ],
+        'title'     => 'Nouvelle entrée',
     ],
     'fields'        => [
         'name'  => 'Nom',
