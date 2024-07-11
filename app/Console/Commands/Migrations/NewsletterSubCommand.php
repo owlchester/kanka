@@ -47,6 +47,6 @@ class NewsletterSubCommand extends Command
                 }
             });
 
-        $this->info('Processes ' . $this->count . ' users.');
+        $this->info('Processed ' . $this->count . ' users.');
     }
 }
