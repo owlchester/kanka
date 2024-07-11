@@ -164,7 +164,11 @@ class Race extends MiscModel
      */
     public function characters(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\Character', 'character_race');
+        $query = $this->belongsToMany('App\Models\Character', 'character_race');
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
+            $query->wherePivot('is_private', false);
+        }
+        return $query;
     }
 
     /**
@@ -197,14 +201,20 @@ class Race extends MiscModel
         $raceIds = [$this->id];
         foreach ($this->descendants as $descendant) {
             $raceIds[] = $descendant->id;
-        };
+        }
 
-        return Character::select('characters.*')
+
+        $query = Character::select('characters.*')
             ->distinct('characters.id')
             ->leftJoin('character_race as cr', function ($join) {
                 $join->on('cr.character_id', '=', 'characters.id');
             })
             ->whereIn('cr.race_id', $raceIds);
+
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
+            $query->where('cr.is_private', false);
+        }
+        return $query;
     }
 
     /**
