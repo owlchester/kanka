@@ -2,7 +2,7 @@
 
 @if ($model->hasEntry())
 <div class="entity-content">
-    {!)! $model->parsedEntry() !!}
+    {!! $model->parsedEntry() !!}
 </div>
 @endif
 

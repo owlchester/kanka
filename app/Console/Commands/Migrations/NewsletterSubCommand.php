@@ -33,6 +33,7 @@ class NewsletterSubCommand extends Command
     {
         $this->service = app()->make(NewsletterService::class);
         User::whereNotNull('pledge')
+            ->where('pledge', '<>', '')
             ->where('settings', 'like', '%mail_release%')
             ->chunk(500, function ($users) {
                 foreach ($users as $user) {
