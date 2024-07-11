@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'fulltext'      => 'Pesquisar em todo lugar',
     'lookup'        => [
         'empty'     => 'Sem resultados',
         'hint'      => 'Digite pelo menos 3 letras para pesquisar entidades na campanha.',

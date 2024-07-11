@@ -52,6 +52,7 @@ return [
             'warning'   => 'Naozaj chceš odstrániť vybrané objekty?',
         ],
         'edit'          => [
+            'locations' => 'Akcie s lokáciami',
             'tagging'   => 'Akcie s kategóriami',
             'tags'      => [
                 'add'       => 'Pridať',

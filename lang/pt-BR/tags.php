@@ -3,11 +3,14 @@
 return [
     'children'      => [
         'actions'   => [
-            'add'   => 'Adicionar à tag',
+            'add'           => 'Adicionar à tag',
+            'add_entity'    => 'Adicionar à entidade',
         ],
         'create'    => [
-            'attach_success'    => '{1} Adicionada :count entidade à tag :name.|[2,*] Adicionadas :count entidades à tag :name.',
-            'modal_title'       => 'Adicionar entidades a :name',
+            'attach_success'        => '{1} Adicionada :count entidade à tag :name.|[2,*] Adicionadas :count entidades à tag :name.',
+            'attach_success_entity' => 'Tags atualizadas com sucesso para :name',
+            'entity'                => 'Adicionar tags a :name',
+            'modal_title'           => 'Adicionar entidades a :name',
         ],
     ],
     'create'        => [

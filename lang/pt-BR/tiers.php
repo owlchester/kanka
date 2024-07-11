@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'subscribe' => [
+            'choose'    => 'Escolha :tier',
             'monthly'   => ':tier mensalmente',
             'yearly'    => ':tier anualmente',
         ],
@@ -19,14 +20,18 @@ return [
         'nice_image'        => 'Imagens de entidade padrão',
         'no_ads'            => 'Sem anúncios',
         'pagination'        => ':amount Máximo de resultados paginados (entidades exibidas por página)',
+        'roadmap'           => 'Vote em ideias no roadmap',
     ],
     'periods'   => [
-        'monthly'   => 'Mensalmente',
-        'yearly'    => 'Anualmente',
+        'billed_monthly'    => 'cobrado mensalmente',
+        'billed_yearly'     => 'cobrado anualmente',
+        'monthly'           => 'Mensalmente',
+        'yearly'            => 'Anualmente',
     ],
     'pricing'   => ':currency :amount / mês',
     'ribbons'   => [
         'best-value'    => 'Melhor valor',
+        'current'       => 'Assinatura atual',
         'popular'       => 'Popular',
     ],
     'toggle'    => [

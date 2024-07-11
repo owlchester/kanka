@@ -375,6 +375,7 @@ TEXT
         ],
         'helpers'       => [
             'abilities'         => 'Vytvor schopnosti ako kúzla alebo sily, ktoré priradíš iným objektom.',
+            'assets'            => 'Nahraj súbory, nastav linky a definuj aliasy pre jednotlivé objekty.',
             'bookmarks'         => 'Vytvor záložky k objektom alebo filtrovaným zoznamom, ktoré sa zobrazia v bočnom menu.',
             'calendars'         => 'Miesto, na ktorom vieš vytvoriť kalendáre tvojho sveta.',
             'characters'        => 'Postavy, ktoré obývajú svoj svet.',
@@ -430,6 +431,7 @@ TEXT
             'roles'             => 'Roly',
             'sidebar'           => 'Bočné menu',
             'styles'            => 'Témy',
+            'webhooks'          => 'Webhooky',
         ],
         'title'     => 'Kampaň :name',
     ],

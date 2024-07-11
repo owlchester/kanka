@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'add'   => 'Pridať schopnosť',
         'reset' => 'Resetovať vyčerpania schopností',
+        'sync'  => 'Pridať z rás',
     ],
     'create'    => [
         'success'           => 'Schopnosť :ability pridaná k :entity.',
@@ -15,7 +16,9 @@ return [
         'position'  => 'Pozícia',
     ],
     'helpers'   => [
-        'note'  => 'Referencie na iné objekty môžeš vytvoriť pomocou rozšírených referencií (ex :code) a atribútov objektov (ex :attr) v tomto poli.',
+        'note'      => 'Referencie na iné objekty môžeš vytvoriť pomocou rozšírených referencií (ex :code) a atribútov objektov (ex :attr) v tomto poli.',
+        'recharge'  => 'Resetuje všetky zmeny schopností, ktoré boli použité.',
+        'sync'      => 'Importuje schopnosti, ktoré sú definované pri rase postavy.',
     ],
     'import'    => [
         'errors'    => [
@@ -23,6 +26,9 @@ return [
             'not_character' => 'Tento objekt nie je postava.',
         ],
         'success'   => '{1} :count schopnosť importovaná.|[2,4] :count schopnosti importované.|[5,*] :count schopností importovaných.',
+    ],
+    'recharge'  => [
+        'success'   => 'Všetky zmeny boli resetované.',
     ],
     'reorder'   => [
         'parentless'    => 'Bez nadradenej',

@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'add'   => 'Adicionar habilidades',
         'reset' => 'Redefinir usos da habilidade',
+        'sync'  => 'Adicionar das raças',
     ],
     'create'    => [
         'success'           => 'Habilidade :ability adicionada a :entity.',
@@ -15,7 +16,9 @@ return [
         'position'  => 'Posição',
     ],
     'helpers'   => [
-        'note'  => 'Você pode fazer referência a entidades usando as menções avançadas (ex :code) e atributos da entidade (ex :attr) nesse campo.',
+        'note'      => 'Você pode fazer referência a entidades usando as menções avançadas (ex :code) e atributos da entidade (ex :attr) nesse campo.',
+        'recharge'  => 'Redefina todas as cargas de habilidades que foram usadas.',
+        'sync'      => 'Importe habilidades definidas nas raças do personagem.',
     ],
     'import'    => [
         'errors'    => [
@@ -23,6 +26,9 @@ return [
             'not_character' => 'A entidade não é um personagem.',
         ],
         'success'   => '{1} :count habilidade importada.|[2,*] :count habilidades importadas.',
+    ],
+    'recharge'  => [
+        'success'   => 'Todas as cargas foram redefinidas.',
     ],
     'reorder'   => [
         'parentless'    => 'Sem Pai',

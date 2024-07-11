@@ -6,9 +6,10 @@ return [
     'required'      => 'Povinné',
     'select_all'    => 'Označiť všetky',
     'success'       => [
-        'created'   => ':name vytvorené.',
-        'deleted'   => ':name odstránené.',
-        'updated'   => ':name aktualizované.',
+        'created'           => ':name vytvorené.',
+        'deleted'           => ':name odstránené.',
+        'deleted-cancel'    => ':name odstránené. :cancel.',
+        'updated'           => ':name aktualizované.',
     ],
     'yes'           => 'Áno',
 ];

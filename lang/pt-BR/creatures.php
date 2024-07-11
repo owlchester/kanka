@@ -5,8 +5,13 @@ return [
         'title' => 'Nova Criatura',
     ],
     'creatures'     => [],
-    'fields'        => [],
+    'fields'        => [
+        'is_extinct'    => 'Extinta',
+    ],
     'helpers'       => [],
+    'hints'         => [
+        'is_extinct'    => 'Essa criatura está extinta.',
+    ],
     'placeholders'  => [
         'type'  => 'Herbívoro, Aquático, Mítica',
     ],
