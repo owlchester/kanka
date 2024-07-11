@@ -216,7 +216,10 @@ class Race extends MiscModel
         foreach ($this->descendants as $descendant) {
             $raceIds[] = $descendant->id;
         };
-        return CharacterRace::groupBy('character_id')->distinct('character_id')->whereIn('race_id', $raceIds)->with('character');
+        $model = new CharacterRace();
+        return CharacterRace::groupBy('character_id')
+            ->distinct('character_id')
+            ->whereIn($model->getTable() . '.race_id', $raceIds)->with('character');
     }
 
     /**
