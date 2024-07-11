@@ -242,6 +242,7 @@ class Character extends MiscModel
     {
         return $this->hasMany(CharacterRace::class, 'character_id')
             ->has('race')
+            ->has('race.entity')
             ->with(['race', 'race.entity'])
         ;
     }

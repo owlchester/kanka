@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Subscriptions;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Laravel\Cashier\Subscription;
 
 class MigrateSubscriptions extends Command
@@ -34,6 +35,7 @@ class MigrateSubscriptions extends Command
         Subscription::with(['user', 'user.subscriptions', 'user.subscriptions.owner'])
             ->where('stripe_status', 'active')
             ->whereIn('stripe_price', $old)
+            ->whereNotIn('user_id', [177165, 200759])
             ->has('user')
             ->chunkById(200, function ($subs) {
                 if ($this->count > $this->limit) {
@@ -42,6 +44,10 @@ class MigrateSubscriptions extends Command
                 foreach ($subs as $s) {
                     if ($this->count > $this->limit) {
                         return false;
+                    }
+                    // Don't touch sofort people
+                    if (Str::startsWith($s->stripe_id, 'sofort_')) {
+                        continue;
                     }
                     $this->info('User #' . $s->user->id . ' ' . $s->user->email . ' https://dashboard.stripe.com/customers/' . $s->user->stripe_id);
                     try {
