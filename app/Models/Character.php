@@ -195,7 +195,7 @@ class Character extends MiscModel
             return $query
                 ->whereRaw('(select count(*) from organisation_member as memb where memb.character_id = ' .
                     $this->getTable() . '.id and memb.character_id = ' . ((int) $value) . ' and ' . $this->subPrivacy('memb.is_private') . ') = 0');
-            }
+        }
 
         $ids = [$value];
         if ($filter === FilterOption::CHILDREN) {

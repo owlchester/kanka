@@ -699,11 +699,11 @@ trait HasFilters
 
     protected function subPrivacy(string $field): string|null
     {
-       // Campaign admins don't have private data hidden from them
-       if (auth()->check() && auth()->user()->isAdmin()) {
-           return null;
-       }
+        // Campaign admins don't have private data hidden from them
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            return null;
+        }
 
-       return $field . ' = 0';
+        return $field . ' = 0';
     }
 }

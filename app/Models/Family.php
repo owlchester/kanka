@@ -162,7 +162,7 @@ class Family extends MiscModel
             return $query
                 ->whereRaw('(select count(*) from character_family as memb where memb.family_id = ' .
                     $this->getTable() . '.id and memb.family_id = ' . ((int) $value) . ' and ' . $this->subPrivacy('memb.is_private') . ') = 0');
-            }
+        }
 
         $ids = [$value];
         $query
