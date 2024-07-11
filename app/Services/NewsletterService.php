@@ -105,9 +105,9 @@ class NewsletterService
         }
     }
 
-    public function error(): string
+    public function error(): Exception
     {
-        return $this->error->getMessage();
+        return $this->error;
     }
 
     /**
