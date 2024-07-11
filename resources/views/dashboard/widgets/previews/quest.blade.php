@@ -17,7 +17,7 @@ $model = $entity->child;
             <dt>{{ __('quests.fields.instigator') }}</dt>
             <dd>
                 <x-entity-link
-                    :entity="$model->instigator->entity"
+                    :entity="$model->instigator"
                     :campaign="$campaign" />
             </dd>
         </dl>
