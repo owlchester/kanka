@@ -24,7 +24,7 @@
         <div class="element profile-character">
             <div class="title text-uppercase text-xs">{{ __('items.fields.character') }}</div>
             <x-entity-link
-                :entity="$model->$character->entity"
+                :entity="$model->character->entity"
                 :campaign="$campaign" />
         </div>
     @endif
