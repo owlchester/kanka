@@ -57,11 +57,9 @@ class PostController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $post = new Post();
         $data = $campaign->superboosted() ? $request->all() : $request->except(['layout_id']);
         $data['entity_id'] = $entity->id;
-        $post->create($data);
-
+        $post = Post::create($data);
 
         if ($request->has('submit-new')) {
             $route = route('entities.posts.create', [$campaign, $entity]);
