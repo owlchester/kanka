@@ -165,6 +165,9 @@ class CampaignController extends Controller
     public function destroy(DeleteCampaign $request, Campaign $campaign)
     {
         $this->authorize('delete', $campaign);
+        if ($request->ajax()) {
+            return response()->json();
+        }
 
         $this->deletionService
             ->campaign($campaign)
