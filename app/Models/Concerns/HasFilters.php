@@ -489,9 +489,15 @@ trait HasFilters
     {
         $ids = [$value];
         if ($this->filterOption('exclude')) {
-            $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
-                $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ') = 0');
+            if (auth()->check() && auth()->user()->isAdmin()) {
+                $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
+                    $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ') = 0');
+            } else {
+                $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
+                    $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ' and cr.is_private = 0) = 0');
+            }
             return;
+
         } elseif ($this->filterOption('children')) {
             /** @var Race|null $race */
             $race = Race::find($value);
@@ -505,7 +511,12 @@ trait HasFilters
             ->select($this->getTable() . '.*')
             ->leftJoin('character_race as cr', function ($join) {
                 $join->on('cr.character_id', '=', $this->getTable() . '.id');
-            })->whereIn('cr.race_id', $ids)->distinct();
+            })->whereIn('cr.race_id', $ids);
+        
+        if (!(auth()->check() && auth()->user()->isAdmin())) {
+            $query->where('cr.is_private', false);
+        }
+        $query->distinct();
     }
 
     /**
@@ -515,9 +526,15 @@ trait HasFilters
     {
         $ids = [$value];
         if ($this->filterOption('exclude')) {
-            $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
-                $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ') = 0');
+            if (auth()->check() && auth()->user()->isAdmin()) {
+                $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
+                    $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ') = 0');
+            } else {
+                $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
+                    $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ' and cf.is_private = 0) = 0');
+            }
             return;
+
         } elseif ($this->filterOption('children')) {
             /** @var Family|null $family */
             $family = Family::find($value);
@@ -531,7 +548,13 @@ trait HasFilters
             ->select($this->getTable() . '.*')
             ->leftJoin('character_family as cf', function ($join) {
                 $join->on('cf.character_id', '=', $this->getTable() . '.id');
-            })->whereIn('cf.family_id', $ids)->distinct();
+            })->whereIn('cf.family_id', $ids);
+
+            if (!(auth()->check() && auth()->user()->isAdmin())) {
+                $query->where('cf.is_private', false);
+            }
+
+            $query->distinct();
     }
 
     /**

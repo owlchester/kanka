@@ -146,25 +146,44 @@ class Family extends MiscModel
             if (!empty($value)) {
                 return $query;
             }
-            return $query
+            $query
                 ->select($this->getTable() . '.*')
                 ->leftJoin('character_family as memb', function ($join) {
                     $join->on('memb.family_id', '=', $this->getTable() . '.id');
                 })
                 ->where('memb.character_id', null);
+
+                if (!(auth()->check() && auth()->user()->isAdmin())) {
+                    $query->where('memb.is_private', 0);
+                }
+    
+                return $query;
         } elseif ($filter === FilterOption::EXCLUDE) {
+            if (auth()->check() && auth()->user()->isAdmin()) {
+                return $query
+                    ->whereRaw('(select count(*) from character_family as memb where memb.family_id = ' .
+                        $this->getTable() . '.id and memb.character_id in (' . (int) $value . ')) = 0');
+            }
+
             return $query
                 ->whereRaw('(select count(*) from character_family as memb where memb.family_id = ' .
-                    $this->getTable() . '.id and memb.character_id in (' . (int) $value . ')) = 0');
+                    $this->getTable() . '.id and memb.character_id in (' . (int) $value . ') and memb.is_private = 0) = 0');
         }
 
         $ids = [$value];
-        return $query
+        $query
             ->select($this->getTable() . '.*')
             ->leftJoin('character_family as memb', function ($join) {
                 $join->on('memb.family_id', '=', $this->getTable() . '.id');
             })
-            ->whereIn('memb.character_id', $ids)->distinct();
+            ->whereIn('memb.character_id', $ids);
+
+
+        if (!(auth()->check() && auth()->user()->isAdmin())) {
+            $query->where('memb.is_private', 0);
+        }
+
+        return $query->distinct();
     }
 
     /**
