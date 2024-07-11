@@ -199,7 +199,7 @@ class EntityObserver
 
     public function deleted(Entity $entity)
     {
-        // When an entity is soft deleted, we just want some webhooks to trigger,
+        // When an entity is soft-deleted, we just want some webhooks to trigger,
         // not actually delete the entity and its image.
         if ($entity->trashed()) {
             EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value);

@@ -29,7 +29,7 @@ class PurgeService
     public function purgeEmpty(): int
     {
         $this->baseAll()
-            ->chunk(500, function ($campaigns) {
+            ->chunkById(500, function ($campaigns) {
                 /** @var Campaign $campaign */
                 foreach ($campaigns as $campaign) {
                     if (!$this->dry) {
@@ -48,7 +48,7 @@ class PurgeService
 
         Campaign::onlyTrashed()
             ->where('deleted_at', '<=', $delay)
-            ->chunk(500, function ($campaigns) {
+            ->chunkById(500, function ($campaigns) {
                 /** @var Campaign $campaign */
                 foreach ($campaigns as $campaign) {
                     $this->ids[] = $campaign->id;

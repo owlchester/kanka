@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Http\Resources\PostResource as Resource;
 use App\Http\Requests\RecoverPost as Request;
-use App\Services\RecoveryService;
+use App\Services\Posts\RecoveryService;
 
 class PostRecoveryApiController extends ApiController
 {
@@ -40,8 +40,8 @@ class PostRecoveryApiController extends ApiController
         if (!$campaign->boosted()) {
             return response()->json(null, 204);
         }
-        $this->service->recoverPosts($request->posts);
+        $this->service->recover($request->posts);
 
-        return response()->json(['success' => 'Succesfully recovered deleted posts']);
+        return response()->json(['success' => 'Successfully recovered deleted posts']);
     }
 }

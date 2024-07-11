@@ -4,7 +4,8 @@ namespace App\Console\Commands\Cleanup;
 
 use App\Models\Entity;
 use App\Models\Post;
-use App\Services\RecoveryService;
+use App\Services\Entity\PurgeService;
+use App\Services\Posts\PurgeService as PostPurgeService;
 use App\Traits\HasJobLog;
 use Carbon\Carbon;
 use Exception;
@@ -33,17 +34,19 @@ class CleanupTrashed extends Command
      * The recovery service
      *
      */
-    protected RecoveryService $service;
+    protected PurgeService $service;
+    protected PostPurgeService $postService;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(RecoveryService $service)
+    public function __construct(PurgeService $service, PostPurgeService $postService)
     {
         parent::__construct();
         $this->service = $service;
+        $this->postService = $postService;
     }
 
     /**
@@ -54,14 +57,13 @@ class CleanupTrashed extends Command
     {
         $delay = Carbon::now()->subDays(config('entities.hard_delete'))->toDateString();
         $log = '';
+        $this->info('Looking to purge entities and posts deleted since ' . $delay);
 
         DB::beginTransaction();
         try {
             Entity::onlyTrashed()
                 ->where('deleted_at', '<=', $delay)
                 ->allCampaigns()
-                // chunkById allows us to safely delete elements in a chunk
-                // see https://stackoverflow.com/questions/32700537/eloquent-chunk-missing-half-the-results
                 ->chunkById(1000, function ($entities): void {
                     $this->info('Chunk deleting ' . count($entities) . ' entities.');
                     foreach ($entities as $entity) {
@@ -73,8 +75,9 @@ class CleanupTrashed extends Command
                 ->where('deleted_at', '<=', $delay)
                 ->chunkById(1000, function ($posts): void {
                     $this->info('Chunk deleting ' . count($posts) . ' posts.');
+                    /** @var Post $post */
                     foreach ($posts as $post) {
-                        $this->service->trash($post);
+                        $this->postService->trash($post);
                     }
                 });
             DB::commit();
@@ -88,8 +91,8 @@ class CleanupTrashed extends Command
         $this->info('Deleted ' . $this->service->count() . ' trashed entities.');
         $log .= '<br />' . 'Deleted ' . $this->service->count() . ' trashed entities.';
 
-        $this->info('Deleted ' . $this->service->countPosts() . ' trashed posts.');
-        $log .= '<br />' . 'Deleted ' . $this->service->countPosts() . ' trashed posts.';
+        $this->info('Deleted ' . $this->postService->count() . ' trashed posts.');
+        $log .= '<br />' . 'Deleted ' . $this->postService->count() . ' trashed posts.';
         $this->log($log);
 
         return 0;

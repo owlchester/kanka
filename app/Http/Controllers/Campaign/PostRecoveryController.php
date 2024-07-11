@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Services\RecoveryService;
+use App\Services\Posts\RecoveryService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -64,7 +64,7 @@ class PostRecoveryController extends Controller
         }
 
         try {
-            $count = $this->service->recoverPosts($request->get('model', []));
+            $count = $this->service->recover($request->get('model', []));
             return redirect()
                 ->route('recovery.posts', $campaign)
                 ->with('success', trans_choice('campaigns/recovery.posts.success', $count, ['count' => $count]));
