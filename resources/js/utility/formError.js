@@ -30,8 +30,8 @@ window.formErrorHandler = function(err, form) {
         return;
     }
 
-    //
-    if (err.data) {
+    // No errors? Probably a backend error
+    if (!err.data.errors) {
         window.showToast('Backend error', 'error');
         return;
     }
