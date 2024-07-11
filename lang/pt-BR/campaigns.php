@@ -185,7 +185,6 @@ TEXT
         'invite'                => [
             'description'   => 'Você pode convidar amigos para se juntar a sua campanha fornecendo o endereço de email deles. Assim que eles aceitarem o convite, serão adicionados como um "Espectador". Você também pode cancelar o convite a qualquer momento.',
             'more'          => 'Você pode adicionar novos cargos em :link',
-            'roles_page'    => 'Página de Cargos',
             'title'         => 'Convidar',
         ],
         'manage_roles'          => 'Gerenciar funções de usuário',

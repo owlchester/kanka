@@ -160,7 +160,6 @@ TEXT
         'invite'                => [
             'description'   => 'Podeu convidar amics a la campanya si mitjançant un enllaç d\'invitació. Un cop acceptin la invitació, seran afegits amb el rol indicat. També podeu enviar-los la invitació per correu electrònic, sempre que no sigui una adreça de Hotmail, ja que sempre rebutgen els mails de Kanka.',
             'more'          => 'Es poden afegir més rols des de la :link.',
-            'roles_page'    => 'Pàgina de rols',
             'title'         => 'Invitacions',
         ],
         'manage_roles'          => 'Configuració de rols d\'usuari',

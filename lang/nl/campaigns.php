@@ -140,7 +140,6 @@ TEXT
         'invite'                => [
             'description'   => 'Je kunt vrienden uitnodigen om deel te nemen aan je campaign door hen een Uitnodiging Link te geven. Na het accepteren van hun uitnodiging, worden ze toegevoegd als lid in de gevraagde rol. Je kunt ze ook een verzoek per e-mail sturen.',
             'more'          => 'Je kunt meer rollen toevoegen via de :link.',
-            'roles_page'    => 'Rollen pagina',
             'title'         => 'Uitnodiging',
         ],
         'roles'                 => [

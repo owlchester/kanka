@@ -186,7 +186,6 @@ TEXT
         'invite'                => [
             'description'   => 'Invite tes amis et joueurs à participer à la campagne en créant un lien d\'invitation et en leur envoyant l\'URL générée! En acceptant l\'invitation, ils seront ajoutés en tant que membres dans le rôle défini par l\'invitation.',
             'more'          => 'Tu peux ajouter plus de rôles sur la :link.',
-            'roles_page'    => 'page des rôles',
             'title'         => 'Invitation',
         ],
         'manage_roles'          => 'Gérer les rôles de l\'utilisateur',

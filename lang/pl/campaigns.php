@@ -185,7 +185,6 @@ TEXT
         'invite'                => [
             'description'   => 'Możesz włączać znajomych do udziału w kampanii przekazując im odnośnik z zaproszeniem. Po zaakceptowaniu, zostaną oni dodani do kampanii w przydzielonej roli. Możesz też zapraszać graczy mailem.',
             'more'          => 'Możesz dodawać nowe role tutaj: :link.',
-            'roles_page'    => 'lista ról',
             'title'         => 'Zaproszenia',
         ],
         'manage_roles'          => 'Zarządzaj rolami uczestników',

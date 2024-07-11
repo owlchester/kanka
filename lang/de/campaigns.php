@@ -189,7 +189,6 @@ TEXT
         'invite'                => [
             'description'   => 'Du kannst deine Freunde zu deiner Kampagne einladen, in dem du ihre Email Adresse eingibst. Wenn sie die Einladung annehmen, werden sie als \'Zuschauer\' hinzugefügt. Du kannst die Einladung auch jederzeit abbrechen.',
             'more'          => 'Du kannst neue Rollen unter :link hinzufügen.',
-            'roles_page'    => 'Rollenseite',
             'title'         => 'Einladen',
         ],
         'manage_roles'          => 'Verwalten von Benutzerrollen',

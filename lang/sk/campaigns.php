@@ -185,7 +185,6 @@ TEXT
         'invite'                => [
             'description'   => 'Do tvojej kampane môžeš pozvať priateľa/ku tým, že zadáš ich e-mailovú adresu. Po akceptovaní pozvánky bude pridaný/á ako člen s danou rolou. Zaslaná pozvánka môže byť hocikedy zrušená.',
             'more'          => 'Nové role môžeš pridať cez :link.',
-            'roles_page'    => 'Stránka s rolami',
             'title'         => 'Pozvať',
         ],
         'manage_roles'          => 'Spravovať roly užívateľov',
