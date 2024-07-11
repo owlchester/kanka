@@ -35,7 +35,7 @@ class NewsletterSubCommand extends Command
         User::whereNotNull('pledge')
             ->where('pledge', '<>', '')
             ->where('settings', 'like', '%mail_release%')
-            ->chunk(500, function ($users) {
+            ->chunk(50, function ($users) {
                 foreach ($users as $user) {
                     if (!$user->mail_release) {
                         continue;
@@ -43,9 +43,14 @@ class NewsletterSubCommand extends Command
                     $options = [
                         'releases' => (bool) $user->mail_release
                     ];
-                    $this->service->user($user)->update($options);
-                    $this->count++;
+                    if ($this->service->user($user)->update($options)) {
+                        $this->count++;
+                        continue;
+                    }
+                    $this->error('Returned false');
+                    $this->error($this->service->error());
                 }
+                sleep(60);
             });
 
         $this->info('Processed ' . $this->count . ' users.');
