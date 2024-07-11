@@ -513,7 +513,7 @@ trait HasFilters
                 $join->on('cr.character_id', '=', $this->getTable() . '.id');
             })->whereIn('cr.race_id', $ids);
 
-        if (!(auth()->check() && auth()->user()->isAdmin())) {
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
             $query->where('cr.is_private', false);
         }
         $query->distinct();
@@ -526,13 +526,9 @@ trait HasFilters
     {
         $ids = [$value];
         if ($this->filterOption('exclude')) {
-            if (auth()->check() && auth()->user()->isAdmin()) {
-                $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
-                    $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ') = 0');
-            } else {
-                $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
-                    $this->getTable() . '.id and cf.family_id = ' . ((int) $value) . ' and cf.is_private = 0) = 0');
-            }
+            $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
+                $this->getTable() . '.id and cf.family_id = ' . ((int) $value)
+                . ' and ' . $this->subPrivacy('cf.is_private') . ') = 0');
             return;
 
         } elseif ($this->filterOption('children')) {
@@ -550,7 +546,7 @@ trait HasFilters
                 $join->on('cf.character_id', '=', $this->getTable() . '.id');
             })->whereIn('cf.family_id', $ids);
 
-        if (!(auth()->check() && auth()->user()->isAdmin())) {
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
             $query->where('cf.is_private', false);
         }
 
@@ -699,5 +695,15 @@ trait HasFilters
             return $this->explicitFilters;
         }
         return [];
+    }
+
+    protected function subPrivacy(string $field): string|null
+    {
+       // Campaign admins don't have private data hidden from them
+       if (auth()->check() && auth()->user()->isAdmin()) {
+           return null;
+       }
+
+       return $field . ' = 0';
     }
 }

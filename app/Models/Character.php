@@ -186,21 +186,16 @@ class Character extends MiscModel
                 })
                 ->where('memb.organisation_id', null);
 
-            if (!(auth()->check() && auth()->user()->isAdmin())) {
+            if (auth()->guest() || !auth()->user()->isAdmin()) {
                 $query->where('memb.is_private', 0);
             }
 
             return $query;
         } elseif ($filter === FilterOption::EXCLUDE) {
-            if (auth()->check() && auth()->user()->isAdmin()) {
-                return $query
-                    ->whereRaw('(select count(*) from organisation_member as memb where memb.character_id = ' .
-                        $this->getTable() . '.id and memb.organisation_id in (' . (int) $value . ')) = 0');
-            }
             return $query
                 ->whereRaw('(select count(*) from organisation_member as memb where memb.character_id = ' .
-                    $this->getTable() . '.id and memb.organisation_id in (' . (int) $value . ') and memb.is_private = 0) = 0');
-        }
+                    $this->getTable() . '.id and memb.character_id = ' . ((int) $value) . ' and ' . $this->subPrivacy('memb.is_private') . ') = 0');
+            }
 
         $ids = [$value];
         if ($filter === FilterOption::CHILDREN) {
@@ -217,7 +212,7 @@ class Character extends MiscModel
             })
             ->whereIn('memb.organisation_id', $ids);
 
-        if (!(auth()->check() && auth()->user()->isAdmin())) {
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
             $query->where('memb.is_private', 0);
         }
 
