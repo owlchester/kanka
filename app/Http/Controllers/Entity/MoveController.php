@@ -54,24 +54,24 @@ class MoveController extends Controller
         }
 
         $copied = $request->filled('copy');
-        //        try {
-        $this->service
-            ->entity($entity)
-            ->campaign($campaign)
-            ->user($request->user())
-            ->to($request->get('campaign'))
-            ->copy($copied)
-            ->validate()
-            ->process()
-        ;
+        try {
+            $this->service
+                ->entity($entity)
+                ->campaign($campaign)
+                ->user($request->user())
+                ->to($request->get('campaign'))
+                ->copy($copied)
+                ->validate()
+                ->process()
+            ;
 
-        return redirect()
-            ->route($entity->pluralType() . '.index', $campaign)
-            ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => $this->service->target()->name]));
-        //        } catch (TranslatableException $ex) {
-        //            return redirect()
-        //                ->to($entity->url())
-        //                ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
-        //        }
+            return redirect()
+                ->route($entity->pluralType() . '.index', $campaign)
+                ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => $this->service->target()->name]));
+        } catch (TranslatableException $ex) {
+            return redirect()
+                ->to($entity->url())
+                ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
+        }
     }
 }
