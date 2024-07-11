@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use App\Services\ImageService;
+use App\Facades\Images;
 use App\Models\Entity;
 
 class DeleteEntityImage implements ShouldQueue
@@ -72,14 +72,14 @@ class DeleteEntityImage implements ShouldQueue
         if ($campaign->superboosted() && $entity->image && $field == 'image') {
             $entity->image->delete();
         } elseif (!empty($entity->image_path) && $field == 'image') {
-            ImageService::cleanup($entity, $field);
+            Images::cleanup($entity, $field);
             $entity->updateQuietly(['image_path' => '']);
         }
 
         if ($campaign->superboosted() && $entity->header && $field == 'header_image') {
             $entity->header->delete();
         } elseif (!empty($entity->header_image) && $field == 'header_image') {
-            ImageService::cleanup($entity, $field);
+            Images::cleanup($entity, $field);
             $entity->update(['header_image' => $entity->header_image]);
         }
 

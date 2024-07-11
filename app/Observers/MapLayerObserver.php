@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use App\Facades\Mentions;
 use App\Models\MapLayer;
-use App\Services\ImageService;
+use App\Facades\Images;
 
 class MapLayerObserver
 {
@@ -44,14 +44,14 @@ class MapLayerObserver
         }
 
         // Handle image. Let's use a service for this.
-        ImageService::handle($mapLayer, 'map_layers');
+        Images::handle($mapLayer, 'map_layers');
     }
 
     /**
      */
     public function deleted(MapLayer $mapLayer)
     {
-        ImageService::cleanup($mapLayer);
+        Images::cleanup($mapLayer);
         $mapLayer->map->touch();
     }
 

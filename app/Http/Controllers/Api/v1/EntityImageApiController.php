@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\UploadEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\ImageService;
+use App\Facades\Images;
 
 class EntityImageApiController extends Controller
 {
@@ -17,7 +17,7 @@ class EntityImageApiController extends Controller
         $this->authorize('update', $entity->child);
 
         // Let the service handle everything
-        ImageService::handle($entity);
+        Images::handle($entity);
         $entity->update();
 
         return response()->json([
@@ -38,7 +38,7 @@ class EntityImageApiController extends Controller
         $this->authorize('update', $entity->child);
 
         // Let the service handle everything
-        ImageService::cleanup($entity);
+        Images::cleanup($entity);
 
         $entity->update(['image_path' => '']);
 

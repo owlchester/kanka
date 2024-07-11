@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\EntityAsset;
-use App\Services\ImageService;
+use App\Facades\Images;
 
 class EntityAssetObserver
 {
@@ -33,7 +33,7 @@ class EntityAssetObserver
     public function deleting(EntityAsset $entityAsset)
     {
         if ($entityAsset->isFile()) {
-            ImageService::cleanup($entityAsset, 'imagePath');
+            Images::cleanup($entityAsset, 'imagePath');
         }
     }
 

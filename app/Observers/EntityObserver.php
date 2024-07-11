@@ -4,13 +4,13 @@ namespace App\Observers;
 
 use App\Facades\EntityLogger;
 use App\Facades\Permissions;
+use App\Facades\Images;
 use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
 use App\Enums\WebhookAction;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Services\Entity\TagService;
-use App\Services\ImageService;
 use App\Services\PermissionService;
 use App\Facades\Domain;
 
@@ -38,8 +38,8 @@ class EntityObserver
      */
     public function crudSaved(Entity $entity)
     {
-        ImageService::entity($entity, 'w/' . $entity->campaign_id, 'image');
-        ImageService::entity($entity, 'w/' . $entity->campaign_id);
+        Images::entity($entity, 'w/' . $entity->campaign_id, 'image');
+        Images::entity($entity, 'w/' . $entity->campaign_id);
         $this->saveTags($entity);
         $this->savePermissions($entity);
         $this->savePremium($entity);

@@ -7,7 +7,7 @@ use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\ImageService;
+use App\Facades\Images;
 
 class ImageController extends Controller
 {
@@ -77,7 +77,7 @@ class ImageController extends Controller
         } else {
             $entity->image_uuid = null;
         }
-        ImageService::entity($entity, 'w/' . $entity->campaign_id, 'image');
+        Images::entity($entity, 'w/' . $entity->campaign_id, 'image');
         // New image requires a focus reset
         if ($entity->isDirty(['image_uuid', 'image_path'])) {
             $entity->focus_x = null;
