@@ -179,7 +179,7 @@ class Organisation extends MiscModel
             }
 
             return $query;
-      
+
         } elseif ($filter === FilterOption::EXCLUDE) {
             if (auth()->check() && auth()->user()->isAdmin()) {
                 return $query

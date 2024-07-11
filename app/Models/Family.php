@@ -153,11 +153,11 @@ class Family extends MiscModel
                 })
                 ->where('memb.character_id', null);
 
-                if (!(auth()->check() && auth()->user()->isAdmin())) {
-                    $query->where('memb.is_private', 0);
-                }
-    
-                return $query;
+            if (!(auth()->check() && auth()->user()->isAdmin())) {
+                $query->where('memb.is_private', 0);
+            }
+
+            return $query;
         } elseif ($filter === FilterOption::EXCLUDE) {
             if (auth()->check() && auth()->user()->isAdmin()) {
                 return $query
@@ -195,7 +195,7 @@ class Family extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function location()
     {

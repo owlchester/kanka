@@ -512,7 +512,7 @@ trait HasFilters
             ->leftJoin('character_race as cr', function ($join) {
                 $join->on('cr.character_id', '=', $this->getTable() . '.id');
             })->whereIn('cr.race_id', $ids);
-        
+
         if (!(auth()->check() && auth()->user()->isAdmin())) {
             $query->where('cr.is_private', false);
         }
@@ -550,11 +550,11 @@ trait HasFilters
                 $join->on('cf.character_id', '=', $this->getTable() . '.id');
             })->whereIn('cf.family_id', $ids);
 
-            if (!(auth()->check() && auth()->user()->isAdmin())) {
-                $query->where('cf.is_private', false);
-            }
+        if (!(auth()->check() && auth()->user()->isAdmin())) {
+            $query->where('cf.is_private', false);
+        }
 
-            $query->distinct();
+        $query->distinct();
     }
 
     /**
