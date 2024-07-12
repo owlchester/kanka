@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Map;
 
+use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
 class Group extends Layout
@@ -35,9 +36,7 @@ class Group extends Layout
             ],
             'visibility' => [
                 'label' => 'crud.fields.visibility',
-                'render' => function ($model) {
-                    return $model->visibilityIcon();
-                }
+                'render' => Standard::VISIBILITY,
             ],
         ];
 

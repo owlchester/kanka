@@ -379,25 +379,20 @@ class CampaignDashboardWidget extends Model
      */
     public function widgetIcon(): string
     {
-        $icon = null;
         if ($this->widget === Widget::Recent) {
-            $icon = 'fa-solid fa-list';
+            return 'fa-solid fa-list';
         } elseif ($this->widget === Widget::Header) {
-            $icon = 'fa-solid fa-heading';
+            return 'fa-solid fa-heading';
         } elseif ($this->widget === Widget::Preview) {
-            $icon = 'fa-solid fa-align-justify';
+            return 'fa-solid fa-align-justify';
         } elseif ($this->widget === Widget::Calendar) {
-            $icon = 'ra ra-moon-sun';
+            return 'ra ra-moon-sun';
         } elseif ($this->widget === Widget::Random) {
-            $icon = 'fa-solid fa-dice-d20';
+            return 'fa-solid fa-dice-d20';
         } elseif ($this->widget === Widget::Campaign) {
-            $icon = 'fa-solid fa-th-list';
+            return 'fa-solid fa-th-list';
         }
-
-        if (empty($icon)) {
-            return '';
-        }
-        return '<i class="' . $icon . '"></i>';
+        return 'fa-solid fa-question-circle';
     }
 
     /**
