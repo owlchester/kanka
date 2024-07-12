@@ -48,12 +48,6 @@
         {{ __('entities/attributes.actions.remove_all') }}
     </button>
 </div>
-
-<x-alert type="warning" class="alert-too-many-fields mt-6" :hidden="true">
-    {!! __('entities/attributes.errors.too_many', [
-    'max' => number_format(ini_get('max_input_vars'))
-    ]) !!}
-</x-alert>
 <!-- Modal -->
 
 

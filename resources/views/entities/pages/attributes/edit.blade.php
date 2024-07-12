@@ -58,13 +58,6 @@ $isAdmin = auth()->user()->isAdmin();
                 <attributes-manager api="{{ route('attributes.api-entity', [$campaign, $entity]) }}" />
             </div>
 
-            <x-alert type="warning" class="alert-too-many-fields mt-6" :hidden="true">
-                {!! __('entities/attributes.errors.too_many', [
-                'max' => number_format(ini_get('max_input_vars'))
-                ]) !!}
-            </x-alert>
-
-
             @if (auth()->user()->isAdmin() && $entity->is_attributes_private)
                 @php
                     $role = \App\Facades\CampaignCache::adminRole();
