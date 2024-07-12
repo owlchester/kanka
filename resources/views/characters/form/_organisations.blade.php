@@ -45,7 +45,7 @@ $statuses = [
                 </div>
                 <div class="field">
                     <label class="sr-only">{{ __('organisations.members.fields.pinned') }}</label>
-                    <x-forms.select name="organisation_pins[{{ $organisation->id }}]" :options="$statuses" :selected="$organisation->pin_id ?? null" :label="__('organisations.members.fields.pinned')" />
+                    <x-forms.select name="organisation_pins[{{ $organisation->id }}]" :options="$options" :selected="$organisation->pin_id ?? null" :label="__('organisations.members.fields.pinned')" />
                 </div>
                 @if ($isAdmin)
                     <div class="text-lg">
@@ -94,7 +94,7 @@ $statuses = [
             </div>
             <div class="field">
                 <label class="sr-only">{{ __('organisations.members.fields.pinned') }}</label>
-                <x-forms.select name="organisation_pins[]" :options="$statuses" :label="__('organisations.members.fields.pinned')" />
+                <x-forms.select name="organisation_pins[]" :options="$options" :label="__('organisations.members.fields.pinned')" />
             </div>
             @if ($isAdmin)
                 <div class="text-lg">
