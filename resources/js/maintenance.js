@@ -10,9 +10,6 @@ const initMaintenanceForms = () => {
     subForms.forEach(function(subform) {
         subform.addEventListener('submit', onMaintenanceFormSubmit);
     });
-    window.onEvent(function() {
-        initMaintenanceForms();
-    });
 };
 
 const onMaintenanceFormSubmit = (event) => {
@@ -65,3 +62,6 @@ const stopAnimation = (form) => {
 };
 
 initMaintenanceForms();
+window.onEvent(function() {
+    initMaintenanceForms();
+});
