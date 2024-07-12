@@ -251,7 +251,7 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-0a11399b.css",
+    "file": "assets/app-50920ba9.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
@@ -276,7 +276,7 @@
     "src": "resources/sass/family-tree.scss"
   },
   "resources/sass/freyja/freyja.scss": {
-    "file": "assets/freyja-3ff4aa82.css",
+    "file": "assets/freyja-57f81816.css",
     "isEntry": true,
     "src": "resources/sass/freyja/freyja.scss"
   },
