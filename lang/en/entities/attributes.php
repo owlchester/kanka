@@ -15,7 +15,7 @@ return [
     'errors'        => [
         'loop'                  => 'There is an endless loop in this attribute calculation!',
         'no_attribute_selected' => 'Select one or more attributes first.',
-        'too_many'              => 'There are too many fields on this entity, can\'t add more attributes. Delete some attributes first before being able to add more.',
+        'too_many_v2'           => 'Max fields reached (:count/:max). Delete some attributes first before being able to add more.',
     ],
     'fields'        => [
         'attribute'             => 'Attribute',

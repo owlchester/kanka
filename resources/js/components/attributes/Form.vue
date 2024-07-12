@@ -1,17 +1,17 @@
 <template>
     <div class="flex flex-wrap gap-2 md:gap-5 lg:gap-10 justify-center justify-items-stretch items-center
      lg:border lg:rounded bg-base-200 lg:bg-inherit p-2 lg:p-5 text-xs md:text-sm m-0 lg:m-5 ">
-        <div v-if="showAddForm" role="button" @click="addAttribute('')" class="flex flex-col gap-1 items-center hover:text-primary">
+        <div v-if="showAddForm" role="button" @click="addAttribute($event, '')" class="flex flex-col gap-1 items-center hover:text-primary">
             <i class="fa-solid fa-person text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.attribute')" class="text-xs"></span>
         </div>
 
-        <div v-if="showAddForm" role="button" @click="addAttribute('multiline')" class="flex flex-col gap-1 items-center hover:text-primary">
+        <div v-if="showAddForm" role="button" @click="addAttribute($event, 'multiline')" class="flex flex-col gap-1 items-center hover:text-primary">
             <i class="fa-solid fa-align-justify text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.multiline')" class="text-xs"></span>
         </div>
 
-        <div v-if="showAddForm" role="button" @click="addAttribute('number')" class="flex flex-col gap-1 items-center hover:text-primary">
+        <div v-if="showAddForm" role="button" @click="addAttribute($event, 'number')" class="flex flex-col gap-1 items-center hover:text-primary">
             <i class="fa-solid fa-hashtag text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.number')" class="text-xs"></span>
         </div>
@@ -21,17 +21,17 @@
             <span class="sr-only">Close new attribute form</span>
         </div>
 
-        <div v-if="showAddForm" role="button" @click="addAttribute('section')" class="flex flex-col gap-1 items-center hover:text-primary">
+        <div v-if="showAddForm" role="button" @click="addAttribute($event, 'section')" class="flex flex-col gap-1 items-center hover:text-primary">
             <i class="fa-solid fa-layer-group text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.section')" class="text-xs"></span>
         </div>
 
-        <div v-if="showAddForm" role="button" @click="addAttribute('checkbox')" class="flex flex-col gap-1 items-center hover:text-primary">
+        <div v-if="showAddForm" role="button" @click="addAttribute($event, 'checkbox')" class="flex flex-col gap-1 items-center hover:text-primary">
             <i class="fa-regular fa-check-square text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.checkbox')" class="text-xs"></span>
         </div>
 
-        <div v-if="showAddForm" role="button" @click="addAttribute('random')" class="flex flex-col gap-1 items-center hover:text-primary">
+        <div v-if="showAddForm" role="button" @click="addAttribute($event, 'random')" class="flex flex-col gap-1 items-center hover:text-primary">
             <i class="fa-solid fa-question-circle text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.random')" class="text-xs truncate"></span>
         </div>
@@ -51,7 +51,8 @@ const props = defineProps<{
     attributes,
     visibleAttributes,
     i18n,
-    newAttributeID
+    newAttributeID,
+    max
 }>()
 
 const showAddForm = ref(false)
@@ -66,7 +67,10 @@ const trans = (k) => {
     return props.i18n[blocks[0]][blocks[1]];
 };
 
-const addAttribute = (type) => {
+const addAttribute = (event, type) => {
+    if (reachedMax(event)) {
+        return;
+    }
     emit('incrementNewAttributeID')
     let attribute = {
         id: props.newAttributeID,
@@ -87,6 +91,30 @@ const addAttribute = (type) => {
 
     props.attributes.push(attribute)
     props.visibleAttributes.push(attribute)
+}
+
+/**
+ * Check if the form has space for some extra fields to be send
+ * @param event
+ */
+const reachedMax = (event) => {
+    const form = event.target.closest('form')
+    const inputFields = form.getElementsByTagName('input')
+    const selectFields = form.getElementsByTagName('select')
+    const buttonFields = form.getElementsByTagName('button')
+
+    // Exclude unnamed fields, as attributes have multiple fields but are
+    // compressed into a single json input field to allow more attributes
+    const namedInputFields = Array.from(inputFields).filter(input => input.hasAttribute('name'));
+    const namedSelectFields = Array.from(selectFields).filter(input => input.hasAttribute('name'));
+    const namedButtonFields = Array.from(buttonFields).filter(input => input.hasAttribute('name'));
+
+    const totalFields = namedInputFields.length + namedSelectFields.length + namedButtonFields.length
+    if (totalFields >= (props.max - 1)) {
+        window.showToast(props.i18n['toasts']['max_reached'].replace(/:count/, totalFields), 'error')
+        return true;
+    }
+    return false;
 }
 
 const toggleAddForm = () => {
