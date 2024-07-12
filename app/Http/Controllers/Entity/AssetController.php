@@ -102,7 +102,7 @@ class AssetController extends Controller
             $file = $service
                 ->entity($entity)
                 ->campaign($campaign)
-                ->upload($request, 'file', 'w/' . $campaign->id . '/entity-assets/');
+                ->upload($request, 'file', 'w/' . $campaign->id . '/entity-assets');
 
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])
