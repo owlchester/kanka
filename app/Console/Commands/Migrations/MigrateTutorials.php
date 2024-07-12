@@ -41,7 +41,7 @@ class MigrateTutorials extends Command
                         if (str_starts_with($key, 'tutorial_')) {
                             $tutorial = new Tutorial();
                             $tutorial->user_id = $user->id;
-                            $tutorial->code = substr($key, 9);
+                            $tutorial->code = mb_substr($key, 9);
                             $tutorial->save();
                             unset($settings[$key]);
                         }
