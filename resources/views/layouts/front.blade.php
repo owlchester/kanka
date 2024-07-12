@@ -64,12 +64,12 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
 @if (isset($englishCanonical) && $englishCanonical)
-    <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, 'en') }}" />
+        <link rel="canonical" href="{{ request()->fullUrl() }}" />
 @else
-    <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, null) }}" />
+        <link rel="canonical" href="{{ request()->fullUrl() }}" />
 @foreach(LaravelLocalization::getSupportedLocales() as $language => $properties)
     @if (in_array($language, ['hr', 'he', 'gl', 'hu', 'ca']))@continue @endif
-<link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $language) }}" hreflang="{{ $language }}">
+    <link rel="alternate" href="{{ request()->fullUrl() . '?lang=' . $language }}" hreflang="{{ $language }}">
 @endforeach
 @endif
 
