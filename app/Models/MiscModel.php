@@ -197,13 +197,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Copy related elements to new target. Override this in individual models (ex maps)
-     */
-    public function copyRelatedToTarget(MiscModel $target)
-    {
-    }
-
-    /**
      * Available datagrid actions
      * Todo: move this out of the model
      * @throws Exception

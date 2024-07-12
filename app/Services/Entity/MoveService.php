@@ -166,7 +166,10 @@ class MoveService
                 }
             }
 
-            if (request()->has('copy_related_elements') && request()->filled('copy_related_elements')) {
+            if (
+                request()->has('copy_related_elements') &&
+                request()->filled('copy_related_elements') &&
+                method_exists($this->entity->child, 'copyRelatedToTarget')) {
                 $this->entity->child->copyRelatedToTarget($newModel);
             }
 

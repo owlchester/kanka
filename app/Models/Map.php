@@ -573,7 +573,7 @@ class Map extends MiscModel
     /**
      * Copy related elements to the target
      */
-    public function copyRelatedToTarget(MiscModel $target)
+    public function copyRelatedToTarget(Map $target): void
     {
         $groups = [];
         foreach ($this->layers as $sub) {
