@@ -31,7 +31,7 @@ const registercalendarForm = () => {
             let defaultCalendarId = calendarAdd.dataset.defaultCalendar;
             if (defaultCalendarId) {
                 calendarHiddenField.value = defaultCalendarId;
-                calendarCancel.classList.remove('hidden');
+                calendarCancel?.classList.remove('hidden');
                 calendarSubForm.classList.remove('hidden');
                 loadCalendarDates(defaultCalendarId);
             }
@@ -98,7 +98,7 @@ const registercalendarModal = () => {
 
         //var defaultCalendarId = calendarAdd.data('default-calendar');
         if (calendarField?.value) {
-            calendarCancel.classList.remove('hidden');
+            calendarCancel?.classList.remove('hidden');
             calendarSubForm.classList.remove('hidden');
             loadCalendarDates(calendarField.value);
         }
