@@ -40,7 +40,12 @@ const initTabs = () => {
         showMainFields();
     });
     document.querySelector('a[href="#presets"]')?.addEventListener('click', function (e) {
-        loadPresets(e.target.dataset.presets);
+        let target = e.target;
+        // Clicking on the fontawesome in the button? Go to the actual link
+        if (target.tagName.toLowerCase() !== 'a') {
+            target = target.closest('a');
+        }
+        loadPresets(target.dataset.presets);
     });
     document.querySelector('a[href="#form-markers"]')?.addEventListener('click', function () {
         window.map.invalidateSize();
@@ -427,6 +432,10 @@ const showMainFields = () => {
 };
 
 const loadPresets = (url) => {
+    if (!url) {
+        console.log('aaa');
+        return;
+    }
     document.querySelector('#marker-main-fields')?.classList.add('hidden');
     document.querySelector('#marker-footer')?.classList.add('hidden');
 
