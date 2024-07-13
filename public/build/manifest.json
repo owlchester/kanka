@@ -213,7 +213,7 @@
     "src": "resources/js/history.js"
   },
   "resources/js/location/map-v3.js": {
-    "file": "assets/map-v3-560d6c07.js",
+    "file": "assets/map-v3-27a06334.js",
     "isEntry": true,
     "src": "resources/js/location/map-v3.js"
   },
