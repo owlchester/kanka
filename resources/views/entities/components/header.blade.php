@@ -199,7 +199,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                     <x-icon class="fa-solid fa-link"></x-icon>
                                     {{ __('crud.actions.copy_mention') }}
                                 </x-dropdowns.item>
-                            @if (auth()->user()->can('useTemplates', $campaign))
+                                @can('setTemplates', $campaign)
                                     <x-dropdowns.item :link="route('entities.template', [$campaign, $entity])">
                                         @if($entity->isTemplate())
                                             <x-icon class="fa-regular fa-star"></x-icon>
@@ -209,7 +209,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                             {{ __('entities/actions.templates.set') }}
                                         @endif
                                     </x-dropdowns.item>
-                            @endif
+                                @endcan
                             <hr class="m-0" />
                                 @can('update', $model)
                                     <x-dropdowns.item link="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}" :dialog="route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table'])">

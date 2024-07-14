@@ -32,9 +32,6 @@ class CampaignPolicy
      */
     public function access(User $user, Campaign $campaign): bool
     {
-        if ($campaign->isPublic()) {
-            return true;
-        }
         return true;
     }
 
@@ -148,10 +145,8 @@ class CampaignPolicy
 
     /**
      * Determine whether the user can leave the campaign
-     *
-     * @return bool
      */
-    public function leave(User $user, Campaign $campaign)
+    public function leave(User $user, Campaign $campaign): bool
     {
         if (Identity::isImpersonating()) {
             return false;
@@ -159,17 +154,14 @@ class CampaignPolicy
         if (!$campaign->userIsMember()) {
             return false;
         }
-        return
-
-            // If we are not the owner, or that we are an owner but there are other owners
-            (!UserCache::user($user)->admin() || $campaign->adminCount() > 1);
+        // If we are not the owner, or that we are an owner but there are other owners
+        return (!UserCache::user($user)->admin() || $campaign->adminCount() > 1);
     }
 
     /**
      * Determine if a user can follow a campaign
-     * @return bool
      */
-    public function follow(?User $user, Campaign $campaign)
+    public function follow(?User $user, Campaign $campaign): bool
     {
         if (empty($user)) {
             return false;
@@ -181,12 +173,12 @@ class CampaignPolicy
 
         return !$campaign->userIsMember();
     }
+
     /**
      *
      * Determine if a user can apply to a campaign
-     * @return bool
      */
-    public function apply(?User $user, Campaign $campaign)
+    public function apply(?User $user, Campaign $campaign): bool
     {
         if (empty($user)) {
             return false;
@@ -201,9 +193,8 @@ class CampaignPolicy
 
     /**
      * Permission to view the members of a campaign
-     * @return bool
      */
-    public function members(?User $user, Campaign $campaign)
+    public function members(?User $user, Campaign $campaign): bool
     {
         if (!$user) {
             return false;
@@ -216,7 +207,7 @@ class CampaignPolicy
      * Permission to view the campaign submissions
      * @return bool
      */
-    public function submissions(?User $user)
+    public function submissions(?User $user): bool
     {
         return $user && UserCache::user($user)->admin();
     }
@@ -283,19 +274,24 @@ class CampaignPolicy
     }
 
     /**
-     * @return bool
+     *
      */
-    protected function checkPermission(int $action, User $user, Campaign $campaign = null)
+    protected function checkPermission(int $action, User $user, Campaign $campaign = null): bool
     {
         return EntityPermission::hasPermission(0, $action, $user, null, $campaign);
     }
 
     /**
+     * Determine if the user can use templates on the campaign
      */
     public function useTemplates(?User $user, Campaign $campaign): bool
     {
-        return $this->isAdmin($user);
+        return true;
     }
+
+    /**
+     * Determine if the user can set templates on the campaign
+     */
     public function setTemplates(?User $user, Campaign $campaign): bool
     {
         return $this->isAdmin($user);
