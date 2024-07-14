@@ -63,12 +63,14 @@ class MemberController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function updateRoles(Campaign $campaign, CampaignUser $campaignUser, CampaignRole $campaignRole)
     {
         $this->authorize('update', $campaignUser);
+        if (request()->ajax()) {
+            return response()->json();
+        }
 
         try {
             $added = $this->service->update($campaignUser, $campaignRole);
