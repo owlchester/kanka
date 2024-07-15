@@ -189,12 +189,11 @@ class Character extends MiscModel
             if (auth()->guest() || !auth()->user()->isAdmin()) {
                 $query->where('memb.is_private', 0);
             }
-
             return $query;
         } elseif ($filter === FilterOption::EXCLUDE) {
             return $query
                 ->whereRaw('(select count(*) from organisation_member as memb where memb.character_id = ' .
-                    $this->getTable() . '.id and memb.character_id = ' . ((int) $value) . ' and ' . $this->subPrivacy('memb.is_private') . ') = 0');
+                    $this->getTable() . '.id and memb.character_id = ' . ((int) $value) . ' ' . $this->subPrivacy('and memb.is_private') . ') = 0');
         }
 
         $ids = [$value];
