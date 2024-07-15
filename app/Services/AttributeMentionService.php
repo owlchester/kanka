@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Attribute;
+use App\Models\Entity;
 use App\Traits\CampaignAware;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Collection;
@@ -14,7 +15,7 @@ class AttributeMentionService
     use CampaignAware;
 
     protected array $loadedAttributes = [];
-    protected mixed $loadedEntity = null;
+    protected Entity $loadedEntity;
     protected Collection|null $calculatedAttributes = null;
 
     /**
@@ -28,7 +29,7 @@ class AttributeMentionService
             return (string) $attribute->$field;
         }
 
-        if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
+        if (!isset($this->loadedEntity) || $this->loadedEntity->id != $attribute->entity_id) {
             $this->loadedEntity = $attribute->entity;
         }
 
@@ -55,7 +56,7 @@ class AttributeMentionService
             return (string) $attribute->$field;
         }
 
-        if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
+        if (!isset($this->loadedEntity) || $this->loadedEntity->id != $attribute->entity_id) {
             $this->loadedEntity = $attribute->entity;
         }
 

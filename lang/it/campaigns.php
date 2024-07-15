@@ -180,7 +180,6 @@ TEXT
         'invite'                => [
             'description'   => 'Puoi invitare i tuoi amici nella tua campagna indicandoci i loro indirizzi e-mail. Una volta che avranno accettato il loro invito verranno aggiunti come membri nel ruolo indicato. Gli inviti inviati potranno essere cancellati in qualsiasi momento.',
             'more'          => 'Puoi aggiungere ulteriori ruoli su :link.',
-            'roles_page'    => 'Pagina dei ruoli',
             'title'         => 'Invita',
         ],
         'manage_roles'          => 'Gestisci i ruoli degli utenti',

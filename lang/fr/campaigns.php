@@ -128,6 +128,7 @@ TEXT
             'already_member'    => 'Tu es déjà un membre de cette campagne.',
             'inactive_token'    => 'Ce code d\'activation a déjà été utilisé, ou la campagne n\'existe plus.',
             'invalid_token'     => 'Ce code d\'activation n\'est plus valide.',
+            'join'              => 'Connecte-toi ou crée un compte pour joindre :campaign.',
             'login'             => 'Connecte-toi ou crée un compte pour joindre la campagne.',
         ],
         'fields'                => [
@@ -185,7 +186,6 @@ TEXT
         'invite'                => [
             'description'   => 'Invite tes amis et joueurs à participer à la campagne en créant un lien d\'invitation et en leur envoyant l\'URL générée! En acceptant l\'invitation, ils seront ajoutés en tant que membres dans le rôle défini par l\'invitation.',
             'more'          => 'Tu peux ajouter plus de rôles sur la :link.',
-            'roles_page'    => 'page des rôles',
             'title'         => 'Invitation',
         ],
         'manage_roles'          => 'Gérer les rôles de l\'utilisateur',

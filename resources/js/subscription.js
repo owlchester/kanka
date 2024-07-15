@@ -118,9 +118,6 @@ const checkCoupon = (event) => {
 
 const subscribe = (event) => {
     const form = event.target;
-    if (form.dataset.valid) {
-        return true;
-    }
     event.preventDefault();
     disableSubmit(event);
 
@@ -131,9 +128,8 @@ const subscribe = (event) => {
     // If the form already has a payment id, we don't need stripe to add the new one
     const cardID = document.querySelector('input[name="payment_id"]');
     if (cardID.value) {
-        form.dataset.valid = '1';
         // Let the animation handler do its thing
-        form.requestSubmit();
+        form.submit();
         return false;
     }
 
@@ -156,8 +152,7 @@ const subscribe = (event) => {
         } else {
             cardID.value = result.setupIntent.payment_method;
             // Let the animation handler do its thing
-            form.dataset.valid = '1';
-            form.requestSubmit();
+            form.submit();
         }
     }.bind(this));
 };

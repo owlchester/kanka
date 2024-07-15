@@ -12,19 +12,16 @@ use Illuminate\View\Component;
 
 class Ad extends Component
 {
-    public ?string $section;
-    public ?Campaign $campaign;
     protected User $user;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $section = null,
-        Campaign $campaign = null,
+        public string|null $section = null,
+        public Campaign|null $campaign = null,
+        public bool $script = false,
     ) {
-        $this->section = $section;
-        $this->campaign = $campaign;
     }
 
     /**

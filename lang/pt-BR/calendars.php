@@ -55,6 +55,10 @@ return [
         'success'   => 'Lembrete \':event\' adicionado ao calendário.',
     ],
     'events'        => [
+        'bulks'     => [
+            'delete'    => '{1} :count lembrete removido.|[2,*] :count lembretes removidos.',
+            'patch'     => '{1} :count lembrete atualizado.|[2,*] :count lembretes atualizados.',
+        ],
         'end'       => '(fim)',
         'filters'   => [
             'show_after'    => 'Mostrar hoje e depois',

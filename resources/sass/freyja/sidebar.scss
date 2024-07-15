@@ -82,10 +82,10 @@ section.sidebar-campaign {
     display: unset;
 }
 
-body.sidebar-open .sidebar-toggle [data-sidebar="collapse"] {
+body.sidebar-collapse .sidebar-toggle [data-sidebar="collapse"] {
     display: unset;
 }
-body.sidebar-open .sidebar-toggle [data-sidebar="expand"] {
+body.sidebar-collapse .sidebar-toggle [data-sidebar="expand"] {
     display: none;
 }
 
@@ -100,10 +100,10 @@ body.sidebar-open .sidebar-toggle [data-sidebar="expand"] {
     }
 
 
-    .sidebar-open .main-sidebar {
+    .sidebar-collapse .main-sidebar {
         transform: translate(0);
     }
-    .sidebar-open .content-wrapper, .sidebar-open .main-footer {
+    .sidebar-collapse .content-wrapper, .sidebar-collapse .main-footer {
         transform: translate(var(--sidebar-width), 0);
     }
 }

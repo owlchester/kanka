@@ -18,6 +18,7 @@ return [
         'help'              => 'Ajuda',
         'json-export'       => 'Exportar (JSON)',
         'manage_links'      => 'Gerenciar Links',
+        'markdown-export'   => 'Exportar (Markdown)',
         'move'              => 'Mover',
         'new'               => 'Novo',
         'new_child'         => 'Novo filho',
@@ -51,6 +52,7 @@ return [
             'warning'   => 'Você está removendo múltiplas entidades.',
         ],
         'edit'          => [
+            'locations' => 'Ação para locais',
             'tagging'   => 'Ação para tags',
             'tags'      => [
                 'add'       => 'Adicionar',
@@ -242,6 +244,7 @@ return [
         'gallery_header'        => 'Se a entidade não tiver cabeçalho, exiba uma imagem da galeria da campanha.',
         'gallery_image'         => 'Se a entidade não tiver imagem, exiba uma imagem da galeria da campanha.',
         'header_image'          => 'Esta imagem é colocada acima da entidade. Para melhores resultados, use uma imagem larga.',
+        'image_dimension'       => 'Dimensões recomendadas :dimension pixels.',
         'image_limitations'     => 'Formatos suportados: :formats. Tamanho máximo do arquivo: :size.',
         'image_recommendation'  => 'Dimensões recomendadas :width por :height px.',
         'is_star'               => 'Elementos fixados aparecerão no menu de visão geral da entidade.',

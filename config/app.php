@@ -306,8 +306,6 @@ return [
         'Vite' => Illuminate\Support\Facades\Vite::class,
 
         // Third party
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
         'Purify' => Stevebauman\Purify\Facades\Purify::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Image' => Intervention\Image\Facades\Image::class,

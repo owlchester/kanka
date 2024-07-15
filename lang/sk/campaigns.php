@@ -185,7 +185,6 @@ TEXT
         'invite'                => [
             'description'   => 'Do tvojej kampane môžeš pozvať priateľa/ku tým, že zadáš ich e-mailovú adresu. Po akceptovaní pozvánky bude pridaný/á ako člen s danou rolou. Zaslaná pozvánka môže byť hocikedy zrušená.',
             'more'          => 'Nové role môžeš pridať cez :link.',
-            'roles_page'    => 'Stránka s rolami',
             'title'         => 'Pozvať',
         ],
         'manage_roles'          => 'Spravovať roly užívateľov',
@@ -375,6 +374,7 @@ TEXT
         ],
         'helpers'       => [
             'abilities'         => 'Vytvor schopnosti ako kúzla alebo sily, ktoré priradíš iným objektom.',
+            'assets'            => 'Nahraj súbory, nastav linky a definuj aliasy pre jednotlivé objekty.',
             'bookmarks'         => 'Vytvor záložky k objektom alebo filtrovaným zoznamom, ktoré sa zobrazia v bočnom menu.',
             'calendars'         => 'Miesto, na ktorom vieš vytvoriť kalendáre tvojho sveta.',
             'characters'        => 'Postavy, ktoré obývajú svoj svet.',
@@ -430,6 +430,7 @@ TEXT
             'roles'             => 'Roly',
             'sidebar'           => 'Bočné menu',
             'styles'            => 'Témy',
+            'webhooks'          => 'Webhooky',
         ],
         'title'     => 'Kampaň :name',
     ],

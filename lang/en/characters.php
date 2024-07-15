@@ -78,6 +78,12 @@ return [
             'quest_member'  => 'Quests that the character is a member of.',
         ],
     ],
+    'races'         => [
+        'reorder'   => [
+            'success'   => 'Character races updated successfully.',
+        ],
+        'title'     => 'Manage races of :name',
+    ],
     'sections'      => [
         'appearance'    => 'Appearance',
         'personality'   => 'Personality',

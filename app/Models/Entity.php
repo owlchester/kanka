@@ -164,20 +164,6 @@ class Entity extends Model
     }
 
     /**
-     * Create a short name for the interface
-     * @return mixed|string
-     */
-    public function shortName()
-    {
-        if (mb_strlen($this->name) > 30) {
-            return '<span title="' . e($this->name) . '">' . mb_substr(e($this->name), 0, 28) . '...</span>';
-        }
-        return $this->name;
-    }
-
-
-
-    /**
      * Preview of the entity with mapped mentions. For map markers
      */
     public function mappedPreview(): string

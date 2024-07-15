@@ -147,25 +147,38 @@ class Family extends MiscModel
             if (!empty($value)) {
                 return $query;
             }
-            return $query
+            $query
                 ->select($this->getTable() . '.*')
                 ->leftJoin('character_family as memb', function ($join) {
                     $join->on('memb.family_id', '=', $this->getTable() . '.id');
                 })
                 ->where('memb.character_id', null);
+
+            if (auth()->guest() || !auth()->user()->isAdmin()) {
+                $query->where('memb.is_private', 0);
+            }
+
+            return $query;
         } elseif ($filter === FilterOption::EXCLUDE) {
             return $query
                 ->whereRaw('(select count(*) from character_family as memb where memb.family_id = ' .
-                    $this->getTable() . '.id and memb.character_id in (' . (int) $value . ')) = 0');
+                    $this->getTable() . '.id and memb.family_id = ' . ((int) $value) . ' ' . $this->subPrivacy('and memb.is_private') . ') = 0');
         }
 
         $ids = [$value];
-        return $query
+        $query
             ->select($this->getTable() . '.*')
             ->leftJoin('character_family as memb', function ($join) {
                 $join->on('memb.family_id', '=', $this->getTable() . '.id');
             })
-            ->whereIn('memb.character_id', $ids)->distinct();
+            ->whereIn('memb.character_id', $ids);
+
+
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
+            $query->where('memb.is_private', 0);
+        }
+
+        return $query->distinct();
     }
 
     /**

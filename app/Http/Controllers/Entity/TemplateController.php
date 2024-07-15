@@ -28,6 +28,7 @@ class TemplateController extends Controller
     public function update(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        $this->authorize('setTemplates', $campaign);
 
         $this->service->entity($entity)->toggle();
         return redirect()->back()

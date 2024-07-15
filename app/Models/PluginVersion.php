@@ -400,10 +400,7 @@ class PluginVersion extends Model
         $this->entityAttributes = $entity->allAttributes;
         $allAttributes = [];
         foreach ($this->entityAttributes as $attr) {
-            $name = str_replace(' ', '', $attr->name);
-            if (Str::contains($name, '[range:')) {
-                $name = Str::before($name, '[range:');
-            }
+            $name = $attr->exposedName(false);
             $data[$name] = $attr->mappedValue();
             $ids[$name] = $attr->id;
             if ($attr->isText()) {

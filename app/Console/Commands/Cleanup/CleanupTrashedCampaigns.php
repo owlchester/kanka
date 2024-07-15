@@ -51,9 +51,10 @@ class CleanupTrashedCampaigns extends Command
     {
         Campaign::observe(CampaignObserver::class);
 
-        $this->service->purgeDeleted();
-        $this->info('');
-        $this->info('Deleted ' . $this->service->count() . ' trashed campaigns.');
+        $count = $this->service->purgeDeleted();
+        $log = 'Deleted ' . $count . ' trashed campaigns.';
+        $this->info($log);
+        $this->log($log);
 
         return 0;
     }

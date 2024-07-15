@@ -175,7 +175,6 @@ TEXT
         'invite'                => [
             'description'   => 'Podes invitar amizades a unirse á túa campaña mediante unha ligazón de convite. Cando acepten o convite, serán engadidas como integrante no rol correspondente. Tamén podes enviarlles un convite mediante correo electrónico, sempre e cando non sexa un enderezo de Hotmail, xa que Hotmail sempre rexeita os correos de Kanka.',
             'more'          => 'Podes engadir máis roles en :link',
-            'roles_page'    => 'Páxina de roles',
             'title'         => 'Convidar',
         ],
         'manage_roles'          => 'Administrar roles',

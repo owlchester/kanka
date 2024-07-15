@@ -7,7 +7,7 @@ use App\Models\Entity;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Sanitizers\SvgAllowedAttributes;
-use App\Traits\EntityAware;
+use App\Traits\CampaignAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -17,19 +17,18 @@ use enshrined\svgSanitize\Sanitizer;
 use Exception;
 
 /**
- * This should be a proper laravel facade 🥲
  */
-class ImageService
+class ImagesService
 {
-    use EntityAware;
+    use CampaignAware;
 
     /**
      */
-    public static function handle(MiscModel|Map|Model|Entity $model, string $folder = '', string $field = 'image')
+    public function handle(MiscModel|Map|Model|Entity $model, string $folder = '', string $field = 'image')
     {
         // Remove the old image
         if (request()->post('remove-' . $field) == '1') {
-            self::cleanup($model, $field);
+            $this->cleanup($model, $field);
             return;
         }
 
@@ -95,7 +94,7 @@ class ImageService
 
             if (!empty($path)) {
                 // Remove old
-                self::cleanup($model, $field);
+                $this->cleanup($model, $field);
 
                 // Save new image
                 if ($url) {
@@ -124,7 +123,7 @@ class ImageService
 
     /**
      */
-    public static function entity(Entity $entity, string $folder = '', string $field = 'header_image')
+    public function entity(Entity $entity, string $folder = '', string $field = 'header_image')
     {
         if (request()->has($field) || request()->filled($field . '_url')) {
             try {
@@ -168,7 +167,7 @@ class ImageService
 
                 if (!empty($path)) {
                     // Remove old
-                    self::cleanup($entity, $field);
+                    $this->cleanup($entity, $field);
 
                     // Save new image
                     if ($url) {
@@ -194,7 +193,7 @@ class ImageService
             }
         } elseif (request()->post('remove-' . $field) == '1') {
             // Remove old
-            self::cleanup($entity, $field);
+            $this->cleanup($entity, $field);
         }
     }
 
@@ -202,7 +201,7 @@ class ImageService
      * Delete old image and thumb
      * @param MiscModel|Entity|Model $model
      */
-    public static function cleanup($model, $field = 'image')
+    public function cleanup($model, $field = 'image')
     {
         if ($model instanceof Entity && $field === 'image') {
             $field = 'image_path';

@@ -124,7 +124,7 @@ class AttributeController extends Controller
         $this->authorize('attribute', [$entity->child, 'edit']);
         $this->authorize('attributes', $entity);
 
-        $attributes = request()->get('attribute');
+        $attributes = request()->get('attribute', []);
 
         $this->service
             ->entity($entity)

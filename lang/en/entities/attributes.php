@@ -3,28 +3,28 @@
 return [
     'actions'       => [
         'apply_template'    => 'Apply an attribute template',
+        'load'              => 'Load',
         'manage'            => 'Manage',
         'more'              => 'Others',
         'remove_all'        => 'Delete all',
         'save_and_edit'     => 'Apply and Edit',
         'save_and_story'    => 'Apply and View',
         'show_hidden'       => 'Show hidden attributes',
-        'toggle_privacy' => 'Private/Public',
-        'load' => 'Load'
+        'toggle_privacy'    => 'Private/Public',
     ],
     'errors'        => [
-        'loop'      => 'There is an endless loop in this attribute calculation!',
-        'too_many'  => 'There are too many fields on this entity, can\'t add more attributes. Delete some attributes first before being able to add more.',
-        'no_attribute_selected' => 'Select one or more attributes first.'
+        'loop'                  => 'There is an endless loop in this attribute calculation!',
+        'no_attribute_selected' => 'Select one or more attributes first.',
+        'too_many_v2'           => 'Max fields reached (:count/:max). Delete some attributes first before being able to add more.',
     ],
     'fields'        => [
         'attribute'             => 'Attribute',
         'community_templates'   => 'Community Templates',
         'is_private'            => 'Private Attributes',
         'is_star'               => 'Pinned',
+        'preferences'           => 'Preferences',
         'template'              => 'Template',
         'value'                 => 'Value',
-        'preferences'                 => 'Preferences',
     ],
     'filters'       => [
         'name'  => 'Attribute name',
@@ -70,28 +70,28 @@ return [
         'text'  => 'Available options: :options',
     ],
     'sections'      => [
-        'unorganised' => 'Unorganised',
+        'unorganised'   => 'Unorganised',
     ],
     'show'          => [
         'hidden'    => 'Hidden Attributes',
         'title'     => ':name Attributes',
     ],
     'template'      => [
+        'load'      => [
+            'success'   => 'Template loaded',
+            'title'     => 'Load from template',
+        ],
         'success'   => 'Attribute template :name applied to :entity',
         'title'     => 'Apply an attribute template for :name',
-        'load' => [
-            'title' => 'Load from template',
-            'success' => 'Template loaded'
-        ],
     ],
     'title'         => 'Attributes',
     'toasts'        => [
-        'lock'      => 'Attribute locked',
-        'pin'       => 'Attribute pinned',
-        'unlock'    => 'Attribute unlocked',
-        'unpin'     => 'Attribute unpinned',
-        'bulk_privacy' => 'Attributes privacy toggled',
-        'bulk_deleted' => 'Attributes deleted',
+        'bulk_deleted'  => 'Attributes deleted',
+        'bulk_privacy'  => 'Attributes privacy toggled',
+        'lock'          => 'Attribute locked',
+        'pin'           => 'Attribute pinned',
+        'unlock'        => 'Attribute unlocked',
+        'unpin'         => 'Attribute unpinned',
     ],
     'tutorial'      => 'Attributes are little bits of information attached to an entity. For example, a character might have an :hp and :str stat, while a location might have a :pop one. This can easily be tracked with attributes.',
     'types'         => [

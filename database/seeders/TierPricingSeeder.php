@@ -100,14 +100,14 @@ class TierPricingSeeder extends Seeder
             TierPrice::create([
                 'currency' => $currency,
                 'period' => PricingPeriod::Monthly,
-                'cost' => 4.99,
+                'cost' => 24.99,
                 'tier_id' => $tier->id,
                 'stripe_id' => config('subscription.elemental.' . $currency . '.monthly'),
             ]);
             TierPrice::create([
                 'currency' => $currency,
                 'period' => PricingPeriod::Yearly,
-                'cost' => 49.90,
+                'cost' => 249.90,
                 'tier_id' => $tier->id,
                 'stripe_id' => config('subscription.elemental.' . $currency . '.yearly'),
             ]);

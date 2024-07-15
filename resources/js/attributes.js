@@ -1,6 +1,4 @@
 let maxFields = false;
-const maxFieldAlert = document.querySelector('.alert-too-many-fields');
-
 let liveEditURL, liveEditModal;
 
 const init = () => {
@@ -14,22 +12,6 @@ const init = () => {
         maxFields = maxConfig.dataset.maxFields;
     }
 };
-
-const initAddAttribute = () => {
-    if (maxFields !== false) {
-        // Todo: migrate to vue and vanila js.
-        // This is also wrong, as it looks for all form inputs (search, logout, bulk) instead of the current form)
-        const fieldCount = $('form :input').length + 4;
-        //console.log('checking', fieldCount, 'vs', maxFields);
-        if (fieldCount > maxFields) {
-            maxFieldAlert.classList.remove('hidden');
-            return;
-        } else {
-            maxFieldAlert.classList.add('hidden');
-        }
-    }
-};
-
 
 const initLiveAttributes = () => {
     const config = document.querySelector('[name="live-attribute-config"]');

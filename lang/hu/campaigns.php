@@ -152,7 +152,6 @@ TEXT
         'invite'                => [
             'description'   => 'Meghívhatod a barátaidat az email-címük megadásával, hogy csatlakozzanak a kampányodhoz. Ha elfogadják a meghívást, tagok lesznek az igénylet szerepben. A kiküldött meghívókat bármikor visszavonhatod.',
             'more'          => 'További szerepeket adhatsz hozzá itt :link',
-            'roles_page'    => 'Szerepek oldal',
             'title'         => 'Meghívó',
         ],
         'manage_roles'          => 'Kezeld a felhasználói szerepeket',

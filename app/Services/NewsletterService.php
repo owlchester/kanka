@@ -17,6 +17,8 @@ class NewsletterService
 
     protected mixed $mailerlite;
 
+    protected Exception $error;
+
     public function __construct()
     {
         $key = (string) config('mailerlite.api_key');
@@ -98,8 +100,14 @@ class NewsletterService
                 return true;
             }
         } catch (Exception $e) {
+            $this->error = $e;
             return false;
         }
+    }
+
+    public function error(): Exception
+    {
+        return $this->error;
     }
 
     /**

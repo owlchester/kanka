@@ -3,6 +3,7 @@
 return [
     'abilities'             => 'Habilidades',
     'ability'               => 'Habilidade',
+    'assets'                => 'Recursos',
     'attribute_template'    => 'Modelo de Atributo',
     'attribute_templates'   => 'Modelos de Atributo',
     'bookmark'              => 'Favorito',
@@ -53,6 +54,7 @@ return [
     'creatures'             => 'Criaturas',
     'dice_roll'             => 'Rolagem de Dado',
     'dice_rolls'            => 'Rolagem de Dados',
+    'entities'              => 'Entidades',
     'entity_attributes'     => 'Atributos',
     'event'                 => 'Evento',
     'events'                => 'Eventos',

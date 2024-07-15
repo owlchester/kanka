@@ -1,7 +1,7 @@
 
 window.onEvent(function() {
     initImageFocus();
- });
+});
 
 let bullseye;
 let scaledImage;
@@ -36,30 +36,39 @@ const initImageFocus = () => {
     });
 
     bullseye.addEventListener('click', function () {
-        bullseye.style.display = 'none';
+        bullseye.classList.add('hidden');
         document.querySelector('input[name="focus_x"]').value = '';
         document.querySelector('input[name="focus_y"]').value = '';
     });
 
     // Place the bullseye on the page
-    if (bullseye.dataset.focusX && bullseye.dataset.focusY) {
-        // Get the original dimensions of the image
-        const originalWidth = scaledImage.naturalWidth;
-        const originalHeight = scaledImage.naturalHeight;
-
-        // Calculate the coordinates as a percentage, so that the focus point can be placed correctly to scale
-        const left = (bullseye.dataset.focusX / originalWidth) * 100;
-        const top = (bullseye.dataset.focusY / originalHeight) * 100;
-
-        drawBullseye(top, left);
+    if (bullseye.dataset.focusX > 0 && bullseye.dataset.focusY > 0) {
+        initBullseye();
     }
 };
 
 const drawBullseye = (top, left) => {
     bullseye.style.top = (top) + '%';
     bullseye.style.left = (left) + '%';
-    bullseye.style.display = 'inherit';
+    bullseye.classList.remove('hidden');
 };
 
+const initBullseye = () => {
+    // Get the original dimensions of the image
+    const originalWidth = scaledImage.naturalWidth;
+    const originalHeight = scaledImage.naturalHeight;
+    if (originalWidth === 0) {
+        // Wait for the image to finish loading
+        setTimeout(initBullseye, 100);
+    }
+    bullseye.classList.remove('loading');
+
+    // Calculate the coordinates as a percentage, so that the focus point can be placed correctly to scale
+    const left = (bullseye.dataset.focusX / originalWidth) * 100;
+    const top = (bullseye.dataset.focusY / originalHeight) * 100;
+
+
+    drawBullseye(top, left);
+};
 
 initImageFocus();

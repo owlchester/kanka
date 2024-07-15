@@ -48,5 +48,4 @@
 
 @section('styles')
     @parent
-    @vite('resources/sass/abilities.scss')
 @endsection

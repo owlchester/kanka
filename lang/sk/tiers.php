@@ -20,6 +20,7 @@ return [
         'nice_image'        => 'Štandardné obrázky objektov',
         'no_ads'            => 'Bez reklamy',
         'pagination'        => ':amount max. objektov v zoznamoch',
+        'roadmap'           => 'Zahlasuj za nápady v pláne',
     ],
     'periods'   => [
         'billed_monthly'    => 'účtované mesačne',

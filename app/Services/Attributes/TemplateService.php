@@ -298,17 +298,18 @@ class TemplateService
             $attributes[] = [
                 'name' => $attribute->name,
                 'value' => $value,
-                'is_private' => false,
-                'is_pinned' => false,
+                'is_private' => (bool) $attribute->is_private,
+                'is_pinned' => $attribute->isPinned(),
                 'is_hidden' => false,
                 'is_checked' => false,
                 'is_deleted' => false,
                 'source_id' => $attribute->id,
 
-                'is_checkbox' => $attribute->isCheckbox() === Attribute::TYPE_CHECKBOX_ID,
-                'is_multiline' => $attribute->isText() === Attribute::TYPE_TEXT_ID,
-                'is_section' => $attribute->isSection() === Attribute::TYPE_SECTION_ID,
-                'is_number' => $attribute->isNumber() === Attribute::TYPE_NUMBER_ID,
+                'is_checkbox' => $attribute->isCheckbox(),
+                'is_multiline' => $attribute->isText() ,
+                'is_random' => $attribute->isRandom() ,
+                'is_section' => $attribute->isSection(),
+                'is_number' => $attribute->isNumber(),
             ];
         }
 

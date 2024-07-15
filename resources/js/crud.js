@@ -28,6 +28,9 @@ function registerEntityNameCheck() {
         }
         const block = this.dataset.duplicate;
         const entityCreatorDuplicateWarning = document.querySelector(block);
+        if (!entityCreatorDuplicateWarning) {
+            return;
+        }
         const url = this.dataset.live +
             '?q=' + encodeURIComponent(this.value) +
             '&type=' + this.dataset.type +

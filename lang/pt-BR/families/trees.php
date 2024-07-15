@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'clear'             => 'Apaga tudo',
         'first'             => 'Adiconar um fundador',
+        'founder'           => 'Adicionar um novo fundador',
         'rename-relation'   => 'Renomear relação',
         'reset'             => 'Descartar mudanças',
         'save'              => 'Salvar',
@@ -19,21 +20,25 @@ return [
             'confirm'   => 'Tem certeza de que deseja reinicializar todos os dados da árvore genealógica?',
         ],
         'entity'    => [
-            'add'   => [
+            'add'       => [
+                'founder'   => 'Fundador',
                 'member'    => 'Membro',
                 'success'   => 'Entidade adicionada.',
                 'title'     => 'Adicionar uma entidade',
             ],
-            'child' => [
+            'child'     => [
                 'success'   => 'Filho adicionado.',
                 'title'     => 'Adicionar um filho',
             ],
-            'edit'  => [
+            'edit'      => [
                 'helper'    => 'Marque esta opção se a relação for desconhecida. Um personagem pode ser adicionado mais tarde.',
                 'success'   => 'Entidade atualizada.',
                 'title'     => 'Atualizar uma entidade',
             ],
-            'remove'=> [
+            'founder'   => [
+                'title' => 'Adicionar um novo fundador',
+            ],
+            'remove'    => [
                 'confirm'   => 'Tem certeza que deseja remover essa entidade da árvore genealógica?',
                 'success'   => 'Entidade removida.',
             ],

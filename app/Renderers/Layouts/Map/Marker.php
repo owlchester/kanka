@@ -45,9 +45,7 @@ class Marker extends Layout
             ],
             'visibility' => [
                 'label' => 'crud.fields.visibility',
-                'render' => function ($model) {
-                    return $model->visibilityIcon();
-                }
+                'render' => Standard::VISIBILITY,
             ],
         ];
 

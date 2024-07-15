@@ -82,6 +82,7 @@
             :visible-attributes="visibleAttributes"
             :i18n="i18n"
             :newAttributeID="newAttributeID"
+            :max="meta.max"
             @incrementNewAttributeID="incrementNewAttributeID">
         </attributes-manager-form>
     </div>

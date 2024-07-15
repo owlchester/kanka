@@ -16,6 +16,7 @@ use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class SubscriptionController extends Controller
@@ -94,6 +95,12 @@ class SubscriptionController extends Controller
         }
         $user = $request->user();
         $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
+
+        // If the user has a cancelled sub still ending
+        if ($user->subscribed('kanka') && $user->subscription('kanka')->onGracePeriod()) {
+            return view('settings.subscription.change_blocked')
+                ->with('user', $user);
+        }
 
         $amount = $this->subscription
             ->user($request->user())
@@ -184,6 +191,19 @@ class SubscriptionController extends Controller
                 ->with('error_raw', $e->getTranslatedMessage())
             ;
         } catch (Exception $e) {
+            // If they are trying to sub in another currency, let's help them understand that issue
+            $error = $e->getMessage();
+            if (Str::contains($error, 'expected currency')) {
+                preg_match_all('/`(\w{3})`/', $error, $currencies);
+                return redirect()
+                    ->route('settings.subscription')
+                    ->with('error_raw', __('subscription.errors.invalid_currency', [
+                        'old' => strtoupper($currencies[1][0]),
+                        'new' => strtoupper($currencies[1][1]),
+                        'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
+                    ]))
+                    ;
+            }
             // Error? json
             return response()->json([
                 'error' => true,

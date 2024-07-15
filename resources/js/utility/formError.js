@@ -30,6 +30,11 @@ window.formErrorHandler = function(err, form) {
         return;
     }
 
+    // No errors? Probably a backend error
+    if (!err.data.errors) {
+        window.showToast('Backend error', 'error');
+        return;
+    }
     // Loop through the errors to add the class and error message
     const errors = err.data.errors;
     let logs = [];

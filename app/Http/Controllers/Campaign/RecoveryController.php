@@ -6,7 +6,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\RecoveryService;
+use App\Services\Entity\RecoveryService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;

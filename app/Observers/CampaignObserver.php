@@ -15,9 +15,10 @@ use App\Models\CampaignSetting;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\Campaign\SearchCleanupService;
-use App\Services\ImageService;
+use App\Facades\Images;
 use App\Services\Users\CampaignService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CampaignObserver
 {
@@ -56,8 +57,8 @@ class CampaignObserver
         }
 
         // Handle image. Let's use a service for this.
-        ImageService::handle($campaign, 'w');
-        ImageService::handle($campaign, 'w', 'header_image');
+        Images::handle($campaign, 'w/' . $campaign->id);
+        Images::handle($campaign, 'w/' . $campaign->id, 'header_image');
     }
 
     /**
@@ -150,8 +151,14 @@ class CampaignObserver
     {
         if ($campaign->isForceDeleting()) {
             SearchCleanupService::cleanup($campaign);
-            ImageService::cleanup($campaign);
-            ImageService::cleanup($campaign, 'header_image');
+            Images::cleanup($campaign);
+            Images::cleanup($campaign, 'header_image');
+
+            // Cleanup the folder with all the campaign images and files
+            $campaignFolder = 'w/' . $campaign->id;
+            if (Storage::exists($campaignFolder)) {
+                Storage::deleteDirectory($campaignFolder);
+            }
         } else {
             UserCache::clear();
         }

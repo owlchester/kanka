@@ -7,7 +7,7 @@ use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Jobs\Users\UpdateEmail;
-use App\Services\ImageService;
+use App\Facades\Images;
 use App\User;
 use Exception;
 use Illuminate\Support\Facades\Hash;
@@ -119,7 +119,7 @@ class UserObserver
     {
         // If the user has an avatar, delete it from the disk to free up some space.
         if (!empty($user->avatar) && $user->avatar !== 'users/default.png' && app()->isProduction()) {
-            ImageService::cleanup($user, 'avatar');
+            Images::cleanup($user, 'avatar');
         }
 
         //Log::info('Deleted user', ['user' => $user->id]);

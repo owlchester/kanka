@@ -3,6 +3,7 @@
 return [
     'abilities'             => 'Schopnosti',
     'ability'               => 'Schopnosť',
+    'assets'                => 'Materiály',
     'attribute_template'    => 'Šablóna atribútov',
     'attribute_templates'   => 'Šablóny atribútov',
     'bookmark'              => 'Záložka',
@@ -53,6 +54,7 @@ return [
     'creatures'             => 'Bytosti',
     'dice_roll'             => 'Hod kockou',
     'dice_rolls'            => 'Hody kockou',
+    'entities'              => 'Objekty',
     'entity_attributes'     => 'Atribúty',
     'event'                 => 'Udalosť',
     'events'                => 'Udalosti',

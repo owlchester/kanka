@@ -144,7 +144,6 @@ TEXT
         'invite'                => [
             'description'   => 'Možeš pozvati prijatelje da se priključe tvojoj kampanji tako što im daš pozivnicu za priključivanje. Kad prihate pozivnicu, bit će dodani kao članovi u zatraženoj ulozi. Također im možeš poslati zahtjev putem emaila dok god nije Hotmail adresa, jer oni uvijek odbijaju Kankine emailove.',
             'more'          => 'Možeš dodati više uloga na :link.',
-            'roles_page'    => 'stranici uloga',
             'title'         => 'Pozvati',
         ],
         'manage_roles'          => 'Upravljanje korisničkim ulogama',

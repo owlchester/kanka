@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Http\Resources\EntityResource as Resource;
 use App\Http\Requests\RecoverEntity as Request;
-use App\Services\RecoveryService;
+use App\Services\Entity\RecoveryService;
 
 class EntityRecoveryApiController extends ApiController
 {
@@ -42,6 +42,6 @@ class EntityRecoveryApiController extends ApiController
         }
         $this->service->recover($request->entities);
 
-        return response()->json(['success' => 'Succesfully recovered deleted entities']);
+        return response()->json(['success' => 'Successfully recovered deleted entities']);
     }
 }

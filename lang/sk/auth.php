@@ -34,7 +34,7 @@ return [
         ],
         'login_with_facebook'   => 'Prihlásenie cez Facebook',
         'login_with_google'     => 'Prihlásenie cez Google',
-        'login_with_twitter'    => 'Prihlásenie cez Twitter',
+        'login_with_x'          => 'Prihlásenie cez X (pôvodne Twitter)',
         'new_account'           => 'Registrovať nové konto',
         'or'                    => 'ALEBO',
         'password_forgotten'    => 'Zabudnuté heslo?',
@@ -57,7 +57,7 @@ return [
         'log-in'                    => 'Prihlásenie',
         'register_with_facebook'    => 'Registrácia cez Facebook',
         'register_with_google'      => 'Registrácia cez Google',
-        'register_with_twitter'     => 'Registrácia cez Twitter',
+        'register_with_x'           => 'Registrácia cez X (pôvodne Twitter)',
         'submit'                    => 'Registrovať',
         'title'                     => 'Registrácia',
         'tos'                       => 'Registráciou konta súhlasíš s našimi :terms a :privacy.',
@@ -77,4 +77,5 @@ return [
         'title'     => 'Dvojstupňové overenie identity',
     ],
     'throttle'  => 'Prekročený limit pokusov. Skús to znovu o :seconds sekúnd.',
+    'x-twitter' => 'X pôvodne známy ako Twitter',
 ];

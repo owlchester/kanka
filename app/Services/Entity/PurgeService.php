@@ -1,86 +1,23 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Entity;
 
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
-use App\Models\Post;
-use Carbon\Carbon;
+use App\Facades\Images;
 use Exception;
-use Illuminate\Support\Facades\DB;
 
-class RecoveryService
+class PurgeService
 {
     /** @var array Entity IDs to be deleted */
     protected array $entityIds = [];
-
-    /** @var array Post IDs to be deleted */
-    protected array $postIds = [];
 
     /** @var array Child IDs to be deleted */
     protected array $childIds = [];
 
     /** @var int Number of total deleted entities */
     protected int $count = 0;
-
-    /** @var int Number of total deleted posts */
-    protected int $countPosts = 0;
-
-    /**
-     */
-    public function recover(array $ids): int
-    {
-        $count = 0;
-        foreach ($ids as $id) {
-            if ($this->entity($id)) {
-                $count++;
-            }
-        }
-
-        return $count;
-    }
-
-    /**
-     */
-    public function recoverPosts(array $ids): int
-    {
-        $count = 0;
-        foreach ($ids as $id) {
-            if ($this->post($id)) {
-                $count++;
-            }
-        }
-
-        return $count;
-    }
-
-    /**
-     * Permanently delete old data
-     * @return int deleted entities count
-     * @throws Exception
-     */
-    public function cleanup(): int
-    {
-        Entity::onlyTrashed()
-            ->where('type', 'race')
-            ->where('deleted_at', '<=', Carbon::now()->subDays(config('entities.hard_delete'))->toDateString())
-            ->chunk(500, function ($entities) {
-                DB::beginTransaction();
-                try {
-                    foreach ($entities as $entity) {
-                        $this->trash($entity);
-                    }
-                    DB::commit();
-
-                    dump('Trashed ' . count($entities) . ' entities.');
-                } catch (Exception $e) {
-                    DB::rollBack();
-                }
-            });
-
-        return $this->count;
-    }
 
     /**
      */
@@ -90,59 +27,9 @@ class RecoveryService
     }
 
     /**
-     */
-    public function countPosts(): int
-    {
-        return $this->countPosts;
-    }
-
-    /**
-     * Restore an entity and it's child
-     * @return bool if the restore worked
-     */
-    protected function entity(int $id): bool
-    {
-        $entity = Entity::onlyTrashed()->find($id);
-        if (!$entity) {
-            return false;
-        }
-
-        // @phpstan-ignore-next-line
-        $child = $entity->child()->onlyTrashed()->first();
-        if (!$child) {
-            return false;
-        }
-
-        $entity->restore();
-
-        // Refresh the child first to not re-trigger the entity creation on save
-        $child->refresh();
-        $child->restoreQuietly();
-        return true;
-    }
-
-    /**
-     * Restore an entity and it's child
-     * @return bool if the restore worked
-     */
-    protected function post(int $id): bool
-    {
-        $post = Post::onlyTrashed()->find($id);
-        if (!$post) {
-            return false;
-        }
-        if ($post->entity->deleted_at) {
-            return false;
-        }
-        $post->restore();
-
-        return true;
-    }
-
-    /**
      * @throws Exception
      */
-    public function trash(Entity $entity)
+    public function trash(Entity $entity): void
     {
         /** @var MiscModel $child */
         // @phpstan-ignore-next-line
@@ -152,8 +39,7 @@ class RecoveryService
         $this->entityIds[] = $entity->id;
         $entity->forceDelete();
 
-        ImageService::cleanup($child);
-
+        Images::cleanup($child);
 
         $this->count++;
     }
@@ -207,10 +93,10 @@ class RecoveryService
         $this->childIds[$child->getEntityType()][] = $child->id;
 
         // Cleanup any images attached to the child.
-        ImageService::cleanup($child);
+        Images::cleanup($child);
 
         if ($child instanceof Location && !empty($child->map)) {
-            ImageService::cleanup($child, 'map');
+            Images::cleanup($child, 'map');
         }
 
         $child->forceDelete();

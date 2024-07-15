@@ -188,16 +188,21 @@ class Character extends MiscModel
             if (!empty($value)) {
                 return $query;
             }
-            return $query
+            $query
                 ->select($this->getTable() . '.*')
                 ->leftJoin('organisation_member as memb', function ($join) {
                     $join->on('memb.character_id', '=', $this->getTable() . '.id');
                 })
                 ->where('memb.organisation_id', null);
+
+            if (auth()->guest() || !auth()->user()->isAdmin()) {
+                $query->where('memb.is_private', 0);
+            }
+            return $query;
         } elseif ($filter === FilterOption::EXCLUDE) {
             return $query
                 ->whereRaw('(select count(*) from organisation_member as memb where memb.character_id = ' .
-                    $this->getTable() . '.id and memb.organisation_id in (' . (int) $value . ')) = 0');
+                    $this->getTable() . '.id and memb.character_id = ' . ((int) $value) . ' ' . $this->subPrivacy('and memb.is_private') . ') = 0');
         }
 
         $ids = [$value];
@@ -208,12 +213,18 @@ class Character extends MiscModel
                 $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
             }
         }
-        return $query
+        $query
             ->select($this->getTable() . '.*')
             ->leftJoin('organisation_member as memb', function ($join) {
                 $join->on('memb.character_id', '=', $this->getTable() . '.id');
             })
-            ->whereIn('memb.organisation_id', $ids)->distinct();
+            ->whereIn('memb.organisation_id', $ids);
+
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
+            $query->where('memb.is_private', 0);
+        }
+
+        return $query->distinct();
     }
 
     /**
@@ -254,6 +265,7 @@ class Character extends MiscModel
         return $this->hasMany(CharacterRace::class, 'character_id')
             ->orderBy('id')
             ->has('race')
+            ->has('race.entity')
             ->with(['race', 'race.entity'])
         ;
     }
