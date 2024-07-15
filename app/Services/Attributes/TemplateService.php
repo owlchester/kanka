@@ -298,8 +298,8 @@ class TemplateService
             $attributes[] = [
                 'name' => $attribute->name,
                 'value' => $value,
-                'is_private' => false,
-                'is_pinned' => false,
+                'is_private' => (bool) $attribute->is_private,
+                'is_pinned' => $attribute->isPinned(),
                 'is_hidden' => false,
                 'is_checked' => false,
                 'is_deleted' => false,
