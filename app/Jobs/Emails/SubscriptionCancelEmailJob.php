@@ -48,16 +48,21 @@ class SubscriptionCancelEmailJob implements ShouldQueue
             return;
         }
 
+        $reason = $this->reason;
+
+        if ($reason == 'custom') {
+            $reason = 'other';
+        }
         // Send an email to the admins
         Mail::to('hello@kanka.io')
             ->send(
-                new CancelledSubscriptionMail($user, $this->reason, $this->custom)
+                new CancelledSubscriptionMail($user, $reason, $this->custom)
             );
 
         // Send an email to the user
         Mail::to($user->email)
             ->send(
-                new CancelledUserSubscriptionMail($user, $this->reason)
+                new CancelledUserSubscriptionMail($user)
             );
         $user->log(UserLog::TYPE_SUB_CANCEL_MANUAL);
     }
