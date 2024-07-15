@@ -155,20 +155,11 @@ class Character extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'families' => function ($sub) {
-                $sub->select('families.id', 'families.name');
-            },
-            'characterFamilies.family.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
+            'characterFamilies' => function ($sub) {
+                $sub->select('family_id', 'character_id');
             },
             'characterRaces' => function ($sub) {
-                $sub->select('*');
-            },
-            'characterRaces.race' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'characterRaces.race.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
+                $sub->select('race_id', 'character_id');
             },
         ]);
     }
@@ -250,7 +241,14 @@ class Character extends MiscModel
         return $this->hasMany(CharacterFamily::class, 'character_id')
             ->orderBy('id')
             ->has('family')
-            ->with(['family', 'family.entity'])
+            ->with([
+                'family' => function ($sub) {
+                    $sub->select('id', 'name', 'is_private');
+                },
+                'family.entity' =>  function ($sub) {
+                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                },
+            ])
         ;
     }
 
@@ -260,7 +258,14 @@ class Character extends MiscModel
             ->orderBy('id')
             ->has('race')
             ->has('race.entity')
-            ->with(['race', 'race.entity'])
+            ->with([
+                'race' => function ($sub) {
+                    $sub->select('id', 'name', 'is_private');
+                },
+                'race.entity' =>  function ($sub) {
+                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                },
+            ])
         ;
     }
 
