@@ -48,7 +48,7 @@ class Character extends Layout
                 'label' => Module::plural(config('entities.ids.race'), 'entities.races'),
                 'class' => self::ONLY_DESKTOP,
                 'render' => Standard::ENTITYLIST,
-                'with' => 'races',
+                'with' => 'characterRaces',
             ],
             'tags' => [
                 'render' => Standard::TAGS
