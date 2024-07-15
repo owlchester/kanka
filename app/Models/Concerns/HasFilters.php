@@ -528,7 +528,7 @@ trait HasFilters
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
                 $this->getTable() . '.id and cf.family_id = ' . ((int) $value)
-                . ' ' . $this->subPrivacy('and cf.is_private') . ') = 0');
+                . ' ' . /*$this->subPrivacy('and cf.is_private') .*/ ') = 0');
             return;
 
         } elseif ($this->filterOption('children')) {
@@ -546,9 +546,9 @@ trait HasFilters
                 $join->on('cf.character_id', '=', $this->getTable() . '.id');
             })->whereIn('cf.family_id', $ids);
 
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        /*if (auth()->guest() || !auth()->user()->isAdmin()) {
             $query->where('cf.is_private', false);
-        }
+        }*/
 
         $query->distinct();
     }
