@@ -138,7 +138,7 @@ class Character extends MiscModel
     ];
 
     /**
-     * Performance with for datagrids
+     * Performance with for old table view of all the campaign characters
      */
     public function scopePreparedWith(Builder $query): Builder
     {
@@ -152,14 +152,11 @@ class Character extends MiscModel
             'location' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
             'characterFamilies' => function ($sub) {
-                $sub->select('family_id', 'character_id');
+                $sub->select('character_family.id', 'character_family.family_id', 'character_family.character_id');
             },
             'characterRaces' => function ($sub) {
-                $sub->select('race_id', 'character_id');
+                $sub->select('character_race.id', 'character_race.race_id', 'character_race.character_id');
             },
         ]);
     }
@@ -226,14 +223,22 @@ class Character extends MiscModel
     {
         return $this
             ->belongsTo('App\Models\Location', 'location_id', 'id')
-            ->with('entity');
+            ->with([
+                'entity' => function ($sub) {
+                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                }
+            ]);
     }
 
     public function families(): BelongsToMany
     {
         return $this->belongsToMany(Family::class)
             ->orderBy('character_family.id')
-            ->with('entity');
+            ->with([
+                'entity' => function ($sub) {
+                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                }
+            ]);
     }
 
     public function characterFamilies(): HasMany
@@ -257,7 +262,6 @@ class Character extends MiscModel
         return $this->hasMany(CharacterRace::class, 'character_id')
             ->orderBy('id')
             ->has('race')
-            ->has('race.entity')
             ->with([
                 'race' => function ($sub) {
                     $sub->select('id', 'name', 'is_private');
@@ -273,7 +277,11 @@ class Character extends MiscModel
     {
         return $this->belongsToMany(Race::class)
             ->orderBy('character_race.id')
-            ->with('entity');
+            ->with([
+                'entity' => function ($sub) {
+                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                }
+            ]);
     }
 
     public function organisationMemberships(): HasMany
@@ -285,7 +293,11 @@ class Character extends MiscModel
     {
         return $this->belongsToMany('App\Models\Organisation', 'organisation_member')
             ->orderBy('organisation_member.id')
-            ->with('entity');
+            ->with([
+                'entity' => function ($sub) {
+                    $sub->select('id', 'name', 'entity_id', 'type_id');
+                }
+            ]);
     }
 
     public function items(): HasMany
