@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int $character_id
  * @property int $race_id
- * @property bool $is_private
+ * @property bool|int $is_private
  * @property null|Character $character
- * @property Collection|Race[] $characterRaces
  * @property null|Race $race
+ * @property Collection|Race[] $characterRaces
  */
 class CharacterRace extends Model
 {
