@@ -30,7 +30,7 @@ if (!isset($entity)) {
         /** Entity attributes **/
         :root {
         @foreach ($entity->allAttributes as $attribute) @if ($attribute->isText()) @continue @endif
---attribute-{{ \Illuminate\Support\Str::slug($attribute->name) }}: {{ trim(preg_replace('/\s+/', ' ', $attribute->value)) }};
+--attribute-{{ $attribute->exposedName() }}: {{ trim(preg_replace('/\s+/', ' ', $attribute->value)) }};
         @endforeach
 }
     </style>
@@ -49,12 +49,7 @@ if (!isset($entity)) {
             },
             attributes: {
 @foreach ($entity->allAttributes as $attr)
-@if ($attr->isText())
-"{{ \Illuminate\Support\Str::slug($attr->name) }}": `{!! $attr->value !!}`,
-@else
-"{{ \Illuminate\Support\Str::slug($attr->name) }}": `{!! $attr->value !!}`,
-@endif
-
+"{{ $attr->exposedName() }}": `{!! $attr->value !!}`,
 @endforeach
             }
         }

@@ -126,6 +126,15 @@ class Attribute extends Model
         return (string) $this->mappedName = Attributes::map($this);
     }
 
+    public function exposedName(bool $slug = true): string
+    {
+        $name = str_replace(' ', '', $this->name);
+        if (Str::contains($name, '[range:')) {
+            $name = Str::before($name, '[range:');
+        }
+        return $slug ? Str::slug($name) : $name;
+    }
+
     /**
      * Determine if an attribute is of the standard input field type
      */
