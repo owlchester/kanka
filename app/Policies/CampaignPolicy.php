@@ -205,7 +205,6 @@ class CampaignPolicy
 
     /**
      * Permission to view the campaign submissions
-     * @return bool
      */
     public function submissions(?User $user): bool
     {
