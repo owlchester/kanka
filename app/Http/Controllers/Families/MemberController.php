@@ -24,12 +24,10 @@ class MemberController extends Controller
         $this->campaign($campaign)->authEntityView($family->entity);
 
         $options = ['campaign' => $campaign, 'family' => $family];
-        //$filters = [];
-        $relation = 'allCharacterFamilies';
+        $relation = 'allMembers';
         if (request()->has('family_id')) {
             $options['family_id'] = $family->id;
-            //$filters['family_id'] = $options['family_id'];
-            $relation = 'pivotMembers';
+            $relation = 'members';
         }
         Datagrid::layout(\App\Renderers\Layouts\Family\Character::class)
             ->route('families.members', $options)
@@ -37,18 +35,14 @@ class MemberController extends Controller
 
         $this->rows = $family
             ->{$relation}()
-            //->filter($filters)
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
-                'family', 'family.entity',
-                'character', 'character.entity', 'character.entity.tags', 'character.entity.tags.entity', 'character.entity.image',
-                'character.races', 'character.races.entity',
-                'character.location', 'character.location.entity',
-                'character.characterFamilies'
+                'location', 'location.entity',
+                'characterFamilies',
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'
             ])
-            ->has('character')
-            ->has('character.entity')
-            ->leftJoin('characters as c', 'c.id', 'character_family.character_id')
-            ->paginate(15);
+            ->has('entity')
+            ->paginate();
 
         // Ajax Datagrid
         if (request()->ajax()) {

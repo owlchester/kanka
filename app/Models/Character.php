@@ -158,12 +158,6 @@ class Character extends MiscModel
             'families' => function ($sub) {
                 $sub->select('families.id', 'families.name');
             },
-            'characterFamilies' => function ($sub) {
-                $sub->select('*'); //check this one
-            },
-            'characterFamilies.family' => function ($sub) {
-                $sub->select('id', 'name');
-            },
             'characterFamilies.family.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },

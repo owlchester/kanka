@@ -205,7 +205,12 @@ class Family extends MiscModel
      */
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\Character', 'character_family');
+        $query = $this->belongsToMany('App\Models\Character', 'character_family');
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
+            $query->wherePivot('is_private', false);
+        }
+
+        return $query;
     }
 
     public function pivotMembers(): HasMany
@@ -241,13 +246,19 @@ class Family extends MiscModel
             $familyId[] = $descendant->id;
         };
 
-        return Character::select('characters.*')
+        $query = Character::select('characters.*')
             ->distinct('characters.id')
             ->leftJoin('character_family as cf', function ($join) {
                 $join->on('cf.character_id', '=', 'characters.id');
             })
             ->has('entity')
             ->whereIn('cf.family_id', $familyId);
+
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
+            $query->where('cf.is_private', false);
+        }
+
+        return $query;
     }
 
     /**

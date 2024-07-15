@@ -19,12 +19,12 @@ class Character extends Layout
                 'render' => Standard::IMAGE
             ],
             'character_id' => [
-                'key' => 'character.name',
+                'key' => 'name',
                 'label' => Module::singular(config('entities.ids.character'), 'entities.character'),
                 'render' => Standard::CHARACTER,
             ],
             'type' => [
-                'key' => 'character.type',
+                'key' => 'type',
                 'label' => 'crud.fields.type',
                 'render' => function ($model) {
                     return $model->type;
