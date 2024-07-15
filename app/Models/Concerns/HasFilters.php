@@ -528,7 +528,7 @@ trait HasFilters
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
                 $this->getTable() . '.id and cf.family_id = ' . ((int) $value)
-                . ' and ' . $this->subPrivacy('cf.is_private') . ') = 0');
+                . ' ' . $this->subPrivacy('and cf.is_private') . ') = 0');
             return;
 
         } elseif ($this->filterOption('children')) {
@@ -704,6 +704,6 @@ trait HasFilters
             return null;
         }
 
-        return $field . ' = 0';
+        return ' ' . $field . ' = 0';
     }
 }
