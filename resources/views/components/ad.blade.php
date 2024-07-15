@@ -1,3 +1,3 @@
-<div class="{{ uniqid("ven-ad-") }}">
+@if (!$script)<div class="{{ uniqid("ven-ad-") }}">@endif
 {!! $slot !!}
-</div>
+@if (!$script)</div>@endif
