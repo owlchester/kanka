@@ -39,16 +39,8 @@ class Character extends Layout
             'races' => [
                 'label' => Module::plural(config('entities.ids.race'), 'entities.races'),
                 'class' => self::ONLY_DESKTOP,
-                'render' => function ($model) {
-                    $races = [];
-                    foreach ($model->character->characterRaces as $race) {
-                        if (!$race->race || !$race->race->entity) {
-                            continue;
-                        }
-                        $races[] = $this->entityLink($race->race);
-                    }
-                    return implode(', ', $races);
-                },
+                'render' => Standard::ENTITYLIST,
+                'with' => ['characterRaces', 'race'],
                 'visible' => function () {
                     return !request()->has('race_id');
                 }

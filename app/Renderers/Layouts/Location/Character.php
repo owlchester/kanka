@@ -32,16 +32,8 @@ class Character extends Layout
             ],
             'families' => [
                 'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
-                'render' => function ($model) {
-                    $families = [];
-                    foreach ($model->characterFamilies as $family) {
-                        if (!$family->family || !$family->family->entity) {
-                            continue;
-                        }
-                        $families[] = $this->entityLink($family->family);
-                    }
-                    return implode(', ', $families);
-                },
+                'render' => Standard::ENTITYLIST,
+                'with' => ['characterFamilies', 'family'],
             ],
             'location' => [
                 'key' => 'location.name',
@@ -54,16 +46,8 @@ class Character extends Layout
             'races' => [
                 'label' => Module::plural(config('entities.ids.race'), 'entities.races'),
                 'class' => self::ONLY_DESKTOP,
-                'render' => function ($model) {
-                    $races = [];
-                    foreach ($model->characterRaces as $race) {
-                        if (!$race->race || !$race->race->entity) {
-                            continue;
-                        }
-                        $races[] = $this->entityLink($race->race);
-                    }
-                    return implode(', ', $races);
-                },
+                'render' => Standard::ENTITYLIST,
+                'with' => ['characterRaces', 'race'],
             ],
             'tags' => [
                 'render' => Standard::TAGS

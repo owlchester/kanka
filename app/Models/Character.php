@@ -159,7 +159,7 @@ class Character extends MiscModel
                 $sub->select('families.id', 'families.name');
             },
             'characterFamilies' => function ($sub) {
-                $sub->select('*');
+                $sub->select('*'); //check this one
             },
             'characterFamilies.family' => function ($sub) {
                 $sub->select('id', 'name');

@@ -2,7 +2,7 @@
 
 @if (!$families)
     <x-alert type="warning">
-        <p>{{ __('timelines.reorder.empty') }}</p>
+        <p>{{ __('crud.reorder.empty') }}</p>
     </x-alert>
     <?php return; ?>
 @endif

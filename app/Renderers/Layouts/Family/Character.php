@@ -37,16 +37,8 @@ class Character extends Layout
             ],
             'families' => [
                 'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
-                'render' => function ($model) {
-                    $families = [];
-                    foreach ($model->character->characterFamilies as $family) {
-                        if (!$family->family || !$family->family->entity) {
-                            continue;
-                        }
-                        $families[] = $this->entityLink($family->family);
-                    }
-                    return implode(', ', $families);
-                },
+                'render' => Standard::ENTITYLIST,
+                'with' => ['characterFamilies', 'family'],
                 'visible' => function () {
                     return !request()->has('family_id');
                 }

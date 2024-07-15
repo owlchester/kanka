@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $int
  * @property int $character_id
  * @property int $family_id
- * @property bool $is_private
  * @property Carbon $created_at
  * @property Carbon $modified_at
  * @property null|Character $character

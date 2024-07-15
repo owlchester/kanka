@@ -177,9 +177,8 @@ class Family extends MiscModel
     }
 
     /**
-     * @return BelongsTo
      */
-    public function location()
+    public function location(): BelongsTo
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }

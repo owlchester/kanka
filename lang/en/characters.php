@@ -94,7 +94,7 @@ return [
     'families'         => [
         'title'         => 'Manage families of :name',
         'reorder'       => [
-            'success'   => 'Character families updated successfully',
+            'success'   => 'Character families updated successfully.',
         ]
     ]
 ];
