@@ -493,8 +493,8 @@ class Character extends MiscModel
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',
-                'families', 'families.entity',
-                'races', 'races.entity',
+                'characterRaces',
+                'characterFamilies',
                 'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
             ->has('entity');
     }
