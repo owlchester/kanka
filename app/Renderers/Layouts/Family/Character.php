@@ -31,14 +31,14 @@ class Character extends Layout
                 },
             ],
             'location' => [
-                'key' => 'location.name',
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
+                'with' => 'character',
                 'render' => Standard::LOCATION,
             ],
             'families' => [
                 'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
                 'render' => Standard::ENTITYLIST,
-                'with' => 'families',
+                'with' => ['characterFamilies', 'family'],
                 'visible' => function () {
                     return !request()->has('family_id');
                 }

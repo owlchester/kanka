@@ -32,9 +32,8 @@ class Character extends Layout
             ],
             'families' => [
                 'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
-                'class' => self::ONLY_DESKTOP,
                 'render' => Standard::ENTITYLIST,
-                'with' => 'families',
+                'with' => ['characterFamilies', 'family'],
             ],
             'location' => [
                 'key' => 'location.name',

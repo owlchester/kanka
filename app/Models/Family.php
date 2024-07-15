@@ -28,6 +28,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property FamilyTree|null $familyTree
  * @property Collection|Family[] $families
  * @property Collection|Family[] $descendants
+ * @property Collection|CharacterFamily[] $pitvotMembers
  */
 class Family extends MiscModel
 {
@@ -189,9 +190,8 @@ class Family extends MiscModel
     }
 
     /**
-     * @return BelongsTo
      */
-    public function location()
+    public function location(): BelongsTo
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
@@ -205,12 +205,19 @@ class Family extends MiscModel
      */
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\Character', 'character_family');
+        $query = $this->belongsToMany('App\Models\Character', 'character_family');
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
+            $query->wherePivot('is_private', false);
+        }
+
+        return $query;
     }
 
     public function pivotMembers(): HasMany
     {
-        return $this->hasMany(CharacterFamily::class);
+        return $this->hasMany(CharacterFamily::class)
+            ->with(['character', 'character.entity']);
+
     }
 
     /**
@@ -239,13 +246,31 @@ class Family extends MiscModel
             $familyId[] = $descendant->id;
         };
 
-        return Character::select('characters.*')
+        $query = Character::select('characters.*')
             ->distinct('characters.id')
             ->leftJoin('character_family as cf', function ($join) {
                 $join->on('cf.character_id', '=', 'characters.id');
             })
             ->has('entity')
             ->whereIn('cf.family_id', $familyId);
+
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
+            $query->where('cf.is_private', false);
+        }
+
+        return $query;
+    }
+
+    /**
+     * Get all characters in the family and descendants
+     */
+    public function allCharacterFamilies()
+    {
+        $familyIDs = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $familyIDs[] = $descendant->id;
+        };
+        return CharacterFamily::groupBy('character_id')->distinct('character_id')->whereIn('character_family.family_id', $familyIDs)->with('character');
     }
 
     /**

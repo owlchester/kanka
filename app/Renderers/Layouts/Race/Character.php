@@ -16,39 +16,29 @@ class Character extends Layout
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE,
-                'with' => ['target' => 'character']
+                'render' => Standard::IMAGE
             ],
             'character_id' => [
-                'key' => 'character.name',
+                'key' => 'name',
                 'label' => Module::singular(config('entities.ids.character'), 'entities.character'),
                 'render' => Standard::CHARACTER,
             ],
             'type' => [
-                'key' => 'character.type',
+                'key' => 'type',
                 'label' => 'crud.fields.type',
                 'render' => function ($model) {
-                    return $model->character->type;
+                    return $model->type;
                 },
             ],
             'location' => [
-                'with' => 'character',
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'render' => Standard::LOCATION,
             ],
             'races' => [
                 'label' => Module::plural(config('entities.ids.race'), 'entities.races'),
                 'class' => self::ONLY_DESKTOP,
-                'render' => function ($model) {
-                    $races = [];
-                    foreach ($model->character->characterRaces as $race) {
-                        if (!$race->race || !$race->race->entity) {
-                            continue;
-                        }
-                        $races[] = $this->entityLink($race->race);
-                    }
-                    return implode(', ', $races);
-                },
+                'render' => Standard::ENTITYLIST,
+                'with' => ['characterRaces', 'race'],
                 'visible' => function () {
                     return !request()->has('race_id');
                 }
