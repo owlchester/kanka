@@ -29,7 +29,7 @@ class TutorialController extends Controller
     }
 
     public function dismiss(string $code)
-    {        
+    {
         $this->service
             ->user(auth()->user())
             ->track($code);

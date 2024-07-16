@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ReadBanner;
 use App\Models\AppRelease;
 use App\Services\TutorialService;
-use Stevebauman\Purify\Facades\Purify;
 
 class ReleaseController extends Controller
 {
@@ -28,7 +26,7 @@ class ReleaseController extends Controller
 
         //Track it using the system already set up for tutorials.
         $this->tutorialService->user($user)->track('releases_' . $appRelease->category_id . '_' . $appRelease->id);
-        
+
         return response()->json([
             'success' => true
         ]);

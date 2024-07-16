@@ -48,7 +48,7 @@ class TutorialService
         }
 
         $code = Purify::clean($code);
-        
+
         if (!$this->valid($code) && !str_starts_with($code, 'releases_') && !str_starts_with($code, 'banner_')) {
             return $this;
         }
