@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Facades\UserCache;
 use App\Models\Users\Tutorial;
 use App\Traits\UserAware;
+use Stevebauman\Purify\Facades\Purify;
 
 class TutorialService
 {
@@ -25,7 +26,6 @@ class TutorialService
         'map_layers',
     ];
 
-
     /**
      * Reset all the dismissed tutorials for the user
      * @return $this
@@ -34,6 +34,7 @@ class TutorialService
     {
         $this->user
             ->tutorials()
+            ->whereIn('code', $this->tutorials)
             ->delete();
 
         UserCache::user($this->user)->clear();
@@ -45,7 +46,10 @@ class TutorialService
         if (UserCache::dismissedTutorial($code)) {
             return $this;
         }
-        if (!$this->valid($code)) {
+
+        $code = Purify::clean($code);
+        
+        if (!$this->valid($code) && !str_starts_with($code, 'releases_') && !str_starts_with($code, 'banner_')) {
             return $this;
         }
 
