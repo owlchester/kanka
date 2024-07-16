@@ -109,6 +109,6 @@ $layoutOptions = $layoutDefault + $layoutOptions
             </x-grid>
         </div>
         @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.posts._permissions')
-        @includeWhen(auth()->user()->isAdmin() && !empty($templates), 'entities.pages.posts._templates')
+        @includeWhen(auth()->user()->can('useTemplates', $campaign) && !empty($templates), 'entities.pages.posts._templates')
     </div>
 </div>
