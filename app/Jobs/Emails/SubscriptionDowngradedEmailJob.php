@@ -45,11 +45,16 @@ class SubscriptionDowngradedEmailJob implements ShouldQueue
         if (empty($user)) {
             return;
         }
+        $reason = $this->reason;
+
+        if ($reason == 'custom') {
+            $reason = 'other';
+        }
 
         // Send an email to the admins
         Mail::to('hello@kanka.io')
             ->send(
-                new DowngradedSubscriptionMail($user, $this->reason, $this->custom)
+                new DowngradedSubscriptionMail($user, $reason, $this->custom)
             );
     }
 }
