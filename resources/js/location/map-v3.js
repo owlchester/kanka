@@ -40,11 +40,7 @@ const initTabs = () => {
         showMainFields();
     });
     document.querySelector('a[href="#presets"]')?.addEventListener('click', function (e) {
-        let target = e.target;
-        // Clicking on the fontawesome in the button? Go to the actual link
-        if (target.tagName.toLowerCase() !== 'a') {
-            target = target.closest('a');
-        }
+        let target = e.currentTarget;
         loadPresets(target.dataset.presets);
     });
     document.querySelector('a[href="#form-markers"]')?.addEventListener('click', function () {
@@ -258,7 +254,7 @@ const initPolygonDrawing = () => {
         e.preventDefault();
         window.exploreEditMode = false;
         window.startNewPolygon();
-        window.showToast(e.target.dataset.toast);
+        window.showToast(e.currentTarget.dataset.toast);
         document.querySelector('body').classList.add('map-drawing-mode');
 
         window.closeDialog('marker-modal');

@@ -48,18 +48,19 @@ const registerRoles = () =>  {
 
 const togglePublicRole = (e) => {
     e.preventDefault();
-    this.querySelector('.module-icon').classList.add('hidden');
-    this.querySelector('.loading-animation').classList.remove('hidden');
+    let target = e.currentTarget;
+    target.querySelector('.module-icon').classList.add('hidden');
+    target.querySelector('.loading-animation').classList.remove('hidden');
 
-    axios.post(this.dataset.url)
+    axios.post(target.dataset.url)
         .then(res => {
-            this.querySelector('.module-icon').classList.remove('hidden');
-            this.querySelector('.loading-animation').classList.add('hidden');
+            target.querySelector('.module-icon').classList.remove('hidden');
+            target.querySelector('.loading-animation').classList.add('hidden');
             if (res.data.success) {
                 if (res.data.status) {
-                    this.classList.add('enabled');
+                    target.classList.add('enabled');
                 } else {
-                    this.classList.remove('enabled');
+                    target.classList.remove('enabled');
                 }
                 window.showToast(res.data.toast);
             }
