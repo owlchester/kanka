@@ -22,7 +22,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <link rel="canonical" href="{{ request()->fullUrl() }}" />
 @endif
 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-    @if (in_array($localeCode, ['hr', 'he', 'gl', 'hu', 'ca']))@continue @endif
+    @if (in_array($localeCode, ['hr', 'he', 'gl', 'hu', 'ca', 'nl']))@continue @endif
     <link rel="alternate" href="{{ request()->fullUrl() . '?lang=' . $localeCode }}" hreflang="{{ $localeCode }}">
 @endforeach
 
