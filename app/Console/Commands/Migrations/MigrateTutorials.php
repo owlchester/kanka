@@ -5,6 +5,7 @@ namespace App\Console\Commands\Migrations;
 use App\Models\Users\Tutorial;
 use App\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class MigrateTutorials extends Command
 {
@@ -38,10 +39,16 @@ class MigrateTutorials extends Command
                     $settings = $user->settings;
 
                     foreach ($settings as $key => $setting) {
-                        if (str_starts_with($key, 'tutorial_')) {
+                        if (Str::startsWith($key, ['tutorial_', 'banner_'])) {
                             $tutorial = new Tutorial();
                             $tutorial->user_id = $user->id;
                             $tutorial->code = mb_substr($key, 9);
+                            $tutorial->save();
+                            unset($settings[$key]);
+                        } elseif(str_starts_with($key, 'releases_')) {
+                            $tutorial = new Tutorial();
+                            $tutorial->user_id = $user->id;
+                            $tutorial->code = $key . '_' . $setting;
                             $tutorial->save();
                             unset($settings[$key]);
                         }
