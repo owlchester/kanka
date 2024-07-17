@@ -30,6 +30,7 @@ class CreateMapsTable extends Migration
 
             // Overview
             $table->longText('entry')->nullable();
+            $table->text('config')->nullable();
 
             $table->float('center_x', 8, 3)->nullable()->change();
             $table->float('center_y', 8, 3)->nullable()->change();
