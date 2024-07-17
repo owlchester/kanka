@@ -13,7 +13,6 @@ class TierSeeder extends Seeder
      */
     public function run()
     {
-        Tier::truncate();
         $tier = Tier::firstOrNew(['name' => Pledge::KOBOLD]);
         if (!$tier->exists) {
             $tier->fill([
