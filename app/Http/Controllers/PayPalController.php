@@ -26,6 +26,9 @@ class PayPalController extends Controller
         if ($tier->isFree()) {
             abort(401);
         }
+        if (request()->ajax()) {
+            return response()->json();
+        }
         $response = $this->service
             ->user($request->user())
             ->tier($tier)
