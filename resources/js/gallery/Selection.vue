@@ -20,33 +20,14 @@
             </div>
         </div>
     </div>
-    <input type="hidden" name="image_uuid" v-model="currentUuid" />
+    <input type="hidden" name="entity_image_uuid" v-model="currentUuid" />
 
-    <dialog class="dialog rounded-2xl text-center" id="gallery-dialog" ref="galleryDialog" aria-modal="true" aria-labelledby="modal-card-label">
-        <header class="bg-base-200 sm:rounded-t">
-            <h4>
-                Gallery
-            </h4>
-            <button type="button" class="text-base-content" @click="closeGallery()" title="Close">
-                <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
-                <span class="sr-only">Close</span>
-            </button>
-        </header>
-        <article class="">
-            <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" v-if="loadingGallery"></i>
-            <div class="flex flex-wrap gap-5" v-else>
-                <div v-for="image in galleryImages" class="cursor-pointer shadow rounded overflow-hidden hover:shadow-lg" @click="selectImage(image)">
-                    <img class="w-48 h-36" :src="image.thumbnail" v-if="!image.folder" />
-                    <div class="w-48 h-36 flex items-center align-middle justify-center text-4xl" v-else>
-                        <i :class="image.icon" aria-label="Folder" />
-                    </div>
-                    <div class="truncate p-2 w-48" :title="image.name">
-                        <span v-html="image.name"></span>
-                    </div>
-                </div>
-            </div>
-        </article>
-    </dialog>
+    <gallery-browser
+        :api="props.browse"
+        :opened="galleryOpened"
+        @selected="selectImage"
+        @closed="closedGallery"
+    ></gallery-browser>
 </template>
 
 <script setup lang="ts">
@@ -59,19 +40,19 @@ const props = defineProps<{
     uuid: string,
     thumbnail: string,
     browse: string,
+    // i18n: Object,
 }>()
+
 
 const loading = ref(true)
 const downloading = ref(false)
 const uploading = ref(false)
-const loadingGallery = ref(false)
 const imageUrl = ref()
 const urlField = ref()
 const fileField = ref()
 const currentThumbnail = ref()
 const currentUuid = ref()
-const galleryDialog = ref()
-const galleryImages = ref([])
+const galleryOpened = ref(false)
 
 onMounted(() => {
     loading.value = false;
@@ -101,38 +82,19 @@ const removeImage = () => {
 }
 
 const backgroundImage = () => {
+    if (!currentThumbnail.value) {
+        return ''
+    }
     return 'url(' + currentThumbnail.value + ')'
-}
-const imageBackground = (image) => {
-    return 'url(' + image.thumbnail + ')'
 }
 
 const openGallery = () => {
-    console.log('I hate my life')
-    loadingGallery.value = true
-    galleryDialog.value.showModal()
-    galleryDialog.value.addEventListener('click', function (event) {
-        let rect = this.getBoundingClientRect()
-        let isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-            rect.left <= event.clientX && event.clientX <= rect.left + rect.width)
-        if (!isInDialog && event.target.tagName === 'DIALOG') {
-            this.close()
-        }
-    });
-
-    axios.get(props.browse).then(res => {
-        galleryImages.value = res.data.images
-        loadingGallery.value = false
-    })
-
+    galleryOpened.value = true
 }
 
-const closeGallery = () => {
-    galleryDialog.value.close();
-}
 
 const download = () => {
-    if (!imageUrl.value || !imageUrl.value.startsWith('https://')) {
+    if (!imageUrl.value) {
         return
     }
 
@@ -185,15 +147,24 @@ const upload = async (event) => {
         .catch (err => {
             uploading.value = false
             fileField.value.disabled = false
-
             showErrors(err)
         })
 }
 
 const showErrors = (err) => {
-    if (!err.response || !err.response.data.errors) {
+    if (!err.response) {
         return
     }
+    if (err.response.data.error) {
+        window.showToast(err.response.data.error, 'error')
+        return
+    }
+
+    if (err.response && err.response.status === 403 && err.response.data.message) {
+        window.showToast(err.response.data.message, 'error')
+        return
+    }
+
     const errorKeys = Object.keys(err.response.data.errors);
     errorKeys.forEach(i => {
         window.showToast(err.response.data.errors[i][0], 'error')
@@ -201,18 +172,12 @@ const showErrors = (err) => {
 }
 
 const selectImage = (image) => {
-    if (image.folder) {
-        loadingGallery.value = true
-        axios.get(image.url).then(res => {
-            galleryImages.value = res.data.images
-            loadingGallery.value = false
-        })
-        return;
-    }
-
-    currentUuid.value = image.id
+    currentUuid.value = image.uuid
     currentThumbnail.value = image.thumbnail
-    closeGallery()
+}
+
+const closedGallery = () => {
+    galleryOpened.value = false
 }
 
 </script>

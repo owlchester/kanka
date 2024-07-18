@@ -67,4 +67,6 @@ const keepAlivePulse = () => {
         });
 };
 
-init();
+window.onReady(() => {
+    init();
+})

@@ -2,6 +2,7 @@
 
 namespace App\Services\Gallery;
 
+use App\Exceptions\TranslatableException;
 use App\Facades\Limit;
 use App\Models\Image;
 use App\Traits\CampaignAware;
@@ -55,7 +56,11 @@ class UploadService
         $externalFile = basename($url);
 
         $tempImage = tempnam(sys_get_temp_dir(), $externalFile);
-        copy($url, $tempImage);
+        try {
+            copy($url, $tempImage);
+        } catch (\Exception $e) {
+            throw ValidationException::withMessages([__('gallery.download.errors.copy_failed')]);
+        }
 
         $cleanImageName = Str::slug(
             Str::before(
@@ -69,7 +74,7 @@ class UploadService
         $copiedFileSize = ceil(filesize($tempImage) / 1000);
         if ($copiedFileSize > Limit::upload()) {
             unlink($tempImage);
-            throw ValidationException::withMessages('image_url target too big');
+            throw ValidationException::withMessages([__('gallery.download.errors.too_big')]);
         }
         $file = new UploadedFile($tempImage, basename($url));
 
@@ -86,6 +91,7 @@ class UploadService
 
         $image = \Intervention\Image\Facades\Image::make($file);
         Storage::put($this->image->path, (string)$image->encode(), 'public');
+        unlink($tempImage);
 
         return $this->format();
     }
