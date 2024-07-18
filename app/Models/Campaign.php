@@ -415,7 +415,7 @@ class Campaign extends Model
     {
         $visibility = $this->default_visibility;
 
-        if ($visibility == 'admin') {
+        if ($visibility == 'admin' && auth()->user()->isAdmin()) {
             return \App\Enums\Visibility::Admin->value;
         } elseif ($visibility == 'admin-self') {
             return (int) \App\Enums\Visibility::AdminSelf->value;
