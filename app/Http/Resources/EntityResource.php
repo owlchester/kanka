@@ -159,9 +159,9 @@ class EntityResource extends JsonResource
             'image_uuid' => $superboosted && $misc->entity->image ? $misc->entity->image->id : null,
 
             // Header
-            'header_full' => $misc->entity->getHeaderUrl($superboosted),
-            'header_uuid' => $superboosted && $misc->entity->header ? $misc->entity->header->id : null,
-            'has_custom_header' => $misc->entity->hasHeaderImage($superboosted),
+            'header_full' => $misc->entity->getHeaderUrl(),
+            'header_uuid' => $misc->entity->header ? $misc->entity->header->id : null,
+            'has_custom_header' => $misc->entity->hasHeaderImage(),
 
             'is_private' => (bool) $misc->is_private,
             'is_template' => (bool) $misc->entity->isTemplate(),

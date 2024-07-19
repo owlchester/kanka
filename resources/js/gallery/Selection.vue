@@ -2,14 +2,13 @@
     <div v-if="loading">
         <i class="fa-solid fa-spin fa-spinner2" aria-label="Loading"></i>
     </div>
-    <div v-else v-bind:class="backgroundClass()" :style="{'backgroundImage': backgroundImage()}">
-        <div class="flex gap-2 flex-col w-full">
-            <div class="rounded p-2 cursor-pointer backdrop-blur backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition" v-if="hasImage()" @click="removeImage()">
+    <div v-else :class="backgroundClass()" :style="{'backgroundImage': backgroundImage()}">
+        <div :class="buttonsClass()">
+            <div class="rounded p-2 cursor-pointer backdrop-blur backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition" v-if="hasPreview()" @click="removeImage()">
                 Remove
             </div>
             <div class="flex items-center gap-1" v-if="!hasImage()">
                 <input type="file" v-bind:accept="props.accepts" class="w-full" @change="upload" ref="fileField" />
-                <i class="fa-solid fa-spin fa-spinner" v-if="uploading" aria-label="Uploading" />
             </div>
             <div class="flex items-center gap-1" v-if="!hasImage()">
                 <input ref="urlField" type="text" class="w-full" v-model="imageUrl" @blur="download()" placeholder="Upload an image from a URL" />
@@ -19,19 +18,31 @@
                 <span role="button" class="btn2 btn-default btn-sm" @click="openGallery()">From gallery</span>
             </div>
         </div>
+        <div v-if="uploading" class="flex gap-2 flex-col w-full">
+            <div class="progress h-1 w-full">
+                <div class="h-1 bg-accent shadow-sm" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" :style="{'width': progressPercentage()}">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+            <div class="rounded p-2 cursor-pointer backdrop-blur backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition flex items-center gap-2" @click="cancelUpload()">
+                <span class="grow">Cancel</span>
+                <span class="text-xs flex-none" v-html="progressPercentage()"></span>
+            </div>
+        </div>
     </div>
-    <input type="hidden" name="entity_image_uuid" v-model="currentUuid" />
+    <input type="hidden" :name="props.field" v-model="currentUuid" />
 
-    <gallery-browser
+    <Browser
         :api="props.browse"
         :opened="galleryOpened"
         @selected="selectImage"
         @closed="closedGallery"
-    ></gallery-browser>
+    ></Browser>
 </template>
 
 <script setup lang="ts">
 import {ref, onMounted, onBeforeUnmount} from 'vue'
+import Browser from "./Browser.vue"
 
 const props = defineProps<{
     file: string,
@@ -40,6 +51,7 @@ const props = defineProps<{
     uuid: string,
     thumbnail: string,
     browse: string,
+    field: string,
     // i18n: Object,
 }>()
 
@@ -53,26 +65,40 @@ const fileField = ref()
 const currentThumbnail = ref()
 const currentUuid = ref()
 const galleryOpened = ref(false)
+const progress = ref(0)
+const imagePreview = ref(null)
+let lastImageUrl
+const cancelTokenSource = ref(null)
 
 onMounted(() => {
-    loading.value = false;
-    currentThumbnail.value = props.thumbnail;
-    currentUuid.value = props.uuid;
+    loading.value = false
+    currentThumbnail.value = props.thumbnail
+    currentUuid.value = props.uuid
 });
 
 
 const backgroundClass = () => {
-    let css = 'relative flex items-end align-middle rounded overflow-hidden';
+    let css = 'relative flex items-end align-middle rounded overflow-hidden'
 
-    if (!hasImage()) {
+    if (!hasPreview()) {
         css += 'w-full'
     } else {
         css += ' cover-background preview-bg w-48 h-36 p-2 '
     }
-    return css;
+    return css
+}
+
+const buttonsClass = () => {
+    return uploading.value ? 'hidden' : 'flex gap-2 flex-col w-full'
 }
 
 const hasImage = () => {
+    return currentUuid.value !== null && currentUuid.value !== ''
+}
+const hasPreview = () => {
+    if (imagePreview.value) {
+        return true
+    }
     return currentUuid.value !== null && currentUuid.value !== ''
 }
 
@@ -82,10 +108,17 @@ const removeImage = () => {
 }
 
 const backgroundImage = () => {
+    if (imagePreview.value) {
+        return 'url(' + imagePreview.value + ')'
+    }
     if (!currentThumbnail.value) {
         return ''
     }
     return 'url(' + currentThumbnail.value + ')'
+}
+
+const progressPercentage = () => {
+    return progress.value + '%'
 }
 
 const openGallery = () => {
@@ -94,13 +127,13 @@ const openGallery = () => {
 
 
 const download = () => {
-    if (!imageUrl.value) {
+    if (!imageUrl.value || imageUrl.value == lastImageUrl) {
         return
     }
 
     downloading.value = true
     urlField.value.disabled = true
-
+    lastImageUrl = imageUrl.value
 
     axios.post(props.url, {url: imageUrl.value})
         .then(res => {
@@ -126,7 +159,15 @@ const upload = async (event) => {
         uploading.value = false
         return
     }
+    const reader = new FileReader()
+    reader.onload = (e) => {
+        imagePreview.value = e.target.result
+    }
+    reader.readAsDataURL(file)
+
     uploading.value = true
+    document.addEventListener('keydown', handleEscape)
+    cancelTokenSource.value = axios.CancelToken.source()
     fileField.value.disabled = true
 
     const formData = new FormData()
@@ -136,6 +177,10 @@ const upload = async (event) => {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
+        cancelToken: cancelTokenSource.value.token,
+        onUploadProgress: function (progressEvent) {
+            progress.value = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        }
     })
         .then(res => {
             uploading.value = false
@@ -143,11 +188,20 @@ const upload = async (event) => {
             fileField.value = null
             currentThumbnail.value = res.data.thumbnail
             currentUuid.value = res.data.uuid
+            imagePreview.value = null
+            document.removeEventListener('keydown', handleEscape)
         })
         .catch (err => {
             uploading.value = false
             fileField.value.disabled = false
-            showErrors(err)
+            imagePreview.value = null
+            if (axios.isCancel(err)) {
+                // User cancelled
+                fileField.value = null
+            } else {
+                showErrors(err)
+            }
+            document.removeEventListener('keydown', handleEscape)
         })
 }
 
@@ -178,6 +232,16 @@ const selectImage = (image) => {
 
 const closedGallery = () => {
     galleryOpened.value = false
+}
+
+const handleEscape = (event) => {
+    if (event.key === 'Escape' && uploading.value) {
+        cancelUpload()
+    }
+}
+
+const cancelUpload = (event) => {
+    cancelTokenSource.value.cancel('Upload canceled by user.')
 }
 
 </script>

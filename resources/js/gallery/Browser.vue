@@ -15,19 +15,29 @@
         </header>
         <article class="max-w-4xl">
 
-            <input type="text" class="w-full" placeholder="Search for an image in the gallery" @input="handleInput" v-if="!loading && !error" />
+            <div class="flex gap-1 w-full" v-if="!loading && !error">
+                <div class="grow">
+                    <input type="text" class="w-full" placeholder="Search for an image in the gallery" @input="handleInput" />
+                </div>
+                <div class="flex-none cursor-pointer btn2 btn-ghost btn-sm" v-if="mode !== 'large'" @click="toggle('large')">
+                    <i class="fa-solid fa-grid-2" aria-label="Large images"></i>
+                </div>
+                <div class="flex-none cursor-pointer btn2 btn-ghost btn-sm" v-if="mode !== 'small'" @click="toggle('small')">
+                    <i class="fa-solid fa-grid-4" aria-label="Small images"></i>
+                </div>
+            </div>
 
             <div class="md:h-36 md:w-80 text-center flex items-center justify-center w-full" v-if="loading || searching">
                 <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
             </div>
 
-            <div class="flex flex-wrap gap-2 md:gap-5" v-else>
+            <div :class="gridClass()" v-else>
                 <div v-for="image in images" class="cursor-pointer shadow rounded overflow-hidden hover:shadow-lg" @click="selectImage(image)">
-                    <img class="w-48 h-36" :src="image.thumbnail" v-if="!image.folder" />
-                    <div class="w-48 h-36 flex items-center align-middle justify-center text-4xl" v-else>
+                    <div :class="previewSize('cover-background')" :style="{'backgroundImage': 'url(' + image.thumbnail + ')'}" v-if="!image.folder" />
+                    <div :class="previewSize('flex items-center align-middle justify-center text-4xl')" v-else>
                         <i :class="image.icon" aria-label="Folder" />
                     </div>
-                    <div class="truncate p-2 w-48" :title="image.name">
+                    <div :class="widthSize('truncate p-2')" :title="image.name">
                         <span v-html="image.name"></span>
                     </div>
                 </div>
@@ -56,6 +66,7 @@ const lastTerm = ref('')
 const typingTimeout = ref(null)
 const error = ref(null)
 const debounceDelay = 300
+const mode = ref('large')
 
 
 const open = () => {
@@ -86,6 +97,29 @@ const open = () => {
 const closeBrowser = () => {
     galleryDialog.value.close()
     emit('closed')
+}
+
+const previewSize = (extra) => {
+    extra = extra ?? ''
+    if (mode.value === 'large') {
+        return 'w-48 h-36 ' + extra
+    }
+    return 'w-20 h-16 ' + extra
+}
+
+const widthSize = (extra) => {
+    extra = extra ?? ''
+    if (mode.value === 'large') {
+        return 'w-48 ' + extra
+    }
+    return 'w-20 ' + extra
+}
+
+const gridClass = () => {
+    if (mode.value === 'small') {
+        return 'flex flex-wrap gap-2'
+    }
+    return 'flex flex-wrap gap-2 md:gap-5'
 }
 
 const selectImage = (image) => {
@@ -133,4 +167,7 @@ const search = () => {
     })
 }
 
+const toggle = (layout) => {
+    mode.value = layout
+}
 </script>

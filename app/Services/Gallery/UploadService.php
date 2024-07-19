@@ -3,8 +3,10 @@
 namespace App\Services\Gallery;
 
 use App\Exceptions\TranslatableException;
+use App\Facades\CampaignLocalization;
 use App\Facades\Limit;
 use App\Models\Image;
+use App\Services\Campaign\GalleryService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Foundation\Http\FormRequest;
@@ -22,6 +24,13 @@ class UploadService
 
     protected Image $image;
 
+    protected GalleryService $galleryService;
+
+    public function __construct(GalleryService $galleryService)
+    {
+        $this->galleryService = $galleryService;
+    }
+
     public function request(FormRequest $request): self
     {
         $this->request = $request;
@@ -34,7 +43,7 @@ class UploadService
 
         $this->image = new Image();
         $this->image->id = Str::uuid()->toString();
-        $this->image->name = Str::beforeLast($file->getClientOriginalName(), '.');;
+        $this->image->name = Str::beforeLast($file->getClientOriginalName(), '.');
         $this->image->campaign_id = $this->campaign->id;
         $this->image->created_by = $this->request->user()->id;
         $this->image->ext = Str::before($file->extension(), '?');
@@ -71,14 +80,28 @@ class UploadService
         $cleanImageName = str_replace(['.', '/'], ['', ''], $cleanImageName);
 
         // Check if file is too big
-        $copiedFileSize = ceil(filesize($tempImage) / 1000);
+        $copiedFileSize = ceil(filesize($tempImage) / 1024);
         if ($copiedFileSize > Limit::upload()) {
             unlink($tempImage);
             throw ValidationException::withMessages([__('gallery.download.errors.too_big')]);
         }
+        $available = $this->galleryService->campaign($this->campaign)->available();
+        if ($copiedFileSize > $available) {
+            unlink($tempImage);
+            $key = 'gallery.download.errors.gallery_full_free';
+            if ($this->campaign->boosted()) {
+                $key = 'gallery.download.errors.gallery_full_premium';
+            }
+            throw ValidationException::withMessages([__($key)]);
+        }
         $file = new UploadedFile($tempImage, basename($url));
 
         // Invalid file type?
+        $ext = mb_strtolower($file->getExtension());
+        if (!in_array($ext, ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp'])) {
+            $key = 'gallery.download.errors.invalid_format';
+            throw ValidationException::withMessages([__($key)]);
+        }
 
         $this->image->name = $cleanImageName;
         $this->image->campaign_id = $this->campaign->id;

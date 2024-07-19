@@ -5,6 +5,7 @@ namespace App\Http\Requests\Gallery;
 use App\Facades\Limit;
 use App\Rules\GallerySize;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class UploadFile extends FormRequest
 {
@@ -23,10 +24,16 @@ class UploadFile extends FormRequest
      */
     public function rules(): array
     {
+        $types = ['jpeg', 'jpg', 'gif', 'png', 'webp'];
+        if (request()->has('map')) {
+            Limit::map();
+            $types[] = 'svg';
+        }
         return [
-            'image' => [
-                'mimes' => 'jpeg,png,jpg,gif,webp',
-                'max' => Limit::upload(),
+            'file' => [
+                'required',
+                File::types($types),
+                'max:' . Limit::upload(),
                 new GallerySize(),
             ],
         ];

@@ -294,13 +294,13 @@ class Entity extends Model
 
     /**
      */
-    public function hasHeaderImage(bool $superboosted = false): bool
+    public function hasHeaderImage(): bool
     {
         if (!empty($this->header_image)) {
             return true;
         }
 
-        return (bool) ($superboosted && !empty($this->header_uuid) && !empty($this->header));
+        return !empty($this->header_uuid) && !empty($this->header);
     }
 
     /**
@@ -320,19 +320,16 @@ class Entity extends Model
     }
 
     /**
+     * Get the entity background header image
      */
-    public function getHeaderUrl(bool $superboosted = false): string
+    public function getHeaderUrl(): string|null
     {
         if (!empty($this->header_image)) {
             return $this->thumbnail(1200, 400, 'header_image');
         }
 
-        if (!$superboosted) {
-            return '';
-        }
-
         if (empty($this->header)) {
-            return '';
+            return null;
         }
 
         return $this->header->getUrl(1200, 400);

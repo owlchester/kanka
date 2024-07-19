@@ -278,6 +278,9 @@ class Image extends Model
 
     public function getUrl(int $sizeX = null, int $sizeY = null): string
     {
+        if ($this->isSvg()) {
+            return $this->url();
+        }
         Img::reset();
 
         if (!$sizeY && $sizeX) {
@@ -297,6 +300,11 @@ class Image extends Model
         }
 
         return Img::url($this->path);
+    }
+
+    protected function isSvg(): bool
+    {
+        return $this->ext == 'svg';
     }
 
     public function url(): string
