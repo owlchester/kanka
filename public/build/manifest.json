@@ -26,8 +26,8 @@
       "__commonjsHelpers-725317a4.js"
     ]
   },
-  "_vue.esm-bundler-2d0f0fff.js": {
-    "file": "assets/vue.esm-bundler-2d0f0fff.js"
+  "_vue.esm-bundler-bbd25308.js": {
+    "file": "assets/vue.esm-bundler-bbd25308.js"
   },
   "node_modules/rpg-awesome/fonts/rpgawesome-webfont.eot": {
     "file": "assets/rpgawesome-webfont-1fecbf28.eot",
@@ -54,9 +54,9 @@
     "src": "resources/images/leaflet/icon.png"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-79359e9d.js",
+    "file": "assets/abilities-3dbcd0a5.js",
     "imports": [
-      "_vue.esm-bundler-2d0f0fff.js",
+      "_vue.esm-bundler-bbd25308.js",
       "_mitt-f7ef348c.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
@@ -71,33 +71,34 @@
     "css": [
       "assets/api-bb386fc3.css"
     ],
-    "file": "assets/api-0eea5bfd.js",
+    "file": "assets/api-0d0c73c1.js",
     "imports": [
-      "_vue.esm-bundler-2d0f0fff.js",
+      "_vue.esm-bundler-bbd25308.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "isEntry": true,
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-0333b675.js",
+    "file": "assets/app-a774dfb1.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-0d19b1d3.js",
       "_dialog-4600fe8d.js",
-      "_vue.esm-bundler-2d0f0fff.js",
+      "_vue.esm-bundler-bbd25308.js",
       "_mitt-f7ef348c.js",
       "__plugin-vue_export-helper-c27b6911.js",
       "_v-click-outside.umd-1708c20a.js",
+      "resources/js/gallery/selection.js",
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-71a0fd7b.js",
+    "file": "assets/attributes-manager-66828bd8.js",
     "imports": [
-      "_vue.esm-bundler-2d0f0fff.js",
+      "_vue.esm-bundler-bbd25308.js",
       "_v-click-outside.umd-1708c20a.js",
       "__commonjsHelpers-725317a4.js"
     ],
@@ -105,7 +106,7 @@
     "src": "resources/js/attributes-manager.js"
   },
   "resources/js/attributes.js": {
-    "file": "assets/attributes-0d142a8a.js",
+    "file": "assets/attributes-8af2a278.js",
     "isEntry": true,
     "src": "resources/js/attributes.js"
   },
@@ -115,9 +116,9 @@
     "src": "resources/js/auth.js"
   },
   "resources/js/billing.js": {
-    "file": "assets/billing-b02edfee.js",
+    "file": "assets/billing-4afd0995.js",
     "imports": [
-      "_vue.esm-bundler-2d0f0fff.js",
+      "_vue.esm-bundler-bbd25308.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "isEntry": true,
@@ -140,9 +141,9 @@
     "src": "resources/js/campaigns/theme-builder.js"
   },
   "resources/js/conversation.js": {
-    "file": "assets/conversation-f7c69246.js",
+    "file": "assets/conversation-0d477363.js",
     "imports": [
-      "_vue.esm-bundler-2d0f0fff.js",
+      "_vue.esm-bundler-bbd25308.js",
       "_mitt-f7ef348c.js",
       "_v-click-outside.umd-1708c20a.js",
       "__plugin-vue_export-helper-c27b6911.js",
@@ -170,9 +171,9 @@
     "src": "resources/js/editors/summernote.js"
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-c5953a26.js",
+    "file": "assets/family-tree-vue-87033a3c.js",
     "imports": [
-      "_vue.esm-bundler-2d0f0fff.js",
+      "_vue.esm-bundler-bbd25308.js",
       "_mitt-f7ef348c.js",
       "_axios-47b9d439.js",
       "__plugin-vue_export-helper-c27b6911.js"
@@ -186,7 +187,7 @@
     "src": "resources/js/forms/calendar.js"
   },
   "resources/js/forms/character.js": {
-    "file": "assets/character-96c3d289.js",
+    "file": "assets/character-5f1b0d1d.js",
     "isEntry": true,
     "src": "resources/js/forms/character.js"
   },
@@ -206,6 +207,14 @@
     ],
     "isEntry": true,
     "src": "resources/js/gallery.js"
+  },
+  "resources/js/gallery/selection.js": {
+    "file": "assets/selection-f0f24a73.js",
+    "imports": [
+      "_vue.esm-bundler-bbd25308.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/gallery/selection.js"
   },
   "resources/js/history.js": {
     "file": "assets/history-4d7675f4.js",
@@ -251,12 +260,12 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-50920ba9.css",
+    "file": "assets/app-e3b36a9f.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-a5e91284.css",
+    "file": "assets/auth-794abdfa.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -281,7 +290,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-9f1c3c68.css",
+    "file": "assets/front-6bd3e47c.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
