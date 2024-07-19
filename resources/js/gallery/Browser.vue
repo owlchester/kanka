@@ -112,12 +112,12 @@ const widthSize = (extra) => {
     if (mode.value === 'large') {
         return 'w-48 ' + extra
     }
-    return 'w-20 ' + extra
+    return 'w-20 text-xs ' + extra
 }
 
 const gridClass = () => {
     if (mode.value === 'small') {
-        return 'flex flex-wrap gap-2'
+        return 'flex flex-wrap gap-2 md:gap-3'
     }
     return 'flex flex-wrap gap-2 md:gap-5'
 }

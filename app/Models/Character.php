@@ -125,7 +125,7 @@ class Character extends MiscModel
     /**
      * @var string[] Extra relations loaded for the API endpoint
      */
-    public array $apiWith = ['characterTraits', 'races', 'families'];
+    public array $apiWith = ['characterTraits', 'characterRaces', 'characterFamilies'];
 
     /**
      * Nullable values (foreign keys)

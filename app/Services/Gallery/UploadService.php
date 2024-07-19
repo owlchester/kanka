@@ -6,9 +6,11 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Facades\Limit;
 use App\Models\Image;
+use App\Sanitizers\SvgAllowedAttributes;
 use App\Services\Campaign\GalleryService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use enshrined\svgSanitize\Sanitizer;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -21,6 +23,7 @@ class UploadService
     use UserAware;
 
     protected FormRequest $request;
+    protected array $data;
 
     protected Image $image;
 
@@ -37,15 +40,19 @@ class UploadService
         return $this;
     }
 
-    public function file(): array
+    public function data(array $data): self
     {
-        $file = $this->request->file('file');
+        $this->data = $data;
+        return $this;
+    }
 
+    public function file(UploadedFile $file): array
+    {
         $this->image = new Image();
         $this->image->id = Str::uuid()->toString();
-        $this->image->name = Str::beforeLast($file->getClientOriginalName(), '.');
         $this->image->campaign_id = $this->campaign->id;
-        $this->image->created_by = $this->request->user()->id;
+        $this->image->created_by = $this->user->id;
+        $this->image->name = Str::beforeLast($file->getClientOriginalName(), '.');
         $this->image->ext = Str::before($file->extension(), '?');
         $this->image->size = (int) ceil($file->getSize() / 1024); // kb
         $this->image->visibility_id = $this->campaign->defaultVisibilityID();
@@ -56,12 +63,11 @@ class UploadService
         return $this->format();
     }
 
-    public function url(): array
+    public function url(string $url): array
     {
         $this->image = new Image();
         $this->image->id = Str::uuid()->toString();
 
-        $url = $this->request->get('url');
         $externalFile = basename($url);
 
         $tempImage = tempnam(sys_get_temp_dir(), $externalFile);
@@ -97,26 +103,45 @@ class UploadService
         $file = new UploadedFile($tempImage, basename($url));
 
         // Invalid file type?
-        $ext = mb_strtolower($file->getExtension());
+        $ext = mb_strtolower($file->guessExtension());
         if (!in_array($ext, ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp'])) {
+            unlink($tempImage);
             $key = 'gallery.download.errors.invalid_format';
             throw ValidationException::withMessages([__($key)]);
         }
 
         $this->image->name = $cleanImageName;
         $this->image->campaign_id = $this->campaign->id;
-        $this->image->created_by = $this->request->user()->id;
+        $this->image->created_by = $this->user->id;
         $this->image->ext = Str::before($file->getExtension(), '?');
         $this->image->size = (int) ceil($copiedFileSize); // kb
         $this->image->visibility_id = $this->campaign->defaultVisibilityID();
         $this->image->save();
 
-
-        $image = \Intervention\Image\Facades\Image::make($file);
-        Storage::put($this->image->path, (string)$image->encode(), 'public');
+        if ($this->image->isSvg()) {
+            // GD can't handle svgs, so we need to move them directly
+            Storage::put($this->image->path, $this->sanitizedSvg($file), 'public');
+        } else {
+            $image = \Intervention\Image\Facades\Image::make($file);
+            Storage::put($this->image->path, (string)$image->encode(), 'public');
+        }
         unlink($tempImage);
 
         return $this->format();
+    }
+
+    protected function sanitizedSvg(string $path): string
+    {
+        $sanitizer = new Sanitizer();
+
+        // Custom allowed attributes for AFMG
+        $allowedAttributes = new SvgAllowedAttributes();
+        $sanitizer->setAllowedAttrs($allowedAttributes);
+
+        $dirtySVG = file_get_contents($path);
+        $cleanSVG = $sanitizer->sanitize($dirtySVG);
+        file_put_contents($path, $cleanSVG);
+        return $cleanSVG;
     }
 
     protected function format(): array

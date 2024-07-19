@@ -20,8 +20,6 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
@@ -37,7 +35,6 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @return Resource
      */
     public function show(Campaign $campaign, Image $image)
     {
@@ -47,8 +44,6 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @return Resource
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(GalleryImageStore $request, Campaign $campaign)
     {
@@ -61,12 +56,10 @@ class CampaignImageApiController extends ApiController
             ->user($request->user())
             ->campaign($campaign)
             ->store($request);
-        return new Resource(Arr::first($images));
+        return Resource::collection($images);
     }
 
     /**
-     * @return Resource
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(GalleryImageUpdate $request, Campaign $campaign, Image $image)
     {

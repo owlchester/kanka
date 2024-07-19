@@ -89,6 +89,7 @@ const initSaveKeyboardShortcut = (form) => {
                 setFormAction('submit-new');
             }
             form.requestSubmit();
+            console.log('requested tos ubmit', form);
             return false;
         }
         // Save & Copy

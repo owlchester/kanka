@@ -165,7 +165,7 @@
                         <label class="col-md-3 col-form-label">Name</label>
 
                         <div class="col-md-9">
-                            <input id="edit-client-name" type="text" class="form-control"
+                            <input id="edit-client-name" type="text" class="w-full"
                                                         @keyup.enter="update" v-model="editForm.name" ref="editName">
 
                             <span class="form-text text-muted">
@@ -179,7 +179,7 @@
                         <label class="col-md-3 col-form-label">Redirect URL</label>
 
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="redirect"
+                            <input type="text" class="w-full" name="redirect"
                                             @keyup.enter="update" v-model="editForm.redirect">
 
                             <span class="form-text text-muted">

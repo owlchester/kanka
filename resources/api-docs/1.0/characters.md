@@ -162,9 +162,8 @@ To create a character, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `is_dead` | `boolean` | If the character is dead |
 | `is_private` | `boolean` | If the character is only visible to `admin` members of the campaign |
-| `image_url` | `string` | URL to a picture to be used for the character |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `personality_name` | `array` | An array representing the name of personality traits. For example ```["Goals", "Fears"]```  |
 | `personality_entry` | `array` | An array representing the values of personality traits. For example ```["To become a King", "Quiet places"]```  |
 | `appearance_name` | `array` | An array representing the name of appearance traits. For example ```["Hair", "Eyes"]```  |

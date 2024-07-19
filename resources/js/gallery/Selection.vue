@@ -31,6 +31,7 @@
         </div>
     </div>
     <input type="hidden" :name="props.field" v-model="currentUuid" />
+    <input type="hidden" :name="'remove-image'" value="1" v-if="removedOld" />
 
     <Browser
         :api="props.browse"
@@ -52,6 +53,7 @@ const props = defineProps<{
     thumbnail: string,
     browse: string,
     field: string,
+    old: string, // Using the old system
     // i18n: Object,
 }>()
 
@@ -69,11 +71,16 @@ const progress = ref(0)
 const imagePreview = ref(null)
 let lastImageUrl
 const cancelTokenSource = ref(null)
+const hasOld = ref(false)
+const removedOld = ref(false)
 
 onMounted(() => {
     loading.value = false
     currentThumbnail.value = props.thumbnail
     currentUuid.value = props.uuid
+    if (props.old === 'true') {
+        hasOld.value = true
+    }
 });
 
 
@@ -93,10 +100,10 @@ const buttonsClass = () => {
 }
 
 const hasImage = () => {
-    return currentUuid.value !== null && currentUuid.value !== ''
+    return hasOld.value || currentUuid.value !== null && currentUuid.value !== ''
 }
 const hasPreview = () => {
-    if (imagePreview.value) {
+    if (imagePreview.value || hasOld.value) {
         return true
     }
     return currentUuid.value !== null && currentUuid.value !== ''
@@ -105,6 +112,10 @@ const hasPreview = () => {
 const removeImage = () => {
     currentUuid.value = null
     currentThumbnail.value = null
+    if (hasOld.value) {
+        hasOld.value = false
+        removedOld.value = true
+    }
 }
 
 const backgroundImage = () => {

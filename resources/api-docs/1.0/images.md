@@ -12,7 +12,7 @@
 <a name="all-images"></a>
 ## All Images
 
-You can get a list of all the images of a campaign by using the following endpoint. This is a superboosted campaign feature! If the campaign isn't superboosted, this API endpoint will result in a 404.
+You can get a list of all the images of a campaign by using the following endpoint.
 
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
@@ -101,11 +101,11 @@ To create a image, use the following endpoint.
 
 ### Body
 
-| Parameter   | Type | Detail |
-|:------------|   :-   |  :-  |
-| `folder_id` | `integer` | The image's folder id |
-| `file[]`    | `stream` | Stream to file uploaded |
-| `file[]`    | `stream` | Stream to file uploaded |
+| Parameter         | Type     | Detail                   |
+|:------------------|:---------|:-------------------------|
+| `folder_id`       | `int`    | The image's folder id    |
+| `file[]`          | `stream` | Stream to file uploaded  |
+| `visibility_id` | `int`    | Visibility of the image  |
 
 
 ### Results

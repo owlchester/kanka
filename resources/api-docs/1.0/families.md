@@ -120,9 +120,8 @@ To create a family, use the following endpoint.
 | `location_id` | `integer` | The family's location id |
 | `family_id` | `integer` | The parent family id |
 | `tags` | `array` | Array of tag ids |
-| `image_url` | `string` | URL to a picture to be used for the family |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the family is only visible to `admin` members of the campaign |
 
 ### Results

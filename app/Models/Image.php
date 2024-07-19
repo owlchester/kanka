@@ -302,7 +302,7 @@ class Image extends Model
         return Img::url($this->path);
     }
 
-    protected function isSvg(): bool
+    public function isSvg(): bool
     {
         return $this->ext == 'svg';
     }

@@ -81,7 +81,10 @@
                         field="entity_header_uuid"
                         thumbnail="{{ $headerUrlPreset }}"
                         browse="{{ route('gallery.browse', [$campaign]) }}"
-                    />
+                        old="false"
+                    >
+                        <x-icon class="load" />
+                    </gallery-selection>
                 </div>
             @endif
         @else

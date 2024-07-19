@@ -26,8 +26,8 @@ class UploadController extends Controller
             return response()->json(
                 $this->service
                     ->campaign($campaign)
-                    ->request($request)
-                    ->file()
+                    ->user($request->user())
+                    ->file($request->file('file'))
             );
         } catch (TranslatableException $e) {
             return response()->json(
@@ -45,8 +45,8 @@ class UploadController extends Controller
             return response()->json(
                 $this->service
                     ->campaign($campaign)
-                    ->request($request)
-                    ->url()
+                    ->user($request->user())
+                    ->url($request->get('url'))
             );
         } catch (TranslatableException $e) {
             return response()->json(

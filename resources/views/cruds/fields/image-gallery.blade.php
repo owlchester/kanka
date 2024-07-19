@@ -34,6 +34,8 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
     ?><input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" /><?php
     return;
 }
+
+$old = isset($model) && $model->entity && !empty($model->entity->image_path)
 ?>
 
 @php
@@ -48,7 +50,7 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
 
 <div class="field field-image">
     <label>{{ __($label) }}</label>
-    <div id="gallery-selection" class=" col-span-2">
+    <div class="gallery-selection col-span-2">
         <gallery-selection
             file="{{ route('gallery.upload.file', [$campaign, $from]) }}"
             url="{{ route('gallery.upload.url', [$campaign]) }}"
@@ -57,7 +59,10 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
             field="entity_image_uuid"
             thumbnail="{{ $previewThumbnail }}"
             browse="{{ route('gallery.browse', [$campaign]) }}"
-        />
+            old="{{ $old ? 'true' : 'false' }}"
+        >
+            <x-icon class="load" />
+        </gallery-selection>
     </div>
 
     <x-helper>
@@ -65,3 +70,4 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
         @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')
     </x-helper>
 </div>
+
