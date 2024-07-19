@@ -1,4 +1,7 @@
 <?php
+if (!isset($entity) && isset($model) && !empty($model->entity)) {
+    $entity = $model->entity;
+}
 /**
  * Options:
  * bool $imageRequired set to true if the image is required and can't be removed
@@ -16,11 +19,7 @@ if (isset($size) && $size == 'map') {
 $label = $imageLabel ?? 'crud.fields.image';
 
 $previewThumbnail = null;
-$canDelete = true;
-if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($model->entity->image)) {
-    $previewThumbnail = $model->entity->image->getUrl(192, 144);
-    $canDelete = false;
-} elseif (!empty($entity) && !empty($entity->image_path)) {
+if (!empty($entity) && $entity->hasImage()) {
     $previewThumbnail = Avatar::entity($entity)->size(192, 144)->thumbnail();
 } elseif (isset($model) && method_exists($model, 'thumbnail') && !empty($model->image)) {
     $previewThumbnail = $model->thumbnail(192, 144);
@@ -30,21 +29,18 @@ if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($mode
 
 // If the image is from the gallery and the user can't browse or upload, disable the field
 $canBrowse = isset($campaign) && auth()->user()->can('browse', [\App\Models\Image::class, $campaign]);
-if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
+if (!empty($entity) && !empty($entity->image) && !$canBrowse) {
     ?><input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" /><?php
     return;
 }
 
-$old = isset($model) && $model->entity && !empty($model->entity->image_path)
+$old = isset($entity) && !empty($entity->image_path)
 ?>
 
 @php
-    $preset = $uuid = null;
-    if (isset($model) && $model->entity && $model->entity->image_uuid) {
-        $preset = $model->entity->image;
-        $uuid = $model->entity->image_uuid;
-    } else {
-        $preset = FormCopy::field('image')->entity()->select();
+    $uuid = null;
+    if (isset($entity) && $entity->image_uuid) {
+        $uuid = $entity->image_uuid;
     }
 @endphp
 
@@ -55,7 +51,7 @@ $old = isset($model) && $model->entity && !empty($model->entity->image_path)
             file="{{ route('gallery.upload.file', [$campaign, $from]) }}"
             url="{{ route('gallery.upload.url', [$campaign]) }}"
             accepts="{{ $inputFileTypes }}"
-            uuid="{{ $model->entity->image_uuid ?? $source->entity->image_uuid ?? null }}"
+            uuid="{{ $entity->image_uuid ?? $source->entity->image_uuid ?? null }}"
             field="entity_image_uuid"
             thumbnail="{{ $previewThumbnail }}"
             browse="{{ route('gallery.browse', [$campaign]) }}"

@@ -120,12 +120,12 @@ const removeImage = () => {
 
 const backgroundImage = () => {
     if (imagePreview.value) {
-        return 'url(' + imagePreview.value + ')'
+        return 'url(\'' + imagePreview.value + '\')'
     }
     if (!currentThumbnail.value) {
         return ''
     }
-    return 'url(' + currentThumbnail.value + ')'
+    return 'url(\'' + currentThumbnail.value + '\')'
 }
 
 const progressPercentage = () => {
