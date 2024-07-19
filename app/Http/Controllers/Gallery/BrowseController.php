@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class BrowseController extends Controller
 {
-
     protected BrowseService $service;
 
     public function __construct(BrowseService $browseService)
@@ -22,10 +21,10 @@ class BrowseController extends Controller
 
         return response()->json(
             $this->service
-            ->campaign($campaign)
-            ->folder($request->get('folder'))
-            ->term($request->get('term'))
-            ->images()
+                ->campaign($campaign)
+                ->folder($request->get('folder'))
+                ->term($request->get('term'))
+                ->images()
         );
     }
 }

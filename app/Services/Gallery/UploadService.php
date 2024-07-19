@@ -2,8 +2,6 @@
 
 namespace App\Services\Gallery;
 
-use App\Exceptions\TranslatableException;
-use App\Facades\CampaignLocalization;
 use App\Facades\Limit;
 use App\Models\Image;
 use App\Sanitizers\SvgAllowedAttributes;

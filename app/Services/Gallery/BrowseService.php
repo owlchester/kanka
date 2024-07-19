@@ -4,7 +4,6 @@ namespace App\Services\Gallery;
 
 use App\Models\Image;
 use App\Traits\CampaignAware;
-use Illuminate\Support\Facades\Storage;
 
 class BrowseService
 {

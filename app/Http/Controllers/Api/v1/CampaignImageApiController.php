@@ -8,7 +8,6 @@ use App\Models\Campaign;
 use App\Models\Image;
 use App\Http\Resources\ImageResource as Resource;
 use App\Services\Campaign\GalleryService;
-use Illuminate\Support\Arr;
 
 class CampaignImageApiController extends ApiController
 {

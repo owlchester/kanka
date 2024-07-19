@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Facades\Avatar;
-use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Item;

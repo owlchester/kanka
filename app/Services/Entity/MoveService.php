@@ -128,24 +128,24 @@ class MoveService
             $newModel->createEntity();
 
             // Copy the image to avoid issues when deleting/replacing one image
-//            if (!empty($this->entity->image_path)) {
-//                $uniqid = uniqid();
-//                // If the image is in the w folder, just copy the image to the new world folder
-//                if (Str::contains('w/' . $this->entity->campaign_id, $this->entity->image_path)) {
-//                    $newPath = Str::replace(
-//                        'w/' . $this->entity->campaign_id,
-//                        'w/' . $this->to->id,
-//                        $this->entity->image_path
-//                    );
-//                } else {
-//                    $newPath = Str::replace('.', $uniqid . '.', $this->entity->image_path);
-//                }
-//                $newModel->entity->image_path = $newPath;
-//                $newModel->entity->saveQuietly();
-//                if (!Storage::exists($newPath)) {
-//                    Storage::copy($this->entity->image_path, $newPath);
-//                }
-//            }
+            //            if (!empty($this->entity->image_path)) {
+            //                $uniqid = uniqid();
+            //                // If the image is in the w folder, just copy the image to the new world folder
+            //                if (Str::contains('w/' . $this->entity->campaign_id, $this->entity->image_path)) {
+            //                    $newPath = Str::replace(
+            //                        'w/' . $this->entity->campaign_id,
+            //                        'w/' . $this->to->id,
+            //                        $this->entity->image_path
+            //                    );
+            //                } else {
+            //                    $newPath = Str::replace('.', $uniqid . '.', $this->entity->image_path);
+            //                }
+            //                $newModel->entity->image_path = $newPath;
+            //                $newModel->entity->saveQuietly();
+            //                if (!Storage::exists($newPath)) {
+            //                    Storage::copy($this->entity->image_path, $newPath);
+            //                }
+            //            }
 
             // Copy the gallery image over
             if (!empty($image)) {
