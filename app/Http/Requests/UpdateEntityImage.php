@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\Limit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateEntityImage extends FormRequest

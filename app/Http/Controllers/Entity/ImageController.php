@@ -7,8 +7,6 @@ use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Facades\Images;
-use App\Services\Gallery\UploadService;
 
 class ImageController extends Controller
 {
