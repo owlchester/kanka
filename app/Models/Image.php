@@ -53,6 +53,8 @@ use Illuminate\Support\Facades\Storage;
  * @property int $_usageCount
  *
  * @method static Builder|self acl(bool $browse)
+ * @method static Builder|self named(string|null $term)
+ * @method static Builder|self imageFolder(string|null $folder)
  */
 class Image extends Model
 {
@@ -205,13 +207,13 @@ class Image extends Model
 
     /**
      */
-    public function scopeImageFolder(Builder $query, string $folderUuid = null): Builder
+    public function scopeImageFolder(Builder $query, string $folder = null): Builder
     {
-        if (empty($folderUuid)) {
+        if (empty($folder)) {
             return $query->whereNull('folder_id');
         }
 
-        return $query->where('folder_id', $folderUuid);
+        return $query->where('folder_id', $folder);
     }
 
     /**
@@ -242,6 +244,14 @@ class Image extends Model
         return $query;
     }
 
+    public function scopeNamed(Builder $query, string|null $term): Builder
+    {
+        if (empty($term)) {
+            return $query;
+        }
+        return $query->where('name', 'like', '%' . $term . '%');
+    }
+
     /**
      */
     public function hasNoFolders(): bool
@@ -268,6 +278,9 @@ class Image extends Model
 
     public function getUrl(int $sizeX = null, int $sizeY = null): string
     {
+        if ($this->isSvg()) {
+            return $this->url();
+        }
         Img::reset();
 
         if (!$sizeY && $sizeX) {
@@ -287,6 +300,11 @@ class Image extends Model
         }
 
         return Img::url($this->path);
+    }
+
+    public function isSvg(): bool
+    {
+        return $this->ext == 'svg';
     }
 
     public function url(): string

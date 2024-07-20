@@ -152,8 +152,8 @@ To create an organisation, use the following endpoint.
 | `locations` | `array` | Array of location ids |
 | `tags` | `array` | Array of tag ids |
 | `is_defunct` | `boolean` | If the organisation is defunct |
-| `image_url` | `string` | URL to a picture to be used for the organisation || `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the organisation is only visible to `admin` members of the campaign |
 
 ### Results

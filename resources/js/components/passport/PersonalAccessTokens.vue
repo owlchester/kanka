@@ -126,7 +126,7 @@
                     Here is your new personal access token. This is the only time it will be shown so don't lose it!
                     You may now use this token to make API requests.
                 </p>
-                <textarea class="form-control" rows="10">{{ accessToken }}</textarea>
+                <textarea class="w-full" rows="10">{{ accessToken }}</textarea>
 
                 <button type="button" class="btn2 btn-ghost" @click="closeModal('accessModal')">Close</button>
             </article>

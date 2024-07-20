@@ -32,12 +32,10 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     $buttonsClass ++;
 }
 
-$superboosted = $campaign->superboosted();
-
 $hasBanner = false;
-if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
+if($campaign->boosted() && $entity->hasHeaderImage()) {
     $hasBanner = true;
-    $headerImageUrl = $entity->getHeaderUrl($superboosted);
+    $headerImageUrl = $entity->getHeaderUrl();
 }
 
 ?>
@@ -181,7 +179,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                 {{ __('crud.actions.new_child') }}
                             </x-dropdowns.item>
                         @endif
-                        <x-dropdowns.item link="{{ route($entity->pluralType() . '.create', [$campaign, $model->entity, 'copy' => $model->id]) }}">
+                        <x-dropdowns.item link="{{ route($entity->pluralType() . '.create', [$campaign, 'copy' => $model->id]) }}">
                             <x-icon class="fa-regular fa-copy"></x-icon>
                             {{ __('crud.actions.copy') }}
                         </x-dropdowns.item>

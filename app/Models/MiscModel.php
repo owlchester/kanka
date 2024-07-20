@@ -278,7 +278,7 @@ abstract class MiscModel extends Model
         $campaign = CampaignLocalization::getCampaign();
         $superboosted = $campaign->superboosted();
 
-        if ($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
+        if ($campaign->boosted() && $entity->hasHeaderImage()) {
             $classes[] = 'entity-with-banner';
         }
 

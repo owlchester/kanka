@@ -135,8 +135,8 @@ To create a map, use the following endpoint.
 | `center_x` | `float` | The custom longitude on page load |
 | `center_y` | `float` | The custom latitude on page load |
 | `tags` | `array` | Array of tag ids |
-| `image_url` | `string` (Required) without `image`) | URL to a picture to be used for the map || `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_real` | `boolean` | If the map uses openmaps (the real world) |
 | `is_private` | `boolean` | If the map is only visible to `admin` members of the campaign |
 

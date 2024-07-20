@@ -10,6 +10,7 @@
     'bodyClass' => 'entity-reminders'
 ])
 
+@include('entities.components.og')
 
 @section('entity-header-actions')
     @can('events', $entity->child)

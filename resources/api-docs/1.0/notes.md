@@ -107,9 +107,8 @@ To create a note, use the following endpoint.
 | `type` | `string` | The note's type |
 | `note_id` | `integer` | The parent note id |
 | `tags` | `array` | Array of tag ids |
-| `image_url` | `string` | URL to a picture to be used for the note |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the note is only visible to `admin` members of the campaign |
 
 ### Results

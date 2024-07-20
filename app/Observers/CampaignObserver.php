@@ -55,10 +55,6 @@ class CampaignObserver
                 $campaign->visibility_id = Campaign::VISIBILITY_PRIVATE;
             }
         }
-
-        // Handle image. Let's use a service for this.
-        Images::handle($campaign, 'w/' . $campaign->id);
-        Images::handle($campaign, 'w/' . $campaign->id, 'header_image');
     }
 
     /**
@@ -132,6 +128,11 @@ class CampaignObserver
     {
         $this->saveGenres($campaign);
         $this->saveSystems($campaign);
+
+        // Handle image. Let's use a service for this.
+        Images::handle($campaign, 'w/' . $campaign->id);
+        Images::handle($campaign, 'w/' . $campaign->id, 'header_image');
+        $campaign->saveQuietly();
 
         foreach ($campaign->members()->with('user')->get() as $member) {
             UserCache::user($member->user)->clear();

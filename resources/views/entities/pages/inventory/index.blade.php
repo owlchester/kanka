@@ -9,7 +9,7 @@
     'bodyClass' => 'entity-inventory',
 ])
 
-
+@include('entities.components.og')
 
 @section('entity-header-actions')
     @can('inventory', $entity->child)

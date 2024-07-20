@@ -137,6 +137,10 @@
     --tw-bg-opacity: 1;
     background-color: hsl(var(--a)/var(--tw-bg-opacity));
 }
+.bg-accent-focus {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--af)/var(--tw-bg-opacity));
+}
 .gradient-to-base-100 {
     background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient, hsl(var(--b1)/1)));
 }

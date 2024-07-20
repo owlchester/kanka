@@ -194,7 +194,7 @@ You can view the recoverable deleted posts on the `/recovery/posts` endpoint.
 <a name="recover-posts"></a>
 ## Recover Deleted Posts
 
-You can post an array with the ids of the posts you want to recover to the `/recover/posts` endpoint to undo the deletion (this is a boosted/premium only feature).
+You can post an array with the ids of the posts you want to recover to the `/recover/posts` endpoint to undo the deletion (this is a premium only feature).
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |

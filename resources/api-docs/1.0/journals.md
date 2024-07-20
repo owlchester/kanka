@@ -101,19 +101,18 @@ To create a journal, use the following endpoint.
 
 ### Body
 
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `name` | `string` (Required) | Name of the journal |
-| `entry` | `string` | The html description of the journal |
-| `type` | `string` | The journal's type |
-| `date` | `string` | The date of the session |
-| `journal_id` | `integer` | The ID of the journal's parent journal, if it has one |
-| `author_id` | `integer` | The "author" of the journal (entity id) |
-| `tags` | `array` | Array of tag ids |
-| `image_url` | `string` | URL to a picture to be used for the journal |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
-| `is_private` | `boolean` | If the journal is only visible to `admin` members of the campaign |
+| Parameter | Type | Detail                                                                  |
+| :- |   :-   |:------------------------------------------------------------------------|
+| `name` | `string` (Required) | Name of the journal                                                     |
+| `entry` | `string` | The html description of the journal                                     |
+| `type` | `string` | The journal's type                                                      |
+| `date` | `string` | The date of the session                                                 |
+| `journal_id` | `integer` | The ID of the journal's parent journal, if it has one                   |
+| `author_id` | `integer` | The "author" of the journal (entity id)                                 |
+| `tags` | `array` | Array of tag ids                                                        |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
+| `is_private` | `boolean` | If the journal is only visible to `admin` members of the campaign       |
 ### Results
 
 > {success} Code 200 with JSON body of the new journal.

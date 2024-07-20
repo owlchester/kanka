@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Facades\Avatar;
-use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Item;
@@ -135,10 +134,6 @@ class EntityResource extends JsonResource
         }
 
         $galleryImage = $misc->entity->image;
-        $campaign = CampaignLocalization::getCampaign();
-        $superboosted = $campaign->superboosted();
-        $boosted = $campaign->boosted();
-
         $url = $misc->getLink();
         $apiViewUrl = 'campaigns.' . $misc->entity->pluralType() . '.show';
 
@@ -147,7 +142,7 @@ class EntityResource extends JsonResource
             'name' => $misc->name,
             'entry' => $misc->hasEntry() ? $misc->entry : null,
             'entry_parsed' => $misc->hasEntry() ? Mentions::map($misc) : null,
-            'tooltip' => $boosted ? ($misc->entity->tooltip ?: null) : null,
+            'tooltip' => $misc->entity->tooltip ?: null,
             'image' => $misc->entity->image_path,
             'focus_x' => $misc->entity->focus_x,
             'focus_y' => $misc->entity->focus_y,
@@ -156,12 +151,12 @@ class EntityResource extends JsonResource
             'image_full' => Avatar::entity($misc->entity)->original(),
             'image_thumb' => Avatar::size(40)->fallback()->thumbnail(),
             'has_custom_image' => !empty($misc->entity->image_path) || !empty($galleryImage),
-            'image_uuid' => $superboosted && $misc->entity->image ? $misc->entity->image->id : null,
+            'image_uuid' => $misc->entity->image ? $misc->entity->image->id : null,
 
             // Header
-            'header_full' => $misc->entity->getHeaderUrl($superboosted),
-            'header_uuid' => $superboosted && $misc->entity->header ? $misc->entity->header->id : null,
-            'has_custom_header' => $misc->entity->hasHeaderImage($superboosted),
+            'header_full' => $misc->entity->getHeaderUrl(),
+            'header_uuid' => $misc->entity->header ? $misc->entity->header->id : null,
+            'has_custom_header' => $misc->entity->hasHeaderImage(),
 
             'is_private' => (bool) $misc->is_private,
             'is_template' => (bool) $misc->entity->isTemplate(),

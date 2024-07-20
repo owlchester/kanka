@@ -38,8 +38,12 @@ class EntityObserver
      */
     public function crudSaved(Entity $entity)
     {
-        Images::entity($entity, 'w/' . $entity->campaign_id, 'image');
-        Images::entity($entity, 'w/' . $entity->campaign_id);
+        if (request()->post('remove-image') == '1') {
+            Images::cleanup($entity, 'image');
+        }
+        if (request()->post('remove-header_image') == '1') {
+            Images::cleanup($entity, 'header_image');
+        }
         $this->saveTags($entity);
         $this->savePermissions($entity);
         $this->savePremium($entity);
