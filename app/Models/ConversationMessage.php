@@ -123,8 +123,6 @@ class ConversationMessage extends MiscModel
     }
 
     /**
-     * @param null|int $oldestId
-     * @param null|int $newestId
      */
     public function scopeDefault(Builder $query, ?int $oldestId = null, ?int $newestId = null)
     {

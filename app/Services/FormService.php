@@ -25,7 +25,6 @@ class FormService
 
     /**
      * Prefill the field with the copies values
-     * @param string $field
      * @param MiscModel|Entity|null $entity
      * @return mixed|null
      */

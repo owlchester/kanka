@@ -220,7 +220,6 @@ class FilterService
 
     /**
      * @param string|array $key
-     * @param string|null $default
      * @throws \Exception
      */
     public function filterValue(mixed $key, ?string $default = null)
