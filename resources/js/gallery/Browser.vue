@@ -5,9 +5,7 @@
 
     <dialog class="dialog rounded-2xl text-center" id="gallery-dialog" ref="galleryDialog" aria-modal="true" aria-labelledby="modal-card-label">
         <header class="bg-base-200 sm:rounded-t">
-            <h4>
-                Gallery
-            </h4>
+            <h4 v-html="trans.browse.title" ></h4>
             <button type="button" class="text-base-content" @click="closeBrowser()" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
@@ -17,13 +15,13 @@
 
             <div class="flex gap-1 w-full" v-if="!loading && !error">
                 <div class="grow">
-                    <input type="text" class="w-full" placeholder="Search for an image in the gallery" @input="handleInput" />
+                    <input type="text" class="w-full" :placeholder="trans.browse.search.placeholder" @input="handleInput" />
                 </div>
-                <div class="flex-none cursor-pointer btn2 btn-ghost btn-sm" v-if="mode !== 'large'" @click="toggle('large')">
-                    <i class="fa-solid fa-grid-2" aria-label="Large images"></i>
+                <div class="flex-none cursor-pointer btn2 btn-ghost btn-sm" v-if="mode !== 'large'" @click="toggle('large')" :title="trans.browse.layouts.large">
+                    <i class="fa-solid fa-grid-2" aria-label="Large previews"></i>
                 </div>
-                <div class="flex-none cursor-pointer btn2 btn-ghost btn-sm" v-if="mode !== 'small'" @click="toggle('small')">
-                    <i class="fa-solid fa-grid-4" aria-label="Small images"></i>
+                <div class="flex-none cursor-pointer btn2 btn-ghost btn-sm" v-if="mode !== 'small'" @click="toggle('small')" :title="trans.browse.layouts.small">
+                    <i class="fa-solid fa-grid-4" aria-label="Small previews"></i>
                 </div>
             </div>
 
@@ -48,12 +46,19 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, onBeforeUnmount, watch} from 'vue'
+import {ref, onMounted, watch, onBeforeMount} from 'vue'
 
 const props = defineProps<{
     api: string,
-    opened: boolean
+    opened: boolean,
+    i18n: undefined,
 }>()
+
+const trans = ref(null)
+
+onBeforeMount(() => {
+    trans.value = JSON.parse(props.i18n)
+})
 
 const emit = defineEmits(['selected', 'closed'])
 
@@ -67,7 +72,6 @@ const typingTimeout = ref(null)
 const error = ref(null)
 const debounceDelay = 300
 const mode = ref('large')
-
 
 const open = () => {
     loading.value = true
@@ -102,7 +106,7 @@ const closeBrowser = () => {
 const previewSize = (extra) => {
     extra = extra ?? ''
     if (mode.value === 'large') {
-        return 'w-48 h-36 ' + extra
+        return 'w-40 h-28 md:w-48 md:h-36 ' + extra
     }
     return 'w-20 h-16 ' + extra
 }
@@ -110,16 +114,16 @@ const previewSize = (extra) => {
 const widthSize = (extra) => {
     extra = extra ?? ''
     if (mode.value === 'large') {
-        return 'w-48 ' + extra
+        return 'w-40 md:w-48 ' + extra
     }
     return 'w-20 text-xs ' + extra
 }
 
 const gridClass = () => {
     if (mode.value === 'small') {
-        return 'flex flex-wrap gap-2 md:gap-3'
+        return 'flex flex-wrap justify-center gap-2 md:gap-3'
     }
-    return 'flex flex-wrap gap-2 md:gap-5'
+    return 'flex flex-wrap justify-center gap-2 md:gap-5'
 }
 
 const selectImage = (image) => {

@@ -1,10 +1,19 @@
 <?php
 
 return [
-    'upload' => [
-        'errors' => [
-
-        ]
+    'actions' => [
+        'url' => 'Upload an image from a URL',
+        'gallery' => 'From gallery',
+    ],
+    'browse' => [
+        'title' => 'Gallery',
+        'layouts' => [
+            'small' => 'Small previews',
+            'large' => 'Large previews',
+        ],
+        'search' => [
+            'placeholder' => 'Search for an image in the gallery',
+        ],
     ],
     'download' => [
         'errors' => [

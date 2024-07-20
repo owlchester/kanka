@@ -1,4 +1,24 @@
 <?php /** @var \App\Models\MiscModel $model */?>
+
+@php
+    $translations = json_encode([
+        'cancel' => __('crud.actions.cancel'),
+        'remove' => __('crud.remove'),
+        'url' => __('gallery.actions.url'),
+        'gallery' => __('gallery.actions.gallery'),
+        'browse' => [
+            'title' => __('gallery.browse.title'),
+            'layouts' => [
+                'small' => __('gallery.browse.layouts.small'),
+                'large' => __('gallery.browse.layouts.large'),
+            ],
+            'search' => [
+                'placeholder' => __('gallery.browse.search.placeholder'),
+            ],
+        ],
+    ]);
+@endphp
+
 <x-grid type="1/1">
     <x-forms.field
         field="tooltips"
@@ -82,6 +102,7 @@
                         thumbnail="{{ $headerUrlPreset }}"
                         browse="{{ route('gallery.browse', [$campaign]) }}"
                         old="false"
+                        i18n="{{ $translations }}"
                     >
                         <x-icon class="load" />
                     </gallery-selection>

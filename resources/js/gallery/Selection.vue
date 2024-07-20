@@ -4,18 +4,17 @@
     </div>
     <div v-else :class="backgroundClass()" :style="{'backgroundImage': backgroundImage()}">
         <div :class="buttonsClass()">
-            <div class="rounded p-2 cursor-pointer backdrop-blur backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition" v-if="hasPreview()" @click="removeImage()">
-                Remove
+            <div class="rounded p-2 cursor-pointer backdrop-blur backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition" v-if="hasPreview()" @click="removeImage()" v-html="trans.remove">
             </div>
             <div class="flex items-center gap-1" v-if="!hasImage()">
                 <input type="file" v-bind:accept="props.accepts" class="w-full" @change="upload" ref="fileField" />
             </div>
             <div class="flex items-center gap-1" v-if="!hasImage()">
-                <input ref="urlField" type="text" class="w-full" v-model="imageUrl" @blur="download()" placeholder="Upload an image from a URL" />
+                <input ref="urlField" type="text" class="w-full" v-model="imageUrl" @blur="download()" :placeholder="trans.url" />
                 <i class="fa-solid fa-spin fa-spinner" v-if="downloading" aria-label="Downloading" />
             </div>
             <div class="flex items-center gap-1" v-if="!hasImage()">
-                <span role="button" class="btn2 btn-default btn-sm" @click="openGallery()">From gallery</span>
+                <span role="button" class="btn2 btn-default btn-sm" @click="openGallery()" v-html="trans.gallery"></span>
             </div>
         </div>
         <div v-if="uploading" class="flex gap-2 flex-col w-full">
@@ -25,7 +24,7 @@
                 </div>
             </div>
             <div class="rounded p-2 cursor-pointer backdrop-blur backdrop-opacity-30 bg-red-700/50 text-white hover:backdrop-opacity-100 transition flex items-center gap-2" @click="cancelUpload()">
-                <span class="grow">Cancel</span>
+                <span class="grow" v-html="trans.cancel"></span>
                 <span class="text-xs flex-none" v-html="progressPercentage()"></span>
             </div>
         </div>
@@ -36,6 +35,7 @@
     <Browser
         :api="props.browse"
         :opened="galleryOpened"
+        :i18n="i18n"
         @selected="selectImage"
         @closed="closedGallery"
     ></Browser>
@@ -54,7 +54,7 @@ const props = defineProps<{
     browse: string,
     field: string,
     old: string, // Using the old system
-    // i18n: Object,
+    i18n: undefined,
 }>()
 
 
@@ -73,6 +73,7 @@ let lastImageUrl
 const cancelTokenSource = ref(null)
 const hasOld = ref(false)
 const removedOld = ref(false)
+const trans = ref(null)
 
 onMounted(() => {
     loading.value = false
@@ -81,6 +82,10 @@ onMounted(() => {
     if (props.old === 'true') {
         hasOld.value = true
     }
+
+    console.log('props', props.i18n)
+    trans.value = JSON.parse(props.i18n)
+    console.log('parse', trans.value)
 });
 
 

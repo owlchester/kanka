@@ -34,8 +34,29 @@ if (!empty($entity) && !empty($entity->image) && !$canBrowse) {
     return;
 }
 
-$old = isset($entity) && !empty($entity->image_path)
+$old = isset($entity) && !empty($entity->image_path);
+
+
 ?>
+@php
+    $translations = json_encode([
+        'cancel' => __('crud.cancel'),
+        'remove' => __('crud.remove'),
+        'url' => __('gallery.actions.url'),
+        'gallery' => __('gallery.actions.gallery'),
+        'browse' => [
+            'title' => __('gallery.browse.title'),
+            'layouts' => [
+                'small' => __('gallery.browse.layouts.small'),
+                'large' => __('gallery.browse.layouts.large'),
+            ],
+            'search' => [
+                'placeholder' => __('gallery.browse.search.placeholder'),
+            ],
+        ],
+    ]);
+@endphp
+
 
 @php
     $uuid = null;
@@ -56,6 +77,7 @@ $old = isset($entity) && !empty($entity->image_path)
             thumbnail="{{ $previewThumbnail }}"
             browse="{{ route('gallery.browse', [$campaign]) }}"
             old="{{ $old ? 'true' : 'false' }}"
+            i18n="{{ $translations }}"
         >
             <x-icon class="load" />
         </gallery-selection>
