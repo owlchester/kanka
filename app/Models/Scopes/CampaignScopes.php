@@ -18,7 +18,7 @@ use Illuminate\Support\Arr;
  * @method static self|Builder admin()
  * @method static self|Builder public()
  * @method static self|Builder top()
- * @method static self|Builder front(string $sort = null)
+ * @method static self|Builder front(?string $sort = null)
  * @method static self|Builder featured(bool $featured = true)
  * @method static self|Builder filterPublic(array $filters)
  * @method static self|Builder open()
@@ -137,7 +137,7 @@ trait CampaignScopes
     /**
      * Filtered campaigns for the front end
      */
-    public function scopeFront(Builder $query, int $sort = null): Builder
+    public function scopeFront(Builder $query, ?int $sort = null): Builder
     {
         if (!app()->environment('local')) {
             $query

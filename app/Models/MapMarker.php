@@ -676,7 +676,7 @@ class MapMarker extends Model
     /**
      * Generate link for the datagrid
      */
-    public function markerLink(string $displayName = null): string
+    public function markerLink(?string $displayName = null): string
     {
         return '<a href="' . $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .

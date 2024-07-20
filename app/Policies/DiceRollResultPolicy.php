@@ -27,7 +27,7 @@ class DiceRollResultPolicy extends MiscPolicy
         return true;
     }
 
-    public function create(User $user, $entity = null, Campaign $campaign = null): bool
+    public function create(User $user, $entity = null, ?Campaign $campaign = null): bool
     {
         return false;
     }

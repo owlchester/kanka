@@ -69,7 +69,7 @@ class CampaignUser extends Pivot
         return $this->roles()->where(['is_admin' => true])->count() > 0;
     }
 
-    public function scopeSearch(Builder $builder, string $search = null): Builder
+    public function scopeSearch(Builder $builder, ?string $search = null): Builder
     {
         return $builder
             ->select($this->getTable() . '.*')

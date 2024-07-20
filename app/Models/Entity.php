@@ -352,7 +352,7 @@ class Entity extends Model
     /**
      * @return array|string[]
      */
-    public function postPositionOptions($position = null): array
+    public function postPositionOptions(?int $position = null): array
     {
         $options = $position ? [
             null => __('posts.position.dont_change'),

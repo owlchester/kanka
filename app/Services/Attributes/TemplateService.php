@@ -183,7 +183,7 @@ class TemplateService
      * Map an attribute type from its string representation to an ID (as saved in the DB)
      * @param string|null $type the string type of attribute to be converted to an int
      */
-    protected function mapAttributeTypeToID(string $type = null): int
+    protected function mapAttributeTypeToID(?string $type = null): int
     {
         if (empty($type) || $type === 'attribute') {
             return Attribute::TYPE_STANDARD_ID;

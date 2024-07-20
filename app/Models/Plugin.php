@@ -150,7 +150,7 @@ class Plugin extends Model
 
     /**
      */
-    public function scopeHighlighted(Builder $query, string $uuid = null): Builder
+    public function scopeHighlighted(Builder $query, ?string $uuid = null): Builder
     {
         if (empty($uuid) || !Str::isUuid($uuid)) {
             return $query;

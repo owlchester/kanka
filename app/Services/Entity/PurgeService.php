@@ -48,7 +48,7 @@ class PurgeService
      * @param MiscModel|Location|null $child
      * @throws Exception
      */
-    protected function trashChild(Entity $entity, MiscModel $child = null)
+    protected function trashChild(Entity $entity, ?MiscModel $child = null)
     {
         if (empty($child)) {
             return false;

@@ -66,7 +66,7 @@ class SearchService
     /**
      * The search term as requested by the user
      */
-    public function term(string $term = null): self
+    public function term(?string $term = null): self
     {
         $this->term = $term;
         return $this;
@@ -84,7 +84,7 @@ class SearchService
     /**
      * The search entity type as requested by the user
      */
-    public function type(int $type = null): self
+    public function type(?int $type = null): self
     {
         if (!empty($type)) {
             $this->onlyTypes = [$type];
@@ -133,7 +133,7 @@ class SearchService
 
     /**
      */
-    public function only(array|string $types = null): self
+    public function only(null|array|string $types = null): self
     {
         if (empty($types)) {
             $this->onlyTypes = [];

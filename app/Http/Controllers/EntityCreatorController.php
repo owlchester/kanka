@@ -249,7 +249,7 @@ class EntityCreatorController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function renderForm(Request $request, Campaign $campaign, string $type, string $success = null)
+    protected function renderForm(Request $request, Campaign $campaign, string $type, ?string $success = null)
     {
         $this->campaign = $campaign;
         // Make sure the user is allowed to create this kind of entity

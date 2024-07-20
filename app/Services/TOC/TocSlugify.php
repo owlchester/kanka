@@ -34,9 +34,8 @@ class TocSlugify implements SlugifyInterface
     /**
      * Slugify
      *
-     * @param string $string
      */
-    public function slugify($string, $options = null): string
+    public function slugify(string $string, array|string|null $options = null): string
     {
         $slugged = $this->slugify->slugify($string, $options);
 

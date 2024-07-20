@@ -18,14 +18,14 @@ class EntityImageApiController extends Controller
 
         // Let the service handle everything
         throw new \Exception('API hasnt been migrated');
-        $entity->update();
-
-        return response()->json([
-            'entity_id' => $entity->id,
-            'child_id' => $entity->child->id,
-            'image_full' => Avatar::entity($entity)->original(),
-            'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
-        ]);
+        //        $entity->update();
+        //
+        //        return response()->json([
+        //            'entity_id' => $entity->id,
+        //            'child_id' => $entity->child->id,
+        //            'image_full' => Avatar::entity($entity)->original(),
+        //            'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
+        //        ]);
     }
 
     /**

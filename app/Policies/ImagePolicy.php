@@ -63,7 +63,7 @@ class ImagePolicy
     /**
      * @return bool
      */
-    protected function checkPermission(int $action, User $user, Campaign $campaign = null)
+    protected function checkPermission(int $action, User $user, ?Campaign $campaign = null)
     {
         return EntityPermission::hasPermission(0, $action, $user, null, $campaign);
     }

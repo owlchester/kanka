@@ -17,7 +17,7 @@ class Tutorial extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(string $code, string $doc = null, string $type = null)
+    public function __construct(string $code, ?string $doc = null, ?string $type = null)
     {
         $this->code = $code;
         $this->doc = $doc;

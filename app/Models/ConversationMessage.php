@@ -123,10 +123,8 @@ class ConversationMessage extends MiscModel
     }
 
     /**
-     * @param null|int $oldestId
-     * @param null|int $newestId
      */
-    public function scopeDefault(Builder $query, $oldestId = null, $newestId = null)
+    public function scopeDefault(Builder $query, ?int $oldestId = null, ?int $newestId = null)
     {
         $query->with(['user', 'character'])
             ->latest()
@@ -146,7 +144,7 @@ class ConversationMessage extends MiscModel
         return Auth::check() && $this->created_by == Auth::user()->id;
     }
 
-    public function grouppedWith(ConversationMessage $previous = null): self
+    public function grouppedWith(?ConversationMessage $previous = null): self
     {
         if (empty($previous)) {
             return $this;

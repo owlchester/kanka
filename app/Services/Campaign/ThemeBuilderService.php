@@ -9,7 +9,7 @@ class ThemeBuilderService
 {
     use CampaignAware;
 
-    public function save(string $config = null)
+    public function save(?string $config = null)
     {
         $style = $this->getStyle();
         $style->content = $config;

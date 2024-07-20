@@ -9,7 +9,7 @@ trait MentionTrait
     /**
      * Extract the mentions from a text
      */
-    public function extract(string $text = null): array
+    public function extract(?string $text = null): array
     {
         $mentions = [];
 
@@ -52,7 +52,7 @@ trait MentionTrait
     /**
      * Extract the Images from a text
      */
-    public function extractImages(string $text = null): array
+    public function extractImages(?string $text = null): array
     {
         $images = [];
 

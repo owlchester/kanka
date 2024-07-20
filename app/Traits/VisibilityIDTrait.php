@@ -36,7 +36,7 @@ trait VisibilityIDTrait
     /**
      * Generate the html icon for visibility
      */
-    public function visibilityIcon(string $extra = null): string
+    public function visibilityIcon(?string $extra = null): string
     {
         $class = $title = '';
         if ($this->visibility_id === Visibility::All) {

@@ -97,7 +97,7 @@ class EntityPermission
     /**
      * Check the roles of the user. If the user is an admin, always return true
      */
-    protected function getRoleIds(Campaign $campaign, User $user = null): array|bool
+    protected function getRoleIds(Campaign $campaign, ?User $user = null): array|bool
     {
         // If we haven't built a list of roles yet, build it.
         if (isset($this->roleIds)) {
@@ -131,7 +131,7 @@ class EntityPermission
     /**
      * Determine if a user is part of a role that can do an action on all entities of a campaign
      */
-    public function canRole(string $action, string $modelName, $user = null, Campaign $campaign = null): bool
+    public function canRole(string $action, string $modelName, ?User $user = null, ?Campaign $campaign = null): bool
     {
         $this->loadAllPermissions($user, $campaign);
         $key = $modelName . '_' . $action;
@@ -148,7 +148,7 @@ class EntityPermission
      * It's way easier to just load all permissions of the user once and "cache" them, rather than try and be
      * optional on each query.
      */
-    protected function loadAllPermissions(User $user = null, Campaign $campaign = null): void
+    protected function loadAllPermissions(?User $user = null, ?Campaign $campaign = null): void
     {
         // If no campaign was provided, get the one in the url. One is provided when moving entities between campaigns
         if (empty($campaign)) {
