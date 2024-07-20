@@ -33,7 +33,7 @@ class SubscriptionCancelEmailJob implements ShouldQueue
     /**
      * WelcomeEmailJob constructor.
      */
-    public function __construct(User $user, string $reason = null, string $custom = null)
+    public function __construct(User $user, ?string $reason = null, ?string $custom = null)
     {
         $this->userId = $user->id;
         $this->reason = $reason;

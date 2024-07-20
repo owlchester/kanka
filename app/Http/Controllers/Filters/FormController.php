@@ -51,7 +51,7 @@ class FormController extends Controller
         }
     }
 
-    protected function render(mixed $model, string $plural, string $route, string $langKey = null)
+    protected function render(mixed $model, string $plural, string $route, ?string $langKey = null)
     {
         $this->filterService
             ->model($model)

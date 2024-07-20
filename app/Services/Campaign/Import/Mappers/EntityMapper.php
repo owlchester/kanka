@@ -61,7 +61,7 @@ trait EntityMapper
         return $this;
     }
 
-    protected function trackMappings(string $parent = null): void
+    protected function trackMappings(?string $parent = null): void
     {
         $this->mapping[$this->data['id']] = $this->model->id;
         ImportIdMapper::put($this->mappingName, $this->data['id'], $this->model->id);

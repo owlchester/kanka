@@ -45,7 +45,7 @@ class MiscPolicy
             $this->checkPermission(CampaignPermission::ACTION_READ, $user, $entity);
     }
 
-    public function create(User $user, $entity = null, Campaign $campaign = null): bool
+    public function create(User $user, $entity = null, ?Campaign $campaign = null): bool
     {
         if ($this->boosted) {
             $campaign = $campaign ?? CampaignLocalization::getCampaign();
@@ -88,7 +88,7 @@ class MiscPolicy
         return $this->relatedElement($user, $entity, $subAction);
     }
 
-    public function post(User $user, $entity, string $action = null, Post $post = null): bool
+    public function post(User $user, $entity, string $action = null, ?Post $post = null): bool
     {
         return Auth::check() && (
             $this->update($user, $entity) ||
@@ -134,7 +134,7 @@ class MiscPolicy
     /**
      * @param Entity|MiscModel|null $entity
      */
-    protected function checkPermission(int $action, User $user, $entity = null, Campaign $campaign = null): bool
+    protected function checkPermission(int $action, User $user, mixed $entity = null, ?Campaign $campaign = null): bool
     {
         // @phpstan-ignore-next-line
         return EntityPermission::hasPermission($this->entityTypeID(), $action, $user, $entity, $campaign);

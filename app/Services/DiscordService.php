@@ -261,7 +261,7 @@ class DiscordService
     /**
      * Make a post request on the discord api
      */
-    protected function post(string $api, array $body = [], array $headers = null)
+    protected function post(string $api, array $body = [], ?array $headers = null)
     {
         $client = new Client();
         if ($headers === null) {
@@ -279,7 +279,7 @@ class DiscordService
     /**
      * @param string $action post, get, put, delete
      */
-    protected function call(string $action, string $api, array $body = [], array $headers = null)
+    protected function call(string $action, string $api, array $body = [], ?array $headers = null)
     {
         $client = new Client();
         if ($headers === null) {

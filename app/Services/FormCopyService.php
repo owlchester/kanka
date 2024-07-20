@@ -31,9 +31,8 @@ class FormCopyService
 
     /**
      * @param Model|MiscModel|Character|null $source
-     * @return $this
      */
-    public function source($source = null): self
+    public function source(mixed $source = null): self
     {
         $this->source = $source;
         return $this;
@@ -60,7 +59,7 @@ class FormCopyService
      * @param string|null $default
      * @return string|null
      */
-    public function string($default = null)
+    public function string(mixed $default = null)
     {
         if ($this->valid()) {
             return $this->getValue();
@@ -71,9 +70,8 @@ class FormCopyService
 
     /**
      * Get values for a select field
-     * @return array
      */
-    public function select(bool $checkForParent = false, string $parentClass = null)
+    public function select(bool $checkForParent = false, ?string $parentClass = null): array
     {
         // Only copy on MiscModel (entity) models
         if ($this->valid()) {

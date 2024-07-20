@@ -754,7 +754,7 @@ class SidebarService
     /**
      * Get the quick links for a specified section/parent
      */
-    public function bookmarks(string $parent = null): array
+    public function bookmarks(?string $parent = null): array
     {
         if (!$this->hasBookmarks($parent)) {
             return [];

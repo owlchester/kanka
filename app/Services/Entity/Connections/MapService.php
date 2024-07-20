@@ -61,7 +61,7 @@ class MapService
     /**  */
     protected string|null $option = null;
 
-    public function option(string $option = null): self
+    public function option(?string $option = null): self
     {
         if (!in_array($option, ['related', 'mentions', 'only_relations'])) {
             $option = null;
@@ -145,7 +145,7 @@ class MapService
     /**
      * Add an entity to the map, only loading its data if it hasn't been already into memory
      */
-    protected function addEntity(Entity $entity, string $image = null): self
+    protected function addEntity(Entity $entity, ?string $image = null): self
     {
         //dump('add entity ' . $entity->name);
         if (Arr::has($this->entities, (string)$entity->id)) {
@@ -293,7 +293,7 @@ class MapService
     /**
      * Add the relations between character organisation members
      */
-    protected function addOrganisationRelations(Organisation $organisation = null)
+    protected function addOrganisationRelations(?Organisation $organisation = null)
     {
         if (empty($organisation) || $organisation->entity === null) {
             return;

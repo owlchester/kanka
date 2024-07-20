@@ -16,7 +16,7 @@ use App\Models\Race;
  * This trait adds support on models to call the filter() scope.
  * This takes parameters passed by the controller and only includes fields that are whitelisted. Whitelisted filters
  * are combined between
- * @method static self|Builder filter(array $params = null)
+ * @method static self|Builder filter(?array $params = null)
  */
 trait HasFilters
 {
@@ -329,7 +329,7 @@ trait HasFilters
     /**
      * Filter on entities with files
      */
-    protected function filterHasFiles(Builder $query, string $value = null): void
+    protected function filterHasFiles(Builder $query, ?string $value = null): void
     {
         $query
             ->joinEntity()
@@ -346,7 +346,7 @@ trait HasFilters
     /**
      * Filter on entities with or without an uploaded image
      */
-    protected function filterHasImage(Builder $query, string $value = null): void
+    protected function filterHasImage(Builder $query, ?string $value = null): void
     {
         $query->joinEntity();
         if ($value) {
@@ -359,7 +359,7 @@ trait HasFilters
     /**
      * Filter on entities that are or aren't templates
      */
-    protected function filterTemplate(Builder $query, string $value = null): void
+    protected function filterTemplate(Builder $query, ?string $value = null): void
     {
         $query->joinEntity();
 
@@ -376,7 +376,7 @@ trait HasFilters
     /**
      * Filter on entities with posts
      */
-    protected function filterHasPosts(Builder $query, string $value = null): void
+    protected function filterHasPosts(Builder $query, ?string $value = null): void
     {
         $query
             ->joinEntity()
@@ -392,7 +392,7 @@ trait HasFilters
     /**
      * Filter on entities that are equipped
      */
-    protected function filterIsEquipped(Builder $query, string $value = null): void
+    protected function filterIsEquipped(Builder $query, ?string $value = null): void
     {
         $query
             ->leftJoin('inventories', 'inventories.item_id', 'items.id');
@@ -408,7 +408,7 @@ trait HasFilters
     /**
      * Filter on entities with attributes
      */
-    protected function filterHasAttributes(Builder $query, string $value = null): void
+    protected function filterHasAttributes(Builder $query, ?string $value = null): void
     {
         $query
             ->joinEntity()
@@ -424,7 +424,7 @@ trait HasFilters
     /**
      * Filter on characters on multiple races
      */
-    protected function filterRaces(Builder $query, string|array $value = null): void
+    protected function filterRaces(Builder $query, null|string|array $value = null): void
     {
         // "none" filter keys is handled later
         if ($this->filterOption('none')) {
@@ -485,7 +485,7 @@ trait HasFilters
     /**
      * Filter characters on a single race
      */
-    protected function filterRace(Builder $query, string $value = null): void
+    protected function filterRace(Builder $query, ?string $value = null): void
     {
         $ids = [$value];
         if ($this->filterOption('exclude')) {
@@ -522,7 +522,7 @@ trait HasFilters
     /**
      * Filter characters on a single family
      */
-    protected function filterFamily(Builder $query, string $value = null): void
+    protected function filterFamily(Builder $query, ?string $value = null): void
     {
         $ids = [$value];
         if ($this->filterOption('exclude')) {
@@ -556,7 +556,7 @@ trait HasFilters
     /**
      * Filter on entities with specific tags
      */
-    protected function filterTags(Builder $query, string|array $value = null): void
+    protected function filterTags(Builder $query, null|string|array $value = null): void
     {
         // "none" filter tags is handled later (because this won't be called if the tags field is empty)
         if ($this->filterOption('none')) {
@@ -621,7 +621,7 @@ trait HasFilters
     /**
      * Filter for elements with a specific member (character) in them
      */
-    protected function filterMember(Builder $query, string $value = null): void
+    protected function filterMember(Builder $query, ?string $value = null): void
     {
         $filter = $this->getFilterOption();
         $query->member($value, $filter);

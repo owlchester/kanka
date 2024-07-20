@@ -48,14 +48,14 @@ class DatagridRenderer2
         return $this;
     }
 
-    public function route(string $route, array $options = null): self
+    public function route(string $route, ?array $options = null): self
     {
         $this->routeName = $route;
         $this->routeOptions = $options;
         return $this;
     }
 
-    public function actionParams(array $options = null): self
+    public function actionParams(?array $options = null): self
     {
         $this->actionParams = $options;
         return $this;

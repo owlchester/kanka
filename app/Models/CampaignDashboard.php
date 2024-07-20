@@ -43,7 +43,7 @@ class CampaignDashboard extends Model
     /**
      * @return Builder
      */
-    public function scopeExclude(Builder $builder, CampaignDashboard $campaignDashboard = null)
+    public function scopeExclude(Builder $builder, ?CampaignDashboard $campaignDashboard = null)
     {
         if (empty($campaignDashboard)) {
             return $builder;

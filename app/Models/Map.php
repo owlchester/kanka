@@ -301,7 +301,7 @@ class Map extends MiscModel
     /**
      * @return array|string[]
      */
-    public function groupPositionOptions($position = null): array
+    public function groupPositionOptions(?int $position = null): array
     {
         $options = [1 => __('maps/groups.placeholders.position')];
         $groups = $this->groups->sortBy('position');
@@ -320,7 +320,7 @@ class Map extends MiscModel
     /**
      * @return array|string[]
      */
-    public function layerPositionOptions($position = null): array
+    public function layerPositionOptions(?int $position = null): array
     {
         $options = [1 => __('maps/layers.placeholders.position')];
         $layers = $this->layers->sortBy('position');

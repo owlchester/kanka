@@ -207,7 +207,7 @@ class Image extends Model
 
     /**
      */
-    public function scopeImageFolder(Builder $query, string $folder = null): Builder
+    public function scopeImageFolder(Builder $query, ?string $folder = null): Builder
     {
         if (empty($folder)) {
             return $query->whereNull('folder_id');
@@ -276,7 +276,7 @@ class Image extends Model
         return in_array($this->ext, ['woff', 'woff2']);
     }
 
-    public function getUrl(int $sizeX = null, int $sizeY = null): string
+    public function getUrl(?int $sizeX = null, ?int $sizeY = null): string
     {
         if ($this->isSvg()) {
             return $this->url();

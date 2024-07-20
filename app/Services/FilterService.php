@@ -223,7 +223,7 @@ class FilterService
      * @param string|null $default
      * @throws \Exception
      */
-    public function filterValue(mixed $key, $default = null)
+    public function filterValue(mixed $key, ?string $default = null)
     {
         if (is_array($key)) {
             throw new \Exception('Key for FilterService can\'t be an array');

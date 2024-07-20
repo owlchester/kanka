@@ -72,7 +72,7 @@ class AttributeMentionService
     /**
      * Determine if the text contains a valid attribute mention using {}
      */
-    protected function validField(string $value = null): bool
+    protected function validField(?string $value = null): bool
     {
         if (!Str::contains($value, ['{', '}'])) {
             return false;

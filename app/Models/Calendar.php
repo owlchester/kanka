@@ -239,7 +239,7 @@ class Calendar extends MiscModel
 
     /**
      */
-    public function currentDate(string $value = null): mixed
+    public function currentDate(?string $value = null): mixed
     {
         // If we have no date saved at all, skip this part. This happens when an entity was changed to the calendar
         // type and most fields are missing.
@@ -284,7 +284,7 @@ class Calendar extends MiscModel
     /**
      * Get the calendar's nice date
      */
-    public function niceDate($date = null): string
+    public function niceDate(?string $date = null): string
     {
         if (empty($date)) {
             $date = $this->date;
@@ -341,7 +341,7 @@ class Calendar extends MiscModel
     /**
      * Build the list of days for a month
      */
-    public function dayList(int $month = null): array
+    public function dayList(?int $month = null): array
     {
         if (empty($month)) {
             $month = $this->currentMonth();
@@ -404,7 +404,7 @@ class Calendar extends MiscModel
     /**
      * Get the date as an array
      */
-    public function dateArray(string $date = null): array
+    public function dateArray(?string $date = null): array
     {
         if (empty($date)) {
             $date = $this->date;

@@ -58,7 +58,7 @@ class ImgService
     /**
      * @return $this
      */
-    public function crop(int $width, int $height = null): self
+    public function crop(int $width, ?int $height = null): self
     {
         if ($width !== 0) {
             if ($height === null) {

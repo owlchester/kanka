@@ -32,7 +32,7 @@ use Illuminate\Support\Str;
  * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags
  *
  * @method static self|Builder positioned()
- * @method static self|Builder onDashboard(CampaignDashboard $dashboard = null)
+ * @method static self|Builder onDashboard(?CampaignDashboard $dashboard = null)
  */
 class CampaignDashboardWidget extends Model
 {
@@ -119,7 +119,7 @@ class CampaignDashboardWidget extends Model
 
     /**
      */
-    public function scopeOnDashboard(Builder $query, CampaignDashboard $dashboard = null): Builder
+    public function scopeOnDashboard(Builder $query, ?CampaignDashboard $dashboard = null): Builder
     {
         if (empty($dashboard)) {
             return $query->whereNull('dashboard_id');
@@ -202,7 +202,7 @@ class CampaignDashboardWidget extends Model
      * @param Entity|null $entity
      * @return bool
      */
-    public function showMembers(Entity $entity = null): bool
+    public function showMembers(?Entity $entity = null): bool
     {
         if ($this->conf('members') !== '1') {
             return false;
