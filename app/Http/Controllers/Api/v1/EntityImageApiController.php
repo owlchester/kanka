@@ -17,7 +17,7 @@ class EntityImageApiController extends Controller
         $this->authorize('update', $entity->child);
 
         // Let the service handle everything
-        Images::handle($entity);
+        throw new \Exception('API hasnt been migrated');
         $entity->update();
 
         return response()->json([
