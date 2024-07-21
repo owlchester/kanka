@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool $is_personality_visible
  * @property bool $is_appearance_pinned
  * @property bool $is_personality_pinned
+ * @property Collection|CharacterFamily[] $characterFamilies
  * @property Collection|Family[] $families
  * @property Location|null $location
  * @property int|null $location_id
