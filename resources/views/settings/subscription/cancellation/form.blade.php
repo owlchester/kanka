@@ -1,6 +1,6 @@
 <?php /** @var \App\User $user */ ?>
 @php
-    $endDate = date($user->date_format, $user->subscription('kanka')->upcomingInvoice()?->period_end);
+    $endDate = $user->subscription('kanka')->upcomingInvoice()?->date();
 @endphp
 <x-dialog.header>
     {{ __('settings.subscription.change.title') }}
