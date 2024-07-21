@@ -113,6 +113,12 @@ Now that the bucket is set up, go back to your console run the following command
 sail artisan kanka:install
 ```
 
+Lastly, set up the full-text search engine with the following line.
+
+```bash
+sail artisan setup:meilisearch
+```
+
 ## Next up
 
 Your local development instance of Kanka is now ready to go! Navigate to [localhost:8081](http://localhost:8081) and you should see the Kanka application and be able to create an account.

@@ -150,7 +150,7 @@ return [
                 'not_using'         => 'Not currently using Kanka',
                 'other'             => 'Other',
             ],
-            'text'      => 'Sorry to see you go! Cancelling your subscription will keep it active until :date, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',
+            'text'      => 'Sorry to see you go! Cancelling your subscription will keep it active until :date, after which your premium campaigns will revert to standard campaigns and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what led to your decision.',
         ],
         'cancelled'             => 'Your subscription has been cancelled. You can renew a subscription once your current subscription ends after :date.',
         'change'                => [
