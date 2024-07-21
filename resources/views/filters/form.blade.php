@@ -67,17 +67,17 @@
 </article>
 @if (auth()->check())
     <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3">
-<menu class="flex flex-wrap gap-3 ps-0">
-            <a href="#" class="flex-none btn2 btn-sm flex gap-2 items-center @if ($activeFilters === 0) btn-disabled" @endif
+        <menu class="flex flex-wrap gap-3 ps-0">
+            <span role="button" class="flex-none btn2 btn-sm flex gap-2 items-center {{ $activeFilters === 0 ? 'btn-disabled' : null }} "
                @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false"  @endif data-toggle="tooltip" data-title="{{ __('crud.filters.copy_helper') }}">
                 <x-icon class="fa-solid fa-clipboard" />
                 <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
                 <span class="visible md:hidden">{{ __('crud.filters.mobile.copy') }}</span>
-            </a>
+            </span>
 
             @if ($activeFilters > 0)
                 <a href="{{ route($route, [$campaign, 'reset-filter' => 'true']) }}" class="btn2 btn-sm btn-error btn-outline">
-                    <x-icon class="fa-solid fa-eraser"></x-icon>
+                    <x-icon class="fa-solid fa-eraser" />
                     {{ __('crud.filters.mobile.clear') }}
                 </a>
             @endif
@@ -88,7 +88,7 @@
         </menu>
         <menu class="flex flex-wrap gap-3 ps-0">
             <button type="submit" class="btn2 btn-primary btn-sm">
-                <x-icon class="fa-solid fa-filter"></x-icon>
+                <x-icon class="fa-solid fa-filter" />
                 {{ __('crud.filter') }}
             </button>
         </menu>
