@@ -239,7 +239,8 @@ class Character extends MiscModel
     {
         return $this->belongsToMany(Family::class)
             ->orderBy('character_family.id')
-            ->with('entity');
+            ->with('entity')
+        ;
     }
 
     public function characterFamilies(): HasMany

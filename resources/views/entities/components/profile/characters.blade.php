@@ -19,7 +19,7 @@
             <div class="comma-separated">
             @php $existingFamilies = []; @endphp
             @foreach ($model->families as $family)
-                @if(!empty($existingFamilies[$family->id]))
+                @if(!empty($existingFamilies[$family->id]) || !$family->entity)
                     @continue
                 @endif
                 @php $existingFamilies[$family->id] = true; @endphp
