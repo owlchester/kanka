@@ -33,8 +33,8 @@
         </div>
     @endif
 
-    @if (!$model->races->isEmpty() || $model->hasAge())
-        @if (!$model->races->isEmpty() && !$model->hasAge())
+    @if (!$model->characterRaces->isEmpty() || $model->hasAge())
+        @if (!$model->characterRaces->isEmpty() && !$model->hasAge())
         <div class="element profile-race">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
@@ -48,7 +48,7 @@
                 @include('entities.components.profile.character_races')
             </div>
         </div>
-        @elseif ($model->races->isEmpty() && $model->hasAge())
+        @elseif ($model->characterRaces->isEmpty() && $model->hasAge())
         <div class="element profile-age">
             <div class="title text-uppercase text-xs">{{ __('characters.fields.age') }}</div>
             <span>{{ $model->age }}</span>

@@ -373,8 +373,8 @@ class MentionsService
                     if ($field == 'family' && !$child->families->isEmpty()) {
                         $data['text'] = $child->families()->reorder('name')->first()->name;
                     }
-                    if ($field == 'race' && !$child->races->isEmpty()) {
-                        $data['text'] = $child->races()->reorder('name')->first()->name;
+                    if ($field == 'race' && !$child->characterRaces->isEmpty()) {
+                        $data['text'] = $child->characterRaces->first()->race->name;
                     }
                     /** @var Quest $child */
                     if ($field == 'calendar_date' && $child->calendar_id) {

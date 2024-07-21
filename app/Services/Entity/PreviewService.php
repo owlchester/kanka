@@ -166,8 +166,8 @@ class PreviewService
             $this->addProfile($key, 'families', implode(', ', $races));
         }
 
-        if ($child->races->isNotEmpty()) {
-            $races = $child->races->pluck('name')->toArray();
+        if ($child->characterRaces->isNotEmpty()) {
+            $races = $child->characterRaces->pluck('race.name')->toArray();
             $key = Module::plural(config('entities.ids.race'), 'entities.races');
             $this->addProfile($key, 'races', implode(', ', $races));
         }

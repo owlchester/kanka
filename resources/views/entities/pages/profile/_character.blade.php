@@ -19,7 +19,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                 </p>
             @endif
 
-            @if ($campaign->enabled('races') && !$model->races->isEmpty())
+            @if ($campaign->enabled('races') && !$model->characterRaces->isEmpty())
                 @php $existingRaces = []; @endphp
                 @foreach ($model->characterRaces as $race)
                     @if(!empty($existingRaces[$race->race_id]))
