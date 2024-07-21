@@ -21,16 +21,16 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
 
             @if ($campaign->enabled('races') && !$model->races->isEmpty())
                 @php $existingRaces = []; @endphp
-                @foreach ($model->races as $race)
-                    @if(!empty($existingRaces[$race->id]))
+                @foreach ($model->characterRaces as $race)
+                    @if(!empty($existingRaces[$race->race_id]))
                         @continue
                     @endif
-                    @php $existingRaces[$race->id] = true; @endphp
-                <p class="entity-race" data-foreign="{{ $race->id }}">
+                    @php $existingRaces[$race->race_id] = true; @endphp
+                <p class="entity-race" data-foreign="{{ $race->race_id }}">
                     <b>{{ __('entities.race') }}</b><br />
 
                     <x-entity-link
-                        :entity="$race->entity"
+                        :entity="$race->race->entity"
                         :campaign="$campaign" />
                 </p>
                 @endforeach
@@ -38,7 +38,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             @if ($campaign->enabled('families') && !$model->families->isEmpty())
                 @php $existingFamilies = []; @endphp
                 @foreach ($model->families as $family)
-                    @if(!empty($existingFamilies[$family->id]))
+                    @if(!empty($existingFamilies[$family->id]) || !$family->entity)
                         @continue
                     @endif
                     @php $existingFamilies[$family->id] = true; @endphp
