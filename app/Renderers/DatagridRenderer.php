@@ -397,19 +397,19 @@ class DatagridRenderer
             } elseif ($type == 'location') {
                 $class = $this->hidden;
                 // @phpstan-ignore-next-line
-                if (method_exists($model, 'location') && $model->location) {
+                if (method_exists($model, 'location') && $model->location && $model->location->entity) {
                     $content = $this->entityLink($model->location->entity);
                 }
             } elseif ($type == 'character') {
                 $class = $this->hidden;
                 // @phpstan-ignore-next-line
-                if (method_exists($model, 'character') && $model->character) {
+                if (method_exists($model, 'character') && $model->character && $model->character->entity) {
                     $content = $this->entityLink($model->character->entity);
                 }
             } elseif ($type == 'organisation') {
                 $class = $this->hidden;
                 // @phpstan-ignore-next-line
-                if (method_exists($model, 'organisation') && $model->organisation) {
+                if (method_exists($model, 'organisation') && $model->organisation && $model->organisation->entity) {
                     $content = $this->entityLink($model->organisation->entity);
                 }
             } elseif ($type == 'entity') {

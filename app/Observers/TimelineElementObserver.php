@@ -29,6 +29,10 @@ class TimelineElementObserver
                 $timelineElement->position = $last->position + 1;
             }
         }
+
+        if (empty($timelineElement->colour)) {
+            $timelineElement->colour = '';
+        }
     }
 
     /**

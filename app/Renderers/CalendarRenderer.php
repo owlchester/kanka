@@ -31,7 +31,7 @@ class CalendarRenderer
 
     /**
      * Current Year
-     * @var integer
+     * @var int
      */
     protected int $year;
 
@@ -943,7 +943,7 @@ class CalendarRenderer
     /**
      * Add an extra day to a date.
      */
-    protected function addDay(string $date)
+    protected function addDay(string $date): string
     {
         list($year, $month, $day) = $this->splitDate($date);
         $day++;
@@ -991,21 +991,21 @@ class CalendarRenderer
     /**
      * Get the current year
      */
-    protected function getYear($add = 0): int
+    protected function getYear(?int $add = 0): int
     {
         if (!$this->calendar->hasYearZero() && $this->year == 0) {
-            return (int) $this->year + 1 + (int) $add;
+            return intval($this->year + 1 + $add);
         }
-        return (int) $this->year + (int) $add;
+        // We need intval for people asking for a number that is > 32bit converting to floats
+        return intval((int) $this->year + $add);
     }
 
     /**
      * Get the current month
-     * @param int $add
      */
-    protected function getMonth($add = 0): int
+    protected function getMonth(?int $add = 0): int
     {
-        return $this->month + $add;
+        return intval($this->month + $add);
     }
 
     /**

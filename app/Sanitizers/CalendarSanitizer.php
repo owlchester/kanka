@@ -82,7 +82,7 @@ class CalendarSanitizer extends MiscSanitizer
                     continue;
                 }
                 // Save the leap year
-                $years[$year] = $this->purify($yearNames[$yearCount]);
+                $years[$year] = $this->purify($yearNames[$yearCount] ?? $year);
                 $yearCount++;
             }
         }

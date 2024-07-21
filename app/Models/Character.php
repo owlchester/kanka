@@ -245,6 +245,7 @@ class Character extends MiscModel
         return $this->hasMany(CharacterFamily::class, 'character_id')
             ->orderBy('id')
             ->has('family')
+            ->has('family.entity')
             ->with([
                 'family' => function ($sub) {
                     $sub->select('id', 'name', 'is_private');
@@ -261,6 +262,7 @@ class Character extends MiscModel
         return $this->hasMany(CharacterRace::class, 'character_id')
             ->orderBy('id')
             ->has('race')
+            ->has('race.entity')
             ->with([
                 'race' => function ($sub) {
                     $sub->select('id', 'name', 'is_private');
