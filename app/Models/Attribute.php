@@ -396,7 +396,6 @@ class Attribute extends Model
     }
 
     /**
-     * @return mixed
      */
     protected function makeAllSearchableUsing($query)
     {
