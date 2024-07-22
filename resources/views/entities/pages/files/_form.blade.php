@@ -8,7 +8,7 @@
         css="col-span-2"
         :required="true"
         :label="__('entities/files.fields.file')">
-        <input type="file" name="file" class="image w-full" id="file_{{ rand() }}" accept="" />
+        <input type="file" accept="image/*, .pdf, .gif, .webp, .pdf, .xls, .xlsx, .csv, .mp3, .ogg, .json" name="file" class="image w-full" id="file_{{ rand() }}" accept="" />
 
         <p class="text-neutral-content m-0">
             {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json', 'size' => Limit::readable()->upload()]) }}
