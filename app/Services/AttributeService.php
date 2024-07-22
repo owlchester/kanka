@@ -125,8 +125,8 @@ class AttributeService
 
             // If the linked entity isn't an attribute template, we might be dealing with a random value
             if (!$this->entity->isAttributeTemplate()) {
-                // @phpstan-ignore-next-line
-                list($attr->type, $value) = $this->randomService->randomAttribute(AttributeType::from($attr->type), $value);
+                list($attr->type, $value) =
+                    $this->randomService->randomAttribute(AttributeType::from($attr->type), $value);
             }
 
             $attribute->name = $name;
