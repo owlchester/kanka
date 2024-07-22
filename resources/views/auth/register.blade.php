@@ -37,7 +37,7 @@
 
         <div class="mb-3 has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
             <div class="flex items-stretch w-full">
-                <input id="name" type="text" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="name" @if (app()->isLocal() && config('auth.fast_registration')) value="{{ $name }}" @endif placeholder="{{ __('auth.register.fields.name') }}" required autofocus>
+                <input id="name" type="text" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="name" @if (app()->isLocal() && config('auth.fast_registration')) value="{{ $name }}" @else value="{!! old('name') !!}" @endif placeholder="{{ __('auth.register.fields.name') }}" required autofocus>
             </div>
             @if ($errors->has('name'))
                 <span class="text-red-500">{{ $errors->first('name') }}</span>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="mb-3 has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-            <input id="email" type="email" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="email" @if (app()->isLocal() && config('auth.fast_registration')) value="{{ $email }}" @endif placeholder="{{ __('auth.register.fields.email') }}" required>
+            <input id="email" type="email" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="email" @if (app()->isLocal() && config('auth.fast_registration')) value="{{ $email }}" @else value="{!! old('email') !!}" @endif placeholder="{{ __('auth.register.fields.email') }}" required>
 
             @if ($errors->has('email'))
                 <span class="text-red-500">{{ $errors->first('email') }}</span>
