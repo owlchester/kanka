@@ -10,7 +10,7 @@ $required = !isset($bulk);
            data-type="{{ \Illuminate\Support\Str::singular($trans) }}" data-duplicate=".duplicate-warning" data-1p-ignore="true"
            data-id="{{ $model->entity->id ?? null }}"
            @if ($required) required="required" @endif
-    value="{!! old('name', $model->name ?? null) !!}" />
+    value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
 
     <div class="text-warning-content duplicate-warning flex flex-col gap-1 hidden">
         <span>{{ __('entities.creator.duplicate') }}</span>
