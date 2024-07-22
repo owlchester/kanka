@@ -197,13 +197,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Copy related elements to new target. Override this in individual models (ex maps)
-     */
-    public function copyRelatedToTarget(MiscModel $target)
-    {
-    }
-
-    /**
      * Available datagrid actions
      * Todo: move this out of the model
      * @throws Exception
@@ -285,7 +278,7 @@ abstract class MiscModel extends Model
         $campaign = CampaignLocalization::getCampaign();
         $superboosted = $campaign->superboosted();
 
-        if ($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
+        if ($campaign->boosted() && $entity->hasHeaderImage()) {
             $classes[] = 'entity-with-banner';
         }
 

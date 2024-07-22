@@ -32,7 +32,7 @@ use Illuminate\Support\Str;
  * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags
  *
  * @method static self|Builder positioned()
- * @method static self|Builder onDashboard(CampaignDashboard $dashboard = null)
+ * @method static self|Builder onDashboard(?CampaignDashboard $dashboard = null)
  */
 class CampaignDashboardWidget extends Model
 {
@@ -119,7 +119,7 @@ class CampaignDashboardWidget extends Model
 
     /**
      */
-    public function scopeOnDashboard(Builder $query, CampaignDashboard $dashboard = null): Builder
+    public function scopeOnDashboard(Builder $query, ?CampaignDashboard $dashboard = null): Builder
     {
         if (empty($dashboard)) {
             return $query->whereNull('dashboard_id');
@@ -202,7 +202,7 @@ class CampaignDashboardWidget extends Model
      * @param Entity|null $entity
      * @return bool
      */
-    public function showMembers(Entity $entity = null): bool
+    public function showMembers(?Entity $entity = null): bool
     {
         if ($this->conf('members') !== '1') {
             return false;
@@ -379,25 +379,20 @@ class CampaignDashboardWidget extends Model
      */
     public function widgetIcon(): string
     {
-        $icon = null;
         if ($this->widget === Widget::Recent) {
-            $icon = 'fa-solid fa-list';
+            return 'fa-solid fa-list';
         } elseif ($this->widget === Widget::Header) {
-            $icon = 'fa-solid fa-heading';
+            return 'fa-solid fa-heading';
         } elseif ($this->widget === Widget::Preview) {
-            $icon = 'fa-solid fa-align-justify';
+            return 'fa-solid fa-align-justify';
         } elseif ($this->widget === Widget::Calendar) {
-            $icon = 'ra ra-moon-sun';
+            return 'ra ra-moon-sun';
         } elseif ($this->widget === Widget::Random) {
-            $icon = 'fa-solid fa-dice-d20';
+            return 'fa-solid fa-dice-d20';
         } elseif ($this->widget === Widget::Campaign) {
-            $icon = 'fa-solid fa-th-list';
+            return 'fa-solid fa-th-list';
         }
-
-        if (empty($icon)) {
-            return '';
-        }
-        return '<i class="' . $icon . '"></i>';
+        return 'fa-solid fa-question-circle';
     }
 
     /**

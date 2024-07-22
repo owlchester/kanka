@@ -196,28 +196,6 @@ trait UserSetting
     }
 
     /**
-     * Reset tutorials for the user.
-     * @return $this
-     */
-    public function resetTutorials(): self
-    {
-        $settings = $this->settings;
-        if (!is_array($settings)) {
-            return $this;
-        }
-
-        foreach ($settings as $key => $setting) {
-            if (str_starts_with($key, 'tutorial_')) {
-                unset($settings[$key]);
-            }
-        }
-
-        $this->settings = $settings;
-
-        return $this;
-    }
-
-    /**
      * Save user's custom billing info
      * @return $this
      */

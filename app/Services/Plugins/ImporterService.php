@@ -404,7 +404,7 @@ class ImporterService
 
     /**
      */
-    protected function importBlock(string $block, array $values = null): void
+    protected function importBlock(string $block, ?array $values = null): void
     {
         if (empty($values)) {
             return;
@@ -432,7 +432,7 @@ class ImporterService
     }
 
 
-    protected function importTags(array $values = null): void
+    protected function importTags(?array $values = null): void
     {
         if (empty($values)) {
             return;

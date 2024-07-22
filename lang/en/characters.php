@@ -91,4 +91,16 @@ return [
     'warnings'      => [
         'personality_hidden'    => 'You aren\'t allowed to edit personality traits on this character.',
     ],
+    'races'         => [
+        'title'         => 'Manage races of :name',
+        'reorder'       => [
+            'success'   => 'Character races updated successfully',
+        ]
+        ],
+    'families'         => [
+        'title'         => 'Manage families of :name',
+        'reorder'       => [
+            'success'   => 'Character families updated successfully.',
+        ]
+    ]
 ];

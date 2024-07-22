@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\UserCache;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -72,8 +73,8 @@ class AppRelease extends Model
         if ($firstVisibility->isBefore(auth()->user()->created_at)) {
             return true;
         }
-        $lastRelease = auth()->user()->settings()->get('releases_' . $this->category_id);
-        return $lastRelease == $this->id;
+        //Check if the user has the release tutorial entry on the db.
+        return UserCache::user(auth()->user())->dismissedTutorial('releases_' . $this->category_id . '_' . $this->id);
     }
 
     /**

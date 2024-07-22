@@ -11,23 +11,29 @@
 @endphp
 
 <x-sidebar.profile>
-    @if ($campaign->enabled('families') && !$model->families->isEmpty())
+    @if ($campaign->enabled('families') && !$model->characterFamilies->isEmpty())
         <div class="element profile-family">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!}
+                @if (auth()->check() && auth()->user()->can('familyManagement', $model))
+                    <span role="button" tabindex="0" class="entity-families-icon" data-toggle="dialog" data-url="{{ route('characters.families.management', [$campaign, $model]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                        <i class="fa-solid fa-pencil" data-title="{{ __('characters.families.title') }}" aria-hidden="true"></i>
+                    </span>
+                @endif
             </div>
             <div class="comma-separated">
             @php $existingFamilies = []; @endphp
-            @foreach ($model->families as $family)
-                @if(!empty($existingFamilies[$family->id]) || !$family->entity)
+            @foreach ($model->characterFamilies as $family)
+                @if(!empty($existingFamilies[$family->family_id]))
                     @continue
                 @endif
-                @php $existingFamilies[$family->id] = true; @endphp
+                @php $existingFamilies[$family->family_id] = true; @endphp
                 <span class="element">
                     <x-entity-link
-                        :entity="$family->entity"
+                        :entity="$family->family->entity"
                         :campaign="$campaign" />
                 </span>
+                @if ($family->is_private) <x-icon class="fa-solid fa-lock" /> @endif
             @endforeach
             </div>
         </div>

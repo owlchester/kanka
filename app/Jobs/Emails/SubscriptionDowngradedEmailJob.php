@@ -31,7 +31,7 @@ class SubscriptionDowngradedEmailJob implements ShouldQueue
     /**
      * WelcomeEmailJob constructor.
      */
-    public function __construct(User $user, string $reason = null, string $custom = null)
+    public function __construct(User $user, ?string $reason = null, ?string $custom = null)
     {
         $this->userId = $user->id;
         $this->reason = $reason;
@@ -45,11 +45,16 @@ class SubscriptionDowngradedEmailJob implements ShouldQueue
         if (empty($user)) {
             return;
         }
+        $reason = $this->reason;
+
+        if ($reason == 'custom') {
+            $reason = 'other';
+        }
 
         // Send an email to the admins
         Mail::to('hello@kanka.io')
             ->send(
-                new DowngradedSubscriptionMail($user, $this->reason, $this->custom)
+                new DowngradedSubscriptionMail($user, $reason, $this->custom)
             );
     }
 }

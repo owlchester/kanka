@@ -1,12 +1,12 @@
 <?php /** @var \App\Models\Conversation $model */ ?>
 @php
 $translations = json_encode([
-    'edit' => __('crud.edit'),
-    'remove' => __('crud.remove'),
-    'is_updated' => __('conversations.messages.is_updated'),
-    'is_closed' => __('conversations.show.is_closed'),
-    'load_previous' => __('conversations.messages.load_previous'),
-    'user_unknown' => __('crud.users.unknown'),
+'edit' => __('crud.edit'),
+'remove' => __('crud.remove'),
+'is_updated' => __('conversations.messages.is_updated'),
+'is_closed' => __('conversations.show.is_closed'),
+'load_previous' => __('conversations.messages.load_previous'),
+'user_unknown' => __('crud.users.unknown'),
 ]);
 @endphp
 

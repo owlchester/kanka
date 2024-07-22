@@ -317,6 +317,7 @@ const initPermBtn = () => {
 
 // Splitting off the js files into logical blocks
 import './keyboard';
+// import './vue';
 import './crud';
 import './entities';
 import './post';
@@ -343,7 +344,8 @@ import './togglers';
 
 // VueJS elements
 //import './navigation');
-import './header';
+import './header'
+import './gallery/selection'
 //import './ads');
 import './utility/tippy';
 import './maintenance';

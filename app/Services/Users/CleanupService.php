@@ -9,7 +9,7 @@ use App\Models\CampaignUser;
 use App\Models\CommunityEventEntry;
 use App\Models\Feature;
 use App\Services\Campaign\SearchCleanupService;
-use App\Services\ImageService;
+use App\Facades\Images;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Log;
 
@@ -46,7 +46,7 @@ class CleanupService
             // Delete a campaign if no one is left in it. Since we did the "with", it's cached, hence checking on 1
             if ($member->campaign->members->count() <= 1) {
                 SearchCleanupService::cleanup($member->campaign);
-                ImageService::cleanup($member->campaign);
+                Images::cleanup($member->campaign);
                 $member->campaign->forceDelete();
             }
         }
@@ -78,7 +78,7 @@ class CleanupService
     protected function removeAvatar(): self
     {
         if (!empty($this->user->avatar) && $this->user->avatar !== 'users/default.png') {
-            ImageService::cleanup($this->user, 'avatar');
+            Images::cleanup($this->user, 'avatar');
         }
         return $this;
     }

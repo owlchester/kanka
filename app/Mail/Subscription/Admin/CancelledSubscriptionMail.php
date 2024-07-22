@@ -22,7 +22,7 @@ class CancelledSubscriptionMail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user, string $reason = null, string $custom = null)
+    public function __construct(User $user, ?string $reason = null, ?string $custom = null)
     {
         $this->user = $user;
         $this->reason = $reason;

@@ -53,7 +53,7 @@ trait EntityEventScopes
     /**
      * Sort order for the datagrid page
      */
-    public function scopeCustomSortDate(Builder $query, string $order = null): Builder
+    public function scopeCustomSortDate(Builder $query, ?string $order = null): Builder
     {
         return $query
             ->orderBy('year', $order)

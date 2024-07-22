@@ -235,7 +235,7 @@ class EntityEvent extends Model
      * Calculate the elapsed time since the event happened
      * @return int years
      */
-    public function calcElapsed(EntityEvent $event = null): int
+    public function calcElapsed(?EntityEvent $event = null): int
     {
         // Have the value cached? Don't bother with more work
         if (empty($event) && !empty($this->elapsed)) {

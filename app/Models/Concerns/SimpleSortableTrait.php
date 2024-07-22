@@ -16,7 +16,7 @@ trait SimpleSortableTrait
      * @param DatagridSorter|string $datagridSorter
      * @return Builder
      */
-    public function scopeSimpleSort(Builder $builder, $datagridSorter = null)
+    public function scopeSimpleSort(Builder $builder, mixed $datagridSorter = null)
     {
         // DatagridSorter can be empty on exports
         if (empty($datagridSorter)) {

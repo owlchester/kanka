@@ -12,15 +12,17 @@ class Tutorial extends Component
     public string $code;
     public ?string $doc;
     public string $id;
+    public ?string $type;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(string $code, string $doc = null)
+    public function __construct(string $code, ?string $doc = null, ?string $type = null)
     {
         $this->code = $code;
         $this->doc = $doc;
         $this->id = uniqid($code . '-');
+        $this->type = $type;
     }
 
     /**

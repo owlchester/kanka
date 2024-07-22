@@ -9,6 +9,7 @@
     'bodyClass' => 'entity-attributes'
 ])
 
+@include('entities.components.og')
 
 @section('entity-header-actions')
     @can('attribute', [$entity->child, 'add'])

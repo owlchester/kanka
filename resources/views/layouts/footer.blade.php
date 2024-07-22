@@ -97,7 +97,7 @@
             </li>
             <li class="py-2">
                 <a rel="alternate" hreflang="en" href="{{ $currentUrl . 'en' }}">
-                    UK English
+                    English
                 </a>
             </li>
             <li class="py-2">
@@ -140,16 +140,11 @@
                         Polska
                     </a>
                 </li>
-                <li class="py-2">
-                    <a rel="alternate" hreflang="ru" href="{{ $currentUrl . 'ru' }}">
-                        Pусский
-                    </a>
-                </li>
             </ul>
             <ul class="list-none p-0 m-0">
                 <li class="py-2">
-                    <a rel="alternate" hreflang="nl" href="{{ $currentUrl . 'nl' }}">
-                        Nederlands
+                    <a rel="alternate" hreflang="ru" href="{{ $currentUrl . 'ru' }}">
+                        Pусский
                     </a>
                 </li>
                 <li class="py-2">

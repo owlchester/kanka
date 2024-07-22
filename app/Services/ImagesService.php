@@ -7,29 +7,29 @@ use App\Models\Entity;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Sanitizers\SvgAllowedAttributes;
-use App\Traits\EntityAware;
+use App\Traits\CampaignAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image as InterventionImage;
+use App\Models\Image;
 use enshrined\svgSanitize\Sanitizer;
 use Exception;
 
 /**
- * This should be a proper laravel facade 🥲
  */
-class ImageService
+class ImagesService
 {
-    use EntityAware;
+    use CampaignAware;
 
     /**
      */
-    public static function handle(MiscModel|Map|Model|Entity $model, string $folder = '', string $field = 'image')
+    public function handle(MiscModel|Model|Entity $model, string $folder = '', string $field = 'image')
     {
         // Remove the old image
         if (request()->post('remove-' . $field) == '1') {
-            self::cleanup($model, $field);
+            $this->cleanup($model, $field);
             return;
         }
 
@@ -95,7 +95,7 @@ class ImageService
 
             if (!empty($path)) {
                 // Remove old
-                self::cleanup($model, $field);
+                $this->cleanup($model, $field);
 
                 // Save new image
                 if ($url) {
@@ -103,7 +103,7 @@ class ImageService
                         // GD can't handle svgs, so we need to move them directly
                         Storage::put($path, $cleanSVG, 'public');
                     } else {
-                        $image = Image::make($file);
+                        $image = InterventionImage::make($file);
                         Storage::put($path, (string)$image->encode(), 'public');
                     }
                 } else {
@@ -123,86 +123,10 @@ class ImageService
     }
 
     /**
-     */
-    public static function entity(Entity $entity, string $folder = '', string $field = 'header_image')
-    {
-        if (request()->has($field) || request()->filled($field . '_url')) {
-            try {
-                $file = $path = null;
-                $url = request()->filled($field . '_url');
-
-                // Download the file locally to check it out
-                if ($url) {
-                    $externalUrl = request()->post($field . '_url');
-                    $externalFile = basename($externalUrl);
-
-                    $tempImage = tempnam(sys_get_temp_dir(), $externalFile);
-                    copy($externalUrl, $tempImage);
-
-                    $file = $tempImage;
-                    // Discord and other services add lots of params to the url after the file ext,
-                    // so we need strip it all down.
-                    $imageExt = Str::before(pathinfo($tempImage, PATHINFO_EXTENSION), '?');
-                    $path = rtrim($folder, '/') . '/' . uniqid('url_') . '.' . $imageExt;
-
-                    // Check if file is too big
-                    $copiedFileSize = ceil(filesize($tempImage) / 1000);
-                    if ($copiedFileSize > Limit::upload()) {
-                        unlink($tempImage);
-                        throw new Exception('image_url target too big');
-                    }
-                    $file = new UploadedFile($tempImage, basename($externalUrl));
-                } else {
-                    $file = request()->file($field);
-                    $path = $file->hashName($folder);
-                }
-
-                // Sanitize SVGs to avoid any XSS attacks
-                $cleanSVG = '';
-                if ($file->getMimeType() == 'image/svg+xml') {
-                    $sanitizer = new Sanitizer();
-                    $dirtySVG = file_get_contents($file);
-                    $cleanSVG = $sanitizer->sanitize($dirtySVG);
-                    file_put_contents($file, $cleanSVG);
-                }
-
-                if (!empty($path)) {
-                    // Remove old
-                    self::cleanup($entity, $field);
-
-                    // Save new image
-                    if ($url) {
-                        if ($file->getMimeType() == 'image/svg+xml') {
-                            // GD can't handle svgs, so we need to move them directly
-                            Storage::put($path, $cleanSVG, 'public');
-                        } else {
-                            $image = Image::make($file);
-                            Storage::put($path, (string)$image->encode(), 'public');
-                        }
-                    } else {
-                        $path = request()->file($field)->storePublicly($folder);
-                    }
-                    // Remap the field name to the proper db field
-                    if ($field === 'image') {
-                        $field = 'image_path';
-                    }
-                    $entity->$field = $path;
-                }
-            } catch (Exception $e) {
-                // There was an error getting the image. Could be the url, could be the request.
-                session()->flash('warning', trans('crud.image.error', ['size' => Limit::readable()->upload()]));
-            }
-        } elseif (request()->post('remove-' . $field) == '1') {
-            // Remove old
-            self::cleanup($entity, $field);
-        }
-    }
-
-    /**
      * Delete old image and thumb
      * @param MiscModel|Entity|Model $model
      */
-    public static function cleanup($model, $field = 'image')
+    public function cleanup($model, $field = 'image')
     {
         if ($model instanceof Entity && $field === 'image') {
             $field = 'image_path';

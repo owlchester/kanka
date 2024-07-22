@@ -332,6 +332,9 @@ return [
     ],
     'remove'                    => 'Remove',
     'rename'                    => 'Rename',
+    'reorder'                   => [
+        'empty' => 'No elements to reorder.',
+    ],
     'save'                      => 'Save',
     'save_and_close'            => 'Save and Close',
     'save_and_copy'             => 'Save and Copy',

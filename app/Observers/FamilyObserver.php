@@ -29,8 +29,8 @@ class FamilyObserver extends MiscObserver
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.
         $existing = [];
-        foreach ($family->members()->get() as $member) {
-            // The m_ prefix is to differanciate from existing members to new members
+        foreach ($family->members as $member) {
+            // The m_ prefix is to differentiate from existing members to new members
             $existing['m_' . $member->id] = $member;
         }
         $new = [];

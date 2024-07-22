@@ -112,9 +112,8 @@ To create an ability, use the following endpoint.
 | `ability_id` | `integer` | The ability's parent ability |
 | `charges` | `string` | How many charges the ability has |
 | `tags` | `array` | Array of tag ids |
-| `image_url` | `string` | URL to a picture to be used for the ability |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the ability is only visible to `admin` members of the campaign |
 ### Results
 

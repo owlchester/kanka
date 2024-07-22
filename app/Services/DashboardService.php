@@ -30,7 +30,7 @@ class DashboardService
      * Get the current or default dashboard for the user
      * @return null|CampaignDashboard
      */
-    public function getDashboard(int $dashboard = null)
+    public function getDashboard(?int $dashboard = null)
     {
         // Only available for boosted campaigns
         if (!$this->campaign->boosted()) {

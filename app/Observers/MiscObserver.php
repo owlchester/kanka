@@ -6,7 +6,7 @@ use App\Facades\EntityCache;
 use App\Facades\EntityLogger;
 use App\Models\MiscModel;
 use App\Observers\Concerns\Copiable;
-use App\Services\ImageService;
+use App\Facades\Images;
 use Illuminate\Support\Str;
 
 abstract class MiscObserver
@@ -62,7 +62,7 @@ abstract class MiscObserver
             return;
         }
 
-        ImageService::cleanup($model);
+        Images::cleanup($model);
     }
 
     /**

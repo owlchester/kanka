@@ -22,7 +22,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <link rel="canonical" href="{{ request()->fullUrl() }}" />
 @endif
 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-    @if (in_array($localeCode, ['hr', 'he', 'gl', 'hu', 'ca']))@continue @endif
+    @if (in_array($localeCode, ['hr', 'he', 'gl', 'hu', 'ca', 'nl']))@continue @endif
     <link rel="alternate" href="{{ request()->fullUrl() . '?lang=' . $localeCode }}" hreflang="{{ $localeCode }}">
 @endforeach
 
@@ -78,7 +78,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="1">
     {{ __('crud.navigation.skip_to_content') }}
 </a>
-    <div id="app" class="wrapper h-full relative mt-12">
+    <div id="app" class="wrapper h-full min-h-screen relative mt-12">
         @include('layouts.header', ['toggle' => $showSidebar])
         @includeWhen(isset($campaign) || isset($sidebar) && $sidebar == 'settings', 'layouts.sidebars.' . ($sidebar ?? 'app'))
 

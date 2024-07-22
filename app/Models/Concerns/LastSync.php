@@ -5,15 +5,14 @@ namespace App\Models\Concerns;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * @method static self|Builder lastSync($lastSync = null)
+ * @method static self|Builder lastSync(?string $lastSync = null)
  */
 trait LastSync
 {
     /**
      * Used by the API to get models updated since a previous date
-     * @param string $lastSync
      */
-    public function scopeLastSync(Builder $query, $lastSync = null): Builder
+    public function scopeLastSync(Builder $query, ?string $lastSync = null): Builder
     {
         if (empty($lastSync)) {
             return $query;

@@ -164,20 +164,6 @@ class Entity extends Model
     }
 
     /**
-     * Create a short name for the interface
-     * @return mixed|string
-     */
-    public function shortName()
-    {
-        if (mb_strlen($this->name) > 30) {
-            return '<span title="' . e($this->name) . '">' . mb_substr(e($this->name), 0, 28) . '...</span>';
-        }
-        return $this->name;
-    }
-
-
-
-    /**
      * Preview of the entity with mapped mentions. For map markers
      */
     public function mappedPreview(): string
@@ -308,13 +294,13 @@ class Entity extends Model
 
     /**
      */
-    public function hasHeaderImage(bool $superboosted = false): bool
+    public function hasHeaderImage(): bool
     {
         if (!empty($this->header_image)) {
             return true;
         }
 
-        return (bool) ($superboosted && !empty($this->header_uuid) && !empty($this->header));
+        return !empty($this->header_uuid) && !empty($this->header);
     }
 
     /**
@@ -334,19 +320,16 @@ class Entity extends Model
     }
 
     /**
+     * Get the entity background header image
      */
-    public function getHeaderUrl(bool $superboosted = false): string
+    public function getHeaderUrl(): string|null
     {
         if (!empty($this->header_image)) {
             return $this->thumbnail(1200, 400, 'header_image');
         }
 
-        if (!$superboosted) {
-            return '';
-        }
-
         if (empty($this->header)) {
-            return '';
+            return null;
         }
 
         return $this->header->getUrl(1200, 400);
@@ -369,7 +352,7 @@ class Entity extends Model
     /**
      * @return array|string[]
      */
-    public function postPositionOptions($position = null): array
+    public function postPositionOptions(?int $position = null): array
     {
         $options = $position ? [
             null => __('posts.position.dont_change'),

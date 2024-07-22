@@ -41,7 +41,7 @@ if (!empty($widget->conf('entity'))) {
             </div>
             @if ($widget->widget != Widget::Header)
                 <span class="block text-2xl">
-                     {!! $widget->widgetIcon() !!}
+                    <x-icon :class="$widget->widgetIcon()" />
                     {{ __('dashboard.setup.widgets.' . $widget->widget->value) }}
                 </span>
             @endif

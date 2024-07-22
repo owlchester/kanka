@@ -265,9 +265,8 @@ To create a calendar, use the following endpoint.
 | `leap_year_start` | `integer` | The year from which the leap days start occurring  |
 | `tags` | `array` | Array of tag ids |
 | `skip_year_zero` | `boolean` | Whether the calendar skips year zero to start in year one |
-| `image_url` | `string` | URL to a picture to be used for the calendar |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the calendar is only visible to `admin` members of the campaign |
 
 ### Results

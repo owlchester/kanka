@@ -160,8 +160,8 @@ class PreviewService
 
     protected function characterProfile(Character $child): void
     {
-        if ($child->families->isNotEmpty()) {
-            $races = $child->families->pluck('name')->toArray();
+        if ($child->characterFamilies->isNotEmpty()) {
+            $races = $child->characterFamilies->pluck('family.name')->toArray();
             $key = Module::plural(config('entities.ids.family'), 'entities.families');
             $this->addProfile($key, 'families', implode(', ', $races));
         }

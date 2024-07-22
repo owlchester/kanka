@@ -82,7 +82,7 @@ class MentionsService
     /**
      * Map a string
      */
-    public function mapText(string $text = null): string
+    public function mapText(?string $text = null): string
     {
         $this->text = $text;
         return $this->extractAndReplace();
@@ -121,7 +121,7 @@ class MentionsService
      * Map the mentions in an attribute
      * @return string|string[]|null
      */
-    public function mapAttribute(Attribute $attribute, string $text = null)
+    public function mapAttribute(Attribute $attribute, ?string $text = null)
     {
         // If the attribute mentions itself in the value, don't do any parsing, it would cause an endless loop.
         if (Str::contains($attribute->value, $attribute->mentionName())) {

@@ -205,7 +205,6 @@ class CampaignPolicy
 
     /**
      * Permission to view the campaign submissions
-     * @return bool
      */
     public function submissions(?User $user): bool
     {
@@ -276,7 +275,7 @@ class CampaignPolicy
     /**
      *
      */
-    protected function checkPermission(int $action, User $user, Campaign $campaign = null): bool
+    protected function checkPermission(int $action, User $user, ?Campaign $campaign = null): bool
     {
         return EntityPermission::hasPermission(0, $action, $user, null, $campaign);
     }

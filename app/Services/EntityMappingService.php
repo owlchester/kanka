@@ -282,15 +282,16 @@ class EntityMappingService
 
     /**
      */
-    protected function log(string $message = null)
+    protected function log(?string $message = null)
     {
-        if ($this->verbose === true) {
-            echo $message;
-            if (app()->runningInConsole()) {
-                echo "\n";
-            } else {
-                echo "<br />";
-            }
+        if (!$this->verbose) {
+            return;
+        }
+        echo $message;
+        if (app()->runningInConsole()) {
+            echo "\n";
+        } else {
+            echo "<br />";
         }
     }
 

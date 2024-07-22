@@ -109,7 +109,7 @@ class SubscriptionService
     /**
      * @return $this
      */
-    public function coupon(string $coupon = null): self
+    public function coupon(?string $coupon = null): self
     {
         if ($this->period === PricingPeriod::Yearly && !empty($coupon)) {
             $this->coupon = $coupon;

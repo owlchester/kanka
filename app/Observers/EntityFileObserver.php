@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\EntityFile;
-use App\Services\ImageService;
+use App\Facades\Images;
 
 class EntityFileObserver
 {
@@ -36,7 +36,7 @@ class EntityFileObserver
      */
     public function deleted(EntityFile $entityFile)
     {
-        ImageService::cleanup($entityFile, 'path');
+        Images::cleanup($entityFile, 'path');
 
         // When deleting a file, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be

@@ -12,6 +12,7 @@ use App\Models\Post;
 use App\Models\MiscModel;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
+use App\Services\Campaign\GalleryService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
@@ -29,9 +30,16 @@ class MoveService
 
     protected Campaign $to;
 
+    protected GalleryService $galleryService;
+
     protected bool $copy = false;
 
     protected int $count = 0;
+
+    public function __construct(GalleryService $galleryService)
+    {
+        $this->galleryService = $galleryService;
+    }
 
     public function to(Campaign|int $campaign): self
     {
@@ -111,6 +119,7 @@ class MoveService
                 }
             }
             $newModel->campaign_id = $this->to->id;
+            $image = $this->entity->image; // Load the image before switching campaigns
 
             CampaignLocalization::forceCampaign($this->to);
 
@@ -119,13 +128,39 @@ class MoveService
             $newModel->createEntity();
 
             // Copy the image to avoid issues when deleting/replacing one image
-            if (!empty($this->entity->image_path)) {
-                $uniqid = uniqid();
-                $newPath = str_replace('.', $uniqid . '.', $this->entity->image_path);
-                $newModel->entity->image_path = $newPath;
-                $newModel->entity->saveQuietly();
-                if (!Storage::exists($newPath)) {
-                    Storage::copy($this->entity->image_path, $newPath);
+            //            if (!empty($this->entity->image_path)) {
+            //                $uniqid = uniqid();
+            //                // If the image is in the w folder, just copy the image to the new world folder
+            //                if (Str::contains('w/' . $this->entity->campaign_id, $this->entity->image_path)) {
+            //                    $newPath = Str::replace(
+            //                        'w/' . $this->entity->campaign_id,
+            //                        'w/' . $this->to->id,
+            //                        $this->entity->image_path
+            //                    );
+            //                } else {
+            //                    $newPath = Str::replace('.', $uniqid . '.', $this->entity->image_path);
+            //                }
+            //                $newModel->entity->image_path = $newPath;
+            //                $newModel->entity->saveQuietly();
+            //                if (!Storage::exists($newPath)) {
+            //                    Storage::copy($this->entity->image_path, $newPath);
+            //                }
+            //            }
+
+            // Copy the gallery image over
+            if (!empty($image)) {
+                // If there is enough space in the target campaign gallery
+                $available = $this->galleryService->campaign($this->campaign)->available();
+                if ($available > $image->size) {
+                    $newImage = $image->replicate(['campaign_id']);
+                    $newImage->campaign_id = $this->to->id;
+                    $newImage->id = Str::uuid()->toString();
+                    $newImage->save();
+
+                    Storage::copy($image->path, $newImage->path);
+
+                    $newModel->entity->image_uuid = $newImage->id;
+                    $newModel->entity->saveQuietly();
                 }
             }
 
@@ -166,7 +201,10 @@ class MoveService
                 }
             }
 
-            if (request()->has('copy_related_elements') && request()->filled('copy_related_elements')) {
+            if (
+                request()->has('copy_related_elements') &&
+                request()->filled('copy_related_elements') &&
+                method_exists($this->entity->child, 'copyRelatedToTarget')) {
                 $this->entity->child->copyRelatedToTarget($newModel);
             }
 
@@ -174,6 +212,7 @@ class MoveService
             $success = true;
         } catch (Exception $e) {
             DB::rollBack();
+            throw $e;
         }
 
         CampaignLocalization::forceCampaign($this->campaign);

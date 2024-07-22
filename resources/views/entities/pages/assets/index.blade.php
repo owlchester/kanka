@@ -8,6 +8,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-assets'
 ])
+@include('entities.components.og')
 
 @section('entity-header-actions')
     @can('update', $entity->child)

@@ -131,7 +131,7 @@ class CampaignRole extends Model
 
     /**
      */
-    public function scopeSearch(Builder $builder, string $search = null): Builder
+    public function scopeSearch(Builder $builder, ?string $search = null): Builder
     {
         return $builder
             ->where('name', 'like', "%{$search}%");
