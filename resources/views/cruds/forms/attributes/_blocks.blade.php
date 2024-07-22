@@ -39,7 +39,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
-            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_STANDARD_ID }}" />
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Enums\AttributeType::Standard->value }}" />
         </div>
     </template>
     <template id="text_template">
@@ -75,7 +75,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 </a>
             </div>
 
-            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_TEXT_ID }}" />
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Enums\AttributeType::Block->value }}" />
         </div>
     </template>
 
@@ -110,7 +110,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 </a>
             </div>
 
-            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_NUMBER_ID }}" />
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Enums\AttributeType::Number->value }}" />
         </div>
     </template>
     <template id="checkbox_template">
@@ -144,7 +144,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                 </a>
             </div>
 
-            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_CHECKBOX_ID }}" />
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Enums\AttributeType::Checkbox->value }}" />
         </div>
     </template>
 
@@ -175,7 +175,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
-            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_SECTION_ID }}" />
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Enums\AttributeType::Section->value }}" />
         </div>
     </template>
 
@@ -209,7 +209,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
-            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Models\Attribute::TYPE_RANDOM_ID }}" />
+            <input type="hidden" name="attr_type[$TMP_ID$]" value="{{ \App\Enums\AttributeType::Random->value }}" />
         </div>
     </template>
 @endsection

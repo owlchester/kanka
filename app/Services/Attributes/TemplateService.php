@@ -2,11 +2,11 @@
 
 namespace App\Services\Attributes;
 
+use App\Enums\AttributeType;
 use App\Models\Attribute;
 use App\Models\AttributeTemplate;
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
-use App\Models\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Support\Arr;
@@ -50,7 +50,7 @@ class TemplateService
     }
 
     /**
-     * Apply a marketplace character sheet on an entity based on its uuid.
+     * Apply a marketplace character sheet on an entity based on its uuid. This is called in the BULK interface
      * @todo: move to a separate service
      */
     public function applyMarketplaceTemplate(string $uuid): bool
@@ -110,7 +110,7 @@ class TemplateService
                 'default_order' => $order,
                 'is_private' => false,
                 'is_pinned' => false,
-                'type_id' => Attribute::TYPE_STANDARD_ID,
+                'type_id' => AttributeType::Standard,
             ]);
         }
 
@@ -183,20 +183,20 @@ class TemplateService
      * Map an attribute type from its string representation to an ID (as saved in the DB)
      * @param string|null $type the string type of attribute to be converted to an int
      */
-    protected function mapAttributeTypeToID(string $type = null): int
+    protected function mapAttributeTypeToID(string $type = null): AttributeType
     {
         if (empty($type) || $type === 'attribute') {
-            return Attribute::TYPE_STANDARD_ID;
+            return AttributeType::Standard;
         }
 
         $mapping = [
-            Attribute::TYPE_TEXT => Attribute::TYPE_TEXT_ID,
-            Attribute::TYPE_CHECKBOX => Attribute::TYPE_CHECKBOX_ID,
-            Attribute::TYPE_SECTION => Attribute::TYPE_SECTION_ID,
-            'block' => Attribute::TYPE_SECTION_ID,
-            Attribute::TYPE_RANDOM => Attribute::TYPE_RANDOM_ID,
-            Attribute::TYPE_NUMBER => Attribute::TYPE_NUMBER_ID,
-            Attribute::TYPE_LIST => Attribute::TYPE_LIST_ID,
+            'text' => AttributeType::Block,
+            'checkbox' => AttributeType::Checkbox,
+            'section' => AttributeType::Section,
+            'block' => AttributeType::Section,
+            'random' => AttributeType::Random,
+            'number' => AttributeType::Number,
+            'list' => AttributeType::List,
         ];
 
         if (isset($mapping[$type])) {
@@ -252,6 +252,7 @@ class TemplateService
             $type = $this->mapAttributeTypeToID($type);
             $value = Arr::get($attribute, 'value', '');
 
+
             list($type, $value) = $this->randomService->randomAttribute($type, $value);
 
             $attributes[] = [
@@ -263,10 +264,10 @@ class TemplateService
                 'is_checked' => false,
                 'is_deleted' => false,
 
-                'is_checkbox' => $type === Attribute::TYPE_CHECKBOX_ID,
-                'is_multiline' => $type === Attribute::TYPE_TEXT_ID,
-                'is_section' => $type === Attribute::TYPE_SECTION_ID,
-                'is_number' => $type === Attribute::TYPE_NUMBER_ID,
+                'is_checkbox' => $type === AttributeType::Checkbox,
+                'is_multiline' => $type === AttributeType::Block,
+                'is_section' => $type === AttributeType::Section,
+                'is_number' => $type === AttributeType::Number,
             ];
         }
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\AttributeType;
 use App\Facades\Attributes;
 use App\Facades\Mentions;
 use App\Models\Concerns\Paginatable;
@@ -23,7 +24,7 @@ use Laravel\Scout\Searchable;
  * @property int $entity_id
  * @property string $name
  * @property string|null $value
- * @property int $type_id
+ * @property AttributeType $type_id
  * @property int|null $origin_attribute_id
  * @property int $default_order
  * @property int|bool $is_private
@@ -41,21 +42,6 @@ class Attribute extends Model
     use Privatable;
     use Searchable;
 
-    public const TYPE_CHECKBOX = 'checkbox';
-    public const TYPE_SECTION = 'section';
-    public const TYPE_RANDOM = 'random';
-    public const TYPE_NUMBER = 'number';
-    public const TYPE_LIST = 'list';
-    public const TYPE_TEXT = 'text';
-
-    public const TYPE_STANDARD_ID = 1;
-    public const TYPE_TEXT_ID = 2;
-    public const TYPE_CHECKBOX_ID = 3;
-    public const TYPE_SECTION_ID = 4;
-    public const TYPE_RANDOM_ID = 5;
-    public const TYPE_NUMBER_ID = 6;
-    public const TYPE_LIST_ID = 7;
-
     protected $fillable = [
         'entity_id',
         'name',
@@ -67,6 +53,10 @@ class Attribute extends Model
         'api_key',
         'is_pinned',
         'is_hidden',
+    ];
+
+    public $casts = [
+        'type_id' => AttributeType::class,
     ];
 
     /**
@@ -82,13 +72,13 @@ class Attribute extends Model
     ];
 
     protected string $numberRange = '`\[range:(-?[0-9]+),(-?[0-9]+)\]`i';
-    protected mixed $numberMax = null;
-    protected mixed $numberMin = null;
+    protected int|bool $numberMax;
+    protected int|bool $numberMin;
 
     protected string $listRegexp = '`\[range:(.+)\]`i';
-    protected mixed $listRange = null;
+    protected array|bool $listRange;
 
-    protected $mappedName = false;
+    protected string $mappedName;
 
     public function entity(): BelongsTo
     {
@@ -96,9 +86,8 @@ class Attribute extends Model
     }
 
     /**
-     * @return BelongsTo
      */
-    public function origin()
+    public function origin(): BelongsTo
     {
         return $this->belongsTo('App\Models\Attribute', 'origin_attribute_id', 'id');
     }
@@ -108,7 +97,7 @@ class Attribute extends Model
      */
     public function mappedValue(): string
     {
-        if ($this->type_id == self::TYPE_SECTION_ID) {
+        if ($this->type_id == AttributeType::Section) {
             return $this->name;
         }
         return Mentions::mapAttribute($this);
@@ -119,7 +108,7 @@ class Attribute extends Model
      */
     public function mappedName(): string
     {
-        if ($this->mappedName !== false) {
+        if (isset($this->mappedName)) {
             return $this->mappedName;
         }
 
@@ -140,7 +129,7 @@ class Attribute extends Model
      */
     public function isDefault(): bool
     {
-        return $this->type_id === self::TYPE_STANDARD_ID;
+        return $this->type_id === AttributeType::Standard;
     }
 
     /**
@@ -148,7 +137,7 @@ class Attribute extends Model
      */
     public function isCheckbox(): bool
     {
-        return $this->type_id === self::TYPE_CHECKBOX_ID;
+        return $this->type_id === AttributeType::Checkbox;
     }
 
     /**
@@ -156,7 +145,7 @@ class Attribute extends Model
      */
     public function isText(): bool
     {
-        return $this->type_id === self::TYPE_TEXT_ID;
+        return $this->type_id === AttributeType::Block;
     }
 
     /**
@@ -164,7 +153,7 @@ class Attribute extends Model
      */
     public function isSection(): bool
     {
-        return $this->type_id === self::TYPE_SECTION_ID;
+        return $this->type_id === AttributeType::Section;
     }
 
     /**
@@ -172,7 +161,7 @@ class Attribute extends Model
      */
     public function isNumber(): bool
     {
-        return $this->type_id === self::TYPE_NUMBER_ID;
+        return $this->type_id === AttributeType::Number;
     }
 
     /**
@@ -180,7 +169,7 @@ class Attribute extends Model
      */
     public function isList(): bool
     {
-        return $this->type_id === self::TYPE_LIST_ID;
+        return $this->type_id === AttributeType::List;
     }
 
     /**
@@ -188,14 +177,13 @@ class Attribute extends Model
      */
     public function isRandom(): bool
     {
-        return $this->type_id === self::TYPE_RANDOM_ID;
+        return $this->type_id === AttributeType::Random;
     }
 
     /**
      * Copy an attribute to another target
-     * @return bool
      */
-    public function copyTo(Entity $target)
+    public function copyTo(Entity $target): bool
     {
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
@@ -228,7 +216,6 @@ class Attribute extends Model
 
     /**
      * Set the value of the attribute. Validates if there are constraints
-     * @return $this
      */
     public function setValue($value): self
     {
@@ -250,18 +237,16 @@ class Attribute extends Model
     }
 
     /**
-     * @return int
      */
-    public function numberMax()
+    public function numberMax(): int
     {
         $this->calculateConstraints();
         return $this->numberMax;
     }
 
     /**
-     * @return int
      */
-    public function numberMin()
+    public function numberMin(): int
     {
         $this->calculateConstraints();
         return $this->numberMin;
@@ -284,12 +269,11 @@ class Attribute extends Model
         if ($this->isNumber()) {
             return $this->numberMax !== false && $this->numberMin !== false;
         }
-        return $this->listRange !== false;
+        return isset($this->listRange) && $this->listRange !== false;
     }
 
     /**
      * Determine an attribute's constraints (for ranged and listed attributes)
-     * @return $this
      */
     protected function calculateConstraints(): self
     {
@@ -304,11 +288,10 @@ class Attribute extends Model
 
     /**
      * Define the min/max range of a number, if set
-     * @return $this
      */
     protected function calculateNumberConstraints(): self
     {
-        if ($this->numberMax !== null) {
+        if (isset($this->numberMax)) {
             return $this;
         }
 
@@ -327,8 +310,8 @@ class Attribute extends Model
             return $this;
         }
 
-        $this->numberMin = $constraints[1];
-        $this->numberMax = $constraints[2];
+        $this->numberMin = (int) $constraints[1];
+        $this->numberMax = (int) $constraints[2];
 
         //dump($this->numberMin);
         //dd($this->numberMax);
@@ -338,11 +321,10 @@ class Attribute extends Model
 
     /**
      * Generate a list of values possible for an attribute
-     * @return $this
      */
     protected function calculateListConstraints(): self
     {
-        if ($this->listRange !== null) {
+        if (isset($this->listRange)) {
             return $this;
         }
 
@@ -413,6 +395,9 @@ class Attribute extends Model
         return 'entities';
     }
 
+    /**
+     * @return mixed
+     */
     protected function makeAllSearchableUsing($query)
     {
         return $query
@@ -422,6 +407,9 @@ class Attribute extends Model
             ->with('entity');
     }
 
+    /**
+     * @return array
+     */
     public function toSearchableArray()
     {
         return [
