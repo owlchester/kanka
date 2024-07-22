@@ -22,7 +22,7 @@
         css="col-span-2"
         :required="isset($entityAsset)"
         :label="__('entities/files.fields.name')">
-        <input type="text" accept="image/*, .pdf, .gif, .webp, .pdf, .xls, .xlsx, .csv, .mp3, .ogg, .json" name="name" value="{!! old('name', $entityAsset->name ?? null) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/files.fields.name') }}" />
+        <input type="text" name="name" value="{!! old('name', $entityAsset->name ?? null) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/files.fields.name') }}" />
     </x-forms.field>
 
     @include('cruds.fields.is_pinned', ['model' => $entity ?? null, 'fieldName' => 'is_pinned'])
