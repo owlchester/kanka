@@ -38,6 +38,7 @@ class CleanupService
 
         $members = CampaignUser::where('user_id', $this->user->id)
             ->with(['campaign', 'campaign.members'])
+            ->has('campaign')
             ->get();
         foreach ($members as $member) {
             $member->delete();

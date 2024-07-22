@@ -2,29 +2,28 @@
 
 namespace App\Services\Attributes;
 
-use App\Models\Attribute;
+use App\Enums\AttributeType;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Exception;
 
 class RandomService
 {
-    protected int $type;
+    protected AttributeType $type;
     protected mixed $value;
     /**
      * Rewrite an attribute if it's a random value
-     * @param string $value
-     * @return array[string, string]
+     * @return array[AttributeType, string]
      */
-    public function randomAttribute(int $type, mixed $value): array
+    public function randomAttribute(AttributeType $type, mixed $value): array
     {
         // Special case if the attribute is a random
-        if ($type != Attribute::TYPE_RANDOM_ID) {
+        if ($type != AttributeType::Random) {
             return [$type, $value];
         }
 
         // Remap the type to a number attribute
-        $this->type = Attribute::TYPE_STANDARD_ID;
+        $this->type = AttributeType::Standard;
         $this->value = $value;
 
         try {
@@ -32,7 +31,7 @@ class RandomService
             if (Str::contains($this->value, ',')) {
                 return $this->fromList();
             } elseif (Str::contains($this->value, '-')) {
-                $this->type = Attribute::TYPE_NUMBER_ID;
+                $this->type = AttributeType::Number;
                 return $this->fromRange();
             }
         } catch (Exception $e) {
