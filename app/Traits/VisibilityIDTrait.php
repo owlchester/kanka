@@ -36,28 +36,30 @@ trait VisibilityIDTrait
     /**
      * Generate the html icon for visibility
      */
-    public function visibilityIcon(?string $extra = null): string
+    public function visibilityIcon(?string $extra = null)
     {
         $class = $title = '';
         if ($this->visibility_id === Visibility::All) {
             if ($this->skipAllIcon) {
                 return '';
             }
-            $class = 'fa-solid fa-eye';
+            $class = 'eye';
             $title = __('crud.visibilities.all');
         } elseif ($this->visibility_id === Visibility::Admin) {
-            $class = 'fa-solid fa-lock';
+            $class = 'lock';
             $title = __('crud.visibilities.admin');
         } elseif ($this->visibility_id === Visibility::Self) {
-            $class = 'fa-solid fa-user-secret';
+            $class = 'user-secret';
             $title = __('crud.visibilities.self');
         } elseif ($this->visibility_id === Visibility::AdminSelf) {
-            $class = 'fa-solid fa-user-lock';
+            $class = 'user-lock';
             $title = __('crud.visibilities.admin-self');
         } elseif ($this->visibility_id === Visibility::Member) {
-            $class = 'fa-solid fa-users';
+            $class = 'users';
             $title = __('crud.visibilities.members');
         }
+
+        return view('icons.visibility', ['class' => $class, 'extra' => $extra, 'title' => $title]);
 
         return '<i class="' . rtrim($class . ' ' . $extra) . '" data-title="' . $title . '" data-toggle="tooltip" aria-hidden="true"></i>';
     }

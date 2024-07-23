@@ -25,7 +25,7 @@
         @foreach ($tags as $tag)
             @if (!$tag->entity) @continue @endif
             <a href="{{ $tag->getLink() }}" class="tooltip-tag" data-id="{{ $tag->entity->id }}" data-tag-slug="{{ $tag->slug }}" title="{{ $tag->name }}">
-                {!! $tag->html() !!}
+                @include ('tags._badge')
             </a>
         @endforeach
     </div>@endif

@@ -6,7 +6,7 @@
  */
 ?>
 <li id="timeline-element-{{ $element->id }}" class="relative mr-2">
-    {!! $element->htmlIcon() !!}
+    @include('timelines.elements._icon')
 
     <div class="timeline-item p-0 pb-2 relative rounded-sm ml-16 mr-4">
         <x-box css="flex gap-2 flex-col p-2" :padding="0">

@@ -263,15 +263,6 @@ class Tag extends MiscModel
     }
 
     /**
-     * Get the tag's html
-     */
-    public function html(): string
-    {
-        return '<span class="badge ' . ($this->hasColour() ? $this->colourClass() . 'py-1 rounded-sm' : 'color-tag rounded-sm px-2 py-1') . '">'
-            . $this->name . '</span>';
-    }
-
-    /**
      * Determine if the model has profile data to be displayed
      */
     public function showProfileInfo(): bool
