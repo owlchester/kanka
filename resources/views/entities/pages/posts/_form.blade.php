@@ -71,12 +71,12 @@ $layoutOptions = $layoutDefault + $layoutOptions
                         @includeWhen(!$campaign->superboosted(), 'entities.pages.posts._boosted')
                     </div>
                 </x-forms.field>
+
                 @if (isset($layoutHelper))
                     <p class="text-neutral-content m-0">{{ $layoutHelper }}</p>
                 @endif
 
                 <x-forms.field field="entry" css="md:col-span-2" id="field-entry" :hidden="isset($layoutHelper)">
-
                     <textarea name="entry"
                               id="entry"
                               class="html-editor"
