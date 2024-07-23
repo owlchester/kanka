@@ -146,7 +146,8 @@
                             <div class="more" v-else>
                                 {{ profile.subscription.call_to_action }}
                                 <div class="link flex gap-1 items-center">{{ profile.subscription.call_to_action_2 }}
-                                    <i class="fa-duotone fa-credit-card" aria-hidden="true"></i>
+                                    <i class="fa-duotone fa-credit-card" aria-hidden="true" v-if="pro"></i>
+                                    <i class="fa-solid fa-credit-card" aria-hidden="true" v-else></i>
                                     <i class="fa-brands fa-paypal" aria-hidden="true"></i>
                                 </div>
                             </div>
@@ -312,6 +313,7 @@ export default {
             show_alerts: false,
             // Determine if data from the api has been loaded
             is_loaded: false,
+            pro: false,
         }
     },
 
@@ -344,6 +346,7 @@ export default {
                 this.has_data = true;
                 this.is_loading = false;
                 this.is_loaded = true;
+                this.pro = response.fontawesome_pro;
             });
         },
         blockClass: function(active) {
