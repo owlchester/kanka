@@ -2,10 +2,14 @@
 
 namespace App\Services\Campaign;
 
+use App\Facades\Module;
+use App\Models\CampaignPlugin;
+use App\Models\EntityTag;
+use App\Models\Relation;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 
-class StatService
+class AchievementService
 {
     use CampaignAware;
 
@@ -28,7 +32,7 @@ class StatService
 
         $cacheKey = 'campaign_' . $this->campaign->id . '_achievements';
 
-        if (Cache::has($cacheKey)) {
+        if (Cache::has($cacheKey) && app()->isProduction()) {
             return Cache::get($cacheKey);
         }
 
@@ -37,50 +41,98 @@ class StatService
         // @phpstan-ignore-next-line
         $locations = $this->campaign->locations()->withInvisible()->count();
         // @phpstan-ignore-next-line
-        $races = $this->campaign->races()->withInvisible()->count();
+        $creatures = $this->campaign->creatures()->withInvisible()->count();
         // @phpstan-ignore-next-line
         $families = $this->campaign->families()->withInvisible()->count();
         // @phpstan-ignore-next-line
         $dead = $this->campaign->characters()->withInvisible()->where('is_dead', true)->count();
         // @phpstan-ignore-next-line
         $calendars = $this->campaign->calendars()->withInvisible()->count();
+        // @phpstan-ignore-next-line
+        $events = $this->campaign->events()->withInvisible()->count();
+
+        $tags = $this->taggedEntities();
+        $plugins = $this->plugins();
+        $connections = $this->connections();
+        $themes = $this->campaign->styles()->count();
 
         $stats = [
             'characters' => [
-                'icon' => 'fa-solid fa-user',
+                'icon' => config('entities.icons.character'),
                 'amount' => $characters,
                 'target' => $this->target($characters),
                 'level' => $this->level($characters),
+                'module' => $this->moduleName('character', 'characters'),
             ],
             'locations' => [
-                'icon' => 'ra ra-tower',
+                'icon' => config('entities.icons.location'),
                 'amount' => $locations,
                 'target' => $this->target($locations),
                 'level' => $this->level($locations),
+                'module' => $this->moduleName('location', 'locations'),
             ],
-            'races' => [
-                'icon' => 'ra ra-dragon',
-                'amount' => $races,
-                'target' => $this->target($races),
-                'level' => $this->level($races),
+            'creatures' => [
+                'icon' => config('entities.icons.creature'),
+                'amount' => $creatures,
+                'target' => $this->target($creatures),
+                'level' => $this->level($creatures),
+                'module' => $this->moduleName('creature', 'creatures'),
             ],
             'families' => [
-                'icon' => 'fa-solid fa-users',
+                'icon' => config('entities.icons.family'),
                 'amount' => $families,
                 'target' => $this->target($families, 2),
                 'level' => $this->level($families, 2),
+                'module' => $this->moduleName('family', 'families'),
             ],
             'calendars' => [
-                'icon' => 'fa-solid fa-calendar',
+                'icon' => config('entities.icons.calendar'),
                 'amount' => $calendars,
                 'target' => $this->target($calendars, 3),
                 'level' => $this->level($calendars, 3),
+                'module' => $this->moduleName('calendar', 'calendars'),
+            ],
+            'events' => [
+                'icon' => config('entities.icons.event'),
+                'amount' => $events,
+                'target' => $this->target($calendars, 2),
+                'level' => $this->level($calendars, 2),
+                'module' => $this->moduleName('event', 'events'),
             ],
             'dead' => [
-                'icon' => 'ra ra-skull',
+                'icon' => 'fa-solid fa-skull',
                 'amount' => $dead,
                 'target' => $this->target($dead, 2),
                 'level' => $this->level($dead, 2),
+                'history' => 'dead',
+            ],
+            'tags' => [
+                'icon' => config('entities.icons.tag'),
+                'amount' => $tags,
+                'target' => $this->target($tags, 1),
+                'level' => $this->level($tags, 1),
+                'history' => 'tagged',
+            ],
+            'plugins' => [
+                'icon' => 'fa-duotone fa-store',
+                'amount' => $plugins,
+                'target' => $this->target($tags, 3),
+                'level' => $this->level($tags, 3),
+                'history' => 'plugins',
+            ],
+            'themes' => [
+                'icon' => 'fa-duotone fa-palette',
+                'amount' => $themes,
+                'target' => $this->target($tags, 3),
+                'level' => $this->level($tags, 3),
+                'history' => 'themes',
+            ],
+            'connections' => [
+                'icon' => 'fa-duotone fa-heart',
+                'amount' => $connections,
+                'target' => $this->target($tags, 2),
+                'level' => $this->level($tags, 2),
+                'history' => 'connections',
             ],
         ];
 
@@ -103,7 +155,6 @@ class StatService
     }
 
     /**
-     * @param int $level = 1
      */
     public function target(int $amount, int $level = 1): int
     {
@@ -111,7 +162,7 @@ class StatService
 
         $last = 20;
         foreach ($targets as $target) {
-            if ($amount <= $target) {
+            if ($amount < $target) {
                 return $target;
             }
             $last = $target;
@@ -121,7 +172,6 @@ class StatService
     }
 
     /**
-     * @param int $level = 1
      */
     public function level(int $amount, int $level = 1): int
     {
@@ -137,7 +187,6 @@ class StatService
     }
 
     /**
-     * @param int $level = 1
      */
     public function title(int $amount, int $level = 1): string
     {
@@ -152,7 +201,6 @@ class StatService
     }
 
     /**
-     * @return array[]
      */
     public function achievements(): array
     {
@@ -187,5 +235,37 @@ class StatService
         });
 
         return $achievements;
+    }
+
+    protected function taggedEntities(): int
+    {
+        return EntityTag::leftJoin('entities as e', 'e.id', 'entity_tags.entity_id')
+            ->where('e.campaign_id', $this->campaign->id)
+            ->whereNull('e.deleted_at')
+            ->count()
+        ;
+    }
+
+    protected function plugins(): int
+    {
+        return CampaignPlugin::where('campaign_id', $this->campaign->id)
+            ->count()
+        ;
+    }
+
+    protected function connections(): int
+    {
+        return Relation::where('campaign_id', $this->campaign->id)
+            ->whereNull('mirror_id')
+            ->count()
+        ;
+    }
+
+    protected function moduleName(string $singular, string $plural): array
+    {
+        return [
+            'singular' => Module::singular(config('entities.ids.' . $singular), __('entities.' . $singular)),
+            'plural' => Module::plural(config('entities.ids.' . $singular), __('entities.' . $plural)),
+        ];
     }
 }

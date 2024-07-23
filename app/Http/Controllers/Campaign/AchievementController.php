@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Services\Campaign\StatService;
+use App\Services\Campaign\AchievementService;
 
 /**
  * Class StatController
@@ -12,17 +12,17 @@ use App\Services\Campaign\StatService;
  */
 class AchievementController extends Controller
 {
-    protected StatService $service;
+    protected AchievementService $service;
 
-    public function __construct(StatService $service)
+    public function __construct(AchievementService $service)
     {
         $this->service = $service;
     }
 
     public function index(Campaign $campaign)
     {
-        $stats = $this->service->campaign($campaign)->stats();
+        $achievements = $this->service->campaign($campaign)->stats();
 
-        return view('campaigns.stats.index', compact('campaign', 'stats'));
+        return view('campaigns.achievements.index', compact('campaign', 'achievements'));
     }
 }
