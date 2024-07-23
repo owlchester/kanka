@@ -251,12 +251,12 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-b551c775.css",
+    "file": "assets/app-25d9ffb6.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-7907dbb6.css",
+    "file": "assets/auth-aacae168.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -281,7 +281,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-fb9c23da.css",
+    "file": "assets/front-7db3075a.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
