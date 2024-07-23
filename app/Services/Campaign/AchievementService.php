@@ -5,6 +5,7 @@ namespace App\Services\Campaign;
 use App\Facades\Module;
 use App\Models\CampaignPlugin;
 use App\Models\EntityTag;
+use App\Models\MapMarker;
 use App\Models\Relation;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
@@ -22,7 +23,6 @@ class AchievementService
     //protected $secondaryTargets = [1, 2, 3, 4, 5];
 
     /**
-     * @return array|array[]
      */
     public function stats(): array|false
     {
@@ -37,24 +37,24 @@ class AchievementService
         }
 
         // @phpstan-ignore-next-line
-        $characters = $this->campaign->characters()->withInvisible()->count();
+        $characters = $this->campaign->characters()->withInvisible()->count() + $this->random();
         // @phpstan-ignore-next-line
-        $locations = $this->campaign->locations()->withInvisible()->count();
+        $locations = $this->campaign->locations()->withInvisible()->count() + $this->random();
         // @phpstan-ignore-next-line
-        $creatures = $this->campaign->creatures()->withInvisible()->count();
+        $creatures = $this->campaign->creatures()->withInvisible()->count() + $this->random();
         // @phpstan-ignore-next-line
-        $families = $this->campaign->families()->withInvisible()->count();
+        $families = $this->campaign->families()->withInvisible()->count() + $this->random();
         // @phpstan-ignore-next-line
-        $dead = $this->campaign->characters()->withInvisible()->where('is_dead', true)->count();
+        $dead = $this->campaign->characters()->withInvisible()->where('is_dead', true)->count() + $this->random(10, 30);
         // @phpstan-ignore-next-line
-        $calendars = $this->campaign->calendars()->withInvisible()->count();
+        $calendars = $this->campaign->calendars()->withInvisible()->count() + $this->random(5, 15);
         // @phpstan-ignore-next-line
-        $events = $this->campaign->events()->withInvisible()->count();
+        $events = $this->campaign->events()->withInvisible()->count() + $this->random();
 
-        $tags = $this->taggedEntities();
-        $plugins = $this->plugins();
-        $connections = $this->connections();
-        $themes = $this->campaign->styles()->count();
+        $tags = $this->taggedEntities() + $this->random();
+        $plugins = $this->plugins()  + $this->random(2, 9);
+        $connections = $this->connections() + $this->random(30, 60);
+        $markers = $this->markers() + $this->random(30, 60);
 
         $stats = [
             'characters' => [
@@ -95,8 +95,8 @@ class AchievementService
             'events' => [
                 'icon' => config('entities.icons.event'),
                 'amount' => $events,
-                'target' => $this->target($calendars, 2),
-                'level' => $this->level($calendars, 2),
+                'target' => $this->target($events, 2),
+                'level' => $this->level($events, 2),
                 'module' => $this->moduleName('event', 'events'),
             ],
             'dead' => [
@@ -120,12 +120,12 @@ class AchievementService
                 'level' => $this->level($tags, 3),
                 'history' => 'plugins',
             ],
-            'themes' => [
-                'icon' => 'fa-duotone fa-palette',
-                'amount' => $themes,
-                'target' => $this->target($tags, 3),
-                'level' => $this->level($tags, 3),
-                'history' => 'themes',
+            'markers' => [
+                'icon' => 'fa-duotone fa-map-location',
+                'amount' => $markers,
+                'target' => $this->target($tags, 2),
+                'level' => $this->level($tags, 2),
+                'history' => 'markers',
             ],
             'connections' => [
                 'icon' => 'fa-duotone fa-heart',
@@ -261,11 +261,29 @@ class AchievementService
         ;
     }
 
+    protected function markers(): int
+    {
+        return MapMarker::leftJoin('maps as m', 'm.id', 'map_markers.map_id')
+            ->where('m.campaign_id', $this->campaign->id)
+            ->whereNull('m.deleted_at')
+            ->count()
+        ;
+    }
+
     protected function moduleName(string $singular, string $plural): array
     {
         return [
             'singular' => Module::singular(config('entities.ids.' . $singular), __('entities.' . $singular)),
             'plural' => Module::plural(config('entities.ids.' . $singular), __('entities.' . $plural)),
         ];
+    }
+
+    protected function random(int $min = 50, int $max = 400): int
+    {
+        if (app()->isProduction()) {
+            return 0;
+        }
+
+        return mt_rand($min, $max);
     }
 }
