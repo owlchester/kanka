@@ -1,7 +1,7 @@
 <div class="flex gap-1">
     <div class="w-8 flex-shrink-0 text-center">
         @if (auth()->user()->hasBoosterNomenclature())
-            <x-icon class="fa-regular fa-rocket text-boostd" />
+            <x-icon class="fa-regular fa-rocket text-boost" />
     </div>
     <a href="https://kanka.io/premium" target="_blank">10 {{ __('tiers.features.boosters') }}</a>
     @else

@@ -30,7 +30,7 @@
             <div class="text-center">
                 <p>
                     <a  href="{{ route('settings.premium') }}" class="btn2 btn-primary btn-lg mr-4" target="blank">
-                        <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
+                        <i class="fa-solid fa-gem mr-1" aria-hidden="true"></i>
                         {{ __('settings/premium.ready.title') }}
                     </a>
                     @if (!$user->discord())

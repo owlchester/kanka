@@ -67,7 +67,7 @@
                             <li class="{{ $sidebar->settings('premium') }} subsection">
                                 <x-sidebar.element
                                     :url="route('settings.premium')"
-                                    icon="fa-solid fa-rocket"
+                                    icon="fa-solid fa-gem"
                                     :text="__('settings.menu.premium')"
                                 ></x-sidebar.element>
                             </li>
