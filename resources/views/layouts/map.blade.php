@@ -38,6 +38,7 @@ $specificTheme = null;
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
+    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/Leaflet.zoomdisplay/dist/leaflet.zoomdisplay.css" />
     @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
         @php $specificTheme = $themeOverride; @endphp
         @if($themeOverride != 'base')
@@ -153,6 +154,7 @@ $specificTheme = null;
 @endif
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
+<script type="text/javascript" src="{{ config('app.asset_url') }}/vendor/Leaflet.zoomdisplay/dist/leaflet.zoomdisplay-src.js"></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
