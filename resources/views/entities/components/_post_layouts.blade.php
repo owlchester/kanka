@@ -88,7 +88,7 @@
 
         @endphp
         @include('locations.panels.characters')
-    @elseif ($post->layout?->code == 'entity_events')
+    @elseif ($post->layout?->code == 'reminders')
         @php
         Datagrid::layout(\App\Renderers\Layouts\Entity\Reminder::class)
             ->route('entities.entity_events.index', ['campaign' => $campaign, 'entity' => $entity]);

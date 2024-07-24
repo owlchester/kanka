@@ -43,12 +43,10 @@ class PostLayout extends Model
      */
     public function name(): string
     {
-        if (in_array($this->code, ['abilities', 'attributes', 'assets', 'inventory', ])) {
+        if (in_array($this->code, ['abilities', 'attributes', 'assets', 'inventory', 'reminders'])) {
             return __('crud.tabs.' . $this->code);
         } elseif ($this->code === 'entry') {
             return __('crud.fields.' . $this->code);
-        } elseif ($this->code === 'entity_events') {
-            return __('crud.tabs.reminders');
         }
         return __('post_layouts.' . $this->code);
     }

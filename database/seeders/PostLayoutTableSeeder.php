@@ -13,7 +13,7 @@ class PostLayoutTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $layouts = ['abilities', 'assets', 'attributes', 'connection_map', 'inventory', 'character_orgs', 'quest_elements', 'location_characters', 'entity_events'];
+        $layouts = ['abilities', 'assets', 'attributes', 'connection_map', 'inventory', 'character_orgs', 'quest_elements', 'location_characters', 'reminders'];
         foreach ($layouts as $code) {
             $entity_type = null;
             if ($code == 'character_orgs') {
