@@ -13,7 +13,7 @@
                     <i class="fa-solid fa-pencil" aria-hidden="true" aria-label="{{ __('crud.edit') }}"></i>
                 </a>
             @endif
-            @include('icons.visibility', ['icon' => $asset->visibilityIcon('')])
+            @include('icons.visibility', ['icon' => $asset->visibilityIcon()])
             </div>
         </div>
     </div>
