@@ -83,9 +83,7 @@ onMounted(() => {
         hasOld.value = true
     }
 
-    console.log('props', props.i18n)
     trans.value = JSON.parse(props.i18n)
-    console.log('parse', trans.value)
 });
 
 

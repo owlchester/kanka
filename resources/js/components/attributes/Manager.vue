@@ -303,8 +303,9 @@ const loadTemplate = () => {
 }
 
 const importAttribute = (attribute) => {
-    let ex = attributes.value.find(attr => attr.name == attribute.name && !attr.is_deleted);
-    if (ex) {
+    // Don't re-import existing attributes, unless they've been deleted
+    let ex = attributes.value.find(attr => attr.name == attribute.name)
+    if (ex && !ex.is_deleted) {
         return
     }
 

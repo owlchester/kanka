@@ -8,6 +8,7 @@ use App\Models\CampaignPlugin;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
+use Illuminate\Support\Collection;
 
 class ApiService
 {
@@ -15,7 +16,7 @@ class ApiService
     use EntityAware;
     use EntityTypeAware;
 
-    protected array $attributes = [];
+    protected Collection $attributes;
 
     protected bool $copy = false;
     protected bool $template = false;
@@ -30,7 +31,7 @@ class ApiService
     {
         $this->buildAttributes();
         return [
-            'attributes' => $this->attributes,
+            'attributes' => $this->attributes->toArray(),
             'i18n' => $this->i18n(),
             'meta' => $this->meta(),
             'templates' => $this->templates(),
@@ -105,12 +106,13 @@ class ApiService
 
     protected function buildAttributes(): void
     {
-        $this->buildAutoTemplates();
+        $this->attributes = new Collection();
         if (isset($this->entity)) {
             foreach ($this->entity->attributes()->ordered()->get() as $attribute) {
                 $this->parseAttribute($attribute);
             }
         }
+        $this->buildAutoTemplates();
     }
 
     protected function buildAutoTemplates(): void
@@ -152,6 +154,11 @@ class ApiService
 
     protected function parseAttribute(Attribute $attribute, AttributeTemplate $template = null, int $templateTotalAttributes = 0): void
     {
+        // If an attribute with the same name already exists, don't add it again
+        $existing = $this->attributes->where('name', $attribute->name)->first();
+        if ($existing) {
+            return;
+        }
         $formatted = [
             'id' => $this->copy ? null : $attribute->id,
             'source_id' => $this->template ? $attribute->id : null,
@@ -189,7 +196,7 @@ class ApiService
             ];
         }
 
-        $this->attributes[] = $formatted;
+        $this->attributes->add($formatted);
     }
 
     protected function templates(): array
