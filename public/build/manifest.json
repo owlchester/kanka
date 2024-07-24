@@ -95,7 +95,7 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-d641e350.js",
+    "file": "assets/attributes-manager-8e806038.js",
     "imports": [
       "_vue.esm-bundler-8de02e4e.js",
       "_v-click-outside.umd-1708c20a.js",

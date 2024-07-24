@@ -65,6 +65,7 @@
                     v-for="attribute in visibleAttributes"
                     :key="attribute.id"
                     :attribute="attribute"
+                    :attributes="attributes"
                     :isAdmin="isAdmin()"
                     :showHidden="showHidden"
                     :i18n="i18n"

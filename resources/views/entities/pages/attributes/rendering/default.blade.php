@@ -46,7 +46,11 @@ $uid = 1;
                                 @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private)
                                     <x-icon class="fa-solid fa-lock" tooltip :title="__('crud.is_private')" />
                                 @endif
-                                <span class="font-extrabold">{!! $attribute->name() !!}</span>
+                                @if ($attribute->validConstraints())
+                                    <span class="font-extrabold">{!! $attribute->name() !!}</span>
+                                @else
+                                    <span class="font-extrabold">{!! $attribute->mappedName() !!}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="attribute-value grow" data-live-id="{{ $attribute->id }}">

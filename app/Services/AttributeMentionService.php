@@ -16,7 +16,7 @@ class AttributeMentionService
 
     protected array $loadedAttributes = [];
     protected Entity $loadedEntity;
-    protected Collection|null $calculatedAttributes = null;
+    protected Collection $calculatedAttributes;
 
     /**
      * Replace references in an attribute name with attribute values for ranges
@@ -71,6 +71,8 @@ class AttributeMentionService
 
     /**
      * Determine if the text contains a valid attribute mention using {}
+     * Also ignore anything with html like mentions, as the calculator
+     * won't know what to do with such tags.
      */
     protected function validField(?string $value = null): bool
     {
@@ -81,9 +83,8 @@ class AttributeMentionService
     }
     /**
      * Load all the entity attributes and pre-calculate the values
-     * @return array|Collection
      */
-    protected function entityAttributes()
+    protected function entityAttributes(): Collection
     {
         if (isset($this->loadedAttributes[$this->loadedEntity->id])) {
             return $this->loadedAttributes[$this->loadedEntity->id];
@@ -184,9 +185,8 @@ class AttributeMentionService
 
     /**
      * Calculate the value of an attribute by performing math on it
-     * @return array
      */
-    protected function calculateAttribute(array $data)
+    protected function calculateAttribute(array $data): array
     {
         if (empty($data['references'])) {
             $data['final'] = $data['value'];
@@ -205,11 +205,11 @@ class AttributeMentionService
     }
 
     /**
-     * Check if a given attribute is flaged as being in a loop
+     * Check if a given attribute is flagged as being in a loop
      */
     public function isLoop(string $name): bool
     {
-        if ($this->calculatedAttributes === null || $this->calculatedAttributes->isEmpty()) {
+        if (!isset($this->calculatedAttributes) || $this->calculatedAttributes->isEmpty()) {
             return false;
         }
         $ref = $this->calculatedAttributes->get($name);

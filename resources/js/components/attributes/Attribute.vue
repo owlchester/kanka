@@ -104,10 +104,11 @@
 
 <script setup lang="ts">
 
-import {onMounted, ref} from "vue";
+import {onMounted, ref} from "vue"
 
 const props = defineProps<{
-    attribute: Object
+    attribute: Object,
+    attributes: Object
     i18n,
     isAdmin: Boolean,
     showHidden: Boolean,
@@ -125,17 +126,17 @@ onMounted(() => {
 
 const trans = (k) => {
     if (!k.includes('.')) {
-        return k;
+        return k
     }
-    let blocks = k.split('.');
-    return props.i18n[blocks[0]][blocks[1]];
-};
+    let blocks = k.split('.')
+    return props.i18n[blocks[0]][blocks[1]]
+}
 
 const attributeName = (attribute) => {
-    return 'attr_name[' + attribute.id + ']';
+    return 'attr_name[' + attribute.id + ']'
 }
 const attributeValue = (attribute) => {
-    return 'attr_value[' + attribute.id + ']';
+    return 'attr_value[' + attribute.id + ']'
 }
 
 const rowClass = (attribute) => {
@@ -188,20 +189,20 @@ const typeValue = (attribute) => {
 
 const pinnedClass = (attribute) => {
     if (attribute.is_pinned) {
-        return 'fa-solid fa-thumbtack rotate-45 transition-all';
+        return 'fa-solid fa-thumbtack rotate-45 transition-all'
     }
-    return 'fa-regular fa-thumbtack transition-all';
+    return 'fa-regular fa-thumbtack transition-all'
 }
 
 const pinnedLabel = (attribute) => {
     if (attribute.is_pinned) {
-        return 'Pinned';
+        return 'Pinned'
     }
-    return 'Unpinned';
+    return 'Unpinned'
 }
 
 const pinnedToggle = (attribute) => {
-    attribute.is_pinned = !attribute.is_pinned;
+    attribute.is_pinned = !attribute.is_pinned
     /*const attribute = attributes.value.find(attribute => attribute.id === id);
     if (attribute) {
         attribute.is_pinned = !attribute.is_pinned;
@@ -210,24 +211,24 @@ const pinnedToggle = (attribute) => {
 
 const privateClass = (attribute) => {
     if (attribute.is_private) {
-        return 'fa-solid fa-lock-keyhole';
+        return 'fa-solid fa-lock-keyhole'
     }
-    return 'fa-regular fa-unlock-keyhole';
+    return 'fa-regular fa-unlock-keyhole'
 }
 
 const privateLabel = (attribute) => {
     if (attribute.is_private) {
-        return 'Private';
+        return 'Private'
     }
-    return 'Public';
+    return 'Public'
 }
 
 const privateToggle = (attribute) => {
-    attribute.is_private = !attribute.is_private;
+    attribute.is_private = !attribute.is_private
 }
 
 const isDisabled = (attribute) => {
-    return attribute.is_hidden || attribute.name === '_layout';
+    return attribute.is_hidden || attribute.name === '_layout'
 }
 
 const configValue = (attribute) => {
@@ -244,26 +245,26 @@ const configValue = (attribute) => {
 }
 
 const attributeMin = (attribute) => {
-    const regex = /\[range:(\d+),(\d+)\]/;
-    const match = attribute.name.match(regex);
+    const regex = /\[range:(\d+),(\d+)\]/
+    const match = attribute.name.match(regex)
     if (!match) {
-        return null;
+        return null
     }
     return parseInt(match[1])
 }
 
 const attributeMax = (attribute) => {
-    const regex = /\[range:(\d+),(\d+)\]/;
-    const match = attribute.name.match(regex);
+    const regex = /\[range:(\d+),(\d+)\]/
+    const match = attribute.name.match(regex)
     if (!match) {
-        return null;
+        return null
     }
     return parseInt(match[2])
 }
 
 const checkIfRanged = () => {
-    const regex = /\[range:(.*)+\]/;
-    const match = props.attribute.name.match(regex);
+    const regex = /\[range:(.*)+\]/
+    const match = props.attribute.name.match(regex)
     if (match) {
         isRanged.value = true
     } else {
@@ -272,14 +273,30 @@ const checkIfRanged = () => {
 }
 
 const rangedOptions = (attribute) => {
-    const regex = /\[range:(.*)+\]/;
-    const match = attribute.name.match(regex);
+    const regex = /\[range:(.*)+\]/
+    const match = attribute.name.match(regex)
     let rangedOptions = []
     if (match) {
-        rangedOptions = match[1].split(',').map(value => value.trim());
+        rangedOptions = match[1].split(',').map(value => value.trim()).map(value => parseMentions(value))
         rangedOptions.unshift([])
     }
     return rangedOptions
+}
+
+const parseMentions = (value) => {
+    const regex = /\{(.*)+\}/
+    const match = value.match(regex)
+    if (!match) {
+        return value
+    }
+    // look for an attribute names like that
+    const mentionName = match[1]
+    const mentionedAttribute = props.attributes.filter(attribute => attribute.name == mentionName)
+    if (mentionedAttribute.length === 0) {
+        return value
+    }
+
+    return mentionedAttribute[0].value.trim()
 }
 
 </script>
