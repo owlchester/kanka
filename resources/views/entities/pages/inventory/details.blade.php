@@ -66,7 +66,7 @@
 
                 <div class="flex gap-2 items-center ">
                     <div class="text-accent text-3xl">
-                        {!! $inventory->visibilityIcon() !!}
+                        @include('icons.visibility', ['icon' => $inventory->visibilityIcon()])
                     </div>
                     <div class="flex flex-col gap-0">
                         <div class="font-extrabold text-xl ">

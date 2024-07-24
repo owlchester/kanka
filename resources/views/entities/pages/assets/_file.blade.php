@@ -15,7 +15,7 @@
                     <x-icon class="pencil" title="{{ __('crud.edit') }}" :tooltip="true" />
                 </a>
             @endif
-            {!! $asset->visibilityIcon() !!}
+            @include('icons.visibility', ['icon' => $asset->visibilityIcon()])
             </div>
         </div>
     </div>

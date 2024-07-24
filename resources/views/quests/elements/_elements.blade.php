@@ -42,7 +42,7 @@
                 </div>
                 <div class="p-4 flex gap-2 items-center mt-auto">
                     <div class="grow">
-                        {!! $element->visibilityIcon() !!}
+                        @include('icons.visibility', ['icon' => $element->visibilityIcon()])
                     </div>
                     @can('update', $model)
                         <div class="flex gap-2 items-center">

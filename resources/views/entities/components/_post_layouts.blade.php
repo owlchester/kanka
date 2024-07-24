@@ -15,7 +15,7 @@
         </h3>
         <div class="post-buttons flex items-center gap-2 flex-wrap justify-end">
             @if (auth()->check())
-                {!! $post->visibilityIcon('') !!}
+                @include('icons.visibility', ['icon' => $post->visibilityIcon('')])
                 <div class="dropdown">
                     <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-tree="escape">
                         <x-icon class="fa-solid fa-ellipsis-v" />

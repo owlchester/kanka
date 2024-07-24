@@ -67,7 +67,7 @@
             </td>
             @if (auth()->check())
                 <td>
-                    {!! $item->visibilityIcon() !!}
+                    @include('icons.visibility', ['icon' => $item->visibilityIcon()])
                 </td>
                 @can('inventory', $entity->child)
                     <td class="text-right">

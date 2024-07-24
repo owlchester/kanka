@@ -32,7 +32,7 @@
                     <span class="text-neutral-content text-sm truncate">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
                 @endif
                 <div class="flex-none flex items-center gap-2">
-                    @if (auth()->check()) {!! $element->visibilityIcon('') !!}@endif
+                    @includeWhen(auth()->check(), 'icons.visibility', ['icon' => $element->visibilityIcon('')])
 
                     @can('update', $timeline)
                         <div class="dropdown inline">
