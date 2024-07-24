@@ -6,6 +6,7 @@ use App\Enums\PricingPeriod;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property int $id
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $currency
  * @property string $stripe_id
  * @property Tier $tier
+ *
+ * @method static self|Builder stripe(string $id)
  */
 class TierPrice extends Model
 {
@@ -32,5 +35,10 @@ class TierPrice extends Model
     public function isYearly(): bool
     {
         return $this->period->isYearly();
+    }
+
+    public function scopeStripe(Builder $query, string $id): Builder
+    {
+        return $query->where('stripe_id', $id);
     }
 }

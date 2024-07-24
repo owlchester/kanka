@@ -114,6 +114,7 @@ class User extends \Illuminate\Foundation\Auth\User
         'card_expires_at' => 'datetime',
         'last_login_at' => 'date',
         'banned_until' => 'date',
+        'trial_ends_at' => 'date',
     ];
 
     /**
@@ -197,7 +198,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isSubscriber(): bool
     {
-        return $this->hasRole(Pledge::ROLE) || $this->hasRole('admin');
+        return $this->hasRole(Pledge::ROLE) || $this->hasRole('admin') || $this->onTrial();
     }
 
     /**

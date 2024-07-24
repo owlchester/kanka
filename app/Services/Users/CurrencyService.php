@@ -2,6 +2,7 @@
 
 namespace App\Services\Users;
 
+use App\Models\TierPrice;
 use App\Services\CountryService;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
@@ -40,6 +41,15 @@ class CurrencyService
         if (Arr::has($this->user->settings, 'currency')) {
             return;
         }
+        // If the user has a subscription, use that
+        if ($this->user->subscribed('kanka')) {
+            $id = $this->user->subscription('kanka')->stripe_price;
+            $price = TierPrice::stripe($id)->first();
+            if ($price) {
+                $this->save($price->currency);
+                return;
+            }
+        }
 
         $country = $this->countryService->getCountry();
         $europe = [
@@ -60,7 +70,11 @@ class CurrencyService
         if (empty($currency)) {
             return;
         }
+        $this->save($currency);
+    }
 
+    protected function save(string $currency): void
+    {
         $settings = $this->user->settings;
         $settings['currency'] = $currency;
         $this->user->settings = $settings;
