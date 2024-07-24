@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-01418ebb.js",
+    "file": "assets/app-8bbc8400.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-0d19b1d3.js",
@@ -95,7 +95,7 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-8e806038.js",
+    "file": "assets/attributes-manager-f9af667b.js",
     "imports": [
       "_vue.esm-bundler-8de02e4e.js",
       "_v-click-outside.umd-1708c20a.js",
