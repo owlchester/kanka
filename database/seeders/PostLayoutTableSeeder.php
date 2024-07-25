@@ -20,7 +20,7 @@ class PostLayoutTableSeeder extends Seeder
                 $entity_type = config('entities.ids.character');
             } elseif ($code == 'quest_elements') {
                 $entity_type = config('entities.ids.quest');
-            } elseif (in_array($code,  ['location_characters', 'location_events'])) {
+            } elseif (in_array($code, ['location_characters', 'location_events'])) {
                 $entity_type = config('entities.ids.location');
             }
 
