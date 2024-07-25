@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -44,6 +45,7 @@ abstract class MiscModel extends Model
 {
     use Copiable;
     use LastSync;
+    use HasSuggestions;
     use Orderable;
     use Paginatable;
     use Scout;

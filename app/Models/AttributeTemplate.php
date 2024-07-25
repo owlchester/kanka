@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Nested;
 use App\Services\Attributes\RandomService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,6 +29,7 @@ class AttributeTemplate extends MiscModel
     use HasCampaign;
     use HasFilters;
     use HasRecursiveRelationships;
+    use Nested;
     use SoftDeletes;
 
     protected $fillable = [

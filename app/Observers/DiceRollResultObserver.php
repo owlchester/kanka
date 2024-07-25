@@ -8,14 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class DiceRollResultObserver
 {
-    /**
-     * @var DiceRollerService
-     */
-    protected $diceRollerService;
+    protected DiceRollerService $diceRollerService;
 
-    /**
-     * DiceRollObserver constructor.
-     */
     public function __construct(DiceRollerService $diceRollerService)
     {
         $this->diceRollerService = $diceRollerService;

@@ -3,14 +3,17 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Copiable;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -48,6 +51,7 @@ class MapMarker extends Model
     use Blameable;
     use Copiable;
     use HasFactory;
+    use HasSuggestions;
     use Paginatable;
     use SortableTrait;
     use VisibilityIDTrait;
@@ -96,38 +100,39 @@ class MapMarker extends Model
         'visibility_id' => \App\Enums\Visibility::class,
     ];
 
-    /** @var bool Editing the map */
-    protected $editing = false;
+    protected array $suggestions = [
+        MapMarkerCache::class => 'clearSuggestion',
+    ];
 
-    /** @var bool Exploring the map */
-    protected $exploring = false;
+    /** Editing the map */
+    protected bool $editing = false;
 
-    /** @var string Marker MouseOver Popup on explore */
-    protected $tooltipPopup = '';
+    /** Exploring the map */
+    protected bool $exploring = false;
 
-    /** @var int size multiplier for circles */
-    protected $sizeMultiplier = 1;
+    /** Marker MouseOver Popup on explore */
+    protected string $tooltipPopup = '';
+
+    /** size multiplier for circles */
+    protected int $sizeMultiplier = 1;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function map()
+    public function map(): BelongsTo
     {
         return $this->belongsTo(Map::class, 'map_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class, 'entity_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function group()
+    public function group(): BelongsTo
     {
         return $this->belongsTo(MapGroup::class, 'group_id');
     }

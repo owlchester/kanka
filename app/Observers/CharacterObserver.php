@@ -191,11 +191,4 @@ class CharacterObserver extends MiscObserver
 
         return $this;
     }
-
-    public function saved(MiscModel $character)
-    {
-        parent::saved($character);
-        // Clear some cache
-        CharacterCache::clearSuggestion();
-    }
 }

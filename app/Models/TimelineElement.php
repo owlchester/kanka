@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Facades\TimelineElementCache;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
+use App\Models\Concerns\HasSuggestions;
 use App\Traits\VisibilityIDTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +44,7 @@ class TimelineElement extends Model
     use Blameable;
     use HasEntry;
     use HasFactory;
+    use HasSuggestions;
     use Searchable;
     use VisibilityIDTrait;
 
@@ -63,6 +66,10 @@ class TimelineElement extends Model
 
     public $casts = [
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $suggestions = [
+        TimelineElementCache::class => 'clearSuggestion',
     ];
 
     public function timeline(): BelongsTo

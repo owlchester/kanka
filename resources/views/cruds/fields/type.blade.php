@@ -7,7 +7,7 @@ $entityTypeListModel = new $base();
     label="{{ __('crud.fields.type') }}">
     <input type="text" name="type" value="{{ htmlspecialchars(old('type', $source->type ?? $model->type ?? null)) }}"
            placeholder="{{ __($trans . '.placeholders.type') }}" maxlength="45" list="entity-type-list-{{ $trans }}"
-           autocomplte="off" spellcheck="true" />
+           spellcheck="true" autocomplete="off" />
     <div class="hidden">
         <datalist id="entity-type-list-<?=$trans?>">
             @foreach (\App\Facades\EntityCache::typeSuggestion($entityTypeListModel) as $name)

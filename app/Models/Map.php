@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -53,6 +54,7 @@ class Map extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
+    use Nested;
     use SoftDeletes;
     use SortableTrait;
 

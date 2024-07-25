@@ -16,16 +16,4 @@ class RaceObserver extends MiscObserver
         }
         $this->saveLocations($race);
     }
-
-    public function deleting(Race $race)
-    {
-        /**
-         * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
-         * all descendants when deleting the parent, which is stupid.
-         */
-        foreach ($race->races as $sub) {
-            $sub->race_id = null;
-            $sub->saveQuietly();
-        }
-    }
 }

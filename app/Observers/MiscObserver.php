@@ -43,8 +43,6 @@ abstract class MiscObserver
         $entity = $model->createEntity();
 
         $this->copy($entity);
-
-        EntityCache::clearSuggestion($model);
     }
 
     /**
@@ -67,14 +65,6 @@ abstract class MiscObserver
 
     /**
      */
-    public function updated(MiscModel $model)
-    {
-        // Clear the cache suggestion for the entity type
-        if ($model->isDirty('type')) {
-            EntityCache::clearSuggestion($model);
-        }
-    }
-
     public function saved(MiscModel $model)
     {
         EntityLogger::model($model);

@@ -26,12 +26,4 @@ class QuestElementObserver
             $questElement->visibility_id = Visibility::All;
         }
     }
-
-    /**
-     */
-    public function saved(QuestElement $questElement)
-    {
-        // If the quest element's entry has changed, we need to re-build it's map.
-        QuestCache::clearSuggestion();
-    }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
+use App\Facades\CharacterCache;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
@@ -100,6 +101,10 @@ class Character extends MiscModel
      * Searchable fields
      */
     protected array $searchableColumns = ['name', 'title', 'type', 'entry'];
+
+    protected array $suggestions = [
+        CharacterCache::class => 'clearSuggestion'
+    ];
 
     /**
      * Casting for order by

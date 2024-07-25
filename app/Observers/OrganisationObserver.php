@@ -30,20 +30,6 @@ class OrganisationObserver extends MiscObserver
     }
 
     /**
-     */
-    public function deleting(Organisation $organisation)
-    {
-        /**
-         * We need to do this ourselves and not let mysql to it (set null), because the nested wants to delete
-         * all descendants when deleting the parent (soft delete)
-         */
-        foreach ($organisation->organisations as $child) {
-            $child->organisation_id = null;
-            $child->saveQuietly();
-        }
-    }
-
-    /**
      * Save the sections/categories
      */
     protected function saveMembers(Organisation $organisation): self

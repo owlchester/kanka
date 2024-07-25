@@ -39,12 +39,6 @@ class TimelineElementObserver
      */
     public function saved(TimelineElement $timelineElement)
     {
-        TimelineElementCache::clearSuggestion();
         $this->reorder($timelineElement);
-    }
-
-    public function deleted()
-    {
-        TimelineElementCache::clearSuggestion();
     }
 }

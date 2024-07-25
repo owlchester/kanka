@@ -34,7 +34,6 @@ class MapMarkerObserver
     public function saved(MapMarker $mapMarker)
     {
         $mapMarker->map->touch();
-        MapMarkerCache::clearSuggestion();
     }
 
     /**
@@ -42,7 +41,6 @@ class MapMarkerObserver
     public function deleted(MapMarker $mapMarker)
     {
         $mapMarker->map->touch();
-        MapMarkerCache::clearSuggestion();
     }
 
     /**

@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property DiceRoll|null $diceRoll
+ * @property int|null $dice_roll_id
+ * @property int|null $created_by
+ * @property int|bool $is_private
+ * @property string $results
  */
 class DiceRollResult extends Model
 {

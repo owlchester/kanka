@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Nested;
 use App\Models\Relations\CalendarRelations;
 use App\Traits\ExportableTrait;
 use Exception;
@@ -49,6 +50,7 @@ class Calendar extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
+    use Nested;
     use SoftDeletes;
 
     protected $fillable = [

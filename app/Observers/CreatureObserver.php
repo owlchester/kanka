@@ -18,18 +18,4 @@ class CreatureObserver extends MiscObserver
         }
         $this->saveLocations($creature);
     }
-
-    /**
-     */
-    public function deleting(Creature $creature)
-    {
-        /**
-         * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
-         * all descendants when deleting the parent, which is stupid.
-         */
-        foreach ($creature->creatures as $sub) {
-            $sub->creature_id = null;
-            $sub->saveQuietly();
-        }
-    }
 }

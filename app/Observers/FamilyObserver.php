@@ -57,16 +57,4 @@ class FamilyObserver extends MiscObserver
         }
         return $this;
     }
-
-    public function deleting(Family $family)
-    {
-        /**
-         * We need to do this ourselves and not let mysql to it (set null), because the nested wants to delete
-         * all descendants when deleting the parent (soft delete)
-         */
-        foreach ($family->families as $sub) {
-            $sub->family_id = null;
-            $sub->saveQuietly();
-        }
-    }
 }

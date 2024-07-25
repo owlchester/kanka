@@ -39,19 +39,4 @@ class TimelineObserver extends MiscObserver
             }
         }
     }
-
-    /**
-     * @param Timeline $timeline
-     */
-    public function deleting(MiscModel $timeline)
-    {
-        /**
-         * We need to do this ourselves and not let mysql to it (set null), because the nested wants to delete
-         * all descendants when deleting the parent (soft delete)
-         */
-        foreach ($timeline->timelines as $sub) {
-            $sub->timeline_id = null;
-            $sub->saveQuietly();
-        }
-    }
 }
