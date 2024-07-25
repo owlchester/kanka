@@ -1,2 +1,2 @@
 <?php /** @var \App\Traits\VisibilityIDTrait $model */ ?>
-@if (auth()->check()) {!! $model->visibilityIcon() !!}@endif
+@includeWhen(auth()->check(), 'icons.visibility', ['icon' => $model->visibilityIcon()])

@@ -284,7 +284,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                    data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
                    data-tag-slug="{{ $tag->slug }}"
                 >
-                    {!! $tag->html() !!}
+                    @include ('tags._badge')
                 </a>
             @endforeach
         @endif

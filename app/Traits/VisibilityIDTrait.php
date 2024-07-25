@@ -34,32 +34,36 @@ trait VisibilityIDTrait
     }
 
     /**
-     * Generate the html icon for visibility
+     * Generate the data for the visibility icon
      */
-    public function visibilityIcon(?string $extra = null): string
+    public function visibilityIcon(?string $extra = null): array
     {
-        $class = $title = '';
+        $icon = [];
+
         if ($this->visibility_id === Visibility::All) {
             if ($this->skipAllIcon) {
-                return '';
+                $icon['skip'] = true;
+                return $icon;
             }
-            $class = 'fa-solid fa-eye';
-            $title = __('crud.visibilities.all');
+            $icon['class'] = 'fa-solid fa-eye';
+            $icon['key'] = __('crud.visibilities.all');
         } elseif ($this->visibility_id === Visibility::Admin) {
-            $class = 'fa-solid fa-lock';
-            $title = __('crud.visibilities.admin');
+            $icon['class'] = 'fa-solid fa-lock';
+            $icon['key'] = __('crud.visibilities.admin');
         } elseif ($this->visibility_id === Visibility::Self) {
-            $class = 'fa-solid fa-user-secret';
-            $title = __('crud.visibilities.self');
+            $icon['class'] = 'fa-solid fa-user-secret';
+            $icon['key'] = __('crud.visibilities.self');
         } elseif ($this->visibility_id === Visibility::AdminSelf) {
-            $class = 'fa-solid fa-user-lock';
-            $title = __('crud.visibilities.admin-self');
+            $icon['class'] = 'fa-solid fa-user-lock';
+            $icon['key'] = __('crud.visibilities.admin-self');
         } elseif ($this->visibility_id === Visibility::Member) {
-            $class = 'fa-solid fa-users';
-            $title = __('crud.visibilities.members');
+            $icon['class'] = 'fa-solid fa-users';
+            $icon['key'] = __('crud.visibilities.members');
         }
 
-        return '<i class="' . rtrim($class . ' ' . $extra) . '" data-title="' . $title . '" data-toggle="tooltip" aria-hidden="true"></i>';
+        $icon['class'] = rtrim($icon['class'] . ' ' . $extra);
+
+        return $icon;
     }
 
     public function visibilityName(): string

@@ -16,7 +16,7 @@
             <div class="text-base overflow-hidden text-center px-2">
 
                 @if ($image->visibility_id != \App\Enums\Visibility::All)
-                    {!! $image->visibilityIcon() !!}
+                    @include('icons.visibility', ['icon' => $image->visibilityIcon()])
                 @endif
                 {{ $image->name }}
             </div>
@@ -32,7 +32,7 @@
             </a>
         @endif
         <div class="block px-2 py-4 h-12 truncate">
-            {!! $image->visibilityIcon() !!}
+            @include('icons.visibility', ['icon' => $image->visibilityIcon()])
             {{ $image->name }}
         </div>
     @endif

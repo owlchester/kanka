@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 
 /**
@@ -98,22 +97,6 @@ class TimelineElement extends Model
             return $this->entity->name;
         }
         return $this->name;
-    }
-
-    /**
-     * Todo: This shouldn't be in the model, but a blade component instead
-     */
-    public function htmlIcon(bool $absolute = true): string
-    {
-        $min = $absolute ? 'absolute top-0 text-center w-8 h-8 rounded-full' : 'rounded-full';
-        if (!empty($this->icon)) {
-            if (Str::startsWith($this->icon, '<i class=')) {
-                return str_replace('<i class="', '<i class="bg-' . $this->colour . ' ', $this->icon);
-            }
-            return '<i class="bg-' . $this->colour . ' ' . $this->icon . ' ' . $min . '" aria-hidden="true"></i>';
-        }
-
-        return '<i class="fa fa-solid fa-hourglass-half bg-' . $this->colour . ' ' . $min . '" aria-hidden="true"></i>';
     }
 
     public function mentionName(): string

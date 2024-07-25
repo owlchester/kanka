@@ -80,7 +80,7 @@ if (!empty($widget->conf('entity'))) {
             @if (!empty($widget->tags))
                 <div class="tags text-xs">
                     @foreach ($widget->tags as $tag)
-                        {!! $tag->html() !!}
+                        @include ('tags._badge')
                     @endforeach
                 </div>
             @endif

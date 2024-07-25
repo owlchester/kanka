@@ -33,7 +33,7 @@
             @else
                 <a href="#" class="map-legend-marker " data-lng="{{ $marker['longitude'] }}" data-lat="{{ $marker['latitude'] }}" data-id="marker{{ $marker['id'] }}">
                     {!! stripcslashes($marker['name']) !!}
-                    @if (\Illuminate\Support\Arr::has($marker, 'visibility')) {!! $marker['visibility'] !!}@endif
+                    @includeWhen(\Illuminate\Support\Arr::has($marker, 'visibility'), 'icons.visibility', ['icon' => $marker['visibility']])
                 </a>
             @endif
         </li>
