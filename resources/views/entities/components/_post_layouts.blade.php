@@ -88,5 +88,23 @@
 
         @endphp
         @include('locations.panels.characters')
+    @elseif ($post->layout?->code == 'reminders')
+        @php
+        Datagrid::layout(\App\Renderers\Layouts\Entity\Reminder::class)
+            ->route('entities.entity_events.index', ['campaign' => $campaign, 'entity' => $entity]);
+
+        $rows = $entity
+            ->events()
+            ->has('calendar')
+            ->has('calendar.entity')
+            ->with(['calendar', 'calendar.entity', 'entity'])
+            ->sort(request()->only(['o', 'k']))
+            ->paginate();
+        @endphp
+        @if ($rows->count() > 0)
+            <div id="datagrid-parent" class="table-responsive">
+                @include('layouts.datagrid._table')
+            </div>
+        @endif
     @endif
 </div>
