@@ -44,8 +44,8 @@ use Laravel\Scout\Searchable as Scout;
 abstract class MiscModel extends Model
 {
     use Copiable;
-    use LastSync;
     use HasSuggestions;
+    use LastSync;
     use Orderable;
     use Paginatable;
     use Scout;

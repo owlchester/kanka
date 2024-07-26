@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\Limit;
 use App\Models\MapLayer;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -32,8 +31,7 @@ class StoreMapLayer extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable',
             'visibility_id' => 'nullable|exists:visibilities,id',
-            'image' => 'required_without:image_url|mimes:jpeg,png,jpg,gif,webp,svg|max:' . Limit::map()->upload(),
-            'image_url' => 'required_without:image|nullable|url|active_url',
+            'image_uuid' => 'required|exists:images,id',
             'position' => 'nullable|string|max:3',
             'type_id' => 'nullable|integer',
         ];
@@ -41,9 +39,8 @@ class StoreMapLayer extends FormRequest
         // If editing, don't need a new image
         /** @var MapLayer $self */
         $self = request()->route('map_layer');
-        if (!empty($self)) {
-            $rules['image'] = 'nullable|mimes:jpeg,png,jpg,gif,webp,svg|max:' . Limit::map()->upload();
-            $rules['image_url'] = 'nullable|url|active_url';
+        if ($self && !empty($self->image_path)) {
+            unset($rules['image_uuid']);
         }
 
         return $this->clean($rules);

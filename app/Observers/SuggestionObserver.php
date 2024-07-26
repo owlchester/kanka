@@ -25,6 +25,7 @@ class SuggestionObserver
             EntityCache::clearSuggestion($model);
         }
 
+        // @phpstan-ignore-next-line
         foreach ($model->getSuggestions() as $class => $call) {
             $cache = app($class);
             $cache::{$call}();

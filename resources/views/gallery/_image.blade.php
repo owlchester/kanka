@@ -8,7 +8,7 @@
     aria-label="{{ $image->name }}"
     data-id="{{ $image->id }}"
     data-url="{{ route('images.edit', [$campaign, $image]) }}"
-    @if ($image->is_folder) data-folder="{{ route('campaign.gallery.index', [$campaign, 'folder_id' => $image->id]) }}" @endif
+    @if ($image->is_folder) data-folder="{{ route('gallery', [$campaign, 'folder_id' => $image->id]) }}" @endif
     title="{{ $image->name }}">
     @if ($image->isFolder())
         <div class="w-full flex flex-col items-center gap-2">

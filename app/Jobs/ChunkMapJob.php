@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Map;
-use App\Services\Map\ChunkingService;
+use App\Services\Maps\ChunkingService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

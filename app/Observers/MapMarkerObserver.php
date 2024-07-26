@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Facades\Mentions;
 use App\Models\MapMarker;
-use App\Facades\MapMarkerCache;
 use enshrined\svgSanitize\Sanitizer;
 use Illuminate\Support\Str;
 

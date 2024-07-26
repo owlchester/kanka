@@ -31,6 +31,7 @@ Route::post('/w/{campaign}/maps/{map}/groups/reorder', 'Maps\Reorders\GroupContr
 
 Route::post('/w/{campaign}/maps/{map}/layers/bulk', 'Maps\Bulks\LayerController@index')->name('maps.layers.bulk');
 Route::post('/w/{campaign}/maps/{map}/layers/reorder', 'Maps\Reorders\LayerController@index')->name('maps.layers.reorder-save');
+Route::post('/w/{campaign}/maps/{map}/layers/{map_layer}/migrate', 'Maps\Layers\MigrateController@index')->name('maps.layers.migrate');
 
 Route::post('/w/{campaign}/maps/{map}/markers/bulk', 'Maps\Bulks\MarkerController@index')->name('maps.markers.bulk');
 

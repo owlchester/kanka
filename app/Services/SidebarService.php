@@ -328,7 +328,7 @@ class SidebarService
             'gallery' => [
                 'icon' => 'fa-duotone fa-images',
                 'label' => 'sidebar.gallery',
-                'route' => 'campaign.gallery.index',
+                'route' => 'gallery',
                 'perm' => 'gallery',
                 'module' => false,
             ],
