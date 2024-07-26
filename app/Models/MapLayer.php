@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $map_id
- * @property int|null $image_uuid
+ * @property string|null $image_uuid
  * @property string|null $image_path
  * @property string $name
  * @property string $entry
