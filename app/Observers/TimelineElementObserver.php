@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Facades\Mentions;
 use App\Models\TimelineElement;
-use App\Facades\TimelineElementCache;
 
 class TimelineElementObserver
 {

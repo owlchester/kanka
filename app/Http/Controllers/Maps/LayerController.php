@@ -126,13 +126,13 @@ class LayerController extends Controller
         $this->authorize('update', $map);
 
         // Migrate to gallery
-//        if (!empty($mapLayer->image_path)) {
-//            return view('maps.layers.migrate')
-//                ->with('campaign', $campaign)
-//                ->with('map', $map)
-//                ->with('layer', $mapLayer)
-//            ;
-//        }
+        //        if (!empty($mapLayer->image_path)) {
+        //            return view('maps.layers.migrate')
+        //                ->with('campaign', $campaign)
+        //                ->with('map', $map)
+        //                ->with('layer', $mapLayer)
+        //            ;
+        //        }
 
         $model = $mapLayer;
 

@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Enums\Visibility;
 use App\Facades\Mentions;
-use App\Facades\QuestCache;
 use App\Models\QuestElement;
 
 class QuestElementObserver

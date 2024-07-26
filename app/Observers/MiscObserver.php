@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\EntityCache;
 use App\Facades\EntityLogger;
 use App\Models\MiscModel;
 use App\Observers\Concerns\Copiable;
