@@ -11,15 +11,27 @@
         <p>
             <a href="{{ route('settings.subscription') }}" class="block">
                 {!! __('banners.blackfriday23', ['code' => '<code>BF2023</code>']) !!}
-            </a>        
+            </a>
         </p>
     </x-tutorial>
 @endif
 
+{{--@inject('countryService', 'App\Services\CountryService')--}}
+{{--@if ($countryService->getCountry() === 'BR')--}}
+
+{{--    <x-tutorial code="brl" type="info">--}}
+{{--        <p>--}}
+{{--            <a href="{{ route('settings.subscription') }}" class="block">--}}
+{{--                {!! __('banners.blackfriday23', ['code' => '<code>BF2023</code>']) !!}--}}
+{{--            </a>--}}
+{{--        </p>--}}
+{{--    </x-tutorial>--}}
+{{--@endif--}}
+
 @if (auth()->check() && in_array(app()->currentLocale(), ['nl']) && !auth()->user()->settings()->get('banner_translators_2024'))
     <x-tutorial code="banner_translators_2024" type="info">
         <p>
-            Kanka is community translated into <strong>{{ app()->currentLocale() === 'nl' ? 'Dutch' : 'Italian' }}</strong>, and is in need of new translators before April 2024. If you want to help keep Kanka available in Dutch, message us on <a href="{{ config('social.discord') }}" target="_blank">Discord</a>!   
+            Kanka is community translated into <strong>{{ app()->currentLocale() === 'nl' ? 'Dutch' : 'Italian' }}</strong>, and is in need of new translators before April 2024. If you want to help keep Kanka available in Dutch, message us on <a href="{{ config('social.discord') }}" target="_blank">Discord</a>!
         </p>
     </x-tutorial>
 @endif

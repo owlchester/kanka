@@ -22,9 +22,10 @@ class MapLayerObserver
         if (!empty($mapLayer->position)) {
             $mapLayer->position = (int) $mapLayer->position;
         } else {
+            /** @var MapLayer|null $lastLayer */
             $lastLayer = $mapLayer->map->layers()->orderByDesc('position')->first();
             if ($lastLayer) {
-                $mapLayer->position = (int)$lastLayer->position + 1;
+                $mapLayer->position = (int) $lastLayer->position + 1;
             } else {
                 $mapLayer->position = 1;
             }
@@ -34,17 +35,6 @@ class MapLayerObserver
         if ($mapLayer->type_id > 2) {
             $mapLayer->type_id = null;
         }
-
-        // When saving a map layer that has an image but no height, force the height and width
-        // attribute to null to be handled in the ImageHandler. It uses getAttributes on the
-        // model but these aren't present for some reason.
-        if (empty($mapLayer->height)) {
-            $mapLayer->height = 0;
-            $mapLayer->width = 0;
-        }
-
-        // Handle image. Let's use a service for this.
-        Images::handle($mapLayer, 'map_layers');
     }
 
     /**

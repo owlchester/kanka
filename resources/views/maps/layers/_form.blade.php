@@ -42,9 +42,11 @@ $typeOptions = [
         <x-forms.select name="position" :options="$options" :selected="$model->position ?? $last" />
     </x-forms.field>
 
+    @if (!$model || empty($model->image_path))
     <div class="col-span-2">
-    @include('cruds.fields.image', ['fieldname' => 'image_uuid', 'size' => 'map'])
+        @include('cruds.fields.image', ['fieldname' => 'image_uuid', 'size' => 'map'])
     </div>
+    @endif
 </x-grid>
 
 @include('editors.editor')
