@@ -54,6 +54,6 @@ class FolderController extends Controller
         }
 
         return redirect()
-            ->route('campaign.gallery.index', $params);
+            ->route('gallery', $params);
     }
 }

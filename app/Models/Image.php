@@ -38,6 +38,7 @@ use Illuminate\Support\Facades\Storage;
  * @property Image[] $folders
  * @property Image[] $images
  * @property Entity[] $entities
+ * @property MapLayer[] $mapLayers
  * @property Inventory[] $inventories
  * @property Entity[] $headers
  *
@@ -104,6 +105,11 @@ class Image extends Model
     public function entities(): HasMany
     {
         return $this->hasMany(Entity::class, 'image_uuid', 'id');
+    }
+
+    public function mapLayers(): HasMany
+    {
+        return $this->hasMany(MapLayer::class, 'image_uuid', 'id');
     }
 
     public function inventories(): HasMany

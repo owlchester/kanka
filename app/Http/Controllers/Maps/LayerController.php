@@ -30,7 +30,7 @@ class LayerController extends Controller
         $this->rows = $map
             ->layers()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
-            ->with(['map'])
+            ->with(['map', 'image'])
             ->paginate(15);
         if (request()->ajax()) {
             return $this
@@ -90,7 +90,7 @@ class LayerController extends Controller
         }
 
         $model = new MapLayer();
-        $data = $request->only('name', 'position', 'entry', 'visibility_id', 'type_id');
+        $data = $request->only('name', 'position', 'entry', 'visibility_id', 'type_id', 'image_uuid');
         if (Arr::exists($data, 'position')) {
             $map->layers()->where('position', '>', $data['position'] - 1)->increment('position');
         }
@@ -125,6 +125,15 @@ class LayerController extends Controller
     {
         $this->authorize('update', $map);
 
+        // Migrate to gallery
+        if (!empty($mapLayer->image_path)) {
+            return view('maps.layers.migrate')
+                ->with('campaign', $campaign)
+                ->with('map', $map)
+                ->with('layer', $mapLayer)
+            ;
+        }
+
         $model = $mapLayer;
 
         return view(
@@ -145,7 +154,7 @@ class LayerController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $mapLayer->update($request->only('name', 'position', 'entry', 'visibility_id', 'type_id'));
+        $mapLayer->update($request->only('name', 'position', 'entry', 'visibility_id', 'type_id', 'image_uuid'));
 
         if ($request->has('submit-update')) {
             return redirect()

@@ -33,14 +33,19 @@ if (isset($single) && $single) {
 
     /** Layers Init **/
 @foreach ($map->layers as $layer)
-    @if (empty($layer->image))
+    @if (!$layer->hasImage()))
         @continue
     @endif
-    var layer{{ $layer->id }} = L.imageOverlay('{{ Storage::url($layer->image) }}', bounds{{ $map->id }});
+    @if ($layer->image)
+        var layer{{ $layer->id }} = L.imageOverlay('{{ $layer->image->url() }}', bounds{{ $map->id }});
+    @else
+        var layer{{ $layer->id }} = L.imageOverlay('{{ Storage::url($layer->image_path) }}', bounds{{ $map->id }});
+    @endif
 @endforeach
 
     var baseMaps{{ $map->id }} = {
-@foreach ($map->layers->where('type_id', '<', 1)->whereNotNull('image')->sortBy('position') as $layer)
+@foreach ($map->layers->where('type_id', '<', 1)->sortBy('position') as $layer)
+@if (!$layer->hasImage())) @continue @endif
         "{{ $layer->name }}": layer{{ $layer->id }},
 @endforeach
         "{{ __('maps/layers.base') }}": baseLayer{{ $map->id }}
@@ -57,7 +62,8 @@ if (isset($single) && $single) {
 @endforeach
 
     var overlayMaps{{ $map->id }} = {
-@foreach($map->layers->where('type_id', '>', 0)->whereNotNull('image')->sortBy('position') as $layer)
+@foreach($map->layers->where('type_id', '>', 0)->sortBy('position') as $layer)
+@if (!$layer->hasImage())) @continue @endif
         "{{ $layer->name }} ({{ $layer->position }})": layer{{ $layer->id }},
 @endforeach
 @foreach($map->groups->sortBy('position') as $group)

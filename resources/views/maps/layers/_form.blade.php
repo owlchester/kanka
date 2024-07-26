@@ -43,7 +43,7 @@ $typeOptions = [
     </x-forms.field>
 
     <div class="col-span-2">
-    @include('cruds.fields.image', ['imageRequired' => empty($model), 'size' => 'map', 'gallery' => false, 'removable' => false])
+    @include('cruds.fields.image', ['fieldname' => 'image_uuid', 'size' => 'map'])
     </div>
 </x-grid>
 

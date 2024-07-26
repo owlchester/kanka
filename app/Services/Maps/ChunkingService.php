@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Map;
+namespace App\Services\Maps;
 
 use App\Models\Map;
 use App\Notifications\Header;
@@ -12,8 +12,7 @@ use Exception;
 
 class ChunkingService
 {
-    /** @var Map */
-    protected $map;
+    protected Map $map;
 
     /** @var \Intervention\Image\Image */
     protected $original;
