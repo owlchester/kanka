@@ -12,6 +12,7 @@ class Tags extends Component
     public string $id;
     public ?string $label;
     public ?string $dropdownParent;
+    public mixed $tags;
 
     /**
      * Create a new component instance.
