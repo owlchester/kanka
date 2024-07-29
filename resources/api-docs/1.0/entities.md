@@ -13,6 +13,7 @@
 - [Transfer Entities](#transfer-entities)
 - [Deleted Entities](#deleted-entities)
 - [Recover Deleted Entities](#recover-entities)
+- [Slim Entities](#slim-entities)
 
 
 <a name="entities"></a>
@@ -414,3 +415,47 @@ You can post an array with the ids of the entities you want to recover to the `/
 ### Result
 
 > {success} Code 200 with JSON.
+
+
+<a name="slim-entities"></a>
+## Slim entities
+
+Sometimes you just want a list of entities with a few basic fields, rather than the whole model and its associated data. For this, you have the `slim-entities` endpoint. This endpoint can return up to 250 results per page, and is useful when wanting to import a large number of entities into an external service.
+
+| Method | URI             | Headers |
+|:-------|:----------------|  :-  |
+| GET    | `slim-entities` | Default |
+
+| Parameter  | Type  | Description                                                                        
+|:-----------|:------|:-----------------------------------------------------------------------------------|
+| `per_page` | `int` | Number of entities per returned page. Min is `45`, max is `250`. Defaults to `45`. |
+
+### Result
+
+```json
+{
+    "data" : [
+        {
+            "id": 1,
+            "name": "Genory (example)",
+            "type_id": 3,
+            "child_id": 1,
+            "is_private": false,
+            "images": {
+                "thumbnail": "40x40 thumbnail path",
+                "original": "fullsized image path"
+            },
+            "urls": {
+                "view": "https://app.kanka.io/w/1/entities/1",
+                "api": "https://api.kanka.io/1.0/campaigns/1/entities/1"
+            },
+            "timestamps": {
+                "created_at": "2024-07-17T15:41:15.000000Z",
+                "updated_at": "2024-07-21T17:33:51.000000Z"
+            }
+        }
+    ],
+    "links": {},
+    "metadata": []
+}
+```

@@ -13,14 +13,14 @@ trait Paginatable
 
     /**
      */
-    public function getPerPage()
+    public function getPerPage(): int
     {
         $pageSize = 15;
 
         if (auth()->check()) {
-            $pageSize = auth()->user()->pagination;
             /** @var PaginationService $pagService */
             $pagService = app()->make(PaginationService::class);
+            $pageSize = auth()->user()->pagination;
             $this->pageSizeMax = $pagService->max();
         }
 

@@ -24,12 +24,16 @@ class SlimEntityResource extends JsonResource
             'child_id' => $entity->entity_id,
             'is_private' => (bool) $entity->is_private,
             'images' => [
-                'thumbnail' => Avatar::entity($entity)->size(40)->thumbnail(),
-                'original' => Avatar::entity($entity)->original(),
+                'thumbnail' => Avatar::entity($entity)->size(40)->thumbnail() ?: null,
+                'original' => Avatar::entity($entity)->original() ?: null,
             ],
             'urls' => [
                 'view' => $url,
                 'api' => url('/1.0/campaigns/' . $entity->campaign_id . '/entities/' . $entity->id),
+            ],
+            'timestamps' => [
+                'created_at' => $entity->created_at,
+                'updated_at' => $entity->updated_at,
             ]
         ];
     }
