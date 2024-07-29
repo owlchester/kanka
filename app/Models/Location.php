@@ -181,7 +181,7 @@ class Location extends MiscModel
     /**
      * Get all events in the location and descendants
      */
-    public function allEvents(): Builder
+    public function allEvents(): Builder|Event
     {
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {
@@ -197,7 +197,7 @@ class Location extends MiscModel
     /**
      * Get all characters in the location and descendants
      */
-    public function allCharacters(): Builder
+    public function allCharacters(): Builder|Character
     {
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {
