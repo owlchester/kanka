@@ -9,20 +9,18 @@ use Illuminate\View\Component;
 
 class Tutorial extends Component
 {
-    public string $code;
-    public ?string $doc;
     public string $id;
-    public ?string $type;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(string $code, ?string $doc = null, ?string $type = null)
-    {
-        $this->code = $code;
-        $this->doc = $doc;
+    public function __construct(
+        public string $code,
+        public ?string $doc = null,
+        public ?string $type = null,
+        public bool $auth = true
+    ) {
         $this->id = uniqid($code . '-');
-        $this->type = $type;
     }
 
     /**
@@ -30,10 +28,10 @@ class Tutorial extends Component
      */
     public function render(): View|Closure|string
     {
-        if (!auth()->check()) {
+        if ($this->auth && !auth()->check()) {
             return '';
         }
-        if (UserCache::dismissedTutorial($this->code)) {
+        if (auth()->check() && UserCache::dismissedTutorial($this->code)) {
             return '';
         }
         return view('components.tutorial');
