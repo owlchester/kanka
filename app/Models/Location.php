@@ -30,6 +30,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Map[]|Collection $maps
  * @property Location[]|Collection $descendants
  * @property Location[]|Collection $locations
+ * @property Event[]|Collection $events
  * @property Character[]|Collection $characters
  * @property Organisation[]|Collection $organisations
  * @property Creature[]|Collection $creatures
@@ -178,9 +179,25 @@ class Location extends MiscModel
     }
 
     /**
+     * Get all events in the location and descendants
+     */
+    public function allEvents(): Builder|Event
+    {
+        $locationIds = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $locationIds[] = $descendant->id;
+        };
+
+        $table = new Event();
+        return Event::whereIn($table->getTable() . '.location_id', $locationIds)
+            ->with('location')
+            ->has('entity');
+    }
+
+    /**
      * Get all characters in the location and descendants
      */
-    public function allCharacters()
+    public function allCharacters(): Builder|Character
     {
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {
@@ -201,7 +218,7 @@ class Location extends MiscModel
     /**
      * Get all families in the location and descendants
      */
-    public function allFamilies()
+    public function allFamilies(): Builder
     {
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {

@@ -24,7 +24,6 @@ class SuggestionObserver
         if ($model instanceof MiscModel) {
             EntityCache::clearSuggestion($model);
         }
-
         // @phpstan-ignore-next-line
         foreach ($model->getSuggestions() as $class => $call) {
             $cache = app($class);

@@ -153,6 +153,21 @@ class Event extends MiscModel
     }
 
     /**
+     */
+    public function scopeFilteredEvents(Builder $query): Builder
+    {
+        // @phpstan-ignore-next-line
+        return $query
+            ->select(['id', 'name', 'date', 'type', 'location_id', 'is_private'])
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->with([
+                'location', 'location.entity',
+                'parent', 'parent.entity',
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
+            ->has('entity');
+    }
+
+    /**
      * Get the entity_type id from the entity_types table
      */
     public function entityTypeId(): int

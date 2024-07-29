@@ -88,6 +88,21 @@
 
         @endphp
         @include('locations.panels.characters')
+    @elseif ($post->layout?->code == 'location_events')
+        @php
+            $options = [$campaign, 'location' => $entity->child];
+
+            Datagrid::layout(\App\Renderers\Layouts\Location\Event::class)
+                ->route('locations.events', $options);
+
+            $rows = $entity->child
+                ->allEvents()
+                ->filteredEvents()
+                ->paginate();
+            $rows->withPath(route('locations.events', $options));
+
+        @endphp
+        @include('locations.panels.events')
     @elseif ($post->layout?->code == 'reminders')
         @php
         Datagrid::layout(\App\Renderers\Layouts\Entity\Reminder::class)
