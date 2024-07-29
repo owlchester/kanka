@@ -30,11 +30,6 @@ class Character extends Layout
                     return $model->type;
                 },
             ],
-            'families' => [
-                'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
-                'render' => Standard::ENTITYLIST,
-                'with' => ['characterFamilies', 'family'],
-            ],
             'location' => [
                 'key' => 'location.name',
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
@@ -42,6 +37,11 @@ class Character extends Layout
                 'visible' => function () {
                     return !request()->has('location_id');
                 }
+            ],
+            'families' => [
+                'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
+                'render' => Standard::ENTITYLIST,
+                'with' => ['characterFamilies', 'family'],
             ],
             'races' => [
                 'label' => Module::plural(config('entities.ids.race'), 'entities.races'),

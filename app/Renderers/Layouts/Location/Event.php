@@ -31,14 +31,6 @@ class Event extends Layout
                 'key' => 'date',
                 'label' => 'events.fields.date',
             ],
-            'event' => [
-                'key' => 'parent.name',
-                'label' => 'crud.fields.parent',
-                'render' => Standard::ParentLink,
-                'visible' => function () {
-                    return !request()->has('parent_id');
-                }
-            ],
             'tags' => [
                 'render' => Standard::TAGS
             ]
