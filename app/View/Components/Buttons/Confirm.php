@@ -10,36 +10,19 @@ class Confirm extends Component
 {
     use Colours;
 
-    public ?string $type;
-    public bool $full;
-    public bool $outline;
-    public ?string $target;
-    public ?string $name;
-    public ?string $size;
-    public ?string $dismiss;
-    public ?string $id;
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $type = null,
-        string $target = null,
-        bool $full = false,
-        bool $outline = false,
-        string $name = null,
-        string $size = null,
-        string $dismiss = null,
-        string $id = null,
+        public ?string $type = null,
+        public ?string $target = null,
+        public bool $full = false,
+        public bool $outline = false,
+        public ?string $name = null,
+        public ?string $size = null,
+        public ?string $dismiss = null,
+        public ?string $id = null,
     ) {
-        $this->type = $type;
-        $this->full = $full;
-        $this->outline = $outline;
-        $this->target = $target;
-        $this->name = $name;
-        $this->size = $size;
-        $this->dismiss = $dismiss;
-        $this->id = $id;
     }
 
     /**

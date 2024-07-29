@@ -9,17 +9,14 @@ use Illuminate\View\Component;
 
 class Thumbnail extends Component
 {
-    public int $size;
-    public string $title;
-    public Entity $entity;
     /**
      * Create a new component instance.
      */
-    public function __construct(Entity $entity, string $title = null, int $size = 40)
-    {
-        $this->entity = $entity;
-        $this->title = $title;
-        $this->size = $size;
+    public function __construct(
+        public Entity $entity,
+        public ?string $title = null,
+        public int $size = 40
+    ) {
     }
 
     /**

@@ -10,42 +10,27 @@ use Illuminate\View\Component;
 class Tags extends Component
 {
     public string $id;
-    public Campaign $campaign;
-    public bool $allowNew;
-    public bool $allowClear;
-    public bool $enableAuto;
     public ?string $label;
-    public ?string $helper;
     public ?string $dropdownParent;
-    public mixed $options;
-    public mixed $tags;
-    public mixed $model;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
-        Campaign $campaign,
-        string $id = null,
-        bool $allowNew = false,
-        bool $allowClear = false,
-        bool $enableAuto = false,
-        string $label = null,
-        mixed $model = null,
-        string $helper = null,
-        string $dropdownParent = null,
-        mixed $options = [],
+        public Campaign $campaign,
+        ?string $id = null,
+        ?string $label = null,
+        ?string $dropdownParent = null,
+        public bool $allowNew = false,
+        public bool $allowClear = false,
+        public bool $enableAuto = false,
+        public mixed $model = null,
+        public ?string $helper = null,
+        public mixed $options = [],
     ) {
-        $this->campaign = $campaign;
         $this->id = $id ?? 'tags_' . uniqid();
-        $this->allowNew = $allowNew;
-        $this->allowClear = $allowClear;
-        $this->enableAuto = $enableAuto;
         $this->label = $label ?? __('entities.tags');
-        $this->helper = $helper;
         $this->dropdownParent = $dropdownParent ?? '#app';
-        $this->options = $options;
-        $this->model = $model;
     }
 
     /**

@@ -8,15 +8,12 @@ use Illuminate\View\Component;
 
 class Child extends Component
 {
-    public mixed $id;
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        mixed $id
+        public mixed $id
     ) {
-        $this->id = $id;
     }
 
     /**
