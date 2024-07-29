@@ -14,7 +14,7 @@ class EntityLink extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public Entity $entity,
+        public Entity|null $entity,
         public Campaign $campaign,
         public ?string $name = null,
         public bool $bottom = false,
@@ -27,6 +27,9 @@ class EntityLink extends Component
      */
     public function render(): View|Closure|string
     {
+        if (empty($this->entity)) {
+            return '';
+        }
         return view('components.entity-link');
     }
 

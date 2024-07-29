@@ -11,6 +11,9 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -202,59 +205,39 @@ class Map extends MiscModel
         return ['map_id', 'location_id'];
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function map()
+    public function map(): BelongsTo
     {
         return $this->belongsTo('App\Models\Map', 'map_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function location()
+    public function location(): BelongsTo
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function maps()
+    public function maps(): HasMany
     {
         return $this->hasMany('App\Models\Map', 'map_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function layers()
+    public function layers(): HasMany
     {
-        return $this->hasMany('App\Models\MapLayer', 'map_id', 'id');
+        return $this->hasMany('App\Models\MapLayer', 'map_id', 'id')
+            ->with('image');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function groups()
+    public function groups(): HasMany
     {
         return $this->hasMany('App\Models\MapGroup', 'map_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function markers()
+    public function markers(): HasMany
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
             ->with(['entity', 'group', 'map', 'entity.image']);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function center_marker()
+    public function center_marker(): HasOne
     {
         return $this->hasOne('App\Models\MapMarker', 'id', 'center_marker_id');
     }
@@ -582,12 +565,12 @@ class Map extends MiscModel
             $newSub = $sub->replicate(['map_id']);
             $newSub->map_id = $target->id;
 
-            if (!empty($sub->image) && Storage::exists($sub->image)) {
+            if (!empty($sub->image_path) && Storage::exists($sub->image_path)) {
                 $uniqid = uniqid();
-                $newPath = str_replace('.', $uniqid . '.', $sub->image);
-                $newSub->image = $newPath;
+                $newPath = str_replace('.', $uniqid . '.', $sub->image_path);
+                $newSub->image_path = $newPath;
                 if (!Storage::exists($newPath)) {
-                    Storage::copy($sub->image, $newPath);
+                    Storage::copy($sub->image_path, $newPath);
                 }
             }
             $newSub->saveQuietly();

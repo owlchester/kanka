@@ -2,10 +2,6 @@
 if (!isset($entity) && isset($model) && !empty($model->entity)) {
     $entity = $model->entity;
 }
-/**
- * Options:
- * bool $imageRequired set to true if the image is required and can't be removed
- */
 $formats = 'PNG, JPG, GIF, WebP';
 $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp';
 $max = 25;
@@ -29,13 +25,13 @@ if (!empty($entity) && $entity->hasImage()) {
 
 // If the image is from the gallery and the user can't browse or upload, disable the field
 $canBrowse = isset($campaign) && auth()->user()->can('browse', [\App\Models\Image::class, $campaign]);
+$fieldname = $fieldname ?? 'entity_image_uuid';
 if (!empty($entity) && !empty($entity->image) && !$canBrowse) {
-    ?><input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" /><?php
+    ?><input type="hidden" name="{{ $fieldname }}" value="{{ $model->entity->image_uuid }}" /><?php
     return;
 }
 
-$old = isset($entity) && !empty($entity->image_path);
-
+$old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty($model->image_path);
 
 ?>
 @php
@@ -73,7 +69,7 @@ $old = isset($entity) && !empty($entity->image_path);
             url="{{ route('gallery.upload.url', [$campaign]) }}"
             accepts="{{ $inputFileTypes }}"
             uuid="{{ $entity->image_uuid ?? $source->entity->image_uuid ?? null }}"
-            field="entity_image_uuid"
+            field="{{ $fieldname }}"
             thumbnail="{{ $previewThumbnail }}"
             browse="{{ route('gallery.browse', [$campaign]) }}"
             old="{{ $old ? 'true' : 'false' }}"

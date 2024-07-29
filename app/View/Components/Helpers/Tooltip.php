@@ -8,16 +8,13 @@ use Illuminate\View\Component;
 
 class Tooltip extends Component
 {
-    public string $title;
-    public bool $html;
-
     /**
      * Create a new component instance.
      */
-    public function __construct(string $title, bool $html = false)
-    {
-        $this->title = $title;
-        $this->html = $html;
+    public function __construct(
+        public string $title,
+        public bool $html = false
+    ) {
     }
 
     /**

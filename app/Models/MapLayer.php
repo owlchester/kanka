@@ -12,6 +12,7 @@ use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class MapLayer
@@ -19,15 +20,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @property int $id
  * @property int $map_id
+ * @property string|null $image_uuid
+ * @property string|null $image_path
  * @property string $name
  * @property string $entry
- * @property string $image
  * @property int $position
  * @property int $height
  * @property int $width
  * @property int|null $type_id
  *
  * @property Map $map
+ * @property Image $image
  *
  * @method static self|Builder ordered()
  */
@@ -42,8 +45,8 @@ class MapLayer extends Model
     protected $fillable = [
         'map_id',
         'name',
+        'image_uuid',
         'entry',
-        'image',
         'position',
         'visibility_id',
         'type_id',
@@ -58,18 +61,20 @@ class MapLayer extends Model
         'visibility_id' => \App\Enums\Visibility::class,
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function map()
+    public function map(): BelongsTo
     {
         return $this->belongsTo(Map::class, 'map_id');
     }
 
+    public function image(): BelongsTo
+    {
+        return $this->belongsTo(Image::class, 'image_uuid');
+    }
+
     /**
-     * @return Builder
+     * Default order maps based on their position field
      */
-    public function scopeOrdered(Builder $query)
+    public function scopeOrdered(Builder $query): Builder
     {
         return $query
             ->orderByDesc('position')
@@ -78,11 +83,13 @@ class MapLayer extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @return string
      */
-    public function thumbnail(int $width = 400, ?int $height = null)
+    public function thumbnail(int $width = 400, ?int $height = null): string
     {
-        return Img::crop($width, (!empty($height) ? $height : $width))->url($this->image);
+        if ($this->image) {
+            return $this->image->getUrl($width, $height);
+        }
+        return Img::crop($width, (!empty($height) ? $height : $width))->url($this->image_path);
     }
 
     /**
@@ -124,6 +131,11 @@ class MapLayer extends Model
     {
         $campaign = CampaignLocalization::getCampaign();
         return route('maps.map_layers.edit', [$campaign, 'map' => $this->map_id, $this->id]);
+    }
+
+    public function hasImage(): bool
+    {
+        return $this->image || !empty($this->image_path);
     }
 
     /**
