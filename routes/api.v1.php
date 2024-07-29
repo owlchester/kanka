@@ -126,3 +126,5 @@ Route::get('version', function () {
 Route::get('entity-types', [App\Http\Controllers\Api\v1\EntityTypeApiController::class, 'index']);
 Route::get('filters', [App\Http\Controllers\Api\v1\FilterApiController::class, 'index']);
 Route::get('filters/{entityType}', [App\Http\Controllers\Api\v1\FilterApiController::class, 'show']);
+
+Route::get('campaigns/{campaign}/slim-entities', [App\Http\Controllers\Api\v1\Entities\SlimController::class, 'index']);

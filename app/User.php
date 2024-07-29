@@ -198,7 +198,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isSubscriber(): bool
     {
-        return $this->hasRole(Pledge::ROLE) || $this->hasRole('admin') || $this->onTrial();
+        return $this->hasRole(Pledge::ROLE) || $this->hasRole('admin');
     }
 
     /**

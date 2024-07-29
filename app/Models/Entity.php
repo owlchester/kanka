@@ -113,11 +113,10 @@ class Entity extends Model
      */
     public $permissionGrantSelf = false;
 
-    /** @var bool|string */
-    protected $cachedPluralName = false;
+    protected string $cachedPluralName;
 
-    /** @var bool|string the entity type string */
-    protected $cachedType = false;
+    /** the entity type string */
+    protected string $cachedType;
 
     /**
      * Get the child entity
@@ -188,9 +187,9 @@ class Entity extends Model
 
 
     /**
-     * @return string
+     * Get a link to the entity's overview or subpage
      */
-    public function url(string $action = 'show', array $options = [])
+    public function url(string $action = 'show', array $options = []): string
     {
         $campaign = CampaignLocalization::getCampaign();
         try {
@@ -211,7 +210,7 @@ class Entity extends Model
      */
     public function pluralType(): string
     {
-        if ($this->cachedPluralName !== false) {
+        if (isset($this->cachedPluralName)) {
             return $this->cachedPluralName;
         }
         return $this->cachedPluralName = Str::plural($this->type());
@@ -245,7 +244,7 @@ class Entity extends Model
      */
     public function type(): string
     {
-        if ($this->cachedType !== false) {
+        if (isset($this->cachedType)) {
             return $this->cachedType;
         }
         $type = array_search($this->type_id, config('entities.ids'));
@@ -254,8 +253,8 @@ class Entity extends Model
 
     public function cleanCache(): self
     {
-        $this->cachedType = false;
-        $this->cachedPluralName = false;
+        unset($this->cachedType);
+        unset($this->cachedPluralName);
         return $this;
     }
 

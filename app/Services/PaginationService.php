@@ -8,7 +8,8 @@ namespace App\Services;
  */
 class PaginationService
 {
-    public const MAX = 100;
+    public int $max = 45;
+    public int $subMax = 100;
 
     /**
      * List of available options for pagination
@@ -19,11 +20,11 @@ class PaginationService
             null => __('settings/appearance.values.pagination', ['amount' => 15]),
             25 => __('settings/appearance.values.pagination', ['amount' => 25]),
             45 => __('settings/appearance.values.pagination', ['amount' => 45]),
-            self::MAX => __('settings/appearance.values.pagination', ['amount' => self::MAX])
+            $this->subMax => __('settings/appearance.values.pagination', ['amount' => $this->subMax])
         ];
 
         if (!auth()->user()->isSubscriber()) {
-            $options[self::MAX] = __('settings/appearance.values.pagination-sub', ['amount' => self::MAX]);
+            $options[$this->subMax] = __('settings/appearance.values.pagination-sub', ['amount' => $this->subMax]);
         }
 
         return $options;
@@ -36,8 +37,8 @@ class PaginationService
     {
         $disabled = [];
 
-        if (auth()->user()->isSubscriber()) {
-            $disabled[self::MAX] = ['disabled' => true];
+        if (!auth()->user()->isSubscriber()) {
+            $disabled[$this->subMax] = ['disabled' => true];
         }
 
         return $disabled;
@@ -48,6 +49,6 @@ class PaginationService
      */
     public function max(): int
     {
-        return auth()->check() && auth()->user()->isSubscriber() ? self::MAX : 45;
+        return auth()->check() && auth()->user()->isSubscriber() ? $this->subMax : $this->max;
     }
 }

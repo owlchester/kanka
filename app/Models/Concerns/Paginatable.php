@@ -19,6 +19,7 @@ trait Paginatable
 
         if (auth()->check()) {
             $pageSize = auth()->user()->pagination;
+            /** @var PaginationService $pagService */
             $pagService = app()->make(PaginationService::class);
             $this->pageSizeMax = $pagService->max();
         }
@@ -35,5 +36,11 @@ trait Paginatable
         }
 
         return min(max($pageSize, $this->pageSizeMinimum), $this->pageSizeMax);
+    }
+
+    public function maxPagination(int $max): self
+    {
+        $this->pageSizeMax = max($max, 45);
+        return $this;
     }
 }
