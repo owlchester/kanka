@@ -21,6 +21,9 @@ class SanitizedObserver
                     continue;
                 }
                 $array = $model->{$segments[0]};
+                if (!isset($array[$segments[1]])) {
+                    continue;
+                }
                 $array[$segments[1]] = $this->purify($model->{$segments[0]}[$segments[1]]);
                 $model->{$segments[0]} = $array;
             } else {
