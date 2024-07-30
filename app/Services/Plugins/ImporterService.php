@@ -386,7 +386,7 @@ class ImporterService
     protected function importImage(MiscModel $model, PluginVersionEntity $entity): MiscModel
     {
         // Don't do anything if no image or replacing an image (too many false positives)
-        if ((empty($entity->image_path) || !empty($model->entity->image_path) || !empty($model->entity->image_uuid))) {
+        if (empty($entity->image_path) || !empty($model->entity->image_path) || !empty($model->entity->image_uuid)) {
             return $model;
         }
 
@@ -410,7 +410,6 @@ class ImporterService
             $model->entity->image_uuid = $image->id;
             $model->entity->save();
         } catch (Exception $e) {
-            echo($e->getMessage());
             Log::error('Error importing image from ' . $entity->id . ': ' . $e->getMessage());
         }
 
