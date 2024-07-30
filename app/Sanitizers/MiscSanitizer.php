@@ -22,7 +22,7 @@ class MiscSanitizer
 
     public function sanitize(): array
     {
-        $this->data['slug'] = Str::slug($this->request['name'], '');
+        $this->data['slug'] = Str::slug($this->request->get('name', ''), '');
 
         return $this->data;
     }
