@@ -4,22 +4,26 @@ use Illuminate\Http\UploadedFile;
 
 it('POSTS a new image')
     ->asUser(true)
-    ->withCampaign(['boost_count' => 4])
     ->postJson('/api/1.0/campaigns/1/images', [
         //'folder_id' => 1,
-        'file' => [UploadedFile::fake()->image('avatar.jpg')]
+        'file' => [
+            UploadedFile::fake()->image('avatar.jpg')
+        ]
     ])
-    ->assertStatus(201)
+    ->assertStatus(200)
     ->assertJsonStructure([
         'data' => [
-            'name',
+            '*' => [
+                'id',
+                'name',
+                'path'
+            ]
         ]
     ])
 ;
 
 it('GETS all images')
     ->asUser(true)
-    ->withCampaign(['boost_count' => 4])
     ->withImages()
     ->get('/api/1.0/campaigns/1/images')
     ->assertStatus(200)
@@ -35,7 +39,6 @@ it('GETS all images')
 
 it('GETS a specific image')
     ->asUser(true)
-    ->withCampaign(['boost_count' => 4])
     ->withImages()
     ->get('/api/1.0/campaigns/1/images/1')
     ->assertStatus(200)
@@ -49,7 +52,6 @@ it('GETS a specific image')
 
 it('UPDATES a valid image')
     ->asUser(true)
-    ->withCampaign(['boost_count' => 4])
     ->withImages()
     ->putJson('/api/1.0/campaigns/1/images/1', ['name' => 'bob', 'content' => 'content', 'is_enabled' => true])
     ->assertStatus(200)
@@ -58,7 +60,6 @@ it('UPDATES a valid image')
 
 it('DELETES a image')
     ->asUser(true)
-    ->withCampaign(['boost_count' => 4])
     ->withImages()
     ->delete('/api/1.0/campaigns/1/images/1')
     ->assertStatus(204)
@@ -66,7 +67,6 @@ it('DELETES a image')
 
 it('DELETES an invalid image')
     ->asUser(true)
-    ->withCampaign(['boost_count' => 4])
     ->withImages()
     ->delete('/api/1.0/campaigns/1/images/100')
     ->assertStatus(404)
@@ -74,7 +74,6 @@ it('DELETES an invalid image')
 
 it('cant GET a image as a player')
     ->asUser(true)
-    ->withCampaign(['boost_count' => 4])
     ->withImages()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/images/1')
