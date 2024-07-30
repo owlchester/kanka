@@ -88,7 +88,7 @@ onMounted(() => {
 
 
 const backgroundClass = () => {
-    let css = 'relative flex items-end align-middle rounded overflow-hidden'
+    let css = 'relative flex items-end align-middle rounded overflow-hidden bg-no-repeat '
 
     if (!hasPreview()) {
         css += 'w-full'

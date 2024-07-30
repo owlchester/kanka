@@ -169,7 +169,7 @@ $sizeOptions = [
 <div id="marker-main-fields" class="flex flex-col gap-5 w-full">
     <x-grid>
         <x-forms.field field="name" :label="__('crud.fields.name')">
-            <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/markers.placeholders.name') }}" value="{!! old('name', $source->name ?? $model->name ?? null) !!}" id="name" />
+            <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/markers.placeholders.name') }}" value="{!! htmlspecialchars(old('name', $source->name ?? $model->name ?? null)) !!}" id="name" />
         </x-forms.field>
 
         @include('cruds.fields.entity')

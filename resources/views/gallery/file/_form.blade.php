@@ -69,7 +69,7 @@
 
             @can('edit', [$image, $campaign])
             <x-forms.field field="name" :label="__('crud.fields.name')" :required="true">
-                <input type="text" name="name" maxlength="45" required value="{!! old('name', $image->name ?? null) !!}" />
+                <input type="text" name="name" maxlength="45" required value="{!! htmlspecialchars(old('name', $image->name ?? null)) !!}" />
             </x-forms.field>
 
             @if(!$image->isFolder())

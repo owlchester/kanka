@@ -17,7 +17,7 @@ if (!empty($era)) {
     </x-forms.field>
 
     <x-forms.field field="name" :label="__('crud.fields.name')">
-        <input type="text" name="name" placeholder="{{ __('timelines/elements.placeholders.name') }}" value="{!! old('name', $model->name ?? null) !!}" maxlength="191" />
+        <input type="text" name="name" placeholder="{{ __('timelines/elements.placeholders.name') }}" value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" maxlength="191" />
     </x-forms.field>
 
     @include('cruds.fields.entity')

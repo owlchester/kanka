@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 
 class MapMarkerObserver
 {
+    use PurifiableTrait;
+
     /**
      */
     public function saving(MapMarker $mapMarker)

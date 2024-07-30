@@ -8,6 +8,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,7 @@ class MapLayer extends Model
     use HasEntry;
     use HasFactory;
     use Paginatable;
+    use Sanitizable;
     use SortableTrait;
     use VisibilityIDTrait;
 
@@ -61,6 +63,10 @@ class MapLayer extends Model
 
     public $casts = [
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $sanitizable = [
+        'name',
     ];
 
     public function map(): BelongsTo

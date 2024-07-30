@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Sanitizable;
 use App\Traits\VisibilityIDTrait;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -30,6 +31,7 @@ class MapGroup extends Model
     use Blameable;
     use HasFactory;
     use Paginatable;
+    use Sanitizable;
     use SortableTrait;
     use VisibilityIDTrait;
 
@@ -48,6 +50,10 @@ class MapGroup extends Model
 
     public $casts = [
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $sanitizable = [
+        'name',
     ];
 
     /**
