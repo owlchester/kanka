@@ -445,7 +445,7 @@ abstract class TestCase extends BaseTestCase
     {
         Post::factory()
             ->count(5)
-            ->create(['entity_id' => 1] + $extra);
+            ->create(['entity_id' => 1, 'is_template' => false] + $extra);
         return $this;
     }
 

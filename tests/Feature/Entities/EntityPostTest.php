@@ -17,6 +17,7 @@ it('POSTS a new post')
         'entity_id' => 1,
         'position' => 1,
         'entry' => 'Entity: [entity:2]',
+        'is_template' => false,
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
