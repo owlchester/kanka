@@ -13,7 +13,6 @@ use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
 use App\Models\Location;
 use App\Observers\CharacterObserver;
-use App\Observers\LocationObserver;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 
@@ -43,7 +42,6 @@ class StarterService
 
     public function bind(): self
     {
-        Location::observe(LocationObserver::class);
         Character::observe(CharacterObserver::class);
         return $this;
     }

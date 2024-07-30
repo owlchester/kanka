@@ -80,11 +80,9 @@ class EntityResource extends JsonResource
             $data['attributes'] = AttributeResource::collection($entity->attributes);
             $data['posts'] = PostResource::collection($entity->posts);
             $data['entity_events'] = EntityEventResource::collection($entity->events);
-            //$data['entity_files'] = EntityFileResource::collection($this->files);
             $data['relations'] = RelationResource::collection($entity->relationships);
             $data['inventory'] = InventoryResource::collection($entity->inventories);
             $data['entity_abilities'] = EntityAbilityResource::collection($entity->abilities);
-            //$data['entity_links'] = EntityLinkResource::collection($entity->links);
         }
 
         if (request()->get('related', false) || request()->get('image', false)) {
