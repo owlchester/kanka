@@ -8,6 +8,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -51,6 +52,7 @@ class Character extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
@@ -104,6 +106,15 @@ class Character extends MiscModel
 
     protected array $suggestions = [
         CharacterCache::class => 'clearSuggestion'
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
+        'sex',
+        'pronouns',
+        'title',
+        'age',
     ];
 
     /**

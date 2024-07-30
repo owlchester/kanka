@@ -7,18 +7,6 @@ use App\Models\CampaignDashboard;
 class CampaignDashboardObserver
 {
     /**
-     * Purify trait
-     */
-    use PurifiableTrait;
-
-    /**
-     */
-    public function saving(CampaignDashboard $model)
-    {
-        $model->name = $this->purify($model->name);
-    }
-
-    /**
      */
     public function saved(CampaignDashboard $model)
     {

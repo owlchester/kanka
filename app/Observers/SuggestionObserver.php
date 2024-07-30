@@ -21,7 +21,7 @@ class SuggestionObserver
     protected function clearSuggestions(Model $model): void
     {
         // Clear the cache suggestion for the entity type
-        if ($model instanceof MiscModel) {
+        if ($model instanceof MiscModel && isset($model->entityType)) {
             EntityCache::clearSuggestion($model);
         }
         // @phpstan-ignore-next-line

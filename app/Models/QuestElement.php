@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\QuestCache;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
+use App\Models\Concerns\Sanitizable;
 use App\User;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
@@ -33,6 +34,7 @@ class QuestElement extends Model
     use HasEntry;
     use HasFactory;
     use HasSuggestions;
+    use Sanitizable;
     use Searchable;
     use SimpleSortableTrait;
     use VisibilityIDTrait;
@@ -51,6 +53,12 @@ class QuestElement extends Model
 
     public $casts = [
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'role',
+        'colour'
     ];
 
     protected array $suggestions = [

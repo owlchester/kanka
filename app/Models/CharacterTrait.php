@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Paginatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CharacterTrait extends Model
 {
+    use HasEntry;
     use Paginatable;
 
     public const SECTION_APPEARANCE = 1;

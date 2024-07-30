@@ -37,7 +37,6 @@ class CampaignObserver
     public function saving(Campaign $campaign)
     {
         // Purity text
-        $campaign->name = $this->purify($campaign->name);
         $attributes = $campaign->getAttributes();
         if (array_key_exists('excerpt', $attributes)) {
             $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));

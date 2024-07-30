@@ -22,7 +22,6 @@ class DiceRollResult extends Model
     use Searchable;
     use Sortable;
 
-
     protected $fillable = [
         'dice_roll_id',
         'created_by',

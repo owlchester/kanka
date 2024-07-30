@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,6 +33,7 @@ class OrganisationMember extends Model
     use HasFilters;
     use Paginatable;
     use Privatable;
+    use Sanitizable;
     use SortableTrait;
 
     public const PIN_CHARACTER = 1;
@@ -65,6 +67,10 @@ class OrganisationMember extends Model
         'parent_id',
         'role',
         //'character.location.name',
+    ];
+
+    protected array $sanitizable = [
+        'role',
     ];
 
     public function character(): BelongsTo

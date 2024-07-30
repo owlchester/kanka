@@ -37,7 +37,7 @@ class EntryObserver
         if ($model->isDirty($model->entryFieldName())) {
             if ($model instanceof MiscModel) {
                 $this->entityMappingService->with($model->entity);
-            } else {
+            } elseif (method_exists($model, 'mentions')) {
                 $this->entityMappingService->with($model);
             }
             $this->entityMappingService->silent()->map();

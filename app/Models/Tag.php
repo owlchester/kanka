@@ -7,6 +7,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\TagScopes;
 use App\Traits\ExportableTrait;
@@ -42,6 +43,7 @@ class Tag extends MiscModel
     use HasFilters;
     use HasRecursiveRelationships;
     use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
     use TagScopes;
@@ -82,6 +84,12 @@ class Tag extends MiscModel
         'is_private',
         'is_auto_applied',
         'is_hidden',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
+        'colour',
     ];
 
     /**

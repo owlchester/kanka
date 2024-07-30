@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Scopes\CalendarWeatherScopes;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +30,7 @@ class CalendarWeather extends Model
 {
     use Blameable;
     use CalendarWeatherScopes;
+    use Sanitizable;
     use VisibilityIDTrait;
 
     public $table = 'calendar_weather';
@@ -44,6 +46,15 @@ class CalendarWeather extends Model
         'month',
         'year',
         'visibility_id',
+        'name',
+    ];
+
+    protected array $sanitizable = [
+        'weather',
+        'temperature',
+        'precipitation',
+        'wind',
+        'effect',
         'name',
     ];
 

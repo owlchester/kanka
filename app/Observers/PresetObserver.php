@@ -10,8 +10,6 @@ class PresetObserver
 
     public function saving(Preset $preset)
     {
-        $preset->name = $this->purify(trim($preset->name));
-
         // Clean up config
         $config = $preset->config;
         foreach ($config as $key => $value) {

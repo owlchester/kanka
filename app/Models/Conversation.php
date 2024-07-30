@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -30,6 +31,7 @@ class Conversation extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
+    use Sanitizable;
     use SoftDeletes;
 
     protected $fillable = [
@@ -61,6 +63,11 @@ class Conversation extends MiscModel
     protected array $sortableColumns = [
         'target_id',
         'colour',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
     ];
 
     /**

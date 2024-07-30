@@ -6,8 +6,10 @@ use App\Facades\CampaignLocalization;
 use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Copiable;
 use App\Traits\VisibilityIDTrait;
@@ -50,9 +52,11 @@ class MapMarker extends Model
 {
     use Blameable;
     use Copiable;
+    use HasEntry;
     use HasFactory;
     use HasSuggestions;
     use Paginatable;
+    use Sanitizable;
     use SortableTrait;
     use VisibilityIDTrait;
 
@@ -102,6 +106,10 @@ class MapMarker extends Model
 
     protected array $suggestions = [
         MapMarkerCache::class => 'clearSuggestion',
+    ];
+
+    protected array $sanitizable = [
+        'name',
     ];
 
     /** Editing the map */

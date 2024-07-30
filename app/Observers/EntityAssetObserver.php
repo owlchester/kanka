@@ -7,16 +7,6 @@ use App\Facades\Images;
 
 class EntityAssetObserver
 {
-    use PurifiableTrait;
-
-    /**
-     * @return void
-     */
-    public function saving(EntityAsset $entityAsset)
-    {
-        $entityAsset->name = $this->purify($entityAsset->name);
-    }
-
     /**
      * @return void
      */

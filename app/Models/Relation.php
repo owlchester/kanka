@@ -7,6 +7,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\SortableTrait;
@@ -45,6 +46,7 @@ class Relation extends Model
     use Orderable;
     use Paginatable;
     use Pinnable;
+    use Sanitizable;
     use Searchable;
     use Sortable;
     use SortableTrait;
@@ -86,6 +88,10 @@ class Relation extends Model
 
     public $casts = [
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $sanitizable = [
+        'relation',
     ];
 
     /**

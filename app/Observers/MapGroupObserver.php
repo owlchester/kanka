@@ -6,10 +6,6 @@ use App\Models\MapGroup;
 
 class MapGroupObserver
 {
-    /**
-     * Purify trait
-     */
-    use PurifiableTrait;
     use ReorderTrait;
 
     /**

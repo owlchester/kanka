@@ -8,6 +8,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -42,6 +43,7 @@ class Creature extends MiscModel
     use HasFilters;
     use HasRecursiveRelationships;
     use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
@@ -93,6 +95,11 @@ class Creature extends MiscModel
     ];
 
     protected array $exploreGridFields = ['is_extinct'];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
+    ];
 
     /**
      * @return string

@@ -9,21 +9,7 @@
 
 namespace App\Observers;
 
-use App\Models\CalendarWeather;
 
 class CalendarWeatherObserver
 {
-    use PurifiableTrait;
-
-    /**
-     */
-    public function saving(CalendarWeather $model)
-    {
-        $model->weather = $this->purify($model->weather);
-        $model->temperature = $this->purify($model->temperature);
-        $model->precipitation = $this->purify($model->precipitation);
-        $model->wind = $this->purify($model->wind);
-        $model->effect = $this->purify($model->effect);
-        $model->name = $this->purify($model->name);
-    }
 }

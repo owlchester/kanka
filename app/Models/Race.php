@@ -8,6 +8,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -42,6 +43,7 @@ class Race extends MiscModel
     use HasFilters;
     use HasRecursiveRelationships;
     use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
@@ -79,6 +81,11 @@ class Race extends MiscModel
      */
     protected array $foreignExport = [
         'pivotLocations',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
     ];
 
     /**

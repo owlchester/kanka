@@ -8,15 +8,9 @@ use App\Models\CampaignStyle;
 class CampaignStyleObserver
 {
     /**
-     * Purify trait
-     */
-    use PurifiableTrait;
-
-    /**
      */
     public function saving(CampaignStyle $campaignStyle)
     {
-        $campaignStyle->name = $this->purify($campaignStyle->name);
         $campaignStyle->content = str_replace(['&gt;', '{{', '}}'], ['>', '', ''], strip_tags($campaignStyle->content));
     }
 

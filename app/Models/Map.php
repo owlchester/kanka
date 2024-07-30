@@ -7,6 +7,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -58,6 +59,7 @@ class Map extends MiscModel
     use HasFilters;
     use HasRecursiveRelationships;
     use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
@@ -139,6 +141,11 @@ class Map extends MiscModel
         'is_real',
         'has_clustering',
         'config',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
     ];
 
     /**

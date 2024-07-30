@@ -7,11 +7,6 @@ use App\Models\CommunityEventEntry;
 class CommunityEventEntryObserver
 {
     /**
-     * Purify trait
-     */
-    use PurifiableTrait;
-
-    /**
      */
     public function creating(CommunityEventEntry $communityEventEntry)
     {

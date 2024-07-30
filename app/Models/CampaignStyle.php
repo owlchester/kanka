@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use Carbon\Carbon;
 use Exception;
@@ -32,6 +33,7 @@ class CampaignStyle extends Model
 {
     use HasCampaign;
     use HasFactory;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
@@ -48,6 +50,10 @@ class CampaignStyle extends Model
         'is_enabled',
         'order',
         'is_theme',
+    ];
+
+    protected array $sanitizable = [
+        'name',
     ];
 
     public $defaultSort = ['order', 'id'];
