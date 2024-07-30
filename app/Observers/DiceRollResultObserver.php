@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Models\DiceRollResult;
 use App\Services\DiceRollerService;
-use Illuminate\Support\Facades\Auth;
 
 class DiceRollResultObserver
 {
