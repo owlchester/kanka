@@ -11,6 +11,7 @@ use App\Models\EntityAsset;
 use App\Models\EntityEvent;
 use App\Models\EntityMention;
 use App\Models\EntityTag;
+use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Post;
 use App\Models\Relation;
@@ -137,44 +138,77 @@ trait EntityMapper
     protected function image(): self
     {
         $img = Arr::get($this->data, 'entity.image_path');
+        $imageExt = Str::after($img, '.');
+
         if (empty($img)) {
             return $this;
         }
-
-        // An image needs the image saved locally
-        $imageName = Str::after($img, '/');
-        $destination = 'w/' . $this->campaign->id . '/' . $this->entity->pluralType() . '/' . $imageName;
 
         if (!Storage::disk('local')->exists($this->path . $img)) {
             //dd('image ' . $this->path . $img . ' doesnt exist');
             return $this;
         }
 
+        //We need to create a new Image to migrate to the new system.
+        $image = new Image();
+        $image->campaign_id = $this->campaign->id;
+        $image->id = Str::uuid();
+        $image->ext = $imageExt;
+        $image->name = $this->entity->name;
+        $image->visibility_id = 1;
+        $size = Storage::disk('local')->size($this->path . $img);
+        $image->size = (int) ceil($size / 1024); // kb
+        $image->save();
+
+        // An image needs the image saved locally
+        $destination = 'campaigns/' . $this->campaign->id . '/' . $image->id . '.' . $imageExt;
+
         // Upload the file to s3 using streams
         Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
-        $this->entity->image_path = $destination;
+
+        ImportIdMapper::putGallery($image->id, $image->id);
+
+        $this->entity->image_uuid = ImportIdMapper::getGallery($image->id);
+        ;
+
         return $this;
     }
 
     protected function header(): self
     {
         $img = Arr::get($this->data, 'entity.header_image');
+        $imageExt = Str::after($img, '.');
+
         if (empty($img)) {
             return $this;
         }
-
-        // An image needs the image saved locally
-        $imageName = Str::afterLast($img, '/');
-        $destination = 'w/' . $this->campaign->id . '/' . $imageName;
 
         if (!Storage::disk('local')->exists($this->path . $img)) {
             //dd('header image ' . $this->path . $img . ' doesnt exist');
             return $this;
         }
 
+        //We need to create a new Image to migrate to the new system.
+        $image = new Image();
+        $image->campaign_id = $this->campaign->id;
+        $image->id = Str::uuid();
+        $image->ext = $imageExt;
+        $image->name = $this->entity->name . ' header';
+        $image->visibility_id = 1;
+        $size = Storage::disk('local')->size($this->path . $img);
+        $image->size = (int) ceil($size / 1024); // kb
+        $image->save();
+
+        // An image needs the image saved locally
+        $destination = 'campaigns/' . $this->campaign->id . '/' . $image->id . '.' . $imageExt;
+
         // Upload the file to s3 using streams
         Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
-        $this->entity->header_image = $destination;
+
+        ImportIdMapper::putGallery($image->id, $image->id);
+
+        $this->entity->header_uuid = ImportIdMapper::getGallery($image->id);
+        ;
         return $this;
     }
 
