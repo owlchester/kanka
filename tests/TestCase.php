@@ -13,7 +13,6 @@ use App\Models\CampaignRole;
 use App\Models\Attribute;
 use App\Models\Bookmark;
 use App\Models\Campaign;
-use App\Models\Entity;
 use App\Services\Permissions\RolePermissionService;
 use Illuminate\Support\Facades\Storage;
 use App\Models\CampaignRoleUser;

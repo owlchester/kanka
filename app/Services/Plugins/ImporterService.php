@@ -382,7 +382,6 @@ class ImporterService
     }
 
     /**
-     * @return MiscModel
      */
     protected function importImage(MiscModel $model, PluginVersionEntity $entity): MiscModel
     {
@@ -412,8 +411,8 @@ class ImporterService
             $model->entity->image_uuid = $image->id;
             $model->entity->save();
         } catch (Exception $e) {
-           echo($e->getMessage());
-           Log::error('Error importing image from ' . $entity->id . ': ' . $e->getMessage());
+            echo($e->getMessage());
+            Log::error('Error importing image from ' . $entity->id . ': ' . $e->getMessage());
         }
 
         return $model;
