@@ -46,7 +46,6 @@ class GalleryMapper
     {
         $this->image = new Image();
         $this->image->campaign_id = $this->campaign->id;
-        $this->image->id = Str::uuid();
         $this->mapping[$this->data['id']] = $this->image->id;
         ImportIdMapper::putGallery($this->data['id'], $this->image->id);
 

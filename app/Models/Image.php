@@ -11,6 +11,7 @@ use App\Traits\VisibilityIDTrait;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -63,6 +64,7 @@ class Image extends Model
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
+    use HasUuids;
     use LastSync;
     use Sanitizable;
     use VisibilityIDTrait;

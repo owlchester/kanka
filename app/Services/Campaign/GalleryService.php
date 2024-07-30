@@ -135,7 +135,6 @@ class GalleryService
             $image = new Image();
             $image->campaign_id = $this->campaign->id;
             $image->created_by = $this->user->id;
-            $image->id = Str::uuid()->toString();
             $image->ext = $source->extension();
             $image->size = (int) ceil($source->getSize() / 1024); // kb
             $image->name = mb_substr($name, 0, 45);
@@ -191,7 +190,6 @@ class GalleryService
     public function createFolder(Request $request)
     {
         $folder = new Image();
-        $folder->id = Str::uuid();
         $folder->campaign_id = $this->campaign->id;
         $folder->name = $request->post('name');
         $folder->folder_id = $request->post('folder_id');

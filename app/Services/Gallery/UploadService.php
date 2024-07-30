@@ -47,7 +47,6 @@ class UploadService
     public function file(UploadedFile $file): array
     {
         $this->image = new Image();
-        $this->image->id = Str::uuid()->toString();
         $this->image->campaign_id = $this->campaign->id;
         $this->image->created_by = $this->user->id;
         $this->image->name = Str::beforeLast($file->getClientOriginalName(), '.');
@@ -64,7 +63,6 @@ class UploadService
     public function url(string $url): array
     {
         $this->image = new Image();
-        $this->image->id = Str::uuid()->toString();
 
         $externalFile = basename($url);
 

@@ -30,7 +30,6 @@ class MigrateLayerService
         $ext = Str::afterLast('.', $path);
 
         $this->image = new Image();
-        $this->image->id = Str::uuid()->toString();
         $this->image->campaign_id = $this->layer->map->campaign_id;
         $this->image->created_by = $this->layer->created_by;
         $this->image->name = $this->layer->name;

@@ -7,6 +7,7 @@ use App\Facades\Img;
 use App\Models\Concerns\Uuid;
 use App\Models\Scopes\CommunityEventScopes;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -31,7 +32,7 @@ use Illuminate\Support\Str;
 class CommunityEvent extends Model
 {
     use CommunityEventScopes;
-    use Uuid;
+    use HasUuids;
 
     public $casts = [
         'start_at' => 'date',

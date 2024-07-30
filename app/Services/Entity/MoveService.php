@@ -152,9 +152,8 @@ class MoveService
                 // If there is enough space in the target campaign gallery
                 $available = $this->galleryService->campaign($this->campaign)->available();
                 if ($available > $image->size) {
-                    $newImage = $image->replicate(['campaign_id']);
+                    $newImage = $image->replicate(['id', 'campaign_id']);
                     $newImage->campaign_id = $this->to->id;
-                    $newImage->id = Str::uuid()->toString();
                     $newImage->save();
 
                     Storage::copy($image->path, $newImage->path);
