@@ -9,6 +9,7 @@ use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\EntityTag;
+use App\Models\Image;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Plugin;
@@ -381,20 +382,33 @@ class ImporterService
     }
 
     /**
-     * @return MiscModel
      */
-    protected function importImage(MiscModel $model, PluginVersionEntity $entity)
+    protected function importImage(MiscModel $model, PluginVersionEntity $entity): MiscModel
     {
         // Don't do anything if no image or replacing an image (too many false positives)
-        if (empty($entity->image_path) || !empty($model->entity->image_path)) {
+        if (empty($entity->image_path) || !empty($model->entity->image_path) || !empty($model->entity->image_uuid)) {
             return $model;
         }
 
         // Need to download the image from the marketplace's s3 (if possible)
         try {
-            $path = 'w/' . $this->campaign->id . '/' . Str::uuid() . '.' . Str::afterLast($entity->image_path, '.');
+            $imageExt = Str::afterLast($entity->image_path, '.');
+
+            //We need to create a new Image to migrate to the new system.
+            $image = new Image();
+            $image->campaign_id = $this->campaign->id;
+            $image->ext = $imageExt;
+            $image->name = $entity->name;
+            $image->visibility_id = 1;
+            $size = Storage::disk('s3-marketplace')->size($entity->image_path);
+            $image->size = (int) ceil($size / 1024); // kb
+            $image->save();
+
+            $path = 'campaigns/' . $this->campaign->id . '/' . $image->id . '.' . $imageExt;
+
             Storage::writeStream($path, Storage::disk('s3-marketplace')->readStream($entity->image_path));
-            $model->entity->image_path = $path;
+            $model->entity->image_uuid = $image->id;
+            $model->entity->save();
         } catch (Exception $e) {
             Log::error('Error importing image from ' . $entity->id . ': ' . $e->getMessage());
         }
