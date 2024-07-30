@@ -54,8 +54,7 @@ class DefaultImageService
                 $image->file
             );
 
-
-        $images[$this->type] = $uuid;
+        $images[$this->type] = $image->id;
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
