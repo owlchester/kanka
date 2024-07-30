@@ -159,7 +159,6 @@ trait EntityMapper
         //We need to create a new Image to migrate to the new system.
         $image = new Image();
         $image->campaign_id = $this->campaign->id;
-        $image->id = Str::uuid();
         $image->ext = $imageExt;
         $image->name = $this->entity->name;
         $image->visibility_id = 1;
