@@ -11,8 +11,10 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('map_layers', function (Blueprint $table) {
-            $table->uuid('image_uuid')->nullable();
+            $table->uuid('image_uuid')->after('image')->nullable();
             $table->foreign('image_uuid')->references('id')->on('images')->nullOnDelete();
+        });
+        Schema::table('map_layers', function (Blueprint $table) {
             $table->renameColumn('image', 'image_path');
         });
     }
@@ -25,6 +27,9 @@ return new class () extends Migration {
         Schema::table('map_layers', function (Blueprint $table) {
             $table->dropForeign('map_layers_image_uuid_foreign');
             $table->dropColumn('image_uuid');
+        });
+        Schema::table('map_layers', function (Blueprint $table) {
+            $table->renameColumn('image_path', 'image');
         });
     }
 };
