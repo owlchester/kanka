@@ -147,7 +147,7 @@ trait EntityMapper
     }
 
     protected function migrateToGallery(string $old): self
-    { 
+    {
         $img = Arr::get($this->data, 'entity.' . $old);
 
         if (empty($img) || !Storage::disk('local')->exists($this->path . $img)) {
