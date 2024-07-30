@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -18,7 +19,6 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property int $id
- * @property int|null $created_by
  * @property string $name
  * @property string $content
  * @property Carbon $updated_at
@@ -31,6 +31,7 @@ use Illuminate\Support\Str;
  */
 class CampaignStyle extends Model
 {
+    use Blameable;
     use HasCampaign;
     use HasFactory;
     use Sanitizable;

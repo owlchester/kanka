@@ -18,8 +18,6 @@ class CampaignStyleObserver
      */
     public function creating(CampaignStyle $campaignStyle)
     {
-        $campaignStyle->created_by = auth()->user()->id;
-
         $last = $campaignStyle->campaign->styles()->max('order');
         $campaignStyle->order = (int) $last + 1;
     }

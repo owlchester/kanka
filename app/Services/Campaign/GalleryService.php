@@ -193,7 +193,7 @@ class GalleryService
         $folder = new Image();
         $folder->id = Str::uuid();
         $folder->campaign_id = $this->campaign->id;
-        $folder->name = $this->purify($request->post('name'));
+        $folder->name = $request->post('name');
         $folder->folder_id = $request->post('folder_id');
         $folder->is_folder = true;
         $folder->created_by = $this->user->id;

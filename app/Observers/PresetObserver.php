@@ -6,8 +6,6 @@ use App\Models\Preset;
 
 class PresetObserver
 {
-    use PurifiableTrait;
-
     public function saving(Preset $preset)
     {
         // Clean up config

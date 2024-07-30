@@ -19,7 +19,6 @@ abstract class MiscObserver
     {
         $model->slug = Str::slug($model->name, '');
         $model->name = trim($model->name); // Remove empty spaces in names
-        //$model->name = strip_tags($model->name);
 
         // If we're from the "move" service, we can skip this part.
         // Or if we are deleting, we don't want to re-do the whole set foreign ids to null

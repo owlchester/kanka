@@ -19,7 +19,6 @@ class DiceRollResultObserver
      */
     public function saving(DiceRollResult $model)
     {
-        $model->created_by = Auth::user()->id;
         $model->results = $this->diceRollerService->roll($model->diceRoll);
     }
 }

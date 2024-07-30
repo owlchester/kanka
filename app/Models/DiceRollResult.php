@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Searchable;
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class DiceRollResult extends Model
 {
+    use Blameable;
     use HasFilters;
     use Orderable;
     use Searchable;
