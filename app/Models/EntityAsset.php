@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Scopes\EntityAssetScopes;
 use App\Models\Scopes\Pinnable;
 use App\Traits\VisibilityIDTrait;
@@ -34,6 +35,7 @@ class EntityAsset extends Model
     use EntityAssetScopes;
     use HasFactory;
     use Pinnable;
+    use Sanitizable;
     use VisibilityIDTrait;
 
     public const TYPE_FILE = 1;
@@ -52,6 +54,12 @@ class EntityAsset extends Model
     public $casts = [
         'metadata' => 'array',
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'metadata.icon',
+        'metadata.url',
     ];
 
     public function entity(): BelongsTo

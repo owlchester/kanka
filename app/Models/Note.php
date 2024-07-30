@@ -7,6 +7,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,6 +33,7 @@ class Note extends MiscModel
     use HasFilters;
     use HasRecursiveRelationships;
     use Nested;
+    use Sanitizable;
     use SoftDeletes;
 
     protected $fillable = [
@@ -58,6 +60,11 @@ class Note extends MiscModel
 
     protected array $exportFields = [
         'base',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
     ];
 
     /**

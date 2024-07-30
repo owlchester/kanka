@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\Img;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\LastSync;
+use App\Models\Concerns\Sanitizable;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibilityIDTrait;
 use App\User;
@@ -63,6 +64,7 @@ class Image extends Model
     use HasCampaign;
     use HasFactory;
     use LastSync;
+    use Sanitizable;
     use VisibilityIDTrait;
 
     public $fillable = [
@@ -74,6 +76,10 @@ class Image extends Model
 
     public $casts = [
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $sanitizable = [
+        'name',
     ];
 
     public function user(): BelongsTo

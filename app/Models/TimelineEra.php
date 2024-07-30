@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
+use App\Models\Concerns\HasEntry;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -34,7 +36,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class TimelineEra extends Model
 {
+    use HasEntry;
     use HasFactory;
+    use Sanitizable;
     use SortableTrait;
 
     protected $fillable = [
@@ -54,6 +58,12 @@ class TimelineEra extends Model
         'start_year',
         'end_year',
         'is_collapsed',
+    ];
+    protected array $sanitizable = [
+        'name',
+        'abbreviation',
+        'start_year',
+        'end_year',
     ];
 
     /**

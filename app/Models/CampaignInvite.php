@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class CampaignInvite extends MiscModel
 {
+    use Blameable;
     use HasCampaign;
 
     /**

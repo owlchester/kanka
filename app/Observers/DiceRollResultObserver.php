@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Models\DiceRollResult;
 use App\Services\DiceRollerService;
-use Illuminate\Support\Facades\Auth;
 
 class DiceRollResultObserver
 {
@@ -19,7 +18,6 @@ class DiceRollResultObserver
      */
     public function saving(DiceRollResult $model)
     {
-        $model->created_by = Auth::user()->id;
         $model->results = $this->diceRollerService->roll($model->diceRoll);
     }
 }

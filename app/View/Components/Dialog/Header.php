@@ -8,7 +8,6 @@ use Illuminate\View\Component;
 
 class Header extends Component
 {
-
     /**
      * Create a new component instance.
      */

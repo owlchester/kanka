@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -84,7 +85,7 @@ class CampaignDashboardWidget extends Model
         )->using(CampaignDashboardWidgetTag::class);
     }
 
-    public function dashboardWidgetTags()
+    public function dashboardWidgetTags(): HasMany
     {
         return $this->hasMany(CampaignDashboardWidgetTag::class, 'widget_id', 'id');
     }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\Sanitizable;
 use App\Traits\VisibilityIDTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -33,6 +34,7 @@ class EntityAbility extends Model
 {
     use Blameable;
     use HasFactory;
+    use Sanitizable;
     use VisibilityIDTrait;
 
     /**
@@ -50,6 +52,10 @@ class EntityAbility extends Model
 
     public $casts = [
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $sanitizable = [
+        'note',
     ];
 
     public function entity(): BelongsTo

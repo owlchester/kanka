@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Templatable;
 use App\Traits\VisibilityIDTrait;
@@ -57,6 +58,7 @@ class Post extends Model
     use HasEntry;
     use HasFactory;
     use Paginatable;
+    use Sanitizable;
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
@@ -88,6 +90,10 @@ class Post extends Model
     public $casts = [
         'settings' => 'array',
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $sanitizable = [
+        'name',
     ];
 
     /**

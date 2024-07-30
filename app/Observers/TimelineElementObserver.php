@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\Mentions;
 use App\Models\TimelineElement;
 
 class TimelineElementObserver
@@ -14,11 +13,6 @@ class TimelineElementObserver
      */
     public function saving(TimelineElement $timelineElement)
     {
-        $timelineElement->name = $this->purify($timelineElement->name);
-        // When creating a timeline element on the API, we might not have an entry
-        if (isset($timelineElement->entry)) {
-            $timelineElement->entry = $this->purify(Mentions::codify($timelineElement->entry));
-        }
 
         if (empty($timelineElement->position) || $timelineElement->position < 1) {
             $timelineElement->position = 1;

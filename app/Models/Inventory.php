@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Blameable;
+use App\Models\Concerns\Sanitizable;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +30,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Inventory extends Model
 {
+    use Blameable;
+    use Sanitizable;
     use VisibilityIDTrait;
 
     /**
@@ -49,6 +53,12 @@ class Inventory extends Model
 
     public $casts = [
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'position',
+        'description',
     ];
 
     public function entity(): BelongsTo

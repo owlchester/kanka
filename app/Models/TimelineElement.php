@@ -6,6 +6,7 @@ use App\Facades\TimelineElementCache;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
+use App\Models\Concerns\Sanitizable;
 use App\Traits\VisibilityIDTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -45,6 +46,7 @@ class TimelineElement extends Model
     use HasEntry;
     use HasFactory;
     use HasSuggestions;
+    use Sanitizable;
     use Searchable;
     use VisibilityIDTrait;
 
@@ -70,6 +72,12 @@ class TimelineElement extends Model
 
     protected array $suggestions = [
         TimelineElementCache::class => 'clearSuggestion',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'date',
+        'icon'
     ];
 
     public function timeline(): BelongsTo

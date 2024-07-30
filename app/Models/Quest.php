@@ -8,6 +8,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\ExportableTrait;
@@ -40,6 +41,7 @@ class Quest extends MiscModel
     use HasFilters;
     use HasRecursiveRelationships;
     use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
@@ -62,6 +64,12 @@ class Quest extends MiscModel
         'date',
         'is_completed',
         'parent.name',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
+        'date',
     ];
 
     /**

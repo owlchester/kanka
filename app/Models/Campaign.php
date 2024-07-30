@@ -10,6 +10,7 @@ use App\Models\Concerns\CampaignLimit;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\User;
@@ -75,6 +76,7 @@ class Campaign extends Model
     use HasEntry;
     use HasFactory;
     use LastSync;
+    use Sanitizable;
     use SoftDeletes;
 
     /**
@@ -114,6 +116,10 @@ class Campaign extends Model
         'settings' => 'array',
         'featured_until' => 'date',
         'export_date' => 'date',
+    ];
+
+    protected array $sanitizable = [
+        'name',
     ];
 
     public function getRouteKeyName()

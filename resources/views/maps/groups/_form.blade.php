@@ -4,7 +4,7 @@
         :label="__('crud.fields.name')"
         field="name"
         css="col-span-2">
-        <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/groups.placeholders.name') }}" required value="{!! old('name', $model->name ?? null) !!}" />
+        <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/groups.placeholders.name') }}" required value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
     </x-forms.field>
 
     <x-forms.field

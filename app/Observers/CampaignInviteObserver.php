@@ -13,6 +13,5 @@ class CampaignInviteObserver
     {
         $campaignInvite->token = sha1(Str::random(50)) . time() . uniqid();
         $campaignInvite->is_active = true;
-        $campaignInvite->created_by = auth()->user()->id;
     }
 }

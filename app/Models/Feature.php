@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Sanitizable;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +28,14 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Feature extends Model
 {
+    use Sanitizable;
+
     public $fillable = [
+        'name',
+        'description',
+    ];
+
+    protected array $sanitizable = [
         'name',
         'description',
     ];

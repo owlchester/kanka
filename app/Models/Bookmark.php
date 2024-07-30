@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\Privatable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\Taggable;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
@@ -46,6 +47,7 @@ class Bookmark extends MiscModel
     use HasCampaign;
     use HasFactory;
     use Privatable;
+    use Sanitizable;
     use Taggable;
 
     protected $fillable = [
@@ -73,6 +75,12 @@ class Bookmark extends MiscModel
      */
     protected $casts = [
         'options' => 'array',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'icon',
+        'css'
     ];
 
     /**

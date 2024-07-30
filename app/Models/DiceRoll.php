@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +24,7 @@ class DiceRoll extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
+    use Sanitizable;
     use SoftDeletes;
 
     protected $fillable = [
@@ -60,6 +62,11 @@ class DiceRoll extends MiscModel
      * Entity type
      */
     protected string $entityType = 'dice_roll';
+
+    protected array $sanitizable = [
+        'name',
+        'parameters',
+    ];
 
     /**
      * Who created this entry

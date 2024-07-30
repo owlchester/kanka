@@ -7,6 +7,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\ExportableTrait;
@@ -41,6 +42,7 @@ class Journal extends MiscModel
     use HasFilters;
     use HasRecursiveRelationships;
     use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
@@ -71,6 +73,7 @@ class Journal extends MiscModel
         'calendar_date',
         'author.name',
     ];
+
     protected array $sortable = [
         'name',
         'date',
@@ -100,6 +103,12 @@ class Journal extends MiscModel
         'base',
         'author_id',
         'location_id',
+        'date',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
         'date',
     ];
 

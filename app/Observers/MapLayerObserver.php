@@ -2,23 +2,17 @@
 
 namespace App\Observers;
 
-use App\Facades\Mentions;
 use App\Models\MapLayer;
 use App\Facades\Images;
 
 class MapLayerObserver
 {
-    /**
-     * Purify trait
-     */
-    use PurifiableTrait;
     use ReorderTrait;
 
     /**
      */
     public function saving(MapLayer $mapLayer)
     {
-        $mapLayer->entry = $this->purify(Mentions::codify($mapLayer->entry));
         if (!empty($mapLayer->position)) {
             $mapLayer->position = (int) $mapLayer->position;
         } else {
