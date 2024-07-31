@@ -17,7 +17,7 @@
     <x-forms.field
         field="temperature"
         :label="__('calendars/weather.fields.temperature')">
-        <input type="text" name="wind" value="{{ old('temperature', $weather->temperature ?? null) }}" placeholder="{{ __('calendars/weather.placeholders.temperature') }}" aria-label="{{ __('calendars/weather.placeholders.temperature') }}" maxlength="191" class="w-full" />
+        <input type="text" name="temperature" value="{{ old('temperature', $weather->temperature ?? null) }}" placeholder="{{ __('calendars/weather.placeholders.temperature') }}" aria-label="{{ __('calendars/weather.placeholders.temperature') }}" maxlength="191" class="w-full" />
     </x-forms.field>
 
     <x-forms.field

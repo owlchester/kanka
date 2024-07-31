@@ -31,7 +31,7 @@ class GalleryImageStore extends FormRequest
         $rules = [
             'file' => 'required|array',
             'file.*' => [
-                File::types(['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2', '.svg']),
+                File::types(['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2', 'svg']),
                 'max:' . Limit::upload(),
                 new GallerySize(),
             ],

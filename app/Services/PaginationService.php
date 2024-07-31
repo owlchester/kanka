@@ -36,7 +36,7 @@ class PaginationService
     {
         $disabled = [];
 
-        if (auth()->user()->isSubscriber()) {
+        if (!auth()->user()->isSubscriber()) {
             $disabled[self::MAX] = ['disabled' => true];
         }
 

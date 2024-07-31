@@ -189,10 +189,10 @@ const uploadFiles = (data) => {
                     const folders = document.querySelectorAll('li[data-folder]');
                     if (folders.length > 1) {
                         const lastFolder = folders[folders.length - 1];
-                        console.log('last folder', lastFolder, image);
+                        //console.log('last folder', lastFolder, image);
                         lastFolder.insertAdjacentHTML('afterend', image);
                     } else {
-                        gallery.prepend(image);
+                        gallery.insertAdjacentHTML('afterbegin', image);
                     }
                 });
                 updateStorage(res.data.storage);
@@ -203,7 +203,8 @@ const uploadFiles = (data) => {
             fileProgress.classList.add('hidden');
 
             if (err.response && err.response.data.message) {
-                fileError.text(err.response.data.message).fadeToggle();
+                fileError.innerHTML = err.response.data.message;
+                fileError.classList.remove('hidden');
 
                 let errors = err.response.data.errors;
                 let errorKeys = Object.keys(errors);

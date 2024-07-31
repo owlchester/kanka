@@ -200,7 +200,7 @@
     "src": "resources/js/front.js"
   },
   "resources/js/gallery.js": {
-    "file": "assets/gallery-f13f603b.js",
+    "file": "assets/gallery-4288f05b.js",
     "imports": [
       "_axios-47b9d439.js"
     ],
