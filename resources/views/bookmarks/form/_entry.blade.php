@@ -32,7 +32,7 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
                 {!! __('entities/links.helpers.icon', [
                     'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">FontAwesome</a>',
                     'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPGAwesom</a>',
-                    'docs' => '<a href="hhttps://docs.kanka.io/en/latest/articles/available-icons.html" target="_blank">' . __('footer.documentation',) . '</a>',
+                    'docs' => '<a href="https://docs.kanka.io/en/latest/articles/available-icons.html" target="_blank">' . __('footer.documentation',) . '</a>',
                 ]) !!}
             </x-helper>
         @else

@@ -86,7 +86,7 @@ if ($folder) {
                 <span class="btn2 btn-primary btn-sm fileinput-button relative overflow-hidden inline-block">
                     <x-icon class="plus"></x-icon>
                     <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
-                    <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer opacity-0" multiple />
+                    <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer opacity-0" multiple accept="image/*, .gif, .webp, .woff2" />
                 </span>
 
                 <p class="my-2">{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => Limit::readable()->upload()]) }}</p>
