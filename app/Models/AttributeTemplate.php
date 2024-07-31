@@ -34,7 +34,6 @@ class AttributeTemplate extends MiscModel
 
     protected $fillable = [
         'name',
-        'slug',
         'campaign_id',
         'attribute_template_id',
         'entity_type_id',

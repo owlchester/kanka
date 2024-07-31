@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasSlug;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -42,6 +43,7 @@ class Tag extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
+    use HasSlug;
     use Nested;
     use Sanitizable;
     use SoftDeletes;

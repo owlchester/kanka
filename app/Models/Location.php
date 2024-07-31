@@ -55,7 +55,6 @@ class Location extends MiscModel
 
     protected $fillable = [
         'name',
-        'slug',
         'type',
         'entry',
         'location_id',

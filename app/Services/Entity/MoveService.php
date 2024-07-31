@@ -255,9 +255,6 @@ class MoveService
 
             // Update child second. We do this otherwise we'll have an old entity and a new one
             $child->campaign_id = $this->to->id;
-            if (empty($child->slug)) {
-                $child->slug = Str::slug($child->name, '');
-            }
             $child->saveQuietly();
 
             DB::commit();

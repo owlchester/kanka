@@ -48,7 +48,6 @@ class Item extends MiscModel
     protected $fillable = [
         'name',
         'campaign_id',
-        'slug',
         'type',
         'entry',
         'price',

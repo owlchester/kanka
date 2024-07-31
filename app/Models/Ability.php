@@ -48,7 +48,6 @@ class Ability extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'type',
         'entry',
         'ability_id',

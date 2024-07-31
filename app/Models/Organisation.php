@@ -50,7 +50,6 @@ class Organisation extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'entry',
         'organisation_id',
         'type',

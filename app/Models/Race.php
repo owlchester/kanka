@@ -50,7 +50,6 @@ class Race extends MiscModel
     protected $fillable = [
         'name',
         'campaign_id',
-        'slug',
         'type',
         'entry',
         'is_private',

@@ -68,7 +68,6 @@ class NewService
     {
         $name = Str::replace(['&lt;', '&gt;'], ['<', '>'], $name);
         $this->model->name = $this->purify(trim(strip_tags($name)));
-        $this->model->slug = Str::slug($this->model->name, '');
         $this->model->is_private = $this->private();
         $this->model->campaign_id = $this->campaign->id;
 

@@ -58,7 +58,6 @@ class Character extends MiscModel
 
     protected $fillable = [
         'name',
-        'slug',
         'campaign_id',
         'location_id',
         'title',

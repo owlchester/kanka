@@ -15,26 +15,6 @@ abstract class MiscObserver
 
     /**
      */
-    public function saving(MiscModel $model)
-    {
-        $model->slug = Str::slug($model->name, '');
-        $model->name = trim($model->name); // Remove empty spaces in names
-
-        // If we're from the "move" service, we can skip this part.
-        // Or if we are deleting, we don't want to re-do the whole set foreign ids to null
-        if (request()->isMethod('delete') === true) {
-            return;
-        }
-
-        // Is private hook for non-admin (who can't set is_private)
-        if (!isset($model->is_private)) {
-            $model->is_private = false;
-        }
-    }
-
-
-    /**
-     */
     public function created(MiscModel $model)
     {
         // Created a new sub entity? Create the parent entity.

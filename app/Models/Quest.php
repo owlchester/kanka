@@ -49,7 +49,6 @@ class Quest extends MiscModel
         'campaign_id',
         'quest_id',
         'name',
-        'slug',
         'type',
         'entry',
         'is_private',

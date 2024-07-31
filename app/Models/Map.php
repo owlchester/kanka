@@ -77,7 +77,6 @@ class Map extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'type',
         'entry',
         'map_id',

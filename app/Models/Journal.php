@@ -49,7 +49,6 @@ class Journal extends MiscModel
     protected $fillable = [
         'name',
         'campaign_id',
-        'slug',
         'type',
         'entry',
         'date',

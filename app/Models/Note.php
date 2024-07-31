@@ -39,7 +39,6 @@ class Note extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'entry',
         'type',
         'is_private',

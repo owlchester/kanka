@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @property string $name
  * @property string $image
- * @property string $slug
  * @property string $type
  * @property int $target_id
  * @property bool $is_private
@@ -36,7 +35,6 @@ class Conversation extends MiscModel
 
     protected $fillable = [
         'name',
-        'slug',
         'type',
         'campaign_id',
         'target_id',

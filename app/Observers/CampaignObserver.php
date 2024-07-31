@@ -41,7 +41,6 @@ class CampaignObserver
         if (array_key_exists('excerpt', $attributes)) {
             $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
         }
-        //$campaign->slug = Str::slug($campaign->name, '');
         $campaign->updated_by = auth()->user()->id;
 
         if (request()->has('is_public')) {

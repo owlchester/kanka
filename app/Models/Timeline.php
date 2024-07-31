@@ -43,7 +43,6 @@ class Timeline extends MiscModel
         'name',
         'type',
         'calendar_id',
-        'slug',
         'entry',
         'is_private',
         'timeline_id',
