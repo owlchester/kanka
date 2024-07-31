@@ -156,7 +156,7 @@ class User extends \Illuminate\Foundation\Auth\User
                 $roleLinks[] = $role->name;
             }
         }
-        return (string) implode(', ', $roleLinks);
+        return (string)implode(', ', $roleLinks);
     }
 
     /**
@@ -222,7 +222,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isElemental(): bool
     {
-        return (bool) (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL);
+        return (bool)(!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL);
     }
 
     /**
@@ -325,7 +325,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function createdEntitiesCount(): string
     {
-        return (string) number_format(SingleUserCache::user($this)->entitiesCreatedCount());
+        return (string)number_format(SingleUserCache::user($this)->entitiesCreatedCount());
     }
 
     /**
@@ -475,9 +475,9 @@ class User extends \Illuminate\Foundation\Auth\User
         }*/
         // Recent fails are a clear indicator of someone cycling through cards
         return $this->logs()
-            ->where('type_id', UserLog::TYPE_FAILED_CHARGE_EMAIL)
-            ->whereDate('created_at', '>=', Carbon::now()->subHour()->toDateString())
-            ->count() >= 2;
+                ->where('type_id', UserLog::TYPE_FAILED_CHARGE_EMAIL)
+                ->whereDate('created_at', '>=', Carbon::now()->subHour()->toDateString())
+                ->count() >= 2;
     }
 
     /**
@@ -518,7 +518,9 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function hasPayPal(): bool
     {
-        return $this->subscribed('kanka') && $this->subscription('kanka') && str_contains($this->subscription('kanka')->stripe_price, 'paypal');
+        return $this->subscribed('kanka') &&
+            $this->subscription('kanka') &&
+            str_contains($this->subscription('kanka')->stripe_price, 'paypal');
     }
 
     /**

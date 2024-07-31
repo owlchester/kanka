@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\UserLog;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Exception;
@@ -26,7 +27,6 @@ class NewsletterService
     }
 
     /**
-     * @return $this
      */
     public function email(string $email): self
     {
@@ -88,7 +88,9 @@ class NewsletterService
             $data = [
                 'email' => $email,
                 'fields' => [
-                    'name' => $this->user?->name
+                    'name' => $this->user?->name,
+                    'language' => $this->user?->locale ?? app()->getLocale(),
+                    'country' => $this->guessCountry()
                 ],
                 'groups' => $interests
             ];
@@ -101,6 +103,7 @@ class NewsletterService
             }
         } catch (Exception $e) {
             $this->error = $e;
+            dd($e);
             return false;
         }
     }
@@ -117,5 +120,18 @@ class NewsletterService
     {
         $response = $this->mailerlite->subscribers->find($email);
         return (int) Arr::get($response, 'body.data.id');
+    }
+
+    /**
+     * Guess the user's country based on their login logs
+     */
+    protected function guessCountry(): ?string
+    {
+        if (!isset($this->user)) {
+            return null;
+        }
+        /** @var ?UserLog $latest */
+        $latest = $this->user->logs()->whereNotNull('country')->latest()->first();
+        return $latest?->country;
     }
 }
