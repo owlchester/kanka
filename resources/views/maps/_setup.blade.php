@@ -33,7 +33,7 @@ if (isset($single) && $single) {
 
     /** Layers Init **/
 @foreach ($map->layers as $layer)
-    @if (!$layer->hasImage()))
+    @if (!$layer->hasImage())
         @continue
     @endif
     @if ($layer->image)
@@ -45,7 +45,7 @@ if (isset($single) && $single) {
 
     var baseMaps{{ $map->id }} = {
 @foreach ($map->layers->where('type_id', '<', 1)->sortBy('position') as $layer)
-@if (!$layer->hasImage())) @continue @endif
+@if (!$layer->hasImage()) @continue @endif
         "{{ $layer->name }}": layer{{ $layer->id }},
 @endforeach
         "{{ __('maps/layers.base') }}": baseLayer{{ $map->id }}
@@ -63,7 +63,7 @@ if (isset($single) && $single) {
 
     var overlayMaps{{ $map->id }} = {
 @foreach($map->layers->where('type_id', '>', 0)->sortBy('position') as $layer)
-@if (!$layer->hasImage())) @continue @endif
+@if (!$layer->hasImage()) @continue @endif
         "{{ $layer->name }} ({{ $layer->position }})": layer{{ $layer->id }},
 @endforeach
 @foreach($map->groups->sortBy('position') as $group)
