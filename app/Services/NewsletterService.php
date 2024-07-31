@@ -103,7 +103,6 @@ class NewsletterService
             }
         } catch (Exception $e) {
             $this->error = $e;
-            dd($e);
             return false;
         }
     }
