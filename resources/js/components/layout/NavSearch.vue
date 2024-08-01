@@ -34,8 +34,10 @@
                         <div class="text-neutral-content text-sm" v-if="results.length === 0">
                             {{ texts.empty_results }}
                         </div>
-                        <LookupEntity v-else v-for="entity in results"
-                                      :entity="entity"
+                        <LookupEntity
+                            v-else v-for="entity in results"
+                            :entity="entity"
+                            @preview="loadPreview"
                         >
                         </LookupEntity>
                         <a class="grow text-sm uppercase hover:underline" v-bind:href="searchFullTextUrl()">
@@ -293,10 +295,5 @@ export default {
             return '';
         }
     },
-    mounted() {
-        this.emitter.on('preview', (entity) => {
-            this.loadPreview(entity);
-        });
-    }
 };
 </script>

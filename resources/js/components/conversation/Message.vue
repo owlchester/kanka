@@ -17,14 +17,18 @@
                 </span>
             </div>
 
-            <div class="message-options mr-1" v-if="message.can_delete">
+            <div class="message-options" v-if="message.can_delete">
                 <div class="" v-click-outside="onClickOutside">
                     <a v-on:click="openDropdown()" role="button" v-if="!this.openedDropdown">
                         <i class="fa-solid fa-caret-down" aria-hidden="true" />
                     </a>
-                    <div class="flex gap flex-row" v-else >
-                        <a class="btn2 btn-xs" v-on:click="editMessage(message)">{{ translate('edit') }}</a>
-                        <a class="btn2 btn-xs text-error" v-on:click="deleteMessage(message)">{{ translate('remove') }}</a>
+                    <div class="flex gap-1" v-else >
+                        <a class="btn2 btn-xs btn-default" v-on:click="editMessage(message)">
+                          {{ translate('edit') }}
+                        </a>
+                        <a class="btn2 btn-xs btn-error" v-on:click="deleteMessage(message)">
+                          {{ translate('remove') }}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -33,7 +37,9 @@
 
         <div class="comment-text">
             {{ message.message }}
-            <span class="text-xs text-neutral-content italic" v-if="message.is_updated" v-bind:title="message.updated_at">{{ translate('is_updated') }}</span>
+            <span class="text-xs text-neutral-content italic float-right" v-if="message.is_updated" v-bind:title="message.updated_at">
+              {{ translate('is_updated') }}
+            </span>
         </div>
     </div>
 </template>
@@ -64,13 +70,19 @@
                 return this.message.character !== null;
             },
         },
+      emits: [
+          'delete_message',
+          'edit_message',
+      ],
 
         methods: {
             deleteMessage: function(message) {
-                this.emitter.emit('delete_message', message);
+                this.$emit('delete_message', message);
+              this.onClickOutside();
             },
             editMessage: function(message) {
-                this.emitter.emit('edit_message', message);
+                this.$emit('edit_message', message);
+                this.onClickOutside();
             },
             translate(key) {
                 return this.trans[key] ?? 'unknown';
@@ -82,19 +94,18 @@
                 return this.openedDropdown = true;
             },
             boxClasses: function (message) {
-                let classes = 'box-comment bg-base-200 px-1 py-3 flex flex-col gap-1';
+                let classes = 'box-comment bg-base-100 p-2 flex flex-col gap-1';
                 classes += ' message-author-' + message.from_id;
                 classes += ' message-real-author-' + message.created_by;
 
                 if (message.group) {
                     classes += ' message-followup';
                 } else {
-                    classes += ' message-first mt-2'
+                    classes += ' message-first'
                 }
                 return classes;
             },
             onClickOutside (event) {
-                //console.log('Clicked outside. Event: ', event)
                 this.openedDropdown = false;
             },
         },
