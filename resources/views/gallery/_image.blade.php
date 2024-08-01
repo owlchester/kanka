@@ -22,7 +22,7 @@
             </div>
         </div>
     @else
-        @if ($image->isFont())
+        @if ($image->isFont() || $image->isFile())
             <div class="grow w-full flex flex-col justify-center items-center gap-2">
                 <x-icon class="fa-regular fa-file text-4xl"></x-icon>
             </div>

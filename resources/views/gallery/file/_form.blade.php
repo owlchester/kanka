@@ -8,6 +8,8 @@
 
                 @if ($image->isFont())
                     <x-helper text="This file is a font file." />
+                @elseif ($image->isFile())
+                    <x-helper text="This file is from an entity asset." />
                 @else
                     <div class="text-center">
                         <img src="{{ $image->getUrl(192, 144) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
@@ -17,7 +19,7 @@
                 <hr />
 
                 <div class="grid grid-cols-1 gap-5">
-                    @if (!$image->isFont())
+                    @if (!$image->isFont() && !$image->isFile())
                         <p class="{{ $image->inEntitiesCount() === 0 ? 'text-muted' : '' }} m-0">
                             {{ trans_choice('campaigns/gallery.fields.image_used_in', $image->inEntitiesCount(), ['count' => $image->inEntitiesCount()]) }}
                         </p>

@@ -16,11 +16,13 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $id
  * @property int $type_id
  * @property int $entity_id
+ * @property string|null $image_uuid
  * @property string $name
  * @property array $metadata
  * @property Carbon $created_at
@@ -49,6 +51,7 @@ class EntityAsset extends Model
         'metadata',
         'visibility_id',
         'is_pinned',
+        'image_uuid',
     ];
 
     public $casts = [
@@ -104,6 +107,10 @@ class EntityAsset extends Model
      */
     public function imageUrl(): string
     {
+        if ($this->image) {
+            return $this->image->getUrl(120, 80);
+        }
+
         return Img::crop(120, 80)->url($this->metadata['path']);
     }
 
@@ -126,6 +133,7 @@ class EntityAsset extends Model
     /**
      * A virtual getter for the image path for the image observer delete loop
      */
+    //check this
     public function getImagePathAttribute(): string
     {
         return (string) $this->metadata['path'];
@@ -157,11 +165,23 @@ class EntityAsset extends Model
 
     public function url(): string
     {
+        if ($this->image_uuid) {
+            return $this->image->getUrl();
+        }
+
         $path = $this->metadata['path'];
         $cloudfront = config('filesystems.disks.cloudfront.url');
         if ($cloudfront) {
             return Storage::disk('cloudfront')->url($path);
         }
         return Storage::url($path);
+    }
+
+    /**
+     * Image stored in the gallery
+     */
+    public function image(): HasOne
+    {
+        return $this->hasOne('App\Models\Image', 'id', 'image_uuid');
     }
 }

@@ -290,6 +290,11 @@ class Image extends Model
         return in_array($this->ext, ['woff', 'woff2']);
     }
 
+    public function isFile(): bool
+    {
+        return in_array($this->ext, ['pdf', 'gif', 'webp', 'pdf', 'xls', 'xlsx', 'csv', 'mp3', 'ogg', 'json']);
+    }
+
     public function getUrl(?int $sizeX = null, ?int $sizeY = null): string
     {
         if ($this->isSvg()) {
