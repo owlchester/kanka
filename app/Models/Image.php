@@ -7,7 +7,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Sanitizable;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibilityIDTrait;
+use App\Traits\HasVisibility;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -65,9 +65,9 @@ class Image extends Model
     use HasCampaign;
     use HasFactory;
     use HasUuids;
+    use HasVisibility;
     use LastSync;
     use Sanitizable;
-    use VisibilityIDTrait;
 
     public $fillable = [
         'name',

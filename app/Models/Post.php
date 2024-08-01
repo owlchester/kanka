@@ -9,7 +9,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Templatable;
-use App\Traits\VisibilityIDTrait;
+use App\Traits\HasVisibility;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -57,13 +57,13 @@ class Post extends Model
     use Blameable;
     use HasEntry;
     use HasFactory;
+    use HasVisibility;
     use Paginatable;
     use Sanitizable;
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
     use Templatable;
-    use VisibilityIDTrait;
 
     protected $fillable = [
         'entity_id',

@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Enums\Visibility;
 use App\Models\Scopes\VisibilityIDScope;
+use App\Observers\VisibilityObserver;
 
 /**
  * Trait VisibilityTrait
@@ -15,16 +16,17 @@ use App\Models\Scopes\VisibilityIDScope;
  *
  * @property string|int|Visibility|null $visibility_id
  */
-trait VisibilityIDTrait
+trait HasVisibility
 {
     protected bool $skipAllIcon = false;
 
     /**
      * Add the Visible scope as a default scope to this model
      */
-    public static function bootVisibilityIDTrait()
+    public static function bootHasVisibility()
     {
         static::addGlobalScope(new VisibilityIDScope());
+        static::observe(app(VisibilityObserver::class));
     }
 
     public function skipAllIcon(): self

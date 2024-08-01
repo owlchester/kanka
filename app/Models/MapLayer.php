@@ -10,7 +10,7 @@ use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
-use App\Traits\VisibilityIDTrait;
+use App\Traits\HasVisibility;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,10 +41,10 @@ class MapLayer extends Model
     use Blameable;
     use HasEntry;
     use HasFactory;
+    use HasVisibility;
     use Paginatable;
     use Sanitizable;
     use SortableTrait;
-    use VisibilityIDTrait;
 
     protected $fillable = [
         'map_id',
