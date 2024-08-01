@@ -4,7 +4,6 @@ namespace App\Sanitizers;
 
 use App\Observers\PurifiableTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class MiscSanitizer
 {

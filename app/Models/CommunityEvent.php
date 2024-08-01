@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\User;
 use App\Facades\Img;
-use App\Models\Concerns\Uuid;
 use App\Models\Scopes\CommunityEventScopes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
