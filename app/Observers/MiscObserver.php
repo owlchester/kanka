@@ -6,12 +6,10 @@ use App\Facades\EntityLogger;
 use App\Models\MiscModel;
 use App\Observers\Concerns\Copiable;
 use App\Facades\Images;
-use Illuminate\Support\Str;
 
 abstract class MiscObserver
 {
     use Copiable;
-    use PurifiableTrait;
 
     /**
      */
