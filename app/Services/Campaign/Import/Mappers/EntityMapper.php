@@ -269,7 +269,7 @@ trait EntityMapper
                         //dd('image ' . $this->path . $img . ' doesnt exist');
                         continue;
                     }
-                    
+
                     $image = $this->migrateImage($img);
                     $asset->image_uuid = $image->id;
                     unset($data['metadata']['path']);

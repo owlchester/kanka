@@ -54,7 +54,7 @@ class EntityFileService
                 $image->file,
                 ['disk' => 's3']
             );
-        
+
         $file = new EntityAsset();
         $file->type_id = EntityAsset::TYPE_FILE;
         $file->entity_id = $this->entity->id;
