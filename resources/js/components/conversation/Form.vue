@@ -149,12 +149,6 @@
             }
         },
 
-        mounted() {
-            // this.emitter.on('edit_message', (message, body) => {
-            //     this.editMessage(message, body);
-            // });
-        },
-
         watch: {
           current_message: {
               handler(newValue, oldValue) {

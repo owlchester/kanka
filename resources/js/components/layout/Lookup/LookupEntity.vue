@@ -30,7 +30,7 @@ const backgroundImage = (entity) => {
     return 'url(\'' + entity.image + '\')';
 }
 const preview = (entity) => {
-    //console.log('preview', entity);
+    // console.log('preview', entity);
     emit('preview', entity);
 }
 </script>

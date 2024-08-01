@@ -48,8 +48,10 @@
                     <div class="recent-searches flex flex-col gap-2" v-if="recent.length > 0">
                         <div class="text-sm uppercase ">{{ texts.recents }}</div>
 
-                        <LookupEntity v-for="entity in recent"
-                                      :entity="entity"
+                        <LookupEntity
+                            v-for="entity in recent"
+                            :entity="entity"
+                            @preview="loadPreview"
                         >
                         </LookupEntity>
                     </div>
@@ -254,7 +256,7 @@ export default {
         },
         // Preview an entity
         loadPreview(entity) {
-            this.show_loading = true;
+          this.show_loading = true;
           fetch(entity.preview)
               .then(response => response.json())
               .then(response => this.parsePreviewResponse(response));

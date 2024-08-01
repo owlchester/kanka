@@ -32,26 +32,7 @@
 
         },
         mounted() {
-
             this.getMessages();
-
-            // this.emitter.on('sending_message', () => {
-            //     this.sending = true;
-            // });
-            //
-            // this.emitter.on('sent_message', () => {
-            //     this.getMessages();
-            // });
-            //
-            // this.emitter.on('edited_message', (message) => {
-            //     let index = this.messages.findIndex(msg => msg.id === message.id);
-            //     this.messages[index] = message;
-            // });
-            //
-            // this.emitter.on('delete_message', (message, body) => {
-            //     this.deleteMessage(message, body);
-            // });
-
         }
     }
 </script>
