@@ -8,13 +8,8 @@ use App\Models\MiscModel;
 
 class MapObserver extends MiscObserver
 {
-    /**
-     * @param Map $map
-     */
-    public function saving(MiscModel $map)
+    public function saving(Map $map)
     {
-        parent::saving($map);
-
         $map->grid = (int) $map->grid;
     }
 
