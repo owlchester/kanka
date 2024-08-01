@@ -110,7 +110,7 @@ class NavigationService
             $data['member'][] = [
                 'name' => $campaign['name'],
                 'is_boosted' => $campaign['boosted'],
-                'image' => $campaign['image'] ? Img::crop(100, 100)->url($campaign['image']) : null,
+                'image' => $campaign['image'] ? Img::crop(100, 96)->url($campaign['image']) : null,
                 'url' => $campaign['route'],
             ];
             $member++;
@@ -120,7 +120,7 @@ class NavigationService
             $data['following'][] = [
                 'name' => $campaign['name'],
                 'is_boosted' => $campaign['boosted'],
-                'image' => $campaign['image'] ? Img::crop(100, 100)->url($campaign['image']) : null,
+                'image' => $campaign['image'] ? Img::crop(100, 96)->url($campaign['image']) : null,
                 'url' => $campaign['route'],
             ];
         }
