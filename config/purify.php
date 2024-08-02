@@ -255,9 +255,9 @@ return [
     */
 
     'serializer' => [
-       'disk' => env('FILESYSTEM_DRIVER', 'local'),
-       'path' => 'purify',
-       'cache' => \Stevebauman\Purify\Cache\FilesystemDefinitionCache::class,
+        'disk' => env('FILESYSTEM_DRIVER', 'local'),
+        'path' => 'purify',
+        'cache' => Stevebauman\Purify\Cache\FilesystemDefinitionCache::class,
     ],
 
     // 'serializer' => [

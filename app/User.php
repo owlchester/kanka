@@ -475,9 +475,9 @@ class User extends \Illuminate\Foundation\Auth\User
         }*/
         // Recent fails are a clear indicator of someone cycling through cards
         return $this->logs()
-                ->where('type_id', UserLog::TYPE_FAILED_CHARGE_EMAIL)
-                ->whereDate('created_at', '>=', Carbon::now()->subHour()->toDateString())
-                ->count() >= 2;
+            ->where('type_id', UserLog::TYPE_FAILED_CHARGE_EMAIL)
+            ->whereDate('created_at', '>=', Carbon::now()->subHour()->toDateString())
+            ->count() >= 2;
     }
 
     /**

@@ -7,7 +7,6 @@ use App\Models\Image;
 use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class DefaultImageService
 {
