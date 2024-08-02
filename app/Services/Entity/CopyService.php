@@ -2,9 +2,13 @@
 
 namespace App\Services\Entity;
 
+use App\Models\CharacterTrait;
 use App\Models\Entity;
+use App\Models\MapMarker;
+use App\Models\TimelineElement;
 use App\Traits\EntityAware;
 use App\Traits\RequestAware;
+use Illuminate\Support\Facades\DB;
 
 class CopyService
 {
@@ -13,15 +17,33 @@ class CopyService
 
     protected Entity $source;
 
-    public function copy(): void
+    protected bool $force = false;
+
+    public function source(Entity $entity): self
+    {
+        $this->source = $entity;
+        return $this;
+    }
+
+    public function force(): self
+    {
+        $this->force = true;
+        return $this;
+    }
+
+    public function fromId(): self
     {
         if (!$this->request->filled('copy_source_id')) {
-            return;
+            return $this;
         }
-
         $this->source = Entity::find((int) $this->request->get('copy_source_id'));
+        return $this;
+    }
+
+    public function copy(): void
+    {
         // Invalid source, or of a different type?
-        if (empty($this->source) || $this->source->type_id !== $this->entity->type_id) {
+        if (!isset($this->source) || $this->source->type_id !== $this->entity->type_id) {
             return;
         }
 
@@ -37,14 +59,28 @@ class CopyService
         ;
     }
 
-    protected function posts(): self
+    public function posts(): self
     {
-        if (!$this->check('copy_posts')) {
+        if (!$this->force && !$this->check('copy_posts')) {
             return $this;
         }
         foreach ($this->source->posts as $post) {
-            $post->copyTo($this->entity);
+            $post->copyTo($this->entity, $this->isSameCampaign());
         }
+        return $this;
+    }
+
+    public function attributes(): self
+    {
+        if (!$this->force && !$this->check('copy_attributes')) {
+            return $this;
+        }
+        foreach ($this->source->attributes as $attribute) {
+            $newAttribute = $attribute->replicate(['entity_id', 'created_by', 'updated_by']);
+            $newAttribute->entity_id = $this->entity->id;
+            $newAttribute->save();
+        }
+
         return $this;
     }
 
@@ -81,13 +117,13 @@ class CopyService
         return $this;
     }
 
-    protected function inventory(): self
+    public function inventory(): self
     {
-        if (!$this->check('copy_inventory')) {
+        if (!$this->force && !$this->check('copy_inventory')) {
             return $this;
         }
         foreach ($this->source->inventories as $inventory) {
-            $inventory->copyTo($this->entity);
+            $inventory->copyTo($this->entity, $this->isSameCampaign());
         }
         return $this;
     }
@@ -103,12 +139,78 @@ class CopyService
         return $this;
     }
 
-    protected function map(): self
+    public function character(): self
+    {
+        if (!$this->source->isCharacter()) {
+            return $this;
+        }
+        /** @var CharacterTrait $trait */
+        // @phpstan-ignore-next-line
+        foreach ($this->source->child->characterTraits as $trait) {
+            $newTrait = $trait->replicate(['character_id']);
+            $newTrait->character_id = $this->entity->entity_id;
+            $newTrait->save();
+        }
+        return $this;
+    }
+
+    public function map(): self
     {
         if (!$this->source->isMap() || !$this->check('copy_elements')) {
             return $this;
         }
-        $this->source->child->copyRelatedToTarget($this->entity->map);
+        $groups = [];
+        // @phpstan-ignore-next-line
+        foreach ($this->source->child->layers as $sub) {
+            // Old layer not linked to the gallery? Skip it
+            if (!empty($sub->image_path)) {
+                continue;
+            }
+            $newSub = $sub->replicate(['map_id']);
+            $newSub->map_id = $this->entity->entity_id;
+
+//            if (!empty($sub->image_path) && Storage::exists($sub->image_path)) {
+//                $uniqid = uniqid();
+//                $newPath = str_replace('.', $uniqid . '.', $sub->image_path);
+//                $newSub->image_path = $newPath;
+//                if (!Storage::exists($newPath)) {
+//                    Storage::copy($sub->image_path, $newPath);
+//                }
+//            }
+            $newSub->saveQuietly();
+        }
+        // @phpstan-ignore-next-line
+        foreach ($this->source->child->groups as $sub) {
+            $newSub = $sub->replicate(['map_id']);
+            $newSub->map_id = $this->entity->entity_id;
+            $newSub->saveQuietly();
+            $groups[$sub->id] = $newSub->id;
+        }
+        // @phpstan-ignore-next-line
+        foreach ($this->source->child->markers as $sub) {
+            /** @var MapMarker $newSub */
+            $newSub = $sub->replicate(['map_id']);
+            $newSub->map_id = $this->entity->entity_id;
+            $newSub->group_id = !empty($newSub->group_id) && isset($groups[$newSub->group_id]) ? $groups[$newSub->group_id] : null;
+
+            // If moving to another campaign, switch the markers pointing to an entity
+            if (!empty($newSub->entity_id) && !$this->isSameCampaign()) {
+                $newSub->entity_id = null;
+                if ($newSub->icon == 4) {
+                    $newSub->icon = 1;
+                }
+                if (empty($newSub->name)) {
+                    // Because the permission engine is already set on the new campaign, searching the marker's entity
+                    // will always fail. So we need to go get it directly
+                    $raw = DB::table('entities')
+                        ->select('name')
+                        ->where('id', $sub->entity_id)
+                        ->first();
+                    $newSub->name = $raw ? $raw->name : 'Copy of #' . $sub->id;
+                }
+            }
+            $newSub->saveQuietly();
+        }
         return $this;
     }
 
@@ -117,7 +219,8 @@ class CopyService
         if (!$this->source->isQuest() || !$this->check('copy_elements')) {
             return $this;
         }
-        foreach ($this->source->quest->elements as $sub) {
+        // @phpstan-ignore-next-line
+        foreach ($this->source->child->elements as $sub) {
             $newSub = $sub->replicate();
             $newSub->quest_id = $this->entity->entity_id;
             $newSub->save();
@@ -125,13 +228,14 @@ class CopyService
         return $this;
     }
 
-    protected function timeline(): self
+    public function timeline(): self
     {
-        if (!$this->source->isTimeline() || !$this->check('copy_eras')) {
+        if (!$this->source->isTimeline() || (!$this->force && !$this->check('copy_eras'))) {
             return $this;
         }
-        $copyElements = $this->check('copy_elements');
-        foreach ($this->source->timeline->eras as $era) {
+        $copyElements = $this->force || $this->check('copy_elements');
+        // @phpstan-ignore-next-line
+        foreach ($this->source->child->eras()->with('elements')->get() as $era) {
             $newEra = $era->replicate();
             $newEra->timeline_id = $this->entity->entity_id;
             $newEra->save();
@@ -140,9 +244,16 @@ class CopyService
                 continue;
             }
             foreach ($era->elements as $element) {
+                /** @var TimelineElement $newElement */
                 $newElement = $element->replicate();
                 $newElement->timeline_id = $this->entity->entity_id;
                 $newElement->era_id = $newEra->id;
+                if (!$this->isSameCampaign()) {
+                    $newElement->entity_id = null;
+                    if (empty($newElement->name)) {
+                        continue;
+                    }
+                }
                 $newElement->save();
             }
         }
@@ -153,6 +264,11 @@ class CopyService
 
     protected function check(string $field): bool
     {
-        return $this->request->has($field) && $this->request->filled($field);
+        return isset($this->request) && $this->request->has($field) && $this->request->filled($field);
+    }
+
+    protected function isSameCampaign(): bool
+    {
+        return $this->source->campaign_id === $this->entity->campaign_id;
     }
 }

@@ -11,6 +11,7 @@ use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class MapGroup
@@ -55,11 +56,7 @@ class MapGroup extends Model
     protected array $sanitizable = [
         'name',
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function map()
+    public function map(): BelongsTo
     {
         return $this->belongsTo(Map::class, 'map_id');
     }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
@@ -25,18 +26,12 @@ class OrganisationLocation extends Pivot
 
     protected $fillable = ['organisation_id', 'location_id'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function organisation()
+    public function organisation(): BelongsTo
     {
         return $this->belongsTo('App\Models\Organisation', 'organisation_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function location()
+    public function location(): BelongsTo
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }

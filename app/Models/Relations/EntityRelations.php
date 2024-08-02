@@ -6,6 +6,7 @@ use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPermission;
+use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\Creature;
 use App\Models\EntityAbility;
@@ -38,6 +39,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @package App\Models\Relations
  *
  * @property Conversation $conversation
+ * @property Character $character
  * @property Creature $creature
  * @property Tag[]|Collection $tags
  * @property EntityTag[]|Collection $entityTags

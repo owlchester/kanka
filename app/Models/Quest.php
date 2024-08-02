@@ -14,6 +14,7 @@ use App\Traits\CalendarDateTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -201,9 +202,8 @@ class Quest extends MiscModel
 
     /**
      * Parent
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function quest()
+    public function quest(): BelongsTo
     {
         return $this->belongsTo(Quest::class);
     }

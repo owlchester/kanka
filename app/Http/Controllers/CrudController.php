@@ -398,7 +398,7 @@ class CrudController extends Controller
 
                 /** @var CopyService $copyService */
                 $copyService = app()->make(CopyService::class);
-                $copyService->entity($new->entity)->request($request)->copy();
+                $copyService->entity($new->entity)->request($request)->fromId()->copy();
             }
 
 

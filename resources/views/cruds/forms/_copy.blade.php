@@ -27,7 +27,6 @@
         <input type="checkbox" name="copy_inventory" value="1" @if (old('copy_inventory', request()->filled('template'))) checked="checked" @endif />
     </x-checkbox>
 </x-forms.field>
-
 <x-forms.field
     field="copy-reminders">
     <input type="hidden" name="copy_reminders" value="0" />
@@ -35,7 +34,6 @@
         <input type="checkbox" name="copy_reminders" value="1" @if (old('copy_reminders', request()->filled('template'))) checked="checked" @endif />
     </x-checkbox>
 </x-forms.field>
-
 @if ($campaign->boosted())
     <x-forms.field
         field="copy-links">

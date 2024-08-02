@@ -112,10 +112,18 @@ class Inventory extends Model
     /**
      * Copy an entity inventory to another target
      */
-    public function copyTo(Entity $target): bool
+    public function copyTo(Entity $target, bool $sameCampaign): bool
     {
-        $new = $this->replicate(['entity_id']);
+        $without = $sameCampaign ? ['entity_id'] : ['entity_id', 'item_id', 'image_uuid'];
+        $new = $this->replicate($without);
         $new->entity_id = $target->id;
+        if ($sameCampaign) {
+            return $new->save();
+        }
+        if (empty($new->name)) {
+            return false;
+        }
         return $new->save();
+
     }
 }

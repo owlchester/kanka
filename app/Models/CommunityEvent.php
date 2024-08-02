@@ -8,6 +8,7 @@ use App\Models\Scopes\CommunityEventScopes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -113,10 +114,7 @@ class CommunityEvent extends Model
         return !$this->rankedResults->where('rank', 1)->isEmpty();
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function jury()
+    public function jury(): BelongsTo
     {
         return $this->belongsTo(User::class, 'jury_id');
     }

@@ -31,14 +31,16 @@ class MoveService
     protected Campaign $to;
 
     protected GalleryService $galleryService;
+    protected CopyService $copyService;
 
     protected bool $copy = false;
 
     protected int $count = 0;
 
-    public function __construct(GalleryService $galleryService)
+    public function __construct(GalleryService $galleryService, CopyService $copyService)
     {
         $this->galleryService = $galleryService;
+        $this->copyService = $copyService;
     }
 
     public function to(Campaign|int $campaign): self
@@ -163,49 +165,17 @@ class MoveService
                 }
             }
 
-            // Copy posts over
-            foreach ($this->entity->posts as $note) {
-                /** @var Post $newNote */
-                $newNote = $note->replicate(['entity_id', 'created_by', 'updated_by']);
-                $newNote->entity_id = $newModel->entity->id;
-                $newNote->created_by = auth()->user()->id;
-                $newNote->saveQuietly();
-            }
-
-            // Attributes please
-            foreach ($this->entity->attributes as $attribute) {
-                /** @var Attribute $newAttribute */
-                $newAttribute = $attribute->replicate(['entity_id']);
-                $newAttribute->entity_id = $newModel->entity->id;
-                $newAttribute->saveQuietly();
-            }
-
-            // Characters: copy traits
-            if ($this->entity->child instanceof Character) {
-                /** @var CharacterTrait $trait */
-                foreach ($this->entity->child->characterTraits as $trait) {
-                    $newTrait = $trait->replicate(['character_id']);
-                    $newTrait->character_id = $newModel->id;
-                    $newTrait->saveQuietly();
-                }
-            }
-
-            // Timeline: copy eras
-            if ($this->entity->child instanceof Timeline) {
-                foreach ($this->entity->child->eras as $era) {
-                    /** @var TimelineEra $newEra **/
-                    $newEra = $era->replicate(['timeline_id']);
-                    $newEra->timeline_id = $newModel->id;
-                    $newEra->saveQuietly();
-                }
-            }
-
-            if (
-                request()->has('copy_related_elements') &&
-                request()->filled('copy_related_elements') &&
-                method_exists($this->entity->child, 'copyRelatedToTarget')) {
-                $this->entity->child->copyRelatedToTarget($newModel);
-            }
+            $this->copyService
+                ->entity($newModel->entity)
+                ->source($this->entity)
+                ->force()
+                ->posts()
+                ->inventory()
+                ->attributes()
+                ->character()
+                ->timeline()
+                ->map()
+            ;
 
             DB::commit();
             $success = true;

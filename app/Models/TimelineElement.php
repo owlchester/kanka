@@ -24,7 +24,7 @@ use Laravel\Scout\Searchable;
  * @property int $id
  * @property int $timeline_id
  * @property int $era_id
- * @property int $entity_id
+ * @property int|null $entity_id
  * @property string $name
  * @property string $date
  * @property int $position

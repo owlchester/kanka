@@ -13,6 +13,8 @@ use App\Traits\CalendarDateTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -156,15 +158,12 @@ class Journal extends MiscModel
         return ['journal_id', 'author_id', 'date', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function journal()
+    public function journal(): BelongsTo
     {
         return $this->belongsTo(Journal::class);
     }
 
-    public function journals()
+    public function journals(): HasMany
     {
         return $this->hasMany(Journal::class);
     }
@@ -182,27 +181,17 @@ class Journal extends MiscModel
         return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('journal');
     }
 
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'author_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function location()
+    public function location(): BelongsTo
     {
         return $this->belongsTo('App\Models\Location', 'location_id');
     }
