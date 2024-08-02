@@ -11,7 +11,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('map_layers', function (Blueprint $table) {
-            $table->uuid('image_uuid')->after('image')->nullable();
+            $table->char('image_uuid', 36)->after('image')->nullable();
             $table->foreign('image_uuid')->references('id')->on('images')->nullOnDelete();
         });
         Schema::table('map_layers', function (Blueprint $table) {
