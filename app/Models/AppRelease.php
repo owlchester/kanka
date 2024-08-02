@@ -6,6 +6,7 @@ use App\Facades\UserCache;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class AppRelease
@@ -36,10 +37,7 @@ class AppRelease extends Model
         'end_at' => 'date',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
     }

@@ -588,4 +588,16 @@ class EntityEvent extends Model
             'created_by',
         ];
     }
+
+    /**
+     * Copy a reminder to another target
+     */
+    public function copyTo(Entity $target): EntityEvent
+    {
+        $new = $this->replicate(['entity_id', 'created_by']);
+        $new->entity_id = $target->id;
+        $new->created_by = auth()->user()->id;
+        $new->saveQuietly();
+        return $new;
+    }
 }

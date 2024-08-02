@@ -562,57 +562,6 @@ class Map extends MiscModel
     }
 
     /**
-     * Copy related elements to the target
-     */
-    public function copyRelatedToTarget(Map $target): void
-    {
-        $groups = [];
-        foreach ($this->layers as $sub) {
-            $newSub = $sub->replicate(['map_id']);
-            $newSub->map_id = $target->id;
-
-            if (!empty($sub->image_path) && Storage::exists($sub->image_path)) {
-                $uniqid = uniqid();
-                $newPath = str_replace('.', $uniqid . '.', $sub->image_path);
-                $newSub->image_path = $newPath;
-                if (!Storage::exists($newPath)) {
-                    Storage::copy($sub->image_path, $newPath);
-                }
-            }
-            $newSub->saveQuietly();
-        }
-        foreach ($this->groups as $sub) {
-            $newSub = $sub->replicate(['map_id']);
-            $newSub->map_id = $target->id;
-            $newSub->saveQuietly();
-            $groups[$sub->id] = $newSub->id;
-        }
-        foreach ($this->markers as $sub) {
-            $newSub = $sub->replicate(['map_id']);
-            $newSub->map_id = $target->id;
-            $newSub->group_id = !empty($newSub->group_id) && isset($groups[$newSub->group_id]) ? $groups[$newSub->group_id] : null;
-
-            // If moving to another campaign, switch the markers pointing to an entity
-            if (!empty($newSub->entity_id) && $target->campaign_id != $this->campaign_id) {
-                $newSub->entity_id = null;
-                if ($newSub->icon == 4) {
-                    $newSub->icon = 1;
-                }
-                if (empty($newSub->name)) {
-                    // Because the permission engine is already set on the new campaign, searching the marker's entity
-                    // will always fail. So we need to go get it directly
-                    $raw = DB::table('entities')
-                        ->select('name')
-                        ->where('id', $sub->entity_id)
-                        ->first();
-                    $newSub->name = $raw ? $raw->name : 'Copy of #' . $sub->id;
-                }
-            }
-            $newSub->saveQuietly();
-        }
-    }
-
-    /**
      * Determine if a map can be explored
      */
     public function explorable(): bool

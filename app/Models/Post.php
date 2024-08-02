@@ -149,22 +149,27 @@ class Post extends Model
     }
 
     /**
-     * Copy an post to another target
+     * Copy a post to another target
      */
-    public function copyTo(Entity $target): Post
+    public function copyTo(Entity $target, bool $sameCampaign): Post
     {
-        $new = $this->replicate(['entity_id', 'created_by']);
+        $without = ['entity_id', 'created_by', 'updated_by'];
+        if (!$sameCampaign) {
+            $without[] = 'location_id';
+        }
+        $new = $this->replicate($without);
         $new->entity_id = $target->id;
         $new->created_by = auth()->user()->id;
         $new->saveQuietly();
 
-        // Also replicate permissions
+        if (!$sameCampaign) {
+            return $new;
+        }
         foreach ($this->permissions as $perm) {
             $newPerm = $perm->replicate(['post_id']);
             $newPerm->post_id = $new->id;
             $newPerm->save();
         }
-
         return $new;
     }
 

@@ -11,6 +11,7 @@ use App\Models\Concerns\Sanitizable;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -109,10 +110,7 @@ class Note extends MiscModel
         return (int) config('entities.ids.note');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function note()
+    public function note(): BelongsTo
     {
         return $this->belongsTo(Note::class, 'note_id');
     }

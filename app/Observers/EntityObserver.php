@@ -95,7 +95,7 @@ class EntityObserver
     {
         if (!auth()->user()->can('permission', $entity->child)) {
             return;
-        } elseif (request()->has('copy_source_permissions') && request()->filled('copy_source_permissions')) {
+        } elseif (request()->has('copy_permissions') && request()->filled('copy_permissions')) {
             return;
         } elseif (request()->get('quick-creator') === '1') {
             // If we're creating an entity from the quick creator, there is no form for permissions.

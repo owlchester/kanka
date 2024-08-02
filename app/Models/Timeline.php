@@ -12,6 +12,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
@@ -129,10 +130,7 @@ class Timeline extends MiscModel
         return ['timeline_id'];
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function calendar()
+    public function calendar(): BelongsTo
     {
         return $this->belongsTo('App\Models\Calendar', 'calendar_id', 'id');
     }
@@ -142,10 +140,7 @@ class Timeline extends MiscModel
         return $this->hasMany('App\Models\Timeline', 'timeline_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function timeline()
+    public function timeline(): BelongsTo
     {
         return $this->belongsTo('App\Models\Timeline', 'timeline_id', 'id');
     }

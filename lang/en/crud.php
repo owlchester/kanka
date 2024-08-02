@@ -133,6 +133,7 @@ return [
         'copy_links'        => 'Copy Links',
         'copy_permissions'  => 'Copy Permissions (this will override values set in the permissions tab)',
         'copy_posts'        => 'Copy Posts (this includes the posts permissions)',
+        'copy_reminders'    => 'Copy Reminders',
         'creator'           => 'Creator',
         'date_range'        => 'Date range',
         'entity'            => 'Entity',
