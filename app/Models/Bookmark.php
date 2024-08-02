@@ -156,11 +156,6 @@ class Bookmark extends MiscModel
             ->orderBy('name', 'ASC');
     }
 
-    public function campaign(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Campaign', 'campaign_id');
-    }
-
     public function target(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');

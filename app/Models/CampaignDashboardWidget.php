@@ -22,7 +22,6 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property int $id
- * @property int $campaign_id
  * @property int $entity_id
  * @property int $dashboard_id
  * @property Widget $widget
@@ -57,11 +56,6 @@ class CampaignDashboardWidget extends Model
         'config' => 'array',
         'widget' => Widget::class,
     ];
-
-    public function campaign(): BelongsTo
-    {
-        return $this->belongsTo(Campaign::class);
-    }
 
     public function entity(): BelongsTo
     {

@@ -86,11 +86,6 @@ class Image extends Model
         'name',
     ];
 
-    public function campaign(): BelongsTo
-    {
-        return $this->belongsTo(Campaign::class);
-    }
-
     public function imageFolder(): BelongsTo
     {
         return $this->belongsTo(Image::class, 'folder_id', 'id');
