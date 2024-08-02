@@ -16,6 +16,7 @@ use App\Models\MiscModel;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
+use App\Services\Entity\CopyService;
 use App\Services\MultiEditingService;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
@@ -394,6 +395,10 @@ class CrudController extends Controller
                             ->replaceMentions((int) $request->post('copy_source_id'));
                     }
                 }
+
+                /** @var CopyService $copyService */
+                $copyService = app()->make(CopyService::class);
+                $copyService->entity($new->entity)->request($request)->copy();
             }
 
 

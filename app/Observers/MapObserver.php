@@ -2,9 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\Entity;
 use App\Models\Map;
-use App\Models\MiscModel;
 
 class MapObserver extends MiscObserver
 {
@@ -21,24 +19,5 @@ class MapObserver extends MiscObserver
         $map->height = null;
         $map->width = null;
         $map->saveQuietly();
-    }
-
-    /**
-     * When an element is created, check for the copy option
-     */
-    public function created(MiscModel $model)
-    {
-        parent::created($model);
-
-        // Copy eras from timeline
-        if (request()->has('copy_elements') && request()->filled('copy_elements')) {
-            $sourceId = request()->post('copy_source_id');
-
-            /** @var Entity $source */
-            $source = Entity::findOrFail($sourceId);
-            if ($source->isMap() && method_exists($source->child, 'copyRelatedToTarget')) {
-                $source->child->copyRelatedToTarget($model);
-            }
-        }
     }
 }

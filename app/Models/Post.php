@@ -149,7 +149,7 @@ class Post extends Model
     }
 
     /**
-     * Copy an post to another target
+     * Copy a post to another target
      */
     public function copyTo(Entity $target): Post
     {

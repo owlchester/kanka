@@ -62,6 +62,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Relation[]|Collection $relations
  * @property EntityEvent[]|Collection $elapsedEvents
  * @property EntityEvent[]|Collection $calendarDateEvents
+ * @property EntityEvent[]|Collection $reminders
  * @property EntityEvent|null $calendarDate
  * @property Image|null $image
  * @property Image|null $header
@@ -305,13 +306,17 @@ trait EntityRelations
     {
         return $this->hasMany('App\Models\EntityEvent', 'entity_id', 'id');
     }
+    public function reminders(): HasMany
+    {
+        return $this->hasMany('App\Models\EntityEvent', 'entity_id', 'id');
+    }
 
     /**
      * Calendar Date Events are used by Journals and Quests to link them directly to a calendar
      */
     public function calendarDateEvents(): HasMany
     {
-        return $this->events()
+        return $this->reminders()
             ->with('calendar')
             ->has('calendar')
             ->calendarDate();
@@ -327,7 +332,7 @@ trait EntityRelations
 
     public function elapsedEvents(): HasMany
     {
-        return $this->events()->with('calendar')->whereNotNull('type_id');
+        return $this->reminders()->with('calendar')->whereNotNull('type_id');
     }
 
     public function logs(): HasMany
