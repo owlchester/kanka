@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Sanitizable;
-use App\Traits\VisibilityIDTrait;
+use App\Traits\HasVisibility;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -34,8 +34,8 @@ class EntityAbility extends Model
 {
     use Blameable;
     use HasFactory;
+    use HasVisibility;
     use Sanitizable;
-    use VisibilityIDTrait;
 
     /**
      * Fillable fields

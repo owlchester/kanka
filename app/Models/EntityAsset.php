@@ -7,7 +7,7 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Scopes\EntityAssetScopes;
 use App\Models\Scopes\Pinnable;
-use App\Traits\VisibilityIDTrait;
+use App\Traits\HasVisibility;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -34,9 +34,9 @@ class EntityAsset extends Model
     use Blameable;
     use EntityAssetScopes;
     use HasFactory;
+    use HasVisibility;
     use Pinnable;
     use Sanitizable;
-    use VisibilityIDTrait;
 
     public const TYPE_FILE = 1;
     public const TYPE_LINK = 2;

@@ -7,7 +7,7 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\Sanitizable;
-use App\Traits\VisibilityIDTrait;
+use App\Traits\HasVisibility;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -46,9 +46,9 @@ class TimelineElement extends Model
     use HasEntry;
     use HasFactory;
     use HasSuggestions;
+    use HasVisibility;
     use Sanitizable;
     use Searchable;
-    use VisibilityIDTrait;
 
     protected $fillable = [
         'timeline_id',

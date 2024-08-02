@@ -12,7 +12,7 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\Pinnable;
-use App\Traits\VisibilityIDTrait;
+use App\Traits\HasVisibility;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,6 +43,7 @@ class Relation extends Model
     use HasCampaign;
     use HasFactory;
     use HasFilters;
+    use HasVisibility;
     use Orderable;
     use Paginatable;
     use Pinnable;
@@ -50,7 +51,6 @@ class Relation extends Model
     use Searchable;
     use Sortable;
     use SortableTrait;
-    use VisibilityIDTrait;
 
     protected $fillable = [
         'campaign_id',

@@ -3,14 +3,11 @@
 namespace App\Observers;
 
 use App\Models\DiceRoll;
-use App\Models\MiscModel;
 
 class DiceRollObserver extends MiscObserver
 {
-    public function saving(DiceRoll|MiscModel $model)
+    public function saving(DiceRoll $model)
     {
-        parent::saving($model);
-        // @phpstan-ignore-next-line
         $model->system = 'standard';
     }
 }

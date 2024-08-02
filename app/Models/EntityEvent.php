@@ -6,7 +6,7 @@ use App\Models\Concerns\Blameable;
 use App\Models\Scopes\EntityEventScopes;
 use Exception;
 use App\Models\Concerns\SortableTrait;
-use App\Traits\VisibilityIDTrait;
+use App\Traits\HasVisibility;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
@@ -41,8 +41,8 @@ class EntityEvent extends Model
     use Blameable;
     use EntityEventScopes;
     use HasFactory;
+    use HasVisibility;
     use SortableTrait;
-    use VisibilityIDTrait;
 
     /** @var string */
     public $table = 'entity_events';

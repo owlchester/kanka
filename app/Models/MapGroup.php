@@ -6,7 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
-use App\Traits\VisibilityIDTrait;
+use App\Traits\HasVisibility;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -30,10 +30,10 @@ class MapGroup extends Model
 {
     use Blameable;
     use HasFactory;
+    use HasVisibility;
     use Paginatable;
     use Sanitizable;
     use SortableTrait;
-    use VisibilityIDTrait;
 
     protected array $sortable = [
         'name',

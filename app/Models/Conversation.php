@@ -85,7 +85,8 @@ class Conversation extends MiscModel
 
     public function participants(): HasMany
     {
-        return $this->hasMany('App\Models\ConversationParticipant', 'conversation_id');
+        return $this->hasMany('App\Models\ConversationParticipant', 'conversation_id')
+            ->with('character');
     }
 
     /**
