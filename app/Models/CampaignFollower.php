@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Paginatable;
-use App\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
@@ -11,13 +11,12 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * Class CampaignFollower
  * @package App\Models
  *
- * @property int $user_id
  * @property int $campaign_id
- * @property User $user
  * @property Campaign $campaign
  */
 class CampaignFollower extends Pivot
 {
+    use HasUser;
     use Paginatable;
 
     /**
@@ -30,10 +29,5 @@ class CampaignFollower extends Pivot
     public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 }

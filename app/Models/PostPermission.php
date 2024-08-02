@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -12,24 +12,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $post_id
- * @property int $user_id
  * @property int $role_id
  * @property int $permission
- * @property User $user
  * @property Post $post
  */
 class PostPermission extends Model
 {
+    use HasUser;
+
     public $fillable = [
         'user_id',
         'role_id',
         'post_id',
         'permission'
     ];
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function role(): BelongsTo
     {

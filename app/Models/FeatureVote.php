@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
- * @property int $user_id
  * @property int $feature_id
  * @property Feature $feature
  *
@@ -17,12 +16,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class FeatureVote extends Model
 {
-    public $table = 'feature_upvotes';
+    use HasUser;
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+    public $table = 'feature_upvotes';
 
     public function feature(): BelongsTo
     {

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,23 +10,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  *
  * @property string $token
- * @property int $created_by
  * @property int $campaign_id
+ * @property int $created_by
  * @property Campaign $campaign
- * @property User $user
  *
  * @method static self|Builder check(int $campaignId)
  */
 class AdminInvite extends Model
 {
+    use HasUser;
+
+    public string $userField = 'created_by';
+
     public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
     }
 
     /**

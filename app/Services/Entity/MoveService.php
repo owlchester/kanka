@@ -4,14 +4,9 @@ namespace App\Services\Entity;
 
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
-use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Character;
-use App\Models\CharacterTrait;
-use App\Models\Post;
 use App\Models\MiscModel;
-use App\Models\Timeline;
-use App\Models\TimelineEra;
 use App\Services\Campaign\GalleryService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Requests\HistoryRequest;
+use App\Models\Concerns\HasUser;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,19 +18,18 @@ use Illuminate\Support\Str;
  *
  * @property int $entity_id
  * @property int $campaign_id
- * @property int $created_by
  * @property int $impersonated_by
  * @property int $action
  * @property int $post_id
  * @property null|string|array  $changes
  * @property Entity|null $entity
- * @property User|null $user
  * @property User|null $impersonator
  * @property Campaign $campaign
  * @property Carbon $created_at
  */
 class EntityLog extends Model
 {
+    use HasUser;
     use MassPrunable;
 
     public const ACTION_CREATE = 1;
@@ -53,6 +53,8 @@ class EntityLog extends Model
         'changes' => 'array'
     ];
 
+    protected string $userField = 'created_by';
+
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
@@ -61,11 +63,6 @@ class EntityLog extends Model
     public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo('App\User', 'created_by');
     }
 
     public function impersonator(): BelongsTo

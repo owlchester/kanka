@@ -6,7 +6,7 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -16,11 +16,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $community_vote_id
- * @property int $user
  * @property string $vote
  */
 class CommunityVoteBallot extends Model
 {
+    use HasUser;
+
     public $fillable = [
         'community_vote_id',
         'user_id',
@@ -30,10 +31,5 @@ class CommunityVoteBallot extends Model
     public function vote(): BelongsTo
     {
         return $this->belongsTo(CommunityVote::class);
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 }

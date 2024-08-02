@@ -169,14 +169,14 @@ class CopyService
             $newSub = $sub->replicate(['map_id']);
             $newSub->map_id = $this->entity->entity_id;
 
-//            if (!empty($sub->image_path) && Storage::exists($sub->image_path)) {
-//                $uniqid = uniqid();
-//                $newPath = str_replace('.', $uniqid . '.', $sub->image_path);
-//                $newSub->image_path = $newPath;
-//                if (!Storage::exists($newPath)) {
-//                    Storage::copy($sub->image_path, $newPath);
-//                }
-//            }
+            //            if (!empty($sub->image_path) && Storage::exists($sub->image_path)) {
+            //                $uniqid = uniqid();
+            //                $newPath = str_replace('.', $uniqid . '.', $sub->image_path);
+            //                $newSub->image_path = $newPath;
+            //                if (!Storage::exists($newPath)) {
+            //                    Storage::copy($sub->image_path, $newPath);
+            //                }
+            //            }
             $newSub->saveQuietly();
         }
         // @phpstan-ignore-next-line

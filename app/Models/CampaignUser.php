@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Paginatable;
 use App\User;
 use Carbon\Carbon;
@@ -15,9 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @package App\Models
  *
  * @property int $id
- * @property int $user_id
  * @property int $campaign_id
- * @property User $user
  * @property Campaign $campaign
  * @property Carbon $created_at
  *
@@ -25,6 +24,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class CampaignUser extends Pivot
 {
+    use HasUser;
     use Paginatable;
     use SortableTrait;
 
@@ -37,11 +37,6 @@ class CampaignUser extends Pivot
     public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     /**

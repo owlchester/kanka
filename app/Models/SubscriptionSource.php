@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class SubscriptionSource
@@ -15,14 +14,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $charge_id
  * @property string $tier
  * @property string $period
- * @property int $user_id
  * @property string $status
  * @property string $method
- *
- * @property User $user
  */
 class SubscriptionSource extends Model
 {
+    use HasUser;
+
     public $timestamps = true;
 
     public $fillable = [
@@ -40,10 +38,6 @@ class SubscriptionSource extends Model
     public function currency(): string
     {
         return in_array($this->method, ['giropay', 'sofort', 'ideal']) ? 'eur' : 'eur';
-    }
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**

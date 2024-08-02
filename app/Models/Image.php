@@ -4,11 +4,11 @@ namespace App\Models;
 
 use App\Facades\Img;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasUser;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Sanitizable;
 use App\Traits\ExportableTrait;
 use App\Traits\HasVisibility;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -36,7 +36,6 @@ use Illuminate\Support\Facades\Storage;
  * @property Carbon $updated_at
  * @property Image $imageFolder
  *
- * @property User $user
  * @property Image[] $folders
  * @property Image[] $images
  * @property Entity[] $entities
@@ -64,6 +63,7 @@ class Image extends Model
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
+    use HasUser;
     use HasUuids;
     use HasVisibility;
     use LastSync;
@@ -80,14 +80,11 @@ class Image extends Model
         'visibility_id' => \App\Enums\Visibility::class,
     ];
 
+    protected string $userField = 'created_by';
+
     protected array $sanitizable = [
         'name',
     ];
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
 
     public function campaign(): BelongsTo
     {
