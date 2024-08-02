@@ -88,7 +88,7 @@ const initDashboardCalendars = () => {
  */
 const initFollow = () => {
     const btn = document.querySelector('#campaign-follow');
-    const text = document.querySelector('campaign-follow-text');
+    const text = document.querySelector('#campaign-follow-text');
 
     if (!btn) {
         return;
@@ -102,10 +102,12 @@ const initFollow = () => {
     }
     btn.classList.remove('hidden');
 
-    btn.click(function (e) {
+    btn.addEventListener('click', function (e) {
+        btn.classList.add('loading');
         e.preventDefault();
         axios.post(btn.dataset.url)
             .then(res => {
+                btn.classList.remove('loading');
                 if (res.data.following) {
                     text.innerHTML = btn.dataset.unfollow;
                 } else {

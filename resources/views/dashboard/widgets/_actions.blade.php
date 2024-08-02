@@ -1,6 +1,5 @@
 @can ('follow', $campaign)
-    <button id="campaign-follow" class="btn2 btn-sm" data-id="{{ $campaign->id }}"
-            style="display: none"
+    <button id="campaign-follow" class="btn2 btn-sm hidden" data-id="{{ $campaign->id }}"
             data-following="{{ $campaign->isFollowing() ? true : false }}"
             data-follow="{{ __('dashboard.actions.follow') }}"
             data-unfollow="{{ __('dashboard.actions.unfollow') }}"
@@ -8,7 +7,8 @@
             data-toggle="tooltip" data-title="{{ __('dashboard.helpers.follow') }}"
             data-placement="bottom"
     >
-        <i class="fa-solid fa-star"></i> <span id="campaign-follow-text"></span>
+        <x-icon class="fa-solid fa-star" />
+        <span id="campaign-follow-text"></span>
     </button>
 @endcan
 @can('apply', $campaign)
@@ -18,7 +18,8 @@
             data-target="apply-dialog"
             data-placement="bottom"
     >
-        <i class="fa-solid fa-door-open"></i> {{ __('dashboard.actions.join') }}
+        <x-icon class="fa-solid fa-door-open" />
+        {{ __('dashboard.actions.join') }}
     </button>
 @endcan
 
