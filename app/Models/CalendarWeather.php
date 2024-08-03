@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Scopes\CalendarWeatherScopes;
-use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -30,8 +30,8 @@ class CalendarWeather extends Model
 {
     use Blameable;
     use CalendarWeatherScopes;
+    use HasVisibility;
     use Sanitizable;
-    use VisibilityIDTrait;
 
     public $table = 'calendar_weather';
 

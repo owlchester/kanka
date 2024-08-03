@@ -7,6 +7,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -24,7 +26,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Family
  * @package App\Models
  * @property int|null $family_id
- * @property int|null $location_id
  * @property Collection|Character[] $members
  * @property Family $family
  * @property FamilyTree|null $familyTree
@@ -40,6 +41,7 @@ class Family extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -49,7 +51,6 @@ class Family extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'entry',
         'location_id',
         'family_id',
@@ -198,14 +199,7 @@ class Family extends MiscModel
         return ['family_id', 'location_id'];
     }
 
-    /**
-     */
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
-    }
-
-    public function familyTree()
+    public function familyTree(): HasOne
     {
         return $this->hasOne(FamilyTree::class);
     }

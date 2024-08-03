@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -15,10 +16,7 @@ class Theme extends Model
 {
     use SoftDeletes;
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function campaigns()
+    public function campaigns(): HasMany
     {
         return $this->hasMany('App\Models\Campaign', 'theme_id');
     }

@@ -8,6 +8,8 @@ use App\Models\Concerns\Sortable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 /**
@@ -78,14 +80,14 @@ class Faq extends Model
 
     /**
      */
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo('App\Models\FaqCategory', 'faq_category_id', 'id');
     }
 
     /**
      */
-    public function translations()
+    public function translations(): HasMany
     {
         return $this->hasMany(FaqTranslation::class);
     }

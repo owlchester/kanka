@@ -386,7 +386,7 @@ class SidebarService
         }
 
         // Entities? It's complicated
-        /** @var Entity|null $entity */
+        /** @var ?Entity $entity */
         $entity = request()->route('entity');
         if ($entity) {
             if ($entity->pluralType() == $menu) {

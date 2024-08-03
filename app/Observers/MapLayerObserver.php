@@ -16,7 +16,7 @@ class MapLayerObserver
         if (!empty($mapLayer->position)) {
             $mapLayer->position = (int) $mapLayer->position;
         } else {
-            /** @var MapLayer|null $lastLayer */
+            /** @var ?MapLayer $lastLayer */
             $lastLayer = $mapLayer->map->layers()->orderByDesc('position')->first();
             if ($lastLayer) {
                 $mapLayer->position = (int) $lastLayer->position + 1;

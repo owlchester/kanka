@@ -19,20 +19,18 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: [
-        'entity'
-    ],
+<script setup lang="ts">
+const emit = defineEmits(['preview'])
 
-    methods: {
-        backgroundImage: function(entity) {
-            return 'url(\'' + entity.image + '\')';
-        },
-        preview: function(entity) {
-            //console.log('preview', entity);
-            this.emitter.emit('preview', entity);
-        }
-    }
+const props = defineProps<{
+    entity: undefined
+}>()
+
+const backgroundImage = (entity) => {
+    return 'url(\'' + entity.image + '\')';
+}
+const preview = (entity) => {
+    // console.log('preview', entity);
+    emit('preview', entity);
 }
 </script>

@@ -6,12 +6,12 @@ use App\Facades\TimelineElementCache;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
-use App\Traits\VisibilityIDTrait;
 use App\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,7 +24,7 @@ use Laravel\Scout\Searchable;
  * @property int $id
  * @property int $timeline_id
  * @property int $era_id
- * @property int $entity_id
+ * @property int|null $entity_id
  * @property string $name
  * @property string $date
  * @property int $position
@@ -46,9 +46,9 @@ class TimelineElement extends Model
     use HasEntry;
     use HasFactory;
     use HasSuggestions;
+    use HasVisibility;
     use Sanitizable;
     use Searchable;
-    use VisibilityIDTrait;
 
     protected $fillable = [
         'timeline_id',

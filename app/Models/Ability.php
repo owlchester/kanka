@@ -14,6 +14,8 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -48,7 +50,6 @@ class Ability extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'type',
         'entry',
         'ability_id',
@@ -133,18 +134,12 @@ class Ability extends MiscModel
         return ['ability_id'];
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function ability()
+    public function ability(): BelongsTo
     {
         return $this->belongsTo('App\Models\Ability', 'ability_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function abilities()
+    public function abilities(): HasMany
     {
         return $this->hasMany('App\Models\Ability', 'ability_id', 'id');
     }

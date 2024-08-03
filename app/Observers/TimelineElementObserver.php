@@ -16,7 +16,7 @@ class TimelineElementObserver
 
         if (empty($timelineElement->position) || $timelineElement->position < 1) {
             $timelineElement->position = 1;
-            /** @var TimelineElement|null $last */
+            /** @var ?TimelineElement $last */
             $last = $timelineElement->era->elements()->orderByDesc('position')->first();
             if ($last) {
                 $timelineElement->position = $last->position + 1;

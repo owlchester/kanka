@@ -50,7 +50,7 @@ class Remindable
         }
 
         // Validate the calendar
-        /** @var Calendar|null $calendar */
+        /** @var ?Calendar $calendar */
         $calendar = Calendar::find($calendarID);
         if ($calendar === null || $calendar->missingDetails()) {
             return;

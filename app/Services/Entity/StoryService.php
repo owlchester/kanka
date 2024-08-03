@@ -33,7 +33,7 @@ class StoryService
                 continue;
             }
             $id = $data['id'];
-            /** @var Post|null $story */
+            /** @var ?Post $story */
             $story = $this->entity->posts->where('id', $id)->first();
             if (empty($story)) {
                 continue;

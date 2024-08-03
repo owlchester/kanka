@@ -46,7 +46,7 @@ class UserCacheService extends BaseCache
             return (string) $this->get($key);
         }
 
-        /** @var User|null $user */
+        /** @var ?User $user */
         $user = User::select('name')->find($userId);
         $data = $user?->name;
 

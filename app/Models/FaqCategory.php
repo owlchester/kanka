@@ -7,6 +7,7 @@ use App\Models\Concerns\Sortable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class FaqCategory
@@ -65,10 +66,7 @@ class FaqCategory extends Model
         return $query->orderBy('order', $order);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function faqs()
+    public function faqs(): HasMany
     {
         return $this->hasMany('App\Models\Faq', 'faq_category_id', 'id');
     }

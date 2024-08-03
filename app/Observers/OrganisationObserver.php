@@ -6,27 +6,14 @@ use App\Facades\EntityLogger;
 use App\Models\Character;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
-use App\Observers\Concerns\HasLocations;
 
 class OrganisationObserver extends MiscObserver
 {
-    use HasLocations;
-
     public function crudSaved(Organisation $organisation)
     {
         $this
-            ->saveMembers($organisation)
-            ->saveOrgLocations($organisation);
+            ->saveMembers($organisation);
         EntityLogger::model($organisation)->entity($organisation->entity)->finish();
-    }
-
-    public function saveOrgLocations(Organisation $organisation): self
-    {
-        if (!request()->has('save_locations') && !request()->has('locations')) {
-            return $this;
-        }
-        $this->saveLocations($organisation);
-        return $this;
     }
 
     /**
@@ -54,7 +41,7 @@ class OrganisationObserver extends MiscObserver
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
-                /** @var Character|null $character */
+                /** @var ?Character $character */
                 $character = Character::find($id);
                 if (!empty($character)) {
                     $new[] = $character->id;

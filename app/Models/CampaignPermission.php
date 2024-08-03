@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,7 +16,6 @@ use Illuminate\Support\Str;
  * @property int $entity_id
  * @property int $campaign_role_id
  * @property int $campaign_id
- * @property int $user_id
  * @property int $entity_type_id
  * @property int $action
  * @property string $key
@@ -28,12 +28,13 @@ use Illuminate\Support\Str;
  * @property Campaign $campaign
  * @property CampaignRole $campaignRole
  * @property Entity $entity
- * @property \App\User $user
  *
  * @method static self|Builder roleIds(array $ids)
  */
 class CampaignPermission extends Model
 {
+    use HasUser;
+
     public const ACTION_READ = 1;
     public const ACTION_EDIT = 2;
     public const ACTION_ADD = 3;
@@ -69,14 +70,6 @@ class CampaignPermission extends Model
     public function campaignRole(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignRole', 'campaign_role_id', 'id');
-    }
-
-    /**
-     * Optional user
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo('App\User', 'user_id');
     }
 
     /**

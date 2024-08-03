@@ -145,7 +145,7 @@ class EntityMappingService
                 $campaignId = $this->entity()->campaign_id;
             }
 
-            /** @var Image|null $target */
+            /** @var ?Image $target */
             $target = Image::where([
                 'id' => $id,
                 'campaign_id' => $campaignId
@@ -215,7 +215,7 @@ class EntityMappingService
             // Determine the real campaign id from the model.
             $campaignId = $this->campaignID();
 
-            /** @var Entity|null $target */
+            /** @var ?Entity $target */
             $target = Entity::where([
                 'type_id' => $singularType,
                 'id' => $id,

@@ -124,7 +124,7 @@ class TagService
 
     protected function fetch(mixed $id): Tag|null
     {
-        /** @var Tag|null $tag */
+        /** @var ?Tag $tag */
         $tag = Tag::select(['id', 'name'])->find($id);
         // Create the tag if the user has permission to do so
         if (empty($tag) && $this->withNew && $this->isAllowed()) {

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -21,7 +22,6 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property int $id
- * @property int $campaign_id
  * @property int $entity_id
  * @property int $dashboard_id
  * @property Widget $widget
@@ -57,11 +57,6 @@ class CampaignDashboardWidget extends Model
         'widget' => Widget::class,
     ];
 
-    public function campaign(): BelongsTo
-    {
-        return $this->belongsTo(Campaign::class);
-    }
-
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
@@ -72,10 +67,7 @@ class CampaignDashboardWidget extends Model
         return $this->belongsTo(CampaignDashboard::class, 'dashboard_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(
             Tag::class,

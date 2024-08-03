@@ -4,7 +4,6 @@ namespace App\Sanitizers;
 
 use App\Observers\PurifiableTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class MiscSanitizer
 {
@@ -22,8 +21,6 @@ class MiscSanitizer
 
     public function sanitize(): array
     {
-        $this->data['slug'] = Str::slug($this->request->get('name', ''), '');
-
         return $this->data;
     }
 }

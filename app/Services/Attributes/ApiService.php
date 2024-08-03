@@ -219,7 +219,6 @@ class ApiService
 
         // Marketplace campaigns
         $key = __('attributes/templates.list.marketplace');
-        // @phpstan-ignore-next-line
         foreach (CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
             if (empty($plugin->plugin)) {
                 continue;

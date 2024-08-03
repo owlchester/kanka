@@ -4,12 +4,13 @@ namespace App\Models;
 
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Scopes\EntityAssetScopes;
 use App\Models\Scopes\Pinnable;
-use App\Traits\VisibilityIDTrait;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
@@ -36,9 +37,9 @@ class EntityAsset extends Model
     use Blameable;
     use EntityAssetScopes;
     use HasFactory;
+    use HasVisibility;
     use Pinnable;
     use Sanitizable;
-    use VisibilityIDTrait;
 
     public const TYPE_FILE = 1;
     public const TYPE_LINK = 2;

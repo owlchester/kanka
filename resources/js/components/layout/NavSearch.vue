@@ -34,8 +34,10 @@
                         <div class="text-neutral-content text-sm" v-if="results.length === 0">
                             {{ texts.empty_results }}
                         </div>
-                        <LookupEntity v-else v-for="entity in results"
-                                      :entity="entity"
+                        <LookupEntity
+                            v-else v-for="entity in results"
+                            :entity="entity"
+                            @preview="loadPreview"
                         >
                         </LookupEntity>
                         <a class="grow text-sm uppercase hover:underline" v-bind:href="searchFullTextUrl()">
@@ -46,8 +48,10 @@
                     <div class="recent-searches flex flex-col gap-2" v-if="recent.length > 0">
                         <div class="text-sm uppercase ">{{ texts.recents }}</div>
 
-                        <LookupEntity v-for="entity in recent"
-                                      :entity="entity"
+                        <LookupEntity
+                            v-for="entity in recent"
+                            :entity="entity"
+                            @preview="loadPreview"
                         >
                         </LookupEntity>
                     </div>
@@ -252,7 +256,7 @@ export default {
         },
         // Preview an entity
         loadPreview(entity) {
-            this.show_loading = true;
+          this.show_loading = true;
           fetch(entity.preview)
               .then(response => response.json())
               .then(response => this.parsePreviewResponse(response));
@@ -293,10 +297,5 @@ export default {
             return '';
         }
     },
-    mounted() {
-        this.emitter.on('preview', (entity) => {
-            this.loadPreview(entity);
-        });
-    }
 };
 </script>

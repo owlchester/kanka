@@ -29,7 +29,6 @@ class DiceRoll extends MiscModel
 
     protected $fillable = [
         'name',
-        'slug',
         'campaign_id',
         'character_id',
         'system',

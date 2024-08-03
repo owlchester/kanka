@@ -68,9 +68,11 @@
                     </div>
 
                     <div class="flex flex-col gap-2">
-                      <Notification v-for="notification in notifications.messages"
-                                    :notification="notification">
-                      </Notification>
+                        <Notification
+                            v-for="notification in notifications.messages"
+                            :notification="notification"
+                            @read="readNotification">
+                        </Notification>
                     </div>
                     <div class="no-notifications help-block text-neutral-content italic" v-if="notifications.messages.length === 0">
                         {{  notifications.none }}
@@ -85,9 +87,11 @@
                     </div>
 
                     <div class="flex flex-col gap-2">
-                      <Release v-for="release in releases.releases"
-                                    :release="release">
-                      </Release>
+                        <Release
+                            v-for="release in releases.releases"
+                            :release="release"
+                            @read="readRelease">
+                        </Release>
                     </div>
                 </div>
 
@@ -442,12 +446,6 @@ export default {
         },
     },
     mounted() {
-        this.emitter.on('read_release', (release) => {
-            this.readRelease(release);
-        });
-        this.emitter.on('read_notification', (notification) => {
-            this.readNotification(notification);
-        });
         this.show_alerts = this.has_alerts;
         this.queueFetch();
     }

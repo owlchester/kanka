@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasUser;
 use App\Models\Concerns\LastSync;
-use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -21,13 +22,13 @@ use Illuminate\Support\Facades\Auth;
  * @property string $message
  *
  * @property Character|null $character
- * @property User|null $user
  * @property Conversation $conversation
  */
 class ConversationMessage extends MiscModel
 {
     use Blameable;
     use HasFactory;
+    use HasUser;
     use LastSync;
 
     public $isGroupped = false;
@@ -57,34 +58,18 @@ class ConversationMessage extends MiscModel
 
     /**
      * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
     }
 
-    /**
-     * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'user_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function conversation()
+    public function conversation(): BelongsTo
     {
         return $this->belongsTo('App\Models\Conversation', 'conversation_id');
     }

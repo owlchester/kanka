@@ -8,15 +8,16 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -52,13 +53,13 @@ class Character extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'name',
-        'slug',
         'campaign_id',
         'location_id',
         'title',
@@ -205,7 +206,7 @@ class Character extends MiscModel
 
         $ids = [$value];
         if ($filter === FilterOption::CHILDREN) {
-            /** @var Organisation|null $model */
+            /** @var ?Organisation $model */
             $model = Organisation::find($value);
             if (!empty($model)) {
                 $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
@@ -231,19 +232,6 @@ class Character extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['title', 'location_id', 'sex', 'is_dead'];
-    }
-
-    /**
-     */
-    public function location(): BelongsTo
-    {
-        return $this
-            ->belongsTo('App\Models\Location', 'location_id', 'id')
-            ->with([
-                'entity' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id');
-                }
-            ]);
     }
 
     public function families(): BelongsToMany
@@ -328,10 +316,7 @@ class Character extends MiscModel
         return $this->hasMany('App\Models\DiceRoll', 'character_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function conversations()
+    public function conversations(): HasManyThrough
     {
         return $this->hasManyThrough(
             'App\Models\Conversation',

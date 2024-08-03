@@ -3,16 +3,18 @@
 namespace App\Models;
 
 use App\Facades\QuestCache;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
-use App\User;
-use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
-use App\Traits\VisibilityIDTrait;
+use App\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
 /**
@@ -34,10 +36,10 @@ class QuestElement extends Model
     use HasEntry;
     use HasFactory;
     use HasSuggestions;
+    use HasVisibility;
     use Sanitizable;
     use Searchable;
     use SimpleSortableTrait;
-    use VisibilityIDTrait;
 
     protected string $entryField = 'description';
 
@@ -65,18 +67,12 @@ class QuestElement extends Model
         QuestCache::class => 'clearSuggestion',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function quest()
+    public function quest(): BelongsTo
     {
         return $this->belongsTo('App\Models\Quest', 'quest_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
@@ -113,9 +109,8 @@ class QuestElement extends Model
 
     /**
      * List of entities that mention this entity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function mentions()
+    public function mentions(): HasMany
     {
         return $this->hasMany('App\Models\EntityMention', 'quest_element_id', 'id');
     }
