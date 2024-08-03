@@ -4,7 +4,6 @@ namespace App\Services\Entity\Connections;
 
 use App\Models\Character;
 use App\Models\Entity;
-use App\Models\Family;
 use App\Models\Item;
 use App\Models\Journal;
 use App\Models\Location;
