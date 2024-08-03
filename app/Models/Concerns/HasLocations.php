@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 trait HasLocations
 {
-//    protected string $locationPivot = '';
-//    protected string $locationPivotKey = '';
+    //    protected string $locationPivot = '';
+    //    protected string $locationPivotKey = '';
 
     public static function bootHasLocations(): void
     {
@@ -51,11 +51,11 @@ trait HasLocations
                 return $query;
             }
             return $query
-                ->whereRaw('(select count(*) from ' . $this->getLocationPivotTableName() . ' as lp where lp.' . $this->getLocationPivotKey(). ' = ' .
+                ->whereRaw('(select count(*) from ' . $this->getLocationPivotTableName() . ' as lp where lp.' . $this->getLocationPivotKey() . ' = ' .
                     $this->getTable() . '.id and lp.location_id = ' . ((int) $location) . ') = 0');
         } elseif ($filter === FilterOption::EXCLUDE) {
             return $query
-                ->whereRaw('(select count(*) from ' . $this->getLocationPivotTableName() . ' as lp where lp.' . $this->getLocationPivotKey(). ' = ' .
+                ->whereRaw('(select count(*) from ' . $this->getLocationPivotTableName() . ' as lp where lp.' . $this->getLocationPivotKey() . ' = ' .
                     $this->getTable() . '.id and lp.location_id = ' . ((int) $location) . ') = 0');
         }
 

@@ -2,9 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\EntityLogger;
-use App\Models\Concerns\HasLocations;
-use App\Models\Location;
 use App\Observers\Concerns\SaveLocations;
 use Illuminate\Database\Eloquent\Model;
 
