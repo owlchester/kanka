@@ -31,9 +31,8 @@ class UserValidation extends Model
 
     /**
      * Automatically prune old elements from the db
-     * @return Builder
      */
-    public function prunable()
+    public function prunable(): Builder
     {
         return static::where('is_valid', false)->where('created_at', '<=', now()->subDays(1));
     }

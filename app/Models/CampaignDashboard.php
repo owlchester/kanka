@@ -42,7 +42,7 @@ class CampaignDashboard extends Model
         return $this->hasMany(CampaignDashboardWidget::class, 'dashboard_id', 'id');
     }
 
-    public function roles()
+    public function roles(): HasMany
     {
         return $this->hasMany(CampaignDashboardRole::class, 'campaign_dashboard_id', 'id');
     }
