@@ -15,7 +15,7 @@ class CreateImages extends Migration
     {
         Schema::dropIfExists('images');
         Schema::create('images', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->char('id', 36);
             $table->unsignedInteger('campaign_id');
             $table->string('name', 45)->nullable();
             $table->string('ext', 4)->nullable();

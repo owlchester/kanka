@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
@@ -14,8 +13,6 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -25,9 +22,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @package App\Models
  * @property int|null $ability_id
  * @property mixed|null $charges
- * @property Ability|null $ability
+ * @property ?Ability $parent
  * @property Collection|Ability[] $descendants
- * @property Collection|Ability[] $abilities
  * @property Ability[] $orderedAbilities
  * @property Collection|Entity[] $entities
  *
@@ -114,9 +110,6 @@ class Ability extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'abilities' => function ($sub) {
-                $sub->select('id', 'name', 'ability_id');
-            },
             'children' => function ($sub) {
                 $sub->select('id', 'ability_id');
             },
@@ -132,16 +125,6 @@ class Ability extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['ability_id'];
-    }
-
-    public function ability(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Ability', 'ability_id', 'id');
-    }
-
-    public function abilities(): HasMany
-    {
-        return $this->hasMany('App\Models\Ability', 'ability_id', 'id');
     }
 
     public function entities()
@@ -165,13 +148,6 @@ class Ability extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.ability');
-    }
-
-    /**
-     */
-    public function entryWithAttributes()
-    {
-        return Mentions::map($this);
     }
 
     /**

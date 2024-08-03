@@ -109,7 +109,7 @@
             ->route('entities.entity_events.index', ['campaign' => $campaign, 'entity' => $entity]);
 
         $rows = $entity
-            ->events()
+            ->reminders()
             ->has('calendar')
             ->has('calendar.entity')
             ->with(['calendar', 'calendar.entity', 'entity'])

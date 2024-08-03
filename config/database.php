@@ -40,7 +40,7 @@ return [
         ],
 
         'mysql' => [
-            'driver' => 'mysql',
+            'driver' => 'mariadb',
             'read' => [
                 'host' => env('DB_HOST_RW', env('DB_HOST', '127.0.0.1')),
             ],
@@ -66,7 +66,7 @@ return [
         ],
 
         'logs' => [
-            'driver' => 'mysql',
+            'driver' => 'mariadb',
             'read' => [
                 'host' => env('DB_HOST_RW', env('DB_HOST', '127.0.0.1')),
             ],

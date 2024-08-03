@@ -51,6 +51,7 @@ class DiceRollResultController extends CrudController
                 'diceRoll', 'diceRoll.entity', 'diceRoll.entity.image',
                 'user', 'diceRoll.character', 'diceRoll.character.entity'
             ])
+            ->has('diceRoll')
             ->order($this->filterService->order())
         ;
         $unfilteredCount = $base->count();

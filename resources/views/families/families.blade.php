@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Family $model */?>
 @extends('layouts.app', [
     'title' => $model->name . ' - ' . \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')),
     'breadcrumbs' => false,
@@ -15,7 +16,7 @@
         @else
             <a href="{{ route('families.families', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>({{ $model->families()->count() }})
+                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>({{ $model->children()->count() }})
             </a>
         @endif
     </div>

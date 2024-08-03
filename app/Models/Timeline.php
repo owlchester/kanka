@@ -19,10 +19,9 @@ use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
+ * Class Timeline
  * @property TimelineEra[]|Collection $eras
  * @property int|null $timeline_id
- * @property Timeline|null $timeline
- * @property Timeline[]|Collection $timelines
  * @property Timeline[]|Collection $descendants
  */
 class Timeline extends MiscModel
@@ -113,9 +112,6 @@ class Timeline extends MiscModel
             'eras' => function ($sub) {
                 $sub->select('id', 'timeline_id');
             },
-            'timelines' => function ($sub) {
-                $sub->select('id', 'name', 'timeline_id');
-            },
             'children' => function ($sub) {
                 $sub->select('id', 'timeline_id');
             }
@@ -133,16 +129,6 @@ class Timeline extends MiscModel
     public function calendar(): BelongsTo
     {
         return $this->belongsTo('App\Models\Calendar', 'calendar_id', 'id');
-    }
-
-    public function timelines(): HasMany
-    {
-        return $this->hasMany('App\Models\Timeline', 'timeline_id', 'id');
-    }
-
-    public function timeline(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Timeline', 'timeline_id', 'id');
     }
 
     public function eras(): HasMany

@@ -4,10 +4,10 @@
 
 @php
 $preset = null;
-if (isset($model) && $model->journal) {
-    $preset = $model->journal;
+if (isset($model) && $model->parent) {
+    $preset = $model->parent;
 } elseif (!isset($bulk)) {
-    $preset = FormCopy::field('journal')->select($isParent ?? false, \App\Models\Journal::class);
+    $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Journal::class);
 }
 @endphp
 

@@ -4,10 +4,10 @@
 
 @php
 $preset = null;
-if (isset($model) && $model->event) {
-    $preset = $model->event;
+if (isset($model) && $model->parent) {
+    $preset = $model->parent;
 } elseif (!isset($bulk)) {
-    $preset = FormCopy::field('event')->select($isParent ?? false, \App\Models\Event::class);
+    $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Event::class);
 }
 @endphp
 

@@ -58,18 +58,6 @@ class DiceRollResult extends Model
     protected bool $hasRelations = false;
 
     /**
-     *
-     */
-    public function newQuery()
-    {
-        // When exporting in console, we don't have this so don't use it
-        if (!app()->runningInConsole()) {
-            return parent::newQuery()->has('diceRoll');
-        }
-        return parent::newQuery();
-    }
-
-    /**
      * Who created this entry
      */
     public function creator(): BelongsTo

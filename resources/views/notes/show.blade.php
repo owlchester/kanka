@@ -15,7 +15,7 @@
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
             @include('entities.components.posts', ['withEntry' => true])
 
-            @includeWhen(!$model->notes->isEmpty(), 'notes._subnotes')
+            @includeWhen(!$model->children->isEmpty(), 'notes._subnotes')
         </div>
 
         @include('entities.components.pins')

@@ -15,7 +15,6 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -30,8 +29,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property int|null $author_id
  * @property Character|null $character
  * @property Entity|null $author
- * @property Journal|null $journal
- * @property Journal[] $journals
  * @property Journal[] $descendants
  */
 class Journal extends MiscModel
@@ -143,9 +140,6 @@ class Journal extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'journals' => function ($sub) {
-                $sub->select('id', 'journal_id', 'name');
-            },
             'children' => function ($sub) {
                 $sub->select('id', 'journal_id');
             }
@@ -160,15 +154,6 @@ class Journal extends MiscModel
         return ['journal_id', 'author_id', 'date', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
     }
 
-    public function journal(): BelongsTo
-    {
-        return $this->belongsTo(Journal::class);
-    }
-
-    public function journals(): HasMany
-    {
-        return $this->hasMany(Journal::class);
-    }
     /**
      * Get all journals in the journal and descendants
      */
@@ -180,7 +165,7 @@ class Journal extends MiscModel
         };
 
         $table = new Journal();
-        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('journal');
+        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('parent');
     }
 
     public function character(): BelongsTo

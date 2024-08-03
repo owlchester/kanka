@@ -27,6 +27,7 @@ class EntityController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Item\Entity::class)
             ->route('items.inventories', $options);
 
+        // @phpstan-ignore-next-line
         $this->rows = $item
             ->entities()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])

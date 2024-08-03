@@ -14,7 +14,7 @@
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.creature'), __('entities.creatures')),
             'render' => function($model) {
-                return $model->creatures->count();
+                return $model->children->count();
             },
             'disableSort' => true,
         ],

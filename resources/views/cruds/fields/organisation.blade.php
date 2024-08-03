@@ -1,14 +1,13 @@
-@if (
-    (isset($campaign) && $campaign instanceof \App\Models\Campaign && !$campaign->enabled('organisations')))
+@if (!$campaign->enabled('organisations'))
     <?php return ?>
 @endif
 
 @php
     $preset = null;
-    if (isset($model) && $model->organisation) {
-        $preset = $model->organisation;
+    if (isset($model) && $model->parent) {
+        $preset = $model->parent;
     } elseif (!isset($bulk)) {
-        $preset = FormCopy::field('organisation')->select($isParent ?? false, \App\Models\Organisation::class);
+        $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Organisation::class);
     }
 @endphp
 <x-forms.foreign

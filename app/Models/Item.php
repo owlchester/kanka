@@ -30,8 +30,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property int|null $item_id
  * @property int|null $character_id
  * @property Character|null $character
- * @property Item[] $items
- * @property Item|null $item
  */
 class Item extends MiscModel
 {
@@ -175,9 +173,6 @@ class Item extends MiscModel
             'character.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'items' => function ($sub) {
-                $sub->select('id', 'name', 'item_id');
-            },
             'parent' => function ($sub) {
                 $sub->select('id', 'name');
             },
@@ -202,11 +197,6 @@ class Item extends MiscModel
         return $this->belongsTo('App\Models\Character', 'character_id', 'id');
     }
 
-    public function itemQuests(): HasMany
-    {
-        return $this->hasMany('App\Models\QuestItem', 'item_id');
-    }
-
     public function inventories(): HasMany
     {
         return $this->hasMany('App\Models\Inventory', 'item_id');
@@ -222,24 +212,6 @@ class Item extends MiscModel
             'id',
             'entity_id'
         );
-    }
-
-    public function items(): HasMany
-    {
-        return $this->hasMany('App\Models\Item', 'item_id', 'id');
-    }
-
-    public function children(): HasMany
-    {
-        return $this->items();
-    }
-
-    /**
-     * Parent
-     */
-    public function item(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Item', 'item_id', 'id');
     }
 
     /**

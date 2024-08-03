@@ -3,7 +3,7 @@
 </h3>
 <x-box>
     <div class="grid grid-cols-2 gap-5 md:grid-cols-2 xl:grid-cols-5">
-        @foreach ($model->notes->sortBy('name') as $subNote)
+        @foreach ($model->children->sortBy('name') as $subNote)
             <span>
                 <x-entity-link
                     :entity="$subNote->entity"

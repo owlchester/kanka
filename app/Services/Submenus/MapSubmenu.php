@@ -15,7 +15,7 @@ class MapSubmenu extends BaseSubmenu implements EntitySubmenu
         $items['second']['maps'] = [
             'name' => Module::plural($map->entityTypeId(), 'entities.maps'),
             'route' => 'maps.maps',
-            'count' => $map->maps()->count()
+            'count' => $map->children()->count()
         ];
         if (auth()->check() && auth()->user()->can('update', $map)) {
             $items['second']['layers'] = [

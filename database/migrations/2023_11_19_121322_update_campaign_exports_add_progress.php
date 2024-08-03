@@ -11,7 +11,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('campaign_exports', function (Blueprint $table) {
-            $table->float('progress', 5, 2)->nullable();
+            $table->float('progress')->nullable();
         });
     }
 

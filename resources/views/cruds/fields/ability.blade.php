@@ -6,8 +6,10 @@
 $preset = null;
 if (isset($model) && $model->ability) {
     $preset = $model->ability;
+} elseif (isset($model) && $model->parent) {
+    $preset = $model->parent;
 } elseif (!isset($bulk)) {
-    $preset = FormCopy::field('ability')->select($isParent ?? false, \App\Models\Ability::class);
+    $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Ability::class);
 }
 @endphp
 
