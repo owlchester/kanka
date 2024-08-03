@@ -6,6 +6,7 @@ use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -62,27 +63,18 @@ class CampaignRole extends Model
         return $this->is_admin;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function campaign()
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
 
-    /**
-     * @return HasMany
-     */
-    public function users()
+    public function users(): HasMany
     {
         return $this->hasMany('App\Models\CampaignRoleUser', 'campaign_role_id');
         //return $this->belongsToMany('App\User', 'campaign_role_users');
     }
 
-    /**
-     * @return HasMany
-     */
-    public function dashboardRoles()
+    public function dashboardRoles(): HasMany
     {
         return $this->hasMany(CampaignDashboardRole::class, 'campaign_role_id', 'id');
     }
@@ -113,9 +105,8 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return HasMany
      */
-    public function permissions()
+    public function permissions(): HasMany
     {
         return $this->hasMany('App\Models\CampaignPermission', 'campaign_role_id');
     }

@@ -18,7 +18,7 @@ class BookmarkService
 
         $position = 1;
         foreach ($ids as $id) {
-            /** @var Bookmark|null $link */
+            /** @var ?Bookmark $link */
             $link = Bookmark::where('id', $id)->first();
             if (empty($link)) {
                 continue;

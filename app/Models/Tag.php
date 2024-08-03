@@ -14,7 +14,9 @@ use App\Models\Scopes\TagScopes;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -112,7 +114,7 @@ class Tag extends MiscModel
     /**
      * Parent
      */
-    public function tag()
+    public function tag(): BelongsTo
     {
         return $this->belongsTo('App\Models\Tag', 'tag_id', 'id');
     }
@@ -120,7 +122,7 @@ class Tag extends MiscModel
     /**
      * Children
      */
-    public function tags()
+    public function tags(): HasMany
     {
         return $this->hasMany('App\Models\Tag', 'tag_id', 'id');
     }
@@ -174,7 +176,7 @@ class Tag extends MiscModel
      */
     public function detach(): void
     {
-        /** @var Tag $child */
+        /** @var Entity $child */
         foreach ($this->allChildren(true)->get() as $child) {
             $child->tags()->detach($this->id);
             //            if (!empty($child->child)) {
@@ -219,10 +221,7 @@ class Tag extends MiscModel
         );
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function entityTags()
+    public function entityTags(): HasMany
     {
         return $this->hasMany(EntityTag::class);
     }

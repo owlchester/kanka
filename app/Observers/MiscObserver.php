@@ -4,21 +4,16 @@ namespace App\Observers;
 
 use App\Facades\EntityLogger;
 use App\Models\MiscModel;
-use App\Observers\Concerns\Copiable;
 use App\Facades\Images;
 
 abstract class MiscObserver
 {
-    use Copiable;
-
     /**
      */
     public function created(MiscModel $model)
     {
         // Created a new sub entity? Create the parent entity.
         $entity = $model->createEntity();
-
-        $this->copy($entity);
     }
 
     /**

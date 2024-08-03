@@ -25,7 +25,7 @@ class FollowService
 
     public function remove(): bool
     {
-        /** @var CampaignFollower|null $follow */
+        /** @var ?CampaignFollower $follow */
         $follow = CampaignFollower::where([
             'campaign_id' => $this->campaign->id,
             'user_id' => $this->user->id

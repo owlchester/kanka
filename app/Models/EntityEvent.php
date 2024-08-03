@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasVisibility;
+use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\EntityEventScopes;
 use Exception;
-use App\Models\Concerns\SortableTrait;
-use App\Traits\VisibilityIDTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class EntityEvent
@@ -41,8 +41,8 @@ class EntityEvent extends Model
     use Blameable;
     use EntityEventScopes;
     use HasFactory;
+    use HasVisibility;
     use SortableTrait;
-    use VisibilityIDTrait;
 
     /** @var string */
     public $table = 'entity_events';
@@ -587,5 +587,17 @@ class EntityEvent extends Model
             'visibility_id',
             'created_by',
         ];
+    }
+
+    /**
+     * Copy a reminder to another target
+     */
+    public function copyTo(Entity $target): EntityEvent
+    {
+        $new = $this->replicate(['entity_id', 'created_by']);
+        $new->entity_id = $target->id;
+        $new->created_by = auth()->user()->id;
+        $new->saveQuietly();
+        return $new;
     }
 }

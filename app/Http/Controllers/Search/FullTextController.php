@@ -34,7 +34,7 @@ class FullTextController extends Controller
             return view('search.fulltext')->with($data);
         }
 
-        /** @var Entity|null $entity */
+        /** @var ?Entity $entity */
         $entity = Entity::where('name', $term)->first();
         if ($entity) {
             $term2 = $entity->type() . ':' . $entity->id;

@@ -85,7 +85,7 @@ class FormCopyService
         if ($checkForParent && $parent !== false) {
             /** @var Model $class */
             $class = new $parentClass();
-            /** @var MiscModel|null $parent */
+            /** @var ?MiscModel $parent */
             $parent = $class->find($parent);
             if ($parent) {
                 return [$parent->id => $parent->name];

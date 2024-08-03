@@ -241,7 +241,7 @@ class SearchService
         $searchResults = $foundEntityIds = [];
         /** @var Entity $model */
         foreach ($query->get() as $model) {
-            /** @var MiscModel|null $child */
+            /** @var ?MiscModel $child */
             // Force having a child for "ghost" entities.
             $child = $model->child;
             if ($child === null || in_array($model->id, $foundEntityIds)) {

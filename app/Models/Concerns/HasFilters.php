@@ -468,7 +468,7 @@ trait HasFilters
             return;
         }
         if ($this->filterOption('children')) {
-            /** @var Location|null $location */
+            /** @var ?Location $location */
             $location = Location::find($value);
             if (empty($location)) {
                 return;

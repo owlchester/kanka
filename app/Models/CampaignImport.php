@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Enums\CampaignImportStatus;
+use App\Models\Concerns\HasUser;
 use App\Models\Concerns\SortableTrait;
-use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,10 +17,10 @@ use Illuminate\Support\Facades\Storage;
  * @property array $config
  * @property CampaignImportStatus $status_id
  * @property Campaign $campaign
- * @property User $user
  */
 class CampaignImport extends Model
 {
+    use HasUser;
     use Prunable;
     use SortableTrait;
 
@@ -40,7 +41,7 @@ class CampaignImport extends Model
         'created_by',
     ];
 
-    public function campaign()
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);
     }
@@ -52,11 +53,6 @@ class CampaignImport extends Model
     {
         return static::/*where('updated_at', '<=', now()->subDays(1))
             ->*/whereIn('status_id', [CampaignImportStatus::PREPARED, CampaignImportStatus::QUEUED]);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 
     public function isPrepared(): bool

@@ -6,13 +6,13 @@ use App\Facades\CampaignLocalization;
 use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\Copiable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
-use App\Models\Concerns\Copiable;
-use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -55,10 +55,10 @@ class MapMarker extends Model
     use HasEntry;
     use HasFactory;
     use HasSuggestions;
+    use HasVisibility;
     use Paginatable;
     use Sanitizable;
     use SortableTrait;
-    use VisibilityIDTrait;
 
     public const SHAPE_MARKER = 1;
     public const SHAPE_LABEL = 2;

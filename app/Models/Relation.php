@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
@@ -12,10 +13,9 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\Pinnable;
-use App\Traits\VisibilityIDTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -43,6 +43,7 @@ class Relation extends Model
     use HasCampaign;
     use HasFactory;
     use HasFilters;
+    use HasVisibility;
     use Orderable;
     use Paginatable;
     use Pinnable;
@@ -50,7 +51,6 @@ class Relation extends Model
     use Searchable;
     use Sortable;
     use SortableTrait;
-    use VisibilityIDTrait;
 
     protected $fillable = [
         'campaign_id',

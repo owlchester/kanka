@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class PluginVersionEntity
@@ -30,12 +31,12 @@ class PluginVersionEntity extends Model
         'posts' => 'array',
     ];
 
-    public function version()
+    public function version(): BelongsTo
     {
         return $this->belongsTo(PluginVersion::class, 'plugin_version_id');
     }
 
-    public function type()
+    public function type(): BelongsTo
     {
         return $this->belongsTo(EntityType::class, 'type_id');
     }

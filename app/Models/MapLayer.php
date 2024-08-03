@@ -7,13 +7,13 @@ use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
-use App\Traits\VisibilityIDTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -41,10 +41,10 @@ class MapLayer extends Model
     use Blameable;
     use HasEntry;
     use HasFactory;
+    use HasVisibility;
     use Paginatable;
     use Sanitizable;
     use SortableTrait;
-    use VisibilityIDTrait;
 
     protected $fillable = [
         'map_id',

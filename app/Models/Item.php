@@ -6,12 +6,16 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -25,9 +29,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $weight
  * @property int|null $item_id
  * @property int|null $character_id
- * @property int|null $location_id
  * @property Character|null $character
- * @property Location|null $location
  * @property Item[] $items
  * @property Item|null $item
  */
@@ -39,6 +41,7 @@ class Item extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -194,43 +197,22 @@ class Item extends MiscModel
     {
         return ['character_id', 'location_id', 'price', 'size', 'item_id'];
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function location()
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function itemQuests()
+    public function itemQuests(): HasMany
     {
         return $this->hasMany('App\Models\QuestItem', 'item_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function inventories()
+    public function inventories(): HasMany
     {
         return $this->hasMany('App\Models\Inventory', 'item_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function entities()
+    public function entities(): HasManyThrough
     {
         return $this->hasManyThrough(
             'App\Models\Entity',
@@ -242,27 +224,20 @@ class Item extends MiscModel
         );
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function items()
+    public function items(): HasMany
     {
         return $this->hasMany('App\Models\Item', 'item_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function children()
+    public function children(): HasMany
     {
         return $this->items();
     }
 
     /**
      * Parent
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function item()
+    public function item(): BelongsTo
     {
         return $this->belongsTo('App\Models\Item', 'item_id', 'id');
     }

@@ -5,15 +5,16 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
+use App\Models\Concerns\HasLocation;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Templatable;
-use App\Traits\VisibilityIDTrait;
 use App\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -33,7 +34,6 @@ use Laravel\Scout\Searchable;
  * @property string $entry
  * @property \App\Enums\Visibility $visibility_id
  * @property int $created_by
- * @property int|null $location_id
  * @property int|null $layout_id
  * @property string|null $marketplace_uuid
  * @property bool|int $is_private
@@ -42,7 +42,6 @@ use Laravel\Scout\Searchable;
  * @property int $position
  * @property array $settings
  * @property Entity|null $entity
- * @property Location|null $location
  * @property PostLayout|null $layout
  * @property EntityMention[]|Collection $mentions
  * @property PostPermission[]|Collection $permissions
@@ -57,13 +56,14 @@ class Post extends Model
     use Blameable;
     use HasEntry;
     use HasFactory;
+    use HasLocation;
+    use HasVisibility;
     use Paginatable;
     use Sanitizable;
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
     use Templatable;
-    use VisibilityIDTrait;
 
     protected $fillable = [
         'entity_id',
@@ -105,13 +105,6 @@ class Post extends Model
 
     /**
      */
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id');
-    }
-
-    /**
-     */
     public function layout(): BelongsTo
     {
         return $this->belongsTo('App\Models\PostLayout', 'layout_id');
@@ -149,22 +142,27 @@ class Post extends Model
     }
 
     /**
-     * Copy an post to another target
+     * Copy a post to another target
      */
-    public function copyTo(Entity $target): Post
+    public function copyTo(Entity $target, bool $sameCampaign): Post
     {
-        $new = $this->replicate(['entity_id', 'created_by']);
+        $without = ['entity_id', 'created_by', 'updated_by'];
+        if (!$sameCampaign) {
+            $without[] = 'location_id';
+        }
+        $new = $this->replicate($without);
         $new->entity_id = $target->id;
         $new->created_by = auth()->user()->id;
         $new->saveQuietly();
 
-        // Also replicate permissions
+        if (!$sameCampaign) {
+            return $new;
+        }
         foreach ($this->permissions as $perm) {
             $newPerm = $perm->replicate(['post_id']);
             $newPerm->post_id = $new->id;
             $newPerm->save();
         }
-
         return $new;
     }
 

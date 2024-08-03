@@ -171,7 +171,6 @@ class Campaign extends Model
     public function admins()
     {
         $users = [];
-        // @phpstan-ignore-next-line
         $roles = $this->roles()
             ->with(['users', 'users.user'])
             ->where('is_admin', '1')

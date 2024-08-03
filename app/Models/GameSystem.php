@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class GameSystem extends Model
 {
-    public function campaignSystem()
+    public function campaignSystem(): HasMany
     {
         return $this->hasMany(CampaignSystem::class, 'system_id', 'id');
     }
