@@ -19,6 +19,7 @@ use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
+ * Class Timeline
  * @property TimelineEra[]|Collection $eras
  * @property int|null $timeline_id
  * @property Timeline[]|Collection $descendants

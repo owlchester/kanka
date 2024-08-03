@@ -24,7 +24,7 @@ use Illuminate\Support\Collection;
 use Laravel\Scout\Searchable;
 
 /**
- * Class Attribute
+ * Class Post
  * @package App\Models
  *
  * @property int $id

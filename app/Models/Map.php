@@ -13,7 +13,6 @@ use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,7 +22,7 @@ use Illuminate\Support\Str;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
- * Class Ability
+ * Class Map
  * @package App\Models
  * @property int|null $map_id
  * @property int|null $width
