@@ -168,7 +168,7 @@ class Image extends Model
             if (isset($entities[$asset->entity->id])) {
                 continue;
             }
-            $entities[$asset->entity->id] = $asset->entity;  
+            $entities[$asset->entity->id] = $asset->entity;
         }
 
         return $entities;

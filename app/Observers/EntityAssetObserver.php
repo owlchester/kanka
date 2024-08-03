@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignCache;
 use App\Models\EntityAsset;
 use App\Facades\Images;
 
