@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Facades\QuestCache;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
-use App\User;
-use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
-use App\Traits\HasVisibility;
+use App\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

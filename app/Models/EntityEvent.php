@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasVisibility;
+use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\EntityEventScopes;
 use Exception;
-use App\Models\Concerns\SortableTrait;
-use App\Traits\HasVisibility;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class EntityEvent

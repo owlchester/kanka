@@ -4,8 +4,8 @@ namespace App\Models;
 
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
-use App\Traits\HasVisibility;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

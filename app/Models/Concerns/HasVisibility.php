@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace App\Models\Concerns;
 
 use App\Enums\Visibility;
 use App\Models\Scopes\VisibilityIDScope;
