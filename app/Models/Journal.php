@@ -166,7 +166,7 @@ class Journal extends MiscModel
         };
 
         $table = new Journal();
-        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('journal');
+        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('parent');
     }
 
     public function character(): BelongsTo

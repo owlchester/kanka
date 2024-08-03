@@ -182,7 +182,7 @@ class RelatedService
     {
         /** @var Map $parent */
         $parent = $this->entity->child;
-        $elements = $parent->maps()->with(['entity'])->has('entity')->get();
+        $elements = $parent->children()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -195,7 +195,7 @@ class RelatedService
     {
         /** @var Map $parent */
         $parent = $this->entity->child;
-        $elements = $parent->map()->with(['entity'])->has('entity')->get();
+        $elements = $parent->parent()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -234,7 +234,7 @@ class RelatedService
     {
         /** @var Item $parent */
         $parent = $this->entity->child;
-        $elements = $parent->items()->with(['entity'])->has('entity')->get();
+        $elements = $parent->children()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -247,7 +247,7 @@ class RelatedService
     {
         /** @var Journal $parent */
         $parent = $this->entity->child;
-        $elements = $parent->journals()->with(['entity'])->has('entity')->get();
+        $elements = $parent->children()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -284,7 +284,7 @@ class RelatedService
     {
         /** @var Organisation $parent */
         $parent = $this->entity->child;
-        $elements = $parent->organisations()->with(['entity'])->has('entity')->get();
+        $elements = $parent->children()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -297,7 +297,7 @@ class RelatedService
     {
         /** @var Race $parent */
         $parent = $this->entity->child;
-        $elements = $parent->races()->with(['entity'])->has('entity')->get();
+        $elements = $parent->children()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -310,7 +310,7 @@ class RelatedService
     {
         /** @var Race $parent */
         $parent = $this->entity->child;
-        $elements = $parent->races()->with(['entity'])->has('entity')->get();
+        $elements = $parent->children()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
@@ -323,7 +323,7 @@ class RelatedService
     {
         /** @var Location $parent */
         $parent = $this->entity->child;
-        $elements = $parent->locations()->with(['entity'])->has('entity')->get();
+        $elements = $parent->children()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
