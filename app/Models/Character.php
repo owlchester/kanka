@@ -8,6 +8,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
@@ -52,6 +53,7 @@ class Character extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
@@ -230,19 +232,6 @@ class Character extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['title', 'location_id', 'sex', 'is_dead'];
-    }
-
-    /**
-     */
-    public function location(): BelongsTo
-    {
-        return $this
-            ->belongsTo('App\Models\Location', 'location_id', 'id')
-            ->with([
-                'entity' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id');
-                }
-            ]);
     }
 
     public function families(): BelongsToMany

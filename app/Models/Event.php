@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -23,9 +24,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @package App\Models
  *
  * @property int|null $event_id
- * @property int|null $location_id
  * @property string $date
- * @property Location|null $location
  * @property Event|null $event
  * @property Event[] $events
  * @property Event[] $descendants
@@ -39,6 +38,7 @@ class Event extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -135,11 +135,6 @@ class Event extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['location_id', 'event_id', 'date'];
-    }
-
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     public function event(): BelongsTo

@@ -3,17 +3,21 @@
 namespace App\Observers\Concerns;
 
 use App\Facades\EntityLogger;
-use App\Models\Creature;
+use App\Models\Concerns\HasLocations;
 use App\Models\Location;
-use App\Models\MiscModel;
+use Illuminate\Database\Eloquent\Model;
 
-trait HasLocations
+/**
+ * We have this as a trait on the LocationsObserver, so that we can also call it from the bulk update service.
+ * Mostly because everything is weird and confusing.
+ */
+trait SaveLocations
 {
     /**
      */
-    public function saveLocations(MiscModel|Creature $model, array $locations = [])
+    protected function saveLocations(Model $model, array $locations = [])
     {
-        /** @var Creature $model */
+        /** @var HasLocations $model */
         $existing = $unique = $recreate = [];
         foreach ($model->locations as $location) {
             // If it already exists, we have an issue

@@ -7,6 +7,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -29,8 +30,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property int|null $creature_id
  * @property Creature|null $creature
  * @property Creature[] $creatures
- * @property Location|null $location
- * @property Collection|Location[] $locations
  * @property bool $is_extinct
  */
 class Creature extends MiscModel
@@ -41,6 +40,7 @@ class Creature extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocations;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -65,6 +65,9 @@ class Creature extends MiscModel
     protected array $sortableColumns = [
         'is_extinct',
     ];
+
+    protected string $locationPivot = 'creature_location';
+    protected string $locationPivotKey = 'creature_id';
 
     protected array $sortable = [
         'name',
@@ -129,48 +132,11 @@ class Creature extends MiscModel
             'creatures' => function ($sub) {
                 $sub->select('id', 'name', 'creature_id');
             },
-            'locations' => function ($sub) {
-                $sub->select('id', 'name');
-            },
             //            'descendants',
             'children' => function ($sub) {
                 $sub->select('id', 'creature_id');
             },
         ]);
-    }
-
-    /**
-     * Filter on creatures in specific locations
-     */
-    public function scopeLocation(Builder $query, int|null $location, FilterOption $filter): Builder
-    {
-        if ($filter === FilterOption::NONE) {
-            if (!empty($location)) {
-                return $query;
-            }
-            return $query
-                ->whereRaw('(select count(*) from creature_location as cl where cl.creature_id = ' .
-                    $this->getTable() . '.id and cl.location_id = ' . ((int) $location) . ') = 0');
-        } elseif ($filter === FilterOption::EXCLUDE) {
-            return $query
-                ->whereRaw('(select count(*) from creature_location as cl where cl.creature_id = ' .
-                    $this->getTable() . '.id and cl.location_id = ' . ((int) $location) . ') = 0');
-        }
-
-        $ids = [$location];
-        if ($filter === FilterOption::CHILDREN) {
-            /** @var Location|null $model */
-            $model = Location::find($location);
-            if (!empty($model)) {
-                $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
-            }
-        }
-        return $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('creature_location as cl', function ($join) {
-                $join->on('cl.creature_id', '=', $this->getTable() . '.id');
-            })
-            ->whereIn('cl.location_id', $ids)->distinct();
     }
 
     /**
@@ -218,15 +184,7 @@ class Creature extends MiscModel
         ];
     }
 
-    /**
-     * Creatures have multiple locations
-     */
-    public function locations(): BelongsToMany
-    {
-        return $this->belongsToMany('App\Models\Location', 'creature_location')
-            ->with('entity');
-    }
-    public function pivotLocations()
+    public function pivotLocations(): HasMany
     {
         return $this->hasMany('App\Models\CreatureLocation');
     }
