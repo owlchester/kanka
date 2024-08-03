@@ -58,7 +58,7 @@ class TimelineService
 
         $position = 1;
         foreach ($ids as $id) {
-            /** @var TimelineEra|null $era */
+            /** @var ?TimelineEra $era */
             $era = TimelineEra::find($id);
             if ($era === null || $era->timeline_id !== $this->timeline->id) {
                 continue;
@@ -76,7 +76,7 @@ class TimelineService
             $elementPosition = 1;
             //dump($elements);
             foreach ($elements as $elementId) {
-                /** @var TimelineElement|null $element */
+                /** @var ?TimelineElement $element */
                 $element = TimelineElement::find($elementId);
                 if ($element === null || $element->timeline_id !== $this->timeline->id) {
                     continue;

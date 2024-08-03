@@ -24,7 +24,7 @@ class FullTextSearchApiController extends ApiController
         $this->authorize('access', $campaign);
         $term = request()->term;
         $term2 = null;
-        /** @var Entity|null $entity */
+        /** @var ?Entity $entity */
         $entity = Entity::where(['name' => request()->term, 'campaign_id' => $campaign->id])->first();
         if ($entity) {
             $term2 = $entity->type() . ':' . $entity->id;

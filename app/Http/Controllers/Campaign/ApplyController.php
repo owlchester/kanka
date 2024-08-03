@@ -34,7 +34,7 @@ class ApplyController extends Controller
     {
         $this->authorize('apply', $campaign);
 
-        /** @var CampaignSubmission|null $submission */
+        /** @var ?CampaignSubmission $submission */
         $submission = auth()->user()->submissions()->first();
         if (!empty($submission)) {
             $submission->update(['text' => $request->get('application')]);
@@ -57,7 +57,7 @@ class ApplyController extends Controller
     {
         $this->authorize('apply', $campaign);
 
-        /** @var CampaignSubmission|null $submission */
+        /** @var ?CampaignSubmission $submission */
         $submission = auth()->user()->submissions()->first();
         if (!empty($submission)) {
             $submission->delete();

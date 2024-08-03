@@ -59,7 +59,7 @@ class EntityLink implements Rule
         // Are we targeting an entity or a misc?
         $entity = null;
         if ($segments[3] === 'entities') {
-            /** @var Entity|null $entity */
+            /** @var ?Entity $entity */
             // @phpstan-ignore-next-line
             $entity = Entity::where('id', (int) $segments[4])
                 ->where('campaign_id', $campaign->id)

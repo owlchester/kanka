@@ -155,7 +155,7 @@ class Organisation extends MiscModel
 
         $ids = [$location];
         if ($filter === FilterOption::CHILDREN) {
-            /** @var Location|null $model */
+            /** @var ?Location $model */
             $model = Location::find($location);
             if (!empty($model)) {
                 $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];

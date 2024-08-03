@@ -56,7 +56,7 @@ class FormService
         if ($checkForParent && $parent !== false) {
             /** @var MiscModel $class */
             $class = new $parentClass();
-            /** @var MiscModel|null $parent */
+            /** @var ?MiscModel $parent */
             $parent = $class->find($parent);
             if ($parent) {
                 return [$parent->id => $parent->name];
@@ -137,7 +137,6 @@ class FormService
 
     /**
      * Prefill a value based on an attribute
-     * @param MiscModel|null $entity
      */
     public function prefillEntity(string $field, mixed $entity = null)
     {

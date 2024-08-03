@@ -44,7 +44,7 @@ class MemberService
      */
     public function update(CampaignUser $user, CampaignRole $campaignRole): bool
     {
-        /** @var CampaignRoleUser|null $role */
+        /** @var ?CampaignRoleUser $role */
         $role = CampaignRoleUser::where('user_id', $user->user_id)
             ->where('campaign_role_id', $campaignRole->id)
             ->first();

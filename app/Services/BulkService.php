@@ -423,7 +423,7 @@ class BulkService
             throw new Exception("Unknown entity name {$this->entityName}.");
         }
 
-        /** @var MiscModel|null $model */
+        /** @var ?MiscModel $model */
         $model = new $classes[$this->entityName]();
         if (empty($model)) {
             throw new Exception("Couldn't create a class from {$this->entityName}.");

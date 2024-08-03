@@ -206,7 +206,7 @@ class Character extends MiscModel
 
         $ids = [$value];
         if ($filter === FilterOption::CHILDREN) {
-            /** @var Organisation|null $model */
+            /** @var ?Organisation $model */
             $model = Organisation::find($value);
             if (!empty($model)) {
                 $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];

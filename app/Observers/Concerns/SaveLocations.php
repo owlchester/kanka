@@ -3,7 +3,7 @@
 namespace App\Observers\Concerns;
 
 use App\Facades\EntityLogger;
-use App\Models\Concerns\HasLocations;
+use App\Models\Creature;
 use App\Models\Location;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +17,7 @@ trait SaveLocations
      */
     protected function saveLocations(Model $model, array $locations = [])
     {
-        /** @var HasLocations $model */
+        /** @var Creature $model */
         $existing = $unique = $recreate = [];
         foreach ($model->locations as $location) {
             // If it already exists, we have an issue
