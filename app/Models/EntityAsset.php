@@ -133,9 +133,12 @@ class EntityAsset extends Model
     /**
      * A virtual getter for the image path for the image observer delete loop
      */
-    //check this
     public function getImagePathAttribute(): string
     {
+        if ($this->image && !$this->image->isUsed()) {
+            return (string) $this->image->path;
+        }
+
         return (string) $this->metadata['path'];
     }
 

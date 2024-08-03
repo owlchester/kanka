@@ -38,11 +38,9 @@ class CharacterCacheService extends BaseCache
      */
     public function clearSuggestion(): self
     {
-        if (isset($this->campaign)) {
-            $this->forget(
-                $this->genderSuggestionKey()
-            );
-        }
+        $this->forget(
+            $this->genderSuggestionKey()
+        );
 
         return $this;
     }

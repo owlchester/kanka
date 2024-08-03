@@ -45,9 +45,9 @@ class GalleryMapper
     public function import(): void
     {
         $this->image = new Image();
-        //Need to set the id before saving otherwise it crashes
-        $this->image->id = Str::uuid();
         $this->image->campaign_id = $this->campaign->id;
+        //Need to save to set the id otherwise it stores wrong data.
+        $this->image->save();
         $this->mapping[$this->data['id']] = $this->image->id;
         ImportIdMapper::putGallery($this->data['id'], $this->image->id);
 

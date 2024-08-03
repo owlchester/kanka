@@ -32,6 +32,9 @@ class EntityFileService
         if ($this->entity->files->count() >= $this->campaign->maxEntityFiles() || $service->campaign($this->campaign)->available() < $uploadedFile->getSize() / 1024) {
             throw new EntityFileException('max');
         }
+        if ($service->campaign($this->campaign)->available() < $uploadedFile->getSize() / 1024) {
+            throw new EntityFileException('max_size');
+        }
 
         $name = $request->get('name');
         if (empty($name)) {
