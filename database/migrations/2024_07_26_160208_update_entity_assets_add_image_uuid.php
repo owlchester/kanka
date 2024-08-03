@@ -11,7 +11,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('entity_assets', function (Blueprint $table) {
-            $table->uuid('image_uuid')->nullable();
+            $table->char('image_uuid', 36)->nullable();
             $table->foreign('image_uuid')->references('id')->on('images')->cascadeOnDelete();
         });
     }
