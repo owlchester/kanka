@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
