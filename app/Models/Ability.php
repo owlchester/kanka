@@ -152,13 +152,6 @@ class Ability extends MiscModel
     }
 
     /**
-     */
-    public function entryWithAttributes()
-    {
-        return Mentions::map($this);
-    }
-
-    /**
      * Attach an entity to the ability
      */
     public function attachEntity(array $request): int
