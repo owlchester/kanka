@@ -269,7 +269,7 @@ class RelatedService
 
     protected function loadFamilies(): self
     {
-        /** @var Family $parent */
+        /** @var Location $parent */
         $parent = $this->entity->child;
         $elements = $parent->families()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {

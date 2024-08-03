@@ -4,10 +4,10 @@
 
 @php
 $preset = null;
-if (isset($model) && $model->map) {
-    $preset = $model->map;
+if (isset($model) && $model->parent) {
+    $preset = $model->parent;
 } elseif (!isset($bulk)) {
-    $preset = FormCopy::field('map')->select($isParent ?? false, \App\Models\Map::class);
+    $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Map::class);
 }
 @endphp
 

@@ -25,8 +25,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property int|null $event_id
  * @property string $date
- * @property Event|null $event
- * @property Event[] $events
  * @property Event[] $descendants
  */
 class Event extends MiscModel
@@ -119,9 +117,6 @@ class Event extends MiscModel
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             //            'descendants',
-            'events' => function ($sub) {
-                $sub->select('id', 'name', 'event_id');
-            },
             'children' => function ($sub) {
                 $sub->select('id', 'event_id');
             },
@@ -135,16 +130,6 @@ class Event extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['location_id', 'event_id', 'date'];
-    }
-
-    public function event(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Event', 'event_id', 'id');
-    }
-
-    public function events(): HasMany
-    {
-        return $this->hasMany('App\Models\Event', 'event_id', 'id');
     }
 
     /**

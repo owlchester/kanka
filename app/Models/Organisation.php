@@ -26,10 +26,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property int|null $organisation_id
  * @property int|null $location_id
- * @property Organisation|null $organisation
  * @property Collection|OrganisationMember[] $members
  * @property Collection|Organisation[] $descendants
- * @property Collection|Organisation[] $organisations
  * @property bool $is_defunct
  */
 class Organisation extends MiscModel
@@ -128,45 +126,10 @@ class Organisation extends MiscModel
                     $sub->select('id', 'name', 'entity_id', 'type_id');
                 },
                 'members',
-                'organisations',
                 'children' => function ($sub) {
                     $sub->select('id', 'organisation_id');
                 },
             ]);
-    }
-
-    /**
-     * Filter on organisations in specific locations
-     */
-    public function scopeLocation(Builder $query, int|null $location, FilterOption $filter): Builder
-    {
-        if ($filter === FilterOption::NONE) {
-            if (!empty($location)) {
-                return $query;
-            }
-            return $query
-                ->whereRaw('(select count(*) from organisation_location as ol where ol.organisation_id = ' .
-                    $this->getTable() . '.id and ol.location_id = ' . ((int) $location) . ') = 0');
-        } elseif ($filter === FilterOption::EXCLUDE) {
-            return $query
-                ->whereRaw('(select count(*) from organisation_location as ol where ol.organisation_id = ' .
-                    $this->getTable() . '.id and ol.location_id = ' . ((int) $location) . ') = 0');
-        }
-
-        $ids = [$location];
-        if ($filter === FilterOption::CHILDREN) {
-            /** @var ?Location $model */
-            $model = Location::find($location);
-            if (!empty($model)) {
-                $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
-            }
-        }
-        return $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('organisation_location as ol', function ($join) {
-                $join->on('ol.organisation_id', '=', $this->getTable() . '.id');
-            })
-            ->whereIn('ol.location_id', $ids)->distinct();
     }
 
     /**
@@ -231,22 +194,6 @@ class Organisation extends MiscModel
             ->whereIn('pin_id', [OrganisationMember::PIN_ORGANISATION, OrganisationMember::PIN_BOTH])
             ->orderBy('role')
         ;
-    }
-
-    /**
-     * Parent
-     */
-    public function organisation(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Organisation', 'organisation_id', 'id');
-    }
-
-    /**
-     * Children
-     */
-    public function organisations(): HasMany
-    {
-        return $this->hasMany('App\Models\Organisation', 'organisation_id', 'id');
     }
 
     /**
@@ -316,7 +263,7 @@ class Organisation extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return !empty($this->type) || !empty($this->location) || !$this->entity->elapsedEvents->isEmpty() || $this->locations->isNotEmpty();
+        return !empty($this->type) || !$this->entity->elapsedEvents->isEmpty() || $this->locations->isNotEmpty();
     }
 
     /**

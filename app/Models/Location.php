@@ -31,7 +31,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property int|null $location_id
  * @property Map[]|Collection $maps
  * @property Location[]|Collection $descendants
- * @property Location[]|Collection $locations
  * @property Event[]|Collection $events
  * @property Character[]|Collection $characters
  * @property Organisation[]|Collection $organisations
@@ -120,9 +119,6 @@ class Location extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'locations' => function ($sub) {
-                $sub->select('id', 'location_id');
-            },
             'characters' => function ($sub) {
                 $sub->select('id', 'location_id');
             },
@@ -136,14 +132,6 @@ class Location extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['location_id'];
-    }
-
-    /**
-     * Parent Location
-     */
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     public function characters(): HasMany
@@ -173,11 +161,6 @@ class Location extends MiscModel
             ->with('entity.image')
             ->has('entity')
             ->select(['id', 'name', 'is_real']);
-    }
-
-    public function locations(): HasMany
-    {
-        return $this->hasMany('App\Models\Location', 'location_id', 'id');
     }
 
     public function events(): HasMany

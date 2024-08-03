@@ -25,9 +25,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @package App\Models
  * @property int|null $ability_id
  * @property mixed|null $charges
- * @property Ability|null $ability
+ * @property ?Ability $parent
  * @property Collection|Ability[] $descendants
- * @property Collection|Ability[] $abilities
  * @property Ability[] $orderedAbilities
  * @property Collection|Entity[] $entities
  *
@@ -114,9 +113,6 @@ class Ability extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'abilities' => function ($sub) {
-                $sub->select('id', 'name', 'ability_id');
-            },
             'children' => function ($sub) {
                 $sub->select('id', 'ability_id');
             },
@@ -132,16 +128,6 @@ class Ability extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['ability_id'];
-    }
-
-    public function ability(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Ability', 'ability_id', 'id');
-    }
-
-    public function abilities(): HasMany
-    {
-        return $this->hasMany('App\Models\Ability', 'ability_id', 'id');
     }
 
     public function entities()

@@ -16,7 +16,7 @@
             @include('entities.components.posts', ['withEntry' => true])
             @includeWhen($model->entity->entityAttributes->count() > 0, 'entities.pages.attributes._story', ['entity' => $model->entity])
 
-            @includeWhen($model->abilities()->has('ability')->count() > 0, 'abilities.panels.abilities', ['onload' => true])
+            @includeWhen($model->children()->has('parent')->count() > 0, 'abilities.panels.abilities', ['onload' => true])
         </div>
 
         @include('entities.components.pins')

@@ -19,8 +19,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property int|null $attribute_template_id
  * @property int|null $entity_type_id
- * @property AttributeTemplate|null $attributeTemplate
- * @property AttributeTemplate[] $attributeTemplates
  * @property EntityType $entityType
  */
 class AttributeTemplate extends MiscModel
@@ -66,19 +64,9 @@ class AttributeTemplate extends MiscModel
     /** @var bool Attribute templates don't have inventory, relations or abilities */
     public bool $hasRelations = false;
 
-    public function attributeTemplate(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\AttributeTemplate', 'attribute_template_id', 'id');
-    }
-
     public function entityType(): BelongsTo
     {
         return $this->belongsTo('App\Models\EntityType', 'entity_type_id', 'id');
-    }
-
-    public function attributeTemplates(): HasMany
-    {
-        return $this->hasMany('App\Models\AttributeTemplate', 'attribute_template_id', 'id');
     }
 
     /**

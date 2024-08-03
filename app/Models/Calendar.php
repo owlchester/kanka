@@ -38,7 +38,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property array $parameters
  * @property bool $skip_year_zero
  * @property bool $show_birthdays
- * @property Calendar[]|Collection $calendars
  */
 class Calendar extends MiscModel
 {
@@ -124,9 +123,6 @@ class Calendar extends MiscModel
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
-            },
-            'calendars' => function ($sub) {
-                $sub->select('id', 'name', 'calendar_id');
             },
             'children' => function ($sub) {
                 $sub->select('id', 'calendar_id');

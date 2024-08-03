@@ -484,7 +484,7 @@ class MapService
         /** @var Family $family */
         $family = $this->entity->child;
 
-        foreach ($family->families()->with(['entity', 'entity.image'])->has('entity')->get() as $subfamily) {
+        foreach ($family->children()->with(['entity', 'entity.image'])->has('entity')->get() as $subfamily) {
             $this->addEntity($subfamily->entity);
             $this->addRelations($subfamily->entity);
 

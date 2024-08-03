@@ -14,7 +14,7 @@
         [
             'label' => '<i class="' . \App\Facades\Module::duoIcon('ability') . '" title="' . __('entities.abilities') . '"></i>',
             'render' => function($model) {
-                return $model->abilities->count();
+                return $model->children->count();
             },
             'disableSort' => true,
         ],

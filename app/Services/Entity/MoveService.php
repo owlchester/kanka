@@ -192,7 +192,7 @@ class MoveService
             // relations and, since they won't make sense on the new campaign.
             $this->entity->relationships()->delete();
             $this->entity->targetRelationships()->delete();
-            $this->entity->events()->delete();
+            $this->entity->reminders()->delete();
             $this->entity->imageMentions()->delete();
 
             // Get the child of the entity (the actual Location, Character etc) and remove the permissions, since they

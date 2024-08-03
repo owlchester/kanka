@@ -22,8 +22,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @package App\Models
  *
  * @property int|null $note_id
- * @property Note|null $note
- * @property Note[]|Collection $notes
  */
 class Note extends MiscModel
 {
@@ -86,9 +84,6 @@ class Note extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'notes' => function ($sub) {
-                $sub->select('id', 'note_id', 'name');
-            },
             'children' => function ($sub) {
                 $sub->select('id', 'note_id');
             }
@@ -110,21 +105,6 @@ class Note extends MiscModel
     {
         return (int) config('entities.ids.note');
     }
-
-    public function note(): BelongsTo
-    {
-        return $this->belongsTo(Note::class, 'note_id');
-    }
-
-    /**
-     * Child notes
-     */
-    public function notes(): HasMany
-    {
-        return $this->hasMany(Note::class, 'note_id', 'id')
-            ->with('entity');
-    }
-
 
     /**
      * Parent ID field for the Node trait
