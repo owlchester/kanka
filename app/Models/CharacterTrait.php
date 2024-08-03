@@ -6,6 +6,7 @@ use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Paginatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CharacterTrait
@@ -40,7 +41,7 @@ class CharacterTrait extends Model
 
     /**
      */
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }

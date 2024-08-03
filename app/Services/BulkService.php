@@ -6,6 +6,7 @@ use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Models\Relation;
+use App\Observers\Concerns\SaveLocations;
 use App\Services\Entity\MoveService;
 use App\Services\Entity\TagService;
 use App\Services\Entity\TransformService;
@@ -15,13 +16,12 @@ use Illuminate\Support\Arr;
 use App\Models\MiscModel;
 use Exception;
 use Illuminate\Support\Str;
-use App\Observers\Concerns\HasLocations;
 use Stevebauman\Purify\Facades\Purify;
 
 class BulkService
 {
     use CampaignAware;
-    use HasLocations;
+    use SaveLocations;
 
     protected EntityService $entityService;
 
@@ -423,7 +423,7 @@ class BulkService
             throw new Exception("Unknown entity name {$this->entityName}.");
         }
 
-        /** @var MiscModel|null $model */
+        /** @var ?MiscModel $model */
         $model = new $classes[$this->entityName]();
         if (empty($model)) {
             throw new Exception("Couldn't create a class from {$this->entityName}.");

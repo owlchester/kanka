@@ -134,7 +134,7 @@ class DashboardService
             }
 
             // Validate the role
-            /** @var CampaignRole|null $role */
+            /** @var ?CampaignRole $role */
             $role = $this->campaign->roles()->where('id', $roleId)->first();
             if (empty($role)) {
                 continue;
@@ -176,7 +176,7 @@ class DashboardService
             }
 
             // Validate the role
-            /** @var CampaignRole|null $role */
+            /** @var ?CampaignRole $role */
             $role = $this->campaign->roles()->where('id', $roleId)->first();
             if (empty($role)) {
                 continue;

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
+use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
@@ -33,7 +34,6 @@ use Laravel\Scout\Searchable;
  * @property string $entry
  * @property \App\Enums\Visibility $visibility_id
  * @property int $created_by
- * @property int|null $location_id
  * @property int|null $layout_id
  * @property string|null $marketplace_uuid
  * @property bool|int $is_private
@@ -42,7 +42,6 @@ use Laravel\Scout\Searchable;
  * @property int $position
  * @property array $settings
  * @property Entity|null $entity
- * @property Location|null $location
  * @property PostLayout|null $layout
  * @property EntityMention[]|Collection $mentions
  * @property PostPermission[]|Collection $permissions
@@ -57,6 +56,7 @@ class Post extends Model
     use Blameable;
     use HasEntry;
     use HasFactory;
+    use HasLocation;
     use HasVisibility;
     use Paginatable;
     use Sanitizable;
@@ -101,13 +101,6 @@ class Post extends Model
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
-    }
-
-    /**
-     */
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id');
     }
 
     /**

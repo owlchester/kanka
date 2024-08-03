@@ -133,8 +133,7 @@ class TemplateService
             return null;
         }
 
-        /** @var CampaignPlugin|null $plugin */
-        // @phpstan-ignore-next-line
+        /** @var ?CampaignPlugin $plugin */
         $plugin = CampaignPlugin::templates($this->campaign)
             ->select('campaign_plugins.*')
             ->leftJoin('plugin_versions as pv', 'pv.plugin_id', 'campaign_plugins.plugin_id')

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Paginatable;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,9 +40,8 @@ class CampaignBoost extends Model
 
     /**
      * Automatically prune old elements from the db
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function prunable()
+    public function prunable(): Builder
     {
         return static::where('deleted_at', '<=', now()->subDays(90));
     }

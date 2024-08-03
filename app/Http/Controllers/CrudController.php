@@ -132,7 +132,7 @@ class CrudController extends Controller
         }
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
-        /** @var DatagridFilter|null $filter */
+        /** @var ?DatagridFilter $filter */
         $filter = !empty($this->filter) ? new $this->filter() : null;
         if (!empty($filter)) {
             $filter->campaign($this->campaign)->build();

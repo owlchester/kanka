@@ -311,7 +311,7 @@ class Bookmark extends MiscModel
             $entityTypeID = config('entities.ids.' . $entityType);
         }
 
-        /** @var Entity|null $entity */
+        /** @var ?Entity $entity */
         $entity = Entity::inTags($this->tags->pluck('id')->toArray())
             ->inTypes($entityTypeID)
             ->whereNotIn('entities.id', Dashboard::excluding())

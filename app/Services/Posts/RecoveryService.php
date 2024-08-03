@@ -38,7 +38,7 @@ class RecoveryService
      */
     protected function post(int $id): bool
     {
-        /** @var Post|null $post */
+        /** @var ?Post $post */
         $post = Post::onlyTrashed()->find($id);
         if (!$post) {
             return false;

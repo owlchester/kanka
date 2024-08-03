@@ -76,7 +76,7 @@ class MoveService
     public function validate(): self
     {
         // First we make sure we have access to the new campaign.
-        /** @var Campaign|null $campaign */
+        /** @var ?Campaign $campaign */
         $campaign = $this->user->campaigns()->where('campaign_id', $this->to->id)->first();
         if (empty($campaign)) {
             throw new TranslatableException('entities/move.errors.unknown_campaign');

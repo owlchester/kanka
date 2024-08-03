@@ -7,6 +7,9 @@ use App\Models\MiscModel;
 use App\Services\EntityMappingService;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ *
+ */
 class EntryObserver
 {
     use PurifiableTrait;

@@ -488,7 +488,7 @@ class User extends \Illuminate\Foundation\Auth\User
         $campaigns = [];
         $userCampaigns = $this->campaigns()->with(['roles', 'roles.users'])->get();
         foreach ($userCampaigns as $campaign) {
-            /** @var CampaignRole|null $adminRole */
+            /** @var ?CampaignRole $adminRole */
             $adminRole = $campaign->roles->where('is_admin', true)->first();
             if (!$adminRole) {
                 continue;

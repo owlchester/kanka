@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -29,8 +29,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property int|null $race_id
  * @property Race|null $race
  * @property Race[] $races
- * @property Location|null $location
- * @property Collection|Location[] $locations
  * @property Collection|CharacterRace[] $characterRaces
  */
 class Race extends MiscModel
@@ -41,6 +39,7 @@ class Race extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocations;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -87,6 +86,9 @@ class Race extends MiscModel
         'type',
     ];
 
+    protected string $locationPivot = 'race_location';
+    protected string $locationPivotKey = 'race_id';
+
     /**
      * @return string
      */
@@ -124,39 +126,6 @@ class Race extends MiscModel
                 $sub->select('id', 'race_id');
             },
         ]);
-    }
-    /**
-     * Filter on races in specific locations
-     */
-    public function scopeLocation(Builder $query, int|null $race, FilterOption $filter): Builder
-    {
-        if ($filter === FilterOption::NONE) {
-            /*if (!empty($location)) {
-                return $query;
-            }*/
-            return $query
-                ->whereRaw('(select count(*) from race_location as cl where cl.race_id = ' .
-                    $this->getTable() . '.id and cl.location_id = ' . ((int) $race) . ') = 0');
-        } elseif ($filter === FilterOption::EXCLUDE) {
-            return $query
-                ->whereRaw('(select count(*) from race_location as cl where cl.race_id = ' .
-                    $this->getTable() . '.id and cl.location_id = ' . ((int) $race) . ') = 0');
-        }
-
-        $ids = [$race];
-        if ($filter === FilterOption::CHILDREN) {
-            /** @var Location|null $model */
-            $model = Location::find($race);
-            if (!empty($model)) {
-                $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
-            }
-        }
-        return $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('race_location as cl', function ($join) {
-                $join->on('cl.race_id', '=', $this->getTable() . '.id');
-            })
-            ->whereIn('cl.location_id', $ids)->distinct();
     }
 
     /**
@@ -259,15 +228,6 @@ class Race extends MiscModel
             'location_id',
             'parent'
         ];
-    }
-
-    /**
-     * Races have multiple locations through the race_location table
-     */
-    public function locations(): BelongsToMany
-    {
-        return $this->belongsToMany('App\Models\Location', 'race_location')
-            ->with('entity');
     }
 
     public function pivotLocations(): HasMany

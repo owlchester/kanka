@@ -8,6 +8,7 @@ use App\User;
 use Carbon\Carbon;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -41,9 +42,8 @@ class CampaignUser extends Pivot
 
     /**
      * Get the user's roles
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function roles()
+    public function roles(): HasManyThrough
     {
         return $this->hasManyThrough(
             'App\Models\CampaignRole',
