@@ -22,7 +22,7 @@ class ReorderService
 
         $position = 1;
         foreach ($ids as $id) {
-            /** @var EntityAbility|null $ability */
+            /** @var ?EntityAbility $ability */
             $ability = EntityAbility::find($id);
             if ($ability === null || $ability->entity_id !== $this->entity->id) {
                 continue;

@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Model;
 
 class UserRole extends Model
 {
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    use HasUser;
 }

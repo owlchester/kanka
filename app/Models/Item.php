@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -28,9 +29,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $weight
  * @property int|null $item_id
  * @property int|null $character_id
- * @property int|null $location_id
  * @property Character|null $character
- * @property Location|null $location
  * @property Item[] $items
  * @property Item|null $item
  */
@@ -42,6 +41,7 @@ class Item extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -200,11 +200,6 @@ class Item extends MiscModel
     public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id', 'id');
-    }
-
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     public function itemQuests(): HasMany

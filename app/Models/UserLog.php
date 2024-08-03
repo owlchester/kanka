@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class UserLog
  * @package App\Models
  *
- * @property int $user_id
  * @property int $type_id
  * @property string $ip
  * @property string $country
@@ -20,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class UserLog extends Model
 {
+    use HasUser;
     use MassPrunable;
 
     public const TYPE_LOGIN = 1;
@@ -73,9 +73,6 @@ class UserLog extends Model
 
     public $connection = 'logs';
 
-    /**
-     * @var string
-     */
     public $table = 'user_logs';
 
     protected $fillable = [
@@ -83,10 +80,6 @@ class UserLog extends Model
         'type_id',
         'ip'
     ];
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo('App\User', 'user_id', 'id');
-    }
 
     /**
      * Automatically prune old elements from the db

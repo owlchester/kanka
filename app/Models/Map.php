@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -25,7 +26,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Ability
  * @package App\Models
  * @property int|null $map_id
- * @property int|null $location_id
  * @property int|null $width
  * @property int|null $height
  * @property int $grid
@@ -41,7 +41,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property array $config
  * @property Map|null $map
  * @property Map[] $maps
- * @property Location|null $location
  * @property Collection|MapLayer[] $layers
  * @property Collection|MapMarker[] $markers
  * @property MapMarker $center_marker
@@ -56,6 +55,7 @@ class Map extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -213,11 +213,6 @@ class Map extends MiscModel
     public function map(): BelongsTo
     {
         return $this->belongsTo('App\Models\Map', 'map_id', 'id');
-    }
-
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     public function maps(): HasMany

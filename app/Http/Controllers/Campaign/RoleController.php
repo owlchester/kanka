@@ -123,7 +123,6 @@ class RoleController extends Controller
     {
         $this->authorize('view', [$campaignRole, $campaign]);
 
-        // @phpstan-ignore-next-line
         $members = $campaignRole
             ->users()
             ->with('user')

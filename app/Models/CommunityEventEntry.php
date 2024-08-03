@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $community_event_id
- * @property int $user
  * @property string $vote
  * @property int $created_by
  *
@@ -20,6 +19,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class CommunityEventEntry extends Model
 {
+    use HasUser;
+
+    protected string $userField = 'created_by';
+
     public $fillable = [
         'community_event_id',
         'comment',
@@ -29,10 +32,5 @@ class CommunityEventEntry extends Model
     public function event(): BelongsTo
     {
         return $this->belongsTo(CommunityEvent::class, 'community_event_id');
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
     }
 }

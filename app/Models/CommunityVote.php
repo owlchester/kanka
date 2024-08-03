@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Scopes\CommunityVoteScopes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -43,10 +44,7 @@ class CommunityVote extends Model
         'published_at' => 'date',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function ballots()
+    public function ballots(): HasMany
     {
         return $this->hasMany(CommunityVoteBallot::class);
     }

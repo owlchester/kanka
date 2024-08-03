@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -67,10 +68,7 @@ class CommunityEvent extends Model
         return Img::crop($width, (!empty($height) ? $height : $width))->url($this->$field);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function entries()
+    public function entries(): HasMany
     {
         return $this->hasMany(CommunityEventEntry::class);
     }
@@ -83,7 +81,7 @@ class CommunityEvent extends Model
     }
 
     /**
-     * @return Model|\Illuminate\Database\Eloquent\Relations\HasMany|object|null
+     * @return Model|HasMany|object|null
      */
     public function userEntry(int $userId)
     {

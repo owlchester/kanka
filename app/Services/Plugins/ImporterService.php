@@ -97,7 +97,6 @@ class ImporterService
         // Prepare the uuids for already imported lookups
         $campaignPlugin = $this->campaignPlugin();
         $version = $campaignPlugin->version;
-        // @phpstan-ignore-next-line
         $entities = $version->entities()->with('type')->get();
         $uuids = $entities->pluck('uuid');
 

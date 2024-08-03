@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -42,6 +43,7 @@ class Journal extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -189,11 +191,6 @@ class Journal extends MiscModel
     public function author(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'author_id');
-    }
-
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id');
     }
 
     /**

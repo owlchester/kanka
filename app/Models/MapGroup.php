@@ -4,14 +4,15 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
-use App\Traits\HasVisibility;
 use App\Models\Concerns\SortableTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class MapGroup
@@ -71,10 +72,7 @@ class MapGroup extends Model
             ->orderBy('name');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function markers()
+    public function markers(): HasMany
     {
         return $this->hasMany(MapMarker::class, 'group_id');
     }

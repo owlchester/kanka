@@ -36,7 +36,7 @@ class InviteService
             throw new Exception(__('campaigns.invites.error.invalid_token'));
         }
 
-        /** @var CampaignInvite|null $invite */
+        /** @var ?CampaignInvite $invite */
         $invite = CampaignInvite::where('token', $token)->first();
         if (empty($invite)) {
             throw new Exception(__('campaigns.invites.error.invalid_token'));

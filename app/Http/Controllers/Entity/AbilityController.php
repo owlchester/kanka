@@ -69,7 +69,7 @@ class AbilityController extends Controller
         if (is_array($data['abilities'])) {
             $abilities = [];
             foreach ($data['abilities'] as $abilityId) {
-                /** @var Ability|null $ability */
+                /** @var ?Ability $ability */
                 $ability = Ability::find($abilityId);
                 if ($ability) {
                     $entityAbility = EntityAbility::create([

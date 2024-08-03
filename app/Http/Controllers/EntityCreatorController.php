@@ -102,7 +102,7 @@ class EntityCreatorController extends Controller
             // Exclude existing tags to avoid adding a tag several times
             $tags = $values['tags'];
             foreach ($tags as $number => $id) {
-                /** @var Tag|null $tag */
+                /** @var ?Tag $tag */
                 $tag = Tag::find($id);
                 // Create the tag if the user has permission to do so
                 if (empty($tag) && $tagService->isAllowed()) {

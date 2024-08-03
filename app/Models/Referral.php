@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Referral
@@ -13,27 +14,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property string $code
  * @property bool|int $is_valid
- * @property int $user_id
  *
- * @property User $user
  * @property User[] $users
  */
 class Referral extends Model
 {
-    /**
-     * Users who used the referral
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
+    use HasUser;
 
     /**
-     * Partner attached to the referral
+     * Users who used the referral
      */
-    public function user(): BelongsTo
+    public function users(): HasMany
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 }

@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class SubscriptionCancellation
  * @package App\Models
  *
  * @property int $id
- * @property int $user_id
  * @property string $reason
  * @property string $custom
  * @property string $tier
@@ -20,6 +19,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class SubscriptionCancellation extends Model
 {
+    use HasUser;
+
     /**
      * @var string
      */
@@ -32,9 +33,4 @@ class SubscriptionCancellation extends Model
         'tier',
         'duration',
     ];
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo('App\User', 'user_id', 'id');
-    }
 }

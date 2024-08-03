@@ -12,6 +12,7 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -118,7 +119,7 @@ class Note extends MiscModel
     /**
      * Child notes
      */
-    public function notes()
+    public function notes(): HasMany
     {
         return $this->hasMany(Note::class, 'note_id', 'id')
             ->with('entity');

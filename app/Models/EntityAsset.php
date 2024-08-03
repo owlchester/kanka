@@ -4,18 +4,18 @@ namespace App\Models;
 
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Scopes\EntityAssetScopes;
 use App\Models\Scopes\Pinnable;
-use App\Traits\HasVisibility;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id

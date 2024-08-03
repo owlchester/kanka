@@ -105,9 +105,8 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return HasMany
      */
-    public function permissions()
+    public function permissions(): HasMany
     {
         return $this->hasMany('App\Models\CampaignPermission', 'campaign_role_id');
     }

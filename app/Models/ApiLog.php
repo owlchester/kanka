@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
 
@@ -24,10 +25,8 @@ class ApiLog extends Model
 
     /**
      * Determines the prunable query.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function prunable()
+    public function prunable(): Builder
     {
         return $this->where('created_at', '<=', now()->subDays(30));
     }

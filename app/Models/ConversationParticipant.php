@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use App\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,13 +14,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $created_by
  * @property int|null $character_id
  * @property Character|null $character
- * @property int|null $user_id
- * @property User|null $user
  *
  */
 class ConversationParticipant extends MiscModel
 {
     use HasFactory;
+    use HasUser;
 
     protected Character|User|null $loadedEntity;
 
@@ -41,14 +41,6 @@ class ConversationParticipant extends MiscModel
     public function creator(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
-    }
-
-    /**
-     * Who created this entry
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function character(): BelongsTo

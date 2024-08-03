@@ -156,11 +156,6 @@ class Bookmark extends MiscModel
             ->orderBy('name', 'ASC');
     }
 
-    public function campaign(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Campaign', 'campaign_id');
-    }
-
     public function target(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
@@ -316,7 +311,7 @@ class Bookmark extends MiscModel
             $entityTypeID = config('entities.ids.' . $entityType);
         }
 
-        /** @var Entity|null $entity */
+        /** @var ?Entity $entity */
         $entity = Entity::inTags($this->tags->pluck('id')->toArray())
             ->inTypes($entityTypeID)
             ->whereNotIn('entities.id', Dashboard::excluding())
