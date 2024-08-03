@@ -3,6 +3,7 @@
 namespace App\Services\Entity\Connections;
 
 use App\Models\Character;
+use App\Models\Conversation;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\Item;
@@ -223,6 +224,7 @@ class RelatedService
         $parent = $this->entity->child;
         $elements = $parent->conversations()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
+            /** @var Conversation $sub */
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.conversation');

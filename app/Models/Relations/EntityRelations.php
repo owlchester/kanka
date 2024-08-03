@@ -383,11 +383,6 @@ trait EntityRelations
             ->where('type_id', EntityAsset::TYPE_LINK);
     }
 
-    public function aliases(): HasMany
-    {
-        return $this->hasMany('App\Models\EntityAlias', 'entity_id', 'id');
-    }
-
     public function assets(): HasMany
     {
         return $this->hasMany(EntityAsset::class, 'entity_id', 'id');

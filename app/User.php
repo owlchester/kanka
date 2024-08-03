@@ -287,6 +287,7 @@ class User extends \Illuminate\Foundation\Auth\User
             ->where('campaign_roles.is_admin', 1)->with('campaign')
             ->get();
         foreach ($roles as $role) {
+            /** @var CampaignRole $role */
             $campaigns[$role->campaign->id] = $role->campaign->name;
         }
 
