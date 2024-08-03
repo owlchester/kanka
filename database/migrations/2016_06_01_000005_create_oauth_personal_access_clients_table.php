@@ -10,9 +10,10 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::table('inventories', function (Blueprint $table) {
-            $table->char('image_uuid', 36)->nullable();
-
+        Schema::create('oauth_personal_access_clients', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('client_id');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +22,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::table('inventories', function (Blueprint $table) {
-            $table->dropColumn('image_uuid');
-        });
+        Schema::dropIfExists('oauth_personal_access_clients');
     }
 };

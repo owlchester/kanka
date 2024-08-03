@@ -12,7 +12,7 @@ return new class () extends Migration {
     {
         Schema::create('user_validations', function (Blueprint $table) {
             $table->id();
-            $table->uuid('token');
+            $table->char('token', 36);
             $table->unsignedInteger('user_id');
             $table->boolean('is_valid')->default(false);
             $table->timestamps();

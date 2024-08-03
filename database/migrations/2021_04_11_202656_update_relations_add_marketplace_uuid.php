@@ -14,7 +14,7 @@ class UpdateRelationsAddMarketplaceUuid extends Migration
     public function up()
     {
         Schema::table('relations', function (Blueprint $table) {
-            $table->uuid('marketplace_uuid')->nullable();
+            $table->char('marketplace_uuid', 36)->nullable();
             $table->index('marketplace_uuid');
         });
     }

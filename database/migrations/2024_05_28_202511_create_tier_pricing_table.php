@@ -15,7 +15,7 @@ return new class () extends Migration {
             $table->timestamps();
             $table->unsignedBigInteger('tier_id');
             $table->string('currency', 3);
-            $table->unsignedDouble('cost', 10, 3);
+            $table->double('cost', 10, 3)->unsigned();
             $table->unsignedTinyInteger('period')->default(1);
             $table->string('stripe_id', 191);
 

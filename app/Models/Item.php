@@ -197,11 +197,6 @@ class Item extends MiscModel
         return $this->belongsTo('App\Models\Character', 'character_id', 'id');
     }
 
-    public function itemQuests(): HasMany
-    {
-        return $this->hasMany('App\Models\QuestItem', 'item_id');
-    }
-
     public function inventories(): HasMany
     {
         return $this->hasMany('App\Models\Inventory', 'item_id');

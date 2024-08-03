@@ -15,7 +15,7 @@ class CreateCampaignGalleryFolders extends Migration
     {
 
         Schema::table('images', function (Blueprint $table) {
-            $table->uuid('folder_id')->nullable();
+            $table->char('folder_id', 36)->nullable();
             $table->boolean('is_folder')->default(false);
             $table->foreign('folder_id')->references('id')->on('images')->onDelete('cascade');
 

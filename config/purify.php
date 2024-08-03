@@ -254,6 +254,15 @@ return [
     |
     */
 
-    'serializer' => storage_path('app/purify'),
+    'serializer' => [
+        'disk' => env('FILESYSTEM_DRIVER', 'local'),
+        'path' => 'purify',
+        'cache' => Stevebauman\Purify\Cache\FilesystemDefinitionCache::class,
+    ],
+
+    // 'serializer' => [
+    //    'driver' => env('CACHE_DRIVER', 'file'),
+    //    'cache' => \Stevebauman\Purify\Cache\CacheDefinitionCache::class,
+    // ],
 
 ];

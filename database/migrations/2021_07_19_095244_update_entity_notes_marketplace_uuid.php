@@ -14,7 +14,7 @@ class UpdateEntityNotesMarketplaceUuid extends Migration
     public function up()
     {
         Schema::table('entity_notes', function (Blueprint $table) {
-            $table->uuid('marketplace_uuid')->nullable();
+            $table->char('marketplace_uuid', 36)->nullable();
             $table->index('marketplace_uuid');
             $table->unsignedInteger('location_id')->nullable();
 
