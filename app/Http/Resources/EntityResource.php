@@ -79,7 +79,7 @@ class EntityResource extends JsonResource
         if (request()->get('related', false)) {
             $data['attributes'] = AttributeResource::collection($entity->attributes);
             $data['posts'] = PostResource::collection($entity->posts);
-            $data['entity_events'] = EntityEventResource::collection($entity->events);
+            $data['entity_events'] = EntityEventResource::collection($entity->reminders);
             $data['relations'] = RelationResource::collection($entity->relationships);
             $data['inventory'] = InventoryResource::collection($entity->inventories);
             $data['entity_abilities'] = EntityAbilityResource::collection($entity->abilities);
@@ -187,7 +187,7 @@ class EntityResource extends JsonResource
         if (request()->get('related', false) || $this->withRelated) {
             $merged['attributes'] = AttributeResource::collection($misc->entity->attributes);
             $merged['posts'] = PostResource::collection($misc->entity->posts);
-            $merged['entity_events'] = EntityEventResource::collection($misc->entity->events);
+            $merged['entity_events'] = EntityEventResource::collection($misc->entity->reminders);
             $merged['relations'] = RelationResource::collection($misc->entity->relationships);
             $merged['inventory'] = InventoryResource::collection($misc->entity->inventories);
             $merged['entity_abilities'] = EntityAbilityResource::collection($misc->entity->abilities);

@@ -2,12 +2,5 @@
  * @var \App\Models\Family $model
  */
 ?>
-@if($model->family)
-    <div class="entity-header-sub-element">
-        <x-icon :class="\App\Facades\Module::duoIcon('family')" :title="__('crud.fields.parent')" />
-        <x-entity-link
-            :entity="$model->family->entity"
-            :campaign="$campaign" />
-    </div>
-@endif
+@includeWhen($model->parent, 'entities.headers.__parent', ['module' => 'family'])
 @include('entities.headers.__location')

@@ -14,7 +14,6 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -26,8 +25,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Creature[]|Collection $descendants
  *
  * @property int|null $creature_id
- * @property Creature|null $creature
- * @property Creature[] $creatures
  * @property bool $is_extinct
  */
 class Creature extends MiscModel
@@ -127,9 +124,6 @@ class Creature extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'creatures' => function ($sub) {
-                $sub->select('id', 'name', 'creature_id');
-            },
             //            'descendants',
             'children' => function ($sub) {
                 $sub->select('id', 'creature_id');
@@ -143,22 +137,6 @@ class Creature extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['creature_id', 'is_extinct'];
-    }
-
-    /**
-     * Parent creature
-     */
-    public function creature(): BelongsTo
-    {
-        return $this->belongsTo(Creature::class, 'creature_id', 'id');
-    }
-
-    /**
-     * Children creatures
-     */
-    public function creatures(): HasMany
-    {
-        return $this->hasMany(Creature::class, 'creature_id', 'id');
     }
 
     /**

@@ -15,7 +15,6 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -27,9 +26,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @package App\Models
  * @property int|null $family_id
  * @property Collection|Character[] $members
- * @property Family $family
  * @property FamilyTree|null $familyTree
- * @property Collection|Family[] $families
  * @property Collection|Family[] $descendants
  * @property Collection|CharacterFamily[] $pitvotMembers
  */
@@ -137,9 +134,6 @@ class Family extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'families' => function ($sub) {
-                $sub->select('id', 'family_id', 'name');
-            },
             'members',
             'children' => function ($sub) {
                 $sub->select('id', 'family_id');
@@ -224,22 +218,6 @@ class Family extends MiscModel
     }
 
     /**
-     * Parent
-     */
-    public function family(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Family', 'family_id', 'id');
-    }
-
-    /**
-     * Children
-     */
-    public function families(): HasMany
-    {
-        return $this->hasMany('App\Models\Family', 'family_id', 'id');
-    }
-
-    /**
      * All members of a family and descendants
      */
     public function allMembers()
@@ -301,7 +279,7 @@ class Family extends MiscModel
         if (!empty($this->type)) {
             return true;
         }
-        if (!empty($this->family)) {
+        if (!empty($this->parent)) {
             return true;
         }
         return (bool) (!$this->entity->elapsedEvents->isEmpty());

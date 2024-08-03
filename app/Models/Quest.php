@@ -28,8 +28,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property bool|int $is_completed
  * @property string $date
  * @property Entity|null $instigator
- * @property Quest|null $quest
- * @property Quest[]|Collection $quests
  * @property QuestElement[]|Collection $elements
  */
 class Quest extends MiscModel
@@ -129,7 +127,6 @@ class Quest extends MiscModel
             'entity.calendarDate',
             'entity.calendarDate.calendar',
             'entity.calendarDate.calendar.entity',
-            'quests',
             'instigator',
             //'elements',
             'parent' => function ($sub) {
@@ -138,7 +135,6 @@ class Quest extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'quests',
             'children' => function ($sub) {
                 $sub->select('id', 'quest_id');
             }
@@ -202,25 +198,10 @@ class Quest extends MiscModel
     }
 
     /**
-     * Parent
-     */
-    public function quest(): BelongsTo
-    {
-        return $this->belongsTo(Quest::class);
-    }
-
-    /**
      */
     public function shortDescription()
     {
         return $this->name;
-    }
-
-    /**
-     */
-    public function quests(): HasMany
-    {
-        return $this->hasMany(Quest::class);
     }
 
     /**

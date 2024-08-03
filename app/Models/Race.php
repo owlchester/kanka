@@ -14,7 +14,6 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,8 +26,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Race[]|Collection $descendants
  *
  * @property int|null $race_id
- * @property Race|null $race
- * @property Race[] $races
  * @property Collection|CharacterRace[] $characterRaces
  */
 class Race extends MiscModel
@@ -115,9 +112,6 @@ class Race extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'races' => function ($sub) {
-                $sub->select('id', 'name', 'race_id');
-            },
             'locations' => function ($sub) {
                 $sub->select('locations.id', 'locations.name');
             },
@@ -146,22 +140,6 @@ class Race extends MiscModel
             $query->wherePivot('is_private', false);
         }
         return $query;
-    }
-
-    /**
-     * Parent Race
-     */
-    public function race(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Race', 'race_id', 'id');
-    }
-
-    /**
-     * Children Races
-     */
-    public function races(): HasMany
-    {
-        return $this->hasMany('App\Models\Race', 'race_id', 'id');
     }
 
     public function characterRaces(): HasMany

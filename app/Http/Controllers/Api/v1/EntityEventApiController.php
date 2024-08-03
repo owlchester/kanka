@@ -18,7 +18,7 @@ class EntityEventApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return Resource::collection($entity->events()->paginate());
+        return Resource::collection($entity->reminders()->paginate());
     }
 
     /**

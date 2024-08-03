@@ -9,8 +9,8 @@ if (request()->has('parent_id')) {
 }
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 
-$direct = $model->quests()->has('quest')->count();
-$all = $model->descendants()->has('quest')->count();
+$direct = $model->children()->has('parent')->count();
+$all = $model->descendants()->has('parent')->count();
 ?>
 <div class="flex gap-2 items-center">
     <h3 class="grow">

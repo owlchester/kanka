@@ -14,7 +14,6 @@ use App\Models\Scopes\TagScopes;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -29,8 +28,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $type
  * @property string $colour
  * @property int|null $tag_id
- * @property Tag|null $tag
- * @property Tag[]|Collection $tags
  * @property bool $is_auto_applied
  * @property bool $is_hidden
  *
@@ -110,22 +107,6 @@ class Tag extends MiscModel
         'is_auto_applied',
         'is_hidden',
     ];
-
-    /**
-     * Parent
-     */
-    public function tag(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Tag', 'tag_id', 'id');
-    }
-
-    /**
-     * Children
-     */
-    public function tags(): HasMany
-    {
-        return $this->hasMany('App\Models\Tag', 'tag_id', 'id');
-    }
 
     public function getParentKeyName(): string
     {

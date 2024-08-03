@@ -4,10 +4,10 @@
 
 @php
 $preset = null;
-if (isset($model) && $model->creature) {
-    $preset = $model->creature;
+if (isset($model) && $model->parent) {
+    $preset = $model->parent;
 } elseif (!isset($bulk)) {
-    $preset = FormCopy::field('creature')->select($isParent ?? false, \App\Models\Creature::class);
+    $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Creature::class);
 }
 @endphp
 

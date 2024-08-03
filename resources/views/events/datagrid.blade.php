@@ -18,9 +18,6 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'type' => 'parent',
-        ],
-        [
             'type' => 'is_private',
         ]
     ])

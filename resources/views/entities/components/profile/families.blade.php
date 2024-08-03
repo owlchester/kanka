@@ -5,13 +5,13 @@
 @endif
 
 <x-sidebar.profile>
-        @if (!empty($model->family))
+        @if (!empty($model->parent))
         <div class="element profile-family">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.family')) !!}
             </div>
             <x-entity-link
-                :entity="$model->family->entity"
+                :entity="$model->parent->entity"
                 :campaign="$campaign" />
         </div>
     @endif

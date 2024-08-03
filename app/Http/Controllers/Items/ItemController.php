@@ -29,7 +29,7 @@ class ItemController extends Controller
             ->route('items.items', $options);
 
         $this->rows = $item
-            ->items()
+            ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with(['entity', 'entity.image'])
