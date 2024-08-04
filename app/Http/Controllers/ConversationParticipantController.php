@@ -61,7 +61,7 @@ class ConversationParticipantController extends Controller
         return redirect()
             ->to($conversation->getLink())
             ->with('success', trans('crud.notes.edit.success', [
-                'name' => $conversationParticipant->name, 'entity' => $conversation->name
+                'name' => $conversationParticipant->entity()->name, 'entity' => $conversation->name
             ]));
     }
 

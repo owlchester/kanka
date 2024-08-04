@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Privatable;
 use App\Models\Concerns\Sanitizable;
@@ -58,6 +59,7 @@ class Bookmark extends Model
     use Sortable;
     use Orderable;
     use Taggable;
+    use LastSync;
 
     protected $fillable = [
         'campaign_id',

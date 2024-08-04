@@ -45,7 +45,6 @@ class BookmarkApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         /** @var Bookmark $model */
         $model = Bookmark::create($data);
-        $this->crudSave($model);
 
         return new Resource($model);
     }
@@ -58,7 +57,6 @@ class BookmarkApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $bookmark);
         $bookmark->update($request->all());
-        $this->crudSave($bookmark);
 
         return new Resource($bookmark);
     }
