@@ -173,7 +173,6 @@ trait EntityMapper
         $image = new Image();
         $image->campaign_id = $this->campaign->id;
         $image->ext = $imageExt;
-        $image->created_by = $this->user->id;
         $image->name = $this->entity->name;
         $image->visibility_id = 1;
         $size = Storage::disk('local')->size($this->path . $img);

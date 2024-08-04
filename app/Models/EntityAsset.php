@@ -191,7 +191,6 @@ class EntityAsset extends Model
 
     /**
      * A file can be linked to a gallery image, but the target image is hidden from the current user.
-     * @return bool
      */
     public function hiddenImage(): bool
     {

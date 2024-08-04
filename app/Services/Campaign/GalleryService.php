@@ -133,7 +133,6 @@ class GalleryService
 
             $image = new Image();
             $image->campaign_id = $this->campaign->id;
-            $image->created_by = $this->user->id;
             $image->ext = $source->extension();
             $image->size = (int) ceil($source->getSize() / 1024); // kb
             $image->name = mb_substr($name, 0, 45);

@@ -48,7 +48,6 @@ class UploadService
     {
         $this->image = new Image();
         $this->image->campaign_id = $this->campaign->id;
-        $this->image->created_by = $this->user->id;
         $this->image->name = Str::beforeLast($file->getClientOriginalName(), '.');
         $this->image->ext = Str::before($file->extension(), '?');
         $this->image->size = (int) ceil($file->getSize() / 1024); // kb
@@ -108,7 +107,6 @@ class UploadService
 
         $this->image->name = $cleanImageName;
         $this->image->campaign_id = $this->campaign->id;
-        $this->image->created_by = $this->user->id;
         $this->image->ext = Str::before($file->getExtension(), '?');
         $this->image->size = (int) ceil($copiedFileSize); // kb
         $this->image->visibility_id = $this->campaign->defaultVisibilityID();
