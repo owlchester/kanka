@@ -41,6 +41,7 @@ class CharacterCacheService extends BaseCache
         $this->forget(
             $this->genderSuggestionKey()
         );
+
         return $this;
     }
 

@@ -293,6 +293,7 @@ trait EntityRelations
     {
         return $this->files()
             ->where('is_pinned', 1)
+            ->with('image')
         ;
     }
 

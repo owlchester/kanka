@@ -22,14 +22,14 @@
             </div>
         </div>
     @else
-        @if ($image->isFont())
-            <div class="grow w-full flex flex-col justify-center items-center gap-2">
-                <x-icon class="fa-regular fa-file text-4xl"></x-icon>
-            </div>
-        @else
+        @if ($image->hasThumbnail())
             <a class="block avatar grow relative cover-background"
                 style="background-image: url('{{ $image->getUrl(192, 144) }}')">
             </a>
+        @else
+            <div class="grow w-full flex flex-col justify-center items-center gap-2">
+                <x-icon class="fa-regular fa-file text-4xl"></x-icon>
+            </div>
         @endif
         <div class="block px-2 py-4 h-12 truncate">
             @include('icons.visibility', ['icon' => $image->visibilityIcon()])

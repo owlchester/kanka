@@ -105,7 +105,6 @@ class GalleryService
         ];
     }
 
-
     /**
      * Total size in mb
      */

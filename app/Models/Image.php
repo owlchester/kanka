@@ -117,6 +117,12 @@ class Image extends Model
         return $this->hasMany(Inventory::class, 'image_uuid', 'id');
     }
 
+    public function entityAssets(): HasMany
+    {
+        return $this->hasMany(EntityAsset::class, 'image_uuid', 'id')
+            ->with('entity');
+    }
+
     public function headers(): HasMany
     {
         return $this->hasMany(Entity::class, 'header_uuid', 'id');
@@ -150,8 +156,24 @@ class Image extends Model
             }
             $entities[$entity->id] = $entity;
         }
+        foreach ($this->entityAssets as $asset) {
+            if (isset($entities[$asset->entity->id])) {
+                continue;
+            }
+            $entities[$asset->entity->id] = $asset->entity;
+        }
 
         return $entities;
+    }
+
+    public function isUsed(): bool
+    {
+        $entities = count($this->inEntities());
+        $mentions = $this->mentions()->count();
+        $layers = $this->mapLayers()->count();
+        $inventories = $this->inventories()->count();
+
+        return $entities || $mentions || $layers || $inventories;
     }
 
     public function inEntitiesCount(): int
@@ -280,6 +302,11 @@ class Image extends Model
     public function isFont(): bool
     {
         return in_array($this->ext, ['woff', 'woff2']);
+    }
+
+    public function hasThumbnail(): bool
+    {
+        return in_array($this->ext, ['jpg', 'png', 'jpeg', 'gif', 'webp']);
     }
 
     public function getUrl(?int $sizeX = null, ?int $sizeY = null): string

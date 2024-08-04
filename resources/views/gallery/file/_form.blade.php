@@ -6,12 +6,12 @@
                 </div>
             @else
 
-                @if ($image->isFont())
-                    <x-helper text="This file is a font file." />
-                @else
+                @if ($image->hasThumbnail())
                     <div class="text-center">
                         <img src="{{ $image->getUrl(192, 144) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
                     </div>
+                @else
+                    <x-helper text="This file can't be previewed." />
                 @endif
 
                 <hr />

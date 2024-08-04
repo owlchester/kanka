@@ -30,7 +30,7 @@ class AssetController extends Controller
             );
         }
 
-        $assets = $entity->assets;
+        $assets = $entity->assets()->with('image')->get();
 
         return view('entities.pages.assets.index', compact(
             'campaign',
@@ -102,7 +102,7 @@ class AssetController extends Controller
             $file = $service
                 ->entity($entity)
                 ->campaign($campaign)
-                ->upload($request, 'file', 'w/' . $campaign->id . '/entity-assets');
+                ->upload($request, 'file');
 
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])

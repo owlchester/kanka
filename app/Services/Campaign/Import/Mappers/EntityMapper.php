@@ -154,12 +154,26 @@ trait EntityMapper
             return $this;
         }
 
+        $image = $this->migrateImage($img);
+
+        if ($old == 'image_path') {
+            $this->entity->image_uuid = ImportIdMapper::getGallery($image->id);
+        } else {
+            $this->entity->header_uuid = ImportIdMapper::getGallery($image->id);
+        }
+
+        return $this;
+    }
+
+    protected function migrateImage(string $img): Image
+    {
         $imageExt = Str::after($img, '.');
 
         //We need to create a new Image to migrate to the new system.
         $image = new Image();
         $image->campaign_id = $this->campaign->id;
         $image->ext = $imageExt;
+        $image->created_by = $this->user->id;
         $image->name = $this->entity->name;
         $image->visibility_id = 1;
         $size = Storage::disk('local')->size($this->path . $img);
@@ -170,13 +184,7 @@ trait EntityMapper
         Storage::writeStream($image->path, Storage::disk('local')->readStream($this->path . $img));
         ImportIdMapper::putGallery($image->id, $image->id);
 
-        if ($old == 'image_path') {
-            $this->entity->image_uuid = ImportIdMapper::getGallery($image->id);
-        } else {
-            $this->entity->header_uuid = ImportIdMapper::getGallery($image->id);
-        }
-
-        return $this;
+        return $image;
     }
 
     protected function gallery(): self
@@ -213,7 +221,7 @@ trait EntityMapper
             foreach ($import as $field) {
                 $post->$field = $data[$field];
             }
-            if (!empty($data['location_id'])) {
+            if (!empty($data['location_id']) && ImportIdMapper::has('locations', $data['location_id'])) {
                 $locationID = ImportIdMapper::get('locations', $data['location_id']);
                 if (!empty($locationID)) {
                     $post->location_id = $locationID;
@@ -257,19 +265,22 @@ trait EntityMapper
             if (!empty($data['metadata'])) {
                 if (!empty($data['metadata']['path'])) {
                     $img = $data['metadata']['path'];
-                    $ext = Str::afterLast($img, '.');
-                    $destination = 'w/' . $this->campaign->id . '/entity-assets/' . uniqid() . '.' . $ext;
-
                     if (!Storage::disk('local')->exists($this->path . $img)) {
                         //dd('image ' . $this->path . $img . ' doesnt exist');
                         continue;
                     }
-                    Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
-                    $data['metadata']['path'] = $destination;
+
+                    $image = $this->migrateImage($img);
+                    $asset->image_uuid = $image->id;
+                    unset($data['metadata']['path']);
                     $asset->metadata = $data['metadata'];
+
                 } else {
                     $asset->metadata = $data['metadata'];
                 }
+            }
+            if (isset($data['image_uuid'])) {
+                $asset->image_uuid = ImportIdMapper::getGallery($data['image_uuid']);
             }
             $asset->created_by = $this->user->id;
             $asset->save();
