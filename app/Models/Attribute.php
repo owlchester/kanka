@@ -23,15 +23,15 @@ use Laravel\Scout\Searchable;
  * @property int $id
  * @property int $entity_id
  * @property string $name
- * @property string|null $value
+ * @property ?string $value
  * @property AttributeType $type_id
- * @property int|null $origin_attribute_id
+ * @property ?int $origin_attribute_id
  * @property int $default_order
  * @property int|bool $is_private
  * @property int|bool $is_hidden
  * @property int|bool $is_pinned
- * @property string|null $api_key
- * @property Entity|null $entity
+ * @property ?string $api_key
+ * @property ?Entity $entity
  */
 class Attribute extends Model
 {

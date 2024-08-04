@@ -22,14 +22,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $map_id
- * @property string|null $image_uuid
- * @property string|null $image_path
+ * @property ?string $image_uuid
+ * @property ?string $image_path
  * @property string $name
  * @property string $entry
  * @property int $position
  * @property int $height
  * @property int $width
- * @property int|null $type_id
+ * @property ?int $type_id
  *
  * @property Map $map
  * @property Image $image

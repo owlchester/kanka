@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $section
  * @property int $created_by
- * @property bool $is_active
+ * @property bool|int $is_active
  * @property string $customer
  * @property string $html
  */

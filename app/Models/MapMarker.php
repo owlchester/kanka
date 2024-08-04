@@ -24,28 +24,28 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property Map $map
- * @property Entity|null $entity
+ * @property ?Entity $entity
  * @property int $id
  * @property int $map_id
- * @property int|null $entity_id
+ * @property ?int $entity_id
  * @property string $name
  * @property string $entry
  * @property int $longitude
  * @property int $latitude
  * @property string $colour
  * @property string $font_colour
- * @property int|null $shape_id
- * @property int|null $size_id
- * @property int|null $icon
+ * @property ?int $shape_id
+ * @property ?int $size_id
+ * @property ?int $icon
  * @property string $custom_icon
  * @property string $custom_shape
- * @property int|null $circle_radius
- * @property bool $is_draggable
- * @property bool $is_popupless
+ * @property ?int $circle_radius
+ * @property bool|int $is_draggable
+ * @property bool|int $is_popupless
  * @property array $polygon_style
  * @property float $opacity
- * @property int|null $group_id
- * @property int|null $pin_size
+ * @property ?int $group_id
+ * @property ?int $pin_size
  * @property MapGroup|null $group
  */
 class MapMarker extends Model

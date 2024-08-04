@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 /**
  * Trait Pinnable
  * @package App\Models\Scopes
- * @property bool $is_pinned
+ * @property bool|int $is_pinned
  * @method static self|Builder pinnable(bool $is_pinned = true)
  */
 trait Pinnable

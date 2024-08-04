@@ -27,7 +27,7 @@ use Laravel\Scout\Searchable;
  * @property string $role
  * @property string $colour
  * @property Quest|null $quest
- * @property Entity|null $entity
+ * @property ?Entity $entity
  *
  */
 class QuestElement extends Model

@@ -27,9 +27,9 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $price
  * @property string $size
  * @property string $weight
- * @property int|null $item_id
- * @property int|null $character_id
- * @property Character|null $character
+ * @property ?int $item_id
+ * @property ?int $character_id
+ * @property ?Character $character
  */
 class Item extends MiscModel
 {

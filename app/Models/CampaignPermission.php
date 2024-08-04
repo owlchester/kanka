@@ -20,7 +20,7 @@ use Illuminate\Support\Str;
  * @property int $action
  * @property string $key
  * @property string $table_name
- * @property bool $access
+ * @property bool|int $access
  * @property int $misc_id
  * @property Carbon $created_at
  * @property Carbon $updated_at

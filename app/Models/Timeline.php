@@ -21,7 +21,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 /**
  * Class Timeline
  * @property TimelineEra[]|Collection $eras
- * @property int|null $timeline_id
+ * @property ?int $timeline_id
  * @property Timeline[]|Collection $descendants
  */
 class Timeline extends MiscModel

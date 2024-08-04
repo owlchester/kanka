@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $locale
  * @property string $title
  * @property int $order
- * @property bool $is_visible
+ * @property bool|int $is_visible
  *
  * @property Faq[]|Collection $faqs
  */

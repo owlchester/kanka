@@ -24,9 +24,9 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 /**
  * Class Map
  * @package App\Models
- * @property int|null $map_id
- * @property int|null $width
- * @property int|null $height
+ * @property ?int $map_id
+ * @property ?int $width
+ * @property ?int $height
  * @property int $grid
  * @property int $min_zoom
  * @property int $max_zoom
@@ -34,8 +34,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property float $center_x
  * @property float $center_y
  * @property int $center_marker_id
- * @property bool $is_real
- * @property bool $has_clustering
+ * @property bool|int $is_real
+ * @property bool|int $has_clustering
  * @property int $chunking_status
  * @property array $config
  * @property Collection|MapLayer[] $layers

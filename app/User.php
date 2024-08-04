@@ -36,21 +36,21 @@ use App\Models\Concerns\LastSync;
  * @property string $name
  * @property string $email
  * @property string $locale
- * @property int|null $last_campaign_id
- * @property string|null $avatar
+ * @property ?int $last_campaign_id
+ * @property ?string $avatar
  * @property string $provider
  * @property int $provider_id
  * @property Carbon $last_login_at
  * @property int $welcome_campaign_id
  * @property bool|int $newsletter
  * @property bool|int $has_last_login_sharing
- * @property string|null $pledge
- * @property string|null $timezone
- * @property string|null $currency
+ * @property ?string $pledge
+ * @property ?string $timezone
+ * @property ?string $currency
  * @property int $referral_id
- * @property Carbon|string|null $card_expires_at
- * @property Carbon|string|null $banned_until
- * @property Carbon|string|null $created_at
+ * @property ?Carbon $card_expires_at
+ * @property ?Carbon $banned_until
+ * @property ?Carbon $created_at
  * @property Collection|array $settings
  * @property Collection|array $profile
  * @property Campaign $campaign
@@ -60,7 +60,7 @@ use App\Models\Concerns\LastSync;
  * @property bool $defaultNested
  * @property string $campaignSwitcherOrderBy
  *
- * @property string $stripe_id
+ * @property ?string $stripe_id
  */
 class User extends \Illuminate\Foundation\Auth\User
 {

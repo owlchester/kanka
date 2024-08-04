@@ -33,8 +33,8 @@ use Illuminate\Support\Collection;
  * @property string $image
  * @property Carbon|string $export_date
  * @property int $visibility_id
- * @property bool $entity_visibility
- * @property bool $entity_personality_visibility
+ * @property bool|int $entity_visibility
+ * @property bool|int $entity_personality_visibility
  * @property string $header_image
  * @property string $system
  * @property string $excerpt
@@ -53,17 +53,14 @@ use Illuminate\Support\Collection;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
- * @property int $created_by
- * @property int $updated_by
- * @property int $deleted_by
  * @property int $follower
- * @property bool $is_hidden
+ * @property bool|int $is_hidden
  *
  * UI virtual Settings
- * @property bool $tooltip_family
- * @property bool $tooltip_image
- * @property bool $hide_members
- * @property bool $hide_history
+ * @property bool|int $tooltip_family
+ * @property bool|int $tooltip_image
+ * @property bool|int $hide_members
+ * @property bool|int $hide_history
  *
  */
 class Campaign extends Model
@@ -82,12 +79,12 @@ class Campaign extends Model
     /**
      * Visibility of a campaign
      */
-    public const VISIBILITY_PRIVATE = 1;
-    public const VISIBILITY_REVIEW = 2;
-    public const VISIBILITY_PUBLIC = 3;
+    public const int VISIBILITY_PRIVATE = 1;
+    public const int VISIBILITY_REVIEW = 2;
+    public const int VISIBILITY_PUBLIC = 3;
 
-    public const LAYER_COUNT_MIN = 1;
-    public const LAYER_COUNT_MAX = 10;
+    public const int LAYER_COUNT_MIN = 1;
+    public const int LAYER_COUNT_MAX = 10;
 
     protected $fillable = [
         'name',

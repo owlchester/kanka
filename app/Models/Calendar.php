@@ -35,8 +35,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $suffix
  * @property int $calendar_id
  * @property array $parameters
- * @property bool $skip_year_zero
- * @property bool $show_birthdays
+ * @property bool|int $skip_year_zero
+ * @property bool|int $show_birthdays
  */
 class Calendar extends MiscModel
 {

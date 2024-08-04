@@ -29,7 +29,7 @@ use Laravel\Scout\Searchable as Scout;
  * @property string $entry
  * @property string $name
  * @property string $type
- * @property Entity|null $entity
+ * @property ?Entity $entity
  * @property string $image
  * @property string $tooltip
  * @property string $header_image

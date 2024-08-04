@@ -33,15 +33,14 @@ use Laravel\Scout\Searchable;
  * @property string $value
  * @property string $entry
  * @property \App\Enums\Visibility $visibility_id
- * @property int $created_by
- * @property int|null $layout_id
- * @property string|null $marketplace_uuid
+ * @property ?int $layout_id
+ * @property ?string $marketplace_uuid
  * @property bool|int $is_private
  * @property int $deleted_by
  * @property bool|int $is_template
  * @property int $position
  * @property array $settings
- * @property Entity|null $entity
+ * @property ?Entity $entity
  * @property PostLayout|null $layout
  * @property EntityMention[]|Collection $mentions
  * @property PostPermission[]|Collection $permissions

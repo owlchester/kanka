@@ -24,10 +24,10 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $name
  * @property string $type
  * @property string $image
- * @property string|null $map
+ * @property ?string $map
  * @property bool|int $is_private
  * @property bool|int $is_map_private
- * @property int|null $location_id
+ * @property ?int $location_id
  * @property Map[]|Collection $maps
  * @property Location[]|Collection $descendants
  * @property Event[]|Collection $events

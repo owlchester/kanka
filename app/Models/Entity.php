@@ -44,12 +44,12 @@ use Illuminate\Support\Str;
  * @property bool|int $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
- * @property string|null $image_uuid
- * @property string|null $header_uuid
- * @property string|null $marketplace_uuid
- * @property int|null $focus_x
- * @property int|null $focus_y
- * @property string|null $image_path
+ * @property ?string $image_uuid
+ * @property ?string $header_uuid
+ * @property ?string $marketplace_uuid
+ * @property ?int $focus_x
+ * @property ?int $focus_y
+ * @property ?string $image_path
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at

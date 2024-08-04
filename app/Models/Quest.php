@@ -23,11 +23,11 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 /**
  * Class Quest
  * @package App\Models
- * @property int|null $quest_id
- * @property int|null $instigator_id
+ * @property ?int $quest_id
+ * @property ?int $instigator_id
  * @property bool|int $is_completed
  * @property string $date
- * @property Entity|null $instigator
+ * @property ?Entity $instigator
  * @property QuestElement[]|Collection $elements
  */
 class Quest extends MiscModel

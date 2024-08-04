@@ -18,8 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $image
  * @property string $type
  * @property int $target_id
- * @property bool $is_private
- * @property bool $is_closed
+ * @property bool|int $is_private
+ * @property bool|int $is_closed
  *
  * @property ConversationParticipant[]|Collection $participants
  * @property ConversationMessage[]|Collection $messages

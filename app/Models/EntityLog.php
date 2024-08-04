@@ -22,7 +22,7 @@ use Illuminate\Support\Str;
  * @property int $action
  * @property int $post_id
  * @property null|string|array  $changes
- * @property Entity|null $entity
+ * @property ?Entity $entity
  * @property User|null $impersonator
  * @property Campaign $campaign
  * @property Carbon $created_at

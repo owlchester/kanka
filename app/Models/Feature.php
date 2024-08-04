@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $description
  * @property \App\Enums\FeatureStatus $status_id
  * @property int $category_id
- * @property int|null $created_by
+ * @property ?int $created_by
  * @property int $upvote_count
  * @property FeatureCategory $category
  * @property FeatureStatus $status

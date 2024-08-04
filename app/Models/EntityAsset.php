@@ -22,13 +22,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int $id
  * @property int $type_id
  * @property int $entity_id
- * @property string|null $image_uuid
+ * @property ?string $image_uuid
  * @property string $name
  * @property array $metadata
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property Entity|null $entity
- * @property bool $is_pinned
+ * @property ?Entity $entity
+ * @property bool|int $is_pinned
  * @property ?Image $image
  *
  */
@@ -41,9 +41,9 @@ class EntityAsset extends Model
     use Pinnable;
     use Sanitizable;
 
-    public const TYPE_FILE = 1;
-    public const TYPE_LINK = 2;
-    public const TYPE_ALIAS = 3;
+    public const int TYPE_FILE = 1;
+    public const int TYPE_LINK = 2;
+    public const int TYPE_ALIAS = 3;
 
     public $fillable = [
         'type_id',
@@ -69,6 +69,11 @@ class EntityAsset extends Model
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
+    }
+
+    public function image(): HasOne
+    {
+        return $this->hasOne(Image::class, 'id', 'image_uuid');
     }
 
     /**
@@ -179,14 +184,6 @@ class EntityAsset extends Model
             return Storage::disk('cloudfront')->url($path);
         }
         return Storage::url($path);
-    }
-
-    /**
-     * Image stored in the gallery
-     */
-    public function image(): HasOne
-    {
-        return $this->hasOne('App\Models\Image', 'id', 'image_uuid');
     }
 
     /**

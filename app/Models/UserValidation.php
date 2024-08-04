@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 /**
  * @property int $id
  * @property string $token
- * @property bool $is_valid
+ * @property bool|int $is_valid
  *
  * @method static self|Builder valid()
  */

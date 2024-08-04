@@ -27,10 +27,10 @@ use Illuminate\Support\Str;
  * @property int $month
  * @property int $year
  * @property bool|int $is_recurring
- * @property int|null $recurring_until
+ * @property ?int $recurring_until
  * @property string $recurring_periodicity
  * @property int $type_id
- * @property int|null $elapsed
+ * @property ?int $elapsed
  *
  * @property Calendar|null $calendar
  * @property EntityEvent|null $death

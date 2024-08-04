@@ -27,9 +27,9 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $name
  * @property string $type
  * @property string $colour
- * @property int|null $tag_id
- * @property bool $is_auto_applied
- * @property bool $is_hidden
+ * @property ?int $tag_id
+ * @property bool|int $is_auto_applied
+ * @property bool|int $is_hidden
  *
  * @property Entity[]|Collection $entities
  */

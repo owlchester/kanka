@@ -23,11 +23,11 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Organisation
  * @package App\Models
  *
- * @property int|null $organisation_id
- * @property int|null $location_id
+ * @property ?int $organisation_id
+ * @property ?int $location_id
  * @property Collection|OrganisationMember[] $members
  * @property Collection|Organisation[] $descendants
- * @property bool $is_defunct
+ * @property bool|int $is_defunct
  */
 class Organisation extends MiscModel
 {

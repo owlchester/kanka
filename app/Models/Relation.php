@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property string $relation
  * @property int $attitude
- * @property int|null $mirror_id
+ * @property ?int $mirror_id
  * @property int $owner_id
  * @property int $target_id
  * @property bool|int $is_pinned
@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $marketplace_uuid
  *
  * @property Relation|null $mirror
- * @property Entity|null $target
+ * @property ?Entity $target
  * @property Entity $owner
  * @property int $created_at
  * @property int $updated_at

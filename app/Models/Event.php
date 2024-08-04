@@ -21,7 +21,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Event
  * @package App\Models
  *
- * @property int|null $event_id
+ * @property ?int $event_id
  * @property string $date
  * @property Event[] $descendants
  */

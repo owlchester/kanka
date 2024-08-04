@@ -12,9 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property DiceRoll|null $diceRoll
- * @property int|null $dice_roll_id
- * @property int|null $created_by
+ * @property ?DiceRoll $diceRoll
+ * @property ?int $dice_roll_id
  * @property int|bool $is_private
  * @property string $results
  */

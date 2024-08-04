@@ -27,14 +27,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $age
  * @property string $sex
  * @property string $pronouns
- * @property bool $is_dead
- * @property bool $is_personality_visible
- * @property bool $is_appearance_pinned
- * @property bool $is_personality_pinned
+ * @property bool|int $is_dead
+ * @property bool|int $is_personality_visible
+ * @property bool|int $is_appearance_pinned
+ * @property bool|int $is_personality_pinned
  * @property Collection|CharacterFamily[] $characterFamilies
  * @property Collection|Family[] $families
- * @property Location|null $location
- * @property int|null $location_id
+ * @property ?Location $location
+ * @property ?int $location_id
  * @property Collection|Race[] $races
  * @property Collection|CharacterRace[] $characterRaces
  * @property Collection|Organisation[] $organisations

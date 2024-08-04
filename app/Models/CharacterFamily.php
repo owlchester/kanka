@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $family_id
  * @property Carbon $created_at
  * @property Carbon $modified_at
- * @property null|Character $character
- * @property null|Family $family
+ * @property ?Character $character
+ * @property ?Family $family
  */
 class CharacterFamily extends Model
 {

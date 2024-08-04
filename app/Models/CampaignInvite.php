@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $role_id
- * @property int|null $created_by
  * @property string $token
  * @property bool|int $is_active
  * @property int $validity

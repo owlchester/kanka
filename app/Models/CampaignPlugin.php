@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $plugin_id
  * @property int $plugin_version_id
  * @property string $name
- * @property bool $is_active
+ * @property bool|int $is_active
  * @property Plugin $plugin
  * @property Campaign $campaign
  * @property PluginVersion $version

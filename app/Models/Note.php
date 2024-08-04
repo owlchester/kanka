@@ -18,7 +18,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Note
  * @package App\Models
  *
- * @property int|null $note_id
+ * @property ?int $note_id
  */
 class Note extends MiscModel
 {

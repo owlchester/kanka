@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property string $system
  * @property string $parameters
- * @property int|null $character_id
- * @property Character $character
+ * @property ?int $character_id
+ * @property ?Character $character
  */
 class DiceRoll extends MiscModel
 {

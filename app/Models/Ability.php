@@ -20,7 +20,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 /**
  * Class Ability
  * @package App\Models
- * @property int|null $ability_id
+ * @property ?int $ability_id
  * @property mixed|null $charges
  * @property ?Ability $parent
  * @property Collection|Ability[] $descendants

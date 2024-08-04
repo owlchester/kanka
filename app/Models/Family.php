@@ -24,9 +24,9 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 /**
  * Class Family
  * @package App\Models
- * @property int|null $family_id
+ * @property ?int $family_id
  * @property Collection|Character[] $members
- * @property FamilyTree|null $familyTree
+ * @property ?FamilyTree $familyTree
  * @property Collection|Family[] $descendants
  * @property Collection|CharacterFamily[] $pitvotMembers
  */

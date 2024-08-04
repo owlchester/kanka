@@ -25,7 +25,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property Race[]|Collection $descendants
  *
- * @property int|null $race_id
+ * @property ?int $race_id
  * @property Collection|CharacterRace[] $characterRaces
  */
 class Race extends MiscModel

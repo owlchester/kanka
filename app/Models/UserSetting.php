@@ -11,8 +11,8 @@ use Stevebauman\Purify\Facades\Purify;
  * Trait UserSetting
  * @package App\Models
  *
- * @property bool $mail_vote
- * @property bool $mail_release
+ * @property bool|int $mail_vote
+ * @property bool|int $mail_release
  * @property string $patreon_email
  * @property string $newEntityWorkflow
  * @property string $campaignSwitcherOrderBy

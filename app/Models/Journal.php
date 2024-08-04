@@ -24,11 +24,11 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property int $id
  * @property string $date
- * @property int|null $character_id
- * @property int|null $journal_id
- * @property int|null $author_id
- * @property Character|null $character
- * @property Entity|null $author
+ * @property ?int $character_id
+ * @property ?int $journal_id
+ * @property ?int $author_id
+ * @property ?Character $character
+ * @property ?Entity $author
  * @property Journal[] $descendants
  */
 class Journal extends MiscModel

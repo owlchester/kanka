@@ -21,20 +21,20 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property string $name
- * @property string|null $tab
- * @property string|null $menu
- * @property string|null $type
+ * @property ?string $tab
+ * @property ?string $menu
+ * @property ?string $type
  * @property string $icon
- * @property string|null $filters
- * @property string|null $parent
+ * @property ?string $filters
+ * @property ?string $parent
  * @property string $css
  * @property string $random_entity_type
  * @property int $position
- * @property int|null $dashboard_id
- * @property int|null $entity_id
+ * @property ?int $dashboard_id
+ * @property ?int $entity_id
  * @property array $options
- * @property CampaignDashboard|null $dashboard
- * @property Entity|null $target
+ * @property ?CampaignDashboard $dashboard
+ * @property ?Entity $target
  * @property bool|int $is_private
  * @property bool|int $is_active
  * @property array $optionsAllowedKeys

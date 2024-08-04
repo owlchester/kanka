@@ -27,12 +27,11 @@ use Illuminate\Support\Facades\Storage;
  * @property string $name
  * @property string $ext
  * @property int $size
- * @property int $created_by
  * @property ?int $focus_x
  * @property ?int $focus_y
- * @property string $folder_id
- * @property bool $is_default
- * @property bool $is_folder
+ * @property ?string $folder_id
+ * @property bool|int $is_default
+ * @property bool|int $is_folder
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Image $imageFolder
@@ -43,7 +42,6 @@ use Illuminate\Support\Facades\Storage;
  * @property MapLayer[] $mapLayers
  * @property Inventory[] $inventories
  * @property Entity[] $headers
- *
  *
  * @property int $visibility_id
  * @property Visibility $visibility

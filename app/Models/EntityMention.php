@@ -14,16 +14,16 @@ use Illuminate\Support\Arr;
  * @package App\Models
  *
  * @property int $entity_id
- * @property int|null $post_id
- * @property int|null $quest_element_id
- * @property int|null $timeline_element_id
- * @property int|null $campaign_id
+ * @property ?int $post_id
+ * @property ?int $quest_element_id
+ * @property ?int $timeline_element_id
+ * @property ?int $campaign_id
  * @property int $target_id
  * @property Entity $entity
  * @property Post|null $post
  * @property QuestElement|null $questElement
  * @property TimelineElement|null $timelineElement
- * @property Entity|null $target
+ * @property ?Entity $target
  * @property Campaign|null $campaign
  *
  * @method static self|Builder filterValid()

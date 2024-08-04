@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $conversation_id
  * @property int $created_by
- * @property int|null $character_id
- * @property Character|null $character
+ * @property ?int $character_id
+ * @property ?Character $character
  *
  */
 class ConversationParticipant extends MiscModel

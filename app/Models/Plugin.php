@@ -20,9 +20,9 @@ use Illuminate\Support\Str;
  * @property string $uuid
  * @property int $type_id
  * @property int $status_id
- * @property int|null $created_by
+ * @property ?int $created_by
  * @property string $name
- * @property bool $is_obsolete
+ * @property bool|int $is_obsolete
  *
  * @property PluginVersion[]|Collection $versions
  * @property PluginVersion $version

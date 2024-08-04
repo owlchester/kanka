@@ -24,8 +24,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property Creature[]|Collection $descendants
  *
- * @property int|null $creature_id
- * @property bool $is_extinct
+ * @property ?int $creature_id
+ * @property bool|int $is_extinct
  */
 class Creature extends MiscModel
 {

@@ -15,18 +15,17 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @package App\Models
  *
  * @property int $entity_id
- * @property int|null $item_id
- * @property int|null $created_by
+ * @property ?int $item_id
  * @property string $name
  * @property int $amount
  * @property string $position
  * @property string $description
- * @property string|null $image_uuid
- * @property bool $is_equipped
- * @property bool $copy_item_entry
- * @property Item|null $item
- * @property Entity|null $entity
- * @property Image|null $image
+ * @property ?string $image_uuid
+ * @property bool|int $is_equipped
+ * @property bool|int $copy_item_entry
+ * @property ?Item $item
+ * @property ?Entity $entity
+ * @property ?Image $image
  */
 class Inventory extends Model
 {
@@ -69,14 +68,6 @@ class Inventory extends Model
     public function item(): BelongsTo
     {
         return $this->belongsTo('App\Models\Item');
-    }
-
-    /**
-     * Who created this entry
-     */
-    public function creator(): BelongsTo
-    {
-        return $this->belongsTo('App\User', 'created_by');
     }
 
     public function image(): HasOne

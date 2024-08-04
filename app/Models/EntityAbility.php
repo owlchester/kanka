@@ -21,12 +21,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $charges
  * @property int $position
  * @property string $note
- * @property int $created_by
- * @property int $updated_by
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Ability|null $ability
- * @property Entity|null $entity
+ * @property ?Entity $entity
  *
  * @method static Builder|self defaultOrder()
  */
