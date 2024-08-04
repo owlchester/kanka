@@ -31,7 +31,7 @@ class EntityUser extends Pivot
     use HasUser;
     use MassPrunable;
 
-    public const TYPE_KEEPALIVE = 1;
+    public const int TYPE_KEEPALIVE = 1;
 
     public function entity(): BelongsTo
     {

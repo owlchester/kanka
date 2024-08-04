@@ -25,8 +25,8 @@ class CharacterTrait extends Model
     use HasEntry;
     use Paginatable;
 
-    public const SECTION_APPEARANCE = 1;
-    public const SECTION_PERSONALITY = 2;
+    public const int SECTION_APPEARANCE = 1;
+    public const int SECTION_PERSONALITY = 2;
 
     protected $fillable = [
         'character_id',

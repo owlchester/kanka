@@ -320,7 +320,7 @@ class SubscriptionService
     public function downgrading(): bool
     {
         // Elemental downgrading -> owl or wyv
-        if ($this->user->isElemental() && in_array($this->tier->code, [Pledge::OWLBEAR, Pledge::WYVERN])) {
+        if ($this->user->isElemental() && in_array($this->tier->name, [Pledge::OWLBEAR, Pledge::WYVERN])) {
             return true;
         }
 

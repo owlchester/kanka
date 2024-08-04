@@ -24,11 +24,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class AppRelease extends Model
 {
-    public const CATEGORY_RELEASE = 1;
-    public const CATEGORY_EVENT = 2;
-    public const CATEGORY_VOTE = 3;
-    public const CATEGORY_OTHER = 4;
-    public const CATEGORY_LIVESTREAM = 5;
+    public const int CATEGORY_RELEASE = 1;
+    public const int CATEGORY_EVENT = 2;
+    public const int CATEGORY_VOTE = 3;
+    public const int CATEGORY_OTHER = 4;
+    public const int CATEGORY_LIVESTREAM = 5;
 
     public $table = 'releases';
 

@@ -31,10 +31,10 @@ class CommunityVote extends Model
 {
     use CommunityVoteScopes;
 
-    public const STATUS_DRAFT = 'draft';
-    public const STATUS_SCHEDULED = 'scheduled';
-    public const STATUS_VOTING = 'voting';
-    public const STATUS_PUBLISHED = 'published';
+    public const string STATUS_DRAFT = 'draft';
+    public const string STATUS_SCHEDULED = 'scheduled';
+    public const string STATUS_VOTING = 'voting';
+    public const string STATUS_PUBLISHED = 'published';
 
     protected $cachedStatus = false;
     protected $cachedResults = false;
