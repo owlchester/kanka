@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool|int $is_active
  * @property int $validity
  */
-class CampaignInvite extends MiscModel
+class CampaignInvite extends Model
 {
     use Blameable;
     use HasCampaign;

@@ -7,6 +7,7 @@ use App\Models\Concerns\HasUser;
 use App\Models\Concerns\LastSync;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,14 +24,14 @@ use Illuminate\Support\Facades\Auth;
  * @property ?Character $character
  * @property Conversation $conversation
  */
-class ConversationMessage extends MiscModel
+class ConversationMessage extends Model
 {
     use Blameable;
     use HasFactory;
     use HasUser;
     use LastSync;
 
-    public $isGroupped = false;
+    public bool $isGroupped = false;
 
     protected $fillable = [
         'conversation_id',

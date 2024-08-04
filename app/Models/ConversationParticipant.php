@@ -11,12 +11,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int $id
  * @property int $conversation_id
- * @property int $created_by
  * @property ?int $character_id
  * @property ?Character $character
  *
  */
-class ConversationParticipant extends MiscModel
+class ConversationParticipant extends Model
 {
     use HasFactory;
     use HasUser;
@@ -25,7 +24,6 @@ class ConversationParticipant extends MiscModel
 
     protected $fillable = [
         'conversation_id',
-        'created_by',
         'character_id',
         'user_id',
     ];
