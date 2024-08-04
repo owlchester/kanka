@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Carbon $updated_at
  * @property Entity|null $entity
  * @property bool $is_pinned
+ * @property ?Image $image
  *
  */
 class EntityAsset extends Model
@@ -169,7 +170,7 @@ class EntityAsset extends Model
     public function url(): string
     {
         if ($this->image_uuid) {
-            return $this->image->getUrl();
+            return $this->image->url();
         }
 
         $path = $this->metadata['path'];
