@@ -7,8 +7,6 @@ use App\Services\Entity\TagService;
 
 class WebhookObserver
 {
-    use PurifiableTrait;
-
     public function saved(Webhook $webhook)
     {
         $this->saveTags($webhook);

@@ -6,7 +6,6 @@ use App\Models\TimelineElement;
 
 class TimelineElementObserver
 {
-    use PurifiableTrait;
     use ReorderTrait;
 
     /**

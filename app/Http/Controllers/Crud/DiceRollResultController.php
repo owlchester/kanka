@@ -19,13 +19,13 @@ class DiceRollResultController extends CrudController
 
     protected string $forceMode = 'table';
 
-    protected function getNavActions(): CrudController
+    protected function setNavActions(): CrudController
     {
         $this->addNavAction(
             route('dice_rolls.index', $this->campaign),
             '<i class="fa-solid fa-square" aria-hidden="true"></i> ' . __('entities.dice_rolls')
         );
-        return parent::getNavActions();
+        return parent::setNavActions();
     }
     /**
      * Display a listing of the resource.
@@ -41,7 +41,7 @@ class DiceRollResultController extends CrudController
             ->make($this->view);
         $name = $this->view;
         $langKey = $name;
-        $this->getNavActions();
+        $this->setNavActions();
         $actions = $this->navActions;
         $filterService = $this->filterService;
 

@@ -5,12 +5,17 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Privatable;
 use App\Models\Concerns\Sanitizable;
+use App\Models\Concerns\Searchable;
+use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Taggable;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
@@ -42,12 +47,16 @@ use Illuminate\Support\Str;
  * @method static self|Builder ordered()
  * @method static self|Builder active()
  */
-class Bookmark extends MiscModel
+class Bookmark extends Model
 {
     use HasCampaign;
     use HasFactory;
+    use HasFilters;
     use Privatable;
     use Sanitizable;
+    use Searchable;
+    use Sortable;
+    use Orderable;
     use Taggable;
 
     protected $fillable = [
@@ -138,6 +147,11 @@ class Bookmark extends MiscModel
         ]);
     }
 
+    public function scopePreparedSelect(Builder $query): Builder
+    {
+        return $query;
+    }
+
     /**
      * Scope for Active menu links
      */
@@ -161,9 +175,22 @@ class Bookmark extends MiscModel
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
+    public function entity(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\Entity', 'entity_id');
+    }
+
     public function dashboard(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignDashboard', 'dashboard_id');
+    }
+
+    /**
+     * Need this because we're using the Crud Controllers instead of doing our own for bookmarks
+     */
+    public function hasEntityType(): bool
+    {
+        return false;
     }
 
     /**

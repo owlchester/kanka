@@ -15,8 +15,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserObserver
 {
-    use PurifiableTrait;
-
     /**
      */
     public function saving(User $user)
