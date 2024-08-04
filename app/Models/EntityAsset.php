@@ -188,4 +188,13 @@ class EntityAsset extends Model
     {
         return $this->hasOne('App\Models\Image', 'id', 'image_uuid');
     }
+
+    /**
+     * A file can be linked to a gallery image, but the target image is hidden from the current user.
+     * @return bool
+     */
+    public function hiddenImage(): bool
+    {
+        return !empty($this->image_uuid) && !$this->image;
+    }
 }

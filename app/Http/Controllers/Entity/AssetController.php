@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Exceptions\EntityFileException;
+use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAsset;
 use App\Models\Campaign;
@@ -107,10 +107,10 @@ class AssetController extends Controller
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])
                 ->with('success', __('entities/files.create.success', ['file' => $file->name]));
-        } catch (EntityFileException $e) {
+        } catch (TranslatableException $e) {
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])
-                ->with('error', __('crud.files.errors.' . $e->getMessage(), ['max' => $campaign->maxEntityFiles()]));
+                ->with('error', $e->getTranslatedMessage());
         } catch (Exception $e) {
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])

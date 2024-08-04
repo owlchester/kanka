@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Exceptions\EntityFileException;
+use App\Exceptions\TranslatableException;
 use App\Http\Requests\StoreEntityAsset;
 use App\Models\EntityAsset;
 use App\Models\Image;
@@ -18,7 +18,7 @@ class EntityFileService
     use EntityAware;
 
     /**
-     * @throws EntityFileException
+     * @throws TranslatableException
      */
     public function upload(StoreEntityAsset $request, string $field = 'file'): EntityAsset
     {
@@ -29,11 +29,16 @@ class EntityFileService
         $uploadedFile = $request->file($field);
 
         // Already above max capacity?
-        if ($this->entity->files->count() >= $this->campaign->maxEntityFiles() || $service->campaign($this->campaign)->available() < $uploadedFile->getSize() / 1024) {
-            throw new EntityFileException('max');
+        if ($this->entity->files->count() >= $this->campaign->maxEntityFiles()) {
+            throw (new TranslatableException('crud.files.errors.max'))
+                ->setOptions(['max' => $this->campaign->maxEntityFiles()]);
         }
         if ($service->campaign($this->campaign)->available() < $uploadedFile->getSize() / 1024) {
-            throw new EntityFileException('max_size');
+            $key = 'gallery.download.errors.gallery_full_free';
+            if ($this->campaign->boosted()) {
+                $key = 'gallery.download.errors.gallery_full_premium';
+            }
+            throw new TranslatableException($key);
         }
 
         $name = $request->get('name');
@@ -44,7 +49,6 @@ class EntityFileService
 
         $image = new Image();
         $image->campaign_id = $this->campaign->id;
-        $image->created_by = auth()->user()->id;
         $image->ext = $uploadedFile->extension();
         $image->size = (int) ceil($uploadedFile->getSize() / 1024); // kb
         $image->name = mb_substr($name, 0, 45);

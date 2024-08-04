@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\Img;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\HasVisibility;
@@ -60,6 +61,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class Image extends Model
 {
+    use Blameable;
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
