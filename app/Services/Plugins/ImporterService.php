@@ -196,10 +196,10 @@ class ImporterService
             $this->model->is_private = true;
         }
 
-        $model = $this->importImage($this->model, $pluginEntity);
+        $this->importImage($pluginEntity);
 
         // Mentions
-        $model->entry = preg_replace_callback('`\[entity:(.*?)\]`i', function ($matches) {
+        $this->model->entry = preg_replace_callback('`\[entity:(.*?)\]`i', function ($matches) {
             $id = (int) $matches[1];
             if (empty($id) || !isset($this->entityIds[$id])) {
                 return 'wat';
@@ -208,7 +208,8 @@ class ImporterService
             return '[' . $this->entityTypes[$id] . ':' . $this->entityIds[$id] . ']';
         }, $pluginEntity->entry);
 
-        $model->save();
+        $this->model->save();
+        $this->model->entity->save();
 
         // Relations
         if (!empty($pluginEntity->related)) {
@@ -381,19 +382,21 @@ class ImporterService
     }
 
     /**
+     * Images are stored in the campaign gallery and need to be mapped to their uuid
      */
-    protected function importImage(MiscModel $model, PluginVersionEntity $entity): MiscModel
+    protected function importImage(PluginVersionEntity $entity): self
     {
         // Don't do anything if no image or replacing an image (too many false positives)
-        if (empty($entity->image_path) || !empty($model->entity->image_path) || !empty($model->entity->image_uuid)) {
-            return $model;
+        if (empty($entity->image_path) || !empty($this->model->entity->image_path) || !empty($this->model->entity->image_uuid)) {
+            return $this;
         }
 
         // Need to download the image from the marketplace's s3 (if possible)
         try {
             $imageExt = Str::afterLast($entity->image_path, '.');
 
-            //We need to create a new Image to migrate to the new system.
+            // We need to create a new Image to migrate to the new system. Maybe in the future
+            // we can store the marketplace's uuid here and avoid duplicates.
             $image = new Image();
             $image->campaign_id = $this->campaign->id;
             $image->ext = $imageExt;
@@ -403,16 +406,13 @@ class ImporterService
             $image->size = (int) ceil($size / 1024); // kb
             $image->save();
 
-            $path = 'campaigns/' . $this->campaign->id . '/' . $image->id . '.' . $imageExt;
-
-            Storage::writeStream($path, Storage::disk('s3-marketplace')->readStream($entity->image_path));
-            $model->entity->image_uuid = $image->id;
-            $model->entity->save();
+            Storage::writeStream($image->path, Storage::disk('s3-marketplace')->readStream($entity->image_path));
+            $this->model->entity->image_uuid = $image->id;
         } catch (Exception $e) {
             Log::error('Error importing image from ' . $entity->id . ': ' . $e->getMessage());
         }
 
-        return $model;
+        return $this;
     }
 
     /**

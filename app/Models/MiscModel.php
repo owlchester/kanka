@@ -179,7 +179,7 @@ abstract class MiscModel extends Model
         $entity = Entity::create([
             'entity_id' => $this->id,
             'campaign_id' => $this->campaign_id,
-            'is_private' => $this->is_private,
+            'is_private' => $this->isPrivate(),
             'name' => $this->name,
             'type_id' => $this->entityTypeId(),
         ]);
@@ -373,5 +373,10 @@ abstract class MiscModel extends Model
             'type'  => $this->type,
             'entry'  => strip_tags($this->entry),
         ];
+    }
+
+    public function isPrivate(): bool
+    {
+        return (bool) $this->is_private;
     }
 }
