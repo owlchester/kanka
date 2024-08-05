@@ -2,8 +2,10 @@
 <x-forms.field field="name" css="w-full">
     <label for="name">{!! $attribute->name() !!}</label>
     @if ($attribute->isCheckbox())
-        <input type="hidden" name="value" value="" />
-        <input type="checkbox" name="value" @if($attribute->value) checked="checked" @endif />
+        <div>
+            <input type="hidden" name="value" value="" />
+            <input type="checkbox" name="value" id="name" @if($attribute->value) checked="checked" @endif />
+        </div>
     @elseif ($attribute->isText())
         <textarea name="value" class="w-full" rows="4">{!! $attribute->value !!}</textarea>
     @elseif ($attribute->isNumber())
